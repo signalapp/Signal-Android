@@ -894,8 +894,8 @@
   <string name="preferences__signal_messages_and_calls">Повідомлення та виклики Signal</string>
   <string name="preferences__free_private_messages_and_calls">Безкоштовні приватні повідомлення та виклики для користувачів Signal</string>
   <string name="preferences__submit_debug_log">Надіслати журнал відлагодження</string>
-  <string name="preferences__support_wifi_calling">Режим сумісності \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «Виклики по WiFi» увімкнені на вашому пристрої)</string>
+  <string name="preferences__support_wifi_calling">Режим сумісності \'Wi-Fi Calling\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через Wi-Fi (вмикайте лише якщо «Виклики по Wi-Fi» увімкнені на вашому пристрої)</string>
   <string name="preferences_app_protection__blocked_contacts">Заблоковані контакти</string>
   <string name="preferences_chats__when_using_mobile_data">При використанні мобільних даних</string>
   <string name="preferences_chats__when_using_wifi">При використанні Wi-Fi</string>

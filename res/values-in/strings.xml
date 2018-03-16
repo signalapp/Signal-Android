@@ -903,8 +903,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__signal_messages_and_calls">Pesan dan panggilan Signal</string>
   <string name="preferences__free_private_messages_and_calls">Pesan dan panggilan privat gratis ke pengguna Signal</string>
   <string name="preferences__submit_debug_log">Kirim log awakutu</string>
-  <string name="preferences__support_wifi_calling">Mode kompatibilitas \'Panggilan WiFi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktifkan jika perangkat Anda menggunakan pengiriman SMS/MMS melalui WiFi (hanya berfungsi ketika \'Panggilan WiFi\' aktif di perangkat Anda)</string>
+  <string name="preferences__support_wifi_calling">Mode kompatibilitas \'Panggilan Wi-Fi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktifkan jika perangkat Anda menggunakan pengiriman SMS/MMS melalui Wi-Fi (hanya berfungsi ketika \'Panggilan Wi-Fi\' aktif di perangkat Anda)</string>
   <string name="preferences__incognito_keyboard">Papan ketik tersembunyi</string>
   <string name="preferences__read_receipts">Pesan terbaca</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika tanda telah diterima di non aktifkan . anda tidak dapat melihat jika pesan sudah dibaca oleh orang lain</string>

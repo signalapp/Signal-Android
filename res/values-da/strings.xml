@@ -858,11 +858,11 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="preferences__signal_messages_and_calls">Signalbeskeder og -opkald</string>
   <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Signal-brugere</string>
   <string name="preferences__submit_debug_log">Indsend fejlfindingslog</string>
-  <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for WiFi-opkald</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivér hvis din enhed sender SMS/MMS via WiFI (aktivér kun, hvis WiFI-opkald er aktiveret på din enhed)</string>
+  <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for Wi-Fi-opkald</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivér hvis din enhed sender SMS/MMS via Wi-Fi (aktivér kun, hvis Wi-Fi-opkald er aktiveret på din enhed)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokerede kontakter</string>
   <string name="preferences_chats__when_using_mobile_data">Når der anvendes mobildata</string>
-  <string name="preferences_chats__when_using_wifi">Når der anvendes WiFi</string>
+  <string name="preferences_chats__when_using_wifi">Når der anvendes Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Når der roames</string>
   <string name="preferences_chats__media_auto_download">Automatisk hentning af multimedier</string>
   <string name="preferences_chats__message_trimming">Trimning af beskeder</string>

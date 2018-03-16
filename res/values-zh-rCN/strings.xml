@@ -922,7 +922,7 @@
   <string name="preferences__request_keyboard_to_disable_personalized_learning">关闭键盘自动学习功能</string>
   <string name="preferences_app_protection__blocked_contacts">已屏蔽的联系人</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
-  <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
+  <string name="preferences_chats__when_using_wifi">当使用 Wi-Fi 时</string>
   <string name="preferences_chats__when_roaming">当漫游时</string>
   <string name="preferences_chats__media_auto_download">媒体自动下载</string>
   <string name="preferences_chats__message_trimming">信息整理</string>

@@ -925,7 +925,7 @@
   <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至 Signal 使用者</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
   <string name="preferences__support_wifi_calling">\"WiFi 呼叫\"相容模式</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的裝置使用 WiFi 傳送簡訊或多媒體訊息，請啟用此選項 (僅當\"WiFi 語音呼叫\"在您的裝置上啟用的時候才可用)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的裝置使用 Wi-Fi 傳送簡訊或多媒體訊息，請啟用此選項 (僅當\"Wi-Fi 語音呼叫\"在您的裝置上啟用的時候才可用)</string>
   <string name="preferences__incognito_keyboard">隱私鍵盤</string>
   <string name="preferences__read_receipts">已讀標記</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">如果關閉已讀標記，你將無法看到其他人的已讀標記。</string>

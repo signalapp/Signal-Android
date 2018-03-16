@@ -947,8 +947,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal</string>
   <string name="preferences__free_private_messages_and_calls">Mensagens e chamadas privadas gratuitas para utilizadores Signal</string>
   <string name="preferences__submit_debug_log">Submeter registo de depuração</string>
-  <string name="preferences__support_wifi_calling">Modo de compatibilidade \"Chamada WiFi\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ative se o seu dispositivo utiliza entrega de SMS/MMS por WiFi (ative apenas se o \'WiFi Calling\' está ativo neste dispositivo)</string>
+  <string name="preferences__support_wifi_calling">Modo de compatibilidade \"Chamada Wi-Fi\"</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ative se o seu dispositivo utiliza entrega de SMS/MMS por Wi-Fi (ative apenas se o \'Wi-Fi Calling\' está ativo neste dispositivo)</string>
   <string name="preferences__incognito_keyboard">Teclado incógnito</string>
   <string name="preferences__read_receipts">Recibos de leitura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura forem desativados, não vai poder ver os recibos enviados por outros.</string>

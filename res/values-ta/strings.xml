@@ -541,7 +541,7 @@
   <string name="preferences__default">இயல்புநிலை</string>
   <string name="preferences__language">மொழி</string>
   <string name="preferences__submit_debug_log">பிழைத்திருத்த பதிவுகளை சமர்ப்பி</string>
-  <string name="preferences__support_wifi_calling">\'WiFi அழைப்புகள்\' பொருந்தக்கூடிய முறை</string>
+  <string name="preferences__support_wifi_calling">\'Wi-Fi அழைப்புகள்\' பொருந்தக்கூடிய முறை</string>
   <string name="preferences_app_protection__blocked_contacts">முடக்கப்பட்ட தொடர்புகள்</string>
   <!--****************************************-->
   <!--menus-->

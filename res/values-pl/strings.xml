@@ -985,8 +985,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__signal_messages_and_calls">Wiadomości i połączenia Signal</string>
   <string name="preferences__free_private_messages_and_calls">Darmowe oraz prywatne wiadomości i połączenia do użytkowników Signal</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
-  <string name="preferences__support_wifi_calling">Tryb zgodności \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \'Połączenia WiFi\' jest włączone na Twoim urządzeniu)</string>
+  <string name="preferences__support_wifi_calling">Tryb zgodności \'Wi-Fi Calling\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez Wi-Fi (włącz tylko wtedy gdy \'Połączenia Wi-Fi\' jest włączone na Twoim urządzeniu)</string>
   <string name="preferences__incognito_keyboard">Klawiatura trybu prywatnego</string>
   <string name="preferences__read_receipts">Potwierdzenia przeczytania</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Gdy potwierdzenia przeczytania są wyłączone, Ty również nie będziesz otrzymywać potwierdzeń od innych użytkowników.</string>

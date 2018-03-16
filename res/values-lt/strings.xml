@@ -978,7 +978,7 @@
   <string name="preferences__free_private_messages_and_calls">Nemokamos privačios žinutės ir skambučiai Signal naudotojams</string>
   <string name="preferences__submit_debug_log">Pateikti derinimo žurnalą</string>
   <string name="preferences__support_wifi_calling">„Wi-Fi skambučių“ suderinamumo veiksena</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Įjunkite jeigu jūsų įrenginys siunčia SMS/MMS per WiFi tinklą (įjunkite tik tuo atveju jeigu jūsų įrenginyje yra aktyvuota \"WiFi skambučių\" funkcija)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Įjunkite jeigu jūsų įrenginys siunčia SMS/MMS per Wi-Fi tinklą (įjunkite tik tuo atveju jeigu jūsų įrenginyje yra aktyvuota \"Wi-Fi skambučių\" funkcija)</string>
   <string name="preferences__incognito_keyboard">Incognito klaviatūra</string>
   <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>

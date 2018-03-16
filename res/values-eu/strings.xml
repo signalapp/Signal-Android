@@ -947,8 +947,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences__signal_messages_and_calls">Signal mezu eta deiak</string>
   <string name="preferences__free_private_messages_and_calls">Mezu eta dei pribatu doanak Signal erabiltzaileri.</string>
   <string name="preferences__submit_debug_log">Arazketaren log-a bidali</string>
-  <string name="preferences__support_wifi_calling">\'\"WiFi Calling\' modu bateragarria</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktibatu zure gailuak WiFi bidezko SMS/MMS banaketa erabiltzen badu (bakarrik aktibatu \'WiFi Calling\' aktibatuta badago zure gailuan).</string>
+  <string name="preferences__support_wifi_calling">\'\"Wi-Fi Calling\' modu bateragarria</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktibatu zure gailuak Wi-Fi bidezko SMS/MMS banaketa erabiltzen badu (bakarrik aktibatu \'Wi-Fi Calling\' aktibatuta badago zure gailuan).</string>
   <string name="preferences__incognito_keyboard">Ezkutuko teklatua</string>
   <string name="preferences__read_receipts">Irakurketa oharrak</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Irakurketa oharrak desaktibatuta badaude, ezingo dituzu besteenak ikusi</string>

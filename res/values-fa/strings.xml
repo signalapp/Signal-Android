@@ -873,7 +873,7 @@
   <string name="preferences__free_private_messages_and_calls">پیام های خصوصی و تماس رایگان به کاربران سیگنال</string>
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
   <string name="preferences__support_wifi_calling">\'وای فای تلفن\' حالت سازگاری</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل SMS/MMS تحت WIFI استفاده می کند آنرا فعال کنید.(فقط زمانی فعال کنید که \"WIFI Calling\" روی دستگاه شما فعال شده باشد)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل SMS/MMS تحت Wi-Fi استفاده می کند آنرا فعال کنید.(فقط زمانی فعال کنید که \"Wi-Fi Calling\" روی دستگاه شما فعال شده باشد)</string>
   <string name="preferences__incognito_keyboard">کیبورد ناشناس</string>
   <string name="preferences__read_receipts">خواندن رسید ها</string>
   <string name="preferences_app_protection__blocked_contacts">اطلاعات تماس مسدود</string>
