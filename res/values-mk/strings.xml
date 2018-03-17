@@ -473,8 +473,8 @@
   <string name="preferences__default">Стандардно</string>
   <string name="preferences__language">Јазик</string>
   <string name="preferences__submit_debug_log">Испратете протокол за дијагноза</string>
-  <string name="preferences__support_wifi_calling">\'Wi-Fi Calling\' мод за компатибилност</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку Wi-Fi (овозможи само доколку \'Wi-Fi Calling\' е овозможен на уредот)</string>
+  <string name="preferences__support_wifi_calling">\'WiFi Calling\' мод за компатибилност</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку \'WiFi Calling\' е овозможен на уредот)</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
   <string name="preferences_notifications__ringtone">Звук за звонење</string>
   <!--****************************************-->

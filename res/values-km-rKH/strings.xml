@@ -914,8 +914,8 @@
   <string name="preferences__signal_messages_and_calls">ការផ្ញើសារ និងការហៅស៊ីហ្គណល</string>
   <string name="preferences__free_private_messages_and_calls">ការផ្ញើសារ និងការហៅចេញជាឯកជនភាព​ ដោយមិនគិតថ្លៃ​ ទៅកាន់អ្នកប្រើប្រាស់ស៊ីហ្គណល</string>
   <string name="preferences__submit_debug_log">បញ្ជូនកំណត់ហេតុបញ្ហា</string>
-  <string name="preferences__support_wifi_calling">ទម្រង់ត្រូវគ្នា \"ការហៅតាមប្រព័ន្ធ Wi-Fi\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">បើក ប្រសិនបើឧបករណ៍អ្នក បញ្ជូនSMS/MMS តាម Wi-Fi (គ្រាន់តែបើកនៅពេល \'ការហៅតាម Wi-Fi\' ត្រូវបានបើកលើឧបករណ៍អ្នក)</string>
+  <string name="preferences__support_wifi_calling">ទម្រង់ត្រូវគ្នា \"ការហៅតាមប្រព័ន្ធ WiFi\"</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">បើក ប្រសិនបើឧបករណ៍អ្នក បញ្ជូនSMS/MMS តាម WiFi (គ្រាន់តែបើកនៅពេល \'ការហៅតាម WiFi\' ត្រូវបានបើកលើឧបករណ៍អ្នក)</string>
   <string name="preferences__incognito_keyboard">ក្តារចុចអនាមឹក</string>
   <string name="preferences__read_receipts">ទទួលបានការអាន</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ប្រសិនបើការទទួលត្រូវបានបិទ អ្នកនឹងមិនអាចមើលការទទួលពីអ្នកផ្សេងទេ។</string>

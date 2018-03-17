@@ -968,8 +968,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private şi gratuite cu utilizatorii Signal
     </string>
   <string name="preferences__submit_debug_log">Trimite jurnalul de depanare</string>
-  <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare Wi-Fi\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activează dacă dispozitivul tău trimite SMS/MMS prin Wi-Fi (activează atunci când \"Apelare Wi-Fi\" este activat pe dispozitivul tău)</string>
+  <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare WiFi\"</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activează dacă dispozitivul tău trimite SMS/MMS prin WiFi (activează atunci când \"Apelare WiFi\" este activat pe dispozitivul tău)</string>
   <string name="preferences__incognito_keyboard">Tastatură incognito</string>
   <string name="preferences__read_receipts">Confirmări de citire</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Dacă confirmările de citire sunt dezactivate, nu vei putea vedea confirmările de citire de la ceilalți.</string>

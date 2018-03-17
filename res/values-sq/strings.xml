@@ -914,8 +914,8 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="preferences__signal_messages_and_calls">Porositë dhe thirrjet nga Signal</string>
   <string name="preferences__free_private_messages_and_calls">Porosi dhe thirrje private pa pagesë për përoduesit e Signal</string>
   <string name="preferences__submit_debug_log">Dërgo logun e gabimeve</string>
-  <string name="preferences__support_wifi_calling">Manyra kompatibile \'Thirrje Wi-Fi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Mundëso nëse pajisja juaj përdor SMS/MMS dorëzim të porosive nëpërmjet Wi-Fi (mundëso vetëm kur \'Thirrje Wi-Fi\' është e mundësuar në pajisje).</string>
+  <string name="preferences__support_wifi_calling">Manyra kompatibile \'Thirrje Wifi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Mundëso nëse pajisja juaj përdor SMS/MMS dorëzim të porosive nëpërmjet WiFi (mundëso vetëm kur \'Thirrje Wifi\' është e mundësuar në pajisje).</string>
   <string name="preferences__incognito_keyboard">Tastiera inkonjito</string>
   <string name="preferences__read_receipts">Vërtetimet e leximit</string>
   <string name="preferences_app_protection__blocked_contacts">Kontaktet e bllokuara</string>

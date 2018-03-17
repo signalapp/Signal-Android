@@ -945,8 +945,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__signal_messages_and_calls">Missatges i trucades del Signal</string>
   <string name="preferences__free_private_messages_and_calls">Missatges i trucades privades gratuïtes per als usuaris del Signal </string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
-  <string name="preferences__support_wifi_calling">Mode de compatibilitat «Trucada per Wi-Fi»</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habiliteu-ho si el dispositiu fa servir SMS / MMS per Wi-Fi (feu-ho només si la «Trucada per Wi-Fi» està habilitada al dispositiu)</string>
+  <string name="preferences__support_wifi_calling">Mode de compatibilitat «Trucada per WiFi»</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habiliteu-ho si el dispositiu fa servir SMS / MMS per WiFi (feu-ho només si la «Trucada per WiFi» està habilitada al dispositiu)</string>
   <string name="preferences__incognito_keyboard">Teclat d\'incògnit</string>
   <string name="preferences__read_receipts">Confirmació de lectura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan inhabilitades, no podreu veure les dels altres.</string>

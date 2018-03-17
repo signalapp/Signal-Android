@@ -952,7 +952,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__free_private_messages_and_calls">Llamadas y mensajes privados gratuitos para los usuarios de Signal</string>
   <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidad \'Llamada por WiFi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilítelo si su dispositivo utiliza entrega de SMS/MMS vía Wi-Fi (actívelo sólo cuando \'Llamada por Wi-Fi\' esté activada en su dispositivo)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilítelo si su dispositivo utiliza entrega de SMS/MMS vía WiFi (actívelo sólo cuando \'Llamada por WiFi\' esté activada en su dispositivo)</string>
   <string name="preferences__incognito_keyboard">Teclado incógnito</string>
   <string name="preferences__read_receipts">Notificaciones de lectura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están deshabilitadas, no podrá ver las notificaciones de lectura de otros usuarios.</string>

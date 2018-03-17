@@ -988,8 +988,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__signal_messages_and_calls">Sporočila in klici Signal</string>
   <string name="preferences__free_private_messages_and_calls">Brezplačna zasebna sporočila in klici uporabnikom aplikacije Signal</string>
   <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
-  <string name="preferences__support_wifi_calling">Združljivostni način \'Klicanje Wi-Fi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave Wi-Fi (samo, če imate vklopljeno \'Wi-Fi klicanje/WiFi Calling\')</string>
+  <string name="preferences__support_wifi_calling">Združljivostni način \'Klicanje WiFi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno \'WiFi klicanje/WiFi Calling\')</string>
   <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
   <string name="preferences__read_receipts">Potrdila o ogledu</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Če izklopite poročila o ogledu, tudi sami ne boste obveščeni, ko bo prejemnik prebral vaše sporočilo.</string>

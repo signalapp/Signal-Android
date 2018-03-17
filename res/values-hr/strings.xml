@@ -930,8 +930,8 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences__signal_messages_and_calls">Signal poruke i pozivi</string>
   <string name="preferences__free_private_messages_and_calls">Besplatne privatne poruke i pozivi sa Signal korisnicima</string>
   <string name="preferences__submit_debug_log">Pošalji debug zapis</string>
-  <string name="preferences__support_wifi_calling">\'Wi-Fi Calling\' način kompatibilnosti</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ukoliko vaš uređaj koristi SMS/MMS isporuku preko Wi-Fi (omogućite jedino kada je \'Wi-Fi pozivanje\' omogućeno na vašem uređaju)</string>
+  <string name="preferences__support_wifi_calling">\'WiFi Calling\' način kompatibilnosti</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ukoliko vaš uređaj koristi SMS/MMS isporuku preko WiFi (omogućite jedino kada je \'WiFi pozivanje\' omogućeno na vašem uređaju)</string>
   <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
   <string name="preferences__read_receipts">Potvrde čitanja</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ukoliko ste onemogućili potvrdu čitanja kod sebe, nećete moći vidjeti potvrde čitanja od drugih.</string>

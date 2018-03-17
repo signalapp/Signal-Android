@@ -947,8 +947,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="preferences__signal_messages_and_calls">Сигнал съобщения и обаждания</string>
   <string name="preferences__free_private_messages_and_calls">Безплатни, лични съобщения и обаждания до Сигнал потребители</string>
   <string name="preferences__submit_debug_log">Изпращане на доклад</string>
-  <string name="preferences__support_wifi_calling">Съвместим режим \'Wi-Fi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включи ако устройството ти използва Wi-Fi за SMS/MMS(само ако \'Wi-Fi Calling\' е включен на устройството ти)</string>
+  <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включи ако устройството ти използва WiFi за SMS/MMS(само ако \'Wifi Calling\' е включен на устройството ти)</string>
   <string name="preferences__incognito_keyboard">Тайна клавиатура</string>
   <string name="preferences__read_receipts">Потвърждения за прочитане</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако Вашите потвърждения за прочитане са деактивирани няма да можете да видите потвържденията за прочитане от други.</string>

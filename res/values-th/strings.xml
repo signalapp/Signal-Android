@@ -921,8 +921,8 @@
   <string name="preferences__signal_messages_and_calls">การโทรและข้อความ Signal</string>
   <string name="preferences__free_private_messages_and_calls">โทรและส่งข้อความส่วนตัวถึงผู้ใช้ Signal ฟรี</string>
   <string name="preferences__submit_debug_log">ส่งปูมดีบัก</string>
-  <string name="preferences__support_wifi_calling">โหมดเข้ากันได้กับ \'โทรผ่าน Wi-Fi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">เปิดใช้ถ้าอุปกรณ์ของคุณใช้การส่ง SMS/MMS ผ่าน Wi-Fi (จะเปิดใช้ก็ต่อเมื่อ \'การโทรผ่าน Wi-Fi\' ถูกเปิดใช้บนอุปกรณ์ของคุณ)</string>
+  <string name="preferences__support_wifi_calling">โหมดเข้ากันได้กับ \'โทรผ่าน WiFi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">เปิดใช้ถ้าอุปกรณ์ของคุณใช้การส่ง SMS/MMS ผ่าน WiFi (จะเปิดใช้ก็ต่อเมื่อ \'การโทรผ่าน WiFi\' ถูกเปิดใช้บนอุปกรณ์ของคุณ)</string>
   <string name="preferences__incognito_keyboard">แป้นพิมพ์แบบลับ</string>
   <string name="preferences__read_receipts">ใบแจ้งการอ่าน</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ถ้าใบแจ้งว่าอ่านแล้วถูกปิดใช้งาน คุณจะไม่เห็นใบแจ้งว่าอ่านแล้วที่ส่งมาจากผู้อื่น</string>

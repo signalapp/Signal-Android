@@ -883,8 +883,8 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="preferences__signal_messages_and_calls">Signal správy a hovory</string>
   <string name="preferences__free_private_messages_and_calls">Bezplatné zabezpečené správy a hovory medzi užívateľmi Signal</string>
   <string name="preferences__submit_debug_log">Odoslať ladiaci log</string>
-  <string name="preferences__support_wifi_calling">Režim kompatibility \'Wi-Fi volania\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Zapnite ak vaše zariadenie používa doručenie SMS/MMS cez Wi-Fi (zapnite len ak sú \'Wi-Fi volania\' zapnuté na vašom zariadení)</string>
+  <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Zapnite ak vaše zariadenie používa doručenie SMS/MMS cez WiFi (zapnite len ak sú \'WiFi volania\' zapnuté na vašom zariadení)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
   <string name="preferences_chats__when_using_mobile_data">Pri použití mobilných dát</string>
   <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>

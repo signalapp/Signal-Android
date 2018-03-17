@@ -653,8 +653,8 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
 Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Signal
 </string>
   <string name="preferences__submit_debug_log">Nộp ký sự dò lỗi</string>
-  <string name="preferences__support_wifi_calling">Dạng tương thích \"Gọi qua Wi-Fi\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Mở nếu thiết bị bạn dùng SMS/MMS qua Wi-Fi (chỉ mở lên khi \'Gọi qua Wi-Fi\' được mở lên trong thiết bị) </string>
+  <string name="preferences__support_wifi_calling">Dạng tương thích \"Gọi qua WiFi\"</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Mở nếu thiết bị bạn dùng SMS/MMS qua WiFi (chỉ mở lên khi \'Gọi qua WiFi\' được mở lên trong thiết bị) </string>
   <string name="preferences_app_protection__blocked_contacts">Chặn các liên lạc</string>
   <string name="preferences_chats__when_using_mobile_data">Khi dùng dữ liệu di động</string>
   <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
