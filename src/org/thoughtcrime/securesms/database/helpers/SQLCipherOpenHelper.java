@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.database.helpers;
 
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -29,14 +31,17 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.io.File;
+
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   @SuppressWarnings("unused")
   private static final String TAG = SQLCipherOpenHelper.class.getSimpleName();
 
-  private static final int RECIPIENT_CALL_RINGTONE_VERSION = 2;
-  private static final int MIGRATE_PREKEYS_VERSION         = 3;
-  private static final int MIGRATE_SESSIONS_VERSION        = 4;
+  private static final int RECIPIENT_CALL_RINGTONE_VERSION  = 2;
+  private static final int MIGRATE_PREKEYS_VERSION          = 3;
+  private static final int MIGRATE_SESSIONS_VERSION         = 4;
+  private static final int NO_MORE_IMAGE_THUMBNAILS_VERSION = 5;
 
   private static final int    DATABASE_VERSION = 4;
   private static final String DATABASE_NAME    = "signal.db";
@@ -132,6 +137,28 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < MIGRATE_SESSIONS_VERSION) {
         db.execSQL("CREATE TABLE sessions (_id INTEGER PRIMARY KEY, address TEXT NOT NULL, device INTEGER NOT NULL, record BLOB NOT NULL, UNIQUE(address, device) ON CONFLICT REPLACE)");
         SessionStoreMigrationHelper.migrateSessions(context, db);
+      }
+
+      if (oldVersion < NO_MORE_IMAGE_THUMBNAILS_VERSION) {
+        ContentValues update = new ContentValues();
+        update.put("thumbnail", (String)null);
+        update.put("aspect_ratio", (String)null);
+        update.put("thumbnail_random", (String)null);
+
+        try (Cursor cursor = db.query("part", new String[] {"_id", "ct", "thumbnail"}, "thumbnail IS NOT NULL", null, null, null, null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            long   id          = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+            String contentType = cursor.getString(cursor.getColumnIndexOrThrow("ct"));
+
+            if (contentType != null && !contentType.startsWith("video")) {
+              String thumbnailPath = cursor.getString(cursor.getColumnIndexOrThrow("thumbnail"));
+              File   thumbnailFile = new File(thumbnailPath);
+              thumbnailFile.delete();
+
+              db.update("part", update, "_id = ?", new String[] {String.valueOf(id)});
+            }
+          }
+        }
       }
 
       db.setTransactionSuccessful();
