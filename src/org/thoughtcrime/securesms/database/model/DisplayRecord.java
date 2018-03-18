@@ -173,4 +173,26 @@ public abstract class DisplayRecord {
   public boolean isPendingInsecureSmsFallback() {
     return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
   }
+
+  public boolean containsVcard() {
+    return containsVcard(body);
+  }
+
+  public String getVcard() {
+    return getVcard(body);
+  }
+
+  public String getVcardSuffix() {
+    int pos = body.lastIndexOf("END:VCARD");
+    return body.substring(pos + 9);
+  }
+
+  protected static boolean containsVcard(String body) {
+    return (body.length() > 20) && body.startsWith("BEGIN:VCARD") && (body.lastIndexOf("END:VCARD") != -1);
+  }
+
+  protected static String getVcard(String body) {
+    int pos = body.lastIndexOf("END:VCARD");
+    return body.substring(0, pos + 9);
+  }
 }

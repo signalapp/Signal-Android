@@ -120,6 +120,12 @@ dependencies {
     compile 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
     compile 'net.zetetic:android-database-sqlcipher:3.5.9'
+    compile ('com.googlecode.ez-vcard:ez-vcard:0.10.3') {
+        // https://github.com/mangstadt/ez-vcard/wiki/Dependencies
+        exclude group: 'org.jsoup', module: 'jsoup'
+        exclude group: 'org.freemarker', module: 'freemarker'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+    }
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:1.7.1'
@@ -225,6 +231,8 @@ dependencyVerification {
         'com.fasterxml.jackson.core:jackson-core:cbf4604784b4de226262845447a1ad3bb38a6728cebe86562e2c5afada8be2c0',
         'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
         'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
+        'com.googlecode.ez-vcard:ez-vcard:0f53c3d642fa8be0d28325621fe1d135c292ffcff1a0bc4ad2518397d9476b88',
+        'com.github.mangstadt:vinnie:6b12ba7b7c5562e43d558201d833594e6aa6ba6e2fe6a7fb774e3c817fbc505c'
     ]
 }
 
@@ -300,6 +308,7 @@ android {
                           'proguard-klinker.pro',
                           'proguard-retrolambda.pro',
                           'proguard-okhttp.pro',
+                          'proguard-ez-vcard.pro',
                           'proguard.cfg'
             testProguardFiles 'proguard-automation.pro',
                           'proguard.cfg'

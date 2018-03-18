@@ -7,6 +7,7 @@ import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.PduBody;
 import com.google.android.mms.pdu_alt.PduPart;
 
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.UnsupportedEncodingException;
@@ -17,7 +18,7 @@ public class PartParser {
     String bodyText = null;
 
     for (int i=0;i<body.getPartsNum();i++) {
-      if (ContentType.isTextType(Util.toIsoString(body.getPart(i).getContentType()))) {
+      if (isTextType(Util.toIsoString(body.getPart(i).getContentType()))) {
         String partText;
 
         try {
@@ -83,7 +84,16 @@ public class PartParser {
     return ContentType.isTextType(Util.toIsoString(part.getContentType()));
   }
 
+  public static boolean isVcard(PduPart part) {
+    String contentType = Util.toIsoString(part.getContentType());
+    return null != contentType && (ContentType.TEXT_VCARD.equals(contentType) || MediaUtil.TEXT_VCARD.equals(contentType));
+  }
+
+  private static boolean isTextType(String contentType) {
+    return null != contentType && contentType.startsWith("text/") && !ContentType.TEXT_VCARD.equals(contentType) && !MediaUtil.TEXT_VCARD.equals(contentType);
+  }
+
   public static boolean isDisplayableMedia(PduPart part) {
-    return isImage(part) || isAudio(part) || isVideo(part);
+    return isImage(part) || isAudio(part) || isVideo(part) || isVcard(part);
   }
 }

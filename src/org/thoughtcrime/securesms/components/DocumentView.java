@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VcardUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 public class DocumentView extends FrameLayout {
@@ -86,7 +87,8 @@ public class DocumentView extends FrameLayout {
   }
 
   public void setDocument(final @NonNull DocumentSlide documentSlide,
-                          final boolean showControls)
+                          final boolean showControls,
+                          final boolean isOutgoing)
   {
     if (showControls && documentSlide.isPendingDownload()) {
       controlToggle.displayQuick(downloadButton);
@@ -102,7 +104,16 @@ public class DocumentView extends FrameLayout {
 
     this.documentSlide = documentSlide;
 
-    this.fileName.setText(documentSlide.getFileName().or(getContext().getString(R.string.DocumentView_unknown_file)));
+    if (getFileType(documentSlide.getFileName()).equals("vcf")) {
+      String vcard = VcardUtil.getVcardAttachment(getContext(), documentSlide.getUri());
+      if (vcard != null) {
+        this.fileName.setText(VcardUtil.getVcardDisplayText(getContext(), vcard, isOutgoing));
+      }
+      controlToggle.setVisibility(View.GONE);
+    } else {
+      this.fileName.setText(documentSlide.getFileName().or(getContext().getString(R.string.DocumentView_unknown_file)));
+      controlToggle.setVisibility(View.VISIBLE);
+    }
     this.fileSize.setText(Util.getPrettyFileSize(documentSlide.getFileSize()));
     this.document.setText(getFileType(documentSlide.getFileName()));
     this.setOnClickListener(new OpenClickedListener(documentSlide));

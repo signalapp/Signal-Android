@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.contacts;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.net.Uri;
@@ -28,11 +29,15 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.util.Util;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -123,6 +128,43 @@ public class ContactAccessor {
     }
 
     return lookupData;
+  }
+
+  private String getContactLookupKey(Context context, Uri uri) {
+    Cursor cursor = null;
+
+    try {
+      cursor = context.getContentResolver().query(uri, new String[] {Contacts.LOOKUP_KEY},
+              null, null, null);
+
+      if (cursor != null && cursor.moveToFirst())
+        return cursor.getString(0);
+
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    return null;
+  }
+
+  public String getContactVcard(Context context, Uri uri) {
+    String lookupKey = getContactLookupKey(context, uri);
+
+    if (lookupKey != null) {
+      Uri uriVCard = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, lookupKey);
+      try {
+        try (AssetFileDescriptor fd = context.getContentResolver().openAssetFileDescriptor(uriVCard, "r")) {
+          try (FileInputStream fis = fd.createInputStream()) {
+            return Util.readFullyAsString(fis);
+          }
+        }
+      } catch (IOException e) {
+        Log.w("vCard", e);
+      }
+    }
+
+    return null;
   }
 
   public String getNameFromContact(Context context, Uri uri) {

@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.thoughtcrime.securesms.util.VcardUtil;
 
 /**
  * The message record model which represents thread heading messages.
@@ -55,7 +56,8 @@ public class ThreadRecord extends DisplayRecord {
                       int distributionType, boolean archived, long expiresIn, long lastSeen,
                       int readReceiptCount)
   {
-    super(context, body, recipient, date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
+    super(context, containsVcard(body) ? VcardUtil.getVcardFormattedName(getVcard(body)) : body,
+            recipient, date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
     this.context          = context.getApplicationContext();
     this.snippetUri       = snippetUri;
     this.count            = count;

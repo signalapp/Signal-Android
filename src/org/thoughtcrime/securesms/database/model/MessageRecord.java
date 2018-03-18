@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.database.model;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.VcardUtil;
 
 import java.util.List;
 
@@ -84,6 +86,20 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isLegacyMessage() {
     return MmsSmsColumns.Types.isLegacyType(type);
+  }
+
+  public CharSequence getVcardDisplayText() {
+    SpannableStringBuilder builder = VcardUtil.getVcardDisplayText(context, getVcard(), isOutgoing());
+
+    String suffix = getVcardSuffix();
+    if (!suffix.isEmpty()) {
+      if (builder.length() > 0) {
+        builder.append('\n');
+      }
+      builder.append(suffix);
+    }
+
+    return builder;
   }
 
   @Override

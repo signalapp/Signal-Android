@@ -56,7 +56,7 @@ public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder>
     Slide                     slide       = MediaUtil.getSlideForAttachment(getContext(), mediaRecord.getAttachment());
 
     if (slide != null && slide.hasDocument()) {
-      viewHolder.documentView.setDocument((DocumentSlide)slide, false);
+      viewHolder.documentView.setDocument((DocumentSlide)slide, false, mediaRecord.isOutgoing());
       viewHolder.date.setText(DateUtils.getRelativeDate(getContext(), locale, mediaRecord.getDate()));
       viewHolder.documentView.setVisibility(View.VISIBLE);
       viewHolder.date.setVisibility(View.VISIBLE);

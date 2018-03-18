@@ -45,6 +45,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.mms.ContentType;
+
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
@@ -76,8 +78,10 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
@@ -85,6 +89,9 @@ import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -348,7 +355,13 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      bodyText.setText(linkifyMessageBody(messageRecord.getDisplayBody(), batchSelected.isEmpty()));
+      if (messageRecord.containsVcard()) {
+        bodyText.setClickable(true);
+        bodyText.setFocusable(true);
+        bodyText.setText(messageRecord.getVcardDisplayText());
+      } else {
+        bodyText.setText(linkifyMessageBody(messageRecord.getDisplayBody(), batchSelected.isEmpty()));
+      }
       bodyText.setVisibility(View.VISIBLE);
     }
   }
@@ -373,7 +386,7 @@ public class ConversationItem extends LinearLayout
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
-      documentViewStub.get().setDocument(((MediaMmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide(), showControls);
+      documentViewStub.get().setDocument(((MediaMmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide(), showControls, messageRecord.isOutgoing());
       documentViewStub.get().setDocumentClickListener(new ThumbnailClickListener());
       documentViewStub.get().setDownloadClickListener(downloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
@@ -618,7 +631,12 @@ public class ConversationItem extends LinearLayout
         Log.w(TAG, "Public URI: " + publicUri);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.setDataAndType(PartAuthority.getAttachmentPublicUri(slide.getUri()), slide.getContentType());
+        String contentType = slide.getContentType();
+        if (ContentType.TEXT_VCARD.equals(contentType)) {
+            // Note: use "text/vcard" instead of "text/x-vCard" for MMS attachments, which is not supported by Contacts app.
+            contentType = MediaUtil.TEXT_VCARD;
+        }
+        intent.setDataAndType(PartAuthority.getAttachmentPublicUri(slide.getUri()), contentType);
         try {
           context.startActivity(intent);
         } catch (ActivityNotFoundException anfe) {
@@ -655,7 +673,27 @@ public class ConversationItem extends LinearLayout
 
     public void onClick(View v) {
       if (!shouldInterceptClicks(messageRecord) && parent != null) {
-        parent.onClick(v);
+        if (messageRecord.containsVcard()) {
+            try {
+                File vcfFile = File.createTempFile("contact", ".vcf", context.getExternalCacheDir());
+                try (PrintWriter out = new PrintWriter(vcfFile)) {
+                    out.println(messageRecord.getVcard());
+                }
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(FileProviderUtil.getUriFor(context, vcfFile), MediaUtil.TEXT_VCARD);
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                try {
+                    context.startActivity(intent);
+                } catch (ActivityNotFoundException anfe) {
+                    Log.w(TAG, "No activity existed to view VCard.");
+                    Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
+                }
+            } catch (IOException e) {
+                Log.w(TAG, e);
+            }
+        } else {
+            parent.onClick(v);
+        }
       } else if (messageRecord.isFailed()) {
         Intent intent = new Intent(context, MessageDetailsActivity.class);
         intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());

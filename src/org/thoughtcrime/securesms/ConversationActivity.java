@@ -1383,12 +1383,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void addAttachmentContactInfo(Uri contactUri) {
     ContactAccessor contactDataList = ContactAccessor.getInstance();
-    ContactData contactData = contactDataList.getContactData(this, contactUri);
+    //ContactData contactData = contactDataList.getContactData(this, contactUri);
 
-    if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
-    else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
+    //if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
+    //else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
+    String vcard = contactDataList.getContactVcard(this, contactUri);
+    setMedia(PersistentBlobProvider.getInstance(this)
+            .create(this, vcard.getBytes(), MediaUtil.TEXT_VCARD, "contact.vcf"),
+            MediaType.DOCUMENT);
   }
-
+/*
   private void selectContactInfo(ContactData contactData) {
     final CharSequence[] numbers     = new CharSequence[contactData.numbers.size()];
     final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
@@ -1405,7 +1409,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setItems(numberItems, (dialog, which) -> composeText.append(numbers[which]));
     builder.show();
   }
-
+*/
   private Drafts getDraftsForCurrentState() {
     Drafts drafts = new Drafts();
 

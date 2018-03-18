@@ -253,7 +253,7 @@ public class AttachmentManager {
             audioView.setAudio((AudioSlide) slide, false);
             removableMediaView.display(audioView, false);
           } else if (slide.hasDocument()) {
-            documentView.setDocument((DocumentSlide) slide, false);
+            documentView.setDocument((DocumentSlide) slide, false, true);
             removableMediaView.display(documentView, false);
           } else {
             thumbnail.setImageResource(glideRequests, slide, false, true);
