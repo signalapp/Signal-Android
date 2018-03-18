@@ -45,7 +45,7 @@ class GiphyPaddedUrlFetcher implements DataFetcher<InputStream> {
   }
 
   @Override
-  public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
+  public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
     bodies       = new LinkedList<>();
     rangeStreams = new LinkedList<>();
     stream       = null;

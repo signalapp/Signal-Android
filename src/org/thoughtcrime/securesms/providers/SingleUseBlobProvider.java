@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class SingleUseBlobProvider {
 
+  @SuppressWarnings("unused")
   private static final String TAG = SingleUseBlobProvider.class.getSimpleName();
 
   public  static final String AUTHORITY   = "org.thoughtcrime.securesms";
