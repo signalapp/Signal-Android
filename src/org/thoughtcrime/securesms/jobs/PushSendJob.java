@@ -89,12 +89,9 @@ public abstract class PushSendJob extends SendJob {
                                                .withLength(attachment.getSize())
                                                .withFileName(attachment.getFileName())
                                                .withVoiceNote(attachment.isVoiceNote())
-                                               .withListener(new ProgressListener() {
-                                                 @Override
-                                                 public void onAttachmentProgress(long total, long progress) {
-                                                   EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
-                                                 }
-                                               })
+                                               .withWidth(attachment.getWidth())
+                                               .withHeight(attachment.getHeight())
+                                               .withListener((total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)))
                                                .build());
       } catch (IOException ioe) {
         Log.w(TAG, "Couldn't open attachment", ioe);

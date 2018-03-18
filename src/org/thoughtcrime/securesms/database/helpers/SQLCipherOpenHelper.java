@@ -42,8 +42,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int MIGRATE_PREKEYS_VERSION          = 3;
   private static final int MIGRATE_SESSIONS_VERSION         = 4;
   private static final int NO_MORE_IMAGE_THUMBNAILS_VERSION = 5;
+  private static final int ATTACHMENT_DIMENSIONS            = 6;
 
-  private static final int    DATABASE_VERSION = 4;
+  private static final int    DATABASE_VERSION = 6;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -159,6 +160,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             }
           }
         }
+      }
+
+      if (oldVersion < ATTACHMENT_DIMENSIONS) {
+        db.execSQL("ALTER TABLE part ADD COLUMN width INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE part ADD COLUMN height INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

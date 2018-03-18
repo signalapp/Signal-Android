@@ -15,7 +15,6 @@ import android.support.annotation.WorkerThread;
 import android.util.Log;
 import android.util.Pair;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 
@@ -45,7 +44,7 @@ public class BitmapUtil {
   private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
 
   @android.support.annotation.WorkerThread
-  public static <T> byte[] createScaledBytes(Context context, T model, MediaConstraints constraints)
+  public static <T> ScaleResult createScaledBytes(Context context, T model, MediaConstraints constraints)
       throws BitmapDecodingException
   {
     try {
@@ -87,7 +86,7 @@ public class BitmapUtil {
           throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
         }
         Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
-        return bytes;
+        return new ScaleResult(bytes, scaledBitmap.getWidth(), scaledBitmap.getHeight());
       } finally {
         if (scaledBitmap != null) scaledBitmap.recycle();
       }
@@ -304,5 +303,30 @@ public class BitmapUtil {
     egl.eglTerminate(display);
 
     return Math.min(maximumTextureSize, MAX_ALLOWED_TEXTURE_SIZE);
+  }
+
+  public static class ScaleResult {
+    private final byte[] bitmap;
+    private final int    width;
+    private final int    height;
+
+    public ScaleResult(byte[] bitmap, int width, int height) {
+      this.bitmap = bitmap;
+      this.width  = width;
+      this.height = height;
+    }
+
+
+    public byte[] getBitmap() {
+      return bitmap;
+    }
+
+    public int getWidth() {
+      return width;
+    }
+
+    public int getHeight() {
+      return height;
+    }
   }
 }

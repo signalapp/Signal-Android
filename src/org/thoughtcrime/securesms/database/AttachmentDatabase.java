@@ -85,6 +85,8 @@ public class AttachmentDatabase extends Database {
   public  static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";
   public  static final String DATA_RANDOM            = "data_random";
   private static final String THUMBNAIL_RANDOM       = "thumbnail_random";
+          static final String WIDTH                  = "width";
+          static final String HEIGHT                 = "height";
 
   public  static final String DIRECTORY              = "parts";
 
@@ -100,7 +102,7 @@ public class AttachmentDatabase extends Database {
                                                            CONTENT_LOCATION, DATA, THUMBNAIL, TRANSFER_STATE,
                                                            SIZE, FILE_NAME, THUMBNAIL, THUMBNAIL_ASPECT_RATIO,
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
-                                                           DATA_RANDOM, THUMBNAIL_RANDOM};
+                                                           DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT};
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -111,7 +113,8 @@ public class AttachmentDatabase extends Database {
     TRANSFER_STATE + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER, "   +
     FILE_NAME + " TEXT, " + THUMBNAIL + " TEXT, " + THUMBNAIL_ASPECT_RATIO + " REAL, " +
     UNIQUE_ID + " INTEGER NOT NULL, " + DIGEST + " BLOB, " + FAST_PREFLIGHT_ID + " TEXT, " +
-    VOICE_NOTE + " INTEGER DEFAULT 0, " + DATA_RANDOM + " BLOB, " + THUMBNAIL_RANDOM + " BLOB);";
+    VOICE_NOTE + " INTEGER DEFAULT 0, " + DATA_RANDOM + " BLOB, " + THUMBNAIL_RANDOM + " BLOB, " +
+    WIDTH + " INTEGER DEFAULT 0, " + HEIGHT + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -322,6 +325,8 @@ public class AttachmentDatabase extends Database {
     ContentValues contentValues = new ContentValues();
     contentValues.put(SIZE, dataInfo.length);
     contentValues.put(CONTENT_TYPE, mediaStream.getMimeType());
+    contentValues.put(WIDTH, mediaStream.getWidth());
+    contentValues.put(HEIGHT, mediaStream.getHeight());
     contentValues.put(DATA_RANDOM, dataInfo.random);
 
     database.update(TABLE_NAME, contentValues, PART_ID_WHERE, databaseAttachment.getAttachmentId().toStrings());
@@ -339,7 +344,9 @@ public class AttachmentDatabase extends Database {
                                   databaseAttachment.getRelay(),
                                   databaseAttachment.getDigest(),
                                   databaseAttachment.getFastPreflightId(),
-                                  databaseAttachment.isVoiceNote());
+                                  databaseAttachment.isVoiceNote(),
+                                  mediaStream.getWidth(),
+                                  mediaStream.getHeight());
   }
 
 
@@ -497,7 +504,9 @@ public class AttachmentDatabase extends Database {
                                   cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
                                   cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
-                                  cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1);
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)));
   }
 
 
@@ -528,6 +537,8 @@ public class AttachmentDatabase extends Database {
     contentValues.put(SIZE, attachment.getSize());
     contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
     contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);
+    contentValues.put(WIDTH, attachment.getWidth());
+    contentValues.put(HEIGHT, attachment.getHeight());
 
     if (dataInfo != null) {
       contentValues.put(DATA, dataInfo.file.getAbsolutePath());

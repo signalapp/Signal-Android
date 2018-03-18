@@ -39,7 +39,8 @@ public class SystemProfileUtil {
 
               if (!TextUtils.isEmpty(photoUri)) {
                 try {
-                  return BitmapUtil.createScaledBytes(context, Uri.parse(photoUri), mediaConstraints);
+                  BitmapUtil.ScaleResult result = BitmapUtil.createScaledBytes(context, Uri.parse(photoUri), mediaConstraints);
+                  return result.getBitmap();
                 } catch (BitmapDecodingException e) {
                   Log.w(TAG, e);
                 }
