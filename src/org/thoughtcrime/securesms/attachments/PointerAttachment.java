@@ -17,9 +17,10 @@ public class PointerAttachment extends Attachment {
   private PointerAttachment(@NonNull String contentType, int transferState, long size,
                            @Nullable String fileName,  @NonNull String location,
                            @NonNull String key, @NonNull String relay,
-                           @Nullable byte[] digest, boolean voiceNote)
+                           @Nullable byte[] digest, boolean voiceNote,
+                            int width, int height)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote, width, height);
   }
 
   @Nullable
@@ -50,7 +51,9 @@ public class PointerAttachment extends Attachment {
                                             String.valueOf(pointer.asPointer().getId()),
                                             encodedKey, pointer.asPointer().getRelay().orNull(),
                                             pointer.asPointer().getDigest().orNull(),
-                                            pointer.asPointer().getVoiceNote()));
+                                            pointer.asPointer().getVoiceNote(),
+                                            pointer.asPointer().getWidth(),
+                                            pointer.asPointer().getHeight()));
         }
       }
     }
