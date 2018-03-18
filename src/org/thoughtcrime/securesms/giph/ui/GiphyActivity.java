@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.giph.ui;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -98,6 +100,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
     this.stickerFragment.setLayoutManager(type);
   }
 
+  @SuppressLint("StaticFieldLeak")
   @Override
   public void onClick(final GiphyAdapter.GiphyViewHolder viewHolder) {
     if (finishingImage != null) finishingImage.gifProgress.setVisibility(View.GONE);
@@ -108,7 +111,9 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Uri doInBackground(Void... params) {
         try {
-          return Uri.fromFile(viewHolder.getFile(forMms));
+          byte[] data = viewHolder.getData(forMms);
+
+          return PersistentBlobProvider.getInstance(GiphyActivity.this).create(GiphyActivity.this, data, "image/gif", null);
         } catch (InterruptedException | ExecutionException e) {
           Log.w(TAG, e);
           return null;
