@@ -72,6 +72,8 @@ public class MmsSmsDatabase extends Database {
                                               AttachmentDatabase.DIGEST,
                                               AttachmentDatabase.FAST_PREFLIGHT_ID,
                                               AttachmentDatabase.VOICE_NOTE,
+                                              AttachmentDatabase.WIDTH,
+                                              AttachmentDatabase.HEIGHT,
                                               AttachmentDatabase.CONTENT_DISPOSITION,
                                               AttachmentDatabase.NAME,
                                               AttachmentDatabase.TRANSFER_STATE};
@@ -175,6 +177,8 @@ public class MmsSmsDatabase extends Database {
                               AttachmentDatabase.DIGEST,
                               AttachmentDatabase.FAST_PREFLIGHT_ID,
                               AttachmentDatabase.VOICE_NOTE,
+                              AttachmentDatabase.WIDTH,
+                              AttachmentDatabase.HEIGHT,
                               AttachmentDatabase.CONTENT_DISPOSITION,
                               AttachmentDatabase.NAME,
                               AttachmentDatabase.TRANSFER_STATE};
@@ -207,6 +211,8 @@ public class MmsSmsDatabase extends Database {
                               AttachmentDatabase.DIGEST,
                               AttachmentDatabase.FAST_PREFLIGHT_ID,
                               AttachmentDatabase.VOICE_NOTE,
+                              AttachmentDatabase.WIDTH,
+                              AttachmentDatabase.HEIGHT,
                               AttachmentDatabase.CONTENT_DISPOSITION,
                               AttachmentDatabase.NAME,
                               AttachmentDatabase.TRANSFER_STATE};
@@ -265,6 +271,8 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(AttachmentDatabase.DIGEST);
     mmsColumnsPresent.add(AttachmentDatabase.FAST_PREFLIGHT_ID);
     mmsColumnsPresent.add(AttachmentDatabase.VOICE_NOTE);
+    mmsColumnsPresent.add(AttachmentDatabase.WIDTH);
+    mmsColumnsPresent.add(AttachmentDatabase.HEIGHT);
     mmsColumnsPresent.add(AttachmentDatabase.CONTENT_DISPOSITION);
     mmsColumnsPresent.add(AttachmentDatabase.NAME);
     mmsColumnsPresent.add(AttachmentDatabase.TRANSFER_STATE);
