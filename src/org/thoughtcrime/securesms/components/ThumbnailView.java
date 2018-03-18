@@ -142,7 +142,7 @@ public class ThumbnailView extends FrameLayout {
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
 
     glideRequests.load(new DecryptableUri(uri))
-                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                  .transform(new RoundedCorners(radius))
                  .transition(withCrossFade())
                  .centerCrop()
@@ -173,7 +173,7 @@ public class ThumbnailView extends FrameLayout {
 
   private RequestBuilder buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     RequestBuilder builder = glideRequests.load(new DecryptableUri(slide.getThumbnailUri()))
-                                          .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                          .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                                           .transform(new RoundedCorners(radius))
                                           .centerCrop()
                                           .transition(withCrossFade());

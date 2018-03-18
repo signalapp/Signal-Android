@@ -208,7 +208,7 @@ public class AttachmentManager {
   {
     inflateStub();
 
-            new AsyncTask<Void, Void, Slide>() {
+    new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
         thumbnail.clear(glideRequests);
