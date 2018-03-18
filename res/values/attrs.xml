@@ -130,6 +130,8 @@
 
     <attr name="search_toolbar_background" format="color"/>
 
+    <attr name="registration_lock_reminder_view_pin_text_color" format="color"/>
+
     <attr name="contact_list_divider" format="reference"/>
 
     <attr name="login_top_background" format="color"/>

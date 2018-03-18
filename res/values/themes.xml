@@ -233,6 +233,8 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
         <item name="search_toolbar_background">@color/white</item>
+
+        <item name="registration_lock_reminder_view_pin_text_color">@color/black</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -355,6 +357,8 @@
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
         <item name="search_toolbar_background">@color/black</item>
+
+        <item name="registration_lock_reminder_view_pin_text_color">@color/white</item>
     </style>
     
     <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">

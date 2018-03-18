@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberPassword"
+                android:textColor="?attr/registration_lock_reminder_view_pin_text_color"
                 android:hint="@string/registration_lock_reminder_view__enter_pin"/>
 
     </android.support.design.widget.TextInputLayout>
