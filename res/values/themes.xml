@@ -266,6 +266,8 @@
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
 
+        <item name="registration_lock_reminder_view_pin_text_color">@color/core_black</item>
+
         <item name="reminder_header_background">#ff1d85d7</item>
 
         <item name="sticker_management_icon">@drawable/sticker_button_light</item>
@@ -446,6 +448,8 @@
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_dark</item>
+
+        <item name="registration_lock_reminder_view_pin_text_color">@color/core_white</item>
 
         <item name="reminder_header_background">@color/textsecure_primary_dark</item>
 
