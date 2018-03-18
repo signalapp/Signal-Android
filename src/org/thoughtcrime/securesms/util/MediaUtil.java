@@ -11,14 +11,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -28,7 +24,6 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.ExecutionException;
 
 public class MediaUtil {
 
@@ -41,42 +36,6 @@ public class MediaUtil {
   public static final String AUDIO_UNSPECIFIED = "audio/*";
   public static final String VIDEO_UNSPECIFIED = "video/*";
 
-
-  public static @Nullable ThumbnailData generateThumbnail(Context context, String contentType, Uri uri)
-      throws BitmapDecodingException
-  {
-    long   startMillis = System.currentTimeMillis();
-    ThumbnailData data = null;
-
-    if (isImageType(contentType)) {
-      data = new ThumbnailData(generateImageThumbnail(context, uri));
-    }
-
-    if (data != null) {
-      Log.w(TAG, String.format("generated thumbnail for part, %dx%d (%.3f:1) in %dms",
-                               data.getBitmap().getWidth(), data.getBitmap().getHeight(),
-                               data.getAspectRatio(), System.currentTimeMillis() - startMillis));
-    }
-
-    return data;
-  }
-
-  private static Bitmap generateImageThumbnail(Context context, Uri uri)
-      throws BitmapDecodingException
-  {
-    try {
-      int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
-      return GlideApp.with(context.getApplicationContext())
-                     .asBitmap()
-                     .load(new DecryptableUri(uri))
-                     .centerCrop()
-                     .into(maxSize, maxSize)
-                     .get();
-    } catch (InterruptedException | ExecutionException e) {
-      Log.w(TAG, e);
-      throw new BitmapDecodingException(e);
-    }
-  }
 
   public static Slide getSlideForAttachment(Context context, Attachment attachment) {
     Slide slide = null;

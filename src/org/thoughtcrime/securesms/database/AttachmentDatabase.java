@@ -642,12 +642,10 @@ public class AttachmentDatabase extends Database {
         return null;
       }
 
-      ThumbnailData data;
+      ThumbnailData data = null;
 
       if (MediaUtil.isVideoType(attachment.getContentType())) {
         data = generateVideoThumbnail(attachmentId);
-      } else{
-        data = MediaUtil.generateThumbnail(context, attachment.getContentType(), attachment.getDataUri());
       }
 
       if (data == null) {
