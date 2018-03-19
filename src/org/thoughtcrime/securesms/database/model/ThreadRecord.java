@@ -56,8 +56,8 @@ public class ThreadRecord extends DisplayRecord {
                       int distributionType, boolean archived, long expiresIn, long lastSeen,
                       int readReceiptCount)
   {
-    super(context, containsVcard(body) ? VcardUtil.getVcardFormattedName(getVcard(body)) : body,
-            recipient, date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
+    super(context, containsVcard(body) ? VcardUtil.getVcardFormattedName(getVcard(body)) : body, recipient,
+            date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
     this.context          = context.getApplicationContext();
     this.snippetUri       = snippetUri;
     this.count            = count;

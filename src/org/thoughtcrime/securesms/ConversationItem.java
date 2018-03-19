@@ -633,8 +633,8 @@ public class ConversationItem extends LinearLayout
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         String contentType = slide.getContentType();
         if (ContentType.TEXT_VCARD.equals(contentType)) {
-            // Note: use "text/vcard" instead of "text/x-vCard" for MMS attachments, which is not supported by Contacts app.
-            contentType = MediaUtil.TEXT_VCARD;
+          // Note: use "text/vcard" instead of "text/x-vCard" for MMS attachments, which is not supported by Contacts app.
+          contentType = MediaUtil.TEXT_VCARD;
         }
         intent.setDataAndType(PartAuthority.getAttachmentPublicUri(slide.getUri()), contentType);
         try {

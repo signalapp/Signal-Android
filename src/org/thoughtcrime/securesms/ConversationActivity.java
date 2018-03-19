@@ -1383,33 +1383,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void addAttachmentContactInfo(Uri contactUri) {
     ContactAccessor contactDataList = ContactAccessor.getInstance();
-    //ContactData contactData = contactDataList.getContactData(this, contactUri);
 
-    //if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
-    //else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
     String vcard = contactDataList.getContactVcard(this, contactUri);
-    setMedia(PersistentBlobProvider.getInstance(this)
-            .create(this, vcard.getBytes(), MediaUtil.TEXT_VCARD, "contact.vcf"),
+    setMedia(PersistentBlobProvider.getInstance(this).create(this, vcard.getBytes(), MediaUtil.TEXT_VCARD, "contact.vcf"),
             MediaType.DOCUMENT);
   }
-/*
-  private void selectContactInfo(ContactData contactData) {
-    final CharSequence[] numbers     = new CharSequence[contactData.numbers.size()];
-    final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
 
-    for (int i = 0; i < contactData.numbers.size(); i++) {
-      numbers[i]     = contactData.numbers.get(i).number;
-      numberItems[i] = contactData.numbers.get(i).type + ": " + contactData.numbers.get(i).number;
-    }
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setIconAttribute(R.attr.conversation_attach_contact_info);
-    builder.setTitle(R.string.ConversationActivity_select_contact_info);
-
-    builder.setItems(numberItems, (dialog, which) -> composeText.append(numbers[which]));
-    builder.show();
-  }
-*/
   private Drafts getDraftsForCurrentState() {
     Drafts drafts = new Drafts();
 

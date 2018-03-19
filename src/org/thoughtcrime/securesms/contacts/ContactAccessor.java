@@ -134,8 +134,8 @@ public class ContactAccessor {
     Cursor cursor = null;
 
     try {
-      cursor = context.getContentResolver().query(uri, new String[] {Contacts.LOOKUP_KEY},
-              null, null, null);
+      cursor = context.getContentResolver().query(uri, new String[] {Contacts.LOOKUP_KEY}, null,
+        null, null);
 
       if (cursor != null && cursor.moveToFirst())
         return cursor.getString(0);
