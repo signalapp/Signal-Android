@@ -187,6 +187,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private void setHeader(@NonNull Recipient recipient) {
     glideRequests.load(recipient.getContactPhoto())
                  .fallback(recipient.getFallbackContactPhoto().asCallCard(this))
+                 .error(recipient.getFallbackContactPhoto().asCallCard(this))
                  .diskCacheStrategy(DiskCacheStrategy.ALL)
                  .into(this.avatar);
 

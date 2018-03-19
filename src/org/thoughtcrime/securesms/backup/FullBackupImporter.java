@@ -18,7 +18,9 @@ import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference;
 import org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
@@ -26,6 +28,7 @@ import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -68,6 +71,7 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasStatement())  processStatement(db, frame.getStatement());
         else if (frame.hasPreference()) processPreference(context, frame.getPreference());
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
+        else if (frame.hasAvatar())     processAvatar(context, frame.getAvatar(), inputStream);
       }
 
       db.setTransactionSuccessful();
@@ -115,6 +119,10 @@ public class FullBackupImporter extends FullBackupBase {
     db.update(AttachmentDatabase.TABLE_NAME, contentValues,
               AttachmentDatabase.ROW_ID + " = ? AND " + AttachmentDatabase.UNIQUE_ID + " = ?",
               new String[] {String.valueOf(attachment.getRowId()), String.valueOf(attachment.getAttachmentId())});
+  }
+
+  private static void processAvatar(@NonNull Context context, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {
+    inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, Address.fromExternal(context, avatar.getName()))), avatar.getLength());
   }
 
   @SuppressLint("ApplySharedPref")
