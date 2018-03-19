@@ -149,6 +149,10 @@ public class MediaUtil {
     return isGif(attachment.getContentType());
   }
 
+  public static boolean isJpeg(Attachment attachment) {
+    return isJpegType(attachment.getContentType());
+  }
+
   public static boolean isImage(Attachment attachment) {
     return isImageType(attachment.getContentType());
   }
@@ -167,6 +171,10 @@ public class MediaUtil {
 
   public static boolean isGif(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif");
+  }
+
+  public static boolean isJpegType(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_JPEG);
   }
 
   public static boolean isFile(Attachment attachment) {
