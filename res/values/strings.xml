@@ -1359,6 +1359,8 @@
     <string name="RegistrationActivity_verify_s">Verify %s</string>
     <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
     <string name="RegistrationActivity_wrong_number">Wrong number?</string>
+    <string name="RegistrationActivity_call_me_instead">Call me instead</string>
+    <string name="RegistrationActivity_available_in">Available in:\u0020</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
     <string name="prompt_passphrase_activity__unlock_signal">Unlock Signal</string>
