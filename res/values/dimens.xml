@@ -18,9 +18,13 @@
 
     <dimen name="message_bubble_corner_radius">4dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
-    <dimen name="media_bubble_height">210dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
+    <dimen name="media_bubble_default_dimens">210dp</dimen>
+    <dimen name="media_bubble_min_width">150dp</dimen>
+    <dimen name="media_bubble_max_width">250dp</dimen>
+    <dimen name="media_bubble_min_height">100dp</dimen>
+    <dimen name="media_bubble_max_height">320dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>

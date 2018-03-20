@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -406,6 +407,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       else                                  mediaType = MediaType.IMAGE;
 
       setMedia(data.getData(), mediaType);
+
       break;
     case PICK_DOCUMENT:
       setMedia(data.getData(), MediaType.DOCUMENT);
@@ -438,7 +440,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
       break;
     case PICK_GIF:
-      setMedia(data.getData(), MediaType.GIF);
+      setMedia(data.getData(),
+               MediaType.GIF,
+               data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
+               data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
       break;
     case ScribbleActivity.SCRIBBLE_REQUEST_CODE:
       setMedia(data.getData(), MediaType.IMAGE);
@@ -1377,8 +1382,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
+    setMedia(uri, mediaType, 0, 0);
+  }
+
+  private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, int width, int height) {
     if (uri == null) return;
-    attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints());
+    attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
