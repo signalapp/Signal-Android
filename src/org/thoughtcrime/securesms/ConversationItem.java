@@ -45,6 +45,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
@@ -385,9 +386,14 @@ public class ConversationItem extends LinearLayout
       if (documentViewStub.resolved()) documentViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
+      Slide      thumbnailSlide = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlide();
+      Attachment attachment     = thumbnailSlide.asAttachment();
       mediaThumbnailStub.get().setImageResource(glideRequests,
-                                                ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
-                                                showControls, false);
+                                                thumbnailSlide,
+                                                showControls,
+                                                false,
+                                                attachment.getWidth(),
+                                                attachment.getHeight());
       mediaThumbnailStub.get().setThumbnailClickListener(new ThumbnailClickListener());
       mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
       mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);

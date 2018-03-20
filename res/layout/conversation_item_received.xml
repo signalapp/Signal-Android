@@ -78,8 +78,8 @@
             <ViewStub
                     android:id="@+id/image_view_stub"
                     android:layout="@layout/conversation_item_received_thumbnail"
-                    android:layout_width="@dimen/media_bubble_height"
-                    android:layout_height="@dimen/media_bubble_height"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             <ViewStub
                     android:id="@+id/audio_view_stub"

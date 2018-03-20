@@ -63,6 +63,7 @@ dependencies {
     compile 'com.android.support:preference-v14:27.0.2'
     compile 'com.android.support:gridlayout-v7:27.0.2'
     compile 'com.android.support:multidex:1.0.2'
+    compile "com.android.support:exifinterface:27.0.2"
 
     compile 'com.google.android.gms:play-services-gcm:9.6.1'
     compile 'com.google.android.gms:play-services-maps:9.6.1'
