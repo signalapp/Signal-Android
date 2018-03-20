@@ -28,6 +28,14 @@ public class GiphyImage {
     return (float)images.downsized.width / (float)images.downsized.height;
   }
 
+  public int getGifWidth() {
+    return images.downsized.width;
+  }
+
+  public int getGifHeight() {
+    return images.downsized.height;
+  }
+
   public String getStillUrl() {
     return images.downsized_still.url;
   }
