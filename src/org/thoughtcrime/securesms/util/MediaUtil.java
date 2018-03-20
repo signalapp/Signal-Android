@@ -7,14 +7,21 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 import android.webkit.MimeTypeMap;
+
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -24,6 +31,7 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.ExecutionException;
 
 public class MediaUtil {
 
@@ -98,6 +106,42 @@ public class MediaUtil {
     in.close();
 
     return size;
+  }
+
+  @WorkerThread
+  public static Pair<Integer, Integer> getDimensions(@NonNull Context context, @Nullable String contentType, @Nullable Uri uri) {
+    if (uri == null || !MediaUtil.isImageType(contentType)) {
+      return new Pair<>(0, 0);
+    }
+
+    Pair<Integer, Integer> dimens = new Pair<>(0, 0);
+
+    if (MediaUtil.isGif(contentType)) {
+      try {
+        GifDrawable drawable = GlideApp.with(context)
+                .asGif()
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .load(new DecryptableUri(uri))
+                .submit()
+                .get();
+        dimens = new Pair<>(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+      } catch (InterruptedException e) {
+        Log.w(TAG, "Was unable to complete work for GIF dimensions.", e);
+      } catch (ExecutionException e) {
+        Log.w(TAG, "Glide experienced an exception while trying to get GIF dimensions.", e);
+      }
+    } else {
+      try (InputStream attachmentStream = context.getContentResolver().openInputStream(uri)) {
+        dimens = BitmapUtil.getDimensions(attachmentStream);
+      } catch (IOException e) {
+        Log.w(TAG, "Unable to read image to determine dimensions.", e);
+      } catch (BitmapDecodingException e) {
+        Log.w(TAG, "Failed to decode image to determine dimensions.", e);
+      }
+    }
+    Log.d(TAG, "Dimensions for [" + uri + "] are " + dimens.first + " x " + dimens.second);
+    return dimens;
   }
 
   public static boolean isMms(String contentType) {
