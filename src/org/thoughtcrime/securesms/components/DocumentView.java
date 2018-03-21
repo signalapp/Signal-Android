@@ -110,11 +110,13 @@ public class DocumentView extends FrameLayout {
         this.fileName.setText(VcardUtil.getVcardDisplayText(getContext(), vcard, isOutgoing));
       }
       controlToggle.setVisibility(View.GONE);
+      this.fileSize.setVisibility(View.GONE);
     } else {
       this.fileName.setText(documentSlide.getFileName().or(getContext().getString(R.string.DocumentView_unknown_file)));
       controlToggle.setVisibility(View.VISIBLE);
+      this.fileSize.setText(Util.getPrettyFileSize(documentSlide.getFileSize()));
+      this.fileSize.setVisibility(View.VISIBLE);
     }
-    this.fileSize.setText(Util.getPrettyFileSize(documentSlide.getFileSize()));
     this.document.setText(getFileType(documentSlide.getFileName()));
     this.setOnClickListener(new OpenClickedListener(documentSlide));
   }
