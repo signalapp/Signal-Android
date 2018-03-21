@@ -188,7 +188,7 @@ public abstract class DisplayRecord {
   }
 
   protected static boolean containsVcard(String body) {
-    return (body.length() > 20) && body.startsWith("BEGIN:VCARD") && (body.lastIndexOf("END:VCARD") != -1);
+    return (body != null) && (body.length() > 20) && body.startsWith("BEGIN:VCARD") && (body.lastIndexOf("END:VCARD") != -1);
   }
 
   protected static String getVcard(String body) {
