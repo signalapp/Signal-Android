@@ -34,6 +34,13 @@
         <org.thoughtcrime.securesms.components.AccessibleToggleButton
                 android:id="@+id/video_mute_button"
                 style="@style/WebRtcCallCompoundButton"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/webrtc_video_mute_button"/>
+
+        <org.thoughtcrime.securesms.components.AccessibleToggleButton
+                android:id="@+id/camera_flip_button"
+                style="@style/WebRtcCallCompoundButton"
+                android:contentDescription="@string/redphone_call_controls__flip_camera_rear"
+                android:background="@drawable/webrtc_camera_flip_button"/>
 
 </merge>
