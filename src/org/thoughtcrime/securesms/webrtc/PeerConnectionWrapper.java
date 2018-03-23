@@ -40,8 +40,16 @@ public class PeerConnectionWrapper {
   @NonNull  private final AudioSource    audioSource;
 
   @Nullable private final VideoCapturer  videoCapturer;
+  @Nullable private final VideoCapturer  videoCapturerRear;
   @Nullable private final VideoSource    videoSource;
+  @Nullable private final VideoSource    videoSourceRear;
   @Nullable private final VideoTrack     videoTrack;
+  @Nullable private final VideoTrack     videoTrackRear;
+
+  @Nullable private       VideoCapturer  videoCapturerActive;
+  @Nullable private       VideoTrack     videoTrackActive;
+
+  @Nullable private final MediaStream    mediaStream;
 
   public PeerConnectionWrapper(@NonNull Context context,
                                @NonNull PeerConnectionFactory factory,
@@ -72,41 +80,68 @@ public class PeerConnectionWrapper {
     this.peerConnection.setAudioPlayout(false);
     this.peerConnection.setAudioRecording(false);
 
-    this.videoCapturer  = createVideoCapturer(context);
+    this.videoCapturer  = createVideoCapturer(context, false);
+    this.videoCapturerRear = createVideoCapturer(context, true);
 
-    MediaStream mediaStream = factory.createLocalMediaStream("ARDAMS");
+    this.videoCapturerActive = videoCapturer;
+
+    this.mediaStream = factory.createLocalMediaStream("ARDAMS");
     this.audioSource = factory.createAudioSource(audioConstraints);
     this.audioTrack  = factory.createAudioTrack("ARDAMSa0", audioSource);
     this.audioTrack.setEnabled(false);
-    mediaStream.addTrack(audioTrack);
+    this.mediaStream.addTrack(audioTrack);
 
     if (videoCapturer != null) {
       this.videoSource = factory.createVideoSource(videoCapturer);
       this.videoTrack = factory.createVideoTrack("ARDAMSv0", videoSource);
 
+      this.videoTrackActive = videoTrack;
+
       this.videoTrack.addRenderer(new VideoRenderer(localRenderer));
       this.videoTrack.setEnabled(false);
-      mediaStream.addTrack(videoTrack);
+      this.mediaStream.addTrack(videoTrack);
     } else {
       this.videoSource = null;
       this.videoTrack  = null;
+      this.videoTrackActive = null;
+    }
+
+    if (videoCapturerRear != null) {
+      this.videoSourceRear = factory.createVideoSource(videoCapturerRear);
+      this.videoTrackRear = factory.createVideoTrack("ARDAMSv0", videoSourceRear);
+      this.videoTrackRear.addRenderer(new VideoRenderer(localRenderer));
+      this.videoTrackRear.setEnabled(false);
+    } else {
+      this.videoSourceRear = null;
+      this.videoTrackRear = null;
     }
 
     this.peerConnection.addStream(mediaStream);
   }
 
   public void setVideoEnabled(boolean enabled) {
-    if (this.videoTrack != null) {
-      this.videoTrack.setEnabled(enabled);
+    if (this.videoTrackActive != null) {
+      this.videoTrackActive.setEnabled(enabled);
     }
 
-    if (this.videoCapturer != null) {
+    if (this.videoCapturerActive != null) {
       try {
-        if (enabled) this.videoCapturer.startCapture(1280, 720, 30);
-        else         this.videoCapturer.stopCapture();
+        if (enabled) this.videoCapturerActive.startCapture(1280, 720, 30);
+        else         this.videoCapturerActive.stopCapture();
       } catch (InterruptedException e) {
         Log.w(TAG, e);
       }
+    }
+  }
+
+  public void flipCameras(boolean isRear) {
+    if (videoCapturerRear != null) {
+      setVideoEnabled(false);
+      mediaStream.removeTrack(videoTrackActive);
+      this.videoTrackActive = isRear ? videoTrackRear : videoTrack;
+      this.videoCapturerActive = isRear ? videoCapturerRear : videoCapturer;
+      mediaStream.addTrack(videoTrackActive);
+      setVideoEnabled(true);
     }
   }
 
@@ -268,8 +303,21 @@ public class PeerConnectionWrapper {
       this.videoCapturer.dispose();
     }
 
+    if (this.videoCapturerRear != null) {
+      try {
+        this.videoCapturerRear.stopCapture();
+      } catch (InterruptedException e) {
+        Log.w(TAG, e);
+      }
+      this.videoCapturerRear.dispose();
+    }
+
     if (this.videoSource != null) {
       this.videoSource.dispose();
+    }
+
+    if (this.videoSourceRear != null) {
+      this.videoSourceRear.dispose();
     }
 
     this.audioSource.dispose();
@@ -281,7 +329,7 @@ public class PeerConnectionWrapper {
     return this.peerConnection.addIceCandidate(candidate);
   }
 
-  private @Nullable CameraVideoCapturer createVideoCapturer(@NonNull Context context) {
+  private @Nullable CameraVideoCapturer createVideoCapturer(@NonNull Context context, boolean rear) {
     boolean camera2EnumeratorIsSupported = false;
     try {
       camera2EnumeratorIsSupported = Camera2Enumerator.isSupported(context);
@@ -298,12 +346,16 @@ public class PeerConnectionWrapper {
     String[] deviceNames = enumerator.getDeviceNames();
 
     for (String deviceName : deviceNames) {
-      if (enumerator.isFrontFacing(deviceName)) {
-        Log.w(TAG, "Creating front facing camera capturer.");
+      boolean isDesiredDirection =
+                rear ? enumerator.isBackFacing(deviceName)
+                     : enumerator.isFrontFacing(deviceName);
+      if (isDesiredDirection) {
+        String direction = rear ? "rear" : "front";
+        Log.w(TAG, "Creating " + direction + " facing camera capturer.");
         final CameraVideoCapturer videoCapturer = enumerator.createCapturer(deviceName, null);
 
         if (videoCapturer != null) {
-          Log.w(TAG, "Found front facing capturer: " + deviceName);
+          Log.w(TAG, "Found " + direction + " facing capturer: " + deviceName);
 
           return videoCapturer;
         }
@@ -311,7 +363,10 @@ public class PeerConnectionWrapper {
     }
 
     for (String deviceName : deviceNames) {
-      if (!enumerator.isFrontFacing(deviceName)) {
+      boolean isDesiredDirection =
+                rear ? enumerator.isBackFacing(deviceName)
+                     : enumerator.isFrontFacing(deviceName);
+      if (!isDesiredDirection) {
         Log.w(TAG, "Creating other camera capturer.");
         final CameraVideoCapturer videoCapturer = enumerator.createCapturer(deviceName, null);
 

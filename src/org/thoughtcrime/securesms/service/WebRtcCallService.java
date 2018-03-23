@@ -116,6 +116,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
   public static final String EXTRA_REMOTE_ADDRESS     = "remote_address";
   public static final String EXTRA_MUTE               = "mute_value";
+  public static final String EXTRA_CAMERA_FLIP_REAR   = "camera_flip_rear_value";
   public static final String EXTRA_AVAILABLE          = "enabled_value";
   public static final String EXTRA_REMOTE_DESCRIPTION = "remote_description";
   public static final String EXTRA_TIMESTAMP          = "timestamp";
@@ -132,6 +133,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
   public static final String ACTION_LOCAL_HANGUP         = "LOCAL_HANGUP";
   public static final String ACTION_SET_MUTE_AUDIO       = "SET_MUTE_AUDIO";
   public static final String ACTION_SET_MUTE_VIDEO       = "SET_MUTE_VIDEO";
+  public static final String ACTION_SET_CAMERA_FLIP      = "SET_CAMERA_FLIP";
   public static final String ACTION_BLUETOOTH_CHANGE     = "BLUETOOTH_CHANGE";
   public static final String ACTION_WIRED_HEADSET_CHANGE = "WIRED_HEADSET_CHANGE";
   public static final String ACTION_SCREEN_OFF           = "SCREEN_OFF";
@@ -208,6 +210,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       else if (intent.getAction().equals(ACTION_REMOTE_HANGUP))             handleRemoteHangup(intent);
       else if (intent.getAction().equals(ACTION_SET_MUTE_AUDIO))            handleSetMuteAudio(intent);
       else if (intent.getAction().equals(ACTION_SET_MUTE_VIDEO))            handleSetMuteVideo(intent);
+      else if (intent.getAction().equals(ACTION_SET_CAMERA_FLIP))           handleSetCameraFlip(intent);
       else if (intent.getAction().equals(ACTION_BLUETOOTH_CHANGE))          handleBluetoothChange(intent);
       else if (intent.getAction().equals(ACTION_WIRED_HEADSET_CHANGE))      handleWiredHeadsetChange(intent);
       else if (intent.getAction().equals((ACTION_SCREEN_OFF)))              handleScreenOffChange(intent);
@@ -802,6 +805,17 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
     }
 
     sendMessage(viewModelStateFor(callState), this.recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+  }
+
+  private void handleSetCameraFlip(Intent intent) {
+    boolean isRear = intent.getBooleanExtra(EXTRA_CAMERA_FLIP_REAR, false);
+    Log.w(TAG, "handleSetCameraFlip(isRear=" + isRear + ")...");
+
+    if (this.localVideoEnabled) {
+      if (this.peerConnection != null) {
+        this.peerConnection.flipCameras(isRear);
+      }
+    }
   }
 
   private void handleBluetoothChange(Intent intent) {
