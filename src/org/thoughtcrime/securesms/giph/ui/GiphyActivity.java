@@ -37,6 +37,8 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
   private static final String TAG = GiphyActivity.class.getSimpleName();
 
   public static final String EXTRA_IS_MMS = "extra_is_mms";
+  public static final String EXTRA_WIDTH  = "extra_width";
+  public static final String EXTRA_HEIGHT = "extra_height";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -124,7 +126,11 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
         if (uri == null) {
           Toast.makeText(GiphyActivity.this, R.string.GiphyActivity_error_while_retrieving_full_resolution_gif, Toast.LENGTH_LONG).show();
         } else if (viewHolder == finishingImage) {
-          setResult(RESULT_OK, new Intent().setData(uri));
+          Intent intent = new Intent();
+          intent.setData(uri);
+          intent.putExtra(EXTRA_WIDTH, viewHolder.image.getGifWidth());
+          intent.putExtra(EXTRA_HEIGHT, viewHolder.image.getGifHeight());
+          setResult(RESULT_OK, intent);
           finish();
         } else {
           Log.w(TAG, "Resolved Uri is no longer the selected element...");

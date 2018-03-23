@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
+import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.permissions.Permissions;
 
 public class RecentPhotosLoader extends CursorLoader {

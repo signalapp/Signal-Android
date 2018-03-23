@@ -206,7 +206,9 @@ public class AttachmentManager {
   public void setMedia(@NonNull final GlideRequests glideRequests,
                        @NonNull final Uri uri,
                        @NonNull final MediaType mediaType,
-                       @NonNull final MediaConstraints constraints)
+                       @NonNull final MediaConstraints constraints,
+                                final int width,
+                                final int height)
   {
     inflateStub();
 
@@ -222,11 +224,11 @@ public class AttachmentManager {
       protected @Nullable Slide doInBackground(Void... params) {
         try {
           if (PartAuthority.isLocalUri(uri)) {
-            return getManuallyCalculatedSlideInfo(uri);
+            return getManuallyCalculatedSlideInfo(uri, width, height);
           } else {
-            Slide result = getContentResolverSlideInfo(uri);
+            Slide result = getContentResolverSlideInfo(uri, width, height);
 
-            if (result == null) return getManuallyCalculatedSlideInfo(uri);
+            if (result == null) return getManuallyCalculatedSlideInfo(uri, width, height);
             else                return result;
           }
         } catch (IOException e) {
@@ -267,7 +269,7 @@ public class AttachmentManager {
         }
       }
 
-      private @Nullable Slide getContentResolverSlideInfo(Uri uri) {
+      private @Nullable Slide getContentResolverSlideInfo(Uri uri, int width, int height) {
         Cursor cursor = null;
         long   start  = System.currentTimeMillis();
 
@@ -278,10 +280,15 @@ public class AttachmentManager {
             String                 fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
             long                   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
             String                 mimeType = context.getContentResolver().getType(uri);
-            Pair<Integer, Integer> dimens   = MediaUtil.getDimensions(context, mimeType, uri);
+
+            if (width == 0 && height == 0) {
+              Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
+              width  = dimens.first;
+              height = dimens.second;
+            }
 
             Log.w(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
-            return mediaType.createSlide(context, uri, fileName, mimeType, fileSize, dimens.first, dimens.second);
+            return mediaType.createSlide(context, uri, fileName, mimeType, fileSize, width, height);
           }
         } finally {
           if (cursor != null) cursor.close();
@@ -290,7 +297,7 @@ public class AttachmentManager {
         return null;
       }
 
-      private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri) throws IOException {
+      private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri, int width, int height) throws IOException {
         long start      = System.currentTimeMillis();
         Long mediaSize  = null;
         String fileName = null;
@@ -310,10 +317,14 @@ public class AttachmentManager {
           mimeType = MediaUtil.getMimeType(context, uri);
         }
 
-        Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
+        if (width == 0 && height == 0) {
+          Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
+          width  = dimens.first;
+          height = dimens.second;
+        }
 
         Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize, dimens.first, dimens.second);
+        return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize, width, height);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
