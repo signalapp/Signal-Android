@@ -970,6 +970,7 @@
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
     <string name="redphone_call_controls__mute">Mute</string>
+    <string name="redphone_call_controls__flip_camera_rear">Use rear camera</string>
     <string name="redphone_call_controls__signal_call">Signal Call</string>
 
     <!-- registration_activity -->

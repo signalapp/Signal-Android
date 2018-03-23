@@ -27,6 +27,7 @@ public class WebRtcCallControls extends LinearLayout {
 
   private AccessibleToggleButton audioMuteButton;
   private AccessibleToggleButton videoMuteButton;
+  private AccessibleToggleButton cameraFlipButton;
   private AccessibleToggleButton speakerButton;
   private AccessibleToggleButton bluetoothButton;
 
@@ -60,6 +61,8 @@ public class WebRtcCallControls extends LinearLayout {
     this.bluetoothButton = ViewUtil.findById(this, R.id.bluetoothButton);
     this.audioMuteButton = ViewUtil.findById(this, R.id.muteButton);
     this.videoMuteButton = ViewUtil.findById(this, R.id.video_mute_button);
+    this.cameraFlipButton = ViewUtil.findById(this, R.id.camera_flip_button);
+    this.cameraFlipButton.setVisibility(View.INVISIBLE); // shown once video is enabled
   }
 
   public void setAudioMuteButtonListener(final MuteButtonListener listener) {
@@ -75,7 +78,18 @@ public class WebRtcCallControls extends LinearLayout {
     videoMuteButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        listener.onToggle(!isChecked);
+        boolean videoMuted = !isChecked;
+        listener.onToggle(videoMuted);
+        cameraFlipButton.setVisibility(videoMuted ? View.INVISIBLE : View.VISIBLE);
+      }
+    });
+  }
+
+  public void setCameraFlipButtonListener(final CameraFlipButtonListener listener) {
+    cameraFlipButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        listener.onToggle(isChecked);
       }
     });
   }
@@ -138,21 +152,25 @@ public class WebRtcCallControls extends LinearLayout {
       speakerButton.setAlpha(1.0f);
       bluetoothButton.setAlpha(1.0f);
       videoMuteButton.setAlpha(1.0f);
+      cameraFlipButton.setAlpha(1.0f);
       audioMuteButton.setAlpha(1.0f);
 
       speakerButton.setEnabled(true);
       bluetoothButton.setEnabled(true);
       videoMuteButton.setEnabled(true);
+      cameraFlipButton.setEnabled(true);
       audioMuteButton.setEnabled(true);
     } else if (!enabled && Build.VERSION.SDK_INT >= 11) {
       speakerButton.setAlpha(0.3f);
       bluetoothButton.setAlpha(0.3f);
       videoMuteButton.setAlpha(0.3f);
+      cameraFlipButton.setAlpha(0.3f);
       audioMuteButton.setAlpha(0.3f);
       
       speakerButton.setEnabled(false);
       bluetoothButton.setEnabled(false);
       videoMuteButton.setEnabled(false);
+      cameraFlipButton.setEnabled(false);
       audioMuteButton.setEnabled(false);
     }
   }
@@ -177,6 +195,10 @@ public class WebRtcCallControls extends LinearLayout {
 
   public static interface MuteButtonListener {
     public void onToggle(boolean isMuted);
+  }
+
+  public static interface CameraFlipButtonListener {
+    public void onToggle(boolean isRear);
   }
 
   public static interface SpeakerButtonListener {
