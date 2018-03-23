@@ -133,6 +133,8 @@ public abstract class Slide {
                                                          @NonNull  Uri     uri,
                                                          @NonNull  String  defaultMime,
                                                                    long     size,
+                                                                   int      width,
+                                                                   int      height,
                                                                    boolean  hasThumbnail,
                                                          @Nullable String   fileName,
                                                                    boolean  voiceNote)
@@ -140,17 +142,16 @@ public abstract class Slide {
     try {
       String                 resolvedType    = Optional.fromNullable(MediaUtil.getMimeType(context, uri)).or(defaultMime);
       String                 fastPreflightId = String.valueOf(SecureRandom.getInstance("SHA1PRNG").nextLong());
-      Pair<Integer, Integer> dimens          = MediaUtil.getDimensions(context, resolvedType, uri);
       return new UriAttachment(uri,
                                hasThumbnail ? uri : null,
                                resolvedType,
                                AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
                                size,
+                               width,
+                               height,
                                fileName,
                                fastPreflightId,
-                               voiceNote,
-                               dimens.first,
-                               dimens.second);
+                               voiceNote);
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }

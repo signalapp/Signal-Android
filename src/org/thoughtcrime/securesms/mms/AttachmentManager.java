@@ -275,12 +275,13 @@ public class AttachmentManager {
           cursor = context.getContentResolver().query(uri, null, null, null, null);
 
           if (cursor != null && cursor.moveToFirst()) {
-            String fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
-            long   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
-            String mimeType = context.getContentResolver().getType(uri);
+            String                 fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
+            long                   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
+            String                 mimeType = context.getContentResolver().getType(uri);
+            Pair<Integer, Integer> dimens   = MediaUtil.getDimensions(context, mimeType, uri);
 
             Log.w(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
-            return mediaType.createSlide(context, uri, fileName, mimeType, fileSize);
+            return mediaType.createSlide(context, uri, fileName, mimeType, fileSize, dimens.first, dimens.second);
           }
         } finally {
           if (cursor != null) cursor.close();
@@ -305,8 +306,14 @@ public class AttachmentManager {
           mediaSize = MediaUtil.getMediaSize(context, uri);
         }
 
+        if (mimeType == null) {
+          mimeType = MediaUtil.getMimeType(context, uri);
+        }
+
+        Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
+
         Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize);
+        return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize, dimens.first, dimens.second);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
@@ -496,15 +503,17 @@ public class AttachmentManager {
                                       @NonNull  Uri     uri,
                                       @Nullable String fileName,
                                       @Nullable String mimeType,
-                                                long    dataSize)
+                                                long    dataSize,
+                                                int     width,
+                                                int     height)
     {
       if (mimeType == null) {
         mimeType = "application/octet-stream";
       }
 
       switch (this) {
-      case IMAGE:    return new ImageSlide(context, uri, dataSize);
-      case GIF:      return new GifSlide(context, uri, dataSize);
+      case IMAGE:    return new ImageSlide(context, uri, dataSize, width, height);
+      case GIF:      return new GifSlide(context, uri, dataSize, width, height);
       case AUDIO:    return new AudioSlide(context, uri, dataSize, false);
       case VIDEO:    return new VideoSlide(context, uri, dataSize);
       case DOCUMENT: return new DocumentSlide(context, uri, mimeType, dataSize, fileName);

@@ -2,11 +2,10 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.UiThread;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
@@ -15,7 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -54,8 +52,9 @@ public class ThumbnailView extends FrameLayout {
   private int             radius;
   private OnClickListener parentClickListener;
 
-  private final int[] dimens = new int[2];
-  private final int[] bounds = new int[4];
+  private final int[] dimens        = new int[2];
+  private final int[] bounds        = new int[4];
+  private final int[] measureDimens = new int[2];
 
   private Optional<TransferControlView> transferControls       = Optional.absent();
   private SlideClickListener            thumbnailClickListener = null;
@@ -93,26 +92,28 @@ public class ThumbnailView extends FrameLayout {
 
   @Override
   protected void onMeasure(int originalWidthMeasureSpec, int originalHeightMeasureSpec) {
-    Pair<Integer, Integer> targetDimens = getTargetDimensions(dimens, bounds);
-    if (targetDimens.first == 0 && targetDimens.second == 0) {
+    fillTargetDimensions(measureDimens, dimens, bounds);
+    if (measureDimens[WIDTH] == 0 && measureDimens[HEIGHT] == 0) {
       super.onMeasure(originalWidthMeasureSpec, originalHeightMeasureSpec);
       return;
     }
 
-    int finalWidth  = targetDimens.first + getPaddingLeft() + getPaddingRight();
-    int finalHeight = targetDimens.second + getPaddingTop() + getPaddingBottom();
+    int finalWidth  = measureDimens[WIDTH] + getPaddingLeft() + getPaddingRight();
+    int finalHeight = measureDimens[HEIGHT] + getPaddingTop() + getPaddingBottom();
 
     super.onMeasure(MeasureSpec.makeMeasureSpec(finalWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(finalHeight, MeasureSpec.EXACTLY));
   }
 
   @SuppressWarnings("SuspiciousNameCombination")
-  private Pair<Integer, Integer> getTargetDimensions(int[] dimens, int[] bounds) {
+  private void fillTargetDimensions(int[] targetDimens, int[] dimens, int[] bounds) {
     int dimensFilledCount = getNonZeroCount(dimens);
     int boundsFilledCount = getNonZeroCount(bounds);
 
     if (dimensFilledCount == 0 || boundsFilledCount == 0) {
-      return new Pair<>(0, 0);
+      targetDimens[WIDTH] = 0;
+      targetDimens[HEIGHT] = 0;
+      return;
     }
 
     double naturalWidth  = dimens[WIDTH];
@@ -124,7 +125,7 @@ public class ThumbnailView extends FrameLayout {
     int maxHeight = bounds[MAX_HEIGHT];
 
     if (dimensFilledCount > 0 && dimensFilledCount < dimens.length) {
-      throw new IllegalStateException(String.format(Locale.ENGLISH, "Width or height has been specified, but not both. Dimens: %d x %d",
+      throw new IllegalStateException(String.format(Locale.ENGLISH, "Width or height has been specified, but not both. Dimens: %f x %f",
                                                     naturalWidth, naturalHeight));
     }
     if (boundsFilledCount > 0 && boundsFilledCount < bounds.length) {
@@ -170,7 +171,8 @@ public class ThumbnailView extends FrameLayout {
       }
     }
 
-    return new Pair<>((int) measuredWidth, (int) measuredHeight);
+    targetDimens[WIDTH]  = (int) measuredWidth;
+    targetDimens[HEIGHT] = (int) measuredHeight;
   }
 
   private int getNonZeroCount(int[] vals) {
@@ -211,17 +213,21 @@ public class ThumbnailView extends FrameLayout {
     this.backgroundColorHint = color;
   }
 
+  @UiThread
   public void setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
-                               boolean showControls, boolean isPreview) {
+                               boolean showControls, boolean isPreview)
+  {
     setImageResource(glideRequests, slide, showControls, isPreview, 0, 0);
   }
 
+  @UiThread
   public void setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
                                boolean showControls, boolean isPreview, int naturalWidth,
                                int naturalHeight)
   {
     dimens[WIDTH]  = naturalWidth;
     dimens[HEIGHT] = naturalHeight;
+    invalidate();
 
     if (showControls) {
       getTransferControls().setSlide(slide);
@@ -311,11 +317,12 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private GlideRequest applySizing(@NonNull GlideRequest request, @NonNull BitmapTransformation unavailableDimensSizing) {
-    Pair<Integer, Integer> targetDimens = getTargetDimensions(dimens, bounds);
-    if (targetDimens.first == 0 && targetDimens.second == 0) {
+    int[] size = new int[2];
+    fillTargetDimensions(size, dimens, bounds);
+    if (size[WIDTH] == 0 && size[HEIGHT] == 0) {
       return request.transforms(unavailableDimensSizing, new RoundedCorners(radius));
     }
-    return request.override(targetDimens.first, targetDimens.second)
+    return request.override(size[WIDTH], size[HEIGHT])
                   .transforms(new CenterCrop(), new RoundedCorners(radius));
   }
 

@@ -146,17 +146,17 @@ public class MediaUtil {
           dimens = BitmapUtil.getDimensions(attachmentStream);
         }
       } catch (FileNotFoundException e) {
-        e.printStackTrace();
+        Log.w(TAG, "Failed to find file when retrieving media dimensions.", e);
       } catch (IOException e) {
-        e.printStackTrace();
+        Log.w(TAG, "Experienced a read error when retrieving media dimensions.", e);
       } catch (BitmapDecodingException e) {
-        e.printStackTrace();
+        Log.w(TAG, "Bitmap decoding error when retrieving dimensions.", e);
       } finally {
         if (attachmentStream != null) {
           try {
             attachmentStream.close();
           } catch (IOException e) {
-            e.printStackTrace();
+            Log.w(TAG, "Failed to close stream after retrieving dimensions.", e);
           }
         }
       }
