@@ -139,6 +139,7 @@ public class WebRtcCallActivity extends Activity {
     callScreen.setIncomingCallActionListener(new IncomingCallActionListener());
     callScreen.setAudioMuteButtonListener(new AudioMuteButtonListener());
     callScreen.setVideoMuteButtonListener(new VideoMuteButtonListener());
+    callScreen.setCameraFlipButtonListener(new CameraFlipButtonListener());
     callScreen.setSpeakerButtonListener(new SpeakerButtonListener());
     callScreen.setBluetoothButtonListener(new BluetoothButtonListener());
 
@@ -156,6 +157,13 @@ public class WebRtcCallActivity extends Activity {
     Intent intent = new Intent(this, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_SET_MUTE_VIDEO);
     intent.putExtra(WebRtcCallService.EXTRA_MUTE, muted);
+    startService(intent);
+  }
+
+  private void handleSetCameraFlip(boolean isRear) {
+    Intent intent = new Intent(this, WebRtcCallService.class);
+    intent.setAction(WebRtcCallService.ACTION_SET_CAMERA_FLIP);
+    intent.putExtra(WebRtcCallService.EXTRA_CAMERA_FLIP_REAR, isRear);
     startService(intent);
   }
 
@@ -346,6 +354,11 @@ public class WebRtcCallActivity extends Activity {
     public void onToggle(boolean isMuted) {
       WebRtcCallActivity.this.handleSetMuteVideo(isMuted);
     }
+  }
+
+  private class CameraFlipButtonListener implements WebRtcCallControls.CameraFlipButtonListener {
+    @Override
+    public void onToggle(boolean isRear) { WebRtcCallActivity.this.handleSetCameraFlip(isRear); }
   }
 
   private class SpeakerButtonListener implements WebRtcCallControls.SpeakerButtonListener {
