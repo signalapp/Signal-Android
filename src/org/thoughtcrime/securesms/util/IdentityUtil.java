@@ -239,20 +239,12 @@ public class IdentityUtil {
     } else {
       String firstName  = recipients.get(0).toShortString();
       String secondName = recipients.get(1).toShortString();
-
+      
       if (recipients.size() == 2) {
         return context.getString(resourceTwo, firstName, secondName);
       } else {
-        String nMore;
-
-        if (recipients.size() == 3) {
-          int other = 1;
-          nMore = context.getResources().getQuantityString(R.plurals.identity_others, other, other);
-        } else {
-          int others = recipients.size() - 2;
-          nMore = context.getResources().getQuantityString(R.plurals.identity_others, others, others);
-        }
-
+        int others = recipients.size() - 2;
+        String nMore = context.getResources().getQuantityString(R.plurals.identity_others, others, others);
         return context.getString(resourceMany, firstName, secondName, nMore);
       }
     }
