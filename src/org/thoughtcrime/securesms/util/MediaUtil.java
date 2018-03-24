@@ -140,6 +140,8 @@ public class MediaUtil {
         if (MediaUtil.isJpegType(contentType)) {
           attachmentStream = PartAuthority.getAttachmentStream(context, uri);
           dimens = BitmapUtil.getExifDimensions(attachmentStream);
+          attachmentStream.close();
+          attachmentStream = null;
         }
         if (dimens == null) {
           attachmentStream = PartAuthority.getAttachmentStream(context, uri);

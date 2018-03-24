@@ -277,11 +277,11 @@ public class AttachmentManager {
           cursor = context.getContentResolver().query(uri, null, null, null, null);
 
           if (cursor != null && cursor.moveToFirst()) {
-            String                 fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
-            long                   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
-            String                 mimeType = context.getContentResolver().getType(uri);
+            String fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
+            long   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
+            String mimeType = context.getContentResolver().getType(uri);
 
-            if (width == 0 && height == 0) {
+            if (width == 0 || height == 0) {
               Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
               width  = dimens.first;
               height = dimens.second;
@@ -317,7 +317,7 @@ public class AttachmentManager {
           mimeType = MediaUtil.getMimeType(context, uri);
         }
 
-        if (width == 0 && height == 0) {
+        if (width == 0 || height == 0) {
           Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
           width  = dimens.first;
           height = dimens.second;
