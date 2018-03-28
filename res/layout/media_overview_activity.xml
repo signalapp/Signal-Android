@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
+                android:background="?attr/media_overview_toolbar_background"
                 app:tabBackground="?attr/media_overview_toolbar_background"
                 app:tabIndicatorColor="@color/textsecure_primary"
                 app:tabSelectedTextColor="@color/textsecure_primary"/>
