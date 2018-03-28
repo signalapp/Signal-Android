@@ -23,6 +23,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -61,10 +62,9 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
-      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE,
-                           TextSecurePreferences.isSmsEnabled(this)
-                           ? ContactSelectionListFragment.DISPLAY_MODE_ALL
-                           : ContactSelectionListFragment.DISPLAY_MODE_PUSH_ONLY);
+      int displayMode = TextSecurePreferences.isSmsEnabled(this) ? DisplayMode.FLAG_ALL
+                                                                 : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_GROUPS;
+      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
     }
 
     setContentView(R.layout.contact_selection_activity);
