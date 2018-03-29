@@ -104,7 +104,7 @@ public class DocumentView extends FrameLayout {
 
     this.documentSlide = documentSlide;
 
-    if (getFileType(documentSlide.getFileName()).equals("vcf")) {
+    if (getFileType(documentSlide.getFileName()).equals("vcf") && documentSlide.getUri() != null) {
       String vcard = VcardUtil.getVcardAttachment(getContext(), documentSlide.getUri());
       if (vcard != null) {
         this.fileName.setText(VcardUtil.getVcardDisplayText(getContext(), vcard, isOutgoing));
