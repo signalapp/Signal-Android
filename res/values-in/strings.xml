@@ -10,9 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur kata kunci!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">%d pesan per percakapan</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Hapus seluruh pesan lama?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">Ini akan segera memangkas seluruh percakapan menjadi %d pesan terbaru.</item>
@@ -38,9 +35,6 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Kunci layar %1$s, Kunci registrasi %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Bahasa %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="other">%d menit</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(gambar)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -298,12 +292,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="InviteActivity_heart_content_description">Hati</string>
   <string name="InviteActivity_invitations_sent">Undangan dikirim!</string>
   <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">KIRIM SMS KEPADA %d TEMAN</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">Kirim %d SMS undangan?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ayo pindah ke Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Teman tidak membiarkan temannya mengobrol tanpa enkripsi.</string>
@@ -318,6 +306,8 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="MmsDownloader_error_reading_mms_settings">Gagal saat membaca pengaturan MMS penyedia nirkabel</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Menghapus</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan...</string>
   <string name="MediaOverviewActivity_Documents">Dokumen</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan masuk Signal berlangsung</string>
@@ -656,25 +646,10 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Dapat membaca penerima</string>
   <!--expiration-->
   <string name="expiration_off">Mati</string>
-  <plurals name="expiration_seconds">
-    <item quantity="other">%d detik</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%dd</string>
-  <plurals name="expiration_minutes">
-    <item quantity="other">%d menit</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
-  <plurals name="expiration_hours">
-    <item quantity="other">%d jam</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%dj</string>
-  <plurals name="expiration_days">
-    <item quantity="other">%d hari</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dh</string>
-  <plurals name="expiration_weeks">
-    <item quantity="other">%d minggu</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%dm</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Nomor keamanan anda dengan%s telah berubah dan tidak lagi terverifikasi</string>
@@ -1006,9 +981,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingkan dengan papan klip</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Versi Signal Anda telah usang</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Versi Signal Anda akan berakhir dalam %d hari. Ketuk untuk memperbarui versi terbaru.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Versi Signal Anda akan berakhir hari ini. Ketuk untuk memperbarui versi terbaru.</string>
   <string name="reminder_header_expired_build">Versi Signal Anda telah usang!</string>
   <string name="reminder_header_expired_build_details">Pesan tidak akan berhasil dikirim. Ketuk untuk memperbarui versi terbaru.</string>

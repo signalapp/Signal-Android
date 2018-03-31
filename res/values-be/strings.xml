@@ -129,6 +129,8 @@
   <!--MessageRetrievalService-->
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Выдаленне</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Выдаленне паведамлення...</string>
   <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>

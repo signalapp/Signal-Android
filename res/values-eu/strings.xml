@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Une honetan: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Oraindik ez duzu pasahitza ezarri!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">Mezu 1 solasaldiko</item>
-    <item quantity="other">%d mezu solasaldiko</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Mezu zahar guztiak ezabatu orain?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Solasaldi hari guztiak berehala azkenengo mezura murriztuko dira</item>
@@ -39,10 +35,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Gaia %1$s, Hizkuntza %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">minutu 1</item>
-    <item quantity="other">%d minutu</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(irudia)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audioa)</string>
@@ -323,14 +315,6 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="InviteActivity_heart_content_description">Bihotza</string>
   <string name="InviteActivity_invitations_sent">Gonbidapenak bidali dira!</string>
   <string name="InviteActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">BIDALI SMS MEZUA LAGUN BATI</item>
-    <item quantity="other">BIDALI SMS MEZUA %d LAGUNI</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Bidali SMS bidezko gonbidapena?</item>
-    <item quantity="other">Bidali %d  SMS bidezko gonbidapen?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signalera alda dezagun: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Lagunek ez dute lagunak zifratu gabeko txatean jardun.</string>
@@ -345,6 +329,8 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="MmsDownloader_error_reading_mms_settings">Errorea hari gabeko hornitzailearen MMS ezarpenak irakurtzerakoan</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Ezabatzen</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Mezuak ezabatzen...</string>
   <string name="MediaOverviewActivity_Documents">Agiriak</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Uneko Signal deia</string>
@@ -693,30 +679,10 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Irakurketa oharrak aktibatu</string>
   <!--expiration-->
   <string name="expiration_off">Desaktibatuta</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">segundu bat</item>
-    <item quantity="other">%d segundu</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">minutu bat</item>
-    <item quantity="other">%d minutu</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
-  <plurals name="expiration_hours">
-    <item quantity="one">ordu bat</item>
-    <item quantity="other">%d ordu</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%do</string>
-  <plurals name="expiration_days">
-    <item quantity="one">egun bat</item>
-    <item quantity="other">%d egun</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%de</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">aste bat</item>
-    <item quantity="other">%d aste</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%da</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%srekin duzun segurtasun zenbakia aldatu da eta egiaztatu gabe dago</string>
@@ -1050,10 +1016,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Zure Signal bertsioa zaharkitua dago</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Bihar amaituko da zure Signal bertsioa erabiltzeko epea. Tap egin azken bertsioara eguneratzeko.</item>
-    <item quantity="other">%d egun barru amaituko da zure Signal bertsioa erabiltzeko epea. Ukitu azken bertsioara eguneratzeko.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Gaur amaituko da zure Signal bertsioa erabiltzeko epea. Ukitu azken bertsioara eguneratzeko.</string>
   <string name="reminder_header_expired_build">Amaitu da zure Signal bertsioa erabiltzeko epea!</string>
   <string name="reminder_header_expired_build_details">Mezuak ezingo dira bidali.  Ukitu azken bertsiora eguneratzeko.</string>

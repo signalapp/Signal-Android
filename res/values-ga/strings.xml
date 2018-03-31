@@ -10,13 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Faoi láthair: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Níl nath faire socraithe agat fós!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one"> 1 teachtaireacht amháin an comhrá</item>
-    <item quantity="two">%d theachtaireacht an comhrá</item>
-    <item quantity="few">%d theachtaireacht an comhrá</item>
-    <item quantity="many">%d  dteachtaireacht an comhrá</item>
-    <item quantity="other">%d theachtaireacht an comhrá</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Scrios anois gach seanteachtaireacht?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Bearrfaidh sé seo gach comhrá go dtí an teachtaireacht is déanaí anois.</item>
@@ -45,13 +38,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Téama %1$s, Teanga %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 nóiméad</item>
-    <item quantity="two">%d nóiméad</item>
-    <item quantity="few">%d nóiméad</item>
-    <item quantity="many">%d nóiméid</item>
-    <item quantity="other">%d nóiméid</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(íomhá)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(fuaim)</string>
@@ -285,13 +271,6 @@
   <string name="InviteActivity_heart_content_description">Croí</string>
   <string name="InviteActivity_invitations_sent">Seoladh na cuirí!</string>
   <string name="InviteActivity_invite_to_signal">Tabhair cuireadh chuig Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SEOL SMS GO 1 CHARA a</item>
-    <item quantity="two">SEOL SMS GO %d CHARA</item>
-    <item quantity="few">SEOL SMS GO %d CHARA</item>
-    <item quantity="many">SEOL SMS GO %d gCARA</item>
-    <item quantity="other">SEOL SMS GO %d CHARA AMHÁIN</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Téimís i muinín Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Tá an dealramh air nach bhfuil aon fheidhmchláirín agat lena roinnt leis.</string>
   <!--KeyScanningActivity-->
@@ -303,6 +282,8 @@
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Meáin</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Ag scriosadh</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Ag scriosadh teachtaireachtaí...</string>
   <string name="MediaOverviewActivity_Documents">Cáipéisí</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Glao Signal ar siúl</string>
@@ -626,13 +607,6 @@ a shonrú</string>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <string name="expiration_hours_abbreviated">%du</string>
-  <plurals name="expiration_days">
-    <item quantity="one">1 lá</item>
-    <item quantity="two">%d lá</item>
-    <item quantity="few">%d lá</item>
-    <item quantity="many">%d lá</item>
-    <item quantity="other">%d lá</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dl</string>
   <string name="expiration_weeks_abbreviated">%ds</string>
   <!--unverified safety numbers-->
@@ -925,13 +899,6 @@ a shonrú</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Cuir i gcomórtas leis an ngearrthaisce</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Tá an leagan de Signal a bhfuil agat seanda</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Rachaidh do leagan Signal as feidhm in aon lá amháin. Cnag chun é a nuashonrú chuig an leagan is deanaí.</item>
-    <item quantity="two">Rachaidh do leagan Signal as feidhm i %d lá. Cnag chun é a nuashonrú chuig an leagan is deanaí.</item>
-    <item quantity="few">Rachaidh do leagan Signal as feidhm i %d láe. Cnag chun é a nuashonrú chuig an leagan is deanaí.</item>
-    <item quantity="many">Rachaidh do leagan Signal as feidhm i %d lae. Cnag chun é a nuashonrú chuig an leagan is deanaí.</item>
-    <item quantity="other">Rachaidh do leagan Signal as feidhm i %d lá. Cnag chun é a nuashonrú chuig an leagan is deanaí.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Rachaidh do leagan Signal as bhfeidhm inniu. Cnag chun é a nuashonrú chuig an leagan is deanaí.</string>
   <string name="reminder_header_expired_build">Tá an leagan de Signal atá agat as feidhm!</string>
   <string name="reminder_header_expired_build_details">Ní sheolfar go rathúil teachtaireachtaí a thuilleadh. Cnag chun é a nuashonrú chuig an leagan is déanaí.</string>

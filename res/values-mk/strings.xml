@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сеуште не сте поставиле лозинка!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 порака по разговор</item>
-    <item quantity="other">%d пораки по разговор</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Избришете ги сите стари пораки?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Да ви остане само последнита порака на сите ваши разговори.</item>
@@ -157,6 +153,8 @@
   <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Бришење</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Бришење на пораките...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Signal</string>

@@ -10,9 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">현재: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호 설정되지 않음</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">대화당 메시지 %d개</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">지금 모든 이전 메시지를 삭제하시겠습니까?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">모든 대화를 최근 메시지 %d개로 줄입니다.</item>
@@ -37,9 +34,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="other">%d분</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(이미지)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(오디오)</string>
@@ -252,12 +246,6 @@
   <string name="InviteActivity_heart_content_description">하트</string>
   <string name="InviteActivity_invitations_sent">초대 보냄</string>
   <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">%d분에게 SMS 보내기</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">초대 메시지 %d개를 SMS로 보내시겠습니까?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal로 같이 바꿔요~ %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">좋은 친구라면 친구의 메시지도 암호화 해주세요~</string>
@@ -269,6 +257,8 @@
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">이동통신사 MMS 설정 읽기 오류 발생</string>
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">이전 메시지 삭제</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">메시지를 삭제 중…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 통화 중</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 통화 연결 중</string>
@@ -496,25 +486,10 @@
   <string name="experience_upgrade_activity__continue">계속</string>
   <!--expiration-->
   <string name="expiration_off">사용 안함</string>
-  <plurals name="expiration_seconds">
-    <item quantity="other">%d초</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%d초</string>
-  <plurals name="expiration_minutes">
-    <item quantity="other">%d분</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%d분</string>
-  <plurals name="expiration_hours">
-    <item quantity="other">%d시간</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%d시간</string>
-  <plurals name="expiration_days">
-    <item quantity="other">%d일</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%d일</string>
-  <plurals name="expiration_weeks">
-    <item quantity="other">%d주</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%d주</string>
   <!--unverified safety numbers-->
   <!--giphy_activity-->
@@ -772,9 +747,6 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">클립보드와 비교</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">설치된 Signal 버전 곧 만료</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">%d일 후 설치된 Signal 버전은 만료됩니다. 최신 버전으로 업데이트 하려면 터치하세요.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">오늘 설치된 Signal 버전은 만료됩니다. 최신 버전으로 업데이트 하려면 터치하세요.</string>
   <string name="reminder_header_expired_build">설치된 Signal 버전 만료</string>
   <string name="reminder_header_expired_build_details">메시지가 전송되지 않습니다. 최신 버전으로 업데이트 하려면 터치하세요.</string>

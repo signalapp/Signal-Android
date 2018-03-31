@@ -10,9 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập cụm từ mật khẩu!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">%d tin nhắn cho mỗi cuộc hội thoại</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">Thao tác này sẽ thu ngắn tức thì tất cả các cuộc hội thoại đến %d tin nhắn gần nhất.</item>
@@ -38,9 +35,6 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Chủ đề %1$s, Ngôn ngữ %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="other">%d phút</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(hình)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(âm thanh)</string>
@@ -240,9 +234,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="InviteActivity_heart_content_description">Thích</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
   <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">Gửi %d lời mời qua SMS?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Bạn bè không để bạn mình tán gẫu không có mã khoá.</string>
@@ -253,6 +244,8 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Đang xóa tin nhắn...</string>
   <string name="MediaOverviewActivity_Documents">Tài liệu</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Cuộc gọi Signal đang tiến hành</string>
@@ -730,9 +723,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Phiên bản Signal của bạn đã quá cũ</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Phiên bản Signal của bạn sẽ hết hạn trong %d ngày. Chạm để cập nhật lên phiên bản mới nhất.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Phiên bản Signal của bạn sẽ hết hạn vào hôm nay. Chạm để cập nhật lên phiên bản mới nhất.</string>
   <string name="reminder_header_expired_build">Phiên bản Signal của bạn đã hết hạn!</string>
   <string name="reminder_header_expired_build_details">Tin nhắn sẽ không còn được gửi đi được nữa. Chạm để cập nhật lên phiên bản mới nhất.</string>

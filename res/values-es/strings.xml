@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Todavía no ha elegido una clave de acceso!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 mensaje por conversación</item>
+    <item quantity="one">%d mensaje por conversación</item>
     <item quantity="other">%d mensajes por conversación</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes antiguos?</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <!--DraftDatabase-->
@@ -324,11 +324,11 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="InviteActivity_invitations_sent">¡Invitaciones enviadas!</string>
   <string name="InviteActivity_invite_to_signal">Invitar a Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIAR SMS A 1 AMIGO</item>
+    <item quantity="one">ENVIAR SMS A %d AMIGO</item>
     <item quantity="other">ENVIAR SMS A %d AMIGOS</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">¿Enviar 1 invitación SMS?</item>
+    <item quantity="one">¿Enviar %d invitación SMS?</item>
     <item quantity="other">¿Enviar %d invitaciones SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
@@ -345,6 +345,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Error al leer la configuración MMS del proveedor inalámbrico</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Audiovisuales</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Eliminando</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Borrando mensajes...</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Llamada de Signal en curso</string>
@@ -696,27 +698,27 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--expiration-->
   <string name="expiration_off">Inactivo</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 segundo</item>
+    <item quantity="one">%d segundo</item>
     <item quantity="other">%d segundos</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d s</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%d m</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 hora</item>
+    <item quantity="one">%d hora</item>
     <item quantity="other">%d horas</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d h</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 día</item>
+    <item quantity="one">%d día</item>
     <item quantity="other">%d días</item>
   </plurals>
   <string name="expiration_days_abbreviated">%d d</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 semana</item>
+    <item quantity="one">%d semana</item>
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d s</string>
@@ -1058,8 +1060,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Su versión de Signal está anticuada</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Su versión de Signal caducará en 1 día. Pulse para actualizarla a la versión más reciente.</item>
-    <item quantity="other">Su versión de Signal caducará en %d días. Pulse para actualizarla a la versión más reciente.</item>
+    <item quantity="one">Su versión de Signal caducará en %d day. Pulse para actualizar a la versión más reciente.</item>
+    <item quantity="other">Su versión de Signal caducará en %d días. Pulse para actualizar a la versión más reciente.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Su versión de Signal caduca hoy. Pulse para actualizarla a la versión más reciente.</string>
   <string name="reminder_header_expired_build">¡Su versión de Signal ha caducado!</string>
@@ -1163,7 +1165,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registro de este número de teléfono será posible sin PIN de bloqueo de registro pasados 7 días desde que este número fuera activado en Signal. Aún le quedan %d días.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de bloqueo de registro</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de teléfono tiene el bloqueo de registro habilitado. Por favor, introduzca el PIN de bloqueo de registro.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueo de registro está habilitado para su número de teléfono.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueo de registro está habilitado para su número de teléfono. Para ayudarle a memorizar su PIN de bloqueo de registro, Signal le pedirá periódicamente que lo confirme.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Olvidé mi PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">¿Ha olvidado el PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">El bloqueo de registro ayuda a proteger su número de teléfono de intentos de registro no autorizados. Esta característica se puede deshabilitar en cualquier momento en su configuración de privacidad de Signal.</string>
@@ -1176,5 +1178,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationLockDialog_disable">Deshabilitar</string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="preferences_chats__backups">Copias de seguridad</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal está desbloqueado</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">PULSE PARA DESBLOQUEAR</string>
+  <string name="RegistrationLockDialog_reminder">Recordatorio:</string>
   <!--EOF-->
 </resources>

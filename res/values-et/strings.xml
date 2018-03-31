@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hetkel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sa pole veel salaväljendit määranud!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 sõnum vestluse kohta</item>
-    <item quantity="other">%d sõnumit vestluse kohta</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Kustutad kõik vanad sõnumid nüüd?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">See piirab koheselt kõiki vestlusi, jättes alles ainult viimase sõnumi.</item>
@@ -39,10 +35,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s teema, %2$s keel</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minut</item>
-    <item quantity="other">%d minutit</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(pilt)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(heli)</string>
@@ -324,14 +316,6 @@
   <string name="InviteActivity_heart_content_description">Süda</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SAADA SMS 1 SÕBRALE</item>
-    <item quantity="other">SAADA SMS %d SÕBRALE</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Saadad 1 SMS-kutse?</item>
-    <item quantity="other">Saadad %d SMS-kutset?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lähme Signalile üle: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Sõbrad ei luba sõpradel krüptimata rääkida.</string>
@@ -346,6 +330,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">Võrgupakkuja MMS-seadete lugemisel esines viga</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Meedia</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Kustutan</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Kustutan sõnumeid...</string>
   <string name="MediaOverviewActivity_Documents">Dokumendid</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
@@ -694,30 +680,10 @@
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Luba lugemiskinnitused</string>
   <!--expiration-->
   <string name="expiration_off">Väljas</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">1 sekund</item>
-    <item quantity="other">%d sekundit</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">1 minut</item>
-    <item quantity="other">%d minutit</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
-  <plurals name="expiration_hours">
-    <item quantity="one">1 tund</item>
-    <item quantity="other">%d tundi</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
-  <plurals name="expiration_days">
-    <item quantity="one">1 päev</item>
-    <item quantity="other">%d päeva</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">1 nädal</item>
-    <item quantity="other">%d nädalat</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Sinu turvanumber kontaktiga %s on muutunud ja pole enam kinnitatud</string>
@@ -1051,10 +1017,6 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Võrdle lõikelauaga</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Sinu Signali versioon on aegunud</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Sinu Signali versioon aegub 1 päeva pärast. Koputa, et uuendada uusimale versioonile.</item>
-    <item quantity="other">Sinu Signali versioon aegub %d päeva pärast. Koputa, et uuendada uusimale versioonile.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Sinu Signali versioon aegub täna. Koputa, et uuendada uusimale versioonile.</string>
   <string name="reminder_header_expired_build">Sinu Signali versioon on aegunud!</string>
   <string name="reminder_header_expired_build_details">Sõnumeid ei saadeta enam edukalt. Koputa, et uuendada uusimale versioonile.</string>

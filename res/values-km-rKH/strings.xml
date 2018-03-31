@@ -35,6 +35,7 @@
   <string name="ApplicationPreferencesActivity_off">បិទ</string>
   <string name="ApplicationPreferencesActivity_Off">បិទ</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">ចាក់សោរអេក្រង់ %1$s, ចាក់សោេរចុះឈ្មោះ %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ប្រធានបទ %1$s, ភាសា %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -328,6 +329,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">មានបញ្ហាអាននៅក្នុងការកំណត់របស់ក្រុមហ៊ុន​ MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ព័ត៌មាន</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">កំពុងលុប</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">កំពុងលុបសារ...</string>
   <string name="MediaOverviewActivity_Documents">ឯកសារ</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញស៊ីហ្គណល កំពុងដំណើរការ</string>
@@ -538,6 +541,7 @@
   <string name="KeyCachingService_signal_passphrase_cached">ចុច ដើម្បីបើក។</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">ប៉ះ ដើម្បីបើក ឬ ប៉ះសោរ ដើម្បីបិទ។</string>
   <string name="KeyCachingService_passphrase_cached"> ស៊ីហ្គណល បានដោះសោ</string>
+  <string name="KeyCachingService_lock">ចាក់ស៊ីហ្គណល</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">អ្នក</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ប្រភេទឯកសារមិនគាំទ្រ</string>
@@ -564,6 +568,7 @@
   <string name="QuickResponseService_problem_sending_message">សារដែលបានបញ្ជូនមានបញ្ហា!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">បើកថត</string>
+  <string name="SaveAttachmentTask_saved_to">រក្សាទុកទៅ %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">ស្វែងរក</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -764,6 +769,8 @@
   <string name="recipient_preferences__view_safety_number">មើលលេខសុវត្ថិភាព</string>
   <string name="recipient_preferences__chat_settings">ការកំណត់សារសន្ទនា</string>
   <string name="recipient_preferences__privacy">ឯកជនភាព</string>
+  <string name="recipient_preferences__call_settings">ការកំណត់ការហៅ</string>
+  <string name="recipient_preferences__ringtone">សំឡេងរោទិ៍</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">ការហៅស៊ីហ្គណល</string>
   <string name="redphone_call_controls__mute">បិទសំឡេង</string>
@@ -857,6 +864,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ជ្រើសរើសលេខទំនាក់ទំនងរបស់អ្នកពីបញ្ជីទំនាក់ទំនង។</string>
   <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
   <string name="preferences__change_your_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់របស់អ្នក</string>
+  <string name="preferences__enable_passphrase">បើកឃ្លាសម្ងាត់ចាក់សោរអេក្រង់</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ចាក់សោរ អេក្រង់និងសារជូនដំណឹងជាមួយឃ្លាសម្ងាត់</string>
   <string name="preferences__screen_security">អេក្រង់សុវត្ថិភាព</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">បិទថតរូបអេក្រង់ក្នុងបញ្ជីថ្មី និងក្នុងកម្មវិធី</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ចាក់សោស៊ីហ្គណលដោយស្វ័យប្រវត្តិ បន្ទាប់ពីទុកចោលមួយរយៈ</string>
@@ -937,6 +946,8 @@
   <string name="preferences_notifications__events">ព្រឹត្តិការណ៍</string>
   <string name="preferences_notifications__in_chat_sounds">សំឡេងក្នុងការជជែក</string>
   <string name="preferences_notifications__show">បង្ហាញ</string>
+  <string name="preferences_notifications__calls">ការហៅ</string>
+  <string name="preferences_notifications__ringtone">សំឡេងរោទិ៍</string>
   <string name="preferences_chats__show_invitation_prompts">បង្ហាញលិខិតអញ្ជើញរហ័ស</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">បង្ហាញការណែនាំពីការអញ្ជើញ សម្រាប់ទំនាក់ទំនងដែលមិនភ្ជាប់ជាមួយស៊ីហ្គណល</string>
   <string name="preferences_chats__message_text_size">ទំហំអក្សរសារ</string>
@@ -1058,14 +1069,85 @@
   <string name="Permissions_not_now">ពេលក្រោយ</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់បញ្ជី​ទំនាក់ទំនង ដើម្បីស្វែងរកលេខទំនាក់ទំនងរបស់អ្នក  ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។  សូមបន្តទៅ ការកំណត់, ជ្រើសរើស \"អនុញ្ញាត\" , និងបើក \"បញ្ជីទំនាក់ទំនង\" ។</string>
   <string name="conversation_activity__enable_signal_messages">បើកប្រើសារ SIGNAL </string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">ផ្លាស់ទីទិន្នន័យ ស៊ីហ្គណល</string>
+  <string name="PushDecryptJob_new_locked_message">សារចាក់សោរថ្មី</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">ដោះសោរដើម្បីមើលសាររង់ចាំ</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ដោះសោរដើម្បីបញ្ចប់បច្ចុប្បន្នភាព</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">សូមដោះសោរដើម្បីបញ្ចប់បច្ចុប្បន្នភាព</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">បម្រុងទុកឃ្លាសម្ងាត់</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ការបម្រុងទុក នឹងត្រូវរក្សាទុកនៅលើអង្គចងចាំខាងក្រៅ និងអ៊ិនគ្រីបជាមួយឃ្លាសម្ងាត់ខាងក្រោម។ អ្នកត្រូវមានឃ្លាសម្ងាត់នេះ ដើម្បីស្តារការបម្រុងទុកឡើងវិញ។</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ខ្ញុំបានកត់ឃ្លាសម្ងាត់ទុកហើយ។ បើគ្មានវា ខ្ញុំនឹងមិនអាចស្តារការបម្រុងទុកបានទេ។</string>
+  <string name="registration_activity__restore_backup">ស្តារការបម្រុងទុក</string>
   <string name="registration_activity__skip">រំលង</string>
   <string name="registration_activity__register">ចុះឈ្មោះ</string>
+  <string name="preferences_chats__chat_backups">ការបម្រុងទុកសារសន្ទនា</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">បម្រុងទុកសារសន្ទនាទៅកាន់អង្គចងចាំខាងក្រៅ</string>
+  <string name="preferences_chats__create_backup">បង្កើតការបម្រុងទុក</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">បញ្ចូលឃ្លាសម្ងាត់បម្រុងទុក</string>
   <string name="RegistrationActivity_restore">ស្តារឡើងវិញ</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">ឃ្លាសម្ងាត់បម្រុងទុកមិនត្រឹមត្រូវ</string>
+  <string name="RegistrationActivity_checking">កំពុងត្រួតពិនិត្យ...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d សារ ឥលូវនេះ...</string>
+  <string name="RegistrationActivity_restore_from_backup">ស្តារចេញពីការបម្រុងទុក?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">ស្តារសាររបស់អ្នក និងមេឌាចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឥលូវទេ អ្នកនឹងមិនអាចលើកក្រោយបានទេ។</string>
+  <string name="RegistrationActivity_backup_size_s">ទំហំបម្រុងទុក៖ %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">តែមពេលបម្រុងទុក៖ %s</string>
+  <string name="BackupDialog_enable_local_backups">បើកការបម្រុងទុកខាងក្នុង?</string>
+  <string name="BackupDialog_enable_backups">បើកការបម្រុងទុក</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">សូមទទួលស្គាល់ដោយគូសក្នុងប្រអប់បញ្ជាក់។</string>
+  <string name="BackupDialog_delete_backups">លុបការបម្រុងទុក?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">បិទ និងលុបចោលការបម្រុងទុកខាងក្នុងទាំងអស់?</string>
+  <string name="BackupDialog_delete_backups_statement">លុបការបម្រុងទុក</string>
+  <string name="BackupDialog_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គស្តុកទុក ដើម្បីរក្សាឯកសារក្នុងអង្គស្តុកទុកខាងក្រៅ, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស \"ការអនុញ្ញាត\", និងបើក \"អង្គស្តុកទុក\"។ </string>
+  <string name="ChatsPreferenceFragment_last_backup_s">បម្រុងលើចុងក្រោយ៖ %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">កំពុងដំណើេការ</string>
+  <string name="ProgressPreference_d_messages_so_far">%d សារឥលូវនេះ</string>
+  <string name="RegistrationActivity_verify_s">ផ្ទៀងផ្ទាត់ %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">សូមបញ្ចូលលេខកូដផ្ទៀងផ្ទាត់ដែលបានផ្ញើទៅកាន់ %s.</string>
+  <string name="RegistrationActivity_wrong_number">ខុសលេខ?</string>
   <string name="BackupUtil_never">មិនដែល</string>
   <string name="BackupUtil_unknown">មិនដឹង</string>
+  <string name="prompt_passphrase_activity__unlock_signal">ដោះសោរស៊ីហ្គណល</string>
+  <string name="preferences_app_protection__screen_lock">ចាក់សោរអេក្រង់</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ចាក់ការប្រើប្រាស់ ស៊ីហ្គណល ជាមួយសោរអេក្រង់ Android ឬ ក្រយៅដៃ</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">សោរអេក្រង់ទុកចោលអស់ម៉ោង</string>
   <string name="AppProtectionPreferenceFragment_none">គ្មាន</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">លេខPIN ចាក់សោរចុះឈ្មោះ មិនដូចគ្នានឹងកូដទទួលពីសារSMS ។ សូមបញ្ចូលលេខកូដដែលអ្នកបានកំណត់ពីមុន ក្នុងកម្មវិធីនេះ។</string>
+  <string name="registration_activity__registration_lock_pin">លេខ PIN ចុះឈ្មោះ</string>
+  <string name="registration_activity__forgot_pin">ភ្លេច PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">លេខ PIN អាចមានពី 4 ឬ ច្រើនខ្ទង។ បើអ្នកភ្លេចលេខ PIN អ្នកអាចនឹងត្រូវចាក់សោរគណនីអ្នករហូតដល់ 7 ថ្ងៃ។</string>
+  <string name="registration_lock_dialog_view__enter_pin">បញ្ចូលលេខ PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">ផ្ទៀងផ្ទាត់លេខ PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">បញ្ចូលលេខ PIN ចាក់សោរចុះឈ្មោះ</string>
+  <string name="registration_lock_reminder_view__enter_pin">បញ្ចូលលេខ PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">ការបើក ចាក់សោរចុះឈ្មោះ នឹងត្រូវទាមទារ ពេលមានការចុះឈ្មោះលេខទូរស័ព្ទនេះជាមួយ ស៊ីហ្គណលម្តងទៀត។</string>
+  <string name="preferences_app_protection__registration_lock_pin">លេខ PIN ចាក់សោរចុះឈ្មោះ</string>
+  <string name="preferences_app_protection__registration_lock">ចាក់សោរចុះឈ្មោះ</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">អ្នកត្រូវបញ្ចូលលេខ PIN ចាក់សោរចុះឈ្មោះ របស់អ្នក</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">លេខ PIN ចាក់សោរចុះឈ្មោះមិនត្រឹមត្រូវ</string>
   <string name="RegistrationActivity_too_many_attempts">ការព្យាយាមច្រើនដងពេក</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">អ្នកបានបញ្ចូលលេខ PIN ចាក់សោរចុះឈ្មោះខុសច្រើនដង។ សូមសាកល្បងម្តងទៀត ១ថ្ងៃក្រោយ។</string>
+  <string name="RegistrationActivity_error_connecting_to_service">បញ្ហាតភ្ជាប់ទៅកាន់ម៉ាស៊ីនមេ</string>
+  <string name="RegistrationActivity_oh_no">អូ ទេ!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">ការចុះឈ្មោះលេខទូរស័ព្ទនេះ នឹងអាចធ្វើបានដោយគ្មានលេខកូដ ចាក់សោរចុះឈ្មោះ បន្ទាប់ពីហួស 7 ថ្ងៃ ចាប់ពីពេលប្រើលេខនេះចុងក្រោយលើ ស៊ីហ្គណល។ អ្នកនៅសល់ %d ថ្ងៃទៀត។</string>
+  <string name="RegistrationActivity_registration_lock_pin">លេខ PIN ចាក់សោរចុះឈ្មោះ</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">លេខទូរស័ព្ទនេះ បានបើកការចាក់សោរចុះឈ្មោះ។ សូមបញ្ចូលលេខPIN ចាក់សោរចុះឈ្មោះ។</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">ចាក់សោរចុះឈ្មោះ ត្រូវបានបើកលើលេខទូរស័ព្ទរបស់អ្នក។ ដើម្បីជួយអ្នកចងចាំលេខPIN ចាក់សោរចុះឈ្មោះ  ស៊ីហ្គណលនឹងសួរអ្នកម្តងម្កាល ដើម្បីផ្ទៀងផ្ទាត់វា។</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">ខ្ញុំបានភ្លេចលេខ PIN។</string>
+  <string name="RegistrationLockDialog_forgotten_pin">ភ្លេចលេខ PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">ចាក់សោរចុះឈ្មោះ ជួយការពារលេខទូរស័ព្ទអ្នក ពីការព្យយាមបន្លំចុះឈ្មោះ។ មុខងារនេះ អាចបិទបានគ្រប់ពេល ក្នុងការកំណត់ឯកជនភាពរបស់ ស៊ីហ្គណល </string>
+  <string name="RegistrationLockDialog_registration_lock">ចាក់សោរចុះឈ្មោះ</string>
+  <string name="RegistrationLockDialog_enable">បើក</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">លេខ PIN ចាក់សោរចុះឈ្មោះ ត្រូវតែមានយ៉ាងតិច 4 ខ្ទង់។</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">លេខ PIN ចាក់សោរចុះឈ្មោះទាំងពីរនេះ មិនត្រូវគ្នា។</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">បញ្ហាក្នុងការតភ្ជាប់ទៅសេវា</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">បិទលេខ PIN ចាក់សោរចុះឈ្មោះ?</string>
   <string name="RegistrationLockDialog_disable">បិទចោល</string>
   <string name="RegistrationActivity_continue">បន្ត</string>
+  <string name="preferences_chats__backups">បម្រុងទុក</string>
+  <string name="prompt_passphrase_activity__signal_is_locked"> ស៊ីហ្គណល ជាប់សោរ</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">ចុច ដើម្បីដោះសោរ</string>
+  <string name="RegistrationLockDialog_reminder">ក្រើនរំលឹក៖</string>
   <!--EOF-->
 </resources>

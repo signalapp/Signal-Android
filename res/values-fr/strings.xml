@@ -11,8 +11,8 @@
   <string name="ApplicationPreferencesActivity_currently_s">Actuellement : %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vous n’avez pas encore défini de phrase de passe !</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 message par conversation</item>
-    <item quantity="other">%d messages par conversation</item>
+    <item quantity="one">%dmessages par conversation</item>
+    <item quantity="other">%dmessages par conversation</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Supprimer tous les anciens messages maintenant ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -37,11 +37,12 @@
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Verrouillage de l’écran %1$s, verrouillage de l’enregistrement %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, Langage %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minute</item>
-    <item quantity="other">%d minutes</item>
+    <item quantity="one">%dminutes</item>
+    <item quantity="other">%dminutes</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(image)</string>
@@ -50,17 +51,17 @@
   <string name="DraftDatabase_Draft_location_snippet">(localisation)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une application pour sélectionner le média.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal nécessite l\'autorisation Stockage pour joindre des photos, des vidéos ou de l\'audio, mais elle a été définitivement refusée. Accédez au menu Paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Stockage\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal nécessite l\'autorisation Contacts pour joindre des informations de contact, mais elle a été définitivement refusée. Accédez au menu Paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Contacts\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal nécessite l\'autorisation Position pour joindre un emplacement, mais elle a été définitivement refusée. Accédez au menu des Paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Emplacement\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Le signal nécessite l\'autorisation de l\'appareil photo pour prendre des photos, mais il a été refusé de façon permanente. Continuez dans le menu des paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Appareil photo\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal nécessite l’autorisation Stockage pour joindre des photos, des vidéos ou de l\'audio, mais elle a été définitivement refusée. Accédez au menu Paramètres de l’application, sélectionnez « Autorisations » et activez « Stockage ».</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal nécessite l’autorisation Contacts pour joindre des informations de contact, mais elle a été définitivement refusée. Accédez au menu Paramètres de l’application, sélectionnez « Autorisations » et activez « Contacts ».</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal nécessite l’autorisation Position pour joindre un emplacement, mais elle a été définitivement refusée. Accédez au menu des Paramètres de l\'application, sélectionnez « Autorisations » et activez « Emplacement ».</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal nécessite l’autorisation de l’appareil photo pour prendre des photos, mais il a été refusé de façon permanente. Continuez dans le menu des paramètres de l\'application, sélectionnez « Autorisations » et activez « Appareil photo ».</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erreur lors de la lecture du son !</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacts bloqués</string>
   <!--BucketedThreadMedia-->
-  <string name="BucketedThreadMedia_Today">Aujourd\'hui</string>
+  <string name="BucketedThreadMedia_Today">Aujourd’hui</string>
   <string name="BucketedThreadMedia_Yesterday">Hier</string>
   <string name="BucketedThreadMedia_This_week">Cette semaine</string>
   <string name="BucketedThreadMedia_This_month">Ce mois</string>
@@ -68,7 +69,7 @@
   <string name="CallScreen_Incoming_call">Appel entrant</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Supprimer</string>
-  <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vos numéros de sécurité avec %1$s ont changé. Cela pourrait signifier que quelqu\'un essaie d\'intercepter votre communication, ou que %2$s a simplement réinstallé Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous pouvez vérifier vos numéros de sécurité avec ce contact.</string>
@@ -321,11 +322,11 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="InviteActivity_invitations_sent">Invitation envoyée !</string>
   <string name="InviteActivity_invite_to_signal">Inviter sur Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">Envoyer SMS à un ami</item>
-    <item quantity="other">ENVOYER UN SMS À %d AMIS</item>
+    <item quantity="one">ENVOYER SMS À %d AMI</item>
+    <item quantity="other">ENVOYER SMS À %d AMIS</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Envoyer 1 invitation par SMS ?</item>
+    <item quantity="one">Envoyer %d invitations par SMS ?</item>
     <item quantity="other">Envoyer %d invitations par SMS ?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Passons à Signal : %1$s</string>
@@ -342,6 +343,8 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Erreur lors de la lecture des paramètres MMS du fournisseur sans fil</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Média</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Suppression</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Suppression des messages...</string>
   <string name="MediaOverviewActivity_Documents">Documents</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
@@ -551,6 +554,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="KeyCachingService_signal_passphrase_cached">Appuyez pour ouvrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Appuyez pour ouvrir, ou appuyez sur le cadenas pour fermer.</string>
   <string name="KeyCachingService_passphrase_cached">Signal est déverrouillé</string>
+  <string name="KeyCachingService_lock">Verrouiller Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vous</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Type de média non supporté</string>
@@ -577,6 +581,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Ouvrir le répertoire</string>
+  <string name="SaveAttachmentTask_saved_to">Sauvé dans %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Chercher</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -684,29 +689,21 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--expiration-->
   <string name="expiration_off">Off</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">Une seconde</item>
+    <item quantity="one">%d seconde</item>
     <item quantity="other">%d secondes</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d s</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">Une minute</item>
+    <item quantity="one">%d minute</item>
     <item quantity="other">%d minutes</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%d min</string>
   <plurals name="expiration_hours">
-    <item quantity="one">Une heure</item>
+    <item quantity="one">%d heure</item>
     <item quantity="other">%d heures</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d h</string>
-  <plurals name="expiration_days">
-    <item quantity="one">Un jour</item>
-    <item quantity="other">%d jours</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%d j</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">Une semaine</item>
-    <item quantity="other">%d semaines</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%d sem.</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Votre numéro de sécurité avec %s a changé et n\'est plus vérifié</string>
@@ -1043,10 +1040,6 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparer au presse-papiers</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Cette version de Signal est obsolète</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Votre version de Signal va expirer dans 1 jour. Appuyer pour mettre à jour vers la version la plus récente.</item>
-    <item quantity="other">Cette version de Signal expire dans %d jours. Appuyez pour installer la version la plus récente.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Cette version de Signal expire aujourd\'hui. Appuyez pour installer la version la plus récente.</string>
   <string name="reminder_header_expired_build">Cette version de Signal a expiré !</string>
   <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>
@@ -1099,7 +1092,15 @@ Migration de la base de données de Signal</string>
   <string name="BackupUtil_unknown">Inconnu</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>
   <string name="RegistrationActivity_too_many_attempts">Trop de tentatives</string>
+  <string name="RegistrationLockDialog_enable">Activé</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Le code d\'enregistrement doit être d\'au moins 4 chiffres.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Les deux codes entrés ne correspondent pas.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Erreur de connexion au serveur !</string>
   <string name="RegistrationLockDialog_disable">Désactiver</string>
   <string name="RegistrationActivity_continue">Continuer</string>
+  <string name="preferences_chats__backups">Sauvegardes</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal est vérouillé</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">APPUYEZ POUR DÉVEROUILLER</string>
+  <string name="RegistrationLockDialog_reminder">Rappel :</string>
   <!--EOF-->
 </resources>

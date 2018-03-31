@@ -10,9 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز رمزی تعیین نکرده‌اید!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">%d تعداد پیام  در هر گفتگو</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پیام‌های قدیمی حذف شوند؟</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">این گزینه ، بلافاصله تمامی مکالمات شما را به %d پیام آخر ، کاهش خواهد داد.</item>
@@ -37,9 +34,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">تم %1$s، زبان %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="other">%d دقیقه</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(تصویر)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(صوتی)</string>
@@ -291,12 +285,6 @@
   <string name="InviteActivity_heart_content_description">فلب</string>
   <string name="InviteActivity_invitations_sent">دعوت نامه ارسال شد!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به سیگنال</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">ارسال پیامک به %d نفر از دوستان</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">%d دعوت اس ام اس  بفرستم؟</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">بیایید از این برای سیگنال استفاده کنیم:  %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان نمی‌گذارند دوستانشان بدون رمزنگاری چت کنند.</string>
@@ -311,6 +299,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">خطا در هنگام دریافت تنظیمات MMS اپراتور تلفن همراه</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">رسانه</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">در حال حذف</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">حذف پیام های...</string>
   <string name="MediaOverviewActivity_Documents">اسناد</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">پاسخ سیگنال در حال انجام</string>
@@ -633,25 +623,10 @@
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">فعال سازی رسید خوانده شدن پیام</string>
   <!--expiration-->
   <string name="expiration_off">خاموش</string>
-  <plurals name="expiration_seconds">
-    <item quantity="other">ثانیه %d</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%d ثانیه</string>
-  <plurals name="expiration_minutes">
-    <item quantity="other">دقیقه %d</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%d دقیقه</string>
-  <plurals name="expiration_hours">
-    <item quantity="other">ساعت %d</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%d ساعت</string>
-  <plurals name="expiration_days">
-    <item quantity="other"> روز %d</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%d روز</string>
-  <plurals name="expiration_weeks">
-    <item quantity="other">هفته %d</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%d هفته</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">شماره امنیتی شما با %s تغییر کرده است و دیگر مورد تایید نیست</string>
@@ -972,9 +947,6 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">نسخه سیگنال شما قدیمی است.</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">نرم افزار سیگنال شما %d روز دیگر منقضی می شود. برای بروزرسانی جدیدترین نسخه ضربه بزنید.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">نرم افزار سیگنال شما امروز منقضی می شود. برای بروزرسانی جدیدترین نسخه ضربه بزنید.</string>
   <string name="reminder_header_expired_build">نسخه نرم افزار سیگنال شما منقضی شده است.</string>
   <string name="reminder_header_expired_build_details">پیام ها دیگر با موفقیت ارسال نمی‌شوند. لمس کنید برای بروزرسانی به آخرین نسخه موجود.</string>
