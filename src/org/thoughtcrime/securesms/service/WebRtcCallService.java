@@ -88,6 +88,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -1063,7 +1064,7 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
 
   @Override
   public void onAddTrack(RtpReceiver rtpReceiver, MediaStream[] mediaStreams) {
-    Log.w(TAG, "onAddTrack: " + mediaStreams);
+    Log.w(TAG, "onAddTrack: " + Arrays.toString(mediaStreams));
   }
 
   @Override
