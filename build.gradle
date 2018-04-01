@@ -10,15 +10,20 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath files('libs/gradle-witness.jar')
+        classpath "net.ltgt.gradle:gradle-errorprone-plugin:0.0.13"
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'witness'
+apply plugin: "net.ltgt.errorprone"
 
 repositories {
     maven {
@@ -440,3 +445,32 @@ if (propFile.canRead()){
     android.buildTypes.release.signingConfig = null
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs += [
+        '-Xep:ArrayToString:OFF',
+        '-Xep:ClassCanBeStatic:OFF',
+        '-Xep:ClassNewInstance:OFF',
+        '-Xep:DefaultCharset:OFF',
+        '-Xep:FallThrough:OFF',
+        '-Xep:FutureReturnValueIgnored:OFF',
+        '-Xep:HidingField:OFF',
+        '-Xep:ImmutableEnumChecker:OFF',
+        '-Xep:IntLongMath:OFF',
+        '-Xep:JdkObsolete:OFF',
+        '-Xep:MissingOverride:OFF',
+        '-Xep:MissingSuperCall:OFF',
+        '-Xep:NarrowingCompoundAssignment:OFF',
+        '-Xep:OperatorPrecedence:OFF',
+        '-Xep:ReferenceEquality:OFF',
+        '-Xep:ShortCircuitBoolean:OFF',
+        '-Xep:StringSplitter:OFF',
+        '-Xep:TypeParameterUnusedInFormals:OFF',
+        '-Xep:WaitNotInLoop:OFF',
+
+        '-XepExcludedPaths:.*/src/org/thoughtcrime/securesms/webrtc/WebRtcDataProtos.java|.*/build/generated/.*',
+    ]
+}
+
+configurations.errorprone {
+    resolutionStrategy.force 'com.google.errorprone:error_prone_core:2.2.0'
+}
