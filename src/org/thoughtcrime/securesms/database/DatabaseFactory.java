@@ -136,6 +136,7 @@ public class DatabaseFactory {
 
   public static void upgradeRestored(Context context, SQLiteDatabase database){
     getInstance(context).databaseHelper.onUpgrade(database, database.getVersion(), -1);
+    getInstance(context).databaseHelper.markCurrent(database);
   }
 
   private DatabaseFactory(@NonNull Context context) {

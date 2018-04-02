@@ -185,6 +185,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     return getWritableDatabase(databaseSecret.asString());
   }
 
+  public void markCurrent(SQLiteDatabase db) {
+    db.setVersion(DATABASE_VERSION);
+  }
+
   private void executeStatements(SQLiteDatabase db, String[] statements) {
     for (String statement : statements)
       db.execSQL(statement);
