@@ -26,7 +26,7 @@ public class AttachmentDownloadJobTest extends BaseUnitTest {
     when(attachment.getLocation()).thenReturn(null);
     when(attachment.getKey()).thenReturn("a long and acceptable valid key like we all want");
 
-    job.createAttachmentPointer(masterSecret, attachment);
+    job.createAttachmentPointer(attachment);
   }
 
   @Test(expected = InvalidPartException.class)
@@ -35,6 +35,6 @@ public class AttachmentDownloadJobTest extends BaseUnitTest {
     when(attachment.getLocation()).thenReturn("something");
     when(attachment.getKey()).thenReturn(null);
 
-    job.createAttachmentPointer(masterSecret, attachment);
+    job.createAttachmentPointer(attachment);
   }
 }
