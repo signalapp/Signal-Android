@@ -46,6 +46,8 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
@@ -313,13 +315,20 @@ public class AttachmentDatabase extends Database {
   public void insertAttachmentsForPlaceholder(long mmsId, @NonNull AttachmentId attachmentId, @NonNull InputStream inputStream)
       throws MmsException
   {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    DataInfo       dataInfo = setAttachmentData(inputStream);
-    ContentValues  values   = new ContentValues();
+    DatabaseAttachment placeholder = getAttachment(attachmentId);
+    SQLiteDatabase     database    = databaseHelper.getWritableDatabase();
+    ContentValues      values      = new ContentValues();
+    DataInfo           dataInfo    = setAttachmentData(inputStream);
 
-    values.put(DATA, dataInfo.file.getAbsolutePath());
-    values.put(SIZE, dataInfo.length);
-    values.put(DATA_RANDOM, dataInfo.random);
+    if (placeholder != null && placeholder.isQuote() && !placeholder.getContentType().startsWith("image")) {
+      values.put(THUMBNAIL, dataInfo.file.getAbsolutePath());
+      values.put(THUMBNAIL_RANDOM, dataInfo.random);
+    } else {
+      values.put(DATA, dataInfo.file.getAbsolutePath());
+      values.put(SIZE, dataInfo.length);
+      values.put(DATA_RANDOM, dataInfo.random);
+    }
+
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
     values.put(CONTENT_LOCATION, (String)null);
     values.put(CONTENT_DISPOSITION, (String)null);
@@ -635,8 +644,22 @@ public class AttachmentDatabase extends Database {
 
     long         rowId        = database.insert(TABLE_NAME, null, contentValues);
     AttachmentId attachmentId = new AttachmentId(rowId, uniqueId);
+    Uri          thumbnailUri = attachment.getThumbnailUri();
+    boolean      hasThumbnail = false;
 
-    if (dataInfo != null) {
+    if (thumbnailUri != null) {
+      try (InputStream attachmentStream = PartAuthority.getAttachmentStream(context, thumbnailUri)) {
+        Pair<Integer, Integer> dimens = BitmapUtil.getDimensions(attachmentStream);
+        updateAttachmentThumbnail(attachmentId,
+                                  PartAuthority.getAttachmentStream(context, thumbnailUri),
+                                  (float) dimens.first / (float) dimens.second);
+        hasThumbnail = true;
+      } catch (IOException | BitmapDecodingException e) {
+        Log.w(TAG, "Failed to save existing thumbnail.", e);
+      }
+    }
+
+    if (!hasThumbnail && dataInfo != null) {
       if (MediaUtil.hasVideoThumbnail(attachment.getDataUri())) {
         Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getDataUri());
 

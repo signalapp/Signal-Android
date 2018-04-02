@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    app:quote_dismissable="true"
+                    app:message_type="preview"
                     tools:visibility="visible"/>
 
             <LinearLayout android:layout_width="match_parent"

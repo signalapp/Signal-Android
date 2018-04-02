@@ -194,6 +194,7 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Deleting</string>
     <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
+    <string name="ConversationFragment_quoted_message_not_found">Quoted message not found</string>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
@@ -812,6 +813,13 @@
     <string name="audio_view__play_accessibility_description">Play</string>
     <string name="audio_view__pause_accessibility_description">Pause</string>
     <string name="audio_view__download_accessibility_description">Download</string>
+
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Audio</string>
+    <string name="QuoteView_video">Video</string>
+    <string name="QuoteView_photo">Photo</string>
+    <string name="QuoteView_document">Document</string>
+    <string name="QuoteView_you">You</string>
 
     <!-- conversation_fragment_cab -->
     <string name="conversation_fragment_cab__batch_selection_mode">Batch selection mode</string>

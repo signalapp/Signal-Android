@@ -79,8 +79,9 @@
                     android:id="@+id/quote_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
                     android:visibility="gone"
-                    app:quote_dismissable="false"
+                    app:message_type="incoming"
                     tools:visibility="visible"/>
 
             <ViewStub

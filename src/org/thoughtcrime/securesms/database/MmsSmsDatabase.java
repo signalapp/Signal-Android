@@ -27,6 +27,7 @@ import net.sqlcipher.database.SQLiteQueryBuilder;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -138,6 +139,26 @@ public class MmsSmsDatabase extends Database {
   public void incrementReadReceiptCount(SyncMessageId syncMessageId, long timestamp) {
     DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, false, true);
     DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false, true);
+  }
+
+  public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull Address address) {
+    String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+
+    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.ADDRESS }, selection, order, null)) {
+      String  serializedAddress = address.serialize();
+      boolean isOwnNumber       = Util.isOwnNumber(context, address);
+
+      while (cursor != null && cursor.moveToNext()) {
+        boolean quoteIdMatches = cursor.getLong(0) == quoteId;
+        boolean addressMatches = serializedAddress.equals(cursor.getString(1));
+
+        if (quoteIdMatches && (addressMatches || isOwnNumber)) {
+          return cursor.getPosition();
+        }
+      }
+    }
+    return -1;
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String limit) {
