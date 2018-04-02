@@ -28,6 +28,7 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -120,34 +121,35 @@ public abstract class PushSendJob extends SendJob {
   protected Optional<SignalServiceDataMessage.Quote> getQuoteFor(OutgoingMediaMessage message) {
     if (message.getOutgoingQuote() == null) return Optional.absent();
 
-    long                          quoteId          = message.getOutgoingQuote().getId();
-    String                        quoteBody        = message.getOutgoingQuote().getText();
-    Address                       quoteAuthor      = message.getOutgoingQuote().getAuthor();
-    List<SignalServiceAttachment> quoteAttachments = new LinkedList<>();
+    long                                                  quoteId          = message.getOutgoingQuote().getId();
+    String                                                quoteBody        = message.getOutgoingQuote().getText();
+    Address                                               quoteAuthor      = message.getOutgoingQuote().getAuthor();
+    List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments = new LinkedList<>();
 
     for (Attachment attachment : message.getOutgoingQuote().getAttachments()) {
-      BitmapUtil.ScaleResult attachmentData = null;
+      BitmapUtil.ScaleResult  thumbnailData = null;
+      SignalServiceAttachment thumbnail     = null;
 
       try {
         if (MediaUtil.isImageType(attachment.getContentType()) && attachment.getDataUri() != null) {
-          attachmentData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getDataUri()), 100, 100, 500 * 1024);
+          thumbnailData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getDataUri()), 100, 100, 500 * 1024);
         } else if (MediaUtil.isVideoType(attachment.getContentType()) && attachment.getThumbnailUri() != null) {
-          attachmentData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getThumbnailUri()), 100, 100, 500 * 1024);
+          thumbnailData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getThumbnailUri()), 100, 100, 500 * 1024);
         }
 
-        if (attachmentData != null) {
-          quoteAttachments.add(SignalServiceAttachment.newStreamBuilder()
-                                                      .withContentType("image/jpeg")
-                                                      .withFileName(attachment.getFileName())
-                                                      .withHeight(attachmentData.getHeight())
-                                                      .withWidth(attachmentData.getWidth())
-                                                      .withLength(attachmentData.getBitmap().length)
-                                                      .withStream(new ByteArrayInputStream(attachmentData.getBitmap()))
-                                                      .build());
-        } else {
-          quoteAttachments.add(new SignalServiceAttachmentPointer(0, attachment.getContentType(), null, null, Optional.absent(), Optional.absent(), 0, 0, Optional.absent(), Optional.fromNullable(attachment.getFileName()), attachment.isVoiceNote()));
+        if (thumbnailData != null) {
+          thumbnail = SignalServiceAttachment.newStreamBuilder()
+                                             .withContentType("image/jpeg")
+                                             .withWidth(thumbnailData.getWidth())
+                                             .withHeight(thumbnailData.getHeight())
+                                             .withLength(thumbnailData.getBitmap().length)
+                                             .withStream(new ByteArrayInputStream(thumbnailData.getBitmap()))
+                                             .build();
         }
 
+        quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.getContentType(),
+                                                                                 attachment.getFileName(),
+                                                                                 thumbnail));
       } catch (BitmapDecodingException e) {
         Log.w(TAG, e);
       }

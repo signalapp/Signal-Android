@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.color;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
 
@@ -61,27 +62,57 @@ public enum MaterialColor {
   }
 
   public int toConversationColor(@NonNull Context context) {
-    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
-      return context.getResources().getColor(conversationColorDark);
-    } else {
-      return context.getResources().getColor(conversationColorLight);
-    }
+    return context.getResources().getColor(isDarkTheme(context) ? conversationColorDark
+                                                                : conversationColorLight);
   }
 
   public int toActionBarColor(@NonNull Context context) {
-    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
-      return context.getResources().getColor(actionBarColorDark);
-    } else {
-      return context.getResources().getColor(actionBarColorLight);
-    }
+    return context.getResources().getColor(isDarkTheme(context) ? actionBarColorDark
+                                                                : actionBarColorLight);
   }
 
   public int toStatusBarColor(@NonNull Context context) {
-    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
-      return context.getResources().getColor(statusBarColorDark);
-    } else {
-      return context.getResources().getColor(statusBarColorLight);
+    return context.getResources().getColor(isDarkTheme(context) ? statusBarColorDark
+                                                                : statusBarColorLight);
+  }
+
+  public int toQuoteTitleColor(@NonNull Context context) {
+    return context.getResources().getColor(conversationColorDark);
+  }
+
+  public int toQuoteBarColorResource(@NonNull Context context, boolean outgoing) {
+    if (outgoing) {
+      return conversationColorDark;
     }
+    return R.color.white;
+  }
+
+  public int toQuoteBackgroundColor(@NonNull Context context, boolean outgoing) {
+    if (outgoing) {
+      int color = toConversationColor(context);
+      return Color.argb(0x44, Color.red(color), Color.green(color), Color.blue(color));
+    }
+    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_white_70
+                                                                : R.color.transparent_white_aa);
+  }
+
+  public int toQuoteOutlineColor(@NonNull Context context, boolean outgoing) {
+    if (!outgoing) {
+      return context.getResources().getColor(R.color.transparent_white_70);
+    }
+    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_white_40
+                                                                : R.color.grey_400_transparent);
+  }
+
+  public int toQuoteIconForegroundColor(@NonNull Context context, boolean outgoing) {
+    if (outgoing) {
+      return context.getResources().getColor(R.color.white);
+    }
+    return toConversationColor(context);
+  }
+
+  public int toQuoteIconBackgroundColor(@NonNull Context context, boolean outgoing) {
+    return context.getResources().getColor(toQuoteBarColorResource(context, outgoing));
   }
 
   public boolean represents(Context context, int colorValue) {
@@ -107,6 +138,9 @@ public enum MaterialColor {
     }
   }
 
+  private boolean isDarkTheme(@NonNull Context context) {
+    return getAttribute(context, R.attr.theme_type, "light").equals("dark");
+  }
 
   public static MaterialColor fromSerialized(String serialized) throws UnknownColorException {
     for (MaterialColor color : MaterialColor.values()) {

@@ -33,7 +33,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.FastCursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -101,6 +100,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final @NonNull  Calendar          calendar;
   private final @NonNull  MessageDigest     digest;
 
+  private MessageRecord recordToPulseHighlight;
+
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
       super(itemView);
@@ -132,7 +133,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
 
-  interface ItemClickListener {
+  interface ItemClickListener extends BindableConversationItem.EventListener {
     void onItemClick(MessageRecord item);
     void onItemLongClick(MessageRecord item);
   }
@@ -190,7 +191,10 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
     long start = System.currentTimeMillis();
-    viewHolder.getView().bind(messageRecord, glideRequests, locale, batchSelected, recipient);
+    viewHolder.getView().bind(messageRecord, glideRequests, locale, batchSelected, recipient, messageRecord == recordToPulseHighlight);
+    if (messageRecord == recordToPulseHighlight) {
+      recordToPulseHighlight = null;
+    }
     Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 
@@ -209,6 +213,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       }
       return true;
     });
+    itemView.setEventListener(clickListener);
     Log.w(TAG, "Inflate time: " + (System.currentTimeMillis() - start));
     return new ViewHolder(itemView);
   }
@@ -339,6 +344,13 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   public Set<MessageRecord> getSelectedItems() {
     return Collections.unmodifiableSet(new HashSet<>(batchSelected));
+  }
+
+  public void pulseHighlightItem(int position) {
+    if (position < getItemCount()) {
+      recordToPulseHighlight = getRecordForPositionOrThrow(position);
+      notifyItemChanged(position);
+    }
   }
 
   private boolean hasAudio(MessageRecord messageRecord) {

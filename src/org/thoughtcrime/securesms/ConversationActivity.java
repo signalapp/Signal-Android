@@ -65,7 +65,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.annimon.stream.Stream;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.protobuf.ByteString;
 
@@ -2063,7 +2062,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     inputPanel.setQuote(GlideApp.with(this),
-                        messageRecord.getTimestamp(),
+                        messageRecord.getDateSent(),
                         author,
                         messageRecord.getBody(),
                         messageRecord.isMms() ? ((MmsMessageRecord)messageRecord).getSlideDeck() : new SlideDeck());

@@ -22,6 +22,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -126,17 +127,18 @@ public class ConversationItem extends LinearLayout
   private DeliveryStatusView deliveryStatusIndicator;
   private AlertView          alertView;
 
-  private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
-  private @NonNull  Recipient           conversationRecipient;
-  private @NonNull  Stub<ThumbnailView> mediaThumbnailStub;
-  private @NonNull  Stub<AudioView>     audioViewStub;
-  private @NonNull  Stub<DocumentView>  documentViewStub;
-  private @NonNull  ExpirationTimerView expirationTimer;
+  private @NonNull  Set<MessageRecord>   batchSelected = new HashSet<>();
+  private @NonNull  Recipient            conversationRecipient;
+  private @NonNull  Stub<ThumbnailView>  mediaThumbnailStub;
+  private @NonNull  Stub<AudioView>      audioViewStub;
+  private @NonNull  Stub<DocumentView>   documentViewStub;
+  private @NonNull  ExpirationTimerView  expirationTimer;
+  private @Nullable EventListener        eventListener;
 
   private int defaultBubbleColor;
 
-  private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
-  private final AttachmentDownloadClickListener downloadClickListener       = new AttachmentDownloadClickListener();
+  private final PassthroughClickListener        passthroughClickListener = new PassthroughClickListener();
+  private final AttachmentDownloadClickListener downloadClickListener    = new AttachmentDownloadClickListener();
 
   private final Context context;
 
@@ -191,7 +193,8 @@ public class ConversationItem extends LinearLayout
                    @NonNull GlideRequests      glideRequests,
                    @NonNull Locale             locale,
                    @NonNull Set<MessageRecord> batchSelected,
-                   @NonNull Recipient          conversationRecipient)
+                   @NonNull Recipient          conversationRecipient,
+                            boolean            pulseHighlight)
   {
     this.messageRecord          = messageRecord;
     this.locale                 = locale;
@@ -205,7 +208,7 @@ public class ConversationItem extends LinearLayout
     this.conversationRecipient.addListener(this);
 
     setMediaAttributes(messageRecord);
-    setInteractionState(messageRecord);
+    setInteractionState(messageRecord, pulseHighlight);
     setBodyText(messageRecord);
     setBubbleState(messageRecord, recipient);
     setStatusIcons(messageRecord);
@@ -215,6 +218,11 @@ public class ConversationItem extends LinearLayout
     setSimInfo(messageRecord);
     setExpiration(messageRecord);
     setQuote(messageRecord);
+  }
+
+  @Override
+  public void setEventListener(@Nullable EventListener eventListener) {
+    this.eventListener = eventListener;
   }
 
   @Override
@@ -239,6 +247,27 @@ public class ConversationItem extends LinearLayout
                                       groupSenderHolder.getPaddingTop(),
                                       groupSenderHolder.getWidth() - groupSenderProfileName.getPaddingRight(),
                                       groupSenderHolder.getPaddingTop() + groupSenderProfileName.getHeight());
+      }
+    }
+  }
+
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    if (hasQuote(messageRecord)) {
+      int quoteWidth = quoteView.getMeasuredWidth();
+
+      int availableWidth;
+      if (hasThumbnail(messageRecord)) {
+        availableWidth = mediaThumbnailStub.get().getMeasuredWidth();
+      } else {
+        availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
+      }
+
+      if (quoteWidth != availableWidth) {
+        quoteView.getLayoutParams().width = availableWidth;
+        measure(widthMeasureSpec, heightMeasureSpec);
       }
     }
   }
@@ -309,8 +338,17 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setInteractionState(MessageRecord messageRecord) {
-    setSelected(batchSelected.contains(messageRecord));
+  private void setInteractionState(MessageRecord messageRecord, boolean pulseHighlight) {
+    if (batchSelected.contains(messageRecord)) {
+      setBackgroundResource(R.drawable.conversation_item_background);
+      setSelected(true);
+    } else if (pulseHighlight) {
+      setBackgroundResource(R.drawable.conversation_item_background_animated);
+      setSelected(true);
+      postDelayed(() -> setSelected(false), 500);
+    } else {
+      setSelected(false);
+    }
 
     if (mediaThumbnailStub.resolved()) {
       mediaThumbnailStub.get().setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
@@ -344,6 +382,10 @@ public class ConversationItem extends LinearLayout
 
   private boolean hasDocument(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide() != null;
+  }
+
+  private boolean hasQuote(MessageRecord messageRecord) {
+    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getQuote() != null;
   }
 
   private void setBodyText(MessageRecord messageRecord) {
@@ -517,6 +559,16 @@ public class ConversationItem extends LinearLayout
       assert quote != null;
       quoteView.setQuote(glideRequests, quote.getId(), Recipient.from(context, quote.getAuthor(), true), quote.getText(), quote.getAttachment());
       quoteView.setVisibility(View.VISIBLE);
+      quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+      quoteView.setOnClickListener(view -> {
+        if (eventListener != null && batchSelected.isEmpty()) {
+          eventListener.onQuoteClicked((MmsMessageRecord) messageRecord);
+        } else {
+          passthroughClickListener.onClick(view);
+        }
+      });
+      quoteView.setOnLongClickListener(passthroughClickListener);
     } else {
       quoteView.dismiss();
     }
