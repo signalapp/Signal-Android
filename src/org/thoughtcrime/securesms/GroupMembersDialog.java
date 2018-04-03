@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
@@ -66,9 +65,10 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
       Recipient recipient = groupMembers.get(item);
 
       if (recipient.getContactUri() != null) {
-        ContactsContract.QuickContact.showQuickContact(context, new Rect(0,0,0,0),
-                                                       recipient.getContactUri(),
-                                                       ContactsContract.QuickContact.MODE_LARGE, null);
+        Intent intent = new Intent(context, RecipientPreferenceActivity.class);
+        intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
+
+        context.startActivity(intent);
       } else {
         final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
         if (recipient.getAddress().isEmail()) {
