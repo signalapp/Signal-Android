@@ -2,6 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <PreferenceCategory android:key="about" android:title="@string/recipient_preferences__about">
+        <org.thoughtcrime.securesms.preferences.widgets.ContactPreference android:key="pref_key_number" android:persistent="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
     <PreferenceCategory android:key="notification_settings" android:title="@string/recipient_preferences__chat_settings">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:key="pref_key_recipient_mute"
