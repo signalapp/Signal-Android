@@ -201,6 +201,7 @@ public class ConversationFragment extends Fragment
   private void setCorrectMenuVisibility(Menu menu) {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
     boolean            actionMessage  = false;
+    boolean            hasText        = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
@@ -214,6 +215,11 @@ public class ConversationFragment extends Fragment
           messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault())
       {
         actionMessage = true;
+      }
+      if (messageRecord.getBody().length() > 0) {
+        hasText = true;
+      }
+      if (actionMessage && hasText) {
         break;
       }
     }
@@ -223,7 +229,6 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
-      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
@@ -235,8 +240,8 @@ public class ConversationFragment extends Fragment
 
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && messageRecord.getBody().length() > 0);
     }
+    menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
   }
 
   private ConversationAdapter getListAdapter() {
@@ -286,16 +291,15 @@ public class ConversationFragment extends Fragment
 
     StringBuilder    bodyBuilder = new StringBuilder();
     ClipboardManager clipboard   = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-    boolean          first       = true;
 
     for (MessageRecord messageRecord : messageList) {
       String body = messageRecord.getDisplayBody().toString();
-
-      if (body != null) {
-        if (!first) bodyBuilder.append('\n');
-        bodyBuilder.append(body);
-        first = false;
+      if (!TextUtils.isEmpty(body)) {
+        bodyBuilder.append(body).append('\n');
       }
+    }
+    if (bodyBuilder.length() > 0 && bodyBuilder.charAt(bodyBuilder.length() - 1) == '\n') {
+      bodyBuilder.deleteCharAt(bodyBuilder.length() - 1);
     }
 
     String result = bodyBuilder.toString();
