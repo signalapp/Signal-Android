@@ -517,8 +517,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
+        final Context context = getContext();
+        if (context == null) return true;
+
         final int           value         = (Integer) newValue;
-        final MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(getActivity(), value);
+        final MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(context, value);
         final MaterialColor currentColor  = recipient.getColor();
 
         if (selectedColor == null) return true;
@@ -527,7 +530,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-              Context context = getActivity();
               DatabaseFactory.getRecipientDatabase(context).setColor(recipient, selectedColor);
 
               if (recipient.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
