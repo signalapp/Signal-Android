@@ -76,6 +76,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int PERSISTENT_BLOBS                     = 317;
   public static final int INTERNALIZE_CONTACTS                 = 317;
   public static final int SQLCIPHER                            = 334;
+  public static final int SQLCIPHER_COMPLETE                   = 352;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -94,6 +95,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(INTERNALIZE_CONTACTS);
     add(PERSISTENT_BLOBS);
     add(SQLCIPHER);
+    add(SQLCIPHER_COMPLETE);
   }};
 
   private MasterSecret masterSecret;
@@ -275,6 +277,11 @@ public class DatabaseUpgradeActivity extends BaseActivity {
 
       if (params[0] < SQLCIPHER) {
         scheduleMessagesInPushDatabase(context);
+      }
+
+      if (params[0] < SQLCIPHER_COMPLETE) {
+        File file = context.getDatabasePath("messages.db");
+        if (file != null && file.exists()) file.delete();
       }
 
       return null;
