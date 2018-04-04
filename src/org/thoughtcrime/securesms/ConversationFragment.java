@@ -201,7 +201,6 @@ public class ConversationFragment extends Fragment
   private void setCorrectMenuVisibility(Menu menu) {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
     boolean            actionMessage  = false;
-    boolean            mediaMessage  = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
@@ -216,12 +215,6 @@ public class ConversationFragment extends Fragment
       {
         actionMessage = true;
         break;
-      } else if (messageRecord.isMms()              &&
-                 !messageRecord.isMmsNotification() &&
-                 ((MediaMmsMessageRecord)messageRecord).containsMediaSlide())
-      {
-        mediaMessage = true;
-        break;
       }
     }
 
@@ -230,7 +223,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
-      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage  && !mediaMessage);
+      menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
