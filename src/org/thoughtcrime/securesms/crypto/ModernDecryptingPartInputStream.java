@@ -3,9 +3,10 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.support.annotation.NonNull;
 
+import org.thoughtcrime.securesms.util.Conversions;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidAlgorithmParameterException;
@@ -21,13 +22,13 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class ModernDecryptingPartInputStream {
 
-  public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull byte[] random, @NonNull File file)
+  public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull byte[] random, @NonNull File file, long offset)
       throws IOException
   {
-    return createFor(attachmentSecret, random, new FileInputStream(file));
+    return createFor(attachmentSecret, random, new FileInputStream(file), offset);
   }
 
-  public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull File file)
+  public static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull File file, long offset)
       throws IOException
   {
     FileInputStream inputStream = new FileInputStream(file);
@@ -35,25 +36,37 @@ public class ModernDecryptingPartInputStream {
 
     readFully(inputStream, random);
 
-    return createFor(attachmentSecret, random, inputStream);
+    return createFor(attachmentSecret, random, inputStream, offset);
   }
 
-  private static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull byte[] random, @NonNull InputStream inputStream) {
+  private static InputStream createFor(@NonNull AttachmentSecret attachmentSecret, @NonNull byte[] random, @NonNull InputStream inputStream, long offset) throws IOException {
     try {
-      Mac mac = Mac.getInstance("HmacSHA256");
+      Mac mac  = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(attachmentSecret.getModernKey(), "HmacSHA256"));
 
-      byte[] iv  = new byte[16];
-      byte[] key = mac.doFinal(random);
+      byte[] iv        = new byte[16];
+      int    remainder = (int) (offset % 16);
+      Conversions.longTo4ByteArray(iv, 12, offset / 16);
 
+      byte[] key    = mac.doFinal(random);
       Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
       cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
 
-      return new CipherInputStream(inputStream, cipher);
+      long skipped = inputStream.skip(offset - remainder);
+
+      if (skipped != offset - remainder) {
+        throw new IOException("Skip failed: " + skipped + " vs " + (offset - remainder));
+      }
+
+      CipherInputStream cipherInputStream = new CipherInputStream(inputStream, cipher);
+      byte[]            remainderBuffer   = new byte[remainder];
+
+      readFully(cipherInputStream, remainderBuffer);
+
+      return cipherInputStream;
     } catch (NoSuchAlgorithmException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchPaddingException e) {
       throw new AssertionError(e);
     }
-
   }
 
   private static void readFully(InputStream in, byte[] buffer) throws IOException {

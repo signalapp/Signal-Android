@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Kati: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Tonaba kutondawo passiwaddi y\'ebigambo ne namba</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">message 1 mubuli mbozi</item>
-    <item quantity="other">%d bubaka ku buli mbozi</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obubaka obukadde bwonna busangule kati?</string>
   <string name="ApplicationPreferencesActivity_delete">Sangula</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Jako passiwadi nga yabigaambo ne namba?</string>
@@ -34,10 +30,6 @@
   <string name="ApplicationPreferencesActivity_Off">Teriiko</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">Eddakika 1</item>
-    <item quantity="other">%d ddakika</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">Ekifananyi</string>
   <string name="DraftDatabase_Draft_audio_snippet">(doboozi)</string>
@@ -232,14 +224,6 @@ a</string>
   <string name="InviteActivity_heart_content_description">Omutima</string>
   <string name="InviteActivity_invitations_sent">Okuyiitibwa kusindikiddwa</string>
   <string name="InviteActivity_invite_to_signal">Muyite ku Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">Wereza obubaka eri mukwano gwo 1</item>
-    <item quantity="other">Wereeza obubaka eri %d emikwano</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Wereza obubaka obuyitibwa ku ssimu 1</item>
-    <item quantity="other">Wereza obubaka %d obuyitibwa ku massimu</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Katudde ku Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kirabika toyina app za ku gabanya ne.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Emikwaano tejibuzbuza mboozi yamikwaano</string>
@@ -250,6 +234,8 @@ a</string>
   <string name="MessageRetrievalService_signal">mayengo</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Okusangula</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Obubabaka busangulwa</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Essimu eya Signal egenda mumaaso</string>
   <string name="NotificationBarManager__establishing_signal_call">tutekateeka kuba ssimu ya Signal</string>
@@ -396,7 +382,6 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Kwatako okugulawo</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Kwatako okugulaaawo, oba kwataku kufulu okugalawo.</string>
   <string name="KeyCachingService_passphrase_cached">Signal eggudwa</string>
-  <string name="KeyCachingService_lock"> Siba ne passiwadi yebigambo ne namba</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Gwe</string>
   <string name="MediaPreviewActivity_unssuported_media_type"> ekika kino ekya  Tekiwaniriddwa </string>
@@ -481,30 +466,10 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="experience_upgrade_activity__continue">Genda mumaso</string>
   <!--expiration-->
   <string name="expiration_off">Teliko</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">Seconda 1</item>
-    <item quantity="other">%d </item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">Dakiika 1</item>
-    <item quantity="other">%d dakiika</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
-  <plurals name="expiration_hours">
-    <item quantity="one"> saawa 1</item>
-    <item quantity="other">%d sawa</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
-  <plurals name="expiration_days">
-    <item quantity="one">1 lunaku</item>
-    <item quantity="other">%d nnaku</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dnnaku</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">1 wiki</item>
-    <item quantity="other">%d wiiki</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%dwiiki</string>
   <!--unverified safety numbers-->
   <!--giphy_activity-->
@@ -596,7 +561,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="AndroidManifest__invite_friends">Yita  abemikwano </string>
   <string name="AndroidManifest_archived_conversations">Emboozi eziterekeddwa</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Tikula / Wereza</string>
+  <string name="arrays__import_export">Okuyingiza</string>
   <string name="arrays__use_default">Kozesa nga bwebyakolebwa</string>
   <string name="arrays__use_custom">Kozesa bwoyagala</string>
   <string name="arrays__mute_for_one_hour">Silisa okumala essawa emu  </string>
@@ -635,8 +600,6 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Londa gwonoonya okuva mu mabantu mussimu yo.</string>
   <string name="preferences__change_passphrase">Kyusa pasiwadi yebigambo n\'enamba</string>
   <string name="preferences__change_your_passphrase">Kyusa pasiwadi y\'ebigambo n\'enamba</string>
-  <string name="preferences__enable_passphrase">Saako pasiwadi y\'ebigambo n\'enyiimba</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Jjako obujukiza ku Signal ne message</string>
   <string name="preferences__screen_security">Okukuuma Screen yo</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bulokinga okukuba screenshots mubyakaberawo ne minda mu app zo</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Setting Signal yeggale yoka mukaseera koyagala</string>
@@ -775,10 +738,6 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">geraageranya ne kilipuboodi</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Version yo eya Signal ya yitako dda</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Your version of Signal will expire in 1 days. Tap to update to the most recent version. </item>
-    <item quantity="other">Your version of Signal will expire in %d days. Tap to update to the most recent version. </item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Version yo eya Sgnal ya kugwako leero.Nyiga ode ku version empya kweyo</string>
   <string name="reminder_header_expired_build">Version ya Signal yo yagwaako!</string>
   <string name="reminder_header_expired_build_details">Obubaka tebujjakusobla kwewereza bukungi.konakookufuna  vazoni empya</string>
@@ -809,5 +768,14 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="transport_selection_list_item__transport_icon">akatambuza</string>
   <string name="CallNotificationBuilder_connecting">Tukonekitinga...</string>
   <string name="Permissions_continue">genda maaso</string>
+  <string name="registration_activity__skip">Buuka</string>
+  <string name="registration_activity__register">Wewandiise</string>
+  <string name="RegistrationActivity_restore">Bbulula</string>
+  <string name="BackupUtil_never">tekirisoboka</string>
+  <string name="BackupUtil_unknown">Tekimanyikiddwa</string>
+  <string name="AppProtectionPreferenceFragment_none">tekuli</string>
+  <string name="RegistrationActivity_too_many_attempts">Emirundi gyogezako mingi nyo</string>
+  <string name="RegistrationLockDialog_disable">gyako</string>
+  <string name="RegistrationActivity_continue">genda maaso</string>
   <!--EOF-->
 </resources>

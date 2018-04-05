@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
+import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
@@ -64,26 +65,30 @@ public class AttachmentDatabase extends Database {
   
   private static final String TAG = AttachmentDatabase.class.getSimpleName();
 
-          static final String TABLE_NAME             = "part";
-          static final String ROW_ID                 = "_id";
+  public  static final String TABLE_NAME             = "part";
+  public  static final String ROW_ID                 = "_id";
   public  static final String ATTACHMENT_ID_ALIAS    = "attachment_id";
           static final String MMS_ID                 = "mid";
           static final String CONTENT_TYPE           = "ct";
           static final String NAME                   = "name";
           static final String CONTENT_DISPOSITION    = "cd";
           static final String CONTENT_LOCATION       = "cl";
-          static final String DATA                   = "_data";
+  public  static final String DATA                   = "_data";
           static final String TRANSFER_STATE         = "pending_push";
-          static final String SIZE                   = "data_size";
+  public  static final String SIZE                   = "data_size";
           static final String FILE_NAME              = "file_name";
-          static final String THUMBNAIL              = "thumbnail";
+  public  static final String THUMBNAIL              = "thumbnail";
           static final String THUMBNAIL_ASPECT_RATIO = "aspect_ratio";
   public  static final String UNIQUE_ID              = "unique_id";
           static final String DIGEST                 = "digest";
           static final String VOICE_NOTE             = "voice_note";
   public  static final String FAST_PREFLIGHT_ID      = "fast_preflight_id";
-  private static final String DATA_RANDOM            = "data_random";
+  public  static final String DATA_RANDOM            = "data_random";
   private static final String THUMBNAIL_RANDOM       = "thumbnail_random";
+          static final String WIDTH                  = "width";
+          static final String HEIGHT                 = "height";
+
+  public  static final String DIRECTORY              = "parts";
 
   public static final int TRANSFER_PROGRESS_DONE    = 0;
   public static final int TRANSFER_PROGRESS_STARTED = 1;
@@ -97,7 +102,7 @@ public class AttachmentDatabase extends Database {
                                                            CONTENT_LOCATION, DATA, THUMBNAIL, TRANSFER_STATE,
                                                            SIZE, FILE_NAME, THUMBNAIL, THUMBNAIL_ASPECT_RATIO,
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
-                                                           DATA_RANDOM, THUMBNAIL_RANDOM};
+                                                           DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT};
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -108,7 +113,8 @@ public class AttachmentDatabase extends Database {
     TRANSFER_STATE + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER, "   +
     FILE_NAME + " TEXT, " + THUMBNAIL + " TEXT, " + THUMBNAIL_ASPECT_RATIO + " REAL, " +
     UNIQUE_ID + " INTEGER NOT NULL, " + DIGEST + " BLOB, " + FAST_PREFLIGHT_ID + " TEXT, " +
-    VOICE_NOTE + " INTEGER DEFAULT 0, " + DATA_RANDOM + " BLOB, " + THUMBNAIL_RANDOM + " BLOB);";
+    VOICE_NOTE + " INTEGER DEFAULT 0, " + DATA_RANDOM + " BLOB, " + THUMBNAIL_RANDOM + " BLOB, " +
+    WIDTH + " INTEGER DEFAULT 0, " + HEIGHT + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -124,10 +130,10 @@ public class AttachmentDatabase extends Database {
     this.attachmentSecret = attachmentSecret;
   }
 
-  public @NonNull InputStream getAttachmentStream(AttachmentId attachmentId)
+  public @NonNull InputStream getAttachmentStream(AttachmentId attachmentId, long offset)
       throws IOException
   {
-    InputStream dataStream = getDataStream(attachmentId, DATA);
+    InputStream dataStream = getDataStream(attachmentId, DATA, offset);
 
     if (dataStream == null) throw new IOException("No stream for: " + attachmentId);
     else                    return dataStream;
@@ -137,7 +143,7 @@ public class AttachmentDatabase extends Database {
       throws IOException
   {
     Log.w(TAG, "getThumbnailStream(" + attachmentId + ")");
-    InputStream dataStream = getDataStream(attachmentId, THUMBNAIL);
+    InputStream dataStream = getDataStream(attachmentId, THUMBNAIL, 0);
 
     if (dataStream != null) {
       return dataStream;
@@ -231,16 +237,7 @@ public class AttachmentDatabase extends Database {
                               new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        String data = cursor.getString(0);
-        String thumbnail = cursor.getString(1);
-
-        if (!TextUtils.isEmpty(data)) {
-          new File(data).delete();
-        }
-
-        if (!TextUtils.isEmpty(thumbnail)) {
-          new File(thumbnail).delete();
-        }
+        deleteAttachmentOnDisk(cursor.getString(0), cursor.getString(1));
       }
     } finally {
       if (cursor != null)
@@ -248,18 +245,57 @@ public class AttachmentDatabase extends Database {
     }
 
     database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
+    notifyAttachmentListeners();
   }
+
+  public void deleteAttachment(@NonNull AttachmentId id) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+    try (Cursor cursor = database.query(TABLE_NAME,
+                                        new String[]{DATA, THUMBNAIL},
+                                        PART_ID_WHERE,
+                                        id.toStrings(),
+                                        null,
+                                        null,
+                                        null))
+    {
+      if (cursor == null || !cursor.moveToNext()) {
+        Log.w(TAG, "Tried to delete an attachment, but it didn't exist.");
+        return;
+      }
+      String data      = cursor.getString(0);
+      String thumbnail = cursor.getString(1);
+
+      database.delete(TABLE_NAME, PART_ID_WHERE, id.toStrings());
+      deleteAttachmentOnDisk(data, thumbnail);
+      notifyAttachmentListeners();
+    }
+  }
+
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
   void deleteAllAttachments() {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);
 
-    File   attachmentsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
+    File   attachmentsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
     File[] attachments          = attachmentsDirectory.listFiles();
 
     for (File attachment : attachments) {
       attachment.delete();
+    }
+
+    notifyAttachmentListeners();
+  }
+
+  @SuppressWarnings("ResultOfMethodCallIgnored")
+  private void deleteAttachmentOnDisk(@Nullable String data, @Nullable String thumbnail) {
+    if (!TextUtils.isEmpty(data)) {
+      new File(data).delete();
+    }
+
+    if (!TextUtils.isEmpty(thumbnail)) {
+      new File(thumbnail).delete();
     }
   }
 
@@ -319,6 +355,8 @@ public class AttachmentDatabase extends Database {
     ContentValues contentValues = new ContentValues();
     contentValues.put(SIZE, dataInfo.length);
     contentValues.put(CONTENT_TYPE, mediaStream.getMimeType());
+    contentValues.put(WIDTH, mediaStream.getWidth());
+    contentValues.put(HEIGHT, mediaStream.getHeight());
     contentValues.put(DATA_RANDOM, dataInfo.random);
 
     database.update(TABLE_NAME, contentValues, PART_ID_WHERE, databaseAttachment.getAttachmentId().toStrings());
@@ -336,7 +374,9 @@ public class AttachmentDatabase extends Database {
                                   databaseAttachment.getRelay(),
                                   databaseAttachment.getDigest(),
                                   databaseAttachment.getFastPreflightId(),
-                                  databaseAttachment.isVoiceNote());
+                                  databaseAttachment.isVoiceNote(),
+                                  mediaStream.getWidth(),
+                                  mediaStream.getHeight());
   }
 
 
@@ -346,7 +386,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     ContentValues contentValues = new ContentValues(1);
-    contentValues.put(FILE_NAME, fileName);
+    contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(fileName));
 
     database.update(TABLE_NAME, contentValues, PART_ID_WHERE, attachmentId.toStrings());
   }
@@ -380,7 +420,7 @@ public class AttachmentDatabase extends Database {
 
   @SuppressWarnings("WeakerAccess")
   @VisibleForTesting
-  protected @Nullable InputStream getDataStream(AttachmentId attachmentId, String dataType)
+  protected @Nullable InputStream getDataStream(AttachmentId attachmentId, String dataType, long offset)
   {
     DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, dataType);
 
@@ -390,9 +430,17 @@ public class AttachmentDatabase extends Database {
 
     try {
       if (dataInfo.random != null && dataInfo.random.length == 32) {
-        return ModernDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.random, dataInfo.file);
+        return ModernDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.random, dataInfo.file, offset);
       } else {
-        return ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.file);
+        InputStream stream  = ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.file);
+        long        skipped = stream.skip(offset);
+
+        if (skipped != offset) {
+          Log.w(TAG, "Skip failed: " + skipped + " vs " + offset);
+          return null;
+        }
+
+        return stream;
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -450,7 +498,7 @@ public class AttachmentDatabase extends Database {
       throws MmsException
   {
     try {
-      File partsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
+      File partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
       File dataFile       = File.createTempFile("part", ".mms", partsDirectory);
       return setAttachmentData(dataFile, in);
     } catch (IOException e) {
@@ -480,13 +528,15 @@ public class AttachmentDatabase extends Database {
                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
                                   cursor.getInt(cursor.getColumnIndexOrThrow(TRANSFER_STATE)),
                                   cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
-                                  cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME)),
+                                  StorageUtil.getCleanFileName(cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME))),
                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
                                   cursor.getBlob(cursor.getColumnIndexOrThrow(DIGEST)),
                                   cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
-                                  cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1);
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
+                                  cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)));
   }
 
 
@@ -513,10 +563,12 @@ public class AttachmentDatabase extends Database {
     contentValues.put(DIGEST, attachment.getDigest());
     contentValues.put(CONTENT_DISPOSITION, attachment.getKey());
     contentValues.put(NAME, attachment.getRelay());
-    contentValues.put(FILE_NAME, attachment.getFileName());
+    contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));
     contentValues.put(SIZE, attachment.getSize());
     contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
     contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);
+    contentValues.put(WIDTH, attachment.getWidth());
+    contentValues.put(HEIGHT, attachment.getHeight());
 
     if (dataInfo != null) {
       contentValues.put(DATA, dataInfo.file.getAbsolutePath());
@@ -546,7 +598,6 @@ public class AttachmentDatabase extends Database {
 
     return attachmentId;
   }
-
 
   @SuppressWarnings("WeakerAccess")
   @VisibleForTesting
@@ -590,7 +641,7 @@ public class AttachmentDatabase extends Database {
     @Override
     public @Nullable InputStream call() throws Exception {
       Log.w(TAG, "Executing thumbnail job...");
-      final InputStream stream = getDataStream(attachmentId, THUMBNAIL);
+      final InputStream stream = getDataStream(attachmentId, THUMBNAIL, 0);
 
       if (stream != null) {
         return stream;
@@ -602,12 +653,10 @@ public class AttachmentDatabase extends Database {
         return null;
       }
 
-      ThumbnailData data;
+      ThumbnailData data = null;
 
       if (MediaUtil.isVideoType(attachment.getContentType())) {
         data = generateVideoThumbnail(attachmentId);
-      } else{
-        data = MediaUtil.generateThumbnail(context, attachment.getContentType(), attachment.getDataUri());
       }
 
       if (data == null) {
@@ -616,7 +665,7 @@ public class AttachmentDatabase extends Database {
 
       updateAttachmentThumbnail(attachmentId, data.toDataStream(), data.getAspectRatio());
 
-      return getDataStream(attachmentId, THUMBNAIL);
+      return getDataStream(attachmentId, THUMBNAIL, 0);
     }
 
     @SuppressLint("NewApi")

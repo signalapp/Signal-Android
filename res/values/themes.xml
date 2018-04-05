@@ -58,23 +58,28 @@
     </style>
 
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
-        <!--<item name="colorPrimary">@android:color/transparent</item>-->
-        <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
         <item name="colorAccent">@color/signal_primary</item>
 
         <item name="android:textColorHint">#cc000000</item>
         <item name="centered_app_title_color">#55000000</item>
         <item name="ic_arrow_forward">@drawable/ic_arrow_forward_light</item>
         <item name="lockscreen_watermark">@drawable/lockscreen_watermark_light</item>
-        <item name="android:windowBackground">@color/gray5</item>
+        <item name="android:windowBackground">@color/white</item>
         <item name="ic_visibility">@drawable/ic_visibility_grey600_24dp</item>
         <item name="ic_visibility_off">@drawable/ic_visibility_off_grey600_24dp</item>
+
+        <item name="login_top_background">@color/signal_primary</item>
+        <item name="login_floating_background">@drawable/rounded_rectangle_white</item>
+
     </style>
 
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
-        <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
         <item name="colorAccent">@color/signal_primary_dark</item>
 
         <item name="android:textColorHint">@color/white</item>
@@ -84,6 +89,9 @@
         <item name="android:windowBackground">@color/black</item>
         <item name="ic_visibility">@drawable/ic_visibility_white_24dp</item>
         <item name="ic_visibility_off">@drawable/ic_visibility_off_white_24dp</item>
+
+        <item name="login_top_background">@color/black</item>
+        <item name="login_floating_background">@drawable/rounded_rectangle_dark</item>
     </style>
 
     <style name="PopupAnimation" parent="@android:style/Animation">
@@ -107,6 +115,8 @@
         <item name="theme_type">light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
+        <item name="actionModeBackground">@color/gray50</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
@@ -219,8 +229,6 @@
 
         <item name="pref_divider">@drawable/preference_divider_light</item>
 
-        <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
-
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
@@ -233,6 +241,8 @@
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="actionModeBackground">@color/gray50</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
@@ -342,8 +352,6 @@
 
         <item name="pref_divider">@drawable/preference_divider_dark</item>
 
-        <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>
-
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
         <item name="search_toolbar_background">@color/black</item>
@@ -352,4 +360,5 @@
     <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>
+
 </resources>

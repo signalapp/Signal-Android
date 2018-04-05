@@ -696,6 +696,10 @@ public class SmsDatabase extends MessagingDatabase {
     return threadDeleted;
   }
 
+  public void ensureMigration() {
+    databaseHelper.getWritableDatabase();
+  }
+
   private boolean isDuplicate(IncomingTextMessage message, long threadId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + ADDRESS + " = ? AND " + THREAD_ID + " = ?",

@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Tällä hetkellä: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 viesti per keskustelu</item>
+    <item quantity="one">%d viesti per keskustelu</item>
     <item quantity="other">%d viestiä per keskustelu</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Poistetaanko kaikki vanhat viestit nyt?</string>
@@ -37,11 +37,11 @@
   <string name="ApplicationPreferencesActivity_off">pois</string>
   <string name="ApplicationPreferencesActivity_Off">Poissa päältä</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Salalause %1$s, Näytön suojaus %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Näytön suojaus %1$s, rekisteröinnin suojaus %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, Kieli %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuutti</item>
+    <item quantity="one">%d minuutti</item>
     <item quantity="other">%d minuuttia</item>
   </plurals>
   <!--DraftDatabase-->
@@ -51,10 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(sijainti)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Median valintaan ei löytynyt sovellusta.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa kuvien, videoiden tai äänitiedostojen liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle \"Tallennustila\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja oman yhteystietolistansa käsittelyä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle \"Yhteystiedot\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal tarvitsee lupaa käyttää sijaintitietoja sijainnin liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle \"Sijainti\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa kuvien ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle \"Kamera\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa kuvien, videoiden tai äänitiedostojen liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja oman yhteystietolistansa käsittelyä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal tarvitsee lupaa käyttää sijaintitietoja sijainnin liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Sijainti\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa kuvien ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Virhe toistettaessa äänitallennetta!</string>
@@ -125,11 +125,11 @@
   <string name="ConversationActivity_error_sending_voice_message">Virhe ääniviestin lähettämisessä</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Laitteessasi ei ole sovellusta, joka osaa avata tämän linkin.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Jotta voit lähettää ääniviestejä, Signal tarvitsee lupaa käyttää mikrofonia.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal tarvitsee lupaa käyttää mikrofonia äänitiedostojen lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Mikrofoni\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal tarvitsee lupaa käyttää mikrofonia äänitiedostojen lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\".</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Jotta voit soittaa yhteystiedolle %s, Signal tarvitsee lupaa käyttää mikrofonia ja kameraa.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal tarvitsee lupaa käyttää laitteesi mikrofonia ja kameraa yhteystiedolle %s soittamista varten, mutta tämä käyttöoikeus on pysyvästi evätty laitteessasi. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemellla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal tarvitsee lupaa käyttää laitteesi mikrofonia ja kameraa yhteystiedolle %s soittamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Jotta voit ottaa kuvia ja videoita, anna Signalille lupaa käyttää kameraa.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal tarvitsee lupaa käyttää laitteesi kameraa kuvien ja videoiden ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty laitteessasi. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemellla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal tarvitsee lupaa käyttää laitteesi kameraa kuvien ja videoiden ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal tarvitsee kameran käyttöoikeutta kuvien ja videoiden ottamista varten.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -305,12 +305,12 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Salaamatonta varmuuskopiota ei löytynyt!</string>
   <string name="ImportFragment_error_importing_backup">Virhe tuotaessa varmuuskopiota!</string>
   <string name="ImportFragment_import_complete">Tuonti suoritettu!</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal tarvitsee lupaa käyttää tekstiviestejä, jotta olemassaolevat tekstiviestisi voidaan tuoda, mutta tämä käyttöoikeus on pysyvästi evätty laitteessasi. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemellla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tekstiviestit\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal tarvitsee lupaa käyttää tekstiviestejä, jotta olemassaolevat tekstiviestisi voidaan tuoda, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tekstiviestit\".</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal tarvitsee tekstiviestien käyttöoikeutta olemassaolevien tekstiviestin tuomista varten.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää ulkoista tallennustilaa lukeakseen sieltä, mutta tämä käyttöoikeus on pysyvästi evätty laitteessasi. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemellla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa lukeakseen sieltä, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signla tarvitsee tallennustilan käyttöoikeutta lukeakseen ulkoisesta tallennustilasta.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää ulkoista tallennustilaa kirjoittaakseen sinne, mutta tämä käyttöoikeus on pysyvästi evätty laitteessasi. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemellla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signla tarvitsee tallennustilan käyttöoikeutta kirjoittaakseen ulkoiseen tallennustilaan.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää ulkoista tallennustilaa kirjoittaakseen sinne, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal tarvitsee tallennustilan käyttöoikeutta kirjoittaakseen ulkoiseen tallennustilaan.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pidä pohjassa nauhoittaaksesi ääniviestin ja päästä irti lähettääksesi sen</string>
   <!--InviteActivity-->
@@ -322,12 +322,12 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signaliin</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">LÄHETÄ TEKSTIVIESTI 1 YSTÄVÄLLE</item>
+    <item quantity="one">LÄHETÄ TEKSTIVIESTI %d YSTÄVÄLLE</item>
     <item quantity="other">LÄHETÄ TEKSTIVIESTI %d YSTÄVÄLLE</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Lähetä 1 SMS-kutsu?</item>
-    <item quantity="other">Lähetä %d SMS-kutsua?</item>
+    <item quantity="one">Lähetetäänkö %d tekstiviestikutsu?</item>
+    <item quantity="other">Lähetetäänkö %d tekstiviestikutsua?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hei, vaihdetaan Signaliin: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Näyttää siltä, ettei sinulla ole yhtään sovellusta, johon jakaa.</string>
@@ -343,6 +343,8 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Virhe luettaessa operaattorin MMS-asetuksia</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Poistetaan</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Viestejä poistetaan...</string>
   <string name="MediaOverviewActivity_Documents">Dokumentit</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-puhelu käynnissä</string>
@@ -394,7 +396,7 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Valitettavasti tämä ei ole laitteen yhdistämiseksi tarkoitettu QR-koodi.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Yhdistetäänkö Signal-laite?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vaikuttaa siltä, että yrität yhdistää laitetta käyttämällä Signalin ulkopuolista skannaussovellusta. Oman turvallisuutesi vuoksi skannaa QR-koodi uudelleen Signalilla itsellään.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty laitteessasi. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemellla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Katoavat viestit</string>
@@ -523,7 +525,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="VerifyIdentityActivity_our_signal_safety_number">Meidän Signal-turvanumeromme:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Näyttää siltä, ettei sinulla ole yhtään sovellusta, johon jakaa.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Leikepöydältä ei löytynyt turvanumeroa, johon verrata</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty laitteessasi. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemellla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
@@ -553,12 +555,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KeyCachingService_signal_passphrase_cached">Siirry takaisin sovellukseen koskettamalla tästä.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Lukitse sovellus koskettamalla lukkoa.</string>
   <string name="KeyCachingService_passphrase_cached">Signalin lukitus on auki</string>
-  <string name="KeyCachingService_lock">Lukitse salalauseella</string>
+  <string name="KeyCachingService_lock">Lukitse Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sinä</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Median tyyppiä ei tueta</string>
   <string name="MediaPreviewActivity_draft">Luonnos</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää ulkoista tallennustilaa tallentaakseen sinne, mutta tämä käyttöoikeus on pysyvästi evätty laitteessasi. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemellla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa tallentaakseen sinne, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Tallennus ulkoiseen tallennustilaan ei onnistu ilman käyttöoikeutta.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uutta viestiä %2$d keskustelussa</string>
@@ -580,6 +582,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Avaa hakemisto</string>
+  <string name="SaveAttachmentTask_saved_to">Tallennettu: %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Hae</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -592,7 +595,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="VideoPlayer_error_playing_video">Virhe videon toistossa</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Jotta voit vastata yhteystiedon %s puheluun, anna Signalille lupa käyttää mikrofonia.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal tarvitsee lupaa käyttää mikrofonia ja kameraa puheluiden soittamista ja vastaanottamista varten, mutta nämä käyttöoikeudet ovat pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Mikrofoni\" ja \"Kamera\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal tarvitsee lupaa käyttää mikrofonia ja kameraa puheluiden soittamista ja vastaanottamista varten, mutta nämä käyttöoikeudet ovat pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa turvanumerosi tämän yhteystiedon kanssa.</string>
@@ -627,7 +630,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Yhteystiedon kuva</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja voidakseen näyttää yhteystietosi, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Yhteystiedot\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja voidakseen näyttää yhteystietosi, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Yhteystietojen haussa tapahtui virhe. Tarkista verkkoyhteytesi.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ei estettyjä yhteystietoja</string>
@@ -687,27 +690,27 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--expiration-->
   <string name="expiration_off">pois päältä</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 sekunti</item>
+    <item quantity="one">%d sekunti</item>
     <item quantity="other">%d sekuntia</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuutti</item>
+    <item quantity="one">%d minuutti</item>
     <item quantity="other">%d minuuttia</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 tunti</item>
+    <item quantity="one">%d tunti</item>
     <item quantity="other">%d tuntia</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dt</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 päivä</item>
+    <item quantity="one">%d päivä</item>
     <item quantity="other">%d päivää</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dpv</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 viikko</item>
+    <item quantity="one">%d viikko</item>
     <item quantity="other">%d viikkoa</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dvk</string>
@@ -769,7 +772,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Avaa</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Jotta Signal voisi lähettää mediatiedostoja ja ryhmäviestejä puhelinoperaattorisi kautta, täytyy MMS-asetusten olla määritelty. Tällä hetkellä nämä asetukset eivät ole saatavilla laitteessasi, mikä voi johtua laitteesi operaattorilukituksesta tai muista rajoittavista asetuksista.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Jotta Signal voi lähettää mediatiedostoja ja ryhmäviestejä puhelinoperaattorisi kautta, täytyy MMS-asetusten olla määritelty. Tällä hetkellä nämä asetukset eivät ole saatavilla laitteessasi, mikä voi johtua laitteesi operaattorilukituksesta tai muista rajoittavista asetuksista.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Jotta voit lähettää mediatiedostoja ja ryhmäviestejä, napsauta \"OK\" ja täydennä pyydetyt asetukset. Puhelinoperaattorisi MMS-asetukset yleensä löytyvät, kun haet Internetistä operaattorisi nimellä ja termillä \"APN\". Tämä asetusten säätö tarvitsee tehdä vain kerran.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Aseta myöhemmin</string>
@@ -787,6 +790,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="recipient_preferences__view_safety_number">Näytä turvanumero</string>
   <string name="recipient_preferences__chat_settings">Keskustelun asetukset</string>
   <string name="recipient_preferences__privacy">Yksityisyys</string>
+  <string name="recipient_preferences__call_settings">Puheluasetukset</string>
+  <string name="recipient_preferences__ringtone">Ilmoitusääni</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-puhelu</string>
   <string name="redphone_call_controls__mute">Mykistä</string>
@@ -839,7 +844,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AndroidManifest_archived_conversations">Arkistoidut keskustelut</string>
   <string name="AndroidManifest_remove_photo">Poista kuva</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Varmuuskopiot</string>
+  <string name="arrays__import_export">Tuo</string>
   <string name="arrays__use_default">Käytä oletusta</string>
   <string name="arrays__use_custom">Käytä mukautettua</string>
   <string name="arrays__mute_for_one_hour">1 tunniksi</string>
@@ -881,8 +886,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Valitse yhteystieto osoitekirjasta.</string>
   <string name="preferences__change_passphrase">Salalauseen vaihto</string>
   <string name="preferences__change_your_passphrase">Vaihda salalauseesi</string>
-  <string name="preferences__enable_passphrase">Käytä salalausetta</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukitse Signal ja ilmoitukset viesteistä salalauseella</string>
+  <string name="preferences__enable_passphrase">Ota käyttöön näytön lukitus salalauseella</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukitse näyttö ja ilmoitukset salalauseella</string>
   <string name="preferences__screen_security">Näytön suojaus</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Estä kuvakaappaukset \"viimeksi käytetyt sovellukset\" -näkymästä sekä sovelluksen sisältä</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukitse automaattisesti salalauseella, jos Signalia ei ole käytetty määriteltynä aikavälinä</string>
@@ -963,6 +968,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_notifications__events">Huomautukset</string>
   <string name="preferences_notifications__in_chat_sounds">Keskustelun sisäiset äänet</string>
   <string name="preferences_notifications__show">Näytä</string>
+  <string name="preferences_notifications__calls">Puhelut</string>
+  <string name="preferences_notifications__ringtone">Ilmoitusääni</string>
   <string name="preferences_chats__show_invitation_prompts">Näytä kutsukehotukset</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Näytä kehotuksia kutsua yhteystietoja, jotka eivät vielä käytä Signalia</string>
   <string name="preferences_chats__message_text_size">Viestien tekstin koko</string>
@@ -1044,7 +1051,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Käyttämäsi Signalin versio on vanhentunut!</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Käyttämäsi Signalin versio vanhenee 1 päivässä. Napsauta päivittääksesi viimeisimpään versioon.</item>
+    <item quantity="one">Käyttämäsi Signalin versio vanhenee %d päivässä. Napsauta päivittääksesi viimeisimpään versioon.</item>
     <item quantity="other">Käyttämäsi Signalin versio vanhenee %d päivässä. Napsauta päivittääksesi viimeisimpään versioon.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Käyttämäsi Signalin versio vanhenee tänään. Napsauta päivittääksesi viimeisimpään versioon.</string>
@@ -1080,10 +1087,90 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationListFragment_loading">Ladataan...</string>
   <string name="CallNotificationBuilder_connecting">Yhdistetään...</string>
   <string name="Permissions_permission_required">Sovelluslupa vaaditaan</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal tarvitsee tekstiviestien käyttöoikeutta niiden lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle \"Tekstiviestit\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal tarvitsee tekstiviestien käyttöoikeutta niiden lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tekstiviestit\".</string>
   <string name="Permissions_continue">Jatka</string>
   <string name="Permissions_not_now">Ei nyt</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja niiden etsimistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Yhteystiedot\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja niiden etsimistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
   <string name="conversation_activity__enable_signal_messages">OTA KÄYTTÖÖN SIGNAL-VIESTIT</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signalin tietokantaa siirretään</string>
+  <string name="PushDecryptJob_new_locked_message">Uusi lukittu viesti</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Avaa nähdäksesi odottavat viestit</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Avaa lukitus päivityksen loppuunsaattamiseksi</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Avaa Signalin lukitus päivityksen loppuunsaattamiseksi</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Varmuuskopioi salalause</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varmuuskopiot tallennetaan laitteesi tallennustilaan ja ne salataan allaolevalla salalauseella. Ilman tätä salalausetta et voi palauttaa varmuuskopiota.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Olen kirjoittanut ylös tämän salalauseen. Ilman sitä, en pysty palauttamaan varmuuskopiota.</string>
+  <string name="registration_activity__restore_backup">Palauta varmuuskopio</string>
+  <string name="registration_activity__skip">Ohita</string>
+  <string name="registration_activity__register">Rekisteröidy</string>
+  <string name="preferences_chats__chat_backups">Keskustelujen varmuuskopiot</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Varmuuskopioi keskustelut ulkoiseen tallennustilaan</string>
+  <string name="preferences_chats__create_backup">Luo varmuuskopio</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Syötä varmuuskopion salalause</string>
+  <string name="RegistrationActivity_restore">Palauta</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Virheellinen varmuuskopion salalause</string>
+  <string name="RegistrationActivity_checking">Tarkistetaan...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d viestiä tähän mennessä...</string>
+  <string name="RegistrationActivity_restore_from_backup">Palautetaanko varmuuskopiosta?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Palauta viestisi ja mediasi paikallisesta varmuuskopiostasi. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
+  <string name="RegistrationActivity_backup_size_s">Varmuuskopion koko: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Varmuuskopion aikaleima: %s</string>
+  <string name="BackupDialog_enable_local_backups">Otetaanko paikalliset varmuuskopiot käyttöön?</string>
+  <string name="BackupDialog_enable_backups">Ota varmuuskopiot käyttöön</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ilmaise ymmäryksesi ruksaamalla valintaruutu.</string>
+  <string name="BackupDialog_delete_backups">Poistetaanko varmuuskopiot?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Otetaanko paikalliset varmuuskopiot pois käytöstä ja poistetaanko ne?</string>
+  <string name="BackupDialog_delete_backups_statement">Poista varmuuskopiot</string>
+  <string name="BackupDialog_copied_to_clipboard">Kopioitu leikepöydälle</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa varmuuskopioiden luomista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Viimeksi varmuuskopioitu: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Meneillään</string>
+  <string name="ProgressPreference_d_messages_so_far">%d viestiä tähän mennessä</string>
+  <string name="RegistrationActivity_verify_s">Vahvista %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Syötä vahvistuskoodi, joka lähetettiin numeroon %s.</string>
+  <string name="RegistrationActivity_wrong_number">Väärä numero?</string>
+  <string name="BackupUtil_never">ei koskaan</string>
+  <string name="BackupUtil_unknown">Tuntematon</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Avaa Signalin lukitus</string>
+  <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukitse Signal Androidin näytön lukituksella tai sormenjäljellä</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Automaattisen näytön lukituksen odotusaika</string>
+  <string name="AppProtectionPreferenceFragment_none">Ei mitään</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Rekisteröinnin lukituksen PIN-koodi ei ole sama kuin se vahvistustekstiviesti, jonka juuri sait. Syötä se PIN-koodi, jonka aikaisemmin asetit ohjelmassa.</string>
+  <string name="registration_activity__registration_lock_pin">Rekisteröinnin lukituksen PIN-koodi</string>
+  <string name="registration_activity__forgot_pin">Unohditko PIN-koodin?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-koodissa on neljä tai useampi numero. Jos unohdat PIN-koodisi, on mahdollista, ettet voi käyttää tiliäsi seitsemän päivän ajan.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Syötä PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Vahvista PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Syötä rekisteröinnin lukituksen PIN-koodi</string>
+  <string name="registration_lock_reminder_view__enter_pin">Syötä PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Syötä rekisteröinnin lukituksen PIN-koodi, jota vaaditaan, jotta voit rekisteröidä tämän puhelinnumeron uudelleen Signaliin.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Rekisteröinnin lukituksen PIN-koodi</string>
+  <string name="preferences_app_protection__registration_lock">Rekisteröinnin lukitus</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Sinun täytyy syöttää rekisteröinnin lukituksen PIN-koodisi</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Virheellinen rekisteröinnin lukituksen PIN-koodi</string>
+  <string name="RegistrationActivity_too_many_attempts">Liian monta yritystä</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Olet syöttänyt rekisteröinnin lukituksen PIN-koodin väärin liian monta kertaa. Ole hyvä ja yritä uudelleen seuraavana päivänä.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Virhe yhdistettäessä palveluun</string>
+  <string name="RegistrationActivity_oh_no">Voi ei!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Tämän puhelinnumeron rekisteröiminen uudelleen on mahdollista ilman rekisteröinnin lukituksen PIN-koodia seitsemän päivän kuluttua siitä, kun tämä numero oli viimeksi aktiivinen Signalissa. Sinulla on %d päivää jäljellä.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Rekisteröinnin lukituksen PIN-koodi</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Tällä puhelinnumerolla on rekisteröinnin lukituksen PIN-koodi käytössä. Syötä rekisteröinnin lukituksen PIN.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Rekisteröinnin lukitus on käytössä puhelinnumerollasi. Signal auttaa sinua muistamaan rekisteröinnin lukituksen PIN-koodisi pyytämällä sinua silloin tällöin vahvistamaan sen.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Unohdin PIN-koodini.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Unohditko PIN-koodisi?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Rekisteröinnin lukitus auttaa suojaamaan puhelinnumeroasi luvattomilta rekisteröintiyrityksiltä. Voit ottaa tämän ominaisuuden pois käytöstä milloin tahansa Signalin yksityisyysasetuksista.</string>
+  <string name="RegistrationLockDialog_registration_lock">Rekisteröinnin lukitus</string>
+  <string name="RegistrationLockDialog_enable">Ota käyttöön</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Rekisteröinnin lukituksen PIN-koodin tulee olla vähintään 4 numeron pituinen.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Syöttämäsi PIN-koodit eivät täsmää.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Virhe yhdistettäessä palveluun</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Otetaanko rekisteröinnin lukituksen PIN-koodi pois käytöstä?</string>
+  <string name="RegistrationLockDialog_disable">Poista käytöstä</string>
+  <string name="RegistrationActivity_continue">Jatka</string>
+  <string name="preferences_chats__backups">Varmuuskopiot</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal on lukittu</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">AVAA NAPSAUTTAMALLA</string>
+  <string name="RegistrationLockDialog_reminder">Muistutus:</string>
   <!--EOF-->
 </resources>

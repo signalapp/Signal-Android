@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 mensagem por conversa</item>
+    <item quantity="one">%d mensagem por conversa</item>
     <item quantity="other">%d mensagens por conversa</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Apagar todas as mensagens antigas?</string>
@@ -37,11 +37,11 @@
   <string name="ApplicationPreferencesActivity_off">desligado</string>
   <string name="ApplicationPreferencesActivity_Off">Desligado</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Frase-chave %1$s, Segurança de ecrã %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de ecrã %1$s, Bloqueio de registo %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Língua %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <!--DraftDatabase-->
@@ -326,12 +326,12 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIAR SMS PARA 1 AMIGO</item>
+    <item quantity="one">ENVIAR SMS PARA %d AMIGO</item>
     <item quantity="other">ENVIAR SMS PARA %d AMIGOS</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Enviar 1 convite SMS?</item>
-    <item quantity="other">Enviar %d convites SMS?</item>
+    <item quantity="one">Enviar %d convite por SMS?</item>
+    <item quantity="other">Enviar %d convites por SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que não tem aplicações para as quais partilhar.</string>
@@ -347,6 +347,8 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler as configurações do operador MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimédia</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">A apagar</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">A apagar mensagens...</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada do Signal em curso</string>
@@ -559,7 +561,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KeyCachingService_signal_passphrase_cached">Toque para abrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Toque para abrir, ou toque no cadeado para fechar.</string>
   <string name="KeyCachingService_passphrase_cached">O Signal está desbloqueado</string>
-  <string name="KeyCachingService_lock">Bloquear com frase-chave</string>
+  <string name="KeyCachingService_lock">Bloquear Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo de multimédia não suportado</string>
@@ -586,6 +588,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Abrir directório</string>
+  <string name="SaveAttachmentTask_saved_to">Guardado para %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Procurar</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -693,27 +696,27 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--expiration-->
   <string name="expiration_off">Desligado</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 segundo</item>
+    <item quantity="one">%d segundo</item>
     <item quantity="other">%d segundos</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 hora</item>
+    <item quantity="one">%d hora</item>
     <item quantity="other">%d horas</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 dia</item>
+    <item quantity="one">%d dia</item>
     <item quantity="other">%d dias</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 semana</item>
+    <item quantity="one">%d semana</item>
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
@@ -793,6 +796,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="recipient_preferences__view_safety_number">Número de verificação de segurança</string>
   <string name="recipient_preferences__chat_settings">Definições da conversa</string>
   <string name="recipient_preferences__privacy">Privacidade</string>
+  <string name="recipient_preferences__call_settings">Definições de chamada</string>
+  <string name="recipient_preferences__ringtone">Toque</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <string name="redphone_call_controls__mute">Silenciar</string>
@@ -845,7 +850,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <string name="AndroidManifest_remove_photo">Remover fotografia</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importar / Exportar</string>
+  <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Usar a opção predefinida</string>
   <string name="arrays__use_custom">Usar a opção personalizada</string>
   <string name="arrays__mute_for_one_hour">Silenciar por 1 hora</string>
@@ -887,8 +892,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contacto da lista de contactos.</string>
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
   <string name="preferences__change_your_passphrase">Alterar a sua frase-chave</string>
-  <string name="preferences__enable_passphrase">Ativar frase-chave</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear o Signal e as notificações de mensagens com uma frase-chave</string>
   <string name="preferences__screen_security">Segurança de ecrã</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear captura de ecrã na lista de apps abertas e dentro da aplicação</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automaticamente o Signal ao fim de um certo tempo de inactividade</string>
@@ -969,6 +972,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sons na conversa</string>
   <string name="preferences_notifications__show">Mostrar</string>
+  <string name="preferences_notifications__calls">Chamadas</string>
+  <string name="preferences_notifications__ringtone">Toque</string>
   <string name="preferences_chats__show_invitation_prompts">Mostrar notificações de convite</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostrar notificações de convite para contactos sem o Signal</string>
   <string name="preferences_chats__message_text_size">Tamanho de letra da mensagem</string>
@@ -1049,10 +1054,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar com a área de transferência</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">A sua versão do Signal está desactualizada</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">A sua versão de Signal vai expirar dentro de 1 dia. Toque para actualizar para a versão mais recente.</item>
-    <item quantity="other">A sua versão do Signal vai expirar dentro de %d dias. Toque para actualizar para a versão mais recente.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">A sua versão de Signal vai expirar hoje. Toque para actualizar para a versão mais recente.</string>
   <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>
   <string name="reminder_header_expired_build_details">As mensagens deixarão de ser enviadas com sucesso. Toque para actualizar para a versão mais recente.</string>
@@ -1091,5 +1092,40 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="Permissions_not_now">Agora não</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">O Signal requer permissão de acesso aos Contactos para pesquisar os seus contactos, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Contactos\".</string>
   <string name="conversation_activity__enable_signal_messages">ACTIVAR MENSAGENS SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">A migrar a base de dados Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Nova mensagem bloqueada</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloqueie para ver mensagens pendentes</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Desbloqueie para completar a actualização</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Por favor desbloqueie o Signal para completar a actualização</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-chave da cópia de segurança</string>
+  <string name="registration_activity__restore_backup">Restaurar cópia de segurança</string>
+  <string name="registration_activity__skip">Saltar</string>
+  <string name="registration_activity__register">Registar</string>
+  <string name="preferences_chats__chat_backups">Cópias de segurança de conversas</string>
+  <string name="preferences_chats__create_backup">Criar cópia de segurança</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Introduza a frase-chave da cópia de segurança</string>
+  <string name="RegistrationActivity_restore">Restaurar</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Frase-chave de cópia de segurança incorrecta</string>
+  <string name="RegistrationActivity_checking">A verificar...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mensagens até à data...</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Data de cópia de segurança: %s</string>
+  <string name="BackupDialog_enable_backups">Activar cópias de segurança</string>
+  <string name="BackupDialog_delete_backups_statement">Apagar cópias de segurança</string>
+  <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="ChatsPreferenceFragment_in_progress">Em progresso</string>
+  <string name="RegistrationActivity_wrong_number">Número errado?</string>
+  <string name="BackupUtil_never">Nunca</string>
+  <string name="BackupUtil_unknown">Desconhecido</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Desbloquear Signal</string>
+  <string name="preferences_app_protection__screen_lock">Bloquear ecrã</string>
+  <string name="AppProtectionPreferenceFragment_none">Nenhum</string>
+  <string name="registration_activity__forgot_pin">Esqueceu-se do PIN?</string>
+  <string name="registration_lock_dialog_view__enter_pin">Introduza o PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Confirme o PIN</string>
+  <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
+  <string name="RegistrationActivity_oh_no">Oh não!</string>
+  <string name="RegistrationLockDialog_disable">Desactivar</string>
+  <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="preferences_chats__backups">Cópias de segurança</string>
   <!--EOF-->
 </resources>

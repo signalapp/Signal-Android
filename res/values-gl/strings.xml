@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Aínda non tes establecida unha frase de acceso!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 mensaxe por conversa</item>
+    <item quantity="one">%d mensaxe por conversa</item>
     <item quantity="other">%d mensaxes por conversa</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Borrar todas as mensaxes antigas?</string>
@@ -37,11 +37,11 @@
   <string name="ApplicationPreferencesActivity_off">desactivada</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Frase de acceso %1$s, pantalla de seguranza %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueo da pantalla %1$s, bloqueo do rexistro %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <!--DraftDatabase-->
@@ -326,12 +326,12 @@
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar a Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIAR SMS A 1 CONTACTO</item>
-    <item quantity="other">ENVIAR SMS A %d CONTACTOS</item>
+    <item quantity="one">ENVIAR SMS A %d AMIZADE</item>
+    <item quantity="other">ENVIAR SMS A %d AMIZADES</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Enviar 1 SMS convite?</item>
-    <item quantity="other">Enviar %d SMS convite?</item>
+    <item quantity="one">Enviar %d SMS de convite?</item>
+    <item quantity="other">Enviar %d SMS de convite?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Imos cambiar a Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Semella que non hai ningunha que permita compartir.</string>
@@ -347,6 +347,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler os axustes do provedor sen fíos de MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Ficheiros multimedia</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Borrando</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Borrando mensaxes...</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal en progreso</string>
@@ -563,7 +565,7 @@
   <string name="KeyCachingService_signal_passphrase_cached">Toca para abrir</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Toca para abrir ou toca o cadeado para pechar.</string>
   <string name="KeyCachingService_passphrase_cached">Signal está desbloqueado</string>
-  <string name="KeyCachingService_lock">Bloquear esta frase de acceso</string>
+  <string name="KeyCachingService_lock">Bloquear Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ti</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo multimedia non compatible</string>
@@ -590,6 +592,7 @@
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar a mensaxe!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Abrir directorio</string>
+  <string name="SaveAttachmentTask_saved_to">Gardado en %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Procurar</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -697,27 +700,27 @@
   <!--expiration-->
   <string name="expiration_off">Off</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 segundo</item>
+    <item quantity="one">%d segundo</item>
     <item quantity="other">%d segundos</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 hora</item>
+    <item quantity="one">%d hora</item>
     <item quantity="other">%d horas</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 día</item>
+    <item quantity="one">%d día</item>
     <item quantity="other">%d días</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 semana</item>
+    <item quantity="one">%dsemana</item>
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
@@ -797,6 +800,8 @@
   <string name="recipient_preferences__view_safety_number">Ver número de seguranza</string>
   <string name="recipient_preferences__chat_settings">Axustes de conversa</string>
   <string name="recipient_preferences__privacy">Privacidade</string>
+  <string name="recipient_preferences__call_settings">Axustes de chamada</string>
+  <string name="recipient_preferences__ringtone">Ton de chamada</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada Signal</string>
   <string name="redphone_call_controls__mute">Silenciar</string>
@@ -849,7 +854,7 @@
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <string name="AndroidManifest_remove_photo">Eliminar fotografía</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importar/exportar</string>
+  <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Utilizar o predeterminado</string>
   <string name="arrays__use_custom">Utilizar o personalizado</string>
   <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
@@ -891,8 +896,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elixe os contactos da túa listaxe.</string>
   <string name="preferences__change_passphrase">Cambiar frase de acceso</string>
   <string name="preferences__change_your_passphrase">Cambia a túa frase de acceso</string>
-  <string name="preferences__enable_passphrase">Activar frase de acceso</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea Signal e as notificacións de mensaxes cunha frase de acceso</string>
+  <string name="preferences__enable_passphrase">Activar o bloqueo da pantalla cunha frase de acceso</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea a pantalla e as notificacións cunha frase de acceso</string>
   <string name="preferences__screen_security">Seguranza da pantalla</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquea as capturas na listaxe de recentes e no interior da aplicación.</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloqueo automático de Signal após un período especificado de inactividade</string>
@@ -973,6 +978,8 @@
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sons durante a conversa</string>
   <string name="preferences_notifications__show">Mostrar</string>
+  <string name="preferences_notifications__calls">Chamadas</string>
+  <string name="preferences_notifications__ringtone">Ton de chamada</string>
   <string name="preferences_chats__show_invitation_prompts">Mostrar avisos de invitacións</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostra os avisos das invitacións para os contactos sen Signal</string>
   <string name="preferences_chats__message_text_size">Tamaño da fonte</string>
@@ -1054,7 +1061,7 @@
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">A túa versión de Signal está desactualizada</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">A túa versión de Signal caduca nun día. Toca para actualizar á versión máis recente.</item>
+    <item quantity="one">A túa versión de Signal caduca en %d día. Toca para actualizar á versión máis recente.</item>
     <item quantity="other">A túa versión de Signal caduca en %d días. Toca para actualizar á versión máis recente.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">A túa versión de Signal caduca hoxe. Toca para actualizar á versión máis recente.</string>
@@ -1095,5 +1102,85 @@
   <string name="Permissions_not_now">Agora non</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita permiso para acceder aos contactos e facer buscas neles, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Contactos\".</string>
   <string name="conversation_activity__enable_signal_messages">ACTIVAR MENSAXES DE SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de datos de Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Nova mensaxe bloqueada</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloquear para ver as mensaxes pendentes</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Desbloquear para completar a actualización</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Por favor, desbloquea a actualización para completar a actualizaicón</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase de acceso da copia de seguranza</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">As copias de seguranza gardaranse no almacenamento externo e cifraranse cunha frase de acceso. A devandita frase é necesaria para restaurar unha copia de seguranza.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Escribín esta frase de acceso. Sen ela non poderei restaurar unha copia de seguranza.</string>
+  <string name="registration_activity__restore_backup">Restaurar copia de seguranza</string>
+  <string name="registration_activity__skip">Omitir</string>
+  <string name="registration_activity__register">Rexistro</string>
+  <string name="preferences_chats__chat_backups">Copias de seguranza das conversas</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Copia de seguranza das conversas no almacenamento externo</string>
+  <string name="preferences_chats__create_backup">Crear copia de seguranza</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Inserir frase de acceso para a copia de seguranza</string>
+  <string name="RegistrationActivity_restore">Restaurar</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Frase de acceso de copia de seguranza incorrecta</string>
+  <string name="RegistrationActivity_checking">Comprobando</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mensaxes ata agora...</string>
+  <string name="RegistrationActivity_restore_from_backup">Restaurar desde a copia de seguranza?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaura as túas mensaxes e contido multimedia desde unha copia local. Se non o fas agora, non poderás facelo máis tarde.</string>
+  <string name="RegistrationActivity_backup_size_s">Tamaño da copia de seguranza: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Marca horaria na copia de seguranza: %s</string>
+  <string name="BackupDialog_enable_local_backups">Activar copias de seguranza locais?</string>
+  <string name="BackupDialog_enable_backups">Activar copias de seguranza</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Por favor, recoñece que o entendes marcando a caixa de verificación.</string>
+  <string name="BackupDialog_delete_backups">Borrar copias de seguranza?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Desactivar e borrar todas as copias de seguranza locais?</string>
+  <string name="BackupDialog_delete_backups_statement">Borrar copias de seguranza</string>
+  <string name="BackupDialog_copied_to_clipboard">Copiado ao portapapeis</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal require permiso de almacenamento para poder crear copias de seguranza, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Última copia de seguranza: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">En curso</string>
+  <string name="ProgressPreference_d_messages_so_far">%d mensaxes ata o momento</string>
+  <string name="RegistrationActivity_verify_s">Comprobar %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insire o código de verificación enviado a %s.</string>
+  <string name="RegistrationActivity_wrong_number">Número incorrecto?</string>
+  <string name="BackupUtil_never">Nunca</string>
+  <string name="BackupUtil_unknown">Descoñecido</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Desbloquear Signal</string>
+  <string name="preferences_app_protection__screen_lock">Bloqueo da pantalla</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloquea o acceso a Signal co bloqueo de pantalla de Android ou coa impresión dixital</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tempo de inactividade para o bloqueo de pantalla</string>
+  <string name="AppProtectionPreferenceFragment_none">Ningunha</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN do bloqueo de rexistro non é o mesmo que o código de verificación que recibiches por SMS. Insire o PIN con que configuraches a aplicación.</string>
+  <string name="registration_activity__registration_lock_pin">PIN de bloqueo do rexistro</string>
+  <string name="registration_activity__forgot_pin">Esqueciches o PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">O PIN pode conter catro ou más caracteres. Se o esqueces, poderías ser excluído da conta ata sete días.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Inserir PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Confirmar PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Insire o PIN de bloqueo do rexistro</string>
+  <string name="registration_lock_reminder_view__enter_pin">Inserir PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Activa un PIN de bloqueo do rexistro que se requirirá para volver rexistrar este número de teléfono en Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN de bloqueo do rexistro</string>
+  <string name="preferences_app_protection__registration_lock">Bloqueo do rexistro</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Debes inserir o PIN de bloqueo do rexistro</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueo do rexistro incorrecto</string>
+  <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Inseriches incorrectamente o PIN de bloqueo do rexistro demasiadas veces. Téntao outra vez así que pase un día.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Erro ao conectarse ao servizo</string>
+  <string name="RegistrationActivity_oh_no">Vaites!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">O rexistro deste número de teléfono será posible sen o PIN de bloqueo do rexistro após 7 días desde que o número estivo activo en Signal. Quedan %d días.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN de bloqueo do rexistro</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de teléfono ten o bloqueo de rexistro activado. Insire o PIN de bloqueo do rexistro.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">O teu número de teléfono ten activado o bloqueo de rexistro. Para axudarche a lembralo, Signal solicitarache que o confirmes periodicamente.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Esquecín o meu PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Esqueciches o PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O bloqueo de rexistro protexe o teu número de teléfono de tentativas non autorizadas de rexistro. Esta funcionalidade pode ser desactivada en calquera momento nos axustes de privacidade.</string>
+  <string name="RegistrationLockDialog_registration_lock">Bloqueo do rexistro</string>
+  <string name="RegistrationLockDialog_enable">Activar</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">O PIN de bloqueo do rexistro debe ter cando menos 4 díxitos.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os dous PIN inseridos non coinciden.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Erro ao conectarse ao servizo</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Desactivar o PIN de bloqueo do rexistro?</string>
+  <string name="RegistrationLockDialog_disable">Desactivar</string>
+  <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="preferences_chats__backups">Copias de seguranza</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal está bloqueado</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>
+  <string name="RegistrationLockDialog_reminder">Recordatorio:</string>
   <!--EOF-->
 </resources>

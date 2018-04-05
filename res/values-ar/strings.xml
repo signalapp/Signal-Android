@@ -11,12 +11,12 @@
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="zero">%d رسائل في المحادثة</item>
-    <item quantity="one">رسالة في المحادثة</item>
-    <item quantity="two">%d رسائل في المحادثة</item>
-    <item quantity="few">%d رسائل في المحادثة</item>
-    <item quantity="many">%d رسائل في المحادثة</item>
-    <item quantity="other">%d رسائل في المحادثة</item>
+    <item quantity="zero">%d رسالة في كل محادثة</item>
+    <item quantity="one">%d رسالة في كل محادثة</item>
+    <item quantity="two">%d رسائل في كل محادثة</item>
+    <item quantity="few">%d رسائل في كل محادثة</item>
+    <item quantity="many">%d</item>
+    <item quantity="other">%d رسائل في كل محادثة</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">احذف جميع الرسائل القديمة الآن؟</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -45,16 +45,15 @@
   <string name="ApplicationPreferencesActivity_off">مغلق</string>
   <string name="ApplicationPreferencesActivity_Off">مغلق</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">رسائل نصية %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">العبارة السرية %1$s، تأمين الشاشة %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">المظهر %1$s، اللغة %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="zero">%d دقيقة</item>
-    <item quantity="one">دقيقة</item>
+    <item quantity="one">%d دقيقة</item>
     <item quantity="two">%d دقيقتين</item>
     <item quantity="few">%d دقائق</item>
-    <item quantity="many">%d دقيقة</item>
-    <item quantity="other">%d دقيقة</item>
+    <item quantity="many">%d دقائق</item>
+    <item quantity="other">%d دقائق</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(صورة)</string>
@@ -284,6 +283,7 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">ملف مجهول</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">التحسين في حالة غياب خدمات Play Services</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
   <!--ExperienceUpgradeActivity-->
@@ -296,6 +296,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">الآن، يدعم سيجنال مكالمات الفيديو الآمنة. فقط ابدأ مكالمة سيجنال بالطريقة الاعتيادية، بالضغط على زر الفيديو ، وقُل أهلا.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">تدعم Signal حالياً الاتصالات الفيديوية الآمنة.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">سيجنال يدعم حالياً الإتصالات الآمنة عبر الفيديو. انقر لمعرفة المزيد.</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">هل أنت جاهز للإغلاق ؟</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">بإمكانكم الآن مشاركة صورة ملفكم الشخصي و اسمكم مع أصدقائكم على سيجنال</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">هنا صفحات سيجنال الشخصية</string>
   <!--ExportFragment-->
@@ -354,7 +355,9 @@
   <string name="ImportFragment_no_plaintext_backup_found">لم يتم العثور على نسخ احتياطية غير مشفرة!</string>
   <string name="ImportFragment_error_importing_backup">خطأ باستيراد النسخة الاحتياطية!</string>
   <string name="ImportFragment_import_complete">تم الاستيراد!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">إنّ سيجنال بحاجة إلى تصريح النفاذ إلى الرسائل النصية من أجل استعادة الرسائل النصية القصيرة</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">يحتاج سيجنال إلى إذن التخزين من أجل القراءة من وحدة التخزين الخارجية.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">يحتاج سيجنال إلي إذن الوصول للذاكرة للتخزين في الذاكرة الخارجية</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ألمس وأضغط لتسجيل رسالة صوتية. اسحب إصبعك للإرسال</string>
   <!--InviteActivity-->
@@ -366,20 +369,20 @@
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
   <string name="InviteActivity_invite_to_signal">الدعوة إلى سيجنال</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="zero">أرسل SMS ل%d من الأصدقاء</item>
-    <item quantity="one">أرسل أرسل SMS ل1 من الأصدقاء</item>
-    <item quantity="two">أرسل SMS ل%d من الأصدقاء</item>
-    <item quantity="few">أرسل SMS ل%d من الأصدقاء</item>
-    <item quantity="many">أرسل SMS ل%d من الأصدقاء</item>
-    <item quantity="other">أرسل SMS ل%dمن الأصدقاء</item>
+    <item quantity="zero">رسالة قصيرة إلى %d مِن أصدقائك</item>
+    <item quantity="one">رسالة قصيرة إلى %d مِن أصدقائك</item>
+    <item quantity="two">رسالة قصيرة إلى %d مِن أصدقائك</item>
+    <item quantity="few">رسالة قصيرة إلى %d مِن أصدقائك</item>
+    <item quantity="many">رسالة قصيرة إلى %d مِن أصادقائك</item>
+    <item quantity="other">رسالة قصيرة إلى %d مِن أصدقائك</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="zero">ارسل %d دعوة برسالة نصية؟</item>
-    <item quantity="one">ارسل دعوة واحدة عبر رسالة؟</item>
-    <item quantity="two">ارسل %d دعوتان برسالة نصية؟</item>
-    <item quantity="few">ارسل %d دعوة برسالة نصية؟</item>
-    <item quantity="many">ارسل %d دعوة برسالة نصية؟</item>
-    <item quantity="other">ارسل %d دعوة برسالة نصية؟</item>
+    <item quantity="zero">هل تريد إرسال %d دعوات عبر الرسائل القصيرة ؟</item>
+    <item quantity="one">هل تريد إرسال %d دعوات عبر الرسائل القصيرة ؟</item>
+    <item quantity="two">هل تريد إرسال %d دعوات عبر الرسائل القصيرة ؟</item>
+    <item quantity="few">هل تريد إرسال %d دعوات عبر الرسائل القصيرة ؟</item>
+    <item quantity="many">هل تريد إرسال %d دعوات عبر الرسائل القصيرة ؟</item>
+    <item quantity="other">هل تريد إرسال %d دعوات عبر الرسائل القصيرة ؟</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">هيا ننتقل إلى سيجنال %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
@@ -395,6 +398,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">خطأ في قراءة إعدادات مزود خدمة رسالة الوسائط المتعددة اللاسلكي</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">الوسائط</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">جارٍ الحذف</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">حذف الرسائل جارٍ...</string>
   <string name="MediaOverviewActivity_Documents">الوثائق</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة سيجنال</string>
@@ -442,6 +447,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرا، الرابط غير صحيح.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">ربط سيجنال بجهاز؟</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط سيجنال باستخدام ماسح ضوئي خارجي. رجاء مسح الكود مرة أخرى باستخدام الخاصية المدمجة في سيجنال من أجل حمايتك.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">غير قادر علي مسح QR كود بدون إذن الوصول للكاميرا</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">الرسائل المختفية</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">صلاحية رسائلك لن تنتهي.</string>
@@ -497,6 +503,7 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جاري تحديث خدمات Google Play  أو أنها غير موجودة مؤقتاً</string>
   <string name="RegistrationActivity_more_information">المزيد من المعلومات</string>
   <string name="RegistrationActivity_less_information">معلومات أقل</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">غير قادر علي الإتصال بالخدمة, برجاء التأكد من الإتصال بالشبكة و المحاولة مرة أخري.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -542,6 +549,7 @@
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">يتوفر الاصدار الجديد لـ Signal، انقر للتحديث</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">هل تود حظر %s ؟</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">لن يقدر المراسلون المحظورون مراسلتك أو الإتصال بك.</string>
   <string name="UnknownSenderView_block">حظر</string>
   <string name="UnknownSenderView_share_profile_with_s">هل تود مشاركة الملف الشخصي بواسطة %s ؟</string>
   <string name="UnknownSenderView_share_profile">مشاركة الملف الشخصي</string>
@@ -560,6 +568,7 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">رقم الأمان الخاص بنا في سيقنال:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">لم يُعثر على رقم أمان في الحافظة من أجل المقارنة</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">لا يمكن مسح رمز الإستجابة السريعة QR بدون تصريح النفاذ إلى آلة التصوير</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">رسالة مشفرة رديئة</string>
@@ -588,7 +597,7 @@
   <string name="KeyCachingService_signal_passphrase_cached">المس للفتح.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">المس للفتح أو المس رمز القفل للإغلاق.</string>
   <string name="KeyCachingService_passphrase_cached">سيجنال غير مقفول</string>
-  <string name="KeyCachingService_lock">أقفل بالعبارة السرية</string>
+  <string name="KeyCachingService_lock">إقفِل سيجنال</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">أنت</string>
   <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
@@ -612,6 +621,7 @@
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">قائمة مفتوحة</string>
+  <string name="SaveAttachmentTask_saved_to">تم الإحتفاظ به في %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">بحث</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -656,10 +666,12 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">صورة جهة الاتصال</string>
   <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في جلب قائمة المراسلين، يُرجى التحقق مِن اتصالك بالشبكة</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string>
   <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">سيجنال بحاجة إلى النفاذ إلى قائمة مراسليك و ذلك قصد عرضها.</string>
   <string name="contact_selection_list_fragment__show_contacts">إظهار جهات الإتصال</string>
   <!--conversation_title_view-->
   <!--conversation_activity-->
@@ -707,12 +719,13 @@
   <string name="device_list_fragment__link_new_device">ربط جهاز جديد</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">استمر</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">إشعارات القراءة هنا</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">تفعيل قراءة  تقارير الإستلام</string>
   <!--expiration-->
   <string name="expiration_off">مغلق</string>
   <plurals name="expiration_seconds">
     <item quantity="zero">%d ثانية</item>
-    <item quantity="one">1 ثانية</item>
+    <item quantity="one">%d ثانية</item>
     <item quantity="two">%d ثانيتين</item>
     <item quantity="few">%d ثواني</item>
     <item quantity="many">%d ثواني</item>
@@ -720,39 +733,39 @@
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="zero">%d دققية</item>
-    <item quantity="one">دقيقة</item>
-    <item quantity="two">%d دققتان</item>
+    <item quantity="zero">%d دقيقة</item>
+    <item quantity="one">%d دقيقة</item>
+    <item quantity="two">%d دقيقتين</item>
     <item quantity="few">%d دقائق</item>
-    <item quantity="many">%d دقيقة</item>
-    <item quantity="other">%d دقيقة</item>
+    <item quantity="many">%d دقائق</item>
+    <item quantity="other">%d دقائق</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
     <item quantity="zero">%d ساعة</item>
-    <item quantity="one">ساعة</item>
-    <item quantity="two">%d ساعتان</item>
-    <item quantity="few">%d ساعة</item>
-    <item quantity="many">%d ساعة</item>
-    <item quantity="other">%d ساعة</item>
+    <item quantity="one">%d ساعة</item>
+    <item quantity="two">%d ساعتين</item>
+    <item quantity="few">%d ساعات</item>
+    <item quantity="many">%d ساعات</item>
+    <item quantity="other">%d ساعات</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
     <item quantity="zero">%d يوم</item>
-    <item quantity="one">يوم واحد</item>
-    <item quantity="two">%d يومان</item>
+    <item quantity="one">%d يوم</item>
+    <item quantity="two">%d يومين</item>
     <item quantity="few">%d أيام</item>
-    <item quantity="many">%d يوم</item>
-    <item quantity="other">%d يوم</item>
+    <item quantity="many">%d أيام</item>
+    <item quantity="other">%d أيام</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="zero">%d أسابيع</item>
-    <item quantity="one">أسبوع واحد</item>
-    <item quantity="two">%d أسبوع</item>
+    <item quantity="zero">%d أسبوع</item>
+    <item quantity="one">%d أسبوع</item>
+    <item quantity="two">%d أسبوعين</item>
     <item quantity="few">%d أسابيع</item>
-    <item quantity="many">%d أسبوع</item>
-    <item quantity="other">%d أسبوع</item>
+    <item quantity="many">%d أسابيع</item>
+    <item quantity="other">%d أسابيع</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
@@ -824,6 +837,8 @@
   <string name="recipient_preferences__view_safety_number">عرض رقم الأمان</string>
   <string name="recipient_preferences__chat_settings">إعدادات الدردشة</string>
   <string name="recipient_preferences__privacy">الخصوصية</string>
+  <string name="recipient_preferences__call_settings">إعدادت المكالمات</string>
+  <string name="recipient_preferences__ringtone">نغمة الرنين</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">مكالمة سيجنال</string>
   <string name="redphone_call_controls__mute">صامت</string>
@@ -872,7 +887,7 @@
   <string name="AndroidManifest_archived_conversations">أرشيف المحادثة</string>
   <string name="AndroidManifest_remove_photo">حذف الصورة</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">استيراد / تصدير</string>
+  <string name="arrays__import_export">استيراد</string>
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
   <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
@@ -918,8 +933,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">اختر جهة الاتصال من القائمة</string>
   <string name="preferences__change_passphrase">غير العبارة السرية</string>
   <string name="preferences__change_your_passphrase">غير العبارة السرية</string>
-  <string name="preferences__enable_passphrase">تفعيل العبارة السرية</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">أقفل سيجال وإخطارات الرسائل بعبارة سرية</string>
+  <string name="preferences__enable_passphrase">تشغيل الجملة السرية لقفل الشاشة</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">قفل الشاشة وإخطارات الرسائل بعبارة سرية</string>
   <string name="preferences__screen_security">تأمين الشاشة</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">منع لقطات الشاشة داخل التطبيق</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">غلق سيجنال تلقائيا بعد مدة زمنية محددة</string>
@@ -998,6 +1013,8 @@
   <string name="preferences_notifications__events">الأحداث</string>
   <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
   <string name="preferences_notifications__show">اظهار</string>
+  <string name="preferences_notifications__calls">المُكالمات</string>
+  <string name="preferences_notifications__ringtone">نغمة الرنين</string>
   <string name="preferences_chats__show_invitation_prompts">اظهر رسالة الدعوة</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">عرض رسائل الدعوات من جهات الاتصال التي لا تستخدم Signal</string>
   <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
@@ -1075,14 +1092,6 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارن مع الحافظة</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">لقد انتهت صلاحية هذه الإصدارة من سيجنال.</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="zero">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
-    <item quantity="one">تنتهي صلاحية نسخة سيجنال المستخدمة خلال يوم. ألمس للتحديث إلى أخر إصدارة.</item>
-    <item quantity="two">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
-    <item quantity="few">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
-    <item quantity="many">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
-    <item quantity="other">تنتهي صلاحية نسخة سيجنال المستخدمة خلال %d يوم. ألمس للتحديث إلى أخر إصدارة.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">تنتهي اليوم صلاحية إصدارة سيجنال. ألمس لتحديث التطبيق.</string>
   <string name="reminder_header_expired_build">لقد انتهت صلاحية هذه النسخة من سيجنال!</string>
   <string name="reminder_header_expired_build_details">لن ترسل الرسائل بنجاح بعد الآن. ألمس لتحديث التطبيق.</string>
@@ -1115,7 +1124,49 @@
   <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
   <string name="ConversationListFragment_loading">جاري التحميل ...</string>
   <string name="CallNotificationBuilder_connecting">الاتصال جارِ...</string>
+  <string name="Permissions_permission_required">التصريح مطلوب</string>
   <string name="Permissions_continue">استمر</string>
   <string name="Permissions_not_now">ليس الآن</string>
+  <string name="conversation_activity__enable_signal_messages">تشغيل رسائل سيجنال</string>
+  <string name="PushDecryptJob_new_locked_message">رسالة مُقفلة جديدة</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">قم بفك القفل لعرض الرسائل المعلقة</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">قم بفك القفل لمواصلة التحديث</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">يُرجى فك القفل عن سيجنال لمواصلة التحديث</string>
+  <string name="registration_activity__restore_backup">إستعادة نسخة إحتياطية</string>
+  <string name="registration_activity__skip">تخطى</string>
+  <string name="registration_activity__register">سجل</string>
+  <string name="preferences_chats__chat_backups">النُسخ الإحتياطية للمحادثات</string>
+  <string name="preferences_chats__create_backup">إنشاء نسخة إحتياطية</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">إدخال العبارة السرية الخاصة بالنسخة الإحتياطية</string>
+  <string name="RegistrationActivity_restore">استعادة</string>
+  <string name="RegistrationActivity_checking">عملية التحقق جارية …</string>
+  <string name="RegistrationActivity_restore_from_backup">الإسترجاع مِن نسخة احتياطية ؟</string>
+  <string name="BackupDialog_enable_backups">تمكين النُسخ الإحتياطية</string>
+  <string name="BackupDialog_delete_backups">هل تود حذف النسخ الإحتياطية ؟</string>
+  <string name="BackupDialog_delete_backups_statement">حذف النسخ الإحتياطية</string>
+  <string name="BackupDialog_copied_to_clipboard">نسخ إلى الحافظة</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">آخِر نسخة إحتياطية : %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">جارٍ</string>
+  <string name="RegistrationActivity_wrong_number">الرقم خاطئ ؟</string>
+  <string name="BackupUtil_never">أبدا</string>
+  <string name="BackupUtil_unknown">مجهول</string>
+  <string name="prompt_passphrase_activity__unlock_signal">فك القفل عن سيجنال</string>
+  <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>
+  <string name="AppProtectionPreferenceFragment_none">لا شيء </string>
+  <string name="registration_activity__forgot_pin">هل نسيت رمز PIN للأمان ؟</string>
+  <string name="registration_lock_dialog_view__enter_pin">إدخال رمز الأمان PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">تأكيد رمز الأمان PIN</string>
+  <string name="registration_lock_reminder_view__enter_pin">إدخال رمز الأمان PIN</string>
+  <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
+  <string name="RegistrationActivity_oh_no">أوه لا !</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">نسيتُ رمز PIN للأمان الخاص بي.</string>
+  <string name="RegistrationLockDialog_enable">تشغيل</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">حدث خطأ أثناء محاولة الربط بالخدمة</string>
+  <string name="RegistrationLockDialog_disable">تعطيل</string>
+  <string name="RegistrationActivity_continue">استمر</string>
+  <string name="preferences_chats__backups">النُسخ الإحتياطية</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">إنَّ سيجنال مُقفَل</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">أنقُر لفك القُفل</string>
+  <string name="RegistrationLockDialog_reminder">تذكير :</string>
   <!--EOF-->
 </resources>

@@ -10,9 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز رمزی تعیین نکرده‌اید!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">%d تعداد پیام  در هر گفتگو</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پیام‌های قدیمی حذف شوند؟</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">این گزینه ، بلافاصله تمامی مکالمات شما را به %d پیام آخر ، کاهش خواهد داد.</item>
@@ -35,12 +32,8 @@
   <string name="ApplicationPreferencesActivity_off">خاموش</string>
   <string name="ApplicationPreferencesActivity_Off">خاموش</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">رمز عبور %1$s، محافظ صفحه نمایش %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">تم %1$s، زبان %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="other">%d دقیقه</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(تصویر)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(صوتی)</string>
@@ -48,7 +41,8 @@
   <string name="DraftDatabase_Draft_location_snippet">(موقعیت)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">سیگنال برای ارسال فایل‌های تصویری و صوتی نیاز به دسترسی به حافظه دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته و پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه حافظه را فعال کنید.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">سیگنال برای ارسال فایل‌های تصویری و صوتی نیاز به دسترسی به حافظه دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه در تنظیمات تلفن همراه خود رفته و پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه حافظه را فعال کنید.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">سیگنال جهت گرفتن عکس نیاز به دسترسی دوربین دارد، اما به طور دائم رد شده است. لطفاً به منوی تنظیمات برنامه ها رفته، \"Permissions\" را انتخاب کرده، و \"Camera\" را فعال کنید.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش صوتی!</string>
@@ -291,12 +285,6 @@
   <string name="InviteActivity_heart_content_description">فلب</string>
   <string name="InviteActivity_invitations_sent">دعوت نامه ارسال شد!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به سیگنال</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">ارسال پیامک به %d نفر از دوستان</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">%d دعوت اس ام اس  بفرستم؟</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">بیایید از این برای سیگنال استفاده کنیم:  %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان نمی‌گذارند دوستانشان بدون رمزنگاری چت کنند.</string>
@@ -311,6 +299,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">خطا در هنگام دریافت تنظیمات MMS اپراتور تلفن همراه</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">رسانه</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">در حال حذف</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">حذف پیام های...</string>
   <string name="MediaOverviewActivity_Documents">اسناد</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">پاسخ سیگنال در حال انجام</string>
@@ -512,7 +502,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">برای باز کردن لمس کنید.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">برای باز کردن لمس کنید، یا لمس کنید قفل را برای بستن.</string>
   <string name="KeyCachingService_passphrase_cached">سیگنال قفل شده است</string>
-  <string name="KeyCachingService_lock">قفل با عبارت عبور</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">شما</string>
   <string name="MediaPreviewActivity_unssuported_media_type">نوع رسانه پشتیبانی نشده</string>
@@ -634,25 +623,10 @@
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">فعال سازی رسید خوانده شدن پیام</string>
   <!--expiration-->
   <string name="expiration_off">خاموش</string>
-  <plurals name="expiration_seconds">
-    <item quantity="other">ثانیه %d</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%d ثانیه</string>
-  <plurals name="expiration_minutes">
-    <item quantity="other">دقیقه %d</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%d دقیقه</string>
-  <plurals name="expiration_hours">
-    <item quantity="other">ساعت %d</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%d ساعت</string>
-  <plurals name="expiration_days">
-    <item quantity="other"> روز %d</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%d روز</string>
-  <plurals name="expiration_weeks">
-    <item quantity="other">هفته %d</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%d هفته</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">شماره امنیتی شما با %s تغییر کرده است و دیگر مورد تایید نیست</string>
@@ -724,6 +698,7 @@
   <string name="recipient_preferences__view_safety_number">نمایش شماره امنیتی</string>
   <string name="recipient_preferences__chat_settings">تنظیمات گفت‌وگو</string>
   <string name="recipient_preferences__privacy">خلوت</string>
+  <string name="recipient_preferences__ringtone">آهنگ های زنگ</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">تماس سیگنال</string>
   <string name="redphone_call_controls__mute">لال</string>
@@ -731,14 +706,14 @@
   <!--registration_activity-->
   <string name="registration_activity__phone_number">شماره تلفن</string>
   <string name="registration_activity__verify_your_number">شماره تلفن خود را تایید کنید</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">لطفا شماره موبایل خود را جهت دریافت کد تایید وارد نمایید. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">لطفا شماره موبایل خود را جهت دریافت کد تایید هویت وارد نمایید. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>نام یا شماره را وارد کنید</small></string>
   <string name="recipients_panel__add_members">افزودن اعضاء</string>
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">فرستنده جزو لیست مخاطبین شما نسیت.</string>
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">فرستنده در لیست مخاطب شما وجود ندارد</string>
   <string name="unknown_sender_view__block">مسدود کن</string>
   <string name="unknown_sender_view__add_to_contacts">به مخاطبین اضافه کن</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">اضافه نکن، اما پروفایلم قابل مشاهده باشد</string>
@@ -749,6 +724,8 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">به اشتراک گذاشتن شماره امنیتی</string>
   <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">جهت پاسخ دادن به بالا بکشید</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">جهت رد کردن به پایین بکشید</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">برخی از مسائل نیاز به توجه شما دارند.</string>
   <string name="message_details_header__sent">فرستاده</string>
@@ -772,7 +749,7 @@
   <string name="AndroidManifest_archived_conversations">گفتگوهای آرشیو شده</string>
   <string name="AndroidManifest_remove_photo">حذف عکس</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">وارد کردن / خروجی گرفتن</string>
+  <string name="arrays__import_export">وارد کردن</string>
   <string name="arrays__use_default">استفاده از پیش فرض</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
   <string name="arrays__mute_for_one_hour">بی صدا به مدت 1 ساعت</string>
@@ -813,8 +790,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">انتخاب کنید ورود تماس با خود را از لیست مخاطبین.</string>
   <string name="preferences__change_passphrase">تغییر رمز</string>
   <string name="preferences__change_your_passphrase">تغییر رمز شما</string>
-  <string name="preferences__enable_passphrase">فعال‌سازی رمز</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">قفل کردن سیگنال و اطلاعیه پیام ها با یک قفل عبور</string>
   <string name="preferences__screen_security">محافظ صفحه نمایش</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">بلوک کردن عکس گرفتن از صفحه در لیست تازه و در داخل برنامه</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">قفل کردن خودکار سیگنال  بعد از یک زمان مشخص عدم فعالیت</string>
@@ -893,6 +868,7 @@
   <string name="preferences_notifications__events">حوادث</string>
   <string name="preferences_notifications__in_chat_sounds">صداهای درون گفت‌و‌گو</string>
   <string name="preferences_notifications__show">نمایش</string>
+  <string name="preferences_notifications__ringtone">آهنگ های زنگ</string>
   <string name="preferences_chats__show_invitation_prompts">نمایش دعوتنامه ها</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش دعوتنامه ها برای مخاطبین بدون Signal</string>
   <string name="preferences_chats__message_text_size">سایز فونت پیام</string>
@@ -971,16 +947,13 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">نسخه سیگنال شما قدیمی است.</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">نرم افزار سیگنال شما %d روز دیگر منقضی می شود. برای بروزرسانی جدیدترین نسخه ضربه بزنید.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">نرم افزار سیگنال شما امروز منقضی می شود. برای بروزرسانی جدیدترین نسخه ضربه بزنید.</string>
   <string name="reminder_header_expired_build">نسخه نرم افزار سیگنال شما منقضی شده است.</string>
   <string name="reminder_header_expired_build_details">پیام ها دیگر با موفقیت ارسال نمی‌شوند. لمس کنید برای بروزرسانی به آخرین نسخه موجود.</string>
   <string name="reminder_header_sms_default_title">تنظیم به عنوان برنامه پیش‌فرض پیامک</string>
   <string name="reminder_header_sms_default_text">ضربه بزنید تا برنامه پیش فرض SMS را تغییر دهید</string>
   <string name="reminder_header_sms_import_title">وارد کردن SMS سیستم</string>
-  <string name="reminder_header_sms_import_text">برای کپی کردن پیام های گوشی داخل دیتابیس رمزنگاری شده تپ کنید.</string>
+  <string name="reminder_header_sms_import_text">جهت کپی کردن اس ام اس های گوشی به داخل بانک اطلاعاتی رمزگذاری شده سیگنال ضربه بزنید.</string>
   <string name="reminder_header_push_title">فعال کردن تماس ها و پیام های سیگنال</string>
   <string name="reminder_header_push_text">تجربه ارتباط  خود را ارتقا دهید.</string>
   <string name="reminder_header_invite_title">دعوت به سیگنال</string>
@@ -996,7 +969,7 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">پیش نمایش رسانه</string>
   <!--new_conversation_activity-->
-  <string name="new_conversation_activity__refresh">تازه کردن</string>
+  <string name="new_conversation_activity__refresh">تازه سازی</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">در حال حذف</string>
@@ -1005,11 +978,26 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">آیکون های حمل و نقل</string>
   <string name="ConversationListFragment_loading">درحال بارگذاری...</string>
-  <string name="CallNotificationBuilder_connecting">اتصال ...</string>
+  <string name="CallNotificationBuilder_connecting">در حال اتصال ...</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">سیگنال برای ارسال پیامک نیاز به دسترسی به پیامک دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه  پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه پیامک را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
   <string name="Permissions_not_now">حالا نه</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">سیگنال برای جستجو مخاطبان نیاز به دسترسی به مجوز مخاطباندارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه مخاطبان را فعال کنید.</string>
+  <string name="conversation_activity__enable_signal_messages">فعالسازی پیام های سیگنال</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">در حال انتقال بانک اطلاعاتی سیگنال</string>
+  <string name="PushDecryptJob_new_locked_message">پیام های قفل شده ی جدید</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">جهت مشاهده ی پیام های در حال انتظار قفل را باز کنید</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">جهت تکمیل بروزرسانی قفل را باز کنید</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">لطفاً جهت تکمیل بروزرسانی قفل سیگنال را باز کنید</string>
+  <string name="registration_activity__skip">پرش</string>
+  <string name="registration_activity__register">ثبت نام</string>
+  <string name="RegistrationActivity_restore">بازیابی</string>
+  <string name="BackupUtil_never">هرگز</string>
+  <string name="BackupUtil_unknown">ناشناخته</string>
+  <string name="AppProtectionPreferenceFragment_none">هیچ کدام</string>
+  <string name="RegistrationActivity_too_many_attempts">تلاش های بیش از حد</string>
+  <string name="RegistrationLockDialog_disable">غیرفعال کردن</string>
+  <string name="RegistrationActivity_continue">ادامه</string>
   <!--EOF-->
 </resources>

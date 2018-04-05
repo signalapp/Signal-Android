@@ -8,6 +8,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.StorageUtil;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
@@ -72,7 +73,7 @@ public class PlaintextBackupImporter {
   }
 
   private static File getPlaintextExportFile() throws NoExternalStorageException {
-    File backup    = PlaintextBackupExporter.getPlaintextExportFile();
+    File backup    = new File(StorageUtil.getLegacyBackupDirectory(), "SignalPlaintextBackup.xml");
     File oldBackup = new File(Environment.getExternalStorageDirectory(), "TextSecurePlaintextBackup.xml");
 
     return !backup.exists() && oldBackup.exists() ? oldBackup : backup;

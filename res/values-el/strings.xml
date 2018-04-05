@@ -11,8 +11,8 @@
   <string name="ApplicationPreferencesActivity_currently_s">Αυτή τη στιγμή: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Δεν έχεις ορίσει συνθηματικό!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 μήνυμα ανά συζήτηση</item>
-    <item quantity="other">%d μηνύματα ανά συζήτηση</item>
+    <item quantity="one">%d μήνυμα ανά συνομιλία</item>
+    <item quantity="other">%d μηνύματα ανά συνομιλία</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Διαγραφή όλων των παλιών μηνυμάτων τώρα;</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -37,11 +37,11 @@
   <string name="ApplicationPreferencesActivity_off">απενεργοποιημένο</string>
   <string name="ApplicationPreferencesActivity_Off">Απενεργοποιημένο</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Συνθηματικό %1$s, Ασφάλεια οθόνης %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Κλείδωμα οθόνης %1$s, Κλείδωμα εγγραφής %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Θέμα %1$s, Γλώσσα %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 λεπτό</item>
+    <item quantity="one">%d λεπτό</item>
     <item quantity="other">%d λεπτά</item>
   </plurals>
   <!--DraftDatabase-->
@@ -326,12 +326,12 @@
   <string name="InviteActivity_invitations_sent">Οι προσκλήσεις στάλθηκαν!</string>
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ΑΠΟΣΤΟΛΗ SMS ΣΕ 1 ΦΙΛΗ/Ο</item>
-    <item quantity="other">ΑΠΟΣΤΟΛΗ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
+    <item quantity="one">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ SMS ΣΕ %d ΦΙΛΟ/Η</item>
+    <item quantity="other">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΩΝ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Αποστολή 1 πρόσκλησης μέσω SMS; </item>
-    <item quantity="other">Αποστολή %d προσκλήσεων μέσω SMS; </item>
+    <item quantity="one">Αποστολή %d πρόσκλησης μέσω μηνύματος SMS;</item>
+    <item quantity="other">Αποστολή %d προσκλήσεων μέσω μηνύματος SMS;</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ας χρησιμοποιήσουμε το Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Φαινεται πως δεν έχεις κάποια εφαρμογή στην οποία μπορείς να μοιραστείς.</string>
@@ -347,6 +347,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">Πρόβλημα στην ανάκτηση ρυθμίσεων από τον πάροχο για τα MMS </string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Πολυμέσα</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Γίνεται διαγραφή</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Διαγραφή μηνυμάτων...</string>
   <string name="MediaOverviewActivity_Documents">Αρχεία</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal εν εξελίξει</string>
@@ -558,7 +560,7 @@
   <string name="KeyCachingService_signal_passphrase_cached">Πάτησε για άνοιγμα.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Πάτησε για άνοιγμα, ή πάτησε την κλειδαριά για κλείσιμο.</string>
   <string name="KeyCachingService_passphrase_cached">Το Signal ξεκλειδώθηκε</string>
-  <string name="KeyCachingService_lock">Κλείδωμα με συνθηματικό</string>
+  <string name="KeyCachingService_lock">Κλείδωμα του Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Εσύ</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Μη υποστηριζόμενος τύπος πολυμέσων</string>
@@ -585,6 +587,7 @@
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Άνοιγμα φακέλου</string>
+  <string name="SaveAttachmentTask_saved_to">Αποθηκεύτηκε σε %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Αναζήτηση</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -692,27 +695,27 @@
   <!--expiration-->
   <string name="expiration_off">Απενεργοποιημένο</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 δευτερόλεπτο</item>
+    <item quantity="one">%d δευτερόλεπτο</item>
     <item quantity="other">%d δευτερόλεπτα</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%dδ</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 λεπτό</item>
+    <item quantity="one">%d λεπτό</item>
     <item quantity="other">%d λεπτά</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dλ</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 ώρα</item>
+    <item quantity="one">%d ώρα</item>
     <item quantity="other">%d ώρες</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dώρ</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 ημέρα</item>
+    <item quantity="one">%d ημέρα</item>
     <item quantity="other">%d ημέρες</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dημ</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 εβδομάδα</item>
+    <item quantity="one">%d εβδομάδα</item>
     <item quantity="other">%d εβδομάδες</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dεβ</string>
@@ -792,6 +795,8 @@
   <string name="recipient_preferences__view_safety_number">Προβολή αριθμού ασφαλείας</string>
   <string name="recipient_preferences__chat_settings">Ρυθμίσεις συζήτησης</string>
   <string name="recipient_preferences__privacy">Ιδιωτικότητα</string>
+  <string name="recipient_preferences__call_settings">Ρυθμίσεις κλήσεων</string>
+  <string name="recipient_preferences__ringtone">Ήχος κλήσης</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Κλήση Signal</string>
   <string name="redphone_call_controls__mute">Σίγαση</string>
@@ -844,7 +849,7 @@
   <string name="AndroidManifest_archived_conversations">Αρχειοθετημένες συζητήσεις</string>
   <string name="AndroidManifest_remove_photo">Αφαίρεση φωτογραφίας</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Εισαγωγή / εξαγωγή</string>
+  <string name="arrays__import_export">Εισαγωγή</string>
   <string name="arrays__use_default">Χρήση προκαθορισμένου</string>
   <string name="arrays__use_custom">Χρήση προσαρμοσμένου</string>
   <string name="arrays__mute_for_one_hour">Σίγαση για 1 ώρα</string>
@@ -886,8 +891,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Επέλεξε την επαφή σου από τη λίστα επαφών.</string>
   <string name="preferences__change_passphrase">Αλλαγή συνθηματικού</string>
   <string name="preferences__change_your_passphrase">Αλλαγή συνθηματικού</string>
-  <string name="preferences__enable_passphrase">Ενεργοποίηση συνθηματικού</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Κλείδωμα του Signal και των ειδοποιήσεων μηνυμάτων με ένα συνθηματικό</string>
+  <string name="preferences__enable_passphrase">Ενεργοποίηση κλειδώματος οθόνης με συνθηματικό</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Κλείδωμα οθόνης και ειδοποιήσεων με συνθηματικό</string>
   <string name="preferences__screen_security">Ασφάλεια οθόνης</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Να μην επιτρέπεται η καταγραφή της οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Αυτόματο κλείδωμα του Signal μετά απο κάποιο συγκεκριμένο χρόνο αδράνειας</string>
@@ -968,6 +973,8 @@
   <string name="preferences_notifications__events">Εκδηλώσεις</string>
   <string name="preferences_notifications__in_chat_sounds">Ήχοι μέσα στη συνομιλία</string>
   <string name="preferences_notifications__show">Εμφάνιση</string>
+  <string name="preferences_notifications__calls">Κλήσεις</string>
+  <string name="preferences_notifications__ringtone">Ήχος κλήσης</string>
   <string name="preferences_chats__show_invitation_prompts">Εμφάνιση υπενθυμίσεων πρόσκλησης</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Προβολή υπενθυμίσεων πρόσκλησης για επαφές που δεν έχουν Signal</string>
   <string name="preferences_chats__message_text_size">Μέγεθος γραμματοσειράς μηνύματος</string>
@@ -1050,8 +1057,8 @@
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Η έκδοση του Signal σου είναι παρωχημένη</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Η έκδοση του Signal σου θα λήξει σε 1 ημέρα. Πάτα για να αναβαθμίσεις στην πιο πρόσφατη έκδοση.</item>
-    <item quantity="other">Η έκδοση του Signal σου θα λήξει σε %d ημέρες. Πάτα για να αναβαθμίσεις στην πιο πρόσφατη έκδοση.</item>
+    <item quantity="one">Η έκδοση Signal σου θα λήξει σε %d ημέρα. Πάτα για να αναβαθμίσεις στην πιο πρόσφατη έκδοση.</item>
+    <item quantity="other">Η έκδοση Signal σου θα λήξει σε %d ημέρες. Πάτα για να αναβαθμίσεις στην πιο πρόσφατη έκδοση. </item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Η έκδοση του Signal σου θα λήξει σήμερα. Πάτα για να αναβαθμίσεις στην πιο πρόσφατη έκδοση.</string>
   <string name="reminder_header_expired_build">Η έκδοση του Signal σου έχει λήξει!</string>
@@ -1091,5 +1098,85 @@
   <string name="Permissions_not_now">Όχι τώρα</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Επαφών για να μπορούμε να αναζητήσουμε τις επαφές σου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε τις \"Επαφές\".</string>
   <string name="conversation_activity__enable_signal_messages">ΕΝΕΡΓΟΠΟΙΗΣΗ ΜΗΝΥΜΑΤΩΝ SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Μετεγκατάσταση της βάσης δεδομένων του Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Νέο κλειδωμένο μήνυμα</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Ξεκλείδωσε για να δείς τα εκκρεμή μηνύματα</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ξεκλείδωσε για την ολοκλήρωση της αναβάθμιση</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Παρακαλώ ξεκλείδωσε το Signal για να ολοκληρωθεί η αναβάθμιση</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Φράση-κλειδί αντίγραφου ασφαλείας</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Τα αντίγραφα ασφαλείας αποθηκεύονται στην εξωτερική μνήμη και κρυπτογραφούνται με την παρακάτω φράση-κλειδί. Πρέπει να γνωρίζεις αυτή την φράση-κλειδί για να επανακτήσεις ένα αντίγραφο ασφαλείας.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Σημείωσα σε χαρτί αυτή τη φράση-κλειδί. Χωρίς αυτή, δεν θα μπορέσω να επανακτήσω το αντίγραφο ασφαλείας.</string>
+  <string name="registration_activity__restore_backup">Επαναφορά αντίγραφου ασφαλείας</string>
+  <string name="registration_activity__skip">Παράλειψη</string>
+  <string name="registration_activity__register">Εγγραφή</string>
+  <string name="preferences_chats__chat_backups">Αντίγραφα ασφαλείας συνομιλιών</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Δημιουργία αντίγραφου ασφαλείας συνομιλιών στην εξωτερική μνήμη</string>
+  <string name="preferences_chats__create_backup">Δημιουργία αντίγραφου ασφαλείας</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Εισαγωγή φράσης-κλειδιού αντίγραφου ασφαλείας</string>
+  <string name="RegistrationActivity_restore">Επαναφορά</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Λάθος φράση-κλειδί αντίγραφου ασφαλείας</string>
+  <string name="RegistrationActivity_checking">Έλεγχος...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d μηνύματα μέχρι τώρα...</string>
+  <string name="RegistrationActivity_restore_from_backup">Επαναφορά από αντίγραφο ασφαλείας;</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Επανέφερε τα μηνύματα και τα πολυμέσα σου από ένα τοπικό αντίγραφο ασφαλείας. Αν δεν τα επαναφέρεις τώρα, δεν θα μπορέσεις να επαναφέρεις αργότερα.</string>
+  <string name="RegistrationActivity_backup_size_s">Μέγεθος αντίγραφου ασφαλείας: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Χρόνος δημιουργίας αντίγραφου ασφαλείας: %s</string>
+  <string name="BackupDialog_enable_local_backups">Ενεργοποίηση τοπικών αντίγραφων ασφαλείας;</string>
+  <string name="BackupDialog_enable_backups">Ενεργοποίηση αντίγραφων ασφαλείας</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Παρακαλώ επιβεβαίωσε ότι καταλαβαίνεις τσεκάροντας το κουτί επιβεβαίωσης.</string>
+  <string name="BackupDialog_delete_backups">Διαγραφή αντίγραφων ασφαλείας;</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Απενεργοποίηση και διαγραφή όλων των τοπικών αντίγραφων ασφαλείας;</string>
+  <string name="BackupDialog_delete_backups_statement">Διαγραφή αντίγραφων ασφαλείας</string>
+  <string name="BackupDialog_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Το Signal χρειάζεται τα δικαιώματα πρόσβασης εξωτερικής μνήμης για να δημιουργήσει αντίγραφα ασφαλείας, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Τελευταίο αντίγραφο ασφαλείας: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Σε εξέλιξη</string>
+  <string name="ProgressPreference_d_messages_so_far">%d μηνύματα μέχρι τώρα</string>
+  <string name="RegistrationActivity_verify_s">Επιβεβαίωση %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Παρακαλώ γράψε τον κωδικό επιβεβαίωσης που στάλθηκε στο %s.</string>
+  <string name="RegistrationActivity_wrong_number">Λάθος αριθμός;</string>
+  <string name="BackupUtil_never">Ποτέ</string>
+  <string name="BackupUtil_unknown">Άγνωστο</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Ξεκλείδωμα Signal</string>
+  <string name="preferences_app_protection__screen_lock">Κλείδωμα οθόνης</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Κλείδωμα της πρόσβασης στο Signal με την οθόνη κλειδώματος του Android ή με δακτυλικό αποτύπωμα</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Χρονικό όριο αδράνειας κλειδώματος οθόνης</string>
+  <string name="AppProtectionPreferenceFragment_none">Κανένα</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Το PIN κλειδώματος εγγραφής δεν είναι το ίδιο με το SMS με τον κωδικό επιβεβαίωσης που μόλις έλαβες. Παρακαλώ γράψε το PIN που είχες ρυθμίσει παλαιότερα μέσω της εφαρμογής.</string>
+  <string name="registration_activity__registration_lock_pin">PIN κλειδώματος εγγραφής</string>
+  <string name="registration_activity__forgot_pin">Ξέχασες το PIN;</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Το PIN μπορεί να είναι τέσσερις ή παραπάνω αριθμοί. Αν ξεχάσεις το PIN σου, μπορεί να κλειδωθείς εκτός του λογαριασμού σου για μέχρι και επτά ημέρες.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Εισαγωγή PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Επιβεβαίωση PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Γράψε το PIN κλειδώματος εγγραφής σου</string>
+  <string name="registration_lock_reminder_view__enter_pin">Εισαγωγή PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Ενεργοποίησε το PIN κλειδώματος εγγραφής που θα απαιτείται να γνωρίζεις για να εγγράψεις αυτόν τον αριθμό τηλεφώνου ξανά στις υπηρεσίες Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN κλειδώματος εγγραφής</string>
+  <string name="preferences_app_protection__registration_lock">Κλείδωμα εγγραφής</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Πρέπει να εισάγεις το PIN κλειδώματος εγγραφής σου</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Λάθος PIN κλειδώματος εγγραφής</string>
+  <string name="RegistrationActivity_too_many_attempts">Υπερβολικά πολλές προσπάθειες</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Έκανες πάρα πολλές λάθος απόπειρες εισαγωγής του PIN κλειδώματος εγγραφής. Παρακαλώ δοκίμασε ξανά σε μια ημέρα.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Αποτυχία σύνδεσης στην υπηρεσία</string>
+  <string name="RegistrationActivity_oh_no">Ωχ όχι!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Η εγγραφή αυτού του αριθμού τηλεφώνου θα είναι εφικτή χωρίς να γνωρίζεις του PIN κλειδώματος εγγραφής αφού περάσουν 7 ημέρες από την τελευταία φορά που αυτός ο αριθμός ήταν τελευταία ενεργός στο Signal. Σου απομένουν %d ημέρες.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN κλειδώματος εγγραφής</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Αυτός ο αριθμός τηλεφώνου έχει ενεργοποιημένο το κλείδωμα εγγραφής. Παρακαλώ γράψε το PIN κλειδώματος εγγραφής</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Το κλείδωμα εγγραφής είναι ενεργοποιημένο για τον αριθμό τηλεφώνου σου. Για να σε βοηθήσουμε να θυμάσαι το PIN κλειδώματος εγγραφής σου, το Signal θα σου ζητάει να το επιβεβαιώνεις περιοδικά.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Ξέχασα το PIN μου.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Ξέχασες το PIN;</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Το κλείδωμα εγγραφής βοηθά στην προστασία του αριθμού τηλεφώνου σου από μη εξουσιοδοτημένες απόπειρες εγγραφής. Αυτή η δυνατότητα μπορεί να απενεργοποιηθεί οποιαδήποτε στιγμή στις ρυθμίσεις ιδιωτικότοτητας του Signal.</string>
+  <string name="RegistrationLockDialog_registration_lock">Κλείδωμα εγγραφής</string>
+  <string name="RegistrationLockDialog_enable">Ενεργοποίηση</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Το PIN κλειδώματος εγγραφής πρέπει να είναι τουλάχιστον 4 ψηφία.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Τα δυο PIN που έγραψες δεν είναι τα ίδια.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Αποτυχία σύνδεσης στην υπηρεσία</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Απενεργοποίηση του PIN κλειδώματος εγγραφής;</string>
+  <string name="RegistrationLockDialog_disable">Απενεργοποίηση</string>
+  <string name="RegistrationActivity_continue">Συνέχεια</string>
+  <string name="preferences_chats__backups">Αντίγραφα ασφαλείας</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Το Signal ειναι κλειδωμένο</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">ΠΑΤΑ ΓΙΑ ΞΕΚΛΕΙΔΩΜΑ</string>
+  <string name="RegistrationLockDialog_reminder">Υπενθύμιση:</string>
   <!--EOF-->
 </resources>

@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сеуште не сте поставиле лозинка!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 порака по разговор</item>
-    <item quantity="other">%d пораки по разговор</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Избришете ги сите стари пораки?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Да ви остане само последнита порака на сите ваши разговори.</item>
@@ -157,6 +153,8 @@
   <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Бришење</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Бришење на пораките...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Signal</string>
@@ -271,7 +269,6 @@
   <string name="ApplicationMigrationService_import_in_progress">Импортирањето е во прогрес</string>
   <string name="ApplicationMigrationService_importing_text_messages">Импортирање на текстуални пораки</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_lock">Заклучете со лозинка</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вие</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Неподдржан тип на датотека</string>
@@ -375,6 +372,7 @@
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__privacy">Приватност</string>
+  <string name="recipient_preferences__ringtone">Звук за звонење</string>
   <!--- redphone_call_controls-->
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ТЕЛЕФОНСКИ БРОЈ</string>
@@ -401,7 +399,7 @@
   <string name="AndroidManifest__change_passphrase">Променете лозинка</string>
   <string name="AndroidManifest__invite_friends">Покани пријатели</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Импортирај / експортирај</string>
+  <string name="arrays__import_export">Импортирај</string>
   <string name="arrays__use_default">Користете стандардно</string>
   <string name="arrays__use_custom">Користете прилагодено</string>
   <string name="arrays__mute_for_one_hour">Безгласен 1 час</string>
@@ -427,7 +425,6 @@
   <string name="preferences__choose_identity">Изберете идентитет</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт од вашата листа на контакти</string>
   <string name="preferences__change_passphrase">Променете лозинка</string>
-  <string name="preferences__enable_passphrase">Овозможете лозинка</string>
   <string name="preferences__screen_security">Сигурност на екранот</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Оневозможете screenshots во листата на последни апликации и во самата апликација</string>
   <string name="preferences__notifications">Известувања</string>
@@ -477,6 +474,7 @@
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' мод за компатибилност</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку \'WiFi Calling\' е овозможен на уредот)</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
+  <string name="preferences_notifications__ringtone">Звук за звонење</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -553,5 +551,14 @@
   <string name="transport_selection_list_item__transport_icon">Симбол за транспорт</string>
   <string name="CallNotificationBuilder_connecting">Се поврзува...</string>
   <string name="Permissions_continue">Продолжете</string>
+  <string name="registration_activity__skip">Прескокни</string>
+  <string name="registration_activity__register">Регистрирајте се</string>
+  <string name="RegistrationActivity_restore">Врати</string>
+  <string name="BackupUtil_never">Никогаш</string>
+  <string name="BackupUtil_unknown">Непознато</string>
+  <string name="AppProtectionPreferenceFragment_none">Ниедна</string>
+  <string name="RegistrationActivity_too_many_attempts">Премногу пробувања</string>
+  <string name="RegistrationLockDialog_disable">Оневозможи</string>
+  <string name="RegistrationActivity_continue">Продолжете</string>
   <!--EOF-->
 </resources>

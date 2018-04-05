@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,8 @@ import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -540,7 +543,15 @@ public class WebRtcCallService extends Service implements InjectableType, PeerCo
       sendMessage(WebRtcViewModel.State.CALL_INCOMING, recipient, localVideoEnabled, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
       startCallCardActivity();
       audioManager.initializeAudioForCall();
-      audioManager.startIncomingRinger();
+
+      if (TextSecurePreferences.isCallNotificationsEnabled(this)) {
+        Uri          ringtone     = recipient.resolve().getCallRingtone();
+        VibrateState vibrateState = recipient.resolve().getCallVibrate();
+
+        if (ringtone == null) ringtone = TextSecurePreferences.getCallNotificationRingtone(this);
+
+        audioManager.startIncomingRinger(ringtone, vibrateState == VibrateState.ENABLED || (vibrateState == VibrateState.DEFAULT && TextSecurePreferences.isCallNotificationVibrateEnabled(this)));
+      }
 
       registerPowerButtonReceiver();
 

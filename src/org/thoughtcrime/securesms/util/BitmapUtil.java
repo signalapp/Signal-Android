@@ -12,10 +12,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.*;
 import android.support.annotation.WorkerThread;
+import android.support.media.ExifInterface;
 import android.util.Log;
 import android.util.Pair;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 
@@ -45,7 +45,7 @@ public class BitmapUtil {
   private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
 
   @android.support.annotation.WorkerThread
-  public static <T> byte[] createScaledBytes(Context context, T model, MediaConstraints constraints)
+  public static <T> ScaleResult createScaledBytes(Context context, T model, MediaConstraints constraints)
       throws BitmapDecodingException
   {
     try {
@@ -87,7 +87,7 @@ public class BitmapUtil {
           throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
         }
         Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
-        return bytes;
+        return new ScaleResult(bytes, scaledBitmap.getWidth(), scaledBitmap.getHeight());
       } finally {
         if (scaledBitmap != null) scaledBitmap.recycle();
       }
@@ -130,6 +130,26 @@ public class BitmapUtil {
     }
 
     return options;
+  }
+
+  @Nullable
+  public static Pair<Integer, Integer> getExifDimensions(InputStream inputStream) throws IOException {
+    ExifInterface exif   = new ExifInterface(inputStream);
+    int           width  = exif.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH, 0);
+    int           height = exif.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH, 0);
+    if (width == 0 && height == 0) {
+      return null;
+    }
+
+    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0);
+    if (orientation == ExifInterface.ORIENTATION_ROTATE_90  ||
+        orientation == ExifInterface.ORIENTATION_ROTATE_270 ||
+        orientation == ExifInterface.ORIENTATION_TRANSVERSE ||
+        orientation == ExifInterface.ORIENTATION_TRANSPOSE)
+    {
+      return new Pair<>(height, width);
+    }
+    return new Pair<>(width, height);
   }
 
   public static Pair<Integer, Integer> getDimensions(InputStream inputStream) throws BitmapDecodingException {
@@ -277,7 +297,7 @@ public class BitmapUtil {
   }
 
   public static int getMaxTextureSize() {
-    final int IMAGE_MAX_BITMAP_DIMENSION = 2048;
+    final int MAX_ALLOWED_TEXTURE_SIZE = 2048;
 
     EGL10 egl = (EGL10) EGLContext.getEGL();
     EGLDisplay display = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
@@ -303,6 +323,31 @@ public class BitmapUtil {
 
     egl.eglTerminate(display);
 
-    return Math.max(maximumTextureSize, IMAGE_MAX_BITMAP_DIMENSION);
+    return Math.min(maximumTextureSize, MAX_ALLOWED_TEXTURE_SIZE);
+  }
+
+  public static class ScaleResult {
+    private final byte[] bitmap;
+    private final int    width;
+    private final int    height;
+
+    public ScaleResult(byte[] bitmap, int width, int height) {
+      this.bitmap = bitmap;
+      this.width  = width;
+      this.height = height;
+    }
+
+
+    public byte[] getBitmap() {
+      return bitmap;
+    }
+
+    public int getWidth() {
+      return width;
+    }
+
+    public int getHeight() {
+      return height;
+    }
   }
 }

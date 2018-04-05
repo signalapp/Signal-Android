@@ -10,9 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập cụm từ mật khẩu!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">%d tin nhắn cho mỗi cuộc hội thoại</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">Thao tác này sẽ thu ngắn tức thì tất cả các cuộc hội thoại đến %d tin nhắn gần nhất.</item>
@@ -36,12 +33,8 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ApplicationPreferencesActivity_off">tắt</string>
   <string name="ApplicationPreferencesActivity_Off">Tắt</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Cụm mật khẩu %1$s, Bảo mật màn hình %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Chủ đề %1$s, Ngôn ngữ %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="other">%d phút</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(hình)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(âm thanh)</string>
@@ -241,9 +234,6 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="InviteActivity_heart_content_description">Thích</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
   <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">Gửi %d lời mời qua SMS?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Bạn bè không để bạn mình tán gẫu không có mã khoá.</string>
@@ -254,6 +244,8 @@ sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin
   <string name="MessageRetrievalService_signal">Signal</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Đang xóa tin nhắn...</string>
   <string name="MediaOverviewActivity_Documents">Tài liệu</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Cuộc gọi Signal đang tiến hành</string>
@@ -394,7 +386,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="KeyCachingService_signal_passphrase_cached">Chạm vào để mở.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
   <string name="KeyCachingService_passphrase_cached">Signal đã mở khóa</string>
-  <string name="KeyCachingService_lock">Khóa bằng cụm từ mật khẩu</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Bạn</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Không hỗ trợ dạng truyền thông này</string>
@@ -527,6 +518,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="recipient_preferences__block">Chặn</string>
   <string name="recipient_preferences__color">Màu</string>
   <string name="recipient_preferences__privacy">Riêng tư</string>
+  <string name="recipient_preferences__ringtone">Nhạc chuông</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Cuộc gọi Signal</string>
   <string name="redphone_call_controls__mute">Im lặng</string>
@@ -560,7 +552,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
   <string name="AndroidManifest_archived_conversations">Các cuộc hội thoại đã bảo lưu</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Xuất / nhập</string>
+  <string name="arrays__import_export">Nhập</string>
   <string name="arrays__use_default">Dùng mặc định</string>
   <string name="arrays__use_custom">Dùng tùy chỉnh</string>
   <string name="arrays__mute_for_one_hour">Tạm im 1 tiếng</string>
@@ -595,8 +587,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
   <string name="preferences__change_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="preferences__change_your_passphrase">Đổi cụm từ mật khẩu</string>
-  <string name="preferences__enable_passphrase">Mở cụm từ mật khẩu</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Khoá Signal và thông báo tin nhắn bằng cụm mật khẩu</string>
   <string name="preferences__screen_security">An ninh màn hình</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Chặn không cho chụp màn hình trong danh sách mới nhất và bên trong ứng dụng</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Signal sau một khoảng thời gian không hoạt động định trước</string>
@@ -666,6 +656,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="preferences_chats__message_trimming">Thu gọn tin nhắn</string>
   <string name="preferences_advanced__use_system_emoji">Sử dụng ký tự biểu cảm hệ thống</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Tắt hỗ trợ ký tự biểu cảm mặc định của Signal</string>
+  <string name="preferences_notifications__ringtone">Nhạc chuông</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -732,9 +723,6 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Phiên bản Signal của bạn đã quá cũ</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Phiên bản Signal của bạn sẽ hết hạn trong %d ngày. Chạm để cập nhật lên phiên bản mới nhất.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Phiên bản Signal của bạn sẽ hết hạn vào hôm nay. Chạm để cập nhật lên phiên bản mới nhất.</string>
   <string name="reminder_header_expired_build">Phiên bản Signal của bạn đã hết hạn!</string>
   <string name="reminder_header_expired_build_details">Tin nhắn sẽ không còn được gửi đi được nữa. Chạm để cập nhật lên phiên bản mới nhất.</string>
@@ -763,5 +751,15 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
   <string name="CallNotificationBuilder_connecting">Đang kết nối...</string>
   <string name="Permissions_continue">Tiếp tục</string>
+  <string name="registration_activity__skip">Bỏ qua</string>
+  <string name="registration_activity__register">Đăng ký</string>
+  <string name="RegistrationActivity_restore">Phục hồi</string>
+  <string name="BackupDialog_copied_to_clipboard">Sao chép vào bảng ghi tạm</string>
+  <string name="BackupUtil_never">Không bao giờ</string>
+  <string name="BackupUtil_unknown">Không rõ</string>
+  <string name="AppProtectionPreferenceFragment_none">Không</string>
+  <string name="RegistrationActivity_too_many_attempts">Thử quá nhiều lần</string>
+  <string name="RegistrationLockDialog_disable">Tắt</string>
+  <string name="RegistrationActivity_continue">Tiếp tục</string>
   <!--EOF-->
 </resources>

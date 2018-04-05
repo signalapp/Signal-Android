@@ -223,7 +223,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
         Intent nextIntent = new Intent(getActivity(), ApplicationPreferencesActivity.class);
 
         Intent intent = new Intent(getActivity(), RegistrationActivity.class);
-        intent.putExtra("cancel_button", true);
+        intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
         intent.putExtra("next_intent", nextIntent);
         startActivity(intent);
       }

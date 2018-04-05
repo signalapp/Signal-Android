@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+import android.database.ContentObservable;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,6 +30,8 @@ public class MediaDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DIGEST + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
@@ -53,6 +57,14 @@ public class MediaDatabase extends Database {
     Cursor cursor = database.rawQuery(GALLERY_MEDIA_QUERY, new String[]{threadId+""});
     setNotifyConverationListeners(cursor, threadId);
     return cursor;
+  }
+
+  public void subscribeToMediaChanges(@NonNull ContentObserver observer) {
+    registerAttachmentListeners(observer);
+  }
+
+  public void unsubscribeToMediaChanges(@NonNull ContentObserver observer) {
+    context.getContentResolver().unregisterContentObserver(observer);
   }
 
   public Cursor getDocumentMediaForThread(long threadId) {
@@ -98,7 +110,7 @@ public class MediaDatabase extends Database {
       return new MediaRecord(attachment, address, date, outgoing);
     }
 
-    public Attachment getAttachment() {
+    public DatabaseAttachment getAttachment() {
       return attachment;
     }
 

@@ -11,9 +11,9 @@
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ai setat înca o parolă!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 mesaj per conversație</item>
+    <item quantity="one">%d mesaj per conversație</item>
     <item quantity="few">%d mesaje per conversație</item>
-    <item quantity="other">%d mesaje per conversație</item>
+    <item quantity="other">%d  mesaje per conversație</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Şterg toate mesajele vechi acum?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -39,11 +39,11 @@
   <string name="ApplicationPreferencesActivity_off">dezactivată</string>
   <string name="ApplicationPreferencesActivity_Off">Dezactivate</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Parolă %1$s, Securitate ecran %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Blocare ecran %1$s, Blocare înregistrare %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Limba %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minut</item>
+    <item quantity="one">%d minut</item>
     <item quantity="few">%d minute</item>
     <item quantity="other">%d minute</item>
   </plurals>
@@ -89,8 +89,8 @@
   <string name="ConversationItem_group_action_left">%1$s a părăsit grupul.</string>
   <string name="ConversationItem_click_for_details">Apasă pentru detalii</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Apasă pentru revenirea la soluția ne-securizată</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Reveniţi la SMS necriptat ca soluţie de rezervă?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Reveniţi la MMS necriptat ca soluţie de rezervă?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Revii la SMS necriptat ca soluţie de rezervă?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Revii la MMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Signal.\n\nTrimit mesaj nesecurizat?</string>
   <string name="ConversationItem_unable_to_open_media">Nu a fost găsită nici o aplicație pentru a deschide acest tip media.</string>
   <string name="ConversationItem_copied_text">Copiat %s</string>
@@ -337,12 +337,12 @@ mesajele din baza de date SMS implicită de sistem în Signal. Dacă ai importat
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
   <string name="InviteActivity_invite_to_signal">Invită la Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">TRIMITE SMS LA 1 PRIETEN</item>
+    <item quantity="one">TRIMITE SMS LA %d PRIETEN</item>
     <item quantity="few">TRIMITE SMS LA %d PRIETENI</item>
     <item quantity="other">TRIMITE SMS LA %d PRIETENI</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Trimit o invitație prin SMS?</item>
+    <item quantity="one">Trimit %d invitație prin SMS?</item>
     <item quantity="few">Trimit %d invitații prin SMS?</item>
     <item quantity="other">Trimit %d invitații prin SMS?</item>
   </plurals>
@@ -360,6 +360,8 @@ mesajele din baza de date SMS implicită de sistem în Signal. Dacă ai importat
   <string name="MmsDownloader_error_reading_mms_settings">Eroare la citirea setărilor MMS ale operatorului wireless</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Se șterge</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Se șterg mesajele...</string>
   <string name="MediaOverviewActivity_Documents">Documente</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
@@ -571,7 +573,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KeyCachingService_signal_passphrase_cached">Atinge pentru a-l deschide.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Atinge pentru a deschide sau atinge lacătul pentru a închide.</string>
   <string name="KeyCachingService_passphrase_cached">Signal este deblocat</string>
-  <string name="KeyCachingService_lock">Blocare acces cu parolă</string>
+  <string name="KeyCachingService_lock">Blochează Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
@@ -598,6 +600,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Deschide directorul</string>
+  <string name="SaveAttachmentTask_saved_to">Salvat în %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Caută</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -705,31 +708,31 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--expiration-->
   <string name="expiration_off">Dezactivat</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 secundă</item>
+    <item quantity="one">%d secundă</item>
     <item quantity="few">%d secunde</item>
     <item quantity="other">%d secunde</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minut</item>
+    <item quantity="one">%d minut</item>
     <item quantity="few">%d minute</item>
     <item quantity="other">%d minute</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 oră</item>
+    <item quantity="one">%d oră</item>
     <item quantity="few">%d ore</item>
     <item quantity="other">%d ore</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%do</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 zi</item>
+    <item quantity="one">%d zi</item>
     <item quantity="few">%d zile</item>
     <item quantity="other">%d zile</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dz</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 săptămână</item>
+    <item quantity="one">%d săptămână</item>
     <item quantity="few">%d săptămâni</item>
     <item quantity="other">%d săptămâni</item>
   </plurals>
@@ -812,6 +815,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="recipient_preferences__view_safety_number">Vizualizare număr de siguranță</string>
   <string name="recipient_preferences__chat_settings">Setări conversaţie</string>
   <string name="recipient_preferences__privacy">Confidenţialitate</string>
+  <string name="recipient_preferences__call_settings">Setări apel</string>
+  <string name="recipient_preferences__ringtone">Sunet de apel</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Apel Signal</string>
   <string name="redphone_call_controls__mute">Fără sunet</string>
@@ -864,7 +869,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AndroidManifest_archived_conversations">Conversații arhivate</string>
   <string name="AndroidManifest_remove_photo">Elimină poza</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importă / Exportă</string>
+  <string name="arrays__import_export">Importă</string>
   <string name="arrays__use_default">Implicit</string>
   <string name="arrays__use_custom">Personalizat</string>
   <string name="arrays__mute_for_one_hour">Fără sunet pentru o oră</string>
@@ -907,8 +912,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selectează persoana din lista de contacte.</string>
   <string name="preferences__change_passphrase">Schimbă parola</string>
   <string name="preferences__change_your_passphrase">Schimbă-ți parola</string>
-  <string name="preferences__enable_passphrase">Activează parola</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blochează Signal și notificările mesageriei cu o parolă</string>
+  <string name="preferences__enable_passphrase">Activează parola pentru ecranul de blocare</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blochează ecranul și notificările cu o parolă</string>
   <string name="preferences__screen_security">Securitate ecran</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blochează screenshot-urile în lista cu aplicaţii recente şi în interiorul aplicaţiei</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blochează automat Signal după o perioadă specificată de timp de inactivitate</string>
@@ -990,6 +995,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_notifications__events">Evenimente</string>
   <string name="preferences_notifications__in_chat_sounds">Sunete în conversație</string>
   <string name="preferences_notifications__show">Afișează</string>
+  <string name="preferences_notifications__calls">Apeluri</string>
+  <string name="preferences_notifications__ringtone">Sunet de apel</string>
   <string name="preferences_chats__show_invitation_prompts">Afișează solicitări invitații</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Arată solicitări invitații pentru contactele fără Signal</string>
   <string name="preferences_chats__message_text_size">Marime font mesaje</string>
@@ -1071,7 +1078,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Versiunea ta de Signal este veche</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Versiunea ta de Signal va expira într-o zi. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
+    <item quantity="one">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
     <item quantity="few">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
     <item quantity="other">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
   </plurals>
@@ -1112,5 +1119,86 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Permissions_continue">Continuă</string>
   <string name="Permissions_not_now">Nu acum</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Contacte pentru a putea căuta în contactele tale dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Contacte\".</string>
+  <string name="conversation_activity__enable_signal_messages">ACTIVEAZĂ MESAJELE SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Se migrează baza de date Signal </string>
+  <string name="PushDecryptJob_new_locked_message">Mesaj nou blocat</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Deblochează pentru a vedea mesajele în curs</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Deblochează pentru a finaliza actualizarea</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Te rog deblochează Signal pentru a finaliza actualizarea</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă copie de rezervă</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Copiile de rezervă se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie sa știi această parola pentru a putea restaura o copie de rezervă.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura o copie de siguranță.</string>
+  <string name="registration_activity__restore_backup">Restaurare copie de rezervă</string>
+  <string name="registration_activity__skip">Omite</string>
+  <string name="registration_activity__register">Înregistrare</string>
+  <string name="preferences_chats__chat_backups">Copii de rezervă pt. conversații</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Salvează conversațiile pe stocarea externă</string>
+  <string name="preferences_chats__create_backup">Creează copie de rezervă</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Introdu parola pentru copia de rezervă</string>
+  <string name="RegistrationActivity_restore">Restaurează</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Parola pentru copia de rezervă este incorectă</string>
+  <string name="RegistrationActivity_checking">În curs de verificare</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mesaje până acum...</string>
+  <string name="RegistrationActivity_restore_from_backup">Restaurez dintr-o copie de rezervă?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurează mesajele și media dintr-o copie de rezervă locală. Dacă nu restaurezi acum, nu vei putea restaura mai târziu.</string>
+  <string name="RegistrationActivity_backup_size_s">Mărime copie de rezervă: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Data copiei de rezervă: %s</string>
+  <string name="BackupDialog_enable_local_backups">Activez copiile de rezervă locale?</string>
+  <string name="BackupDialog_enable_backups">Activează copiile de rezervă</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Te rog să îți dai acceptul prin marcarea căsuței de confirmare.</string>
+  <string name="BackupDialog_delete_backups">Șterg copiile de rezervă?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Dezactivez și șterg toate copiile de rezervă locale?</string>
+  <string name="BackupDialog_delete_backups_statement">Șterge copiile de rezervă</string>
+  <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea copii de rezervă, dar a fost refuzat permanent. Te rog continuă la setări aplicație, selectează \"Permisiuni\" și activează \"Stocare\". </string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Ultima copie de rezervă: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">În curs</string>
+  <string name="ProgressPreference_d_messages_so_far">%d mesaje până acum</string>
+  <string name="RegistrationActivity_verify_s">Verifică %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Te rog introdu codul de verficare trimis la %s.</string>
+  <string name="RegistrationActivity_wrong_number">Număr greșit?</string>
+  <string name="BackupUtil_never">Niciodată</string>
+  <string name="BackupUtil_unknown">Necunoscut</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Deblochează Signal</string>
+  <string name="preferences_app_protection__screen_lock">Blocare ecran</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blochează accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
+  <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ai primit prin SMS. Te rog să introduci PIN-ul configurat anterior în aplicație.</string>
+  <string name="registration_activity__registration_lock_pin">PIN de blocare a înregistrării</string>
+  <string name="registration_activity__forgot_pin">Ai uitat PIN-ul?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-ul poate fi din patru sau mai multe cifre. Dacă ai uitat PIN-ul ai putea fi blocat sa-ți accesezi contul până la șapte zile.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Introdu PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Confirmă PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Introdu PIN-ul tău de blocare a înregistrării</string>
+  <string name="registration_lock_reminder_view__enter_pin">Introdu PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Activează un PIN de blocare a înregistrării care va fi necesar la înregistrarea din nou a acestui număr de telefon la Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN de blocare a înregistrării</string>
+  <string name="preferences_app_protection__registration_lock">Blocarea înregistrării</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Trebuie să introduci PIN-ul de blocare al înregistrării</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de blocare a înregistrării incorect</string>
+  <string name="RegistrationActivity_too_many_attempts">Prea multe încercări</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Ai introdus greșit de prea multe ori PIN-ul de blocare a înregistrării. Te rog încearcă din nou peste o zi.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Eroare de conectare la serviciu</string>
+  <string name="RegistrationActivity_oh_no">Oh nu!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Înregistrarea acestui număr de telefon va fi posibilă fără un Cod PIN de Blocare a Înregistrării după 7 zile de când acest număr de telefon a fost activ ultima oară în Signal. Mai ai %d zile rămase.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN de blocare a înregistrării</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Acest număr de telefon are Blocarea Înregistrării activă. Te rog să introduci Codul PIN de Blocare a Înregistrării.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea Înregistrării e activă pentru numărul tău de telefon. Pentru a te ajuta să îți memorezi Codul PIN de Blocare a Înregistrării, Signal îți va cere să îl confirmi periodic.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Mi-am uitat PIN-ul.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">PIN uitat ?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blocarea Înregistrării ajută la protejarea numărului tău de telefon împotriva încercărilor neautorizate de înregistrare. Această facilitate poate fi dezactivată oricând în setările de intimitate ale Signal</string>
+  <string name="RegistrationLockDialog_registration_lock">Blocarea înregistrării</string>
+  <string name="RegistrationLockDialog_enable">Activat</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN-ul de blocare a înregistrării trebuie să aibe cel puțin 4 cifre.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Cele 2 PIN-uri introduse nu se potrivesc.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Eroare de conectare la serviciu</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Dezactivare PIN Blocare Înregistrare?</string>
+  <string name="RegistrationLockDialog_disable">Dezactivează</string>
+  <string name="RegistrationActivity_continue">Continuă</string>
+  <string name="preferences_chats__backups">Copii de rezervă</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal este blocat</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">Apasă pentru deblocare</string>
+  <string name="RegistrationLockDialog_reminder">Memento:</string>
   <!--EOF-->
 </resources>

@@ -74,10 +74,12 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable Uri                  systemContactPhoto;
   private @Nullable Long                 groupAvatarId;
   private           Uri                  contactUri;
-  private @Nullable Uri                  ringtone              = null;
+  private @Nullable Uri                  messageRingtone       = null;
+  private @Nullable Uri                  callRingtone          = null;
   private           long                 mutedUntil            = 0;
   private           boolean              blocked               = false;
-  private           VibrateState         vibrate               = VibrateState.DEFAULT;
+  private           VibrateState         messageVibrate        = VibrateState.DEFAULT;
+  private           VibrateState         callVibrate           = VibrateState.DEFAULT;
   private           int                  expireMessages        = 0;
   private           Optional<Integer>    defaultSubscriptionId = Optional.absent();
   private @NonNull  RegisteredState      registered            = RegisteredState.UNKNOWN;
@@ -124,10 +126,12 @@ public class Recipient implements RecipientModifiedListener {
       this.groupAvatarId         = stale.groupAvatarId;
       this.color                 = stale.color;
       this.customLabel           = stale.customLabel;
-      this.ringtone              = stale.ringtone;
+      this.messageRingtone       = stale.messageRingtone;
+      this.callRingtone          = stale.callRingtone;
       this.mutedUntil            = stale.mutedUntil;
       this.blocked               = stale.blocked;
-      this.vibrate               = stale.vibrate;
+      this.messageVibrate        = stale.messageVibrate;
+      this.callVibrate           = stale.callVibrate;
       this.expireMessages        = stale.expireMessages;
       this.seenInviteReminder    = stale.seenInviteReminder;
       this.defaultSubscriptionId = stale.defaultSubscriptionId;
@@ -146,10 +150,12 @@ public class Recipient implements RecipientModifiedListener {
       this.systemContactPhoto    = details.get().systemContactPhoto;
       this.groupAvatarId         = details.get().groupAvatarId;
       this.color                 = details.get().color;
-      this.ringtone              = details.get().ringtone;
+      this.messageRingtone       = details.get().messageRingtone;
+      this.callRingtone          = details.get().callRingtone;
       this.mutedUntil            = details.get().mutedUntil;
       this.blocked               = details.get().blocked;
-      this.vibrate               = details.get().vibrateState;
+      this.messageVibrate        = details.get().messageVibrateState;
+      this.callVibrate           = details.get().callVibrateState;
       this.expireMessages        = details.get().expireMessages;
       this.seenInviteReminder    = details.get().seenInviteReminder;
       this.defaultSubscriptionId = details.get().defaultSubscriptionId;
@@ -174,10 +180,12 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.groupAvatarId         = result.groupAvatarId;
             Recipient.this.color                 = result.color;
             Recipient.this.customLabel           = result.customLabel;
-            Recipient.this.ringtone              = result.ringtone;
+            Recipient.this.messageRingtone       = result.messageRingtone;
+            Recipient.this.callRingtone          = result.callRingtone;
             Recipient.this.mutedUntil            = result.mutedUntil;
             Recipient.this.blocked               = result.blocked;
-            Recipient.this.vibrate               = result.vibrateState;
+            Recipient.this.messageVibrate        = result.messageVibrateState;
+            Recipient.this.callVibrate           = result.callVibrateState;
             Recipient.this.expireMessages        = result.expireMessages;
             Recipient.this.seenInviteReminder    = result.seenInviteReminder;
             Recipient.this.defaultSubscriptionId = result.defaultSubscriptionId;
@@ -219,10 +227,12 @@ public class Recipient implements RecipientModifiedListener {
     this.groupAvatarId         = details.groupAvatarId;
     this.color                 = details.color;
     this.customLabel           = details.customLabel;
-    this.ringtone              = details.ringtone;
+    this.messageRingtone       = details.messageRingtone;
+    this.callRingtone          = details.callRingtone;
     this.mutedUntil            = details.mutedUntil;
     this.blocked               = details.blocked;
-    this.vibrate               = details.vibrateState;
+    this.messageVibrate        = details.messageVibrateState;
+    this.callVibrate           = details.callVibrateState;
     this.expireMessages        = details.expireMessages;
     this.seenInviteReminder    = details.seenInviteReminder;
     this.defaultSubscriptionId = details.defaultSubscriptionId;
@@ -452,17 +462,33 @@ public class Recipient implements RecipientModifiedListener {
     if (notify) notifyListeners();
   }
 
-  public synchronized @Nullable Uri getRingtone() {
-    if (ringtone != null && ringtone.getScheme() != null && ringtone.getScheme().startsWith("file")) {
+  public synchronized @Nullable Uri getMessageRingtone() {
+    if (messageRingtone != null && messageRingtone.getScheme() != null && messageRingtone.getScheme().startsWith("file")) {
       return null;
     }
 
-    return ringtone;
+    return messageRingtone;
   }
 
-  public void setRingtone(@Nullable Uri ringtone) {
+  public void setMessageRingtone(@Nullable Uri ringtone) {
     synchronized (this) {
-      this.ringtone = ringtone;
+      this.messageRingtone = ringtone;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized @Nullable Uri getCallRingtone() {
+    if (callRingtone != null && callRingtone.getScheme() != null && callRingtone.getScheme().startsWith("file")) {
+      return null;
+    }
+
+    return callRingtone;
+  }
+
+  public void setCallRingtone(@Nullable Uri ringtone) {
+    synchronized (this) {
+      this.callRingtone = ringtone;
     }
 
     notifyListeners();
@@ -492,13 +518,25 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
-  public synchronized VibrateState getVibrate() {
-    return vibrate;
+  public synchronized VibrateState getMessageVibrate() {
+    return messageVibrate;
   }
 
-  public void setVibrate(VibrateState vibrate) {
+  public void setMessageVibrate(VibrateState vibrate) {
     synchronized (this) {
-      this.vibrate = vibrate;
+      this.messageVibrate = vibrate;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized  VibrateState getCallVibrate() {
+    return callVibrate;
+  }
+
+  public void setCallVibrate(VibrateState vibrate) {
+    synchronized (this) {
+      this.callVibrate = vibrate;
     }
 
     notifyListeners();

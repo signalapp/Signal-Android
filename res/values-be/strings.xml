@@ -129,6 +129,8 @@
   <!--MessageRetrievalService-->
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Выдаленне</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Выдаленне паведамлення...</string>
   <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>
@@ -199,7 +201,6 @@
   <string name="ApplicationMigrationService_import_in_progress">Імпарт у працэсе</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпарт тэкставых паведамленняў</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_lock">Замкнуць гэты пароль</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Гэты медыя тып не падтрымліваецца</string>
@@ -319,7 +320,7 @@
   <string name="AndroidManifest__select_contacts">Абраць кантакты</string>
   <string name="AndroidManifest__change_passphrase">Змяніць пароль</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Імпарт / экспарт</string>
+  <string name="arrays__import_export">Імпарт</string>
   <string name="arrays__use_default">Выкарыстоўваць стандартны</string>
   <string name="arrays__use_custom">Выкарыстоўваць кастамны</string>
   <string name="arrays__normal">Нармальна</string>
@@ -339,7 +340,6 @@
   <string name="preferences__choose_identity">Абярыце ідэнтыфікатар</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Абярыце кантакт са спісу.</string>
   <string name="preferences__change_passphrase">Змяніць пароль.</string>
-  <string name="preferences__enable_passphrase">Уключыць пароль</string>
   <string name="preferences__screen_security">Бяспека экрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блакіраваць магчымасць рабіць скрыншоты ўнутры праграмы</string>
   <string name="preferences__notifications">Апавяшчэнні</string>
@@ -453,5 +453,14 @@
   <string name="transport_selection_list_item__transport_icon">Транспартны значок</string>
   <string name="CallNotificationBuilder_connecting">Падлучэнне...</string>
   <string name="Permissions_continue">Працягнуць</string>
+  <string name="registration_activity__skip">Прапусціць</string>
+  <string name="registration_activity__register">Зарэгістравацца</string>
+  <string name="RegistrationActivity_restore">Аднавіць</string>
+  <string name="BackupUtil_never">Ніколі</string>
+  <string name="BackupUtil_unknown">Невядома</string>
+  <string name="AppProtectionPreferenceFragment_none">Няма</string>
+  <string name="RegistrationActivity_too_many_attempts">Зашмат спробаў</string>
+  <string name="RegistrationLockDialog_disable">Выключыць</string>
+  <string name="RegistrationActivity_continue">Працягнуць</string>
   <!--EOF-->
 </resources>

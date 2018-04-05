@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldende: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke valgt en passordfrase enda.</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 melding per samtale</item>
+    <item quantity="one">%d melding per samtale</item>
     <item quantity="other">%d meldinger per samtale</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Vil du slette alle gamle meldinger nå?</string>
@@ -37,11 +37,11 @@
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Passord %1$s, Skjermsikkerhet %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Skjermlås %1$s, registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minutt</item>
+    <item quantity="one">%d minutt</item>
     <item quantity="other">%d minutter</item>
   </plurals>
   <!--DraftDatabase-->
@@ -283,8 +283,8 @@
   <string name="GroupCreateActivity_loading_group_details">Laster inn gruppedetaljer </string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du ligger allerede i gruppa.</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Del ditt profilnavn og bilde med denne gruppen?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ønsker du å gjøre profilnavn og bilde synlig for alle nåværende og fremtidige medlemmer av denne gruppen?</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Vil du dele profilnavnet og bildet ditt med denne gruppa?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vil du gjøre profilnavn og bilde synlig for alle gjeldende og fremtidige medlemmer av denne gruppa?</string>
   <string name="GroupShareProfileView_make_visible">Gjør synlig</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Meg</string>
@@ -324,11 +324,11 @@ fører dette til dupliserte meldinger.</string>
   <string name="InviteActivity_invitations_sent">Invitasjoner sendt.</string>
   <string name="InviteActivity_invite_to_signal">Inviter til Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SEND SMS TIL 1 VENN</item>
-    <item quantity="other">SEND SMS TIL %d VENNER</item>
+    <item quantity="one">SEND SMS TIL %dVENN</item>
+    <item quantity="other">SEND SMS TIL %dVENNER</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Vil du sende 1 SMS-invitasjon?</item>
+    <item quantity="one">Vil du sende %d SMS-invitasjon?</item>
     <item quantity="other">Vil du sende %d SMS-invitasjoner?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">La oss bytte til Signal. %1$s</string>
@@ -345,6 +345,8 @@ fører dette til dupliserte meldinger.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Feil under lesing av oppsett for MMS-leverandør</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medier</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger …</string>
   <string name="MediaOverviewActivity_Documents">Dokumenter</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
@@ -361,8 +363,8 @@ fører dette til dupliserte meldinger.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen om å oppdatere til nyeste versjon og sende meldinga på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
-  <string name="MessageRecord_you_updated_group">Du har oppdatert gruppen.</string>
-  <string name="MessageRecord_s_updated_group">%s oppdaterte gruppen.</string>
+  <string name="MessageRecord_you_updated_group">Du har oppdatert gruppa.</string>
+  <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
   <string name="MessageRecord_s_called_you">%s ringte deg</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_missed_call_from">Tapt anrop fra %s</string>
@@ -489,7 +491,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe oppdatert</string>
-  <string name="ThreadRecord_left_the_group">Forlot gruppen</string>
+  <string name="ThreadRecord_left_the_group">Forlot gruppa</string>
   <string name="ThreadRecord_secure_session_reset">Sikker økt tilbakestilt.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
   <string name="ThreadRecord_called">Du ringte</string>
@@ -510,7 +512,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokkerte kontakter kan ikke sende meldinger til deg eller ringe deg.</string>
   <string name="UnknownSenderView_block">Blokker</string>
   <string name="UnknownSenderView_share_profile_with_s">Del profilen med %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Den enkleste måten å dele profilinformasjon på er å legge til senderen i dine kontakter. Om du ikke ønsker det, kan du fortsatt dele informasjonen her.</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Den enkleste måten å dele profilinformasjon på er å legge til avsender i kontaktlista. Hvis du ikke vil gjøre det, kan du fortsatt dele informasjonen her.</string>
   <string name="UnknownSenderView_share_profile">Del profil</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Send melding?</string>
@@ -556,7 +558,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Trykk for å åpne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Trykk for å åpne, eller trykk på lås for å lukke.</string>
   <string name="KeyCachingService_passphrase_cached">Signal er låst opp</string>
-  <string name="KeyCachingService_lock">Lås med passord</string>
+  <string name="KeyCachingService_lock">Lås Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Deg</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ustøttet medietype</string>
@@ -583,6 +585,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuickResponseService_problem_sending_message">Det oppstod et problem under sending av melding.</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Åpne katalogen</string>
+  <string name="SaveAttachmentTask_saved_to">Lagret til %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Søk</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -598,7 +601,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal krever tillatelser fra systemet for å kunne ringe eller motta samtaler, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhetsnummeret for samtalen din med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare gjeninstalleres Signal.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ønsker kanskje å bekrefte din sikkerhets nummer med denne kontakten.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du bør bekrefte sikkerhetsnummeret ditt med denne kontakten.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Ny sikkerhets nummer</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Trykk for å ta i bruk video</string>
@@ -690,27 +693,27 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--expiration-->
   <string name="expiration_off">Av</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 sekund</item>
+    <item quantity="one">%d sekund</item>
     <item quantity="other">%d sekunder</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minutt</item>
+    <item quantity="one">%d minutt</item>
     <item quantity="other">%d minutter</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 time</item>
+    <item quantity="one">%d time</item>
     <item quantity="other">%d timer</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dt</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 dag</item>
+    <item quantity="one">%d dag</item>
     <item quantity="other">%d dager</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 uke</item>
+    <item quantity="one">%d uke</item>
     <item quantity="other">%d uker</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%du</string>
@@ -768,7 +771,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Gruppenavnet er nå «%1$s».</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Gjør profilnavnet og profilbildet ditt synlig for denne gruppen?</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Vil du gjøre profilnavnet og profilbildet ditt synlig for denne gruppa?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--prompt_mms_activity-->
@@ -790,6 +793,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="recipient_preferences__view_safety_number">Vis sikkerhetsnummer</string>
   <string name="recipient_preferences__chat_settings">Samtale-innstillinger</string>
   <string name="recipient_preferences__privacy">Personvern</string>
+  <string name="recipient_preferences__call_settings">Samtaleinnstillinger</string>
+  <string name="recipient_preferences__ringtone">Ringetone</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-samtale</string>
   <string name="redphone_call_controls__mute">Demp</string>
@@ -810,7 +815,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="unknown_sender_view__add_to_contacts">LEGG TIL KONTAKTER</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">IKKE LEGG TIL, MEN GJØR PROFILEN MIN SYNLIG</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du ønsker å verifisere at krypteringen er sikker for %s, sammenlign tallet over med tallet på kontaktens mobil/enhet. Alternativt, kan du skanne koden på kontaktens telefon, eller be personen om å skanne koden på din. <a href="https://whispersystems.org/redirect/safety-numbers">Lær mer.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekrefte at du har en sikker kryptering mot %s, sammenlikner du tallet overfor med tallet på kontaktens enhet. Du kan også skanne koden på kontaktens enhet, eller be personen om å skanne koden på din. <a href="https://whispersystems.org/redirect/safety-numbers">Lær mer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <string name="verify_display_fragment__loading">Laster...</string>
   <string name="verify_display_fragment__verified">Verifisert</string>
@@ -842,7 +847,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="AndroidManifest_archived_conversations">Lagrede samtaler</string>
   <string name="AndroidManifest_remove_photo">Fjern bilde</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importer / eksporter</string>
+  <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
   <string name="arrays__use_custom">Bruk selvvalgt</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
@@ -884,8 +889,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passord</string>
   <string name="preferences__change_your_passphrase">Endre passordet ditt</string>
-  <string name="preferences__enable_passphrase">Bruk passordfrase</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås Signal og meldingsvarsler med passordfrase</string>
+  <string name="preferences__enable_passphrase">Slå på passordlås</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skjerm og varsler med passordfrase</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilder i sist brukte-liste og i programmet</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatisk etter valgt tid uten aktivitet</string>
@@ -966,6 +971,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_notifications__events">Hendelser</string>
   <string name="preferences_notifications__in_chat_sounds">Samtalelyder</string>
   <string name="preferences_notifications__show">Vis</string>
+  <string name="preferences_notifications__calls">Samtaler</string>
+  <string name="preferences_notifications__ringtone">Ringetone</string>
   <string name="preferences_chats__show_invitation_prompts">Vis invitasjonsmeldinger</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitasjonsspørringer for kontakter som ikke har Signal</string>
   <string name="preferences_chats__message_text_size">Skriftstørrelse i meldinger</string>
@@ -1048,8 +1055,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Denne Signal-installasjonen er utdatert</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Denne versjonen av Signal utgår om 1 dag. Trykk for å oppdatere til nyeste versjon.</item>
-    <item quantity="other">Denne versjonen av Signal utgår om %d dager. Trykk for å oppdatere til nyeste versjon.</item>
+    <item quantity="one">Denne versjonen av Signal utløper om %ddag. Trykk for å oppdatere programmet til nyeste versjon.</item>
+    <item quantity="other">Denne versjonen av Signal utløper om %d dag. Trykk for å oppdatere programmet til nyeste versjon.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Denne versjonen av Signal utgår i dag. Trykk for å oppdatere til nyeste versjon.</string>
   <string name="reminder_header_expired_build">Denne versjonen av Signal er utgått.</string>
@@ -1088,5 +1095,86 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="Permissions_continue">Fortsett</string>
   <string name="Permissions_not_now">Ikke nå</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne søke etter kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
+  <string name="conversation_activity__enable_signal_messages">SLÅ PÅ SIGNAL-MELDINGER</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Flytter Signal-database</string>
+  <string name="PushDecryptJob_new_locked_message">Ny låst melding</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å vise ventende meldinger</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås opp for å fullføre oppdatering</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås opp Signal for å fullføre oppdatering</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Passordfrase for sikkerhetskopi</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Sikkerhetskopier blir lagret på eksterne enheter og kryptert med passordfrasen nedenfor. Du må skrive inn denne passordfrasen for å kunne gjennopprette fra en sikkerhetskopi.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har notert passordfrasen. Uten denne blir det umulig å bruke sikkerhetskopien til gjenoppretting.</string>
+  <string name="registration_activity__restore_backup">Gjenopprett fra sikkerhetskopi</string>
+  <string name="registration_activity__skip">Hopp over</string>
+  <string name="registration_activity__register">Registrer</string>
+  <string name="preferences_chats__chat_backups">Samtale-sikkerhetskopier</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Sikkerhetskopier samtaler til ekstern lagringsenhet</string>
+  <string name="preferences_chats__create_backup">Lag sikkerhetskopi</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Skriv inn passordfrase for sikkerhetskopi</string>
+  <string name="RegistrationActivity_restore">Gjenopprett</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Feil passordfrase for sikkerhetskopi</string>
+  <string name="RegistrationActivity_checking">Kontrollerer …</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d meldinger hittil …</string>
+  <string name="RegistrationActivity_restore_from_backup">Vil du gjenopprette fra sikkerhetskopi?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Gjenopprett meldinger og medier fra en lokal sikkerhetskopi. Du får ingen flere mulighet til å gjøre dette senere.</string>
+  <string name="RegistrationActivity_backup_size_s">Sikkerhetskopi-størrelse: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Tidsstempel for sikkerhetskopi: %s</string>
+  <string name="BackupDialog_enable_local_backups">Vil du slå på lokal sikkerhetskopiering?</string>
+  <string name="BackupDialog_enable_backups">Slå på sikkerhetskopiering</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Bekreft at du forstår hvordan dette fungerer ved å krysse av boksen nedenfor.</string>
+  <string name="BackupDialog_delete_backups">Vil du slette disse sikkerhetskopiene?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Vil du slå av og slette alle lokale sikkerhetskopier?</string>
+  <string name="BackupDialog_delete_backups_statement">Slett sikkerhetskopier</string>
+  <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavle</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Forrige sikkerhetskopi: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Under behandling</string>
+  <string name="ProgressPreference_d_messages_so_far">%d meldinger hittil</string>
+  <string name="RegistrationActivity_verify_s">Bekreft %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn bekreftelseskoden som er sendt til %s.</string>
+  <string name="RegistrationActivity_wrong_number">Feil nummer?</string>
+  <string name="BackupUtil_never">Aldri</string>
+  <string name="BackupUtil_unknown">Ukjent</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Lås opp Signal</string>
+  <string name="preferences_app_protection__screen_lock">Skjerm lås</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås signaltilgang med Android skjermlås eller fingeravtrykk</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsavbrudd for skjermlås ved inaktivitet.</string>
+  <string name="AppProtectionPreferenceFragment_none">Ingen</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreringslås-PIN-koden er ikke den samme som SMS-bekreftelseskoden du nettopp har mottatt. Vennligst skriv inn PIN-koden du tidligere konfigurert i programmet.</string>
+  <string name="registration_activity__registration_lock_pin">Registrerings-PIN-kode</string>
+  <string name="registration_activity__forgot_pin">Har du glemt PIN-koden?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-koden kan bestå av fire eller flere sifre. Hvis du glemmer PIN-koden din, kan du bli låst ut av kontoen din i inntil sju dager.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Skriv inn PIN-kode</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Bekreft PIN-koden</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Skriv inn registrerings-PIN-kode</string>
+  <string name="registration_lock_reminder_view__enter_pin">Skriv inn PIN-kode</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Slå på en registrerings-PIN-kode som må tastes inn for å registrere dette telefonnummeret med Signal på nytt.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Registrerings-PIN-kode</string>
+  <string name="preferences_app_protection__registration_lock">Registreringslås</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du må skrive inn registrerings-PIN-koden</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Feil registrerings-PIN-kode</string>
+  <string name="RegistrationActivity_too_many_attempts">For mange forsøk</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har gjort for mange feilaktige registreringslås-PIN-forsøk. Vennligst prøv igjen på en dag.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Feil under tilkobling til tjeneste</string>
+  <string name="RegistrationActivity_oh_no">Å nei!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Du må vente 7 dager etter at Signal sist ble brukt med dette telefonnummeret før du kan registrere nummeret på nytt uten å taste inn registrerings-PIN-koden. %d dager gjenstår.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Registrerings-PIN-kode</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Dette telefonnummeret er låst i Signal med registreringslås. Skriv inn registrerings-PIN-koden.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Telefonnummeret ditt er låst for registrering i Signal med en PIN-kode. Signal ber deg regelmessig om å bekrefte denne koden, slik at du husker den.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Jeg har glemt PIN-koden min.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Har du glemt PIN-koden?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås hjelper deg med å beskytte telefonnummeret ditt fra å bli misbrukt til Signal av uvedkommende. Du kan slå av denne funksjonen når som helst i personverninnstillingene.</string>
+  <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
+  <string name="RegistrationLockDialog_enable">Aktiver</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Registrerings-PIN-koden må bestå av minst 4 sifre.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">PIN-kodene du skrev inn var ikke like.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Feil ved å koble til tjenesten</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Vil du slå av registreringslåsen?</string>
+  <string name="RegistrationLockDialog_disable">Slå av</string>
+  <string name="RegistrationActivity_continue">Fortsett</string>
+  <string name="preferences_chats__backups">Sikkerhetskopier</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSE OPP</string>
+  <string name="RegistrationLockDialog_reminder">Påminnelse:</string>
   <!--EOF-->
 </resources>

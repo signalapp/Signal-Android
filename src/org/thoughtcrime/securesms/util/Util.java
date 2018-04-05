@@ -40,7 +40,6 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
-import android.widget.EditText;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
@@ -49,6 +48,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -126,8 +126,8 @@ public class Util {
     return value == null || value.length == 0;
   }
 
-  public static boolean isEmpty(EditText value) {
-    return value == null || value.getText() == null || TextUtils.isEmpty(value.getText().toString());
+  public static boolean isEmpty(ComposeText value) {
+    return value == null || value.getText() == null || TextUtils.isEmpty(value.getTextTrimmed());
   }
 
   public static CharSequence getBoldedString(String value) {
@@ -205,6 +205,18 @@ public class Util {
     if (address.isEmail()) return false;
 
     return TextSecurePreferences.getLocalNumber(context).equals(address.toPhoneString());
+  }
+
+  public static void readFully(InputStream in, byte[] buffer) throws IOException {
+    int offset = 0;
+
+    for (;;) {
+      int read = in.read(buffer, offset, buffer.length - offset);
+      if (read == -1) throw new IOException("Stream ended early");
+
+      if (read + offset < buffer.length) offset += read;
+      else                		           return;
+    }
   }
 
   public static byte[] readFully(InputStream in) throws IOException {
@@ -351,11 +363,7 @@ public class Util {
   }
 
   public static SecureRandom getSecureRandom() {
-    try {
-      return SecureRandom.getInstance("SHA1PRNG");
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    return new SecureRandom();
   }
 
   public static int getDaysTillBuildExpiry() {

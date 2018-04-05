@@ -37,6 +37,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
@@ -248,7 +250,8 @@ public class AttachmentManager {
   public void setMedia(@NonNull final GlideRequests glideRequests,
                        @NonNull final Uri[] uris,
                        @NonNull final MediaType[] mediaTypes,
-                       @NonNull final MediaConstraints constraints)
+                       @NonNull final MediaConstraints constraints,
+                                final Pair<Integer, Integer>[] dimens)
   {
     inflateStub();
 
@@ -266,12 +269,12 @@ public class AttachmentManager {
         for (int i = 0; i < uris.length; i++) {
           try {
             if (PartAuthority.isLocalUri(uris[i])) {
-              result[i] = getManuallyCalculatedSlideInfo(uris[i], mediaTypes[i]);
+              result[i] = getManuallyCalculatedSlideInfo(uris[i], mediaTypes[i], dimens != null ? dimens[i] : null);
             } else {
-              result[i] = getContentResolverSlideInfo(uris[i], mediaTypes[i]);
+              result[i] = getContentResolverSlideInfo(uris[i], mediaTypes[i], dimens != null ? dimens[i] : null);
 
               if (result[i] == null) {
-                result[i] = getManuallyCalculatedSlideInfo(uris[i], mediaTypes[i]);
+                result[i] = getManuallyCalculatedSlideInfo(uris[i], mediaTypes[i], dimens != null ? dimens[i] : null);
               }
             }
           } catch (IOException e) {
@@ -310,11 +313,12 @@ public class AttachmentManager {
                           @NonNull final Uri uri,
                           @NonNull final MediaType mediaType,
                           @NonNull final MediaConstraints constraints,
-                          final int datasetPosition) {
+                                   final Pair<Integer, Integer> dimens,
+                                   final int datasetPosition) {
     if (!attachmentViewStub.resolved() ||
         slides == null ||
         attachmentRecyclerView.getAdapter() == null) {
-      setMedia(glideRequests, new Uri[]{uri}, new MediaType[]{mediaType}, constraints);
+      setMedia(glideRequests, new Uri[]{uri}, new MediaType[]{mediaType}, constraints, new Pair[]{dimens});
     } else {
       new AsyncTask<Void, Void, Slide>() {
         @Override
@@ -329,12 +333,12 @@ public class AttachmentManager {
           Slide result;
           try {
             if (PartAuthority.isLocalUri(uri)) {
-              result = getManuallyCalculatedSlideInfo(uri, mediaType);
+              result = getManuallyCalculatedSlideInfo(uri, mediaType, dimens);
             } else {
-              result = getContentResolverSlideInfo(uri, mediaType);
+              result = getContentResolverSlideInfo(uri, mediaType, dimens);
 
               if (result == null) {
-                result = getManuallyCalculatedSlideInfo(uri, mediaType);
+                result = getManuallyCalculatedSlideInfo(uri, mediaType, dimens);
               }
             }
           } catch (IOException e) {
@@ -373,7 +377,7 @@ public class AttachmentManager {
     }
   }
 
-  private @Nullable Slide getContentResolverSlideInfo(Uri uri, MediaType mediaType) {
+  private @Nullable Slide getContentResolverSlideInfo(Uri uri, MediaType mediaType, Pair<Integer, Integer> dimens) {
     Cursor cursor = null;
     long   start  = System.currentTimeMillis();
 
@@ -385,8 +389,12 @@ public class AttachmentManager {
         long   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
         String mimeType = context.getContentResolver().getType(uri);
 
+        if (dimens == null || dimens.first == 0 || dimens.second == 0) {
+          dimens = MediaUtil.getDimensions(context, mimeType, uri);
+        }
+
         Log.w(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, fileName, mimeType, fileSize);
+        return mediaType.createSlide(context, uri, fileName, mimeType, fileSize, dimens.first, dimens.second);
       }
     } finally {
       if (cursor != null) cursor.close();
@@ -395,7 +403,7 @@ public class AttachmentManager {
     return null;
   }
 
-  private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri, MediaType mediaType) throws IOException {
+  private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri, MediaType mediaType, Pair<Integer,Integer> dimens) throws IOException {
     long start      = System.currentTimeMillis();
     Long mediaSize  = null;
     String fileName = null;
@@ -411,8 +419,12 @@ public class AttachmentManager {
       mediaSize = MediaUtil.getMediaSize(context, uri);
     }
 
+    if (dimens == null || dimens.first == 0 || dimens.second == 0) {
+      dimens = MediaUtil.getDimensions(context, mimeType, uri);
+    }
+
     Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-    return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize);
+    return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize, dimens.first, dimens.second);
   }
 
   public boolean isAttachmentPresent() {
@@ -596,29 +608,25 @@ public class AttachmentManager {
   public enum MediaType {
     IMAGE, GIF, AUDIO, VIDEO, DOCUMENT;
 
-    public @NonNull
-    Slide createSlide(@NonNull Context context,
-                      @NonNull Uri uri,
-                      @Nullable String fileName,
-                      @Nullable String mimeType,
-                      long dataSize) {
+    public @NonNull Slide createSlide(@NonNull  Context context,
+                                      @NonNull  Uri     uri,
+                                      @Nullable String fileName,
+                                      @Nullable String mimeType,
+                                                long    dataSize,
+                                                int     width,
+                                                int     height)
+    {
       if (mimeType == null) {
         mimeType = "application/octet-stream";
       }
 
       switch (this) {
-        case IMAGE:
-          return new ImageSlide(context, uri, dataSize);
-        case GIF:
-          return new GifSlide(context, uri, dataSize);
-        case AUDIO:
-          return new AudioSlide(context, uri, dataSize, false);
-        case VIDEO:
-          return new VideoSlide(context, uri, dataSize);
-        case DOCUMENT:
-          return new DocumentSlide(context, uri, mimeType, dataSize, fileName);
-        default:
-          throw new AssertionError("unrecognized enum");
+      case IMAGE:    return new ImageSlide(context, uri, dataSize, width, height);
+      case GIF:      return new GifSlide(context, uri, dataSize, width, height);
+      case AUDIO:    return new AudioSlide(context, uri, dataSize, false);
+      case VIDEO:    return new VideoSlide(context, uri, dataSize);
+      case DOCUMENT: return new DocumentSlide(context, uri, mimeType, dataSize, fileName);
+      default:       throw  new AssertionError("unrecognized enum");
       }
     }
 
@@ -654,7 +662,6 @@ public class AttachmentManager {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-      // TODO: check if this is necessary
       holder.thumbnail.clear(glideRequests);
       holder.thumbnail.showProgressSpinner();
 
@@ -669,7 +676,8 @@ public class AttachmentManager {
         holder.documentView.setDocument((DocumentSlide) slides.get(position), false);
         holder.removableMediaView.display(holder.documentView, false);
       } else {
-        holder.thumbnail.setImageResource(glideRequests, slides.get(position), false, true);
+        Attachment attachment = slides.get(position).asAttachment();
+        holder.thumbnail.setImageResource(glideRequests, slides.get(position), false, true, attachment.getWidth(), attachment.getHeight());
         holder.removableMediaView.display(holder.thumbnail, slides.get(position).hasImage());
       }
     }
@@ -746,7 +754,7 @@ public class AttachmentManager {
         Intent intent = new Intent(context, ScribbleActivity.class);
         intent.setData(slides.get(position).getUri());
         intent.putExtra(ScribbleActivity.EXTRA_DATASET_POSITION, position);
-        ((Activity)context).startActivityForResult(intent, ScribbleActivity.SCRIBBLE_REQUEST_CODE);
+        ((Activity) context).startActivityForResult(intent, ScribbleActivity.SCRIBBLE_REQUEST_CODE);
       }
     }
   }

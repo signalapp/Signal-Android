@@ -10,11 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Тренутно: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Још нисте поставили лозинку!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 порука по преписци</item>
-    <item quantity="few">%d поруке по преписци</item>
-    <item quantity="other">%d порука по преписци</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Обрисати старе поруке сада?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Ово ће одмах да скрати све преписке на најскорију поруку.</item>
@@ -40,14 +35,8 @@
   <string name="ApplicationPreferencesActivity_off">искључено</string>
   <string name="ApplicationPreferencesActivity_Off">Искључено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">СМС %1$s, ММС %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Закључавање лозинком %1$s, обезбеђење екрана %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, језик %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 минута</item>
-    <item quantity="few">%d минуте</item>
-    <item quantity="other">%d минута</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(слика)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(звук)</string>
@@ -306,16 +295,6 @@
   <string name="InviteActivity_heart_content_description">Срце</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
   <string name="InviteActivity_invite_to_signal">Слање позивнице за Сигнал</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ПОШАЉИ СМС 1 ПРИЈАТЕЉУ</item>
-    <item quantity="few">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-    <item quantity="other">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Послати 1 СМС позивницу?</item>
-    <item quantity="few">Послати %d СМС позивнице?</item>
-    <item quantity="other">Послати %d СМС позивница?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Пребацимо се на Сигнал: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатељи не допуштају пријатељима да ћаскају небезбедно.</string>
@@ -329,6 +308,8 @@
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Грешка читања поставки ММС послужиоца</string>
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Брисање</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Бришем поруке...</string>
   <string name="MediaOverviewActivity_Documents">Документи</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Сигнала у току</string>
@@ -514,7 +495,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">Тапните за отварање.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Тапните за отварање или тапните браву да затворите.</string>
   <string name="KeyCachingService_passphrase_cached">Сигнал је откључан</string>
-  <string name="KeyCachingService_lock">Закључај лозинком</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ви</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Неподржан тип медијума</string>
@@ -631,35 +611,10 @@
   <string name="experience_upgrade_activity__continue">настави</string>
   <!--expiration-->
   <string name="expiration_off">Искључено</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">1 секунда</item>
-    <item quantity="few">%d секунде</item>
-    <item quantity="other">%d секунди</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%d s</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">1 минута</item>
-    <item quantity="few">%d минуте</item>
-    <item quantity="other">%d минута</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%d m</string>
-  <plurals name="expiration_hours">
-    <item quantity="one">1 сат</item>
-    <item quantity="few">%d сата</item>
-    <item quantity="other">%d сати</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%d h</string>
-  <plurals name="expiration_days">
-    <item quantity="one">1 дан</item>
-    <item quantity="few">%d дана</item>
-    <item quantity="other">%d дана</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%d д</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">1 седмица</item>
-    <item quantity="few">%d седмице</item>
-    <item quantity="other">%d седмица</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%d с</string>
   <!--unverified safety numbers-->
   <!--giphy_activity-->
@@ -717,6 +672,7 @@
   <string name="recipient_preferences__block">Блокирај</string>
   <string name="recipient_preferences__color">Боја</string>
   <string name="recipient_preferences__privacy">Приватност</string>
+  <string name="recipient_preferences__ringtone">Звоно</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Позив на Сигналу</string>
   <string name="redphone_call_controls__mute">Без звука</string>
@@ -757,7 +713,7 @@
   <string name="AndroidManifest__invite_friends">Позивница пријатељима</string>
   <string name="AndroidManifest_archived_conversations">Архивиране преписке</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Увоз/извоз</string>
+  <string name="arrays__import_export">Увези</string>
   <string name="arrays__use_default">Користи подразумевано</string>
   <string name="arrays__use_custom">Користи посебно</string>
   <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
@@ -800,8 +756,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изаберите унос вашег контакта са списка контаката.</string>
   <string name="preferences__change_passphrase">Измени лозинку</string>
   <string name="preferences__change_your_passphrase">Измените вашу лозинку</string>
-  <string name="preferences__enable_passphrase">Омогући лозинку</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Закључај Сигнал и обавештења о порукама лозинком</string>
   <string name="preferences__screen_security">Безбедност екрана</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Аутоматски закључај Сигнал након одређеног интервала неактивности</string>
@@ -877,6 +831,7 @@
   <string name="preferences_notifications__events">Догађаји</string>
   <string name="preferences_notifications__in_chat_sounds">Звуци ћаскања</string>
   <string name="preferences_notifications__show">Прикажи</string>
+  <string name="preferences_notifications__ringtone">Звоно</string>
   <string name="preferences_chats__show_invitation_prompts">Упити за слање позивница</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Приказ упита за слање позивница контактима који нису на Сигналу</string>
   <string name="preferences_chats__message_text_size">Величина фонта поруке</string>
@@ -954,11 +909,6 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Упореди са клипбордом</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Ваше издање Сигнала је застарело!</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Ваше издање Сигнала истиче за 1 дан. Тапните да надоградите на најскорије издање.</item>
-    <item quantity="few">Ваше издање Сигнала истиче за %d дана. Тапните да надоградите на најскорије издање.</item>
-    <item quantity="other">Ваше издање Сигнала истиче за %d дана. Тапните да надоградите на најскорије издање.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Ваше издање Сигнала истиче данас. Тапните да надоградите на најскорије издање.</string>
   <string name="reminder_header_expired_build">Ваше издање Сигнала је истекло!</string>
   <string name="reminder_header_expired_build_details">Више нећете моћи успешно да шаљете поруке. Тапните да надоградите на најскорије издање.</string>
@@ -990,5 +940,15 @@
   <string name="transport_selection_list_item__transport_icon">Икона преноса</string>
   <string name="CallNotificationBuilder_connecting">Повезујем се...</string>
   <string name="Permissions_continue">Настави</string>
+  <string name="registration_activity__skip">Прескочи</string>
+  <string name="registration_activity__register">Пријави ме</string>
+  <string name="RegistrationActivity_restore">Врати</string>
+  <string name="BackupDialog_copied_to_clipboard">Копирано на клипборд</string>
+  <string name="BackupUtil_never">Никад</string>
+  <string name="BackupUtil_unknown">Непозната</string>
+  <string name="AppProtectionPreferenceFragment_none">Ништа</string>
+  <string name="RegistrationActivity_too_many_attempts">Превише покушаја</string>
+  <string name="RegistrationLockDialog_disable">Искључи</string>
+  <string name="RegistrationActivity_continue">Настави</string>
   <!--EOF-->
 </resources>

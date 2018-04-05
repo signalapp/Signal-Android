@@ -111,8 +111,6 @@
 
     <attr name="pref_divider" format="reference" />
 
-    <attr name="app_protect_timeout_picker_color" format="reference"/>
-
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>
     </declare-styleable>
@@ -134,6 +132,9 @@
 
     <attr name="contact_list_divider" format="reference"/>
 
+    <attr name="login_top_background" format="color"/>
+    <attr name="login_floating_background" format="reference"/>
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />
@@ -146,6 +147,10 @@
 
     <declare-styleable name="ThumbnailView">
         <attr name="backgroundColorHint" format="color" />
+        <attr name="minWidth" format="dimension" />
+        <attr name="maxWidth" format="dimension" />
+        <attr name="minHeight" format="dimension" />
+        <attr name="maxHeight" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="DeliveryStatusView">

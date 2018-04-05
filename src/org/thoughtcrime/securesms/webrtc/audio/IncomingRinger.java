@@ -5,11 +5,11 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
-import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -27,20 +27,20 @@ public class IncomingRinger {
 
   private MediaPlayer player;
 
-  public IncomingRinger(Context context) {
+  IncomingRinger(Context context) {
     this.context  = context.getApplicationContext();
     this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
   }
 
-  public void start() {
+  public void start(@Nullable Uri uri, boolean vibrate) {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
 
     if (player != null) player.release();
-    player = createPlayer();
+    if (uri != null)    player = createPlayer(uri);
 
     int ringerMode = audioManager.getRingerMode();
 
-    if (shouldVibrate(context, player, ringerMode)) {
+    if (shouldVibrate(context, player, ringerMode, vibrate)) {
       Log.i(TAG, "Starting vibration");
       vibrator.vibrate(VIBRATE_PATTERN, 1);
     }
@@ -74,44 +74,41 @@ public class IncomingRinger {
     vibrator.cancel();
   }
 
-  private boolean shouldVibrate(Context context, MediaPlayer player, int ringerMode) {
+  private boolean shouldVibrate(Context context, MediaPlayer player, int ringerMode, boolean vibrate) {
     if (player == null) {
       return true;
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      return shouldVibrateNew(context, ringerMode);
+      return shouldVibrateNew(context, ringerMode, vibrate);
     } else {
-      return shouldVibrateOld(context);
+      return shouldVibrateOld(context, vibrate);
     }
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  private boolean shouldVibrateNew(Context context, int ringerMode) {
+  private boolean shouldVibrateNew(Context context, int ringerMode, boolean vibrate) {
     Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
     if (vibrator == null || !vibrator.hasVibrator()) {
       return false;
     }
 
-    boolean vibrateWhenRinging = Settings.System.getInt(context.getContentResolver(), "vibrate_when_ringing", 0) != 0;
-
-    if (vibrateWhenRinging) {
+    if (vibrate) {
       return ringerMode != AudioManager.RINGER_MODE_SILENT;
     } else {
       return ringerMode == AudioManager.RINGER_MODE_VIBRATE;
     }
   }
 
-  private boolean shouldVibrateOld(Context context) {
+  private boolean shouldVibrateOld(Context context, boolean vibrate) {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
-    return audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
+    return vibrate && audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
   }
 
-  private MediaPlayer createPlayer() {
+  private MediaPlayer createPlayer(@NonNull Uri ringtoneUri) {
     try {
       MediaPlayer mediaPlayer = new MediaPlayer();
-      Uri         ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
 
       mediaPlayer.setOnErrorListener(new MediaPlayerErrorListener());
       mediaPlayer.setDataSource(context, ringtoneUri);

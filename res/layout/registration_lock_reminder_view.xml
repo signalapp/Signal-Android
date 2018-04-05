@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+    <LinearLayout android:id="@+id/header_container"
+                  android:background="@color/signal_primary"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  android:padding="40dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:gravity="center_horizontal"
+                android:text="@string/registration_lock_reminder_view__enter_your_registration_lock_pin"/>
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="40dp"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp">
+
+        <android.support.design.widget.TextInputEditText
+                android:id="@+id/pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:hint="@string/registration_lock_reminder_view__enter_pin"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView android:id="@+id/reminder"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingTop="40dp"
+              android:paddingBottom="40dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:textSize="15sp"
+              android:lineSpacingMultiplier="1.3"
+              tools:text="Reminder: Registration Lock is enabled for your phone number. To help you memorize your Registration Lock PIN, Signal will periodically ask you to confirm it. I forgot my PIN."/>
+
+</LinearLayout>

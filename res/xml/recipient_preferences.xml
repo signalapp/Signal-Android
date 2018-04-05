@@ -35,6 +35,25 @@
                 app:numColumns="5" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/recipient_preferences__call_settings">
+
+        <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
+                android:key="pref_key_recipient_call_ringtone"
+                android:title="@string/recipient_preferences__ringtone"
+                android:persistent="false"/>
+
+        <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
+                android:key="pref_key_recipient_call_vibrate"
+                android:title="@string/recipient_preferences__vibrate"
+                android:entries="@array/recipient_vibrate_entries"
+                android:entryValues="@array/recipient_vibrate_values"
+                android:defaultValue="0"
+                android:persistent="false"/>
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:key="divider" android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:key="privacy_settings" android:title="@string/recipient_preferences__privacy">

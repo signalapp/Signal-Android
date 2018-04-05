@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hetkel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sa pole veel salaväljendit määranud!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 sõnum vestluse kohta</item>
-    <item quantity="other">%d sõnumit vestluse kohta</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Kustutad kõik vanad sõnumid nüüd?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">See piirab koheselt kõiki vestlusi, jättes alles ainult viimase sõnumi.</item>
@@ -37,13 +33,8 @@
   <string name="ApplicationPreferencesActivity_off">väljas</string>
   <string name="ApplicationPreferencesActivity_Off">Väljas</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Salaväljend %1$s, kuva turvamine %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s teema, %2$s keel</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minut</item>
-    <item quantity="other">%d minutit</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(pilt)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(heli)</string>
@@ -91,8 +82,8 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Seda sõnumit <b>ei</b> krüptita, kuna saaja ei ole enam Signali kasutaja.\n\nKas saata krüptimata sõnum?</string>
   <string name="ConversationItem_unable_to_open_media">Ei leia rakendust, mis oleks võimeline seda meediafaili avama.</string>
   <string name="ConversationItem_copied_text">%s kopeeritud</string>
-  <string name="ConversationItem_from_s">kontaktilt %s</string>
-  <string name="ConversationItem_to_s">kontaktile %s</string>
+  <string name="ConversationItem_from_s">%s kaudu</string>
+  <string name="ConversationItem_to_s">kaardile %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string>
@@ -325,14 +316,6 @@
   <string name="InviteActivity_heart_content_description">Süda</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SAADA SMS 1 SÕBRALE</item>
-    <item quantity="other">SAADA SMS %d SÕBRALE</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Saadad 1 SMS-kutse?</item>
-    <item quantity="other">Saadad %d SMS-kutset?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lähme Signalile üle: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Sõbrad ei luba sõpradel krüptimata rääkida.</string>
@@ -347,6 +330,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">Võrgupakkuja MMS-seadete lugemisel esines viga</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Meedia</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Kustutan</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Kustutan sõnumeid...</string>
   <string name="MediaOverviewActivity_Documents">Dokumendid</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
@@ -563,7 +548,6 @@
   <string name="KeyCachingService_signal_passphrase_cached">Koputa avamiseks.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Koputa avamiseks või koputa lukku sulgemiseks</string>
   <string name="KeyCachingService_passphrase_cached">Signal on avatud</string>
-  <string name="KeyCachingService_lock">Lukusta salaväljendiga</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sina</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mittetoetatud meediatüüp</string>
@@ -696,30 +680,10 @@
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Luba lugemiskinnitused</string>
   <!--expiration-->
   <string name="expiration_off">Väljas</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">1 sekund</item>
-    <item quantity="other">%d sekundit</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">1 minut</item>
-    <item quantity="other">%d minutit</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
-  <plurals name="expiration_hours">
-    <item quantity="one">1 tund</item>
-    <item quantity="other">%d tundi</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
-  <plurals name="expiration_days">
-    <item quantity="one">1 päev</item>
-    <item quantity="other">%d päeva</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">1 nädal</item>
-    <item quantity="other">%d nädalat</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Sinu turvanumber kontaktiga %s on muutunud ja pole enam kinnitatud</string>
@@ -849,7 +813,7 @@
   <string name="AndroidManifest_archived_conversations">Arhiveeritud vestlused</string>
   <string name="AndroidManifest_remove_photo">Eemalda pilt</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Impordi / ekspordi</string>
+  <string name="arrays__import_export">Impordi</string>
   <string name="arrays__use_default">Kasuta vaikeväärtust</string>
   <string name="arrays__use_custom">Kasuta kohandatud väärtust</string>
   <string name="arrays__mute_for_one_hour">Vaigista 1 tunniks</string>
@@ -891,8 +855,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vali oma kontaktüksus kontaktnimekirjast.</string>
   <string name="preferences__change_passphrase">Muuda salaväljendit</string>
   <string name="preferences__change_your_passphrase">Muuda oma salaväljendit</string>
-  <string name="preferences__enable_passphrase">Luba salaväljend</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta Signal ja sõnumiteated salaväljendiga</string>
+  <string name="preferences__enable_passphrase">Luba salaväljendiga ekraanilukk</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta ekraan ja teated salaväljendiga</string>
   <string name="preferences__screen_security">Kuva turvamine</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukusta Signal automaatselt pärast määratud ebaaktiivsuse ajaintervalli</string>
@@ -1053,10 +1017,6 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Võrdle lõikelauaga</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Sinu Signali versioon on aegunud</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Sinu Signali versioon aegub 1 päeva pärast. Koputa, et uuendada uusimale versioonile.</item>
-    <item quantity="other">Sinu Signali versioon aegub %d päeva pärast. Koputa, et uuendada uusimale versioonile.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Sinu Signali versioon aegub täna. Koputa, et uuendada uusimale versioonile.</string>
   <string name="reminder_header_expired_build">Sinu Signali versioon on aegunud!</string>
   <string name="reminder_header_expired_build_details">Sõnumeid ei saadeta enam edukalt. Koputa, et uuendada uusimale versioonile.</string>
@@ -1094,5 +1054,20 @@
   <string name="Permissions_continue">Jätka</string>
   <string name="Permissions_not_now">Mitte praegu</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal vajab kontaktide luba, et otsida su kontakte, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kontaktid\".</string>
+  <string name="conversation_activity__enable_signal_messages">LUBA SIGNALI SÕNUMID</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migreerin Signali andmebaasi</string>
+  <string name="PushDecryptJob_new_locked_message">Uus lukustatud sõnum</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Ava lukk ootel sõnumite vaatamiseks</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ava lukk uuenduse lõpuleviimiseks</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Palun lukusta Signal lahti uuenduse lõpuleviimiseks</string>
+  <string name="registration_activity__skip">Jäta vahele</string>
+  <string name="registration_activity__register">Registreeri</string>
+  <string name="RegistrationActivity_restore">Taasta</string>
+  <string name="BackupUtil_never">Mitte kunagi</string>
+  <string name="BackupUtil_unknown">Tundmatu</string>
+  <string name="AppProtectionPreferenceFragment_none">Puudub</string>
+  <string name="RegistrationActivity_too_many_attempts">Liiga palju katseid</string>
+  <string name="RegistrationLockDialog_disable">Keela</string>
+  <string name="RegistrationActivity_continue">Jätka</string>
   <!--EOF-->
 </resources>

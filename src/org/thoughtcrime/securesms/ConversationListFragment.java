@@ -322,8 +322,7 @@ public class ConversationListFragment extends Fragment
 
   private void handleSelectAllThreads() {
     getListAdapter().selectAllThreads();
-    actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                                     String.valueOf(getListAdapter().getBatchSelections().size())));
+    actionMode.setTitle(String.valueOf(getListAdapter().getBatchSelections().size()));
   }
 
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
@@ -374,8 +373,7 @@ public class ConversationListFragment extends Fragment
       if (adapter.getBatchSelections().size() == 0) {
         actionMode.finish();
       } else {
-        actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                                         String.valueOf(adapter.getBatchSelections().size())));
+        actionMode.setTitle(String.valueOf(getListAdapter().getBatchSelections().size()));
       }
 
       adapter.notifyDataSetChanged();
@@ -410,8 +408,7 @@ public class ConversationListFragment extends Fragment
 
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
-    mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
-    mode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount, "1"));
+    mode.setTitle("1");
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
@@ -484,6 +481,7 @@ public class ConversationListFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+      if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       final long threadId    = ((ConversationListItem)viewHolder.itemView).getThreadId();
       final int  unreadCount = ((ConversationListItem)viewHolder.itemView).getUnreadCount();
 
@@ -541,6 +539,7 @@ public class ConversationListFragment extends Fragment
                             float dX, float dY, int actionState,
                             boolean isCurrentlyActive)
     {
+      if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
         View  itemView = viewHolder.itemView;
         Paint p        = new Paint();

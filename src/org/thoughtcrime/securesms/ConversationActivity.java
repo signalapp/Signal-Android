@@ -113,6 +113,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -448,7 +449,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
       break;
     case PICK_GIF:
-      setMedia(data.getData(), MediaType.GIF);
+      setMedia(data.getData(),
+               MediaType.GIF,
+               new Pair<Integer, Integer>(data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
+                                          data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0)));
       break;
     case ScribbleActivity.SCRIBBLE_REQUEST_CODE:
       int datasetPosition = data.getIntExtra(ScribbleActivity.EXTRA_DATASET_POSITION, 0);
@@ -620,7 +624,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
           DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
-          OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000);
+          OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000L);
           MessageSender.send(ConversationActivity.this, outgoingMessage, threadId, false, null);
 
           return null;
@@ -706,7 +710,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleRegisterForSignal() {
     Intent intent = new Intent(this, RegistrationActivity.class);
-    intent.putExtra("cancel_button", true);
+    intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
     startActivity(intent);
   }
 
@@ -1429,14 +1433,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void setMedia(@Nullable Uri[] uris, @NonNull MediaType[] mediaTypes) {
+  private void setMedia(@Nullable Uri[] uris, @NonNull MediaType[] mediaTypes, Pair<Integer, Integer>[] dimens) {
     if (uris == null) return;
-    attachmentManager.setMedia(glideRequests, uris, mediaTypes, getCurrentMediaConstraints());
+    attachmentManager.setMedia(glideRequests, uris, mediaTypes, getCurrentMediaConstraints(), dimens);
+  }
+
+  private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, Pair<Integer, Integer> dimens) {
+    if (uri == null) return;
+    setMedia(new Uri[]{uri}, new MediaType[]{mediaType}, new Pair[]{dimens});
+  }
+
+  private void setMedia(@Nullable Uri[] uris, @NonNull MediaType[] mediaTypes) {
+    setMedia(uris, mediaTypes, null);
   }
 
   private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
-    if (uri == null) return;
-    setMedia(new Uri[]{uri}, new MediaType[]{mediaType});
+    setMedia(uri, mediaType, null);
   }
 
   private void setMedia(@Nullable Uri[] uris, @NonNull MediaType mediaType) {
@@ -1445,12 +1457,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MediaType[] mediaTypes = new MediaType[uris.length];
     Arrays.fill(mediaTypes, mediaType);
 
-    setMedia(uris, mediaTypes);
+    setMedia(uris, mediaTypes, null);
   }
 
   private void updateMedia(@Nullable  Uri uri, @NonNull MediaType mediaType, int datasetPosition) {
     if (uri == null) return;
-    attachmentManager.updateMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), datasetPosition);
+    attachmentManager.updateMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), null, datasetPosition);
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
@@ -1700,7 +1712,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
       int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
-      long       expiresIn      = recipient.getExpireMessages() * 1000;
+      long       expiresIn      = recipient.getExpireMessages() * 1000L;
       boolean    initiating     = threadId == -1;
 
       Log.w(TAG, "isManual Selection: " + sendButton.isManualSelection());
@@ -1920,7 +1932,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onSuccess(final @NonNull Pair<Uri, Long> result) {
         boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
         int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
-        long       expiresIn      = recipient.getExpireMessages() * 1000;
+        long       expiresIn      = recipient.getExpireMessages() * 1000L;
         boolean    initiating     = threadId == -1;
         AudioSlide audioSlide     = new AudioSlide(ConversationActivity.this, result.first, result.second, MediaUtil.AUDIO_AAC, true);
         SlideDeck  slideDeck      = new SlideDeck();

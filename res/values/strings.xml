@@ -13,7 +13,7 @@
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
     <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-        <item quantity="one">1 message per conversation</item>
+        <item quantity="one">%d message per conversation</item>
         <item quantity="other">%d messages per conversation</item>
     </plurals>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
@@ -39,12 +39,12 @@
     <string name="ApplicationPreferencesActivity_off">off</string>
     <string name="ApplicationPreferencesActivity_Off">Off</string>
     <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">Passphrase %1$s, Screen security %2$s</string>
+    <string name="ApplicationPreferencesActivity_privacy_summary">Screen lock %1$s, Registration lock %2$s</string>
     <string name="ApplicationPreferencesActivity_appearance_summary">Theme %1$s, Language %2$s</string>
 
     <!-- AppProtectionPreferenceFragment -->
     <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">1 minute</item>
+        <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
     </plurals>
 
@@ -90,6 +90,7 @@
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">Recent chats</string>
     <string name="ContactsCursorLoader_contacts">Contacts</string>
+    <string name="ContactsCursorLoader_groups">Groups</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>
@@ -375,11 +376,11 @@
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
     <plurals name="InviteActivity_send_sms_to_friends">
-        <item quantity="one">SEND SMS TO 1 FRIEND</item>
+        <item quantity="one">SEND SMS TO %d FRIEND</item>
         <item quantity="other">SEND SMS TO %d FRIENDS</item>
     </plurals>
     <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="one">Send 1 SMS invite?</item>
+        <item quantity="one">Send %d SMS invite?</item>
         <item quantity="other">Send %d SMS invites?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
@@ -401,6 +402,16 @@
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Media</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">Delete selected message?</item>
+        <item quantity="other">Delete selected messages?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">This will permanently delete the selected message.</item>
+        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages...</string>
     <string name="MediaOverviewActivity_Documents">Documents</string>
 
     <!--- NotificationBarManager -->
@@ -656,7 +667,7 @@
     <string name="KeyCachingService_signal_passphrase_cached">Touch to open.</string>
     <string name="KeyCachingService_signal_passphrase_cached_with_lock">Touch to open, or touch the lock to close.</string>
     <string name="KeyCachingService_passphrase_cached">Signal is unlocked</string>
-    <string name="KeyCachingService_lock">Lock with passphrase</string>
+    <string name="KeyCachingService_lock">Lock Signal</string>
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>
@@ -664,6 +675,8 @@
     <string name="MediaPreviewActivity_draft">Draft</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
 
 
     <!-- MessageNotifier -->
@@ -689,6 +702,7 @@
 
     <!-- SaveAttachmentTask -->
     <string name="SaveAttachmentTask_open_directory">Open directory</string>
+    <string name="SaveAttachmentTask_saved_to">Saved to %s</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Search</string>
@@ -835,35 +849,35 @@
     <string name="expiration_off">Off</string>
     
     <plurals name="expiration_seconds">
-        <item quantity="one">1 second</item>
+        <item quantity="one">%d second</item>
         <item quantity="other">%d seconds</item>
     </plurals>
 
     <string name="expiration_seconds_abbreviated">%ds</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">1 minute</item>
+        <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
     </plurals>
 
     <string name="expiration_minutes_abbreviated">%dm</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">1 hour</item>
+        <item quantity="one">%d hour</item>
         <item quantity="other">%d hours</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%dh</string>
 
     <plurals name="expiration_days">
-        <item quantity="one">1 day</item>
+        <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
     </plurals>
 
     <string name="expiration_days_abbreviated">%dd</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">1 week</item>
+        <item quantity="one">%d week</item>
         <item quantity="other">%d weeks</item>
     </plurals>
 
@@ -965,6 +979,8 @@
     <string name="recipient_preferences__view_safety_number">View safety number</string>
     <string name="recipient_preferences__chat_settings">Chat settings</string>
     <string name="recipient_preferences__privacy">Privacy</string>
+    <string name="recipient_preferences__call_settings">Call settings</string>
+    <string name="recipient_preferences__ringtone">Ringtone</string>
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
@@ -1029,7 +1045,7 @@
     <string name="AndroidManifest_remove_photo">Remove photo</string>
 
     <!-- arrays.xml -->
-    <string name="arrays__import_export">Import / export</string>
+    <string name="arrays__import_export">Import</string>
     <string name="arrays__use_default">Use default</string>
     <string name="arrays__use_custom">Use custom</string>
 
@@ -1161,6 +1177,8 @@
     <string name="preferences_notifications__events">Events</string>
     <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
     <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__calls">Calls</string>
+    <string name="preferences_notifications__ringtone">Ringtone</string>
     <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
     <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display invitation prompts for contacts without Signal</string>
     <string name="preferences_chats__message_text_size">Message font size</string>
@@ -1272,7 +1290,7 @@
     <!-- reminder_header -->
     <string name="reminder_header_outdated_build">Your version of Signal is outdated</string>
     <plurals name="reminder_header_outdated_build_details">
-        <item quantity="one">Your version of Signal will expire in 1 day. Tap to update to the most recent version.</item>
+        <item quantity="one">Your version of Signal will expire in %d day. Tap to update to the most recent version.</item>
         <item quantity="other">Your version of Signal will expire in %d days. Tap to update to the most recent version.</item>
     </plurals>
     <string name="reminder_header_outdated_build_details_today">Your version of Signal will expire today. Tap to update to the most recent version.</string>
@@ -1324,9 +1342,81 @@
     <string name="PushDecryptJob_unlock_to_view_pending_messages">Unlock to view pending messages</string>
     <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Unlock to complete update</string>
     <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Please unlock Signal to complete update</string>
-
-
-
+    <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup passphrase</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
+    <string name="registration_activity__restore_backup">Restore backup</string>
+    <string name="registration_activity__skip">Skip</string>
+    <string name="registration_activity__register">Register</string>
+    <string name="preferences_chats__chat_backups">Chat backups</string>
+    <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to external storage</string>
+    <string name="preferences_chats__create_backup">Create backup</string>
+    <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
+    <string name="RegistrationActivity_restore">Restore</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup passphrase</string>
+    <string name="RegistrationActivity_checking">Checking...</string>
+    <string name="RegistrationActivity_d_messages_so_far">%d messages so far...</string>
+    <string name="RegistrationActivity_restore_from_backup">Restore from backup?</string>
+    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restore your messages and media from a local backup. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="RegistrationActivity_backup_size_s">Backup size: %s</string>
+    <string name="RegistrationActivity_backup_timestamp_s">Backup timestamp: %s</string>
+    <string name="BackupDialog_enable_local_backups">Enable local backups?</string>
+    <string name="BackupDialog_enable_backups">Enable backups</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
+    <string name="BackupDialog_delete_backups">Delete backups?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
+    <string name="BackupDialog_delete_backups_statement">Delete backups</string>
+    <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
+    <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
+    <string name="ChatsPreferenceFragment_last_backup_s">Last backup: %s</string>
+    <string name="ChatsPreferenceFragment_in_progress">In progress</string>
+    <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
+    <string name="RegistrationActivity_verify_s">Verify %s</string>
+    <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
+    <string name="BackupUtil_never">Never</string>
+    <string name="BackupUtil_unknown">Unknown</string>
+    <string name="prompt_passphrase_activity__unlock_signal">Unlock Signal</string>
+    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Signal access with Android screen lock or fingerprint</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>
+    <string name="AppProtectionPreferenceFragment_none">None</string>
+    <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">The Registration Lock PIN is not the same as the SMS verification code you just received. Please enter the PIN you previously configured in the application.</string>
+    <string name="registration_activity__registration_lock_pin">Registration Lock PIN</string>
+    <string name="registration_activity__forgot_pin">Forgot PIN?</string>
+    <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">The PIN can consist of four or more digits. If you forget your PIN, you could be locked out of your account for up to seven days.</string>
+    <string name="registration_lock_dialog_view__enter_pin">Enter PIN</string>
+    <string name="registration_lock_dialog_view__confirm_pin">Confirm PIN</string>
+    <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Enter your Registration Lock PIN</string>
+    <string name="registration_lock_reminder_view__enter_pin">Enter PIN</string>
+    <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Enable a Registration Lock PIN that will be required to register this phone number with Signal again.</string>
+    <string name="preferences_app_protection__registration_lock_pin">Registration Lock PIN</string>
+    <string name="preferences_app_protection__registration_lock">Registration Lock</string>
+    <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">You must enter your Registration Lock PIN</string>
+    <string name="RegistrationActivity_incorrect_registration_lock_pin">Incorrect Registration Lock PIN</string>
+    <string name="RegistrationActivity_too_many_attempts">Too many attempts</string>
+    <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">You\'ve made too many incorrect Registration Lock PIN attempts. Please try again in a day.</string>
+    <string name="RegistrationActivity_error_connecting_to_service">Error connecting to service</string>
+    <string name="RegistrationActivity_oh_no">Oh no!</string>
+    <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registration of this phone number will be possible without your Registration Lock PIN after 7 days have passed since this phone number was last active on Signal. You have %d days remaining.</string>
+    <string name="RegistrationActivity_registration_lock_pin">Registration lock PIN</string>
+    <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">This phone number has Registration Lock enabled. Please enter the Registration Lock PIN.</string>
+    <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registration Lock is enabled for your phone number. To help you memorize your Registration Lock PIN, Signal will periodically ask you to confirm it.</string>
+    <string name="RegistrationLockDialog_i_forgot_my_pin">I forgot my PIN.</string>
+    <string name="RegistrationLockDialog_forgotten_pin">Forgotten PIN?</string>
+    <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registration Lock helps protect your phone number from unauthorized registration attempts. This feature can be disabled at any time in your Signal privacy settings</string>
+    <string name="RegistrationLockDialog_registration_lock">Registration Lock</string>
+    <string name="RegistrationLockDialog_enable">Enable</string>
+    <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">The Registration Lock PIN must be at least 4 digits.</string>
+    <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">The two PINs you entered do not match.</string>
+    <string name="RegistrationLockDialog_error_connecting_to_the_service">Error connecting to the service</string>
+    <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
+    <string name="RegistrationLockDialog_disable">Disable</string>
+    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="preferences_chats__backups">Backups</string>
+    <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
+    <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
+    <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <!-- EOF -->
 
 </resources>

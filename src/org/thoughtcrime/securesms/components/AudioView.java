@@ -316,7 +316,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     }
   }
 
-  private class TouchIgnoringListener implements OnTouchListener {
+  private static class TouchIgnoringListener implements OnTouchListener {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
       return true;

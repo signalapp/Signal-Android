@@ -32,8 +32,6 @@ import android.widget.ProgressBar;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -78,6 +76,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int PERSISTENT_BLOBS                     = 317;
   public static final int INTERNALIZE_CONTACTS                 = 317;
   public static final int SQLCIPHER                            = 334;
+  public static final int SQLCIPHER_COMPLETE                   = 352;
+  public static final int REMOVE_JOURNAL                       = 353;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -96,6 +96,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(INTERNALIZE_CONTACTS);
     add(PERSISTENT_BLOBS);
     add(SQLCIPHER);
+    add(SQLCIPHER_COMPLETE);
   }};
 
   private MasterSecret masterSecret;
@@ -222,8 +223,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       }
 
       if (params[0] < MIGRATE_SESSION_PLAINTEXT) {
-        new TextSecureSessionStore(context, masterSecret).migrateSessions();
-        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
+//        new TextSecureSessionStore(context, masterSecret).migrateSessions();
+//        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
 
         IdentityKeyUtil.migrateIdentityKeys(context, masterSecret);
         scheduleMessagesInPushDatabase(context);;
@@ -277,6 +278,16 @@ public class DatabaseUpgradeActivity extends BaseActivity {
 
       if (params[0] < SQLCIPHER) {
         scheduleMessagesInPushDatabase(context);
+      }
+
+      if (params[0] < SQLCIPHER_COMPLETE) {
+        File file = context.getDatabasePath("messages.db");
+        if (file != null && file.exists()) file.delete();
+      }
+
+      if (params[0] < REMOVE_JOURNAL) {
+        File file = context.getDatabasePath("messages.db-journal");
+        if (file != null && file.exists()) file.delete();
       }
 
       return null;

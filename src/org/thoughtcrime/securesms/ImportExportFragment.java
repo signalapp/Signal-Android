@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
 import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
@@ -42,15 +41,13 @@ public class ImportExportFragment extends Fragment {
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     View layout              = inflater.inflate(R.layout.import_export_fragment, container, false);
     View importSmsView       = layout.findViewById(R.id.import_sms             );
     View importPlaintextView = layout.findViewById(R.id.import_plaintext_backup);
-    View exportPlaintextView = layout.findViewById(R.id.export_plaintext_backup);
 
     importSmsView.setOnClickListener(v -> handleImportSms());
     importPlaintextView.setOnClickListener(v -> handleImportPlaintextBackup());
-    exportPlaintextView.setOnClickListener(v -> handleExportPlaintextBackup());
 
     return layout;
   }
@@ -119,26 +116,6 @@ public class ImportExportFragment extends Fragment {
     builder.show();
   }
 
-  @SuppressWarnings("CodeBlock2Expr")
-  @SuppressLint("InlinedApi")
-  private void handleExportPlaintextBackup() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setIconAttribute(R.attr.dialog_alert_icon);
-    builder.setTitle(getActivity().getString(R.string.ExportFragment_export_plaintext_to_storage));
-    builder.setMessage(getActivity().getString(R.string.ExportFragment_warning_this_will_export_the_plaintext_contents));
-    builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), (dialog, which) -> {
-      Permissions.with(ImportExportFragment.this)
-                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-                 .ifNecessary()
-                 .withPermanentDenialDialog(getString(R.string.ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
-                 .onAllGranted(() -> new ExportPlaintextTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR))
-                 .onAnyDenied(() -> Toast.makeText(getContext(), R.string.ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage, Toast.LENGTH_LONG).show())
-                 .execute();
-    });
-    builder.setNegativeButton(getActivity().getString(R.string.ExportFragment_cancel), null);
-    builder.show();
-  }
-
   @SuppressLint("StaticFieldLeak")
   private class ImportPlaintextBackupTask extends AsyncTask<Void, Void, Integer> {
 
@@ -192,62 +169,4 @@ public class ImportExportFragment extends Fragment {
       }
     }
   }
-
-  @SuppressLint("StaticFieldLeak")
-  private class ExportPlaintextTask extends AsyncTask<Void, Void, Integer> {
-    private ProgressDialog dialog;
-
-    @Override
-    protected void onPreExecute() {
-      dialog = ProgressDialog.show(getActivity(),
-                                   getActivity().getString(R.string.ExportFragment_exporting),
-                                   getActivity().getString(R.string.ExportFragment_exporting_plaintext_to_storage),
-                                   true, false);
-    }
-
-    @Override
-    protected Integer doInBackground(Void... params) {
-      try {
-        PlaintextBackupExporter.exportPlaintextToSd(getActivity());
-        return SUCCESS;
-      } catch (NoExternalStorageException e) {
-        Log.w("ExportFragment", e);
-        return NO_SD_CARD;
-      } catch (IOException e) {
-        Log.w("ExportFragment", e);
-        return ERROR_IO;
-      }
-    }
-
-    @Override
-    protected void onPostExecute(Integer result) {
-      Context context = getActivity();
-
-      if (dialog != null)
-        dialog.dismiss();
-
-      if (context == null)
-        return;
-
-      switch (result) {
-        case NO_SD_CARD:
-          Toast.makeText(context,
-                         context.getString(R.string.ExportFragment_error_unable_to_write_to_storage),
-                         Toast.LENGTH_LONG).show();
-          break;
-        case ERROR_IO:
-          Toast.makeText(context,
-                         context.getString(R.string.ExportFragment_error_while_writing_to_storage),
-                         Toast.LENGTH_LONG).show();
-          break;
-        case SUCCESS:
-          Toast.makeText(context,
-                         context.getString(R.string.ExportFragment_export_successful),
-                         Toast.LENGTH_LONG).show();
-          break;
-      }
-    }
-  }
-
-
 }

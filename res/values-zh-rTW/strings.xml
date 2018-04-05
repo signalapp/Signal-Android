@@ -35,7 +35,7 @@
   <string name="ApplicationPreferencesActivity_off">關</string>
   <string name="ApplicationPreferencesActivity_Off">關</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">密碼 %1$s，螢幕安全性 %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">螢幕鎖定 %1$s，註冊鎖定 %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主題 %1$s，語言 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -329,6 +329,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">讀取無線供應商的 MMS 設定時發生錯誤</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">媒體</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">正在刪除訊息...</string>
   <string name="MediaOverviewActivity_Documents">文件</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
@@ -542,7 +544,7 @@
   <string name="KeyCachingService_signal_passphrase_cached">按一下開啟。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">按一下開啟，或按一下鎖住並關閉。</string>
   <string name="KeyCachingService_passphrase_cached">Signal 已經解鎖</string>
-  <string name="KeyCachingService_lock">以自訂密碼進行鎖定</string>
+  <string name="KeyCachingService_lock">鎖定 Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
@@ -569,6 +571,7 @@
   <string name="QuickResponseService_problem_sending_message">傳送訊息出現問題！</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">開啟目錄</string>
+  <string name="SaveAttachmentTask_saved_to">儲存到 %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">搜尋</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -680,7 +683,7 @@
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="other">%d 分鍾</item>
+    <item quantity="other">%d 分鐘</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
@@ -769,6 +772,8 @@
   <string name="recipient_preferences__view_safety_number">檢視安全碼</string>
   <string name="recipient_preferences__chat_settings">聊天設定</string>
   <string name="recipient_preferences__privacy">隱私</string>
+  <string name="recipient_preferences__call_settings">通話設定</string>
+  <string name="recipient_preferences__ringtone">鈴聲</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 通話</string>
   <string name="redphone_call_controls__mute">靜音</string>
@@ -821,7 +826,7 @@
   <string name="AndroidManifest_archived_conversations">存檔對話</string>
   <string name="AndroidManifest_remove_photo">移除頭像照片</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">匯入／匯出</string>
+  <string name="arrays__import_export">匯入</string>
   <string name="arrays__use_default">使用預設</string>
   <string name="arrays__use_custom">使用定製</string>
   <string name="arrays__mute_for_one_hour">靜音 1 小時</string>
@@ -862,8 +867,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的聯絡人清單中選擇聯絡人項目。</string>
   <string name="preferences__change_passphrase">變更自訂密碼</string>
   <string name="preferences__change_your_passphrase">變更您的自訂密碼</string>
-  <string name="preferences__enable_passphrase">啟用自訂密碼</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密碼鎖定 Signal 與訊息通知</string>
+  <string name="preferences__enable_passphrase">啟用螢幕鎖定的自訂密碼</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用鎖定螢幕及通知密碼</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">在對話清單或應用內停用畫面擷取功能</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在特定時間內不活躍會自動鎖定 Signal</string>
@@ -913,7 +918,7 @@
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">這會掃描目前所有的對話群組，並且強制刪除超過長度上限的部分。</string>
   <string name="preferences__linked_devices">已連結裝置</string>
   <string name="preferences__light_theme">明亮</string>
-  <string name="preferences__dark_theme">黑暗</string>
+  <string name="preferences__dark_theme">深色</string>
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__default">預設</string>
@@ -944,6 +949,8 @@
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
   <string name="preferences_notifications__show">顯示</string>
+  <string name="preferences_notifications__calls">通話</string>
+  <string name="preferences_notifications__ringtone">鈴聲</string>
   <string name="preferences_chats__show_invitation_prompts">顯示邀請提示</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">不用 Signal 來顯示給聯絡人的邀請提示</string>
   <string name="preferences_chats__message_text_size">訊息字體大小</string>
@@ -1065,5 +1072,85 @@
   <string name="Permissions_not_now">不是現在</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人的權限來搜尋聯絡人，但是現在設定為永久拒絕存取。請繼續到\"應用程式\"ˇ的設定中，選擇\"權限\"，接著啟動\"聯絡人\"。</string>
   <string name="conversation_activity__enable_signal_messages">啟用 Signal 訊息</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">遷移 Signal 資料庫</string>
+  <string name="PushDecryptJob_new_locked_message">新鎖定的訊息</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">解鎖以查看待處理的訊息</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">解鎖以完成更新</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">請解鎖 Signal 以完成更新</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">備份密碼</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">備份將會儲存到外部儲存空間，並以下方的密碼加密。你必須擁有這個密碼來還原此備份。</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已經寫下密碼。沒有密碼，我將無法還原此備份。</string>
+  <string name="registration_activity__restore_backup">還原備份</string>
+  <string name="registration_activity__skip">略過</string>
+  <string name="registration_activity__register">註冊</string>
+  <string name="preferences_chats__chat_backups">聊天備份</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">備份聊天到外部儲存空間</string>
+  <string name="preferences_chats__create_backup">建立備份</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
+  <string name="RegistrationActivity_restore">還原</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">不正確的備份密碼</string>
+  <string name="RegistrationActivity_checking">檢查中... </string>
+  <string name="RegistrationActivity_d_messages_so_far">目前為止有 %d 則訊息.. </string>
+  <string name="RegistrationActivity_restore_from_backup">從備份來還原？</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">從本機備份還原你的訊息及媒體，如果現在不還原，你將無法在之後進行還原。</string>
+  <string name="RegistrationActivity_backup_size_s">備份大小：%s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">備份時間戳記：%s</string>
+  <string name="BackupDialog_enable_local_backups">啟用本機備份？</string>
+  <string name="BackupDialog_enable_backups">啟用備份</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">確保你已了解，請標記確認核取框</string>
+  <string name="BackupDialog_delete_backups">刪除備份？</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">關閉及刪除所有本機備份？</string>
+  <string name="BackupDialog_delete_backups_statement">刪除備份</string>
+  <string name="BackupDialog_copied_to_clipboard">已複製到剪貼簿</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">為了要建立備份，Signal 需要外部空間的權限，但是已被永久拒絕。請到應用程式設定，選擇「權限」及開啟「儲存」。</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">上一次備份︰%s</string>
+  <string name="ChatsPreferenceFragment_in_progress">處理中</string>
+  <string name="ProgressPreference_d_messages_so_far">目前有 %d 則訊息</string>
+  <string name="RegistrationActivity_verify_s">驗證 %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
+  <string name="RegistrationActivity_wrong_number">錯誤的號碼？</string>
+  <string name="BackupUtil_never">永不</string>
+  <string name="BackupUtil_unknown">未知</string>
+  <string name="prompt_passphrase_activity__unlock_signal">解鎖 Signal</string>
+  <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">以 Android 螢幕鎖定或指紋來鎖定 Signal 存取</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">螢幕鎖定閒置逾時</string>
+  <string name="AppProtectionPreferenceFragment_none">無</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">此註冊鎖定 PIN 碼，與你剛剛接受到的 SMS 驗證碼不相同。請輸入之前在應用程式設定的 PIN 碼。</string>
+  <string name="registration_activity__registration_lock_pin">註冊鎖定 PIN 碼</string>
+  <string name="registration_activity__forgot_pin">忘記 PIN 碼？</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">此 PIN 碼可以由四至多個數字組成。如果你忘記你的 PIN 碼，你的帳號最多可能被鎖定長達七天。</string>
+  <string name="registration_lock_dialog_view__enter_pin">輸入 PIN 碼</string>
+  <string name="registration_lock_dialog_view__confirm_pin">確認 PIN 碼</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">輸入你的註冊解鎖 PIN 碼</string>
+  <string name="registration_lock_reminder_view__enter_pin">輸入 PIN 碼</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">啟用註冊鎖定 PIN 碼需要再以此電話號碼來註冊。</string>
+  <string name="preferences_app_protection__registration_lock_pin">註冊鎖定 PIN 碼</string>
+  <string name="preferences_app_protection__registration_lock">註冊鎖定</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">你必須輸入你的註冊鎖定 PIN 碼</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">不正確的註冊鎖定 PIN 碼</string>
+  <string name="RegistrationActivity_too_many_attempts">您已重複嘗試太多次</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">你已經嘗試太多不正確的註冊鎖定 PIN 碼。請一天後再重試。</string>
+  <string name="RegistrationActivity_error_connecting_to_service">連線到服務錯誤</string>
+  <string name="RegistrationActivity_oh_no">不好了！</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">如果你沒有註冊鎖定 PIN 碼，在此電話號碼，最後活躍於 Signal 的 7 天過後，才可以註冊此電話號碼。你還剩下 %d 天。</string>
+  <string name="RegistrationActivity_registration_lock_pin">註冊鎖定 PIN 碼</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">此電話號碼已啟用註冊鎖定。請輸入註冊鎖定 PIN 碼。</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">你的電話號碼已啟用於註冊鎖定功能。為了幫助你記得你的註冊鎖定 PIN 碼，Signal 將定期的要求你確認這個 PIN 碼。</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">我忘記我的 PIN 碼。</string>
+  <string name="RegistrationLockDialog_forgotten_pin">忘記 PIN 碼？</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">註冊鎖定協助護你的電話號碼，免於未經授權註冊的企圖。此功能可以隨時在 Signal 的隱私設定內關閉。</string>
+  <string name="RegistrationLockDialog_registration_lock">註冊鎖定</string>
+  <string name="RegistrationLockDialog_enable">啟用</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">註冊登入鎖定 PIN 碼至少必須為 4 位數。</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">你輸入的兩個 PIN 碼不一致。</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">連線到服務錯誤</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">關閉註冊鎖定 PIN 碼？</string>
+  <string name="RegistrationLockDialog_disable">停用</string>
+  <string name="RegistrationActivity_continue">繼續</string>
+  <string name="preferences_chats__backups">備份</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal 已被鎖定</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">點擊來解鎖</string>
+  <string name="RegistrationLockDialog_reminder">提醒：</string>
   <!--EOF-->
 </resources>

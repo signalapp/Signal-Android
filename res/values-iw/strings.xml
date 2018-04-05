@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">כרגע: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדין לא הגדרת משפט־סיסמה!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">הודעה 1 לשיחה</item>
+    <item quantity="one">הודעה %d לשיחה</item>
     <item quantity="other">%d הודעות לשיחה</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל ההודעות הישנות עכשיו?</string>
@@ -37,11 +37,11 @@
   <string name="ApplicationPreferencesActivity_off">כבוי</string>
   <string name="ApplicationPreferencesActivity_Off">כבוי</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">משפט־סיסמה %1$s, אבטחת מסך %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">נעילת מסך %1$s, נעילת הרשמה %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ערכת נושא %1$s, שפה %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">דקה אחת</item>
+    <item quantity="one">דקה %d</item>
     <item quantity="other">%d דקות</item>
   </plurals>
   <!--DraftDatabase-->
@@ -325,12 +325,12 @@
   <string name="InviteActivity_invitations_sent">הזמנות נשלחו!</string>
   <string name="InviteActivity_invite_to_signal">הזמן אל Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">שלח מסרון אל חבר 1</item>
+    <item quantity="one">שלח מסרון אל חבר %d</item>
     <item quantity="other">שלח מסרון אל %d חברים</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">לשלוח הזמנת SMS?</item>
-    <item quantity="other">לשלוח %d הזמנות SMS?</item>
+    <item quantity="one">לשלוח הזמנה %d במסרון?</item>
+    <item quantity="other">לשלוח %d הזמנות במסרון?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">בוא נחליף אל Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">נראה שאין לך יישומים כלשהם לשתף בהם.</string>
@@ -346,6 +346,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות MMS של ספק התקשורת האלחוטית</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">מדיה</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">מוחק הודעות...</string>
   <string name="MediaOverviewActivity_Documents">מסמכים</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
@@ -556,7 +558,7 @@
   <string name="KeyCachingService_signal_passphrase_cached">גע כדי לפתוח.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">נא לגעת לפתיחה, או לגעת במנעול לסגירה.</string>
   <string name="KeyCachingService_passphrase_cached">Signal אינו נעול</string>
-  <string name="KeyCachingService_lock">לנעול עם משפט סודי</string>
+  <string name="KeyCachingService_lock">נעל את Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">אתה</string>
   <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה שאינו נתמך</string>
@@ -583,6 +585,7 @@
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת הודעה!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">פתח סיפרייה</string>
+  <string name="SaveAttachmentTask_saved_to">נשמר ב־%s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">חפש</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -690,27 +693,27 @@
   <!--expiration-->
   <string name="expiration_off">כבוי</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">שנייה אחת</item>
+    <item quantity="one">שנייה %d</item>
     <item quantity="other">%d שניות</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%dשנ׳</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">דקה אחת</item>
+    <item quantity="one">דקה %d</item>
     <item quantity="other">%d דקות</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dד׳</string>
   <plurals name="expiration_hours">
-    <item quantity="one">שעה אחת</item>
+    <item quantity="one">שעה %d</item>
     <item quantity="other">%d שעות</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dשע׳</string>
   <plurals name="expiration_days">
-    <item quantity="one">יום אחד</item>
+    <item quantity="one">יום %d</item>
     <item quantity="other">%d ימים</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dי׳</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">שבוע אחד</item>
+    <item quantity="one">שבוע %d</item>
     <item quantity="other">%d שבועות</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dשב׳</string>
@@ -790,6 +793,8 @@
   <string name="recipient_preferences__view_safety_number">הצג מספר ביטחון</string>
   <string name="recipient_preferences__chat_settings">הגדרות התכתבות</string>
   <string name="recipient_preferences__privacy">פרטיות</string>
+  <string name="recipient_preferences__call_settings">הגדרות שיחה</string>
+  <string name="recipient_preferences__ringtone">צלצול</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">שיחת Signal</string>
   <string name="redphone_call_controls__mute">השתק</string>
@@ -842,7 +847,7 @@
   <string name="AndroidManifest_archived_conversations">שיחות בארכיון</string>
   <string name="AndroidManifest_remove_photo">הסר תצלום</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">ייבא / ייצא</string>
+  <string name="arrays__import_export">ייבא</string>
   <string name="arrays__use_default">השתמש בברירת מחדל</string>
   <string name="arrays__use_custom">השתמש במותאם אישית</string>
   <string name="arrays__mute_for_one_hour">השתק למשך שעה</string>
@@ -884,13 +889,13 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">נא לבחור את איש הקשר שלך מרשימת אנשי הקשר.</string>
   <string name="preferences__change_passphrase">שינוי משפט סודי</string>
   <string name="preferences__change_your_passphrase">שינוי המשפט הסודי שלך</string>
-  <string name="preferences__enable_passphrase">הפעלת משפט סודי</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">נעל את Signal והתראות הודעה באמצעות משפט־סיסמה</string>
+  <string name="preferences__enable_passphrase">אפשר נעילת מסך באמצעות משפט־סיסמה</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">נעל מסך והתראות באמצעות משפט־סיסמה</string>
   <string name="preferences__screen_security">אבטחת מסך</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">חסימת צילומי מסך ברשימות האחרונים ובתוך האפליקציה</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">נעל באופן אוטומטי את Signal לאחר מרווח זמן של אי־פעילות</string>
-  <string name="preferences__inactivity_timeout_passphrase">משפט סודי לחוסר־פעילות</string>
-  <string name="preferences__inactivity_timeout_interval">פרק זמן לחוסר־פעילות</string>
+  <string name="preferences__inactivity_timeout_passphrase">משפט־סיסמה של אי־פעילות</string>
+  <string name="preferences__inactivity_timeout_interval">מרווח אי־פעילות</string>
   <string name="preferences__notifications">התראות</string>
   <string name="preferences__led_color">צבע LED</string>
   <string name="preferences__led_color_unknown">לא ידוע</string>
@@ -966,6 +971,8 @@
   <string name="preferences_notifications__events">אירועים</string>
   <string name="preferences_notifications__in_chat_sounds">צלילים בתוך התכתבויות</string>
   <string name="preferences_notifications__show">הראה</string>
+  <string name="preferences_notifications__calls">שיחות</string>
+  <string name="preferences_notifications__ringtone">צלצול</string>
   <string name="preferences_chats__show_invitation_prompts">הראה גיחות הזמנה</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">הצג גיחות הזמנה עבור אנשי קשר חסרי Signal</string>
   <string name="preferences_chats__message_text_size">גודל גופן הודעה</string>
@@ -1047,8 +1054,8 @@
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">גרסת Signal שלך אינה עדכנית</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">גרסת Signal שלך תפוג בעוד יום 1. הקש כדי לעדכן לגרסה העדכנית ביותר.</item>
-    <item quantity="other">גרסת Signal שלך תפוג בעוד %d ימים. הקש כדי לעדכן לגרסה העדכנית ביותר.</item>
+    <item quantity="one">גרסת Signal שלך תפוג תוך יום %d. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
+    <item quantity="other">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">גרסת Signal שלך תפוג היום. הקש כדי לעדכן לגרסה העדכנית ביותר.</string>
   <string name="reminder_header_expired_build">גרסת Signal שלך פגה!</string>
@@ -1088,5 +1095,85 @@
   <string name="Permissions_not_now">לא עכשיו</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal צריך הרשאת אנשי קשר על מנת לחפש את אנשי הקשר שלך, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
   <string name="conversation_activity__enable_signal_messages">אפשר הודעות SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">מהגר מסד נתונים של Signal</string>
+  <string name="PushDecryptJob_new_locked_message">הודעה נעולה חדשה</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">בטל נעילה כדי להציג הודעות ממתינות</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">בטל נעילה כדי להשלים עדכון</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">אנא בטל את נעילת Signal כדי להשלים עדכון</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">משפט־סיסמה של גיבוי</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">גיבויים יישמרו בהתקן חיצוני ויוצפנו עם משפט־הסיסמה למטה. חייב להיות לך משפט־סיסמה זה על מנת לשחזר גיבוי.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>
+  <string name="registration_activity__restore_backup">שחזר גיבוי</string>
+  <string name="registration_activity__skip">דלג</string>
+  <string name="registration_activity__register">רישום</string>
+  <string name="preferences_chats__chat_backups">גיבויי התכתבויות</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">גבה התכתבויות באחסון חיצוני</string>
+  <string name="preferences_chats__create_backup">צור גיבוי</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">הכנס משפט־סיסמה של גיבוי</string>
+  <string name="RegistrationActivity_restore">שחזור</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">משפט־סיסמה שגוי של גיבוי</string>
+  <string name="RegistrationActivity_checking">בודק...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d הודעות עד כה...</string>
+  <string name="RegistrationActivity_restore_from_backup">לשחזר מגיבוי?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">שחזר את ההודעות והמדיה שלך מגיבוי מקומי. אם לא תשחזר עכשיו, לא תוכל לשחזר מאוחר יותר.</string>
+  <string name="RegistrationActivity_backup_size_s">גודל גיבוי: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">חותמת זמן של גיבוי: %s</string>
+  <string name="BackupDialog_enable_local_backups">לאפשר גיבויים מקומיים?</string>
+  <string name="BackupDialog_enable_backups">אפשר גיבויים</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">אנא הכר בהבנתך ע\"י סימון תיבת האישור.</string>
+  <string name="BackupDialog_delete_backups">למחוק גיבויים?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">להשבית ולמחוק את כל הגיבויים המקומיים?</string>
+  <string name="BackupDialog_delete_backups_statement">מחק גיבויים</string>
+  <string name="BackupDialog_copied_to_clipboard">הועתק ללוח</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal דורש הרשאת אחסון חיצוני על מנת ליצור גיבויים, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">גיבוי אחרון: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">בתהליך</string>
+  <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
+  <string name="RegistrationActivity_verify_s">וודא את %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
+  <string name="RegistrationActivity_wrong_number">מספר שגוי?</string>
+  <string name="BackupUtil_never">לעולם לא</string>
+  <string name="BackupUtil_unknown">לא ידוע</string>
+  <string name="prompt_passphrase_activity__unlock_signal">בטל נעילת Signal</string>
+  <string name="preferences_app_protection__screen_lock">נעילת מסך</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">נעל גישה אל Signal עם נעילת מסך אנדרואיד או טביעת אצבע</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">אי־פעילות נעילת מסך</string>
+  <string name="AppProtectionPreferenceFragment_none">ללא</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN נעילת ההרשמה אינו אותו דבר כמו קוד הוידוא שקיבלת. אנא הכנס את ה־PIN שהגדרת קודם לכן ביישום.</string>
+  <string name="registration_activity__registration_lock_pin">PIN נעילת הרשמה</string>
+  <string name="registration_activity__forgot_pin">שכחת PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">ה־PIN יכול להיות מורכב מארבע או יותר ספרות. אם תשכח את ה־PIN שלך, אתה יכול להינעל מחוץ לחשבון שלך עד שבעה ימים.</string>
+  <string name="registration_lock_dialog_view__enter_pin">הכנס PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">אשר PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">הכנס את PIN נעילת ההרשמה שלך</string>
+  <string name="registration_lock_reminder_view__enter_pin">הכנס PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">אפשר PIN נעילת הרשמה שיידרש כדי להירשם שוב עם מספר זה ב־Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN נעילת הרשמה</string>
+  <string name="preferences_app_protection__registration_lock">נעילת הרשמה</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">אתה חייב להכניס את PIN נעילת ההרשמה שלך</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN נעילת הרשמה לא נכון</string>
+  <string name="RegistrationActivity_too_many_attempts">יותר מדי ניסיונות</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">עשית יותר מדי ניסיונות נעילת הרשמה לא נכונים. אנא נסה שוב עוד יום.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">שגיאה בהתחברות אל שירות</string>
+  <string name="RegistrationActivity_oh_no">הו לא!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">הרשמת מספר טלפון זה תהיה אפשרית ללא PIN נעילת ההרשמה שלך בחלוף 7 ימים מאז שמספר טלפון זה היה פעיל ב־Signal. נותרו לך %d ימים.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN נעילת הרשמה</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">למספר טלפון זה יש נעילת הרשמה מאופשרת. אנא הכנס את PIN נעילת ההרשמה.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">נעילת הרשמה מאופשרת עבור מספר הטלפון שלך. כדי לעזור לך לשנן את PIN נעילת ההרשמה שלך, Signal ישאל אותך מדי פעם לאמת אותו.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">שכחתי את ה־PIN שלי.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">PIN נשכח?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">נעילת הרשמה עוזרת להגן על מספר הטלפון שלך מפני ניסיונות הרשמה בלתי מורשים. מאפיין זה יכול להיות מושבת בכל זמן שהוא בהגדרות הַפְּרָטִיוּת של Signal</string>
+  <string name="RegistrationLockDialog_registration_lock">נעילת הרשמה</string>
+  <string name="RegistrationLockDialog_enable">אפשר</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN נעילת ההרשמה חייב להיות לפחות 4 ספרות.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">שני מספרי ה־PIN שהכנסת אינם תואמים.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">שגיאה בהתחברות אל השירות</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">להשבית PIN נעילת הרשמה?</string>
+  <string name="RegistrationLockDialog_disable">הַשְׁבֵּת</string>
+  <string name="RegistrationActivity_continue">המשך</string>
+  <string name="preferences_chats__backups">גיבויים</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal נעול</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">הקש כדי לבטל נעילה</string>
+  <string name="RegistrationLockDialog_reminder">תזכורת:</string>
   <!--EOF-->
 </resources>

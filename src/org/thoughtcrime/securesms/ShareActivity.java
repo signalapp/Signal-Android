@@ -39,6 +39,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.components.SearchToolbar;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -94,8 +96,8 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE,
                            TextSecurePreferences.isSmsEnabled(this)
-                               ? ContactSelectionListFragment.DISPLAY_MODE_ALL
-                               : ContactSelectionListFragment.DISPLAY_MODE_PUSH_ONLY);
+                               ? DisplayMode.FLAG_ALL
+                               : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_GROUPS);
     }
 
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);

@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 sporočilo na pogovor</item>
+    <item quantity="one">%d sporočilo na pogovor</item>
     <item quantity="two">%d sporočili na pogovor</item>
     <item quantity="few">%d sporočila na pogovor</item>
     <item quantity="other">%d sporočil na pogovor</item>
@@ -36,16 +36,16 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotaknite se za spremembo privzete aplikacije za sporočila SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Sporočila SMS izklopljena</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Z dotikom nastavite Signal za privzeto aplikacijo SMS</string>
-  <string name="ApplicationPreferencesActivity_on">vklopljena</string>
+  <string name="ApplicationPreferencesActivity_on">vklopljen</string>
   <string name="ApplicationPreferencesActivity_On">Vklopljena</string>
-  <string name="ApplicationPreferencesActivity_off">izklopljena</string>
+  <string name="ApplicationPreferencesActivity_off">izklopljen</string>
   <string name="ApplicationPreferencesActivity_Off">Izklopljena</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Zaščita z geslom: %1$s, Zaščita zaslona: %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Zaklep zaslona %1$s, Zaklep prijave %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Jezik: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuta</item>
+    <item quantity="one">%d minuta</item>
     <item quantity="two">%d minuti</item>
     <item quantity="few">%d minute</item>
     <item quantity="other">%d minut</item>
@@ -57,10 +57,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(lokacija)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal za pripenjanje fotografij, videa in zvoka k sporočilom potrebuje dovoljenje za dostop do sistemskega pomnilnika. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov kadar želite sporočilom pripeti podatke oseb iz vašega imenika. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Dostop do lokacije je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do lokacije kadar želite k sporočilom dodati podatek o vaši trenutni lokaciji. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Lokacija\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere za snemanje fotografij. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal za pripenjanje fotografij, videa in zvoka k sporočilom potrebuje dovoljenje za dostop do sistemskega pomnilnika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov, kadar želite sporočilom pripeti podatke oseb iz svojega imenika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Dostop do lokacije je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do lokacije, kadar želite k sporočilom dodati podatek o svoji trenutni lokaciji. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Lokacija\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere za snemanje fotografij. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Napaka pri predvajanju zvoka!</string>
@@ -131,11 +131,11 @@
   <string name="ConversationActivity_error_sending_voice_message">Napaka pri pošiljanju glasovnega sporočila ...</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na svoji napravi nimate nameščene aplikacije, ki bi odpirala to povezavo.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Za pošiljanje zvočnih sporočil dovolite aplikaciji Signal dostop do mikrofona naprave.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Dostop do mikrofona je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do mikrofona naprave za pošiljanje zvokovnih sporočil. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Mikrofon\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Za klicanje uporabnika %s, potrebuje aplikacija Signal dostop do mikrofona in kamere.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Dostop do mikrofona in kamere je bil trajno onemogočen. Za klic uporabnika %spotrebuje Aplikacija Signal dovoljenje za dostop do mikrofona in kamere naprave. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenji pod postavkama \"Mikrofon\" in \"Kamera\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Dostop do mikrofona je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do mikrofona naprave za pošiljanje zvokovnih sporočil. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Mikrofon\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Za klicanje uporabnika %s potrebuje aplikacija Signal dostop do mikrofona in kamere.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Dostop do mikrofona in kamere je bil trajno onemogočen. Za klic uporabnika %spotrebuje Aplikacija Signal dovoljenje za dostop do mikrofona in kamere naprave. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenji pod postavkama \"Mikrofon\" in \"Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Za zajemanje videa in fotografij dovolite aplikaciji Signal dostop do kamere naprave.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere za zajemanje videa in fotografij. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere za zajemanje videa in fotografij. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Za zajemanje videa in fotografij potrebuje aplikacija Signal dostop do kamere.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -184,9 +184,9 @@
     <item quantity="other">Shranjujem %1$d priponk</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Shranjujem priponko v shrambo...</item>
-    <item quantity="two">Shranjujem %1$d priponki v shrambo...</item>
-    <item quantity="few">Shranjujem %1$d priponke v shrambo...</item>
+    <item quantity="one">Shranjujem priponko v shrambo ...</item>
+    <item quantity="two">Shranjujem %1$d priponki v shrambo ...</item>
+    <item quantity="few">Shranjujem %1$d priponke v shrambo ...</item>
     <item quantity="other">Shranjujem %1$d priponk v shrambo ...</item>
   </plurals>
   <string name="ConversationFragment_pending">V teku ...</string>
@@ -290,7 +290,7 @@
   <string name="ExportFragment_export_successful">Izvoz je bil uspešno opravljen.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo, poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Napaka pri pridobivanju GIF-a v polni ločljivosti</string>
   <!--GiphyFragmentPageAdapter-->
@@ -304,7 +304,7 @@
   <string name="GroupCreateActivity_contacts_dont_support_push">Izbrali ste stik, ki ne podpira skupin Signal, zato bo to skupina MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Ker niste prijavljeni za uporabo podatkovne komunikacije, so skupine Signal onemogočene. Poskusite se registrirati v meniju: Nastavitve &gt; Napredno.</string>
   <string name="GroupCreateActivity_contacts_no_members">V skupini mora biti vsaj ena oseba!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">En izmed članov skupine ima nepravilno zapisano številko. Popravite napako ali odstranite stik iz skupine in poskusite znova.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Nekdo od članov skupine ima nepravilno zapisano številko. Popravite napako ali odstranite stik iz skupine in poskusite znova.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar skupine</string>
   <string name="GroupCreateActivity_menu_apply_button">Uveljavi</string>
   <string name="GroupCreateActivity_creating_group">Ustvarjam %1$s …</string>
@@ -333,11 +333,11 @@
   <string name="ImportFragment_no_plaintext_backup_found">Ne najdem nobene nešifrirane varnostne kopije!</string>
   <string name="ImportFragment_error_importing_backup">Napaka pri uvozu iz varnostne kopije!</string>
   <string name="ImportFragment_import_complete">Uvoz dokončan!</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Dovoljenje za dostop do sporočil SMS je bilo trajno odvzeto. Aplikacija Signal potrebuje dovoljenje za dostop do sporočil SMS za uvoz sporočil SMS. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"SMS\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Dovoljenje za dostop do sporočil SMS je bilo trajno odvzeto. Aplikacija Signal potrebuje dovoljenje za dostop do sporočil SMS za uvoz sporočil SMS. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"SMS\".</string>
   <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Za uvoz sporočil SMS potrebuje aplikacija Signal dovoljenje za dostop do sporočil SMS.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemske shrambe za branje iz zunanjega pomnilnika naprave. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemske shrambe za branje iz zunanjega pomnilnika naprave. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Za branje iz zunanjega pomnilnika potrebuje aplikacija Signal dovoljenje za dostop do shrambe.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemske shrambe za shranjevanje na zunanji pomnilnik naprave. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemske shrambe za shranjevanje na zunanji pomnilnik naprave. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Za zapis na zunanji pomnilnik naprave potrebuje aplikacija Signal dovoljenje za dostop do shrambe.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Za snemanje glasovnega sporočila se dotaknite in držite, za pošiljanje spustite</string>
@@ -350,13 +350,13 @@
   <string name="InviteActivity_invitations_sent">Vabilo je bilo poslano!</string>
   <string name="InviteActivity_invite_to_signal">Povabi k uporabi</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">POŠLJI SMS 1 PRIJATELJU</item>
-    <item quantity="two">POŠLJI SMS %d PRIJATELJEMA</item>
+    <item quantity="one">POŠLJI SMS %d PRIJATELJU</item>
+    <item quantity="two">POŠLJI SMS %d PRIJATELJEM</item>
     <item quantity="few">POŠLJI SMS %d PRIJATELJEM</item>
     <item quantity="other">POŠLJI SMS %d PRIJATELJEM</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Pošljem povabilo SMS?</item>
+    <item quantity="one">Send %d povabilo SMS?</item>
     <item quantity="two">Pošljem %d povabili SMS?</item>
     <item quantity="few">Pošljem %d povabila SMS?</item>
     <item quantity="other">Pošljem %d povabil SMS?</item>
@@ -375,6 +375,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">Napaka pri branju nastavitev MMS brezžičnega ponudnika</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimedija</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Brišem</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Brišem sporočila ...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenti</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
@@ -426,7 +428,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Koda QR za povezavo naprav ni veljavna.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Povežem z napravo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda, da želite za povezavo z napravo Signal uporabiti zunanji optični čitalnik. Prosimo, da storite to znotraj aplikacije Signal, saj je tako najvarneje.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Brez dovoljenja za dostop do kamere ne morem skenirati kode QR.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Izginjajoča sporočila</string>
@@ -438,7 +440,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Napačno geslo!</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Različica programa Google Play Services, ki jo imate nameščeno, ne deluje, kot bi morala. Prosimo ponovno namestite Google Play Services in poskusite znova.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Različica programa Google Play Services, ki jo imate nameščeno, ne deluje, kot bi morala. Prosimo, ponovno namestite Google Play Services in poskusite znova.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceni to aplikacijo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Če se vam zdi aplikacija Signal koristna in uporabna, vas prosimo, da si vzamete nekaj trenutkov in jo ocenite.</string>
@@ -484,7 +486,7 @@
   <string name="RegistrationActivity_more_information">Več informacij</string>
   <string name="RegistrationActivity_less_information">Manj informacij</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Aplikacija Signal potrebuje dovoljenje za dostop do vaših stikov in medijskih vsebin za povezavo s prijatelji, izmenjavo sporočil in opravljanje varnih klicev.</string>
-  <string name="RegistrationActivity_unable_to_connect_to_service">Povezava s storitvijo ni mogoča. Preverite vaše omrežje in poskusite znova.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Povezava s storitvijo ni mogoča. Preverite omrežje in poskusite znova.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Aplikacija Signal lahko avtomatsko zazna prejeto kodo za verifikacijo vaše telefonske številke. Za to potrebuje vaše dovoljenje za branje sporočil SMS.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
@@ -552,12 +554,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="VerifyIdentityActivity_our_signal_safety_number">Skupno varnostno število:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iz odložišča ni bilo mogoče pridobiti nobenega varnostnega števila za primerjavo</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Brez dovoljenja za dostop do kamere ne morem skenirati kode QR.</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Napačno šifrirano sporočilo</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Dešifriram sporočilo, počakajte...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Dešifriram sporočilo, počakajte ...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je bilo šifrirano za neobstoječo sejo</string>
   <!--EncryptingSmsDatabase-->
   <string name="EncryptingSmsDatabase_error_decrypting_message">Napaka pri dešifriranju sporočila.</string>
@@ -566,7 +568,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--MmsDatabase-->
   <string name="MmsDatabase_error_decrypting_message">Napaka pri dešifriranju sporočila.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifriranje sporočila MMS, počakajte...</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifriranje sporočila MMS, počakajte ...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Napačno šifrirano sporočilo MMS</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Sporočilo MMS je bilo šifrirano za neobstoječo sejo</string>
   <!--MuteDialog-->
@@ -579,15 +581,15 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ApplicationMigrationService_import_complete">Uvažanje dokončano</string>
   <string name="ApplicationMigrationService_system_database_import_is_complete">Uvoz iz sistemske zbirke je končan.</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_signal_passphrase_cached">Kliknite za odprtje.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Kliknite za odprtje, za zaprtje kliknite ključavnico.</string>
+  <string name="KeyCachingService_signal_passphrase_cached">Tapnite za vstop.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tapnite za vstop, za zaklep tapnite ključavnico.</string>
   <string name="KeyCachingService_passphrase_cached">Signal je odklenjen</string>
-  <string name="KeyCachingService_lock">Zakleni z geslom</string>
+  <string name="KeyCachingService_lock">Zakleni Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodprt medij</string>
   <string name="MediaPreviewActivity_draft">Osnutek</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemske shrambe za shranjevanje na zunanji pomnilnik naprave. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemske shrambe za shranjevanje na zunanji pomnilnik naprave. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Brez dovoljenja za dostop do shrambe ne morem shranjevati na zunanji pomnilnik naprave.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">Novih sporočil: %1$d, pogovorov: %2$d</string>
@@ -609,6 +611,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuickResponseService_problem_sending_message">Težava pri pošiljanju sporočila</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Odpri mapo</string>
+  <string name="SaveAttachmentTask_saved_to">Shranjeno na %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Poišči</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -621,7 +624,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="VideoPlayer_error_playing_video">Napaka pri predvajanju videa</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Za prevzem klica uporabnika %somogočite aplikaciji Signal dostop do mikrofona naprave.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Dostop do mikrofona in kamere je bil trajno onemogočen. Aplikacija Signal za klicanje potrebuje dovoljenje za dostop do mikrofona in kamere. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenji pod postavkama \"Mikrofon\" in \"Kamera\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Dostop do mikrofona in kamere je bil trajno onemogočen. Aplikacija Signal za klicanje potrebuje dovoljenje za dostop do mikrofona in kamere. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenji pod postavkama \"Mikrofon\" in \"Kamera\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Vaše varnostno število z uporabnikom %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil aplikacijo Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
@@ -656,7 +659,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Fotografija stika</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov, da lahko prikazuje imena stikov iz vašega imenika. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov, da lahko prikazuje imena stikov iz vašega imenika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Napaka pri preverjanju uporabnikov. Preverite svoj dostop do omrežja.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih uporabnikov</string>
@@ -716,35 +719,35 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--expiration-->
   <string name="expiration_off">Izklopljena</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 sekunda</item>
+    <item quantity="one">%d sekunda</item>
     <item quantity="two">%d sekundi</item>
     <item quantity="few">%d sekunde</item>
     <item quantity="other">%d sekund</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d s</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuta</item>
+    <item quantity="one">%d minuta</item>
     <item quantity="two">%d minuti</item>
     <item quantity="few">%d minute</item>
     <item quantity="other">%d minut</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%d min</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 ura</item>
+    <item quantity="one">%d ura</item>
     <item quantity="two">%d uri</item>
     <item quantity="few">%d ure</item>
     <item quantity="other">%d ur</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d h</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 dan</item>
-    <item quantity="two">%d dni</item>
+    <item quantity="one">%d dan</item>
+    <item quantity="two">%d dneva</item>
     <item quantity="few">%d dnevi</item>
     <item quantity="other">%d dni</item>
   </plurals>
   <string name="expiration_days_abbreviated">%d d</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 teden</item>
+    <item quantity="one">%d teden</item>
     <item quantity="two">%d tedna</item>
     <item quantity="few">%d tedne</item>
     <item quantity="other">%d tednov</item>
@@ -784,7 +787,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">To utegne trajati trenutek ali dva. Bodite potrpežljivi; ko bo uvoz končan, boste o tem obveščeni.</string>
   <string name="database_migration_activity__importing">UVAŽANJE</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Posodabljam zbirko...</string>
+  <string name="database_upgrade_activity__updating_database">Posodabljam zbirko ...</string>
   <string name="export_fragment__export_plaintext_backup">Izvoz nešifrirane varnostne kopije</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Izvoz nešifrirane varnostne kopije, združljive s sistemskimi varnostnimi kopijami SMS, v sistemsko shrambo.</string>
   <string name="import_fragment__import_system_sms_database">Uvoz iz sistemske zbirke sporočil SMS</string>
@@ -830,6 +833,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="recipient_preferences__view_safety_number">Pregled varnostnih števil</string>
   <string name="recipient_preferences__chat_settings">Nastavitve pogovora</string>
   <string name="recipient_preferences__privacy">Zasebnost</string>
+  <string name="recipient_preferences__call_settings">Nastavitve klicev</string>
+  <string name="recipient_preferences__ringtone">Zvonjenje</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Klic Signal</string>
   <string name="redphone_call_controls__mute">Utišaj</string>
@@ -838,7 +843,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Uporaba aplikacije Signal naredi komunikacijo z osebami shranjenimi v vašem imeniku izjemno preprosto. Prijatelji in druge osebe, ki že poznajo vašo telefonsko številko, bodo takoj vedeli, da lahko odslej komunicirajo z vami tudi preko aplikacije Signal.\n\nOb registraciji se nekateri podatki o vaših stikih začasno posredujejo na strežnik.</string>
   <string name="registration_activity__verify_your_number">Potrdite svojo telefonsko številko</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Prosimo vnesite svojo telefonsko številko in prejeli boste potrditveno kodo. Stroški za poslano sporočilo so odvisni od vašega naročniškega razmerja.</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Prosimo, vnesite svojo telefonsko številko, da prejmete potrditveno kodo. Stroški za poslano sporočilo so odvisni od vašega naročniškega razmerja.</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -852,7 +857,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti varnost šifrirane komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Namesto tega lahko tudi skenirate kodo na napravi uporabnika ali njega prosite, naj skenira vašo. <a href="https://whispersystems.org/redirect/safety-numbers">Več ...</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
-  <string name="verify_display_fragment__loading">Nalagam...</string>
+  <string name="verify_display_fragment__loading">Nalagam ...</string>
   <string name="verify_display_fragment__verified">Potrjeno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Deli varnostno število</string>
@@ -882,7 +887,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="AndroidManifest_archived_conversations">Arhivirani pogovori</string>
   <string name="AndroidManifest_remove_photo">Odstrani fotografijo</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Uvoz/Izvoz</string>
+  <string name="arrays__import_export">Uvoz</string>
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
   <string name="arrays__use_custom">Uporabi po meri</string>
   <string name="arrays__mute_for_one_hour">Utišaj za 1 uro</string>
@@ -893,9 +898,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="arrays__settings_default">Sistemsko privzeto</string>
   <string name="arrays__enabled">Vklopljeno</string>
   <string name="arrays__disabled">Izklopljeno</string>
-  <string name="arrays__name_and_message">Pošiljatelj in sporočilo</string>
-  <string name="arrays__name_only">Samo pošiljatelj</string>
-  <string name="arrays__no_name_or_message">Ne pošiljatelj ne sporočilo</string>
+  <string name="arrays__name_and_message">Pošiljatelja in sporočilo</string>
+  <string name="arrays__name_only">Samo pošiljatelja</string>
+  <string name="arrays__no_name_or_message">Ne pošiljatelja ne sporočila</string>
   <string name="arrays__images">Slike</string>
   <string name="arrays__audio">Zvok</string>
   <string name="arrays__video">Video</string>
@@ -926,8 +931,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>
   <string name="preferences__change_your_passphrase">Zamenjava gesla</string>
-  <string name="preferences__enable_passphrase">Vklop gesla</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zaklep aplikacije Signal in obvestil z geslom</string>
+  <string name="preferences__enable_passphrase">Vklop zaklepanja zaslona z geslom</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Zaklep zaslona in obvestil z geslom</string>
   <string name="preferences__screen_security">Zaščita zaslona</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Prepreči zajem slike zaslona</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Samodejno zakleni Signal po nastavljenem času neaktivnosti</string>
@@ -968,13 +973,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__mmsc_username">Uporabniško ime MMSC</string>
   <string name="preferences__mmsc_password">Geslo MMSC</string>
   <string name="preferences__sms_delivery_reports">Potrdila o prejemu SMS</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zahteva potrdilo o prejemu za vsako poslano sporočilo SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Za vsako poslano sporočilo SMS zahtevaj potrdilo o prejemu</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Samodejen izbris starih sporočil, ko pogovor preseže določeno dolžino</string>
   <string name="preferences__delete_old_messages">Samodejen izbris</string>
   <string name="preferences__chats">Pogovori in večpredstavnost</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
   <string name="preferences__trim_all_conversations_now">Obreži vse pogovore zdaj</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Preišči vse pogovore in uveljavi omejitve njihove dolžine</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Uveljavitev omejitve dolžine vseh pogovorov</string>
   <string name="preferences__linked_devices">Povezane naprave</string>
   <string name="preferences__light_theme">Svetla</string>
   <string name="preferences__dark_theme">Temna</string>
@@ -985,8 +990,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__signal_messages_and_calls">Sporočila in klici Signal</string>
   <string name="preferences__free_private_messages_and_calls">Brezplačna zasebna sporočila in klici uporabnikom aplikacije Signal</string>
   <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
-  <string name="preferences__support_wifi_calling">Združljivostni način \'Klicanje WiFi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno \'WiFi klicanje/WiFi Calling\')</string>
+  <string name="preferences__support_wifi_calling">Klicanje WiFi/WiFi calling</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno WiFi klicanje/WiFi Calling)</string>
   <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
   <string name="preferences__read_receipts">Potrdila o ogledu</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Če izklopite poročila o ogledu, tudi sami ne boste obveščeni, ko bo prejemnik prebral vaše sporočilo.</string>
@@ -998,7 +1003,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_chats__media_auto_download">Samodejen prenos priponk</string>
   <string name="preferences_chats__message_trimming">Izbris starih sporočil</string>
   <string name="preferences_advanced__use_system_emoji">Sistemski znaki emoji</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Izklopi privzete znake emoji aplikacije Signal</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Izklop privzetih znakov emoji aplikacije Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vsi klici bodo posredovani preko strežnika Signal. S tem boste klicani strani onemogočili, da bi izvedela vaš naslov IP. Kvaliteta klica bo zaradi tega slabša.</string>
   <string name="preferences_advanced__always_relay_calls">Vedno posreduj klice</string>
   <string name="preferences_app_protection__app_access">Dostop</string>
@@ -1008,8 +1013,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_notifications__events">Dogodki</string>
   <string name="preferences_notifications__in_chat_sounds">Zvoki znotraj pogovora</string>
   <string name="preferences_notifications__show">Prikaži</string>
+  <string name="preferences_notifications__calls">Klici</string>
+  <string name="preferences_notifications__ringtone">Zvonjenje</string>
   <string name="preferences_chats__show_invitation_prompts">Prikazuj obvestila o povabilih</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikazuj obvestila o povabilih za stike, ki nimajo nameščene aplikacije Signal.</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikazovanje obvestil o povabilih za stike, ki nimajo nameščene aplikacije Signal.</string>
   <string name="preferences_chats__message_text_size">Velikost črk v sporočilu</string>
   <string name="preferences_events__contact_joined_signal">Oseba iz imenika se je pridružila Signalu</string>
   <string name="preferences_notifications__priority">Pomembnost</string>
@@ -1089,7 +1096,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaša različica aplikacije Signal je zastarela</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Vaša različica aplikacije Signal bo jutri potekla. Tapnite za posodobitev na zadnjo različico.</item>
+    <item quantity="one">Vaša različica aplikacije Signal bo čez %d dan potekla. Tapnite za posodobitev na zadnjo različico.</item>
     <item quantity="two">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
     <item quantity="few">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
     <item quantity="other">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
@@ -1124,13 +1131,93 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="trimmer__old_messages_successfully_deleted">Stara sporočila so bila uspešno izbrisana</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
-  <string name="ConversationListFragment_loading">Nalagam...</string>
+  <string name="ConversationListFragment_loading">Nalagam ...</string>
   <string name="CallNotificationBuilder_connecting">Povezujem ...</string>
   <string name="Permissions_permission_required">Zahtevano dovoljenje</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Dovoljenje za dostop do sporočil SMS je bilo trajno odvzeto. Aplikacija Signal potrebuje dovoljenje za dostop do sporočil SMS za pošiljanje sporočil SMS. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Dovoljenje za dostop do sporočil SMS je bilo trajno odvzeto. Aplikacija Signal potrebuje dovoljenje za dostop do sporočil SMS za pošiljanje sporočil SMS. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"SMS\".</string>
   <string name="Permissions_continue">Nadaljuj</string>
   <string name="Permissions_not_now">Ne zdaj</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov za iskanje med osebami iz vašega imenika. Prosimo pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov za iskanje med osebami iz vašega imenika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
   <string name="conversation_activity__enable_signal_messages">VKLOPI SPOROČILA SIGNAL</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Prenašam podatkovno bazo Signal</string>
+  <string name="PushDecryptJob_new_locked_message">Novo zaklenjeno sporočilo</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Za ogled čakajočih sporočil odklenite</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Za nadgradnjo odklenite</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Prosimo, odklenite aplikacijo Signal za nadgradnjo</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Geslo varnostne kopije</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varnostne kopije bodo shranjene na zunanji pomnilnik in šifrirane s spodnjim geslom. Za obnovitev varnostne kopije morate poznati to geslo.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Zapisal sem si geslo. Brez njega ne bom mogel obnoviti varnostne kopije.</string>
+  <string name="registration_activity__restore_backup">Obnovi iz varnostne kopije</string>
+  <string name="registration_activity__skip">Preskoči</string>
+  <string name="registration_activity__register">Registriraj</string>
+  <string name="preferences_chats__chat_backups">Varnostne kopije klepetov</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Varnostna kopija klepetov bo ustvarjena na zunanjem pomnilniku</string>
+  <string name="preferences_chats__create_backup">Ustvari varnostno kopijo</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Vnesite geslo varnostne kopije</string>
+  <string name="RegistrationActivity_restore">Obnovi</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Napačno geslo varnostne kopije</string>
+  <string name="RegistrationActivity_checking">Preverjam ...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d sporočil zaenkrat ...</string>
+  <string name="RegistrationActivity_restore_from_backup">Obnovim iz varnostne kopije?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Obnovite svoja sporočila in multimedijske datoteke, shranjene na lokalni varnostni kopiji. Če tega ne boste storili zdaj, kasneje ne bo več mogoče.</string>
+  <string name="RegistrationActivity_backup_size_s">Velikost varnostne kopije: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Čas nastanka varnostne kopije: %s</string>
+  <string name="BackupDialog_enable_local_backups">Ali dovolite izdelavo lokalnih varnostnih kopij?</string>
+  <string name="BackupDialog_enable_backups">Dovoli varnostno kopiranje</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Prosimo, potrdite svoje razumevanje z označbo v potrditvenem prostoru.</string>
+  <string name="BackupDialog_delete_backups">Izbrišem varnostne kopije?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Izklop in izbris vseh varnostnih kopij?</string>
+  <string name="BackupDialog_delete_backups_statement">Izbriši varnostne kopije</string>
+  <string name="BackupDialog_copied_to_clipboard">Prekopirano v odložišče</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Dovoljenja za dostop do zunanjega pomnilnika, ki ga Aplikacija Signal potrebuje za varnostno kopiranje, je bilo trajno odvzeto. Prosimo, pojdite v sistemski meni z nastavitvami za aplikacije, izberite \"Dovoljenja\" in označite polje \"Zunanja shramba\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Zadnja varnostna kopija: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">V teku</string>
+  <string name="ProgressPreference_d_messages_so_far">%d sporočil zaenkrat</string>
+  <string name="RegistrationActivity_verify_s">Potrdi %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosimo, vnesite potrditveno kodo, poslano na %s.</string>
+  <string name="RegistrationActivity_wrong_number">Napačna številka?</string>
+  <string name="BackupUtil_never">Nikoli</string>
+  <string name="BackupUtil_unknown">Neznano</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Odkleni Signal</string>
+  <string name="preferences_app_protection__screen_lock">Zaklep zaslona</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Uporaba sistemskega zaklepanja in prstnih odtisov za zaklep aplikacije</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časovni interval pred zaklepom aplikacije</string>
+  <string name="AppProtectionPreferenceFragment_none">Brez</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Koda PIN za prijavo v omrežje ni enaka potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklepanje.</string>
+  <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>
+  <string name="registration_activity__forgot_pin">Ste pozabili PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Koda PIN mora vsebovati vsaj štiri števke. Če boste pozabili svoj PIN, lahko ostanete do sedem dni brez storitve Signal.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Vnesite PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Potrdite PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Vnesite PIN za prijavo v omrežje</string>
+  <string name="registration_lock_reminder_view__enter_pin">Vnesite PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Vklop kode PIN za prijavo v omrežje. Vnos kode bo potreben vsakič, ko se boste želeli ponovno prijaviti v omrežje Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN za prijavo v omrežje</string>
+  <string name="preferences_app_protection__registration_lock">Zaklep prijave na strežnik</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Vnesti morate kodo PIN za prijavo na strežnik</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Napačna koda PIN za prijavo na strežnik</string>
+  <string name="RegistrationActivity_too_many_attempts">Preveč poskusov</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Prevečkrat ste vnesli napačen PIN za prijavo v omrežje Signal. Poskusite znova jutri.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Napaka pri povezavi do storitve</string>
+  <string name="RegistrationActivity_oh_no">Neeee!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Prijava s to telefonsko številko brez kode za zaklep bo zopet možna po sedmih dneh, odkar je bila številka nazadnje aktivna v omrežju Signal. Število dni do prijave: %d</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN za prijavo na strežnik</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Telefonska številka ima vklopljen PIN za prijavo v omrežje. Prosimo, vnesite kodo PIN za prijavo.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Za to telefonsko številko je vklujčen PIN za prijavo v omrežje Signal. Da ne bi pozabili kode za prijavo, vas bomo občasno opomnili na njen vnos.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Pozabil sem svoj PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Pozabljan PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zaklep prijave na strežnik vas ščiti pred nepooblaščeno prijavo tretje osebe z vašo telefonsko številko. Storitev lahko kadarkoli izkopite v meniju \"Zasebnost\" v nastavitvah aplikacije Signal.</string>
+  <string name="RegistrationLockDialog_registration_lock">Zaklep prijave na strežnik</string>
+  <string name="RegistrationLockDialog_enable">Vklopi</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Koda PIN za prijavo v omrežje mora vsebovati vsaj 4 števke.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Kodi PIN, ki ste ju vnesli, se ne ujemata.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Napaka pri povezavi do storitve</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Izklopim PIN za prijavo v omrežje?</string>
+  <string name="RegistrationLockDialog_disable">Onemogoči</string>
+  <string name="RegistrationActivity_continue">Nadaljuj</string>
+  <string name="preferences_chats__backups">Varnostne kopije</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaklenjen</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TAPNITE ZA ODKLEPANJE</string>
+  <string name="RegistrationLockDialog_reminder">Opomnik:</string>
   <!--EOF-->
 </resources>
