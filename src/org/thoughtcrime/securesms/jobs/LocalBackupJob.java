@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -46,7 +47,8 @@ public class LocalBackupJob extends ContextJob {
       throw new IOException("No external storage permission!");
     }
 
-    GenericForegroundService.startForegroundTask(context, "Creating backup");
+    GenericForegroundService.startForegroundTask(context,
+                                                 context.getString(R.string.LocalBackupJob_creating_backup));
 
     try {
       String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);
