@@ -67,7 +67,7 @@ public class BackupUtil {
       File   backupDirectory = StorageUtil.getBackupDirectory(context);
       File[] backups         = backupDirectory.listFiles();
 
-      if (backups != null && backups.length > 5) {
+      if (backups != null && backups.length > 2) {
         Arrays.sort(backups, (left, right) -> {
           long leftTimestamp  = getBackupTimestamp(left);
           long rightTimestamp = getBackupTimestamp(right);
@@ -79,7 +79,7 @@ public class BackupUtil {
           return (int)(rightTimestamp - leftTimestamp);
         });
 
-        for (int i=5;i<backups.length;i++) {
+        for (int i=2;i<backups.length;i++) {
           Log.w(TAG, "Deleting: " + backups[i].getAbsolutePath());
 
           if (!backups[i].delete()) {
