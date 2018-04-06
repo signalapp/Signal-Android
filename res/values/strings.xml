@@ -394,6 +394,7 @@
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages...</string>
     <string name="MediaOverviewActivity_Documents">Documents</string>
+    <string name="MediaOverviewActivity_Select_all">Select all</string>
 
     <!--- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>

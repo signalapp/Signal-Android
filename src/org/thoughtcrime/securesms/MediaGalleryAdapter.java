@@ -154,6 +154,15 @@ class MediaGalleryAdapter extends StickyHeaderGridAdapter {
     notifyDataSetChanged();
   }
 
+  void selectAllMedia() {
+    for (int section = 0; section < media.getSectionCount(); section++) {
+      for (int item = 0; item < media.getSectionItemCount(section); item++) {
+        selected.add(media.get(section, item));
+      }
+    }
+    this.notifyDataSetChanged();
+  }
+
   interface ItemClickListener {
     void onMediaClicked(@NonNull MediaRecord mediaRecord);
     void onMediaLongClicked(MediaRecord mediaRecord);
