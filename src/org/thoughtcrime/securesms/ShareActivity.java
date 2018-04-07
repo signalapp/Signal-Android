@@ -175,7 +175,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
       }
 
       @Override
-      public void onSearchReset() {
+      public void onSearchClosed() {
         if (contactsFragment != null) {
           contactsFragment.resetQueryFilter();
         }

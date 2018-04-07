@@ -24,6 +24,11 @@ import android.graphics.drawable.RippleDrawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,10 +46,12 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.util.Collections;
 import java.util.Locale;
 import java.util.Set;
 
@@ -57,8 +64,9 @@ public class ConversationListItem extends RelativeLayout
   @SuppressWarnings("unused")
   private final static String TAG = ConversationListItem.class.getSimpleName();
 
-  private final static Typeface BOLD_TYPEFACE  = Typeface.create("sans-serif", Typeface.BOLD);
-  private final static Typeface LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
+  private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif", Typeface.BOLD);
+  private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
+  private final static StyleSpan BOLD_SPAN      = new StyleSpan(Typeface.BOLD);
 
   private Set<Long>          selectedThreads;
   private Recipient          recipient;
@@ -107,8 +115,20 @@ public class ConversationListItem extends RelativeLayout
 
   @Override
   public void bind(@NonNull ThreadRecord thread,
-                   @NonNull GlideRequests glideRequests, @NonNull Locale locale,
-                   @NonNull Set<Long> selectedThreads, boolean batchMode)
+                   @NonNull GlideRequests glideRequests,
+                   @NonNull Locale locale,
+                   @NonNull Set<Long> selectedThreads,
+                   boolean batchMode)
+  {
+    bind(thread, glideRequests, locale, selectedThreads, batchMode, null);
+  }
+
+  public void bind(@NonNull ThreadRecord thread,
+                   @NonNull GlideRequests glideRequests,
+                   @NonNull Locale locale,
+                   @NonNull Set<Long> selectedThreads,
+                   boolean batchMode,
+                   @Nullable String highlightSubstring)
   {
     this.selectedThreads  = selectedThreads;
     this.recipient        = thread.getRecipient();
@@ -119,7 +139,11 @@ public class ConversationListItem extends RelativeLayout
     this.lastSeen         = thread.getLastSeen();
 
     this.recipient.addListener(this);
-    this.fromView.setText(recipient, unreadCount == 0);
+    if (highlightSubstring != null) {
+      this.fromView.setText(getHighlightedSpan(locale, recipient.getName(), highlightSubstring));
+    } else {
+      this.fromView.setText(recipient, unreadCount == 0);
+    }
 
     this.subjectView.setText(thread.getDisplayBody());
 //    this.subjectView.setTypeface(read ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
@@ -142,6 +166,56 @@ public class ConversationListItem extends RelativeLayout
     setRippleColor(recipient);
     setUnreadIndicator(thread);
     this.contactPhotoImage.setAvatar(glideRequests, recipient, true);
+  }
+
+  public void bind(@NonNull  Recipient     contact,
+                   @NonNull  GlideRequests glideRequests,
+                   @NonNull  Locale        locale,
+                   @Nullable String        highlightSubstring)
+  {
+    this.selectedThreads = Collections.emptySet();
+    this.recipient       = contact;
+    this.glideRequests   = glideRequests;
+
+    this.recipient.addListener(this);
+
+    fromView.setText(getHighlightedSpan(locale, recipient.getName(), highlightSubstring));
+    subjectView.setText(contact.getAddress().toPhoneString());
+    dateView.setText("");
+    archivedView.setVisibility(GONE);
+    unreadIndicator.setVisibility(GONE);
+    deliveryStatusIndicator.setNone();
+    alertView.setNone();
+    thumbnailView.setVisibility(GONE);
+
+    setBatchState(false);
+    setRippleColor(contact);
+    contactPhotoImage.setAvatar(glideRequests, recipient, true);
+  }
+
+  public void bind(@NonNull  MessageResult messageResult,
+                   @NonNull  GlideRequests glideRequests,
+                   @NonNull  Locale        locale,
+                   @Nullable String        highlightSubstring)
+  {
+    this.selectedThreads = Collections.emptySet();
+    this.recipient       = messageResult.recipient;
+    this.glideRequests   = glideRequests;
+
+    this.recipient.addListener(this);
+
+    fromView.setText(recipient, true);
+    subjectView.setText(getHighlightedSpan(locale, messageResult.bodySnippet, highlightSubstring));
+    dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.receivedTimestampMs));
+    archivedView.setVisibility(GONE);
+    unreadIndicator.setVisibility(GONE);
+    deliveryStatusIndicator.setNone();
+    alertView.setNone();
+    thumbnailView.setVisibility(GONE);
+
+    setBatchState(false);
+    setRippleColor(recipient);
+    contactPhotoImage.setAvatar(glideRequests, recipient, true);
   }
 
   @Override
@@ -239,6 +313,26 @@ public class ConversationListItem extends RelativeLayout
                                                  .endConfig()
                                                  .buildRound(String.valueOf(thread.getUnreadCount()), getResources().getColor(R.color.textsecure_primary_dark)));
     unreadIndicator.setVisibility(View.VISIBLE);
+  }
+
+  private Spanned getHighlightedSpan(@NonNull Locale locale,
+                                     @Nullable String value,
+                                     @Nullable String highlight)
+  {
+    if (value == null || highlight == null) {
+      return new SpannableString(value);
+    }
+
+    int startPosition = value.toLowerCase(locale).indexOf(highlight.toLowerCase());
+    int endPosition   = startPosition + highlight.length();
+
+    if (startPosition < 0) {
+      return new SpannableString(value);
+    }
+
+    Spannable spanned = new SpannableString(value);
+    spanned.setSpan(BOLD_SPAN, startPosition, endPosition, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+    return spanned;
   }
 
   @Override

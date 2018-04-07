@@ -9,13 +9,15 @@ import org.whispersystems.libsignal.util.Pair;
 
 public class ConversationLoader extends AbstractCursorLoader {
   private final long    threadId;
-  private       long    limit;
+  private       int     offset;
+  private       int     limit;
   private       long    lastSeen;
   private       boolean hasSent;
 
-  public ConversationLoader(Context context, long threadId, long limit, long lastSeen) {
+  public ConversationLoader(Context context, long threadId, int offset, int limit, long lastSeen) {
     super(context);
     this.threadId = threadId;
+    this.offset   = offset;
     this.limit    = limit;
     this.lastSeen = lastSeen;
     this.hasSent  = true;
@@ -23,6 +25,14 @@ public class ConversationLoader extends AbstractCursorLoader {
 
   public boolean hasLimit() {
     return limit > 0;
+  }
+
+  public boolean hasOffset() {
+    return offset > 0;
+  }
+
+  public int getOffset() {
+    return offset;
   }
 
   public long getLastSeen() {
@@ -43,6 +53,6 @@ public class ConversationLoader extends AbstractCursorLoader {
       this.lastSeen = lastSeenAndHasSent.first();
     }
 
-    return DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId, limit);
+    return DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId, offset, limit);
   }
 }

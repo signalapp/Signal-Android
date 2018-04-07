@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.database.helpers;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -45,8 +47,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_DIMENSIONS            = 6;
   private static final int QUOTED_REPLIES                   = 7;
   private static final int SHARED_CONTACTS                  = 8;
+  private static final int FULL_TEXT_SEARCH                 = 9;
 
-  private static final int    DATABASE_VERSION = 8;
+  private static final int    DATABASE_VERSION = 9;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -86,6 +89,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(OneTimePreKeyDatabase.CREATE_TABLE);
     db.execSQL(SignedPreKeyDatabase.CREATE_TABLE);
     db.execSQL(SessionDatabase.CREATE_TABLE);
+    for (String sql : SearchDatabase.CREATE_TABLE) {
+      db.execSQL(sql);
+    }
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -180,6 +186,28 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < SHARED_CONTACTS) {
         db.execSQL("ALTER TABLE mms ADD COLUMN shared_contacts TEXT");
+      }
+
+      if (oldVersion < FULL_TEXT_SEARCH) {
+        for (String sql : SearchDatabase.CREATE_TABLE) {
+          db.execSQL(sql);
+        }
+
+        Log.i(TAG, "Beginning to build search index.");
+        long start = SystemClock.elapsedRealtime();
+
+        db.execSQL("INSERT INTO " + SearchDatabase.SMS_FTS_TABLE_NAME + " (rowid, " + SearchDatabase.BODY + ") " +
+            "SELECT " + SmsDatabase.ID + " , " + SmsDatabase.BODY + " FROM " + SmsDatabase.TABLE_NAME);
+
+        long smsFinished = SystemClock.elapsedRealtime();
+        Log.i(TAG, "Indexing SMS completed in " + (smsFinished - start) + " ms");
+
+        db.execSQL("INSERT INTO " + SearchDatabase.MMS_FTS_TABLE_NAME + " (rowid, " + SearchDatabase.BODY + ") " +
+            "SELECT " + MmsDatabase.ID + " , " + MmsDatabase.BODY + " FROM " + MmsDatabase.TABLE_NAME);
+
+        long mmsFinished = SystemClock.elapsedRealtime();
+        Log.i(TAG, "Indexing MMS completed in " + (mmsFinished - smsFinished) + " ms");
+        Log.i(TAG, "Indexing finished. Total time: " + (mmsFinished - start) + " ms");
       }
 
       db.setTransactionSuccessful();

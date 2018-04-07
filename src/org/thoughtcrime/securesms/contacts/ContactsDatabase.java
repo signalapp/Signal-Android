@@ -145,7 +145,7 @@ public class ContactsDatabase {
   }
 
   @SuppressLint("Recycle")
-  @NonNull Cursor querySystemContacts(@Nullable String filter) {
+  public @NonNull Cursor querySystemContacts(@Nullable String filter) {
     Uri uri;
 
     if (!TextUtils.isEmpty(filter)) {
@@ -193,7 +193,7 @@ public class ContactsDatabase {
   }
 
   @SuppressLint("Recycle")
-  @NonNull Cursor queryTextSecureContacts(String filter) {
+  public @NonNull Cursor queryTextSecureContacts(String filter) {
     String[] projection = new String[] {ContactsContract.Contacts.DISPLAY_NAME,
                                         ContactsContract.Data.DATA1};
 

@@ -40,6 +40,12 @@ repositories {
         url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
     }
     maven {
+        url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
+    }
+    maven {
+        url "https://raw.github.com/signalapp/maven/master/sqlcipher/release/"
+    }
+    maven {
         url "https://maven.google.com"
     }
     maven { // textdrawable
@@ -119,7 +125,7 @@ dependencies {
     }
     compile 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
-    compile 'net.zetetic:android-database-sqlcipher:3.5.9'
+    compile 'org.signal:android-database-sqlcipher:3.5.9-S1'
     compile ('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'org.freemarker'
@@ -192,7 +198,8 @@ dependencyVerification {
         'com.annimon:stream:5da6e2e3e0551d61a3ea7014f04312276549e3dd739cf637996e4cf43c5535b9',
         'com.takisoft.fix:colorpicker:f5d0dbabe406a1800498ca9c1faf34db36e021d8488bf10360f29961fe3ab0d1',
         'com.github.dmytrodanylyk.circular-progress-button:library:8dc6a29a5a8db7b2ad5a9a7fda1dc9ae0893f4c8f0545732b2c63854ea693e8e',
-        'net.zetetic:android-database-sqlcipher:eff93b3222f4bdc349ffee2d2e3b2a2507241f17435fb998947bcce486618f1d',
+        'org.signal:android-database-sqlcipher:4302551df258883cc5dc5d62ddb141a6b5b8f113d77d70322dc2648c0856ccef',
+        'com.googlecode.ez-vcard:ez-vcard:7e24ad50b222d2f70ac91bdccfa3c0f6200b078d797cb784837f75e77bb4210f',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
         'com.google.android.gms:play-services-base:0ca636a8fc9a5af45e607cdcd61783bf5d561cbbb0f862021ce69606eee5ad49',
         'com.google.android.gms:play-services-tasks:69ec265168e601d0203d04cd42e34bb019b2f029aa1e16fabd38a5153eea2086',
@@ -223,6 +230,7 @@ dependencyVerification {
         'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
         'com.klinkerapps:logger:177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541',
         'com.google.android:flexbox:a9989fd13ae2ee42765dfc515fe362edf4f326e74925d02a10369df8092a4935',
+        'org.jsoup:jsoup:abeaf34795a4de70f72aed6de5966d2955ec7eb348eeb813324f23c999575473',
         'org.whispersystems:curve25519-android:82595394422b957d4a5b5f1b27b75ba25cf6dc4db4d312418ca38cd6fff279ca',
         'org.whispersystems:signal-protocol-java:5152c2b01a25147967d6bf82e540f947901bdfa79260be3eb3e96b03f787d6b5',
         'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
