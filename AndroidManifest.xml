@@ -72,6 +72,7 @@
 
     <!-- For conversation 'shortcuts' on the desktop -->
     <uses-permission android:name="android.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <!-- For fixing MMS -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -213,6 +214,7 @@
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:exported="true"
               android:parentActivityName=".ConversationListActivity">
         <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
