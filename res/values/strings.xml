@@ -135,6 +135,7 @@
     <string name="ConversationActivity_group_members">Group members</string>
 
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
+    <string name="ConversationActivity_added_to_home_screen">Added to home screen</string>
     <string name="ConversationActivity_calls_not_supported">Calls not supported</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
     <string name="ConversationActivity_leave_group">Leave group?</string>
@@ -313,7 +314,7 @@
     <!-- GiphyFragmentPageAdapter -->
     <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
     <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
-    
+
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New group</string>
     <string name="GroupCreateActivity_actionbar_edit_title">Edit group</string>
@@ -819,7 +820,7 @@
 
     <!-- expiration -->
     <string name="expiration_off">Off</string>
-    
+
     <plurals name="expiration_seconds">
         <item quantity="one">%d second</item>
         <item quantity="other">%d seconds</item>
@@ -854,7 +855,7 @@
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%dw</string>
-    
+
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Your safety number with %s has changed and is no longer verified</string>
     <string name="IdentityUtil_unverified_banner_two">Your safety numbers with %1$s and %2$s are no longer verified</string>
@@ -1161,7 +1162,7 @@
     <string name="preferences_chats__message_text_size">Message font size</string>
     <string name="preferences_events__contact_joined_signal">Contact joined Signal</string>
     <string name="preferences_notifications__priority">Priority</string>
-    
+
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->
@@ -1389,6 +1390,7 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
+    <string name="conversation__menu_add_shortcut">Add to home screen</string>
     <string name="recipient_preferences__about">About</string>
     <!-- EOF -->
 

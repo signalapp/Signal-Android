@@ -568,6 +568,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_call_secure:
     case R.id.menu_call_insecure:             handleDial(getRecipient());                        return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
+    case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
@@ -775,6 +776,37 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(this, MediaOverviewActivity.class);
     intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, recipient.getAddress());
     startActivity(intent);
+  }
+
+  private void handleAddShortcut() {
+    Log.i(TAG, "Creating home screen shortcut for recipient " + recipient.getAddress());
+
+    Intent launchIntent = new Intent(getApplicationContext(), ConversationActivity.class);
+
+    launchIntent.putExtra(ADDRESS_EXTRA, recipient.getAddress().serialize());
+    launchIntent.putExtra(TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
+    launchIntent.setDataAndType(getIntent().getData(), getIntent().getType());
+
+    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
+
+    launchIntent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
+    launchIntent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+
+    launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    launchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+    Intent intent = new Intent();
+    final String name = Optional.fromNullable(recipient.getProfileName())
+                                .or(Optional.fromNullable(recipient.getName()))
+                                .or(recipient.toShortString());
+    // these constants are deprecated but their replacement (ShortcutManager) is available only from API level 25
+    intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
+    intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.mipmap.ic_launcher));
+    intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+
+    getApplicationContext().sendBroadcast(intent);
+    Toast.makeText(this, getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
   }
 
   private void handleLeavePushGroup() {
@@ -1348,8 +1380,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeResources() {
     if (recipient != null) recipient.removeListener(this);
-
-    recipient        = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    recipient        = getRecipientFromExtras(getIntent(), this);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -1362,6 +1393,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     recipient.addListener(this);
+  }
+
+  /**
+   * Extracts the Recipient instance from the extras contained in the intent.
+   *
+   * This can be passed in two ways:
+   *
+   * - If the intent was started from inside the app, the address is a parcelable Address instance.
+   * - If it was launched from the home screen then it is a serialised (stringified) form of the Address, as home screen
+   *   shortcuts cannot contain instances of Address (see BadParcelableException).
+   */
+  static Recipient getRecipientFromExtras(@NonNull Intent intent, @NonNull Context context) {
+    Address address;
+    final Address parcelableAddress = intent.getParcelableExtra(ADDRESS_EXTRA);
+    if(parcelableAddress != null) {
+      address = parcelableAddress;
+    } else {
+      address = Address.fromSerialized((String) intent.getExtras().get(ADDRESS_EXTRA));
+    }
+    return Recipient.from(context, address, true);
   }
 
   private void initializeProfiles() {
