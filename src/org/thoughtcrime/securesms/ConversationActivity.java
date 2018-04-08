@@ -316,7 +316,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onNewIntent(Intent intent) {
     Log.w(TAG, "onNewIntent()");
-    
+
     if (isFinishing()) {
       Log.w(TAG, "Activity is finishing...");
       return;
@@ -567,6 +567,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_call_insecure:             handleDial(getRecipient());                        return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
+    case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
@@ -774,6 +775,35 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(this, MediaOverviewActivity.class);
     intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, recipient.getAddress());
     startActivity(intent);
+  }
+
+  private void handleAddShortcut() {
+    Log.i(TAG, "Creating home screen shortcut for recipient " + recipient.getAddress());
+
+    Intent shortcutIntent = new Intent(getApplicationContext(), ConversationActivity.class);
+    shortcutIntent.setAction(Intent.ACTION_MAIN);
+
+    shortcutIntent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
+    shortcutIntent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
+    shortcutIntent.setDataAndType(getIntent().getData(), getIntent().getType());
+
+    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
+
+    shortcutIntent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
+    shortcutIntent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+
+    shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+    Intent addIntent = new Intent();
+    // these constants are deprecated but their replacement is available only from API level 27
+    addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+    addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Test");
+    addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon));
+    addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+    addIntent.putExtra("duplicate", false);
+    getApplicationContext().sendBroadcast(addIntent);
+    Toast.makeText(ConversationActivity.this, "Home screen shortcut created", Toast.LENGTH_LONG).show();
   }
 
   private void handleLeavePushGroup() {
