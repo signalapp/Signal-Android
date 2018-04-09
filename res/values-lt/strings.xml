@@ -80,6 +80,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Paskiausi pokalbiai</string>
   <string name="ContactsCursorLoader_contacts">Kontaktai</string>
+  <string name="ContactsCursorLoader_groups">Grupės</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Žinutė %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal skambutis %s</string>
@@ -364,6 +365,16 @@
   <string name="MmsDownloader_error_reading_mms_settings">Klaida, skaitant belaidžio tiekėjo MMS nustatymus</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medija</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Ištrinti pažymėtą žinutę?</item>
+    <item quantity="few">Ištrinti pažymėtas žinutes?</item>
+    <item quantity="other">Ištrinti pažymėtas žinutes?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Tai visiems laikams ištrins %1$d pažymėtą žinutę.</item>
+    <item quantity="few">Tai visiems laikams ištrins visas %1$d pažymėtas žinutes.</item>
+    <item quantity="other">Tai visiems laikams ištrins visas %1$d pažymėtų žinučių.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Ištrinama</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Ištrinamos žinutės...</string>
   <string name="MediaOverviewActivity_Documents">Dokumentai</string>
@@ -589,6 +600,8 @@
   <string name="MediaPreviewActivity_draft">Juodraštis</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint įrašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nepavyksta įrašyti į išorinę saugyklą be leidimų</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Ištrinti žinutę?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d naujų(-os) žinutės(-ių) %2$d pokalbyje(-iuose)</string>
   <string name="MessageNotifier_most_recent_from_s">Paskiausia nuo: %1$s</string>

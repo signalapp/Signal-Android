@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Последни чатове</string>
   <string name="ContactsCursorLoader_contacts">Контакти</string>
+  <string name="ContactsCursorLoader_groups">Групи</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Съобщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Сигналс обаждане %s</string>
@@ -345,6 +346,14 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MmsDownloader_error_reading_mms_settings">Грешка при четенето на MMS настройките на доставчика</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Медия</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Изтриване на избраното съобщение?</item>
+    <item quantity="other">Изтриване на избраните съобщения?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Това ще изтрие невъзвращаемо избраното съобщение.</item>
+    <item quantity="other">Това ще изтрие невъзвращаемо всичките %1$d избрани съобщения.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Изтриване</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Изтриване на съобщения...</string>
   <string name="MediaOverviewActivity_Documents">Документи</string>
@@ -566,6 +575,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MediaPreviewActivity_draft">Чернова</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до вградения диск, за да може да запазва на  него, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Дискове\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Неуспешно запазване на външен диск без нуждното разрешение за достъп</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Изтриване на съобщението?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Това ще изтрие невъзвращаемо текущото съобщение.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови съобщения в %2$d чата</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>

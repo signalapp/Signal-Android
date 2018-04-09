@@ -80,6 +80,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedávné konverzace</string>
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
+  <string name="ContactsCursorLoader_groups">Skupiny</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal volání %s</string>
@@ -359,6 +360,16 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MmsDownloader_error_reading_mms_settings">Chyba při čtení nastavení MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Smazat označenou zprávu?</item>
+    <item quantity="few">Smazat označené zprávy?</item>
+    <item quantity="other">Smazat označené zprávy?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Tímto trvale smažete označenou zprávu.</item>
+    <item quantity="few">Tímto trvale smažete všechny %1$d označené zprávy.</item>
+    <item quantity="other">Tímto trvale smažete všech %1$d označených zpráv.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Mažu</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mažu zprávy...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenty</string>
@@ -576,6 +587,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MediaPreviewActivity_draft">Koncept</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k úložišti aby mohl zapisovat do externího úložiště, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nelze ukládat do externího úložiště bez oprávnění.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Smazat zprávu?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto trvale smažete tuto zprávu.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nových zpráv v %2$d konverzacích</string>
   <string name="MessageNotifier_most_recent_from_s">Poslední od: %1$s</string>

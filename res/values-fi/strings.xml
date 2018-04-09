@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Viimeisimmät keskustelut</string>
   <string name="ContactsCursorLoader_contacts">Yhteystiedot</string>
+  <string name="ContactsCursorLoader_groups">Ryhmät</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Viesti %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-puhelu %s</string>
@@ -343,6 +344,14 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Virhe luettaessa operaattorin MMS-asetuksia</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Poistetaanko valittu viesti?</item>
+    <item quantity="other">Poistetaanko valitut viestit?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Tämä poistaa pysyvästi valitun viestin.</item>
+    <item quantity="other">Tämä poistaa pysyvästi kaikki %1$d valittua viestiä.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Poistetaan</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Viestejä poistetaan...</string>
   <string name="MediaOverviewActivity_Documents">Dokumentit</string>
@@ -562,6 +571,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MediaPreviewActivity_draft">Luonnos</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa tallentaakseen sinne, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Tallennus ulkoiseen tallennustilaan ei onnistu ilman käyttöoikeutta.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Poistetaanko viesti?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Tämä poistaa pysyvästi tämän viestin.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uutta viestiä %2$d keskustelussa</string>
   <string name="MessageNotifier_most_recent_from_s">Uusin lähettäjältä: %1$s</string>

@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
   <string name="ContactsCursorLoader_contacts">Contactos</string>
+  <string name="ContactsCursorLoader_groups">Grupos</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensaxe %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada Signal %s</string>
@@ -179,7 +180,7 @@
   <string name="ConversationListFragment_no_results_found_for_s_">Ningún resultado atopado para \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Borrar a conversa seleccionada?</item>
-    <item quantity="other">Borrar as convrersas seleccionadas?</item>
+    <item quantity="other">Borrar as conversas seleccionadas?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Isto borrará de xeito permanente a conversa seleccionada.</item>
@@ -347,6 +348,14 @@
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler os axustes do provedor sen fíos de MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Ficheiros multimedia</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Borrar a mensaxe seleccionada?</item>
+    <item quantity="other">Borrar as mensaxes seleccionadas?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Isto borrará de xeito permanente a mensaxe seleccionada.</item>
+    <item quantity="other">Isto borrará de xeito permanente todas as %1$d mensaxes seleccionadas.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Borrando</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Borrando mensaxes...</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
@@ -572,6 +581,8 @@
   <string name="MediaPreviewActivity_draft">Borrador</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita permiso para acceder ao almacenamento externo e poder gardar nel, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Non é posible gardar no almacenamento externo sen permiso</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Borrar mensaxe?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Isto borrará de xeito permanente esta mensaxe.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensaxes en %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Máis recente de: %1$s</string>

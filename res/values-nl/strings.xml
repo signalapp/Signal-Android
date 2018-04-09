@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Recente gesprekken</string>
   <string name="ContactsCursorLoader_contacts">Contacten</string>
+  <string name="ContactsCursorLoader_groups">Groepen</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Bericht sturen naar %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oproep %s</string>
@@ -341,6 +342,14 @@
   <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de mms-instellingen van de provider</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Geselecteerd bericht verwijderen?</item>
+    <item quantity="other">Geselecteerde berichten verwijderen?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Dit zal het geselecteerde bericht voorgoed verwijderen.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde berichten voorgoed verwijderen.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Verwijderen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten verwijderen...</string>
   <string name="MediaOverviewActivity_Documents">Documenten</string>
@@ -561,6 +570,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="MediaPreviewActivity_draft">Concept</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de opslagruimte om naar de externe opslag te kunnen opslaan, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder toestemming</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht verwijderen?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal voorgoed verwijderd worden.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>

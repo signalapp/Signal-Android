@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">התכתבויות אחרונות</string>
   <string name="ContactsCursorLoader_contacts">אנשי קשר</string>
+  <string name="ContactsCursorLoader_groups">קבוצות</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">שלח הודעה אל %s</string>
   <string name="ContactsDatabase_signal_call_s">שיחת Signal אל %s</string>
@@ -346,6 +347,14 @@
   <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות MMS של ספק התקשורת האלחוטית</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">מדיה</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">למחוק הודעה נבחרת?</item>
+    <item quantity="other">למחוק הודעות נבחרות?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">זה ימחק לצמיתות את ההודעה הנבחרת.</item>
+    <item quantity="other">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">מוחק הודעות...</string>
   <string name="MediaOverviewActivity_Documents">מסמכים</string>
@@ -565,6 +574,8 @@
   <string name="MediaPreviewActivity_draft">טיוטה</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal צריך את הרשאת האחסון על מנת לשמור באחסון חיצוני, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">לא היה ניתן לשמור באחסון חיצוני ללא הרשאות</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">למחוק הודעה?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">זה ימחק לצמיתות הודעה זו.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d הודעות חדשות ב־%2$d שיחות</string>
   <string name="MessageNotifier_most_recent_from_s">האחרון מאת: %1$s</string>

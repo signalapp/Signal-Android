@@ -74,6 +74,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">ការសន្ទនាថ្មីៗ</string>
   <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
+  <string name="ContactsCursorLoader_groups">ក្រុម</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">សារ %s</string>
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់ស៊ីហ្គណល  %s</string>
@@ -329,6 +330,12 @@
   <string name="MmsDownloader_error_reading_mms_settings">មានបញ្ហាអាននៅក្នុងការកំណត់របស់ក្រុមហ៊ុន​ MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ព័ត៌មាន</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="other">លុបសារដែលបានជ្រើសរើស?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="other">នេះនឹងលុបសារ %1$d ដែលបានជ្រើសរើសជារៀងរហូត។</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">កំពុងលុប</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">កំពុងលុបសារ...</string>
   <string name="MediaOverviewActivity_Documents">ឯកសារ</string>
@@ -548,6 +555,8 @@
   <string name="MediaPreviewActivity_draft">ព្រាង</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គស្តុកទុក ដើម្បីរក្សាឯកសារក្នុងអង្គស្តុកទុកខាងក្រៅ, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស \"ការអនុញ្ញាត\", និងបើក \"អង្គស្តុកទុក\"។ </string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">មិនអាចរក្សាក្នុងអង្គស្តុកទុក ដោយគ្មានការអនុញ្ញាតប្រើប្រាស់អង្គស្តុកទុក</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">លុបសារ?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">នេះនឹងលុបសារ ជារៀងរហូត។</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d សារថ្មីក្នុង %2$d ការសន្ទនា</string>
   <string name="MessageNotifier_most_recent_from_s">ថ្មីៗភាពច្រើនមកពី៖ %1$s</string>

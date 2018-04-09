@@ -74,6 +74,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">最近的聊天</string>
   <string name="ContactsCursorLoader_contacts">聯絡人</string>
+  <string name="ContactsCursorLoader_groups">群組</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s 則訊息</string>
   <string name="ContactsDatabase_signal_call_s">Signal 通話 %s</string>
@@ -329,6 +330,12 @@
   <string name="MmsDownloader_error_reading_mms_settings">讀取無線供應商的 MMS 設定時發生錯誤</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">媒體</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="other">刪除選取的訊息?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="other">這將永久刪除所有 1%1$d 選取的訊息。</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">正在刪除訊息...</string>
   <string name="MediaOverviewActivity_Documents">文件</string>
@@ -551,6 +558,8 @@
   <string name="MediaPreviewActivity_draft">草稿</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要\"儲存空間\"的權限以儲存外接儲存空間，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"儲存空間\"的權限。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">因為沒有\"儲存空間\"的權限，無法儲存到外部儲存空間</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">刪除訊息?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">這將永久刪除此訊息。</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 則新訊息在 %2$d 的對話中</string>
   <string name="MessageNotifier_most_recent_from_s">最新來自：%1$s</string>

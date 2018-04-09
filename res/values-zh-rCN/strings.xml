@@ -74,6 +74,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">最近对话</string>
   <string name="ContactsCursorLoader_contacts">联系人</string>
+  <string name="ContactsCursorLoader_groups">群组</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">信息 %s</string>
   <string name="ContactsDatabase_signal_call_s">暗号呼叫 %s</string>
@@ -328,6 +329,12 @@
   <string name="MmsDownloader_error_reading_mms_settings">读取运营商的彩信设定时出错</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">媒体文件</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="other">删除已选择消息？</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="other">我们将会永久删除%1$d条已选择消息。</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">删除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">正在删除信息…</string>
   <string name="MediaOverviewActivity_Documents">文档</string>
@@ -546,6 +553,8 @@
   <string name="MediaPreviewActivity_draft">草稿</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要存储权限以写入外部存储，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“存储”。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">无法在没有写入到外部存储的权限时保存到外部存储</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">删除消息吗？</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">这将会永久删除消息。</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 新信息是在 %2$d 中的会话</string>
   <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
@@ -1132,8 +1141,10 @@
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">您将可能可以在此 Signal 帐号 7 天不活跃后，不使用注册锁定密码注册此电话号码。还剩 %d 天。</string>
   <string name="RegistrationActivity_registration_lock_pin">注册锁定 PIN</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">该电话号码已经开启注册锁。请输入注册锁PIN码。</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">您的电话号码已经启用注册锁。为了帮助您记住您的注册锁密码，Signal 会时常要求您输入该密码。</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">我忘了我的 PIN</string>
   <string name="RegistrationLockDialog_forgotten_pin">忘记 PIN 了？</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">注册锁能够帮助保护您的电话号码，防止其在未经允许的情况下被注册使用。您可以在任何时候在 Signal 隐私设置里关闭这项功能。</string>
   <string name="RegistrationLockDialog_registration_lock">注册锁</string>
   <string name="RegistrationLockDialog_enable">启用</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">注册锁定 PIN 至少需要 4 位</string>
