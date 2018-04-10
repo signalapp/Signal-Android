@@ -20,6 +20,7 @@ import org.whispersystems.jobqueue.requirements.RequirementListener;
 import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.WebSocketAlarm;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -50,6 +51,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
   private int                    activeActivities = 0;
   private List<Intent>           pushPending      = new LinkedList<>();
   private MessageRetrievalThread retrievalThread  = null;
+  private WebSocketAlarm         webSocketAlarm   = null;
 
   public static SignalServiceMessagePipe pipe = null;
 
@@ -65,6 +67,10 @@ public class MessageRetrievalService extends Service implements InjectableType, 
 
     retrievalThread = new MessageRetrievalThread();
     retrievalThread.start();
+
+    if (TextSecurePreferences.isGcmDisabled(this)) {
+      webSocketAlarm = new WebSocketAlarm(this);
+    }
 
     setForegroundIfNecessary();
   }
@@ -85,6 +91,10 @@ public class MessageRetrievalService extends Service implements InjectableType, 
 
     if (retrievalThread != null) {
       retrievalThread.stopThread();
+    }
+
+    if (webSocketAlarm != null) {
+      webSocketAlarm.disable();
     }
 
     sendBroadcast(new Intent("org.thoughtcrime.securesms.RESTART"));
