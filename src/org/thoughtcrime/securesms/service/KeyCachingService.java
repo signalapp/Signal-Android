@@ -133,6 +133,7 @@ public class KeyCachingService extends Service {
         case PASSPHRASE_EXPIRED_EVENT: handleClearKey();        break;
         case DISABLE_ACTION:           handleDisableService();  break;
         case LOCALE_CHANGE_EVENT:      handleLocaleChanged();   break;
+        case CLEAR_KEY_EVENT:          foregroundService();     break;
       }
     }
 
