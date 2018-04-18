@@ -83,6 +83,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedavni pogovori</string>
   <string name="ContactsCursorLoader_contacts">Stiki</string>
+  <string name="ContactsCursorLoader_groups">Skupine</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sporočilo %s</string>
   <string name="ContactsDatabase_signal_call_s">Klic Signal: %s</string>
@@ -375,6 +376,18 @@
   <string name="MmsDownloader_error_reading_mms_settings">Napaka pri branju nastavitev MMS brezžičnega ponudnika</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimedija</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Izbrišem izbrano sporočilo?</item>
+    <item quantity="two">Izbrišem izbrani sporočili?</item>
+    <item quantity="few">Izbrišem izbrana sporočila?</item>
+    <item quantity="other">Izbrišem izbrana sporočila?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Izbrano sporočilo bo nepovratno izbrisano.</item>
+    <item quantity="two">%1$dizbrani sporočili bosta nepovratno izbrisani.</item>
+    <item quantity="few">Vsa %1$d izbrana sporočila bodo nepovratno izbrisana.</item>
+    <item quantity="other">Vseh %1$d izbranih sporočil bo nepovratno izbrisanih.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brišem</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Brišem sporočila ...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenti</string>
@@ -591,6 +604,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MediaPreviewActivity_draft">Osnutek</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemske shrambe za shranjevanje na zunanji pomnilnik naprave. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Brez dovoljenja za dostop do shrambe ne morem shranjevati na zunanji pomnilnik naprave.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Izbrišem sporočilo?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Sporočilo bo nepovratno izbrisano.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">Novih sporočil: %1$d, pogovorov: %2$d</string>
   <string name="MessageNotifier_most_recent_from_s">Zadnje sporočilo od: %1$s</string>

@@ -44,8 +44,18 @@ public class BitmapUtil {
   private static final int MAX_COMPRESSION_ATTEMPTS         = 5;
   private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
 
-  @android.support.annotation.WorkerThread
+  @WorkerThread
   public static <T> ScaleResult createScaledBytes(Context context, T model, MediaConstraints constraints)
+      throws BitmapDecodingException
+  {
+    return createScaledBytes(context, model,
+                             constraints.getImageMaxWidth(context),
+                             constraints.getImageMaxHeight(context),
+                             constraints.getImageMaxSize(context));
+  }
+
+  @WorkerThread
+  public static <T> ScaleResult createScaledBytes(Context context, T model, int maxImageWidth, int maxImageHeight, int maxImageSize)
       throws BitmapDecodingException
   {
     try {
@@ -59,8 +69,7 @@ public class BitmapUtil {
                                     .skipMemoryCache(true)
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     .downsample(DownsampleStrategy.AT_MOST)
-                                    .submit(constraints.getImageMaxWidth(context),
-                                            constraints.getImageMaxWidth(context))
+                                    .submit(maxImageWidth, maxImageHeight)
                                     .get();
       
       if (scaledBitmap == null) {
@@ -76,14 +85,14 @@ public class BitmapUtil {
           Log.w(TAG, "iteration with quality " + quality + " size " + (bytes.length / 1024) + "kb");
           if (quality == MIN_COMPRESSION_QUALITY) break;
 
-          int nextQuality = (int)Math.floor(quality * Math.sqrt((double)constraints.getImageMaxSize(context) / bytes.length));
+          int nextQuality = (int)Math.floor(quality * Math.sqrt((double)maxImageSize / bytes.length));
           if (quality - nextQuality < MIN_COMPRESSION_QUALITY_DECREASE) {
             nextQuality = quality - MIN_COMPRESSION_QUALITY_DECREASE;
           }
           quality = Math.max(nextQuality, MIN_COMPRESSION_QUALITY);
         }
-        while (bytes.length > constraints.getImageMaxSize(context) && attempts++ < MAX_COMPRESSION_ATTEMPTS);
-        if (bytes.length > constraints.getImageMaxSize(context)) {
+        while (bytes.length > maxImageSize && attempts++ < MAX_COMPRESSION_ATTEMPTS);
+        if (bytes.length > maxImageSize) {
           throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
         }
         Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");

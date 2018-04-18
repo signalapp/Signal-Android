@@ -14,7 +14,7 @@
                       android:layout_width="match_parent"
                       android:orientation="vertical"
                       android:padding="10dp"
-                      android:background="@color/signal_primary">
+                      android:background="?attr/invite_background">
 
             <ImageView android:id="@+id/heart"
                        android:layout_width="wrap_content"

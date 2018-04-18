@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nylige samtaler</string>
   <string name="ContactsCursorLoader_contacts">Kontakter</string>
+  <string name="ContactsCursorLoader_groups">Grupper</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
@@ -345,6 +346,14 @@ fører dette til dupliserte meldinger.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Feil under lesing av oppsett for MMS-leverandør</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medier</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Vil du slette valgt melding?</item>
+    <item quantity="other">Vil du slette valgte meldinger?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Markert melding blir slettet for godt.</item>
+    <item quantity="other">Alle %1$d markerte meldinger blir slettet for godt.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger …</string>
   <string name="MediaOverviewActivity_Documents">Dokumenter</string>
@@ -565,6 +574,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skrive til ekstern lagringsenhet, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Du kan ikke lagre på ekstern lagringsenhet uten å slå på tillatelse i systemet først</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Vil du slette denne meldinga?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldinga blir slettet for godt.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>

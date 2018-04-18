@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nylege samtalar</string>
   <string name="ContactsCursorLoader_contacts">Kontaktar</string>
+  <string name="ContactsCursorLoader_groups">Grupper</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
@@ -345,6 +346,14 @@ fører dette til dupliserte meldingar.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Klarte ikkje lesa MMS-oppsettet til teleselskapet</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Slett den valde meldinga?</item>
+    <item quantity="other">Slett dei valde meldingane?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Dette vil sletta den valde meldinga for godt.</item>
+    <item quantity="other">Dette vil sletta alle dei %1$d valde meldingane for godt.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Slettar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Slettar meldingar …</string>
   <string name="MediaOverviewActivity_Documents">Dokument</string>
@@ -566,6 +575,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MediaPreviewActivity_draft">Kladd</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal treng tilgang til lagring for å lagra til eksterne minnekort, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan ikkje lagra til eksterne minnekort utan tilgang</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Slett melding?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette vil sletta denne meldinga for godt.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldingar i %2$d samtalar</string>
   <string name="MessageNotifier_most_recent_from_s">Nyaste frå: %1$s</string>

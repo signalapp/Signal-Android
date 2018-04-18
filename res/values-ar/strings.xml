@@ -546,7 +546,7 @@
   <string name="ThreadRecord_you_marked_verified">لقد قمت بتصديق</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">تحديث سيجنال</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">يتوفر الاصدار الجديد لـ Signal، انقر للتحديث</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">إصدار جديد لـ Signal متوفر، أنقر لتحديثه</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">هل تود حظر %s ؟</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">لن يقدر المراسلون المحظورون مراسلتك أو الإتصال بك.</string>
@@ -602,6 +602,8 @@
   <string name="MediaPreviewActivity_you">أنت</string>
   <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
   <string name="MediaPreviewActivity_draft">مسودة:</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">أَتريد حذف الرسالة ؟</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">سوف يقوم هذا بحذف الرسالة كُليًا.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
@@ -1132,6 +1134,7 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">قم بفك القفل لعرض الرسائل المعلقة</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">قم بفك القفل لمواصلة التحديث</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">يُرجى فك القفل عن سيجنال لمواصلة التحديث</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">العبارة السرية للنسخ الإحتياطي</string>
   <string name="registration_activity__restore_backup">إستعادة نسخة إحتياطية</string>
   <string name="registration_activity__skip">تخطى</string>
   <string name="registration_activity__register">سجل</string>
@@ -1141,8 +1144,11 @@
   <string name="RegistrationActivity_restore">استعادة</string>
   <string name="RegistrationActivity_checking">عملية التحقق جارية …</string>
   <string name="RegistrationActivity_restore_from_backup">الإسترجاع مِن نسخة احتياطية ؟</string>
+  <string name="RegistrationActivity_backup_size_s">حجم النسخة الإحتياطية : %s</string>
+  <string name="BackupDialog_enable_local_backups">أتريد تشغيل النُّسخ الإحتاطية المحلية ؟</string>
   <string name="BackupDialog_enable_backups">تمكين النُسخ الإحتياطية</string>
   <string name="BackupDialog_delete_backups">هل تود حذف النسخ الإحتياطية ؟</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">أتريد تعطيل و حذف كافة النُّسخ الإحتياطية المحلية ؟</string>
   <string name="BackupDialog_delete_backups_statement">حذف النسخ الإحتياطية</string>
   <string name="BackupDialog_copied_to_clipboard">نسخ إلى الحافظة</string>
   <string name="ChatsPreferenceFragment_last_backup_s">آخِر نسخة إحتياطية : %s</string>

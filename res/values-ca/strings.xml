@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Xats recents</string>
   <string name="ContactsCursorLoader_contacts">Contactes</string>
+  <string name="ContactsCursorLoader_groups">Grups</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Missatge %s</string>
   <string name="ContactsDatabase_signal_call_s">Trucada del Signal %s</string>
@@ -345,6 +346,14 @@ tornar a fer-ho provocarà la generació de missatges duplicats.</string>
   <string name="MmsDownloader_error_reading_mms_settings">S\'ha produït un error en llegir la configuració d\'MMS de l\'operador</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimèdia</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Voleu eliminar el missatge seleccionat?</item>
+    <item quantity="other">Voleu eliminar els missatges seleccionats?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">S\'eliminarà de manera permanent el missatge seleccionat.</item>
+    <item quantity="other">S\'eliminaran de manera permanent els %1$d missatges seleccionats.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">S\'està eliminant</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">S\'estan eliminant els missatges...</string>
   <string name="MediaOverviewActivity_Documents">Documents</string>
@@ -564,6 +573,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MediaPreviewActivity_draft">Esborrany</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">El Signal necessita el permís de l\'emmagatzematge per tal de desar en un emmagatzematge extern, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'emmagatzematge.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No es pot desar en un emmagatzematge extern sense permís.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Voleu eliminar el missatge?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Aquest missatge s\'eliminarà permanentment.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d missatges nous a %2$d converses</string>
   <string name="MessageNotifier_most_recent_from_s">Més recent de: %1$s</string>

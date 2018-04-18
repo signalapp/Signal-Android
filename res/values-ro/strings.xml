@@ -80,6 +80,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Conversații recente</string>
   <string name="ContactsCursorLoader_contacts">Contacte</string>
+  <string name="ContactsCursorLoader_groups">Grupuri</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaj %s</string>
   <string name="ContactsDatabase_signal_call_s">Apel Signal %s</string>
@@ -360,6 +361,16 @@ mesajele din baza de date SMS implicită de sistem în Signal. Dacă ai importat
   <string name="MmsDownloader_error_reading_mms_settings">Eroare la citirea setărilor MMS ale operatorului wireless</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Șterg mesajul selectat?</item>
+    <item quantity="few">Șterg mesajele selectate?</item>
+    <item quantity="other">Șterg mesajele selectate?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Această acțiune va șterge permanent mesajul selectat.</item>
+    <item quantity="few">Această acțiune va șterge permanent toate cele %1$d mesaje selectate.</item>
+    <item quantity="other">Această acțiune va șterge permanent toate cele %1$d mesaje selectate.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Se șterge</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Se șterg mesajele...</string>
   <string name="MediaOverviewActivity_Documents">Documente</string>
@@ -580,6 +591,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaPreviewActivity_draft">Ciornă</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru spațiul de stocare extern pentru a salva pe spațiul de stocare extern, dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Spațiu de stocare\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nu se poate salva pe spațiu de stocare extern fără permisiune</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Șterg mesajul?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversaţii</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>

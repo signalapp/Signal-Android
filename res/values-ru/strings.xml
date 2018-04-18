@@ -83,6 +83,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Недавние беседы</string>
   <string name="ContactsCursorLoader_contacts">Контакты</string>
+  <string name="ContactsCursorLoader_groups">Группы</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Сообщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Позвонить через Signal на %s</string>
@@ -375,6 +376,18 @@
   <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS беспроводного провайдера</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Медиа</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Удалить выбранное сообщение?</item>
+    <item quantity="few">Удалить выбранные сообщения?</item>
+    <item quantity="many">Удалить выбранные сообщения?</item>
+    <item quantity="other">Удалить выбранные сообщения?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Это навсегда удалит выбранное сообщение.</item>
+    <item quantity="few">Это навсегда удалит все %1$d выбранных сообщения.</item>
+    <item quantity="many">Это навсегда удалит все %1$d выбранных сообщений.</item>
+    <item quantity="other">Это навсегда удалит все %1$d выбранных сообщений.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Удаление</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Удаляем сообщения...</string>
   <string name="MediaOverviewActivity_Documents">Документы</string>
@@ -594,6 +607,8 @@
   <string name="MediaPreviewActivity_draft">Черновик</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к хранилищу для сохранения вложений, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Не удается сохранить во внешнем хранилище без разрешений</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Удалить сообщение?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Это сообщение будет навсегда удалено.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от %1$s</string>

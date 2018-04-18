@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Πρόσφατες συζητήσεις</string>
   <string name="ContactsCursorLoader_contacts">Επαφές</string>
+  <string name="ContactsCursorLoader_groups">Ομάδες</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Μήνυμα %s</string>
   <string name="ContactsDatabase_signal_call_s">Κλήση Signal %s</string>
@@ -347,6 +348,14 @@
   <string name="MmsDownloader_error_reading_mms_settings">Πρόβλημα στην ανάκτηση ρυθμίσεων από τον πάροχο για τα MMS </string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Πολυμέσα</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Διαγραφή επιλεγμένου μηνύματος;</item>
+    <item quantity="other">Διαγραφή επιλεγμένων μηνυμάτων;</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Αυτή η επιλογή θα διαγράψει οριστικά το επιλεγμένο μήνυμα.</item>
+    <item quantity="other">Αυτή η επιλογή θα διαγράψει οριστικά τα %1$d επιλεγμένα μηνύματα.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Γίνεται διαγραφή</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Διαγραφή μηνυμάτων...</string>
   <string name="MediaOverviewActivity_Documents">Αρχεία</string>
@@ -567,6 +576,8 @@
   <string name="MediaPreviewActivity_draft">Πρόχειρο</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Αποθηκευτικού Χώρου για να μπορούμε να αποθηκεύσουμε στην εξωτερική μνήμη, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Αδυναμία αποθήκευσης στην εξωτερική μνήμη χωρίς δικαιώματα</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Διαγραφή μηνύματος;</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Αυτή η επιλογή θα διαγράψει οριστικά αυτό το μήνυμα.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d νέα μηνύματα σε %2$d συζητήσεις</string>
   <string name="MessageNotifier_most_recent_from_s">Τελευταίο μήνυμα από: %1$s</string>

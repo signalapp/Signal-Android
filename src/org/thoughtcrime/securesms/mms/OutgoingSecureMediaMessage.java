@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.mms;
 
+import android.support.annotation.Nullable;
+
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -11,9 +13,10 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                     List<Attachment> attachments,
                                     long sentTimeMillis,
                                     int distributionType,
-                                    long expiresIn)
+                                    long expiresIn,
+                                    @Nullable QuoteModel quote)
   {
-    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, distributionType);
+    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, distributionType, quote);
   }
 
   public OutgoingSecureMediaMessage(OutgoingMediaMessage base) {

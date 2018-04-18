@@ -38,6 +38,15 @@
                       android:background="@drawable/sent_bubble"
                       android:orientation="vertical">
 
+            <org.thoughtcrime.securesms.components.QuoteView
+                    android:id="@+id/quote_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:visibility="gone"
+                    app:message_type="outgoing"
+                    tools:visibility="visible"/>
+
             <ViewStub
                     android:id="@+id/image_view_stub"
                     android:layout_width="@dimen/media_bubble_default_dimens"

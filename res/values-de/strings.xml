@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Kürzliche Unterhaltungen</string>
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
+  <string name="ContactsCursorLoader_groups">Gruppen</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-Anruf %s</string>
@@ -341,6 +342,14 @@
   <string name="MmsDownloader_error_reading_mms_settings">MMS-Einstellungen des Mobilfunkanbieters konnten nicht gelesen werden</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medieninhalte</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Ausgewählte Nachricht löschen?</item>
+    <item quantity="other">Ausgewählte Nachrichten löschen?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Dies wird die ausgewählte Nachricht unwiderruflich löschen.</item>
+    <item quantity="other">Dies wird alle %1$d ausgewählten Nachrichten unwiderruflich löschen.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
   <string name="MediaOverviewActivity_Documents">Dokumente</string>
@@ -463,8 +472,8 @@
   <!--RingtonePreference-->
   <string name="RingtonePreference_ringtone_default">Standardklingelton</string>
   <string name="RingtonePreference_ringtone_silent">Keinen</string>
-  <string name="RingtonePreference_notification_sound_default">Standard-Benachrichtigungston</string>
-  <string name="RingtonePreference_alarm_sound_default">Standard-Weckerton</string>
+  <string name="RingtonePreference_notification_sound_default">Standardbenachrichtigungston</string>
+  <string name="RingtonePreference_alarm_sound_default">Standardweckerton</string>
   <string name="RingtonePreference_add_ringtone_text">Klingelton hinzufügen</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Klingelton kann nicht hinzugefügt werden</string>
   <!--Slide-->
@@ -555,6 +564,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaPreviewActivity_draft">Entwurf</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für das Speichern in den Gerätespeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Speichern in den Gerätespeicher ohne Berechtigungen nicht möglich.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Nachricht löschen?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dies wird diese Nachricht unwiderruflich löschen.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
@@ -1127,7 +1138,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="prompt_passphrase_activity__unlock_signal">Signal entsperren</string>
   <string name="preferences_app_protection__screen_lock">Bildschirmsperre</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zugriff auf Signal mit Androids Bildschirmsperre oder Fingerabdruck sperren</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Verzögerungszeit bei Inaktivität</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Autom. Sperre bei Inaktivität</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Die PIN für die Registrierungssperre ist unabhängig vom SMS-Verifikationscode, den du gerade erhalten hast. Bitte gib die PIN ein, die du zuvor in der App festgelegt hast.</string>
   <string name="registration_activity__registration_lock_pin">PIN für Registrierungssperre</string>

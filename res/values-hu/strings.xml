@@ -79,6 +79,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Legutóbbi csevegések</string>
   <string name="ContactsCursorLoader_contacts">Névjegyek</string>
+  <string name="ContactsCursorLoader_groups">Csoportok</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Üzenet %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal hívás %s</string>
@@ -348,6 +349,14 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Hiba a vezeték nélküli szolgáltató MMS beállításainak olvasásában</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Média</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Törlöd a kiválasztott üzenetet?</item>
+    <item quantity="other">Törlöd a kiválasztott üzeneteket?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Ez véglegesen törölni fogja a kiválasztott üzenetet.</item>
+    <item quantity="other">Ez véglegesen törölni fogja mind a(z) %1$d kiválasztott üzenetet.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Törlés</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Üzenetek törlése...</string>
   <string name="MediaOverviewActivity_Documents">Dokumentumok</string>
@@ -574,6 +583,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MediaPreviewActivity_draft">Piszkozat</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">A Signal-nak szüksége van a Tárhely engedélyre, hogy mentsen külső tárolóra, de ez meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Tárhely\"-t.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nem lehet menteni a külső tárolóra engedélyek nélkül</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Törlöd az üzenetet?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Ez véglegesen törölni fogja ezt az üzenetet.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d új üzenet %2$d beszélgetésben</string>
   <string name="MessageNotifier_most_recent_from_s">Legutóbbi tőle: %1$s</string>

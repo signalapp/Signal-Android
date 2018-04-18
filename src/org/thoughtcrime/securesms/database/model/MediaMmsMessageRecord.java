@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
@@ -52,11 +53,12 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                int partCount, long mailbox,
                                List<IdentityKeyMismatch> mismatches,
                                List<NetworkFailure> failures, int subscriptionId,
-                               long expiresIn, long expireStarted, int readReceiptCount)
+                               long expiresIn, long expireStarted, int readReceiptCount,
+                               @Nullable Quote quote)
   {
     super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
-          subscriptionId, expiresIn, expireStarted, slideDeck, readReceiptCount);
+          subscriptionId, expiresIn, expireStarted, slideDeck, readReceiptCount, quote);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;

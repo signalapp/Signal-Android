@@ -83,6 +83,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Ostatnie rozmowy</string>
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
+  <string name="ContactsCursorLoader_groups">Grupy</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Wiadomość %s</string>
   <string name="ContactsDatabase_signal_call_s">Połączenie Signal %s</string>
@@ -376,6 +377,18 @@ wiadomości SMS z domyślnej aplikacji SMS. Jeżeli wcześniej wykonywałeś ju�
   <string name="MmsDownloader_error_reading_mms_settings">Błąd odczytu ustawień MMS operatora</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Usunąć wybraną wiadomość?</item>
+    <item quantity="few">Usunąć wybrane wiadomości?</item>
+    <item quantity="many">Usunąć wybrane wiadomości?</item>
+    <item quantity="other">Usunąć wybrane wiadomości?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Spowoduje to trwałe usunięcie wybranej wiadomości.</item>
+    <item quantity="few">Spowoduje to trwałe usunięcie %1$d wybranych wiadomości.</item>
+    <item quantity="many">Spowoduje to trwałe usunięcie %1$d wybranych wiadomości.</item>
+    <item quantity="other">Spowoduje to trwałe usunięcie %1$d wybranych wiadomości.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Usuwanie</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Usuwanie wiadomości...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenty</string>
@@ -592,6 +605,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MediaPreviewActivity_draft">Szkic</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal wymaga pozwolenia na dostęp do danych telefonu w celu zapisu do zewnętrznego dysku, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Przechowywanie\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nie można zapisać do zewnętrznego dysku bez odpowiedniego pozwolenia</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Usunąć wiadomość?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Spowoduje to trwałe usunięcie tej wiadomości.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nowych wiadomości w %2$d rozmowach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>

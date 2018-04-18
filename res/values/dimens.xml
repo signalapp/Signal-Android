@@ -26,6 +26,9 @@
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
 
+    <dimen name="quote_corner_radius">3dp</dimen>
+    <dimen name="quote_outline_width">1dp</dimen>
+
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
 

@@ -294,10 +294,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
       intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
       intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, true);
 
-      if (mediaRecord.getAddress() != null) {
-        intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, mediaRecord.getAddress());
-      }
-
       intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
       context.startActivity(intent);
     }

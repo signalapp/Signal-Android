@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/quote_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:visibility="gone"
+    android:layout_margin="3dp"
+    tools:visibility="visible">
+
+    <FrameLayout
+        android:id="@+id/quote_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/quote_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/quote_bar"
+                android:layout_width="@dimen/quote_corner_radius"
+                android:layout_height="match_parent"
+                android:src="@color/white"
+                tools:tint="@color/purple_400" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/quote_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="1"
+                    tools:text="Peter Parker"
+                    tools:textColor="@color/purple_400" />
+
+                <TextView
+                    android:id="@+id/media_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:paddingTop="4dp"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:visibility="gone"
+                    tools:text="Photo"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/quote_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    tools:text="With great power comes great responsibility."
+                    tools:visibility="visible" />
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                
+                <ImageView
+                    android:id="@+id/quote_attachment"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    tools:visibility="gone" />
+                
+                <ImageView
+                    android:id="@+id/quote_video_overlay"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:padding="18dp"
+                    android:src="@drawable/ic_play_arrow_white_24dp"
+                    android:background="@color/transparent_black_30"
+                    android:visibility="gone"
+                    tools:visibility="gone"/>
+                
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/quote_attachment_icon_container"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/quote_attachment_icon_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:src="@drawable/circle_tintable" />
+
+                <ImageView
+                    android:id="@+id/quote_attachment_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="15dp"
+                    tools:src="@drawable/ic_insert_drive_file_white_24dp"
+                    tools:tint="@color/purple_400" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/quote_dismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="top|end"
+            android:background="@drawable/dismiss_background"
+            android:src="@drawable/ic_close_white_18dp"
+            android:tint="@color/gray70" />
+
+    </FrameLayout>
+
+</merge>

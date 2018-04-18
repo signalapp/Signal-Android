@@ -45,11 +45,13 @@ import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -78,6 +80,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int SQLCIPHER                            = 334;
   public static final int SQLCIPHER_COMPLETE                   = 352;
   public static final int REMOVE_JOURNAL                       = 353;
+  public static final int REMOVE_CACHE                         = 354;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -97,6 +100,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(PERSISTENT_BLOBS);
     add(SQLCIPHER);
     add(SQLCIPHER_COMPLETE);
+    add(REMOVE_CACHE);
   }};
 
   private MasterSecret masterSecret;
@@ -288,6 +292,14 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < REMOVE_JOURNAL) {
         File file = context.getDatabasePath("messages.db-journal");
         if (file != null && file.exists()) file.delete();
+      }
+
+      if (params[0] < REMOVE_CACHE) {
+        try {
+          FileUtils.deleteDirectoryContents(context.getCacheDir());
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
       }
 
       return null;

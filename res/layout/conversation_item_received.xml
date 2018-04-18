@@ -75,6 +75,15 @@
 
             </LinearLayout>
 
+            <org.thoughtcrime.securesms.components.QuoteView
+                    android:id="@+id/quote_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:visibility="gone"
+                    app:message_type="incoming"
+                    tools:visibility="visible"/>
+
             <ViewStub
                     android:id="@+id/image_view_stub"
                     android:layout="@layout/conversation_item_received_thumbnail"

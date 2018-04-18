@@ -12,6 +12,7 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskCacheAdapter;
 import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.UnitModelLoader;
 import com.bumptech.glide.load.resource.bitmap.Downsampler;
 import com.bumptech.glide.load.resource.bitmap.StreamBitmapDecoder;
 import com.bumptech.glide.load.resource.gif.ByteBufferGifDecoder;
@@ -56,6 +57,7 @@ public class SignalGlideModule extends AppGlideModule {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
     byte[]           secret           = attachmentSecret.getModernKey();
 
+    registry.prepend(File.class, File.class, UnitModelLoader.Factory.getInstance());
     registry.prepend(InputStream.class, new EncryptedCacheEncoder(secret, glide.getArrayPool()));
     registry.prepend(File.class, Bitmap.class, new EncryptedBitmapCacheDecoder(secret, new StreamBitmapDecoder(new Downsampler(registry.getImageHeaderParsers(), context.getResources().getDisplayMetrics(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool())));
     registry.prepend(File.class, GifDrawable.class, new EncryptedGifCacheDecoder(secret, new StreamGifDecoder(registry.getImageHeaderParsers(), new ByteBufferGifDecoder(context, registry.getImageHeaderParsers(), glide.getBitmapPool(), glide.getArrayPool()), glide.getArrayPool())));

@@ -1,7 +1,12 @@
 package org.thoughtcrime.securesms.util;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+
+import com.annimon.stream.Objects;
+import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 
@@ -10,8 +15,25 @@ import java.io.File;
 public class StorageUtil
 {
 
-  public static File getBackupDirectory() throws NoExternalStorageException {
-    File storage = Environment.getExternalStorageDirectory();
+  public static File getBackupDirectory(Context context) throws NoExternalStorageException {
+    File storage = null;
+
+    if (Build.VERSION.SDK_INT >= 19) {
+      File[] directories = context.getExternalFilesDirs(null);
+
+      if (directories != null) {
+        storage = Stream.of(directories)
+                        .withoutNulls()
+                        .filterNot(f -> f.getAbsolutePath().contains("emulated"))
+                        .limit(1)
+                        .findSingle()
+                        .orElse(null);
+      }
+    }
+
+    if (storage == null) {
+      storage = Environment.getExternalStorageDirectory();
+    }
 
     if (!storage.canWrite()) {
       throw new NoExternalStorageException();

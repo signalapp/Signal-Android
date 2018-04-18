@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Chat recenti</string>
   <string name="ContactsCursorLoader_contacts">Contatti</string>
+  <string name="ContactsCursorLoader_groups">Gruppi</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
   <string name="ContactsDatabase_signal_call_s">Chiamata Signal %s</string>
@@ -344,6 +345,14 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Errore nel leggere le impostazioni MMS per il tuo provider</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Eliminare il messaggio selezionato?</item>
+    <item quantity="other">Eliminare i messaggi selezionati?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Il messaggio selezionato verrà eliminato definitivamente.</item>
+    <item quantity="other">Tutti i %1$d messaggi selezionati verranno eliminati definitivamente.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Cancellazione</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Cancellazione messaggi...</string>
   <string name="MediaOverviewActivity_Documents">Documenti</string>
@@ -564,6 +573,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MediaPreviewActivity_draft">Bozza</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per salvare in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossibile salvare sulla memoria senza l\'autorizzazione</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Eliminare il messaggio?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Questo messaggio verrà eliminato definitivamente.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuovi messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>

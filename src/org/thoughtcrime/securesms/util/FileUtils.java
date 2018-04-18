@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,5 +30,28 @@ public class FileUtils {
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
+  }
+
+  public static void deleteDirectoryContents(File directory) throws IOException {
+    if (directory == null || !directory.exists() || !directory.isDirectory()) return;
+
+    File[] files = directory.listFiles();
+
+    if (files != null) {
+      for (File file : files) {
+        if (file.isDirectory()) deleteDirectory(file);
+        else                    file.delete();
+      }
+    }
+  }
+
+  public static void deleteDirectory(File directory) throws IOException {
+    if (directory == null || !directory.exists() || !directory.isDirectory()) {
+      return;
+    }
+
+    deleteDirectoryContents(directory);
+
+    directory.delete();
   }
 }
