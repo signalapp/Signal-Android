@@ -682,6 +682,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="audio_view__play_accessibility_description">Пускане</string>
   <string name="audio_view__pause_accessibility_description">Пауза</string>
   <string name="audio_view__download_accessibility_description">Изтегляне</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Аудио</string>
+  <string name="QuoteView_video">Видео</string>
+  <string name="QuoteView_document">Документ</string>
+  <string name="QuoteView_you">Ти</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим на групово избиране</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s избран</string>

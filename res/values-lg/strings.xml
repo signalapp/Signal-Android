@@ -450,6 +450,10 @@ gy\'olonze (%s) sintuufu.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Ekifananyi kya kontakiti</string>
   <!--audio_view-->
+  <!--QuoteView-->
+  <string name="QuoteView_audio">edoboozi</string>
+  <string name="QuoteView_video">Olutambi</string>
+  <string name="QuoteView_you">Gwe</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_amount">%s kilondedwako</string>
   <!--conversation_fragment-->

@@ -185,6 +185,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Mažu</string>
   <string name="ConversationFragment_deleting_messages">Mažu zprávy...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Citovaná zpráva nebyla nalezena</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte na vašem zařízení nainstalován žádný prohlížeč.</string>
   <!--ConversationListFragment-->
@@ -694,6 +695,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="audio_view__play_accessibility_description">Přehrát</string>
   <string name="audio_view__pause_accessibility_description">Zastavit</string>
   <string name="audio_view__download_accessibility_description">Stáhnout</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Fotografie</string>
+  <string name="QuoteView_document">Dokument</string>
+  <string name="QuoteView_you">Vy</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Hromadný výběr</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Vybráno %s</string>
@@ -1209,5 +1216,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zamčen</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">Klepnutím odemkněte</string>
   <string name="RegistrationLockDialog_reminder">Připomínka:</string>
+  <string name="recipient_preferences__about">Info o</string>
   <!--EOF-->
 </resources>

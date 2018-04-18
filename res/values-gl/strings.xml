@@ -174,6 +174,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Borrando</string>
   <string name="ConversationFragment_deleting_messages">Borrando mensaxes...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Mensaxe citada non atopada</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Non hai ningún navegador instalado no teu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -688,6 +689,12 @@
   <string name="audio_view__play_accessibility_description">Reproducir</string>
   <string name="audio_view__pause_accessibility_description">Pausar</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Vídeo</string>
+  <string name="QuoteView_photo">Fotografía</string>
+  <string name="QuoteView_document">Documento</string>
+  <string name="QuoteView_you">Ti</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección por lotes</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionados</string>
@@ -1193,5 +1200,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal está bloqueado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>
   <string name="RegistrationLockDialog_reminder">Recordatorio:</string>
+  <string name="recipient_preferences__about">Acerca de</string>
   <!--EOF-->
 </resources>

@@ -634,6 +634,10 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="audio_view__play_accessibility_description">Spil</string>
   <string name="audio_view__pause_accessibility_description">Pause</string>
   <string name="audio_view__download_accessibility_description">Hent</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Lyd</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_you">Dig</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Valgte mængde</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valgt</string>

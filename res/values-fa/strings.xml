@@ -602,6 +602,10 @@
   <string name="audio_view__play_accessibility_description">پخش</string>
   <string name="audio_view__pause_accessibility_description">مکث</string>
   <string name="audio_view__download_accessibility_description">دریافت</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">صوت</string>
+  <string name="QuoteView_video">ویدئو</string>
+  <string name="QuoteView_you">شما</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">حالت انتخاب دسته ای</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s منتخب</string>

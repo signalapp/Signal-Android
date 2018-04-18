@@ -174,6 +174,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Löschen</string>
   <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
+  <string name="ConversationFragment_quoted_message_not_found">Zitierte Nachricht nicht gefunden</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Auf deinem Gerät ist derzeit kein Browser installiert.</string>
   <!--ConversationListFragment-->
@@ -671,6 +672,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="audio_view__play_accessibility_description">Wiedergeben</string>
   <string name="audio_view__pause_accessibility_description">Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Dokument</string>
+  <string name="QuoteView_you">Du</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mehrfachauswahl</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s ausgewählt</string>
@@ -953,7 +960,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
   <string name="preferences__incognito_keyboard">Inkognito-Tastatur</string>
   <string name="preferences__read_receipts">Lesebestätigungen</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen wirst du auch die Lesebestätigungen anderer nicht sehen können.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen wirst du auch die Lesebestätigungen anderer nicht sehen können</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tastatur auffordern, personalisiertes Lernen auszuschalten</string>
   <string name="preferences_app_protection__blocked_contacts">Blockierte Kontakte</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
@@ -1176,5 +1183,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ist gesperrt</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ZUM ENTSPERREN ANTIPPEN</string>
   <string name="RegistrationLockDialog_reminder">Erinnerung:</string>
+  <string name="recipient_preferences__about">Über</string>
   <!--EOF-->
 </resources>

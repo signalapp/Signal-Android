@@ -629,6 +629,10 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="audio_view__play_accessibility_description">Luaj</string>
   <string name="audio_view__pause_accessibility_description">Ndërprerje</string>
   <string name="audio_view__download_accessibility_description">Shkarko</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_you">Ti</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mënyrë përzgjedhje grupi</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s të përzgjedhur</string>

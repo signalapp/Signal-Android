@@ -84,6 +84,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">الدردشات الحديثة</string>
   <string name="ContactsCursorLoader_contacts">جهات الإتصال</string>
+  <string name="ContactsCursorLoader_groups">مجموعات</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">رسالة %s</string>
   <string name="ContactsDatabase_signal_call_s">مكالمة سيجنال %s</string>
@@ -704,6 +705,10 @@
   <string name="audio_view__play_accessibility_description">تشغيل</string>
   <string name="audio_view__pause_accessibility_description">توقف</string>
   <string name="audio_view__download_accessibility_description">تنزيل</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">صوت</string>
+  <string name="QuoteView_video">فيديو</string>
+  <string name="QuoteView_you">أنت</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>

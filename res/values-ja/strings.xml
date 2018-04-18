@@ -35,7 +35,7 @@
   <string name="ApplicationPreferencesActivity_off">オフ</string>
   <string name="ApplicationPreferencesActivity_Off">オフ</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">スクリーンロック%1$s、登録ロック%2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">画面ロック %1$s、登録ロック %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">テーマ %1$s、言語 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -112,7 +112,7 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">チャットアプリをSignalに変えましょう。%1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">チャット・アプリ『Signal』を使いませんか？ %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">グループ離脱エラー</string>
+  <string name="ConversationActivity_error_leaving_group">グループ脱退でエラー</string>
   <string name="ConversationActivity_specify_recipient">連絡先を選択してください</string>
   <string name="ConversationActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか？</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや電話を再び受信できるようになります。</string>
@@ -363,9 +363,9 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%sに対する安全番号を未検証にしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%sに対する安全番号を他端末で未検証にしました</string>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスワードが正しくありません！</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスフレーズが正しくありません！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスワードが正しくありません。</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">新しいパスワードを入力する！</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">新しいパスフレーズを入力してください！</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">このデバイスを結び付けますか？</string>
   <string name="DeviceProvisioningActivity_cancel">キャンセル</string>
@@ -390,10 +390,10 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">あなたのメッセージに消去期限は付きません</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">この会話内で送受信されるメッセージは閲覧後%sで消えます</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">パスフレーズを入力してください</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signalアイコン</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">パスワードを設定</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">パスワードが無効</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">パスフレーズを設定</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスフレーズです！</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">あなたのインストールしているGoogle Play Servicesのこのバージョンでは機能的に適切ではありません。Google Play Servicesを再インストールして再挑戦してみてください。</string>
   <!--RatingManager-->
@@ -525,7 +525,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">MMSメッセージの暗号化が正しくありません</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">存在しない相手に向けてMMSメッセージが暗号化されています</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">消音通知</string>
+  <string name="MuteDialog_mute_notifications">通知をミュート</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_no_web_browser_installed">ウェブブラウザがインストールされていません！</string>
   <!--ApplicationMigrationService-->
@@ -585,7 +585,7 @@
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
   <string name="WebRtcCallScreen_new_safety_number_title">新しい安全番号</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">タップして動画を有効する</string>
+  <string name="WebRtcCallControls_tap_to_enable_your_video">タップして動画を有効にする</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">音声</string>
   <string name="attachment_type_selector__audio_description">音声</string>
@@ -634,7 +634,7 @@
   <string name="conversation_activity__attachment_thumbnail">添付のサムネイル</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">カメラ添付の引出しを素速く切り替える</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">音声を録音して送信する</string>
-  <string name="conversation_activity__enable_signal_for_sms">SignalでSMSができるようにする</string>
+  <string name="conversation_activity__enable_signal_for_sms">SignalのSMS機能を有効にする</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">スライドしてキャンセル</string>
   <!--conversation_item-->
@@ -651,6 +651,10 @@
   <string name="audio_view__play_accessibility_description">再生</string>
   <string name="audio_view__pause_accessibility_description">一時停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">音声</string>
+  <string name="QuoteView_video">動画</string>
+  <string name="QuoteView_you">あなた</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">一括選択モード</string>
   <string name="conversation_fragment_cab__batch_selection_amount">選択数は%s</string>
@@ -670,7 +674,7 @@
   <string name="experience_upgrade_activity__continue">続ける</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">既読機能が追加</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">既読機能が利用できるようになりました！</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">既読機能をオンにする</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">既読機能を有効にする</string>
   <!--expiration-->
   <string name="expiration_off">オフ</string>
   <plurals name="expiration_seconds">
@@ -759,7 +763,7 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">共有されたメディア</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">消音会話</string>
+  <string name="recipient_preferences__mute_conversation">会話をミュート</string>
   <string name="recipient_preferences__notification_sound">通知音</string>
   <string name="recipient_preferences__vibrate">振動</string>
   <string name="recipient_preferences__block">ブロック</string>
@@ -771,7 +775,7 @@
   <string name="recipient_preferences__ringtone">着信音</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal通話</string>
-  <string name="redphone_call_controls__mute">消音</string>
+  <string name="redphone_call_controls__mute">ミュート</string>
   <string name="redphone_call_controls__signal_call">Signal通話</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">電話番号</string>
@@ -808,10 +812,10 @@
   <string name="message_details_header__from">From:</string>
   <string name="message_details_header__with">With:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">パスワード作成</string>
-  <string name="AndroidManifest__enter_passphrase">パスワード入力</string>
+  <string name="AndroidManifest__create_passphrase">パスフレーズを作成</string>
+  <string name="AndroidManifest__enter_passphrase">パスフレーズを入力</string>
   <string name="AndroidManifest__select_contacts">連絡先を選択</string>
-  <string name="AndroidManifest__change_passphrase">パスワード変更</string>
+  <string name="AndroidManifest__change_passphrase">パスフレーズを変更</string>
   <string name="AndroidManifest__verify_safety_number">安全番号を確認する</string>
   <string name="AndroidManifest__log_submit">デバッグログを提出</string>
   <string name="AndroidManifest__media_preview">メディアのプレビュー</string>
@@ -826,9 +830,9 @@
   <string name="arrays__use_custom">カスタムを使う</string>
   <string name="arrays__mute_for_one_hour">1時間ミュート</string>
   <string name="arrays__mute_for_two_hours">2時間ミュート</string>
-  <string name="arrays__mute_for_one_day">1日消音</string>
-  <string name="arrays__mute_for_seven_days">7日消音</string>
-  <string name="arrays__mute_for_one_year">1年間消音</string>
+  <string name="arrays__mute_for_one_day">1日間ミュート</string>
+  <string name="arrays__mute_for_seven_days">7日間ミュート</string>
+  <string name="arrays__mute_for_one_year">1年間ミュート</string>
   <string name="arrays__settings_default">既定の設定</string>
   <string name="arrays__enabled">有効</string>
   <string name="arrays__disabled">無効</string>
@@ -844,7 +848,7 @@
   <string name="arrays__large">大きい</string>
   <string name="arrays__extra_large">非常に大きい</string>
   <string name="arrays__default">デフォルト</string>
-  <string name="arrays__high">上に</string>
+  <string name="arrays__high">高</string>
   <string name="arrays__max">最大</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
@@ -862,9 +866,9 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
   <string name="preferences__change_your_passphrase">パスワードを変更します</string>
-  <string name="preferences__enable_passphrase">パスワードで画面をロックする</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">パスワードで画面と通知をロックする</string>
-  <string name="preferences__screen_security">スクリーンセキュリティ</string>
+  <string name="preferences__enable_passphrase">パスフレーズでの画面ロックを有効にする</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">パスフレーズで画面と通知をロックする</string>
+  <string name="preferences__screen_security">画面セキュリティ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">アプリ内や「最近使ったアプリ」でスクリーンショットを表示しない</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">一定時間後に自動ロック</string>
   <string name="preferences__inactivity_timeout_passphrase">パスワードのタイムアウト</string>
@@ -922,7 +926,7 @@
   <string name="preferences__free_private_messages_and_calls">Signalユーザーに無料で安全なメッセージと通話</string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__support_wifi_calling">Wi-Fi通話互換モード</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">SMS/MMSをWi-Fiで送受信することを許可する (ただしWi-Fi通話有効時のみ)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Wi-FiでのSMS/MMS送受信を有効にする (Wi-Fi通話の有効時のみ)</string>
   <string name="preferences__incognito_keyboard">プライバシーキーボード</string>
   <string name="preferences__read_receipts">既読通知</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
@@ -994,9 +998,9 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">安全なセッションをリセット</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">消音解除</string>
+  <string name="conversation_muted__unmute">ミュートを解除</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">無音通知</string>
+  <string name="conversation_unmuted__mute_notifications">通知をミュート</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付</string>
   <string name="conversation__menu_edit_group">グループを編集する</string>
@@ -1066,25 +1070,24 @@
   <string name="Permissions_continue">続行</string>
   <string name="Permissions_not_now">後で</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signalで連絡先を検索するには、連絡先へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、アプリの権限を選び、連絡先へのアクセス許可を有効にしてください。</string>
-  <string name="conversation_activity__enable_signal_messages">Signalメッセージを有効化</string>
+  <string name="conversation_activity__enable_signal_messages">Signalメッセージを有効にする</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signalのデータを移行する</string>
   <string name="PushDecryptJob_new_locked_message">ロックされた新着メッセージ</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ロックを外し、メッセージを見る</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ロックを外し、更新を完了する</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">更新を完了するため、ロックを解除してください</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">バックアップのパスワード</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">バックアップは外部保存にパスワードで保護（暗号化）して保存します。バックアップをリストアはパスワードが必要なのです。
-</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">パスワードを書き留めました。パスワードなければバックアップをリストアできません。</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">バックアップ用パスフレーズ </string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">バックアップは外部ストレージにパスフレーズで暗号化して保存されます。バックアップのリストアには、このパスフレーズが必要です。</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">パスフレーズを書き留めました。パスフレーズがなければ、バックアップをリストアできません。</string>
   <string name="registration_activity__restore_backup">バックアップをリストア</string>
   <string name="registration_activity__skip">スキップする</string>
   <string name="registration_activity__register">登録</string>
   <string name="preferences_chats__chat_backups">チャートのバックアップ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">外部保存にチャートをバックアップします</string>
   <string name="preferences_chats__create_backup">バックアップを作ります</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">バックアップのパスワードを入力</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">バックアップのパスフレーズを入力してください</string>
   <string name="RegistrationActivity_restore">復元</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">バックアップのパスワードが間違っています。</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">バックアップのパスフレーズが間違っています</string>
   <string name="RegistrationActivity_checking">確認中…</string>
   <string name="RegistrationActivity_d_messages_so_far">今、%d個メッセージ…</string>
   <string name="RegistrationActivity_restore_from_backup">バックアップでリストアしますか？</string>
@@ -1108,9 +1111,9 @@
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="prompt_passphrase_activity__unlock_signal">Signalをアンロック</string>
-  <string name="preferences_app_protection__screen_lock">スクリーンロック</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signalをスクリーンロックや指紋認証でロックする</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">スクリーンロックのタイムアウト</string>
+  <string name="preferences_app_protection__screen_lock">画面ロック</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signalを画面ロックや指紋認証でロックする</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックのタイムアウト</string>
   <string name="AppProtectionPreferenceFragment_none">なし</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">「登録ロックPIN」は先程送信された「確認コード」とは異なります。以前Signalで設定した「登録ロックPIN」を入力してください。</string>
   <string name="registration_activity__registration_lock_pin">登録ロックPIN</string>
@@ -1137,7 +1140,7 @@
   <string name="RegistrationLockDialog_forgotten_pin">PINを忘れましたか？</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">登録ロックはあなたの電話番号をなりすまし登録から保護します。この機能はSignalのプライバシー設定からいつでも無効化できます。</string>
   <string name="RegistrationLockDialog_registration_lock">登録ロック</string>
-  <string name="RegistrationLockDialog_enable">有効にします</string>
+  <string name="RegistrationLockDialog_enable">有効にする</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">登録ロックPINは4桁以上で入力してください。</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">PINが一致しません。</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">サービスへの接続中にエラーが発生しました</string>

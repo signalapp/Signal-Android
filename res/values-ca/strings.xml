@@ -174,6 +174,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">S\'està eliminant</string>
   <string name="ConversationFragment_deleting_messages">S\'estan eliminant els missatges...</string>
+  <string name="ConversationFragment_quoted_message_not_found">No s\'ha trobat el missatge citat</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hi ha cap navegador instal·lat al dispositiu.</string>
   <!--ConversationListFragment-->
@@ -680,6 +681,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="audio_view__play_accessibility_description">Reprodueix</string>
   <string name="audio_view__pause_accessibility_description">Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Àudio</string>
+  <string name="QuoteView_video">Vídeo</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Document</string>
+  <string name="QuoteView_you">Jo</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de selecció per lots</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionats</string>
@@ -1185,5 +1192,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="prompt_passphrase_activity__signal_is_locked">El Signal està blocat</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUEU PER A DESBLOCAR-LO</string>
   <string name="RegistrationLockDialog_reminder">Recordatori:</string>
+  <string name="recipient_preferences__about">Quant a</string>
   <!--EOF-->
 </resources>

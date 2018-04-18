@@ -196,6 +196,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brišem</string>
   <string name="ConversationFragment_deleting_messages">Brišem sporočila ...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Citirano sporočilo ni bilo najdeno</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na svoji napravi nimate nameščenega spletnega brskalnika.</string>
   <!--ConversationListFragment-->
@@ -711,6 +712,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="audio_view__play_accessibility_description">Predvajaj</string>
   <string name="audio_view__pause_accessibility_description">Pavza</string>
   <string name="audio_view__download_accessibility_description">Prenesi</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Zvok</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Fotografija</string>
+  <string name="QuoteView_document">Dokument</string>
+  <string name="QuoteView_you">Vi</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Skupinski način izbire</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Izbranih: %s</string>
@@ -1234,5 +1241,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaklenjen</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAPNITE ZA ODKLEPANJE</string>
   <string name="RegistrationLockDialog_reminder">Opomnik:</string>
+  <string name="recipient_preferences__about">Več</string>
   <!--EOF-->
 </resources>

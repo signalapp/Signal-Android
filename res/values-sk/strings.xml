@@ -642,6 +642,10 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="audio_view__play_accessibility_description">Hrať</string>
   <string name="audio_view__pause_accessibility_description">Pozastaviť</string>
   <string name="audio_view__download_accessibility_description">Stiahnuť</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Zvuk</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_you">Vy</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mód hromadného výberu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s vybraných</string>

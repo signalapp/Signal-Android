@@ -656,6 +656,10 @@
   <string name="audio_view__play_accessibility_description">เล่น</string>
   <string name="audio_view__pause_accessibility_description">หยุดชั่วคราว</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">เสียง</string>
+  <string name="QuoteView_video">วิดีโอ</string>
+  <string name="QuoteView_you">คุณ</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">โหมดการเลือกเป็นชุด</string>
   <string name="conversation_fragment_cab__batch_selection_amount">เลือกแล้ว %s</string>

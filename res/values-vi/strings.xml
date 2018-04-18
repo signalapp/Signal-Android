@@ -455,6 +455,10 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Hình liên lạc</string>
   <!--audio_view-->
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Âm thanh</string>
+  <string name="QuoteView_video">Đoạn phim</string>
+  <string name="QuoteView_you">Bạn</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Dạng chọn hàng loạt</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s được chọn</string>

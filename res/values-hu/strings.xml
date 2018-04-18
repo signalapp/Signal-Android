@@ -176,6 +176,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Törlés</string>
   <string name="ConversationFragment_deleting_messages">Üzenetek törlése...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Idézett üzenet nem található</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
@@ -692,6 +693,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="audio_view__play_accessibility_description">Lejátszás</string>
   <string name="audio_view__pause_accessibility_description">Szünet</string>
   <string name="audio_view__download_accessibility_description">Letöltés</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Hang</string>
+  <string name="QuoteView_video">Videó</string>
+  <string name="QuoteView_photo">Fotó</string>
+  <string name="QuoteView_document">Dokumentum</string>
+  <string name="QuoteView_you">Te</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Tétel kiválasztás mód</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s kiválasztva</string>
@@ -1197,5 +1204,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="prompt_passphrase_activity__signal_is_locked">Signal zárolva</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ÉRINTS A FELOLDÁSHOZ</string>
   <string name="RegistrationLockDialog_reminder">Emlékeztető:</string>
+  <string name="recipient_preferences__about">Bővebben</string>
   <!--EOF-->
 </resources>

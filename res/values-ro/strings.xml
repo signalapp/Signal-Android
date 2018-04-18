@@ -698,6 +698,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="audio_view__play_accessibility_description">Redare</string>
   <string name="audio_view__pause_accessibility_description">Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_document">Document</string>
+  <string name="QuoteView_you">Tu</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mod selecţie multiplă</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selectate</string>

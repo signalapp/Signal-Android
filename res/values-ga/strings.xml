@@ -583,6 +583,10 @@ a shonrú</string>
   <string name="audio_view__play_accessibility_description">Seinn</string>
   <string name="audio_view__pause_accessibility_description">Cuir ar sos é</string>
   <string name="audio_view__download_accessibility_description">Íosluchtaigh é</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Fuaim</string>
+  <string name="QuoteView_video">Físeán</string>
+  <string name="QuoteView_you">Tusa</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_amount">%s roghnaithe</string>
   <!--conversation_fragment-->

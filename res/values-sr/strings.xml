@@ -592,6 +592,10 @@
   <string name="audio_view__play_accessibility_description">Пусти</string>
   <string name="audio_view__pause_accessibility_description">Паузирај</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Звук</string>
+  <string name="QuoteView_video">Видео</string>
+  <string name="QuoteView_you">Ви</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим серијског избора</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Изабрано: %s</string>

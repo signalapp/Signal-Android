@@ -660,6 +660,10 @@
   <string name="audio_view__play_accessibility_description">播放</string>
   <string name="audio_view__pause_accessibility_description">暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">音频</string>
+  <string name="QuoteView_video">视频</string>
+  <string name="QuoteView_you">您</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s 已选择</string>

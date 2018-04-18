@@ -185,6 +185,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ištrinama</string>
   <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Cituota žinutė nerasta</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -707,6 +708,12 @@
   <string name="audio_view__play_accessibility_description">Groti</string>
   <string name="audio_view__pause_accessibility_description">Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Garso įrašai</string>
+  <string name="QuoteView_video">Vaizdo įrašai</string>
+  <string name="QuoteView_photo">Nuotrauka</string>
+  <string name="QuoteView_document">Dokumentas</string>
+  <string name="QuoteView_you">Jūs</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Masinio pasirinkimo veiksena</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s pasirinkta</string>
@@ -1221,5 +1228,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal yra užrakinta</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">BAKSTELĖKITE, NORĖDAMI ATRAKINTI</string>
   <string name="RegistrationLockDialog_reminder">Priminimas:</string>
+  <string name="recipient_preferences__about">Apie</string>
   <!--EOF-->
 </resources>

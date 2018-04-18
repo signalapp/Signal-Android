@@ -633,6 +633,10 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="audio_view__play_accessibility_description">Reprodukcija</string>
   <string name="audio_view__pause_accessibility_description">Zaustavi</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Zvuk</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_you">Vi</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Način za višestruki odabir</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s odabrano</string>

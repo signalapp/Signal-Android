@@ -712,6 +712,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="audio_view__play_accessibility_description">Odtwórz</string>
   <string name="audio_view__pause_accessibility_description">Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Dźwięk</string>
+  <string name="QuoteView_video">Wideo</string>
+  <string name="QuoteView_document">Dokument</string>
+  <string name="QuoteView_you">Ty</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Tryb wyboru grupy</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s wybranych</string>

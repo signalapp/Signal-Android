@@ -382,6 +382,10 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">தொடர்பின் புகைப்படம்</string>
   <!--audio_view-->
+  <!--QuoteView-->
+  <string name="QuoteView_audio">கேட்பொலி</string>
+  <string name="QuoteView_video">காணொளி</string>
+  <string name="QuoteView_you">நீங்கள்</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">தொகுப்பாய் தேர்வு செய்யப்பட்டது</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s தேர்ந்தெடுக்கப்பட்டது</string>
