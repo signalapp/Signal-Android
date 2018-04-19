@@ -26,6 +26,8 @@ public class SignalServiceNetworkAccess {
   private static final String COUNTRY_CODE_UAE   = "+971";
   private static final String COUNTRY_CODE_OMAN  = "+968";
   private static final String COUNTRY_CODE_QATAR = "+974";
+  private static final String COUNTRY_CODE_IRAN  = "+98";
+
 
   private static final String SERVICE_REFLECTOR_HOST = "textsecure-service-reflected.whispersystems.org";
 
@@ -62,6 +64,7 @@ public class SignalServiceNetworkAccess {
       put(COUNTRY_CODE_UAE, serviceConfig);
       put(COUNTRY_CODE_OMAN, serviceConfig);
       put(COUNTRY_CODE_QATAR, serviceConfig);
+      put(COUNTRY_CODE_IRAN, serviceConfig);
     }};
 
     this.uncensoredConfiguration = new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl(BuildConfig.SIGNAL_URL, new SignalServiceTrustStore(context))},
