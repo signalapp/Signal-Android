@@ -6,7 +6,7 @@
         <org.thoughtcrime.securesms.preferences.widgets.ContactPreference android:key="pref_key_number" android:persistent="false"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:layout="@layout/preference_divider"/>
+    <PreferenceCategory android:key="about_divider" android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:key="notification_settings" android:title="@string/recipient_preferences__chat_settings">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
@@ -43,7 +43,7 @@
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
-    <PreferenceCategory android:title="@string/recipient_preferences__call_settings">
+    <PreferenceCategory android:key="call_settings" android:title="@string/recipient_preferences__call_settings">
 
         <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
                 android:key="pref_key_recipient_call_ringtone"
