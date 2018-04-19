@@ -204,9 +204,18 @@ public class FullBackupImporter extends FullBackupBase {
           mac.update(buffer, 0, read);
 
           byte[] plaintext = cipher.update(buffer, 0, read);
-          out.write(plaintext, 0, plaintext.length);
+
+          if (plaintext != null) {
+            out.write(plaintext, 0, plaintext.length);
+          }
 
           length -= read;
+        }
+
+        byte[] plaintext = cipher.doFinal();
+
+        if (plaintext != null) {
+          out.write(plaintext, 0, plaintext.length);
         }
 
         out.close();
@@ -225,7 +234,7 @@ public class FullBackupImporter extends FullBackupBase {
           //destination.delete();
           throw new IOException("Bad MAC");
         }
-      } catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
+      } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
         throw new AssertionError(e);
       }
     }
