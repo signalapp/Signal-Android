@@ -28,9 +28,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
-import android.text.TextUtils;
-import android.text.TextUtils.TruncateAt;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,17 +92,6 @@ public class ViewUtil {
     int childIndex = parent.indexOfChild(toRemove);
     if (childIndex > -1) parent.removeView(toRemove);
     parent.addView(toAdd, childIndex > -1 ? childIndex : defaultIndex);
-  }
-
-  public static CharSequence ellipsize(@Nullable CharSequence text, @NonNull TextView view) {
-    if (TextUtils.isEmpty(text) || view.getWidth() == 0 || view.getEllipsize() != TruncateAt.END) {
-      return text;
-    } else {
-      return TextUtils.ellipsize(text,
-                                 view.getPaint(),
-                                 view.getWidth() - view.getPaddingRight() - view.getPaddingLeft(),
-                                 TruncateAt.END);
-    }
   }
 
   @SuppressWarnings("unchecked")

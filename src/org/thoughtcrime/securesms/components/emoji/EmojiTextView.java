@@ -2,27 +2,27 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Paint.FontMetricsInt;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.ViewTreeObserver;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
+
 
 public class EmojiTextView extends AppCompatTextView {
   private final boolean scaleEmojis;
 
   private CharSequence source;
-  private boolean      needsEllipsizing;
   private float        originalFontSize;
 
   public EmojiTextView(Context context) {
@@ -67,15 +67,33 @@ public class EmojiTextView extends AppCompatTextView {
     }
 
     source = EmojiProvider.getInstance(getContext()).emojify(candidates, text, this);
-    setTextEllipsized(source);
+    super.setText(source, BufferType.SPANNABLE);
+
+    // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
+    // We ellipsize them ourselves by manually truncating the appropriate section.
+    if (getEllipsize() == TextUtils.TruncateAt.END) {
+      post(() -> {
+        int maxLines = TextViewCompat.getMaxLines(EmojiTextView.this);
+        if (maxLines <= 0) {
+          return;
+        }
+        int lineCount = getLineCount();
+        if (lineCount > maxLines) {
+          int          overflowStart = getLayout().getLineStart(maxLines - 1);
+          CharSequence overflow      = getText().subSequence(overflowStart, getText().length());
+          CharSequence ellipsized    = TextUtils.ellipsize(overflow, getPaint(), getWidth(), TextUtils.TruncateAt.END);
+
+          SpannableStringBuilder newContent = new SpannableStringBuilder();
+          newContent.append(getText().subSequence(0, overflowStart))
+                    .append(ellipsized);
+          super.setText(newContent);
+        }
+      });
+    }
   }
 
   private boolean useSystemEmoji() {
    return TextSecurePreferences.isSystemEmojiPreferred(getContext());
-  }
-
-  private void setTextEllipsized(final @Nullable CharSequence source) {
-    super.setText(needsEllipsizing ? ViewUtil.ellipsize(source, this) : source, BufferType.SPANNABLE);
   }
 
   @Override public void invalidateDrawable(@NonNull Drawable drawable) {
@@ -83,27 +101,11 @@ public class EmojiTextView extends AppCompatTextView {
     else                                   super.invalidateDrawable(drawable);
   }
 
-  @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    final int size = MeasureSpec.getSize(widthMeasureSpec);
-    final int mode = MeasureSpec.getMode(widthMeasureSpec);
-    if (!useSystemEmoji()                                            &&
-        getEllipsize() == TruncateAt.END                             &&
-        !TextUtils.isEmpty(source)                                   &&
-        (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.EXACTLY) &&
-        getPaint().breakText(source, 0, source.length()-1, true, size, null) != source.length())
-    {
-      needsEllipsizing = true;
-      FontMetricsInt font = getPaint().getFontMetricsInt();
-      super.onMeasure(MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY),
-                      MeasureSpec.makeMeasureSpec(Math.abs(font.top - font.bottom), MeasureSpec.EXACTLY));
-    } else {
-      needsEllipsizing = false;
-      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-  }
-
   @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-    if (changed && !useSystemEmoji()) setTextEllipsized(source);
+    if (changed && !useSystemEmoji()) {
+      super.setText(source, BufferType.SPANNABLE);
+    }
+
     super.onLayout(changed, left, top, right, bottom);
   }
 
