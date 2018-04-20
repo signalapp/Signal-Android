@@ -61,7 +61,7 @@
                     tools:text="Photo"
                     tools:visibility="visible" />
 
-                <TextView
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/quote_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
