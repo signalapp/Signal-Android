@@ -120,12 +120,12 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class ScreenLockListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-      TextSecurePreferences.setScreenLockEnabled(getContext(), (Boolean)newValue);
+      boolean enabled = (Boolean)newValue;
+      TextSecurePreferences.setScreenLockEnabled(getContext(), enabled);
 
       Intent intent = new Intent(getContext(), KeyCachingService.class);
-      intent.setAction(KeyCachingService.CLEAR_KEY_EVENT);
+      intent.setAction(KeyCachingService.LOCK_TOGGLED_EVENT);
       getContext().startService(intent);
-
       return true;
     }
   }
