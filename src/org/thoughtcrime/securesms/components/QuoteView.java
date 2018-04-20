@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
@@ -262,6 +263,10 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
       attachmentView.setVisibility(GONE);
       attachmentIconContainerView.setVisibility(GONE);
       dismissView.setBackgroundDrawable(null);
+    }
+
+    if (ThemeUtil.isDarkTheme(getContext())) {
+      dismissView.setBackgroundResource(R.drawable.circle_alpha);
     }
   }
 
