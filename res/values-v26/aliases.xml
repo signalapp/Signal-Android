@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Makes it so that the adaptive icon is used instead of the PNG provided for API 25-->
+    <drawable name="icon_circle">@drawable/icon</drawable>
+</resources>
