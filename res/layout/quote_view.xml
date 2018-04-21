@@ -40,12 +40,13 @@
                 android:orientation="vertical"
                 android:layout_weight="1">
 
-                <TextView
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/quote_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:maxLines="1"
+                    android:ellipsize="end"
                     tools:text="Peter Parker"
                     tools:textColor="@color/purple_400" />
 
