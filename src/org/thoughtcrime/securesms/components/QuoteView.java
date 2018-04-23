@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,16 +27,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -148,8 +146,7 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
 
     author.addListener(this);
     setQuoteAuthor(author);
-    setQuoteText(body, attachments);
-    setQuoteAttachment(glideRequests, attachments, author);
+    setQuoteContent(body, attachments, author, glideRequests);
   }
 
   public void dismiss() {
@@ -187,86 +184,77 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
                          author.getColor().toQuoteOutlineColor(getContext(), outgoing));
   }
 
-  private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {
-    if (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide()) {
-      bodyView.setVisibility(VISIBLE);
-      bodyView.setText(body == null ? "" : body);
-      mediaDescriptionText.setVisibility(GONE);
-      return;
-    }
-
+  private void setQuoteContent(@Nullable String        body,
+                               @NonNull  SlideDeck     attachments,
+                               @NonNull  Recipient     author,
+                               @NonNull  GlideRequests glideRequests) {
     bodyView.setVisibility(GONE);
-    mediaDescriptionText.setVisibility(VISIBLE);
+    mediaDescriptionText.setVisibility(GONE);
     mediaDescriptionText.setTypeface(null, Typeface.ITALIC);
-
-    List<Slide> audioSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasAudio).limit(1).toList();
-    List<Slide> documentSlides = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
-    List<Slide> imageSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasImage).limit(1).toList();
-    List<Slide> videoSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasVideo).limit(1).toList();
-
-    // Given that most types have images, we specifically check images last
-    if (!audioSlides.isEmpty()) {
-      mediaDescriptionText.setText(R.string.QuoteView_audio);
-    } else if (!documentSlides.isEmpty()) {
-      String filename = documentSlides.get(0).getFileName().orNull();
-      if (!TextUtils.isEmpty(filename)) {
-        mediaDescriptionText.setTypeface(null, Typeface.NORMAL);
-        mediaDescriptionText.setText(filename);
-      } else {
-        mediaDescriptionText.setText(R.string.QuoteView_document);
-      }
-    } else if (!videoSlides.isEmpty()) {
-      mediaDescriptionText.setText(R.string.QuoteView_video);
-    } else if (!imageSlides.isEmpty()) {
-      mediaDescriptionText.setText(R.string.QuoteView_photo);
-    }
-  }
-
-  private void setQuoteAttachment(@NonNull GlideRequests glideRequests,
-                                  @NonNull SlideDeck slideDeck,
-                                  @NonNull Recipient author)
-  {
-    List<Slide> imageVideoSlides = Stream.of(slideDeck.getSlides()).filter(s -> s.hasImage() || s.hasVideo()).limit(1).toList();
-    List<Slide> audioSlides = Stream.of(attachments.getSlides()).filter(Slide::hasAudio).limit(1).toList();
-    List<Slide> documentSlides = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
-
+    attachmentView.setVisibility(GONE);
     attachmentVideoOverlayView.setVisibility(GONE);
+    attachmentIconContainerView.setVisibility(GONE);
 
-    if (!imageVideoSlides.isEmpty() && imageVideoSlides.get(0).getThumbnailUri() != null) {
-      attachmentView.setVisibility(VISIBLE);
-      attachmentIconContainerView.setVisibility(GONE);
-      dismissView.setBackgroundResource(R.drawable.dismiss_background);
-      if (imageVideoSlides.get(0).hasVideo()) {
-        attachmentVideoOverlayView.setVisibility(VISIBLE);
-      }
-      glideRequests.load(new DecryptableUri(imageVideoSlides.get(0).getThumbnailUri()))
-                   .centerCrop()
-                   .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                   .into(attachmentView);
-    } else if (!audioSlides.isEmpty() || !documentSlides.isEmpty()){
-      boolean outgoing = messageType != MESSAGE_TYPE_INCOMING;
-
-      dismissView.setBackgroundResource(R.drawable.circle_alpha);
-      attachmentView.setVisibility(GONE);
-      attachmentIconContainerView.setVisibility(VISIBLE);
-
-      if (!audioSlides.isEmpty()) {
-        attachmentIconView.setImageResource(R.drawable.ic_mic_white_48dp);
+    if (attachments.getSlides().size() > 0) {
+      Slide slide = attachments.getSlides().get(0);
+      if (MediaUtil.isImage(slide.getContentType())) {
+        mediaDescriptionText.setText(R.string.QuoteView_photo);
+        Uri thumbnailUri = slide.getThumbnailUri() != null ? slide.getThumbnailUri() : slide.getUri();
+        setQuoteAttachment(glideRequests, author, thumbnailUri, R.drawable.ic_image_white_24dp, false);
+      } else if (MediaUtil.isVideo(slide.getContentType())) {
+        mediaDescriptionText.setText(R.string.QuoteView_video);
+        setQuoteAttachment(glideRequests, author, slide.getThumbnailUri(), R.drawable.ic_movie_creation_dark, true);
+      } else if (MediaUtil.isAudio(slide.getContentType())) {
+        mediaDescriptionText.setText(R.string.QuoteView_audio);
+        setQuoteAttachment(glideRequests, author, slide.getThumbnailUri(), R.drawable.ic_mic_white_48dp, false);
       } else {
-        attachmentIconView.setImageResource(R.drawable.ic_insert_drive_file_white_24dp);
+        String filename = slide.getFileName().orNull();
+        if (!TextUtils.isEmpty(filename)) {
+          mediaDescriptionText.setTypeface(null, Typeface.NORMAL);
+          mediaDescriptionText.setText(filename);
+        } else {
+          mediaDescriptionText.setText(R.string.QuoteView_document);
+        }
+        setQuoteAttachment(glideRequests, author, slide.getThumbnailUri(), R.drawable.ic_insert_drive_file_white_24dp, false);
       }
+    }
 
-      attachmentIconView.setColorFilter(author.getColor().toQuoteIconForegroundColor(getContext(), outgoing), PorterDuff.Mode.SRC_IN);
-      attachmentIconBackgroundView.setColorFilter(author.getColor().toQuoteIconBackgroundColor(getContext(), outgoing), PorterDuff.Mode.SRC_IN);
-
+    if (!TextUtils.isEmpty(body)) {
+      bodyView.setVisibility(VISIBLE);
+      bodyView.setText(body);
     } else {
-      attachmentView.setVisibility(GONE);
-      attachmentIconContainerView.setVisibility(GONE);
-      dismissView.setBackgroundDrawable(null);
+      mediaDescriptionText.setVisibility(VISIBLE);
     }
 
     if (ThemeUtil.isDarkTheme(getContext())) {
-      dismissView.setBackgroundResource(R.drawable.circle_alpha);
+      dismissView.setBackgroundResource(R.drawable.dismiss_background);
+    }
+  }
+
+  private void setQuoteAttachment(@NonNull  GlideRequests glideRequests,
+                                  @NonNull  Recipient     author,
+                                  @Nullable Uri           thumbnailUri,
+                                            int           backupIconRes,
+                                            boolean       isVideo)
+  {
+    if (thumbnailUri != null) {
+      attachmentView.setVisibility(VISIBLE);
+      glideRequests.load(new DecryptableUri(thumbnailUri))
+          .centerCrop()
+          .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+          .into(attachmentView);
+      dismissView.setBackgroundResource(R.drawable.dismiss_background);
+
+      if (isVideo) {
+        attachmentVideoOverlayView.setVisibility(VISIBLE);
+      }
+    } else if (backupIconRes != 0) {
+      attachmentIconContainerView.setVisibility(VISIBLE);
+      attachmentIconView.setImageResource(backupIconRes);
+
+      boolean outgoing = messageType != MESSAGE_TYPE_INCOMING;
+      attachmentIconView.setColorFilter(author.getColor().toQuoteIconForegroundColor(getContext(), outgoing), PorterDuff.Mode.SRC_IN);
+      attachmentIconBackgroundView.setColorFilter(author.getColor().toQuoteIconBackgroundColor(getContext(), outgoing), PorterDuff.Mode.SRC_IN);
     }
   }
 
