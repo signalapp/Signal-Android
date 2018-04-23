@@ -27,8 +27,6 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -131,9 +129,9 @@ public abstract class PushSendJob extends SendJob {
       SignalServiceAttachment thumbnail     = null;
 
       try {
-        if (MediaUtil.isImageType(attachment.getContentType()) && attachment.getDataUri() != null) {
+        if (MediaUtil.isImage(attachment.getContentType()) && attachment.getDataUri() != null) {
           thumbnailData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getDataUri()), 100, 100, 500 * 1024);
-        } else if (MediaUtil.isVideoType(attachment.getContentType()) && attachment.getThumbnailUri() != null) {
+        } else if (MediaUtil.isVideo(attachment.getContentType()) && attachment.getThumbnailUri() != null) {
           thumbnailData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getThumbnailUri()), 100, 100, 500 * 1024);
         }
 

@@ -336,9 +336,9 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
             } catch (IOException e) {
               Log.w("DatabaseFactory", e);
             }
-          } else if (MediaUtil.isAudioType(contentType) ||
-              MediaUtil.isImageType(contentType) ||
-              MediaUtil.isVideoType(contentType))
+          } else if (MediaUtil.isAudio(contentType) ||
+              MediaUtil.isImage(contentType) ||
+              MediaUtil.isVideo(contentType))
           {
             partCount++;
           }

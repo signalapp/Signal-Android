@@ -63,9 +63,9 @@ public class AttachmentUtil {
 
   private static boolean isNonDocumentType(String contentType) {
     return
-        MediaUtil.isImageType(contentType) ||
-        MediaUtil.isVideoType(contentType) ||
-        MediaUtil.isAudioType(contentType);
+        MediaUtil.isImage(contentType) ||
+        MediaUtil.isVideo(contentType) ||
+        MediaUtil.isAudio(contentType);
   }
 
   private static @NonNull Set<String> getAllowedAutoDownloadTypes(@NonNull Context context) {

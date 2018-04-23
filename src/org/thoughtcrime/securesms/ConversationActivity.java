@@ -1924,11 +1924,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onMediaSelected(@NonNull Uri uri, String contentType) {
     if (!TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif")) {
       setMedia(uri, MediaType.GIF);
-    } else if (MediaUtil.isImageType(contentType)) {
+    } else if (MediaUtil.isImage(contentType)) {
       setMedia(uri, MediaType.IMAGE);
-    } else if (MediaUtil.isVideoType(contentType)) {
+    } else if (MediaUtil.isVideo(contentType)) {
       setMedia(uri, MediaType.VIDEO);
-    } else if (MediaUtil.isAudioType(contentType)) {
+    } else if (MediaUtil.isAudio(contentType)) {
       setMedia(uri, MediaType.AUDIO);
     }
   }

@@ -3,13 +3,11 @@ package org.thoughtcrime.securesms.util;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
-import android.support.media.ExifInterface;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
@@ -52,11 +50,11 @@ public class MediaUtil {
     Slide slide = null;
     if (isGif(attachment.getContentType())) {
       slide = new GifSlide(context, attachment);
-    } else if (isImageType(attachment.getContentType())) {
+    } else if (isImage(attachment.getContentType())) {
       slide = new ImageSlide(context, attachment);
-    } else if (isVideoType(attachment.getContentType())) {
+    } else if (isVideo(attachment.getContentType())) {
       slide = new VideoSlide(context, attachment);
-    } else if (isAudioType(attachment.getContentType())) {
+    } else if (isAudio(attachment.getContentType())) {
       slide = new AudioSlide(context, attachment);
     } else if (isMms(attachment.getContentType())) {
       slide = new MmsSlide(context, attachment);
@@ -113,7 +111,7 @@ public class MediaUtil {
 
   @WorkerThread
   public static Pair<Integer, Integer> getDimensions(@NonNull Context context, @Nullable String contentType, @Nullable Uri uri) {
-    if (uri == null || !MediaUtil.isImageType(contentType)) {
+    if (uri == null || !MediaUtil.isImage(contentType)) {
       return new Pair<>(0, 0);
     }
 
@@ -137,7 +135,7 @@ public class MediaUtil {
     } else {
       InputStream attachmentStream = null;
       try {
-        if (MediaUtil.isJpegType(contentType)) {
+        if (MediaUtil.isJpeg(contentType)) {
           attachmentStream = PartAuthority.getAttachmentStream(context, uri);
           dimens = BitmapUtil.getExifDimensions(attachmentStream);
           attachmentStream.close();
@@ -174,56 +172,56 @@ public class MediaUtil {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals("application/mms");
   }
 
-  public static boolean isGif(Attachment attachment) {
-    return isGif(attachment.getContentType());
+  public static boolean isImage(@NonNull Attachment attachment) {
+    return isImage(attachment.getContentType());
   }
 
-  public static boolean isJpeg(Attachment attachment) {
-    return isJpegType(attachment.getContentType());
+  public static boolean isImage(@Nullable String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("image/");
   }
 
-  public static boolean isImage(Attachment attachment) {
-    return isImageType(attachment.getContentType());
+  public static boolean isJpeg(@NonNull Attachment attachment) {
+    return isJpeg(attachment.getContentType());
   }
 
-  public static boolean isAudio(Attachment attachment) {
-    return isAudioType(attachment.getContentType());
-  }
-
-  public static boolean isVideo(Attachment attachment) {
-    return isVideoType(attachment.getContentType());
-  }
-
-  public static boolean isVideo(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("video/");
-  }
-
-  public static boolean isGif(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif");
-  }
-
-  public static boolean isJpegType(String contentType) {
+  public static boolean isJpeg(@Nullable String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_JPEG);
   }
 
-  public static boolean isFile(Attachment attachment) {
-    return !isGif(attachment) && !isImage(attachment) && !isAudio(attachment) && !isVideo(attachment);
+  public static boolean isGif(@NonNull Attachment attachment) {
+    return isGif(attachment.getContentType());
+  }
+
+  public static boolean isGif(@Nullable String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_GIF);
+  }
+
+  public static boolean isAudio(@NonNull Attachment attachment) {
+    return isAudio(attachment.getContentType());
+  }
+
+  public static boolean isAudio(@Nullable String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("audio/");
+  }
+
+  public static boolean isVideo(@NonNull Attachment attachment) {
+    return isVideo(attachment.getContentType());
+  }
+
+  public static boolean isVideo(@Nullable String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("video/");
+  }
+
+  public static boolean isFile(@NonNull Attachment attachment) {
+    return isFile(attachment.getContentType());
+  }
+
+  public static boolean isFile(@Nullable String contentType) {
+    return !TextUtils.isEmpty(contentType) && !isGif(contentType) && !isImage(contentType) && !isAudio(contentType) && !isVideo(contentType);
   }
 
   public static boolean isTextType(String contentType) {
-    return (null != contentType) && contentType.startsWith("text/");
-  }
-
-  public static boolean isImageType(String contentType) {
-    return (null != contentType) && contentType.startsWith("image/");
-  }
-
-  public static boolean isAudioType(String contentType) {
-    return (null != contentType) && contentType.startsWith("audio/");
-  }
-
-  public static boolean isVideoType(String contentType) {
-    return (null != contentType) && contentType.startsWith("video/");
+    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("text/");
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {

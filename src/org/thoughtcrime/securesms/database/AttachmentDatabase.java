@@ -735,7 +735,7 @@ public class AttachmentDatabase extends Database {
 
       ThumbnailData data = null;
 
-      if (MediaUtil.isVideoType(attachment.getContentType())) {
+      if (MediaUtil.isVideo(attachment.getContentType())) {
         data = generateVideoThumbnail(attachmentId);
       }
 
