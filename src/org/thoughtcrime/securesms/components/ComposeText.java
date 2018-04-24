@@ -11,12 +11,14 @@ import android.support.v13.view.inputmethod.EditorInfoCompat;
 import android.support.v13.view.inputmethod.InputConnectionCompat;
 import android.support.v13.view.inputmethod.InputContentInfoCompat;
 import android.support.v4.os.BuildCompat;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.text.TextWatcher;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -30,8 +32,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
 
-  private CharSequence    hint;
-  private SpannableString subHint;
+  private CharSequence        hint;
+  private SpannableString     subHint;
+  private TextChangedListener textChangedListener;
 
   @Nullable private InputPanel.MediaListener mediaListener;
 
@@ -154,6 +157,25 @@ public class ComposeText extends EmojiEditText {
     if (TextSecurePreferences.isIncognitoKeyboardEnabled(getContext())) {
       setImeOptions(getImeOptions() | 16777216);
     }
+
+    addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+      @Override
+      public void afterTextChanged(Editable s) {
+        if (textChangedListener != null) {
+          textChangedListener.onTextChanged();
+        }
+      }
+    });
+  }
+
+  public void setOnTextChangeListener(@Nullable TextChangedListener listener) {
+    this.textChangedListener = listener;
   }
 
   @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -189,4 +211,7 @@ public class ComposeText extends EmojiEditText {
     }
   }
 
+  public interface TextChangedListener {
+    void onTextChanged();
+  }
 }

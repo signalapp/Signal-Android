@@ -376,6 +376,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setTransport(sendButton.getSelectedTransport());
     quickAttachmentDrawer.onConfigurationChanged();
 
+    if (fragment != null) {
+      fragment.updateQuickReply();
+    }
+
     if (emojiDrawerStub.resolved() && container.getCurrentInput() == emojiDrawerStub.get()) {
       container.hideAttachedInput(true);
     }
@@ -2078,6 +2082,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                         messageRecord.getBody(),
                         messageRecord.isMms() ? ((MmsMessageRecord)messageRecord).getSlideDeck() : new SlideDeck());
   }
+
+  @Override
+  public void setQuickReply(@Nullable MessageRecord messageRecord) {
+    if (messageRecord != null) {
+      composeText.setHint(getString(R.string.conversation_activity__type_reply), null);
+
+      composeText.setOnTextChangeListener(() -> {
+        handleReplyMessage(messageRecord);
+        if (fragment != null) {
+          fragment.exitMultiSelect();
+        }
+        composeText.setOnTextChangeListener(null);
+      });
+    } else {
+      composeText.setTransport(sendButton.getSelectedTransport());
+      composeText.setOnTextChangeListener(null);
+    }
+  }
+
 
   @Override
   public void onAttachmentChanged() {
