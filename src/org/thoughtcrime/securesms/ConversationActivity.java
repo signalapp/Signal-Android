@@ -128,6 +128,8 @@ import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
+import org.thoughtcrime.securesms.mms.QuoteId;
+import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
@@ -1035,6 +1037,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
               case Draft.VIDEO:
                 setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO);
                 break;
+              case Draft.QUOTE:
+                new QuoteRestorationTask(draft.getValue()).execute();
+                break;
             }
           } catch (IOException e) {
             Log.w(TAG, e);
@@ -1429,6 +1434,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       else if (slide.hasVideo() && slide.getUri() != null)    drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
       else if (slide.hasLocation())                           drafts.add(new Draft(Draft.LOCATION, ((LocationSlide)slide).getPlace().serialize()));
       else if (slide.hasImage() && slide.getUri() != null)    drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
+    }
+
+    Optional<QuoteModel> quote = inputPanel.getQuote();
+
+    if (quote.isPresent()) {
+      drafts.add(new Draft(Draft.QUOTE, new QuoteId(quote.get().getId(), quote.get().getAuthor()).serialize()));
     }
 
     return drafts;
@@ -2131,6 +2142,35 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           startActivity(intent);
         });
         builder.show();
+      }
+    }
+  }
+
+  private class QuoteRestorationTask extends AsyncTask<Void, Void, MessageRecord> {
+
+    private final String serialized;
+
+    QuoteRestorationTask(@NonNull String serialized) {
+      this.serialized = serialized;
+    }
+
+    @Override
+    protected MessageRecord doInBackground(Void... voids) {
+      QuoteId quoteId = QuoteId.deserialize(serialized);
+
+      if (quoteId != null) {
+        return DatabaseFactory.getMmsSmsDatabase(getApplicationContext()).getMessageFor(quoteId.getId(), quoteId.getAuthor());
+      }
+
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(MessageRecord messageRecord) {
+      if (messageRecord != null) {
+        handleReplyMessage(messageRecord);
+      } else {
+        Log.e(TAG, "Failed to restore a quote from a draft. No matching message record.");
       }
     }
   }
