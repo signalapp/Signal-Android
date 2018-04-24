@@ -22,12 +22,7 @@ public class StorageUtil
       File[] directories = context.getExternalFilesDirs(null);
 
       if (directories != null) {
-        storage = Stream.of(directories)
-                        .withoutNulls()
-                        .filterNot(f -> f.getAbsolutePath().contains("emulated"))
-                        .limit(1)
-                        .findSingle()
-                        .orElse(null);
+        storage = getNonEmulated(directories);
       }
     }
 
@@ -50,6 +45,28 @@ public class StorageUtil
 
 
     return backups;
+  }
+
+  public static File getBackupCacheDirectory(Context context) {
+    if (Build.VERSION.SDK_INT >= 19) {
+      File[] directories = context.getExternalCacheDirs();
+
+      if (directories != null) {
+        File result = getNonEmulated(directories);
+        if (result != null) return result;
+      }
+    }
+
+    return context.getExternalCacheDir();
+  }
+
+  private static @Nullable File getNonEmulated(File[] directories) {
+    return Stream.of(directories)
+                 .withoutNulls()
+                 .filterNot(f -> f.getAbsolutePath().contains("emulated"))
+                 .limit(1)
+                 .findSingle()
+                 .orElse(null);
   }
 
   private static File getSignalStorageDir() throws NoExternalStorageException {

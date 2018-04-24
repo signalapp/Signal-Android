@@ -50,7 +50,7 @@ public class LocalBackupJob extends ContextJob {
 
     try {
       String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);
-      File   backupDirectory = StorageUtil.getBackupDirectory(context);
+      File   backupDirectory = StorageUtil.getBackupCacheDirectory(context);
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
       String fileName        = String.format("signal-%s.backup", timestamp);
       File   backupFile      = new File(backupDirectory, fileName);
