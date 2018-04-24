@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.lang.ref.WeakReference;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -156,7 +157,7 @@ public class Permissions {
     private void executePermissionsRequestWithRationale(PermissionsRequest request) {
       RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
                      .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
-                     .setNegativeButton(R.string.Permissions_not_now, null)
+                     .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
                      .show()
                      .getWindow()
                      .setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -174,6 +175,19 @@ public class Permissions {
       }
 
       permissionObject.requestPermissions(requestCode, requestedPermissions);
+    }
+
+    private void executeNoPermissionsRequest(PermissionsRequest request) {
+      for (String permission : requestedPermissions) {
+        request.addMapping(permission, true);
+      }
+
+      String[] permissions  = filterNotGranted(permissionObject.getContext(), requestedPermissions);
+      int[]    grantResults = Stream.of(permissions).mapToInt(permission -> PackageManager.PERMISSION_DENIED).toArray();
+      boolean[] showDialog   = new boolean[permissions.length];
+      Arrays.fill(showDialog, true);
+
+      request.onResult(permissions, grantResults, showDialog);
     }
 
   }
