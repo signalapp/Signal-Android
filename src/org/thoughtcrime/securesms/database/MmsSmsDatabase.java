@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -71,8 +72,23 @@ public class MmsSmsDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public Cursor getMessagesFor(long timestamp) {
-    return queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null);
+  @Nullable
+  public MessageRecord getMessageFor(long timestamp, Address author) {
+    MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
+    try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
+      MmsSmsDatabase.Reader reader = db.readerFor(cursor);
+
+      MessageRecord messageRecord;
+
+      while ((messageRecord = reader.getNext()) != null) {
+        if ((Util.isOwnNumber(context, author) && messageRecord.isOutgoing()) ||
+            (!Util.isOwnNumber(context, author) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
+        {
+          return messageRecord;
+        }
+      }
+    }
+    return null;
   }
 
   public Cursor getConversation(long threadId, long limit) {

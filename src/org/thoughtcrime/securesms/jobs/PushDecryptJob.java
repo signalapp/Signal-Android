@@ -852,49 +852,39 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
-  private Optional<QuoteModel> getValidatedQuote(Optional<SignalServiceDataMessage.Quote> quote) {
-    if (!quote.isPresent()) return Optional.absent();
+  private Optional<QuoteModel> getValidatedQuote(Optional<SignalServiceDataMessage.Quote> quoteOptional) {
+    if (!quoteOptional.isPresent()) return Optional.absent();
+    SignalServiceDataMessage.Quote quote = quoteOptional.get();
 
-    if (quote.get().getId() <= 0) {
+    if (quote.getId() <= 0) {
       Log.w(TAG, "Received quote without an ID! Ignoring...");
       return Optional.absent();
     }
 
-    if (quote.get().getAuthor() == null) {
+    if (quote.getAuthor() == null) {
       Log.w(TAG, "Received quote without an author! Ignoring...");
       return Optional.absent();
     }
 
-    MmsSmsDatabase db     = DatabaseFactory.getMmsSmsDatabase(context);
-    Address        author = Address.fromExternal(context, quote.get().getAuthor().getNumber());
+    Address       author  = Address.fromExternal(context, quote.getAuthor().getNumber());
+    MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quote.getId(), author);
 
-    try (Cursor cursor = db.getMessagesFor(quote.get().getId())) {
-      MmsSmsDatabase.Reader reader = db.readerFor(cursor);
+    if (message != null) {
+      Log.w(TAG, "Found matching message record...");
 
-      MessageRecord messageRecord;
-
-      while ((messageRecord = reader.getNext()) != null) {
-        if ((Util.isOwnNumber(context, author) && messageRecord.isOutgoing()) ||
-            (!Util.isOwnNumber(context, author) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
-        {
-          Log.w(TAG, "Found matching message record...");
-          List<Attachment> attachments = new LinkedList<>();
-
-          if (messageRecord.isMms()) {
-            attachments = ((MmsMessageRecord)messageRecord).getSlideDeck().asAttachments();
-          }
-
-          return Optional.of(new QuoteModel(quote.get().getId(), author, messageRecord.getBody(), attachments));
-        }
+      List<Attachment> attachments = new LinkedList<>();
+      if (message.isMms()) {
+        attachments = ((MmsMessageRecord) message).getSlideDeck().asAttachments();
       }
+
+      return Optional.of(new QuoteModel(quote.getId(), author, message.getBody(), attachments));
     }
 
     Log.w(TAG, "Didn't find matching message record...");
-
-    return Optional.of(new QuoteModel(quote.get().getId(),
+    return Optional.of(new QuoteModel(quote.getId(),
                                       author,
-                                      quote.get().getText(),
-                                      PointerAttachment.forPointers(quote.get().getAttachments())));
+                                      quote.getText(),
+                                      PointerAttachment.forPointers(quote.getAttachments())));
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull SignalServiceEnvelope envelope) {
