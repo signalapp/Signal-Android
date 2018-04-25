@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.webrtc.CameraState;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 
@@ -160,10 +161,9 @@ public class WebRtcCallActivity extends Activity {
     startService(intent);
   }
 
-  private void handleSetCameraFlip(boolean isRear) {
+  private void handleFlipCamera() {
     Intent intent = new Intent(this, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_SET_CAMERA_FLIP);
-    intent.putExtra(WebRtcCallService.EXTRA_CAMERA_FLIP_REAR, isRear);
+    intent.setAction(WebRtcCallService.ACTION_FLIP_CAMERA);
     startService(intent);
   }
 
@@ -330,10 +330,10 @@ public class WebRtcCallActivity extends Activity {
       case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);        break;
     }
 
-    callScreen.setLocalVideoEnabled(event.isLocalVideoEnabled());
     callScreen.setRemoteVideoEnabled(event.isRemoteVideoEnabled());
     callScreen.updateAudioState(event.isBluetoothAvailable(), event.isMicrophoneEnabled());
     callScreen.setControlsEnabled(event.getState() != WebRtcViewModel.State.CALL_INCOMING);
+    callScreen.setLocalVideoState(event.getLocalCameraState());
   }
 
   private class HangupButtonListener implements WebRtcCallScreen.HangupButtonListener {
@@ -358,7 +358,9 @@ public class WebRtcCallActivity extends Activity {
 
   private class CameraFlipButtonListener implements WebRtcCallControls.CameraFlipButtonListener {
     @Override
-    public void onToggle(boolean isRear) { WebRtcCallActivity.this.handleSetCameraFlip(isRear); }
+    public void onToggle() {
+      WebRtcCallActivity.this.handleFlipCamera();
+    }
   }
 
   private class SpeakerButtonListener implements WebRtcCallControls.SpeakerButtonListener {
