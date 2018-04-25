@@ -18,16 +18,23 @@ public class QuoteId {
   private static final String ID      = "id";
   private static final String AUTHOR  = "author";
 
-  public final long    id;
-  public final Address author;
+  private final long    id;
+  private final Address author;
 
   public QuoteId(long id, @NonNull Address author) {
     this.id     = id;
     this.author = author;
   }
 
-  @NonNull
-  public String serialize() {
+  public long getId() {
+    return id;
+  }
+
+  public @NonNull Address getAuthor() {
+    return author;
+  }
+
+  public @NonNull String serialize() {
     try {
       JSONObject object = new JSONObject();
       object.put(ID, id);
@@ -39,8 +46,7 @@ public class QuoteId {
     }
   }
 
-  @Nullable
-  public static QuoteId deserialize(@NonNull String serialized) {
+  public @Nullable static QuoteId deserialize(@NonNull String serialized) {
     try {
       JSONObject json = new JSONObject(serialized);
       return new QuoteId(json.getLong(ID), Address.fromSerialized(json.getString(AUTHOR)));

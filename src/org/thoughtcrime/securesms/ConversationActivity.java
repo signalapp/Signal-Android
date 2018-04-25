@@ -1436,9 +1436,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       else if (slide.hasImage() && slide.getUri() != null)    drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
     }
 
-    QuoteModel quote = inputPanel.getQuote().orNull();
-    if (quote != null) {
-      drafts.add(new Draft(Draft.QUOTE, new QuoteId(quote.getId(), quote.getAuthor()).serialize()));
+    Optional<QuoteModel> quote = inputPanel.getQuote();
+
+    if (quote.isPresent()) {
+      drafts.add(new Draft(Draft.QUOTE, new QuoteId(quote.get().getId(), quote.get().getAuthor()).serialize()));
     }
 
     return drafts;
@@ -2156,9 +2157,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     protected MessageRecord doInBackground(Void... voids) {
       QuoteId quoteId = QuoteId.deserialize(serialized);
+
       if (quoteId != null) {
-        return DatabaseFactory.getMmsSmsDatabase(getApplicationContext()).getMessageFor(quoteId.id, quoteId.author);
+        return DatabaseFactory.getMmsSmsDatabase(getApplicationContext()).getMessageFor(quoteId.getId(), quoteId.getAuthor());
       }
+
       return null;
     }
 

@@ -72,9 +72,9 @@ public class MmsSmsDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  @Nullable
-  public MessageRecord getMessageFor(long timestamp, Address author) {
+  public @Nullable MessageRecord getMessageFor(long timestamp, Address author) {
     MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
+
     try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
       MmsSmsDatabase.Reader reader = db.readerFor(cursor);
 
@@ -88,6 +88,7 @@ public class MmsSmsDatabase extends Database {
         }
       }
     }
+
     return null;
   }
 
