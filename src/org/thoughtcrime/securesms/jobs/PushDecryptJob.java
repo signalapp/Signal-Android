@@ -865,32 +865,22 @@ public class PushDecryptJob extends ContextJob {
       return Optional.absent();
     }
 
-    MmsSmsDatabase db     = DatabaseFactory.getMmsSmsDatabase(context);
-    Address        author = Address.fromExternal(context, quote.get().getAuthor().getNumber());
+    Address       author  = Address.fromExternal(context, quote.get().getAuthor().getNumber());
+    MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quote.get().getId(), author);
 
-    try (Cursor cursor = db.getMessagesFor(quote.get().getId())) {
-      MmsSmsDatabase.Reader reader = db.readerFor(cursor);
+    if (message != null) {
+      Log.w(TAG, "Found matching message record...");
 
-      MessageRecord messageRecord;
+      List<Attachment> attachments = new LinkedList<>();
 
-      while ((messageRecord = reader.getNext()) != null) {
-        if ((Util.isOwnNumber(context, author) && messageRecord.isOutgoing()) ||
-            (!Util.isOwnNumber(context, author) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
-        {
-          Log.w(TAG, "Found matching message record...");
-          List<Attachment> attachments = new LinkedList<>();
-
-          if (messageRecord.isMms()) {
-            attachments = ((MmsMessageRecord)messageRecord).getSlideDeck().asAttachments();
-          }
-
-          return Optional.of(new QuoteModel(quote.get().getId(), author, messageRecord.getBody(), attachments));
-        }
+      if (message.isMms()) {
+        attachments = ((MmsMessageRecord) message).getSlideDeck().asAttachments();
       }
+
+      return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), attachments));
     }
 
     Log.w(TAG, "Didn't find matching message record...");
-
     return Optional.of(new QuoteModel(quote.get().getId(),
                                       author,
                                       quote.get().getText(),
