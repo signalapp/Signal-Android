@@ -154,6 +154,10 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     this.controls.setVideoMuteButtonListener(listener);
   }
 
+  public void setCameraFlipButtonListener(WebRtcCallControls.CameraFlipButtonListener listener) {
+    this.controls.setCameraFlipButtonListener(listener);
+  }
+
   public void setSpeakerButtonListener(WebRtcCallControls.SpeakerButtonListener listener) {
     this.controls.setSpeakerButtonListener(listener);
   }
