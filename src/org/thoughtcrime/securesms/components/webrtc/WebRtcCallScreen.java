@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VerifySpan;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.webrtc.CameraState;
 import org.webrtc.SurfaceViewRenderer;
 import org.whispersystems.libsignal.IdentityKey;
 
@@ -62,6 +63,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
   private static final String TAG = WebRtcCallScreen.class.getSimpleName();
 
   private ImageView            photo;
+  private SurfaceViewRenderer  localRenderer;
   private PercentFrameLayout   localRenderLayout;
   private PercentFrameLayout   remoteRenderLayout;
   private TextView             name;
@@ -187,14 +189,19 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     this.controls.setControlsEnabled(enabled);
   }
 
-  public void setLocalVideoEnabled(boolean enabled) {
-    if (enabled && this.localRenderLayout.isHidden()) {
-      this.controls.setVideoEnabled(true);
-      this.localRenderLayout.setHidden(false);
-      this.localRenderLayout.requestLayout();
-    } else  if (!enabled && !this.localRenderLayout.isHidden()){
-      this.controls.setVideoEnabled(false);
-      this.localRenderLayout.setHidden(true);
+  public void setLocalVideoState(@NonNull CameraState cameraState) {
+    this.controls.setVideoAvailable(cameraState.getCameraCount() > 0);
+    this.controls.setVideoEnabled(cameraState.isEnabled());
+    this.controls.setCameraFlipAvailable(cameraState.getCameraCount() > 1);
+    this.controls.setCameraFlipClickable(cameraState.getActiveDirection() != CameraState.Direction.PENDING);
+    this.controls.setCameraFlipButtonEnabled(cameraState.getActiveDirection() == CameraState.Direction.BACK);
+
+    if (this.localRenderer != null) {
+      this.localRenderer.setMirror(cameraState.getActiveDirection() == CameraState.Direction.FRONT);
+    }
+
+    if (this.localRenderLayout.isHidden() == cameraState.isEnabled()) {
+      this.localRenderLayout.setHidden(!cameraState.isEnabled());
       this.localRenderLayout.requestLayout();
     }
   }
@@ -276,6 +283,8 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
 
       localRenderLayout.addView(localRenderer);
       remoteRenderLayout.addView(remoteRenderer);
+
+      this.localRenderer = localRenderer;
     }
   }
 
