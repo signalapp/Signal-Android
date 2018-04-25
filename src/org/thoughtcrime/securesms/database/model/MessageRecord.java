@@ -105,7 +105,12 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isJoined()) {
       return new SpannableString(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().toShortString()));
     } else if (isExpirationTimerUpdate()) {
-      String time = ExpirationUtil.getExpirationDisplayValue(context, (int)(getExpiresIn() / 1000));
+      int seconds = (int)(getExpiresIn() / 1000);
+      if (seconds <= 0) {
+        return isOutgoing() ? new SpannableString(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages))
+                            : new SpannableString(context.getString(R.string.MessageRecord_s_disabled_disappearing_messages, getIndividualRecipient().toShortString()));
+      }
+      String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
       return isOutgoing() ? new SpannableString(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time))
                           : new SpannableString(context.getString(R.string.MessageRecord_s_set_disappearing_message_time_to_s, getIndividualRecipient().toShortString(), time));
     } else if (isIdentityUpdate()) {
