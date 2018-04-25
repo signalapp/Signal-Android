@@ -22,6 +22,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -45,6 +46,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
@@ -52,6 +54,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.ExpirationTimerView;
+import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -62,6 +65,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
@@ -110,6 +114,7 @@ public class ConversationItem extends LinearLayout
   private GlideRequests glideRequests;
 
   protected View             bodyBubble;
+  private QuoteView          quoteView;
   private TextView           bodyText;
   private TextView           dateText;
   private TextView           simInfoText;
@@ -122,17 +127,18 @@ public class ConversationItem extends LinearLayout
   private DeliveryStatusView deliveryStatusIndicator;
   private AlertView          alertView;
 
-  private @NonNull  Set<MessageRecord>  batchSelected = new HashSet<>();
-  private @NonNull  Recipient           conversationRecipient;
-  private @NonNull  Stub<ThumbnailView> mediaThumbnailStub;
-  private @NonNull  Stub<AudioView>     audioViewStub;
-  private @NonNull  Stub<DocumentView>  documentViewStub;
-  private @NonNull  ExpirationTimerView expirationTimer;
+  private @NonNull  Set<MessageRecord>   batchSelected = new HashSet<>();
+  private @NonNull  Recipient            conversationRecipient;
+  private @NonNull  Stub<ThumbnailView>  mediaThumbnailStub;
+  private @NonNull  Stub<AudioView>      audioViewStub;
+  private @NonNull  Stub<DocumentView>   documentViewStub;
+  private @NonNull  ExpirationTimerView  expirationTimer;
+  private @Nullable EventListener        eventListener;
 
   private int defaultBubbleColor;
 
-  private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
-  private final AttachmentDownloadClickListener downloadClickListener       = new AttachmentDownloadClickListener();
+  private final PassthroughClickListener        passthroughClickListener = new PassthroughClickListener();
+  private final AttachmentDownloadClickListener downloadClickListener    = new AttachmentDownloadClickListener();
 
   private final Context context;
 
@@ -172,6 +178,7 @@ public class ConversationItem extends LinearLayout
     this.documentViewStub        = new Stub<>(findViewById(R.id.document_view_stub));
     this.expirationTimer         =            findViewById(R.id.expiration_indicator);
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
+    this.quoteView               =            findViewById(R.id.quote_view);
 
     setOnClickListener(new ClickListener(null));
 
@@ -186,7 +193,8 @@ public class ConversationItem extends LinearLayout
                    @NonNull GlideRequests      glideRequests,
                    @NonNull Locale             locale,
                    @NonNull Set<MessageRecord> batchSelected,
-                   @NonNull Recipient          conversationRecipient)
+                   @NonNull Recipient          conversationRecipient,
+                            boolean            pulseHighlight)
   {
     this.messageRecord          = messageRecord;
     this.locale                 = locale;
@@ -200,7 +208,7 @@ public class ConversationItem extends LinearLayout
     this.conversationRecipient.addListener(this);
 
     setMediaAttributes(messageRecord);
-    setInteractionState(messageRecord);
+    setInteractionState(messageRecord, pulseHighlight);
     setBodyText(messageRecord);
     setBubbleState(messageRecord, recipient);
     setStatusIcons(messageRecord);
@@ -209,6 +217,12 @@ public class ConversationItem extends LinearLayout
     setMinimumWidth();
     setSimInfo(messageRecord);
     setExpiration(messageRecord);
+    setQuote(messageRecord);
+  }
+
+  @Override
+  public void setEventListener(@Nullable EventListener eventListener) {
+    this.eventListener = eventListener;
   }
 
   @Override
@@ -233,6 +247,27 @@ public class ConversationItem extends LinearLayout
                                       groupSenderHolder.getPaddingTop(),
                                       groupSenderHolder.getWidth() - groupSenderProfileName.getPaddingRight(),
                                       groupSenderHolder.getPaddingTop() + groupSenderProfileName.getHeight());
+      }
+    }
+  }
+
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    if (hasQuote(messageRecord)) {
+      int quoteWidth = quoteView.getMeasuredWidth();
+
+      int availableWidth;
+      if (hasThumbnail(messageRecord)) {
+        availableWidth = mediaThumbnailStub.get().getMeasuredWidth();
+      } else {
+        availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
+      }
+
+      if (quoteWidth != availableWidth) {
+        quoteView.getLayoutParams().width = availableWidth;
+        measure(widthMeasureSpec, heightMeasureSpec);
       }
     }
   }
@@ -303,8 +338,17 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setInteractionState(MessageRecord messageRecord) {
-    setSelected(batchSelected.contains(messageRecord));
+  private void setInteractionState(MessageRecord messageRecord, boolean pulseHighlight) {
+    if (batchSelected.contains(messageRecord)) {
+      setBackgroundResource(R.drawable.conversation_item_background);
+      setSelected(true);
+    } else if (pulseHighlight) {
+      setBackgroundResource(R.drawable.conversation_item_background_animated);
+      setSelected(true);
+      postDelayed(() -> setSelected(false), 500);
+    } else {
+      setSelected(false);
+    }
 
     if (mediaThumbnailStub.resolved()) {
       mediaThumbnailStub.get().setFocusable(!shouldInterceptClicks(messageRecord) && batchSelected.isEmpty());
@@ -338,6 +382,10 @@ public class ConversationItem extends LinearLayout
 
   private boolean hasDocument(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide() != null;
+  }
+
+  private boolean hasQuote(MessageRecord messageRecord) {
+    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getQuote() != null;
   }
 
   private void setBodyText(MessageRecord messageRecord) {
@@ -385,9 +433,14 @@ public class ConversationItem extends LinearLayout
       if (documentViewStub.resolved()) documentViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
+      Slide      thumbnailSlide = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlide();
+      Attachment attachment     = thumbnailSlide.asAttachment();
       mediaThumbnailStub.get().setImageResource(glideRequests,
-                                                ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide(),
-                                                showControls, false);
+                                                thumbnailSlide,
+                                                showControls,
+                                                false,
+                                                attachment.getWidth(),
+                                                attachment.getHeight());
       mediaThumbnailStub.get().setThumbnailClickListener(new ThumbnailClickListener());
       mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
       mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);
@@ -497,6 +550,27 @@ public class ConversationItem extends LinearLayout
       }
     } else {
       this.expirationTimer.setVisibility(View.GONE);
+    }
+  }
+
+  private void setQuote(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.isMms() && !messageRecord.isMmsNotification() && ((MediaMmsMessageRecord)messageRecord).getQuote() != null) {
+      Quote quote = ((MediaMmsMessageRecord)messageRecord).getQuote();
+      assert quote != null;
+      quoteView.setQuote(glideRequests, quote.getId(), Recipient.from(context, quote.getAuthor(), true), quote.getText(), quote.getAttachment());
+      quoteView.setVisibility(View.VISIBLE);
+      quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+      quoteView.setOnClickListener(view -> {
+        if (eventListener != null && batchSelected.isEmpty()) {
+          eventListener.onQuoteClicked((MmsMessageRecord) messageRecord);
+        } else {
+          passthroughClickListener.onClick(view);
+        }
+      });
+      quoteView.setOnLongClickListener(passthroughClickListener);
+    } else {
+      quoteView.dismiss();
     }
   }
 

@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Në këtë moment: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nuk ke vendosur akoma një fjalëkalim!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 porosi për bisedë</item>
-    <item quantity="other">%d porosi për bisedë</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Fshij të gjitha porositë e vjetra tani?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Kjo do të shkurtojë të gjitha bisedat deri te porosia e fundit e çdo bisede.</item>
@@ -39,10 +35,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Gjuha %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minut</item>
-    <item quantity="other">%d minuta</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(imazh)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
@@ -313,14 +305,6 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="InviteActivity_heart_content_description">Zemra</string>
   <string name="InviteActivity_invitations_sent">Ftesa u dërgua!</string>
   <string name="InviteActivity_invite_to_signal">Fto në Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">DËRGO SMS DERI TE 1 SHOK/SHOQE.</item>
-    <item quantity="other">DËRGO SMS DERI TE %d SHOKË/SHOQE.</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Dërgo 1 ftesë SMS?</item>
-    <item quantity="other">Dërgo %d ftesa SMS?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Të kalojmë në Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Duket që nuk keni epa me të cilat të ndani.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Miqtë nuk lëjnë miqtë të bisedojnë pa shifrim.</string>
@@ -335,6 +319,8 @@ importimi i sërishëm do të rezultojë ne mesazhe duplikate.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Gabim në lexim të MMS rregullimeve të ofruesit të rrjetit</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Duke fshirë</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Duke fshirë lajmet...</string>
   <string name="MediaOverviewActivity_Documents">Dokumente</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje aktive me Signal</string>
@@ -643,6 +629,10 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="audio_view__play_accessibility_description">Luaj</string>
   <string name="audio_view__pause_accessibility_description">Ndërprerje</string>
   <string name="audio_view__download_accessibility_description">Shkarko</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_you">Ti</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mënyrë përzgjedhje grupi</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s të përzgjedhur</string>
@@ -664,30 +654,10 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Aktivizo vërtetimin e leximit</string>
   <!--expiration-->
   <string name="expiration_off">Çaktivizuar</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">1 sekondë</item>
-    <item quantity="other">%d sekonda</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">1 minutë</item>
-    <item quantity="other">%d minuta</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
-  <plurals name="expiration_hours">
-    <item quantity="one">1 orë</item>
-    <item quantity="other">%d orë</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
-  <plurals name="expiration_days">
-    <item quantity="one">1 ditë</item>
-    <item quantity="other">%d ditë</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">1 javë</item>
-    <item quantity="other">%d javë</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Numri i sigurisë me %s ka ndyshuar dhe nuk është më i verifikuar.</string>
@@ -1014,10 +984,6 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahaso me memorie</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Versioni i juaj i Signal-it është i vjetruar</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Verzioni i juaj i Signal-it do të skadojë pas 1 dite. Shtyp për të mar verzionin më të ri.</item>
-    <item quantity="other">Versioni i juaj i Signal-it do të skadojë pas %d ditësh. Shtyp për të mar versionin më të ri.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Verzioni i juaj i Signal-it do të skadojë sot. Shtyp për të mar versionin më të ri.</string>
   <string name="reminder_header_expired_build">Versioni yt i Signal-it ka skaduar!</string>
   <string name="reminder_header_expired_build_details">Porositë nuk do të dërgohen me sukses. Shtyp për të marr versionin më të ri.</string>

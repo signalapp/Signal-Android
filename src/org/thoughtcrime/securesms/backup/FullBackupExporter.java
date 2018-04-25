@@ -27,13 +27,14 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
-import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
 import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,8 +65,7 @@ public class FullBackupExporter extends FullBackupBase {
                             @NonNull String passphrase)
       throws IOException
   {
-    byte[]                  key          = getBackupKey(passphrase);
-    BackupFrameOutputStream outputStream = new BackupFrameOutputStream(output, key);
+    BackupFrameOutputStream outputStream = new BackupFrameOutputStream(output, passphrase);
     outputStream.writeDatabaseVersion(input.getVersion());
 
     List<String> tables = exportSchema(input, outputStream);
@@ -87,6 +87,11 @@ public class FullBackupExporter extends FullBackupBase {
     for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
       EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
       outputStream.write(preference);
+    }
+
+    for (File avatar : AvatarHelper.getAvatarFiles(context)) {
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+      outputStream.write(avatar.getName(), new FileInputStream(avatar), avatar.length());
     }
 
     outputStream.writeEnd();
@@ -136,25 +141,24 @@ public class FullBackupExporter extends FullBackupBase {
         EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
 
         if (predicate == null || predicate.test(cursor)) {
-          StringBuilder statement = new StringBuilder(template);
+          StringBuilder                     statement        = new StringBuilder(template);
+          BackupProtos.SqlStatement.Builder statementBuilder = BackupProtos.SqlStatement.newBuilder();
 
           statement.append('(');
 
           for (int i=0;i<cursor.getColumnCount();i++) {
+            statement.append('?');
+
             if (cursor.getType(i) == Cursor.FIELD_TYPE_STRING) {
-              statement.append('\'');
-              statement.append(cursor.getString(i).replace("'", "\\'"));
-              statement.append('\'');
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setStringParamter(cursor.getString(i)));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_FLOAT) {
-              statement.append(cursor.getFloat(i));
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setDoubleParameter(cursor.getDouble(i)));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_INTEGER) {
-              statement.append(cursor.getLong(i));
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setIntegerParameter(cursor.getLong(i)));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_BLOB) {
-              statement.append("x'");
-              statement.append(Hex.toStringCondensed(cursor.getBlob(i)));
-              statement.append('\'');
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setBlobParameter(ByteString.copyFrom(cursor.getBlob(i))));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_NULL) {
-              statement.append("NULL");
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setNullparameter(true));
             } else {
               throw new AssertionError("unknown type?"  + cursor.getType(i));
             }
@@ -166,7 +170,7 @@ public class FullBackupExporter extends FullBackupBase {
 
           statement.append(')');
 
-          outputStream.write(BackupProtos.SqlStatement.newBuilder().setStatement(statement.toString()).build());
+          outputStream.write(statementBuilder.setStatement(statement.toString()).build());
 
           if (postProcess != null) postProcess.accept(cursor);
         }
@@ -185,7 +189,11 @@ public class FullBackupExporter extends FullBackupBase {
       String data   = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA));
       byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA_RANDOM));
 
-      if (!TextUtils.isEmpty(data)) {
+      if (!TextUtils.isEmpty(data) && size <= 0) {
+        size = calculateVeryOldStreamLength(attachmentSecret, random, data);
+      }
+
+      if (!TextUtils.isEmpty(data) && size > 0) {
         InputStream inputStream;
 
         if (random != null && random.length == 32) inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
@@ -198,7 +206,24 @@ public class FullBackupExporter extends FullBackupBase {
     }
   }
 
-  private static class BackupFrameOutputStream {
+  private static long calculateVeryOldStreamLength(@NonNull AttachmentSecret attachmentSecret, @Nullable byte[] random, @NonNull String data) throws IOException {
+    long result = 0;
+    InputStream inputStream;
+
+    if (random != null && random.length == 32) inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
+    else                                       inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
+
+    int read;
+    byte[] buffer = new byte[8192];
+
+    while ((read = inputStream.read(buffer, 0, buffer.length)) != -1) {
+      result += read;
+    }
+
+    return result;
+  }
+
+  private static class BackupFrameOutputStream extends BackupStream {
 
     private final OutputStream outputStream;
     private final Cipher       cipher;
@@ -210,10 +235,12 @@ public class FullBackupExporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupFrameOutputStream(@NonNull File output, @NonNull byte[] key) throws IOException {
+    private BackupFrameOutputStream(@NonNull File output, @NonNull String passphrase) throws IOException {
       try {
-        byte[] derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
-        byte[][] split = ByteUtil.split(derived, 32, 32);
+        byte[]   salt    = Util.getSecretBytes(32);
+        byte[]   key     = getBackupKey(passphrase, salt);
+        byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
+        byte[][] split   = ByteUtil.split(derived, 32, 32);
 
         this.cipherKey = split[0];
         this.macKey    = split[1];
@@ -226,7 +253,10 @@ public class FullBackupExporter extends FullBackupBase {
 
         mac.init(new SecretKeySpec(macKey, "HmacSHA256"));
 
-        byte[] header = BackupProtos.BackupFrame.newBuilder().setHeader(BackupProtos.Header.newBuilder().setIv(ByteString.copyFrom(iv))).build().toByteArray();
+        byte[] header = BackupProtos.BackupFrame.newBuilder().setHeader(BackupProtos.Header.newBuilder()
+                                                                                           .setIv(ByteString.copyFrom(iv))
+                                                                                           .setSalt(ByteString.copyFrom(salt)))
+                                                .build().toByteArray();
 
         outputStream.write(Conversions.intToByteArray(header.length));
         outputStream.write(header);
@@ -243,6 +273,17 @@ public class FullBackupExporter extends FullBackupBase {
       write(outputStream, BackupProtos.BackupFrame.newBuilder().setStatement(statement).build());
     }
 
+    public void write(@NonNull String avatarName, @NonNull InputStream in, long size) throws IOException {
+      write(outputStream, BackupProtos.BackupFrame.newBuilder()
+                                                  .setAvatar(BackupProtos.Avatar.newBuilder()
+                                                                                .setName(avatarName)
+                                                                                .setLength(Util.toIntExact(size))
+                                                                                .build())
+                                                  .build());
+
+      writeStream(in);
+    }
+
     public void write(@NonNull AttachmentId attachmentId, @NonNull InputStream in, long size) throws IOException {
       write(outputStream, BackupProtos.BackupFrame.newBuilder()
                                                   .setAttachment(BackupProtos.Attachment.newBuilder()
@@ -252,7 +293,20 @@ public class FullBackupExporter extends FullBackupBase {
                                                                                         .build())
                                                   .build());
 
+      writeStream(in);
+    }
 
+    void writeDatabaseVersion(int version) throws IOException {
+      write(outputStream, BackupProtos.BackupFrame.newBuilder()
+                                                  .setVersion(BackupProtos.DatabaseVersion.newBuilder().setVersion(version))
+                                                  .build());
+    }
+
+    void writeEnd() throws IOException {
+      write(outputStream, BackupProtos.BackupFrame.newBuilder().setEnd(true).build());
+    }
+
+    private void writeStream(@NonNull InputStream inputStream) throws IOException {
       try {
         Conversions.intToByteArray(iv, 0, counter++);
         cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
@@ -261,10 +315,13 @@ public class FullBackupExporter extends FullBackupBase {
         byte[] buffer = new byte[8192];
         int read;
 
-        while ((read = in.read(buffer)) != -1) {
+        while ((read = inputStream.read(buffer)) != -1) {
           byte[] ciphertext = cipher.update(buffer, 0, read);
-          outputStream.write(ciphertext);
-          mac.update(ciphertext);
+
+          if (ciphertext != null) {
+            outputStream.write(ciphertext);
+            mac.update(ciphertext);
+          }
         }
 
         byte[] remainder = cipher.doFinal();
@@ -276,16 +333,6 @@ public class FullBackupExporter extends FullBackupBase {
       } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
         throw new AssertionError(e);
       }
-    }
-
-    void writeDatabaseVersion(int version) throws IOException {
-      write(outputStream, BackupProtos.BackupFrame.newBuilder()
-                                                  .setVersion(BackupProtos.DatabaseVersion.newBuilder().setVersion(version))
-                                                  .build());
-    }
-
-    void writeEnd() throws IOException {
-      write(outputStream, BackupProtos.BackupFrame.newBuilder().setEnd(true).build());
     }
 
     private void write(@NonNull OutputStream out, @NonNull BackupProtos.BackupFrame frame) throws IOException {

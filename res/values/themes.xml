@@ -219,6 +219,7 @@
         <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
         <item name="menu_forward_icon">@drawable/ic_forward_white_24dp</item>
         <item name="menu_save_icon">@drawable/ic_save_white_24dp</item>
+        <item name="menu_reply_icon">@drawable/ic_reply_white_24dp</item>
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
@@ -233,8 +234,10 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
         <item name="search_toolbar_background">@color/white</item>
-
+      
         <item name="registration_lock_reminder_view_pin_text_color">@color/black</item>
+      
+        <item name="invite_background">@color/signal_primary</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -344,6 +347,7 @@
         <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
         <item name="menu_forward_icon">@drawable/ic_forward_white_24dp</item>
         <item name="menu_save_icon">@drawable/ic_save_white_24dp</item>
+        <item name="menu_reply_icon">@drawable/ic_reply_white_24dp</item>
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_dark</item>
@@ -357,8 +361,10 @@
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
         <item name="search_toolbar_background">@color/black</item>
-
+      
         <item name="registration_lock_reminder_view_pin_text_color">@color/white</item>
+
+        <item name="invite_background">@color/black</item>
     </style>
     
     <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">

@@ -36,8 +36,8 @@ public class ImageSlide extends Slide {
     super(context, attachment);
   }
 
-  public ImageSlide(Context context, Uri uri, long size) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, true, null, false));
+  public ImageSlide(Context context, Uri uri, long size, int width, int height) {
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, false, false));
   }
 
   @Override
@@ -47,10 +47,7 @@ public class ImageSlide extends Slide {
 
   @Override
   public @Nullable Uri getThumbnailUri() {
-    Uri thumbnailUri = super.getThumbnailUri();
-
-    if (thumbnailUri == null) return getUri();
-    else                      return thumbnailUri;
+    return getUri();
   }
 
   @Override

@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 mensagem por conversa</item>
+    <item quantity="one">%d mensagem por conversa</item>
     <item quantity="other">%d mensagens por conversa</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Apagar todas as mensagens antigas?</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Língua %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <!--DraftDatabase-->
@@ -326,12 +326,12 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIAR SMS PARA 1 AMIGO</item>
+    <item quantity="one">ENVIAR SMS PARA %d AMIGO</item>
     <item quantity="other">ENVIAR SMS PARA %d AMIGOS</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Enviar 1 convite SMS?</item>
-    <item quantity="other">Enviar %d convites SMS?</item>
+    <item quantity="one">Enviar %d convite por SMS?</item>
+    <item quantity="other">Enviar %d convites por SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que não tem aplicações para as quais partilhar.</string>
@@ -347,6 +347,8 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler as configurações do operador MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimédia</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">A apagar</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">A apagar mensagens...</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada do Signal em curso</string>
@@ -671,6 +673,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="audio_view__play_accessibility_description">Reproduzir</string>
   <string name="audio_view__pause_accessibility_description">Pausar</string>
   <string name="audio_view__download_accessibility_description">Descarregar</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Áudio</string>
+  <string name="QuoteView_video">Vídeo</string>
+  <string name="QuoteView_you">Você</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selecção em grupo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Seleccionado %s</string>
@@ -694,27 +700,27 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--expiration-->
   <string name="expiration_off">Desligado</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 segundo</item>
+    <item quantity="one">%d segundo</item>
     <item quantity="other">%d segundos</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 hora</item>
+    <item quantity="one">%d hora</item>
     <item quantity="other">%d horas</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 dia</item>
+    <item quantity="one">%d dia</item>
     <item quantity="other">%d dias</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 semana</item>
+    <item quantity="one">%d semana</item>
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
@@ -1052,10 +1058,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar com a área de transferência</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">A sua versão do Signal está desactualizada</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">A sua versão de Signal vai expirar dentro de 1 dia. Toque para actualizar para a versão mais recente.</item>
-    <item quantity="other">A sua versão do Signal vai expirar dentro de %d dias. Toque para actualizar para a versão mais recente.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">A sua versão de Signal vai expirar hoje. Toque para actualizar para a versão mais recente.</string>
   <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>
   <string name="reminder_header_expired_build_details">As mensagens deixarão de ser enviadas com sucesso. Toque para actualizar para a versão mais recente.</string>

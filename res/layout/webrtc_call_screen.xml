@@ -74,13 +74,13 @@
                         android:layout_height="wrap_content">
 
                     <Button android:id="@+id/accept_safety_numbers"
-                            android:text="Accept"
+                            android:text="@string/WebRtcCallScreen_accept"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"/>
 
                     <Button android:id="@+id/cancel_safety_numbers"
-                            android:text="Cancel"
+                            android:text="@android:string/cancel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 
@@ -222,7 +222,7 @@
             android:focusable="true"
             app:backgroundTint="@color/red_500"
             android:visibility="visible"
-            android:contentDescription="End call"
+            android:contentDescription="@string/WebRtcCallScreen_end_call"
             tools:visibility="visible"/>
 
 

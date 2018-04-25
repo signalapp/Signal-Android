@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Momentan: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du hast noch keine Passphrase festgelegt!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 Nachricht je Unterhaltung</item>
+    <item quantity="one">%d Nachricht je Unterhaltung</item>
     <item quantity="other">%d Nachrichten je Unterhaltung</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Design %1$s, Sprache %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 Minute</item>
+    <item quantity="one">%d Minute</item>
     <item quantity="other">%d Minuten</item>
   </plurals>
   <!--DraftDatabase-->
@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Kürzliche Unterhaltungen</string>
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
+  <string name="ContactsCursorLoader_groups">Gruppen</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-Anruf %s</string>
@@ -173,6 +174,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Löschen</string>
   <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
+  <string name="ConversationFragment_quoted_message_not_found">Zitierte Nachricht nicht gefunden</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Auf deinem Gerät ist derzeit kein Browser installiert.</string>
   <!--ConversationListFragment-->
@@ -320,11 +322,11 @@
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SMS AN 1 FREUND SENDEN</item>
+    <item quantity="one">SMS AN %d FREUND SENDEN</item>
     <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">1 SMS-Einladung senden?</item>
+    <item quantity="one">%d SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
@@ -341,6 +343,16 @@
   <string name="MmsDownloader_error_reading_mms_settings">MMS-Einstellungen des Mobilfunkanbieters konnten nicht gelesen werden</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medieninhalte</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Ausgewählte Nachricht löschen?</item>
+    <item quantity="other">Ausgewählte Nachrichten löschen?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Dies wird die ausgewählte Nachricht unwiderruflich löschen.</item>
+    <item quantity="other">Dies wird alle %1$d ausgewählten Nachrichten unwiderruflich löschen.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
   <string name="MediaOverviewActivity_Documents">Dokumente</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
@@ -459,10 +471,10 @@
   <string name="RegistrationService_registration_error">Fehler bei der Registrierung</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Bei der Signal-Registrierung ist ein Problem aufgetreten.</string>
   <!--RingtonePreference-->
-  <string name="RingtonePreference_ringtone_default">Standard-Klingelton</string>
+  <string name="RingtonePreference_ringtone_default">Standardklingelton</string>
   <string name="RingtonePreference_ringtone_silent">Keinen</string>
-  <string name="RingtonePreference_notification_sound_default">Standard-Benachrichtigungston</string>
-  <string name="RingtonePreference_alarm_sound_default">Standard-Weckerton</string>
+  <string name="RingtonePreference_notification_sound_default">Standardbenachrichtigungston</string>
+  <string name="RingtonePreference_alarm_sound_default">Standardweckerton</string>
   <string name="RingtonePreference_add_ringtone_text">Klingelton hinzufügen</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Klingelton kann nicht hinzugefügt werden</string>
   <!--Slide-->
@@ -553,6 +565,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaPreviewActivity_draft">Entwurf</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für das Speichern in den Gerätespeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Speichern in den Gerätespeicher ohne Berechtigungen nicht möglich.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Nachricht löschen?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dies wird diese Nachricht unwiderruflich löschen.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
@@ -658,6 +672,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="audio_view__play_accessibility_description">Wiedergeben</string>
   <string name="audio_view__pause_accessibility_description">Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Dokument</string>
+  <string name="QuoteView_you">Du</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mehrfachauswahl</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s ausgewählt</string>
@@ -681,27 +701,27 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--expiration-->
   <string name="expiration_off">Aus</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 Sekunde</item>
+    <item quantity="one">%d Sekunde</item>
     <item quantity="other">%d Sekunden</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 Minute</item>
+    <item quantity="one">%d Minute</item>
     <item quantity="other">%d Minuten</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dmin</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 Stunde</item>
+    <item quantity="one">%d Stunde</item>
     <item quantity="other">%d Stunden</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 Tag</item>
+    <item quantity="one">%d Tag</item>
     <item quantity="other">%d Tage</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 Woche</item>
+    <item quantity="one">%d Woche</item>
     <item quantity="other">%d Wochen</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
@@ -789,7 +809,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="redphone_call_controls__signal_call">Signal-Anruf</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">RUFNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal macht das Kommunizieren leicht, indem es deine bereits bestehende Rufnummer und dein Adressbuch verwendet. Freunde und Kontakte, die bereits deine Rufnummer kennen, können so über Signal einfach mit dir Kontakt aufnehmen.\n\nBeim Registrieren werden einige Kontaktinformationen an den Server übermittelt. Diese werden nicht gespeichert.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal macht Kommunikation einfach, indem es deine bereits bestehende Rufnummer und dein Adressbuch verwendet. Freunde und Kontakte, die bereits deine Rufnummer kennen, können so über Signal leicht mit dir Kontakt aufnehmen.\n\nBeim Registrieren werden einige Kontaktinformationen an den Server übermittelt. Diese werden nicht gespeichert.</string>
   <string name="registration_activity__verify_your_number">Verifiziere deine Rufnummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Bitte gib deine Rufnummer ein, um einen Verifikationscode zu erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
   <!--registration_problems-->
@@ -940,14 +960,14 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
   <string name="preferences__incognito_keyboard">Inkognito-Tastatur</string>
   <string name="preferences__read_receipts">Lesebestätigungen</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen wirst du auch die Lesebestätigungen anderer nicht sehen können.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen wirst du auch die Lesebestätigungen anderer nicht sehen können</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tastatur auffordern, personalisiertes Lernen auszuschalten</string>
   <string name="preferences_app_protection__blocked_contacts">Blockierte Kontakte</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
-  <string name="preferences_chats__media_auto_download">Medieninhalte automatisch herunterladen</string>
-  <string name="preferences_chats__message_trimming">Unterhaltungen kürzen</string>
+  <string name="preferences_chats__media_auto_download">Automatisches Herunterladen von Medieninhalten</string>
+  <string name="preferences_chats__message_trimming">Kürzen von Unterhaltungen</string>
   <string name="preferences_advanced__use_system_emoji">System-Emojis verwenden</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Bei Aktivierung wird sich die Anrufqualität verringern.</string>
@@ -1042,7 +1062,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Deine Version von Signal ist veraltet</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Deine Version von Signal wird in 1 Tag ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</item>
+    <item quantity="one">Deine Version von Signal wird in %d Tag ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</item>
     <item quantity="other">Deine Version von Signal wird in %d Tagen ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Deine Version von Signal wird heute ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</string>
@@ -1089,17 +1109,17 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Abschließen der Aktualisierung</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Entsperre bitte Signal, um die Aktualisierung abzuschließen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Sicherungspassphrase</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Datensicherungen werden im Gerätespeicher gespeichert und mit der unten genannten Passphrase verschlüsselt. Die Passphrase ist notwendig, um die Sicherung wiederherzustellen.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Datensicherungen werden im Gerätespeicher gespeichert und mit der unten genannten Passphrase verschlüsselt. Die Passphrase ist notwendig, um die Sicherung später wiederherzustellen.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ich habe mir diese Passphrase notiert. Ohne sie werde ich keine Sicherung wiederherstellen können.</string>
   <string name="registration_activity__restore_backup">Sicherung wiederherstellen</string>
   <string name="registration_activity__skip">Überspringen</string>
   <string name="registration_activity__register">Registrieren</string>
-  <string name="preferences_chats__chat_backups">Sicherungen von Unterhaltungen</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Unterhaltungen in Gerätespeicher sichern</string>
+  <string name="preferences_chats__chat_backups">Unterhaltungen sichern</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Unterhaltungen im Gerätespeicher sichern</string>
   <string name="preferences_chats__create_backup">Sicherung erstellen</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Passphrase für Sicherung eingeben</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Sicherungspassphrase eingeben</string>
   <string name="RegistrationActivity_restore">Wiederherstellen</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Passphrase für Sicherung</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Sicherungspassphrase</string>
   <string name="RegistrationActivity_checking">Wird überprüft …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d Nachrichten bisher …</string>
   <string name="RegistrationActivity_restore_from_backup">Aus Sicherung wiederherstellen?</string>
@@ -1115,7 +1135,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupDialog_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal benötigt die Berechtigung »Speicher« für das Erstellen von Datensicherungen, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Letzte Sicherung: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">In Arbeit</string>
+  <string name="ChatsPreferenceFragment_in_progress">In Arbeit …</string>
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
   <string name="RegistrationActivity_verify_s">%s verifizieren</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
@@ -1125,17 +1145,17 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="prompt_passphrase_activity__unlock_signal">Signal entsperren</string>
   <string name="preferences_app_protection__screen_lock">Bildschirmsperre</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zugriff auf Signal mit Androids Bildschirmsperre oder Fingerabdruck sperren</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Verzögerungszeit bei Inaktivität</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Autom. Sperre bei Inaktivität</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Die PIN für die Registrierungssperre ist unabhängig vom SMS-Verifikationscode, den du gerade erhalten hast. Bitte gib die PIN ein, die du zuvor in der App festgelegt hast.</string>
   <string name="registration_activity__registration_lock_pin">PIN für Registrierungssperre</string>
   <string name="registration_activity__forgot_pin">PIN vergessen?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Die PIN kann aus vier oder mehr Ziffern bestehen. Falls du deine PIN vergisst, könntest du bis zu sieben Tagen aus deinem Konto ausgesperrt sein.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Die PIN kann aus vier oder mehr Ziffern bestehen. Falls du deine PIN vergisst, könntest du bis zu sieben Tage aus deinem Benutzerkonto ausgesperrt sein.</string>
   <string name="registration_lock_dialog_view__enter_pin">PIN eingeben</string>
   <string name="registration_lock_dialog_view__confirm_pin">PIN bestätigen</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Gib deine PIN für die Registrierungssperre ein</string>
   <string name="registration_lock_reminder_view__enter_pin">PIN eingeben</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">PIN für Registrierungsperre aktivieren, die dafür erforderlich sein wird, diese Rufnummer wieder mit Signal zu registrieren</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">PIN für Registrierungsperre aktivieren, die dafür erforderlich sein wird, diese Rufnummer erneut mit Signal zu registrieren</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN für Registrierungssperre</string>
   <string name="preferences_app_protection__registration_lock">Registrierungssperre</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du musst deine PIN für die Registrierungssperre eingeben</string>
@@ -1144,21 +1164,25 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du hast zu viele falsche PINs für die Registrierungssperre verwendet. Bitte versuche es in einem Tag wieder.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fehler beim Verbinden mit Dienst</string>
   <string name="RegistrationActivity_oh_no">Oh nein!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ohne deine PIN für die Registrierungssperre wird die Registrierung dieser Rufnummer erst nach Ablauf von 7 Tagen seit der letzten Aktivität der Rufnummer auf Signal möglich sein. Es verbleiben noch %d Tage.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ohne deine PIN für die Registrierungssperre wird die Registrierung dieser Rufnummer erst nach Ablauf von 7 Tagen seit ihrer letzten Aktivität auf Signal möglich sein. Es verbleiben noch %d Tage.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN für Registrierungssperre</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Für diese Rufnummer ist die Registrierungssperre aktiviert. Bitte gib die PIN für die Registrierungssperre ein.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Für deine Rufnummer ist die Registrierungssperre aktiviert.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Für deine Rufnummer ist die Registrierungssperre aktiviert. Damit du sie nicht vergisst, wird dich Signal regelmäßig nach der PIN für die Registrierungssperre fragen.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ich habe meine PIN vergessen.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN vergessen?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Die Registrierungssperre hilft, deine Rufnummer vor unautorisierten Registrierungsversuchen zu schützen. Diese Funktion kann jederzeit in den Datenschutzeinstellungen von Signal deaktiviert werden.</string>
   <string name="RegistrationLockDialog_registration_lock">Registrierungssperre</string>
   <string name="RegistrationLockDialog_enable">Aktivieren</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Die PIN für die Registrierungssperre muss aus mindestens 4 Ziffern bestehen.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Die beiden eingegebenen PINs stimmten nicht überein.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Die beiden eingegebenen PINs stimmen nicht überein.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Fehler beim Verbinden mit Dienst</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Registrierungssperre deaktivieren?</string>
   <string name="RegistrationLockDialog_disable">Deaktivieren</string>
   <string name="RegistrationActivity_continue">Weiter</string>
   <string name="preferences_chats__backups">Datensicherungen</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal ist gesperrt</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">ZUM ENTSPERREN ANTIPPEN</string>
+  <string name="RegistrationLockDialog_reminder">Erinnerung:</string>
+  <string name="recipient_preferences__about">Über</string>
   <!--EOF-->
 </resources>

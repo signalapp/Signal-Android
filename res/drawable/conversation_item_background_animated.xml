@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="1000">
+    <item android:drawable="@color/textsecure_primary_alpha33" android:state_selected="true" />
+    <item android:drawable="@color/signal_primary_alpha_focus" android:state_focused="true" />
+</selector>

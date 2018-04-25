@@ -25,19 +25,19 @@ repositories {
         url "https://repo1.maven.org/maven2/"
     }
     maven {
-        url "https://raw.github.com/whispersystems/maven/master/preferencefragment/releases/"
+        url "https://raw.github.com/signalapp/maven/master/preferencefragment/releases/"
     }
     maven {
-        url "https://raw.github.com/whispersystems/maven/master/smil/releases/"
+        url "https://raw.github.com/signalapp/maven/master/smil/releases/"
     }
     maven {
-        url "https://raw.github.com/whispersystems/maven/master/photoview/releases/"
+        url "https://raw.github.com/signalapp/maven/master/photoview/releases/"
     }
     maven {
-        url "https://raw.github.com/whispersystems/maven/master/shortcutbadger/releases/"
+        url "https://raw.github.com/signalapp/maven/master/shortcutbadger/releases/"
     }
     maven {
-        url "https://raw.github.com/whispersystems/maven/master/circular-progress-button/releases/"
+        url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
     }
     maven {
         url "https://maven.google.com"
@@ -63,6 +63,7 @@ dependencies {
     compile 'com.android.support:preference-v14:27.0.2'
     compile 'com.android.support:gridlayout-v7:27.0.2'
     compile 'com.android.support:multidex:1.0.2'
+    compile "com.android.support:exifinterface:27.0.2"
 
     compile 'com.google.android.gms:play-services-gcm:9.6.1'
     compile 'com.google.android.gms:play-services-maps:9.6.1'
@@ -74,7 +75,7 @@ dependencies {
     compile('org.whispersystems:libpastelog:1.1.2') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
-    compile 'org.whispersystems:signal-service-android:2.7.2'
+    compile 'org.whispersystems:signal-service-android:2.7.5'
     compile 'org.whispersystems:webrtc-android:M64'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -156,13 +157,14 @@ dependencyVerification {
         'com.android.support:cardview-v7:57f867a3c8f33e2d4dc0a03e2dfa03cad6267a908179f04a725a68ea9f0b8ccf',
         'com.android.support:gridlayout-v7:227b5fdffa20f53bd562503aab6d2293d52cf64b5a6ab1116d2150f87bff9e88',
         'com.android.support:multidex:7cd48755c7cfdb6dd2d21cbb02236ec390f6ac91cde87eb62f475b259ab5301d',
+        'com.android.support:exifinterface:0e7cd526c4468895cd8549def46b3d33c8bcfb1ae4830569898d8c7326b15bb2',
         'com.google.android.gms:play-services-gcm:312e61253a236f2d9b750b9c04fc92fd190d23b0b2755c99de6ce4a28b259dae',
         'com.google.android.gms:play-services-places:abf3a4a3b146ec7e6e753be62775e512868cf37d6f88ffe2d81167b33b57132b',
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
         'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:fe56b4db9ec743c8b565e3e4caa9228fafe132dc0bf82000d6e359b97a81177c',
-        'org.whispersystems:signal-service-android:a7dfcb2f88ec69e8a1d31215cc7b67f0db50a96cd9d3832bfe75f56e67188537',
+        'org.whispersystems:signal-service-android:e0a3d55b21c1db483818ed459c500eba96dfb839e70d95dca4d8d4c1a7cd816b',
         'org.whispersystems:webrtc-android:ed297e8b795dad9658cf306c2aa0f7d296c65f0997a2ac4353fd0157910acc12',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -201,7 +203,7 @@ dependencyVerification {
         'com.github.bumptech.glide:gifdecoder:59ccf3bb0cec11dab4b857382cbe0b171111b6fc62bf141adce4e1180889af15',
         'com.android.support:support-annotations:af05330d997eb92a066534dbe0a3ea24347d26d7001221092113ae02a8f233da',
         'org.whispersystems:signal-protocol-android:5b8acded7f2a40178eb90ab8e8cbfec89d170d91b3ff5e78487d1098df6185a1',
-        'org.whispersystems:signal-service-java:f5ca4595eb09e25b9c9fd39c83bdcf1978a61d8a4b6f770bb548f3dd40ecc493',
+        'org.whispersystems:signal-service-java:7b4c34e3a346a236caebd5b81fb2985ed3c91a9974a8a8ddd36b6e1b8ae9350a',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
         'com.github.bumptech.glide:annotations:bede99ef9f71517a4274bac18fd3e483e9f2b6108d7d6fe8f4949be4aa4d9512',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
@@ -237,8 +239,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 346
-        versionName "4.17.1"
+        versionCode 355
+        versionName "4.19.1"
 
         minSdkVersion 14
         targetSdkVersion 25

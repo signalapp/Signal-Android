@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 zpráva na konverzaci</item>
+    <item quantity="one">%d zpráva na konverzaci</item>
     <item quantity="few">%d zprávy na konverzaci</item>
     <item quantity="other">%d zpráv na konverzaci</item>
   </plurals>
@@ -43,7 +43,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, jazyk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuta</item>
+    <item quantity="one">%d minuta</item>
     <item quantity="few">%d minuty</item>
     <item quantity="other">%d minut</item>
   </plurals>
@@ -80,6 +80,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedávné konverzace</string>
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
+  <string name="ContactsCursorLoader_groups">Skupiny</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal volání %s</string>
@@ -184,6 +185,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Mažu</string>
   <string name="ConversationFragment_deleting_messages">Mažu zprávy...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Citovaná zpráva nebyla nalezena</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte na vašem zařízení nainstalován žádný prohlížeč.</string>
   <!--ConversationListFragment-->
@@ -336,12 +338,12 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="InviteActivity_invitations_sent">Pozvánka odeslána!</string>
   <string name="InviteActivity_invite_to_signal">Pozvat do Signalu</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">POSLAT SMS PŘÍTELI</item>
+    <item quantity="one">POSLAT SMS %d PŘÍTELI</item>
     <item quantity="few">POSLAT SMS %d PŘÁTELŮM</item>
     <item quantity="other">POSLAT SMS %d PŘÁTELŮM</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Poslat 1 SMS pozvánku?</item>
+    <item quantity="one">Poslat %d SMS pozvánku?</item>
     <item quantity="few">Poslat %d SMS pozvánky?</item>
     <item quantity="other">Poslat %d SMS pozvánek?</item>
   </plurals>
@@ -359,6 +361,18 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="MmsDownloader_error_reading_mms_settings">Chyba při čtení nastavení MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Smazat označenou zprávu?</item>
+    <item quantity="few">Smazat označené zprávy?</item>
+    <item quantity="other">Smazat označené zprávy?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Tímto trvale smažete označenou zprávu.</item>
+    <item quantity="few">Tímto trvale smažete všechny %1$d označené zprávy.</item>
+    <item quantity="other">Tímto trvale smažete všech %1$d označených zpráv.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Mažu</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Mažu zprávy...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenty</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Probíhá Signal volání</string>
@@ -574,6 +588,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MediaPreviewActivity_draft">Koncept</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k úložišti aby mohl zapisovat do externího úložiště, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nelze ukládat do externího úložiště bez oprávnění.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Smazat zprávu?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto trvale smažete tuto zprávu.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nových zpráv v %2$d konverzacích</string>
   <string name="MessageNotifier_most_recent_from_s">Poslední od: %1$s</string>
@@ -679,6 +695,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="audio_view__play_accessibility_description">Přehrát</string>
   <string name="audio_view__pause_accessibility_description">Zastavit</string>
   <string name="audio_view__download_accessibility_description">Stáhnout</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Fotografie</string>
+  <string name="QuoteView_document">Dokument</string>
+  <string name="QuoteView_you">Vy</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Hromadný výběr</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Vybráno %s</string>
@@ -702,31 +724,31 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--expiration-->
   <string name="expiration_off">Vyp.</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 vteřina</item>
+    <item quantity="one">%d vteřina</item>
     <item quantity="few">%d vteřiny</item>
     <item quantity="other">%d vteřin</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuta</item>
+    <item quantity="one">%d minuta</item>
     <item quantity="few">%d minuty</item>
     <item quantity="other">%d minut</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 hodina</item>
+    <item quantity="one">%d hodina</item>
     <item quantity="few">%d hodiny</item>
     <item quantity="other">%d hodin</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 den</item>
+    <item quantity="one">%d den</item>
     <item quantity="few">%d dny</item>
     <item quantity="other">%d dnů</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 týden</item>
+    <item quantity="one">%d týden</item>
     <item quantity="few">%d týdny</item>
     <item quantity="other">%d týdnů</item>
   </plurals>
@@ -1071,7 +1093,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaše verze aplikace Signal je zastaralá</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Platnost vaší verze aplikace Signal skončí za 1 den. Dotykem aktualizujte na nejnovější verzi.</item>
+    <item quantity="one">Platnost vaší verze aplikace Signal skončí za %d den. Dotykem aktualizujte na nejnovější verzi.</item>
     <item quantity="few">Platnost vaší verze aplikace Signal skončí za %d dny. Dotykem aktualizujte na nejnovější verzi.</item>
     <item quantity="other">Platnost vaší verze aplikace Signal skončí za %d dnů. Dotykem aktualizujte na nejnovější verzi.</item>
   </plurals>
@@ -1178,7 +1200,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrace tohoto telefonního čísla bude možná bez vašeho PINu zámku registrace po 7 dnech od poslední aktivity na Signalu. Zbyvá ještě %ddnů.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN zámku registrace</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Toto telefonní číslo má registraci zabezpečenou PINnem. Prosím vložte PIN zámku registrace.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Zámek registrace je povolen pro toto telefonní číslo.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Pro vaše telefonní číslo je povolen zámek registrace. Abyste si lépe zapamatovali PIN zámku registrace, Signál bude občas chtít jeho potvrzení.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Zapomněl jsem svůj PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Zapomenutý PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zamek registrace chrání vaše telefonní číslo před pokusy o jeho nepovolenou registraci. Tato vlastnost může být vypnuta kdykoliv v nastavení zabezpečení Signalu.</string>
@@ -1191,5 +1213,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="RegistrationLockDialog_disable">Deaktivovat</string>
   <string name="RegistrationActivity_continue">Pokračovat</string>
   <string name="preferences_chats__backups">Zálohy</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal je zamčen</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">Klepnutím odemkněte</string>
+  <string name="RegistrationLockDialog_reminder">Připomínka:</string>
+  <string name="recipient_preferences__about">Info o</string>
   <!--EOF-->
 </resources>

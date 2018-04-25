@@ -10,11 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Тренутно: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Још нисте поставили лозинку!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 порука по преписци</item>
-    <item quantity="few">%d поруке по преписци</item>
-    <item quantity="other">%d порука по преписци</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Обрисати старе поруке сада?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Ово ће одмах да скрати све преписке на најскорију поруку.</item>
@@ -42,11 +37,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">СМС %1$s, ММС %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, језик %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 минута</item>
-    <item quantity="few">%d минуте</item>
-    <item quantity="other">%d минута</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(слика)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(звук)</string>
@@ -305,16 +295,6 @@
   <string name="InviteActivity_heart_content_description">Срце</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
   <string name="InviteActivity_invite_to_signal">Слање позивнице за Сигнал</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ПОШАЉИ СМС 1 ПРИЈАТЕЉУ</item>
-    <item quantity="few">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-    <item quantity="other">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Послати 1 СМС позивницу?</item>
-    <item quantity="few">Послати %d СМС позивнице?</item>
-    <item quantity="other">Послати %d СМС позивница?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Пребацимо се на Сигнал: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатељи не допуштају пријатељима да ћаскају небезбедно.</string>
@@ -328,6 +308,8 @@
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Грешка читања поставки ММС послужиоца</string>
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Брисање</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Бришем поруке...</string>
   <string name="MediaOverviewActivity_Documents">Документи</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Сигнала у току</string>
@@ -610,6 +592,10 @@
   <string name="audio_view__play_accessibility_description">Пусти</string>
   <string name="audio_view__pause_accessibility_description">Паузирај</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Звук</string>
+  <string name="QuoteView_video">Видео</string>
+  <string name="QuoteView_you">Ви</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим серијског избора</string>
   <string name="conversation_fragment_cab__batch_selection_amount">Изабрано: %s</string>
@@ -629,35 +615,10 @@
   <string name="experience_upgrade_activity__continue">настави</string>
   <!--expiration-->
   <string name="expiration_off">Искључено</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">1 секунда</item>
-    <item quantity="few">%d секунде</item>
-    <item quantity="other">%d секунди</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%d s</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">1 минута</item>
-    <item quantity="few">%d минуте</item>
-    <item quantity="other">%d минута</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%d m</string>
-  <plurals name="expiration_hours">
-    <item quantity="one">1 сат</item>
-    <item quantity="few">%d сата</item>
-    <item quantity="other">%d сати</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%d h</string>
-  <plurals name="expiration_days">
-    <item quantity="one">1 дан</item>
-    <item quantity="few">%d дана</item>
-    <item quantity="other">%d дана</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%d д</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">1 седмица</item>
-    <item quantity="few">%d седмице</item>
-    <item quantity="other">%d седмица</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%d с</string>
   <!--unverified safety numbers-->
   <!--giphy_activity-->
@@ -952,11 +913,6 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Упореди са клипбордом</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Ваше издање Сигнала је застарело!</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Ваше издање Сигнала истиче за 1 дан. Тапните да надоградите на најскорије издање.</item>
-    <item quantity="few">Ваше издање Сигнала истиче за %d дана. Тапните да надоградите на најскорије издање.</item>
-    <item quantity="other">Ваше издање Сигнала истиче за %d дана. Тапните да надоградите на најскорије издање.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Ваше издање Сигнала истиче данас. Тапните да надоградите на најскорије издање.</string>
   <string name="reminder_header_expired_build">Ваше издање Сигнала је истекло!</string>
   <string name="reminder_header_expired_build_details">Више нећете моћи успешно да шаљете поруке. Тапните да надоградите на најскорије издање.</string>

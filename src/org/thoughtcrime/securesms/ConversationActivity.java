@@ -111,7 +111,10 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -406,6 +409,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       else                                  mediaType = MediaType.IMAGE;
 
       setMedia(data.getData(), mediaType);
+
       break;
     case PICK_DOCUMENT:
       setMedia(data.getData(), MediaType.DOCUMENT);
@@ -438,7 +442,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
       break;
     case PICK_GIF:
-      setMedia(data.getData(), MediaType.GIF);
+      setMedia(data.getData(),
+               MediaType.GIF,
+               data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
+               data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
       break;
     case ScribbleActivity.SCRIBBLE_REQUEST_CODE:
       setMedia(data.getData(), MediaType.IMAGE);
@@ -675,7 +682,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleRegisterForSignal() {
     Intent intent = new Intent(this, RegistrationActivity.class);
-    intent.putExtra("cancel_button", true);
+    intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
     startActivity(intent);
   }
 
@@ -761,7 +768,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                            .setType(GroupContext.Type.QUIT)
                                            .build();
 
-        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(getRecipient(), context, null, System.currentTimeMillis(), 0);
+        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(getRecipient(), context, null, System.currentTimeMillis(), 0, null);
         MessageSender.send(self, outgoingMessage, threadId, false, null);
         DatabaseFactory.getGroupDatabase(self).remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(self)));
         initializeEnabledCheck();
@@ -1377,8 +1384,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
+    setMedia(uri, mediaType, 0, 0);
+  }
+
+  private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, int width, int height) {
     if (uri == null) return;
-    attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints());
+    attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {
@@ -1639,7 +1650,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         handleUnverifiedRecipients();
       } else if (!forceSms && identityRecords.isUntrusted()) {
         handleUntrustedRecipients();
-      } else if (attachmentManager.isAttachmentPresent() || recipient.isGroupRecipient() || recipient.getAddress().isEmail()) {
+      } else if (attachmentManager.isAttachmentPresent() || recipient.isGroupRecipient() || recipient.getAddress().isEmail() || inputPanel.getQuote().isPresent()) {
         sendMediaMessage(forceSms, expiresIn, subscriptionId, initiating);
       } else {
         sendTextMessage(forceSms, expiresIn, subscriptionId, initiating);
@@ -1659,12 +1670,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendMediaMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, boolean initiating)
       throws InvalidMessageException
   {
+    Log.w(TAG, "Sending media message...");
     sendMediaMessage(forceSms, getMessage(), attachmentManager.buildSlideDeck(), expiresIn, subscriptionId, initiating);
   }
 
   private ListenableFuture<Void> sendMediaMessage(final boolean forceSms, String body, SlideDeck slideDeck, final long expiresIn, final int subscriptionId, final boolean initiating) {
-
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType);
+    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, inputPanel.getQuote().orNull());
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = getApplicationContext();
@@ -1682,6 +1693,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                .ifNecessary(!isSecureText || forceSms)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms))
                .onAllGranted(() -> {
+                 inputPanel.clearQuote();
                  attachmentManager.clear(glideRequests, false);
                  composeText.setText("");
                  final long id = fragment.stageOutgoingMessage(outgoingMessage);
@@ -2037,6 +2049,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void setThreadId(long threadId) {
     this.threadId = threadId;
+  }
+
+  @Override
+  public void handleReplyMessage(MessageRecord messageRecord) {
+    Recipient author;
+
+    if (messageRecord.isOutgoing()) {
+      author = Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), true);
+    } else {
+      author = messageRecord.getIndividualRecipient();
+    }
+
+    inputPanel.setQuote(GlideApp.with(this),
+                        messageRecord.getDateSent(),
+                        author,
+                        messageRecord.getBody(),
+                        messageRecord.isMms() ? ((MmsMessageRecord)messageRecord).getSlideDeck() : new SlideDeck());
   }
 
   @Override

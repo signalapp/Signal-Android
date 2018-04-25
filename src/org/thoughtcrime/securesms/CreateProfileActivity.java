@@ -175,7 +175,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             @Override
             protected byte[] doInBackground(Void... params) {
               try {
-                return BitmapUtil.createScaledBytes(CreateProfileActivity.this, Crop.getOutput(data), new ProfileMediaConstraints());
+                BitmapUtil.ScaleResult result = BitmapUtil.createScaledBytes(CreateProfileActivity.this, Crop.getOutput(data), new ProfileMediaConstraints());
+                return result.getBitmap();
               } catch (BitmapDecodingException e) {
                 Log.w(TAG, e);
                 return null;

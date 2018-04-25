@@ -65,7 +65,7 @@ public class AttachmentSecret {
   }
 
   @JsonIgnore
-  byte[] getModernKey() {
+  public byte[] getModernKey() {
     return modernKey;
   }
 

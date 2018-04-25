@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hâlâ bir parola belirlememişsiniz!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">sohbet başına %d mesaj</item>
-    <item quantity="other">sohbet başına %d mesaj</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Bütün eski mesajlar silinsin mi?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Bu işlem tüm sohbetleri en yeni %d mesaja kadar kırpar.</item>
@@ -39,10 +35,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Dil %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">%d dakika</item>
-    <item quantity="other">%d dakika</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(resim)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ses)</string>
@@ -318,14 +310,6 @@
   <string name="InviteActivity_heart_content_description">Erişilebilirlik</string>
   <string name="InviteActivity_invitations_sent">Davetler gönderildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal\'e davet et</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d ARKADAŞINA SMS GÖNDER</item>
-    <item quantity="other">%d ARKADAŞINA SMS GÖNDER</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">%d SMS daveti gönderilsin mi?</item>
-    <item quantity="other">%d SMS daveti gönderilsin mi?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hadi Signal\'e geçelim: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Arkadaşlar, arkadaşlarının şifresiz sohbet etmesine izin vermez.</string>
@@ -340,6 +324,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">Kablosuz MMS sağlayıcısı ayarları okuma hatası</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medya</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Siliniyor</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajlar siliniyor...</string>
   <string name="MediaOverviewActivity_Documents">Belgeler</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal araması sürüyor</string>
@@ -663,6 +649,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="audio_view__play_accessibility_description">Oynat</string>
   <string name="audio_view__pause_accessibility_description">Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Ses</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_you">Siz</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Toplu seçim modu</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seçildi</string>
@@ -685,30 +675,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Okundu bilgisini etkinleştir</string>
   <!--expiration-->
   <string name="expiration_off">Kapalı</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">%d saniye</item>
-    <item quantity="other">%d saniye</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">%d dakika</item>
-    <item quantity="other">%d dakika</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dd</string>
-  <plurals name="expiration_hours">
-    <item quantity="one">%d saat</item>
-    <item quantity="other">%d saat</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%ds</string>
-  <plurals name="expiration_days">
-    <item quantity="one">%d gün</item>
-    <item quantity="other">%d gün</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dg</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">%d hafta</item>
-    <item quantity="other">%d hafta</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%dh</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%s ile güvenlik numaranız değişti ve artık doğrulanmış değil.</string>
@@ -1042,10 +1012,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Pano ile karşılaştır</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Signal sürümünüz eski kalmış</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Signal sürümünüz %d gün içinde kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</item>
-    <item quantity="other">Signal sürümünüz %d gün içinde kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Signal sürümünüz bugün kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</string>
   <string name="reminder_header_expired_build">Signal sürümünüz kullanım dışı kaldı!</string>
   <string name="reminder_header_expired_build_details">Mesajlarınız artık başarılı olarak gönderilemez. En yeni sürüme güncellemek için dokunun.</string>

@@ -80,6 +80,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Paskiausi pokalbiai</string>
   <string name="ContactsCursorLoader_contacts">Kontaktai</string>
+  <string name="ContactsCursorLoader_groups">Grupės</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Žinutė %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal skambutis %s</string>
@@ -184,6 +185,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ištrinama</string>
   <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Cituota žinutė nerasta</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -329,7 +331,7 @@
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Norint skaityti iš išorinės saugyklos, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Norint skaityti iš išorinių įrenginių, Signal reikalingas saugyklos leidimas</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint rašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Norint rašyti į išorinius įrenginius, Signal reikalingas saugyklos leidimas.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Norint rašyti į išorinę saugyklą, Signal reikalingas saugyklos leidimas.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Bakstelėkite ir laikykite, kad įrašinėtumėte balso žinutę, atleiskite, kad išsiųstumėte</string>
   <!--InviteActivity-->
@@ -364,6 +366,18 @@
   <string name="MmsDownloader_error_reading_mms_settings">Klaida, skaitant belaidžio tiekėjo MMS nustatymus</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medija</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Ištrinti pažymėtą žinutę?</item>
+    <item quantity="few">Ištrinti pažymėtas žinutes?</item>
+    <item quantity="other">Ištrinti pažymėtas žinutes?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Tai visiems laikams ištrins %1$d pažymėtą žinutę.</item>
+    <item quantity="few">Tai visiems laikams ištrins visas %1$d pažymėtas žinutes.</item>
+    <item quantity="other">Tai visiems laikams ištrins visas %1$d pažymėtų žinučių.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Ištrinama</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Ištrinamos žinutės...</string>
   <string name="MediaOverviewActivity_Documents">Dokumentai</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
@@ -401,7 +415,7 @@
   <string name="DeviceProvisioningActivity_link_this_device">Susieti šį įrenginį?</string>
   <string name="DeviceProvisioningActivity_cancel">ATSISAKYTI</string>
   <string name="DeviceProvisioningActivity_continue">TĘSTI</string>
-  <string name="DeviceProvisioningActivity_content_intro">Ji galės</string>
+  <string name="DeviceProvisioningActivity_content_intro">Jis galės</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • Skaityti visas jūsų žinutes
         \n• Siųsti žinutes jūsų vardu
@@ -587,6 +601,8 @@
   <string name="MediaPreviewActivity_draft">Juodraštis</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint įrašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nepavyksta įrašyti į išorinę saugyklą be leidimų</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Ištrinti žinutę?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d naujų(-os) žinutės(-ių) %2$d pokalbyje(-iuose)</string>
   <string name="MessageNotifier_most_recent_from_s">Paskiausia nuo: %1$s</string>
@@ -607,6 +623,7 @@
   <string name="QuickResponseService_problem_sending_message">Problemos siunčiant žinutę!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Atverti katalogą</string>
+  <string name="SaveAttachmentTask_saved_to">Įrašyta į %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Ieškoti</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -669,7 +686,7 @@
   <string name="conversation_activity__type_message_mms_insecure">Neapsaugota MMS</string>
   <string name="conversation_activity__from_sim_name">Nuo %1$s</string>
   <string name="conversation_activity__send">Siųsti</string>
-  <string name="conversation_activity__compose_description">Žinutės kūrimas</string>
+  <string name="conversation_activity__compose_description">Žinutės rašymas</string>
   <string name="conversation_activity__emoji_toggle_description">Perjungti jaustukų klaviatūrą</string>
   <string name="conversation_activity__attachment_thumbnail">Priedo miniatiūra</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Perjungti sparčiosios kameros priedų stalčių</string>
@@ -691,6 +708,12 @@
   <string name="audio_view__play_accessibility_description">Groti</string>
   <string name="audio_view__pause_accessibility_description">Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Garso įrašai</string>
+  <string name="QuoteView_video">Vaizdo įrašai</string>
+  <string name="QuoteView_photo">Nuotrauka</string>
+  <string name="QuoteView_document">Dokumentas</string>
+  <string name="QuoteView_you">Jūs</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Masinio pasirinkimo veiksena</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s pasirinkta</string>
@@ -1130,49 +1153,81 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Atrakinkite, norėdami matyti laukiančias žinutes</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Atrakinkite, norėdami užbaigti atnaujinimą</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Atrakinkite Signal, norėdami užbaigti atnaujinimą</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Atsarginės kopijos slaptafrazė</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Atsarginės kopijos bus įrašytos į išorinę saugyklą ir bus užšifruotos, naudojant žemiau esančią slaptafrazę. Norėdami atkurti atsarginę kopiją, privalėsite turėti šią slaptafrazę.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Aš užsirašiau šią slaptafrazę. Be jos aš negalėsiu atkurti atsarginės kopijos.</string>
   <string name="registration_activity__restore_backup">Atkurti atsarginę kopiją</string>
   <string name="registration_activity__skip">Praleisti</string>
   <string name="registration_activity__register">Registruoti</string>
   <string name="preferences_chats__chat_backups">Pokalbių atsarginės kopijos</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Daryti pokalbių atsargines kopijas į išorinę saugyklą</string>
   <string name="preferences_chats__create_backup">Daryti atsarginę kopiją</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Įveskite atsarginės kopijos slaptafrazę</string>
   <string name="RegistrationActivity_restore">Atkurti</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Neteisinga atsarginės kopijos slaptafrazė</string>
   <string name="RegistrationActivity_checking">Tikrinama...</string>
+  <string name="RegistrationActivity_d_messages_so_far">Jau %d žinučių...</string>
   <string name="RegistrationActivity_restore_from_backup">Atkurti iš atsarginės kopijos?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Atkurkite savo žinutes ir mediją iš vietinės atsarginės kopijos. Jeigu neatkursite dabar, vėliau to padaryti nebegalėsite.</string>
   <string name="RegistrationActivity_backup_size_s">Atsarginės kopijos dydis: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Atsarginės kopijos laiko žyma: %s</string>
   <string name="BackupDialog_enable_local_backups">Įjungti vietines atsargines kopijas?</string>
   <string name="BackupDialog_enable_backups">Įjungti atsargines kopijas</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Išreikškite savo supratimą, pažymėdami patvirtinimo žymimąjį langelį.</string>
   <string name="BackupDialog_delete_backups">Ištrinti atsargines kopijas?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Išjungti ir ištrinti visas vietines atsargines kopijas?</string>
   <string name="BackupDialog_delete_backups_statement">Ištrinti atsargines kopijas</string>
   <string name="BackupDialog_copied_to_clipboard">Nukopijuota į iškarpinę</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Norint daryti atsargines kopijas, Signal reikia išorinės saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Paskiausia atsarginė kopija: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Eigoje</string>
+  <string name="ProgressPreference_d_messages_so_far">Jau %d žinučių</string>
+  <string name="RegistrationActivity_verify_s">Patvirtinti %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Įveskite į %s išsiųstą patvirtinimo kodą.</string>
   <string name="RegistrationActivity_wrong_number">Neteisingas numeris?</string>
   <string name="BackupUtil_never">Niekada</string>
   <string name="BackupUtil_unknown">Nežinoma</string>
   <string name="prompt_passphrase_activity__unlock_signal">Atrakinti Signal</string>
   <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Užrakinti prieigą prie Signal, naudojant Android ekrano užraktą ar piršto atspaudą</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekrano užrakto neveiklumui skirtas laikas</string>
   <string name="AppProtectionPreferenceFragment_none">Nėra</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registracijos užrakto PIN nėra tas pats, kas jūsų gautas SMS patvirtinimo kodas. Įveskite PIN, kurį esate anksčiau sukonfigūravę programėlėje.</string>
   <string name="registration_activity__registration_lock_pin">Registracijos užrakto PIN</string>
+  <string name="registration_activity__forgot_pin">Pamiršote PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN yra sudarytas iš keturių ar daugiau skaitmenų. Jei pamiršite savo PIN, galite iki septynių dienų būti užblokuoti nuo savo paskyros.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Įveskite PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Patvirtinkite PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Įveskite savo Registracijos užrakto PIN</string>
+  <string name="registration_lock_reminder_view__enter_pin">Įveskite PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Įjungti Registracijos užrakto PIN, kurio bus reikalaujama, norint vėl registruoti šį telefono numerį su Signal.</string>
   <string name="preferences_app_protection__registration_lock_pin">Registracijos užrakto PIN</string>
   <string name="preferences_app_protection__registration_lock">Registracijos užraktas</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Privalote įvesti savo Registracijos užrakto PIN</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Neteisingas Registracijojs užrakto PIN</string>
   <string name="RegistrationActivity_too_many_attempts">Per daug bandymų</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Jūs atlikote per daug neteisingų Registracijos užrakto PIN bandymų. Po vienos dienos bandykite dar kartą.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Klaida, jungiantis prie paslaugos</string>
   <string name="RegistrationActivity_oh_no">O, ne!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Šio telefono numerio registracija be jūsų Registracijos užrakto PIN bus įmanoma praėjus 7 dienoms nuo to laiko, kai šis telefono numeris paskutinį kartą buvo aktyvus Signal. Jums liko %d dienos.</string>
   <string name="RegistrationActivity_registration_lock_pin">Registracijos užrakto PIN</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Šiam telefono numeriui yra įjungtas Registracijos užraktas. Įveskite Registracijos užrakto PIN.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Jūsų telefono numeriui yra įjungtas Registracijos užraktas.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Jūsų telefono numeriui yra įjungtas Registracijos užraktas. Norint jums padėti įsiminti Registracijos užrakto PIN, Signal periodiškai prašys jūsų jį patvirtinti.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Aš pamiršau savo PIN.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">Pamiršote PIN?</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Pamirštas PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registracijos užraktas padeda apsaugoti jūsų telefono numerį nuo neteisėtų registracijos bandymų. Ši ypatybė bet kuriuo metu gali būti išjungta jūsų Signal privatumo nustatymuose.</string>
   <string name="RegistrationLockDialog_registration_lock">Registracijos užraktas</string>
   <string name="RegistrationLockDialog_enable">Įjungti</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Registracijos PIN privalo būti bent 4 skaitmenų.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Du įvesti PIN kodai nesutampa.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Klaida, jungiantis prie paslaugos</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Išjungti Registracijos užrakto PIN?</string>
   <string name="RegistrationLockDialog_disable">Išjungti</string>
   <string name="RegistrationActivity_continue">Tęsti</string>
+  <string name="preferences_chats__backups">Atsarginės kopijos</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal yra užrakinta</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">BAKSTELĖKITE, NORĖDAMI ATRAKINTI</string>
+  <string name="RegistrationLockDialog_reminder">Priminimas:</string>
+  <string name="recipient_preferences__about">Apie</string>
   <!--EOF-->
 </resources>

@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не сте заложили парола!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 съобщение на разговор</item>
+    <item quantity="one">%dсъобщение на разговор</item>
     <item quantity="other">%d съобщения на разговор</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Изтрий всички стари съобщения сега?</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Език %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 минута</item>
+    <item quantity="one">%d минута</item>
     <item quantity="other">%d минути</item>
   </plurals>
   <!--DraftDatabase-->
@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Последни чатове</string>
   <string name="ContactsCursorLoader_contacts">Контакти</string>
+  <string name="ContactsCursorLoader_groups">Групи</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Съобщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Сигналс обаждане %s</string>
@@ -324,12 +325,12 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
   <string name="InviteActivity_invite_to_signal">Покани в Сигнал</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ИЗПРАТЕТЕ SMS ДО 1 ПРИЯТЕЛ</item>
-    <item quantity="other">ИЗПРАТЕТЕ SMS ДО %d ПРИЯТЕЛЯ</item>
+    <item quantity="one">ИЗПРАЩАНЕ НА SMS НА %d ПРИЯТЕЛ</item>
+    <item quantity="other">ИЗПРАЩАНЕ НА SMS НА %d ПРИТЯТЕЛЯ</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Изпращане на 1 SMS покана?</item>
-    <item quantity="other">Изпращане на %d SMS покани?</item>
+    <item quantity="one">Изпащане на %d SMS покана?</item>
+    <item quantity="other">Изпащане на %d SMS покани?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Да преминем към Сигнал %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да сподялите.</string>
@@ -345,6 +346,16 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MmsDownloader_error_reading_mms_settings">Грешка при четенето на MMS настройките на доставчика</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Медия</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Изтриване на избраното съобщение?</item>
+    <item quantity="other">Изтриване на избраните съобщения?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Това ще изтрие невъзвращаемо избраното съобщение.</item>
+    <item quantity="other">Това ще изтрие невъзвращаемо всичките %1$d избрани съобщения.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Изтриване</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Изтриване на съобщения...</string>
   <string name="MediaOverviewActivity_Documents">Документи</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Протича Сигнал разговор</string>
@@ -564,6 +575,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MediaPreviewActivity_draft">Чернова</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Сигнал се нуждае от достъп до вградения диск, за да може да запазва на  него, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Дискове\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Неуспешно запазване на външен диск без нуждното разрешение за достъп</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Изтриване на съобщението?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Това ще изтрие невъзвращаемо текущото съобщение.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови съобщения в %2$d чата</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
@@ -669,6 +682,11 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="audio_view__play_accessibility_description">Пускане</string>
   <string name="audio_view__pause_accessibility_description">Пауза</string>
   <string name="audio_view__download_accessibility_description">Изтегляне</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Аудио</string>
+  <string name="QuoteView_video">Видео</string>
+  <string name="QuoteView_document">Документ</string>
+  <string name="QuoteView_you">Ти</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Режим на групово избиране</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s избран</string>
@@ -692,27 +710,27 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--expiration-->
   <string name="expiration_off">Деактивирано</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 секунда</item>
+    <item quantity="one">%d секунда</item>
     <item quantity="other">%d секунди</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 минута</item>
+    <item quantity="one">%d минута</item>
     <item quantity="other">%d минути</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 час</item>
+    <item quantity="one">%d час</item>
     <item quantity="other">%d часа</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 ден</item>
+    <item quantity="one">%d ден</item>
     <item quantity="other">%d дена</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 седмица</item>
+    <item quantity="one">%d седмица</item>
     <item quantity="other">%d седмици</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
@@ -1053,8 +1071,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Вашата версия на Сигнал е стара</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Вашата версия на Сигнал ще изтече след 1 ден. Натиснете, за да обновите до най-новата версия.</item>
-    <item quantity="other">Вашата версия на Сигнал ще изтече след %d дена. Натиснете, за да обновите до най-новата версия.</item>
+    <item quantity="one">Вашата версия на Сигнал ще изтече след %d ден. Натиснете, за да я обновите до най-новата версия.</item>
+    <item quantity="other">Вашата версия на Сигнал ще изтече след %d дена. Натиснете, за да я обновите до най-новата версия.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Вашата версия на Сигнал ще изтече днес. Натиснете, за да обновите до най-новата версия.</string>
   <string name="reminder_header_expired_build">Вашата версия на Сигнал е изтекла!</string>
@@ -1158,7 +1176,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Регистрацията на този телефонен номер ще бъде възможна без ПИН за заключване на регистрацията след като са изминали 7 дена от последната активност на този номер в Сигнал. Остават Ви %dдена.</string>
   <string name="RegistrationActivity_registration_lock_pin">ПИН за регистрационно заключване</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Този телефонен номер има активирано регистрационно заключване. Моля, въведете ПИН-а за регистрационно заключване.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Регистрационното заключване е активирано за Вашия телефонен номер.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Регистрационното заключване е активирано за Вашият телефонен номер. За да Ви помогне да запомните ПИН-ът за регистрационно заключване, Сигнал ще Ви пита за него периодично.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Забравих ПИН-а</string>
   <string name="RegistrationLockDialog_forgotten_pin">Забравен ПИН?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Регистрационното заключване предпазва Вашия телефонен номер от неоторизирани опити за регистрация. Тази услуга може да бъде деактивирана по всяко време от секцията за лично пространсто в Сигнал.</string>
@@ -1171,5 +1189,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationLockDialog_disable">Изключи</string>
   <string name="RegistrationActivity_continue">Продължи</string>
   <string name="preferences_chats__backups">Архиви</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Сигнал е заключен</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">НАТИСНЕТЕ ЗА ОТКЛЮЧВАНЕ</string>
+  <string name="RegistrationLockDialog_reminder">Напомняне:</string>
   <!--EOF-->
 </resources>

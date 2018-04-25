@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.database.helpers;
 
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -29,16 +31,21 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.io.File;
+
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   @SuppressWarnings("unused")
   private static final String TAG = SQLCipherOpenHelper.class.getSimpleName();
 
-  private static final int RECIPIENT_CALL_RINGTONE_VERSION = 2;
-  private static final int MIGRATE_PREKEYS_VERSION         = 3;
-  private static final int MIGRATE_SESSIONS_VERSION        = 4;
+  private static final int RECIPIENT_CALL_RINGTONE_VERSION  = 2;
+  private static final int MIGRATE_PREKEYS_VERSION          = 3;
+  private static final int MIGRATE_SESSIONS_VERSION         = 4;
+  private static final int NO_MORE_IMAGE_THUMBNAILS_VERSION = 5;
+  private static final int ATTACHMENT_DIMENSIONS            = 6;
+  private static final int QUOTED_REPLIES                   = 7;
 
-  private static final int    DATABASE_VERSION = 4;
+  private static final int    DATABASE_VERSION = 7;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -134,6 +141,42 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         SessionStoreMigrationHelper.migrateSessions(context, db);
       }
 
+      if (oldVersion < NO_MORE_IMAGE_THUMBNAILS_VERSION) {
+        ContentValues update = new ContentValues();
+        update.put("thumbnail", (String)null);
+        update.put("aspect_ratio", (String)null);
+        update.put("thumbnail_random", (String)null);
+
+        try (Cursor cursor = db.query("part", new String[] {"_id", "ct", "thumbnail"}, "thumbnail IS NOT NULL", null, null, null, null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            long   id          = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+            String contentType = cursor.getString(cursor.getColumnIndexOrThrow("ct"));
+
+            if (contentType != null && !contentType.startsWith("video")) {
+              String thumbnailPath = cursor.getString(cursor.getColumnIndexOrThrow("thumbnail"));
+              File   thumbnailFile = new File(thumbnailPath);
+              thumbnailFile.delete();
+
+              db.update("part", update, "_id = ?", new String[] {String.valueOf(id)});
+            }
+          }
+        }
+      }
+
+      if (oldVersion < ATTACHMENT_DIMENSIONS) {
+        db.execSQL("ALTER TABLE part ADD COLUMN width INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE part ADD COLUMN height INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < QUOTED_REPLIES) {
+        db.execSQL("ALTER TABLE mms ADD COLUMN quote_id INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN quote_author TEXT");
+        db.execSQL("ALTER TABLE mms ADD COLUMN quote_body TEXT");
+        db.execSQL("ALTER TABLE mms ADD COLUMN quote_attachment INTEGER DEFAULT -1");
+
+        db.execSQL("ALTER TABLE part ADD COLUMN quote INTEGER DEFAULT 0");
+      }
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -150,6 +193,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   public SQLiteDatabase getWritableDatabase() {
     return getWritableDatabase(databaseSecret.asString());
+  }
+
+  public void markCurrent(SQLiteDatabase db) {
+    db.setVersion(DATABASE_VERSION);
   }
 
   private void executeStatements(SQLiteDatabase db, String[] statements) {

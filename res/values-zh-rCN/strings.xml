@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">每个会话 %d 个信息</item>
+    <item quantity="other">每个会话有 %d 个信息</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">删除所有旧信息？</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -35,10 +35,11 @@
   <string name="ApplicationPreferencesActivity_off">关</string>
   <string name="ApplicationPreferencesActivity_Off">关</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">短信 %1$s，彩信 %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">屏幕锁定 %1$s，注册锁定 %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主题 %1$s，语言 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="other">%d 分钟</item>
+    <item quantity="other">%d分钟</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">（图片）</string>
@@ -73,6 +74,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">最近对话</string>
   <string name="ContactsCursorLoader_contacts">联系人</string>
+  <string name="ContactsCursorLoader_groups">群组</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">信息 %s</string>
   <string name="ContactsDatabase_signal_call_s">暗号呼叫 %s</string>
@@ -308,10 +310,10 @@
   <string name="InviteActivity_invitations_sent">邀请已发送！</string>
   <string name="InviteActivity_invite_to_signal">邀请至暗号</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">发送短信给 %d 个朋友</item>
+    <item quantity="other">发短信给%d个朋友。</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">发送 %d 个短信邀请？</item>
+    <item quantity="other">给%d发送短信邀请吗？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">让我们切换到暗号： %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">看起来您没有任何可以共享的应用。</string>
@@ -327,6 +329,14 @@
   <string name="MmsDownloader_error_reading_mms_settings">读取运营商的彩信设定时出错</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">媒体文件</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="other">删除已选择消息？</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="other">我们将会永久删除%1$d条已选择消息。</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">删除中</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">正在删除信息…</string>
   <string name="MediaOverviewActivity_Documents">文档</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在处理暗号呼叫</string>
@@ -536,12 +546,15 @@
   <string name="KeyCachingService_signal_passphrase_cached">轻触以开启。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">轻触以开启，或点击锁定以关闭。</string>
   <string name="KeyCachingService_passphrase_cached">暗号已解锁</string>
+  <string name="KeyCachingService_lock">锁定 Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支持的媒体类型。</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要存储权限以写入外部存储，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“存储”。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">无法在没有写入到外部存储的权限时保存到外部存储</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">删除消息吗？</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">这将会永久删除消息。</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 新信息是在 %2$d 中的会话</string>
   <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
@@ -562,6 +575,7 @@
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">打开文件目录</string>
+  <string name="SaveAttachmentTask_saved_to">保存到%s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">搜索</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -646,6 +660,10 @@
   <string name="audio_view__play_accessibility_description">播放</string>
   <string name="audio_view__pause_accessibility_description">暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">音频</string>
+  <string name="QuoteView_video">视频</string>
+  <string name="QuoteView_you">您</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s 已选择</string>
@@ -669,23 +687,23 @@
   <!--expiration-->
   <string name="expiration_off">关</string>
   <plurals name="expiration_seconds">
-    <item quantity="other">%d 秒</item>
+    <item quantity="other">%d秒</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d 秒</string>
   <plurals name="expiration_minutes">
-    <item quantity="other">%d 分</item>
+    <item quantity="other">%d分钟</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%d 分</string>
   <plurals name="expiration_hours">
-    <item quantity="other">%d 小时</item>
+    <item quantity="other">%d小时</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d 小时</string>
   <plurals name="expiration_days">
-    <item quantity="other">%d 天</item>
+    <item quantity="other">%d天</item>
   </plurals>
   <string name="expiration_days_abbreviated">%d 天</string>
   <plurals name="expiration_weeks">
-    <item quantity="other">%d 周</item>
+    <item quantity="other">%d周</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d 周</string>
   <!--unverified safety numbers-->
@@ -857,6 +875,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择您的联系人条目。</string>
   <string name="preferences__change_passphrase"> 修改密码</string>
   <string name="preferences__change_your_passphrase"> 修改你的密码</string>
+  <string name="preferences__enable_passphrase">启用屏幕密码锁</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密码锁定屏幕和通知</string>
   <string name="preferences__screen_security">屏幕安全性</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽下列应用和内置应用的截屏功能</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在一段时间的不活跃后自动锁定暗号。</string>
@@ -1021,7 +1041,7 @@
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">您的暗号版本已经过期</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">您目前正在使用的暗号将会在 %d 天后过期。点击以更新到最新的版本。</item>
+    <item quantity="other">您该版本的 SIgnal 将在 %d 天后过期。请点击以升级到最新版本。</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">您的暗号版本将会在今天过期。点击以更新到最新最新版本。</string>
   <string name="reminder_header_expired_build">您目前使用的暗号版本已经过期！</string>
@@ -1063,20 +1083,83 @@
   <string name="conversation_activity__enable_signal_messages">启用 Signal 信息</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">迁移 Signal 数据库</string>
   <string name="PushDecryptJob_new_locked_message">新的锁定信息</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">解锁才能查看消息</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">解锁才能完成更新</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">请解锁 Signal 来完成更新</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">备份密码</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">备份将会被保存至外部存储并使用下面的密码加密。您需要使用此密码才能恢复备份。</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已记下此密码。我知道如果没有该密码，我将无法恢复备份。</string>
+  <string name="registration_activity__restore_backup">恢复备份</string>
   <string name="registration_activity__skip">略过</string>
-  <string name="registration_activity__register">注册人</string>
+  <string name="registration_activity__register">注册</string>
   <string name="preferences_chats__chat_backups">聊天记录备份</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">备份聊天记录到外部存储</string>
+  <string name="preferences_chats__create_backup">创建备份</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">输入备份密码</string>
   <string name="RegistrationActivity_restore">还原</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">备份密码错误</string>
+  <string name="RegistrationActivity_checking">检查中...</string>
+  <string name="RegistrationActivity_d_messages_so_far">已处理 %d 条消息…</string>
   <string name="RegistrationActivity_restore_from_backup">从备份还原吗？</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">从本地备份恢复您的聊天信息和媒体信息。如果您现在不恢复，您将没有机会恢复。</string>
+  <string name="RegistrationActivity_backup_size_s">备份大小：%s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">备份时间：%s</string>
   <string name="BackupDialog_enable_local_backups">启用本地备份吗？</string>
   <string name="BackupDialog_enable_backups">启用备份</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">请确定您已理解对话框中的文字并勾选最下方的复选框。</string>
+  <string name="BackupDialog_delete_backups">删除备份吗？</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">关闭并且删除所有本地备份吗？</string>
+  <string name="BackupDialog_delete_backups_statement">删除备份</string>
   <string name="BackupDialog_copied_to_clipboard">已复制到剪切板</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 需要存储空间权限才能创建备份，但是此权限已被永久禁用。请转到系统的应用设置，选择“权限”然后启用“存储空间”权限。</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">上一次备份：%s</string>
+  <string name="ChatsPreferenceFragment_in_progress">进行中</string>
+  <string name="ProgressPreference_d_messages_so_far">已处理 %d 条消息</string>
+  <string name="RegistrationActivity_verify_s">验证%s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">请输入发送到 %s 的验证码。</string>
+  <string name="RegistrationActivity_wrong_number">错误的号码？</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
+  <string name="prompt_passphrase_activity__unlock_signal">解锁 Signal</string>
+  <string name="preferences_app_protection__screen_lock">锁屏</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">使用 Android 锁屏或者指纹锁定 Signal</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">不活跃锁屏超时</string>
   <string name="AppProtectionPreferenceFragment_none">无</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">注册锁定 PIN 和您刚才收到的短信验证码不是一个东西。请输入您之前在应用中设置的密码。</string>
+  <string name="registration_activity__registration_lock_pin">注册锁定 PIN</string>
+  <string name="registration_activity__forgot_pin">忘记了 PIN？</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN 是 4 位以上的数字组合。如果您忘记了 PIN，您将会有大概 7 天无法访问您的账户。</string>
+  <string name="registration_lock_dialog_view__enter_pin">输入 PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">确认 PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">输入您的注册锁定 PIN</string>
+  <string name="registration_lock_reminder_view__enter_pin">输入 PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">如果启用注册锁定 PIN 的话，Signal 服务将会在下次于 Signal 中注册此电话号码时要求此密码。</string>
+  <string name="preferences_app_protection__registration_lock_pin">注册锁定 PIN</string>
+  <string name="preferences_app_protection__registration_lock">注册锁</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">您必须输入您的注册锁定 PIN</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">注册锁定 PIN 不正确</string>
   <string name="RegistrationActivity_too_many_attempts">尝试次数过多</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">您输错太多次注册锁定密码。请在一天后重试。</string>
+  <string name="RegistrationActivity_error_connecting_to_service">无法连接到服务</string>
+  <string name="RegistrationActivity_oh_no">哦不！</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">您将可能可以在此 Signal 帐号 7 天不活跃后，不使用注册锁定密码注册此电话号码。还剩 %d 天。</string>
+  <string name="RegistrationActivity_registration_lock_pin">注册锁定 PIN</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">该电话号码已经开启注册锁。请输入注册锁PIN码。</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">您的电话号码已经启用注册锁。为了帮助您记住您的注册锁密码，Signal 会时常要求您输入该密码。</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">我忘了我的 PIN</string>
+  <string name="RegistrationLockDialog_forgotten_pin">忘记 PIN 了？</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">注册锁能够帮助保护您的电话号码，防止其在未经允许的情况下被注册使用。您可以在任何时候在 Signal 隐私设置里关闭这项功能。</string>
+  <string name="RegistrationLockDialog_registration_lock">注册锁</string>
+  <string name="RegistrationLockDialog_enable">启用</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">注册锁定 PIN 至少需要 4 位</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">两次输入的 PIN 不一样</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">无法连接到服务</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">禁用注册锁定 PIN？</string>
   <string name="RegistrationLockDialog_disable">禁用</string>
   <string name="RegistrationActivity_continue">继续</string>
+  <string name="preferences_chats__backups">备份</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal 已锁定</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">轻触解锁</string>
+  <string name="RegistrationLockDialog_reminder">提醒：</string>
   <!--EOF-->
 </resources>

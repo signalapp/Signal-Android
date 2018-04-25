@@ -129,6 +129,8 @@
   <!--MessageRetrievalService-->
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Выдаленне</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Выдаленне паведамлення...</string>
   <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>
@@ -250,6 +252,10 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Фота кантакта</string>
   <!--audio_view-->
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Аўдыё</string>
+  <string name="QuoteView_video">Відэа</string>
+  <string name="QuoteView_you">Вы</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Пакетны рэжым выбару</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s абрана</string>

@@ -11,13 +11,13 @@
   <string name="ApplicationPreferencesActivity_currently_s">Actuellement : %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vous n’avez pas encore défini de phrase de passe !</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 message par conversation</item>
+    <item quantity="one">%dmessages par conversation</item>
     <item quantity="other">%d messages par conversation</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Supprimer tous les anciens messages maintenant ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Cela va immédiatement réduire toutes les conversations pour qu\'il ne reste que le message le plus récent.</item>
-    <item quantity="other">Ceci va immédiatement réduire toutes les conversations en conservant uniquement les %d messages les plus récents.</item>
+    <item quantity="other">Cela réduira immédiatement toutes les conversations aux %d messages les plus récents.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Désactiver la phrase de passe ?</string>
@@ -28,39 +28,40 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Désactiver les messages et appels Signal ?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Désactiver les messages et appels Signal en vous désinscrivant du serveur. Vous devrez réenregistrer votre numéro de téléphone pour les utiliser à nouveau.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erreur de connexion au serveur !</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS activés</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Modifier votre application SMS par défaut</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS désactivés</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Faire de Signal votre application SMS par défaut</string>
-  <string name="ApplicationPreferencesActivity_on">on</string>
-  <string name="ApplicationPreferencesActivity_On">On</string>
-  <string name="ApplicationPreferencesActivity_off">off</string>
-  <string name="ApplicationPreferencesActivity_Off">Off</string>
-  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Les textos sont activés</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toucher pour changer votre application de texto par défaut</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Les textos sont désactivés</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toucher pour faire de Signal votre application de texto par défaut</string>
+  <string name="ApplicationPreferencesActivity_on">activé</string>
+  <string name="ApplicationPreferencesActivity_On">Activé</string>
+  <string name="ApplicationPreferencesActivity_off">Désactivé</string>
+  <string name="ApplicationPreferencesActivity_Off">Désactivé</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">Textos %1$s, messages multimédias %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Verrouillage de l’écran %1$s, verrouillage de l’enregistrement %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, Langage %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minute</item>
+    <item quantity="one">%d minute</item>
     <item quantity="other">%d minutes</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(image)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
-  <string name="DraftDatabase_Draft_location_snippet">(localisation)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(position)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une application pour sélectionner le média.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal nécessite l\'autorisation Stockage pour joindre des photos, des vidéos ou de l\'audio, mais elle a été définitivement refusée. Accédez au menu Paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Stockage\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal nécessite l\'autorisation Contacts pour joindre des informations de contact, mais elle a été définitivement refusée. Accédez au menu Paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Contacts\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal nécessite l\'autorisation Position pour joindre un emplacement, mais elle a été définitivement refusée. Accédez au menu des Paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Emplacement\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Le signal nécessite l\'autorisation de l\'appareil photo pour prendre des photos, mais il a été refusé de façon permanente. Continuez dans le menu des paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Appareil photo\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal exige l’autorisation Stockage afin de joindre des photos, des vidéos ou du contenu audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal exige l’autorisation Contacts afin de joindre des renseignements de contact, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal exige l’autorisation Position afin de joindre une position géographique, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Position ».</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal exige l’autorisation « Appareil photo » afin de prendre des photos, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Appareil photo ».</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erreur lors de la lecture du son !</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacts bloqués</string>
   <!--BucketedThreadMedia-->
-  <string name="BucketedThreadMedia_Today">Aujourd\'hui</string>
+  <string name="BucketedThreadMedia_Today">Aujourd’hui</string>
   <string name="BucketedThreadMedia_Yesterday">Hier</string>
   <string name="BucketedThreadMedia_This_week">Cette semaine</string>
   <string name="BucketedThreadMedia_This_month">Ce mois</string>
@@ -68,25 +69,26 @@
   <string name="CallScreen_Incoming_call">Appel entrant</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Supprimer</string>
-  <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vos numéros de sécurité avec %1$s ont changé. Cela pourrait signifier que quelqu\'un essaie d\'intercepter votre communication, ou que %2$s a simplement réinstallé Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous pouvez vérifier vos numéros de sécurité avec ce contact.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %1$s a changé. Cela pourrait signifier que quelqu’un tente d’intercepter vos communications ou que %2$s a simplement réinstallé Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous voudrez peut-être vérifier votre numéro de sécurité avec ce contact.</string>
   <string name="ConfirmIdentityDialog_accept">Accepter</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">Conversations récentes</string>
+  <string name="ContactsCursorLoader_recent_chats">Dialogues récents</string>
   <string name="ContactsCursorLoader_contacts">Contacts</string>
+  <string name="ContactsCursorLoader_groups">Groupes</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Message %s</string>
-  <string name="ContactsDatabase_signal_call_s">Appel Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Appel Signal de %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Non délivré</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Un message d’échange de clés a été reçu. Appuyer pour le traiter.</string>
   <string name="ConversationItem_group_action_left">%1$s a quitté le groupe.</string>
   <string name="ConversationItem_click_for_details">Toucher pour les détails</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Appuyez pour utiliser la solution de repli non sécurisée</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Utiliser la solution de repli sur les SMS non chiffrés ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Utiliser la solution de repli sur les MMS non chiffrés ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Se replier sur un texto non chiffrés ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Se replier sur un message multimédia non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le récepteur n\'a plus Signal. \n\nEnvoyer un message non sécurisé?</string>
   <string name="ConversationItem_unable_to_open_media">Impossible de trouver une application pour ouvrir le média.</string>
   <string name="ConversationItem_copied_text">Copié %s</string>
@@ -97,10 +99,10 @@
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous avez des problèmes de chiffrement dans cette conversation. Vos messages seront sauvegardés.</string>
   <string name="ConversationActivity_reset">Réinitialiser</string>
   <string name="ConversationActivity_add_attachment">Ajouter une pièce jointe</string>
-  <string name="ConversationActivity_select_contact_info">Sélectionner les informations du contact</string>
+  <string name="ConversationActivity_select_contact_info">Sélectionner les renseignements du contact</string>
   <string name="ConversationActivity_compose_message">Rédiger un message</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Désolé, il y a eu une erreur lors de l\'ajout de votre pièce jointe.</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse SMS ou e-mail valide !</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse texto ou courriel valide !</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Le message est vide !</string>
   <string name="ConversationActivity_group_members">Membres du groupe</string>
   <string name="ConversationActivity_invalid_recipient">Destinataire invalide !</string>
@@ -108,27 +110,27 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Cet appareil ne semble pas prendre en charge les actions de numérotation.</string>
   <string name="ConversationActivity_leave_group">Quitter le groupe ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Êtes-vous sûr de vouloir quitter ce groupe ?</string>
-  <string name="ConversationActivity_transport_insecure_sms">SMS non-sécurisé</string>
-  <string name="ConversationActivity_transport_insecure_mms">MMS non-sécurisé</string>
+  <string name="ConversationActivity_transport_insecure_sms">Texto non sécurisé</string>
+  <string name="ConversationActivity_transport_insecure_mms">Message multimédia non sécurisé</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Passons à Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Utilisons cela pour chatter : %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Utilisons cela pour dialoguer : %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Erreur en quittant le groupe</string>
-  <string name="ConversationActivity_specify_recipient">S\'il vous plait, choisissez un contact</string>
+  <string name="ConversationActivity_specify_recipient">Veuillez choisir un contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vous recevrez de nouveau les messages et appels de ce contact.</string>
   <string name="ConversationActivity_unblock">Débloquer</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier dépasse la limite de taille pour le type de message que vous avez sélectionné.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Appareil photo non disponible</string>
+  <string name="ConversationActivity_quick_camera_unavailable">L’appareil photo n’est pas disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">Impossible d\'enregistrer l\'audio !</string>
   <string name="ConversationActivity_error_sending_voice_message">Erreur lors de l\'envoi du message vocal</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n\'y a pas d\'application disponible pour ouvrir ce lien sur votre appareil.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, autorisez l\'accès Signal à votre microphone.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal nécessite l\'autorisation Microphone pour envoyer des messages audio, mais il a été refusé de façon permanente. Veuillez continuer avec les paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Microphone\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal exige l’autorisation Microphone afin d’envoyer des messages audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Microphone ».</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Pour appeler %s, Signal a besoin d\'accéder à votre microphone et à votre caméra.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal a besoin des permissions Microphone et Caméra pour appeler %s, mais elles ont été définitivement refusées. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Microphone\" et \"Appareil photo\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour capturer des photos et des vidéos, autorisez l\'accès Signal à la caméra.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal a besoin de l\'autorisation de la caméra pour prendre des photos ou des vidéos, mais elle a été refusée de façon permanente. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Appareil photo\".</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal exige l’autorisation « Appareil photo » afin de prendre des photos ou des vidéos, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Appareil photo ».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Le signal nécessite des autorisations de caméra pour prendre des photos ou des vidéos</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -154,8 +156,8 @@
     <item quantity="other">Erreur lors de l\'enregistrement des pièces jointes dans l\'espace de stockage !</item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
-    <item quantity="one">Fichier enregistré avec succès.</item>
-    <item quantity="other">Fichiers enregistrés avec succès.</item>
+    <item quantity="one">Le fichier a été enregistré avec succès.</item>
+    <item quantity="other">Les fichiers ont été enregistrés avec succès.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage !</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -168,12 +170,13 @@
   </plurals>
   <string name="ConversationFragment_pending">En attente…</string>
   <string name="ConversationFragment_push">Données (Signal)</string>
-  <string name="ConversationFragment_mms">MMS</string>
-  <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_mms">Messages multimédias</string>
+  <string name="ConversationFragment_sms">Textos</string>
   <string name="ConversationFragment_deleting">Suppression</string>
   <string name="ConversationFragment_deleting_messages">Suppression des messages...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Le message cité n\'a pas été trouvé</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Il n\'y a pas de navigateur installé sur l\'appareil.</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Aucun navigateur n’est installé sur votre appareil.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Aucun résultat trouvé pour \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -200,9 +203,9 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversations déplacées (%d)</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">Les informations de votre profil</string>
+  <string name="CreateProfileActivity_your_profile_info">Vos renseignements de profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erreur lors du réglage de la photo de profil</string>
-  <string name="CreateProfileActivity_problem_setting_profile">Problème lors du réglage du profil</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Problème de définition du profil</string>
   <string name="CreateProfileActivity_profile_photo">Photo de profil</string>
   <string name="CreateProfileActivity_too_long">Trop long</string>
   <!--CustomDefaultPreference-->
@@ -221,7 +224,7 @@
   <string name="DeviceListActivity_try_again">Réessayer</string>
   <string name="DeviceListActivity_unlinking_device">Dissociation de l\'appareil...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Dissociation de l\'appareil</string>
-  <string name="DeviceListActivity_network_failed">Erreur réseau !</string>
+  <string name="DeviceListActivity_network_failed">Échec réseau !</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Appareil sans nom</string>
   <string name="DeviceListItem_linked_s">%s associé</string>
@@ -249,13 +252,13 @@
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Les profils de Signal sont ici</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporter</string>
-  <string name="ExportFragment_export_plaintext_to_storage">Exporter en clair dans l\'espace de stockage ?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Attention, ceci exportera en clair tout le contenu de vos messages Signal vers l\'espace de stockage.</string>
+  <string name="ExportFragment_export_plaintext_to_storage">Exporter en le texte en clair vers la mémoire ?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Avertissement, ceci exportera en clair tout le contenu de vos messages Signal vers la mémoire.</string>
   <string name="ExportFragment_cancel">Annuler</string>
   <string name="ExportFragment_exporting">Exportation</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">Exportation en clair dans l\'espace de stockage...</string>
+  <string name="ExportFragment_exporting_plaintext_to_storage">Exportation en clair vers la mémoire…</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Erreur, impossible d\'écrire dans l\'espace de stockage.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">Erreur lors de l\'enregistrement dans l\'espace de stockage.</string>
+  <string name="ExportFragment_error_while_writing_to_storage">Erreur d’écriture dans la mémoire.</string>
   <string name="ExportFragment_export_successful">Exportation réussie.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec de communication Signal permanent !</string>
@@ -263,27 +266,27 @@
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erreur lors de la récupération du GIF en résolution maximale</string>
   <!--GiphyFragmentPageAdapter-->
-  <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nouveau groupe</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Modifier le groupe</string>
   <string name="GroupCreateActivity_group_name_hint">Nom du groupe</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Nouveau groupe MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui n\'a pas Signal, le groupe sera donc converti en groupe MMS.</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Nouveau groupe de message multimédia</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui ne ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Vous n’êtes pas enregistré pour les appels et messages Signal, les groupes Signal sont donc désactivés. Veuillez essayer de vous enregistrer à nouveau à partir du menu Paramètres &gt; Avancé.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Il vous faut au moins une personne dans votre groupe !</string>
+  <string name="GroupCreateActivity_contacts_no_members">Il vous faut au moins une personne dans votre groupe !</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Un des membres de votre groupe a un numéro illisible. Veuillez réparer ou enlever ce contact et essayer à nouveau.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar de groupe</string>
   <string name="GroupCreateActivity_menu_apply_button">Appliquer</string>
   <string name="GroupCreateActivity_creating_group">Création de %1$s en cours…</string>
   <string name="GroupCreateActivity_updating_group">Mise à jour %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossible d\'ajouter %1$s car il n\'utilise pas Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossible d’ajouter %1$s, car cette personne n’utilise pas Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Chargement des détails du groupe...</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Vous faites déjà parti de ce groupe.</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Vous faites déjà partie de ce groupe.</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partager votre nom et photo de profil avec ce groupe ?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voulez-vous que votre nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partager vos nom et photo de profil avec ce groupe ?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voulez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
   <string name="GroupShareProfileView_make_visible">Rendre visible</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Moi</string>
@@ -291,8 +294,8 @@
   <string name="ImportExportActivity_import">Importer</string>
   <string name="ImportExportActivity_export">Exporter</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">Importer la base de données SMS du système ?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Cela importera les messages provenant d\'une sauvegarde en clair. Si vous avez déjà importé la base de données SMS du système, importer à nouveau se traduira par des messages dupliqués.</string>
+  <string name="ImportFragment_import_system_sms_database">Importer la base de données de textos du système ?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Cela importera les messages de la base de données de textos par défaut du système. Si vous avez déjà importé la base de données de textos du système, l’importer de nouveau créera des doublons.</string>
   <string name="ImportFragment_import">Importer</string>
   <string name="ImportFragment_cancel">Annuler</string>
   <string name="ImportFragment_import_plaintext_backup">Importer une sauvegarde en clair ?</string>
@@ -302,13 +305,13 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="ImportFragment_importing">Importation</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importation de la sauvegarde en clair...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Aucune sauvegarde en texte clair trouvée !</string>
-  <string name="ImportFragment_error_importing_backup">Erreur lors de l\'importation de la sauvegarde !</string>
+  <string name="ImportFragment_error_importing_backup">Erreur d’importation de la sauvegarde !</string>
   <string name="ImportFragment_import_complete">Importation terminée !</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal a besoin de l\'autorisation SMS pour importer des messages SMS, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"SMS\".</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal a besoin de l\'autorisation SMS pour importer des messages SMS</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation \"Stockage\" pour pouvoir lire depuis un stockage externe, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", puis activer \"Stockage\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal exige l’autorisation « Messagerie texte » afin d’importer des textos, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Messagerie texte ».</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal a besoin de l\'autorisation Texto (SMS) pour importer des textos</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal exige l’autorisation Stockage afin de lire la mémoire externe, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal a besoin de l\'autorisation \"Stockage\" pour pouvoir lire à partir du stockage externe.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation \"Storage\" pour écrire sur un stockage externe, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", puis activer \"Stockage\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal exige l’autorisation Stockage afin d’écrire sur la mémoire externe, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
   <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal a besoin de l\'autorisation \"Stockage\" pour écrire sur un stockage externe.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Appuyez et maintenez pour enregistrer un message vocal puis relâchez pour l\'envoyer.</string>
@@ -321,16 +324,16 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="InviteActivity_invitations_sent">Invitation envoyée !</string>
   <string name="InviteActivity_invite_to_signal">Inviter sur Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">Envoyer SMS à un ami</item>
-    <item quantity="other">ENVOYER UN SMS À %d AMIS</item>
+    <item quantity="one">ENVOYER SMS À %d AMI</item>
+    <item quantity="other">ENVOYER UN TEXTO À %d AMIS</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Envoyer 1 invitation par SMS ?</item>
-    <item quantity="other">Envoyer %d invitations par SMS ?</item>
+    <item quantity="one">Envoyer %d invitations par SMS ?</item>
+    <item quantity="other">Envoyer %d textos d’invitations ?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Passons à Signal : %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Il semble n\'y avoir aucune application pour partager ce contenu.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les vrais amis ne laissent pas leur amis chatter sans chiffrement.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les amis ne laissent pas leur amis dialoguer sans chiffrement.</string>
   <!--KeyScanningActivity-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Échec de l’envoi</string>
@@ -339,9 +342,19 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Connexion en arrière-plan activée</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_reading_mms_settings">Erreur lors de la lecture des paramètres MMS du fournisseur sans fil</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Erreur de lecture des paramètres de message multimédia du fournisseur sans fil</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Média</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Supprimer le message sélectionné ?</item>
+    <item quantity="other">Supprimer les messages sélectionnés ?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Cela supprimera définitivement le message sélectionné.</item>
+    <item quantity="other">Cela supprimera définitivement les %1$d messages sélectionnés.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Suppression</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Suppression des messages...</string>
   <string name="MediaOverviewActivity_Documents">Documents</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
@@ -353,8 +366,8 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="NotificationBarManager__cancel_call">Annuler l\'appel</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Message multimédia</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">Téléchargement du message MMS</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erreur lors du téléchargement du message MMS, appuyez pour réessayer</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Téléchargement du message multimédia</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erreur de téléchargement du message multimédia. Toucher pour ressayer</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Le message reçu est chiffré avec une ancienne version de Signal qui n\'est plus prise en charge. Veuillez demander à l’expéditeur de mettre à jour Signal et de renvoyer son message.</string>
   <string name="MessageRecord_left_group">Vous avez quitté le groupe.</string>
@@ -363,9 +376,9 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="MessageRecord_s_called_you">%s vous a appelé</string>
   <string name="MessageRecord_called_s">Appelé %s</string>
   <string name="MessageRecord_missed_call_from">Appel manqué de %s</string>
-  <string name="MessageRecord_s_joined_signal">%s est sur Signal !</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez choisi %1$s comme heure de disparition du message.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a choisi %2$s comme heure de disparition du message.</string>
+  <string name="MessageRecord_s_joined_signal">%s est sur Signal !</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini le délai de disparition du message à %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini le délai de disparition du message à %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Vous avez marqué votre numéro de sécurité avec %s comme vérifié</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme vérifié depuis un autre appareil</string>
@@ -379,7 +392,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="DeviceProvisioningActivity_link_this_device">Lier cet appareil ?</string>
   <string name="DeviceProvisioningActivity_cancel">ANNULER</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUER</string>
-  <string name="DeviceProvisioningActivity_content_intro">Il sera capable de</string>
+  <string name="DeviceProvisioningActivity_content_intro">Il pourra</string>
   <string name="DeviceProvisioningActivity_content_bullets">• Lire tous vos messages
 \n• Envoyer des messages en votre nom</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Association de l\'appareil</string>
@@ -392,11 +405,11 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Désolé, ceci n\'est pas un QR code valide pour lier son appareil.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Lier un appareil Signal ?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vous semblez utiliser un scanner tiers pour associer un appareil Signal. Pour votre protection, veuillez scanner de nouveau le code depuis Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal a besoin de l\'autorisation \"Camera\" pour scanner un code QR, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Appareil photo\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal exige l’autorisation « Appareil photo » afin de lire un code QR, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Appareil photo ».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Impossible de numériser un code QR sans l\'autorisation \"Appareil photo\"</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Messages éphémères</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Vos messages ne vont pas expirer.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Vos messages n’expireront pas.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus dans cette conversation disparaîtront %s après avoir été vus.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Entrez la phrase de passe</string>
@@ -407,21 +420,21 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La version de Google Play Services installée ne fonctionne pas correctement. Veuillez réinstaller Google Play Services et réessayer.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Notez cette application</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si vous aimez cette application, aidez-nous en prenant un moment pour la noter.</string>
-  <string name="RatingManager_rate_now">Noter maintenant!</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si vous aimez cette appli, veuillez prendre quelques instants pour nous aider en l’évaluant.</string>
+  <string name="RatingManager_rate_now">L’évaluer maintenant</string>
   <string name="RatingManager_no_thanks">Non merci</string>
   <string name="RatingManager_later">Plus tard</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aïe, Play Store n\'est pas installé sur votre appareil.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquer ce contact ?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vous ne recevrez plus de messages ou d\'appels de ce contact.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vous ne recevrez plus de messages ni d’appels de ce contact.</string>
   <string name="RecipientPreferenceActivity_block">Bloquer</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vous recevrez de nouveau les messages et appels de ce contact.</string>
   <string name="RecipientPreferenceActivity_unblock">Débloquer</string>
   <string name="RecipientPreferenceActivity_enabled">Activé</string>
   <string name="RecipientPreferenceActivity_disabled">Désactivé</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponible une fois qu\'un message a été envoyé ou reçu.</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Proposée une fois qu’un message a été envoyé ou reçu.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Groupe sans nom</string>
   <!--RedPhone-->
@@ -431,7 +444,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="RedPhone_ringing">Sonnerie</string>
   <string name="RedPhone_busy">Occupé</string>
   <string name="RedPhone_connected">Connecté</string>
-  <string name="RedPhone_recipient_unavailable">Destinataire indisponible</string>
+  <string name="RedPhone_recipient_unavailable">Le destinataire n’est pas disponible</string>
   <string name="RedPhone_network_failed">Erreur réseau !</string>
   <string name="RedPhone_number_not_registered">Numéro non enregistré !</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Le numéro que vous avez composé ne supporte pas les appels sécurisés !</string>
@@ -449,12 +462,12 @@ introduit (%s) n\'est pas valide.</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Cet appareil ne dispose pas des Google Play Services. Vous pouvez continuer d\'utiliser Signal, mais cette configuration peut abaisser la fiabilité ou les performances.\n\nSi vous n\'êtes pas un utilisateur avancé, n\'utilisez pas de ROM Android tierce ou que vous pensez voir ceci par erreur, veuillez contacter support@whispersystems.org pour dépannage.</string>
   <string name="RegistrationActivity_i_understand">Je comprends</string>
   <string name="RegistrationActivity_play_services_error">Erreur Play Services</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services est en cours de mise à jour ou est temporairement indisponible. Veuillez réessayer.</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Les services Google Play sont en cours de mise à jour ou temporairement non disponibles. Veuillez ressayer.</string>
   <string name="RegistrationActivity_more_information">Plus d\'informations</string>
   <string name="RegistrationActivity_less_information">Moins d\'informations</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d\'accéder à vos contacts et médias pour se connecter avec vos amis, échanger des messages et passer des appels sécurisés</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour vérifier facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de vérification si vous autorisez Signal à afficher les messages SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour vérifier facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de vérification si vous autorisez Signal à visualiser les textos.</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -491,7 +504,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_called_you">Vous a appelé</string>
   <string name="ThreadRecord_missed_call">Appel manqué</string>
   <string name="ThreadRecord_media_message">Message média</string>
-  <string name="ThreadRecord_s_is_on_signal">%s est sur Signal !</string>
+  <string name="ThreadRecord_s_is_on_signal">%s est sur Signal !</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglé à %s</string>
   <string name="ThreadRecord_safety_number_changed">Numéro de sécurité changé</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
@@ -499,9 +512,9 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ThreadRecord_you_marked_unverified">Vous avez marqué comme non vérifié</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est disponible, appuyez pour la mettre à jour</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est proposée, toucher pour lancer la mise à jour</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Bloquer %s ?</string>
+  <string name="UnknownSenderView_block_s">Bloquer %s ?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Les contacts bloqués ne pourront plus vous envoyer de messages ni vous appeler.</string>
   <string name="UnknownSenderView_block">Bloquer</string>
   <string name="UnknownSenderView_share_profile_with_s">Partager le profil avec %s ?</string>
@@ -521,7 +534,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vos numéros de sécurité Signal :</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Il semble n\'y avoir aucune application pour partager ce contenu.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Aucun numéro de sécurité à comparer n\'a été trouvé dans le presse-papiers</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation \"Camera\" pour scanner un code QR, mais il a été définitivement refusé. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Appareil photo\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal exige l’autorisation « Appareil photo » afin de lire un code QR, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Appareil photo ».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossible de scanner le code QR sans autorisation de l\'appareil photo</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
@@ -535,9 +548,9 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--MmsDatabase-->
   <string name="MmsDatabase_error_decrypting_message">Erreur lors du déchiffrement du message.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Déchiffrement du MMS, veuillez patienter…</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Message MMS chiffré incorrect</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Message MMS chiffré pour une session non existante</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Déchiffrement du message multimédia, veuillez patienter…</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Message multimédia chiffré incorrect</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Le message multimédia est chiffré pour une session non existante</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Désactiver les notifications</string>
   <!--OutdatedBuildReminder-->
@@ -546,17 +559,20 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="ApplicationMigrationService_import_in_progress">Importation en cours</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importation des messages textes</string>
   <string name="ApplicationMigrationService_import_complete">Importation terminée</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">L\'importation de la base de données du système est terminée.</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">L’importation de la base de données du système est terminée.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Appuyez pour ouvrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Appuyez pour ouvrir, ou appuyez sur le cadenas pour fermer.</string>
   <string name="KeyCachingService_passphrase_cached">Signal est déverrouillé</string>
+  <string name="KeyCachingService_lock">Verrouiller Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vous</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Type de média non supporté</string>
   <string name="MediaPreviewActivity_draft">Brouillon</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation Stockage pour enregistrer sur un stockage externe, mais il a été définitivement refusé. Veuillez continuer avec les paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Stockage\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal exige l’autorisation Stockage afin d’enregistrer sur la mémoire externe, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossible d\'enregistrer sur un stockage externe sans autorisations</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Supprimer le message ?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Cela supprimera définitivement ce message.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nouveaux messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Plus récent de : %1$s</string>
@@ -573,10 +589,11 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="MessageNotifier_you_have_pending_signal_messages">Vous avez des messages Signal en attente, appuyez pour ouvrir et récupérer</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n\'est pas disponible lorsque Signal est verrouillé !</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n’est pas proposée quand Signal est verrouillée !</string>
   <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Ouvrir le répertoire</string>
+  <string name="SaveAttachmentTask_saved_to">Enregistré dans %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Chercher</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -586,7 +603,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="UnauthorizedReminder_device_no_longer_registered">L\'appareil n\'est plus enregistré</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">C\'est probablement parce que vous avez enregistré votre numéro de téléphone avec Signal sur un autre appareil. Appuyez pour vous réinscrire.</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">Erreur lors de la lecture de la vidéo</string>
+  <string name="VideoPlayer_error_playing_video">Erreur de lecture de la vidéo</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pour répondre à l\'appel de %s, donnez un accès Signal à votre microphone.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Le signal nécessite des autorisations Microphone et Appareil photo pour passer ou recevoir des appels, mais ils ont été refusés de façon permanente. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Microphone\" et \"Appareil photo\".</string>
@@ -624,7 +641,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Photo de contact</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal nécessite l\'autorisation Contacts pour afficher vos contacts, mais elle a été refusée définitivement. Continuez dans le menu des paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Contacts\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal exige l’autorisation Contacts afin d’afficher vos contacts, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Erreur lors de la récupération des contacts, vérifiez votre connexion réseau</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Aucun contact bloqué</string>
@@ -635,8 +652,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Message de Signal</string>
-  <string name="conversation_activity__type_message_sms_insecure">SMS non-sécurisé</string>
-  <string name="conversation_activity__type_message_mms_insecure">MMS non-sécurisé</string>
+  <string name="conversation_activity__type_message_sms_insecure">Texto non sécurisé</string>
+  <string name="conversation_activity__type_message_mms_insecure">Message multimédia non sécurisé</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__compose_description">Composition du message</string>
@@ -644,7 +661,7 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="conversation_activity__attachment_thumbnail">Vignette de pièce jointe</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Afficher l\'accès rapide à l\'appareil photo</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer un fichier audio</string>
-  <string name="conversation_activity__enable_signal_for_sms">Activer les SMS dans Signal</string>
+  <string name="conversation_activity__enable_signal_for_sms">Gérer les textos avec Signal</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">GLISSEZ POUR ANNULER</string>
   <!--conversation_item-->
@@ -661,6 +678,12 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="audio_view__play_accessibility_description">Lire</string>
   <string name="audio_view__pause_accessibility_description">Pause</string>
   <string name="audio_view__download_accessibility_description">Téléchargement</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Contenu audio</string>
+  <string name="QuoteView_video">Vidéo</string>
+  <string name="QuoteView_photo">Photo</string>
+  <string name="QuoteView_document">Document</string>
+  <string name="QuoteView_you">Vous</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mode de sélection par lot</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s sélectionné</string>
@@ -682,29 +705,29 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">En option, voir et partager lorsque les messages ont été lus</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Activer les accusés de lecture</string>
   <!--expiration-->
-  <string name="expiration_off">Off</string>
+  <string name="expiration_off">Désactivé</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">Une seconde</item>
+    <item quantity="one">%d seconde</item>
     <item quantity="other">%d secondes</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d s</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">Une minute</item>
+    <item quantity="one">%d minute</item>
     <item quantity="other">%d minutes</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%d min</string>
   <plurals name="expiration_hours">
-    <item quantity="one">Une heure</item>
+    <item quantity="one">%d heure</item>
     <item quantity="other">%d heures</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d h</string>
   <plurals name="expiration_days">
-    <item quantity="one">Un jour</item>
+    <item quantity="one">%d jour</item>
     <item quantity="other">%d jours</item>
   </plurals>
   <string name="expiration_days_abbreviated">%d j</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">Une semaine</item>
+    <item quantity="one">%d semaine</item>
     <item quantity="other">%d semaines</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sem.</string>
@@ -725,32 +748,32 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Rechercher des GIFs et des autocollants</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__nothing_found">Pas de résultat</string>
+  <string name="giphy_fragment__nothing_found">Aucun résultat</string>
   <!--import_export_fragment-->
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Impossible d\'accéder aux journaux de votre appareil. Utilisez ADB pour obtenir un rapport de débogage.</string>
-  <string name="log_submit_activity__thanks">Merci pour votre aide !</string>
+  <string name="log_submit_activity__log_fetch_failed">Impossible de lire le journal de votre appareil. Vous pouvez toujours utiliser ADB pour obtenir un journal de débogage.</string>
+  <string name="log_submit_activity__thanks">Nous vous remercions pour votre aide !</string>
   <string name="log_submit_activity__submitting">Soumission</string>
-  <string name="log_submit_activity__no_browser_installed">Aucun navigateur installé</string>
+  <string name="log_submit_activity__no_browser_installed">Aucun navigateur n’est installé</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voulez-vous importer vos messages existant dans la base de données chiffrée de Signal ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de données par défaut du système ne sera en aucune façon modifiée ou altérée.</string>
   <string name="database_migration_activity__skip">Passer</string>
   <string name="database_migration_activity__import">Importer</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Cela peut prendre un moment. Merci d’être patient, nous vous préviendrons lorsque l’importation sera achevée.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Cela pourrait prendre un moment. Veuillez être patient, nous vous préviendrons lorsque l’importation sera terminée.</string>
   <string name="database_migration_activity__importing">IMPORTATION</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Mise à jour de la base de donnée...</string>
   <string name="export_fragment__export_plaintext_backup">Exporter une sauvegarde en clair</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter une sauvegarde en clair compatible avec "SMS Backup &amp; Restore" vers l'espace de stockage</string>
-  <string name="import_fragment__import_system_sms_database">Importer la base de données SMS du système</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importer la base de données depuis l\'application SMS par défaut</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporter vers la mémoire une sauvegarde en clair compatible avec « SMS Backup &amp; Restore »</string>
+  <string name="import_fragment__import_system_sms_database">Importer la base de données de textos du système</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importer la base de données de l’appli système de messagerie par défaut</string>
   <string name="import_fragment__import_plaintext_backup">Importer la sauvegarde en clair</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importer une sauvegarde en clair. Compatible avec "SMS Backup &amp; Restore"</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importer un fichier de sauvegarde en clair. Compatible avec « SMS Backup &amp; Restore »</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Voir la conversation complète</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">Pas de média</string>
+  <string name="media_overview_activity__no_media">Aucun média</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VOIR</string>
   <string name="message_recipients_list_item__resend">RÉENVOYER</string>
@@ -766,9 +789,8 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal requiert que vos paramètres MMS envoient les contenus média et les messages de groupe à l\'aide de votre opérateur mobile. Votre appareil ne met pas cette information à disposition, ce qui est parfois vrai pour les appareils verrouillés et/ou autres configurations restrictives.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer du contenu multimédia et des messages de groupe, appuyer sur \"OK\" et compléter les champs requis.
-Les paramètres MMS de votre opérateur peuvent généralement être obtenus en recherchant \"l\'APN de votre opérateur\". Cette opération ne doit être effectuée qu\'une seule fois.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal exige les paramètres de messages multimédias (MMS) pour livrer les messages multimédias et de groupe par le biais de votre opérateur sans fil. Votre appareil n’offre pas ces renseignements, ce qui arrive parfois pour les appareils verrouillés ou autres configurations restrictives.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer des messages multimédias ou de groupe, touchez OK et remplissez les champs demandés. Les paramètres de messages multimédias (MMS) pour votre opérateur peuvent habituellement être trouvés en cherchant l’APN de votre opérateur. Vous n’aurez à le faire qu’une seule fois.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Définir plus tard</string>
   <string name="profile_create_activity__finish">TERMINÉ</string>
@@ -783,8 +805,9 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="recipient_preferences__block">Bloquer</string>
   <string name="recipient_preferences__color">Couleur</string>
   <string name="recipient_preferences__view_safety_number">Afficher le numéro de sécurité</string>
-  <string name="recipient_preferences__chat_settings">Paramètres de discussion</string>
+  <string name="recipient_preferences__chat_settings">Paramètres de dialogue</string>
   <string name="recipient_preferences__privacy">Vie privée</string>
+  <string name="recipient_preferences__call_settings">Paramètres d’appel</string>
   <string name="recipient_preferences__ringtone">Sonnerie</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Appel Signal</string>
@@ -819,7 +842,7 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="message_details_header__issues_need_your_attention">Des problèmes requièrent votre attention.</string>
   <string name="message_details_header__sent">Envoyé</string>
   <string name="message_details_header__received">Reçu</string>
-  <string name="message_details_header__disappears">Disparition</string>
+  <string name="message_details_header__disappears">Disparaît dans </string>
   <string name="message_details_header__via">Via</string>
   <string name="message_details_header__to">Pour :</string>
   <string name="message_details_header__from">De :</string>
@@ -830,7 +853,7 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="AndroidManifest__select_contacts">Sélectionner des contacts</string>
   <string name="AndroidManifest__change_passphrase">Modifier la phrase de passe</string>
   <string name="AndroidManifest__verify_safety_number">Vérifier le numéro de sécurité</string>
-  <string name="AndroidManifest__log_submit">Envoyer un rapport de débogage</string>
+  <string name="AndroidManifest__log_submit">Envoyer le journal de débogage</string>
   <string name="AndroidManifest__media_preview">Aperçu du média</string>
   <string name="AndroidManifest__message_details">Détails du message</string>
   <string name="AndroidManifest__linked_devices">Appareils liés</string>
@@ -869,9 +892,9 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
     <item quantity="other">%d heures</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__sms_mms">SMS et MMS</string>
-  <string name="preferences__pref_all_sms_title">Recevoir tous les SMS</string>
-  <string name="preferences__pref_all_mms_title">Recevoir tous les MMS</string>
+  <string name="preferences__sms_mms">Textos et messages multimédias</string>
+  <string name="preferences__pref_all_sms_title">Recevoir tous les textos</string>
+  <string name="preferences__pref_all_mms_title">Recevoir tous les messages multimédias</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Utiliser Signal pour tous les messages textes entrants</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utiliser Signal pour tous les messages multimédias entrants</string>
   <string name="preferences__pref_enter_sends_title">La touche Entrée envoie</string>
@@ -914,18 +937,18 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="preferences__slow">Lent</string>
   <string name="preferences__advanced">Avancé</string>
   <string name="preferences__privacy">Vie privée</string>
-  <string name="preferences__mms_user_agent">User Agent MMS</string>
+  <string name="preferences__mms_user_agent">Agent utilisateur MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Paramètres MMS manuels</string>
   <string name="preferences__mmsc_url">URL MMSC</string>
-  <string name="preferences__mms_proxy_host">Hôte Proxy MMS</string>
-  <string name="preferences__mms_proxy_port">Port Proxy MMS</string>
-  <string name="preferences__mmsc_username">Nom d\'utilisateur MMSC</string>
+  <string name="preferences__mms_proxy_host">Hôte du mandataire MMS</string>
+  <string name="preferences__mms_proxy_port">Port du mandataire MMS</string>
+  <string name="preferences__mmsc_username">Nom d’utilisateur MMSC</string>
   <string name="preferences__mmsc_password">Mot de passe MMSC</string>
-  <string name="preferences__sms_delivery_reports">Accusés de réception SMS</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un accusé de réception pour chaque SMS envoyé</string>
+  <string name="preferences__sms_delivery_reports">Rapports de livraison des textos</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un rapport de livraison pour chaque texto envoyé</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Supprimer automatiquement les plus vieux messages lorsque la conversation dépasse une certaine longueur</string>
   <string name="preferences__delete_old_messages">Supprimer les anciens messages</string>
-  <string name="preferences__chats">Chats et média</string>
+  <string name="preferences__chats">Dialogues et média</string>
   <string name="preferences__conversation_length_limit">Limite de taille de la conversation</string>
   <string name="preferences__trim_all_conversations_now">Réduire toutes les conversations maintenant</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scanner toutes les conversations et imposer les limites de longueur pour les conversations</string>
@@ -939,12 +962,12 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
   <string name="preferences__free_private_messages_and_calls">Messages et appels gratuits et privés vers les utilisateurs Signal</string>
   <string name="preferences__submit_debug_log">Envoyer un rapport de débogage</string>
-  <string name="preferences__support_wifi_calling">Compatibilité \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFi (n\'activer que si \"WiFi Calling\" est activé sur votre appareil).</string>
+  <string name="preferences__support_wifi_calling">Mode de compatibilité « Appels Wi-Fi »</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">À activer si votre appareil livre les textos et les messages multimédias par le Wi-Fi (n’activer que si les « Appels Wi-Fi » sont activés sur votre appareil)</string>
   <string name="preferences__incognito_keyboard">Clavier incognito</string>
   <string name="preferences__read_receipts">Accusés de lecture</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les accusés de lecture sont désactivés, vous ne pourrez pas voir les accusés de lecture des autres.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l\'apprentissage personnalisé</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l’apprentissage personnalisé</string>
   <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string>
   <string name="preferences_chats__when_using_mobile_data">Avec les données mobiles</string>
   <string name="preferences_chats__when_using_wifi">Avec le WI-FI</string>
@@ -957,11 +980,12 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="preferences_advanced__always_relay_calls">Toujours relayer les appels</string>
   <string name="preferences_app_protection__app_access">Accès à l\'application</string>
   <string name="preferences_app_protection__communication">Communication</string>
-  <string name="preferences_chats__chats">Tchats</string>
+  <string name="preferences_chats__chats">Dialogues</string>
   <string name="preferences_notifications__messages">Messages</string>
   <string name="preferences_notifications__events">Evénements</string>
-  <string name="preferences_notifications__in_chat_sounds">Sons dans le tchat</string>
+  <string name="preferences_notifications__in_chat_sounds">Sons dans les dialogues</string>
   <string name="preferences_notifications__show">Afficher</string>
+  <string name="preferences_notifications__calls">Appels</string>
   <string name="preferences_notifications__ringtone">Sonnerie</string>
   <string name="preferences_chats__show_invitation_prompts">Afficher les invitations</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Afficher les invitations pour les contacts sans Signal</string>
@@ -1016,7 +1040,7 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="conversation_unmuted__mute_notifications">Désactiver les notifications</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Ajouter une pièce jointe</string>
-  <string name="conversation__menu_edit_group">Mettre à jour le groupe</string>
+  <string name="conversation__menu_edit_group">Modifier le groupe</string>
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_view_all_media">Tous les médias</string>
   <string name="conversation__menu_conversation_settings">Préférences de conversation</string>
@@ -1044,16 +1068,16 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Cette version de Signal est obsolète</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Votre version de Signal va expirer dans 1 jour. Appuyer pour mettre à jour vers la version la plus récente.</item>
-    <item quantity="other">Cette version de Signal expire dans %d jours. Appuyez pour installer la version la plus récente.</item>
+    <item quantity="one">Votre version de Signal expirera dans %d jour. Touchez pour mettre à jour vers la version la plus récente.</item>
+    <item quantity="other">Votre version de Signal expirera dans %d jours. Touchez pour mettre à jour vers la version la plus récente.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Cette version de Signal expire aujourd\'hui. Appuyez pour installer la version la plus récente.</string>
   <string name="reminder_header_expired_build">Cette version de Signal a expiré !</string>
   <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>
-  <string name="reminder_header_sms_default_title">Utiliser comme application SMS par défaut</string>
-  <string name="reminder_header_sms_default_text">Appuyez pour faire de Signal votre application SMS par défaut.</string>
-  <string name="reminder_header_sms_import_title">Importer les SMS du système</string>
-  <string name="reminder_header_sms_import_text">Appuyez pour importer vos messages SMS dans la base de données chiffrée de Signal.</string>
+  <string name="reminder_header_sms_default_title">Utiliser comme appli de textos par défaut</string>
+  <string name="reminder_header_sms_default_text">Toucher pour faire de Signal votre application de texto par défaut.</string>
+  <string name="reminder_header_sms_import_title">Importer les textos du système</string>
+  <string name="reminder_header_sms_import_text">Toucher pour copier les textos de votre téléphone dans la base de données chiffrée de Signal.</string>
   <string name="reminder_header_push_title">Activer les messages et appels Signal</string>
   <string name="reminder_header_push_text">Améliorez votre expérience de communication.</string>
   <string name="reminder_header_invite_title">Inviter sur Signal</string>
@@ -1080,26 +1104,92 @@ Les paramètres MMS de votre opérateur peuvent généralement être obtenus en 
   <string name="ConversationListFragment_loading">Chargement...</string>
   <string name="CallNotificationBuilder_connecting">Connexion...</string>
   <string name="Permissions_permission_required">Permission requise</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal a besoin de l\'autorisation SMS pour envoyer des SMS, mais elle a été définitivement refusée. Veuillez consulter les paramètres de l\'application, sélectionner \"Autorisations\", et activer \"SMS\". </string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal exige l’autorisation « Messagerie texte » afin d’envoyer un texto, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Messagerie texte » (SMS).</string>
   <string name="Permissions_continue">Continuer</string>
   <string name="Permissions_not_now">Pas maintenant</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal a besoin de l\'autorisation Contacts pour rechercher vos contacts, mais elle a été refusée de façon permanente. S\'il vous plaît continuer à paramètres de l\'application, sélectionnez \"Autorisations\", et activer \"Contacts\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal exige l’autorisation Contacts afin de chercher dans vos contacts, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
   <string name="conversation_activity__enable_signal_messages">ACTIVER LES MESSAGES SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">
 Migration de la base de données de Signal</string>
-  <string name="PushDecryptJob_new_locked_message">Nouveau message bloqué</string>
+  <string name="PushDecryptJob_new_locked_message">Nouveau message verrouillé</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour voir les messages en attente</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Déverrouillez pour terminer la mise à jour</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">S\'il-vous-plait déverrouillez Signal pour terminer la mise à jour</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Déverrouiller pour terminer la mise à jour</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Veuillez déverrouillez Signal pour terminer la mise à jour</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Phrase de passe de la sauvegarde</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans la mémoire externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai pris cette phrase de passe par écrit. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>
+  <string name="registration_activity__restore_backup">Restaurer une sauvegarde</string>
   <string name="registration_activity__skip">Passer</string>
   <string name="registration_activity__register">S\'enregistrer</string>
+  <string name="preferences_chats__chat_backups">Sauvegardes des dialogues</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Sauvegarder les dialogues dans la mémoire externe</string>
+  <string name="preferences_chats__create_backup">Créer une sauvegarde</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Saisir la phrase de passe de la sauvegarde</string>
   <string name="RegistrationActivity_restore">Restaurer</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">La phrase de passe de la sauvegarde est erronée</string>
+  <string name="RegistrationActivity_checking">Vérification…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d messages jusqu’à présent…</string>
+  <string name="RegistrationActivity_restore_from_backup">Restaurer de la sauvegarde ?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurez vos messages et contenus multimédias d’une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire ultérieurement.</string>
+  <string name="RegistrationActivity_backup_size_s">Taille de la sauvegarde : %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Estampille temporelle de la sauvegarde : %s</string>
+  <string name="BackupDialog_enable_local_backups">Activer les sauvegardes locales ?</string>
+  <string name="BackupDialog_enable_backups">Activer les sauvegardes</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Veuillez reconnaître que vous comprenez en cochant la case de confirmation ci-dessous.</string>
+  <string name="BackupDialog_delete_backups">Supprimer les sauvegardes ?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Désactiver et supprimer les sauvegardes locales ?</string>
+  <string name="BackupDialog_delete_backups_statement">Supprimer les sauvegardes</string>
   <string name="BackupDialog_copied_to_clipboard">Copié dans le presse-papier</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à la mémoire externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Dernière sauvegarde : %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">En cours</string>
+  <string name="ProgressPreference_d_messages_so_far">%d messages jusqu’à présent</string>
+  <string name="RegistrationActivity_verify_s">Vérifier %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Veuillez saisir le code de vérification envoyé à %s.</string>
+  <string name="RegistrationActivity_wrong_number">Mauvais numéro ?</string>
   <string name="BackupUtil_never">Jamais</string>
   <string name="BackupUtil_unknown">Inconnu</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Déverrouiller Signal </string>
+  <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Verrouiller l’accès à Signal avec le verrouillage de l’écran d’Android ou une empreinte</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Durée d\'inactivité du verrouillage de l’écran</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Le NIP de blocage de l’inscription ne correspond pas au code de vérification que vous venez de recevoir par texto. Veuillez saisir le NIP que vous avez précédemment défini dans l’application.</string>
+  <string name="registration_activity__registration_lock_pin">NIP de blocage de l’inscription</string>
+  <string name="registration_activity__forgot_pin">NIP oublié ?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Le NIP peut comprendre quatre chiffres ou plus. Si vous oubliez votre NIP, vous pourriez ne pas avoir accès à votre compte pendant sept jours. </string>
+  <string name="registration_lock_dialog_view__enter_pin">Saisir le NIP</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Confirmer le NIP</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Saisir votre NIP de blocage de l’inscription</string>
+  <string name="registration_lock_reminder_view__enter_pin">Saisir le NIP</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Mettre en place un NIP de blocage de l’inscription qui sera exigé pour réinscrire ce numéro de téléphone à Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">NIP de blocage de l’inscription</string>
+  <string name="preferences_app_protection__registration_lock">Blocage de l’inscription</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Vous devez saisir votre NIP de blocage de l’inscription</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">NIP de blocage de l’inscription erroné</string>
   <string name="RegistrationActivity_too_many_attempts">Trop de tentatives</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vous avez saisi trop de NIP de blocage de l’inscription erroné. Veuillez ressayer dans une journée.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Erreur de connexion au service</string>
+  <string name="RegistrationActivity_oh_no">Oh non !</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">L’inscription de ce numéro de téléphone sera possible sans votre NIP de blocage de l’inscription 7 jours après la dernière activité de ce numéro de téléphone sur Signal. Il vous reste %d jours.</string>
+  <string name="RegistrationActivity_registration_lock_pin">NIP de blocage de l’inscription</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Un NIP de blocage de l’inscription est activé pour ce numéro de téléphone. Veuillez saisir le NIP de blocage de l’inscription.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Un NIP de blocage de l’inscription est activé pour votre numéro de téléphone. Pour vous aider à mémoriser votre NIP de blocage de l’inscription, Signal vous demandera de le confirmer régulièrement.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">J’ai oubli mon NIP.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">NIP oublié ?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Le blocage de l’inscription aide à protéger votre numéro de téléphone contre les tentatives d’inscription non autorisées. Cette fonction peut être désactivée en tout temps dans vos paramètres de confidentialité de Signal</string>
+  <string name="RegistrationLockDialog_registration_lock">Blocage de l’inscription</string>
+  <string name="RegistrationLockDialog_enable">Activer</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Le NIP de blocage de l’inscription doit être d’au moins 4 chiffres.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Les deux NIP que vous avez saisis ne correspondent pas.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Erreur de connexion au service !</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Désactiver le NIP de blocage de l’inscription ?</string>
   <string name="RegistrationLockDialog_disable">Désactiver</string>
   <string name="RegistrationActivity_continue">Continuer</string>
+  <string name="preferences_chats__backups">Sauvegardes</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal est verrouillé</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TOUCHER POUR DÉVERROUILLER</string>
+  <string name="RegistrationLockDialog_reminder">Rappel :</string>
+  <string name="recipient_preferences__about">À propos</string>
   <!--EOF-->
 </resources>

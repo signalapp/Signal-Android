@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">In questo momento: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 messaggio per conversazione</item>
+    <item quantity="one">%d messaggio per conversazione</item>
     <item quantity="other">%d messaggi per conversazione</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Eliminare tutti i messaggi vecchi ora?</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Lingua %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minuti</item>
   </plurals>
   <!--DraftDatabase-->
@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Chat recenti</string>
   <string name="ContactsCursorLoader_contacts">Contatti</string>
+  <string name="ContactsCursorLoader_groups">Gruppi</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
   <string name="ContactsDatabase_signal_call_s">Chiamata Signal %s</string>
@@ -125,10 +126,10 @@
   <string name="ConversationActivity_error_sending_voice_message">Errore nell\'invio del messaggio vocale</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sul tuo dispositivo non sono presenti app per gestire questo link.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Per poter mandare un messaggio audio, permetti a Signal di accedere al tuo microfono.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal richiede l\'autorizzazione all\'uso microfono per inviare messaggi audio, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Per chiamare %s, Signal necessita accesso al tuo microfono e alla tua camera.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal richiede l\'autorizzazione all\'uso del microfono per inviare messaggi audio, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Per chiamare %s, Signal necessita accesso al tuo microfono e alla tua fotocamera.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal richiede le autorizzazioni all\'uso del microfono e della fotocamera per chiamare %s, ma sono state negate in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Per poter catturare foto e video, permetti a Signal di accedere alla camera del tuo dispositivo</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Per poter catturare foto e video, permetti a Signal di accedere alla fotocamera del tuo dispositivo</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video</string>
   <!--ConversationAdapter-->
@@ -323,12 +324,12 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="InviteActivity_invitations_sent">Inviti mandati!</string>
   <string name="InviteActivity_invite_to_signal">Invita su Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">INVIA SMS AD 1 AMICO</item>
+    <item quantity="one">INVIA SMS A %d AMICO</item>
     <item quantity="other">INVIA SMS A %d AMICI</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Inviare 1 invito?</item>
-    <item quantity="other">Inviare %d SMS di invito?</item>
+    <item quantity="one">Inviare %d invito SMS?</item>
+    <item quantity="other">Inviare %d inviti SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Passiamo a Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sembra che tu non abbia alcune applicazioni per condividere.</string>
@@ -344,6 +345,16 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Errore nel leggere le impostazioni MMS per il tuo provider</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Eliminare il messaggio selezionato?</item>
+    <item quantity="other">Eliminare i messaggi selezionati?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Il messaggio selezionato verrà eliminato definitivamente.</item>
+    <item quantity="other">Tutti i %1$d messaggi selezionati verranno eliminati definitivamente.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Cancellazione</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Cancellazione messaggi...</string>
   <string name="MediaOverviewActivity_Documents">Documenti</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
@@ -562,6 +573,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MediaPreviewActivity_draft">Bozza</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per salvare in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossibile salvare sulla memoria senza l\'autorizzazione</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Eliminare il messaggio?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Questo messaggio verrà eliminato definitivamente.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuovi messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
@@ -667,6 +680,10 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="audio_view__play_accessibility_description">Play</string>
   <string name="audio_view__pause_accessibility_description">Pausa</string>
   <string name="audio_view__download_accessibility_description">Scarica</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_you">Tu</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s selezionati</string>
@@ -690,27 +707,27 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--expiration-->
   <string name="expiration_off">Spenti</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 secondo</item>
+    <item quantity="one">%d secondo</item>
     <item quantity="other">%d secondi</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minuti</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 ora</item>
+    <item quantity="one">%d ora</item>
     <item quantity="other">%d ore</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dore</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 giorno</item>
+    <item quantity="one">%d giorno</item>
     <item quantity="other">%d giorni</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dgiorni</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 settimana</item>
+    <item quantity="one">%d settimana</item>
     <item quantity="other">%d settimane</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dset.</string>
@@ -1051,8 +1068,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">La tua versione di Signal è vecchia</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">La tua versione di Signal scadrà tra 1 giorno. Premi per aggiornare alla versione più recente.</item>
-    <item quantity="other">La tua versione di Signal scadrà tra %d giorni. Premi per aggiornare alla versione più recente.</item>
+    <item quantity="one">La tua versione di Signal scadrà in %d giorno. Tocca per aggiornare alla versione più recente.</item>
+    <item quantity="other">La tua versione di Signal scadrà in %d giorni. Tocca per aggiornare alla versione più recente.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">La tua versione di Signal scade oggi. Premi per aggiornare alla versione più recente.</string>
   <string name="reminder_header_expired_build">La tua versione di Signal è scaduta!</string>
@@ -1114,6 +1131,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="RegistrationActivity_restore_from_backup">Ripristinare da backup?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Ripristina i tuoi messaggi e contenuti multimediali da un backup locale. Se non lo ripristini ora, non sarai in grado di ripristinarlo in seguito</string>
   <string name="RegistrationActivity_backup_size_s">Dimensione backup: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Data del backup: %s</string>
   <string name="BackupDialog_enable_local_backups">Abilitare backup locali?</string>
   <string name="BackupDialog_enable_backups">Abilitare i backup</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Conferma di aver capito spuntando la casella di conferma.</string>
@@ -1143,18 +1161,33 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="registration_lock_dialog_view__confirm_pin">Conferma PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Inserisci il PIN per il blocco della registrazione</string>
   <string name="registration_lock_reminder_view__enter_pin">Inserisci PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Abilita un PIN di blocco della registrazione che sarà necessario per registrare nuovamente questo numero di telefono con Signal.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN di blocco della registrazione</string>
+  <string name="preferences_app_protection__registration_lock">Blocco registrazione</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Devi inserire il tuo PIN di blocco registrazione</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN errato</string>
   <string name="RegistrationActivity_too_many_attempts">Troppi tentativi</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Hai sbagliato il PIN di blocco registrazione troppe volte. Per favore riprova tra un giorno.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Errore durante la connessione al servizio</string>
   <string name="RegistrationActivity_oh_no">Oh no!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">La registrazione di questo numero di telefono sarà possibile senza il PIN di blocco della registrazione dopo che saranno trascorsi 7 giorni da quando questo numero di telefono è stato attivo su Signal. Hai %d giorni rimanenti.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN di blocco registrazione</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Questo numero di telefono ha il blocco registrazione attivo. Per favore inserisci il PIN di blocco registrazione.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Il PIN di blocco registrazione è abilitato sul tuo numero di telefono. Per aiutarti a memorizzarlo Signal ti chiederà periodicamente di confermarlo.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ho dimenticato il mio PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN dimenticato?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Il blocco registrazione aiuta a proteggere il tuo numero di telefono da tentativi non autorizzati di registrazione. Questa funzionalità può essere disabilitata in ogni momento dalle impostazioni Privacy di Signal</string>
+  <string name="RegistrationLockDialog_registration_lock">Blocco registrazione</string>
   <string name="RegistrationLockDialog_enable">Abilita</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">.Il PIN di blocco registrazione deve essere almeno di 4 cifre</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">I due PIN inseriti non corrispondono.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Errore durante la connessione al servizio</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Disabilitare PIN di blocco registrazione?</string>
   <string name="RegistrationLockDialog_disable">Disabilita</string>
   <string name="RegistrationActivity_continue">Continua</string>
   <string name="preferences_chats__backups">Backup</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal è bloccato</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TAPPA PER SBLOCCARE</string>
+  <string name="RegistrationLockDialog_reminder">Promemoria:</string>
   <!--EOF-->
 </resources>

@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Quote;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.EncapsulatedExceptions;
@@ -141,8 +142,9 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     Optional<byte[]>              profileKey        = getProfileKey(message.getRecipient());
     List<Address>                 recipients        = getGroupMessageRecipients(groupId, messageId);
     MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
-    List<Attachment>              scaledAttachments = scaleAttachments(mediaConstraints, message.getAttachments());
+    List<Attachment>              scaledAttachments = scaleAndStripExifFromAttachments(mediaConstraints, message.getAttachments());
     List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(scaledAttachments);
+    Optional<Quote>               quote             = getQuoteFor(message);
 
     List<SignalServiceAddress>    addresses;
 
@@ -171,6 +173,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                       .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withProfileKey(profileKey.orNull())
+                                                                      .withQuote(quote.orNull())
                                                                       .build();
 
       messageSender.sendMessage(addresses, groupMessage);

@@ -3,7 +3,7 @@
   <string name="app_name">Signal</string>
   <string name="yes">Sí</string>
   <string name="no">No</string>
-  <string name="delete">Borrar</string>
+  <string name="delete">Eliminar</string>
   <string name="please_wait">Por favor, espere...</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nuevo mensaje</string>
@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Todavía no ha elegido una clave de acceso!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 mensaje por conversación</item>
+    <item quantity="one">%d mensaje por conversación</item>
     <item quantity="other">%d mensajes por conversación</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes antiguos?</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <!--DraftDatabase-->
@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Chats recientes</string>
   <string name="ContactsCursorLoader_contacts">Contactos</string>
+  <string name="ContactsCursorLoader_groups">Grupos</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensaje %s</string>
   <string name="ContactsDatabase_signal_call_s">Llamar a %s con Signal</string>
@@ -324,11 +325,11 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="InviteActivity_invitations_sent">¡Invitaciones enviadas!</string>
   <string name="InviteActivity_invite_to_signal">Invitar a Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIAR SMS A 1 AMIGO</item>
+    <item quantity="one">ENVIAR SMS A %d AMIGO</item>
     <item quantity="other">ENVIAR SMS A %d AMIGOS</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">¿Enviar 1 invitación SMS?</item>
+    <item quantity="one">¿Enviar %d invitación SMS?</item>
     <item quantity="other">¿Enviar %d invitaciones SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
@@ -345,6 +346,16 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Error al leer la configuración MMS del proveedor inalámbrico</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Audiovisuales</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">¿Eliminar mensaje seleccionado?</item>
+    <item quantity="other">¿Eliminar mensajes seleccionados?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Esto eliminará permanentemente el mensaje seleccionado.</item>
+    <item quantity="other">Esto eliminará permanentemente todos los %1$d mensajes seleccionados.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Eliminando</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Eliminando mensajes...</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Llamada de Signal en curso</string>
@@ -568,6 +579,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaPreviewActivity_draft">Borrador</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita el permiso Almacenamiento para guardar a un almacenamiento externo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Almacenamiento\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar a un almacenamiento externo sin permisos</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Esto eliminará permanentemente este mensaje.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensajes nuevos en %2$d conversaciones</string>
   <string name="MessageNotifier_most_recent_from_s">Más recientes desde: %1$s</string>
@@ -673,6 +686,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="audio_view__play_accessibility_description">Reproducir</string>
   <string name="audio_view__pause_accessibility_description">Pausar</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Vídeo</string>
+  <string name="QuoteView_document">Documento</string>
+  <string name="QuoteView_you">Usted</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección por lotes</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionado</string>
@@ -696,27 +714,27 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--expiration-->
   <string name="expiration_off">Inactivo</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 segundo</item>
+    <item quantity="one">%d segundo</item>
     <item quantity="other">%d segundos</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d s</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuto</item>
+    <item quantity="one">%d minuto</item>
     <item quantity="other">%d minutos</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%d m</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 hora</item>
+    <item quantity="one">%d hora</item>
     <item quantity="other">%d horas</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d h</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 día</item>
+    <item quantity="one">%d día</item>
     <item quantity="other">%d días</item>
   </plurals>
   <string name="expiration_days_abbreviated">%d d</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 semana</item>
+    <item quantity="one">%d semana</item>
     <item quantity="other">%d semanas</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d s</string>
@@ -995,7 +1013,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalles del mensaje</string>
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
-  <string name="conversation_context__menu_delete_message">Borrar mensaje</string>
+  <string name="conversation_context__menu_delete_message">Eliminar mensaje</string>
   <string name="conversation_context__menu_forward_message">Reenviar mensaje</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
   <!--conversation_context_image-->
@@ -1008,7 +1026,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_insecure__invite">Invitar</string>
   <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Borrar seleccionado</string>
+  <string name="conversation_list_batch__menu_delete_selected">Eliminar seleccionado</string>
   <string name="conversation_list_batch__menu_select_all">Seleccionar todo</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Archivo seleccionado</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Archivo deseleccionado</string>
@@ -1058,8 +1076,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Su versión de Signal está anticuada</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Su versión de Signal caducará en 1 día. Pulse para actualizarla a la versión más reciente.</item>
-    <item quantity="other">Su versión de Signal caducará en %d días. Pulse para actualizarla a la versión más reciente.</item>
+    <item quantity="one">Su versión de Signal caducará en %d day. Pulse para actualizar a la versión más reciente.</item>
+    <item quantity="other">Su versión de Signal caducará en %d días. Pulse para actualizar a la versión más reciente.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Su versión de Signal caduca hoy. Pulse para actualizarla a la versión más reciente.</string>
   <string name="reminder_header_expired_build">¡Su versión de Signal ha caducado!</string>
@@ -1088,7 +1106,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Trimmer-->
   <string name="trimmer__deleting">Eliminando</string>
   <string name="trimmer__deleting_old_messages">Borrando mensajes antiguos...</string>
-  <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos borrados con éxito</string>
+  <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos eliminados con éxito</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando...</string>
@@ -1163,7 +1181,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registro de este número de teléfono será posible sin PIN de bloqueo de registro pasados 7 días desde que este número fuera activado en Signal. Aún le quedan %d días.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de bloqueo de registro</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de teléfono tiene el bloqueo de registro habilitado. Por favor, introduzca el PIN de bloqueo de registro.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueo de registro está habilitado para su número de teléfono.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueo de registro está habilitado para su número de teléfono. Para ayudarle a memorizar su PIN de bloqueo de registro, Signal le pedirá periódicamente que lo confirme.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Olvidé mi PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">¿Ha olvidado el PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">El bloqueo de registro ayuda a proteger su número de teléfono de intentos de registro no autorizados. Esta característica se puede deshabilitar en cualquier momento en su configuración de privacidad de Signal.</string>
@@ -1176,5 +1194,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationLockDialog_disable">Deshabilitar</string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="preferences_chats__backups">Copias de seguridad</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal está desbloqueado</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">PULSE PARA DESBLOQUEAR</string>
+  <string name="RegistrationLockDialog_reminder">Recordatorio:</string>
   <!--EOF-->
 </resources>

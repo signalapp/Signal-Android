@@ -135,9 +135,11 @@ public class SQLCipherMigrationHelper {
       });
 
       copyTable("thread", legacyDb, modernDb, (row, progress) -> {
+        Long snippetType = row.getAsLong("snippet_type");
+        if (snippetType == null) snippetType = 0L;
+
         Pair<Long, String> plaintext = getPlaintextBody(legacyCipher, legacyAsymmetricCipher,
-                                                        row.getAsLong("snippet_type"),
-                                                        row.getAsString("snippet"));
+                                                        snippetType, row.getAsString("snippet"));
 
         row.put("snippet", plaintext.second);
         row.put("snippet_type", plaintext.first);

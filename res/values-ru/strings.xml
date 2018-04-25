@@ -11,10 +11,10 @@
   <string name="ApplicationPreferencesActivity_currently_s">Сейчас: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы ещё не задали парольную фразу!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 сообщение в разговоре</item>
-    <item quantity="few">%d соообщения в разговоре</item>
-    <item quantity="many">%d сообщений в разговоре</item>
-    <item quantity="other">%d сообщений в разговоре</item>
+    <item quantity="one">%dсообщение в разговоре</item>
+    <item quantity="few">%dсообщений в разговоре</item>
+    <item quantity="many">%dсообщений в разговоре</item>
+    <item quantity="other">%dсообщений в разговоре</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Удалить все старые сообщения?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -41,13 +41,14 @@
   <string name="ApplicationPreferencesActivity_off">выключена</string>
   <string name="ApplicationPreferencesActivity_Off">Выключено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Блокировка экрана %1$s, блокировка регистрации %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, язык %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 минута</item>
-    <item quantity="few">%d минуты</item>
-    <item quantity="many">%d минут</item>
-    <item quantity="other">%d минут</item>
+    <item quantity="one">%dминута</item>
+    <item quantity="few">%dминут</item>
+    <item quantity="many">%dминут</item>
+    <item quantity="other">%dминут</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(изображение)</string>
@@ -82,6 +83,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Недавние беседы</string>
   <string name="ContactsCursorLoader_contacts">Контакты</string>
+  <string name="ContactsCursorLoader_groups">Группы</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Сообщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Позвонить через Signal на %s</string>
@@ -349,16 +351,16 @@
   <string name="InviteActivity_invitations_sent">Приглашения отправлены!</string>
   <string name="InviteActivity_invite_to_signal">Пригласить в Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ОТПРАВИТЬ SMS 1-МУ ДРУГУ</item>
-    <item quantity="few">ОТПРАВИТЬ SMS %d-М ДРУЗЬЯМ</item>
-    <item quantity="many">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-    <item quantity="other">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
+    <item quantity="one">Отправить СМС %d другу</item>
+    <item quantity="few">Отправить СМС %dдрузьям?</item>
+    <item quantity="many">Отправить СМС %dдрузьям?</item>
+    <item quantity="other">Отправить СМС %dдрузьям?</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Отправить 1 SMS-приглашение?</item>
-    <item quantity="few">Отправить %d SMS-приглашения?</item>
-    <item quantity="many">Отправить %d SMS-приглашений?</item>
-    <item quantity="other">Отправить %d SMS-приглашений?</item>
+    <item quantity="one">Отправить %dСМС-приглашение?</item>
+    <item quantity="few">Отправить %dСМС-приглашения?</item>
+    <item quantity="many">Отправить %dСМС-приглашений?</item>
+    <item quantity="other">Отправить %dСМС-приглашений?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Давайте перейдём на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
@@ -374,6 +376,20 @@
   <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS беспроводного провайдера</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Медиа</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Удалить выбранное сообщение?</item>
+    <item quantity="few">Удалить выбранные сообщения?</item>
+    <item quantity="many">Удалить выбранные сообщения?</item>
+    <item quantity="other">Удалить выбранные сообщения?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Это навсегда удалит выбранное сообщение.</item>
+    <item quantity="few">Это навсегда удалит все %1$d выбранных сообщения.</item>
+    <item quantity="many">Это навсегда удалит все %1$d выбранных сообщений.</item>
+    <item quantity="other">Это навсегда удалит все %1$d выбранных сообщений.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Удаление</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Удаляем сообщения...</string>
   <string name="MediaOverviewActivity_Documents">Документы</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок в Signal</string>
@@ -584,12 +600,15 @@
   <string name="KeyCachingService_signal_passphrase_cached">Нажмите, чтобы открыть.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Нажмите, чтобы открыть; нажмите на замок, чтобы закрыть.</string>
   <string name="KeyCachingService_passphrase_cached">Signal разблокирован</string>
+  <string name="KeyCachingService_lock">Блокировать Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Тип медиа-файла не поддерживается</string>
   <string name="MediaPreviewActivity_draft">Черновик</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к хранилищу для сохранения вложений, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Не удается сохранить во внешнем хранилище без разрешений</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Удалить сообщение?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Это сообщение будет навсегда удалено.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от %1$s</string>
@@ -610,6 +629,7 @@
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Открыть директорию</string>
+  <string name="SaveAttachmentTask_saved_to">Сохранено в %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Поиск</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -694,6 +714,10 @@
   <string name="audio_view__play_accessibility_description">Воспроизвести</string>
   <string name="audio_view__pause_accessibility_description">Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Аудио</string>
+  <string name="QuoteView_video">Видео</string>
+  <string name="QuoteView_you">Вы</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Выбрать несколько</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s выбрано</string>
@@ -717,38 +741,38 @@
   <!--expiration-->
   <string name="expiration_off">Выключено</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 секунда</item>
-    <item quantity="few">%d секунды</item>
-    <item quantity="many">%d секунд</item>
-    <item quantity="other">%d сек.</item>
+    <item quantity="one">%dсекунда</item>
+    <item quantity="few">%dсекунд</item>
+    <item quantity="many">%dсекунд</item>
+    <item quantity="other">%dсекунд</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%dс</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 минута</item>
-    <item quantity="few">%d минуты</item>
-    <item quantity="many">%d минут</item>
-    <item quantity="other">%d мин.</item>
+    <item quantity="one">%dминута</item>
+    <item quantity="few">%dминуты</item>
+    <item quantity="many">%dминут</item>
+    <item quantity="other">%dминут</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dм</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 час</item>
-    <item quantity="few">%d часа</item>
-    <item quantity="many">%d часов</item>
-    <item quantity="other">%d час.</item>
+    <item quantity="one">%dчас</item>
+    <item quantity="few">%dчаса</item>
+    <item quantity="many">%dчасов</item>
+    <item quantity="other">%dчасов</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dч</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 день</item>
-    <item quantity="few">%d дня</item>
-    <item quantity="many">%d дней</item>
-    <item quantity="other">%d дн.</item>
+    <item quantity="one">%dдень</item>
+    <item quantity="few">%dдня</item>
+    <item quantity="many">%dдней</item>
+    <item quantity="other">%dдней</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dд</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 неделя</item>
-    <item quantity="few">%d недели</item>
-    <item quantity="many">%d недель</item>
-    <item quantity="other">%d нед.</item>
+    <item quantity="one">%dнеделя</item>
+    <item quantity="few">%dнедели</item>
+    <item quantity="many">%dнедель</item>
+    <item quantity="other">%dнедель</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dн</string>
   <!--unverified safety numbers-->
@@ -831,6 +855,7 @@
   <string name="recipient_preferences__view_safety_number">Просмотреть код безопасности</string>
   <string name="recipient_preferences__chat_settings">Настройки чата</string>
   <string name="recipient_preferences__privacy">Конфиденциальность</string>
+  <string name="recipient_preferences__call_settings">Настройки звонков</string>
   <string name="recipient_preferences__ringtone">Мелодия</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Звонок через Signal</string>
@@ -1010,6 +1035,7 @@
   <string name="preferences_notifications__events">События</string>
   <string name="preferences_notifications__in_chat_sounds">Звуки в чате</string>
   <string name="preferences_notifications__show">Показать</string>
+  <string name="preferences_notifications__calls">Звонки</string>
   <string name="preferences_notifications__ringtone">Мелодия</string>
   <string name="preferences_chats__show_invitation_prompts">Показать приглашения</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Отображать приглашения для контактов, не пользующихся Signal</string>
@@ -1092,10 +1118,10 @@
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Ваша версия Signal устарела</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Срок действия вашей версии Signal истечёт через 1 день. Нажмите, чтобы обновиться до последней версии.</item>
-    <item quantity="few">Срок действия вашей версии Signal истечёт через %d дня. Нажмите, чтобы обновиться до последней версии.</item>
-    <item quantity="many">Срок действия вашей версии Signal истечёт через %d дней. Нажмите, чтобы обновиться до последней версии.</item>
-    <item quantity="other">Срок действия вашей версии Signal истечёт через %d дней. Нажмите, чтобы обновиться до последней версии.</item>
+    <item quantity="one">Ваша версия приложения Signal перестанет работать через %dдень. Нажмите здесь для обновления до последней версии.</item>
+    <item quantity="few">Ваша версия приложения Signal перестанет работать через %dдня. Нажмите здесь для обновления до последней версии.</item>
+    <item quantity="many">Ваша версия приложения Signal перестанет работать через %dдней. Нажмите здесь для обновления до последней версии.</item>
+    <item quantity="other">Ваша версия приложения Signal перестанет работать через %dдней. Нажмите здесь для обновления до последней версии.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Срок действия вашей версии Signal истекает сегодня. Нажмите, чтобы обновиться до последней версии.</string>
   <string name="reminder_header_expired_build">Срок действия вашей версии Signal истёк!</string>
@@ -1140,15 +1166,80 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Разблокировать для просмотра ожидающих сообщений</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Разблокировать для завершения обновления</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Пожалуйста, разблокируйте Signal, чтобы завершить обновление</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Резервная парольная фраза</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервные копии будут сохранены во внешнем хранилище и зашифрованы с помощью парольной фразы. Для восстановления резервной копии у вас должна быть эта фраза.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записал эту кодовую фразу. Без нее я не смогу восстановить резервную копию.</string>
+  <string name="registration_activity__restore_backup">Восстановление резервной копии</string>
   <string name="registration_activity__skip">Пропустить</string>
   <string name="registration_activity__register">Зарегистрироваться</string>
+  <string name="preferences_chats__chat_backups">Резервные копии чата</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Резервное копирование чатов во внешнее хранилище</string>
+  <string name="preferences_chats__create_backup">Создать резервную копию</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Введите парольную фразу резервной копии</string>
   <string name="RegistrationActivity_restore">Восстановить</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Некорректная парольная фраза резервной копии</string>
+  <string name="RegistrationActivity_checking">Проверка...</string>
+  <string name="RegistrationActivity_d_messages_so_far">еще %d сообщений...</string>
+  <string name="RegistrationActivity_restore_from_backup">Восстановить из резервной копии?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Восстановите сообщения и медиафайлы из резервной копии. Если не восстановите сейчас, вы не сможете сделать это позже.</string>
+  <string name="RegistrationActivity_backup_size_s">Размер резервной копии: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Метка времени резервной копии: %s</string>
+  <string name="BackupDialog_enable_local_backups">Включить локальное резервное копирование?</string>
+  <string name="BackupDialog_enable_backups">Включить резервные копии</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Пожалуйста, подтвердите что понимаете то что делаете, поставив отметку.</string>
+  <string name="BackupDialog_delete_backups">Удалить резервные копии?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Отключить и удалить все локальные резервные копии?</string>
+  <string name="BackupDialog_delete_backups_statement">Удалить резервные копии</string>
   <string name="BackupDialog_copied_to_clipboard">Скопировано в буфер</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal требуется разрешение на доступ к хранилищу для создания резервных копий, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Последнее резервное копирование: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">В процессе</string>
+  <string name="ProgressPreference_d_messages_so_far">еще %d сообщений</string>
+  <string name="RegistrationActivity_verify_s">Подтвердить %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Пожалуйста, введите проверочный код, отправленный на %s.</string>
+  <string name="RegistrationActivity_wrong_number">Неправильный номер?</string>
   <string name="BackupUtil_never">Никогда</string>
   <string name="BackupUtil_unknown">Неизвестен</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Разблокировать Signal</string>
+  <string name="preferences_app_protection__screen_lock">Блокировка экрана</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Блокировка доступа к Signal при помощи блокировки экрана Android или отпечатка пальца</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Тайм-аут бездействия для блокировки экрана</string>
   <string name="AppProtectionPreferenceFragment_none">Нет</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-код блокировки регистрации не совпадает с кодом подтверждения, который вы только что получили в SMS. Пожалуйста, введите PIN-код, который вы ранее настроили в приложении.</string>
+  <string name="registration_activity__registration_lock_pin">PIN-код блокировки регистрации</string>
+  <string name="registration_activity__forgot_pin">Забыли PIN-код?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-код может состоять из четырех или более цифр. Если вы забыли свой PIN-код, то будете заблокированы в этом аккаунте на семь дней.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Введите PIN-код</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Подтвердите PIN-код</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Введите PIN-код блокировки регистрации</string>
+  <string name="registration_lock_reminder_view__enter_pin">Введите PIN-код</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Включите PIN-код блокировки регистрации, который потребуется для повторной регистрации этого номера телефона в Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN-код блокировки регистрации</string>
+  <string name="preferences_app_protection__registration_lock">Блокировка регистрации</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Необходимо ввести PIN-код блокировки регистрации</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Неправильный PIN-код блокировки регистрации</string>
   <string name="RegistrationActivity_too_many_attempts">Слишком много попыток</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Вы сделали слишком много неправильных попыток ввода PIN-кода блокировки регистрации. Пожалуйста, повторите попытку через день.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Ошибка подключения к сервису</string>
+  <string name="RegistrationActivity_oh_no">О, нет!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Регистрация этого номера телефона без PIN-кода блокировки регистрации будет возможна после 7 дней с момента последней активности в Signal. У вас осталось %d дн.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN-код блокировки регистрации</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Для этого номера телефона включена блокировка регистрации. Пожалуйста, введите PIN-код блокировки регистрации.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Блокировка регистрации включена для вашего номера телефона. Чтобы помочь вам запомнить PIN-код блокировки регистрации, Signal периодически будет просить вас его подтвердить.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Я забыл свой PIN-код.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Забыли PIN-код?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Блокировка регистрации помогает защитить ваш номер телефона от несанкционированных попыток регистрации. Эта функция может быть отключена в любое время в настройках конфиденциальности Signal</string>
+  <string name="RegistrationLockDialog_registration_lock">Блокировка регистрации</string>
+  <string name="RegistrationLockDialog_enable">Включить</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN-код блокировки регистрации должен быть не менее 4 цифр.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Два введенных PIN-кода не совпадают.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Ошибка подключения к сервису</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Отключить PIN-код блокировки регистрации?</string>
   <string name="RegistrationLockDialog_disable">Отключить</string>
   <string name="RegistrationActivity_continue">Продолжить</string>
+  <string name="preferences_chats__backups">Резервные копии</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal заблокирован</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">КОСНИТЕСЬ, ЧТОБЫ РАЗБЛОКИРОВАТЬ</string>
+  <string name="RegistrationLockDialog_reminder">Напоминание:</string>
   <!--EOF-->
 </resources>

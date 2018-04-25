@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 bericht per gesprek</item>
+    <item quantity="one">%d bericht per gesprek</item>
     <item quantity="other">%d berichten per gesprek</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Taal %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuut</item>
+    <item quantity="one">%d minuut</item>
     <item quantity="other">%d minuten</item>
   </plurals>
   <!--DraftDatabase-->
@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Recente gesprekken</string>
   <string name="ContactsCursorLoader_contacts">Contacten</string>
+  <string name="ContactsCursorLoader_groups">Groepen</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Bericht sturen naar %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oproep %s</string>
@@ -173,6 +174,7 @@
   <string name="ConversationFragment_sms">Sms</string>
   <string name="ConversationFragment_deleting">Verwijderen</string>
   <string name="ConversationFragment_deleting_messages">Berichten verwijderen...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Geciteerde bericht niet gevonden</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op het apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
@@ -320,11 +322,11 @@
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
   <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">STUUR SMS NAAR 1 VRIEND</item>
+    <item quantity="one">STUUR SMS NAAR %d VRIEND</item>
     <item quantity="other">STUUR SMS NAAR %d VRIENDEN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">1 sms-uitnodiging verzenden?</item>
+    <item quantity="one">%d sms-uitnodiging verzenden?</item>
     <item quantity="other">%d sms-uitnodigingen verzenden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Laten we overstappen naar Signal: %1$s</string>
@@ -341,6 +343,16 @@
   <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de mms-instellingen van de provider</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Geselecteerd bericht verwijderen?</item>
+    <item quantity="other">Geselecteerde berichten verwijderen?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Dit zal het geselecteerde bericht voorgoed verwijderen.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde berichten voorgoed verwijderen.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Verwijderen</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten verwijderen...</string>
   <string name="MediaOverviewActivity_Documents">Documenten</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
@@ -401,7 +413,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Berichten die in dit gesprek verzonden en ontvangen worden zullen %s nadat ze gelezen zijn verdwijnen.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal icoon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal-pictogram</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
   <!--PlayServicesProblemFragment-->
@@ -559,6 +571,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="MediaPreviewActivity_draft">Concept</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de opslagruimte om naar de externe opslag te kunnen opslaan, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder toestemming</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht verwijderen?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal voorgoed verwijderd worden.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
@@ -664,6 +678,12 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="audio_view__play_accessibility_description">Afspelen</string>
   <string name="audio_view__pause_accessibility_description">Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Document</string>
+  <string name="QuoteView_you">Jij</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode"> Meerdere tegelijk selecteren</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s geselecteerd</string>
@@ -687,27 +707,27 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--expiration-->
   <string name="expiration_off">Uit</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 seconde</item>
+    <item quantity="one">%d seconde</item>
     <item quantity="other">%d seconden</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minuut</item>
+    <item quantity="one">%d minuut</item>
     <item quantity="other">%d minuten</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 uur</item>
+    <item quantity="one">%d uur</item>
     <item quantity="other">%d uur</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 dag</item>
+    <item quantity="one">%d dag</item>
     <item quantity="other">%d dagen</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 week</item>
+    <item quantity="one">%d week</item>
     <item quantity="other">%d weken</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
@@ -1048,7 +1068,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Je versie van Signal is verouderd</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Je versie van Signal zal binnen één dag verlopen. Tik om bij te werken naar de meest recente versie.</item>
+    <item quantity="one">Je versie van Signal zal over %d dag verlopen. Tik om bij te werken naar de meest recente versie.</item>
     <item quantity="other">Je versie van Signal zal over %d dagen verlopen. Tik om bij te werken naar de meest recente versie.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Je versie van Signal zal vandaag verlopen. Tik om bij te werken naar de meest recente versie.</string>
@@ -1093,7 +1113,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="PushDecryptJob_new_locked_message">Nieuw vergrendeld bericht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ontgrendel om de update te voltooien</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">A.u.b. ontgrendelen om de update te voltooien</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ontgrendel om de update te voltooien</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-upwachtwoord</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-ups worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-up terug te zetten.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik deze back-up niet terugzetten.</string>
@@ -1114,7 +1134,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="RegistrationActivity_backup_timestamp_s">Back-uptijdstip: %s</string>
   <string name="BackupDialog_enable_local_backups">Lokale back-ups inschakelen?</string>
   <string name="BackupDialog_enable_backups">Back-ups inschakelen</string>
-  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Vink het selectievakje aan om te verklaren dat je het begrijpt.</string>
   <string name="BackupDialog_delete_backups">Back-ups verwijderen?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Uitschakelen en alle lokale back-ups verwijderen?</string>
   <string name="BackupDialog_delete_backups_statement">Back-ups verwijderen</string>
@@ -1123,48 +1143,52 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ChatsPreferenceFragment_last_backup_s">Laatste back-up: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Bezig</string>
   <string name="ProgressPreference_d_messages_so_far">%dberichten tot nu toe</string>
-  <string name="RegistrationActivity_verify_s">Verifiëren %s</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Geef de verificatiecode die naar %sgezonden is.</string>
+  <string name="RegistrationActivity_verify_s">%s verifiëren</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Voer de verificatiecode die naar %s gestuurd is.</string>
   <string name="RegistrationActivity_wrong_number">Verkeerd nummer?</string>
   <string name="BackupUtil_never">Nooit</string>
   <string name="BackupUtil_unknown">Onbekend</string>
   <string name="prompt_passphrase_activity__unlock_signal">Signal ontgrendelen</string>
   <string name="preferences_app_protection__screen_lock">Schermbeveiliging</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blokkeer Signal met de Android schermbeveiliging of vingerafdruk.</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blokkeer Signal met de Android-schermbeveiliging of vingerafdruk.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inactiviteitsduur voor schermvergrendeling</string>
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De registratiebeveiligings PIN is niet hetzelfde als de SMS verrificatiecode die je net ontvangen hebt. Geef a.u.b. de PIN in die je hiervoor in de applicatie ingegeven hebt.</string>
-  <string name="registration_activity__registration_lock_pin">Registratiebeveiligings PIN</string>
-  <string name="registration_activity__forgot_pin">PIN vergeten?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">De PIN kan uit vier of meer cijfers bestaan. Als je de PIN vergeet kun je geen toegang tot je account krijgen voor maximaal zeven dagen.</string>
-  <string name="registration_lock_dialog_view__enter_pin">Geef PIN</string>
-  <string name="registration_lock_dialog_view__confirm_pin">Bevestig PIN</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Geef de regsitratiebeveiligings PIN</string>
-  <string name="registration_lock_reminder_view__enter_pin">Geef PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Geef een registratiebeveiligings PIN in die nodig is om dit telefoonnummer opnieuw voor Signal te registreren.</string>
-  <string name="preferences_app_protection__registration_lock_pin">Registratiebeveiligings PIN</string>
-  <string name="preferences_app_protection__registration_lock">Registratiebeveiliging</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je registratiebeveiligings PIN ingeven</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">Ongeldige registratiebeveiligings PIN</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De pincode voor registratievergrendeling is niet hetzelfde als de sms-verificatiecode die je net ontvangen hebt. Voer de pincode in die je hiervoor in de app ingesteld hebt.</string>
+  <string name="registration_activity__registration_lock_pin">Pincode voor registratievergrendeling</string>
+  <string name="registration_activity__forgot_pin">Pincode vergeten?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">De pincode kan uit vier of meer cijfers bestaan. Als je de pincode vergeet, kan je voor maximaal 7 dagen geen toegang krijgen tot je account.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Voer pincode in</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Bevestig pincode</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Voer je pincode voor registratievergrendeling in</string>
+  <string name="registration_lock_reminder_view__enter_pin">Voer pincode in</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Voer een pincode in voor de registratievergrendeling. De volgende keer dat je dit telefoonnummer probeert te registreren bij Signal, zal je gevraagd worden deze pincode in te voeren.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Pincode voor registratievergrendeling</string>
+  <string name="preferences_app_protection__registration_lock">Registratievergrendeling</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je pincode voor registratievergrendeling invoeren</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Ongeldige pincode voor registratievergrendeling</string>
   <string name="RegistrationActivity_too_many_attempts">Te veel pogingen</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt teveel ongeldige pogingen om een registratiebeveiligings PIN in te geven ondernomen, probeer het over een dag nog eens.</string>
-  <string name="RegistrationActivity_error_connecting_to_service">Fout bij verbinden met de service</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt te veel ongeldige pogingen om een pincode voor registratievergrendeling in te voeren ondernomen, probeer het morgen opnieuw.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Fout bij het verbinden met de dienst</string>
   <string name="RegistrationActivity_oh_no">Oh nee!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zonder registratiebeveiligings PIN is pas mogelijk 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %ddagen te gaan.</string>
-  <string name="RegistrationActivity_registration_lock_pin">Registratiebeveiligings PIN</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Dit telefoonnummer heeft registratiebeveiliging geactiveerd. Geef a.u.b. de registratiebeveiligings PIN in.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratiebeveiliging is geactiveerd voor je telefoonnummer.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Ik ben mijn PIN vergeten.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">PIN vergeten?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratiebeveiliging helpt om je te beschermen tegen niet geautoriseerde registratiepogingen. Deze functie kan elk moment uitgezet worden in de privacy installingen van Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Registratiebeveiliging</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zonder pincode voor registratievergrendeling is pas mogelijk 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %ddagen te gaan.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Pincode voor registratievergrendeling</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Registratievergrendeling is ingeschakeld voor dit telefoonnummer. Voer de pincode voor registratievergrendeling in.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling is ingeschakeld voor je telefoonnummer. Signal zal je af en toe vragen om je pincode voor registratievergrendeling te bevestigen opdat je deze niet zou vergeten.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Ik ben mijn pincode vergeten.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Pincode vergeten?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratievergrendeling beschermt je telefoonnummer tegen niet-geautoriseerde registratiepogingen. Deze functie kan op elk moment in je Signal-privacyinstellingen uitgeschakeld worden.</string>
+  <string name="RegistrationLockDialog_registration_lock">Registratievergrendeling</string>
   <string name="RegistrationLockDialog_enable">Inschakelen</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">De registratiebeveiligings PIN moet minimaal 4 cijfers bevatten.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">De twee PINs zijn niet hetzelfde.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">Fout bij het verbinden met de service</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Registratiebeveiligings PIN uitschakelen?</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">De pincode voor registratievergrendeling moet minstens uit 4 cijfers bestaan.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">De twee ingevoerde pincodes komen niet overeen.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Fout bij het verbinden met de dienst</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Pincode voor registratievergrendeling uitschakelen?</string>
   <string name="RegistrationLockDialog_disable">Uitschakelen</string>
   <string name="RegistrationActivity_continue">Doorgaan</string>
   <string name="preferences_chats__backups">Back-ups</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal is vergrendeld</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TIK OM TE ONTGRENDELEN</string>
+  <string name="RegistrationLockDialog_reminder">Herinnering:</string>
+  <string name="recipient_preferences__about">Over</string>
   <!--EOF-->
 </resources>

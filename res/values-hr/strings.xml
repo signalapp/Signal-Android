@@ -10,11 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 poruka po razgovoru</item>
-    <item quantity="few">%d poruke po razgovoru</item>
-    <item quantity="other">%d poruka po razgovoru</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obriši sve stare poruke?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Ovo će automatski skratiti sve razgovore na odabrani broj poruka.</item>
@@ -39,13 +34,9 @@
   <string name="ApplicationPreferencesActivity_off">isključeno</string>
   <string name="ApplicationPreferencesActivity_Off">Isključeno</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Zaključavanje zaslona %1$s, Zaključavanje registracije %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Jezik: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minuta</item>
-    <item quantity="few">%d minute</item>
-    <item quantity="other">%d minuta</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
@@ -323,16 +314,6 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
   <string name="InviteActivity_invitations_sent">Pozivnice poslane!</string>
   <string name="InviteActivity_invite_to_signal">Pozovi u Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">POŠALJI SMS PRIJATELJIMA: 1</item>
-    <item quantity="few">POŠALJI SMS PRIJATELJIMA: %d</item>
-    <item quantity="other">POŠALJI SMS PRIJATELJIMA: %d</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Pošalji SMS pozivnice?</item>
-    <item quantity="few">Pošalji %d SMS pozivnice?</item>
-    <item quantity="other">Pošalji %d SMS pozivnica?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Prebacimo se na Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji paze da se njihovi prijatelji kriptirano dopisuju.</string>
@@ -347,6 +328,8 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Greška pri čitanju MMS postavki od operatera</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medij</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Brisanje</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Brisanje poruka...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenti</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u tijeku</string>
@@ -650,6 +633,10 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="audio_view__play_accessibility_description">Reprodukcija</string>
   <string name="audio_view__pause_accessibility_description">Zaustavi</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Zvuk</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_you">Vi</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Način za višestruki odabir</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s odabrano</string>
@@ -672,35 +659,10 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Omogući potvrde čitanja</string>
   <!--expiration-->
   <string name="expiration_off">Isključeno</string>
-  <plurals name="expiration_seconds">
-    <item quantity="one">1 sekunda</item>
-    <item quantity="few">%d sekunde</item>
-    <item quantity="other">%d sekundi</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
-  <plurals name="expiration_minutes">
-    <item quantity="one">1 minuta</item>
-    <item quantity="few">%d minute</item>
-    <item quantity="other">%d minuta</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
-  <plurals name="expiration_hours">
-    <item quantity="one">1 sat</item>
-    <item quantity="few">%d sata</item>
-    <item quantity="other">%d sati</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
-  <plurals name="expiration_days">
-    <item quantity="one">1 dan</item>
-    <item quantity="few">%d dana</item>
-    <item quantity="other">%d dana</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
-  <plurals name="expiration_weeks">
-    <item quantity="one">1 tjedan</item>
-    <item quantity="few">%d tjedna</item>
-    <item quantity="other">%d tjedana</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Vaš sigurnosni broj s %s je izmijenjen i više nije potvrđen</string>
@@ -781,6 +743,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__view_safety_number">Prikaži sigurnosni broj</string>
   <string name="recipient_preferences__chat_settings">Postavke razgovora</string>
   <string name="recipient_preferences__privacy">Privatnost</string>
+  <string name="recipient_preferences__call_settings">Postavke poziva</string>
   <string name="recipient_preferences__ringtone">Melodija</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal poziv</string>
@@ -1031,11 +994,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Usporedi s međuspremnikom</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaša Signal inačica je istekla!</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Vaša Signal inačica će isteći za 1 dan. Dodirnite za ažuriranje na najnoviju inačicu.</item>
-    <item quantity="few">Vaša Signal inačica će isteći za %d dana. Dodirnite za ažuriranje na najnoviju inačicu.</item>
-    <item quantity="other">Vaša Signal inačica će isteći za %d dana. Dodirnite za ažuriranje na najnoviju inačicu.</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">Vaša će verzija Signala isteći danas. Dodirnite za ažuriranje na najnoviju inačicu.</string>
   <string name="reminder_header_expired_build">Vaša je verzija Signala istekla!</string>
   <string name="reminder_header_expired_build_details">Poruke više neće moći biti uspješno poslane. Pritisnite za ažuriranje na najnoviju inačicu.</string>
@@ -1076,8 +1034,15 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="BackupUtil_never">Nikada</string>
   <string name="BackupUtil_unknown">Nepoznato</string>
   <string name="AppProtectionPreferenceFragment_none">Niti jedna</string>
+  <string name="preferences_app_protection__registration_lock">Zaključavanje registracije</string>
   <string name="RegistrationActivity_too_many_attempts">Previše pokušaja</string>
+  <string name="RegistrationLockDialog_registration_lock">Zaključavanje registracije</string>
+  <string name="RegistrationLockDialog_enable">Omogući</string>
   <string name="RegistrationLockDialog_disable">Onemogući</string>
   <string name="RegistrationActivity_continue">Nastavi</string>
+  <string name="preferences_chats__backups">Sigurnosne kopije</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaključan</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">DODIRNI ZA OTKLJUČAVANJE</string>
+  <string name="RegistrationLockDialog_reminder">Podsjetnik:</string>
   <!--EOF-->
 </resources>

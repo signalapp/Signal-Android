@@ -32,10 +32,15 @@ public abstract class Attachment {
   private final String fastPreflightId;
 
   private final boolean voiceNote;
+  private final int width;
+  private final int height;
+
+  private final boolean quote;
 
   public Attachment(@NonNull String contentType, int transferState, long size, @Nullable String fileName,
                     @Nullable String location, @Nullable String key, @Nullable String relay,
-                    @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote)
+                    @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
+                    int width, int height, boolean quote)
   {
     this.contentType     = contentType;
     this.transferState   = transferState;
@@ -47,6 +52,9 @@ public abstract class Attachment {
     this.digest          = digest;
     this.fastPreflightId = fastPreflightId;
     this.voiceNote       = voiceNote;
+    this.width           = width;
+    this.height          = height;
+    this.quote           = quote;
   }
 
   @Nullable
@@ -105,5 +113,17 @@ public abstract class Attachment {
 
   public boolean isVoiceNote() {
     return voiceNote;
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public int getHeight() {
+    return height;
+  }
+
+  public boolean isQuote() {
+    return quote;
   }
 }

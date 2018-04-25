@@ -10,10 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">தற்போது: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet"> நீங்கள் இன்னும் ஒரு கடவுச்சொல்லை அமைக்கவில்லை!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">ஓரு உரையாடலில் 1 செய்தி</item>
-    <item quantity="other">ஓர் உரையாடலில் %d செய்திகள்</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">அனைத்து பழைய செய்திகளையும் நீக்கலாமா?</string>
   <string name="ApplicationPreferencesActivity_delete">நீக்கு</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">கடவுச்சொல்லை முடக்கு</string>
@@ -33,10 +29,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">குறுஞ்செய்தி %1$s, செழுஞ்செய்தி. %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">பின்புலத்தோற்றம் %1$s, மொழி %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">ஒரு நிமிடம்</item>
-    <item quantity="other">%d நிமிடங்கள்</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(படம்)</string>
   <string name="DraftDatabase_Draft_audio_snippet">( கேட்பொலி) </string>
@@ -213,6 +205,8 @@
   <string name="MessageRetrievalService_signal">சமிக்ஞை</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">நீக்கப்படுகிறது</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">செய்திகள் நீக்கப்படுகிறது...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">சமிக்ஞை அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">சமிக்ஞை அழைப்பு நிறுவுப்படுகிறது</string>
@@ -388,6 +382,10 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">தொடர்பின் புகைப்படம்</string>
   <!--audio_view-->
+  <!--QuoteView-->
+  <string name="QuoteView_audio">கேட்பொலி</string>
+  <string name="QuoteView_video">காணொளி</string>
+  <string name="QuoteView_you">நீங்கள்</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">தொகுப்பாய் தேர்வு செய்யப்பட்டது</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s தேர்ந்தெடுக்கப்பட்டது</string>

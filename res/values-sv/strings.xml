@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Nuvarande: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte angivit ett lösenord än!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 meddelande per konversation</item>
+    <item quantity="one">%d meddelande per konversation</item>
     <item quantity="other">%d meddelanden per konversation</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
@@ -37,10 +37,11 @@
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Skärmlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minut</item>
+    <item quantity="one">%d minut</item>
     <item quantity="other">%d minuter</item>
   </plurals>
   <!--DraftDatabase-->
@@ -76,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nyligen använda chatter</string>
   <string name="ContactsCursorLoader_contacts">Kontakter</string>
+  <string name="ContactsCursorLoader_groups">Grupper</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Meddelande %s</string>
   <string name="ContactsDatabase_signal_call_s">Signalsamtal %s</string>
@@ -172,6 +174,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Raderar</string>
   <string name="ConversationFragment_deleting_messages">Raderar meddelanden...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Citerat meddelande hittades inte</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
@@ -321,11 +324,11 @@ via denna metod kommer samtliga SMS bli duplicerade.</string>
   <string name="InviteActivity_invitations_sent">Inbjudningar skickade!</string>
   <string name="InviteActivity_invite_to_signal">Bjud in till Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SKICKA SMS TILL 1 VÄN</item>
+    <item quantity="one">SKICKA SMS TILL %d VÄN</item>
     <item quantity="other">SKICKA SMS TILL %d VÄNNER</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Skicka 1 SMS-inbjudan?</item>
+    <item quantity="one">Skicka %d SMS-inbjudan?</item>
     <item quantity="other">Skicka %d SMS-inbjudningar?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Byt till Signal: %1$s</string>
@@ -342,6 +345,16 @@ via denna metod kommer samtliga SMS bli duplicerade.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsningen av trådlös leverantör MMS-inställningar</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Radera valt meddelande?</item>
+    <item quantity="other">Radera valda meddelanden?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Detta kommer permanent radera det valda meddelandet.</item>
+    <item quantity="other">Detta kommer permanent radera %1$d valda meddelanden.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Raderar</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Raderar meddelanden...</string>
   <string name="MediaOverviewActivity_Documents">Dokument</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signalsamtal pågår</string>
@@ -552,12 +565,15 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Tryck för att öppna.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tryck för att öppna, tryck på låset för att stänga.</string>
   <string name="KeyCachingService_passphrase_cached">Signal är olåst</string>
+  <string name="KeyCachingService_lock">Lås Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds ej</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att kunna spara till extern lagring, men det har blivit permanent nekat. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\", och aktivera \"Lagring\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan inte spara till externt utrymme utan behörighet</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Radera meddelande?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Detta kommer permanent radera detta meddelande.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
@@ -578,6 +594,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Öppna mapp</string>
+  <string name="SaveAttachmentTask_saved_to">Sparad till %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Sök</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -662,6 +679,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="audio_view__play_accessibility_description">Spela</string>
   <string name="audio_view__pause_accessibility_description">Pausa</string>
   <string name="audio_view__download_accessibility_description">Ladda ner</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Ljud</string>
+  <string name="QuoteView_video">Filmer</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Dokument</string>
+  <string name="QuoteView_you">Du</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Flervalsläge</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s vald</string>
@@ -685,27 +708,27 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--expiration-->
   <string name="expiration_off">Av</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 sekund</item>
+    <item quantity="one">%d sekund</item>
     <item quantity="other">%d sekunder</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minut</item>
+    <item quantity="one">%d minut</item>
     <item quantity="other">%d minuter</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 timme</item>
+    <item quantity="one">%d timme</item>
     <item quantity="other">%d timmar</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dt</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 dag</item>
+    <item quantity="one">%d dag</item>
     <item quantity="other">%d dagar</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 vecka</item>
+    <item quantity="one">%d vecka</item>
     <item quantity="other">%d veckor</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dv</string>
@@ -785,6 +808,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="recipient_preferences__view_safety_number">Visa säkerhetsnummer</string>
   <string name="recipient_preferences__chat_settings">Chattinställningar</string>
   <string name="recipient_preferences__privacy">Integritet</string>
+  <string name="recipient_preferences__call_settings">Samtalsinställningar</string>
   <string name="recipient_preferences__ringtone">Rington</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signalsamtal</string>
@@ -962,6 +986,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_notifications__events">Händelser</string>
   <string name="preferences_notifications__in_chat_sounds">Ljud i chatter</string>
   <string name="preferences_notifications__show">Visa</string>
+  <string name="preferences_notifications__calls">Samtal</string>
   <string name="preferences_notifications__ringtone">Rington</string>
   <string name="preferences_chats__show_invitation_prompts">Visa inbjudningsmeddelanden</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visa inbjudningsmeddelande för kontakter utan Signal</string>
@@ -1044,7 +1069,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Din version av Signal är urgammal</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Din version av Signal upphör om 1 dag. Klicka för att uppdatera till den senaste versionen.</item>
+    <item quantity="one">Din version av Signal upphör om %d dag. Klicka för att uppdatera till den senaste versionen.</item>
     <item quantity="other">Din version av Signal upphör om %d dagar. Klicka för att uppdatera till den senaste versionen.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Din version av Signal kommer att gå ut idag. Tryck för att uppdatera till senaste versionen.</string>
@@ -1090,15 +1115,81 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås upp för att se väntande meddelanden</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås upp för att avsluta uppdateringen</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vänligen lås upp Signal för att fullborda uppdateringen</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Lösenord för säkerhetskopering</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Säkerhetskopieringar sparas till externa utrymmet och krypteras med lösenordet nedanför. Du måste skriva in lösenordet för att återställa säkerhetskopian.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jag har skrivit ner lösenordet. Utan det kommer jag inte kunna återställa säkerhetskopian.</string>
+  <string name="registration_activity__restore_backup">Återställ säkerhetskopia</string>
   <string name="registration_activity__skip">Hoppa över</string>
   <string name="registration_activity__register">Registrera</string>
+  <string name="preferences_chats__chat_backups">Säkerhetskopior av chatter</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Skapa säkerhetskopiera till externt utrymme</string>
+  <string name="preferences_chats__create_backup">Skapa säkerhetskopia</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Skriv in lösenord för säkerhetskopian</string>
   <string name="RegistrationActivity_restore">Återställ</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Fel lösenord för säkerhetskopian</string>
+  <string name="RegistrationActivity_checking">Kontrollerar...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d meddelanden än så länge...</string>
+  <string name="RegistrationActivity_restore_from_backup">Återställ från säkerhetskopia?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Återställ dina meddelanden och media från en lokal säkerhetskopia. Om du inte återställer nu, kan du inte återställa senare.</string>
+  <string name="RegistrationActivity_backup_size_s">Storlek på säkerhetskopia: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Tidspunkt för säkerhetskopia: %s</string>
+  <string name="BackupDialog_enable_local_backups">Aktivera lokala säkerhetskopior?</string>
+  <string name="BackupDialog_enable_backups">Aktivera säkerhetskopior</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Vänligen bekräfta att du förstår genom att kryssa i rutan.</string>
+  <string name="BackupDialog_delete_backups">Ta bort säkerhetskopior?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Inaktivera och ta bort alla lokala säkerhetskopior?</string>
+  <string name="BackupDialog_delete_backups_statement">Ta bort säkerhetskopior</string>
   <string name="BackupDialog_copied_to_clipboard">Kopierade till urklipp</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal kräver åtkomst till extern lagring för att skapa säkerhetskopior, men det har permanent nekats. Vänligen gå vidare till appinställningar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Senaste säkerhetskopia: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Pågår</string>
+  <string name="ProgressPreference_d_messages_so_far">%d meddelanden än så länge</string>
+  <string name="RegistrationActivity_verify_s">Verifiera %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv in verifieringskoden skickad till %s.</string>
+  <string name="RegistrationActivity_wrong_number">Fel nummer?</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Okänd</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Lås upp Signal</string>
+  <string name="preferences_app_protection__screen_lock">Skärmlås</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås åtkomst till Signal med Androids skärmlås eller fingeravtryck</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout för inaktivitet för skärmlåset</string>
   <string name="AppProtectionPreferenceFragment_none">Inga</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-koden för registreringslåset är inte detsamma som den SMS-kod du precis fick. Skriv in PIN-koden du tidigare skrev in i appen.</string>
+  <string name="registration_activity__registration_lock_pin">PIN-kod för registreringslås</string>
+  <string name="registration_activity__forgot_pin">Glömt PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-koden kan bestå av fyra eller fler siffror. Om du glömmer din PIN-kod kan du bli utelåst från ditt konto i upp till sju dagar.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Skriv in PIN-kod</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Bekräfta PIN-kod</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Skriv in din PIN-kod för registreringslåset</string>
+  <string name="registration_lock_reminder_view__enter_pin">Skriv in PIN-kod</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Skriv in en PIN-kod för registreringslåset som kommer krävas för att registrera det här mobilnumret med Signal igen.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN-kod för registreringslåset</string>
+  <string name="preferences_app_protection__registration_lock">Registreringslås</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du måste skriva in din PIN-kod för registreringslåset</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Felaktig PIN-kod för registreringslåset</string>
   <string name="RegistrationActivity_too_many_attempts">För många försök</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har gjort för många PIN-kodsförsök. Vänligen försök igen efter en dag.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Fel vid anslutning till tjänst</string>
+  <string name="RegistrationActivity_oh_no">Åh nej!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrering av detta mobilnummer kommer bli möjligt utan din PIN-kod för registreringslåset efter 7 dagar har passerat sen mobilnumret senast var aktivt på Signal. Du har %d dagar kvar.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN-kod för registreringslåset</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Detta mobilnummer har registreringslåset aktiverat. Vänligen skriv in din PIN-kod för registreringslåset.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslåset är påslaget för ditt mobilnummer. För att hjälpa dig att komma ihåg koden kommer Signal periodvis be dig bekräfta PIN-koden du valt.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Jag har glömt min PIN-kod.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Glömt PIN-koden?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås hjälper till att skydda ditt mobilnummer från obehöriga registreringsförsök. Denna funktion kan när som helst stängas av under Signals sekrettessinställningar.</string>
+  <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
+  <string name="RegistrationLockDialog_enable">Aktivera</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN-koden för registreringslåset måste vara minst 4-siffrigt.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">De två PIN-koderna du skrev in matchade inte.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Fel vid anslutning till tjänsten</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Stäng av PIN-kod för registreringslås?</string>
   <string name="RegistrationLockDialog_disable">Inaktivera</string>
   <string name="RegistrationActivity_continue">Fortsätt</string>
+  <string name="preferences_chats__backups">Säkerhetskopia</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal är låst</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TRYCK FÖR ATT LÅSA UPP</string>
+  <string name="RegistrationLockDialog_reminder">Påminnelse:</string>
+  <string name="recipient_preferences__about">Om</string>
   <!--EOF-->
 </resources>

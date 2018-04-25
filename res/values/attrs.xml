@@ -87,6 +87,8 @@
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
 
+    <attr name="invite_background" format="color"/>
+
     <attr name="reminder_header_background" format="color"/>
 
     <attr name="menu_new_conversation_icon" format="reference" />
@@ -106,6 +108,7 @@
     <attr name="menu_info_icon" format="reference" />
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
+    <attr name="menu_reply_icon" format="reference" />
 
     <attr name="pref_icon_tint" format="color"/>
 
@@ -149,6 +152,10 @@
 
     <declare-styleable name="ThumbnailView">
         <attr name="backgroundColorHint" format="color" />
+        <attr name="minWidth" format="dimension" />
+        <attr name="maxWidth" format="dimension" />
+        <attr name="minHeight" format="dimension" />
+        <attr name="maxHeight" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="DeliveryStatusView">
@@ -235,6 +242,14 @@
         <attr name="vcv_inputColor" format="color"/>
         <attr name="vcv_textSize" format="dimension"/>
         <attr name="vcv_textColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="QuoteView">
+        <attr name="message_type" format="enum">
+            <enum name="preview" value="0" />
+            <enum name="outgoing" value="1" />
+            <enum name="incoming" value="2" />
+        </attr>
     </declare-styleable>
 
 

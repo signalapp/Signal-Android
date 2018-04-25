@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldande: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikkje valt ein passordfrase endå.</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">1 melding per samtalt</item>
+    <item quantity="one">%d melding per samtale</item>
     <item quantity="other">%d meldingar per samtale</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Vil du sletta alle gamle meldingar no?</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">1 minutt</item>
+    <item quantity="one">%d minutt</item>
     <item quantity="other">%d minutt</item>
   </plurals>
   <!--DraftDatabase-->
@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nylege samtalar</string>
   <string name="ContactsCursorLoader_contacts">Kontaktar</string>
+  <string name="ContactsCursorLoader_groups">Grupper</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
@@ -173,6 +174,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Sletter</string>
   <string name="ConversationFragment_deleting_messages">Slettar meldingar …</string>
+  <string name="ConversationFragment_quoted_message_not_found">Fann ikkje den siterte meldinga</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne eininga har ingen nettlesar installert.</string>
   <!--ConversationListFragment-->
@@ -324,12 +326,12 @@ fører dette til dupliserte meldingar.</string>
   <string name="InviteActivity_invitations_sent">Invitasjonar sendt.</string>
   <string name="InviteActivity_invite_to_signal">Inviter til Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SEND SMS TIL 1 VENN</item>
+    <item quantity="one">SEND SMS TIL %d VENN</item>
     <item quantity="other">SEND SMS TIL %d VENNAR</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Vil du senda 1 SMS-invitasjon?</item>
-    <item quantity="other">Vil du senda %d SMS-invitasjonar?</item>
+    <item quantity="one">Send %d SMS-invitasjon?</item>
+    <item quantity="other">Send %d SMS-invitasjonar?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">La oss byta til Signal. %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikkje har nokon program å dela denne informasjonen med.</string>
@@ -345,6 +347,16 @@ fører dette til dupliserte meldingar.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Klarte ikkje lesa MMS-oppsettet til teleselskapet</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Slett den valde meldinga?</item>
+    <item quantity="other">Slett dei valde meldingane?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Dette vil sletta den valde meldinga for godt.</item>
+    <item quantity="other">Dette vil sletta alle dei %1$d valde meldingane for godt.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Slettar</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Slettar meldingar …</string>
   <string name="MediaOverviewActivity_Documents">Dokument</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale i gang</string>
@@ -564,6 +576,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MediaPreviewActivity_draft">Kladd</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal treng tilgang til lagring for å lagra til eksterne minnekort, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan ikkje lagra til eksterne minnekort utan tilgang</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Slett melding?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette vil sletta denne meldinga for godt.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldingar i %2$d samtalar</string>
   <string name="MessageNotifier_most_recent_from_s">Nyaste frå: %1$s</string>
@@ -669,6 +683,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="audio_view__play_accessibility_description">Spel</string>
   <string name="audio_view__pause_accessibility_description">Pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Lyd</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Dokument</string>
+  <string name="QuoteView_you">Deg</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Vel fleire-modus</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s valt</string>
@@ -692,27 +712,27 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--expiration-->
   <string name="expiration_off">Av</string>
   <plurals name="expiration_seconds">
-    <item quantity="one">1 sekund</item>
+    <item quantity="one">%d sekund</item>
     <item quantity="other">%d sekund</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
-    <item quantity="one">1 minutt</item>
+    <item quantity="one">%d minutt</item>
     <item quantity="other">%d minutt</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
-    <item quantity="one">1 time</item>
+    <item quantity="one">%d time</item>
     <item quantity="other">%d timar</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dt</string>
   <plurals name="expiration_days">
-    <item quantity="one">1 dag</item>
+    <item quantity="one">%d dag</item>
     <item quantity="other">%d dagar</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
-    <item quantity="one">1 veke</item>
+    <item quantity="one">%d veke</item>
     <item quantity="other">%d veker</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%du</string>
@@ -1056,8 +1076,8 @@ Du er à jour!</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Denne Signal-installasjonen er utdatert</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Denne versjonen av Signal kjem frå om 1 dag. Trykk for å oppdatera til nyaste versjon.</item>
-    <item quantity="other">Denne utgåva av Signal blir forelda om %d dagar. Trykk for å oppdatera til nyaste utgåve.</item>
+    <item quantity="one">Signal-utgåva di blir utdatert om %d dag. Klikk for å oppdatera til nyaste utgåve.</item>
+    <item quantity="other">Signal-utgåva di blir utdatert om %d dagar. Trykk for å oppdatera til nyaste utgåve.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Denne utgåva av Signal er forelda frå og med i dag. Trykk for å oppdatera til nyaste utgåve.</string>
   <string name="reminder_header_expired_build">Denne utgåva av Signal er forelda!</string>
@@ -1161,7 +1181,7 @@ Du er à jour!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Du kan registrera dette telefonnummeret utan PIN-koden for registreringslås tidlegast 7 dagar etter at dette telefonnummeret sist var aktivt på Signal. Du har %d dagar igjen.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN-kode for registreringslås</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Dette telefonnummeret er utstyrt med registreringslås. Skriv inn PIN-koden for registreringslås.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Dette telefonnummeret er utstyrt med registreringslås.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Ditt telefonnummer har registreringslås. For å hjelpa deg med å hugsa PIN-koden for registreringslåsen, vil Signal innimellom spør deg om å stadfesta koden.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Eg har gløymt PIN-koden min.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Gløymt PIN-koden?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Ein registreringslås hjelper å verna telefonnummeret ditt frå uautoriserte registreringsforsøk. Du kan skru av denne funksjonen når som helst frå personverninnstillingane i Signal</string>
@@ -1174,5 +1194,9 @@ Du er à jour!</string>
   <string name="RegistrationLockDialog_disable">Slå av</string>
   <string name="RegistrationActivity_continue">Hald fram</string>
   <string name="preferences_chats__backups">Reservekopiar</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSA OPP</string>
+  <string name="RegistrationLockDialog_reminder">Hugs:</string>
+  <string name="recipient_preferences__about">Om</string>
   <!--EOF-->
 </resources>

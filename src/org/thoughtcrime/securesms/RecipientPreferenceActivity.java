@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.util.Pair;
 import android.view.MenuItem;
@@ -51,10 +53,14 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.ColorPickerPreference;
+import org.thoughtcrime.securesms.preferences.widgets.ContactPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -83,6 +89,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private static final String PREFERENCE_BLOCK           = "pref_key_recipient_block";
   private static final String PREFERENCE_COLOR           = "pref_key_recipient_color";
   private static final String PREFERENCE_IDENTITY        = "pref_key_recipient_identity";
+  private static final String PREFERENCE_ABOUT           = "pref_key_number";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -187,6 +194,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private void setHeader(@NonNull Recipient recipient) {
     glideRequests.load(recipient.getContactPhoto())
                  .fallback(recipient.getFallbackContactPhoto().asCallCard(this))
+                 .error(recipient.getFallbackContactPhoto().asCallCard(this))
                  .diskCacheStrategy(DiskCacheStrategy.ALL)
                  .into(this.avatar);
 
@@ -265,12 +273,19 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new BlockClickedListener());
       this.findPreference(PREFERENCE_COLOR)
           .setOnPreferenceChangeListener(new ColorChangeListener());
+      ((ContactPreference)this.findPreference(PREFERENCE_ABOUT))
+          .setListener(new AboutNumberClickedListener());
     }
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
       Log.w(TAG, "onCreatePreferences...");
       addPreferencesFromResource(R.xml.recipient_preferences);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+      Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
     @Override
@@ -312,6 +327,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       ColorPickerPreference colorPreference           = (ColorPickerPreference) this.findPreference(PREFERENCE_COLOR);
       Preference            blockPreference           = this.findPreference(PREFERENCE_BLOCK);
       Preference            identityPreference        = this.findPreference(PREFERENCE_IDENTITY);
+      PreferenceCategory    aboutCategory             = (PreferenceCategory)this.findPreference("about");
+      PreferenceCategory    aboutDivider              = (PreferenceCategory)this.findPreference("about_divider");
+      ContactPreference     aboutPreference           = (ContactPreference)this.findPreference(PREFERENCE_ABOUT);
       PreferenceCategory    privacyCategory           = (PreferenceCategory) this.findPreference("privacy_settings");
       PreferenceCategory    divider                   = (PreferenceCategory) this.findPreference("divider");
 
@@ -335,9 +353,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (identityPreference != null) identityPreference.setVisible(false);
         if (privacyCategory    != null) privacyCategory.setVisible(false);
         if (divider            != null) divider.setVisible(false);
+        if (aboutCategory      != null) getPreferenceScreen().removePreference(aboutCategory);
+        if (aboutDivider       != null) getPreferenceScreen().removePreference(aboutDivider);
       } else {
         colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
         colorPreference.setColor(recipient.getColor().toActionBarColor(getActivity()));
+
+        aboutPreference.setTitle(PhoneNumberUtils.formatNumber(recipient.getAddress().toPhoneString()));
+        aboutPreference.setSummary(recipient.getCustomLabel());
+        aboutPreference.setSecure(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED);
 
         if (recipient.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
         else                       blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
@@ -495,8 +519,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
+        final Context context = getContext();
+        if (context == null) return true;
+
         final int           value         = (Integer) newValue;
-        final MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(getActivity(), value);
+        final MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(context, value);
         final MaterialColor currentColor  = recipient.getColor();
 
         if (selectedColor == null) return true;
@@ -505,7 +532,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-              Context context = getActivity();
               DatabaseFactory.getRecipientDatabase(context).setColor(recipient, selectedColor);
 
               if (recipient.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
@@ -627,6 +653,51 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             return null;
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      }
+    }
+
+    private class AboutNumberClickedListener implements ContactPreference.Listener {
+
+      @Override
+      public void onMessageClicked() {
+        Intent intent = new Intent(getContext(), ConversationActivity.class);
+        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
+        startActivity(intent);
+      }
+
+      @Override
+      public void onSecureCallClicked() {
+        Permissions.with(RecipientPreferenceFragment.this)
+                   .request(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.CAMERA)
+                   .ifNecessary()
+                   .withRationaleDialog(getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera, recipient.toShortString()),
+                                        R.drawable.ic_mic_white_48dp, R.drawable.ic_videocam_white_48dp)
+                   .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.toShortString()))
+                   .onAllGranted(() -> {
+                     Intent intent = new Intent(getContext(), WebRtcCallService.class);
+                     intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
+                     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, recipient.getAddress());
+                     getContext().startService(intent);
+
+                     Intent activityIntent = new Intent(getContext(), WebRtcCallActivity.class);
+                     activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                     startActivity(activityIntent);
+                   })
+                   .execute();
+      }
+
+      @Override
+      public void onInSecureCallClicked() {
+        try {
+          Intent dialIntent = new Intent(Intent.ACTION_DIAL,
+                                         Uri.parse("tel:" + recipient.getAddress().serialize()));
+          startActivity(dialIntent);
+        } catch (ActivityNotFoundException anfe) {
+          Log.w(TAG, anfe);
+          Dialogs.showAlertDialog(getContext(),
+                                  getString(R.string.ConversationActivity_calls_not_supported),
+                                  getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+        }
       }
     }
   }

@@ -75,8 +75,8 @@ public abstract class MediaConstraints {
 
     try {
       // XXX - This is loading everything into memory! We want the send path to be stream-like.
-      return new MediaStream(new ByteArrayInputStream(BitmapUtil.createScaledBytes(context, new DecryptableUri(attachment.getDataUri()), this)),
-                             MediaUtil.IMAGE_JPEG);
+      BitmapUtil.ScaleResult scaleResult = BitmapUtil.createScaledBytes(context, new DecryptableUri(attachment.getDataUri()), this);
+      return new MediaStream(new ByteArrayInputStream(scaleResult.getBitmap()), MediaUtil.IMAGE_JPEG, scaleResult.getWidth(), scaleResult.getHeight());
     } catch (BitmapDecodingException e) {
       throw new IOException(e);
     }
