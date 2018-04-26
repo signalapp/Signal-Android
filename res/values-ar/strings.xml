@@ -639,6 +639,9 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">رقم أمان جديد</string>
+  <string name="WebRtcCallScreen_accept">موافقة</string>
+  <string name="WebRtcCallScreen_cancel">إلغاء</string>
+  <string name="WebRtcCallScreen_end_call">إنهاء المكالمة</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">انقر لدعم الفيديو</string>
   <!--attachment_type_selector-->

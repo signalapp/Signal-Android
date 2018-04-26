@@ -611,6 +611,9 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="WebRtcCallScreen_new_safety_numbers">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Veiligheidsnummers met deze contactpersoon verifiëren.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nieuw veiligheidsnummer</string>
+  <string name="WebRtcCallScreen_accept">Aanvaarden</string>
+  <string name="WebRtcCallScreen_cancel">Annuleren</string>
+  <string name="WebRtcCallScreen_end_call">Oproep beëindigen</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tik om je video in te schakelen</string>
   <!--attachment_type_selector-->
@@ -1142,10 +1145,13 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de opslagruimte om backups te kunnen maken maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Laatste back-up: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Bezig</string>
+  <string name="LocalBackupJob_creating_backup">Backup aan het maken...</string>
   <string name="ProgressPreference_d_messages_so_far">%dberichten tot nu toe</string>
   <string name="RegistrationActivity_verify_s">%s verifiëren</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Voer de verificatiecode die naar %s gestuurd is.</string>
   <string name="RegistrationActivity_wrong_number">Verkeerd nummer?</string>
+  <string name="RegistrationActivity_call_me_instead">Bel me</string>
+  <string name="RegistrationActivity_available_in">Beschikbaar in:\u0020</string>
   <string name="BackupUtil_never">Nooit</string>
   <string name="BackupUtil_unknown">Onbekend</string>
   <string name="prompt_passphrase_activity__unlock_signal">Signal ontgrendelen</string>

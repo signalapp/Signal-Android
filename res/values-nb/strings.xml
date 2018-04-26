@@ -174,6 +174,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Sletter</string>
   <string name="ConversationFragment_deleting_messages">Sletter meldinger …</string>
+  <string name="ConversationFragment_quoted_message_not_found">Fant ikke sitert melding</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne enheten har ingen nettleser installert.</string>
   <!--ConversationListFragment-->
@@ -614,6 +615,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhetsnummeret for samtalen din med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare gjeninstalleres Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du bør bekrefte sikkerhetsnummeret ditt med denne kontakten.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Ny sikkerhets nummer</string>
+  <string name="WebRtcCallScreen_accept">Godta</string>
+  <string name="WebRtcCallScreen_cancel">Avbryt</string>
+  <string name="WebRtcCallScreen_end_call">Avslutt samtale</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Trykk for å ta i bruk video</string>
   <!--attachment_type_selector-->
@@ -684,6 +688,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Bilde</string>
+  <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Deg</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Buntvalg-modus</string>
@@ -1144,10 +1150,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Forrige sikkerhetskopi: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Under behandling</string>
+  <string name="LocalBackupJob_creating_backup">Tar sikkerhetskopi …</string>
   <string name="ProgressPreference_d_messages_so_far">%d meldinger hittil</string>
   <string name="RegistrationActivity_verify_s">Bekreft %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn bekreftelseskoden som er sendt til %s.</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer?</string>
+  <string name="RegistrationActivity_call_me_instead">Ring meg i stedet</string>
+  <string name="RegistrationActivity_available_in">Tilgjengelig om:\u0020</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
   <string name="prompt_passphrase_activity__unlock_signal">Lås opp Signal</string>
@@ -1191,5 +1200,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSE OPP</string>
   <string name="RegistrationLockDialog_reminder">Påminnelse:</string>
+  <string name="recipient_preferences__about">Om</string>
   <!--EOF-->
 </resources>

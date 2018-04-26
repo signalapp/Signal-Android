@@ -73,7 +73,7 @@
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
-  <string name="ConfirmIdentityDialog_accept">OK</string>
+  <string name="ConfirmIdentityDialog_accept">Zustimmen</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Kürzliche Unterhaltungen</string>
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
@@ -605,6 +605,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="WebRtcCallScreen_new_safety_numbers">Die Sicherheitsnummer für deine Unterhaltung mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Neue Sicherheitsnummer</string>
+  <string name="WebRtcCallScreen_accept">Zustimmen</string>
+  <string name="WebRtcCallScreen_cancel">Abbrechen</string>
+  <string name="WebRtcCallScreen_end_call">Anruf beenden</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Zum Aktivieren deiner Videoübertragung antippen</string>
   <!--attachment_type_selector-->
@@ -1003,6 +1006,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_context__menu_delete_message">Nachrichten löschen</string>
   <string name="conversation_context__menu_forward_message">Nachricht weiterleiten</string>
   <string name="conversation_context__menu_resend_message">Nachricht erneut senden</string>
+  <string name="conversation_context__menu_reply_to_message">Auf Nachricht antworten</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Anhang speichern</string>
   <!--conversation_expiring_off-->
@@ -1136,10 +1140,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal benötigt die Berechtigung »Speicher« für das Erstellen von Datensicherungen, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Letzte Sicherung: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">In Arbeit …</string>
+  <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
   <string name="RegistrationActivity_verify_s">%s verifizieren</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
   <string name="RegistrationActivity_wrong_number">Falsche Rufnummer?</string>
+  <string name="RegistrationActivity_call_me_instead">Mich stattdessen anrufen</string>
+  <string name="RegistrationActivity_available_in">Verfügbar in:\u0020</string>
   <string name="BackupUtil_never">Nie</string>
   <string name="BackupUtil_unknown">Unbekannt</string>
   <string name="prompt_passphrase_activity__unlock_signal">Signal entsperren</string>

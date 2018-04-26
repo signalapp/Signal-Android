@@ -615,6 +615,9 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="WebRtcCallScreen_new_safety_numbers">Числата за сигурност за разговора с %1$s са променени. Това означава, че или някой се опитва да прехване куминикацията Ви, или че %2$s е преинсталирал Сигнал.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Нови числа за сигурност</string>
+  <string name="WebRtcCallScreen_accept">Приемам</string>
+  <string name="WebRtcCallScreen_cancel">Отказване</string>
+  <string name="WebRtcCallScreen_end_call">Прекрати обаждането</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Натиснете, за да активирате видео</string>
   <!--attachment_type_selector-->

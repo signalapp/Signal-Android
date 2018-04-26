@@ -530,6 +530,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">Безбедносни број за вашу преписку са %1$s је промењен. Ово може да значи или да неко покушава да пресретне вашу комуникацију или да је корисник %2$s једноставно поново инсталирао Сигнал.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можда желите да потврдите ваш безбедносни број за овај контакт.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Нови безбедносни број</string>
+  <string name="WebRtcCallScreen_accept">Прихвати</string>
+  <string name="WebRtcCallScreen_cancel">Одустани</string>
+  <string name="WebRtcCallScreen_end_call">Окончај позив</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Тапните да укључите ваш видео</string>
   <!--attachment_type_selector-->

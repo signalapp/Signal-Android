@@ -595,6 +595,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">Ваш номер безпеки для розмови із %1$s змінився. Це може означати або те, що хтось намагається перехопити вашу розмову, або те, що %2$s просто перевстановив Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Новий номер безпеки</string>
+  <string name="WebRtcCallScreen_accept">Прийняти</string>
+  <string name="WebRtcCallScreen_cancel">Скасувати</string>
+  <string name="WebRtcCallScreen_end_call">Завершити виклик</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Торкніться, щоб почати трансляцію відео</string>
   <!--attachment_type_selector-->

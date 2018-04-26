@@ -519,6 +519,9 @@ a shonrú</string>
   <string name="WebRtcCallScreen_new_safety_numbers">D\'athraíodh an uimhir shábhála le haghaigh an comhrá le %1$s. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil %2$s Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">B\'fhéidir go mhian leat do uimhir sábhailte a dheimhniú leis an dteagmhálaí seo.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Uimhir shábháilteachta nua</string>
+  <string name="WebRtcCallScreen_accept">Glac leis</string>
+  <string name="WebRtcCallScreen_cancel">Cealaigh</string>
+  <string name="WebRtcCallScreen_end_call">Críochnaigh an glao</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Cnag chun d\'fhíseán a chumasú</string>
   <!--attachment_type_selector-->

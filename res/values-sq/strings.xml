@@ -565,6 +565,9 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="WebRtcCallScreen_new_safety_numbers">Numri i sigurisë për bisedën tuaj me %1$s ka ndryshuar. Kjo mund të sepse dikush është duke u përpjekur për të kapur komunikimin tuaj, ose se %2$s thjesht ka ri-instaluar Signal-in.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Ndoshta deshironi të verifikoni numrin e juaj sigurie me këtë kontakt.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Numër sigurie i ri</string>
+  <string name="WebRtcCallScreen_accept">Prano</string>
+  <string name="WebRtcCallScreen_cancel">Anulo</string>
+  <string name="WebRtcCallScreen_end_call">Përfundo thirrjen</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Prek për të aktivizuar videon tënd</string>
   <!--attachment_type_selector-->

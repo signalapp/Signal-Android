@@ -196,6 +196,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Удаление</string>
   <string name="ConversationFragment_deleting_messages">Удаляем сообщения...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Цитируемое сообщение не найдено</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
   <!--ConversationListFragment-->
@@ -647,6 +648,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">Код безопасности вашего разговора с %1$s изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки, или что %2$s просто переустановил(а) Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Новый код безопасности</string>
+  <string name="WebRtcCallScreen_accept">Принять</string>
+  <string name="WebRtcCallScreen_cancel">Отмена</string>
+  <string name="WebRtcCallScreen_end_call">Завершить</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Нажмите для активации видео</string>
   <!--attachment_type_selector-->
@@ -717,6 +721,8 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">Аудио</string>
   <string name="QuoteView_video">Видео</string>
+  <string name="QuoteView_photo">Фото</string>
+  <string name="QuoteView_document">Документ</string>
   <string name="QuoteView_you">Вы</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Выбрать несколько</string>
@@ -1194,10 +1200,12 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal требуется разрешение на доступ к хранилищу для создания резервных копий, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Последнее резервное копирование: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">В процессе</string>
+  <string name="LocalBackupJob_creating_backup">Создание резервной копии...</string>
   <string name="ProgressPreference_d_messages_so_far">еще %d сообщений</string>
   <string name="RegistrationActivity_verify_s">Подтвердить %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Пожалуйста, введите проверочный код, отправленный на %s.</string>
   <string name="RegistrationActivity_wrong_number">Неправильный номер?</string>
+  <string name="RegistrationActivity_available_in">Доступно в:\u0020</string>
   <string name="BackupUtil_never">Никогда</string>
   <string name="BackupUtil_unknown">Неизвестен</string>
   <string name="prompt_passphrase_activity__unlock_signal">Разблокировать Signal</string>
@@ -1241,5 +1249,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal заблокирован</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">КОСНИТЕСЬ, ЧТОБЫ РАЗБЛОКИРОВАТЬ</string>
   <string name="RegistrationLockDialog_reminder">Напоминание:</string>
+  <string name="recipient_preferences__about">О Signal</string>
   <!--EOF-->
 </resources>

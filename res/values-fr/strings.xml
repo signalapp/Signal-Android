@@ -362,7 +362,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="NotificationBarManager__incoming_signal_call">Appel Signal entrant</string>
   <string name="NotificationBarManager__deny_call">Refuser l\'appel</string>
   <string name="NotificationBarManager__answer_call">Répondre à l\'appel</string>
-  <string name="NotificationBarManager__end_call">Terminer l\'appel</string>
+  <string name="NotificationBarManager__end_call">Raccrocher</string>
   <string name="NotificationBarManager__cancel_call">Annuler l\'appel</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Message multimédia</string>
@@ -439,7 +439,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="RecipientProvider_unnamed_group">Groupe sans nom</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Réponse</string>
-  <string name="RedPhone_ending_call">Fin de l\'appel</string>
+  <string name="RedPhone_ending_call">Fin de l’appel</string>
   <string name="RedPhone_dialing">Numérotation</string>
   <string name="RedPhone_ringing">Sonnerie</string>
   <string name="RedPhone_busy">Occupé</string>
@@ -611,6 +611,9 @@ Réception d\'un message d\'échange de clés pour une version invalide du proto
   <string name="WebRtcCallScreen_new_safety_numbers">Le numéro de sécurité pour votre conversation avec %1$s a changé. Soit quelqu\'un tente d\'intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous pourriez vouloir vérifier votre numéro de sécurité avec ce contact.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nouveau numéro de sécurité</string>
+  <string name="WebRtcCallScreen_accept">Accepter</string>
+  <string name="WebRtcCallScreen_cancel">Annuler</string>
+  <string name="WebRtcCallScreen_end_call">Raccrocher</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Appuyez pour activer votre vidéo</string>
   <!--attachment_type_selector-->
@@ -1143,10 +1146,13 @@ Migration de la base de données de Signal</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à la mémoire externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Dernière sauvegarde : %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En cours</string>
+  <string name="LocalBackupJob_creating_backup">Création de la sauvegarde…</string>
   <string name="ProgressPreference_d_messages_so_far">%d messages jusqu’à présent</string>
   <string name="RegistrationActivity_verify_s">Vérifier %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Veuillez saisir le code de vérification envoyé à %s.</string>
   <string name="RegistrationActivity_wrong_number">Mauvais numéro ?</string>
+  <string name="RegistrationActivity_call_me_instead">Appelez-moi plutôt</string>
+  <string name="RegistrationActivity_available_in">Disponible dans :\u0020</string>
   <string name="BackupUtil_never">Jamais</string>
   <string name="BackupUtil_unknown">Inconnu</string>
   <string name="prompt_passphrase_activity__unlock_signal">Déverrouiller Signal </string>

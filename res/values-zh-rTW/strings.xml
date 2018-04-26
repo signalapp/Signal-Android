@@ -163,6 +163,7 @@
   <string name="ConversationFragment_sms">簡訊</string>
   <string name="ConversationFragment_deleting">正在刪除</string>
   <string name="ConversationFragment_deleting_messages">正在刪除訊息...</string>
+  <string name="ConversationFragment_quoted_message_not_found">未找到被引用的訊息</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的裝置上未安裝瀏覽器。</string>
   <!--ConversationListFragment-->
@@ -598,6 +599,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="WebRtcCallScreen_new_safety_number_title">新的安全碼</string>
+  <string name="WebRtcCallScreen_accept">接受</string>
+  <string name="WebRtcCallScreen_cancel">取消</string>
+  <string name="WebRtcCallScreen_end_call">結束通話</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">輕觸開啟你的視訊</string>
   <!--attachment_type_selector-->
@@ -668,6 +672,7 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">音訊</string>
   <string name="QuoteView_video">影片</string>
+  <string name="QuoteView_photo">照片</string>
   <string name="QuoteView_document">文件</string>
   <string name="QuoteView_you">您</string>
   <!--conversation_fragment_cab-->
@@ -1119,10 +1124,13 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">為了要建立備份，Signal 需要外部空間的權限，但是已被永久拒絕。請到應用程式設定，選擇「權限」及開啟「儲存」。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">上一次備份︰%s</string>
   <string name="ChatsPreferenceFragment_in_progress">處理中</string>
+  <string name="LocalBackupJob_creating_backup">正在建立備份...</string>
   <string name="ProgressPreference_d_messages_so_far">目前有 %d 則訊息</string>
   <string name="RegistrationActivity_verify_s">驗證 %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_wrong_number">錯誤的號碼？</string>
+  <string name="RegistrationActivity_call_me_instead">改為撥電話給我</string>
+  <string name="RegistrationActivity_available_in">可用於：\u0020</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="prompt_passphrase_activity__unlock_signal">解鎖 Signal</string>
@@ -1166,5 +1174,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已被鎖定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">點擊來解鎖</string>
   <string name="RegistrationLockDialog_reminder">提醒：</string>
+  <string name="recipient_preferences__about">關於</string>
   <!--EOF-->
 </resources>

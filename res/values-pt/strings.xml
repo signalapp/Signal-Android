@@ -28,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desativar as mensagens e chamadas do Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desative as mensagens e chamadas do Signal eliminando o seu registo do servidor. Vai ser necessário registar novamente o seu número de telefone se pretender utilizar o Signal no futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro a establecer a ligação com o servidor!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Ativos</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activos</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para mudar a sua aplicação de SMS padrão</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Desativados</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Signal a sua aplicação SMS padrão</string>
@@ -77,6 +77,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
   <string name="ContactsCursorLoader_contacts">Contactos</string>
+  <string name="ContactsCursorLoader_groups">Grupos</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada do Signal %s</string>
@@ -568,6 +569,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MediaPreviewActivity_draft">Rascunho</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal requer permissão de acesso a Armazenamento para escrever para o suporte de armazenamento externo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Não é possível guardar para armazenamento externo sem permissões.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Apagar mensagem?</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
@@ -606,6 +608,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança para a sua conversa com %1$s mudou. Isto pode significar que alguém está a tentar interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Pode ser desejável verificar o seu número de segurança com este contracto.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Novo número de segurança</string>
+  <string name="WebRtcCallScreen_accept">Aceitar</string>
+  <string name="WebRtcCallScreen_cancel">Cancelar</string>
+  <string name="WebRtcCallScreen_end_call">Terminar chamada</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Toque para ligar o vídeo</string>
   <!--attachment_type_selector-->
@@ -676,6 +681,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--QuoteView-->
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modo de selecção em grupo</string>
@@ -1112,11 +1119,18 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_incorrect_backup_passphrase">Frase-chave de cópia de segurança incorrecta</string>
   <string name="RegistrationActivity_checking">A verificar...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mensagens até à data...</string>
+  <string name="RegistrationActivity_restore_from_backup">Restaurar a partir de cópia de segurança?</string>
+  <string name="RegistrationActivity_backup_size_s">Tamanho da cópia de segurança: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Data de cópia de segurança: %s</string>
+  <string name="BackupDialog_enable_local_backups">Activar cópias de segurança locais?</string>
   <string name="BackupDialog_enable_backups">Activar cópias de segurança</string>
+  <string name="BackupDialog_delete_backups">Apagar cópias de segurança?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Desactivar e apagar todas as cópias de segurança locais?</string>
   <string name="BackupDialog_delete_backups_statement">Apagar cópias de segurança</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Última cópia de segurança: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em progresso</string>
+  <string name="RegistrationActivity_verify_s">Verificar %s</string>
   <string name="RegistrationActivity_wrong_number">Número errado?</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
@@ -1126,10 +1140,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="registration_activity__forgot_pin">Esqueceu-se do PIN?</string>
   <string name="registration_lock_dialog_view__enter_pin">Introduza o PIN</string>
   <string name="registration_lock_dialog_view__confirm_pin">Confirme o PIN</string>
+  <string name="registration_lock_reminder_view__enter_pin">Introduza o PIN</string>
   <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
   <string name="RegistrationActivity_oh_no">Oh não!</string>
+  <string name="RegistrationLockDialog_enable">Activar</string>
   <string name="RegistrationLockDialog_disable">Desactivar</string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="preferences_chats__backups">Cópias de segurança</string>
+  <string name="recipient_preferences__about">Sobre</string>
   <!--EOF-->
 </resources>

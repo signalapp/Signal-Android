@@ -68,6 +68,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Son sohbetler</string>
   <string name="ContactsCursorLoader_contacts">Kişiler</string>
+  <string name="ContactsCursorLoader_groups">Gruplar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s Mesaj</string>
   <string name="ContactsDatabase_signal_call_s">%s Signal Araması</string>
@@ -340,7 +341,7 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS mesajı indiriliyor</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS mesajı indirme hatası, yeniden denemek için dokunun</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artık desteklenmeyen eski bir Signal sürümü kullanılarak şifrelenmiş bir mesaj alındı. Gönderen kişiden Signal\'i en son sürüme güncellemesini ve iletiyi yeniden göndermesini isteyin.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artık desteklenmeyen eski bir Signal sürümü kullanılarak şifrelenmiş bir mesaj alındı. Gönderen kişiden Signal\'i en son sürüme güncellemesini ve mesajı yeniden göndermesini isteyin.</string>
   <string name="MessageRecord_left_group">Gruptan ayrıldınız.</string>
   <string name="MessageRecord_you_updated_group">Grubu güncellediniz.</string>
   <string name="MessageRecord_s_updated_group">%s grubu güncelledi.</string>
@@ -469,7 +470,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Yeni güvenlik numarası ile mesaj alındı. İşlemek ve görüntülemek için dokunun.</string>
   <string name="SmsMessageRecord_secure_session_reset">Güvenli oturumu sıfırla.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s güvenli oturumu sıfırla.</string>
-  <string name="SmsMessageRecord_duplicate_message">Yinelenen ileti.</string>
+  <string name="SmsMessageRecord_duplicate_message">Tekrarlanan mesaj.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup güncelledi</string>
   <string name="ThreadRecord_left_the_group">Gruptan ayrıldı</string>
@@ -539,12 +540,14 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Açmak için dokunun.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Açmak için dokunun, veya kapatmak için kilide dokunun.</string>
   <string name="KeyCachingService_passphrase_cached">Signal kilidi açıldı</string>
+  <string name="KeyCachingService_lock">Signal\'ı Kilitle</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Siz</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Desteklenmeyen medya türü</string>
   <string name="MediaPreviewActivity_draft">Taslak</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal, harici depolama birimine kaydedebilmek için Depolama iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Depolama\" yı etkinleştirin.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">İzinler olmadan harici depolama birimine kayıt yapılamıyor</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Mesajı sil?</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d yeni mesaj %2$d sohbetten</string>
   <string name="MessageNotifier_most_recent_from_s">En yeni mesaj: %1$s</string>
@@ -582,6 +585,9 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s ile sohbetinizin güvenlik numarası değişti. Bu, birisinin sizin iletişiminizi araya girerek yakalayıp dinlemeye çalıştığı veya %2$s \'in yalnızca Signal\'i yeniden yüklediği anlamına gelebilir. </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu kişiyle güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Yeni güvenlik numarası</string>
+  <string name="WebRtcCallScreen_accept">Kabul et</string>
+  <string name="WebRtcCallScreen_cancel">İptal</string>
+  <string name="WebRtcCallScreen_end_call">Aramayı sonlandır</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Videonuzu etkinleştirmek için dokunun</string>
   <!--attachment_type_selector-->
@@ -652,6 +658,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Ses</string>
   <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Belge</string>
   <string name="QuoteView_you">Siz</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Toplu seçim modu</string>
@@ -756,6 +764,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="recipient_preferences__view_safety_number">Güvenlik numarasını görüntüle</string>
   <string name="recipient_preferences__chat_settings">Sohbet ayarları</string>
   <string name="recipient_preferences__privacy">Gizlilik</string>
+  <string name="recipient_preferences__call_settings">Arama ayarları</string>
+  <string name="recipient_preferences__ringtone">Zil sesi</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal Araması</string>
   <string name="redphone_call_controls__mute">Sessiz</string>
@@ -932,6 +942,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences_notifications__events">Etkinlikler</string>
   <string name="preferences_notifications__in_chat_sounds">Sohbet içi sesler</string>
   <string name="preferences_notifications__show">Göster</string>
+  <string name="preferences_notifications__calls">Aramalar</string>
+  <string name="preferences_notifications__ringtone">Zil sesi</string>
   <string name="preferences_chats__show_invitation_prompts">Davetiye istemlerini göster</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal kullanmayan kişiler için davetiye istemlerini görüntüle</string>
   <string name="preferences_chats__message_text_size">Mesaj font boyutu</string>
@@ -951,7 +963,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Mesaj ayrıntıları</string>
   <string name="conversation_context__menu_copy_text">Metni kopyala</string>
-  <string name="conversation_context__menu_delete_message">Mesaj sil</string>
+  <string name="conversation_context__menu_delete_message">Mesajı sil</string>
   <string name="conversation_context__menu_forward_message">Mesajı yönlendir</string>
   <string name="conversation_context__menu_resend_message">Mesajı tekrar gönder</string>
   <!--conversation_context_image-->
@@ -1038,8 +1050,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Siliniyor</string>
-  <string name="trimmer__deleting_old_messages">Eski iletiler siliniyor...</string>
-  <string name="trimmer__old_messages_successfully_deleted">Eski iletiler başarıyla silindi</string>
+  <string name="trimmer__deleting_old_messages">Eski mesajlar siliniyor...</string>
+  <string name="trimmer__old_messages_successfully_deleted">Eski mesajlar başarıyla silindi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor...</string>
@@ -1055,15 +1067,39 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Bekleyen mesajları görüntülemek için kilidi açın</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Güncellemeyi tamamlamak için kilidi kaldırın</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Güncellemeyi tamamlamak için lütfen Signal kilidini açın</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Yedek parolası</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Yedekler bir dış depolama alanına kaydedilecek ve aşağıdaki parola ile şifrelenecektir. Yedeği geri yüklemek için bu parolaya sahip olmanız gerekir.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Bu parolayı kaydettim. Parola olmadan yedeği geri yükleyemem.</string>
+  <string name="registration_activity__restore_backup">Yedeği geri yükle</string>
   <string name="registration_activity__skip">Atla</string>
   <string name="registration_activity__register">Kayıt ol</string>
+  <string name="preferences_chats__create_backup">Yedek yarat</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Yedek parolası gir</string>
   <string name="RegistrationActivity_restore">Geri yükle</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Geçersiz yedek parolası</string>
+  <string name="RegistrationActivity_checking">Kontrol ediliyor...</string>
+  <string name="RegistrationActivity_restore_from_backup">Yedekten geri yüklensin mi?</string>
+  <string name="RegistrationActivity_backup_size_s">Yedek boyutu: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Yedek zaman damgası: %s</string>
+  <string name="BackupDialog_enable_local_backups">Yerel yedekler etkinleştirilsin mi?</string>
+  <string name="BackupDialog_enable_backups">Yedekler etkinleştirilsin mi?</string>
+  <string name="BackupDialog_delete_backups">Yedekleri sil?</string>
+  <string name="BackupDialog_delete_backups_statement">Yedekleri sil</string>
   <string name="BackupDialog_copied_to_clipboard">Panoya kopyalandı</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Son yedek: %s</string>
   <string name="BackupUtil_never">Asla</string>
   <string name="BackupUtil_unknown">Bilinmeyen</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Signal\'ı Kilitle\'yi sonlandır</string>
   <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>
+  <string name="preferences_app_protection__registration_lock">Kayıt kilitli</string>
   <string name="RegistrationActivity_too_many_attempts">Çok fazla deneme</string>
+  <string name="RegistrationLockDialog_registration_lock">Kayıt kilitli</string>
+  <string name="RegistrationLockDialog_enable">Etkinleştir</string>
   <string name="RegistrationLockDialog_disable">Devre dışı bırak</string>
   <string name="RegistrationActivity_continue">Devam Et</string>
+  <string name="preferences_chats__backups">Yedekler</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal kilitli</string>
+  <string name="RegistrationLockDialog_reminder">Hatırlatma:</string>
+  <string name="recipient_preferences__about">Hakkında</string>
   <!--EOF-->
 </resources>

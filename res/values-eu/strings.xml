@@ -590,6 +590,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="WebRtcCallScreen_new_safety_numbers">%1$serabiltzailearekin duzun solasaldirako segurtasun zenbakia aldatu da. Agian norbait zure komunikazioa atzematen saiatzen ari da edo %2$s erabiltzaileak Signal berrinstalatu du.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Agian zure segurasun zenbakia kontatu honekin baieztatu nahi duzu.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Segurtasun zenbaki berria</string>
+  <string name="WebRtcCallScreen_accept">Onartu</string>
+  <string name="WebRtcCallScreen_cancel">Utzi</string>
+  <string name="WebRtcCallScreen_end_call">Amaitu deia</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ukitu zure bideoa gaitzeko</string>
   <!--attachment_type_selector-->

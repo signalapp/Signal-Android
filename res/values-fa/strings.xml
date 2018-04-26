@@ -539,6 +539,9 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">شاید بخواهید که شماره امتیتی خود را با این شخص تایید کنید.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">شماره امنیتی جدید</string>
+  <string name="WebRtcCallScreen_accept">پذیرفتن</string>
+  <string name="WebRtcCallScreen_cancel">لغو</string>
+  <string name="WebRtcCallScreen_end_call">پایان تماس</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">برای فعال‌سازی ویدیو خود اینجا ضربه بزنید</string>
   <!--attachment_type_selector-->

@@ -616,6 +616,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="WebRtcCallScreen_new_safety_numbers">Tryggleiksnummeret for samtalen din med %1$s har endra seg. Dette kan tyda på at nokon prøver å overvaka kommunikasjonen, eller at %2$s berre har installert Signal på nytt.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ynskjer kanskje å stadfesta tryggleiksnummeret ditt med denne kontakten.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nytt tryggleiksnummer</string>
+  <string name="WebRtcCallScreen_accept">Godta</string>
+  <string name="WebRtcCallScreen_cancel">Avbryt</string>
+  <string name="WebRtcCallScreen_end_call">Avslutt samtale</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Trykk for å skru på videoen din</string>
   <!--attachment_type_selector-->
@@ -1016,6 +1019,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="conversation_context__menu_delete_message">Slett melding</string>
   <string name="conversation_context__menu_forward_message">Vidaresend melding</string>
   <string name="conversation_context__menu_resend_message">Send melding på nytt</string>
+  <string name="conversation_context__menu_reply_to_message">Svar på meldinga</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagra vedlegg</string>
   <!--conversation_expiring_off-->
@@ -1150,10 +1154,13 @@ Du er à jour!</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal treng tilgang til ekstern lagring for å laga reservekopiar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Siste reservekopi: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">I gang</string>
+  <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string>
   <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
   <string name="RegistrationActivity_verify_s">Stadfest %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn stadfestingskoden sendt til %s</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer?</string>
+  <string name="RegistrationActivity_call_me_instead">Ring meg i staden</string>
+  <string name="RegistrationActivity_available_in">Tilgjengeleg om:\u0020</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjend</string>
   <string name="prompt_passphrase_activity__unlock_signal">Lås opp Signal</string>

@@ -560,6 +560,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="WebRtcCallScreen_new_safety_numbers">Nomor keamanan untuk percakapan Anda dengan %1$s telah berubah. Ini bisa berarti seseorang mencoba untuk mencegat komunikasi Anda, atau %2$s hanya perlu memasang kembali Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mungkin sebaiknya Anda memastikan angka keamanan dengan kontak ini.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Angka keamanan baru</string>
+  <string name="WebRtcCallScreen_accept">Terima</string>
+  <string name="WebRtcCallScreen_cancel">Batal</string>
+  <string name="WebRtcCallScreen_end_call">Akhiri panggilan</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ketuk untuk mengaktifkan video Anda</string>
   <!--attachment_type_selector-->

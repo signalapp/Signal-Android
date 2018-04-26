@@ -86,7 +86,7 @@
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">התקבלה הודעת החלפת מפתח, הקש כדי להמשיך.</string>
   <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
   <string name="ConversationItem_click_for_details">הקש לפרטים</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">הקש למשלוח בלתי־מאובטח אם משלוח מאובטח בלתי אפשרי</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">הקש לנסיגה בלתי מאובטחת</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">לעבור ל־SMS לא מוצפן במידה והצפנה אינה אפשרית?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">לעבור ל־MMS לא מוצפן במידה והצפנה אינה אפשרית?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">הודעה זו <b>לא</b> תוצפן כי הנמען אינו משתמש Signal יותר.\n\nלשלוח הודעה בלתי מאובטחת?</string>
@@ -131,7 +131,7 @@
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal צריך את ההרשאות של המיקרופון והמצלמה על מנת לחייג אל %s, אבל הן נדחו לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקרופון\" ואת \"מצלמה\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">כדי ללכוד תצלומים ווידיאו, אפשר ל-Signal גישה אל המצלמה.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal צריך את הרשאת המצלמה כדי לצלם תצלומים או וידיאו, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal צריך הרשאות מצלמה כדי לצלם תצלומים או להקליט וידאו</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal צריך הרשאות מצלמה כדי לצלם תצלומים או להקליט וידיאו</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -174,6 +174,7 @@
   <string name="ConversationFragment_sms">מסרון</string>
   <string name="ConversationFragment_deleting">מוחק</string>
   <string name="ConversationFragment_deleting_messages">מוחק הודעות...</string>
+  <string name="ConversationFragment_quoted_message_not_found">הודעה מצוטטת לא נמצאה</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">אין דפדפן מותקן במכשיר שלך.</string>
   <!--ConversationListFragment-->
@@ -242,10 +243,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ברוך הבא אל Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure היא כעת Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ו־RedPhone הן כעת יישום אחד: Signal. הקש כדי לחקור.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">תגידו שלום לשיחות וידאו.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">סיגנל תומך עכשיו בשיחות וידאו מאובטחות. פשוט תתחיל שיחת סיגנל כרגיל, לחץ על כפתור וידאו, ותעשה שלום.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">סיגנל תומך עכשיו בשיחות וידאו מאובטחות.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">סיגנל תומך עכשיו בשיחות וידאו מאובטחות. לחץ למידע נוסף.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">אמור שלום לשיחות וידיאו מאובטחות.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal תומך כעת בשיחות וידיאו מאובטחות. התחל פשוט שיחת Signal כרגיל, הקש על הכפתור וידיאו, ונופף לשלום.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal תומך כעת בשיחות וידיאו מאובטחות.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal תומך כעת בשיחות וידיאו מאובטחות. הקש כדי לחקור.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">מוכן לתקריב שלך?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">עכשיו אתה יכול לשתף תצלום ושם של פרופיל עם חברים ב-Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">פרופילי Signal כאן</string>
@@ -295,8 +296,8 @@
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">לייבא מסד נתוני מסרונים של המערכת?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">זה ייַבא
-מסרים ממסד הנתונים הרגיל של SMS של המערכת לסיגנל.
-אם כבר ייבאת את מסד הנתונים של SMS של המערכת, יבוא מחדש ייצור מסרים כפולים.</string>
+הודעות ממסד נתונים של מסרונים ברירת המחדל של המערכת אל Signal.
+במקרה שייבאת לפני כן את מסד הנתונים של מסרונים של המערכת, יבוא שוב יסתיים בהודעות כפולות.</string>
   <string name="ImportFragment_import">ייבא</string>
   <string name="ImportFragment_cancel">בטל</string>
   <string name="ImportFragment_import_plaintext_backup">לייבא גיבוי של טקסט פשוט?</string>
@@ -407,7 +408,7 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">סליחה, חיברת יותר מדי מכשירים, נא לנסות להסיר כמה.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">סליחה, זה לא קוד QR תקין לקישור מכשיר.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">לקשר מכשיר Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">נראה שניסית לקשר מכשיר סיגנל באמצעות סורק מצד שלישי. למען בטיחותך, נא לסרוק את הקוד שוב באמצעות סיגנל.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">נראה שאתה מנסה לקשר מכשיר Signal ע\"י שימוש בסורק צד־שלישי. למען הגנתך, אנא סרוק את הקוד שוב מתוך Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal צריך את הרשאת המצלמה על מנת לסרוק קוד QR, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">לא היה ניתן לסרוק קוד QR ללא הרשאת המצלמה</string>
   <!--ExpirationDialog-->
@@ -570,7 +571,7 @@
   <string name="KeyCachingService_lock">נעל את Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">אתה</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה שאינו נתמך</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה בלתי נתמך</string>
   <string name="MediaPreviewActivity_draft">טיוטה</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal צריך את הרשאת האחסון על מנת לשמור באחסון חיצוני, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">לא היה ניתן לשמור באחסון חיצוני ללא הרשאות</string>
@@ -614,6 +615,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">מספר הביטחון עבור השיחה שלך עם %1$s השתנה. ייתכן שזה אומר שמישהו מנסה ליירט את התקשורת שלכם או שפשוט %2$s התקין מחדש את Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ייתכן שתרצה לוודא את מספר הביטחון שלך עם איש קשר זה.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">מספר ביטחון חדש</string>
+  <string name="WebRtcCallScreen_accept">קבל</string>
+  <string name="WebRtcCallScreen_cancel">בטל</string>
+  <string name="WebRtcCallScreen_end_call">סיים שיחה</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">הקש כדי לאפשר את הוידיאו שלך</string>
   <!--attachment_type_selector-->
@@ -684,6 +688,8 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">שמע</string>
   <string name="QuoteView_video">וידיאו</string>
+  <string name="QuoteView_photo">תצלום</string>
+  <string name="QuoteView_document">מסמך</string>
   <string name="QuoteView_you">אתה</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">מצב בחירת אצווה</string>
@@ -790,7 +796,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ביטול נעילה</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">סיגנל דורש הגדרות MMS כדי למסור מדיה ומסרים קבוצתיים דרך ספק התקשורת הניידת שלך. המידע הזה אינו זמין במכשיר שלך, מה שלפעמים קורה במכשירים נעולים ובתצורות מגבילות אחרות.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal דורש הגדרות MMS כדי למסור הודעות מדיה והודעות קבוצתיות דרך מפעיל התקשורת שלך. המכשיר שלך לא הופך מידע זה לזמין, מה שלעיתים נכון לגבי מכשירים נעולים ותצורות מגבילות אחרות.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">כדי לשלוח מדיה והודעות קבוצתיות, הקש על \'אישור\' והשלם את ההגדרות המבוקשות. הגדרות ה־MMS עבור המפעיל שלך יכולות בד\"כ להימצא ע\"י חיפוש אחר \'מפעיל ה־APN שלך\'. תצטרך לעשות זאת רק פעם אחת.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">הגדר מאוחר יותר</string>
@@ -816,7 +822,7 @@
   <string name="redphone_call_controls__signal_call">שיחת Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">מספר טלפון</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">סיגנל מאפשר תקשורת קלה באמצעות מספר טלפון וספר טלפונים שכבר יש לך. חברים ואנשי קשר שכבר יודעים להשיג אותך בטלפון יוכלו ליצור אתך קשר בקלות בסיגנל.\n\nרישום שולח מידע מסוים על יצירת קשר לשרת. הוא לא מאוחסן.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal מסייע לתקשר ע\"י שימוש במספר הטלפון ובפנקס הכתובות הקיימים שלך. חברים ואנשי קשר שיודעים כבר איך ליצור איתך קשר בטלפון, יוכלו לשמור על קשר בקלות ב־Signal.\n\nרישום משדר מידע מסוים של אנשי קשר אל השרת. הוא לא מאוחסן.</string>
   <string name="registration_activity__verify_your_number">וודא את המספר שלך</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">אנא הכנס את המספר הנייד שלך כדי לקבל קוד וידוא. חיובי מפעיל עשויים לחול.</string>
   <!--registration_problems-->
@@ -977,7 +983,7 @@
   <string name="preferences_chats__message_trimming">קיצוץ הודעה</string>
   <string name="preferences_advanced__use_system_emoji">השתמש באימוג\'י של מערכת</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">השבת תמיכת אימוג\'י מובנית של Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">שלחו את כל השיחות דרך שרת סיגנל כדי להימנע מחשיפת כתובת ה־IP שלך לאיש הקשר שלך. ההפעלה תפחית את איכות השיחה.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">שדר את כל השיחות דרך שרת Signal כדי להימנע מחשיפת כתובת ה־IP שלך לאיש הקשר שלך. אפשור יפחית איכות שיחה.</string>
   <string name="preferences_advanced__always_relay_calls">שדר מחדש שיחות תמיד</string>
   <string name="preferences_app_protection__app_access">גישת יישום</string>
   <string name="preferences_app_protection__communication">תקשורת</string>
@@ -1143,10 +1149,13 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal דורש הרשאת אחסון חיצוני על מנת ליצור גיבויים, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">גיבוי אחרון: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">בתהליך</string>
+  <string name="LocalBackupJob_creating_backup">יוצר גיבוי...</string>
   <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
   <string name="RegistrationActivity_verify_s">וודא את %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
   <string name="RegistrationActivity_wrong_number">מספר שגוי?</string>
+  <string name="RegistrationActivity_call_me_instead">חייג אליי במקום</string>
+  <string name="RegistrationActivity_available_in">זמין תוך:\u0020</string>
   <string name="BackupUtil_never">לעולם לא</string>
   <string name="BackupUtil_unknown">לא ידוע</string>
   <string name="prompt_passphrase_activity__unlock_signal">בטל נעילת Signal</string>
@@ -1190,5 +1199,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal נעול</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">הקש כדי לבטל נעילה</string>
   <string name="RegistrationLockDialog_reminder">תזכורת:</string>
+  <string name="recipient_preferences__about">אודות</string>
   <!--EOF-->
 </resources>

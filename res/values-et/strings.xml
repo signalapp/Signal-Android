@@ -621,6 +621,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">Turvanumber sinu vestluses kontaktiga %1$s on muutunud. See võib tähendada, et keegi üritab su vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Uus turvanumber</string>
+  <string name="WebRtcCallScreen_accept">Nõustu</string>
+  <string name="WebRtcCallScreen_cancel">Tühista</string>
+  <string name="WebRtcCallScreen_end_call">Lõpeta kõne</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Koputa, et lubada oma video</string>
   <!--attachment_type_selector-->

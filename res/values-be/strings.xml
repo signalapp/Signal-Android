@@ -222,6 +222,7 @@
   <!--VideoPlayer-->
   <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_cancel">Адмена</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->

@@ -150,7 +150,7 @@
   <plurals name="ConversationFragment_files_saved_successfully">
     <item quantity="other">ファイルが保存されました</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">外部メモリに書き込めませんでした</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ストレージに書き込めませんでした！</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">%1$d個の添付ファイルを保存</item>
   </plurals>
@@ -163,6 +163,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">削除中</string>
   <string name="ConversationFragment_deleting_messages">メッセージを削除しています...</string>
+  <string name="ConversationFragment_quoted_message_not_found">引用されたメッセージがありません</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->
@@ -241,12 +242,12 @@
   <string name="ExportFragment_cancel">中止</string>
   <string name="ExportFragment_exporting">エクスポート中…</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">テキストを外部メモリにエクスポート...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">エラー：外部メモリに書き込めません</string>
+  <string name="ExportFragment_error_unable_to_write_to_storage">エラー、ストレージに書き込めません。</string>
   <string name="ExportFragment_error_while_writing_to_storage">外部メモリに書き込む間にエラー発生</string>
   <string name="ExportFragment_export_successful">エクスポート成功</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永続的障害の発生！</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Playに登録できないためSignalは利用できません。「詳細設定」で再登録してください。</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google PlayサービスにSignalを登録できなかったため、Signalのメッセージと通話は無効になっています。設定 &gt; 詳細設定で再登録を試してください。</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">GIFファイルの取り込みでエラー</string>
   <!--GiphyFragmentPageAdapter-->
@@ -258,7 +259,7 @@
   <string name="GroupCreateActivity_group_name_hint">グループ名</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新規MMSグループ</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Signalユーザーでない人がいるため、このグループはMMSとなります。</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signalに未登録なのでグループを利用できません。「詳細設定」で登録してください。</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signalに未登録のためSignalグループを利用できません。設定 &gt; 詳細設定で再登録を試してください。</string>
   <string name="GroupCreateActivity_contacts_no_members">グループには最低でも１人は必要です！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">グループのメンバーで電話番号が正しくない人がいます。番号を修正するか、そのメンバーを削除してからやり直してください。</string>
   <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
@@ -335,10 +336,10 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除...</string>
   <string name="MediaOverviewActivity_Documents">文書</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">通話準備中</string>
-  <string name="NotificationBarManager__establishing_signal_call">通話を準備中</string>
-  <string name="NotificationBarManager__incoming_signal_call">着信</string>
-  <string name="NotificationBarManager__deny_call">通話を拒否</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
+  <string name="NotificationBarManager__establishing_signal_call">Signal通話を準備しています</string>
+  <string name="NotificationBarManager__incoming_signal_call">Signal通話の着信</string>
+  <string name="NotificationBarManager__deny_call">拒否</string>
   <string name="NotificationBarManager__answer_call">応答</string>
   <string name="NotificationBarManager__end_call">終了</string>
   <string name="NotificationBarManager__cancel_call">キャンセル</string>
@@ -405,10 +406,10 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">アプリはインストールされていないようです</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">この連絡先をブロックしますか？</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや電話を受信できなくなります。</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや通話を受信できなくなります。</string>
   <string name="RecipientPreferenceActivity_block">ブロック</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか？</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや電話を受信できるようになります。</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや通話を受信できるようになります。</string>
   <string name="RecipientPreferenceActivity_unblock">ブロック解除</string>
   <string name="RecipientPreferenceActivity_enabled">有効</string>
   <string name="RecipientPreferenceActivity_disabled">無効</string>
@@ -417,7 +418,7 @@
   <string name="RecipientProvider_unnamed_group">名無しのグループ</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">応答中</string>
-  <string name="RedPhone_ending_call">通話終了</string>
+  <string name="RedPhone_ending_call">通話を終了しています</string>
   <string name="RedPhone_dialing">発信</string>
   <string name="RedPhone_ringing">着信</string>
   <string name="RedPhone_busy">話し中</string>
@@ -440,7 +441,7 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play開発者サービスは更新中か一時的に使用不能です。再度試してください。</string>
   <string name="RegistrationActivity_more_information">もっと見る</string>
   <string name="RegistrationActivity_less_information">詳細を隠す</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、セキュリティの高い通話をするには、Signalに連絡先やメディアへのアクセス許可が必要です。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、安全な通話をするには、Signalに連絡先やメディアへのアクセス許可が必要です。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できませんでした。ネットワークの接続を確認してから、再度試してください。</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">SignalでSMSメッセージを表示できるようにすると、あなたの認証コードが自動的に検出され、電話場号が簡単に認証できます。</string>
   <!--RegistrationProblemsActivity-->
@@ -473,9 +474,9 @@
   <string name="ThreadRecord_left_the_group">グループを抜けました</string>
   <string name="ThreadRecord_secure_session_reset">安全なセッションがリセットされました</string>
   <string name="ThreadRecord_draft">下書き:</string>
-  <string name="ThreadRecord_called">発信しました</string>
-  <string name="ThreadRecord_called_you">着信がありました</string>
-  <string name="ThreadRecord_missed_call">不在着信がありました</string>
+  <string name="ThreadRecord_called">発信</string>
+  <string name="ThreadRecord_called_you">着信</string>
+  <string name="ThreadRecord_missed_call">不在着信</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalにいます</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">メッセージの消去時間が%sに設定されました</string>
@@ -584,6 +585,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">%1$sとの会話の安全番号に変更があります。誰かが通信を傍受している可能性もありますし，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
   <string name="WebRtcCallScreen_new_safety_number_title">新しい安全番号</string>
+  <string name="WebRtcCallScreen_accept">承認</string>
+  <string name="WebRtcCallScreen_cancel">キャンセル</string>
+  <string name="WebRtcCallScreen_end_call">終了</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">タップして動画を有効にする</string>
   <!--attachment_type_selector-->
@@ -654,6 +658,8 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">音声</string>
   <string name="QuoteView_video">動画</string>
+  <string name="QuoteView_photo">写真</string>
+  <string name="QuoteView_document">文書</string>
   <string name="QuoteView_you">あなた</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">一括選択モード</string>
@@ -909,7 +915,7 @@
   <string name="preferences__mmsc_password">MMSCパスワード</string>
   <string name="preferences__sms_delivery_reports">SMS配信報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">会話がある程度長くなると古いメッセージを自動消去する</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">会話が指定した長さを超えると古いメッセージを自動で消去する</string>
   <string name="preferences__delete_old_messages">古いメッセージの削除</string>
   <string name="preferences__chats">チャットとメディア</string>
   <string name="preferences__conversation_length_limit">会話の最大の長さ</string>
@@ -939,7 +945,7 @@
   <string name="preferences_chats__message_trimming">メッセージの整理</string>
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字機能を無効にする</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバーに中継して、相手にIP アドレスが漏れることを防止します。ただし、通話の品質は下がります。</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバに中継して、相手にIP アドレスを知られることを防ぎます。ただし、通話の品質は下がります。</string>
   <string name="preferences_advanced__always_relay_calls">通話をいつも中継する</string>
   <string name="preferences_app_protection__app_access">アプリのアクセス</string>
   <string name="preferences_app_protection__communication">通信</string>
@@ -965,7 +971,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">通話</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signalでの通話</string>
+  <string name="conversation_callable_secure__menu_call">Signal通話</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">メッセージの詳細</string>
   <string name="conversation_context__menu_copy_text">テキストをコピー</string>
@@ -1104,10 +1110,13 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signalはバックアップの作成のために外部ストレージへの許可が必要です。アプリの設定から「権限」を選択し、「ストレージ」を有効にしてください。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">最近バックアップ：%s</string>
   <string name="ChatsPreferenceFragment_in_progress">実施中</string>
+  <string name="LocalBackupJob_creating_backup">バックアップを作成しています...</string>
   <string name="ProgressPreference_d_messages_so_far">今、%d個メッセージ</string>
   <string name="RegistrationActivity_verify_s">%sを確認</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%sに送った確認コードを入力してください。</string>
   <string name="RegistrationActivity_wrong_number">番号違いですか？</string>
+  <string name="RegistrationActivity_call_me_instead">代わりに自分を呼び出す</string>
+  <string name="RegistrationActivity_available_in">利用可能まで:\u0020</string>
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="prompt_passphrase_activity__unlock_signal">Signalをアンロック</string>
@@ -1151,5 +1160,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signalはロックされました</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">タップでロック解除</string>
   <string name="RegistrationLockDialog_reminder">備忘:</string>
+  <string name="recipient_preferences__about">Signalについて</string>
   <!--EOF-->
 </resources>

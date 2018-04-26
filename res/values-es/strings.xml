@@ -619,6 +619,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="WebRtcCallScreen_new_safety_numbers">El número de seguridad para tu conversación con %1$s ha cambiado. Esto podría significar que alguien está tratando de interceptar su comunicación, o bien que %2$s simplemente ha reinstalado Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Puede que desee verificar su número de seguridad con este contacto.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nuevo número de seguridad</string>
+  <string name="WebRtcCallScreen_accept">Aceptar</string>
+  <string name="WebRtcCallScreen_cancel">Cancelar</string>
+  <string name="WebRtcCallScreen_end_call">Finalizar llamada</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Pulse para habilitar su vídeo</string>
   <!--attachment_type_selector-->

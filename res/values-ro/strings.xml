@@ -185,6 +185,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Se șterge</string>
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Mesajul citat nu a fost găsit</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu există nici un browser instalat pe dispozitivul tău.</string>
   <!--ConversationListFragment-->
@@ -631,6 +632,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="WebRtcCallScreen_new_safety_numbers">Numărul de siguranță pentru conversația ta cu %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Număr nou de siguranță</string>
+  <string name="WebRtcCallScreen_accept">Acceptă</string>
+  <string name="WebRtcCallScreen_cancel">Anulare</string>
+  <string name="WebRtcCallScreen_end_call">Închide apelul</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Apasă pentru a activa video-ul tău</string>
   <!--attachment_type_selector-->
@@ -701,6 +705,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Poză</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Tu</string>
   <!--conversation_fragment_cab-->
@@ -1037,6 +1042,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_context__menu_delete_message">Şterge mesajul</string>
   <string name="conversation_context__menu_forward_message">Redirecționează mesajul</string>
   <string name="conversation_context__menu_resend_message">Retrimite mesajul</string>
+  <string name="conversation_context__menu_reply_to_message">Răspunde la mesaj</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvează ataşamentul</string>
   <!--conversation_expiring_off-->
@@ -1171,10 +1177,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea copii de rezervă, dar a fost refuzat permanent. Te rog continuă la setări aplicație, selectează \"Permisiuni\" și activează \"Stocare\". </string>
   <string name="ChatsPreferenceFragment_last_backup_s">Ultima copie de rezervă: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">În curs</string>
+  <string name="LocalBackupJob_creating_backup">Se creează copia de rezervă...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesaje până acum</string>
   <string name="RegistrationActivity_verify_s">Verifică %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Te rog introdu codul de verficare trimis la %s.</string>
   <string name="RegistrationActivity_wrong_number">Număr greșit?</string>
+  <string name="RegistrationActivity_call_me_instead">Sună-mă mai bine</string>
+  <string name="RegistrationActivity_available_in">Disponibil în:\u0020</string>
   <string name="BackupUtil_never">Niciodată</string>
   <string name="BackupUtil_unknown">Necunoscut</string>
   <string name="prompt_passphrase_activity__unlock_signal">Deblochează Signal</string>
@@ -1218,5 +1227,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="prompt_passphrase_activity__signal_is_locked">Signal este blocat</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">Apasă pentru deblocare</string>
   <string name="RegistrationLockDialog_reminder">Memento:</string>
+  <string name="recipient_preferences__about">Despre</string>
   <!--EOF-->
 </resources>

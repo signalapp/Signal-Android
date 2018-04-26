@@ -609,6 +609,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança da sua conversa com %1$s mudou. Isto pode significar que alguém está tentando interceptar sua comunicação, ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Novo número de segurança</string>
+  <string name="WebRtcCallScreen_accept">Aceitar</string>
+  <string name="WebRtcCallScreen_cancel">Cancelar</string>
+  <string name="WebRtcCallScreen_end_call">Terminar ligação</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Clique para habilitar seu vídeo</string>
   <!--attachment_type_selector-->

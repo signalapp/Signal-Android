@@ -534,6 +534,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">%1$sနှင့် သင်၏ပြောစကားများအတွက် လုံခြုံရေးနံပါတ်ပြောင်းလဲလိုက်ပါပြီ။ ယင်းသို့ဖြစ်ရခြင်းမှာ တစ်စုံတစ်ယောက်က သင့်ဆက်သွယ်ရေးလမ်းကြောင်းကို ဝင်ရောက်ရန်ကြိုးစားခြင်း သို့မဟုတ် %2$sက Signal ကိုအသစ်ပြန်သွင်းလိုက်ခြင်းကြောင့်ဖြစ်နိုင်ပါသည်။ </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ဤလူနှင့် ဆက်သွယ်ရန် စိတ်ချရသောနံပါတ်ကို အတည်ပြုပါမည်လား။ </string>
   <string name="WebRtcCallScreen_new_safety_number_title">လုံခြုံရေးနံပါတ် အသစ်</string>
+  <string name="WebRtcCallScreen_accept">လက်ခံသည် </string>
+  <string name="WebRtcCallScreen_cancel">မလုပ်တော့ပါ</string>
+  <string name="WebRtcCallScreen_end_call">ဖုန်းချမည်</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ဗီဒီယိုဖွင့်လို့ရရန် နှိပ်ပါ</string>
   <!--attachment_type_selector-->

@@ -570,6 +570,9 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhedsnummeret for samtalen med %1$s er ændret. Dette kan enten betyde at nogen prøver at opfange jeres kommunikation, eller at %2$s blot har geninstalleret Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du bør verificere din sikkerhedsnøgle med denne kontakt</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nyt sikkerhedsnummer</string>
+  <string name="WebRtcCallScreen_accept">Godkend</string>
+  <string name="WebRtcCallScreen_cancel">Afbryd</string>
+  <string name="WebRtcCallScreen_end_call">Læg på</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tryk for at aktivere video</string>
   <!--attachment_type_selector-->

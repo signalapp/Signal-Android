@@ -617,6 +617,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">Ο αριθμός ασφαλείας για την συζήτησή σου με τον/την %1$s έχει αλλάξει. Αυτό μπορεί να σημαίνει πως κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, ή πως απλά ο/η %2$s επανεγκατέστησε το Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Μήπως θα ήθελες να επιβεβαιώσεις τον αριθμό ασφαλείας σου για αυτή την επαφή;</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Νέος αριθμός ασφαλείας</string>
+  <string name="WebRtcCallScreen_accept">Αποδοχή</string>
+  <string name="WebRtcCallScreen_cancel">Ακύρωση</string>
+  <string name="WebRtcCallScreen_end_call">Τερματισμός κλήσης</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Πάτα για να ενεργοποιήσεις το βίντεό σου</string>
   <!--attachment_type_selector-->
@@ -1149,10 +1152,13 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Το Signal χρειάζεται τα δικαιώματα πρόσβασης εξωτερικής μνήμης για να δημιουργήσει αντίγραφα ασφαλείας, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Τελευταίο αντίγραφο ασφαλείας: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Σε εξέλιξη</string>
+  <string name="LocalBackupJob_creating_backup">Το αντίγραφο ασφαλείας δημιουργείται...</string>
   <string name="ProgressPreference_d_messages_so_far">%d μηνύματα μέχρι τώρα</string>
   <string name="RegistrationActivity_verify_s">Επιβεβαίωση %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Παρακαλώ γράψε τον κωδικό επιβεβαίωσης που στάλθηκε στο %s.</string>
   <string name="RegistrationActivity_wrong_number">Λάθος αριθμός;</string>
+  <string name="RegistrationActivity_call_me_instead">Καλύτερα τηλεφώνησέ μου</string>
+  <string name="RegistrationActivity_available_in">Διαθέσιμο σε:\u0020</string>
   <string name="BackupUtil_never">Ποτέ</string>
   <string name="BackupUtil_unknown">Άγνωστο</string>
   <string name="prompt_passphrase_activity__unlock_signal">Ξεκλείδωμα Signal</string>

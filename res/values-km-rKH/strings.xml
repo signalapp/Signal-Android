@@ -163,6 +163,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">កំពុងលុប</string>
   <string name="ConversationFragment_deleting_messages">កំពុងលុបសារ...</string>
+  <string name="ConversationFragment_quoted_message_not_found">រកមិនឃើញសារដែលបានដកស្រង់</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
   <!--ConversationListFragment-->
@@ -595,6 +596,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">លេខសុវត្ថិភាពសម្រាប់ការសន្ទនារបស់អ្នកជាមួយ %1$s បានផ្លាស់ប្តូរ។ អាចមានន័យថា មានអ្នកផ្សេងព្យាយាមជ្រាតចូលការទាក់ទង ឬ %2$s ប្រើដំឡើង ស៊ីហ្គណលឡើងវិញ។</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">អ្នកប្រហែលចង់ផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នក ជាមួយលេខទំនាក់ទំនងនេះ។</string>
   <string name="WebRtcCallScreen_new_safety_number_title">លេខសុវត្ថិភាពថ្មី</string>
+  <string name="WebRtcCallScreen_accept">យល់ព្រម</string>
+  <string name="WebRtcCallScreen_cancel">បោះបង់</string>
+  <string name="WebRtcCallScreen_end_call">បិទការហៅចូល</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ចុច ដើម្បីបើកវីដេអូរបស់អ្នក</string>
   <!--attachment_type_selector-->
@@ -665,6 +669,8 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">សំឡេង</string>
   <string name="QuoteView_video">វីដេអូ</string>
+  <string name="QuoteView_photo">រូបភាព</string>
+  <string name="QuoteView_document">ឯកសារ</string>
   <string name="QuoteView_you">អ្នក</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">ទម្រង់ជ្រើសរើសច្រើន</string>
@@ -1162,5 +1168,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked"> ស៊ីហ្គណល ជាប់សោរ</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ចុច ដើម្បីដោះសោរ</string>
   <string name="RegistrationLockDialog_reminder">ក្រើនរំលឹក៖</string>
+  <string name="recipient_preferences__about">អំពី</string>
   <!--EOF-->
 </resources>

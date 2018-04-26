@@ -579,6 +579,9 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostné číslo pre konverzáciu s %1$s sa zmenilo. Toto môže znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s preinštaloval/a Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možno by ste chceli overiť bezpečnostné číslo s týmto kontaktom.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nové bezpečnostné číslo</string>
+  <string name="WebRtcCallScreen_accept">Potvrdiť</string>
+  <string name="WebRtcCallScreen_cancel">Zrušiť</string>
+  <string name="WebRtcCallScreen_end_call">Ukončiť hovor</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ťuknutím zapnite video</string>
   <!--attachment_type_selector-->

@@ -628,6 +628,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostní kódy pro konverzaci s %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že %2$s si jednoduše jen přeinstaloval Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nové bezpečnostní kódy</string>
+  <string name="WebRtcCallScreen_accept">Přijmout</string>
+  <string name="WebRtcCallScreen_cancel">Storno</string>
+  <string name="WebRtcCallScreen_end_call">Ukončit hovor</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ťuknutím povolíte video</string>
   <!--attachment_type_selector-->
@@ -1034,6 +1037,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_context__menu_delete_message">Smazat zprávu</string>
   <string name="conversation_context__menu_forward_message">Přeposlat zprávu</string>
   <string name="conversation_context__menu_resend_message">Znovu poslat zprávu</string>
+  <string name="conversation_context__menu_reply_to_message">Odpovědět na zprávu</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Uložit přílohu</string>
   <!--conversation_expiring_off-->
@@ -1169,10 +1173,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signál potřebuje oprávnění pro přístup k úložišti, aby mohl vytvářet zálohy, ale toto oprávnění je nyní trvale zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Poslední záloha: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Probíhá</string>
+  <string name="LocalBackupJob_creating_backup">Vytvářím zálohu...</string>
   <string name="ProgressPreference_d_messages_so_far">%dzpráv zatím</string>
   <string name="RegistrationActivity_verify_s">Ověřuji %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím vložte ověřovací kód zaslaný %s</string>
   <string name="RegistrationActivity_wrong_number">Špatné číslo?</string>
+  <string name="RegistrationActivity_call_me_instead">Zavolej mi místo toho</string>
+  <string name="RegistrationActivity_available_in">K dispozici v:\u0020</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
   <string name="prompt_passphrase_activity__unlock_signal">Odemknout Signal</string>

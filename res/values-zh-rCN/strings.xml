@@ -593,6 +593,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了 Signal 。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人的安全代码。</string>
   <string name="WebRtcCallScreen_new_safety_number_title">新的安全代码</string>
+  <string name="WebRtcCallScreen_accept">接受</string>
+  <string name="WebRtcCallScreen_cancel">取消</string>
+  <string name="WebRtcCallScreen_end_call">结束呼叫</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">点击以启用视频</string>
   <!--attachment_type_selector-->

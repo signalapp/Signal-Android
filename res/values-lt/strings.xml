@@ -641,6 +641,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">Jūsų pokalbio su %1$s saugumo numeris pasikeitė. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, kad %2$s, tiesiog, iš naujo įdiegė Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo kontaktu.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Naujas saugumo numeris</string>
+  <string name="WebRtcCallScreen_accept">Priimti</string>
+  <string name="WebRtcCallScreen_cancel">Atsisakyti</string>
+  <string name="WebRtcCallScreen_end_call">Baigti skambutį</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Bakstelėkite, norėdami įjungti savo vaizdą</string>
   <!--attachment_type_selector-->
@@ -1047,6 +1050,7 @@
   <string name="conversation_context__menu_delete_message">Ištrinti žinutę</string>
   <string name="conversation_context__menu_forward_message">Persiųsti žinutę</string>
   <string name="conversation_context__menu_resend_message">Iš naujo siųsti žinutę</string>
+  <string name="conversation_context__menu_reply_to_message">Atsakyti į žinutę</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Įrašyti priedą</string>
   <!--conversation_expiring_off-->
@@ -1181,10 +1185,13 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Norint daryti atsargines kopijas, Signal reikia išorinės saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Paskiausia atsarginė kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Eigoje</string>
+  <string name="LocalBackupJob_creating_backup">Daroma atsarginė kopija...</string>
   <string name="ProgressPreference_d_messages_so_far">Jau %d žinučių</string>
   <string name="RegistrationActivity_verify_s">Patvirtinti %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Įveskite į %s išsiųstą patvirtinimo kodą.</string>
   <string name="RegistrationActivity_wrong_number">Neteisingas numeris?</string>
+  <string name="RegistrationActivity_call_me_instead">Vietoj to man skambinti</string>
+  <string name="RegistrationActivity_available_in">Prieinama po:\u0020</string>
   <string name="BackupUtil_never">Niekada</string>
   <string name="BackupUtil_unknown">Nežinoma</string>
   <string name="prompt_passphrase_activity__unlock_signal">Atrakinti Signal</string>
