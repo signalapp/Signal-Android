@@ -13,5 +13,11 @@
                android:layout_height="match_parent"
                android:scaleType="centerCrop"/>
 
+    <View android:id="@+id/overlay"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@android:color/black"
+          android:alpha="0"/>
+
 </org.thoughtcrime.securesms.components.SquareFrameLayout>
 

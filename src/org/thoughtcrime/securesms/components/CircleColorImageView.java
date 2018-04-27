@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
 
-public class CircleColorImageView extends ImageView {
+public class CircleColorImageView extends android.support.v7.widget.AppCompatImageView {
 
  public CircleColorImageView(Context context) {
     this(context, null);

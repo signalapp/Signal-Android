@@ -25,10 +25,13 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import java.util.TreeSet;
 
 public class AttachmentTypeSelector extends PopupWindow {
 
@@ -55,9 +58,12 @@ public class AttachmentTypeSelector extends PopupWindow {
   private final @NonNull ImageView           locationButton;
   private final @NonNull ImageView           gifButton;
   private final @NonNull ImageView           closeButton;
+  private final @NonNull ImageView           sendButton;
+  private final @NonNull TextView            closeSendText;
 
-  private @Nullable View                      currentAnchor;
-  private @Nullable AttachmentClickedListener listener;
+  private       @Nullable View                      currentAnchor;
+  private       @Nullable AttachmentClickedListener listener;
+  private final @NonNull  TreeSet<Uri> selectedUris = new TreeSet<>();
 
   public AttachmentTypeSelector(@NonNull Context context, @NonNull LoaderManager loaderManager, @Nullable AttachmentClickedListener listener) {
     super(context);
@@ -76,6 +82,8 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.locationButton = ViewUtil.findById(layout, R.id.location_button);
     this.gifButton      = ViewUtil.findById(layout, R.id.giphy_button);
     this.closeButton    = ViewUtil.findById(layout, R.id.close_button);
+    this.sendButton     = ViewUtil.findById(layout, R.id.send_button);
+    this.closeSendText  = ViewUtil.findById(layout, R.id.close_send_text);
 
     this.imageButton.setOnClickListener(new PropagatingClickListener(ADD_GALLERY));
     this.audioButton.setOnClickListener(new PropagatingClickListener(ADD_SOUND));
@@ -85,6 +93,7 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.locationButton.setOnClickListener(new PropagatingClickListener(ADD_LOCATION));
     this.gifButton.setOnClickListener(new PropagatingClickListener(ADD_GIF));
     this.closeButton.setOnClickListener(new CloseClickListener());
+    this.sendButton.setOnClickListener(new SendClickListener());
     this.recentRail.setListener(new RecentPhotoSelectedListener());
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -255,12 +264,51 @@ public class AttachmentTypeSelector extends PopupWindow {
     return new Pair<>(x, y);
   }
 
+  private void updateCloseSendButton() {
+    if (selectedUris.isEmpty()) {
+      closeButton.setVisibility(View.VISIBLE);
+      sendButton.setVisibility(View.GONE);
+      closeSendText.setText("");
+    } else {
+      closeButton.setVisibility(View.GONE);
+      sendButton.setVisibility(View.VISIBLE);
+      closeSendText.setText(R.string.attachment_type_selector__send);
+    }
+  }
+
   private class RecentPhotoSelectedListener implements RecentPhotoViewRail.OnItemClickedListener {
     @Override
-    public void onItemClicked(Uri uri) {
-      animateWindowOutTranslate(getContentView());
+    public boolean onShortPress(Uri uri) {
+      if (selectedUris.isEmpty()) {
+        selectedUris.add(uri);
+        animateWindowOutTranslate(getContentView());
+        if (listener != null) {
+          listener.onQuickAttachment(selectedUris.toArray(new Uri[selectedUris.size()]));
+        }
+        return true;
+      } else {
+        if (selectedUris.contains(uri)) {
+          selectedUris.remove(uri);
+          updateCloseSendButton();
+          return false;
+        } else {
+          selectedUris.add(uri);
+          return true;
+        }
+      }
+    }
 
-      if (listener != null) listener.onQuickAttachment(uri);
+    @Override
+    public boolean onLongPress(Uri uri) {
+      if (selectedUris.contains(uri)) {
+        selectedUris.remove(uri);
+        updateCloseSendButton();
+        return false;
+      } else {
+        selectedUris.add(uri);
+        updateCloseSendButton();
+        return true;
+      }
     }
   }
 
@@ -288,9 +336,20 @@ public class AttachmentTypeSelector extends PopupWindow {
     }
   }
 
+  private class SendClickListener implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+      animateWindowOutTranslate(getContentView());
+      listener.onQuickAttachment(selectedUris.toArray(new Uri[selectedUris.size()]));
+      if (listener != null) {
+        listener.onQuickAttachment(selectedUris.toArray(new Uri[selectedUris.size()]));
+      }
+    }
+  }
+
   public interface AttachmentClickedListener {
     public void onClick(int type);
-    public void onQuickAttachment(Uri uri);
+    public void onQuickAttachment(Uri[] uris);
   }
 
 }

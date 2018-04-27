@@ -118,10 +118,21 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
               .diskCacheStrategy(DiskCacheStrategy.NONE)
               .into(viewHolder.imageView);
 
-      viewHolder.imageView.setOnClickListener(v -> {
-        if (clickedListener != null) clickedListener.onItemClicked(uri);
+      viewHolder.imageView.setOnClickListener((v) -> {
+        if (clickedListener != null) {
+          boolean isSelected = clickedListener.onShortPress(uri);
+          viewHolder.overlay.setAlpha(isSelected ? 0.5f : 0f);
+        }
       });
 
+      viewHolder.imageView.setOnLongClickListener((v) -> {
+        if (clickedListener != null) {
+          boolean isSelected = clickedListener.onLongPress(uri);
+          viewHolder.overlay.setAlpha(isSelected ? 0.5f : 0f);
+          return true;
+        }
+        return false;
+      });
     }
 
     public void setListener(@Nullable OnItemClickedListener listener) {
@@ -131,16 +142,19 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
     static class RecentPhotoViewHolder extends RecyclerView.ViewHolder {
 
       ImageView imageView;
+      View      overlay;
 
       RecentPhotoViewHolder(View itemView) {
         super(itemView);
 
         this.imageView = ViewUtil.findById(itemView, R.id.thumbnail);
+        this.overlay = ViewUtil.findById(itemView, R.id.overlay);
       }
     }
   }
 
   public interface OnItemClickedListener {
-    void onItemClicked(Uri uri);
+    boolean onShortPress(Uri uri);
+    boolean onLongPress(Uri uri);
   }
 }

@@ -753,6 +753,8 @@
     <string name="attachment_type_selector__file">File</string>
 
     <string name="attachment_type_selector__drawer_description">Toggle attachment drawer</string>
+    <string name="attachment_type_selector__send_description">Send quick attachments</string>
+    <string name="attachment_type_selector__send">Send</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Old passphrase</string>

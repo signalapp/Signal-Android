@@ -210,11 +210,22 @@
                     android:contentDescription="@string/attachment_type_selector__drawer_description"
                     app:circleColor="@color/gray50"/>
 
-            <TextView android:layout_marginTop="10dp"
+            <org.thoughtcrime.securesms.components.CircleColorImageView
+                android:id="@+id/send_button"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+                android:scaleType="center"
+                android:visibility="gone"
+                android:contentDescription="@string/attachment_type_selector__send_description"
+                app:circleColor="@color/gray50"/>
+
+            <TextView android:id="@+id/close_send_text"
+                      android:layout_marginTop="10dp"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       style="@style/AttachmentTypeLabel"
-                      android:text=" "/>
+                      android:text=""/>
 
         </LinearLayout>
 
