@@ -259,7 +259,9 @@ public class ConversationItem extends LinearLayout
       int quoteWidth = quoteView.getMeasuredWidth();
 
       int availableWidth;
-      if (hasThumbnail(messageRecord)) {
+      if (hasAudio(messageRecord)) {
+        availableWidth = audioViewStub.get().getMeasuredWidth();
+      } else if (hasThumbnail(messageRecord)) {
         availableWidth = mediaThumbnailStub.get().getMeasuredWidth();
       } else {
         availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
