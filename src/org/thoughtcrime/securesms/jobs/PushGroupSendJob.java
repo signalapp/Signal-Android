@@ -34,6 +34,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Quote;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
@@ -152,6 +153,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     List<Attachment>              scaledAttachments = scaleAndStripExifFromAttachments(mediaConstraints, message.getAttachments());
     List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(scaledAttachments);
     Optional<Quote>               quote             = getQuoteFor(message);
+    List<SharedContact>           sharedContacts    = getSharedContactsFor(message);
 
     List<SignalServiceAddress>    addresses;
 
@@ -181,6 +183,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withProfileKey(profileKey.orNull())
                                                                       .withQuote(quote.orNull())
+                                                                      .withSharedContacts(sharedContacts)
                                                                       .build();
 
       messageSender.sendMessage(addresses, groupMessage);

@@ -66,7 +66,8 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_ID,
                                               MmsDatabase.QUOTE_AUTHOR,
                                               MmsDatabase.QUOTE_BODY,
-                                              MmsDatabase.QUOTE_ATTACHMENT};
+                                              MmsDatabase.QUOTE_ATTACHMENT,
+                                              MmsDatabase.SHARED_CONTACTS};
 
   public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -217,7 +218,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_ID,
                               MmsDatabase.QUOTE_AUTHOR,
                               MmsDatabase.QUOTE_BODY,
-                              MmsDatabase.QUOTE_ATTACHMENT};
+                              MmsDatabase.QUOTE_ATTACHMENT,
+                              MmsDatabase.SHARED_CONTACTS};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -239,7 +241,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_ID,
                               MmsDatabase.QUOTE_AUTHOR,
                               MmsDatabase.QUOTE_BODY,
-                              MmsDatabase.QUOTE_ATTACHMENT};
+                              MmsDatabase.QUOTE_ATTACHMENT,
+                              MmsDatabase.SHARED_CONTACTS};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -302,6 +305,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.QUOTE_AUTHOR);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_BODY);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
+    mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);

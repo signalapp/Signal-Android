@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.mms;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class OutgoingMediaMessage {
@@ -18,11 +21,13 @@ public class OutgoingMediaMessage {
   private   final int              subscriptionId;
   private   final long             expiresIn;
   private   final QuoteModel       outgoingQuote;
+  private   final List<Contact>    contacts = new LinkedList<>();
 
   public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
                               int subscriptionId, long expiresIn,
-                              int distributionType, @Nullable QuoteModel outgoingQuote)
+                              int distributionType, @Nullable QuoteModel outgoingQuote,
+                              @NonNull List<Contact> contacts)
   {
     this.recipient        = recipient;
     this.body             = message;
@@ -32,26 +37,30 @@ public class OutgoingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.outgoingQuote    = outgoingQuote;
+
+    this.contacts.addAll(contacts);
   }
 
-  public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType, @Nullable QuoteModel outgoingQuote)
+  public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType, @Nullable QuoteModel outgoingQuote, @NonNull List<Contact> contacts)
   {
     this(recipient,
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
-         expiresIn, distributionType, outgoingQuote);
+         expiresIn, distributionType, outgoingQuote, contacts);
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
-    this.recipient        = that.getRecipient();
-    this.body             = that.body;
-    this.distributionType = that.distributionType;
-    this.attachments      = that.attachments;
-    this.sentTimeMillis   = that.sentTimeMillis;
-    this.subscriptionId   = that.subscriptionId;
-    this.expiresIn        = that.expiresIn;
-    this.outgoingQuote    = that.outgoingQuote;
+    this.recipient           = that.getRecipient();
+    this.body                = that.body;
+    this.distributionType    = that.distributionType;
+    this.attachments         = that.attachments;
+    this.sentTimeMillis      = that.sentTimeMillis;
+    this.subscriptionId      = that.subscriptionId;
+    this.expiresIn           = that.expiresIn;
+    this.outgoingQuote       = that.outgoingQuote;
+
+    this.contacts.addAll(that.contacts);
   }
 
   public Recipient getRecipient() {
@@ -96,6 +105,10 @@ public class OutgoingMediaMessage {
 
   public @Nullable QuoteModel getOutgoingQuote() {
     return outgoingQuote;
+  }
+
+  public @NonNull List<Contact> getSharedContacts() {
+    return contacts;
   }
 
   private static String buildMessage(SlideDeck slideDeck, String message) {

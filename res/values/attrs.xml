@@ -131,6 +131,9 @@
     <attr name="media_overview_document_background" format="color"/>
     <attr name="media_overview_document_foreground" format="color"/>
 
+    <attr name="shared_contact_details_header_background" format="color"/>
+    <attr name="shared_contact_details_titlebar" format="color"/>
+
     <attr name="search_toolbar_background" format="color"/>
 
     <attr name="contact_list_divider" format="reference"/>

@@ -1,13 +1,18 @@
 package org.thoughtcrime.securesms.attachments;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.thoughtcrime.securesms.util.Util;
 
 public class AttachmentId {
 
+  @JsonProperty
   private final long rowId;
+
+  @JsonProperty
   private final long uniqueId;
 
-  public AttachmentId(long rowId, long uniqueId) {
+  public AttachmentId(@JsonProperty("rowId") long rowId, @JsonProperty("uniqueId") long uniqueId) {
     this.rowId    = rowId;
     this.uniqueId = uniqueId;
   }

@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -55,7 +56,7 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
     super(context, id, "", conversationRecipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
           new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
-          0, 0, slideDeck, readReceiptCount, null);
+          0, 0, slideDeck, readReceiptCount, null, Collections.emptyList());
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;
