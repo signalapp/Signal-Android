@@ -23,6 +23,9 @@
         <item name="media_overview_header_foreground">@color/gray50</item>
         <item name="media_overview_document_foreground">@color/gray70</item>
         <item name="media_overview_document_background">@color/white</item>
+
+        <item name="shared_contact_details_header_background">@color/grey_100</item>
+        <item name="shared_contact_details_titlebar">@color/grey_400</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.DarkTheme">
@@ -47,6 +50,9 @@
         <item name="media_overview_header_foreground">@color/gray10</item>
         <item name="media_overview_document_foreground">@color/white</item>
         <item name="media_overview_document_background">@color/black</item>
+
+        <item name="shared_contact_details_header_background">@color/grey_800</item>
+        <item name="shared_contact_details_titlebar">@color/grey_900</item>
     </style>
 
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">

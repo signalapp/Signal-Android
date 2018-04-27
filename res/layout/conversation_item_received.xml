@@ -85,6 +85,13 @@
                     tools:visibility="visible"/>
 
             <ViewStub
+                    android:id="@+id/shared_contact_view_stub"
+                    android:layout="@layout/conversation_item_shared_contact"
+                    android:layout_width="@dimen/media_bubble_max_width"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+            <ViewStub
                     android:id="@+id/image_view_stub"
                     android:layout="@layout/conversation_item_received_thumbnail"
                     android:layout_width="@dimen/media_bubble_default_dimens"

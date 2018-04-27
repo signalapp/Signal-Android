@@ -8,6 +8,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
@@ -27,9 +29,8 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.ByteArrayInputStream;
@@ -88,25 +89,33 @@ public abstract class PushSendJob extends SendJob {
     List<SignalServiceAttachment> attachments = new LinkedList<>();
 
     for (final Attachment attachment : parts) {
-      try {
-        if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
-        InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
-        attachments.add(SignalServiceAttachment.newStreamBuilder()
-                                               .withStream(is)
-                                               .withContentType(attachment.getContentType())
-                                               .withLength(attachment.getSize())
-                                               .withFileName(attachment.getFileName())
-                                               .withVoiceNote(attachment.isVoiceNote())
-                                               .withWidth(attachment.getWidth())
-                                               .withHeight(attachment.getHeight())
-                                               .withListener((total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)))
-                                               .build());
-      } catch (IOException ioe) {
-        Log.w(TAG, "Couldn't open attachment", ioe);
+      SignalServiceAttachment converted = getAttachmentFor(attachment);
+      if (converted != null) {
+        attachments.add(converted);
       }
     }
 
     return attachments;
+  }
+
+  protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {
+    try {
+      if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
+      InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
+      return SignalServiceAttachment.newStreamBuilder()
+                                    .withStream(is)
+                                    .withContentType(attachment.getContentType())
+                                    .withLength(attachment.getSize())
+                                    .withFileName(attachment.getFileName())
+                                    .withVoiceNote(attachment.isVoiceNote())
+                                    .withWidth(attachment.getWidth())
+                                    .withHeight(attachment.getHeight())
+                                    .withListener((total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)))
+                                    .build();
+    } catch (IOException ioe) {
+      Log.w(TAG, "Couldn't open attachment", ioe);
+    }
+    return null;
   }
 
   protected void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
@@ -158,6 +167,25 @@ public abstract class PushSendJob extends SendJob {
     return Optional.of(new SignalServiceDataMessage.Quote(quoteId, new SignalServiceAddress(quoteAuthor.serialize()), quoteBody, quoteAttachments));
   }
 
+  List<SharedContact> getSharedContactsFor(OutgoingMediaMessage mediaMessage) {
+    List<SharedContact> sharedContacts = new LinkedList<>();
+
+    for (Contact contact : mediaMessage.getSharedContacts()) {
+      SharedContact.Builder builder = ContactModelMapper.localToRemoteBuilder(contact);
+      SharedContact.Avatar  avatar  = null;
+
+      if (contact.getAvatar() != null && contact.getAvatar().getAttachment() != null) {
+        avatar = SharedContact.Avatar.newBuilder().withAttachment(getAttachmentFor(contact.getAvatarAttachment()))
+                                                  .withProfileFlag(contact.getAvatar().isProfile())
+                                                  .build();
+      }
+
+      builder.setAvatar(avatar);
+      sharedContacts.add(builder.build());
+    }
+
+    return sharedContacts;
+  }
 
   protected abstract void onPushSend() throws Exception;
 }

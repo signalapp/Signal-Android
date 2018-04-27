@@ -90,7 +90,6 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable String         profileName;
   private @Nullable String         profileAvatar;
   private           boolean        profileSharing;
-  private           boolean        isSystemContact;
 
 
   @SuppressWarnings("ConstantConditions")
@@ -140,7 +139,6 @@ public class Recipient implements RecipientModifiedListener {
       this.profileName           = stale.profileName;
       this.profileAvatar         = stale.profileAvatar;
       this.profileSharing        = stale.profileSharing;
-      this.isSystemContact       = stale.isSystemContact;
       this.participants.clear();
       this.participants.addAll(stale.participants);
     }
@@ -164,7 +162,6 @@ public class Recipient implements RecipientModifiedListener {
       this.profileName           = details.get().profileName;
       this.profileAvatar         = details.get().profileAvatar;
       this.profileSharing        = details.get().profileSharing;
-      this.isSystemContact       = details.get().systemContact;
       this.participants.clear();
       this.participants.addAll(details.get().participants);
     }
@@ -195,7 +192,6 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.profileAvatar         = result.profileAvatar;
             Recipient.this.profileSharing        = result.profileSharing;
             Recipient.this.profileName           = result.profileName;
-            Recipient.this.isSystemContact       = result.systemContact;
 
             Recipient.this.participants.clear();
             Recipient.this.participants.addAll(result.participants);
@@ -241,7 +237,6 @@ public class Recipient implements RecipientModifiedListener {
     this.profileName           = details.profileName;
     this.profileAvatar         = details.profileAvatar;
     this.profileSharing        = details.profileSharing;
-    this.isSystemContact       = details.systemContact;
     this.participants.addAll(details.participants);
     this.resolving    = false;
   }
@@ -599,7 +594,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized boolean isSystemContact() {
-    return isSystemContact;
+    return contactUri != null;
   }
 
   public synchronized Recipient resolve() {

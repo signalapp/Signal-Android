@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms.contacts;
 import android.accounts.Account;
 import android.annotation.SuppressLint;
 import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
@@ -225,6 +227,114 @@ public class ContactsDatabase {
                                        new Pair<>(CONTACT_TYPE_COLUMN, PUSH_TYPE));
 
   }
+
+  public @Nullable Cursor getNameDetails(long contactId) {
+    String[] projection = new String[] { ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
+                                         ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
+                                         ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME,
+                                         ContactsContract.CommonDataKinds.StructuredName.PREFIX,
+                                         ContactsContract.CommonDataKinds.StructuredName.SUFFIX,
+                                         ContactsContract.CommonDataKinds.StructuredName.MIDDLE_NAME };
+    String   selection  = ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?";
+    String[] args       = new String[] { String.valueOf(contactId), ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
+
+    return context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
+                                              projection,
+                                              selection,
+                                              args,
+                                              null);
+  }
+
+  public @Nullable String getOrganizationName(long contactId) {
+    String[] projection = new String[] { ContactsContract.CommonDataKinds.Organization.COMPANY };
+    String   selection  = ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?";
+    String[] args       = new String[] { String.valueOf(contactId), ContactsContract.CommonDataKinds.Organization.CONTENT_ITEM_TYPE };
+
+    try (Cursor cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
+                                                            projection,
+                                                            selection,
+                                                            args,
+                                                            null))
+    {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getString(0);
+      }
+    }
+
+    return null;
+  }
+
+  public @Nullable Cursor getPhoneDetails(long contactId) {
+    String[] projection = new String[] { ContactsContract.CommonDataKinds.Phone.NUMBER,
+                                         ContactsContract.CommonDataKinds.Phone.TYPE,
+                                         ContactsContract.CommonDataKinds.Phone.LABEL };
+    String   selection  = ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?";
+    String[] args       = new String[] { String.valueOf(contactId), ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE };
+
+    return context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
+        projection,
+        selection,
+        args,
+        null);
+  }
+
+  public @Nullable Cursor getEmailDetails(long contactId) {
+    String[] projection = new String[] { ContactsContract.CommonDataKinds.Email.ADDRESS,
+                                         ContactsContract.CommonDataKinds.Email.TYPE,
+                                         ContactsContract.CommonDataKinds.Email.LABEL };
+    String   selection  = ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?";
+    String[] args       = new String[] { String.valueOf(contactId), ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE };
+
+    return context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
+                                              projection,
+                                              selection,
+                                              args,
+                                              null);
+  }
+
+  public @Nullable Cursor getPostalAddressDetails(long contactId) {
+    String[] projection = new String[] { ContactsContract.CommonDataKinds.StructuredPostal.TYPE,
+                                         ContactsContract.CommonDataKinds.StructuredPostal.LABEL,
+                                         ContactsContract.CommonDataKinds.StructuredPostal.STREET,
+                                         ContactsContract.CommonDataKinds.StructuredPostal.POBOX,
+                                         ContactsContract.CommonDataKinds.StructuredPostal.NEIGHBORHOOD,
+                                         ContactsContract.CommonDataKinds.StructuredPostal.CITY,
+                                         ContactsContract.CommonDataKinds.StructuredPostal.REGION,
+                                         ContactsContract.CommonDataKinds.StructuredPostal.POSTCODE,
+                                         ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY };
+    String   selection  = ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?";
+    String[] args       = new String[] { String.valueOf(contactId), ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE };
+
+    return context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
+                                              projection,
+                                              selection,
+                                              args,
+                                              null);
+  }
+
+  public @Nullable Uri getAvatarUri(long contactId) {
+    String[] projection = new String[] { ContactsContract.CommonDataKinds.Photo.PHOTO_URI };
+    String   selection  = ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?";
+    String[] args       = new String[] { String.valueOf(contactId), ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE };
+
+    try (Cursor cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
+                                                            projection,
+                                                            selection,
+                                                            args,
+                                                            null))
+    {
+      if (cursor != null && cursor.moveToFirst()) {
+        String uri = cursor.getString(0);
+        if (uri != null) {
+          return Uri.parse(uri);
+        }
+      }
+    }
+
+    return null;
+  }
+
+
 
   private void addContactVoiceSupport(List<ContentProviderOperation> operations,
                                       @NonNull Address address, long rawContactId)

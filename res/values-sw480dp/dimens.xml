@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="media_bubble_max_width">350dp</dimen>
+    <dimen name="media_bubble_max_height">300dp</dimen>
+</resources>

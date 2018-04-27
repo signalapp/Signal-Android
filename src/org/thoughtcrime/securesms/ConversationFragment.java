@@ -26,6 +26,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -52,6 +54,9 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.contactshare.ContactUtil;
+import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
+import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -59,6 +64,7 @@ import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -66,6 +72,7 @@ import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -85,7 +92,8 @@ public class ConversationFragment extends Fragment
 {
   private static final String TAG = ConversationFragment.class.getSimpleName();
 
-  private static final long   PARTIAL_CONVERSATION_LIMIT = 500L;
+  private static final long PARTIAL_CONVERSATION_LIMIT = 500L;
+  private static final int  CODE_ADD_EDIT_CONTACT      = 77;
 
   private final ActionModeCallback actionModeCallback     = new ActionModeCallback();
   private final ItemClickListener  selectionClickListener = new ConversationFragmentItemClickListener();
@@ -651,6 +659,60 @@ public class ConversationFragment extends Fragment
           }
         }
       }.execute();
+    }
+
+    @Override
+    public void onSharedContactDetailsClicked(@NonNull Contact contact, @NonNull View avatarTransitionView) {
+      if (getContext() != null && getActivity() != null) {
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), avatarTransitionView, "avatar").toBundle();
+        ActivityCompat.startActivity(getActivity(), SharedContactDetailsActivity.getIntent(getContext(), contact), bundle);
+      }
+    }
+
+    @Override
+    public void onAddToContactsClicked(@NonNull Contact contactWithAvatar) {
+      if (getContext() != null) {
+        new AsyncTask<Void, Void, Intent>() {
+          @Override
+          protected Intent doInBackground(Void... voids) {
+            return ContactUtil.buildAddToContactsIntent(getContext(), contactWithAvatar);
+          }
+
+          @Override
+          protected void onPostExecute(Intent intent) {
+            startActivityForResult(intent, CODE_ADD_EDIT_CONTACT);
+          }
+        }.execute();
+      }
+    }
+
+    @Override
+    public void onMessageSharedContactClicked(@NonNull List<Recipient> choices) {
+      if (getContext() == null) return;
+
+      ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
+        CommunicationActions.startConversation(getContext(), recipient, null);
+      });
+    }
+
+    @Override
+    public void onInviteSharedContactClicked(@NonNull List<Recipient> choices) {
+      if (getContext() == null) return;
+
+      ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
+        CommunicationActions.composeSmsThroughDefaultApp(getContext(), recipient.getAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, "https://sgnl.link/1KpeYmF"));
+      });
+    }
+  }
+
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+
+    if (requestCode == CODE_ADD_EDIT_CONTACT && getContext() != null) {
+      ApplicationContext.getInstance(getContext().getApplicationContext())
+                        .getJobManager()
+                        .add(new DirectoryRefreshJob(getContext().getApplicationContext(), false));
     }
   }
 

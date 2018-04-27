@@ -97,6 +97,13 @@
     <string name="ContactsDatabase_message_s">Message %s</string>
     <string name="ContactsDatabase_signal_call_s">Signal Call %s</string>
 
+    <!-- ContactShareEditActivity -->
+    <string name="ContactShareEditActivity_type_home">Home</string>
+    <string name="ContactShareEditActivity_type_mobile">Mobile</string>
+    <string name="ContactShareEditActivity_type_work">Work</string>
+    <string name="ContactShareEditActivity_type_missing">Other</string>
+    <string name="ContactShareEditActivity_invalid_contact">Selected contact was invalid</string>
+
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Not delivered</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Received key exchange message, tap to process.</string>
@@ -151,6 +158,8 @@
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">To capture photos and video, allow Signal access to the camera.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal needs the Camera permission to take photos or video, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal needs Camera permissions to take photos or video</string>
+
+    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -568,6 +577,23 @@
     <string name="RingtonePreference_add_ringtone_text">Add ringtone</string>
     <string name="RingtonePreference_unable_to_add_ringtone">Unable to add custom ringtone</string>
 
+    <!-- SharedContactDetailsActivity -->
+    <string name="SharedContactDetailsActivity_add_to_contacts">Add to Contacts</string>
+    <string name="SharedContactDetailsActivity_invite_to_signal">Invite to Signal</string>
+    <string name="SharedContactDetailsActivity_invite_message">Let\'s switch to Signal: %1$s</string>
+    <string name="SharedContactDetailsActivity_new_contact_success">Contact added.</string>
+    <string name="SharedContactDetailsActivity_new_contact_failure">Failed to retrieve the contact</string>
+    <string name="SharedContactDetailsActivity_updated_contact_success">Contact updated.</string>
+    <string name="SharedContactDetailsActivity_updated_contact_failure">Error while editing contact</string>
+    <string name="SharedContactDetailsActivity_initialization_failure">Error while reading contact</string>
+    <string name="SharedContactDetailsActivity_add_as_new_contact">Add as a new contact</string>
+    <string name="SharedContactDetailsActivity_add_to_existing_contact">Add to an existing contact</string>
+
+    <!-- SharedContactView -->
+    <string name="SharedContactView_add_to_contacts">Add to Contacts</string>
+    <string name="SharedContactView_invite_to_signal">Invite to Signal</string>
+    <string name="SharedContactView_message">Signal Message</string>
+
     <!-- Slide -->
     <string name="Slide_image">Image</string>
     <string name="Slide_audio">Audio</string>
@@ -695,6 +721,8 @@
     <string name="MessageNotifier_reply">Reply</string>
     <string name="MessageNotifier_pending_signal_messages">Pending Signal messages</string>
     <string name="MessageNotifier_you_have_pending_signal_messages">You have pending Signal messages, tap to open and retrieve</string>
+    <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Contact</string>
 
     <!-- MmsPreferencesFragment -->
 
