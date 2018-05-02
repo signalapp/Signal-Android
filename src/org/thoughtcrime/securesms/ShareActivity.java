@@ -38,7 +38,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.components.SearchToolbar;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -74,7 +75,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private MasterSecret                 masterSecret;
   private ContactSelectionListFragment contactsFragment;
   private SearchToolbar                searchToolbar;
   private ImageView                    searchAction;
@@ -90,14 +90,12 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-
+  protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE,
                            TextSecurePreferences.isSmsEnabled(this)
-                               ? ContactSelectionListFragment.DISPLAY_MODE_ALL
-                               : ContactSelectionListFragment.DISPLAY_MODE_PUSH_ONLY);
+                               ? DisplayMode.FLAG_ALL
+                               : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_GROUPS);
     }
 
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
@@ -131,7 +129,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public void onPause() {
     super.onPause();
     if (!isPassingAlongMedia && resolvedExtra != null) {
-      PersistentBlobProvider.getInstance(this).delete(resolvedExtra);
+      PersistentBlobProvider.getInstance(this).delete(this, resolvedExtra);
     }
     if (!isFinishing()) {
       finish();
@@ -334,7 +332,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
           if (cursor != null) cursor.close();
         }
 
-        return PersistentBlobProvider.getInstance(context).create(masterSecret, inputStream, mimeType, fileName, fileSize);
+        return PersistentBlobProvider.getInstance(context).create(context, inputStream, mimeType, fileName, fileSize);
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;

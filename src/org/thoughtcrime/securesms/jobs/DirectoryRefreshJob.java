@@ -6,9 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -19,15 +17,13 @@ import java.io.IOException;
 public class DirectoryRefreshJob extends ContextJob {
 
   @Nullable private transient Recipient    recipient;
-  @Nullable private transient MasterSecret masterSecret;
             private transient boolean      notifyOfNewUsers;
 
   public DirectoryRefreshJob(@NonNull Context context, boolean notifyOfNewUsers) {
-    this(context, null, null, notifyOfNewUsers);
+    this(context, null, notifyOfNewUsers);
   }
 
   public DirectoryRefreshJob(@NonNull Context context,
-                             @Nullable MasterSecret masterSecret,
                              @Nullable Recipient recipient,
                                        boolean notifyOfNewUsers)
   {
@@ -37,7 +33,6 @@ public class DirectoryRefreshJob extends ContextJob {
                                 .create());
 
     this.recipient        = recipient;
-    this.masterSecret     = masterSecret;
     this.notifyOfNewUsers = notifyOfNewUsers;
   }
 
@@ -53,9 +48,9 @@ public class DirectoryRefreshJob extends ContextJob {
     try {
       wakeLock.acquire();
       if (recipient == null) {
-        DirectoryHelper.refreshDirectory(context, KeyCachingService.getMasterSecret(context), notifyOfNewUsers);
+        DirectoryHelper.refreshDirectory(context, notifyOfNewUsers);
       } else {
-        DirectoryHelper.refreshDirectoryFor(context, masterSecret, recipient);
+        DirectoryHelper.refreshDirectoryFor(context, recipient);
       }
     } finally {
       if (wakeLock.isHeld()) wakeLock.release();

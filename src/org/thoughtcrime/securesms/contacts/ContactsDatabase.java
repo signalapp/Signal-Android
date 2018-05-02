@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2013 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.accounts.Account;
+import android.annotation.SuppressLint;
 import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.content.OperationApplicationException;
@@ -34,6 +35,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.Util;
@@ -76,6 +78,25 @@ public class ContactsDatabase {
     this.context  = context;
   }
 
+  public synchronized  void removeDeletedRawContacts(@NonNull Account account) {
+    Uri currentContactsUri = RawContacts.CONTENT_URI.buildUpon()
+                                                    .appendQueryParameter(RawContacts.ACCOUNT_NAME, account.name)
+                                                    .appendQueryParameter(RawContacts.ACCOUNT_TYPE, account.type)
+                                                    .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
+                                                    .build();
+
+    String[] projection = new String[] {BaseColumns._ID, RawContacts.SYNC1};
+
+    try (Cursor cursor = context.getContentResolver().query(currentContactsUri, projection, RawContacts.DELETED + " = ?", new String[] {"1"}, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        long rawContactId = cursor.getLong(0);
+        Log.w(TAG, "Deleting raw contact: " + cursor.getString(1) + ", " + rawContactId);
+
+        context.getContentResolver().delete(currentContactsUri, RawContacts._ID + " = ?", new String[] {String.valueOf(rawContactId)});
+      }
+    }
+  }
+
   public synchronized void setRegisteredUsers(@NonNull Account account,
                                               @NonNull List<Address> registeredAddressList,
                                               boolean remove)
@@ -94,8 +115,7 @@ public class ContactsDatabase {
         if (systemContactInfo.isPresent()) {
           Log.w(TAG, "Adding number: " + registeredAddress);
           addTextSecureRawContact(operations, account, systemContactInfo.get().number,
-                                  systemContactInfo.get().name, systemContactInfo.get().id,
-                                  true);
+                                  systemContactInfo.get().name, systemContactInfo.get().id);
         }
       }
     }
@@ -122,6 +142,7 @@ public class ContactsDatabase {
     }
   }
 
+  @SuppressLint("Recycle")
   @NonNull Cursor querySystemContacts(@Nullable String filter) {
     Uri uri;
 
@@ -166,10 +187,10 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(uri, projection, fallbackSelection, null, sort);
     }
 
-    return new ProjectionMappingCursor(cursor, projectionMap,
-                                       new Pair<String, Object>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
+    return new ProjectionMappingCursor(cursor, projectionMap, new Pair<>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
   }
 
+  @SuppressLint("Recycle")
   @NonNull Cursor queryTextSecureContacts(String filter) {
     String[] projection = new String[] {ContactsContract.Contacts.DISPLAY_NAME,
                                         ContactsContract.Data.DATA1};
@@ -199,9 +220,9 @@ public class ContactsDatabase {
     }
 
     return new ProjectionMappingCursor(cursor, projectionMap,
-                                       new Pair<String, Object>(LABEL_COLUMN, "TextSecure"),
-                                       new Pair<String, Object>(NUMBER_TYPE_COLUMN, 0),
-                                       new Pair<String, Object>(CONTACT_TYPE_COLUMN, PUSH_TYPE));
+                                       new Pair<>(LABEL_COLUMN, "TextSecure"),
+                                       new Pair<>(NUMBER_TYPE_COLUMN, 0),
+                                       new Pair<>(CONTACT_TYPE_COLUMN, PUSH_TYPE));
 
   }
 
@@ -247,22 +268,9 @@ public class ContactsDatabase {
     }
   }
 
-  private void removeContactVoiceSupport(List<ContentProviderOperation> operations, long rawContactId) {
-    operations.add(ContentProviderOperation.newUpdate(RawContacts.CONTENT_URI)
-                                           .withSelection(RawContacts._ID + " = ?", new String[] {String.valueOf(rawContactId)})
-                                           .withValue(RawContacts.SYNC4, "false")
-                                           .build());
-
-    operations.add(ContentProviderOperation.newDelete(ContactsContract.Data.CONTENT_URI.buildUpon().appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true").build())
-                                           .withSelection(ContactsContract.Data.RAW_CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?",
-                                                          new String[] {String.valueOf(rawContactId), CALL_MIMETYPE})
-                                           .withYieldAllowed(true)
-                                           .build());
-  }
-
   private void addTextSecureRawContact(List<ContentProviderOperation> operations,
                                        Account account, String e164number, String displayName,
-                                       long aggregateId, boolean supportsVoice)
+                                       long aggregateId)
   {
     int index   = operations.size();
     Uri dataUri = ContactsContract.Data.CONTENT_URI.buildUpon()
@@ -273,7 +281,7 @@ public class ContactsDatabase {
                                            .withValue(RawContacts.ACCOUNT_NAME, account.name)
                                            .withValue(RawContacts.ACCOUNT_TYPE, account.type)
                                            .withValue(RawContacts.SYNC1, e164number)
-                                           .withValue(RawContacts.SYNC4, String.valueOf(supportsVoice))
+                                           .withValue(RawContacts.SYNC4, String.valueOf(true))
                                            .build());
 
     operations.add(ContentProviderOperation.newInsert(dataUri)
@@ -299,25 +307,20 @@ public class ContactsDatabase {
                                            .withYieldAllowed(true)
                                            .build());
 
-    if (supportsVoice) {
-      operations.add(ContentProviderOperation.newInsert(dataUri)
-                                             .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, index)
-                                             .withValue(ContactsContract.Data.MIMETYPE, CALL_MIMETYPE)
-                                             .withValue(ContactsContract.Data.DATA1, e164number)
-                                             .withValue(ContactsContract.Data.DATA2, context.getString(R.string.app_name))
-                                             .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_signal_call_s, e164number))
-                                             .withYieldAllowed(true)
-                                             .build());
-    }
+    operations.add(ContentProviderOperation.newInsert(dataUri)
+                                           .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, index)
+                                           .withValue(ContactsContract.Data.MIMETYPE, CALL_MIMETYPE)
+                                           .withValue(ContactsContract.Data.DATA1, e164number)
+                                           .withValue(ContactsContract.Data.DATA2, context.getString(R.string.app_name))
+                                           .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_signal_call_s, e164number))
+                                           .withYieldAllowed(true)
+                                           .build());
 
-
-    if (Build.VERSION.SDK_INT >= 11) {
-      operations.add(ContentProviderOperation.newUpdate(ContactsContract.AggregationExceptions.CONTENT_URI)
-                                             .withValue(ContactsContract.AggregationExceptions.RAW_CONTACT_ID1, aggregateId)
-                                             .withValueBackReference(ContactsContract.AggregationExceptions.RAW_CONTACT_ID2, index)
-                                             .withValue(ContactsContract.AggregationExceptions.TYPE, ContactsContract.AggregationExceptions.TYPE_KEEP_TOGETHER)
-                                             .build());
-    }
+    operations.add(ContentProviderOperation.newUpdate(ContactsContract.AggregationExceptions.CONTENT_URI)
+                                           .withValue(ContactsContract.AggregationExceptions.RAW_CONTACT_ID1, aggregateId)
+                                           .withValueBackReference(ContactsContract.AggregationExceptions.RAW_CONTACT_ID2, index)
+                                           .withValue(ContactsContract.AggregationExceptions.TYPE, ContactsContract.AggregationExceptions.TYPE_KEEP_TOGETHER)
+                                           .build());
   }
 
   private void removeTextSecureRawContact(List<ContentProviderOperation> operations,
@@ -341,13 +344,7 @@ public class ContactsDatabase {
     Cursor                      cursor         = null;
 
     try {
-      String[] projection;
-
-      if (Build.VERSION.SDK_INT >= 11) {
-        projection = new String[] {BaseColumns._ID, RawContacts.SYNC1, RawContacts.SYNC4, RawContacts.CONTACT_ID, RawContacts.DISPLAY_NAME_PRIMARY, RawContacts.DISPLAY_NAME_SOURCE};
-      } else{
-        projection = new String[] {BaseColumns._ID, RawContacts.SYNC1, RawContacts.SYNC4, RawContacts.CONTACT_ID};
-      }
+      String[] projection = new String[] {BaseColumns._ID, RawContacts.SYNC1, RawContacts.SYNC4, RawContacts.CONTACT_ID, RawContacts.DISPLAY_NAME_PRIMARY, RawContacts.DISPLAY_NAME_SOURCE};
 
       cursor = context.getContentResolver().query(currentContactsUri, projection, null, null, null);
 
@@ -356,15 +353,9 @@ public class ContactsDatabase {
         long    rawContactId                = cursor.getLong(0);
         long    contactId                   = cursor.getLong(3);
         String  supportsVoice               = cursor.getString(2);
-        String  rawContactDisplayName       = null;
-        String  aggregateDisplayName        = null;
-        int     rawContactDisplayNameSource = 0;
-
-        if (Build.VERSION.SDK_INT >= 11) {
-          rawContactDisplayName       = cursor.getString(4);
-          rawContactDisplayNameSource = cursor.getInt(5);
-          aggregateDisplayName        = getDisplayName(contactId);
-        }
+        String  rawContactDisplayName       = cursor.getString(4);
+        String  aggregateDisplayName        = getDisplayName(contactId);
+        int     rawContactDisplayNameSource = cursor.getInt(5);
 
         signalContacts.put(currentAddress, new SignalContact(rawContactId, supportsVoice, rawContactDisplayName, aggregateDisplayName, rawContactDisplayNameSource));
       }

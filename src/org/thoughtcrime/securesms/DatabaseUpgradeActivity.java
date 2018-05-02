@@ -32,8 +32,6 @@ import android.widget.ProgressBar;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -46,11 +44,14 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -76,6 +77,10 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int SCREENSHOTS                          = 300;
   public static final int PERSISTENT_BLOBS                     = 317;
   public static final int INTERNALIZE_CONTACTS                 = 317;
+  public static final int SQLCIPHER                            = 334;
+  public static final int SQLCIPHER_COMPLETE                   = 352;
+  public static final int REMOVE_JOURNAL                       = 353;
+  public static final int REMOVE_CACHE                         = 354;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -93,6 +98,9 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(SCREENSHOTS);
     add(INTERNALIZE_CONTACTS);
     add(PERSISTENT_BLOBS);
+    add(SQLCIPHER);
+    add(SQLCIPHER_COMPLETE);
+    add(REMOVE_CACHE);
   }};
 
   private MasterSecret masterSecret;
@@ -100,20 +108,20 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.masterSecret = getIntent().getParcelableExtra("master_secret");
+    this.masterSecret = KeyCachingService.getMasterSecret(this);
 
     if (needsUpgradeTask()) {
       Log.w("DatabaseUpgradeActivity", "Upgrading...");
       setContentView(R.layout.database_upgrade_activity);
 
-      ProgressBar indeterminateProgress = (ProgressBar)findViewById(R.id.indeterminate_progress);
-      ProgressBar determinateProgress   = (ProgressBar)findViewById(R.id.determinate_progress);
+      ProgressBar indeterminateProgress = findViewById(R.id.indeterminate_progress);
+      ProgressBar determinateProgress   = findViewById(R.id.determinate_progress);
 
       new DatabaseUpgradeTask(indeterminateProgress, determinateProgress)
           .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, VersionTracker.getLastSeenVersion(this));
     } else {
       VersionTracker.updateLastSeenVersion(this);
-      updateNotifications(this, masterSecret);
+      updateNotifications(this);
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();
     }
@@ -149,11 +157,11 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void updateNotifications(final Context context, final MasterSecret masterSecret) {
+  private void updateNotifications(final Context context) {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        MessageNotifier.updateNotification(context, masterSecret);
+        MessageNotifier.updateNotification(context);
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -171,7 +179,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     private final ProgressBar indeterminateProgress;
     private final ProgressBar determinateProgress;
 
-    public DatabaseUpgradeTask(ProgressBar indeterminateProgress, ProgressBar determinateProgress) {
+    DatabaseUpgradeTask(ProgressBar indeterminateProgress, ProgressBar determinateProgress) {
       this.indeterminateProgress = indeterminateProgress;
       this.determinateProgress   = determinateProgress;
     }
@@ -219,8 +227,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       }
 
       if (params[0] < MIGRATE_SESSION_PLAINTEXT) {
-        new TextSecureSessionStore(context, masterSecret).migrateSessions();
-        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
+//        new TextSecureSessionStore(context, masterSecret).migrateSessions();
+//        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
 
         IdentityKeyUtil.migrateIdentityKeys(context, masterSecret);
         scheduleMessagesInPushDatabase(context);;
@@ -272,17 +280,39 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         }
       }
 
+      if (params[0] < SQLCIPHER) {
+        scheduleMessagesInPushDatabase(context);
+      }
+
+      if (params[0] < SQLCIPHER_COMPLETE) {
+        File file = context.getDatabasePath("messages.db");
+        if (file != null && file.exists()) file.delete();
+      }
+
+      if (params[0] < REMOVE_JOURNAL) {
+        File file = context.getDatabasePath("messages.db-journal");
+        if (file != null && file.exists()) file.delete();
+      }
+
+      if (params[0] < REMOVE_CACHE) {
+        try {
+          FileUtils.deleteDirectoryContents(context.getCacheDir());
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
+      }
+
       return null;
     }
 
     private void schedulePendingIncomingParts(Context context) {
       final AttachmentDatabase       attachmentDb       = DatabaseFactory.getAttachmentDatabase(context);
       final MmsDatabase              mmsDb              = DatabaseFactory.getMmsDatabase(context);
-      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments(masterSecret);
+      final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments();
 
       Log.w(TAG, pendingAttachments.size() + " pending parts.");
       for (DatabaseAttachment attachment : pendingAttachments) {
-        final Reader        reader = mmsDb.readerFor(masterSecret, mmsDb.getMessage(attachment.getMmsId()));
+        final Reader        reader = mmsDb.readerFor(mmsDb.getMessage(attachment.getMmsId()));
         final MessageRecord record = reader.getNext();
 
         if (attachment.hasData()) {
@@ -329,7 +359,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     @Override
     protected void onPostExecute(Void result) {
       VersionTracker.updateLastSeenVersion(DatabaseUpgradeActivity.this);
-      updateNotifications(DatabaseUpgradeActivity.this, masterSecret);
+      updateNotifications(DatabaseUpgradeActivity.this);
 
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();

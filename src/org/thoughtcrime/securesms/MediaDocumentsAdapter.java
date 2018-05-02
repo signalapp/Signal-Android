@@ -17,7 +17,6 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.MediaDocumentsAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.MediaDocumentsAdapter.ViewHolder;
 import org.thoughtcrime.securesms.components.DocumentView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
@@ -36,14 +35,12 @@ import static com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager.TAG;
 
 public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder> implements StickyHeaderDecoration.StickyHeaderAdapter<HeaderViewHolder> {
 
-  private final MasterSecret masterSecret;
   private final Calendar     calendar;
   private final Locale       locale;
 
-  public MediaDocumentsAdapter(Context context, MasterSecret masterSecret, Cursor cursor, Locale locale) {
+  MediaDocumentsAdapter(Context context, Cursor cursor, Locale locale) {
     super(context, cursor);
 
-    this.masterSecret = masterSecret;
     this.calendar     = Calendar.getInstance();
     this.locale       = locale;
   }
@@ -55,7 +52,7 @@ public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder>
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(getContext(), masterSecret, cursor);
+    MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(getContext(), cursor);
     Slide                     slide       = MediaUtil.getSlideForAttachment(getContext(), mediaRecord.getAttachment());
 
     if (slide != null && slide.hasDocument()) {
@@ -89,7 +86,7 @@ public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder>
     if (position < 0)               return -1;
 
     Cursor                    cursor      = getCursorAtPositionOrThrow(position);
-    MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(getContext(), masterSecret, cursor);
+    MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(getContext(), cursor);
 
     calendar.setTime(new Date(mediaRecord.getDate()));
     return Util.hashCode(calendar.get(Calendar.YEAR), calendar.get(Calendar.DAY_OF_YEAR));
@@ -103,7 +100,7 @@ public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder>
   @Override
   public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
     Cursor                    cursor      = getCursorAtPositionOrThrow(position);
-    MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(getContext(), masterSecret, cursor);
+    MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(getContext(), cursor);
     viewHolder.textView.setText(DateUtils.getRelativeDate(getContext(), locale, mediaRecord.getDate()));
   }
 
@@ -114,8 +111,8 @@ public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder>
 
     public ViewHolder(View itemView) {
       super(itemView);
-      this.documentView = (DocumentView)itemView.findViewById(R.id.document_view);
-      this.date         = (TextView)itemView.findViewById(R.id.date);
+      this.documentView = itemView.findViewById(R.id.document_view);
+      this.date         = itemView.findViewById(R.id.date);
     }
   }
 
@@ -125,7 +122,7 @@ public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder>
 
     HeaderViewHolder(View itemView) {
       super(itemView);
-      this.textView = (TextView)itemView.findViewById(R.id.text);
+      this.textView = itemView.findViewById(R.id.text);
     }
   }
 

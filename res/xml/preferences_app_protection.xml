@@ -2,6 +2,17 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/preferences_app_protection__app_access">
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:key="pref_android_screen_lock"
+                android:defaultValue="false"
+                android:title="@string/preferences_app_protection__screen_lock"
+                android:summary="@string/preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint"/>
+
+        <Preference android:title="@string/preferences_app_protection__screen_lock_inactivity_timeout"
+                    android:key="pref_android_screen_lock_timeout"
+                    android:dependency="pref_android_screen_lock"/>
+
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                             android:key="pref_enable_passphrase_temporary"
                             android:defaultValue="true"
@@ -55,5 +66,16 @@
         <Preference android:key="preference_category_blocked"
                     android:title="@string/preferences_app_protection__blocked_contacts" />
     </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/preferences_app_protection__registration_lock">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="pref_registration_lock"
+                android:title="@string/preferences_app_protection__registration_lock_pin"
+                android:summary="@string/preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required"/>
+    </PreferenceCategory>
+
 
 </PreferenceScreen>

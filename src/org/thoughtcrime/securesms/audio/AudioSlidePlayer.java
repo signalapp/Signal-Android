@@ -36,7 +36,6 @@ public class AudioSlidePlayer implements SensorEventListener {
   private static @NonNull Optional<AudioSlidePlayer> playing = Optional.absent();
 
   private final @NonNull  Context           context;
-  private final @NonNull  MasterSecret      masterSecret;
   private final @NonNull  AudioSlide        slide;
   private final @NonNull  Handler           progressEventHandler;
   private final @NonNull  AudioManager      audioManager;
@@ -50,7 +49,6 @@ public class AudioSlidePlayer implements SensorEventListener {
   private           long                    startTime;
 
   public synchronized static AudioSlidePlayer createFor(@NonNull Context context,
-                                                        @NonNull MasterSecret masterSecret,
                                                         @NonNull AudioSlide slide,
                                                         @NonNull Listener listener)
   {
@@ -58,17 +56,15 @@ public class AudioSlidePlayer implements SensorEventListener {
       playing.get().setListener(listener);
       return playing.get();
     } else {
-      return new AudioSlidePlayer(context, masterSecret, slide, listener);
+      return new AudioSlidePlayer(context, slide, listener);
     }
   }
 
   private AudioSlidePlayer(@NonNull Context context,
-                           @NonNull MasterSecret masterSecret,
                            @NonNull AudioSlide slide,
                            @NonNull Listener listener)
   {
     this.context              = context;
-    this.masterSecret         = masterSecret;
     this.slide                = slide;
     this.listener             = new WeakReference<>(listener);
     this.progressEventHandler = new ProgressEventHandler(this);
@@ -91,7 +87,7 @@ public class AudioSlidePlayer implements SensorEventListener {
     if (this.mediaPlayer != null) return;
 
     this.mediaPlayer           = new MediaPlayerWrapper();
-    this.audioAttachmentServer = new AttachmentServer(context, masterSecret, slide.asAttachment());
+    this.audioAttachmentServer = new AttachmentServer(context, slide.asAttachment());
     this.startTime             = System.currentTimeMillis();
 
     audioAttachmentServer.start();

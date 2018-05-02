@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -38,7 +37,6 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -108,7 +106,7 @@ public class ConversationListItem extends RelativeLayout
   }
 
   @Override
-  public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread,
+  public void bind(@NonNull ThreadRecord thread,
                    @NonNull GlideRequests glideRequests, @NonNull Locale locale,
                    @NonNull Set<Long> selectedThreads, boolean batchMode)
   {
@@ -139,7 +137,7 @@ public class ConversationListItem extends RelativeLayout
     }
 
     setStatusIcons(thread);
-    setThumbnailSnippet(masterSecret, thread);
+    setThumbnailSnippet(thread);
     setBatchState(batchMode);
     setRippleColor(recipient);
     setUnreadIndicator(thread);
@@ -175,10 +173,10 @@ public class ConversationListItem extends RelativeLayout
     return lastSeen;
   }
 
-  private void setThumbnailSnippet(MasterSecret masterSecret, ThreadRecord thread) {
+  private void setThumbnailSnippet(ThreadRecord thread) {
     if (thread.getSnippetUri() != null) {
       this.thumbnailView.setVisibility(View.VISIBLE);
-      this.thumbnailView.setImageResource(masterSecret, glideRequests, thread.getSnippetUri());
+      this.thumbnailView.setImageResource(glideRequests, thread.getSnippetUri());
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.thumbnail);

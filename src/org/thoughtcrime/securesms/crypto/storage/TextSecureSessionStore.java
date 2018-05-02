@@ -7,6 +7,9 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.SignalProtocolAddress;
@@ -29,144 +32,77 @@ import static org.whispersystems.libsignal.state.StorageProtos.SessionStructure;
 
 public class TextSecureSessionStore implements SessionStore {
 
-  private static final String TAG                   = TextSecureSessionStore.class.getSimpleName();
-  private static final String SESSIONS_DIRECTORY_V2 = "sessions-v2";
-  private static final Object FILE_LOCK             = new Object();
+  private static final String TAG = TextSecureSessionStore.class.getSimpleName();
 
-  private static final int SINGLE_STATE_VERSION   = 1;
-  private static final int ARCHIVE_STATES_VERSION = 2;
-  private static final int PLAINTEXT_VERSION      = 3;
-  private static final int CURRENT_VERSION        = 3;
+  private static final Object FILE_LOCK = new Object();
 
-  @NonNull  private final Context      context;
-  @Nullable private final MasterSecret masterSecret;
+  @NonNull  private final Context context;
 
   public TextSecureSessionStore(@NonNull Context context) {
-    this(context, null);
-  }
-
-  public TextSecureSessionStore(@NonNull Context context, @Nullable MasterSecret masterSecret) {
-    this.context      = context.getApplicationContext();
-    this.masterSecret = masterSecret;
+    this.context = context;
   }
 
   @Override
   public SessionRecord loadSession(@NonNull SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
-      try {
-        FileInputStream in            = new FileInputStream(getSessionFile(address));
-        int             versionMarker = readInteger(in);
+      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(Address.fromSerialized(address.getName()), address.getDeviceId());
 
-        if (versionMarker > CURRENT_VERSION) {
-          throw new AssertionError("Unknown version: " + versionMarker);
-        }
-
-        byte[] serialized = readBlob(in);
-        in.close();
-
-        if (versionMarker < PLAINTEXT_VERSION && masterSecret != null) {
-          serialized = new MasterCipher(masterSecret).decryptBytes(serialized);
-        } else if (versionMarker < PLAINTEXT_VERSION) {
-          throw new AssertionError("Session didn't get migrated: (" + versionMarker + "," + address + ")");
-        }
-
-        if (versionMarker == SINGLE_STATE_VERSION) {
-          SessionStructure sessionStructure = SessionStructure.parseFrom(serialized);
-          SessionState     sessionState     = new SessionState(sessionStructure);
-          return new SessionRecord(sessionState);
-        } else if (versionMarker >= ARCHIVE_STATES_VERSION) {
-          return new SessionRecord(serialized);
-        } else {
-          throw new AssertionError("Unknown version: " + versionMarker);
-        }
-      } catch (InvalidMessageException | IOException e) {
+      if (sessionRecord == null) {
         Log.w(TAG, "No existing session information found.");
         return new SessionRecord();
       }
+
+      return sessionRecord;
     }
   }
 
   @Override
   public void storeSession(@NonNull SignalProtocolAddress address, @NonNull SessionRecord record) {
     synchronized (FILE_LOCK) {
-      try {
-        RandomAccessFile sessionFile  = new RandomAccessFile(getSessionFile(address), "rw");
-        FileChannel      out          = sessionFile.getChannel();
-
-        out.position(0);
-        writeInteger(CURRENT_VERSION, out);
-        writeBlob(record.serialize(), out);
-        out.truncate(out.position());
-
-        sessionFile.close();
-      } catch (IOException e) {
-        throw new AssertionError(e);
-      }
+      DatabaseFactory.getSessionDatabase(context).store(Address.fromSerialized(address.getName()), address.getDeviceId(), record);
     }
   }
 
   @Override
   public boolean containsSession(SignalProtocolAddress address) {
-    if (!getSessionFile(address).exists()) return false;
+    synchronized (FILE_LOCK) {
+      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(Address.fromSerialized(address.getName()), address.getDeviceId());
 
-    SessionRecord sessionRecord = loadSession(address);
-
-    return sessionRecord.getSessionState().hasSenderChain() &&
-           sessionRecord.getSessionState().getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
+      return sessionRecord != null &&
+             sessionRecord.getSessionState().hasSenderChain() &&
+             sessionRecord.getSessionState().getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
+    }
   }
 
   @Override
   public void deleteSession(SignalProtocolAddress address) {
-    getSessionFile(address).delete();
+    synchronized (FILE_LOCK) {
+      DatabaseFactory.getSessionDatabase(context).delete(Address.fromSerialized(address.getName()), address.getDeviceId());
+    }
   }
 
   @Override
   public void deleteAllSessions(String name) {
-    List<Integer> devices = getSubDeviceSessions(name);
-
-    deleteSession(new SignalProtocolAddress(name, SignalServiceAddress.DEFAULT_DEVICE_ID));
-
-    for (int device : devices) {
-      deleteSession(new SignalProtocolAddress(name, device));
+    synchronized (FILE_LOCK) {
+      DatabaseFactory.getSessionDatabase(context).deleteAllFor(Address.fromSerialized(name));
     }
   }
 
   @Override
   public List<Integer> getSubDeviceSessions(String name) {
-    List<Integer> results     = new LinkedList<>();
-    File          parent      = getSessionDirectory();
-    String[]      children    = parent.list();
-
-    if (children == null) return results;
-
-    for (String child : children) {
-      try {
-        String[] parts       = child.split("[.]", 2);
-        String   sessionName = parts[0];
-
-        if (sessionName.equals(name) && parts.length > 1) {
-          results.add(Integer.parseInt(parts[1]));
-        }
-      } catch (NumberFormatException e) {
-        Log.w(TAG, e);
-      }
+    synchronized (FILE_LOCK) {
+      return DatabaseFactory.getSessionDatabase(context).getSubDevices(Address.fromSerialized(name));
     }
-
-    return results;
   }
 
-  public void migrateSessions() {
+  public void archiveSiblingSessions(@NonNull SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
-      File directory = getSessionDirectory();
+      List<SessionDatabase.SessionRow> sessions = DatabaseFactory.getSessionDatabase(context).getAllFor(Address.fromSerialized(address.getName()));
 
-      for (File session : directory.listFiles()) {
-        if (session.isFile()) {
-          SignalProtocolAddress address = getAddressName(session);
-
-          if (address != null) {
-            SessionRecord sessionRecord = loadSession(address);
-            storeSession(address, sessionRecord);
-          }
+      for (SessionDatabase.SessionRow row : sessions) {
+        if (row.getDeviceId() != address.getDeviceId()) {
+          row.getRecord().archiveCurrentState();
+          storeSession(new SignalProtocolAddress(row.getAddress().serialize(), row.getDeviceId()), row.getRecord());
         }
       }
     }
@@ -174,81 +110,12 @@ public class TextSecureSessionStore implements SessionStore {
 
   public void archiveAllSessions() {
     synchronized (FILE_LOCK) {
-      File directory = getSessionDirectory();
+      List<SessionDatabase.SessionRow> sessions = DatabaseFactory.getSessionDatabase(context).getAll();
 
-      for (File session : directory.listFiles()) {
-        if (session.isFile()) {
-          SignalProtocolAddress address = getAddressName(session);
-
-          if (address != null) {
-            SessionRecord sessionRecord = loadSession(address);
-            sessionRecord.archiveCurrentState();
-            storeSession(address, sessionRecord);
-          }
-        }
+      for (SessionDatabase.SessionRow row : sessions) {
+        row.getRecord().archiveCurrentState();
+        storeSession(new SignalProtocolAddress(row.getAddress().serialize(), row.getDeviceId()), row.getRecord());
       }
     }
   }
-
-  private File getSessionFile(SignalProtocolAddress address) {
-    return new File(getSessionDirectory(), getSessionName(address));
-  }
-
-  private File getSessionDirectory() {
-    File directory = new File(context.getFilesDir(), SESSIONS_DIRECTORY_V2);
-
-    if (!directory.exists()) {
-      if (!directory.mkdirs()) {
-        Log.w(TAG, "Session directory creation failed!");
-      }
-    }
-
-    return directory;
-  }
-
-  private String getSessionName(SignalProtocolAddress address) {
-    int deviceId = address.getDeviceId();
-    return address.getName() + (deviceId == SignalServiceAddress.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
-  }
-
-  private @Nullable SignalProtocolAddress getAddressName(File sessionFile) {
-    try {
-      String[] parts = sessionFile.getName().split("[.]");
-
-      int deviceId;
-
-      if (parts.length > 1) deviceId = Integer.parseInt(parts[1]);
-      else                  deviceId = SignalServiceAddress.DEFAULT_DEVICE_ID;
-
-      return new SignalProtocolAddress(parts[0], deviceId);
-    } catch (NumberFormatException e) {
-      Log.w(TAG, e);
-      return null;
-    }
-  }
-
-  private byte[] readBlob(FileInputStream in) throws IOException {
-    int length       = readInteger(in);
-    byte[] blobBytes = new byte[length];
-
-    in.read(blobBytes, 0, blobBytes.length);
-    return blobBytes;
-  }
-
-  private void writeBlob(byte[] blobBytes, FileChannel out) throws IOException {
-    writeInteger(blobBytes.length, out);
-    out.write(ByteBuffer.wrap(blobBytes));
-  }
-
-  private int readInteger(FileInputStream in) throws IOException {
-    byte[] integer = new byte[4];
-    in.read(integer, 0, integer.length);
-    return Conversions.byteArrayToInt(integer);
-  }
-
-  private void writeInteger(int value, FileChannel out) throws IOException {
-    byte[] valueBytes = Conversions.intToByteArray(value);
-    out.write(ByteBuffer.wrap(valueBytes));
-  }
-
 }

@@ -34,7 +34,7 @@
                              android:layout_gravity="center"/>
 
             <ProgressBar android:id="@+id/determinate_progress"
-                         style="@android:style/Widget.ProgressBar.Horizontal"
+                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                          android:layout_width="fill_parent"
                          android:layout_height="wrap_content"
                          android:indeterminate="false"

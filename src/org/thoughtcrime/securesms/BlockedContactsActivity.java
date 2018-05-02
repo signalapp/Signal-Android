@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.loaders.BlockedContactsLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -40,10 +39,10 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  public void onCreate(Bundle bundle, boolean ready) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.BlockedContactsActivity_blocked_contacts);
-    initFragment(android.R.id.content, new BlockedContactsFragment(), masterSecret);
+    initFragment(android.R.id.content, new BlockedContactsFragment());
   }
 
   @Override

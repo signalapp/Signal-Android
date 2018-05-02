@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.mms;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -14,14 +13,15 @@ import java.util.List;
 
 public class IncomingMediaMessage {
 
-  private final Address from;
-  private final Address groupId;
-  private final String  body;
-  private final boolean push;
-  private final long    sentTimeMillis;
-  private final int     subscriptionId;
-  private final long    expiresIn;
-  private final boolean expirationUpdate;
+  private final Address       from;
+  private final Address       groupId;
+  private final String        body;
+  private final boolean       push;
+  private final long          sentTimeMillis;
+  private final int           subscriptionId;
+  private final long          expiresIn;
+  private final boolean       expirationUpdate;
+  private final QuoteModel quote;
 
   private final List<Attachment> attachments = new LinkedList<>();
 
@@ -42,12 +42,12 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
+    this.quote            = null;
 
     this.attachments.addAll(attachments);
   }
 
-  public IncomingMediaMessage(MasterSecretUnion masterSecret,
-                              Address from,
+  public IncomingMediaMessage(Address from,
                               long sentTimeMillis,
                               int subscriptionId,
                               long expiresIn,
@@ -55,7 +55,8 @@ public class IncomingMediaMessage {
                               Optional<String> relay,
                               Optional<String> body,
                               Optional<SignalServiceGroup> group,
-                              Optional<List<SignalServiceAttachment>> attachments)
+                              Optional<List<SignalServiceAttachment>> attachments,
+                              Optional<QuoteModel> quote)
   {
     this.push             = true;
     this.from             = from;
@@ -64,11 +65,12 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
+    this.quote            = quote.orNull();
 
     if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId(), false));
     else                   this.groupId = null;
 
-    this.attachments.addAll(PointerAttachment.forPointers(masterSecret, attachments));
+    this.attachments.addAll(PointerAttachment.forPointers(attachments));
   }
 
   public int getSubscriptionId() {
@@ -109,5 +111,9 @@ public class IncomingMediaMessage {
 
   public boolean isGroupMessage() {
     return groupId != null;
+  }
+
+  public QuoteModel getQuote() {
+    return quote;
   }
 }

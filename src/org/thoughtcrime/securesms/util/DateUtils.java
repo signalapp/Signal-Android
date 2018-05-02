@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,18 +21,20 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.format.DateFormat;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 import org.thoughtcrime.securesms.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Utility methods to help display dates in a nice, easily readable way.
  */
 public class DateUtils extends android.text.format.DateUtils {
+
+  @SuppressWarnings("unused")
+  private static final String TAG = DateUtils.class.getSimpleName();
 
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);

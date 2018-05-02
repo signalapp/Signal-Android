@@ -85,7 +85,7 @@ public class EmojiParser {
     return best;
   }
 
-  public class Candidate {
+  public static class Candidate {
 
     private final int           startIndex;
     private final int           endIndex;
@@ -110,7 +110,7 @@ public class EmojiParser {
     }
   }
 
-  public class CandidateList implements Iterable<Candidate> {
+  public static class CandidateList implements Iterable<Candidate> {
     public final List<EmojiParser.Candidate> list;
     public final boolean                     allEmojis;
 

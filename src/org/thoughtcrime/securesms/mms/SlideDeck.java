@@ -31,14 +31,14 @@ public class SlideDeck {
 
   private final List<Slide> slides = new LinkedList<>();
 
-  public SlideDeck(Context context, List<Attachment> attachments) {
+  public SlideDeck(@NonNull Context context, @NonNull List<? extends Attachment> attachments) {
     for (Attachment attachment : attachments) {
       Slide slide = MediaUtil.getSlideForAttachment(context, attachment);
       if (slide != null) slides.add(slide);
     }
   }
 
-  public SlideDeck(Context context, Attachment attachment) {
+  public SlideDeck(@NonNull Context context, @NonNull Attachment attachment) {
     Slide slide = MediaUtil.getSlideForAttachment(context, attachment);
     if (slide != null) slides.add(slide);
   }

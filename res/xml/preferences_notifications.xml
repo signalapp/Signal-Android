@@ -71,6 +71,30 @@
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
+    <PreferenceCategory android:title="@string/preferences_notifications__calls">
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:key="pref_call_notifications"
+                android:title="@string/preferences__notifications"
+                android:defaultValue="true" />
+
+        <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
+                android:dependency="pref_call_notifications"
+                android:key="pref_call_ringtone"
+                android:title="@string/preferences_notifications__ringtone"
+                android:persistent="false"
+                android:defaultValue="content://settings/system/ringtone" />
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:dependency="pref_call_notifications"
+                android:key="pref_call_vibrate"
+                android:defaultValue="true"
+                android:title="@string/preferences__vibrate"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
     <PreferenceCategory android:title="@string/preferences_notifications__events">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:key="pref_enable_new_contacts_notifications"

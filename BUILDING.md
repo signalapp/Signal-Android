@@ -15,7 +15,7 @@ The following steps should help you (re)build Signal from the command line.
 
 1. Checkout the Signal-Android project source with the command:
 
-        git clone https://github.com/WhisperSystems/Signal-Android.git
+        git clone https://github.com/signalapp/Signal-Android.git
 
 2. Make sure you have the [Android SDK](https://developer.android.com/sdk/index.html) installed.
 3. Ensure that the following packages are installed from the Android SDK manager:
@@ -53,7 +53,7 @@ Setting up a development environment
 3. From the Quickstart panel, choose "Configure" then "SDK Manager".
 4. In the SDK Tools tab of the SDK Manager, make sure that the "Android Support Repository" is installed, and that the latest "Android SDK build-tools" are installed. Click "OK" to return to the Quickstart panel.
 5. From the Quickstart panel, choose "Checkout from Version Control" then "git".
-6. Paste the URL for the Signal-Android project when prompted (https://github.com/WhisperSystems/Signal-Android.git).
+6. Paste the URL for the Signal-Android project when prompted (https://github.com/signalapp/Signal-Android.git).
 7. Android studio should detect the presence of a project file and ask you whether to open it. Click "yes".
 9. Default config options should be good enough.
 9. Project initialisation and build should proceed.

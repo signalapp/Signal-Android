@@ -19,8 +19,6 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,23 +30,21 @@ import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
-import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.NetworkFailureList;
-import org.thoughtcrime.securesms.database.model.DisplayRecord;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -56,6 +52,7 @@ import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
+import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -63,7 +60,6 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
-import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -92,6 +88,11 @@ public class MmsDatabase extends MessagingDatabase {
           static final String PART_COUNT         = "part_count";
           static final String NETWORK_FAILURE    = "network_failures";
 
+          static final String QUOTE_ID         = "quote_id";
+          static final String QUOTE_AUTHOR     = "quote_author";
+          static final String QUOTE_BODY       = "quote_body";
+          static final String QUOTE_ATTACHMENT = "quote_attachment";
+
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
     THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + " INTEGER, " + MESSAGE_BOX + " INTEGER, " +
     READ + " INTEGER DEFAULT 0, " + "m_id" + " TEXT, " + "sub" + " TEXT, "                +
@@ -108,7 +109,8 @@ public class MmsDatabase extends MessagingDatabase {
     NETWORK_FAILURE + " TEXT DEFAULT NULL," + "d_rpt" + " INTEGER, " +
     SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " + EXPIRES_IN + " INTEGER DEFAULT 0, " +
     EXPIRE_STARTED + " INTEGER DEFAULT 0, " + NOTIFIED + " INTEGER DEFAULT 0, " +
-    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0);";
+    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + QUOTE_ID + " INTEGER DEFAULT 0, " +
+    QUOTE_AUTHOR + " TEXT, " + QUOTE_BODY + " TEXT, " + QUOTE_ATTACHMENT + " INTEGER DEFAULT -1);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -128,22 +130,26 @@ public class MmsDatabase extends MessagingDatabase {
       MESSAGE_SIZE, STATUS, TRANSACTION_ID,
       BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID,
       DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
-      EXPIRES_IN, EXPIRE_STARTED, NOTIFIED,
-      AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ATTACHMENT_ID_ALIAS,
-      AttachmentDatabase.UNIQUE_ID,
-      AttachmentDatabase.MMS_ID,
-      AttachmentDatabase.SIZE,
-      AttachmentDatabase.FILE_NAME,
-      AttachmentDatabase.DATA,
-      AttachmentDatabase.THUMBNAIL,
-      AttachmentDatabase.CONTENT_TYPE,
-      AttachmentDatabase.CONTENT_LOCATION,
-      AttachmentDatabase.DIGEST,
-      AttachmentDatabase.FAST_PREFLIGHT_ID,
-      AttachmentDatabase.VOICE_NOTE,
-      AttachmentDatabase.CONTENT_DISPOSITION,
-      AttachmentDatabase.NAME,
-      AttachmentDatabase.TRANSFER_STATE
+      EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT,
+      "json_group_array(json_object(" +
+          "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
+          "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
+          "'" + AttachmentDatabase.MMS_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ", " +
+          "'" + AttachmentDatabase.SIZE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", " +
+          "'" + AttachmentDatabase.FILE_NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FILE_NAME + ", " +
+          "'" + AttachmentDatabase.DATA + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", " +
+          "'" + AttachmentDatabase.THUMBNAIL + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL + ", " +
+          "'" + AttachmentDatabase.CONTENT_TYPE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", " +
+          "'" + AttachmentDatabase.CONTENT_LOCATION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_LOCATION + ", " +
+          "'" + AttachmentDatabase.FAST_PREFLIGHT_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + "," +
+          "'" + AttachmentDatabase.VOICE_NOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + "," +
+          "'" + AttachmentDatabase.WIDTH + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + "," +
+          "'" + AttachmentDatabase.HEIGHT + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + "," +
+          "'" + AttachmentDatabase.QUOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", " +
+          "'" + AttachmentDatabase.CONTENT_DISPOSITION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", " +
+          "'" + AttachmentDatabase.NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", " +
+          "'" + AttachmentDatabase.TRANSFER_STATE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE +
+          ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
   };
 
   private static final String RAW_ID_WHERE = TABLE_NAME + "._id = ?";
@@ -153,7 +159,7 @@ public class MmsDatabase extends MessagingDatabase {
 
   private final JobManager jobManager;
 
-  public MmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public MmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
     this.jobManager = ApplicationContext.getInstance(context).getJobManager();
   }
@@ -280,7 +286,7 @@ public class MmsDatabase extends MessagingDatabase {
     return database.rawQuery("SELECT " + Util.join(MMS_PROJECTION, ",") +
                              " FROM " + MmsDatabase.TABLE_NAME +  " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME +
                              " ON (" + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")" +
-                             " WHERE " + where, arguments);
+                             " WHERE " + where + " GROUP BY " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, arguments);
   }
 
   public Cursor getMessage(long messageId) {
@@ -289,14 +295,9 @@ public class MmsDatabase extends MessagingDatabase {
     return cursor;
   }
 
-  public Reader getExpireStartedMessages(@Nullable MasterSecret masterSecret) {
+  public Reader getExpireStartedMessages() {
     String where = EXPIRE_STARTED + " > 0";
-    return readerFor(masterSecret, rawQuery(where, null));
-  }
-
-  public Reader getDecryptInProgressMessages(MasterSecret masterSecret) {
-    String where = MESSAGE_BOX + " & " + (Types.ENCRYPTION_ASYMMETRIC_BIT) + " != 0";
-    return readerFor(masterSecret, rawQuery(where, null));
+    return readerFor(rawQuery(where, null));
   }
 
   private void updateMailboxBitmask(long id, long maskOff, long maskOn, Optional<Long> threadId) {
@@ -494,16 +495,8 @@ public class MmsDatabase extends MessagingDatabase {
     return expiring;
   }
 
-  public void updateMessageBody(MasterSecretUnion masterSecret, long messageId, String body) {
-    body = getEncryptedBody(masterSecret, body);
-
-    long type;
-
-    if (masterSecret.getMasterSecret().isPresent()) {
-      type = Types.ENCRYPTION_SYMMETRIC_BIT;
-    } else {
-      type = Types.ENCRYPTION_ASYMMETRIC_BIT;
-    }
+  public void updateMessageBody(long messageId, String body) {
+    long type = 0;
 
     updateMessageBodyAndType(messageId, body, Types.ENCRYPTION_MASK, type);
   }
@@ -544,7 +537,7 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  public OutgoingMediaMessage getOutgoingMessage(MasterSecret masterSecret, long messageId)
+  public OutgoingMediaMessage getOutgoingMessage(long messageId)
       throws MmsException, NoSuchMessageException
   {
     AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
@@ -554,26 +547,37 @@ public class MmsDatabase extends MessagingDatabase {
       cursor = rawQuery(RAW_ID_WHERE, new String[] {String.valueOf(messageId)});
 
       if (cursor != null && cursor.moveToNext()) {
+        List<DatabaseAttachment> associatedAttachments = attachmentDatabase.getAttachmentsForMessage(messageId);
+
         long             outboxType       = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
-        String           messageText      = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
+        String           body             = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
         long             timestamp        = cursor.getLong(cursor.getColumnIndexOrThrow(NORMALIZED_DATE_SENT));
         int              subscriptionId   = cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID));
         long             expiresIn        = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
-        List<Attachment> attachments      = new LinkedList<Attachment>(attachmentDatabase.getAttachmentsForMessage(masterSecret, messageId));
         String           address          = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
-        String           body             = getDecryptedBody(masterSecret, messageText, outboxType);
         long             threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
         int              distributionType = DatabaseFactory.getThreadDatabase(context).getDistributionType(threadId);
+        List<Attachment> attachments      = Stream.of(associatedAttachments).filterNot(Attachment::isQuote).map(a -> (Attachment)a).toList();
 
-        Recipient recipient = Recipient.from(context, Address.fromSerialized(address), false);
+        long             quoteId          = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_ID));
+        String           quoteAuthor      = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR));
+        String           quoteText        = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_BODY));
+        List<Attachment> quoteAttachments = Stream.of(associatedAttachments).filter(Attachment::isQuote).map(a -> (Attachment)a).toList();
+
+        Recipient  recipient = Recipient.from(context, Address.fromSerialized(address), false);
+        QuoteModel quote     = null;
+
+        if (quoteId > 0 && (!TextUtils.isEmpty(quoteText) || !quoteAttachments.isEmpty())) {
+          quote = new QuoteModel(quoteId, Address.fromSerialized(quoteAuthor), quoteText, quoteAttachments);
+        }
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return new OutgoingGroupMediaMessage(recipient, body, attachments, timestamp, 0);
+          return new OutgoingGroupMediaMessage(recipient, body, attachments, timestamp, 0, quote);
         } else if (Types.isExpirationTimerUpdate(outboxType)) {
           return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
         }
 
-        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, body, attachments, timestamp, subscriptionId, expiresIn, distributionType);
+        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, body, attachments, timestamp, subscriptionId, expiresIn, distributionType, quote);
 
         if (Types.isSecureType(outboxType)) {
           return new OutgoingSecureMediaMessage(message);
@@ -591,13 +595,13 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  public long copyMessageInbox(MasterSecret masterSecret, long messageId) throws MmsException {
+  public long copyMessageInbox(long messageId) throws MmsException {
     try {
-      OutgoingMediaMessage request = getOutgoingMessage(masterSecret, messageId);
+      OutgoingMediaMessage request = getOutgoingMessage(messageId);
       ContentValues contentValues = new ContentValues();
       contentValues.put(ADDRESS, request.getRecipient().getAddress().serialize());
       contentValues.put(DATE_SENT, request.getSentTimeMillis());
-      contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.ENCRYPTION_SYMMETRIC_BIT);
+      contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT);
       contentValues.put(THREAD_ID, getThreadIdForMessage(messageId));
       contentValues.put(READ, 1);
       contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
@@ -620,12 +624,15 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getRelay(),
                                                databaseAttachment.getDigest(),
                                                databaseAttachment.getFastPreflightId(),
-                                               databaseAttachment.isVoiceNote()));
+                                               databaseAttachment.isVoiceNote(),
+                                               databaseAttachment.getWidth(),
+                                               databaseAttachment.getHeight(),
+                                               databaseAttachment.isQuote()));
       }
 
-      return insertMediaMessage(new MasterSecretUnion(masterSecret),
-                                request.getBody(),
+      return insertMediaMessage(request.getBody(),
                                 attachments,
+                                new LinkedList<>(),
                                 contentValues,
                                 null);
     } catch (NoSuchMessageException e) {
@@ -633,8 +640,7 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  private Optional<InsertResult> insertMessageInbox(MasterSecretUnion masterSecret,
-                                                    IncomingMediaMessage retrieved,
+  private Optional<InsertResult> insertMessageInbox(IncomingMediaMessage retrieved,
                                                     String contentLocation,
                                                     long threadId, long mailbox)
       throws MmsException
@@ -669,12 +675,22 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
     }
 
+    List<Attachment> quoteAttachments = new LinkedList<>();
+
+    if (retrieved.getQuote() != null) {
+      contentValues.put(QUOTE_ID, retrieved.getQuote().getId());
+      contentValues.put(QUOTE_BODY, retrieved.getQuote().getText());
+      contentValues.put(QUOTE_AUTHOR, retrieved.getQuote().getAuthor().serialize());
+
+      quoteAttachments = retrieved.getQuote().getAttachments();
+    }
+
     if (retrieved.isPushMessage() && isDuplicate(retrieved, threadId)) {
       Log.w(TAG, "Ignoring duplicate media message (" + retrieved.getSentTimeMillis() + ")");
       return Optional.absent();
     }
 
-    long messageId = insertMediaMessage(masterSecret, retrieved.getBody(), retrieved.getAttachments(), contentValues, null);
+    long messageId = insertMediaMessage(retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, contentValues, null);
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
@@ -687,19 +703,12 @@ public class MmsDatabase extends MessagingDatabase {
     return Optional.of(new InsertResult(messageId, threadId));
   }
 
-  public Optional<InsertResult> insertMessageInbox(MasterSecretUnion masterSecret,
-                                                   IncomingMediaMessage retrieved,
+  public Optional<InsertResult> insertMessageInbox(IncomingMediaMessage retrieved,
                                                    String contentLocation, long threadId)
       throws MmsException
   {
     long type = Types.BASE_INBOX_TYPE;
 
-    if (masterSecret.getMasterSecret().isPresent()) {
-      type |= Types.ENCRYPTION_SYMMETRIC_BIT;
-    } else {
-      type |= Types.ENCRYPTION_ASYMMETRIC_BIT;
-    }
-
     if (retrieved.isPushMessage()) {
       type |= Types.PUSH_MESSAGE_BIT;
     }
@@ -708,22 +717,14 @@ public class MmsDatabase extends MessagingDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
-    return insertMessageInbox(masterSecret, retrieved, contentLocation, threadId, type);
+    return insertMessageInbox(retrieved, contentLocation, threadId, type);
   }
 
-  public Optional<InsertResult> insertSecureDecryptedMessageInbox(MasterSecretUnion masterSecret,
-                                                                  IncomingMediaMessage retrieved,
-                                                                  long threadId)
+  public Optional<InsertResult> insertSecureDecryptedMessageInbox(IncomingMediaMessage retrieved, long threadId)
       throws MmsException
   {
     long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT;
 
-    if (masterSecret.getMasterSecret().isPresent()) {
-      type |= Types.ENCRYPTION_SYMMETRIC_BIT;
-    } else {
-      type |= Types.ENCRYPTION_ASYMMETRIC_BIT;
-    }
-
     if (retrieved.isPushMessage()) {
       type |= Types.PUSH_MESSAGE_BIT;
     }
@@ -732,7 +733,7 @@ public class MmsDatabase extends MessagingDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
-    return insertMessageInbox(masterSecret, retrieved, "", threadId, type);
+    return insertMessageInbox(retrieved, "", threadId, type);
   }
 
   public Pair<Long, Long> insertMessageInbox(@NonNull NotificationInd notification, int subscriptionId) {
@@ -781,16 +782,12 @@ public class MmsDatabase extends MessagingDatabase {
     jobManager.add(new TrimThreadJob(context, threadId));
   }
 
-  public long insertMessageOutbox(@NonNull MasterSecretUnion masterSecret,
-                                  @NonNull OutgoingMediaMessage message,
+  public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
                                   long threadId, boolean forceSms,
                                   @Nullable SmsDatabase.InsertListener insertListener)
       throws MmsException
   {
     long type = Types.BASE_SENDING_TYPE;
-
-    if (masterSecret.getMasterSecret().isPresent()) type |= Types.ENCRYPTION_SYMMETRIC_BIT;
-    else                                            type |= Types.ENCRYPTION_ASYMMETRIC_BIT;
 
     if (message.isSecure()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
@@ -821,7 +818,17 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
     contentValues.put(READ_RECEIPT_COUNT, Stream.of(earlyReadReceipts.values()).mapToLong(Long::longValue).sum());
 
-    long messageId = insertMediaMessage(masterSecret, message.getBody(), message.getAttachments(), contentValues, insertListener);
+    List<Attachment> quoteAttachments = new LinkedList<>();
+
+    if (message.getOutgoingQuote() != null) {
+      contentValues.put(QUOTE_ID, message.getOutgoingQuote().getId());
+      contentValues.put(QUOTE_AUTHOR, message.getOutgoingQuote().getAuthor().serialize());
+      contentValues.put(QUOTE_BODY, message.getOutgoingQuote().getText());
+
+      quoteAttachments.addAll(message.getOutgoingQuote().getAttachments());
+    }
+
+    long messageId = insertMediaMessage(message.getBody(), message.getAttachments(), quoteAttachments, contentValues, insertListener);
 
     if (message.getRecipient().getAddress().isGroup()) {
       List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().getAddress().toGroupString(), false);
@@ -841,56 +848,24 @@ public class MmsDatabase extends MessagingDatabase {
     return messageId;
   }
 
-  private String getEncryptedBody(MasterSecretUnion masterSecret, String body) {
-    if (masterSecret.getMasterSecret().isPresent()) {
-      return new MasterCipher(masterSecret.getMasterSecret().get()).encryptBody(body);
-    } else {
-      return new AsymmetricMasterCipher(masterSecret.getAsymmetricMasterSecret().get()).encryptBody(body);
-    }
-  }
-
-  private @Nullable String getDecryptedBody(@NonNull MasterSecret masterSecret,
-                                            @Nullable String body, long outboxType)
-  {
-    try {
-      if (!TextUtils.isEmpty(body) && Types.isSymmetricEncryption(outboxType)) {
-        MasterCipher masterCipher = new MasterCipher(masterSecret);
-        return masterCipher.decryptBody(body);
-      } else {
-        return body;
-      }
-    } catch (InvalidMessageException e) {
-      Log.w(TAG, e);
-    }
-
-    return null;
-  }
-
-  private long insertMediaMessage(@NonNull MasterSecretUnion masterSecret,
-                                  @Nullable String body,
+  private long insertMediaMessage(@Nullable String body,
                                   @NonNull List<Attachment> attachments,
+                                  @NonNull List<Attachment> quoteAttachments,
                                   @NonNull ContentValues contentValues,
                                   @Nullable SmsDatabase.InsertListener insertListener)
       throws MmsException
   {
-    SQLiteDatabase     db              = databaseHelper.getWritableDatabase();
-    AttachmentDatabase partsDatabase   = DatabaseFactory.getAttachmentDatabase(context);
+    SQLiteDatabase     db            = databaseHelper.getWritableDatabase();
+    AttachmentDatabase partsDatabase = DatabaseFactory.getAttachmentDatabase(context);
 
-    if (Types.isSymmetricEncryption(contentValues.getAsLong(MESSAGE_BOX)) ||
-        Types.isAsymmetricEncryption(contentValues.getAsLong(MESSAGE_BOX)))
-    {
-      if (!TextUtils.isEmpty(body)) {
-        contentValues.put(BODY, getEncryptedBody(masterSecret, body));
-      }
-    }
-
+    contentValues.put(BODY, body);
     contentValues.put(PART_COUNT, attachments.size());
 
     db.beginTransaction();
     try {
       long messageId = db.insert(TABLE_NAME, null, contentValues);
 
-      partsDatabase.insertAttachmentsForMessage(masterSecret, messageId, attachments);
+      partsDatabase.insertAttachmentsForMessage(messageId, attachments, quoteAttachments);
 
       db.setTransactionSuccessful();
       return messageId;
@@ -939,7 +914,6 @@ public class MmsDatabase extends MessagingDatabase {
       if (cursor != null) cursor.close();
     }
   }
-
 
   /*package*/ void deleteThreads(Set<Long> threadIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
@@ -1016,8 +990,8 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  public Reader readerFor(MasterSecret masterSecret, Cursor cursor) {
-    return new Reader(masterSecret, cursor);
+  public Reader readerFor(Cursor cursor) {
+    return new Reader(cursor);
   }
 
   public OutgoingMessageReader readerFor(OutgoingMediaMessage message, long threadId) {
@@ -1084,29 +1058,29 @@ public class MmsDatabase extends MessagingDatabase {
 
       return new MediaMmsMessageRecord(context, id, message.getRecipient(), message.getRecipient(),
                                        1, System.currentTimeMillis(), System.currentTimeMillis(),
-                                       0, threadId, new DisplayRecord.Body(message.getBody(), true),
+                                       0, threadId, message.getBody(),
                                        slideDeck, slideDeck.getSlides().size(),
                                        message.isSecure() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
                                        new LinkedList<IdentityKeyMismatch>(),
                                        new LinkedList<NetworkFailure>(),
                                        message.getSubscriptionId(),
                                        message.getExpiresIn(),
-                                       System.currentTimeMillis(), 0);
+                                       System.currentTimeMillis(), 0,
+                                       message.getOutgoingQuote() != null ?
+                                           new Quote(message.getOutgoingQuote().getId(),
+                                                     message.getOutgoingQuote().getAuthor(),
+                                                     message.getOutgoingQuote().getText(),
+                                                     new SlideDeck(context, message.getOutgoingQuote().getAttachments())) :
+                                           null);
     }
   }
 
   public class Reader {
 
-    private final Cursor       cursor;
-    private final MasterSecret masterSecret;
-    private final MasterCipher masterCipher;
+    private final Cursor cursor;
 
-    public Reader(MasterSecret masterSecret, Cursor cursor) {
-      this.cursor       = cursor;
-      this.masterSecret = masterSecret;
-
-      if (masterSecret != null) masterCipher = new MasterCipher(masterSecret);
-      else                      masterCipher = null;
+    public Reader(Cursor cursor) {
+      this.cursor = cursor;
     }
 
     public MessageRecord getNext() {
@@ -1178,7 +1152,7 @@ public class MmsDatabase extends MessagingDatabase {
       int                addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
       int                deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.DELIVERY_RECEIPT_COUNT));
       int                readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ_RECEIPT_COUNT));
-      DisplayRecord.Body body                 = getBody(cursor);
+      String             body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
       int                partCount            = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       String             mismatchDocument     = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
       String             networkDocument      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
@@ -1194,12 +1168,13 @@ public class MmsDatabase extends MessagingDatabase {
       List<IdentityKeyMismatch> mismatches      = getMismatchedIdentities(mismatchDocument);
       List<NetworkFailure>      networkFailures = getFailures(networkDocument);
       SlideDeck                 slideDeck       = getSlideDeck(cursor);
+      Quote                     quote           = getQuote(cursor);
 
       return new MediaMmsMessageRecord(context, id, recipient, recipient,
                                        addressDeviceId, dateSent, dateReceived, deliveryReceiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
-                                       readReceiptCount);
+                                       readReceiptCount, quote);
     }
 
     private Recipient getRecipientFor(String serialized) {
@@ -1238,29 +1213,25 @@ public class MmsDatabase extends MessagingDatabase {
       return new LinkedList<>();
     }
 
-    private DisplayRecord.Body getBody(Cursor cursor) {
-      try {
-        String body = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
-        long box    = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
-
-        if (!TextUtils.isEmpty(body) && masterCipher != null && Types.isSymmetricEncryption(box)) {
-          return new DisplayRecord.Body(masterCipher.decryptBody(body), true);
-        } else if (!TextUtils.isEmpty(body) && masterCipher == null && Types.isSymmetricEncryption(box)) {
-          return new DisplayRecord.Body(body, false);
-        } else if (!TextUtils.isEmpty(body) && Types.isAsymmetricEncryption(box)) {
-          return new DisplayRecord.Body(body, false);
-        } else {
-          return new DisplayRecord.Body(body == null ? "" : body, true);
-        }
-      } catch (InvalidMessageException e) {
-        Log.w("MmsDatabase", e);
-        return new DisplayRecord.Body(context.getString(R.string.MmsDatabase_error_decrypting_message), true);
-      }
+    private SlideDeck getSlideDeck(@NonNull Cursor cursor) {
+      List<DatabaseAttachment>   attachment         = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
+      List<? extends Attachment> messageAttachmnets = Stream.of(attachment).filterNot(Attachment::isQuote).toList();
+      return new SlideDeck(context, messageAttachmnets);
     }
 
-    private SlideDeck getSlideDeck(@NonNull Cursor cursor) {
-      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(masterSecret, cursor);
-      return new SlideDeck(context, attachment);
+    private @Nullable Quote getQuote(@NonNull Cursor cursor) {
+      long                       quoteId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_ID));
+      String                     quoteAuthor      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_AUTHOR));
+      String                     quoteText        = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_BODY));
+      List<DatabaseAttachment>   attachments      = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
+      List<? extends Attachment> quoteAttachments = Stream.of(attachments).filter(Attachment::isQuote).toList();
+      SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
+
+      if (quoteId > 0 && !TextUtils.isEmpty(quoteAuthor)) {
+        return new Quote(quoteId, Address.fromExternal(context, quoteAuthor), quoteText, quoteDeck);
+      } else {
+        return null;
+      }
     }
 
     public void close() {

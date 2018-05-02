@@ -370,7 +370,7 @@ public class CameraView extends ViewGroup {
     return outputOrientation;
   }
 
-  // https://github.com/WhisperSystems/Signal-Android/issues/4715
+  // https://github.com/signalapp/Signal-Android/issues/4715
   private boolean isTroublemaker() {
     return getCameraInfo().facing == CameraInfo.CAMERA_FACING_FRONT &&
            "JWR66Y".equals(Build.DISPLAY) &&

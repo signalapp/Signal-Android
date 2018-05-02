@@ -48,7 +48,7 @@ public class NotificationState {
       Recipient recipient = notifications.getFirst().getRecipient();
 
       if (recipient != null) {
-        return recipient.getRingtone();
+        return recipient.resolve().getMessageRingtone();
       }
     }
 
@@ -60,7 +60,7 @@ public class NotificationState {
       Recipient recipient = notifications.getFirst().getRecipient();
 
       if (recipient != null) {
-        return recipient.getVibrate();
+        return recipient.resolve().getMessageVibrate();
       }
     }
 

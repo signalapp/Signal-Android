@@ -20,6 +20,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -34,6 +35,7 @@ import android.support.v4.content.Loader;
 import android.support.v4.util.Pair;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,10 +48,13 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.MediaView;
 import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -57,6 +62,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -73,27 +79,26 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String ADDRESS_EXTRA  = "address";
-  public static final String DATE_EXTRA     = "date";
-  public static final String SIZE_EXTRA     = "size";
-  public static final String OUTGOING_EXTRA = "outgoing";
+  public static final String ADDRESS_EXTRA        = "address";
+  public static final String DATE_EXTRA           = "date";
+  public static final String SIZE_EXTRA           = "size";
+  public static final String OUTGOING_EXTRA       = "outgoing";
+  public static final String LEFT_IS_RECENT_EXTRA = "left_is_recent";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
-  private MasterSecret masterSecret;
 
   private ViewPager mediaPager;
   private Uri       initialMediaUri;
   private String    initialMediaType;
   private long      initialMediaSize;
   private Recipient conversationRecipient;
+  private boolean   leftIsRecent;
 
   private int restartItem = -1;
 
   @SuppressWarnings("ConstantConditions")
   @Override
-  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  protected void onCreate(Bundle bundle, boolean ready) {
     this.setTheme(R.style.TextSecure_DarkTheme);
     dynamicLanguage.onCreate(this);
 
@@ -179,6 +184,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     initialMediaUri  = getIntent().getData();
     initialMediaType = getIntent().getType();
     initialMediaSize = getIntent().getLongExtra(SIZE_EXTRA, 0);
+    leftIsRecent     = getIntent().getBooleanExtra(LEFT_IS_RECENT_EXTRA, false);
     restartItem      = -1;
 
     if (address != null) {
@@ -200,7 +206,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     if (conversationRecipient != null) {
       getSupportLoaderManager().restartLoader(0, null, this);
     } else {
-      mediaPager.setAdapter(new SingleItemPagerAdapter(this, masterSecret, GlideApp.with(this), getWindow(), initialMediaUri, initialMediaType, initialMediaSize));
+      mediaPager.setAdapter(new SingleItemPagerAdapter(this, GlideApp.with(this), getWindow(), initialMediaUri, initialMediaType, initialMediaSize));
     }
   }
 
@@ -243,13 +249,45 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                    .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                    .onAnyDenied(() -> Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
                    .onAllGranted(() -> {
-                     SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
+                     SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this);
                      long saveDate = (mediaItem.date > 0) ? mediaItem.date : System.currentTimeMillis();
                      saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
                    })
                    .execute();
       });
     }
+  }
+
+  @SuppressLint("StaticFieldLeak")
+  private void deleteMedia() {
+    MediaItem mediaItem = getCurrentMediaItem();
+    if (mediaItem == null || mediaItem.attachment == null) {
+      return;
+    }
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setIconAttribute(R.attr.dialog_alert_icon);
+    builder.setTitle(R.string.MediaPreviewActivity_media_delete_confirmation_title);
+    builder.setMessage(R.string.MediaPreviewActivity_media_delete_confirmation_message);
+    builder.setCancelable(true);
+
+    builder.setPositiveButton(R.string.delete, (dialogInterface, which) -> {
+      new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... voids) {
+          if (mediaItem.attachment == null) {
+            return null;
+          }
+          AttachmentUtil.deleteAttachment(MediaPreviewActivity.this.getApplicationContext(),
+                                          mediaItem.attachment);
+          return null;
+        }
+      }.execute();
+
+      finish();
+    });
+    builder.setNegativeButton(android.R.string.cancel, null);
+    builder.show();
   }
 
   @Override
@@ -259,7 +297,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     menu.clear();
     MenuInflater inflater = this.getMenuInflater();
     inflater.inflate(R.menu.media_preview, menu);
-    if (conversationRecipient == null) menu.findItem(R.id.media_preview__overview).setVisible(false);
+
+    if (!isMediaInDb()) {
+      menu.findItem(R.id.media_preview__overview).setVisible(false);
+      menu.findItem(R.id.delete).setVisible(false);
+    }
 
     return true;
   }
@@ -272,10 +314,15 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       case R.id.media_preview__overview: showOverview(); return true;
       case R.id.media_preview__forward:  forward();      return true;
       case R.id.save:                    saveToDisk();   return true;
+      case R.id.delete:                  deleteMedia();  return true;
       case android.R.id.home:            finish();       return true;
     }
 
     return false;
+  }
+
+  private boolean isMediaInDb() {
+    return conversationRecipient != null;
   }
 
   private @Nullable MediaItem getCurrentMediaItem() {
@@ -294,14 +341,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   @Override
   public Loader<Pair<Cursor, Integer>> onCreateLoader(int id, Bundle args) {
-    return new PagingMediaLoader(this, conversationRecipient, initialMediaUri);
+    return new PagingMediaLoader(this, conversationRecipient, initialMediaUri, leftIsRecent);
   }
 
   @Override
   public void onLoadFinished(Loader<Pair<Cursor, Integer>> loader, @Nullable Pair<Cursor, Integer> data) {
     if (data != null) {
       @SuppressWarnings("ConstantConditions")
-      CursorPagerAdapter adapter = new CursorPagerAdapter(this, masterSecret, GlideApp.with(this), getWindow(), data.first, data.second);
+      CursorPagerAdapter adapter = new CursorPagerAdapter(this, GlideApp.with(this), getWindow(), data.first, data.second, leftIsRecent);
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
@@ -347,7 +394,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private static class SingleItemPagerAdapter extends PagerAdapter implements MediaItemAdapter {
 
-    private final MasterSecret  masterSecret;
     private final GlideRequests glideRequests;
     private final Window        window;
     private final Uri           uri;
@@ -356,11 +402,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     private final LayoutInflater inflater;
 
-    SingleItemPagerAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret,
-                           @NonNull GlideRequests glideRequests, @NonNull Window window,
-                           @NonNull Uri uri, @NonNull String mediaType, long size)
+    SingleItemPagerAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests,
+                           @NonNull Window window, @NonNull Uri uri, @NonNull String mediaType,
+                           long size)
     {
-      this.masterSecret  = masterSecret;
       this.glideRequests = glideRequests;
       this.window        = window;
       this.uri           = uri;
@@ -385,7 +430,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       MediaView mediaView = itemView.findViewById(R.id.media_view);
 
       try {
-        mediaView.set(masterSecret, glideRequests, window, uri, mediaType, size, true);
+        mediaView.set(glideRequests, window, uri, mediaType, size, true);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -405,7 +450,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     @Override
     public MediaItem getMediaItemFor(int position) {
-      return new MediaItem(null, uri, mediaType, -1, true);
+      return new MediaItem(null, null, uri, mediaType, -1, true);
     }
 
     @Override
@@ -419,24 +464,24 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     private final WeakHashMap<Integer, MediaView> mediaViews = new WeakHashMap<>();
 
     private final Context       context;
-    private final MasterSecret  masterSecret;
     private final GlideRequests glideRequests;
     private final Window        window;
     private final Cursor        cursor;
+    private final boolean       leftIsRecent;
 
     private boolean active;
     private int     autoPlayPosition;
 
-    CursorPagerAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret,
-                       @NonNull GlideRequests glideRequests, @NonNull Window window,
-                       @NonNull Cursor cursor, int autoPlayPosition)
+    CursorPagerAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests,
+                       @NonNull Window window, @NonNull Cursor cursor, int autoPlayPosition,
+                       boolean leftIsRecent)
     {
       this.context          = context.getApplicationContext();
-      this.masterSecret     = masterSecret;
       this.glideRequests    = glideRequests;
       this.window           = window;
       this.cursor           = cursor;
       this.autoPlayPosition = autoPlayPosition;
+      this.leftIsRecent     = leftIsRecent;
     }
 
     public void setActive(boolean active) {
@@ -466,11 +511,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
       cursor.moveToPosition(cursorPosition);
 
-      MediaRecord mediaRecord = MediaRecord.from(context, masterSecret, cursor);
+      MediaRecord mediaRecord = MediaRecord.from(context, cursor);
 
       try {
         //noinspection ConstantConditions
-        mediaView.set(masterSecret, glideRequests, window, mediaRecord.getAttachment().getDataUri(), mediaRecord.getAttachment().getContentType(), mediaRecord.getAttachment().getSize(), autoplay);
+        mediaView.set(glideRequests, window, mediaRecord.getAttachment().getDataUri(), mediaRecord.getAttachment().getContentType(), mediaRecord.getAttachment().getSize(), autoplay);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -492,12 +537,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     public MediaItem getMediaItemFor(int position) {
       cursor.moveToPosition(getCursorPosition(position));
-      MediaRecord mediaRecord = MediaRecord.from(context, masterSecret, cursor);
+      MediaRecord mediaRecord = MediaRecord.from(context, cursor);
       Address     address     = mediaRecord.getAddress();
 
       if (mediaRecord.getAttachment().getDataUri() == null) throw new AssertionError();
 
       return new MediaItem(address != null ? Recipient.from(context, address,true) : null,
+                           mediaRecord.getAttachment(),
                            mediaRecord.getAttachment().getDataUri(),
                            mediaRecord.getContentType(),
                            mediaRecord.getDate(),
@@ -511,23 +557,32 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     }
 
     private int getCursorPosition(int position) {
-      return cursor.getCount() - 1 - position;
+      if (leftIsRecent) return position;
+      else              return cursor.getCount() - 1 - position;
     }
   }
 
   private static class MediaItem {
-    private final @Nullable Recipient recipient;
-    private final @NonNull Uri        uri;
-    private final @NonNull String     type;
-    private final          long       date;
-    private final          boolean    outgoing;
+    private final @Nullable Recipient          recipient;
+    private final @Nullable DatabaseAttachment attachment;
+    private final @NonNull  Uri                uri;
+    private final @NonNull  String             type;
+    private final           long               date;
+    private final           boolean            outgoing;
 
-    private MediaItem(@Nullable Recipient recipient, @NonNull Uri uri, @NonNull String type, long date, boolean outgoing) {
-      this.recipient = recipient;
-      this.uri       = uri;
-      this.type      = type;
-      this.date      = date;
-      this.outgoing  = outgoing;
+    private MediaItem(@Nullable Recipient recipient,
+                      @Nullable DatabaseAttachment attachment,
+                      @NonNull Uri uri,
+                      @NonNull String type,
+                      long date,
+                      boolean outgoing)
+    {
+      this.recipient  = recipient;
+      this.attachment = attachment;
+      this.uri        = uri;
+      this.type       = type;
+      this.date       = date;
+      this.outgoing   = outgoing;
     }
   }
 
@@ -535,5 +590,4 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     MediaItem getMediaItemFor(int position);
     void pause(int position);
   }
-
 }

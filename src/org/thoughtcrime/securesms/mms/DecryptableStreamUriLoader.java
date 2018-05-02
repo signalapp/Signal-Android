@@ -11,7 +11,6 @@ import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 
 import java.io.InputStream;
@@ -27,12 +26,12 @@ public class DecryptableStreamUriLoader implements ModelLoader<DecryptableUri, I
 
   @Nullable
   @Override
-  public LoadData<InputStream> buildLoadData(DecryptableUri decryptableUri, int width, int height, Options options) {
-    return new LoadData<>(decryptableUri, new DecryptableStreamLocalUriFetcher(context, decryptableUri.masterSecret, decryptableUri.uri));
+  public LoadData<InputStream> buildLoadData(@NonNull DecryptableUri decryptableUri, int width, int height, @NonNull Options options) {
+    return new LoadData<>(decryptableUri, new DecryptableStreamLocalUriFetcher(context, decryptableUri.uri));
   }
 
   @Override
-  public boolean handles(DecryptableUri decryptableUri) {
+  public boolean handles(@NonNull DecryptableUri decryptableUri) {
     return true;
   }
 
@@ -45,7 +44,7 @@ public class DecryptableStreamUriLoader implements ModelLoader<DecryptableUri, I
     }
 
     @Override
-    public ModelLoader<DecryptableUri, InputStream> build(MultiModelLoaderFactory multiFactory) {
+    public @NonNull ModelLoader<DecryptableUri, InputStream> build(@NonNull MultiModelLoaderFactory multiFactory) {
       return new DecryptableStreamUriLoader(context);
     }
 
@@ -56,16 +55,14 @@ public class DecryptableStreamUriLoader implements ModelLoader<DecryptableUri, I
   }
 
   public static class DecryptableUri implements Key {
-    public @NonNull MasterSecret masterSecret;
     public @NonNull Uri          uri;
 
-    public DecryptableUri(@NonNull MasterSecret masterSecret, @NonNull Uri uri) {
-      this.masterSecret = masterSecret;
-      this.uri          = uri;
+    public DecryptableUri(@NonNull Uri uri) {
+      this.uri = uri;
     }
 
     @Override
-    public void updateDiskCacheKey(MessageDigest messageDigest) {
+    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
       messageDigest.update(uri.toString().getBytes());
     }
 

@@ -22,11 +22,13 @@ public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
 
   private final Recipient recipient;
   private final Uri       uri;
+  private final boolean   leftIsRecent;
 
-  public PagingMediaLoader(@NonNull Context context, @NonNull Recipient recipient, @NonNull Uri uri) {
+  public PagingMediaLoader(@NonNull Context context, @NonNull Recipient recipient, @NonNull Uri uri, boolean leftIsRecent) {
     super(context);
-    this.recipient = recipient;
-    this.uri       = uri;
+    this.recipient    = recipient;
+    this.uri          = uri;
+    this.leftIsRecent = leftIsRecent;
   }
 
   @Nullable
@@ -36,11 +38,11 @@ public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
     Cursor cursor   = DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId);
 
     while (cursor != null && cursor.moveToNext()) {
-      AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ATTACHMENT_ID_ALIAS)), cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));
+      AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)), cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));
       Uri          attachmentUri = PartAuthority.getAttachmentDataUri(attachmentId);
 
       if (attachmentUri.equals(uri)) {
-        return new Pair<>(cursor, cursor.getCount() - 1 - cursor.getPosition());
+        return new Pair<>(cursor, leftIsRecent ? cursor.getPosition() : cursor.getCount() - 1 - cursor.getPosition());
       }
     }
 

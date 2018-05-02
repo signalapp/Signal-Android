@@ -8,13 +8,11 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.davemorrissey.labs.subscaleview.decoder.ImageRegionDecoder;
 import com.davemorrissey.labs.subscaleview.decoder.SkiaImageRegionDecoder;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 
 import java.io.InputStream;
@@ -23,15 +21,9 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
 
   private static final String TAG = AttachmentRegionDecoder.class.getName();
 
-  private final MasterSecret masterSecret;
-
   private SkiaImageRegionDecoder passthrough;
 
   private BitmapRegionDecoder bitmapRegionDecoder;
-
-  public AttachmentRegionDecoder(@NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-  }
 
   @Override
   public Point init(Context context, Uri uri) throws Exception {
@@ -41,7 +33,7 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
       return passthrough.init(context, uri);
     }
 
-    InputStream inputStream = PartAuthority.getAttachmentStream(context, masterSecret, uri);
+    InputStream inputStream = PartAuthority.getAttachmentStream(context, uri);
 
     this.bitmapRegionDecoder = BitmapRegionDecoder.newInstance(inputStream, false);
     inputStream.close();

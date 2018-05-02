@@ -37,11 +37,12 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    String  signalingKey      = TextSecurePreferences.getSignalingKey(context);
-    int     registrationId    = TextSecurePreferences.getLocalRegistrationId(context);
-    boolean fetchesMessages   = TextSecurePreferences.isGcmDisabled(context);
+    String  signalingKey    = TextSecurePreferences.getSignalingKey(context);
+    int     registrationId  = TextSecurePreferences.getLocalRegistrationId(context);
+    boolean fetchesMessages = TextSecurePreferences.isGcmDisabled(context);
+    String  pin             = TextSecurePreferences.getRegistrationLockPin(context);
 
-    signalAccountManager.setAccountAttributes(signalingKey, registrationId, fetchesMessages);
+    signalAccountManager.setAccountAttributes(signalingKey, registrationId, fetchesMessages, pin);
   }
 
   @Override

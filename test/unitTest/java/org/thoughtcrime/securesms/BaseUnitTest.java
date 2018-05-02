@@ -15,9 +15,6 @@ import org.mockito.stubbing.Answer;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-
-import javax.crypto.spec.SecretKeySpec;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
@@ -32,15 +29,12 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ Log.class, Handler.class, Looper.class, TextUtils.class, PreferenceManager.class })
 public abstract class BaseUnitTest {
-  protected MasterSecret masterSecret;
 
   protected Context           context           = mock(Context.class);
   protected SharedPreferences sharedPreferences = mock(SharedPreferences.class);
 
   @Before
   public void setUp() throws Exception {
-    masterSecret = new MasterSecret(new SecretKeySpec(new byte[16], "AES"),
-                                    new SecretKeySpec(new byte[16], "HmacSHA1"));
     mockStatic(Looper.class);
     mockStatic(Log.class);
     mockStatic(Handler.class);

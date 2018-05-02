@@ -3,15 +3,13 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.support.annotation.Nullable;
-import android.util.Log;
+
+import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.R;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,18 +30,18 @@ public class DraftDatabase extends Database {
     "CREATE INDEX IF NOT EXISTS draft_thread_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
   };
 
-  public DraftDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public DraftDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
-  public void insertDrafts(MasterCipher masterCipher, long threadId, List<Draft> drafts) {
+  public void insertDrafts(long threadId, List<Draft> drafts) {
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
 
     for (Draft draft : drafts) {
       ContentValues values = new ContentValues(3);
       values.put(THREAD_ID, threadId);
-      values.put(DRAFT_TYPE, masterCipher.encryptBody(draft.getType()));
-      values.put(DRAFT_VALUE, masterCipher.encryptBody(draft.getValue()));
+      values.put(DRAFT_TYPE, draft.getType());
+      values.put(DRAFT_VALUE, draft.getValue());
 
       db.insert(TABLE_NAME, null, values);
     }
@@ -54,7 +52,7 @@ public class DraftDatabase extends Database {
     db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
   }
 
-  public void clearDrafts(Set<Long> threadIds) {
+  void clearDrafts(Set<Long> threadIds) {
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
     StringBuilder  where     = new StringBuilder();
     List<String>   arguments = new LinkedList<>();
@@ -70,29 +68,24 @@ public class DraftDatabase extends Database {
     db.delete(TABLE_NAME, where.toString().substring(4), arguments.toArray(new String[0]));
   }
 
-  public void clearAllDrafts() {
+  void clearAllDrafts() {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, null, null);
   }
 
-  public List<Draft> getDrafts(MasterCipher masterCipher, long threadId) {
+  public List<Draft> getDrafts(long threadId) {
     SQLiteDatabase db   = databaseHelper.getReadableDatabase();
-    List<Draft> results = new LinkedList<Draft>();
+    List<Draft> results = new LinkedList<>();
     Cursor cursor       = null;
 
     try {
       cursor = db.query(TABLE_NAME, null, THREAD_ID + " = ?", new String[] {threadId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        try {
-          String encryptedType  = cursor.getString(cursor.getColumnIndexOrThrow(DRAFT_TYPE));
-          String encryptedValue = cursor.getString(cursor.getColumnIndexOrThrow(DRAFT_VALUE));
+        String type  = cursor.getString(cursor.getColumnIndexOrThrow(DRAFT_TYPE));
+        String value = cursor.getString(cursor.getColumnIndexOrThrow(DRAFT_VALUE));
 
-          results.add(new Draft(masterCipher.decryptBody(encryptedType),
-                                masterCipher.decryptBody(encryptedValue)));
-        } catch (InvalidMessageException ime) {
-          Log.w("DraftDatabase", ime);
-        }
+        results.add(new Draft(type, value));
       }
 
       return results;
@@ -108,6 +101,7 @@ public class DraftDatabase extends Database {
     public static final String VIDEO    = "video";
     public static final String AUDIO    = "audio";
     public static final String LOCATION = "location";
+    public static final String QUOTE    = "quote";
 
     private final String type;
     private final String value;
@@ -125,13 +119,14 @@ public class DraftDatabase extends Database {
       return value;
     }
 
-    public String getSnippet(Context context) {
+    String getSnippet(Context context) {
       switch (type) {
       case TEXT:     return value;
       case IMAGE:    return context.getString(R.string.DraftDatabase_Draft_image_snippet);
       case VIDEO:    return context.getString(R.string.DraftDatabase_Draft_video_snippet);
       case AUDIO:    return context.getString(R.string.DraftDatabase_Draft_audio_snippet);
       case LOCATION: return context.getString(R.string.DraftDatabase_Draft_location_snippet);
+      case QUOTE:    return context.getString(R.string.DraftDatabase_Draft_quote_snippet);
       default:       return null;
       }
     }
@@ -158,7 +153,7 @@ public class DraftDatabase extends Database {
       }
     }
 
-    public @Nullable Uri getUriSnippet(Context context) {
+    public @Nullable Uri getUriSnippet() {
       Draft imageDraft = getDraftOfType(Draft.IMAGE);
 
       if (imageDraft != null && imageDraft.getValue() != null) {

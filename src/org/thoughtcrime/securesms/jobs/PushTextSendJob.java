@@ -4,11 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -46,10 +45,10 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   public void onAdded() {}
 
   @Override
-  public void onPushSend(MasterSecret masterSecret) throws NoSuchMessageException, RetryLaterException {
+  public void onPushSend() throws NoSuchMessageException, RetryLaterException {
     ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
-    EncryptingSmsDatabase  database          = DatabaseFactory.getEncryptingSmsDatabase(context);
-    SmsMessageRecord       record            = database.getMessage(masterSecret, messageId);
+    SmsDatabase            database          = DatabaseFactory.getSmsDatabase(context);
+    SmsMessageRecord       record            = database.getMessage(messageId);
 
     try {
       Log.w(TAG, "Sending message: " + messageId);
@@ -102,7 +101,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       Optional<byte[]>           profileKey        = getProfileKey(message.getIndividualRecipient());
       SignalServiceDataMessage   textSecureMessage = SignalServiceDataMessage.newBuilder()
                                                                              .withTimestamp(message.getDateSent())
-                                                                             .withBody(message.getBody().getBody())
+                                                                             .withBody(message.getBody())
                                                                              .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                              .withProfileKey(profileKey.orNull())
                                                                              .asEndSessionMessage(message.isEndSession())

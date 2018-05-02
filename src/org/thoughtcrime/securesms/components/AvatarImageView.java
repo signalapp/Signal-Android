@@ -51,6 +51,7 @@ public class AvatarImageView extends AppCompatImageView {
     if (recipient != null) {
       requestManager.load(recipient.getContactPhoto())
                     .fallback(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
+                    .error(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .circleCrop()
                     .into(this);

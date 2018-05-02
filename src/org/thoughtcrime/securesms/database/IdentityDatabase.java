@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,12 +19,13 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -34,6 +35,7 @@ import java.io.IOException;
 
 public class IdentityDatabase extends Database {
 
+  @SuppressWarnings("unused")
   private static final String TAG = IdentityDatabase.class.getSimpleName();
 
   private static final String TABLE_NAME           = "identities";
@@ -72,7 +74,7 @@ public class IdentityDatabase extends Database {
     }
   }
 
-  IdentityDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  IdentityDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -217,7 +219,7 @@ public class IdentityDatabase extends Database {
   public class IdentityReader {
     private final Cursor cursor;
 
-    public IdentityReader(@NonNull Cursor cursor) {
+    IdentityReader(@NonNull Cursor cursor) {
       this.cursor = cursor;
     }
 

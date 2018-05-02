@@ -97,7 +97,6 @@ public class ConversationListFragment extends Fragment
   @SuppressWarnings("unused")
   private static final String TAG = ConversationListFragment.class.getSimpleName();
 
-  private MasterSecret                masterSecret;
   private ActionMode                  actionMode;
   private RecyclerView                list;
   private ReminderView                reminderView;
@@ -111,9 +110,8 @@ public class ConversationListFragment extends Fragment
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    masterSecret = getArguments().getParcelable("master_secret");
-    locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
-    archive      = getArguments().getBoolean(ARCHIVE, false);
+    locale  = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
+    archive = getArguments().getBoolean(ARCHIVE, false);
   }
 
   @Override
@@ -197,9 +195,9 @@ public class ConversationListFragment extends Fragment
         } else if (DefaultSmsReminder.isEligible(context)) {
           return Optional.of(new DefaultSmsReminder(context));
         } else if (Util.isDefaultSmsProvider(context) && SystemSmsImportReminder.isEligible(context)) {
-          return Optional.of((new SystemSmsImportReminder(context, masterSecret)));
+          return Optional.of((new SystemSmsImportReminder(context)));
         } else if (PushRegistrationReminder.isEligible(context)) {
-          return Optional.of((new PushRegistrationReminder(context, masterSecret)));
+          return Optional.of((new PushRegistrationReminder(context)));
         } else if (ShareReminder.isEligible(context)) {
           return Optional.of(new ShareReminder(context));
         } else if (DozeReminder.isEligible(context)) {
@@ -221,7 +219,7 @@ public class ConversationListFragment extends Fragment
   }
 
   private void initializeListAdapter() {
-    list.setAdapter(new ConversationListAdapter(getActivity(), masterSecret, GlideApp.with(this), locale, null, this));
+    list.setAdapter(new ConversationListAdapter(getActivity(), GlideApp.with(this), locale, null, this));
     getLoaderManager().restartLoader(0, null, this);
   }
 
@@ -302,7 +300,7 @@ public class ConversationListFragment extends Fragment
           @Override
           protected Void doInBackground(Void... params) {
             DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-            MessageNotifier.updateNotification(getActivity(), masterSecret);
+            MessageNotifier.updateNotification(getActivity());
             return null;
           }
 
@@ -324,8 +322,7 @@ public class ConversationListFragment extends Fragment
 
   private void handleSelectAllThreads() {
     getListAdapter().selectAllThreads();
-    actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                                     String.valueOf(getListAdapter().getBatchSelections().size())));
+    actionMode.setTitle(String.valueOf(getListAdapter().getBatchSelections().size()));
   }
 
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
@@ -376,8 +373,7 @@ public class ConversationListFragment extends Fragment
       if (adapter.getBatchSelections().size() == 0) {
         actionMode.finish();
       } else {
-        actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                                         String.valueOf(adapter.getBatchSelections().size())));
+        actionMode.setTitle(String.valueOf(getListAdapter().getBatchSelections().size()));
       }
 
       adapter.notifyDataSetChanged();
@@ -412,8 +408,7 @@ public class ConversationListFragment extends Fragment
 
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
-    mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
-    mode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount, "1"));
+    mode.setTitle("1");
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
@@ -486,6 +481,7 @@ public class ConversationListFragment extends Fragment
     @SuppressLint("StaticFieldLeak")
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+      if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       final long threadId    = ((ConversationListItem)viewHolder.itemView).getThreadId();
       final int  unreadCount = ((ConversationListItem)viewHolder.itemView).getUnreadCount();
 
@@ -519,7 +515,7 @@ public class ConversationListFragment extends Fragment
 
             if (unreadCount > 0) {
               List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
-              MessageNotifier.updateNotification(getActivity(), masterSecret);
+              MessageNotifier.updateNotification(getActivity());
               MarkReadReceiver.process(getActivity(), messageIds);
             }
           }
@@ -530,7 +526,7 @@ public class ConversationListFragment extends Fragment
 
             if (unreadCount > 0) {
               DatabaseFactory.getThreadDatabase(getActivity()).incrementUnread(threadId, unreadCount);
-              MessageNotifier.updateNotification(getActivity(), masterSecret);
+              MessageNotifier.updateNotification(getActivity());
             }
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
@@ -543,6 +539,7 @@ public class ConversationListFragment extends Fragment
                             float dX, float dY, int actionState,
                             boolean isCurrentlyActive)
     {
+      if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
         View  itemView = viewHolder.itemView;
         Paint p        = new Paint();

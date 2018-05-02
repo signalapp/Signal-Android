@@ -158,9 +158,11 @@ class RecipientProvider {
     @Nullable final Uri                  contactUri;
     @Nullable final Long                 groupAvatarId;
     @Nullable final MaterialColor        color;
-    @Nullable final Uri                  ringtone;
+    @Nullable final Uri                  messageRingtone;
+    @Nullable final Uri                  callRingtone;
               final long                 mutedUntil;
-    @Nullable final VibrateState         vibrateState;
+    @Nullable final VibrateState         messageVibrateState;
+    @Nullable final VibrateState         callVibrateState;
               final boolean              blocked;
               final int                  expireMessages;
     @NonNull  final List<Recipient>      participants;
@@ -182,9 +184,11 @@ class RecipientProvider {
       this.customLabel           = settings     != null ? settings.getSystemPhoneLabel() : null;
       this.contactUri            = settings     != null ? Util.uri(settings.getSystemContactUri()) : null;
       this.color                 = settings     != null ? settings.getColor() : null;
-      this.ringtone              = settings     != null ? settings.getRingtone() : null;
+      this.messageRingtone       = settings     != null ? settings.getMessageRingtone() : null;
+      this.callRingtone          = settings     != null ? settings.getCallRingtone() : null;
       this.mutedUntil            = settings     != null ? settings.getMuteUntil() : 0;
-      this.vibrateState          = settings     != null ? settings.getVibrateState() : null;
+      this.messageVibrateState   = settings     != null ? settings.getMessageVibrateState() : null;
+      this.callVibrateState      = settings     != null ? settings.getCallVibrateState() : null;
       this.blocked               = settings     != null && settings.isBlocked();
       this.expireMessages        = settings     != null ? settings.getExpireMessages() : 0;
       this.participants          = participants == null ? new LinkedList<>() : participants;

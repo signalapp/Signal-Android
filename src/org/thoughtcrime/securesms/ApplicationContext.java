@@ -31,12 +31,13 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
+import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -46,6 +47,7 @@ import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
+import org.whispersystems.jobqueue.persistence.JavaJobSerializer;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.libsignal.util.AndroidSignalProtocolLogger;
@@ -118,10 +120,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     this.jobManager = JobManager.newBuilder(this)
                                 .withName("TextSecureJobs")
                                 .withDependencyInjector(this)
-                                .withJobSerializer(new EncryptingJobSerializer())
+                                .withJobSerializer(new JavaJobSerializer())
                                 .withRequirementProviders(new MasterSecretRequirementProvider(this),
                                                           new ServiceRequirementProvider(this),
-                                                          new NetworkRequirementProvider(this))
+                                                          new NetworkRequirementProvider(this),
+                                                          new SqlCipherMigrationRequirementProvider())
                                 .withConsumerThreads(5)
                                 .build();
   }
@@ -154,6 +157,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void initializePeriodicTasks() {
     RotateSignedPreKeyListener.schedule(this);
     DirectoryRefreshListener.schedule(this);
+    LocalBackupListener.schedule(this);
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);
@@ -166,6 +170,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         add("Pixel");
         add("Pixel XL");
         add("Moto G5");
+        add("Moto G (5S) Plus");
       }};
 
       Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{

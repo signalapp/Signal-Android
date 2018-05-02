@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
@@ -47,16 +48,17 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   public MediaMmsMessageRecord(Context context, long id, Recipient conversationRecipient,
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, int deliveryReceiptCount,
-                               long threadId, Body body,
+                               long threadId, String body,
                                @NonNull SlideDeck slideDeck,
                                int partCount, long mailbox,
                                List<IdentityKeyMismatch> mismatches,
                                List<NetworkFailure> failures, int subscriptionId,
-                               long expiresIn, long expireStarted, int readReceiptCount)
+                               long expiresIn, long expireStarted, int readReceiptCount,
+                               @Nullable Quote quote)
   {
     super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
-          subscriptionId, expiresIn, expireStarted, slideDeck, readReceiptCount);
+          subscriptionId, expiresIn, expireStarted, slideDeck, readReceiptCount, quote);
 
     this.context   = context.getApplicationContext();
     this.partCount = partCount;
@@ -73,9 +75,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
 
   @Override
   public SpannableString getDisplayBody() {
-    if (MmsDatabase.Types.isDecryptInProgressType(type)) {
-      return emphasisAdded(context.getString(R.string.MmsMessageRecord_decrypting_mms_please_wait));
-    } else if (MmsDatabase.Types.isFailedDecryptType(type)) {
+    if (MmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
     } else if (MmsDatabase.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
@@ -83,8 +83,6 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
     } else if (isLegacyMessage()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
-    } else if (!getBody().isPlaintext()) {
-      return emphasisAdded(context.getString(R.string.MessageNotifier_locked_message));
     }
 
     return super.getDisplayBody();

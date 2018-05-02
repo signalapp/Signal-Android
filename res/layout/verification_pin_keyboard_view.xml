@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
 
     <android.inputmethodservice.KeyboardView
             android:id="@+id/keyboard_view"
@@ -38,6 +39,18 @@
             android:gravity="center_vertical"
             android:src="@drawable/ic_close_white_48dp"/>
 
+    <org.thoughtcrime.securesms.components.SquareImageView
+            android:id="@+id/locked"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/green_400"
+            android:gravity="center_vertical"
+            android:src="@drawable/ic_lock_white_48dp"
+            android:visibility="gone"
+            tools:visibility="visible"/>
 
 
 </merge>

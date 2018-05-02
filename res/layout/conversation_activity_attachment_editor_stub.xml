@@ -27,7 +27,11 @@
                 android:layout_gravity="center_horizontal"
                 android:visibility="gone"
                 android:contentDescription="@string/conversation_activity__attachment_thumbnail"
-                app:backgroundColorHint="?conversation_background" />
+                app:backgroundColorHint="?conversation_background"
+                app:minWidth="100dp"
+                app:maxWidth="300dp"
+                app:minHeight="100dp"
+                app:maxHeight="300dp" />
 
         <org.thoughtcrime.securesms.components.AudioView
                 android:id="@+id/attachment_audio"

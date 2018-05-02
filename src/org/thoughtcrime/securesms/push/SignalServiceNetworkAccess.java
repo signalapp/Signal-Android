@@ -22,133 +22,46 @@ public class SignalServiceNetworkAccess {
 
   private static final String TAG = SignalServiceNetworkAccess.class.getName();
 
-  private static final String APPSPOT_SERVICE_REFLECTOR_HOST = "signal-reflector-meek.appspot.com";
-  private static final String APPSPOT_CDN_REFLECTOR_HOST     = "signal-cdn-reflector.appspot.com";
+  private static final String COUNTRY_CODE_EGYPT = "+20";
+  private static final String COUNTRY_CODE_UAE   = "+971";
+  private static final String COUNTRY_CODE_OMAN  = "+968";
+  private static final String COUNTRY_CODE_QATAR = "+974";
 
-  private static final ConnectionSpec GMAPS_CONNECTION_SPEC = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+  private static final String SERVICE_REFLECTOR_HOST = "textsecure-service-reflected.whispersystems.org";
+
+  private static final ConnectionSpec SOUQ_CONNECTION_SPEC = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
       .tlsVersions(TlsVersion.TLS_1_2)
-      .cipherSuites(CipherSuite.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+      .cipherSuites(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
                     CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
                     CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
                     CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
+                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
                     CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
                     CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
                     CipherSuite.TLS_DHE_RSA_WITH_AES_128_CBC_SHA,
                     CipherSuite.TLS_DHE_RSA_WITH_AES_256_CBC_SHA,
                     CipherSuite.TLS_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_RSA_WITH_AES_256_GCM_SHA384,
                     CipherSuite.TLS_RSA_WITH_AES_128_CBC_SHA,
                     CipherSuite.TLS_RSA_WITH_AES_256_CBC_SHA)
       .supportsTlsExtensions(true)
       .build();
-
-  private static final ConnectionSpec GMAIL_CONNECTION_SPEC = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
-      .tlsVersions(TlsVersion.TLS_1_2)
-      .cipherSuites(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
-                    CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
-                    CipherSuite.TLS_DHE_RSA_WITH_AES_128_CBC_SHA,
-                    CipherSuite.TLS_DHE_RSA_WITH_AES_256_CBC_SHA,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_RC4_128_SHA,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_RC4_128_SHA,
-                    CipherSuite.TLS_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_RSA_WITH_AES_256_GCM_SHA384,
-                    CipherSuite.TLS_RSA_WITH_AES_128_CBC_SHA,
-                    CipherSuite.TLS_RSA_WITH_AES_256_CBC_SHA,
-                    CipherSuite.TLS_RSA_WITH_RC4_128_SHA,
-                    CipherSuite.TLS_EMPTY_RENEGOTIATION_INFO_SCSV)
-      .supportsTlsExtensions(true)
-      .build();
-
-  private static final ConnectionSpec PLAY_CONNECTION_SPEC = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
-      .tlsVersions(TlsVersion.TLS_1_2)
-      .cipherSuites(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
-                    CipherSuite.TLS_ECDHE_ECDSA_WITH_RC4_128_SHA,
-                    CipherSuite.TLS_ECDHE_RSA_WITH_RC4_128_SHA,
-                    CipherSuite.TLS_DHE_RSA_WITH_AES_128_CBC_SHA,
-                    CipherSuite.TLS_DHE_RSA_WITH_AES_256_CBC_SHA,
-                    CipherSuite.TLS_RSA_WITH_AES_128_GCM_SHA256,
-                    CipherSuite.TLS_RSA_WITH_AES_128_CBC_SHA,
-                    CipherSuite.TLS_RSA_WITH_AES_256_CBC_SHA,
-                    CipherSuite.TLS_RSA_WITH_RC4_128_SHA,
-                    CipherSuite.TLS_EMPTY_RENEGOTIATION_INFO_SCSV)
-      .supportsTlsExtensions(true)
-      .build();
-
 
   private final Map<String, SignalServiceConfiguration> censorshipConfiguration;
   private final String[]                                censoredCountries;
   private final SignalServiceConfiguration              uncensoredConfiguration;
 
   public SignalServiceNetworkAccess(Context context) {
-    final TrustStore       googleTrustStore      = new GoogleFrontingTrustStore(context);
-    final SignalServiceUrl baseGoogleService     = new SignalServiceUrl("https://www.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAIL_CONNECTION_SPEC);
-    final SignalServiceUrl baseAndroidService    = new SignalServiceUrl("https://android.clients.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, PLAY_CONNECTION_SPEC);
-    final SignalServiceUrl mapsOneAndroidService = new SignalServiceUrl("https://clients3.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAPS_CONNECTION_SPEC);
-    final SignalServiceUrl mapsTwoAndroidService = new SignalServiceUrl("https://clients4.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAPS_CONNECTION_SPEC);
-    final SignalServiceUrl mailAndroidService    = new SignalServiceUrl("https://mail.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAIL_CONNECTION_SPEC);
-
-    final SignalCdnUrl     baseGoogleCdn         = new SignalCdnUrl("https://www.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAIL_CONNECTION_SPEC);
-    final SignalCdnUrl     baseAndroidCdn        = new SignalCdnUrl("https://android.clients.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, PLAY_CONNECTION_SPEC);
-    final SignalCdnUrl     mapsOneAndroidCdn     = new SignalCdnUrl("https://clients3.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAPS_CONNECTION_SPEC);
-    final SignalCdnUrl     mapsTwoAndroidCdn     = new SignalCdnUrl("https://clients4.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAPS_CONNECTION_SPEC);
-    final SignalCdnUrl     mailAndroidCdn        = new SignalCdnUrl("https://mail.google.com", APPSPOT_SERVICE_REFLECTOR_HOST, googleTrustStore, GMAIL_CONNECTION_SPEC);
+    final TrustStore                 trustStore     = new DomainFrontingTrustStore(context);
+    final SignalServiceUrl           service        = new SignalServiceUrl("https://cms.souqcdn.com", SERVICE_REFLECTOR_HOST, trustStore, SOUQ_CONNECTION_SPEC);
+    final SignalCdnUrl               serviceCdn     = new SignalCdnUrl("https://cms.souqcdn.com", SERVICE_REFLECTOR_HOST, trustStore, SOUQ_CONNECTION_SPEC);
+    final SignalServiceConfiguration serviceConfig  = new SignalServiceConfiguration(new SignalServiceUrl[] { service },
+                                                                                     new SignalCdnUrl[] { serviceCdn });
 
     this.censorshipConfiguration = new HashMap<String, SignalServiceConfiguration>() {{
-      put("+20", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.eg",
-                                                                                             APPSPOT_SERVICE_REFLECTOR_HOST,
-                                                                                             googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                        baseAndroidService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.eg",
-                                                                                     APPSPOT_CDN_REFLECTOR_HOST,
-                                                                                     googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                    baseAndroidCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn, mailAndroidCdn}));
-
-      put("+971", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.ae",
-                                                                                              APPSPOT_SERVICE_REFLECTOR_HOST,
-                                                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                         baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                 new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.ae",
-                                                                                      APPSPOT_CDN_REFLECTOR_HOST,
-                                                                                      googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                     baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
-
-      put("+968", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.om",
-                                                                                              APPSPOT_SERVICE_REFLECTOR_HOST,
-                                                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                         baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                 new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.om",
-                                                                                      APPSPOT_CDN_REFLECTOR_HOST,
-                                                                                      googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                     baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
-
-      put("+974", new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl("https://www.google.com.qa",
-                                                                                              APPSPOT_SERVICE_REFLECTOR_HOST,
-                                                                                              googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                         baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                 new SignalCdnUrl[] {new SignalCdnUrl("https://www.google.com.qa",
-                                                                                      APPSPOT_CDN_REFLECTOR_HOST,
-                                                                                      googleTrustStore, GMAIL_CONNECTION_SPEC),
-                                                                     baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn}));
+      put(COUNTRY_CODE_EGYPT, serviceConfig);
+      put(COUNTRY_CODE_UAE, serviceConfig);
+      put(COUNTRY_CODE_OMAN, serviceConfig);
+      put(COUNTRY_CODE_QATAR, serviceConfig);
     }};
 
     this.uncensoredConfiguration = new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl(BuildConfig.SIGNAL_URL, new SignalServiceTrustStore(context))},

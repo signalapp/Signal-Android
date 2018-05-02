@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.spongycastle.util.encoders.Hex;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -38,7 +37,6 @@ public class AttachmentServer implements Runnable {
   private static final String TAG = AttachmentServer.class.getSimpleName();
 
   private final Context      context;
-  private final MasterSecret masterSecret;
   private final Attachment   attachment;
   private final ServerSocket socket;
   private final int          port;
@@ -46,12 +44,11 @@ public class AttachmentServer implements Runnable {
 
   private volatile boolean isRunning;
 
-  public AttachmentServer(Context context, MasterSecret masterSecret, Attachment attachment)
+  public AttachmentServer(Context context, Attachment attachment)
       throws IOException
   {
     try {
       this.context      = context;
-      this.masterSecret = masterSecret;
       this.attachment   = attachment;
       this.socket       = new ServerSocket(0, 0, InetAddress.getByAddress(new byte[]{127, 0, 0, 1}));
       this.port         = socket.getLocalPort();
@@ -189,7 +186,7 @@ public class AttachmentServer implements Runnable {
     }
 
     protected void execute() throws IOException {
-      InputStream inputStream = PartAuthority.getAttachmentStream(context, masterSecret, attachment.getDataUri());
+      InputStream inputStream = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
       long        fileSize    = attachment.getSize();
 
       String headers = "";

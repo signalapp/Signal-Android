@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mms;
 
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -16,11 +17,12 @@ public class OutgoingMediaMessage {
   private   final int              distributionType;
   private   final int              subscriptionId;
   private   final long             expiresIn;
+  private   final QuoteModel       outgoingQuote;
 
   public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
                               int subscriptionId, long expiresIn,
-                              int distributionType)
+                              int distributionType, @Nullable QuoteModel outgoingQuote)
   {
     this.recipient        = recipient;
     this.body             = message;
@@ -29,15 +31,16 @@ public class OutgoingMediaMessage {
     this.attachments      = attachments;
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
+    this.outgoingQuote    = outgoingQuote;
   }
 
-  public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType)
+  public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType, @Nullable QuoteModel outgoingQuote)
   {
     this(recipient,
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
-         expiresIn, distributionType);
+         expiresIn, distributionType, outgoingQuote);
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
@@ -48,6 +51,7 @@ public class OutgoingMediaMessage {
     this.sentTimeMillis   = that.sentTimeMillis;
     this.subscriptionId   = that.subscriptionId;
     this.expiresIn        = that.expiresIn;
+    this.outgoingQuote    = that.outgoingQuote;
   }
 
   public Recipient getRecipient() {
@@ -90,6 +94,10 @@ public class OutgoingMediaMessage {
     return expiresIn;
   }
 
+  public @Nullable QuoteModel getOutgoingQuote() {
+    return outgoingQuote;
+  }
+
   private static String buildMessage(SlideDeck slideDeck, String message) {
     if (!TextUtils.isEmpty(message) && !TextUtils.isEmpty(slideDeck.getBody())) {
       return slideDeck.getBody() + "\n\n" + message;
@@ -99,4 +107,5 @@ public class OutgoingMediaMessage {
       return slideDeck.getBody();
     }
   }
+
 }

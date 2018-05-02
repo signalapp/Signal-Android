@@ -12,6 +12,7 @@
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:elevation="4dp"
             android:theme="?attr/actionBarStyle"
             app:contentInsetStartWithNavigation="0dp"/>
 

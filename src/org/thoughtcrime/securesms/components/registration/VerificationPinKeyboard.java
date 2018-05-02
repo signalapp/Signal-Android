@@ -30,6 +30,7 @@ public class VerificationPinKeyboard extends FrameLayout {
   private ProgressBar  progressBar;
   private ImageView    successView;
   private ImageView    failureView;
+  private ImageView    lockedView;
 
   private OnKeyPressListener listener;
 
@@ -60,7 +61,8 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.keyboardView = findViewById(R.id.keyboard_view);
     this.progressBar  = findViewById(R.id.progress);
     this.successView  = findViewById(R.id.success);
-    this.failureView  = findViewById(R.id.failure); ;
+    this.failureView  = findViewById(R.id.failure);
+    this.lockedView   = findViewById(R.id.locked);
 
     keyboardView.setPreviewEnabled(false);
     keyboardView.setKeyboard(new Keyboard(getContext(), R.xml.pin_keyboard));
@@ -97,6 +99,7 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.progressBar.setVisibility(View.GONE);
     this.successView.setVisibility(View.GONE);
     this.failureView.setVisibility(View.GONE);
+    this.lockedView.setVisibility(View.GONE);
   }
 
   public void displayProgress() {
@@ -104,6 +107,7 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.progressBar.setVisibility(View.VISIBLE);
     this.successView.setVisibility(View.GONE);
     this.failureView.setVisibility(View.GONE);
+    this.lockedView.setVisibility(View.GONE);
   }
 
   public ListenableFuture<Boolean> displaySuccess() {
@@ -112,6 +116,7 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.keyboardView.setVisibility(View.INVISIBLE);
     this.progressBar.setVisibility(View.GONE);
     this.failureView.setVisibility(View.GONE);
+    this.lockedView.setVisibility(View.GONE);
 
     this.successView.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
 
@@ -143,6 +148,7 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.keyboardView.setVisibility(View.INVISIBLE);
     this.progressBar.setVisibility(View.GONE);
     this.failureView.setVisibility(View.GONE);
+    this.lockedView.setVisibility(View.GONE);
 
     this.failureView.getBackground().setColorFilter(getResources().getColor(R.color.red_500), PorterDuff.Mode.SRC_IN);
     this.failureView.setVisibility(View.VISIBLE);
@@ -165,6 +171,38 @@ public class VerificationPinKeyboard extends FrameLayout {
 
     this.failureView.startAnimation(shake);
 
+    return result;
+  }
+
+  public ListenableFuture<Boolean> displayLocked() {
+    SettableFuture<Boolean> result = new SettableFuture<>();
+
+    this.keyboardView.setVisibility(View.INVISIBLE);
+    this.progressBar.setVisibility(View.GONE);
+    this.failureView.setVisibility(View.GONE);
+    this.lockedView.setVisibility(View.GONE);
+
+    this.lockedView.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
+
+    ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1, 0, 1,
+                                                       ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
+                                                       ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
+    scaleAnimation.setInterpolator(new OvershootInterpolator());
+    scaleAnimation.setDuration(800);
+    scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
+      @Override
+      public void onAnimationStart(Animation animation) {}
+
+      @Override
+      public void onAnimationEnd(Animation animation) {
+        result.set(true);
+      }
+
+      @Override
+      public void onAnimationRepeat(Animation animation) {}
+    });
+
+    ViewUtil.animateIn(this.lockedView, scaleAnimation);
     return result;
   }
 

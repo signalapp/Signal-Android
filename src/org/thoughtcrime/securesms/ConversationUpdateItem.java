@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -38,7 +37,6 @@ public class ConversationUpdateItem extends LinearLayout
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
 
-  private MasterSecret       masterSecret;
   private Set<MessageRecord> batchSelected;
 
   private ImageView     icon;
@@ -60,25 +58,29 @@ public class ConversationUpdateItem extends LinearLayout
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.icon = (ImageView)findViewById(R.id.conversation_update_icon);
-    this.body = (TextView)findViewById(R.id.conversation_update_body);
-    this.date = (TextView)findViewById(R.id.conversation_update_date);
+    this.icon = findViewById(R.id.conversation_update_icon);
+    this.body = findViewById(R.id.conversation_update_body);
+    this.date = findViewById(R.id.conversation_update_date);
 
     this.setOnClickListener(new InternalClickListener(null));
   }
 
   @Override
-  public void bind(@NonNull MasterSecret masterSecret,
-                   @NonNull MessageRecord messageRecord,
-                   @NonNull GlideRequests glideRequests,
-                   @NonNull Locale locale,
+  public void bind(@NonNull MessageRecord      messageRecord,
+                   @NonNull GlideRequests      glideRequests,
+                   @NonNull Locale             locale,
                    @NonNull Set<MessageRecord> batchSelected,
-                   @NonNull Recipient conversationRecipient)
+                   @NonNull Recipient          conversationRecipient,
+                            boolean            pulseUpdate)
   {
-    this.masterSecret  = masterSecret;
     this.batchSelected = batchSelected;
 
     bind(messageRecord, locale);
+  }
+
+  @Override
+  public void setEventListener(@Nullable EventListener listener) {
+    // No events to report yet
   }
 
   @Override
@@ -150,7 +152,7 @@ public class ConversationUpdateItem extends LinearLayout
     icon.setImageResource(R.drawable.ic_group_grey600_24dp);
     icon.clearColorFilter();
 
-    GroupUtil.getDescription(getContext(), messageRecord.getBody().getBody()).addListener(this);
+    GroupUtil.getDescription(getContext(), messageRecord.getBody()).addListener(this);
     body.setText(messageRecord.getDisplayBody());
 
     date.setVisibility(View.GONE);
@@ -172,12 +174,7 @@ public class ConversationUpdateItem extends LinearLayout
   
   @Override
   public void onModified(Recipient recipient) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        bind(messageRecord, locale);
-      }
-    });
+    Util.runOnMain(() -> bind(messageRecord, locale));
   }
 
   @Override
@@ -196,7 +193,7 @@ public class ConversationUpdateItem extends LinearLayout
 
     @Nullable private final View.OnClickListener parent;
 
-    public InternalClickListener(@Nullable View.OnClickListener parent) {
+    InternalClickListener(@Nullable View.OnClickListener parent) {
       this.parent = parent;
     }
 

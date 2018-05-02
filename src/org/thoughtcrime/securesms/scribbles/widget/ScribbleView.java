@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.scribbles.widget;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -34,7 +35,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
@@ -53,8 +53,7 @@ public class ScribbleView extends FrameLayout {
   private MotionView motionView;
   private CanvasView canvasView;
 
-  private @Nullable Uri          imageUri;
-  private @Nullable MasterSecret masterSecret;
+  private @Nullable Uri imageUri;
 
   public ScribbleView(Context context) {
     super(context);
@@ -77,22 +76,22 @@ public class ScribbleView extends FrameLayout {
     initialize(context);
   }
 
-  public void setImage(@NonNull MasterSecret masterSecret, @NonNull GlideRequests glideRequests, @NonNull Uri uri) {
+  public void setImage(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {
     this.imageUri     = uri;
-    this.masterSecret = masterSecret;
 
-    glideRequests.load(new DecryptableUri(masterSecret, uri))
+    glideRequests.load(new DecryptableUri(uri))
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
                  .fitCenter()
                  .into(imageView);
   }
 
+  @SuppressLint("StaticFieldLeak")
   public @NonNull ListenableFuture<Bitmap> getRenderedImage(@NonNull GlideRequests glideRequests) {
     final SettableFuture<Bitmap> future      = new SettableFuture<>();
     final Context                context     = getContext();
     final boolean                isLowMemory = Util.isLowMemory(context);
 
-    if (imageUri == null || masterSecret == null) {
+    if (imageUri == null) {
       future.set(null);
       return future;
     }
@@ -110,7 +109,7 @@ public class ScribbleView extends FrameLayout {
           }
 
           return glideRequests.asBitmap()
-                              .load(new DecryptableUri(masterSecret, imageUri))
+                              .load(new DecryptableUri(imageUri))
                               .diskCacheStrategy(DiskCacheStrategy.NONE)
                               .skipMemoryCache(true)
                               .into(width, height)

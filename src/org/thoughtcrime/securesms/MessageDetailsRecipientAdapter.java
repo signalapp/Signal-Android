@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -21,18 +20,16 @@ import java.util.List;
 class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
   private final Context                       context;
-  private final MasterSecret                  masterSecret;
   private final GlideRequests                 glideRequests;
   private final MessageRecord                 record;
   private final List<RecipientDeliveryStatus> members;
   private final boolean                       isPushGroup;
 
-  MessageDetailsRecipientAdapter(@NonNull Context context, @NonNull MasterSecret masterSecret,
-                                 @NonNull GlideRequests glideRequests, @NonNull MessageRecord record,
-                                 @NonNull List<RecipientDeliveryStatus> members, boolean isPushGroup)
+  MessageDetailsRecipientAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests,
+                                 @NonNull MessageRecord record, @NonNull List<RecipientDeliveryStatus> members,
+                                 boolean isPushGroup)
   {
     this.context       = context;
-    this.masterSecret  = masterSecret;
     this.glideRequests = glideRequests;
     this.record        = record;
     this.isPushGroup   = isPushGroup;
@@ -66,7 +63,7 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
 
     RecipientDeliveryStatus member = members.get(position);
 
-    ((MessageRecipientListItem)convertView).set(masterSecret, glideRequests, record, member, isPushGroup);
+    ((MessageRecipientListItem)convertView).set(glideRequests, record, member, isPushGroup);
     return convertView;
   }
 

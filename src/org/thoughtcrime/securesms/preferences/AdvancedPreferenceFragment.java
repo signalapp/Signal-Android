@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -43,12 +42,9 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
 
   private static final int PICK_IDENTITY_CONTACT = 1;
 
-  private MasterSecret masterSecret;
-
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    masterSecret = getArguments().getParcelable("master_secret");
 
     initializeIdentitySelection();
 
@@ -227,9 +223,8 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
         Intent nextIntent = new Intent(getActivity(), ApplicationPreferencesActivity.class);
 
         Intent intent = new Intent(getActivity(), RegistrationActivity.class);
-        intent.putExtra("cancel_button", true);
+        intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
         intent.putExtra("next_intent", nextIntent);
-        intent.putExtra("master_secret", masterSecret);
         startActivity(intent);
       }
 
