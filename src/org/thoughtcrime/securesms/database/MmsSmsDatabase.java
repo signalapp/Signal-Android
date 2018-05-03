@@ -158,11 +158,11 @@ public class MmsSmsDatabase extends Database {
     DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false, true);
   }
 
-  public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull Address address) {
+  public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull Address address, int limit) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
-    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.ADDRESS }, selection, order, null)) {
+    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.ADDRESS }, selection, order, String.valueOf(limit))) {
       String  serializedAddress = address.serialize();
       boolean isOwnNumber       = Util.isOwnNumber(context, address);
 

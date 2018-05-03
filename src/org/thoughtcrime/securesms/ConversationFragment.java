@@ -620,12 +620,24 @@ public class ConversationFragment extends Fragment
       new AsyncTask<Void, Void, Integer>() {
         @Override
         protected Integer doInBackground(Void... voids) {
+          if (getActivity() == null || getActivity().isFinishing()) {
+            Log.w(TAG, "Task to retrieve quote position started after the fragment was detached.");
+            return 0;
+          }
           return DatabaseFactory.getMmsSmsDatabase(getContext())
-                                .getQuotedMessagePosition(threadId, messageRecord.getQuote().getId(), messageRecord.getQuote().getAuthor());
+                                .getQuotedMessagePosition(threadId,
+                                                          messageRecord.getQuote().getId(),
+                                                          messageRecord.getQuote().getAuthor(),
+                                                          getListAdapter().getItemCount());
         }
 
         @Override
         protected void onPostExecute(Integer position) {
+          if (getActivity() == null || getActivity().isFinishing()) {
+            Log.w(TAG, "Task to retrieve quote position finished after the fragment was detached.");
+            return;
+          }
+
           if (position >= 0 && position < getListAdapter().getItemCount()) {
             list.scrollToPosition(position);
             getListAdapter().pulseHighlightItem(position);
