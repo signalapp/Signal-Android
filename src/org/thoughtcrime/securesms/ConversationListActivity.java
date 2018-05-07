@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -61,6 +62,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private SearchToolbar            searchToolbar;
   private ImageView                searchAction;
 
+  private ShortcutHelper           shortcutHelper = null;
+
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -81,6 +84,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     initializeSearchListener();
 
     RatingManager.showRatingDialogIfNecessary(this);
+
+    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+      if(shortcutHelper == null) {
+        shortcutHelper = new ShortcutHelper(this);
+      }
+
+      shortcutHelper.buildAllShortcuts();
+    }
+    
     RegistrationLockDialog.showReminderIfNecessary(this);
   }
 
@@ -89,6 +101,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+
+    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+      if(shortcutHelper == null) {
+        shortcutHelper = new ShortcutHelper(this);
+      }
+
+      shortcutHelper.buildAllShortcuts();
+    }
   }
 
   @Override
