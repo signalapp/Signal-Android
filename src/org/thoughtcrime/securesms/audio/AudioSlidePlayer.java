@@ -175,6 +175,7 @@ public class AudioSlidePlayer implements SensorEventListener {
     Log.w(TAG, "Stop called!");
 
     removePlaying(this);
+    progressEventHandler.removeMessages(0);
 
     if (this.mediaPlayer != null) {
       this.mediaPlayer.stop();
@@ -194,6 +195,15 @@ public class AudioSlidePlayer implements SensorEventListener {
   public synchronized static void stopAll() {
     if (playing.isPresent()) {
       playing.get().stop();
+    }
+  }
+
+  public synchronized static boolean stopIfIsPlaying(@Nullable AudioSlide slide) {
+    if (playing.isPresent() && playing.get().getAudioSlide().equals(slide)) {
+      playing.get().stop();
+      return true;
+    } else {
+      return false;
     }
   }
 

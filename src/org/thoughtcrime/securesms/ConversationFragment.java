@@ -52,6 +52,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -334,6 +335,12 @@ public class ConversationFragment extends Fragment
             for (MessageRecord messageRecord : messageRecords) {
               boolean threadDeleted;
 
+              if (messageRecord.isMms()              &&
+                  !messageRecord.isMmsNotification() &&
+                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide()) {
+                AudioSlidePlayer.stopIfIsPlaying(((MediaMmsMessageRecord) messageRecord).getSlideDeck()
+                                                                                        .getAudioSlide());
+              }
               if (messageRecord.isMms()) {
                 threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
               } else {
