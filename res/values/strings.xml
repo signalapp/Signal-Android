@@ -97,6 +97,13 @@
     <string name="ContactsDatabase_message_s">Message %s</string>
     <string name="ContactsDatabase_signal_call_s">Signal Call %s</string>
 
+    <!-- ContactNameEditActivity -->
+    <string name="ContactNameEditActivity_given_name">Given name</string>
+    <string name="ContactNameEditActivity_family_name">Family name</string>
+    <string name="ContactNameEditActivity_prefix">Prefix</string>
+    <string name="ContactNameEditActivity_suffix">Suffix</string>
+    <string name="ContactNameEditActivity_middle_name">Middle name</string>
+
     <!-- ContactShareEditActivity -->
     <string name="ContactShareEditActivity_type_home">Home</string>
     <string name="ContactShareEditActivity_type_mobile">Mobile</string>

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.contactshare.Contact.Name;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 
 import java.util.ArrayList;
@@ -58,6 +59,25 @@ class ContactShareEditViewModel extends ViewModel {
 
   @NonNull LiveData<Event> getEvents() {
     return events;
+  }
+
+  void updateContactName(int contactPosition, @NonNull Name name) {
+    if (name.isEmpty()) {
+      events.postValue(Event.BAD_CONTACT);
+      return;
+    }
+
+    List<Contact> currentContacts = getCurrentContacts();
+    Contact       original        = currentContacts.remove(contactPosition);
+
+    currentContacts.add(new Contact(name,
+                                    original.getOrganization(),
+                                    original.getPhoneNumbers(),
+                                    original.getEmails(),
+                                    original.getPostalAddresses(),
+                                    original.getAvatar()));
+
+    contacts.postValue(currentContacts);
   }
 
   private <E extends Selectable> List<E> trimSelectables(List<E> selectables) {

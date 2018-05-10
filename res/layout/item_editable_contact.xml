@@ -28,6 +28,15 @@
             android:ellipsize="end"
             tools:text="Peter Parker"/>
 
+        <ImageButton
+            android:id="@+id/editable_contact_name_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_create_white_24dp"
+            android:tint="@color/signal_primary"/>
+
     </LinearLayout>
 
     <ImageView
