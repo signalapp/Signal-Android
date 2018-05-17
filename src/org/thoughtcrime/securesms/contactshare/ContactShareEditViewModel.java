@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.Stream;
@@ -20,14 +21,14 @@ class ContactShareEditViewModel extends ViewModel {
   private final SingleLiveEvent<Event>         events;
   private final ContactRepository              repo;
 
-  ContactShareEditViewModel(@NonNull List<Long>        contactIds,
+  ContactShareEditViewModel(@NonNull List<Uri>         contactUris,
                             @NonNull ContactRepository contactRepository)
   {
     contacts = new MutableLiveData<>();
     events              = new SingleLiveEvent<>();
     repo                = contactRepository;
 
-    repo.getContacts(contactIds, retrieved -> {
+    repo.getContacts(contactUris, retrieved -> {
       if (retrieved.isEmpty()) {
         events.postValue(Event.BAD_CONTACT);
       } else {
@@ -96,17 +97,17 @@ class ContactShareEditViewModel extends ViewModel {
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {
 
-    private final List<Long>        contactIds;
+    private final List<Uri>         contactUris;
     private final ContactRepository contactRepository;
 
-    Factory(@NonNull List<Long> contactIds, @NonNull ContactRepository contactRepository) {
-      this.contactIds        = contactIds;
+    Factory(@NonNull List<Uri> contactUris, @NonNull ContactRepository contactRepository) {
+      this.contactUris       = contactUris;
       this.contactRepository = contactRepository;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return modelClass.cast(new ContactShareEditViewModel(contactIds, contactRepository));
+      return modelClass.cast(new ContactShareEditViewModel(contactUris, contactRepository));
     }
   }
 }

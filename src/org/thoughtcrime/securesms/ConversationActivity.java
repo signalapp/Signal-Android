@@ -1391,12 +1391,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, int width, int height) {
     if (uri == null) return;
-    attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
+
+    if (MediaType.VCARD.equals(mediaType) && isSecureText) {
+      openContactShareEditor(uri);
+    } else {
+      attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
+    }
   }
 
   private void openContactShareEditor(Uri contactUri) {
-    long id = ContactUtil.getContactIdFromUri(contactUri);
-    Intent intent = ContactShareEditActivity.getIntent(this, Collections.singletonList(id));
+    Intent intent = ContactShareEditActivity.getIntent(this, Collections.singletonList(contactUri));
     startActivityForResult(intent, GET_CONTACT_DETAILS);
   }
 
