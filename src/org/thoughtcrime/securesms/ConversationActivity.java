@@ -426,11 +426,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       setMedia(data.getData(), MediaType.AUDIO);
       break;
     case PICK_CONTACT:
-      if (isSecureText && !isSmsForced()) {
-        openContactShareEditor(data.getData());
-      } else {
-        addAttachmentContactInfo(data.getData());
-      }
+      // TODO(greyson): Re-enable shared contact sending after receiving has been enabled for a few releases
+      addAttachmentContactInfo(data.getData());
+//      if (isSecureText && !isSmsForced()) {
+//        openContactShareEditor(data.getData());
+//      } else {
+//        addAttachmentContactInfo(data.getData());
+//      }
       break;
     case GET_CONTACT_DETAILS:
       sendSharedContact(data.getParcelableArrayListExtra(ContactShareEditActivity.KEY_CONTACTS));
@@ -1392,11 +1394,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, int width, int height) {
     if (uri == null) return;
 
-    if (MediaType.VCARD.equals(mediaType) && isSecureText) {
-      openContactShareEditor(uri);
-    } else {
-      attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
-    }
+    // TODO(greyson): Re-enable shared contact sending after receiving has been enabled for a few releases
+    attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
+//    if (MediaType.VCARD.equals(mediaType) && isSecureText) {
+//      openContactShareEditor(uri);
+//    } else {
+//      attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
+//    }
   }
 
   private void openContactShareEditor(Uri contactUri) {
