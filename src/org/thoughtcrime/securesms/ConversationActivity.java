@@ -426,11 +426,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       setMedia(data.getData(), MediaType.AUDIO);
       break;
     case PICK_CONTACT:
-      if (isSecureText && !isSmsForced()) {
-        openContactShareEditor(data.getData());
-      } else {
-        addAttachmentContactInfo(data.getData());
-      }
+      // TODO(greyson): Re-enable shared contact sending after receiving has been enabled for a few releases
+      addAttachmentContactInfo(data.getData());
+//      if (isSecureText && !isSmsForced()) {
+//        openContactShareEditor(data.getData());
+//      } else {
+//        addAttachmentContactInfo(data.getData());
+//      }
       break;
     case GET_CONTACT_DETAILS:
       sendSharedContact(data.getParcelableArrayListExtra(ContactShareEditActivity.KEY_CONTACTS));
