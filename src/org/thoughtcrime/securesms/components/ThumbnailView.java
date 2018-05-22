@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -225,10 +226,6 @@ public class ThumbnailView extends FrameLayout {
                                boolean showControls, boolean isPreview, int naturalWidth,
                                int naturalHeight)
   {
-    dimens[WIDTH]  = naturalWidth;
-    dimens[HEIGHT] = naturalHeight;
-    invalidate();
-
     if (showControls) {
       getTransferControls().setSlide(slide);
       getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
@@ -262,6 +259,10 @@ public class ThumbnailView extends FrameLayout {
                slide.asAttachment().getFastPreflightId());
 
     this.slide = slide;
+
+    dimens[WIDTH]  = naturalWidth;
+    dimens[HEIGHT] = naturalHeight;
+    invalidate();
 
     if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(glideRequests, slide).into(image);
     else if (slide.hasPlaceholder())          buildPlaceholderGlideRequest(glideRequests, slide).into(image);
@@ -316,14 +317,31 @@ public class ThumbnailView extends FrameLayout {
                         .diskCacheStrategy(DiskCacheStrategy.NONE), new FitCenter());
   }
 
-  private GlideRequest applySizing(@NonNull GlideRequest request, @NonNull BitmapTransformation unavailableDimensSizing) {
+  private GlideRequest applySizing(@NonNull GlideRequest request, @NonNull BitmapTransformation fitting) {
     int[] size = new int[2];
     fillTargetDimensions(size, dimens, bounds);
     if (size[WIDTH] == 0 && size[HEIGHT] == 0) {
-      return request.transforms(unavailableDimensSizing, new RoundedCorners(radius));
+      size[WIDTH]  = getDefaultWidth();
+      size[HEIGHT] = getDefaultHeight();
     }
     return request.override(size[WIDTH], size[HEIGHT])
-                  .transforms(new CenterCrop(), new RoundedCorners(radius));
+                  .transforms(fitting, new RoundedCorners(radius));
+  }
+
+  private int getDefaultWidth() {
+    ViewGroup.LayoutParams params = getLayoutParams();
+    if (params != null) {
+      return Math.max(params.width, 0);
+    }
+    return 0;
+  }
+
+  private int getDefaultHeight() {
+    ViewGroup.LayoutParams params = getLayoutParams();
+    if (params != null) {
+      return Math.max(params.height, 0);
+    }
+    return 0;
   }
 
   private class ThumbnailClickDispatcher implements View.OnClickListener {
