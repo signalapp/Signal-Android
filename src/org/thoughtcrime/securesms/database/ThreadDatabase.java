@@ -319,12 +319,18 @@ public class ThreadDatabase extends Database {
   }
 
   public Cursor getFilteredConversationList(@Nullable List<Address> filter) {
+    return getFilteredConversationList(filter, 0);
+  }
+
+  public Cursor getFilteredConversationList(@Nullable List<Address> filter, int limit) {
     if (filter == null || filter.size() == 0)
       return null;
 
     SQLiteDatabase      db                   = databaseHelper.getReadableDatabase();
     List<List<Address>> partitionedAddresses = Util.partition(filter, 900);
     List<Cursor>        cursors              = new LinkedList<>();
+    boolean             hasLimit             = limit != 0;
+    int                 remainingLimit       = limit;
 
     for (List<Address> addresses : partitionedAddresses) {
       String   selection      = TABLE_NAME + "." + ADDRESS + " = ?";
@@ -338,8 +344,20 @@ public class ThreadDatabase extends Database {
         selectionArgs[i++] = DelimiterUtil.escape(address.serialize(), ' ');
       }
 
-      String query = createQuery(selection, 0);
-      cursors.add(db.rawQuery(query, selectionArgs));
+      String query  = createQuery(selection, remainingLimit);
+      Cursor cursor = db.rawQuery(query, selectionArgs);
+
+      if (cursor != null) {
+        cursors.add(cursor);
+
+        if (hasLimit) {
+          remainingLimit -= cursor.getCount();
+
+          if (remainingLimit <= 0) {
+            break;
+          }
+        }
+      }
     }
 
     Cursor cursor = cursors.size() > 1 ? new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) : cursors.get(0);

@@ -17,12 +17,12 @@ public class SearchResult {
   public static final SearchResult EMPTY = new SearchResult("", CursorList.emptyList(), CursorList.emptyList(), CursorList.emptyList());
 
   private final String                    query;
-  private final CursorList<Recipient>     contacts;
+  private final List<Recipient>           contacts;
   private final CursorList<ThreadRecord>  conversations;
   private final CursorList<MessageResult> messages;
 
   public SearchResult(@NonNull String                    query,
-                      @NonNull CursorList<Recipient>     contacts,
+                      @NonNull List<Recipient>           contacts,
                       @NonNull CursorList<ThreadRecord>  conversations,
                       @NonNull CursorList<MessageResult> messages)
   {
@@ -57,7 +57,6 @@ public class SearchResult {
   }
 
   public void close() {
-    contacts.close();
     conversations.close();
     messages.close();
   }

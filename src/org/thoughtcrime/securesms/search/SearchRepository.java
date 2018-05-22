@@ -10,7 +10,6 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
-
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.database.Address;
@@ -24,6 +23,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.search.model.SearchResult;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,6 +50,8 @@ class SearchRepository {
       BANNED_CHARACTERS.add((char) i);
     }
   }
+
+  private static final int MAX_CONTACT_RESULTS = 100;
 
   private final Context          context;
   private final SearchDatabase   searchDatabase;
@@ -80,32 +82,47 @@ class SearchRepository {
     }
 
     executor.execute(() -> {
-      String                    cleanQuery    = sanitizeQuery(query);
-      CursorList<Recipient>     contacts      = queryContacts(cleanQuery);
-      CursorList<ThreadRecord>  conversations = queryConversations(cleanQuery);
-      CursorList<MessageResult> messages      = queryMessages(cleanQuery);
+      String                    cleanQuery        = sanitizeQuery(query);
+      CursorList<ThreadRecord>  conversations     = queryConversations(cleanQuery, MAX_CONTACT_RESULTS);
+      Set<Address>              excludedAddresses = buildExcludedAddresses(conversations);
+      List<Recipient>           contacts          = queryContacts(cleanQuery, excludedAddresses, MAX_CONTACT_RESULTS);
+      CursorList<MessageResult> messages          = queryMessages(cleanQuery);
 
       callback.onResult(new SearchResult(cleanQuery, contacts, conversations, messages));
     });
   }
 
-  private CursorList<Recipient> queryContacts(String query) {
+  private List<Recipient> queryContacts(@NonNull String query, @NonNull Set<Address> excluded, int limit) {
     if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
       return CursorList.emptyList();
     }
 
-    Cursor      textSecureContacts = contactsDatabase.queryTextSecureContacts(query);
-    Cursor      systemContacts     = contactsDatabase.querySystemContacts(query);
-    MergeCursor contacts           = new MergeCursor(new Cursor[]{ textSecureContacts, systemContacts });
+    Cursor textSecureContacts = contactsDatabase.queryTextSecureContacts(query);
+    Cursor systemContacts     = contactsDatabase.querySystemContacts(query);
 
-    return new CursorList<>(contacts, new RecipientModelBuilder(context));
+    RecipientModelBuilder recipientBuilder = new RecipientModelBuilder(context);
+    List<Recipient>       recipients       = new ArrayList<>();
+
+    try (Cursor contacts = new MergeCursor(new Cursor[]{ textSecureContacts, systemContacts })) {
+      int count = 0;
+      while (contacts.moveToNext() && count < limit) {
+        Recipient recipient = recipientBuilder.build(contacts);
+
+        if (!excluded.contains(recipient.getAddress())) {
+          recipients.add(recipient);
+          count++;
+        }
+      }
+    }
+
+    return recipients;
   }
 
-  private CursorList<ThreadRecord> queryConversations(@NonNull String query) {
+  private CursorList<ThreadRecord> queryConversations(@NonNull String query, int limit) {
     List<String>  numbers   = contactAccessor.getNumbersForThreadSearchFilter(context, query);
     List<Address> addresses = Stream.of(numbers).map(number -> Address.fromExternal(context, number)).toList();
 
-    Cursor conversations = threadDatabase.getFilteredConversationList(addresses);
+    Cursor conversations = threadDatabase.getFilteredConversationList(addresses, limit);
     return conversations != null ? new CursorList<>(conversations, new ThreadModelBuilder(threadDatabase))
                                  : CursorList.emptyList();
   }
@@ -114,6 +131,16 @@ class SearchRepository {
     Cursor messages = searchDatabase.queryMessages(query);
     return messages != null ? new CursorList<>(messages, new MessageModelBuilder(context))
                             : CursorList.emptyList();
+  }
+
+  private Set<Address> buildExcludedAddresses(@NonNull List<ThreadRecord> threads) {
+    Set<Address> excluded = new HashSet<>();
+
+    for (ThreadRecord thread : threads) {
+      excluded.add(thread.getRecipient().getAddress());
+    }
+
+    return excluded;
   }
 
   /**
