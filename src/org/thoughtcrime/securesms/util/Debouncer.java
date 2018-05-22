@@ -29,4 +29,8 @@ public class Debouncer {
     handler.removeCallbacksAndMessages(null);
     handler.postDelayed(runnable, threshold);
   }
+
+  public void clear() {
+    handler.removeCallbacksAndMessages(null);
+  }
 }

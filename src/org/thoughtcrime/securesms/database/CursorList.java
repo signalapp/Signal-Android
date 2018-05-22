@@ -30,8 +30,6 @@ public class CursorList<T> implements List<T>, Closeable {
   public CursorList(@NonNull Cursor cursor, @NonNull ModelBuilder<T> modelBuilder) {
     this.cursor       = cursor;
     this.modelBuilder = modelBuilder;
-
-    this.cursor.moveToFirst();
   }
 
   public static <T> CursorList<T> emptyList() {
@@ -58,6 +56,8 @@ public class CursorList<T> implements List<T>, Closeable {
   @Override
   public Iterator<T> iterator() {
     return new Iterator<T>() {
+      int index = 0;
+
       @Override
       public boolean hasNext() {
         return cursor.getCount() > 0 && !cursor.isLast();
@@ -65,9 +65,8 @@ public class CursorList<T> implements List<T>, Closeable {
 
       @Override
       public T next() {
-        T model = modelBuilder.build(cursor);
-        cursor.moveToNext();
-        return model;
+        cursor.moveToPosition(index++);
+        return modelBuilder.build(cursor);
       }
     };
   }
@@ -179,7 +178,7 @@ public class CursorList<T> implements List<T>, Closeable {
 
   @Override
   public void close() {
-    if (cursor != null) {
+    if (!cursor.isClosed()) {
       cursor.close();
     }
   }

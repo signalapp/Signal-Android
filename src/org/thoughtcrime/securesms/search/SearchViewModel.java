@@ -47,6 +47,7 @@ class SearchViewModel extends ViewModel {
 
   @Override
   protected void onCleared() {
+    debouncer.clear();
     searchResult.close();
   }
 
