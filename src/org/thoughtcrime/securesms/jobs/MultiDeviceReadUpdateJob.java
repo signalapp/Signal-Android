@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
@@ -100,7 +101,8 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
       readMessages.add(new ReadMessage(messageId.sender, messageId.timestamp));
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages));
+    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages),
+                              UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

@@ -193,7 +193,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         Log.i(TAG, "Downloading attachment with no digest...");
       }
 
-      return new SignalServiceAttachmentPointer(id, null, key, relay,
+      return new SignalServiceAttachmentPointer(id, null, key,
                                                 Optional.of(Util.toIntExact(attachment.getSize())),
                                                 Optional.absent(),
                                                 0, 0,

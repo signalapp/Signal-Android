@@ -3,6 +3,10 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
+import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -19,5 +23,13 @@ public class SecurityEventListener implements SignalServiceMessageSender.EventLi
   @Override
   public void onSecurityEvent(SignalServiceAddress textSecureAddress) {
     SecurityEvent.broadcastSecurityUpdateEvent(context);
+  }
+
+  @Override
+  public void onUnidentifiedAccessFailed(SignalServiceAddress address) {
+    // XXX Update UI
+    DatabaseFactory.getRecipientDatabase(context)
+                   .setUnidentifiedAccessMode(Recipient.from(context, Address.fromSerialized(address.getNumber()), false),
+                                              RecipientDatabase.UnidentifiedAccessMode.DISABLED);
   }
 }

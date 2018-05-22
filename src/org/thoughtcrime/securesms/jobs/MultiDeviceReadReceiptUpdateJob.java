@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
@@ -58,7 +59,8 @@ public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements Injec
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled))));
+    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled))),
+                              UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

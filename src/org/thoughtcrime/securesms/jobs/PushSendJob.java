@@ -92,7 +92,6 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected SignalServiceAddress getPushAddress(Address address) {
-//    String relay = TextSecureDirectory.getInstance(context).getRelay(address.toPhoneString());
     String relay = null;
     return new SignalServiceAddress(address.toPhoneString(), Optional.fromNullable(relay));
   }

@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -20,7 +21,9 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
@@ -76,8 +79,9 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     try {
       Log.i(TAG, "Sending message: " + messageId);
 
-      deliver(record);
+      boolean unidentified = deliver(record);
       database.markAsSent(messageId, true);
+      database.markUnidentified(messageId, unidentified);
 
       if (record.getExpiresIn() > 0) {
         database.markExpireStarted(messageId);
@@ -118,22 +122,25 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     }
   }
 
-  private void deliver(SmsMessageRecord message)
+  private boolean deliver(SmsMessageRecord message)
       throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException
   {
     try {
-      SignalServiceAddress       address           = getPushAddress(message.getIndividualRecipient().getAddress());
-      Optional<byte[]>           profileKey        = getProfileKey(message.getIndividualRecipient());
-      SignalServiceDataMessage   textSecureMessage = SignalServiceDataMessage.newBuilder()
-                                                                             .withTimestamp(message.getDateSent())
-                                                                             .withBody(message.getBody())
-                                                                             .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                                             .withProfileKey(profileKey.orNull())
-                                                                             .asEndSessionMessage(message.isEndSession())
-                                                                             .build();
+      SignalServiceAddress             address            = getPushAddress(message.getIndividualRecipient().getAddress());
+      Optional<byte[]>                 profileKey         = getProfileKey(message.getIndividualRecipient());
+      Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, message.getIndividualRecipient());
 
+      Log.w(TAG, "Have access key to use: " + unidentifiedAccess.isPresent());
 
-      messageSender.sendMessage(address, textSecureMessage);
+      SignalServiceDataMessage textSecureMessage = SignalServiceDataMessage.newBuilder()
+                                                                           .withTimestamp(message.getDateSent())
+                                                                           .withBody(message.getBody())
+                                                                           .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                           .withProfileKey(profileKey.orNull())
+                                                                           .asEndSessionMessage(message.isEndSession())
+                                                                           .build();
+
+      return messageSender.sendMessage(address, unidentifiedAccess, textSecureMessage).getSuccess().isUnidentified();
     } catch (UnregisteredUserException e) {
       Log.w(TAG, e);
       throw new InsecureFallbackApprovalException(e);

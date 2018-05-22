@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientReader;
@@ -30,6 +31,7 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
 
   private static final long serialVersionUID = 1L;
 
+  @SuppressWarnings("unused")
   private static final String TAG = MultiDeviceBlockedUpdateJob.class.getSimpleName();
 
   @Inject transient SignalServiceMessageSender messageSender;
@@ -75,7 +77,8 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
         }
       }
 
-      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)));
+      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
+                                UnidentifiedAccessUtil.getAccessForSync(context));
     }
   }
 

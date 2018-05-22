@@ -25,7 +25,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -62,13 +61,16 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -688,13 +690,17 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private void verifyAccount(@NonNull String code, @Nullable String pin) throws IOException {
-    int registrationId = KeyHelper.generateRegistrationId(false);
+    int     registrationId              = KeyHelper.generateRegistrationId(false);
+    byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(RegistrationActivity.this);
+    boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(RegistrationActivity.this);
+
     TextSecurePreferences.setLocalRegistrationId(RegistrationActivity.this, registrationId);
     SessionUtil.archiveAllSessions(RegistrationActivity.this);
 
     String signalingKey = Util.getSecret(52);
 
-    accountManager.verifyAccountWithCode(code, signalingKey, registrationId, !registrationState.gcmToken.isPresent(), pin);
+    accountManager.verifyAccountWithCode(code, signalingKey, registrationId, !registrationState.gcmToken.isPresent(), pin,
+                                         unidentifiedAccessKey, universalUnidentifiedAccess);
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(RegistrationActivity.this);
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(RegistrationActivity.this);
@@ -727,6 +733,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   private void handleSuccessfulRegistration() {
     ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(RegistrationActivity.this, false));
+    ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new RotateCertificateJob(RegistrationActivity.this));
 
     DirectoryRefreshListener.schedule(RegistrationActivity.this);
     RotateSignedPreKeyListener.schedule(RegistrationActivity.this);

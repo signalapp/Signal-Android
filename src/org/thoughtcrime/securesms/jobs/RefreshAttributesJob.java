@@ -8,6 +8,12 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
+
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
@@ -48,12 +54,15 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    String  signalingKey    = TextSecurePreferences.getSignalingKey(context);
-    int     registrationId  = TextSecurePreferences.getLocalRegistrationId(context);
-    boolean fetchesMessages = TextSecurePreferences.isGcmDisabled(context);
-    String  pin             = TextSecurePreferences.getRegistrationLockPin(context);
+    String  signalingKey                = TextSecurePreferences.getSignalingKey(context);
+    int     registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
+    boolean fetchesMessages             = TextSecurePreferences.isGcmDisabled(context);
+    String  pin                         = TextSecurePreferences.getRegistrationLockPin(context);
+    byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
+    boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
 
-    signalAccountManager.setAccountAttributes(signalingKey, registrationId, fetchesMessages, pin);
+    signalAccountManager.setAccountAttributes(signalingKey, registrationId, fetchesMessages, pin,
+                                              unidentifiedAccessKey, universalUnidentifiedAccess);
   }
 
   @Override

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -131,7 +132,8 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
                                                                               .withLength(contactsFile.length())
                                                                               .build();
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream));
+    messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream),
+                              UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
 
