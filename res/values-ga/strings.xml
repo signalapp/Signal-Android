@@ -73,6 +73,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Teachtaireacht %s</string>
   <string name="ContactsDatabase_signal_call_s">Glao Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Neamhsheachadta</string>
   <string name="ConversationItem_group_action_left">D\'fhág %1$s an bhaicle.</string>
@@ -404,6 +406,15 @@ a shonrú</string>
   <string name="RingtonePreference_ringtone_silent">Dada</string>
   <string name="RingtonePreference_add_ringtone_text">Cuir clingthon leis</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Ní féidir clingthon seancheaptha a chuir leis.</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Níor aimsíodh aon torthaí le haghaidh \'%s\'</string>
+  <string name="SearchFragment_header_contacts">Teagmhálaithe</string>
+  <string name="SearchFragment_header_messages">Teachtaireachtaí</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Tabhair cuireadh chuig Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Téimís i muinín Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Tabhair cuireadh chuig Signal</string>
   <!--Slide-->
   <string name="Slide_image">Íomhá</string>
   <string name="Slide_audio">Fuaim</string>
@@ -496,6 +507,7 @@ a shonrú</string>
   <string name="MessageNotifier_reply">Freagair</string>
   <string name="MessageNotifier_pending_signal_messages">Ar feitheamh ar teachtaireachtaí Signal</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tá teachtaireachtaí Signal ar feitheamh agat, cnag chun iad a oscailt agus a athfháil.</string>
+  <string name="MessageNotifier_unknown_contact_message">Teagmhálaí</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Níl freagairt tapa le fáil agus Signal faoi ghlas.</string>

@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ubicación)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(responder)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requiere el permiso Almacenamiento para adjuntar fotos, vídeos, o audio, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Almacenamiento\".</string>
@@ -81,6 +82,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensaje %s</string>
   <string name="ContactsDatabase_signal_call_s">Llamar a %s con Signal</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">No entregado</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Se recibió un mensaje de intercambio de clave, pulse para proceder.</string>
@@ -174,6 +177,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Eliminando</string>
   <string name="ConversationFragment_deleting_messages">Borrando mensajes...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Mensaje citado no encontrado</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hay ningún navegador instalado en su dispositivo</string>
   <!--ConversationListFragment-->
@@ -488,6 +492,15 @@ número de teléfono
   <string name="RingtonePreference_alarm_sound_default">Sonido de alarma predeterminado</string>
   <string name="RingtonePreference_add_ringtone_text">Añadir tono de llamada</string>
   <string name="RingtonePreference_unable_to_add_ringtone">No se pudo añadir tono de llamada personalizado</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">No se encontraron resultados para \'%s\'</string>
+  <string name="SearchFragment_header_contacts">Contactos</string>
+  <string name="SearchFragment_header_messages">Mensajes</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Invitar a Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Pasémonos a Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Invitar a Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagen</string>
   <string name="Slide_audio">Audio</string>
@@ -595,6 +608,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_pending_signal_messages">Mensajes de Signal pendientes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tiene mensajes de Signal pendientes, pulse para abrir y descargar</string>
+  <string name="MessageNotifier_unknown_contact_message">Contacto</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">¡La respuesta rápida no está disponible cuando Signal está bloqueado!</string>
@@ -692,6 +706,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Vídeo</string>
+  <string name="QuoteView_photo">Foto</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Usted</string>
   <!--conversation_fragment_cab-->
@@ -1019,6 +1034,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_context__menu_delete_message">Eliminar mensaje</string>
   <string name="conversation_context__menu_forward_message">Reenviar mensaje</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
+  <string name="conversation_context__menu_reply_to_message">Responder al mensaje</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar archivo adjunto</string>
   <!--conversation_expiring_off-->
@@ -1153,10 +1169,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requiere permiso de almacenamiento externo para crear copias de seguridad, pero ha sido denegado permanentemente. Por favor, continúe hacia la configuración de la aplicación, seleccione \"Permisos\" y habilite \"Almacenamiento\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Última copia de seguridad: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En curso</string>
+  <string name="LocalBackupJob_creating_backup">Creando copia de seguridad</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensajes hasta ahora</string>
   <string name="RegistrationActivity_verify_s">Verificar %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, introduzca el código de verificación enviado a %s.</string>
   <string name="RegistrationActivity_wrong_number">¿Número erróneo?</string>
+  <string name="RegistrationActivity_call_me_instead">Llamame en lugar</string>
+  <string name="RegistrationActivity_available_in">Disponible en:\u0020</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconocido</string>
   <string name="prompt_passphrase_activity__unlock_signal">Desbloquear Signal</string>
@@ -1200,5 +1219,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="prompt_passphrase_activity__signal_is_locked">Signal está desbloqueado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">PULSE PARA DESBLOQUEAR</string>
   <string name="RegistrationLockDialog_reminder">Recordatorio:</string>
+  <string name="recipient_preferences__about">Info</string>
   <!--EOF-->
 </resources>

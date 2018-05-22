@@ -12,11 +12,15 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדין לא הגדרת משפט־סיסמה!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">הודעה %d לשיחה</item>
+    <item quantity="two">%d הודעות לשיחה</item>
+    <item quantity="many">%d הודעות לשיחה</item>
     <item quantity="other">%d הודעות לשיחה</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל ההודעות הישנות עכשיו?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">זה יקצץ מיד את כל השיחות אל ההודעה החדשה ביותר.</item>
+    <item quantity="two">זה יקצץ מיד את כל השיחות אל %d ההודעות החדשות ביותר.</item>
+    <item quantity="many">זה יקצץ מיד את כל השיחות אל %d ההודעות החדשות ביותר.</item>
     <item quantity="other">זה יקצץ מיד את כל השיחות אל %d ההודעות החדשות ביותר.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">מחק</string>
@@ -42,6 +46,8 @@
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">דקה %d</item>
+    <item quantity="two">%d דקות</item>
+    <item quantity="many">%d דקות</item>
     <item quantity="other">%d דקות</item>
   </plurals>
   <!--DraftDatabase-->
@@ -49,6 +55,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(שמע)</string>
   <string name="DraftDatabase_Draft_video_snippet">(וידיאו)</string>
   <string name="DraftDatabase_Draft_location_snippet">(מיקום)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(תגובה)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">לא ניתן למצוא יישום לבחירת מדיה.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal דורש את הרשאת האחסון על מנת לצרף תצלומים, וידיאוים, או שמע, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\", אפשר את \"אחסון\".</string>
@@ -81,6 +88,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">שלח הודעה אל %s</string>
   <string name="ContactsDatabase_signal_call_s">שיחת Signal אל %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">לא נמסר</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">התקבלה הודעת החלפת מפתח, הקש כדי להמשיך.</string>
@@ -135,37 +144,53 @@
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
+    <item quantity="two">%d הודעות לא נקראו</item>
+    <item quantity="many">%d הודעות לא נקראו</item>
     <item quantity="other">%d הודעות לא נקראו</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">למחוק ההודעה שנבחרה?</item>
+    <item quantity="two">למחוק את ההודעות שנבחרו?</item>
+    <item quantity="many">למחוק את ההודעות שנבחרו?</item>
     <item quantity="other">למחוק את ההודעות שנבחרו?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">זה ימחק לצמיתות את ההודעה שנבחרה.</item>
+    <item quantity="two">זה ימחק לצמיתות את כל %1$d ההודעות שנבחרו.</item>
+    <item quantity="many">זה ימחק לצמיתות את כל %1$d ההודעות שנבחרו.</item>
     <item quantity="other">זה ימחק לצמיתות את כל %1$d ההודעות שנבחרו.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">לשמור באחסון?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">שמירת המדיה הזאת לאחסון תאפשר לכל אפליקציה אחרת לגשת אליהם.\n\nלהמשיך?</item>
+    <item quantity="two">שמירת כל %1$d פריטי המדיה באחסון תתיר לכל יישומים כלשהם להשיג גישה לפריטי המדיה.\n\nלהמשיך?</item>
+    <item quantity="many">שמירת כל %1$d פריטי המדיה באחסון תתיר לכל יישומים כלשהם להשיג גישה לפריטי המדיה.\n\nלהמשיך?</item>
     <item quantity="other">שמירת כל %1$d פריטי המדיה באחסון תתיר לכל יישומים כלשהם להשיג גישה לפריטי המדיה.\n\nלהמשיך?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">שגיאה בעת שמירת צרופה באחסון!</item>
+    <item quantity="two">שגיאה בעת שמירת צרופות באחסון!</item>
+    <item quantity="many">שגיאה בעת שמירת צרופות באחסון!</item>
     <item quantity="other">שגיאה בעת שמירת צרופות באחסון!</item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
     <item quantity="one">הקובץ נשמר בהצלחה.</item>
+    <item quantity="two">הקבצים נשמרו בהצלחה.</item>
+    <item quantity="many">הקבצים נשמרו בהצלחה.</item>
     <item quantity="other">הקבצים נשמרו בהצלחה.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">לא היה ניתן לכתוב באחסון!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">שומר צרופה</item>
+    <item quantity="two">שומר %1$d צרופות</item>
+    <item quantity="many">שומר %1$d צרופות</item>
     <item quantity="other">שומר %1$d צרופות</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">שומר צרופה באחסון...</item>
+    <item quantity="two">שומר %1$d צרופות באחסון...</item>
+    <item quantity="many">שומר %1$d צרופות באחסון...</item>
     <item quantity="other">שומר %1$d צרופות באחסון...</item>
   </plurals>
   <string name="ConversationFragment_pending">ממתין...</string>
@@ -181,21 +206,29 @@
   <string name="ConversationListFragment_no_results_found_for_s_">לא נמצאו תוצאות עבור \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">למחוק את השיחה שנבחרה?</item>
+    <item quantity="two">למחוק את השיחות שנבחרו?</item>
+    <item quantity="many">למחוק את השיחות שנבחרו?</item>
     <item quantity="other">למחוק את השיחות שנבחרו?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">זה ימחק לצמיתות את השיחה שנבחרה.</item>
+    <item quantity="two">זה ימחק לצמיתות את כל %1$d השיחות שנבחרו.</item>
+    <item quantity="many">זה ימחק לצמיתות את כל %1$d השיחות שנבחרו.</item>
     <item quantity="other">זה ימחק לצמיתות את כל %1$d השיחות שנבחרו.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">מוחק</string>
   <string name="ConversationListFragment_deleting_selected_conversations">מוחק שיחות נבחרות...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">שיחה הוכנסה לארכיון</item>
+    <item quantity="two">%d שיחות הוכנסו לארכיון</item>
+    <item quantity="many">%d שיחות הוכנסו לארכיון</item>
     <item quantity="other">%d שיחות הוכנסו לארכיון</item>
   </plurals>
   <string name="ConversationListFragment_undo">בטל עשייה</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">השיחה הועברה לתיבת הדואר הנכנס</item>
+    <item quantity="two">%d שיחות הועברו לתיבת הדואר הנכנס</item>
+    <item quantity="many">%d שיחות הועברו לתיבת הדואר הנכנס</item>
     <item quantity="other">%d שיחות הועברו לתיבת הדואר הנכנס</item>
   </plurals>
   <!--ConversationListItem-->
@@ -328,10 +361,14 @@
   <string name="InviteActivity_invite_to_signal">הזמן אל Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">שלח מסרון אל חבר %d</item>
+    <item quantity="two">שלח מסרון אל %d חברים</item>
+    <item quantity="many">שלח מסרון אל %d חברים</item>
     <item quantity="other">שלח מסרון אל %d חברים</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">לשלוח הזמנה %d במסרון?</item>
+    <item quantity="two">לשלוח %d הזמנות במסרון?</item>
+    <item quantity="many">לשלוח %d הזמנות במסרון?</item>
     <item quantity="other">לשלוח %d הזמנות במסרון?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">בוא נחליף אל Signal: %1$s</string>
@@ -350,10 +387,14 @@
   <string name="MediaOverviewActivity_Media">מדיה</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">למחוק הודעה נבחרת?</item>
+    <item quantity="two">למחוק הודעות נבחרות?</item>
+    <item quantity="many">למחוק הודעות נבחרות?</item>
     <item quantity="other">למחוק הודעות נבחרות?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">זה ימחק לצמיתות את ההודעה הנבחרת.</item>
+    <item quantity="two">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
+    <item quantity="many">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
     <item quantity="other">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
@@ -486,6 +527,15 @@
   <string name="RingtonePreference_alarm_sound_default">צליל אזעקה של ברירת מחדל</string>
   <string name="RingtonePreference_add_ringtone_text">הוסף צלצול</string>
   <string name="RingtonePreference_unable_to_add_ringtone">לא היה ניתן להוסיף צלצול מותאם</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">לא נמצאו תוצאות עבור \'%s\'</string>
+  <string name="SearchFragment_header_contacts">אנשי קשר</string>
+  <string name="SearchFragment_header_messages">הודעות</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">הזמן אל Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">בוא נחליף אל Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">הזמן אל Signal</string>
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
   <string name="Slide_audio">שמע</string>
@@ -591,6 +641,7 @@
   <string name="MessageNotifier_reply">השב</string>
   <string name="MessageNotifier_pending_signal_messages">הודעות Signal ממתינות</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">יש לך הודעות Signal ממתינות, הקש כדי לפתוח ולאחזר אותן</string>
+  <string name="MessageNotifier_unknown_contact_message">איש קשר</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תגובה מהירה אינה זמינה כאשר Signal נעול!</string>
@@ -715,26 +766,36 @@
   <string name="expiration_off">כבוי</string>
   <plurals name="expiration_seconds">
     <item quantity="one">שנייה %d</item>
+    <item quantity="two">%d שניות</item>
+    <item quantity="many">%d שניות</item>
     <item quantity="other">%d שניות</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%dשנ׳</string>
   <plurals name="expiration_minutes">
     <item quantity="one">דקה %d</item>
+    <item quantity="two">%d דקות</item>
+    <item quantity="many">%d דקות</item>
     <item quantity="other">%d דקות</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dד׳</string>
   <plurals name="expiration_hours">
     <item quantity="one">שעה %d</item>
+    <item quantity="two">%d שעות</item>
+    <item quantity="many">%d שעות</item>
     <item quantity="other">%d שעות</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dשע׳</string>
   <plurals name="expiration_days">
     <item quantity="one">יום %d</item>
+    <item quantity="two">%d ימים</item>
+    <item quantity="many">%d ימים</item>
     <item quantity="other">%d ימים</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dי׳</string>
   <plurals name="expiration_weeks">
     <item quantity="one">שבוע %d</item>
+    <item quantity="two">%d שבועות</item>
+    <item quantity="many">%d שבועות</item>
     <item quantity="other">%d שבועות</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dשב׳</string>
@@ -750,6 +811,8 @@
   <string name="IdentityUtil_untrusted_dialog_many">מספרי הביטחון שלך עם %1$s, %2$s ו-%3$s השתנו הרגע.</string>
   <plurals name="identity_others">
     <item quantity="one">%d אחר</item>
+    <item quantity="two">%d אחרים</item>
+    <item quantity="many">%d אחרים</item>
     <item quantity="other">%d אחרים</item>
   </plurals>
   <!--giphy_activity-->
@@ -788,6 +851,8 @@
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s הצטרף לקבוצה.</item>
+    <item quantity="two">%1$s הצטרפו לקבוצה.</item>
+    <item quantity="many">%1$s הצטרפו לקבוצה.</item>
     <item quantity="other">%1$s הצטרפו לקבוצה.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">שם הקבוצה עכשיו הוא „%1$s”.</string>
@@ -896,6 +961,8 @@
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">שעה %d</item>
+    <item quantity="two">%d שעות</item>
+    <item quantity="many">%d שעות</item>
     <item quantity="other">%d שעות</item>
   </plurals>
   <!--preferences.xml-->
@@ -1016,6 +1083,7 @@
   <string name="conversation_context__menu_delete_message">מחק הודעה</string>
   <string name="conversation_context__menu_forward_message">העבר הלאה הודעה</string>
   <string name="conversation_context__menu_resend_message">שלח מחדש הודעה</string>
+  <string name="conversation_context__menu_reply_to_message">הגב אל הודעה</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">שמור צרופה</string>
   <!--conversation_expiring_off-->
@@ -1076,6 +1144,8 @@
   <string name="reminder_header_outdated_build">גרסת Signal שלך אינה עדכנית</string>
   <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">גרסת Signal שלך תפוג תוך יום %d. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
+    <item quantity="two">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
+    <item quantity="many">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
     <item quantity="other">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">גרסת Signal שלך תפוג היום. הקש כדי לעדכן לגרסה העדכנית ביותר.</string>

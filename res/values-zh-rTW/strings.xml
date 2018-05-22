@@ -46,6 +46,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">（音訊）</string>
   <string name="DraftDatabase_Draft_video_snippet">（影片）</string>
   <string name="DraftDatabase_Draft_location_snippet">（位置）</string>
+  <string name="DraftDatabase_Draft_quote_snippet">（回覆）</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">找不到合適的應用程式來選擇媒體檔案。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要\"儲存空間\"的權限以存取照片、影片或聲音檔。但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"儲存空間\"的權限。</string>
@@ -78,6 +79,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s 則訊息</string>
   <string name="ContactsDatabase_signal_call_s">Signal 通話 %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">未送達</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">接收到金鑰交換訊息，按此開始處理。</string>
@@ -468,6 +471,15 @@
   <string name="RingtonePreference_alarm_sound_default">預設鬧鐘鈴聲</string>
   <string name="RingtonePreference_add_ringtone_text">加入鈴聲</string>
   <string name="RingtonePreference_unable_to_add_ringtone">無法加入自訂的鈴聲</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">沒有找到「%s」的結果</string>
+  <string name="SearchFragment_header_contacts">聯絡人</string>
+  <string name="SearchFragment_header_messages">訊息</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">邀請至 Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">讓我們切換到 Signal：%1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">邀請至 Signal</string>
   <!--Slide-->
   <string name="Slide_image">圖片</string>
   <string name="Slide_audio">音訊</string>
@@ -575,6 +587,7 @@
   <string name="MessageNotifier_reply">回覆</string>
   <string name="MessageNotifier_pending_signal_messages">擱置的 Signal 訊息</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Signal 訊息，輕觸打開及取得訊息</string>
+  <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
@@ -992,6 +1005,7 @@
   <string name="conversation_context__menu_delete_message">刪除訊息</string>
   <string name="conversation_context__menu_forward_message">轉寄訊息</string>
   <string name="conversation_context__menu_resend_message">重送訊息</string>
+  <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">另存附件檔案</string>
   <!--conversation_expiring_off-->

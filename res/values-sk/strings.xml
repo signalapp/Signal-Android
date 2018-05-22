@@ -13,12 +13,14 @@
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%d správa na konverzáciu</item>
     <item quantity="few">%d správy na konverzáciu</item>
+    <item quantity="many">%d správ na konverzáciu</item>
     <item quantity="other">%d správ na konverzáciu</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Zmazať všetky staré správy?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Týmto sa premažú všetky konverzácie až na poslednú správu.</item>
     <item quantity="few">Týmto sa premažú všetky konverzácie až na posledných %d správ.</item>
+    <item quantity="many">Týmto sa premažú všetky konverzácie až na posledných %d správ.</item>
     <item quantity="other">Týmto sa premažú všetky konverzácie až na posledných %d správ.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Zmazať</string>
@@ -44,6 +46,7 @@
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minúta</item>
     <item quantity="few">%d minúty</item>
+    <item quantity="many">%d minút</item>
     <item quantity="other">%d minút</item>
   </plurals>
   <!--DraftDatabase-->
@@ -75,9 +78,12 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedávne chaty</string>
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
+  <string name="ContactsCursorLoader_groups">Skupiny</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Správa %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Hovor %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nedoručené</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Správa výmeny kľúčov prijatá, ťuknutm pokračujte.</string>
@@ -126,44 +132,52 @@
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
     <item quantity="few">%d neprečítané správy</item>
+    <item quantity="many">%d neprečítaných správ</item>
     <item quantity="other">%d neprečítaných správ</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Zmazať vybranú správu?</item>
     <item quantity="few">Zmazať vybrané správy?</item>
+    <item quantity="many">Zmazať vybrané správy?</item>
     <item quantity="other">Zmazať vybrané správy?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Týmto sa trvalo vymaže vybratá správa.</item>
     <item quantity="few">Týmto sa trvalo vymaže všetkých %1$d vybratých správ.</item>
+    <item quantity="many">Týmto sa trvalo vymaže všetkých %1$d vybratých správ.</item>
     <item quantity="other">Týmto sa trvalo vymaže všetkých %1$d vybratých správ.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Uložiť do úložiska?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Uloženie tohto média do úložiska, umožni iným aplikáciám v zariadení pristupovať k nim.\n\nPokračovať?</item>
     <item quantity="few">Uloženie všetkých %1$d médií do úložiska, umožni iným aplikáciám v zariadení pristupovať k nim.\n\nPokračovať?</item>
+    <item quantity="many">Uloženie všetkých %1$d médií do úložiska, umožni iným aplikáciám v zariadení pristupovať k nim.\n\nPokračovať?</item>
     <item quantity="other">Uloženie všetkých %1$d médií do úložiska, umožni iným aplikáciám v zariadení pristupovať k nim.\n\nPokračovať?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Nastala chyba pri ukladaní prílohy na dátové úložisko zariadenia!</item>
     <item quantity="few">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
+    <item quantity="many">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
     <item quantity="other">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
     <item quantity="one">Súbor úspešne uložený.</item>
     <item quantity="few">Súbory úspešne uložené.</item>
+    <item quantity="many">Súbory úspešne uložené.</item>
     <item quantity="other">Súbory úspešne uložené.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Aplikácia nedokázala zapísať informácie na dátové úložisko zariadenia!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Ukladám prílohu</item>
     <item quantity="few">Ukladám %1$d prílohy</item>
+    <item quantity="many">Ukladám %1$d príloh</item>
     <item quantity="other">Ukladám %1$d príloh</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Ukladanie prílohy do úložiska...</item>
     <item quantity="few">Ukladanie %1$d príloh do úložiska...</item>
+    <item quantity="many">Ukladanie %1$d príloh do úložiska...</item>
     <item quantity="other">Ukladanie %1$d príloh do úložiska...</item>
   </plurals>
   <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
@@ -178,11 +192,13 @@
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Zmazať označenú konverzáciu?</item>
     <item quantity="few">Zmazať označené konverzácie?</item>
+    <item quantity="many">Zmazať označené konverzácie?</item>
     <item quantity="other">Zmazať označené konverzácie?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Týmto sa trvalo vymaže vybratá konverzácia.</item>
     <item quantity="few">Týmto sa trvalo vymaže všetkých %1$d vybratých konverzácií.</item>
+    <item quantity="many">Týmto sa trvalo vymaže všetkých %1$d vybratých konverzácií.</item>
     <item quantity="other">Týmto sa trvalo vymaže všetkých %1$d vybratých konverzácií.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Vymazanie</string>
@@ -190,12 +206,14 @@
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Konverzácia archivovaná</item>
     <item quantity="few">%d konverzácií archivovaných</item>
+    <item quantity="many">%d konverzácií archivovaných</item>
     <item quantity="other">%d konverzácií archivovaných</item>
   </plurals>
   <string name="ConversationListFragment_undo">Vrátiť späť</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Konverzácia presunutá do doručených</item>
     <item quantity="few">%d konverz. presunuté/-tých do doručených</item>
+    <item quantity="many">%d konverz. presunuté/-tých do doručených</item>
     <item quantity="other">%d konverz. presunuté/-tých do doručených</item>
   </plurals>
   <!--ConversationListItem-->
@@ -314,11 +332,13 @@ opätovným importom zduplikujete správy.
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ODOSLAŤ SMS %d PRIATEĽOVI</item>
     <item quantity="few">ODOSLAŤ SMS %d PRIATEĽOM</item>
+    <item quantity="many">ODOSLAŤ SMS %d PRIATEĽOM</item>
     <item quantity="other">ODOSLAŤ SMS %d PRIATEĽOM</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Odoslať %d SMS pozvánku? </item>
     <item quantity="few">Odoslať %d SMS pozvánky? </item>
+    <item quantity="many">Odoslať %d SMS pozvánok? </item>
     <item quantity="other">Odoslať %d SMS pozvánok? </item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Prejdime na Signal: %1$s</string>
@@ -462,6 +482,14 @@ telefónne číslo</string>
   <string name="RingtonePreference_notification_sound_default">Predvolený tón notifikácie</string>
   <string name="RingtonePreference_add_ringtone_text">Pridať zvonenie</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nepodarilo sa pridať vlastné zvonenie</string>
+  <!--Search-->
+  <string name="SearchFragment_header_contacts">Kontakty</string>
+  <string name="SearchFragment_header_messages">Správy</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Pozvať do Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Prejdime na Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Pozvať do Signal</string>
   <!--Slide-->
   <string name="Slide_image">Obrázok</string>
   <string name="Slide_audio">Zvuk</string>
@@ -558,6 +586,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="MessageNotifier_reply">Odpovedať</string>
   <string name="MessageNotifier_pending_signal_messages">Nevybavené Signal správy </string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Máte nevybavené Signal správy, stlačením otvorte a prevezmite</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rýchla odpoveď nie je dostupná, keď je Signal zamknutý!</string>
@@ -671,30 +700,35 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <plurals name="expiration_seconds">
     <item quantity="one">%d sekunda</item>
     <item quantity="few">%d sekundy</item>
+    <item quantity="many">%d sekúnd</item>
     <item quantity="other">%d sekúnd</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
     <item quantity="one">%d minúta</item>
     <item quantity="few">%d minúty</item>
+    <item quantity="many">%d minút</item>
     <item quantity="other">%d minút</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d hodina</item>
     <item quantity="few">%d hodiny</item>
+    <item quantity="many">%d hodín</item>
     <item quantity="other">%d hodín</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
     <item quantity="one">%d deň</item>
     <item quantity="few">%d dni</item>
+    <item quantity="many">%d dní</item>
     <item quantity="other">%d dní</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
     <item quantity="one"> %d týždeň</item>
     <item quantity="few"> %d týždne</item>
+    <item quantity="many">%d týždňov</item>
     <item quantity="other">%d týždňov</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dt</string>
@@ -711,6 +745,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <plurals name="identity_others">
     <item quantity="one">%d ďalší</item>
     <item quantity="few">%d ďalších</item>
+    <item quantity="many">%d ďalších</item>
     <item quantity="other">%d ďalších</item>
   </plurals>
   <!--giphy_activity-->
@@ -750,6 +785,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s sa pripojil/a do skupiny. </item>
     <item quantity="few">%1$s sa pripojil/a do skupiny. </item>
+    <item quantity="many">%1$s sa pripojil/a do skupiny. </item>
     <item quantity="other">%1$s sa pripojil/a do skupiny. </item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Názov skupiny je teraz \"%1$s\".</string>
@@ -845,6 +881,7 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <plurals name="hours_ago">
     <item quantity="one">%d hod.</item>
     <item quantity="few">%d hod.</item>
+    <item quantity="many">%d hod.</item>
     <item quantity="other">%d hod.</item>
   </plurals>
   <!--preferences.xml-->
@@ -1014,6 +1051,12 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnať</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Vaša verzia Signal je neaktuálna</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Vaša verzia Signalu vyprší o %d deň. Ťuknite pre updatovanie na najnovšiu verziu.</item>
+    <item quantity="few">Vaša verzia Signalu vyprší za %d dní. Ťuknite pre updatovanie na najnovšiu verziu.</item>
+    <item quantity="many">Vaša verzia Signalu vyprší za %d dní. Ťuknite pre updatovanie na najnovšiu verziu.</item>
+    <item quantity="other">Vaša verzia Signalu vyprší za %d dní. Ťuknite pre updatovanie na najnovšiu verziu.</item>
+  </plurals>
   <string name="reminder_header_outdated_build_details_today">Vaša verzia Signal expiruje dnes. Ťuknutím aktualizujte na najnovšiu verziu.</string>
   <string name="reminder_header_expired_build">Vaša verzia Signal expirovala!</string>
   <string name="reminder_header_expired_build_details">Správy sa nepodarí úspešne odoslať. Ťuknutím aktualizujte na najnovšiu verziu.</string>
@@ -1048,16 +1091,44 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <string name="CallNotificationBuilder_connecting">Pripájanie...</string>
   <string name="Permissions_continue">Pokračovať</string>
   <string name="Permissions_not_now">Teraz nie</string>
+  <string name="conversation_activity__enable_signal_messages">POVOLIŤ SIGNAL SPRÁVY</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Presúvam databázu Signalu</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Odomknite pre zobrazenie čakajúcich správ</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Odomknite pre dokončenie updatu</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Záložné heslo</string>
+  <string name="registration_activity__restore_backup">Obnoviť zo zálohy</string>
   <string name="registration_activity__skip">Preskoč</string>
   <string name="registration_activity__register">Registrovať</string>
+  <string name="preferences_chats__chat_backups">Zálohy chatu</string>
+  <string name="preferences_chats__create_backup">Vytvoriť zálohu</string>
   <string name="RegistrationActivity_restore">Obnovenie</string>
+  <string name="RegistrationActivity_restore_from_backup">Obnoviť zo zálohy?</string>
+  <string name="BackupDialog_enable_local_backups">Povoliť lokálne zálohy?</string>
+  <string name="BackupDialog_enable_backups">Povoliť zálohovanie</string>
+  <string name="BackupDialog_delete_backups">Chcete zmazať zálohy?</string>
+  <string name="BackupDialog_delete_backups_statement">Zmazať zálohy</string>
   <string name="BackupDialog_copied_to_clipboard">Kopírovať do schránky</string>
+  <string name="RegistrationActivity_verify_s">Overiť %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím zadajte overovací kód odoslaný na %s.</string>
   <string name="RegistrationActivity_wrong_number">Zlé číslo?</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznáme</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Odomknúť Signal</string>
+  <string name="preferences_app_protection__screen_lock">Zámok obrazovky</string>
   <string name="AppProtectionPreferenceFragment_none">Žiadne</string>
+  <string name="registration_activity__forgot_pin">Zabudli ste PIN?</string>
+  <string name="registration_lock_dialog_view__enter_pin">Zadať PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Potvrdiť PIN</string>
+  <string name="registration_lock_reminder_view__enter_pin">Zadať PIN</string>
   <string name="RegistrationActivity_too_many_attempts">Príliš veľa pokusov</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Zabudol som svoj PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Zabudli ste PIN ?</string>
+  <string name="RegistrationLockDialog_enable">Zapnúť</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">PINy ktoré ste zadali sa nezhodujú.</string>
   <string name="RegistrationLockDialog_disable">Vypnúť</string>
   <string name="RegistrationActivity_continue">Pokračovať</string>
+  <string name="preferences_chats__backups">Zálohy</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal je zamknutý</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">ŤUKNUTÍM ODOMKNITE</string>
   <!--EOF-->
 </resources>

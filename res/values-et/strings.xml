@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(heli)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(asukoht)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(vastus)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ei leia rakendust meediafaili valimiseks.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal vajab fotode, videote või audiofailide manustamiseks ligipääsu salvestusmeediale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Salvestusmeedia\".</string>
@@ -81,6 +82,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sõnum %s</string>
   <string name="ContactsDatabase_signal_call_s">Signali kõne %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Ei toimetatud kohale</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Võtmevahetussõnum vastuvõetud, koputa töötlemiseks.</string>
@@ -174,6 +177,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Kustutan</string>
   <string name="ConversationFragment_deleting_messages">Kustutan sõnumeid...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Tsiteeritud sõnumit ei leitud</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sinu seadmesse pole installitud brauserit.</string>
   <!--ConversationListFragment-->
@@ -490,6 +494,15 @@
   <string name="RingtonePreference_alarm_sound_default">Vaikimisi äratuse heli</string>
   <string name="RingtonePreference_add_ringtone_text">Lisa helin</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Kohandatud helina lisamine pole võimalik</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Tulemusi ei leitud otsingule \'%s\'</string>
+  <string name="SearchFragment_header_contacts">Kontaktid</string>
+  <string name="SearchFragment_header_messages">Sõnumid</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Kutsu Signalisse</string>
+  <string name="SharedContactDetailsActivity_invite_message">Lähme Signalile üle: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Kutsu Signalisse</string>
   <!--Slide-->
   <string name="Slide_image">Pilt</string>
   <string name="Slide_audio">Heli</string>
@@ -597,6 +610,7 @@
   <string name="MessageNotifier_reply">Vasta</string>
   <string name="MessageNotifier_pending_signal_messages">Ootel Signali sõnumid</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Sul on ootel Signali sõnumeid, koputa vaatamiseks</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>
@@ -694,6 +708,8 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">Heli</string>
   <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Sina</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Hulgivaliku režiim</string>
@@ -1020,6 +1036,7 @@
   <string name="conversation_context__menu_delete_message">Kustuta sõnum</string>
   <string name="conversation_context__menu_forward_message">Edasta sõnum</string>
   <string name="conversation_context__menu_resend_message">Saada sõnum uuesti</string>
+  <string name="conversation_context__menu_reply_to_message">Vasta sõnumile</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvesta manus</string>
   <!--conversation_expiring_off-->
@@ -1153,10 +1170,13 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal vajab välismälu õigust, et luua varundusi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ning luba \"Mäluruum\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Viimane varundus: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Töötamisel</string>
+  <string name="LocalBackupJob_creating_backup">Varunduse loomine...</string>
   <string name="ProgressPreference_d_messages_so_far">Siiani leidsime %d sõnumit</string>
   <string name="RegistrationActivity_verify_s">Kinnita %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Palun sisesta kinnituskood, mille saatsime numbrile %s.</string>
   <string name="RegistrationActivity_wrong_number">Vale number?</string>
+  <string name="RegistrationActivity_call_me_instead">Helista mulle parem</string>
+  <string name="RegistrationActivity_available_in">Saadaval:\u0020</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
   <string name="prompt_passphrase_activity__unlock_signal">Lukusta Signal lahti</string>
@@ -1200,5 +1220,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal on lukus</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KOPUTA AVAMISEKS</string>
   <string name="RegistrationLockDialog_reminder">Meeldetuletus:</string>
+  <string name="recipient_preferences__about">Teave</string>
   <!--EOF-->
 </resources>

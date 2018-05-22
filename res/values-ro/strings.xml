@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(locație)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(răspuns)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal are nevoie de permisiunea pentru spațiul de stocare pentru a putea atașa poze, filme sau audio, dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Spațiu de stocare\".</string>
@@ -84,6 +85,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaj %s</string>
   <string name="ContactsDatabase_signal_call_s">Apel Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nelivrat</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, apasă pentru a-l procesa.</string>
@@ -503,6 +506,15 @@ furnizat (%s) este invalid.</string>
   <string name="RingtonePreference_alarm_sound_default">Sunet de alarmă implicit</string>
   <string name="RingtonePreference_add_ringtone_text">Adaugă ton de apel</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nu am putut adăuga tonul de apel personalizat</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Nu s-a găsit nici un rezultat pentru \'1%s\'</string>
+  <string name="SearchFragment_header_contacts">Contacte</string>
+  <string name="SearchFragment_header_messages">Mesaje</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Invită la Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Hai să folosim Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Invită la Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagine</string>
   <string name="Slide_audio">Audio</string>
@@ -608,6 +620,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_reply">Răspunde</string>
   <string name="MessageNotifier_pending_signal_messages">Mesaje Signal în așteptare</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Ai mesaje Signal în așteptare, apasă pentru deschidere și recuperare</string>
+  <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>
@@ -1211,10 +1224,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Înregistrarea acestui număr de telefon va fi posibilă fără un Cod PIN de Blocare a Înregistrării după 7 zile de când acest număr de telefon a fost activ ultima oară în Signal. Mai ai %d zile rămase.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de blocare a înregistrării</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Acest număr de telefon are Blocarea Înregistrării activă. Te rog să introduci Codul PIN de Blocare a Înregistrării.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea Înregistrării e activă pentru numărul tău de telefon. Pentru a te ajuta să îți memorezi Codul PIN de Blocare a Înregistrării, Signal îți va cere să îl confirmi periodic.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea înregistrării e activă pentru numărul tău de telefon. Pentru a te ajuta să îți memorezi Codul PIN de Blocare a înregistrării, Signal îți va cere să îl confirmi periodic.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Mi-am uitat PIN-ul.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN uitat ?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blocarea Înregistrării ajută la protejarea numărului tău de telefon împotriva încercărilor neautorizate de înregistrare. Această facilitate poate fi dezactivată oricând în setările de intimitate ale Signal</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blocarea înregistrării ajută la protejarea numărului tău de telefon împotriva încercărilor neautorizate de înregistrare. Această facilitate poate fi dezactivată oricând în setările de confidențialitate ale Signal</string>
   <string name="RegistrationLockDialog_registration_lock">Blocarea înregistrării</string>
   <string name="RegistrationLockDialog_enable">Activat</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN-ul de blocare a înregistrării trebuie să aibe cel puțin 4 cifre.</string>

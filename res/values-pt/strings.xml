@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(áudio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(localização)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(responder)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar uma aplicação para seleccionar a multimédia.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal requer permissão de acesso ao Armazenamento para anexar fotos, vídeo e áudio, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
@@ -81,6 +82,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada do Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Não entregue</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem para intercâmbio de chaves, toque para processar.</string>
@@ -174,6 +177,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">A apagar</string>
   <string name="ConversationFragment_deleting_messages">A apagar mensagens...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Mensagem citada não encontrada</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe um navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -348,6 +352,10 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler as configurações do operador MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimédia</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Apagar mensagem seleccionada?</item>
+    <item quantity="other">Apagar mensagens seleccionadas?</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">A apagar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">A apagar mensagens...</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
@@ -478,6 +486,15 @@ especificou (%s) não é válido.</string>
   <string name="RingtonePreference_alarm_sound_default">Som de alarme padrão</string>
   <string name="RingtonePreference_add_ringtone_text">Adicionar toque</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Não é possível adicionar um toque personalizado</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Sem resultados para \'%s\'</string>
+  <string name="SearchFragment_header_contacts">Contactos</string>
+  <string name="SearchFragment_header_messages">Mensagens</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Convidar para o Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Vamos mudar para o Signal %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Convidar para o Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_audio">Áudio</string>
@@ -570,6 +587,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal requer permissão de acesso a Armazenamento para escrever para o suporte de armazenamento externo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Não é possível guardar para armazenamento externo sem permissões.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Apagar mensagem?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Isto irá eliminar permanentemente esta mensagem.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novas mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
@@ -584,6 +602,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_pending_signal_messages">Mensagens do Signal pendentes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tem mensagens do Signal pendentes, toque para abrir e obter</string>
+  <string name="MessageNotifier_unknown_contact_message">Contacto</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida indisponível quando o Signal está bloqueado!</string>
@@ -903,6 +922,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contacto da lista de contactos.</string>
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
   <string name="preferences__change_your_passphrase">Alterar a sua frase-chave</string>
+  <string name="preferences__enable_passphrase">Ativar bloqueio de ecrã com frase-chave</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear o ecrã e notificações com uma frase-chave</string>
   <string name="preferences__screen_security">Segurança de ecrã</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear captura de ecrã na lista de apps abertas e dentro da aplicação</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automaticamente o Signal ao fim de um certo tempo de inactividade</string>
@@ -1007,6 +1028,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_context__menu_delete_message">Apagar mensagem</string>
   <string name="conversation_context__menu_forward_message">Reencaminhar mensagem</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensagem</string>
+  <string name="conversation_context__menu_reply_to_message">Responder à mensagem</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar anexo</string>
   <!--conversation_expiring_off-->
@@ -1109,10 +1131,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Desbloqueie para completar a actualização</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Por favor desbloqueie o Signal para completar a actualização</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-chave da cópia de segurança</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Cópias de segurança vão ser gravadas na memória externa e cifradas com a frase-chave abaixo. Tem de ter esta frase-chave para restaurar cópias de segurança.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela, serei incapaz de restaurar uma cópia de segurança.</string>
   <string name="registration_activity__restore_backup">Restaurar cópia de segurança</string>
   <string name="registration_activity__skip">Saltar</string>
   <string name="registration_activity__register">Registar</string>
   <string name="preferences_chats__chat_backups">Cópias de segurança de conversas</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Executar cópia de segurança para armazenamento externo</string>
   <string name="preferences_chats__create_backup">Criar cópia de segurança</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Introduza a frase-chave da cópia de segurança</string>
   <string name="RegistrationActivity_restore">Restaurar</string>
@@ -1120,6 +1145,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_checking">A verificar...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mensagens até à data...</string>
   <string name="RegistrationActivity_restore_from_backup">Restaurar a partir de cópia de segurança?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restore as suas mensagens e multimédia a partir de uma cópia de segurança local. Se não restaurar agora, não poderá restaurar mais tarde.</string>
   <string name="RegistrationActivity_backup_size_s">Tamanho da cópia de segurança: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Data de cópia de segurança: %s</string>
   <string name="BackupDialog_enable_local_backups">Activar cópias de segurança locais?</string>
@@ -1128,25 +1154,56 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Desactivar e apagar todas as cópias de segurança locais?</string>
   <string name="BackupDialog_delete_backups_statement">Apagar cópias de segurança</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal requer permissão de acesso a armazenamento externo para criar cópias de segurança, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Última cópia de segurança: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em progresso</string>
+  <string name="LocalBackupJob_creating_backup">A criar cópia de segurança...</string>
+  <string name="ProgressPreference_d_messages_so_far">%d mensagens até à data</string>
   <string name="RegistrationActivity_verify_s">Verificar %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor insira o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número errado?</string>
+  <string name="RegistrationActivity_call_me_instead">Alternativamente, ligue-me</string>
+  <string name="RegistrationActivity_available_in">Disponível em:\u0020</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
   <string name="prompt_passphrase_activity__unlock_signal">Desbloquear Signal</string>
   <string name="preferences_app_protection__screen_lock">Bloquear ecrã</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloqueie acesso ao Signal usando o bloqueio de ecrã do Android ou impressão digital</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhum</string>
+  <string name="registration_activity__registration_lock_pin">PIN de bloqueio de registo</string>
   <string name="registration_activity__forgot_pin">Esqueceu-se do PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">O PIN consiste em quatro ou mais dígitos. Se esquecer o PIN, pode ficar com a sua conta bloqueada até sete dias.</string>
   <string name="registration_lock_dialog_view__enter_pin">Introduza o PIN</string>
   <string name="registration_lock_dialog_view__confirm_pin">Confirme o PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Introduza o seu PIN de bloqueio de registo</string>
   <string name="registration_lock_reminder_view__enter_pin">Introduza o PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Ative um PIN de bloqueio de registo que será necessário para registar novamente este número de telefone com o Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN de bloqueio de registo</string>
+  <string name="preferences_app_protection__registration_lock">Bloqueio de registo</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Tem de introduzir o seu PIN de bloqueio de registo</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueio de registo incorreto</string>
   <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Introduziu demasiadas vezes o PIN de bloqueio de registo incorretamente. Por favor tente novamente em um dia.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Erro a estabelecer ligação com o serviço</string>
   <string name="RegistrationActivity_oh_no">Oh não!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registo deste número de telefone será possível sem PIN de bloqueio de registo 7 dias após o número estar ativo pela última vez no Signal. Tem %d restantes.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN de bloqueio de registo</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de telefone tem bloqueio de registo ativo. Por favor introduza o PIN de bloqueio de registo.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Bloqueio de registo está ativo para o seu número. Para ajudar a memorizar o seu PIN de bloqueio de registo, o Signal vai pedir para o confirmar periodicamente.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci-me do PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock">Bloqueio de registo</string>
   <string name="RegistrationLockDialog_enable">Activar</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">O PIN de bloqueio de registo tem de ter pelo menos 4 dígitos.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os dois PIN inseridos não coincidem.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Erro a estabelecer a ligação com o serviço</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Desabilitar PIN de bloqueio de registo?</string>
   <string name="RegistrationLockDialog_disable">Desactivar</string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="preferences_chats__backups">Cópias de segurança</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">O Signal está bloqueado</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TOQUE PARA DESBLOQUEAR</string>
+  <string name="RegistrationLockDialog_reminder">Lembrete:</string>
   <string name="recipient_preferences__about">Sobre</string>
   <!--EOF-->
 </resources>

@@ -65,6 +65,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s에 메시지 보내기</string>
   <string name="ContactsDatabase_signal_call_s">%s에 Signal 통화</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">전송되지 않았음</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">받은 키 교환 메시지를 처리하려면 터치하세요.</string>
@@ -272,19 +274,35 @@
   <string name="InviteActivity_heart_content_description">하트</string>
   <string name="InviteActivity_invitations_sent">초대 보냄</string>
   <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="other">%d 명의 친구들에게 문자보내기</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="other">%d 개의  초청 문자 메시지를 보낼까요?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal로 같이 바꿔요~ %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">좋은 친구라면 친구의 메시지도 암호화 해주세요~</string>
   <!--KeyScanningActivity-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string>
+  <string name="MessageDetailsRecipient_new_safety_number">새로운 안전 번호</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">백그라운드 연결이 활성화되었읍니다</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">이동통신사 MMS 설정 읽기 오류 발생</string>
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">매체</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="other">선택된 메시지들을 삭제할까요?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="other">%1$d 의 선택된 메시지들을 영구적으로 삭제합니다.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">이전 메시지 삭제</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">메시지를 삭제 중…</string>
+  <string name="MediaOverviewActivity_Documents">문서들</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 통화 중</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 통화 연결 중</string>
@@ -300,9 +318,19 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 Signal 버전으로 부터 암호화된 메시지를 받았습니다. 상대방에게 최신 버전으로 업데이트 하고 다시 보내기를 요청해 주세요.</string>
   <string name="MessageRecord_left_group">그룹에서 퇴장했습니다.</string>
+  <string name="MessageRecord_you_updated_group">그룹을 갱신하였습니다.</string>
+  <string name="MessageRecord_s_updated_group">%s 이 그룹을 갱신했습니다.</string>
   <string name="MessageRecord_s_called_you">%s님으로 부터의 수신통화</string>
   <string name="MessageRecord_called_s">%s님에게 발신통화</string>
   <string name="MessageRecord_missed_call_from">%s님의 부재중 통화</string>
+  <string name="MessageRecord_s_joined_signal">%s 이 Signal 에 연결되어 있습니다.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">사라지는 메시지 시간을 %1$s 로 설정합니다</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 님이 사라지는 메시지 시간을 %2$s 로 설정했습니다</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">당신의  %s 와의 안전번호가 변경되었습니다.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s 와의 안전번호를 검증됨 상태로 마크했습니다.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s 와의 안전번호를  다른 장치로 부턴 검증됨 상태로 마크했습니다.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s 와의 안전번호를 검증되지 않은 상태로 마크했습니다.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s 와의 안전번호를 다른 장치로부터 검증되지 않은 상태로 마크했습니다.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">암호가 일치하지 않음</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못됨</string>
@@ -319,10 +347,15 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">기기 없음</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류 발생</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR코드가 잘못됨</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">죄송합니다만, 당신은 이미 너무 많은 장치들로부터 연결되어 있으므로, 먼저 일부를 제거하십시오</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">기기 연결 QR코드 잘못됨</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연결하시겠습니까?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signal 기기를 서드파티 스캐너로 연결해 보는 것 같습니다. 안전한 사용을 위해 Signal에서 다시 스캔해 주세요.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">카메라 연결 권한이 없어, QR 코드를 스캔할 수 없습니다.</string>
   <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">사라지는 메시지들</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">당신의 메시지들은 시한만료되지 않을 것입니다.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">이 대화에서 보내고 받은 메시지들은 , 보여진 후 %s 후에  표시에서 사라질 것입니다.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
@@ -339,13 +372,16 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Play 스토어 앱 없음</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">사용자를 차단하시겠습니까?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">당신은 이 연락처로부터 더 이상 메시지나 전화통화를 받지 않게될 것입니다</string>
   <string name="RecipientPreferenceActivity_block">차단</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">사용자를 차단 해제하시겠습니까?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">이 연락처로부터 메시지와 전화를 다시 받을 수 있게 될 것입니다.</string>
   <string name="RecipientPreferenceActivity_unblock">차단 해제</string>
   <string name="RecipientPreferenceActivity_enabled">사용</string>
   <string name="RecipientPreferenceActivity_disabled">사용 안함</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">하나의 메시지라도 보내거나 받으면 얻을 수 있음</string>
   <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">이름지어지지 않은 그룹</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">응답</string>
   <string name="RedPhone_ending_call">통화 종료 중</string>
@@ -364,6 +400,12 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">전화번호를 입력해야 함</string>
   <string name="RegistrationActivity_invalid_number">전화번호가 잘못됨</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">입력한 전화번호가 (%s) 잘못되었습니다.</string>
+  <string name="RegistrationActivity_missing_google_play_services">구글 play services 가 설치되어 있지 않음</string>
+  <string name="RegistrationActivity_i_understand">본인은 이해하였습니다</string>
+  <string name="RegistrationActivity_play_services_error">구글 play services 에러</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">구글 play services 가 수정중이거나 잠시 제공되지 않고 있습니다. 다시 시도해 주십시오</string>
+  <string name="RegistrationActivity_more_information">더 많은 정보</string>
+  <string name="RegistrationActivity_less_information">더 적은 정보</string>
   <!--RegistrationProblemsActivity-->
   <!--RegistrationProgressActivity-->
   <!--RegistrationService-->
@@ -372,7 +414,20 @@
   <string name="RegistrationService_registration_error">가입 오류 발생</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal 가입에 문제가 발생했습니다.</string>
   <!--RingtonePreference-->
+  <string name="RingtonePreference_ringtone_default">기본 벨소리</string>
   <string name="RingtonePreference_ringtone_silent">없음</string>
+  <string name="RingtonePreference_notification_sound_default">기본 통지 사운드음</string>
+  <string name="RingtonePreference_alarm_sound_default">기본 알람 사운드음</string>
+  <string name="RingtonePreference_add_ringtone_text">벨소리 추가</string>
+  <string name="RingtonePreference_unable_to_add_ringtone">사용자 지정 벨소리를 추가할 수 없음</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">\'%s\'에 대한 검색결과가 없음</string>
+  <string name="SearchFragment_header_contacts">연락처</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Signal로 초대</string>
+  <string name="SharedContactDetailsActivity_invite_message">Signal로 같이 바꿔요~ %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Signal로 초대</string>
   <!--Slide-->
   <string name="Slide_image">이미지</string>
   <string name="Slide_audio">오디오</string>
@@ -380,14 +435,21 @@
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">받은 키 교환 메시지가 손상되었습니다.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">받은 키 교환 메시지에 프로토콜 버전이 잘못되었습니다.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">새 안전번호가 담긴 메시지를 수신했습니다. 두드려서 표시와 처리를 시작하십시오.</string>
+  <string name="SmsMessageRecord_secure_session_reset">당신은 안전 세션을 초기화 했습니다.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s 님이 안전 세션을 초기화 했습니다</string>
   <string name="SmsMessageRecord_duplicate_message">중복된 메시지</string>
   <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">그룹이 갱신되었습니다</string>
+  <string name="ThreadRecord_left_the_group">그룹을 떠남</string>
   <string name="ThreadRecord_secure_session_reset">암호화된 세션이 초기화되었습니다.</string>
   <string name="ThreadRecord_draft">임시보관:</string>
   <string name="ThreadRecord_called">발신통화</string>
   <string name="ThreadRecord_called_you">수신통화</string>
   <string name="ThreadRecord_missed_call">부재중 통화</string>
   <string name="ThreadRecord_media_message">미디어 메시지</string>
+  <string name="ThreadRecord_s_is_on_signal">%s 이 Signal 에 연결되어 있습니다.</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">당신의  %s 와의 안전번호가 변경되었습니다.</string>
   <!--UpdateApkReadyListener-->
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block">차단</string>
@@ -432,6 +494,7 @@
   <string name="MessageNotifier_mark_read">읽음으로 표시</string>
   <string name="MessageNotifier_media_message">미디어 메시지</string>
   <string name="MessageNotifier_reply">답장</string>
+  <string name="MessageNotifier_unknown_contact_message">연락처</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
@@ -446,6 +509,7 @@
   <!--VideoPlayer-->
   <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_number_title">새로운 안전 번호</string>
   <string name="WebRtcCallScreen_accept">수락</string>
   <string name="WebRtcCallScreen_cancel">취소</string>
   <string name="WebRtcCallScreen_end_call">통화 종료</string>
@@ -628,6 +692,7 @@
   <string name="arrays__images">이미지</string>
   <string name="arrays__audio">오디오</string>
   <string name="arrays__video">동영상</string>
+  <string name="arrays__documents">문서들</string>
   <string name="arrays__normal">보통</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
@@ -733,6 +798,7 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">첨부파일 저장</string>
   <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">사라지는 메시지들</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">초대</string>

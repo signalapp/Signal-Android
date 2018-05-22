@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(äänitallenne)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(sijainti)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(vastaus)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Median valintaan ei löytynyt sovellusta.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa kuvien, videoiden tai äänitiedostojen liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
@@ -81,6 +82,18 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Viesti %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-puhelu %s</string>
+  <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Etunimi</string>
+  <string name="ContactNameEditActivity_family_name">Sukunimi</string>
+  <string name="ContactNameEditActivity_prefix">Etuliite</string>
+  <string name="ContactNameEditActivity_suffix">Jälkiliite</string>
+  <string name="ContactNameEditActivity_middle_name">Muut nimet</string>
+  <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Koti</string>
+  <string name="ContactShareEditActivity_type_mobile">Matkapuhelin</string>
+  <string name="ContactShareEditActivity_type_work">Työ</string>
+  <string name="ContactShareEditActivity_type_missing">Muu</string>
+  <string name="ContactShareEditActivity_invalid_contact">Valittu yhteystieto ei ole kelvollinen</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Ei toimitettu</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Avaintenvaihtoviesti vastaanotettu. Aloita käsittely napsauttamalla.</string>
@@ -132,6 +145,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Jotta voit ottaa kuvia ja videoita, anna Signalille lupaa käyttää kameraa.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal tarvitsee lupaa käyttää laitteesi kameraa kuvien ja videoiden ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal tarvitsee kameran käyttöoikeutta kuvien ja videoiden ottamista varten.</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lukematon viesti</item>
@@ -483,6 +497,27 @@ puhelinnumero</string>
   <string name="RingtonePreference_alarm_sound_default">Oletuksena oleva ilmoitusääni</string>
   <string name="RingtonePreference_add_ringtone_text">Lisää soittoääni</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Soittoäänen lisäys epäonnistui</string>
+  <!--Search-->
+  <string name="SearchFragment_begin_searching">Ala kirjoittaa hakeaksesi keskusteluja, viestejä ja yhteystietoja.</string>
+  <string name="SearchFragment_no_results">Ei hakutuloksia: \'%s\'</string>
+  <string name="SearchFragment_header_conversations">Keskustelut</string>
+  <string name="SearchFragment_header_contacts">Yhteystiedot</string>
+  <string name="SearchFragment_header_messages">Viestit</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Lisää yhteystietoihin</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Kutsu Signaliin</string>
+  <string name="SharedContactDetailsActivity_invite_message">Hei, vaihdetaan Signaliin: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Yhteystieto lisätty.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Yhteystietoa ei voitu hakea</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Yhteystieto päivitetty.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Virhe muokattauessa yhteystietoa</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Virhe luettaessa yhteystietoa</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Lisää uutena yhteystietona</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Lisää olemassaolevaan yhteystietoon</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Lisää yhteystietoihin</string>
+  <string name="SharedContactView_invite_to_signal">Kutsu Signaliin</string>
+  <string name="SharedContactView_message">Signal viesti</string>
   <!--Slide-->
   <string name="Slide_image">Kuva</string>
   <string name="Slide_audio">Äänitallenne</string>
@@ -588,6 +623,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_reply">Vastaa</string>
   <string name="MessageNotifier_pending_signal_messages">Signal-viestejä odottamassa</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Sinulle on Signal-viestejä. Avaa ja hae napsauttamalla.</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+  <string name="MessageNotifier_unknown_contact_message">Yhteystieto</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
@@ -601,7 +638,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
   <!--UnauthorizedReminder-->
-  <string name="UnauthorizedReminder_device_no_longer_registered">Laite ei enää ole rekisteröity</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Tämä laite ei ole enää rekisteröity</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Tämä johtuu todennäköisesti siitä, että olet rekisteröitynyt puhelinnumerollasi Signaliin toisella laitteella. Napsauta rekisteröityäksesi uudelleen.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Virhe videon toistossa</string>
@@ -776,6 +813,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="import_fragment__import_a_plaintext_backup_file">Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\" -sovelluksen kanssa.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Näytä koko keskustelu</string>
+  <string name="load_more_header__loading">Ladataan</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ei mediatiedostoja</string>
   <!--message_recipients_list_item-->
@@ -816,6 +854,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-puhelu</string>
   <string name="redphone_call_controls__mute">Mykistä</string>
+  <string name="redphone_call_controls__flip_camera_rear">Vaihda kameraa</string>
   <string name="redphone_call_controls__signal_call">Signal-puhelu</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">PUHELINNUMERO</string>

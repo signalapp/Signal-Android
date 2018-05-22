@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(ήχος)</string>
   <string name="DraftDatabase_Draft_video_snippet">(βίντεο)</string>
   <string name="DraftDatabase_Draft_location_snippet">(τοποθεσία)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(απάντηση)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δε μπορεί να βρεθεί εφαρμογή για επιλογή πολυμέσων.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio"> Το Signal χρειάζεται τα δικαιώματα Αποθηκευτικού Χώρου για να μπορούμε να επισυνάψουμε φωτογραφίες, βίντεο ή κομμάτια ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\". </string>
@@ -81,6 +82,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Μήνυμα %s</string>
   <string name="ContactsDatabase_signal_call_s">Κλήση Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Δεν παραδόθηκε</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ελήφθη μήνυμα ανταλλαγής κλειδιών, πάτησε για να επεξεργαστεί.</string>
@@ -487,6 +490,15 @@
   <string name="RingtonePreference_alarm_sound_default">Προκαθορισμένος ήχος αφύπνισης</string>
   <string name="RingtonePreference_add_ringtone_text">Προσθήκη ήχου κλήσης</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Αποτυχία προσθήκης προσαρμοσμένου ήχου κλήσης</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Δεν βρέθηκαν αποτελέσματα για \"%s\"</string>
+  <string name="SearchFragment_header_contacts">Επαφές</string>
+  <string name="SearchFragment_header_messages">Μηνύματα</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Πρόσκληση στο Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Ας χρησιμοποιήσουμε το Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Πρόσκληση στο Signal</string>
   <!--Slide-->
   <string name="Slide_image">Εικόνα</string>
   <string name="Slide_audio">Ήχος</string>
@@ -593,6 +605,7 @@
   <string name="MessageNotifier_reply">Απάντηση</string>
   <string name="MessageNotifier_pending_signal_messages">Μηνύματα Signal σε αναμονή</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Έχεις μηνύματα Signal σε αναμονή, πάτα για να τα ανοίξεις και να τα λάβεις</string>
+  <string name="MessageNotifier_unknown_contact_message">Επαφή</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
@@ -1018,6 +1031,7 @@
   <string name="conversation_context__menu_delete_message">Διαγραφή μηνύματος</string>
   <string name="conversation_context__menu_forward_message">Προώθηση μηνύματος</string>
   <string name="conversation_context__menu_resend_message">Αποστολή ξανά</string>
+  <string name="conversation_context__menu_reply_to_message">Απάντησε στο μήνυμα</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Αποθήκευση συνημμένου</string>
   <!--conversation_expiring_off-->

@@ -10,8 +10,13 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز رمزی تعیین نکرده‌اید!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">%d پیام در هر گفتگو</item>
+    <item quantity="other">%d پیام در هر گفتگو</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پیام‌های قدیمی حذف شوند؟</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">این گزینه ، بلافاصله تمامی مکالمات شما را به %d پیام آخر ، کاهش خواهد داد.</item>
     <item quantity="other">این گزینه ، بلافاصله تمامی مکالمات شما را به %d پیام آخر ، کاهش خواهد داد.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
@@ -31,17 +36,25 @@
   <string name="ApplicationPreferencesActivity_On">روشن</string>
   <string name="ApplicationPreferencesActivity_off">خاموش</string>
   <string name="ApplicationPreferencesActivity_Off">خاموش</string>
-  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">پیامک %1$s, پیام تصویری %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه %1$s، قفل عضویت %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">تم %1$s، زبان %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">%d دقیقه</item>
+    <item quantity="other">%d دقیقه</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(تصویر)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(صوتی)</string>
   <string name="DraftDatabase_Draft_video_snippet">(ویدئو)</string>
   <string name="DraftDatabase_Draft_location_snippet">(موقعیت)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(پاسخ)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">سیگنال برای ارسال فایل‌های تصویری و صوتی نیاز به دسترسی به حافظه دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه در تنظیمات تلفن همراه خود رفته و پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه حافظه را فعال کنید.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">سیگنال برای جستجو مخاطبان نیاز به دسترسی به مجوز مخاطبان دارد اما این دسترسی به سیگنال داده نشده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه پس از یافتن سیگنال وارد بخش دسترسی ها شده و گزینه مخاطبان را فعال کنید.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">سیگنال برای استفاده از سرویس مکانیاب،  نیازمند دسترسی به سرویس مکان دارد ولی این دسترسی قطع شده است. لطفا برای ادامه دادن، به بخش منوی تنظیمات برنامه رفته، \"اجازه ها\" را انتخاب کرده و گزینه ی \"مکان\" را فعال نمایید.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">سیگنال جهت گرفتن عکس نیاز به دسترسی دوربین دارد، اما به طور دائم رد شده است. لطفاً به منوی تنظیمات برنامه ها رفته، \"Permissions\" را انتخاب کرده، و \"Camera\" را فعال کنید.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
@@ -65,9 +78,12 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">چت های اخیر</string>
   <string name="ContactsCursorLoader_contacts">مخاطبین</string>
+  <string name="ContactsCursorLoader_groups">گروه ها</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ارسال پیام به  %s</string>
   <string name="ContactsDatabase_signal_call_s">تماس سیگنال %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">تحویل داده نشد</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">پیام تبادل کلید رمز دریافت شد ، برای ادامه ، صفحه را لمس کنید.</string>
@@ -113,32 +129,43 @@
   <string name="ConversationActivity_unable_to_record_audio">قادر به ضبط صدا نیست!</string>
   <string name="ConversationActivity_error_sending_voice_message">خطا در ارسال پیام صوتی</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه ای به منظور پشتیبانی از لینک برروی دستگاه شما وجود ندارد.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال صدا، به سیگنال اجازه دهید به میکروفن شما دسترسی پیدا کند.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">سیگنال برای ارسال صدا، نیازمند دسترسی به میکروفن دارد ولی این دسترسی قطع شده است. لطفا برای ادامه دادن، به بخش منوی تنظیمات برنامه رفته، \"اجازه ها\" را انتخاب کرده و گزینه ی \"میکروفن\" را فعال نمایید.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">برای تماس به %s سیگنال به دسترسی به میکروفن و دوربین شما نیاز دارد.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d پیام ناخوانده</item>
     <item quantity="other">%d پیام ناخوانده</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">پیام های انتخاب شده حدف شوند؟</item>
     <item quantity="other">پیام های انتخاب شده حدف شوند؟</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">این به صورت دائم %1$d پیامهای انتخاب شده را حذف میکند.</item>
     <item quantity="other">این به صورت دائم %1$d پیامهای انتخاب شده را حذف میکند.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">ذخیره درحافظه؟</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">ذخیره همه %1$d مدیا به حافظه دستگاه ، باعث خواهد شد که همه برنامه های دیگر نصب شده در دستگاه شما ، به این اطلاعات دسترسی پیدا کنند. \n\n آیا مایل به ادامه هستید ؟</item>
     <item quantity="other">ذخیره همه %1$d مدیا به حافظه دستگاه ، باعث خواهد شد که همه برنامه های دیگر نصب شده در دستگاه شما ، به این اطلاعات دسترسی پیدا کنند. \n\n آیا مایل به ادامه هستید ؟</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">خطا در هنگام ذخیره سازی فایل ضمیمه</item>
     <item quantity="other">خطا در هنگام ذخیره سازی فایل ضمیمه</item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
+    <item quantity="one">فایل ها با موفقیت ذخیره شدند.</item>
     <item quantity="other">فایل ها با موفقیت ذخیره شدند.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر نیست به ارسال به ذخیره سازی!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">در حال ذخیره‌ی %1$d پیوست</item>
     <item quantity="other">در حال ذخیره‌ی %1$d پیوست</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">در حال ذخیره‌ی %1$d پیوست در حافظه...</item>
     <item quantity="other">در حال ذخیره‌ی %1$d پیوست در حافظه...</item>
   </plurals>
   <string name="ConversationFragment_pending">در انتظار ...</string>
@@ -147,23 +174,28 @@
   <string name="ConversationFragment_sms">پیامک</string>
   <string name="ConversationFragment_deleting">در حال حذف کردن</string>
   <string name="ConversationFragment_deleting_messages">حذف پیام های...</string>
+  <string name="ConversationFragment_quoted_message_not_found">پیام انتخاب شده پیدا نشد</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">برروی دستگاه شما هیچ مرورگری نصب نیست.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">نتایجی برای %s یافت نشد</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">مکالمات انتخاب شده حذف شوند؟</item>
     <item quantity="other">مکالمات انتخاب شده حذف شوند؟</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">این %1$d پیامهای انتخاب شده را به تور دائم حذف میکند.</item>
     <item quantity="other">این %1$d پیامهای انتخاب شده را به تور دائم حذف میکند.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">حذف</string>
   <string name="ConversationListFragment_deleting_selected_conversations">مکالمات انتخاب شده حذف شوند؟</string>
   <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">%d گفت‌و‌گو آرشیو شدند</item>
     <item quantity="other">%d گفت‌و‌گو آرشیو شدند</item>
   </plurals>
-  <string name="ConversationListFragment_undo">UNDO</string>
+  <string name="ConversationListFragment_undo">برگشت</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">انتقال %d گفت‌و‌گو به اینباکس</item>
     <item quantity="other">انتقال %d گفت‌و‌گو به اینباکس</item>
   </plurals>
   <!--ConversationListItem-->
@@ -424,6 +456,15 @@
   <string name="RingtonePreference_alarm_sound_default">صدای پیش فرض زنگ</string>
   <string name="RingtonePreference_add_ringtone_text">اضافه کردن آهنگ زنگ</string>
   <string name="RingtonePreference_unable_to_add_ringtone">امکان افزودن زنگ دلخواه وجود ندارد</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">نتایجی برای %s یافت نشد</string>
+  <string name="SearchFragment_header_contacts">مخاطبین</string>
+  <string name="SearchFragment_header_messages">پیام ها</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">دعوت به سیگنال</string>
+  <string name="SharedContactDetailsActivity_invite_message">بیایید از این برای سیگنال استفاده کنیم:  %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">دعوت به سیگنال</string>
   <!--Slide-->
   <string name="Slide_image">تصویر</string>
   <string name="Slide_audio">صدا</string>
@@ -520,6 +561,7 @@
   <string name="MessageNotifier_reply">پاسخ</string>
   <string name="MessageNotifier_pending_signal_messages">پیام در انتظار سیگنال</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">شما در سیگنال پیام در انتظار دارید، برای مشاهده و بازیابی پیام اینجا ضربه بزنید</string>
+  <string name="MessageNotifier_unknown_contact_message">مخاطب</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخگوی سریع هنگامی که نرم‌افزار سیگنال قفل باشد غیرفعال می‌شود.</string>
@@ -644,6 +686,7 @@
   <string name="IdentityUtil_untrusted_dialog_two">شماره‌های امنیتی شما با %1$s و %2$s تغییر کرد.</string>
   <string name="IdentityUtil_untrusted_dialog_many">شماره‌های امنیتی شما با %1$s، %2$s و %3$s تغییر کرد.</string>
   <plurals name="identity_others">
+    <item quantity="one">%d دیگران</item>
     <item quantity="other">%d دیگران</item>
   </plurals>
   <!--giphy_activity-->
@@ -681,6 +724,7 @@
   <string name="message_recipients_list_item__resending">در حال ارسال مجدد...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s به گروه افزوده شد.</item>
     <item quantity="other">%1$s به گروه افزوده شد.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">نام گروه در حال حاضر \'%1$s\'.</string>
@@ -783,6 +827,7 @@
   <string name="arrays__max">حداکثر</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
+    <item quantity="one">%d ساعت</item>
     <item quantity="other">%d ساعت</item>
   </plurals>
   <!--preferences.xml-->
@@ -1003,8 +1048,14 @@
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
   <string name="AppProtectionPreferenceFragment_none">هیچ کدام</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">قفل PIN اشتباه</string>
   <string name="RegistrationActivity_too_many_attempts">تلاش های بیش از حد</string>
+  <string name="RegistrationActivity_error_connecting_to_service">خطا در اتصال به سرویس</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">PIN را فراموش کردم.</string>
   <string name="RegistrationLockDialog_disable">غیرفعال کردن</string>
   <string name="RegistrationActivity_continue">ادامه</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">سیگنال قفل شده است</string>
+  <string name="RegistrationLockDialog_reminder">یادآور:</string>
+  <string name="recipient_preferences__about">درباره ی ما</string>
   <!--EOF-->
 </resources>

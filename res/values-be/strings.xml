@@ -38,6 +38,8 @@
   <!--ConfirmIdentityDialog-->
   <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Не было дастаўлена</string>
   <string name="ConversationItem_group_action_left">%1$s пакінуў групавую гутарку.</string>
@@ -171,6 +173,9 @@
   <string name="RegistrationService_registration_error">Памылка рэгістрацыі</string>
   <!--RingtonePreference-->
   <string name="RingtonePreference_ringtone_silent">Няма</string>
+  <!--Search-->
+  <!--SharedContactDetailsActivity-->
+  <!--SharedContactView-->
   <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Атрыманы пашкоджаны ключ абмену паведамленнямі!</string>

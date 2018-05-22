@@ -76,6 +76,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ข้อความ %s</string>
   <string name="ContactsDatabase_signal_call_s">สาย Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">ไม่ได้ส่ง</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนกุญแจ แตะเพื่อประมวลผล</string>
@@ -460,6 +462,15 @@
   <string name="RingtonePreference_alarm_sound_default">เสียงเตือนมาตรฐาน</string>
   <string name="RingtonePreference_add_ringtone_text">เพิ่มเสียงเรียกเข้า</string>
   <string name="RingtonePreference_unable_to_add_ringtone">ไม่สามารถเพิ่มเสียงเรียกเข้าที่ตั้งเองได้</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">ไม่พบข้อมูลเกี่ยวกับ \'%s\'</string>
+  <string name="SearchFragment_header_contacts">รายชื่อติดต่อ</string>
+  <string name="SearchFragment_header_messages">ข้อความ</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">เชิญมาใช้ Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">เปลี่ยนมาใช้ Signal กัน: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">เชิญมาใช้ Signal</string>
   <!--Slide-->
   <string name="Slide_image">ภาพ</string>
   <string name="Slide_audio">เสียง</string>
@@ -565,6 +576,7 @@
   <string name="MessageNotifier_reply">ตอบกลับ</string>
   <string name="MessageNotifier_pending_signal_messages">ข้อความ Signal ที่รอดำเนินการ</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Signal ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
+  <string name="MessageNotifier_unknown_contact_message">รายชื่อ</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Signal ถูกล็อกอยู่!</string>

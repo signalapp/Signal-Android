@@ -13,12 +13,14 @@
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%d zpráva na konverzaci</item>
     <item quantity="few">%d zprávy na konverzaci</item>
+    <item quantity="many">%d zpráv na konverzaci</item>
     <item quantity="other">%d zpráv na konverzaci</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Smazat všechny staré zprávy?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Tímto zkrátíte všechny konverzace na poslední zprávu.</item>
     <item quantity="few">Tímto zkrátíte všechny konverzace na posledních %d zprávy.</item>
+    <item quantity="many">Tímto zkrátíte všechny konverzace na posledních %d zpráv.</item>
     <item quantity="other">Tímto zkrátíte všechny konverzace na posledních %d zpráv.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Smazat</string>
@@ -45,6 +47,7 @@
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
     <item quantity="few">%d minuty</item>
+    <item quantity="many">%d minut</item>
     <item quantity="other">%d minut</item>
   </plurals>
   <!--DraftDatabase-->
@@ -52,6 +55,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(poloha)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(odpověď)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signál potřebuje oprávnění pro přístup k úložišti aby mohl připojovat fotky, videa nebo zvuky, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\",</string>
@@ -84,6 +88,18 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal volání %s</string>
+  <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Křestní jméno</string>
+  <string name="ContactNameEditActivity_family_name">Příjmení</string>
+  <string name="ContactNameEditActivity_prefix">Titul před</string>
+  <string name="ContactNameEditActivity_suffix">Titul z</string>
+  <string name="ContactNameEditActivity_middle_name">Druhé jméno</string>
+  <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Domů</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobil</string>
+  <string name="ContactShareEditActivity_type_work">Práce</string>
+  <string name="ContactShareEditActivity_type_missing">Ostatní</string>
+  <string name="ContactShareEditActivity_invalid_contact">Vybraný kontakt je neplatný</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nedoručeno</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Byl vám doručen klíč, klikněte pro jeho zpracování.</string>
@@ -135,48 +151,57 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pro pořizování fotografií nebo videa potřebuje Signál přístup k fotoaparátu.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signál potřebuje oprávnění pro přístup k fotoaparátu aby mohl pořizovat fotografie nebo video, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signál potřebuje přístup k fotoaparátu aby mohl pořizovat fotografie nebo videa.</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepřečtená zpráva</item>
     <item quantity="few">%d nepřečtené zprávy</item>
+    <item quantity="many">%d nepřečtených zpráv</item>
     <item quantity="other">%d nepřečtených zpráv</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Smazat označenou zprávu?</item>
     <item quantity="few">Smazat označené zprávy?</item>
+    <item quantity="many">Smazat označené zprávy?</item>
     <item quantity="other">Smazat označené zprávy?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Tímto trvale smažete označenou zprávu.</item>
     <item quantity="few">Tímto trvale smažete všechny %1$d označené zprávy.</item>
+    <item quantity="many">Tímto trvale smažete všech %1$d označených zpráv.</item>
     <item quantity="other">Tímto trvale smažete všech %1$d označených zpráv.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Uložit do paměti?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Uložíte-li přílohu do úložiště, budou k ní mít přístup všechny aplikace ve vašem zařízení.\n\nPokračovat?</item>
     <item quantity="few">Uložíte-li %1$d přílohy do úložiště, budou k nim mít přístup všechny aplikace ve vašem zařízení.\n\nPokračovat?</item>
+    <item quantity="many">Uložíte-li všech %1$d příloh do úložiště, budou k nim mít přístup všechny aplikace ve vašem zařízení.\n\nPokračovat?</item>
     <item quantity="other">Uložíte-li všech %1$d příloh do úložiště, budou k nim mít přístup všechny aplikace ve vašem zařízení.\n\nPokračovat?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Chyba při ukládání přílohy!</item>
     <item quantity="few">Chyba při ukládání příloh!</item>
+    <item quantity="many">Chyba při ukládání příloh!</item>
     <item quantity="other">Chyba při ukládání příloh!</item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
     <item quantity="one">Soubor byl úspěšně uložen.</item>
     <item quantity="few">Soubory byly úspěšně uloženy.</item>
+    <item quantity="many">Soubory byly úspěšně uloženy.</item>
     <item quantity="other">Soubory byly úspěšně uloženy.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nelze uložit data do paměti.</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Ukládám přílohu</item>
     <item quantity="few">Ukládám %1$d přílohy</item>
+    <item quantity="many">Ukládám %1$d příloh</item>
     <item quantity="other">Ukládám %1$d příloh</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Příloha uložena do úložiště</item>
     <item quantity="few">Uloženo %1$d přílohy do úložiště</item>
+    <item quantity="many">Uloženo %1$d příloh do úložiště</item>
     <item quantity="other">Uloženo %1$d příloh do úložiště</item>
   </plurals>
   <string name="ConversationFragment_pending">Probíhající:</string>
@@ -193,11 +218,13 @@
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Smazat vybranou konverzaci?</item>
     <item quantity="few">Smazat vybrané konverzace?</item>
+    <item quantity="many">Smazat vybrané konverzace?</item>
     <item quantity="other">Smazat vybrané konverzace?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Tímto trvale smažete označenou konverzaci.</item>
     <item quantity="few">Tímto trvale smažete všechny %1$d označené konverzace.</item>
+    <item quantity="many">Tímto trvale smažete všech %1$d označených konverzací.</item>
     <item quantity="other">Tímto trvale smažete všech %1$d označených konverzací.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Mažu</string>
@@ -205,12 +232,14 @@
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Konverzace archivována</item>
     <item quantity="few">%d konverzace archivovány</item>
+    <item quantity="many">%d konverzací archivováno</item>
     <item quantity="other">%d konverzací archivováno</item>
   </plurals>
   <string name="ConversationListFragment_undo">ZPĚT</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Konverzace přesunuta do složky příchozích zpráv</item>
     <item quantity="few">Přesunuty %d konverzace do složky příchozích zpráv</item>
+    <item quantity="many">Přesunuto %d konverzací do složky příchozích zpráv</item>
     <item quantity="other">Přesunuto %d konverzací do složky příchozích zpráv</item>
   </plurals>
   <!--ConversationListItem-->
@@ -340,11 +369,13 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">POSLAT SMS %d PŘÍTELI</item>
     <item quantity="few">POSLAT SMS %d PŘÁTELŮM</item>
+    <item quantity="many">POSLAT SMS %d PŘÁTELŮM</item>
     <item quantity="other">POSLAT SMS %d PŘÁTELŮM</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Poslat %d SMS pozvánku?</item>
     <item quantity="few">Poslat %d SMS pozvánky?</item>
+    <item quantity="many">Poslat %d SMS pozvánek?</item>
     <item quantity="other">Poslat %d SMS pozvánek?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pojďme přepnout na Signal: %1$s</string>
@@ -364,11 +395,13 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Smazat označenou zprávu?</item>
     <item quantity="few">Smazat označené zprávy?</item>
+    <item quantity="many">Smazat označené zprávy?</item>
     <item quantity="other">Smazat označené zprávy?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Tímto trvale smažete označenou zprávu.</item>
     <item quantity="few">Tímto trvale smažete všechny %1$d označené zprávy.</item>
+    <item quantity="many">Tímto trvale smažete všech %1$d označených zpráv.</item>
     <item quantity="other">Tímto trvale smažete všech %1$d označených zpráv.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Mažu</string>
@@ -500,6 +533,27 @@ telefonní číslo</string>
   <string name="RingtonePreference_alarm_sound_default">Výchozí zvuk alarmu</string>
   <string name="RingtonePreference_add_ringtone_text">Přidat vyzvánění</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nelze přidat uživatelské vyzvánění</string>
+  <!--Search-->
+  <string name="SearchFragment_begin_searching">Začněte psát pro vyhledání konverzace, zpráv nebo kontaktů</string>
+  <string name="SearchFragment_no_results">Pro \'%s\' nebylo nic nalezeno</string>
+  <string name="SearchFragment_header_conversations">Konverzace</string>
+  <string name="SearchFragment_header_contacts">Kontakty</string>
+  <string name="SearchFragment_header_messages">Zprávy</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Přidat do kontaktů</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Pozvat do Signalu</string>
+  <string name="SharedContactDetailsActivity_invite_message">Pojďme přepnout na Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Kontakt přidán</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Nepodařilo se načíst kontakt</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Kontakt byl aktualizován</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Chyba při editaci kontatku</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Chyba při čtení kontatku</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Přidat jako nový kontakt</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Přidat ke existujícímu kontatku</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Přidat do kontaktů</string>
+  <string name="SharedContactView_invite_to_signal">Pozvat do Signalu</string>
+  <string name="SharedContactView_message">Zpráva Signal</string>
   <!--Slide-->
   <string name="Slide_image">Obrázek</string>
   <string name="Slide_audio">Audio</string>
@@ -604,6 +658,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MessageNotifier_reply">Odpověď</string>
   <string name="MessageNotifier_pending_signal_messages">Nevyřízené zprávy Signal</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Máte nevyřízené zprávy Signal, klepnutím je otevřete a načtete.</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá odpověď není dostupná, pokud je Signal uzamčen!</string>
@@ -729,30 +785,35 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d vteřina</item>
     <item quantity="few">%d vteřiny</item>
+    <item quantity="many">%d vteřin</item>
     <item quantity="other">%d vteřin</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
     <item quantity="one">%d minuta</item>
     <item quantity="few">%d minuty</item>
+    <item quantity="many">%d minut</item>
     <item quantity="other">%d minut</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d hodina</item>
     <item quantity="few">%d hodiny</item>
+    <item quantity="many">%d hodin</item>
     <item quantity="other">%d hodin</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
     <item quantity="one">%d den</item>
     <item quantity="few">%d dny</item>
+    <item quantity="many">%d dnů</item>
     <item quantity="other">%d dnů</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
     <item quantity="one">%d týden</item>
     <item quantity="few">%d týdny</item>
+    <item quantity="many">%d týdnů</item>
     <item quantity="other">%d týdnů</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dw</string>
@@ -769,6 +830,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <plurals name="identity_others">
     <item quantity="one">%d ostatní</item>
     <item quantity="few">%d ostatní</item>
+    <item quantity="many">%d ostatních</item>
     <item quantity="other">%d ostatních</item>
   </plurals>
   <!--giphy_activity-->
@@ -798,6 +860,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup &amp; Restore\"</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Prohlédnout si celou konverzaci</string>
+  <string name="load_more_header__loading">Načítám</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Žádná media</string>
   <!--message_recipients_list_item-->
@@ -808,6 +871,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s se připojil ke skupině.</item>
     <item quantity="few">%1$s se připojili ke skupině.</item>
+    <item quantity="many">%1$s se připojili ke skupině.</item>
     <item quantity="other">%1$s se připojili ke skupině.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Jméno skupiny je nyní \'%1$s\'</string>
@@ -839,6 +903,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal volání</string>
   <string name="redphone_call_controls__mute">Ztlumit</string>
+  <string name="redphone_call_controls__flip_camera_rear">Přepnout foťák</string>
   <string name="redphone_call_controls__signal_call">Signal volání</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">Telefonní číslo</string>
@@ -917,6 +982,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <plurals name="hours_ago">
     <item quantity="one">%d hodina</item>
     <item quantity="few">%d hodiny</item>
+    <item quantity="many">%d hodin</item>
     <item quantity="other">%d hodin</item>
   </plurals>
   <!--preferences.xml-->
@@ -1099,6 +1165,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Platnost vaší verze aplikace Signal skončí za %d den. Dotykem aktualizujte na nejnovější verzi.</item>
     <item quantity="few">Platnost vaší verze aplikace Signal skončí za %d dny. Dotykem aktualizujte na nejnovější verzi.</item>
+    <item quantity="many">Platnost vaší verze aplikace Signal skončí za %d dnů. Dotykem aktualizujte na nejnovější verzi.</item>
     <item quantity="other">Platnost vaší verze aplikace Signal skončí za %d dnů. Dotykem aktualizujte na nejnovější verzi.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Platnost vaší verze aplikace Signal skončí dnes. Dotykem aktualizujte na nejnovější verzi.</string>

@@ -55,6 +55,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(zvok)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(lokacija)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(odgovor)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal za pripenjanje fotografij, videa in zvoka k sporočilom potrebuje dovoljenje za dostop do sistemskega pomnilnika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
@@ -87,6 +88,18 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sporočilo %s</string>
   <string name="ContactsDatabase_signal_call_s">Klic Signal: %s</string>
+  <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Ime</string>
+  <string name="ContactNameEditActivity_family_name">Priimek</string>
+  <string name="ContactNameEditActivity_prefix">Predpona</string>
+  <string name="ContactNameEditActivity_suffix">Pripona</string>
+  <string name="ContactNameEditActivity_middle_name">Srednje ime</string>
+  <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Doma</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobilno</string>
+  <string name="ContactShareEditActivity_type_work">Služba</string>
+  <string name="ContactShareEditActivity_type_missing">Drugo</string>
+  <string name="ContactShareEditActivity_invalid_contact">Izbrani kontakt ni veljaven</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Ni dostavljeno</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Prejeta informacija o izmenjavi ključev. Kliknite za obdelavo.</string>
@@ -138,6 +151,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Za zajemanje videa in fotografij dovolite aplikaciji Signal dostop do kamere naprave.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere za zajemanje videa in fotografij. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Za zajemanje videa in fotografij potrebuje aplikacija Signal dostop do kamere.</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprebrano sporočilo</item>
@@ -353,7 +367,7 @@
   <string name="InviteActivity_invite_to_signal">Povabi k uporabi</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">POŠLJI SMS %d PRIJATELJU</item>
-    <item quantity="two">POŠLJI SMS %d PRIJATELJEM</item>
+    <item quantity="two">POŠLJI SMS %d PRIJATELJEMA</item>
     <item quantity="few">POŠLJI SMS %d PRIJATELJEM</item>
     <item quantity="other">POŠLJI SMS %d PRIJATELJEM</item>
   </plurals>
@@ -516,6 +530,27 @@
   <string name="RingtonePreference_alarm_sound_default">Privzet zvok alarma</string>
   <string name="RingtonePreference_add_ringtone_text">Dodaj zvonjenje</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Zvonjenja po meri ni bilo mogoče dodati</string>
+  <!--Search-->
+  <string name="SearchFragment_begin_searching">Za iskanje po pogovorih, sporočilih in stikih pričnite s tipkanjem.</string>
+  <string name="SearchFragment_no_results">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
+  <string name="SearchFragment_header_conversations">Pogovori</string>
+  <string name="SearchFragment_header_contacts">Stiki</string>
+  <string name="SearchFragment_header_messages">Sporočila</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj med stike</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Povabi k uporabi</string>
+  <string name="SharedContactDetailsActivity_invite_message">Preklopi na Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Stik je bil dodan.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Napaka med pridobivanjem stika</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Stik je bil posodobljen.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Napaka pri urejanju stika</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Napaka pri branju stika</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Dodaj kot nov stik</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Dodaj k obstoječemu stiku</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Dodaj med stike</string>
+  <string name="SharedContactView_invite_to_signal">Povabi k uporabi</string>
+  <string name="SharedContactView_message">Sporočilo Signal</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_audio">Zvok</string>
@@ -621,6 +656,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_reply">Odgovor</string>
   <string name="MessageNotifier_pending_signal_messages">Čakajoča sporočila Signal</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Imate čakajoča sporočila Signal. Tapnite za pridobitev in pregled.</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+  <string name="MessageNotifier_unknown_contact_message">Stik</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hitri odziv ni mogoč, kadar je aplikacija Signal zaklenjena!</string>
@@ -821,6 +858,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="import_fragment__import_a_plaintext_backup_file">Uvoz iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami sporočil SMS.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Celoten pogovor</string>
+  <string name="load_more_header__loading">Nalagam</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Ni multimedijskih sporočil</string>
   <!--message_recipients_list_item-->
@@ -863,6 +901,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Klic Signal</string>
   <string name="redphone_call_controls__mute">Utišaj</string>
+  <string name="redphone_call_controls__flip_camera_rear">Zamenjava kamer</string>
   <string name="redphone_call_controls__signal_call">Klic Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
@@ -1198,7 +1237,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Dovoljenja za dostop do zunanjega pomnilnika, ki ga Aplikacija Signal potrebuje za varnostno kopiranje, je bilo trajno odvzeto. Prosimo, pojdite v sistemski meni z nastavitvami za aplikacije, izberite \"Dovoljenja\" in označite polje \"Zunanja shramba\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Zadnja varnostna kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">V teku</string>
-  <string name="LocalBackupJob_creating_backup">Izdelujem varnostno kopijo... </string>
+  <string name="LocalBackupJob_creating_backup">Izdelujem varnostno kopijo ... </string>
   <string name="ProgressPreference_d_messages_so_far">%d sporočil zaenkrat</string>
   <string name="RegistrationActivity_verify_s">Potrdi %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosimo, vnesite potrditveno kodo, poslano na %s.</string>
@@ -1234,7 +1273,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Telefonska številka ima vklopljen PIN za prijavo v omrežje. Prosimo, vnesite kodo PIN za prijavo.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Za to telefonsko številko je vklujčen PIN za prijavo v omrežje Signal. Da ne bi pozabili kode za prijavo, vas bomo občasno opomnili na njen vnos.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Pozabil sem svoj PIN.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">Pozabljan PIN?</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Pozabljen PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zaklep prijave na strežnik vas ščiti pred nepooblaščeno prijavo tretje osebe z vašo telefonsko številko. Storitev lahko kadarkoli izkopite v meniju \"Zasebnost\" v nastavitvah aplikacije Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">Zaklep prijave na strežnik</string>
   <string name="RegistrationLockDialog_enable">Vklopi</string>

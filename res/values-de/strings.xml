@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(Audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(Video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(Standort)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(Antwort)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Keine App zur Auswahl der Medieninhalte auffindbar.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal benötigt die Berechtigung »Speicher« für das Anhängen von Fotos, Videos oder Audiodateien, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
@@ -81,6 +82,18 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-Anruf %s</string>
+  <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Vorname</string>
+  <string name="ContactNameEditActivity_family_name">Nachname</string>
+  <string name="ContactNameEditActivity_prefix">Präfix</string>
+  <string name="ContactNameEditActivity_suffix">Suffix</string>
+  <string name="ContactNameEditActivity_middle_name">Mittelname</string>
+  <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Privat</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobil</string>
+  <string name="ContactShareEditActivity_type_work">Geschäftlich</string>
+  <string name="ContactShareEditActivity_type_missing">Sonstige</string>
+  <string name="ContactShareEditActivity_invalid_contact">Ausgewählter Kontakt ungültig</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nicht zugestellt</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Schlüsselaustausch-Nachricht empfangen. Zum Fortfahren antippen.</string>
@@ -132,6 +145,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Erlaube Signal zum Aufnehmen von Fotos und Videos Zugriff auf deine Kamera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos oder Videos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera«, um Fotos oder Videos aufzunehmen.</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ungelesene Nachricht</item>
@@ -254,7 +268,7 @@
   <string name="ExportFragment_export">Exportieren</string>
   <string name="ExportFragment_export_plaintext_to_storage">Klartextsicherung exportieren?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Achtung: Dies wird die unverschlüsselten Inhalte deiner Signal-Nachrichten in den Gerätespeicher exportieren.</string>
-  <string name="ExportFragment_cancel">Abbruch</string>
+  <string name="ExportFragment_cancel">Abbrechen</string>
   <string name="ExportFragment_exporting">Exportieren</string>
   <string name="ExportFragment_exporting_plaintext_to_storage">Klartext wird in Gerätespeicher exportiert …</string>
   <string name="ExportFragment_error_unable_to_write_to_storage">Kein Schreibzugriff auf Gerätespeicher.</string>
@@ -477,6 +491,27 @@
   <string name="RingtonePreference_alarm_sound_default">Standardweckerton</string>
   <string name="RingtonePreference_add_ringtone_text">Klingelton hinzufügen</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Klingelton kann nicht hinzugefügt werden</string>
+  <!--Search-->
+  <string name="SearchFragment_begin_searching">Beginne zu tippen, um nach Unterhaltungen, Nachrichten und Kontakten zu suchen.</string>
+  <string name="SearchFragment_no_results">Keine Ergebnisse für »%s« gefunden</string>
+  <string name="SearchFragment_header_conversations">Unterhaltungen</string>
+  <string name="SearchFragment_header_contacts">Kontakte</string>
+  <string name="SearchFragment_header_messages">Nachrichten</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Zu Kontakten hinzufügen</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Zu Signal einladen</string>
+  <string name="SharedContactDetailsActivity_invite_message">Lass uns zu »Signal« wechseln: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Kontakt hinzugefügt.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Kontaktabruf gescheitert</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Kontakt aktualisiert.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Fehler beim Bearbeiten des Kontakts</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Fehler beim Lesen des Kontakts</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Als neuen Kontakt hinzufügen</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Zu bestehendem Kontakt hinzufügen</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Zu Kontakten hinzufügen</string>
+  <string name="SharedContactView_invite_to_signal">Zu Signal einladen</string>
+  <string name="SharedContactView_message">Signal-Nachricht</string>
   <!--Slide-->
   <string name="Slide_image">Bild</string>
   <string name="Slide_audio">Audio</string>
@@ -581,6 +616,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_reply">Antworten</string>
   <string name="MessageNotifier_pending_signal_messages">Ausstehende Signal-Nachrichten</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du hast ausstehende Signal-Nachrichten. Antippen zum Öffnen und Abrufen.</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>
@@ -769,6 +806,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="import_fragment__import_a_plaintext_backup_file">Eine mit »SMS Backup &amp; Restore« kompatible Klartextsicherung importieren</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Gesamte Unterhaltung anzeigen</string>
+  <string name="load_more_header__loading">Wird geladen …</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Keine Medieninhalte</string>
   <!--message_recipients_list_item-->
@@ -809,6 +847,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-Anruf</string>
   <string name="redphone_call_controls__mute">Stummschalten</string>
+  <string name="redphone_call_controls__flip_camera_rear">Kamera wechseln</string>
   <string name="redphone_call_controls__signal_call">Signal-Anruf</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">RUFNUMMER</string>

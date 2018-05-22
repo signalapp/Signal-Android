@@ -88,6 +88,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">رسالة %s</string>
   <string name="ContactsDatabase_signal_call_s">مكالمة سيجنال %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">لم تصل</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل مفاتيح، أنقر للمتابعة.</string>
@@ -519,6 +521,15 @@
   <string name="RingtonePreference_alarm_sound_default">نغمة التنبيه الإفتراضية</string>
   <string name="RingtonePreference_add_ringtone_text">إضافة نغمة</string>
   <string name="RingtonePreference_unable_to_add_ringtone">تعذر إضافة نغمة رنين مخصصة</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">لم يتم العثور على أية نتيجة لـ \'%s\'</string>
+  <string name="SearchFragment_header_contacts">جهات الإتصال</string>
+  <string name="SearchFragment_header_messages">الرسائل</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">الدعوة إلى سيجنال</string>
+  <string name="SharedContactDetailsActivity_invite_message">هيا ننتقل إلى سيجنال %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">الدعوة إلى سيجنال</string>
   <!--Slide-->
   <string name="Slide_image">صورة</string>
   <string name="Slide_audio">صوت</string>
@@ -618,6 +629,7 @@
   <string name="MessageNotifier_media_message">رسالة وسائط متعددة</string>
   <string name="MessageNotifier_reply">رَدّ</string>
   <string name="MessageNotifier_pending_signal_messages">رسائل سيجنال المعلقة</string>
+  <string name="MessageNotifier_unknown_contact_message">متصل</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>

@@ -10,6 +10,10 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Une honetan: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Oraindik ez duzu pasahitza ezarri!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">mezu %d solasaldiko</item>
+    <item quantity="other">%d mezu solasaldiko</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Mezu zahar guztiak ezabatu orain?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Solasaldi hari guztiak berehala azkenengo mezura murriztuko dira</item>
@@ -33,13 +37,19 @@
   <string name="ApplicationPreferencesActivity_off">desaktibatuta</string>
   <string name="ApplicationPreferencesActivity_Off">Desaktibatuta</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Pantaila-blokeoa %1$s, Erregistratze-blokeoa %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Gaia %1$s, Hizkuntza %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">minutu %d</item>
+    <item quantity="other">%d minutu</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(irudia)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(audioa)</string>
   <string name="DraftDatabase_Draft_video_snippet">(bideoa)</string>
   <string name="DraftDatabase_Draft_location_snippet">(kokalekua)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(erantzun)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ez da euskarria aukeratzeko aplikaziorik aurkitu.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signalek Gordailu baimena behar du argazkiak, bideoak edo audioak bidaltzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
@@ -68,9 +78,12 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Azken txatak</string>
   <string name="ContactsCursorLoader_contacts">Kontaktuak</string>
+  <string name="ContactsCursorLoader_groups">Taldeak</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mezu %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Dei %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Ez banatua</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Jaso da gakoaren datu-trukatzearen mezua, tap egin prozesatzeko.</string>
@@ -165,6 +178,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ezabatzen</string>
   <string name="ConversationFragment_deleting_messages">Mezuak ezabatzen...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Ez da aipatutako mezua aurkitu</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ez dago nabigatzaile instalaturik zure gailuan.</string>
   <!--ConversationListFragment-->
@@ -315,6 +329,14 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="InviteActivity_heart_content_description">Bihotza</string>
   <string name="InviteActivity_invitations_sent">Gonbidapenak bidali dira!</string>
   <string name="InviteActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">BIDALI SMS MEZUA LAGUN %dI</item>
+    <item quantity="other">BIDALI SMS MEZUA %d LAGUNI</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Bidali SMS gonbidapen %d?</item>
+    <item quantity="other">Bidali %d SMS gonbidapen?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signalera alda dezagun: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Lagunek ez dute lagunak zifratu gabeko txatean jardun.</string>
@@ -329,6 +351,14 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sor daitezke.
   <string name="MmsDownloader_error_reading_mms_settings">Errorea hari gabeko hornitzailearen MMS ezarpenak irakurtzerakoan</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Ezabatu aukeratutako mezua?</item>
+    <item quantity="other">Ezabatu aukeratutako mezuak?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Honek aukeratutako mezua behin betiko ezabatuko du.</item>
+    <item quantity="other">Honek aukeratutako %1$d mezuak behin betiko ezabatuko ditu.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Ezabatzen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mezuak ezabatzen...</string>
   <string name="MediaOverviewActivity_Documents">Agiriak</string>
@@ -463,6 +493,15 @@ zenbakia (%s) baliogabea da.
   <string name="RingtonePreference_alarm_sound_default">Defektuzko alarma soinua</string>
   <string name="RingtonePreference_add_ringtone_text">Dei-doinua gehitu</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Ezin izan da dei-doinua gehitu</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Ez dago emaitzarik \'%s\' bilatuta</string>
+  <string name="SearchFragment_header_contacts">Kontaktuak</string>
+  <string name="SearchFragment_header_messages">Mezuak</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
+  <string name="SharedContactDetailsActivity_invite_message">Signalera alda dezagun: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Gonbidatu Signal erabiltzera</string>
   <!--Slide-->
   <string name="Slide_image">Irudia</string>
   <string name="Slide_audio">Audioa</string>
@@ -547,12 +586,15 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="KeyCachingService_signal_passphrase_cached">Ukitu irekitzeko.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Ukitu irekitzeko, edo sarraila ukitu ixteko.</string>
   <string name="KeyCachingService_passphrase_cached">Signal desblokeatuta dago</string>
+  <string name="KeyCachingService_lock">Blokeatu Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Zu</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Euskarri mota ez-onartua</string>
   <string name="MediaPreviewActivity_draft">Zirriborroa</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signalek Gordailu baimena behar du kanpoko gordailuan datuak idazteko baina baimena ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ezin izan da kanpoko gordailuan idatzi baimen faltagatik</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Ezabatu mezua?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Honek behin betiko ezabatuko du mezua.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mezu berri %2$d solasalditan</string>
   <string name="MessageNotifier_most_recent_from_s">Berriena %1$s-(e)tik</string>
@@ -567,12 +609,14 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_reply">Erantzun</string>
   <string name="MessageNotifier_pending_signal_messages">Falta diren Signalen mezuak</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signal mezuak  zain dauzkazu, ukitu irekitzeko eta jasotzeko.</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontaktua</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Erantzun bizkorra eskuraezina Signal blokeatuta badago!</string>
   <string name="QuickResponseService_problem_sending_message">Arazoa mezua bidaltzen!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_open_directory">Direktorioa ireki</string>
+  <string name="SaveAttachmentTask_saved_to">%s helbidean gordeta</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Bilatu</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -663,6 +707,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--QuoteView-->
   <string name="QuoteView_audio">Audioa</string>
   <string name="QuoteView_video">Bideoa</string>
+  <string name="QuoteView_photo">Argazkia</string>
+  <string name="QuoteView_document">Dokumentua</string>
   <string name="QuoteView_you">Zu</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Batch hautatzeko modua</string>
@@ -686,10 +732,30 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Irakurketa oharrak aktibatu</string>
   <!--expiration-->
   <string name="expiration_off">Desaktibatuta</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">segundo %d</item>
+    <item quantity="other">%d segundo</item>
+  </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">minutu %d</item>
+    <item quantity="other">%d minutu</item>
+  </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">Ordu %d</item>
+    <item quantity="other">%d ordu</item>
+  </plurals>
   <string name="expiration_hours_abbreviated">%do</string>
+  <plurals name="expiration_days">
+    <item quantity="one">Egun %d</item>
+    <item quantity="other">%d egun</item>
+  </plurals>
   <string name="expiration_days_abbreviated">%de</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">Aste %d</item>
+    <item quantity="other">%d aste</item>
+  </plurals>
   <string name="expiration_weeks_abbreviated">%da</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%srekin duzun segurtasun zenbakia aldatu da eta egiaztatu gabe dago</string>
@@ -769,6 +835,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="recipient_preferences__view_safety_number">Segurtasun zenbakia ikusi</string>
   <string name="recipient_preferences__chat_settings">Txataren ezarpenak</string>
   <string name="recipient_preferences__privacy">Pribatutasuna</string>
+  <string name="recipient_preferences__call_settings">Dei-ezarpenak</string>
+  <string name="recipient_preferences__ringtone">dei-hots tonua</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal deia</string>
   <string name="redphone_call_controls__mute">Isildu</string>
@@ -808,10 +876,10 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="message_details_header__from">Igorlea:</string>
   <string name="message_details_header__with">Honekin:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Pasahitza sortu</string>
-  <string name="AndroidManifest__enter_passphrase">Pasahitza sartu</string>
-  <string name="AndroidManifest__select_contacts">Kontaktuak hautatu</string>
-  <string name="AndroidManifest__change_passphrase">Pasahitza aldatu</string>
+  <string name="AndroidManifest__create_passphrase">Sortu pasaesaldia</string>
+  <string name="AndroidManifest__enter_passphrase">Sartu pasaesaldia</string>
+  <string name="AndroidManifest__select_contacts">Hautatu kontaktuak</string>
+  <string name="AndroidManifest__change_passphrase">Aldatu pasaesaldia</string>
   <string name="AndroidManifest__verify_safety_number">Segurtasun zenbakia baieztatu</string>
   <string name="AndroidManifest__log_submit">Bidali arazketa-erregistroa</string>
   <string name="AndroidManifest__media_preview">Multimediaren aurrebista</string>
@@ -863,6 +931,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
   <string name="preferences__change_passphrase">Pasahitza aldatu</string>
   <string name="preferences__change_your_passphrase">Aldatu zure pasahitza</string>
+  <string name="preferences__enable_passphrase">Gaitu pasahitza blokeo-pantailan</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blokeatu pantaila eta jakinarazpenak pasahitz batekin</string>
   <string name="preferences__screen_security">Pantailaren segurtasuna</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeatu pantailazoak arestikoen zerrendan eta aplikazioaren barruan</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blokeatu Signal automatikoki jarduerarik gabe denbora tarte bat pasa eta gero.</string>
@@ -943,6 +1013,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences_notifications__events">Gertaerak</string>
   <string name="preferences_notifications__in_chat_sounds">Txat barruko soinuak</string>
   <string name="preferences_notifications__show">Erakutsi</string>
+  <string name="preferences_notifications__calls">Deiak</string>
+  <string name="preferences_notifications__ringtone">dei-hots tonua</string>
   <string name="preferences_chats__show_invitation_prompts">Gonbidapenen mezuak erakutsi</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal ez duten kontaktuei gonbidapen mezuak erakutsi</string>
   <string name="preferences_chats__message_text_size">Mezuaren letra-tipoaren tamaina</string>
@@ -965,6 +1037,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="conversation_context__menu_delete_message">Mezua ezabatu</string>
   <string name="conversation_context__menu_forward_message">Birbidali mezua</string>
   <string name="conversation_context__menu_resend_message">Mezua berbidali</string>
+  <string name="conversation_context__menu_reply_to_message">Erantzun mezuari</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Eraskina gorde</string>
   <!--conversation_expiring_off-->
@@ -1019,7 +1092,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="text_secure_normal__invite_friends">Gonbidatu lagunak</string>
   <string name="text_secure_normal__help">Laguntza</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Arbelera kopiatu</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiatu arbelera</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Zure Signal bertsioa zaharkitua dago</string>
@@ -1066,9 +1139,20 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="RegistrationActivity_restore">Leheneratu</string>
   <string name="BackupUtil_never">Inoiz ez</string>
   <string name="BackupUtil_unknown">Ezezaguna</string>
+  <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blokeatu Signal-era sarbidea Android pantaila-blokeoarekin edo hatz-markarekin</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Blokeo-pantailaren inaktibitate denbora-muga</string>
   <string name="AppProtectionPreferenceFragment_none">Bat ere ez</string>
+  <string name="preferences_app_protection__registration_lock">Erregistratze-blokeoa</string>
   <string name="RegistrationActivity_too_many_attempts">Saio gehiegi</string>
+  <string name="RegistrationLockDialog_registration_lock">Erregistratze-blokeoa</string>
+  <string name="RegistrationLockDialog_enable">Gaitu</string>
   <string name="RegistrationLockDialog_disable">Desgaitu</string>
   <string name="RegistrationActivity_continue">Jarraitu</string>
+  <string name="preferences_chats__backups">Babes-kopiak</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal blokeatuta dago</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">SAKATU DESBLOKEATZEKO</string>
+  <string name="RegistrationLockDialog_reminder">Oroigarria:</string>
+  <string name="recipient_preferences__about">Honi buruz</string>
   <!--EOF-->
 </resources>

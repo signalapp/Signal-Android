@@ -13,12 +13,14 @@
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%d žinutė pokalbyje</item>
     <item quantity="few">%d žinutės pokalbyje</item>
+    <item quantity="many">%d žinučių pokalbyje</item>
     <item quantity="other">%d žinučių pokalbyje</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Ištrinti visas senas žinutes dabar?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Tai nedelsiant apkirps visus pokalbius iki %d naujausios žinutės.</item>
     <item quantity="few">Tai nedelsiant apkirps visus pokalbius iki %d naujausių žinučių.</item>
+    <item quantity="many">Tai nedelsiant apkirps visus pokalbius iki %d naujausių žinučių.</item>
     <item quantity="other">Tai nedelsiant apkirps visus pokalbius iki %d naujausių žinučių.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Ištrinti</string>
@@ -45,6 +47,7 @@
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutė</item>
     <item quantity="few">%d minutės</item>
+    <item quantity="many">%d minučių</item>
     <item quantity="other">%d minučių</item>
   </plurals>
   <!--DraftDatabase-->
@@ -52,6 +55,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(garsas)</string>
   <string name="DraftDatabase_Draft_video_snippet">(vaizdas)</string>
   <string name="DraftDatabase_Draft_location_snippet">(vieta)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(atsakymas)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nerasta programėlė medijos pasirinkimui.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Norint pridėti nuotraukas, vaizdo įrašus ar garsą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
@@ -84,6 +88,18 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Žinutė %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal skambutis %s</string>
+  <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Vardas</string>
+  <string name="ContactNameEditActivity_family_name">Pavardė</string>
+  <string name="ContactNameEditActivity_prefix">Priešvardis</string>
+  <string name="ContactNameEditActivity_suffix">Povardis</string>
+  <string name="ContactNameEditActivity_middle_name">Antras vardas</string>
+  <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Namų</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobilusis</string>
+  <string name="ContactShareEditActivity_type_work">Darbo</string>
+  <string name="ContactShareEditActivity_type_missing">Kitas</string>
+  <string name="ContactShareEditActivity_invalid_contact">Pasirinktas kontaktas buvo neteisingas</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nepristatyta</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Gauta šifro apsikeitimo žinutė, bakstelėkite norėdami tęsti.</string>
@@ -135,48 +151,57 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Norėdami fotografuoti ir filmuoti vaizdo įrašus, leiskite Signal prieigą prie kameros.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Norint fotografuoti ar filmuoti, Signal reikalinga prieiga prie kameros</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
     <item quantity="few">%d neskaitytos žinutės</item>
+    <item quantity="many">%d neskaitytų žinučių</item>
     <item quantity="other">%d neskaitytų žinučių</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Ištrinti pažymėtą žinutę?</item>
     <item quantity="few">Ištrinti pažymėtas žinutes?</item>
+    <item quantity="many">Ištrinti pažymėtas žinutes?</item>
     <item quantity="other">Ištrinti pažymėtas žinutes?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Tai visiems laikams ištrins %1$d pasirinktą žinutę.</item>
     <item quantity="few">Tai visiems laikams ištrins visas %1$d pasirinktas žinutes.</item>
+    <item quantity="many">Tai visiems laikams ištrins visas %1$d pasirinktų žinučių.</item>
     <item quantity="other">Tai visiems laikams ištrins visas %1$d pasirinktų žinučių.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Įrašyti į atmintį?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Šios %1$d medijos įrašymas į atmintį leis bet kuriai programėlei jūsų įrenginyje prieigą prie jos.\n\nTęsti?</item>
     <item quantity="few">Šių visų %1$d medijų įrašymas į atmintį leis bet kuriai programėlei jūsų įrenginyje prieigą prie jų.\n\nTęsti?</item>
+    <item quantity="many">Šių visų %1$d medijų įrašymas į atmintį leis bet kuriai programėlei jūsų įrenginyje prieigą prie jų.\n\nTęsti?</item>
     <item quantity="other">Šių visų %1$d medijų įrašymas į atmintį leis bet kuriai programėlei jūsų įrenginyje prieigą prie jų.\n\nTęsti?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Klaida, įrašant priedą į atmintį!</item>
     <item quantity="few">Klaida, įrašant priedus į atmintį!</item>
+    <item quantity="many">Klaida, įrašant priedus į atmintį!</item>
     <item quantity="other">Klaida, įrašant priedus į atmintį!</item>
   </plurals>
   <plurals name="ConversationFragment_files_saved_successfully">
     <item quantity="one">Failas sėkmingai įrašytas.</item>
     <item quantity="few">Failai sėkmingai įrašyti.</item>
+    <item quantity="many">Failai sėkmingai įrašyti.</item>
     <item quantity="other">Failai sėkmingai įrašyti.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nepavyksta įrašyti į atmintį!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Įrašomas %1$d priedas</item>
     <item quantity="few">Įrašomi %1$d priedai</item>
+    <item quantity="many">Įrašoma %1$d priedų</item>
     <item quantity="other">Įrašoma %1$d priedų</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Įrašomas į atmintį %1$d priedas...</item>
     <item quantity="few">Įrašomi į atmintį %1$d priedai...</item>
+    <item quantity="many">Įrašoma į atmintį %1$d priedų...</item>
     <item quantity="other">Įrašoma į atmintį %1$d priedų...</item>
   </plurals>
   <string name="ConversationFragment_pending">Laukiama...</string>
@@ -193,11 +218,13 @@
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Ištrinti pasirinktą pokalbį?</item>
     <item quantity="few">Ištrinti pasirinktus pokalbius?</item>
+    <item quantity="many">Ištrinti pasirinktus pokalbius?</item>
     <item quantity="other">Ištrinti pasirinktus pokalbius?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Tai visiems laikams ištrins %1$d pasirinktą pokalbį.</item>
     <item quantity="few">Tai visiems laikams ištrins visus %1$d pasirinktus pokalbius.</item>
+    <item quantity="many">Tai visiems laikams ištrins visus %1$d pasirinktų pokalbių.</item>
     <item quantity="other">Tai visiems laikams ištrins visus %1$d pasirinktų pokalbių.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Ištrinama</string>
@@ -205,12 +232,14 @@
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Užarchyvuotas %d pokalbis</item>
     <item quantity="few">Užarchyvuoti %d pokalbiai</item>
+    <item quantity="many">Užarchyvuota %d pokalbių</item>
     <item quantity="other">Užarchyvuota %d pokalbių</item>
   </plurals>
   <string name="ConversationListFragment_undo">ATŠAUKTI</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">%d pokalbis perkeltas į gautųjų aplanką</item>
     <item quantity="few">%d pokalbiai perkelti į gautųjų aplanką</item>
+    <item quantity="many">%d pokalbių perkelta į gautųjų aplanką</item>
     <item quantity="other">%d pokalbių perkelta į gautųjų aplanką</item>
   </plurals>
   <!--ConversationListItem-->
@@ -345,11 +374,13 @@
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SIŲSTI SMS %d DRAUGUI</item>
     <item quantity="few">SIŲSTI SMS %d DRAUGAMS</item>
+    <item quantity="many">SIŲSTI SMS %d DRAUGŲ</item>
     <item quantity="other">SIŲSTI SMS %d DRAUGŲ</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Siųsti %d SMS pakvietimą?</item>
     <item quantity="few">Siųsti %d SMS pakvietimus?</item>
+    <item quantity="many">Siųsti %d SMS pakvietimų?</item>
     <item quantity="other">Siųsti %d SMS pakvietimų?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Persijunkime į Signal: %1$s</string>
@@ -369,11 +400,13 @@
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Ištrinti pažymėtą žinutę?</item>
     <item quantity="few">Ištrinti pažymėtas žinutes?</item>
+    <item quantity="many">Ištrinti pažymėtas žinutes?</item>
     <item quantity="other">Ištrinti pažymėtas žinutes?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Tai visiems laikams ištrins %1$d pažymėtą žinutę.</item>
     <item quantity="few">Tai visiems laikams ištrins visas %1$d pažymėtas žinutes.</item>
+    <item quantity="many">Tai visiems laikams ištrins visas %1$d pažymėtų žinučių.</item>
     <item quantity="other">Tai visiems laikams ištrins visas %1$d pažymėtų žinučių.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Ištrinama</string>
@@ -510,6 +543,27 @@
   <string name="RingtonePreference_alarm_sound_default">Numatytasis signalo garsas</string>
   <string name="RingtonePreference_add_ringtone_text">Pridėti skambučio melodiją</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nepavyksta pridėti tinkintos skambučio melodijos</string>
+  <!--Search-->
+  <string name="SearchFragment_begin_searching">Pradėkite rašyti, norėdami ieškoti pokalbių, žinučių ir kontaktų.</string>
+  <string name="SearchFragment_no_results">Nerasta jokių rezultatų, atitinkančių \"%s\"</string>
+  <string name="SearchFragment_header_conversations">Pokalbiai</string>
+  <string name="SearchFragment_header_contacts">Kontaktai</string>
+  <string name="SearchFragment_header_messages">Žinutės</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Pridėti į kontaktus</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Pakviesti į Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Persijunkime į Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Kontaktas pridėtas.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Nepavyko gauti kontakto</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Kontaktas atnaujintas.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Klaida, taisant kontaktą</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Klaida, skaitant kontaktą</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Pridėti kaip naują kontaktą</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Pridėti kaip esamą kontaktą</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Pridėti į kontaktus</string>
+  <string name="SharedContactView_invite_to_signal">Pakviesti į Signal</string>
+  <string name="SharedContactView_message">Signal žinutė</string>
   <!--Slide-->
   <string name="Slide_image">Paveikslas</string>
   <string name="Slide_audio">Garsas</string>
@@ -617,6 +671,8 @@
   <string name="MessageNotifier_reply">Atsakyti</string>
   <string name="MessageNotifier_pending_signal_messages">Laukiančios Signal žinutės</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Jūs turite laukiančių Signal žinučių, bakstelėkite, norėdami atverti ir jas gauti</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontaktas</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>
@@ -742,30 +798,35 @@
   <plurals name="expiration_seconds">
     <item quantity="one">%d sekundė</item>
     <item quantity="few">%d sekundės</item>
+    <item quantity="many">%d sekundžių</item>
     <item quantity="other">%d sekundžių</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%d sek.</string>
   <plurals name="expiration_minutes">
     <item quantity="one">%d minutė</item>
     <item quantity="few">%d minutės</item>
+    <item quantity="many">%d minučių</item>
     <item quantity="other">%d minučių</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%d min.</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d valanda</item>
     <item quantity="few">%d valandos</item>
+    <item quantity="many">%d valandų</item>
     <item quantity="other">%d valandų</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%d val.</string>
   <plurals name="expiration_days">
     <item quantity="one">%d diena</item>
     <item quantity="few">%d dienos</item>
+    <item quantity="many">%d dienų</item>
     <item quantity="other">%d dienų</item>
   </plurals>
   <string name="expiration_days_abbreviated">%d d.</string>
   <plurals name="expiration_weeks">
     <item quantity="one">%d savaitė</item>
     <item quantity="few">%d savaitės</item>
+    <item quantity="many">%d savaičių</item>
     <item quantity="other">%d savaičių</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d sav.</string>
@@ -782,6 +843,7 @@
   <plurals name="identity_others">
     <item quantity="one">dar %d</item>
     <item quantity="few">dar %d</item>
+    <item quantity="many">dar %d</item>
     <item quantity="other">dar %d</item>
   </plurals>
   <!--giphy_activity-->
@@ -811,6 +873,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">Importuoti grynojo teksto atsarginės kopijos failą. Suderinama su \"SMS atsarginės kopijos darymu ir atkūrimu.\"</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Rodyti visą pokalbį</string>
+  <string name="load_more_header__loading">Įkeliama</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nėra medijos</string>
   <!--message_recipients_list_item-->
@@ -821,6 +884,7 @@
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s prisijungė prie grupės.</item>
     <item quantity="few">%1$s prisijungė prie grupės.</item>
+    <item quantity="many">%1$s prisijungė prie grupės.</item>
     <item quantity="other">%1$s prisijungė prie grupės.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Dabar, grupės pavadinimas yra \"%1$s\".</string>
@@ -852,6 +916,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal skambutis</string>
   <string name="redphone_call_controls__mute">Nutildyti</string>
+  <string name="redphone_call_controls__flip_camera_rear">Perjungti kamerą</string>
   <string name="redphone_call_controls__signal_call">Signal skambutis</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONO NUMERIS</string>
@@ -930,6 +995,7 @@
   <plurals name="hours_ago">
     <item quantity="one">%d valanda</item>
     <item quantity="few">%d valandos</item>
+    <item quantity="many">%d valandų</item>
     <item quantity="other">%d valandų</item>
   </plurals>
   <!--preferences.xml-->
@@ -1112,6 +1178,7 @@
   <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Jūsų Signal versija nustos galioti po %d dienos. Bakstelėkite, norėdami atnaujinti į naujausią versiją.</item>
     <item quantity="few">Jūsų Signal versija nustos galioti po %d dienų. Bakstelėkite, norėdami atnaujinti į naujausią versiją.</item>
+    <item quantity="many">Jūsų Signal versija nustos galioti po %d dienų. Bakstelėkite, norėdami atnaujinti į naujausią versiją.</item>
     <item quantity="other">Jūsų Signal versija nustos galioti po %d dienų. Bakstelėkite, norėdami atnaujinti į naujausią versiją.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Šiandien nustos galioti jūsų Signal versija. Bakstelėkite, kad atnaujintumėte į naujausią versiją.</string>

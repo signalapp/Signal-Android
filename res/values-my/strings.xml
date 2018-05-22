@@ -64,6 +64,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">စာတို %s </string>
   <string name="ContactsDatabase_signal_call_s">Signal ခေါ်ဆိုမှု %s </string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">မပေးပို့နိုင်ခဲ့ပါ </string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">အလဲအလှယ်စာတိုသော့ရရှိပါသည်၊ ဆက်လက်လုပ်ဆောင်ရန် နှိပ်ပါ။ </string>
@@ -419,6 +421,13 @@
   <string name="RingtonePreference_alarm_sound_default">မူလ နှိုးစက် အသံ</string>
   <string name="RingtonePreference_add_ringtone_text">ဖုန်းသံစဉ် ထည့်ရန်</string>
   <string name="RingtonePreference_unable_to_add_ringtone">စိတ်ကြိုက် ဖုန်းသံစဉ် ထည့်၍မရပါ။</string>
+  <!--Search-->
+  <string name="SearchFragment_header_messages">စာများ</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
+  <string name="SharedContactDetailsActivity_invite_message">Signal ကိုပြောင်းသုံးကြစို့ : %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
   <!--Slide-->
   <string name="Slide_image">ပုံ</string>
   <string name="Slide_audio">အသံ</string>
@@ -515,6 +524,7 @@
   <string name="MessageNotifier_reply">အကြောင်းပြန်မည်</string>
   <string name="MessageNotifier_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားခြင်း</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားပါသည်၊ ပြန်ဖွင့်ရန် နှိပ်လိုက်ပါ</string>
+  <string name="MessageNotifier_unknown_contact_message">လိပ်စာ</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal လော့ခ်ကျသွားသည့်အခါ ချက်ချင်းမတုံ့ပြန်နိုင်ပါ!</string>

@@ -46,6 +46,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(សំឡេង)</string>
   <string name="DraftDatabase_Draft_video_snippet">(វីដេអូ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ទីតាំង)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(ឆ្លើយតប)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">មិនអាចស្វែងរកកម្មវិធីដើម្បីជ្រើសរើសព័ត៌មាន</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ស៊ីហ្គណល តម្រូវឱ្យមានការអនុញ្ញាតប្រើប្រាស់កន្លែងផ្ទុកទិន្នន័យដើម្បីភ្ជាប់រូបថតវីដេអូឬសម្លេងប៉ុន្តែវាត្រូវបានបដិសេធជាអចិន្ត្រៃយ៍។ សូមបន្តទៅម៉ឺនុយការកំណត់កម្មវិធីជ្រើស \"អនុញ្ញាត\" និងបើក \"កន្លែងផ្ទុកទិន្នន័យ\" ។</string>
@@ -78,6 +79,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">សារ %s</string>
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់ស៊ីហ្គណល  %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">មិនបានបញ្ជូន</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ទទួលបានសារ ផ្លាស់ប្តូរសោរ សូមចុច ដើម្បីដំណើរការ។</string>
@@ -467,6 +470,15 @@
   <string name="RingtonePreference_alarm_sound_default">សំឡេងរោទិ៍ដើម</string>
   <string name="RingtonePreference_add_ringtone_text">បន្ថែមសំឡេងរោទិ៍</string>
   <string name="RingtonePreference_unable_to_add_ringtone">មិនអាចបន្ថែមសំឡេងរោទិ៍ផ្សេងបាន</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
+  <string name="SearchFragment_header_contacts">បញ្ជីទំនាក់ទំនង</string>
+  <string name="SearchFragment_header_messages">សារ</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">អញ្ជើញចូលប្រើស៊ីហ្គណល</string>
+  <string name="SharedContactDetailsActivity_invite_message">តោះដូរទៅប្រើស៊ីហ្គណល ៖ %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">អញ្ជើញចូលប្រើស៊ីហ្គណល</string>
   <!--Slide-->
   <string name="Slide_image">រូបភាព</string>
   <string name="Slide_audio">សំឡេង</string>
@@ -572,6 +584,7 @@
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
   <string name="MessageNotifier_pending_signal_messages">សារ ស៊ីហ្គណល បញ្ចូនមិនទាន់សម្រេច</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">អ្នកមានសារស៊ីហ្គណល មិនទាន់បញ្ចូនសម្រេច ចុចបើក និងទាញយកមកវិញ</string>
+  <string name="MessageNotifier_unknown_contact_message">ទំនាក់ទំនង</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">មិនមានការឆ្លើយតបភ្លាមៗ នៅពេល ស៊ីហ្គណល ត្រូវបានចាក់សោរ!</string>
@@ -989,6 +1002,7 @@
   <string name="conversation_context__menu_delete_message">លុបសារ</string>
   <string name="conversation_context__menu_forward_message">បញ្ជូនសារបន្ត</string>
   <string name="conversation_context__menu_resend_message">ផ្ញើសារឡើងវិញ</string>
+  <string name="conversation_context__menu_reply_to_message">តបសារ</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">រក្សាឯកសារភ្ជាប់</string>
   <!--conversation_expiring_off-->
@@ -1121,10 +1135,13 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal ត្រូវការសិទ្ធិប្រើប្រាស់អង្គស្តុកទុក ដើម្បីរក្សាឯកសារក្នុងអង្គស្តុកទុកខាងក្រៅ, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស \"ការអនុញ្ញាត\", និងបើក \"អង្គស្តុកទុក\"។ </string>
   <string name="ChatsPreferenceFragment_last_backup_s">បម្រុងលើចុងក្រោយ៖ %s</string>
   <string name="ChatsPreferenceFragment_in_progress">កំពុងដំណើេការ</string>
+  <string name="LocalBackupJob_creating_backup">កំពុងបម្រុងទុក...</string>
   <string name="ProgressPreference_d_messages_so_far">%d សារឥលូវនេះ</string>
   <string name="RegistrationActivity_verify_s">ផ្ទៀងផ្ទាត់ %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">សូមបញ្ចូលលេខកូដផ្ទៀងផ្ទាត់ដែលបានផ្ញើទៅកាន់ %s.</string>
   <string name="RegistrationActivity_wrong_number">ខុសលេខ?</string>
+  <string name="RegistrationActivity_call_me_instead">ហៅមកខ្ញុំជំនួសវិញ</string>
+  <string name="RegistrationActivity_available_in">មាននៅ :\u0020</string>
   <string name="BackupUtil_never">មិនដែល</string>
   <string name="BackupUtil_unknown">មិនដឹង</string>
   <string name="prompt_passphrase_activity__unlock_signal">ដោះសោរស៊ីហ្គណល</string>

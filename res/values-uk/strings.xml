@@ -14,6 +14,7 @@
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Це одразу скоротить всі розмови до останнього повідомлення.</item>
     <item quantity="few">Це одразу скоротить всі розмови до %d останніх повідомлень.</item>
+    <item quantity="many">Це одразу скоротить всі розмови до %d останніх повідомлень.</item>
     <item quantity="other">Це одразу скоротить всі розмови до %d останніх повідомлень.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Видалити</string>
@@ -73,6 +74,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Повідомлення %s</string>
   <string name="ContactsDatabase_signal_call_s">Виклик Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Не доставлено</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Отримано повідомлення обміну ключами, торкніться, щоб продовжити.</string>
@@ -129,33 +132,39 @@
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Видалити обране повідомлення?</item>
     <item quantity="few">Видалити обрані повідомлення?</item>
+    <item quantity="many">Видалити обрані повідомлення?</item>
     <item quantity="other">Видалити обрані повідомлення?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Це назавжди видалить обране повідомлення.</item>
     <item quantity="few">Це назавжди видалить усі %1$d обрані повідомлення.</item>
+    <item quantity="many">Це назавжди видалить усі %1$d обраних повідомлень.</item>
     <item quantity="other">Це назавжди видалить усі %1$d обраних повідомлень.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Зберегти на носій?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Збереження цього файлу до пам\'яті пристрою зробить його доступним іншим програмам на вашому пристрої.\n\nПродовжити?</item>
     <item quantity="few">Збереження всіх %1$d файлів до пам\'яті пристрою зробить їх доступними для інших програм на вашому пристрої.\n\nПродовжити?</item>
+    <item quantity="many">Збереження всіх %1$d файлів до пам\'яті пристрою зробить їх доступними для інших програм на вашому пристрої.\n\nПродовжити?</item>
     <item quantity="other">Збереження всіх %1$d файлів до пам\'яті пристрою зробить їх доступними для інших програм на вашому пристрої.\n\nПродовжити?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Під час збереження вкладення до сховища сталася помилка!</item>
     <item quantity="few">Під час збереження вкладень до сховища сталася помилка!</item>
+    <item quantity="many">Під час збереження вкладень до сховища сталася помилка!</item>
     <item quantity="other">Під час збереження вкладень до сховища сталася помилка!</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Неможливо записати до сховища!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Збереження вкладення</item>
     <item quantity="few">Збереження %1$d вкладень</item>
+    <item quantity="many">Збереження %1$d вкладень</item>
     <item quantity="other">Збереження %1$d вкладень</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Збереження вкладення до сховища...</item>
     <item quantity="few">Збереження %1$d вкладень до сховища...</item>
+    <item quantity="many">Збереження %1$d вкладень до сховища...</item>
     <item quantity="other">Збереження %1$d вкладень до сховища...</item>
   </plurals>
   <string name="ConversationFragment_pending">Очікування...</string>
@@ -171,11 +180,13 @@
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Видалити обрану бесіду?</item>
     <item quantity="few">Видалити обрані бесіди?</item>
+    <item quantity="many">Видалити обрані бесіди?</item>
     <item quantity="other">Видалити обрані бесіди?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Це остаточно видалить обрану бесіду.</item>
     <item quantity="few">Це остаточно видалить усі %1$d обрані бесіди.</item>
+    <item quantity="many">Це остаточно видалить усі %1$d обрані бесіди.</item>
     <item quantity="other">Це остаточно видалить усі %1$d обрані бесіди.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Видалення</string>
@@ -183,12 +194,14 @@
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Розмову заархівовано</item>
     <item quantity="few">%d розмови заархівовано</item>
+    <item quantity="many">%d розмов заархівовано</item>
     <item quantity="other">%d розмов заархівовано</item>
   </plurals>
   <string name="ConversationListFragment_undo">СКАСУВАТИ</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Розмову переміщено до вхідних</item>
     <item quantity="few">%d розмови переміщено до вхідних</item>
+    <item quantity="many">%d розмов переміщено до вхідних</item>
     <item quantity="other">%d розмов переміщено до вхідних</item>
   </plurals>
   <!--ConversationListItem-->
@@ -468,6 +481,15 @@
   <string name="RingtonePreference_alarm_sound_default">Типовий звук сповіщення</string>
   <string name="RingtonePreference_add_ringtone_text">Додати мелодію</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Не вдалося додати мелодію</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Не знайдено результатів для \'%s\'</string>
+  <string name="SearchFragment_header_contacts">Контакти</string>
+  <string name="SearchFragment_header_messages">Повідомлення</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Запросити до Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Давай перейдемо на Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Запросити до Signal</string>
   <!--Slide-->
   <string name="Slide_image">Зображення</string>
   <string name="Slide_audio">Аудіо</string>
@@ -571,6 +593,7 @@
   <string name="MessageNotifier_reply">Відповісти</string>
   <string name="MessageNotifier_pending_signal_messages">Повідомлення в очікуванні</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">У вас є повідомлення в очікуванні, торкніться щоб отримати їх</string>
+  <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Швидка відповідь неможлива, коли Signal заблоковано!</string>
@@ -743,6 +766,7 @@
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s приєднується до групи.</item>
     <item quantity="few">%1$s приєдналися до групи.</item>
+    <item quantity="many">%1$s приєдналися до групи.</item>
     <item quantity="other">%1$s приєдналися до групи.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Назва групи тепер \'%1$s\'.</string>
@@ -851,6 +875,7 @@
   <plurals name="hours_ago">
     <item quantity="one">%d година</item>
     <item quantity="few">%d години</item>
+    <item quantity="many">%d годин</item>
     <item quantity="other">%d годин</item>
   </plurals>
   <!--preferences.xml-->

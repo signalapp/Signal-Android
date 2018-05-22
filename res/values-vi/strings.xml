@@ -61,6 +61,8 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Tin nhắn %s</string>
   <string name="ContactsDatabase_signal_call_s">Cuộc gọi Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Không đưa tin được</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Đã nhận được yêu cầu trao đổi khoá, chạm để xử lý.</string>
@@ -339,6 +341,12 @@ mã số quốc gia bạn</string>
   <string name="RegistrationService_signal_registration_has_encountered_a_problem">Có lỗi khi đăng ký Signal.</string>
   <!--RingtonePreference-->
   <string name="RingtonePreference_ringtone_silent">Không</string>
+  <!--Search-->
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Mời dùng Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Hãy chuyển sang dùng Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Mời dùng Signal</string>
   <!--Slide-->
   <string name="Slide_image">Ảnh</string>
   <string name="Slide_audio">Đoạn nhạc</string>
@@ -400,6 +408,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="MessageNotifier_mark_read">Đánh dấu đã đọc</string>
   <string name="MessageNotifier_media_message">Tin nhắn đa phương tiện</string>
   <string name="MessageNotifier_reply">Hồi âm</string>
+  <string name="MessageNotifier_unknown_contact_message">Liên lạc</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal bị khoá!</string>

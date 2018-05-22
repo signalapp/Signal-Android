@@ -67,6 +67,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Lajmi %s</string>
   <string name="ContactsDatabase_signal_call_s">Thirrje përmes Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nuk u dërgua</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">U pranua porosi për shkëmbimin e çelësit, prek për të procesuar.</string>
@@ -447,6 +449,15 @@ e zgjodhët (%s) nuk është korrekt.</string>
   <string name="RingtonePreference_alarm_sound_default">Zëri i alarmit i parazgjedhur</string>
   <string name="RingtonePreference_add_ringtone_text">Shto zile</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nuk munda të shtoj zilen e personalizuar</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Nuk u gjetën rezultate për \'%s\'</string>
+  <string name="SearchFragment_header_contacts">Kontaktet</string>
+  <string name="SearchFragment_header_messages">Mesazhet</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Fto në Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Të kalojmë në Signal %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Fto në Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imazh</string>
   <string name="Slide_audio">Audio</string>
@@ -545,6 +556,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="MessageNotifier_reply">Përgjigju</string>
   <string name="MessageNotifier_pending_signal_messages">Mesazhe Signal të mbetur pezull</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Ju keni mesazhe Signal të mbetur pezull, shtypni për t\'i rimarrur</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Përgjigja e shpejtë nuk është në dispozicion kur Signal është i mbyllur!</string>

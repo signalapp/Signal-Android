@@ -48,6 +48,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(áudio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(local)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar um aplicativo para selecionar arquivos.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal precisa da permissão Memória para anexar fotos, vídeos, ou áudios, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Memória\".</string>
@@ -76,9 +77,12 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
   <string name="ContactsCursorLoader_contacts">Contatos</string>
+  <string name="ContactsCursorLoader_groups">Grupos</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Não entregue</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Mensagem para troca de chaves recebida, clique para processá-la.</string>
@@ -233,7 +237,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para ausência do Serviços Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não tem suporte para o Serviços Play. Clique para desabilitar as otimizações sistêmicas de bateria que impedem o Signal de receber mensagens enquanto está inativo.</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Compartilhar com</string>
+  <string name="ShareActivity_share_with">Encaminhar para</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Boas-vindas ao Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um mensageiro privado, para todas as situações: Signal.</string>
@@ -317,7 +321,7 @@
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Aperte e segure para gravar uma mensagem de voz e solte para enviá-la</string>
   <!--InviteActivity-->
-  <string name="InviteActivity_share">Compartilhar</string>
+  <string name="InviteActivity_share">Encaminhar para</string>
   <string name="InviteActivity_choose_contacts">Escolher contatos</string>
   <string name="InviteActivity_cancel">Cancelar</string>
   <string name="InviteActivity_sending">Enviando...</string>
@@ -346,6 +350,14 @@
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler configuracoes de MMS do provedor sem fio </string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Mídia</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Excluir mensagem selecionada?</item>
+    <item quantity="other">Excluir mensagens selecionadas?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Isto irá excluir permanentemente a mensagem selecionada.</item>
+    <item quantity="other">Isto irá excluir permanentemente todas as %1$d mensagens selecionadas.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Excluindo</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Excluindo mensagens...</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
@@ -480,6 +492,15 @@
   <string name="RingtonePreference_alarm_sound_default">Som padrão de alarme</string>
   <string name="RingtonePreference_add_ringtone_text">Adicionar toque</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Não foi possível adicionar toque personalizado</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Nenhum resultado encontrado para \'%s\'</string>
+  <string name="SearchFragment_header_contacts">Contatos</string>
+  <string name="SearchFragment_header_messages">Mensagens</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Convidar para o Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Vamos mudar para o Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Convidar para o Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_audio">Áudio</string>
@@ -571,6 +592,7 @@
   <string name="MediaPreviewActivity_draft">Rascunho</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal precisa da permissão Memória para gravar dados no armazenamento externo, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Memória\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Não é possível gravar dados no armazenamento externo sem as permissões</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Excluir mensagem?</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensagens novas em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
@@ -585,6 +607,7 @@
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_pending_signal_messages">Mensagens Signal pendentes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Você tem mensagens Signal pendentes. Clique para abrir e recuperá-las.</string>
+  <string name="MessageNotifier_unknown_contact_message">Contato</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está trancado!</string>
@@ -682,6 +705,7 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
+  <string name="QuoteView_photo">Foto</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>
   <!--conversation_fragment_cab-->
@@ -1142,10 +1166,12 @@
   <string name="BackupDialog_copied_to_clipboard">Copiada para a área de transferência</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Último backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em andamento</string>
+  <string name="LocalBackupJob_creating_backup">Criando backup...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até agora</string>
   <string name="RegistrationActivity_verify_s">Verificar %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Favor digitar o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número errado?</string>
+  <string name="RegistrationActivity_available_in">Disponível em:\u0020</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
   <string name="prompt_passphrase_activity__unlock_signal">Destrancar Signal</string>
@@ -1154,14 +1180,17 @@
   <string name="registration_lock_dialog_view__confirm_pin">Confirme o PIN</string>
   <string name="registration_lock_reminder_view__enter_pin">Insira o PIN</string>
   <string name="RegistrationActivity_too_many_attempts">Muitas tentativas</string>
+  <string name="RegistrationActivity_oh_no">Ah não!</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Eu esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
   <string name="RegistrationLockDialog_enable">Permitir</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Error ao conectar o serviço</string>
   <string name="RegistrationLockDialog_disable">Desabilitar</string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="preferences_chats__backups">Backups</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal está trancado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUE PARA DESBLOQUEAR</string>
   <string name="RegistrationLockDialog_reminder">Lembrete:</string>
+  <string name="recipient_preferences__about">Sobre</string>
   <!--EOF-->
 </resources>

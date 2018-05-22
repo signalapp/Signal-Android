@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(hang)</string>
   <string name="DraftDatabase_Draft_video_snippet">(videó)</string>
   <string name="DraftDatabase_Draft_location_snippet">(hely)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(válasz)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás médiafájl kiválasztásához.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">A Signal-nak szüksége van a Tárhely engedélyre, hogy fotókat, videókat vagy hangokat csatolhasson, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Tárhely\"-t.</string>
@@ -82,6 +83,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Üzenet %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal hívás %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nincs kézbesítve</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Kulcs-csere üzenet érkezett, koppints a feldolgozáshoz.</string>
@@ -493,6 +496,15 @@ szám (%s) érvénytelen.
   <string name="RingtonePreference_alarm_sound_default">Alapértelmezett riasztási hang</string>
   <string name="RingtonePreference_add_ringtone_text">Csengőhang hozzáadása</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nem lehet hozzáadni az egyedi csengőhangot</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Nincs találat a \'%s\' kifejezésre</string>
+  <string name="SearchFragment_header_contacts">Kontaktok</string>
+  <string name="SearchFragment_header_messages">Üzenetek</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Meghívás a Signal-ba</string>
+  <string name="SharedContactDetailsActivity_invite_message">Válts Signal-ra: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Meghívás a Signal-ba</string>
   <!--Slide-->
   <string name="Slide_image">Kép</string>
   <string name="Slide_audio">Hang</string>
@@ -600,6 +612,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_reply">Válasz</string>
   <string name="MessageNotifier_pending_signal_messages">Függő Signal üzenetek</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Függő Signal üzeneteid vannak, koppint a megnyitáshoz és letöltéshez</string>
+  <string name="MessageNotifier_unknown_contact_message">Névjegy</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A gyors válasz nem érhető el, ha a Signal zárolva van!</string>

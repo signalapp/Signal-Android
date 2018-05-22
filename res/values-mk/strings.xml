@@ -50,6 +50,8 @@
   <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Порака %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Не е доставено</string>
   <string name="ConversationItem_group_action_left">%1$s ја напушти групата.</string>
@@ -235,6 +237,9 @@
   <string name="RegistrationService_registration_error">Грешка при регистрацијата</string>
   <!--RingtonePreference-->
   <string name="RingtonePreference_ringtone_silent">Ниедна</string>
+  <!--Search-->
+  <!--SharedContactDetailsActivity-->
+  <!--SharedContactView-->
   <!--Slide-->
   <string name="Slide_audio">Звук</string>
   <!--SmsMessageRecord-->

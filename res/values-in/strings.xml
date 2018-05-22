@@ -71,6 +71,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Pesan %s</string>
   <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Tidak terkirim</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima pesan pertukaran kunci, ketuk untuk memproses.</string>
@@ -438,6 +440,14 @@ isikan (%s) tidak tepat.
   <string name="RingtonePreference_alarm_sound_default">Suara pengingat standar</string>
   <string name="RingtonePreference_add_ringtone_text">Tambahkan nada dering</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Tidak dapat menambahkan nada dering sesuai keinginan</string>
+  <!--Search-->
+  <string name="SearchFragment_header_contacts">Kontak</string>
+  <string name="SearchFragment_header_messages">Pesan</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Undang ke Signal</string>
+  <string name="SharedContactDetailsActivity_invite_message">Ayo pindah ke Signal: %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Undang ke Signal</string>
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_audio">Audio</string>
@@ -539,6 +549,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_reply">Balas</string>
   <string name="MessageNotifier_pending_signal_messages">Pesan Signal tertunda</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Signal yang tertunda, ketuk untuk membuka dan menerima</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontak</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>

@@ -81,6 +81,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Съобщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Сигналс обаждане %s</string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Недоставен</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получи се съобщение за обмяна на ключове, натисни, за да продължиш.</string>
@@ -485,6 +487,15 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RingtonePreference_alarm_sound_default">Мелодия на аларма по подразбиране</string>
   <string name="RingtonePreference_add_ringtone_text">Добавяне на мелодия за прозвъняване</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Неуспешно добавяне на нов звук за прозвъняване</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">Не са открити резултати за \'1%s\'</string>
+  <string name="SearchFragment_header_contacts">Контакти</string>
+  <string name="SearchFragment_header_messages">Съобщения</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Покани в Сигнал</string>
+  <string name="SharedContactDetailsActivity_invite_message">Да преминем към Сигнал %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Покани в Сигнал</string>
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
   <string name="Slide_audio">Аудио</string>
@@ -591,6 +602,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="MessageNotifier_reply">Отговори</string>
   <string name="MessageNotifier_pending_signal_messages">Непрочетени Сигнал съобщения</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Имате непрочетени Сигнал съобщения, натиснете, за да ги отворите и прегледате</string>
+  <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Сигнал е заключен!</string>
