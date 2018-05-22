@@ -53,23 +53,25 @@ public class SearchDatabase extends Database {
 
   private static final String MESSAGES_QUERY =
       "SELECT " +
-        MmsSmsColumns.ADDRESS + ", " +
+        ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ADDRESS + ", " +
         "snippet(" + SMS_FTS_TABLE_NAME + ", -1, '', '', '...', 7) AS " + SNIPPET + ", " +
-        SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
+        SmsDatabase.TABLE_NAME + "." + SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
         MmsSmsColumns.THREAD_ID + ", " +
         "bm25(" + SMS_FTS_TABLE_NAME + ") AS " + RANK + " " +
       "FROM " + SmsDatabase.TABLE_NAME + " " +
       "INNER JOIN " + SMS_FTS_TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + ID + " = " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.ID + " " +
+      "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + SmsDatabase.TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
       "WHERE " + SMS_FTS_TABLE_NAME + " MATCH ? " +
       "UNION ALL " +
       "SELECT " +
-        MmsSmsColumns.ADDRESS + ", " +
+        ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ADDRESS + ", " +
         "snippet(" + MMS_FTS_TABLE_NAME + ", -1, '', '', '...', 7) AS " + SNIPPET + ", " +
-        MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
+        MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
         MmsSmsColumns.THREAD_ID + ", " +
         "bm25(" + MMS_FTS_TABLE_NAME + ") AS " + RANK + " " +
       "FROM " + MmsDatabase.TABLE_NAME + " " +
       "INNER JOIN " + MMS_FTS_TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " " +
+      "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + MmsDatabase.TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
       "WHERE " + MMS_FTS_TABLE_NAME + " MATCH ? " +
       "ORDER BY rank " +
       "LIMIT 500";
