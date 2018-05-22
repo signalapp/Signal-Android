@@ -7,7 +7,7 @@
     </item>
     <item android:top="1dp">
         <shape android:shape="rectangle" >
-            <solid android:color="@color/white" />
+            <solid android:color="?attr/search_background" />
         </shape>
     </item>
 </layer-list>

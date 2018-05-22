@@ -135,6 +135,7 @@
     <attr name="shared_contact_details_titlebar" format="color"/>
 
     <attr name="search_toolbar_background" format="color"/>
+    <attr name="search_background" format="color"/>
 
     <attr name="contact_list_divider" format="reference"/>
 
