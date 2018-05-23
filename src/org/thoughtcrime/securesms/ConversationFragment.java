@@ -266,7 +266,8 @@ public class ConversationFragment extends Fragment
 
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-      menu.findItem(R.id.menu_context_reply).setVisible(!messageRecord.isPending() &&
+      menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
+                                                        !messageRecord.isPending() &&
                                                         !messageRecord.isFailed()  &&
                                                         messageRecord.isSecure());
     }
