@@ -97,7 +97,7 @@ class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.Search
   @Override
   public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
     return new HeaderViewHolder(LayoutInflater.from(parent.getContext())
-                                              .inflate(R.layout.header_search_result, parent, false));
+                                              .inflate(R.layout.contact_selection_list_divider, parent, false));
   }
 
   @Override
@@ -199,7 +199,7 @@ class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.Search
 
     public HeaderViewHolder(View itemView) {
       super(itemView);
-      titleView = (TextView) itemView;
+      titleView = itemView.findViewById(R.id.label);
     }
 
     public void bind(int headerType) {
