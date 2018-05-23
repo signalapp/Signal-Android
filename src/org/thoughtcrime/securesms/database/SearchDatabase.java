@@ -73,7 +73,7 @@ public class SearchDatabase extends Database {
       "INNER JOIN " + MMS_FTS_TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " " +
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + MmsDatabase.TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
       "WHERE " + MMS_FTS_TABLE_NAME + " MATCH ? " +
-      "ORDER BY rank " +
+      "ORDER BY rank ASC, " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
       "LIMIT 500";
 
   public SearchDatabase(@NonNull Context context, @NonNull SQLCipherOpenHelper databaseHelper) {
