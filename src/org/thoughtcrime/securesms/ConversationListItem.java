@@ -319,6 +319,8 @@ public class ConversationListItem extends RelativeLayout
                                      @Nullable String value,
                                      @Nullable String highlight)
   {
+    value = value != null ? value.replaceAll("\n", " ") : null;
+
     if (value == null || highlight == null) {
       return new SpannableString(value);
     }
