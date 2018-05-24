@@ -12,8 +12,7 @@ import org.thoughtcrime.securesms.database.NoExternalStorageException;
 
 import java.io.File;
 
-public class StorageUtil
-{
+public class StorageUtil {
 
   public static File getBackupDirectory(Context context) throws NoExternalStorageException {
     File storage = null;
@@ -42,7 +41,6 @@ public class StorageUtil
         throw new NoExternalStorageException("Unable to create backup directory...");
       }
     }
-
 
     return backups;
   }

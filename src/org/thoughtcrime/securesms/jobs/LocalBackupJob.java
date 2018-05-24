@@ -52,7 +52,7 @@ public class LocalBackupJob extends ContextJob {
 
     try {
       String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);
-      File   backupDirectory = StorageUtil.getBackupCacheDirectory(context);
+      File   backupDirectory = StorageUtil.getBackupDirectory(context);
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
       String fileName        = String.format("signal-%s.backup", timestamp);
       File   backupFile      = new File(backupDirectory, fileName);
@@ -65,7 +65,7 @@ public class LocalBackupJob extends ContextJob {
         throw new IOException("Backup password is null");
       }
 
-      File tempFile = File.createTempFile("backup", "tmp", context.getExternalCacheDir());
+      File tempFile = File.createTempFile("backup", "tmp", StorageUtil.getBackupCacheDirectory(context));
 
       FullBackupExporter.export(context,
                                 AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
