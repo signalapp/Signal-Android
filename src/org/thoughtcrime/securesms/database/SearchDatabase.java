@@ -56,8 +56,7 @@ public class SearchDatabase extends Database {
         ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ADDRESS + ", " +
         "snippet(" + SMS_FTS_TABLE_NAME + ", -1, '', '', '...', 7) AS " + SNIPPET + ", " +
         SmsDatabase.TABLE_NAME + "." + SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
-        MmsSmsColumns.THREAD_ID + ", " +
-        "bm25(" + SMS_FTS_TABLE_NAME + ") AS " + RANK + " " +
+        MmsSmsColumns.THREAD_ID + " " +
       "FROM " + SmsDatabase.TABLE_NAME + " " +
       "INNER JOIN " + SMS_FTS_TABLE_NAME + " ON " + SMS_FTS_TABLE_NAME + "." + ID + " = " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.ID + " " +
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + SmsDatabase.TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
@@ -67,13 +66,12 @@ public class SearchDatabase extends Database {
         ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ADDRESS + ", " +
         "snippet(" + MMS_FTS_TABLE_NAME + ", -1, '', '', '...', 7) AS " + SNIPPET + ", " +
         MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
-        MmsSmsColumns.THREAD_ID + ", " +
-        "bm25(" + MMS_FTS_TABLE_NAME + ") AS " + RANK + " " +
+        MmsSmsColumns.THREAD_ID + " " +
       "FROM " + MmsDatabase.TABLE_NAME + " " +
       "INNER JOIN " + MMS_FTS_TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " " +
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + MmsDatabase.TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
       "WHERE " + MMS_FTS_TABLE_NAME + " MATCH ? " +
-      "ORDER BY rank ASC, " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
+      "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
       "LIMIT 500";
 
   public SearchDatabase(@NonNull Context context, @NonNull SQLCipherOpenHelper databaseHelper) {
