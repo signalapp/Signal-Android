@@ -1,10 +1,10 @@
 # Signal Android 
 
-Signal is a messaging app for simple private communication with friends.
+Signal is a messaging app for simple, private communication with friends.
 
-Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
+Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely and optionally supports plain SMS/MMS to function as a unified messenger. It can also encrypt the stored messages on your phone.
 
-Currently available on the Play store.
+Signal is currently available on the Google Play store.
 
 <a href='https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
 
@@ -29,9 +29,9 @@ https://www.transifex.com/projects/p/signal-android/
 ## Contributing Code
 Instructions on how to setup your development environment and build Signal can be found in  [BUILDING.md](https://github.com/signalapp/Signal-Android/blob/master/BUILDING.md).
 
-If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/master/CONTRIBUTING.md), that might answer some of your questions.
+If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/master/CONTRIBUTING.md). That might answer some of your questions.
 
-For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://whispersystems.discoursehosting.net) for a high-level discussion with the wider community before implementation.
+For larger changes and/or feature ideas, we ask that you propose it on the [unofficial Community Forum](https://whispersystems.discoursehosting.net) for a high-level discussion with the wider community before implementation.
 
 ## Contributing Ideas
 Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://whispersystems.discoursehosting.net).
