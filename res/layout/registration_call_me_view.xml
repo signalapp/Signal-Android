@@ -39,6 +39,8 @@
               android:layout_alignParentEnd="true"
               android:layout_alignParentRight="true"
               android:layout_centerVertical="true"
+              android:layout_marginStart="3dp"
+              android:layout_marginLeft="3dp"
               android:textSize="16sp"
               tools:text="1:04"/>
 
