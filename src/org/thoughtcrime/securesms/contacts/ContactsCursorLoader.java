@@ -63,6 +63,7 @@ public class ContactsCursorLoader extends CursorLoader {
                                                                   ContactsDatabase.LABEL_COLUMN,
                                                                   ContactsDatabase.CONTACT_TYPE_COLUMN};
 
+  private static final int RECENT_CONVERSATION_MAX = 25;
 
   private final String  filter;
   private final int     mode;
@@ -163,8 +164,8 @@ public class ContactsCursorLoader extends CursorLoader {
   private Cursor getRecentConversationsCursor() {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getContext());
 
-    MatrixCursor recentConversations = new MatrixCursor(CONTACT_PROJECTION, 5);
-    try (Cursor rawConversations = threadDatabase.getRecentConversationList(5)) {
+    MatrixCursor recentConversations = new MatrixCursor(CONTACT_PROJECTION, RECENT_CONVERSATION_MAX);
+    try (Cursor rawConversations = threadDatabase.getRecentConversationList(RECENT_CONVERSATION_MAX)) {
       ThreadDatabase.Reader reader = threadDatabase.readerFor(rawConversations);
       ThreadRecord threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
