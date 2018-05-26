@@ -22,7 +22,7 @@ public class BackupUtil {
 
   public static @NonNull String getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
     try {
-      BackupInfo backup = getLatestBackup();
+      BackupInfo backup = getLatestBackup(context);
 
       if (backup == null) return context.getString(R.string.BackupUtil_never);
       else                return DateUtils.getExtendedRelativeTimeSpanString(context, locale, backup.getTimestamp());
@@ -32,8 +32,8 @@ public class BackupUtil {
     }
   }
 
-  public static @Nullable BackupInfo getLatestBackup() throws NoExternalStorageException {
-    File       backupDirectory = StorageUtil.getBackupDirectory();
+  public static @Nullable BackupInfo getLatestBackup(@NonNull Context context) throws NoExternalStorageException {
+    File       backupDirectory = StorageUtil.getBackupDirectory(context);
     File[]     backups         = backupDirectory.listFiles();
     BackupInfo latestBackup    = null;
 
@@ -49,9 +49,9 @@ public class BackupUtil {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  public static void deleteAllBackups() {
+  public static void deleteAllBackups(@NonNull Context context) {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory();
+      File   backupDirectory = StorageUtil.getBackupDirectory(context);
       File[] backups         = backupDirectory.listFiles();
 
       for (File backup : backups) {
@@ -62,12 +62,12 @@ public class BackupUtil {
     }
   }
 
-  public static void deleteOldBackups() {
+  public static void deleteOldBackups(@NonNull Context context) {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory();
+      File   backupDirectory = StorageUtil.getBackupDirectory(context);
       File[] backups         = backupDirectory.listFiles();
 
-      if (backups != null && backups.length > 5) {
+      if (backups != null && backups.length > 2) {
         Arrays.sort(backups, (left, right) -> {
           long leftTimestamp  = getBackupTimestamp(left);
           long rightTimestamp = getBackupTimestamp(right);
@@ -79,7 +79,7 @@ public class BackupUtil {
           return (int)(rightTimestamp - leftTimestamp);
         });
 
-        for (int i=5;i<backups.length;i++) {
+        for (int i=2;i<backups.length;i++) {
           Log.w(TAG, "Deleting: " + backups[i].getAbsolutePath());
 
           if (!backups[i].delete()) {

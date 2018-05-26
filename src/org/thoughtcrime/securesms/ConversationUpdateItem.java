@@ -66,15 +66,21 @@ public class ConversationUpdateItem extends LinearLayout
   }
 
   @Override
-  public void bind(@NonNull MessageRecord messageRecord,
-                   @NonNull GlideRequests glideRequests,
-                   @NonNull Locale locale,
+  public void bind(@NonNull MessageRecord      messageRecord,
+                   @NonNull GlideRequests      glideRequests,
+                   @NonNull Locale             locale,
                    @NonNull Set<MessageRecord> batchSelected,
-                   @NonNull Recipient conversationRecipient)
+                   @NonNull Recipient          conversationRecipient,
+                            boolean            pulseUpdate)
   {
     this.batchSelected = batchSelected;
 
     bind(messageRecord, locale);
+  }
+
+  @Override
+  public void setEventListener(@Nullable EventListener listener) {
+    // No events to report yet
   }
 
   @Override

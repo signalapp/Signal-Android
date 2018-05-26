@@ -17,8 +17,10 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
@@ -29,6 +31,7 @@ public abstract class Database {
   protected static final String ID_WHERE              = "_id = ?";
   private   static final String CONVERSATION_URI      = "content://textsecure/thread/";
   private   static final String CONVERSATION_LIST_URI = "content://textsecure/conversation-list";
+  private   static final String ATTACHMENT_URI        = "content://textsecure/attachment/";
 
   protected       SQLCipherOpenHelper databaseHelper;
   protected final Context             context;
@@ -57,6 +60,16 @@ public abstract class Database {
 
   protected void setNotifyConverationListListeners(Cursor cursor) {
     cursor.setNotificationUri(context.getContentResolver(), Uri.parse(CONVERSATION_LIST_URI));
+  }
+
+  protected void registerAttachmentListeners(@NonNull ContentObserver observer) {
+    context.getContentResolver().registerContentObserver(Uri.parse(ATTACHMENT_URI),
+                                                         true,
+                                                         observer);
+  }
+
+  protected void notifyAttachmentListeners() {
+    context.getContentResolver().notifyChange(Uri.parse(ATTACHMENT_URI), null);
   }
 
   public void reset(SQLCipherOpenHelper databaseHelper) {

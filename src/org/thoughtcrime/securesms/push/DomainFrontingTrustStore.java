@@ -8,11 +8,11 @@ import org.whispersystems.signalservice.api.push.TrustStore;
 
 import java.io.InputStream;
 
-public class GoogleFrontingTrustStore implements TrustStore {
+public class DomainFrontingTrustStore implements TrustStore {
 
   private final Context context;
 
-  public GoogleFrontingTrustStore(Context context) {
+  public DomainFrontingTrustStore(Context context) {
     this.context = context.getApplicationContext();
   }
 

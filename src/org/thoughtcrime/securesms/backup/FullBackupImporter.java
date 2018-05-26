@@ -18,7 +18,9 @@ import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference;
 import org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
@@ -26,6 +28,7 @@ import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -33,6 +36,8 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -51,8 +56,7 @@ public class FullBackupImporter extends FullBackupBase {
                                 @NonNull SQLiteDatabase db, @NonNull File file, @NonNull String passphrase)
       throws IOException
   {
-    byte[]                  key         = getBackupKey(passphrase);
-    BackupRecordInputStream inputStream = new BackupRecordInputStream(file, key);
+    BackupRecordInputStream inputStream = new BackupRecordInputStream(file, passphrase);
     int                     count       = 0;
 
     try {
@@ -67,6 +71,7 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasStatement())  processStatement(db, frame.getStatement());
         else if (frame.hasPreference()) processPreference(context, frame.getPreference());
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
+        else if (frame.hasAvatar())     processAvatar(context, frame.getAvatar(), inputStream);
       }
 
       db.setTransactionSuccessful();
@@ -82,7 +87,18 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
-    db.execSQL(statement.getStatement());
+    List<Object> parameters = new LinkedList<>();
+
+    for (SqlStatement.SqlParameter parameter : statement.getParametersList()) {
+      if      (parameter.hasStringParamter())   parameters.add(parameter.getStringParamter());
+      else if (parameter.hasDoubleParameter())  parameters.add(parameter.getDoubleParameter());
+      else if (parameter.hasIntegerParameter()) parameters.add(parameter.getIntegerParameter());
+      else if (parameter.hasBlobParameter())    parameters.add(parameter.getBlobParameter().toByteArray());
+      else if (parameter.hasNullparameter())    parameters.add(null);
+    }
+
+    if (parameters.size() > 0) db.execSQL(statement.getStatement(), parameters.toArray());
+    else                       db.execSQL(statement.getStatement());
   }
 
   private static void processAttachment(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Attachment attachment, BackupRecordInputStream inputStream)
@@ -105,13 +121,17 @@ public class FullBackupImporter extends FullBackupBase {
               new String[] {String.valueOf(attachment.getRowId()), String.valueOf(attachment.getAttachmentId())});
   }
 
+  private static void processAvatar(@NonNull Context context, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {
+    inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, Address.fromExternal(context, avatar.getName()))), avatar.getLength());
+  }
+
   @SuppressLint("ApplySharedPref")
   private static void processPreference(@NonNull Context context, SharedPreference preference) {
     SharedPreferences preferences = context.getSharedPreferences(preference.getFile(), 0);
     preferences.edit().putString(preference.getKey(), preference.getValue()).commit();
   }
 
-  private static class BackupRecordInputStream {
+  private static class BackupRecordInputStream extends BackupStream {
 
     private final InputStream in;
     private final Cipher      cipher;
@@ -123,18 +143,9 @@ public class FullBackupImporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupRecordInputStream(@NonNull File file, @NonNull byte[] key) throws IOException {
+    private BackupRecordInputStream(@NonNull File file, @NonNull String passphrase) throws IOException {
       try {
-        byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
-        byte[][] split   = ByteUtil.split(derived, 32, 32);
-
-        this.cipherKey = split[0];
-        this.macKey    = split[1];
-
-        this.cipher = Cipher.getInstance("AES/CTR/NoPadding");
-        this.mac    = Mac.getInstance("HmacSHA256");
         this.in     = new FileInputStream(file);
-        this.mac.init(new SecretKeySpec(macKey, "HmacSHA256"));
 
         byte[] headerLengthBytes = new byte[4];
         Util.readFully(in, headerLengthBytes);
@@ -156,6 +167,17 @@ public class FullBackupImporter extends FullBackupBase {
         if (iv.length != 16) {
           throw new IOException("Invalid IV length!");
         }
+
+        byte[]   key     = getBackupKey(passphrase, header.hasSalt() ? header.getSalt().toByteArray() : null);
+        byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
+        byte[][] split   = ByteUtil.split(derived, 32, 32);
+
+        this.cipherKey = split[0];
+        this.macKey    = split[1];
+
+        this.cipher = Cipher.getInstance("AES/CTR/NoPadding");
+        this.mac    = Mac.getInstance("HmacSHA256");
+        this.mac.init(new SecretKeySpec(macKey, "HmacSHA256"));
 
         this.counter = Conversions.byteArrayToInt(iv);
       } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
@@ -182,9 +204,18 @@ public class FullBackupImporter extends FullBackupBase {
           mac.update(buffer, 0, read);
 
           byte[] plaintext = cipher.update(buffer, 0, read);
-          out.write(plaintext, 0, plaintext.length);
+
+          if (plaintext != null) {
+            out.write(plaintext, 0, plaintext.length);
+          }
 
           length -= read;
+        }
+
+        byte[] plaintext = cipher.doFinal();
+
+        if (plaintext != null) {
+          out.write(plaintext, 0, plaintext.length);
         }
 
         out.close();
@@ -203,7 +234,7 @@ public class FullBackupImporter extends FullBackupBase {
           //destination.delete();
           throw new IOException("Bad MAC");
         }
-      } catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
+      } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
         throw new AssertionError(e);
       }
     }

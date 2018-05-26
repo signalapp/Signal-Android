@@ -16,7 +16,7 @@ public class PushRegistrationReminder extends Reminder {
 
     final OnClickListener okListener = v -> {
       Intent intent = new Intent(context, RegistrationActivity.class);
-      intent.putExtra("cancel_button", true);
+      intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
       context.startActivity(intent);
     };
 

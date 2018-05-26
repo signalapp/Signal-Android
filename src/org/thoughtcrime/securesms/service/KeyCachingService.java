@@ -56,11 +56,14 @@ import java.util.concurrent.TimeUnit;
 
 public class KeyCachingService extends Service {
 
+  private static final String TAG = KeyCachingService.class.getSimpleName();
+
   public static final int SERVICE_RUNNING_ID = 4141;
 
   public  static final String KEY_PERMISSION           = "org.thoughtcrime.securesms.ACCESS_SECRETS";
   public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
   public  static final String CLEAR_KEY_EVENT          = "org.thoughtcrime.securesms.service.action.CLEAR_KEY_EVENT";
+  public  static final String LOCK_TOGGLED_EVENT       = "org.thoughtcrime.securesms.service.action.LOCK_ENABLED_EVENT";
   private static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
   public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
   public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
@@ -133,6 +136,7 @@ public class KeyCachingService extends Service {
         case PASSPHRASE_EXPIRED_EVENT: handleClearKey();        break;
         case DISABLE_ACTION:           handleDisableService();  break;
         case LOCALE_CHANGE_EVENT:      handleLocaleChanged();   break;
+        case LOCK_TOGGLED_EVENT:       handleLockToggled();     break;
       }
     }
 
@@ -207,6 +211,17 @@ public class KeyCachingService extends Service {
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  private void handleLockToggled() {
+    stopForeground(true);
+
+    try {
+      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+      setMasterSecret(masterSecret);
+    } catch (InvalidPassphraseException e) {
+      Log.w(TAG, e);
+    }
   }
 
   private void handleDisableService() {

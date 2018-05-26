@@ -13,13 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.bumptech.glide.load.resource.gif.GifDrawableEncoder;
+import com.bumptech.glide.load.resource.gif.GifDrawableResource;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.util.ByteBufferUtil;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -32,7 +35,10 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.WritableByteChannel;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -94,17 +100,20 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
     }
 
 
-    public File getFile(boolean forMms) throws ExecutionException, InterruptedException {
+    public byte[] getData(boolean forMms) throws ExecutionException, InterruptedException {
       synchronized (this) {
         while (!modelReady) {
           Util.wait(this, 0);
         }
       }
 
-      return glideRequests.load(forMms ? new GiphyPaddedUrl(image.getGifMmsUrl(), image.getMmsGifSize()) :
-                                         new GiphyPaddedUrl(image.getGifUrl(), image.getGifSize()))
-                          .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                          .get();
+      GifDrawable drawable = glideRequests.asGif()
+                                          .load(forMms ? new GiphyPaddedUrl(image.getGifMmsUrl(), image.getMmsGifSize()) :
+                                                         new GiphyPaddedUrl(image.getGifUrl(), image.getGifSize()))
+                                          .submit(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                                          .get();
+
+      return ByteBufferUtil.toBytes(drawable.getBuffer());
     }
 
     public synchronized void setModelReady() {

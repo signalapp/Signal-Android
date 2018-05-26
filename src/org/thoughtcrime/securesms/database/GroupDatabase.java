@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -304,7 +305,7 @@ public class GroupDatabase extends Database {
     }
   }
 
-  public static class Reader {
+  public static class Reader implements Closeable {
 
     private final Cursor cursor;
 
@@ -338,6 +339,7 @@ public class GroupDatabase extends Database {
                              cursor.getInt(cursor.getColumnIndexOrThrow(MMS)) == 1);
     }
 
+    @Override
     public void close() {
       if (this.cursor != null)
         this.cursor.close();

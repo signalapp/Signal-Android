@@ -10,7 +10,16 @@ option java_package         = "org.thoughtcrime.securesms.backup";
 option java_outer_classname = "BackupProtos";
 
 message SqlStatement {
-    optional string statement = 1;
+    message SqlParameter {
+        optional string stringParamter   = 1;
+        optional uint64 integerParameter = 2;
+        optional double doubleParameter  = 3;
+        optional bytes  blobParameter    = 4;
+        optional bool   nullparameter    = 5;
+    }
+
+    optional string       statement  = 1;
+    repeated SqlParameter parameters = 2;
 }
 
 message SharedPreference {
@@ -25,12 +34,18 @@ message Attachment {
     optional uint32 length       = 3;
 }
 
+message Avatar {
+    optional string name   = 1;
+    optional uint32 length = 2;
+}
+
 message DatabaseVersion {
     optional uint32 version = 1;
 }
 
 message Header {
-    optional bytes iv = 1;
+    optional bytes iv   = 1;
+    optional bytes salt = 2;
 }
 
 message BackupFrame {
@@ -40,4 +55,5 @@ message BackupFrame {
     optional Attachment       attachment = 4;
     optional DatabaseVersion  version    = 5;
     optional bool             end        = 6;
+    optional Avatar           avatar     = 7;
 }

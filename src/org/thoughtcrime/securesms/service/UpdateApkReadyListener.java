@@ -14,6 +14,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -55,7 +56,7 @@ public class UpdateApkReadyListener extends BroadcastReceiver {
 
   private void displayInstallNotification(Context context, Uri uri) {
     Intent intent = new Intent(Intent.ACTION_VIEW);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
     intent.setDataAndType(uri, "application/vnd.android.package-archive");
 
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -87,7 +88,7 @@ public class UpdateApkReadyListener extends BroadcastReceiver {
 
         if (localUri != null) {
           File   localFile = new File(Uri.parse(localUri).getPath());
-          return Uri.fromFile(localFile);
+          return FileProviderUtil.getUriFor(context, localFile);
         }
       }
     } finally {

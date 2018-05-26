@@ -23,12 +23,17 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
+import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.mms.QuoteModel;
+import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -43,12 +48,13 @@ public class InputPanel extends LinearLayout
 
   private static final int FADE_TIME = 150;
 
-  private EmojiToggle   emojiToggle;
-  private ComposeText   composeText;
-  private View          quickCameraToggle;
-  private View          quickAudioToggle;
-  private View          buttonToggle;
-  private View          recordingContainer;
+  private QuoteView   quoteView;
+  private EmojiToggle emojiToggle;
+  private ComposeText composeText;
+  private View        quickCameraToggle;
+  private View        quickAudioToggle;
+  private View        buttonToggle;
+  private View        recordingContainer;
 
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
@@ -74,15 +80,18 @@ public class InputPanel extends LinearLayout
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.emojiToggle            = ViewUtil.findById(this, R.id.emoji_toggle);
-    this.composeText            = ViewUtil.findById(this, R.id.embedded_text_editor);
-    this.quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
-    this.quickAudioToggle       = ViewUtil.findById(this, R.id.quick_audio_toggle);
-    this.buttonToggle           = ViewUtil.findById(this, R.id.button_toggle);
-    this.recordingContainer     = ViewUtil.findById(this, R.id.recording_container);
-    this.recordTime             = new RecordTime((TextView) ViewUtil.findById(this, R.id.record_time));
-    this.slideToCancel          = new SlideToCancel(ViewUtil.findById(this, R.id.slide_to_cancel));
-    this.microphoneRecorderView = ViewUtil.findById(this, R.id.recorder_view);
+    View quoteDismiss = findViewById(R.id.quote_dismiss);
+
+    this.quoteView              = findViewById(R.id.quote_view);
+    this.emojiToggle            = findViewById(R.id.emoji_toggle);
+    this.composeText            = findViewById(R.id.embedded_text_editor);
+    this.quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
+    this.quickAudioToggle       = findViewById(R.id.quick_audio_toggle);
+    this.buttonToggle           = findViewById(R.id.button_toggle);
+    this.recordingContainer     = findViewById(R.id.recording_container);
+    this.recordTime             = new RecordTime(findViewById(R.id.record_time));
+    this.slideToCancel          = new SlideToCancel(findViewById(R.id.slide_to_cancel));
+    this.microphoneRecorderView = findViewById(R.id.recorder_view);
     this.microphoneRecorderView.setListener(this);
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -97,6 +106,8 @@ public class InputPanel extends LinearLayout
       emojiToggle.setVisibility(View.VISIBLE);
       emojiVisible = true;
     }
+
+    quoteDismiss.setOnClickListener(v -> clearQuote());
   }
 
   public void setListener(final @NonNull Listener listener) {
@@ -107,6 +118,23 @@ public class InputPanel extends LinearLayout
 
   public void setMediaListener(@NonNull MediaListener listener) {
     composeText.setMediaListener(listener);
+  }
+
+  public void setQuote(@NonNull GlideRequests glideRequests, long id, @NonNull Recipient author, @NonNull String body, @NonNull SlideDeck attachments) {
+    this.quoteView.setQuote(glideRequests, id, author, body, attachments);
+    this.quoteView.setVisibility(View.VISIBLE);
+  }
+
+  public void clearQuote() {
+    this.quoteView.dismiss();
+  }
+
+  public Optional<QuoteModel> getQuote() {
+    if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
+      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getAddress(), quoteView.getBody(), quoteView.getAttachments()));
+    } else {
+      return Optional.absent();
+    }
   }
 
   public void setEmojiDrawer(@NonNull EmojiDrawer emojiDrawer) {
@@ -209,6 +237,7 @@ public class InputPanel extends LinearLayout
   public void onEmojiSelected(String emoji) {
     composeText.insertEmoji(emoji);
   }
+
 
   public interface Listener {
     void onRecorderStarted();
