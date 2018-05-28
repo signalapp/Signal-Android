@@ -25,6 +25,7 @@ public class EmojiTextView extends AppCompatTextView {
 
   private CharSequence originalText;
   private float        originalFontSize;
+  private boolean      useSystemEmoji;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -47,28 +48,31 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   @Override public void setText(@Nullable CharSequence text, BufferType type) {
-    if (Util.equals(originalText, text)) {
+    if (Util.equals(originalText, text) && useSystemEmoji == useSystemEmoji()) {
       return;
     }
 
-    originalText = text;
+    originalText   = text;
+    useSystemEmoji = useSystemEmoji();
 
-    EmojiProvider provider = EmojiProvider.getInstance(getContext());
+    EmojiProvider             provider   = EmojiProvider.getInstance(getContext());
     EmojiParser.CandidateList candidates = provider.getCandidates(text);
 
     if (scaleEmojis && candidates != null && candidates.allEmojis) {
-      int emojis = candidates.size();
-      float scale = 1.0f;
+      int   emojis = candidates.size();
+      float scale  = 1.0f;
+
       if (emojis <= 8) scale += 0.25f;
       if (emojis <= 6) scale += 0.25f;
       if (emojis <= 4) scale += 0.25f;
       if (emojis <= 2) scale += 0.25f;
+
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize * scale);
     } else if (scaleEmojis) {
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize);
     }
 
-    if (useSystemEmoji() || candidates == null || candidates.size() == 0) {
+    if (useSystemEmoji || candidates == null || candidates.size() == 0) {
       super.setText(text, BufferType.NORMAL);
       return;
     }
@@ -85,7 +89,7 @@ public class EmojiTextView extends AppCompatTextView {
 
   private void ellipsize() {
     post(() -> {
-      if (getLayout() == null || getLineCount() == 0) {
+      if (getLayout() == null) {
         ellipsize();
         return;
       }
