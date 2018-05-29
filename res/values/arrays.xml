@@ -273,11 +273,15 @@
     </integer-array>
 
     <array name="scribble_colors">
-        <item>#000000</item>
+        <item>#ffffff</item>
         <item>#ff0000</item>
-        <item>#ffff00</item>
-        <item>#00ffff</item>
         <item>#ff00ff</item>
+        <item>#0000ff</item>
+        <item>#00ffff</item>
+        <item>#00ff00</item>
+        <item>#ffff00</item>
+        <item>#ff5500</item>
+        <item>#000000</item>
     </array>
 
     <string-array name="pref_message_font_size_entries">

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/scribble_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:src="@drawable/ic_check_white_24dp"
+        android:padding="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|top"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
+
+        <ImageView
+            android:id="@+id/scribble_text_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_text_fields_white_24dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <ImageView
+            android:id="@+id/scribble_draw_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_brush_white_24dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <ImageView
+            android:id="@+id/scribble_highlight_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_highlight_white_24"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <ImageView
+            android:id="@+id/scribble_sticker_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tag_faces_white_24dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <ImageView
+            android:id="@+id/scribble_undo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_replay_white_24dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <ImageView
+            android:id="@+id/scribble_delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_white_24dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker
+            android:id="@+id/scribble_color_picker"
+            android:layout_width="26dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            app:pickerBorderWidth="4dp"
+            app:pickerBorderColor="@color/white"
+            app:pickerColors="@array/scribble_colors"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/scribble_color_palette"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+</merge>

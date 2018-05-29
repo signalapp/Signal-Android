@@ -88,7 +88,7 @@ public class TextLayer extends Layer {
 
     float FONT_SIZE_STEP = 0.008F;
 
-    float INITIAL_FONT_SIZE = 0.075F;
+    float INITIAL_FONT_SIZE = 0.1F;
     int INITIAL_FONT_COLOR = 0xff000000;
 
     float INITIAL_SCALE = 0.8F; // set the same to avoid text scaling
