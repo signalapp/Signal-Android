@@ -373,4 +373,7 @@
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>
 
+    <style name="TextSecure.ScribbleTheme" parent="TextSecure.DarkNoActionBar">
+    </style>
+
 </resources>
