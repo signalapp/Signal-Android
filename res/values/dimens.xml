@@ -58,7 +58,7 @@
     <dimen name="onboarding_title_size">34sp</dimen>
     <dimen name="onboarding_subtitle_size">20sp</dimen>
 
-    <dimen name="scribble_stroke_size">3dp</dimen>
+    <dimen name="scribble_stroke_size">2dp</dimen>
 
     <dimen name="floating_action_button_margin">16dp</dimen>
 
