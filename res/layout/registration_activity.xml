@@ -186,6 +186,15 @@
                       android:text="@android:string/cancel"/>
 
             <TextView style="@style/Registration.Description"
+                      android:id="@+id/terms_label"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="16dp"
+                      android:layout_gravity="center_horizontal"
+                      android:textColor="#73B7F0"
+                      android:text="@string/RegistrationActivity_terms_and_privacy"/>
+
+            <TextView style="@style/Registration.Description"
                       android:id="@+id/registration_information"
                       android:layout_width="fill_parent"
                       android:gravity="start"
@@ -194,31 +203,15 @@
                       android:layout_marginTop="16dp"
                       android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
 
-            <LinearLayout android:id="@+id/information_link_container"
-                          android:clickable="true"
-                          android:orientation="horizontal"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginTop="16dp"
-                          android:layout_marginBottom="16dip">
-
-                <ImageView android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:clickable="false"
-                           android:src="@drawable/ic_info_white_18dp"
-                           android:tint="#73B7F0"/>
-
-                <TextView style="@style/Registration.Description"
-                          android:id="@+id/information_label"
-                          android:clickable="false"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginLeft="3dp"
-                          android:layout_gravity="center_vertical"
-                          android:textColor="#73B7F0"
-                          android:text="@string/RegistrationActivity_more_information"/>
-            </LinearLayout>
-
+            <TextView style="@style/Registration.Description"
+                android:id="@+id/information_label"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#73B7F0"
+                android:text="@string/RegistrationActivity_more_information"/>
 
         </LinearLayout>
 
