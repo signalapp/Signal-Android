@@ -142,7 +142,7 @@ public class DirectoryHelper {
         ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context));
       }
 
-      if (!activeUser && systemContact) {
+      if (!activeUser && systemContact && !TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
         notifyNewUsers(context, Collections.singletonList(recipient.getAddress()));
       }
 
