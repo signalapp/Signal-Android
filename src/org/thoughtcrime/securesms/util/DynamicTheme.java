@@ -32,16 +32,16 @@ public class DynamicTheme {
   protected int getSelectedTheme(Activity activity) {
     String theme = TextSecurePreferences.getTheme(activity);
 
-    if (theme.equals(SYSTEM)) {
-      int systemFlags = activity.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-      if(systemFlags == Configuration.UI_MODE_NIGHT_YES)
-        return R.style.TextSecure_DarkTheme;
-      else
-        return R.style.TextSecure_LightTheme;
-    }
-    else if (theme.equals(DARK)) return R.style.TextSecure_DarkTheme;
+    if (theme.equals(DARK) || (theme.equals(SYSTEM) && doesSystemWantDarkTheme(activity)))
+      return R.style.TextSecure_DarkTheme;
 
     return R.style.TextSecure_LightTheme;
+  }
+
+  boolean doesSystemWantDarkTheme(Activity activity) {
+    int systemFlags = activity.getResources().getConfiguration().uiMode
+            & Configuration.UI_MODE_NIGHT_MASK;
+    return systemFlags == Configuration.UI_MODE_NIGHT_YES;
   }
 
   private static final class OverridePendingTransition {
