@@ -23,9 +23,11 @@ public class EmojiTextView extends AppCompatTextView {
 
   private final boolean scaleEmojis;
 
-  private CharSequence originalText;
+  private CharSequence previousText;
+  private BufferType   previousBufferType;
   private float        originalFontSize;
   private boolean      useSystemEmoji;
+  private boolean      sizeChangeInProgress;
 
   public EmojiTextView(Context context) {
     this(context, null);
@@ -48,13 +50,6 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   @Override public void setText(@Nullable CharSequence text, BufferType type) {
-    if (Util.equals(originalText, text) && useSystemEmoji == useSystemEmoji()) {
-      return;
-    }
-
-    originalText   = text;
-    useSystemEmoji = useSystemEmoji();
-
     EmojiProvider             provider   = EmojiProvider.getInstance(getContext());
     EmojiParser.CandidateList candidates = provider.getCandidates(text);
 
@@ -71,6 +66,14 @@ public class EmojiTextView extends AppCompatTextView {
     } else if (scaleEmojis) {
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize);
     }
+
+    if (unchanged(text, type)) {
+      return;
+    }
+
+    previousText       = text;
+    previousBufferType = type;
+    useSystemEmoji     = useSystemEmoji();
 
     if (useSystemEmoji || candidates == null || candidates.size() == 0) {
       super.setText(text, BufferType.NORMAL);
@@ -117,11 +120,30 @@ public class EmojiTextView extends AppCompatTextView {
     });
   }
 
+  private boolean unchanged(CharSequence text, BufferType bufferType) {
+    return Util.equals(previousText, text)             &&
+           Util.equals(previousBufferType, bufferType) &&
+           useSystemEmoji == useSystemEmoji()          &&
+           !sizeChangeInProgress;
+  }
+
   private boolean useSystemEmoji() {
    return TextSecurePreferences.isSystemEmojiPreferred(getContext());
   }
 
-  @Override public void invalidateDrawable(@NonNull Drawable drawable) {
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    super.onSizeChanged(w, h, oldw, oldh);
+
+    if (!sizeChangeInProgress) {
+      sizeChangeInProgress = true;
+      setText(previousText, previousBufferType);
+      sizeChangeInProgress = false;
+    }
+  }
+
+  @Override
+  public void invalidateDrawable(@NonNull Drawable drawable) {
     if (drawable instanceof EmojiDrawable) invalidate();
     else                                   super.invalidateDrawable(drawable);
   }
