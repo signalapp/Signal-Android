@@ -315,13 +315,17 @@ public class ConversationListItem extends RelativeLayout
     unreadIndicator.setVisibility(View.VISIBLE);
   }
 
-  private Spanned getHighlightedSpan(@NonNull Locale locale,
+  private Spanned getHighlightedSpan(@NonNull  Locale locale,
                                      @Nullable String value,
                                      @Nullable String highlight)
   {
-    value = value != null ? value.replaceAll("\n", " ") : null;
+    if (value == null) {
+      return new SpannableString("");
+    }
 
-    if (value == null || highlight == null) {
+    value = value.replaceAll("\n", " ");
+
+    if (highlight == null) {
       return new SpannableString(value);
     }
 
