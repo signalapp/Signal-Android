@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.util.Pair;
 
@@ -61,6 +62,8 @@ public class FullBackupImporter extends FullBackupBase {
 
     try {
       db.beginTransaction();
+
+      dropAllTables(db);
 
       BackupFrame frame;
 
@@ -129,6 +132,19 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processPreference(@NonNull Context context, SharedPreference preference) {
     SharedPreferences preferences = context.getSharedPreferences(preference.getFile(), 0);
     preferences.edit().putString(preference.getKey(), preference.getValue()).commit();
+  }
+
+  private static void dropAllTables(@NonNull SQLiteDatabase db) {
+    try (Cursor cursor = db.rawQuery("SELECT name, type FROM sqlite_master", null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        String name = cursor.getString(0);
+        String type = cursor.getString(1);
+
+        if ("table".equals(type)) {
+          db.execSQL("DROP TABLE IF EXISTS " + name);
+        }
+      }
+    }
   }
 
   private static class BackupRecordInputStream extends BackupStream {
