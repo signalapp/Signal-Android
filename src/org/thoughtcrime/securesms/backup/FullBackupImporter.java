@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.util.Pair;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
@@ -37,6 +39,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -90,6 +93,14 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
+    boolean isForSmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.SMS_FTS_TABLE_NAME + "_");
+    boolean isForMmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.MMS_FTS_TABLE_NAME + "_");
+
+    if (isForSmsFtsSecretTable || isForMmsFtsSecretTable) {
+      Log.i(TAG, "Ignoring import for statement: " + statement.getStatement());
+      return;
+    }
+
     List<Object> parameters = new LinkedList<>();
 
     for (SqlStatement.SqlParameter parameter : statement.getParametersList()) {

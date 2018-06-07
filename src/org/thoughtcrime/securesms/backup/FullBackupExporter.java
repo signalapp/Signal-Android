@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
+import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -76,9 +77,11 @@ public class FullBackupExporter extends FullBackupBase {
         count = exportTable(table, input, outputStream, cursor -> cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0, null, count);
       } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
         count = exportTable(table, input, outputStream, null, cursor -> exportAttachment(attachmentSecret, cursor, outputStream), count);
-      } else if (!table.equals(SignedPreKeyDatabase.TABLE_NAME)  &&
-                 !table.equals(OneTimePreKeyDatabase.TABLE_NAME) &&
-                 !table.equals(SessionDatabase.TABLE_NAME))
+      } else if (!table.equals(SignedPreKeyDatabase.TABLE_NAME)       &&
+                 !table.equals(OneTimePreKeyDatabase.TABLE_NAME)      &&
+                 !table.equals(SessionDatabase.TABLE_NAME)            &&
+                 !table.startsWith(SearchDatabase.SMS_FTS_TABLE_NAME) &&
+                 !table.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME))
       {
         count = exportTable(table, input, outputStream, null, null, count);
       }
@@ -111,14 +114,17 @@ public class FullBackupExporter extends FullBackupBase {
         String type = cursor.getString(2);
 
         if (sql != null) {
-          if ("table".equals(type)) {
-            outputStream.write(BackupProtos.SqlStatement.newBuilder().setStatement("DROP TABLE IF EXISTS " + name).build());
-            tables.add(name);
-          } else if ("index".equals(type)) {
-            outputStream.write(BackupProtos.SqlStatement.newBuilder().setStatement("DROP INDEX IF EXISTS " + name).build());
-          }
 
-          outputStream.write(BackupProtos.SqlStatement.newBuilder().setStatement(cursor.getString(0)).build());
+          boolean isSmsFtsSecretTable = name != null && !name.equals(SearchDatabase.SMS_FTS_TABLE_NAME) && name.startsWith(SearchDatabase.SMS_FTS_TABLE_NAME);
+          boolean isMmsFtsSecretTable = name != null && !name.equals(SearchDatabase.MMS_FTS_TABLE_NAME) && name.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME);
+
+          if (!isSmsFtsSecretTable && !isMmsFtsSecretTable) {
+            if ("table".equals(type)) {
+              tables.add(name);
+            }
+
+            outputStream.write(BackupProtos.SqlStatement.newBuilder().setStatement(cursor.getString(0)).build());
+          }
         }
       }
     }
