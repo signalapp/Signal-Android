@@ -15,6 +15,7 @@ import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -149,6 +150,9 @@ public class TextSecurePreferences {
   private static final String REGISTRATION_LOCK_PIN_PREF               = "pref_registration_lock_pin";
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME     = "pref_registration_lock_last_reminder_time";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL = "pref_registration_lock_next_reminder_interval";
+
+  private static final String SERVICE_OUTAGE         = "pref_service_outage";
+  private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
@@ -901,6 +905,22 @@ public class TextSecurePreferences {
     return getStringSetPreference(context,
                                   key,
                                   new HashSet<>(Arrays.asList(context.getResources().getStringArray(defaultValuesRes))));
+  }
+
+  public static void setLastOutageCheckTime(Context context, long timestamp) {
+    setLongPreference(context, LAST_OUTAGE_CHECK_TIME, timestamp);
+  }
+
+  public static long getLastOutageCheckTime(Context context) {
+    return getLongPreference(context, LAST_OUTAGE_CHECK_TIME, 0);
+  }
+
+  public static void setServiceOutage(Context context, boolean isOutage) {
+    setBooleanPreference(context, SERVICE_OUTAGE, isOutage);
+  }
+
+  public static boolean getServiceOutage(Context context) {
+    return getBooleanPreference(context, SERVICE_OUTAGE, false);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

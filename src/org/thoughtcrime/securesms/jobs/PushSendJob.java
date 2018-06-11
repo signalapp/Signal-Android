@@ -71,6 +71,11 @@ public abstract class PushSendJob extends SendJob {
     onPushSend();
   }
 
+  @Override
+  public void onCanceled() {
+    ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob(context));
+  }
+
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {
     if (!recipient.resolve().isSystemContact() && !recipient.resolve().isProfileSharing()) {
       return Optional.absent();

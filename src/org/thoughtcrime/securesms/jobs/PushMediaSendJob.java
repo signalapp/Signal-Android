@@ -94,6 +94,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onCanceled() {
+    super.onCanceled();
+
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
   }

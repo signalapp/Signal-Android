@@ -139,6 +139,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onCanceled() {
+    super.onCanceled();
+
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 

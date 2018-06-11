@@ -83,6 +83,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onCanceled() {
+    super.onCanceled();
+
     DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
 
     long      threadId  = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
