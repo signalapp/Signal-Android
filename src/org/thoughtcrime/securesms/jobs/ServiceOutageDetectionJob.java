@@ -1,0 +1,78 @@
+package org.thoughtcrime.securesms.jobs;
+
+import android.content.Context;
+import android.util.Log;
+
+import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.jobqueue.requirements.NetworkRequirement;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+public class ServiceOutageDetectionJob extends ContextJob {
+
+  private static final String TAG = ServiceOutageDetectionJob.class.getSimpleName();
+
+  private static final String IP_SUCCESS = "127.0.0.1";
+  private static final String IP_FAILURE = "127.0.0.2";
+  private static final long   CHECK_TIME = 1000 * 60;
+
+  public ServiceOutageDetectionJob(Context context) {
+    super(context, new JobParameters.Builder()
+                                    .withGroupId(ServiceOutageDetectionJob.class.getSimpleName())
+                                    .withRequirement(new NetworkRequirement(context))
+                                    .withRetryCount(5)
+                                    .create());
+  }
+
+  @Override
+  public void onAdded() {
+  }
+
+  @Override
+  public void onRun() throws RetryLaterException {
+    long timeSinceLastCheck = System.currentTimeMillis() - TextSecurePreferences.getLastOutageCheckTime(context);
+    if (timeSinceLastCheck < CHECK_TIME) {
+      Log.w(TAG, "Skipping service outage check. Too soon.");
+      return;
+    }
+
+    try {
+      InetAddress address = InetAddress.getByName(BuildConfig.SIGNAL_SERVICE_STATUS_URL);
+
+      if (IP_SUCCESS.equals(address.getHostAddress())) {
+        Log.w(TAG, "Service is available.");
+        TextSecurePreferences.setServiceOutage(context, false);
+      } else if (IP_FAILURE.equals(address.getHostAddress())) {
+        Log.w(TAG, "Service is down.");
+        TextSecurePreferences.setServiceOutage(context, true);
+      } else {
+        Log.w(TAG, "Service status check returned an unrecognized IP address. Assuming outage.");
+        TextSecurePreferences.setServiceOutage(context, true);
+      }
+
+      TextSecurePreferences.setLastOutageCheckTime(context, System.currentTimeMillis());
+      EventBus.getDefault().post(new ReminderUpdateEvent());
+    } catch (UnknownHostException e) {
+      throw new RetryLaterException(e);
+    }
+  }
+
+  @Override
+  public boolean onShouldRetry(Exception e) {
+    return e instanceof RetryLaterException;
+  }
+
+  @Override
+  public void onCanceled() {
+    Log.w(TAG, "Service status check could not complete. Assuming success to avoid false positives due to bad network.");
+    TextSecurePreferences.setServiceOutage(context, false);
+    TextSecurePreferences.setLastOutageCheckTime(context, System.currentTimeMillis());
+    EventBus.getDefault().post(new ReminderUpdateEvent());
+  }
+}

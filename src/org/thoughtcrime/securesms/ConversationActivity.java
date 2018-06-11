@@ -94,6 +94,7 @@ import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.InviteReminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
+import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
@@ -121,6 +122,7 @@ import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
+import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AudioSlide;
@@ -1115,12 +1117,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   protected void updateReminders(boolean seenInvite) {
-    Log.w(TAG, "updateReminders(" + seenInvite+")");
+    Log.w(TAG, "updateReminders(" + seenInvite + ")");
 
     if (UnauthorizedReminder.isEligible(this)) {
       reminderView.get().showReminder(new UnauthorizedReminder(this));
     } else if (ExpiredBuildReminder.isEligible()) {
       reminderView.get().showReminder(new ExpiredBuildReminder(this));
+    } else if (ServiceOutageReminder.isEligible(this)) {
+      ApplicationContext.getInstance(this).getJobManager().add(new ServiceOutageDetectionJob(this));
+      reminderView.get().showReminder(new ServiceOutageReminder(this));
     } else if (TextSecurePreferences.isPushRegistered(this)      &&
                TextSecurePreferences.isShowInviteReminders(this) &&
                !isSecureText                                            &&

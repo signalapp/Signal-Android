@@ -58,4 +58,7 @@
     <color name="transparent">#00FFFFFF</color>
 
     <color name="MediaOverview_Media_selected_overlay">#88000000</color>
+
+    <color name="core_red">#f44336</color>
+    <color name="core_red_highlight">#ef5350</color>
 </resources>
