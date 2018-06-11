@@ -24,6 +24,7 @@ public class AttachmentUtil {
 
   private static final String TAG = AttachmentUtil.class.getSimpleName();
 
+  @WorkerThread
   public static boolean isAutoDownloadPermitted(@NonNull Context context, @Nullable DatabaseAttachment attachment) {
     if (attachment == null) {
       Log.w(TAG, "attachment was null, returning vacuous true");
@@ -100,6 +101,7 @@ public class AttachmentUtil {
     return info != null && info.isConnected() && info.isRoaming() && info.getType() == ConnectivityManager.TYPE_MOBILE;
   }
 
+  @WorkerThread
   private static boolean isFromUnknownContact(@NonNull Context context, @NonNull DatabaseAttachment attachment) {
     try (Cursor messageCursor = DatabaseFactory.getMmsDatabase(context).getMessage(attachment.getMmsId())) {
       final MessageRecord message = DatabaseFactory.getMmsDatabase(context).readerFor(messageCursor).getNext();
