@@ -125,7 +125,7 @@ dependencies {
     }
     compile 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
-    compile 'org.signal:android-database-sqlcipher:3.5.9-S1'
+    compile 'org.signal:android-database-sqlcipher:3.5.9-S2'
     compile ('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'org.freemarker'
@@ -198,7 +198,7 @@ dependencyVerification {
         'com.annimon:stream:5da6e2e3e0551d61a3ea7014f04312276549e3dd739cf637996e4cf43c5535b9',
         'com.takisoft.fix:colorpicker:f5d0dbabe406a1800498ca9c1faf34db36e021d8488bf10360f29961fe3ab0d1',
         'com.github.dmytrodanylyk.circular-progress-button:library:8dc6a29a5a8db7b2ad5a9a7fda1dc9ae0893f4c8f0545732b2c63854ea693e8e',
-        'org.signal:android-database-sqlcipher:4302551df258883cc5dc5d62ddb141a6b5b8f113d77d70322dc2648c0856ccef',
+        'org.signal:android-database-sqlcipher:4d682fccefb21cdeb10f856a55c86ede381f91137eae8a7a5746c9df415a6aed',
         'com.googlecode.ez-vcard:ez-vcard:7e24ad50b222d2f70ac91bdccfa3c0f6200b078d797cb784837f75e77bb4210f',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
         'com.google.android.gms:play-services-base:0ca636a8fc9a5af45e607cdcd61783bf5d561cbbb0f862021ce69606eee5ad49',
