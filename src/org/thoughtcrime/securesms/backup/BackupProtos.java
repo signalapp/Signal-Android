@@ -2980,6 +2980,558 @@ public final class BackupProtos {
     // @@protoc_insertion_point(class_scope:signal.Attachment)
   }
 
+  public interface AvatarOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string name = 1;
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    boolean hasName();
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    // optional uint32 length = 2;
+    /**
+     * <code>optional uint32 length = 2;</code>
+     */
+    boolean hasLength();
+    /**
+     * <code>optional uint32 length = 2;</code>
+     */
+    int getLength();
+  }
+  /**
+   * Protobuf type {@code signal.Avatar}
+   */
+  public static final class Avatar extends
+      com.google.protobuf.GeneratedMessage
+      implements AvatarOrBuilder {
+    // Use Avatar.newBuilder() to construct.
+    private Avatar(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Avatar(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Avatar defaultInstance;
+    public static Avatar getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Avatar getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Avatar(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              name_ = input.readBytes();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              length_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Avatar_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Avatar_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.thoughtcrime.securesms.backup.BackupProtos.Avatar.class, org.thoughtcrime.securesms.backup.BackupProtos.Avatar.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Avatar> PARSER =
+        new com.google.protobuf.AbstractParser<Avatar>() {
+      public Avatar parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Avatar(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Avatar> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string name = 1;
+    public static final int NAME_FIELD_NUMBER = 1;
+    private java.lang.Object name_;
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional uint32 length = 2;
+    public static final int LENGTH_FIELD_NUMBER = 2;
+    private int length_;
+    /**
+     * <code>optional uint32 length = 2;</code>
+     */
+    public boolean hasLength() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 length = 2;</code>
+     */
+    public int getLength() {
+      return length_;
+    }
+
+    private void initFields() {
+      name_ = "";
+      length_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, length_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, length_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Avatar parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.thoughtcrime.securesms.backup.BackupProtos.Avatar prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code signal.Avatar}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.thoughtcrime.securesms.backup.BackupProtos.AvatarOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Avatar_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Avatar_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.thoughtcrime.securesms.backup.BackupProtos.Avatar.class, org.thoughtcrime.securesms.backup.BackupProtos.Avatar.Builder.class);
+      }
+
+      // Construct using org.thoughtcrime.securesms.backup.BackupProtos.Avatar.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        length_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Avatar_descriptor;
+      }
+
+      public org.thoughtcrime.securesms.backup.BackupProtos.Avatar getDefaultInstanceForType() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.Avatar.getDefaultInstance();
+      }
+
+      public org.thoughtcrime.securesms.backup.BackupProtos.Avatar build() {
+        org.thoughtcrime.securesms.backup.BackupProtos.Avatar result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.thoughtcrime.securesms.backup.BackupProtos.Avatar buildPartial() {
+        org.thoughtcrime.securesms.backup.BackupProtos.Avatar result = new org.thoughtcrime.securesms.backup.BackupProtos.Avatar(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.length_ = length_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.thoughtcrime.securesms.backup.BackupProtos.Avatar) {
+          return mergeFrom((org.thoughtcrime.securesms.backup.BackupProtos.Avatar)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.thoughtcrime.securesms.backup.BackupProtos.Avatar other) {
+        if (other == org.thoughtcrime.securesms.backup.BackupProtos.Avatar.getDefaultInstance()) return this;
+        if (other.hasName()) {
+          bitField0_ |= 0x00000001;
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.hasLength()) {
+          setLength(other.getLength());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.thoughtcrime.securesms.backup.BackupProtos.Avatar parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.thoughtcrime.securesms.backup.BackupProtos.Avatar) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string name = 1;
+      private java.lang.Object name_ = "";
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 length = 2;
+      private int length_ ;
+      /**
+       * <code>optional uint32 length = 2;</code>
+       */
+      public boolean hasLength() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 length = 2;</code>
+       */
+      public int getLength() {
+        return length_;
+      }
+      /**
+       * <code>optional uint32 length = 2;</code>
+       */
+      public Builder setLength(int value) {
+        bitField0_ |= 0x00000002;
+        length_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 length = 2;</code>
+       */
+      public Builder clearLength() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        length_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:signal.Avatar)
+    }
+
+    static {
+      defaultInstance = new Avatar(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:signal.Avatar)
+  }
+
   public interface DatabaseVersionOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -3941,6 +4493,20 @@ public final class BackupProtos {
      * <code>optional bool end = 6;</code>
      */
     boolean getEnd();
+
+    // optional .signal.Avatar avatar = 7;
+    /**
+     * <code>optional .signal.Avatar avatar = 7;</code>
+     */
+    boolean hasAvatar();
+    /**
+     * <code>optional .signal.Avatar avatar = 7;</code>
+     */
+    org.thoughtcrime.securesms.backup.BackupProtos.Avatar getAvatar();
+    /**
+     * <code>optional .signal.Avatar avatar = 7;</code>
+     */
+    org.thoughtcrime.securesms.backup.BackupProtos.AvatarOrBuilder getAvatarOrBuilder();
   }
   /**
    * Protobuf type {@code signal.BackupFrame}
@@ -4061,6 +4627,19 @@ public final class BackupProtos {
             case 48: {
               bitField0_ |= 0x00000020;
               end_ = input.readBool();
+              break;
+            }
+            case 58: {
+              org.thoughtcrime.securesms.backup.BackupProtos.Avatar.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000040) == 0x00000040)) {
+                subBuilder = avatar_.toBuilder();
+              }
+              avatar_ = input.readMessage(org.thoughtcrime.securesms.backup.BackupProtos.Avatar.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(avatar_);
+                avatar_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000040;
               break;
             }
           }
@@ -4229,6 +4808,28 @@ public final class BackupProtos {
       return end_;
     }
 
+    // optional .signal.Avatar avatar = 7;
+    public static final int AVATAR_FIELD_NUMBER = 7;
+    private org.thoughtcrime.securesms.backup.BackupProtos.Avatar avatar_;
+    /**
+     * <code>optional .signal.Avatar avatar = 7;</code>
+     */
+    public boolean hasAvatar() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional .signal.Avatar avatar = 7;</code>
+     */
+    public org.thoughtcrime.securesms.backup.BackupProtos.Avatar getAvatar() {
+      return avatar_;
+    }
+    /**
+     * <code>optional .signal.Avatar avatar = 7;</code>
+     */
+    public org.thoughtcrime.securesms.backup.BackupProtos.AvatarOrBuilder getAvatarOrBuilder() {
+      return avatar_;
+    }
+
     private void initFields() {
       header_ = org.thoughtcrime.securesms.backup.BackupProtos.Header.getDefaultInstance();
       statement_ = org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.getDefaultInstance();
@@ -4236,6 +4837,7 @@ public final class BackupProtos {
       attachment_ = org.thoughtcrime.securesms.backup.BackupProtos.Attachment.getDefaultInstance();
       version_ = org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion.getDefaultInstance();
       end_ = false;
+      avatar_ = org.thoughtcrime.securesms.backup.BackupProtos.Avatar.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4266,6 +4868,9 @@ public final class BackupProtos {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeBool(6, end_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(7, avatar_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4299,6 +4904,10 @@ public final class BackupProtos {
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(6, end_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, avatar_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4413,6 +5022,7 @@ public final class BackupProtos {
           getPreferenceFieldBuilder();
           getAttachmentFieldBuilder();
           getVersionFieldBuilder();
+          getAvatarFieldBuilder();
         }
       }
       private static Builder create() {
@@ -4453,6 +5063,12 @@ public final class BackupProtos {
         bitField0_ = (bitField0_ & ~0x00000010);
         end_ = false;
         bitField0_ = (bitField0_ & ~0x00000020);
+        if (avatarBuilder_ == null) {
+          avatar_ = org.thoughtcrime.securesms.backup.BackupProtos.Avatar.getDefaultInstance();
+        } else {
+          avatarBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -4525,6 +5141,14 @@ public final class BackupProtos {
           to_bitField0_ |= 0x00000020;
         }
         result.end_ = end_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        if (avatarBuilder_ == null) {
+          result.avatar_ = avatar_;
+        } else {
+          result.avatar_ = avatarBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4558,6 +5182,9 @@ public final class BackupProtos {
         }
         if (other.hasEnd()) {
           setEnd(other.getEnd());
+        }
+        if (other.hasAvatar()) {
+          mergeAvatar(other.getAvatar());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5204,6 +5831,123 @@ public final class BackupProtos {
         return this;
       }
 
+      // optional .signal.Avatar avatar = 7;
+      private org.thoughtcrime.securesms.backup.BackupProtos.Avatar avatar_ = org.thoughtcrime.securesms.backup.BackupProtos.Avatar.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.thoughtcrime.securesms.backup.BackupProtos.Avatar, org.thoughtcrime.securesms.backup.BackupProtos.Avatar.Builder, org.thoughtcrime.securesms.backup.BackupProtos.AvatarOrBuilder> avatarBuilder_;
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      public boolean hasAvatar() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.Avatar getAvatar() {
+        if (avatarBuilder_ == null) {
+          return avatar_;
+        } else {
+          return avatarBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      public Builder setAvatar(org.thoughtcrime.securesms.backup.BackupProtos.Avatar value) {
+        if (avatarBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          avatar_ = value;
+          onChanged();
+        } else {
+          avatarBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      public Builder setAvatar(
+          org.thoughtcrime.securesms.backup.BackupProtos.Avatar.Builder builderForValue) {
+        if (avatarBuilder_ == null) {
+          avatar_ = builderForValue.build();
+          onChanged();
+        } else {
+          avatarBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      public Builder mergeAvatar(org.thoughtcrime.securesms.backup.BackupProtos.Avatar value) {
+        if (avatarBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              avatar_ != org.thoughtcrime.securesms.backup.BackupProtos.Avatar.getDefaultInstance()) {
+            avatar_ =
+              org.thoughtcrime.securesms.backup.BackupProtos.Avatar.newBuilder(avatar_).mergeFrom(value).buildPartial();
+          } else {
+            avatar_ = value;
+          }
+          onChanged();
+        } else {
+          avatarBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      public Builder clearAvatar() {
+        if (avatarBuilder_ == null) {
+          avatar_ = org.thoughtcrime.securesms.backup.BackupProtos.Avatar.getDefaultInstance();
+          onChanged();
+        } else {
+          avatarBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.Avatar.Builder getAvatarBuilder() {
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return getAvatarFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.AvatarOrBuilder getAvatarOrBuilder() {
+        if (avatarBuilder_ != null) {
+          return avatarBuilder_.getMessageOrBuilder();
+        } else {
+          return avatar_;
+        }
+      }
+      /**
+       * <code>optional .signal.Avatar avatar = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.thoughtcrime.securesms.backup.BackupProtos.Avatar, org.thoughtcrime.securesms.backup.BackupProtos.Avatar.Builder, org.thoughtcrime.securesms.backup.BackupProtos.AvatarOrBuilder> 
+          getAvatarFieldBuilder() {
+        if (avatarBuilder_ == null) {
+          avatarBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.thoughtcrime.securesms.backup.BackupProtos.Avatar, org.thoughtcrime.securesms.backup.BackupProtos.Avatar.Builder, org.thoughtcrime.securesms.backup.BackupProtos.AvatarOrBuilder>(
+                  avatar_,
+                  getParentForChildren(),
+                  isClean());
+          avatar_ = null;
+        }
+        return avatarBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:signal.BackupFrame)
     }
 
@@ -5235,6 +5979,11 @@ public final class BackupProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_signal_Attachment_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_signal_Avatar_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_signal_Avatar_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_signal_DatabaseVersion_descriptor;
   private static
@@ -5268,16 +6017,18 @@ public final class BackupProtos {
       "ameter\030\005 \001(\010\"<\n\020SharedPreference\022\014\n\004file" +
       "\030\001 \001(\t\022\013\n\003key\030\002 \001(\t\022\r\n\005value\030\003 \001(\t\"A\n\nAt" +
       "tachment\022\r\n\005rowId\030\001 \001(\004\022\024\n\014attachmentId\030" +
-      "\002 \001(\004\022\016\n\006length\030\003 \001(\r\"\"\n\017DatabaseVersion",
+      "\002 \001(\004\022\016\n\006length\030\003 \001(\r\"&\n\006Avatar\022\014\n\004name\030",
+      "\001 \001(\t\022\016\n\006length\030\002 \001(\r\"\"\n\017DatabaseVersion" +
       "\022\017\n\007version\030\001 \001(\r\"\"\n\006Header\022\n\n\002iv\030\001 \001(\014\022" +
-      "\014\n\004salt\030\002 \001(\014\"\343\001\n\013BackupFrame\022\036\n\006header\030" +
+      "\014\n\004salt\030\002 \001(\014\"\203\002\n\013BackupFrame\022\036\n\006header\030" +
       "\001 \001(\0132\016.signal.Header\022\'\n\tstatement\030\002 \001(\013" +
       "2\024.signal.SqlStatement\022,\n\npreference\030\003 \001" +
       "(\0132\030.signal.SharedPreference\022&\n\nattachme" +
       "nt\030\004 \001(\0132\022.signal.Attachment\022(\n\007version\030" +
       "\005 \001(\0132\027.signal.DatabaseVersion\022\013\n\003end\030\006 " +
-      "\001(\010B1\n!org.thoughtcrime.securesms.backup" +
-      "B\014BackupProtos"
+      "\001(\010\022\036\n\006avatar\030\007 \001(\0132\016.signal.AvatarB1\n!o" +
+      "rg.thoughtcrime.securesms.backupB\014Backup",
+      "Protos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5308,24 +6059,30 @@ public final class BackupProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_Attachment_descriptor,
               new java.lang.String[] { "RowId", "AttachmentId", "Length", });
-          internal_static_signal_DatabaseVersion_descriptor =
+          internal_static_signal_Avatar_descriptor =
             getDescriptor().getMessageTypes().get(3);
+          internal_static_signal_Avatar_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_signal_Avatar_descriptor,
+              new java.lang.String[] { "Name", "Length", });
+          internal_static_signal_DatabaseVersion_descriptor =
+            getDescriptor().getMessageTypes().get(4);
           internal_static_signal_DatabaseVersion_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_DatabaseVersion_descriptor,
               new java.lang.String[] { "Version", });
           internal_static_signal_Header_descriptor =
-            getDescriptor().getMessageTypes().get(4);
+            getDescriptor().getMessageTypes().get(5);
           internal_static_signal_Header_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_Header_descriptor,
               new java.lang.String[] { "Iv", "Salt", });
           internal_static_signal_BackupFrame_descriptor =
-            getDescriptor().getMessageTypes().get(5);
+            getDescriptor().getMessageTypes().get(6);
           internal_static_signal_BackupFrame_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_BackupFrame_descriptor,
-              new java.lang.String[] { "Header", "Statement", "Preference", "Attachment", "Version", "End", });
+              new java.lang.String[] { "Header", "Statement", "Preference", "Attachment", "Version", "End", "Avatar", });
           return null;
         }
       };

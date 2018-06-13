@@ -38,6 +38,8 @@
   <!--ConfirmIdentityDialog-->
   <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Не было дастаўлена</string>
   <string name="ConversationItem_group_action_left">%1$s пакінуў групавую гутарку.</string>
@@ -129,6 +131,8 @@
   <!--MessageRetrievalService-->
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Выдаленне</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Выдаленне паведамлення...</string>
   <!--- NotificationBarManager-->
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультымедыя паведамленне</string>
@@ -169,6 +173,9 @@
   <string name="RegistrationService_registration_error">Памылка рэгістрацыі</string>
   <!--RingtonePreference-->
   <string name="RingtonePreference_ringtone_silent">Няма</string>
+  <!--Search-->
+  <!--SharedContactDetailsActivity-->
+  <!--SharedContactView-->
   <!--Slide-->
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Атрыманы пашкоджаны ключ абмену паведамленнямі!</string>
@@ -220,6 +227,7 @@
   <!--VideoPlayer-->
   <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_cancel">Адмена</string>
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
   <!--change_passphrase_activity-->
@@ -250,6 +258,10 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Фота кантакта</string>
   <!--audio_view-->
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Аўдыё</string>
+  <string name="QuoteView_video">Відэа</string>
+  <string name="QuoteView_you">Вы</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Пакетны рэжым выбару</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s абрана</string>

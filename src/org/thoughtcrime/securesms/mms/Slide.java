@@ -132,14 +132,27 @@ public abstract class Slide {
                                                          @NonNull  Uri     uri,
                                                          @NonNull  String  defaultMime,
                                                                    long     size,
+                                                                   int      width,
+                                                                   int      height,
                                                                    boolean  hasThumbnail,
                                                          @Nullable String   fileName,
-                                                                   boolean  voiceNote)
+                                                                   boolean  voiceNote,
+                                                                   boolean quote)
   {
     try {
-      Optional<String> resolvedType    = Optional.fromNullable(MediaUtil.getMimeType(context, uri));
-      String           fastPreflightId = String.valueOf(SecureRandom.getInstance("SHA1PRNG").nextLong());
-      return new UriAttachment(uri, hasThumbnail ? uri : null, resolvedType.or(defaultMime), AttachmentDatabase.TRANSFER_PROGRESS_STARTED, size, fileName, fastPreflightId, voiceNote);
+      String                 resolvedType    = Optional.fromNullable(MediaUtil.getMimeType(context, uri)).or(defaultMime);
+      String                 fastPreflightId = String.valueOf(SecureRandom.getInstance("SHA1PRNG").nextLong());
+      return new UriAttachment(uri,
+                               hasThumbnail ? uri : null,
+                               resolvedType,
+                               AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
+                               size,
+                               width,
+                               height,
+                               fileName,
+                               fastPreflightId,
+                               voiceNote,
+                               quote);
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }

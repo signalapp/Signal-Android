@@ -120,7 +120,8 @@ public class SearchToolbar extends LinearLayout {
   private void hide() {
     if (getVisibility() == View.VISIBLE) {
 
-      if (listener != null) listener.onSearchReset();
+
+      if (listener != null) listener.onSearchClosed();
 
       if (Build.VERSION.SDK_INT >= 21) {
         Animator animator = ViewAnimationUtils.createCircularReveal(this, (int)x, (int)y, getWidth(), 0);
@@ -149,7 +150,7 @@ public class SearchToolbar extends LinearLayout {
 
   public interface SearchListener {
     void onSearchTextChange(String text);
-    void onSearchReset();
+    void onSearchClosed();
   }
 
 }

@@ -1,17 +1,21 @@
-<!-- This is a bug report template. By following the instructions below and filling out the sections with your information, you will help the developers to get all the necessary data to fix your issue.
+<!-- This is a bug report template. By following the instructions below and filling out the sections with your information, you will help the developers get all the necessary data to fix your issue.
 You can also preview your report before submitting it. You may remove sections that aren't relevant to your particular case.
 
-Before we begin, please note that this tracker is only for issues, not questions or comments.
+Before we begin, please note that this tracker is only for issues. It is not for questions, comments, or feature requests.
 
-If you are looking for support, please see our support center instead:
-https://support.whispersystems.org/
-or email support@whispersystems.org
+If you would like to discuss a new feature or submit suggestions, please visit the community forum:
+https://community.signalusers.org
 
-Let's begin with a checklist: replace the empty checkboxes [ ] below with checked ones [x] accordingly -->
+If you are looking for support, please visit our support center:
+https://support.signal.org/
+or email support@signal.org
 
-I have:
-- [ ] searched open and closed issues for duplicates
-- [ ] read https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports
+Let's begin with a checklist: Replace the empty checkboxes [ ] below with checked ones [x] accordingly. -->
+
+- [ ] I have searched open and closed issues for duplicates
+- [ ] I am submitting a bug report for existing functionality that does not work as intended
+- [ ] I have read https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports
+- [ ] This isn't a feature request or a discussion topic
 
 ----------------------------------------
 

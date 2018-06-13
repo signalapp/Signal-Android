@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -75,12 +76,7 @@ public class ContactSelectionListFragment extends    Fragment
   public static final String REFRESHABLE  = "refreshable";
   public static final String RECENTS      = "recents";
 
-  public final static int DISPLAY_MODE_ALL       = ContactsCursorLoader.MODE_ALL;
-  public final static int DISPLAY_MODE_PUSH_ONLY = ContactsCursorLoader.MODE_PUSH_ONLY;
-  public final static int DISPLAY_MODE_SMS_ONLY  = ContactsCursorLoader.MODE_SMS_ONLY;
-
-  private TextView emptyText;
-
+  private TextView                  emptyText;
   private Set<String>               selectedContacts;
   private OnContactSelectedListener onContactSelectedListener;
   private SwipeRefreshLayout        swipeRefresh;
@@ -221,7 +217,7 @@ public class ContactSelectionListFragment extends    Fragment
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new ContactsCursorLoader(getActivity(),
-                                    getActivity().getIntent().getIntExtra(DISPLAY_MODE, DISPLAY_MODE_ALL),
+                                    getActivity().getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL),
                                     cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false));
   }
 

@@ -5,7 +5,9 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.util.Pair;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -18,7 +20,10 @@ import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference;
 import org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.SearchDatabase;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
@@ -26,6 +31,7 @@ import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -33,6 +39,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,6 +66,8 @@ public class FullBackupImporter extends FullBackupBase {
     try {
       db.beginTransaction();
 
+      dropAllTables(db);
+
       BackupFrame frame;
 
       while (!(frame = inputStream.readFrame()).getEnd()) {
@@ -68,6 +77,7 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasStatement())  processStatement(db, frame.getStatement());
         else if (frame.hasPreference()) processPreference(context, frame.getPreference());
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
+        else if (frame.hasAvatar())     processAvatar(context, frame.getAvatar(), inputStream);
       }
 
       db.setTransactionSuccessful();
@@ -83,6 +93,14 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
+    boolean isForSmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.SMS_FTS_TABLE_NAME + "_");
+    boolean isForMmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.MMS_FTS_TABLE_NAME + "_");
+
+    if (isForSmsFtsSecretTable || isForMmsFtsSecretTable) {
+      Log.i(TAG, "Ignoring import for statement: " + statement.getStatement());
+      return;
+    }
+
     List<Object> parameters = new LinkedList<>();
 
     for (SqlStatement.SqlParameter parameter : statement.getParametersList()) {
@@ -117,10 +135,27 @@ public class FullBackupImporter extends FullBackupBase {
               new String[] {String.valueOf(attachment.getRowId()), String.valueOf(attachment.getAttachmentId())});
   }
 
+  private static void processAvatar(@NonNull Context context, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {
+    inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, Address.fromExternal(context, avatar.getName()))), avatar.getLength());
+  }
+
   @SuppressLint("ApplySharedPref")
   private static void processPreference(@NonNull Context context, SharedPreference preference) {
     SharedPreferences preferences = context.getSharedPreferences(preference.getFile(), 0);
     preferences.edit().putString(preference.getKey(), preference.getValue()).commit();
+  }
+
+  private static void dropAllTables(@NonNull SQLiteDatabase db) {
+    try (Cursor cursor = db.rawQuery("SELECT name, type FROM sqlite_master", null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        String name = cursor.getString(0);
+        String type = cursor.getString(1);
+
+        if ("table".equals(type)) {
+          db.execSQL("DROP TABLE IF EXISTS " + name);
+        }
+      }
+    }
   }
 
   private static class BackupRecordInputStream extends BackupStream {
@@ -196,9 +231,18 @@ public class FullBackupImporter extends FullBackupBase {
           mac.update(buffer, 0, read);
 
           byte[] plaintext = cipher.update(buffer, 0, read);
-          out.write(plaintext, 0, plaintext.length);
+
+          if (plaintext != null) {
+            out.write(plaintext, 0, plaintext.length);
+          }
 
           length -= read;
+        }
+
+        byte[] plaintext = cipher.doFinal();
+
+        if (plaintext != null) {
+          out.write(plaintext, 0, plaintext.length);
         }
 
         out.close();
@@ -217,7 +261,7 @@ public class FullBackupImporter extends FullBackupBase {
           //destination.delete();
           throw new IOException("Bad MAC");
         }
-      } catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
+      } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
         throw new AssertionError(e);
       }
     }

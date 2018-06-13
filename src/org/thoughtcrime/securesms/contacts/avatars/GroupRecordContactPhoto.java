@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.contacts.avatars;
 
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -35,6 +37,16 @@ public class GroupRecordContactPhoto implements ContactPhoto {
     }
 
     throw new IOException("Couldn't load avatar for group: " + address.toGroupString());
+  }
+
+  @Override
+  public @Nullable Uri getUri(@NonNull Context context) {
+    return null;
+  }
+
+  @Override
+  public boolean isProfilePhoto() {
+    return false;
   }
 
   @Override

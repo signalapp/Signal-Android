@@ -25,9 +25,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.search.SearchFragment;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -57,9 +61,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private ConversationListFragment fragment;
+  private ConversationListFragment conversationListFragment;
+  private SearchFragment           searchFragment;
   private SearchToolbar            searchToolbar;
   private ImageView                searchAction;
+  private ViewGroup                fragmentContainer;
 
   @Override
   protected void onPreCreate() {
@@ -74,9 +80,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    searchToolbar = findViewById(R.id.search_toolbar);
-    searchAction  = findViewById(R.id.search_action);
-    fragment      = initFragment(R.id.fragment_container, new ConversationListFragment(), dynamicLanguage.getCurrentLocale());
+    searchToolbar            = findViewById(R.id.search_toolbar);
+    searchAction             = findViewById(R.id.search_action);
+    fragmentContainer        = findViewById(R.id.fragment_container);
+    conversationListFragment = initFragment(R.id.fragment_container, new ConversationListFragment(), dynamicLanguage.getCurrentLocale());
 
     initializeSearchListener();
 
@@ -123,15 +130,31 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     searchToolbar.setListener(new SearchToolbar.SearchListener() {
       @Override
       public void onSearchTextChange(String text) {
-        if (fragment != null) {
-          fragment.setQueryFilter(text);
+        String trimmed = text.trim();
+
+        if (trimmed.length() > 0) {
+          if (searchFragment == null) {
+            searchFragment = SearchFragment.newInstance(dynamicLanguage.getCurrentLocale());
+            getSupportFragmentManager().beginTransaction()
+                                       .add(R.id.fragment_container, searchFragment, null)
+                                       .commit();
+          }
+          searchFragment.updateSearchQuery(trimmed);
+        } else if (searchFragment != null) {
+          getSupportFragmentManager().beginTransaction()
+                                     .remove(searchFragment)
+                                     .commit();
+          searchFragment = null;
         }
       }
 
       @Override
-      public void onSearchReset() {
-        if (fragment != null) {
-          fragment.resetQueryFilter();
+      public void onSearchClosed() {
+        if (searchFragment != null) {
+          getSupportFragmentManager().beginTransaction()
+                                     .remove(searchFragment)
+                                     .commit();
+          searchFragment = null;
         }
       }
     });
@@ -156,12 +179,19 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   public void onCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
+    openConversation(threadId, recipient, distributionType, lastSeen, -1);
+  }
+
+  public void openConversation(long threadId, Recipient recipient, int distributionType, long lastSeen, int startingPosition) {
+    searchToolbar.clearFocus();
+
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
     intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis());
     intent.putExtra(ConversationActivity.LAST_SEEN_EXTRA, lastSeen);
+    intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, startingPosition);
 
     startActivity(intent);
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);

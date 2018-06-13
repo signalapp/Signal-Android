@@ -22,11 +22,13 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -105,19 +107,23 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     }
 
     try {
-      SignalServiceAddress          address           = getPushAddress(message.getRecipient().getAddress());
-      MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
-      List<Attachment>              scaledAttachments = scaleAttachments(mediaConstraints, message.getAttachments());
-      List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(scaledAttachments);
-      Optional<byte[]>              profileKey        = getProfileKey(message.getRecipient());
-      SignalServiceDataMessage      mediaMessage      = SignalServiceDataMessage.newBuilder()
-                                                                                .withBody(message.getBody())
-                                                                                .withAttachments(attachmentStreams)
-                                                                                .withTimestamp(message.getSentTimeMillis())
-                                                                                .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                                                .withProfileKey(profileKey.orNull())
-                                                                                .asExpirationUpdate(message.isExpirationUpdate())
-                                                                                .build();
+      SignalServiceAddress                     address           = getPushAddress(message.getRecipient().getAddress());
+      MediaConstraints                         mediaConstraints  = MediaConstraints.getPushMediaConstraints();
+      List<Attachment>                         scaledAttachments = scaleAndStripExifFromAttachments(mediaConstraints, message.getAttachments());
+      List<SignalServiceAttachment>            attachmentStreams = getAttachmentsFor(scaledAttachments);
+      Optional<byte[]>                         profileKey        = getProfileKey(message.getRecipient());
+      Optional<SignalServiceDataMessage.Quote> quote             = getQuoteFor(message);
+      List<SharedContact>                      sharedContacts    = getSharedContactsFor(message);
+      SignalServiceDataMessage                 mediaMessage      = SignalServiceDataMessage.newBuilder()
+                                                                                           .withBody(message.getBody())
+                                                                                           .withAttachments(attachmentStreams)
+                                                                                           .withTimestamp(message.getSentTimeMillis())
+                                                                                           .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                                           .withProfileKey(profileKey.orNull())
+                                                                                           .withQuote(quote.orNull())
+                                                                                           .withSharedContacts(sharedContacts)
+                                                                                           .asExpirationUpdate(message.isExpirationUpdate())
+                                                                                           .build();
 
       messageSender.sendMessage(address, mediaMessage);
     } catch (UnregisteredUserException e) {
@@ -131,4 +137,5 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throw new RetryLaterException(e);
     }
   }
+
 }

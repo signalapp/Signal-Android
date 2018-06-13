@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.webrtc.CameraState;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 
@@ -139,6 +140,7 @@ public class WebRtcCallActivity extends Activity {
     callScreen.setIncomingCallActionListener(new IncomingCallActionListener());
     callScreen.setAudioMuteButtonListener(new AudioMuteButtonListener());
     callScreen.setVideoMuteButtonListener(new VideoMuteButtonListener());
+    callScreen.setCameraFlipButtonListener(new CameraFlipButtonListener());
     callScreen.setSpeakerButtonListener(new SpeakerButtonListener());
     callScreen.setBluetoothButtonListener(new BluetoothButtonListener());
 
@@ -156,6 +158,12 @@ public class WebRtcCallActivity extends Activity {
     Intent intent = new Intent(this, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_SET_MUTE_VIDEO);
     intent.putExtra(WebRtcCallService.EXTRA_MUTE, muted);
+    startService(intent);
+  }
+
+  private void handleFlipCamera() {
+    Intent intent = new Intent(this, WebRtcCallService.class);
+    intent.setAction(WebRtcCallService.ACTION_FLIP_CAMERA);
     startService(intent);
   }
 
@@ -322,10 +330,10 @@ public class WebRtcCallActivity extends Activity {
       case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);        break;
     }
 
-    callScreen.setLocalVideoEnabled(event.isLocalVideoEnabled());
     callScreen.setRemoteVideoEnabled(event.isRemoteVideoEnabled());
     callScreen.updateAudioState(event.isBluetoothAvailable(), event.isMicrophoneEnabled());
     callScreen.setControlsEnabled(event.getState() != WebRtcViewModel.State.CALL_INCOMING);
+    callScreen.setLocalVideoState(event.getLocalCameraState());
   }
 
   private class HangupButtonListener implements WebRtcCallScreen.HangupButtonListener {
@@ -345,6 +353,13 @@ public class WebRtcCallActivity extends Activity {
     @Override
     public void onToggle(boolean isMuted) {
       WebRtcCallActivity.this.handleSetMuteVideo(isMuted);
+    }
+  }
+
+  private class CameraFlipButtonListener implements WebRtcCallControls.CameraFlipButtonListener {
+    @Override
+    public void onToggle() {
+      WebRtcCallActivity.this.handleFlipCamera();
     }
   }
 

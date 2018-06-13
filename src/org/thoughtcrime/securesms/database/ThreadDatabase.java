@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.Closeable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -625,7 +626,7 @@ public class ThreadDatabase extends Database {
     public static final int INBOX_ZERO   = 4;
   }
 
-  public class Reader {
+  public class Reader implements Closeable {
 
     private final Cursor cursor;
 
@@ -692,8 +693,11 @@ public class ThreadDatabase extends Database {
       }
     }
 
+    @Override
     public void close() {
-      cursor.close();
+      if (cursor != null) {
+        cursor.close();
+      }
     }
   }
 }

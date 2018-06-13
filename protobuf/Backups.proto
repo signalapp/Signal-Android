@@ -34,6 +34,11 @@ message Attachment {
     optional uint32 length       = 3;
 }
 
+message Avatar {
+    optional string name   = 1;
+    optional uint32 length = 2;
+}
+
 message DatabaseVersion {
     optional uint32 version = 1;
 }
@@ -50,4 +55,5 @@ message BackupFrame {
     optional Attachment       attachment = 4;
     optional DatabaseVersion  version    = 5;
     optional bool             end        = 6;
+    optional Avatar           avatar     = 7;
 }

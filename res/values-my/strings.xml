@@ -10,9 +10,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">လက်ရှိ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">စကားဝှက်မသတ်မှတ်ရသေးပါ</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">ဤစကားဝိုင်းတွင်စာများ %d ပါဝင်သည်</item>
-  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">စာအဟောင်းများအားလုံးဖျက်မှာလား?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="other">စာသာအားလုံး နောက်ဆုံးစာ၏ %dသို့ တည်းဖြတ်ပေါင်းပေးသည်။</item>
@@ -37,9 +34,6 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ဖုန်းစာတို%1$s၊ ရုပ်သံသတင်း%2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Theme%1$s၊ ဘာသာစကား  %2$s</string>
   <!--AppProtectionPreferenceFragment-->
-  <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="other">%d မိနစ်</item>
-  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(ရုပ်ပုံ) </string>
   <string name="DraftDatabase_Draft_audio_snippet">(အသံ)</string>
@@ -70,6 +64,8 @@
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">စာတို %s </string>
   <string name="ContactsDatabase_signal_call_s">Signal ခေါ်ဆိုမှု %s </string>
+  <!--ContactNameEditActivity-->
+  <!--ContactShareEditActivity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">မပေးပို့နိုင်ခဲ့ပါ </string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">အလဲအလှယ်စာတိုသော့ရရှိပါသည်၊ ဆက်လက်လုပ်ဆောင်ရန် နှိပ်ပါ။ </string>
@@ -287,12 +283,6 @@
   <string name="InviteActivity_heart_content_description">အသည်းပုံ</string>
   <string name="InviteActivity_invitations_sent">ဖိတ်ကြားမှု ပြုလုပ်ပြီး!</string>
   <string name="InviteActivity_invite_to_signal">Signal သုံးဖို့ဖိတ်ရန်</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">သူငယ်ချင်းအယောက် %d ထံ SMS ပို့ရန်</item>
-  </plurals>
-  <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">%dကို SMS အခုပို့မှာလား?</item>
-  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal ကိုပြောင်းသုံးကြစို့ : %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">သူငယ်ချင်းမှန်ရင် ကိုယ့်သူငယ်ချင်းကို encrypt လုပ်မထားဘဲ မ chat စေရ။ </string>
@@ -307,6 +297,8 @@
   <string name="MmsDownloader_error_reading_mms_settings">အင်တာနက်ဝန်ဆောင်မှုမှ MMS အပြင်အဆင်များ ဖတ်၍မရပါ</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ရုပ်၊သံ၊ပုံ များ</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">ဖျက်နေဆဲ</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">စာများဖျက်နေသည်</string>
   <string name="MediaOverviewActivity_Documents">စာရွက်စာတမ်းများ</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal ဖုန်းခေါ်နေသည်</string>
@@ -429,6 +421,13 @@
   <string name="RingtonePreference_alarm_sound_default">မူလ နှိုးစက် အသံ</string>
   <string name="RingtonePreference_add_ringtone_text">ဖုန်းသံစဉ် ထည့်ရန်</string>
   <string name="RingtonePreference_unable_to_add_ringtone">စိတ်ကြိုက် ဖုန်းသံစဉ် ထည့်၍မရပါ။</string>
+  <!--Search-->
+  <string name="SearchFragment_header_messages">စာများ</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
+  <string name="SharedContactDetailsActivity_invite_message">Signal ကိုပြောင်းသုံးကြစို့ : %1$s</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
   <!--Slide-->
   <string name="Slide_image">ပုံ</string>
   <string name="Slide_audio">အသံ</string>
@@ -525,6 +524,7 @@
   <string name="MessageNotifier_reply">အကြောင်းပြန်မည်</string>
   <string name="MessageNotifier_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားခြင်း</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားပါသည်၊ ပြန်ဖွင့်ရန် နှိပ်လိုက်ပါ</string>
+  <string name="MessageNotifier_unknown_contact_message">လိပ်စာ</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal လော့ခ်ကျသွားသည့်အခါ ချက်ချင်းမတုံ့ပြန်နိုင်ပါ!</string>
@@ -544,6 +544,9 @@
   <string name="WebRtcCallScreen_new_safety_numbers">%1$sနှင့် သင်၏ပြောစကားများအတွက် လုံခြုံရေးနံပါတ်ပြောင်းလဲလိုက်ပါပြီ။ ယင်းသို့ဖြစ်ရခြင်းမှာ တစ်စုံတစ်ယောက်က သင့်ဆက်သွယ်ရေးလမ်းကြောင်းကို ဝင်ရောက်ရန်ကြိုးစားခြင်း သို့မဟုတ် %2$sက Signal ကိုအသစ်ပြန်သွင်းလိုက်ခြင်းကြောင့်ဖြစ်နိုင်ပါသည်။ </string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ဤလူနှင့် ဆက်သွယ်ရန် စိတ်ချရသောနံပါတ်ကို အတည်ပြုပါမည်လား။ </string>
   <string name="WebRtcCallScreen_new_safety_number_title">လုံခြုံရေးနံပါတ် အသစ်</string>
+  <string name="WebRtcCallScreen_accept">လက်ခံသည် </string>
+  <string name="WebRtcCallScreen_cancel">မလုပ်တော့ပါ</string>
+  <string name="WebRtcCallScreen_end_call">ဖုန်းချမည်</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ဗီဒီယိုဖွင့်လို့ရရန် နှိပ်ပါ</string>
   <!--attachment_type_selector-->
@@ -607,6 +610,10 @@
   <string name="audio_view__play_accessibility_description">ဖွင့်သည်</string>
   <string name="audio_view__pause_accessibility_description">ခဏရပ်သည်</string>
   <string name="audio_view__download_accessibility_description">ကူးဆွဲသည်</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">အသံ</string>
+  <string name="QuoteView_video">ဗီဒီယို</string>
+  <string name="QuoteView_you">သင်</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">အုပ်စုနံပါတ်စဉ်ရွေးချယ်ခြင်း </string>
   <string name="conversation_fragment_cab__batch_selection_amount">%sရွေးထားသည်</string>
@@ -629,25 +636,10 @@
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">ဖတ်ပြီးကြောင်း ပြသည့် သင်္ကေတကို လုပ်ဆောင်ပါ။</string>
   <!--expiration-->
   <string name="expiration_off">ပိတ်သည်</string>
-  <plurals name="expiration_seconds">
-    <item quantity="other">%dစက္ကန့်</item>
-  </plurals>
   <string name="expiration_seconds_abbreviated">%dစက္ကန့်</string>
-  <plurals name="expiration_minutes">
-    <item quantity="other">%dမိနစ်</item>
-  </plurals>
   <string name="expiration_minutes_abbreviated">%dမိနစ်</string>
-  <plurals name="expiration_hours">
-    <item quantity="other">%dနာရီ</item>
-  </plurals>
   <string name="expiration_hours_abbreviated">%dနာရီ</string>
-  <plurals name="expiration_days">
-    <item quantity="other">%dရက်</item>
-  </plurals>
   <string name="expiration_days_abbreviated">%dရက်</string>
-  <plurals name="expiration_weeks">
-    <item quantity="other">%dပတ်</item>
-  </plurals>
   <string name="expiration_weeks_abbreviated">%dပတ်</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">%sဖြင့်စိတ်ချရသောနံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။</string>
@@ -969,9 +961,6 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">clipboard နဲ့ ယှဥ်လိုက်ပါ။</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">သင့်ရဲ့ Signal ဗားရှင်းက သက်တမ်းကျော်နေပြီ။</string>
-  <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">သင့်ရဲ့  Signal ဗားရှင်းက %dရက်နေရင် သက်တမ်းကုန်ပါလိမ့်မယ်။ နောက်ဆုံးဗားရှင်းကို ရရန် နှိပ်ပါ။</item>
-  </plurals>
   <string name="reminder_header_outdated_build_details_today">သင့်ရဲ့ Signal ဗားရှင်းက ဒီနေ့ သက်တမ်းကုန်ပါလိမ့်မယ်။ နောက်ဆုံးဗားရှင်းကို ရရန် နှိပ်ပါ။</string>
   <string name="reminder_header_expired_build">သင့်ရဲ့ Signal ဗားရှင်းက သက်တမ်းကုန်နေပြီ!</string>
   <string name="reminder_header_expired_build_details">စာတွေ ပို့လို့မရနိုင်ပါ။ နောက်ဆုံးဗားရှင်းကို မြှင့်ရန် နှိပ်ပါ။</string>

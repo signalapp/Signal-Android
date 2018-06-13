@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.contacts.avatars;
 
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -25,6 +27,16 @@ public class ProfileContactPhoto implements ContactPhoto {
   @Override
   public InputStream openInputStream(Context context) throws IOException {
     return AvatarHelper.getInputStreamFor(context, address);
+  }
+
+  @Override
+  public @Nullable Uri getUri(@NonNull Context context) {
+    return Uri.fromFile(AvatarHelper.getAvatarFile(context, address));
+  }
+
+  @Override
+  public boolean isProfilePhoto() {
+    return true;
   }
 
   @Override

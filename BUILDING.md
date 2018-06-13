@@ -27,7 +27,9 @@ The following steps should help you (re)build Signal from the command line.
 
         sdk.dir=/Application/android-sdk-macosx
 
-5. Execute Gradle:
+5. Using Java 8 
+
+6. Execute Gradle:
 
         ./gradlew build
 
