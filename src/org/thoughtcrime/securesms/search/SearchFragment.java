@@ -122,16 +122,6 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
   }
 
   @Override
-  public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-
-    if (listDecoration != null) {
-      listDecoration.invalidateLayouts();
-    }
-  }
-
-
-  @Override
   public void onConversationClicked(@NonNull ThreadRecord threadRecord) {
     ConversationListActivity conversationList = (ConversationListActivity) getActivity();
 
