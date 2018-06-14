@@ -181,6 +181,10 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
         ((LinearLayoutManager)parent.getLayoutManager()).getReverseLayout();
   }
 
+  public void invalidateLayouts() {
+    headerCache.clear();
+  }
+
   /**
    * The adapter to assist the {@link StickyHeaderDecoration} in creating and binding the header views.
    *
