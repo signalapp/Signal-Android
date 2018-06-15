@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.search.model;
 
+import android.database.ContentObserver;
+import android.database.DataSetObserver;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.CursorList;
@@ -54,6 +56,18 @@ public class SearchResult {
 
   public boolean isEmpty() {
     return size() == 0;
+  }
+
+  public void registerContentObserver(@NonNull ContentObserver observer) {
+    contacts.registerContentObserver(observer);
+    conversations.registerContentObserver(observer);
+    messages.registerContentObserver(observer);
+  }
+
+  public void unregisterContentObserver(@NonNull ContentObserver observer) {
+    contacts.unregisterContentObserver(observer);
+    conversations.unregisterContentObserver(observer);
+    messages.unregisterContentObserver(observer);
   }
 
   public void close() {
