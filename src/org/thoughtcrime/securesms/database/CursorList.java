@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.database;
 
+import android.database.ContentObserver;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.database.MatrixCursor;
 import android.support.annotation.NonNull;
 
@@ -22,8 +24,6 @@ import java.util.ListIterator;
  */
 public class CursorList<T> implements List<T>, Closeable {
 
-  private static final Cursor EMPTY_CURSOR = new MatrixCursor(new String[] { "a" }, 0);
-
   private final Cursor          cursor;
   private final ModelBuilder<T> modelBuilder;
 
@@ -34,7 +34,11 @@ public class CursorList<T> implements List<T>, Closeable {
 
   public static <T> CursorList<T> emptyList() {
     //noinspection ConstantConditions,unchecked
-    return (CursorList<T>) new CursorList(EMPTY_CURSOR, null);
+    return (CursorList<T>) new CursorList(emptyCursor(), null);
+  }
+
+  private static Cursor emptyCursor() {
+    return new MatrixCursor(new String[] { "a" }, 0);
   }
 
   @Override
@@ -181,6 +185,14 @@ public class CursorList<T> implements List<T>, Closeable {
     if (!cursor.isClosed()) {
       cursor.close();
     }
+  }
+
+  public void registerContentObserver(@NonNull ContentObserver observer) {
+    cursor.registerContentObserver(observer);
+  }
+
+  public void unregisterContentObserver(@NonNull ContentObserver observer) {
+    cursor.unregisterContentObserver(observer);
   }
 
   public interface ModelBuilder<T> {
