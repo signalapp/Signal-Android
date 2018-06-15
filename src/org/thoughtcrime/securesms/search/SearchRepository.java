@@ -119,6 +119,9 @@ class SearchRepository {
   /**
    * Unfortunately {@link DatabaseUtils#sqlEscapeString(String)} is not sufficient for our purposes.
    * MATCH queries have a separate format of their own that disallow most "special" characters.
+   *
+   * Also, SQLite can't search for apostrophes, meaning we can't normally find words like "I'm".
+   * However, if we replace the apostrophe with a space, then the query will find the match.
    */
   private String sanitizeQuery(@NonNull String query) {
     StringBuilder out = new StringBuilder();
@@ -127,6 +130,8 @@ class SearchRepository {
       char c = query.charAt(i);
       if (!BANNED_CHARACTERS.contains(c)) {
         out.append(c);
+      } else if (c == '\'') {
+        out.append(' ');
       }
     }
 
