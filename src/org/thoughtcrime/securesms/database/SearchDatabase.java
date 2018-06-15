@@ -2,12 +2,16 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
+
+import com.annimon.stream.Stream;
 
 import net.sqlcipher.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.util.List;
 
 /**
  * Contains all databases necessary for full-text search (FTS).
@@ -81,7 +85,10 @@ public class SearchDatabase extends Database {
   public Cursor queryMessages(@NonNull String query) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
-    String prefixQuery = query + '*';
+    List<String> tokens      = Stream.of(query.split(" ")).filter(s -> s.trim().length() > 0).toList();
+    String       prefixQuery = Util.join(tokens, "* ");
+
+    prefixQuery += "*";
 
     Cursor cursor = db.rawQuery(MESSAGES_QUERY, new String[] { prefixQuery, prefixQuery });
     setNotifyConverationListListeners(cursor);
