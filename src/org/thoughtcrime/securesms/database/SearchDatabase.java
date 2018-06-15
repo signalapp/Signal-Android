@@ -83,7 +83,9 @@ public class SearchDatabase extends Database {
 
     String prefixQuery = query + '*';
 
-    return db.rawQuery(MESSAGES_QUERY, new String[] { prefixQuery, prefixQuery });
+    Cursor cursor = db.rawQuery(MESSAGES_QUERY, new String[] { prefixQuery, prefixQuery });
+    setNotifyConverationListListeners(cursor);
+    return cursor;
   }
 }
 
