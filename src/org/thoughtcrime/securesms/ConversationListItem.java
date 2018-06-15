@@ -28,6 +28,7 @@ import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
@@ -36,6 +37,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -52,6 +54,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -66,7 +69,6 @@ public class ConversationListItem extends RelativeLayout
 
   private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif", Typeface.BOLD);
   private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
-  private final static StyleSpan BOLD_SPAN      = new StyleSpan(Typeface.BOLD);
 
   private Set<Long>          selectedThreads;
   private Recipient          recipient;
@@ -180,7 +182,7 @@ public class ConversationListItem extends RelativeLayout
     this.recipient.addListener(this);
 
     fromView.setText(getHighlightedSpan(locale, recipient.getName(), highlightSubstring));
-    subjectView.setText(contact.getAddress().toPhoneString());
+    subjectView.setText(getHighlightedSpan(locale, contact.getAddress().toPhoneString(), highlightSubstring));
     dateView.setText("");
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
@@ -319,25 +321,37 @@ public class ConversationListItem extends RelativeLayout
                                      @Nullable String value,
                                      @Nullable String highlight)
   {
-    if (value == null) {
+    if (TextUtils.isEmpty(value)) {
       return new SpannableString("");
     }
 
     value = value.replaceAll("\n", " ");
 
-    if (highlight == null) {
+    if (TextUtils.isEmpty(highlight)) {
       return new SpannableString(value);
     }
 
-    int startPosition = value.toLowerCase(locale).indexOf(highlight.toLowerCase());
-    int endPosition   = startPosition + highlight.length();
+    String       normalizedValue  = value.toLowerCase(locale);
+    String       normalizedTest   = highlight.toLowerCase(locale);
+    List<String> testTokens       = Stream.of(normalizedTest.split(" ")).filter(s -> s.trim().length() > 0).toList();
 
-    if (startPosition < 0) {
-      return new SpannableString(value);
+    Spannable spanned          = new SpannableString(value);
+    int       searchStartIndex = 0;
+
+    for (String token : testTokens) {
+      if (searchStartIndex >= spanned.length()) {
+        break;
+      }
+
+      int start = normalizedValue.indexOf(token, searchStartIndex);
+
+      if (start >= 0) {
+        int end = Math.min(start + token.length(), spanned.length());
+        spanned.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        searchStartIndex = end;
+      }
     }
 
-    Spannable spanned = new SpannableString(value);
-    spanned.setSpan(BOLD_SPAN, startPosition, endPosition, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
     return spanned;
   }
 
