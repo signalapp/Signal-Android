@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 
-import org.whispersystems.jobqueue.Job;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.dependencies.ContextDependent;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
 
 public abstract class ContextJob extends Job implements ContextDependent {
 

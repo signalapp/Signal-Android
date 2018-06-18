@@ -4,8 +4,8 @@ package org.thoughtcrime.securesms.jobs.requirements;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.whispersystems.jobqueue.requirements.RequirementListener;
-import org.whispersystems.jobqueue.requirements.RequirementProvider;
+import org.thoughtcrime.securesms.jobmanager.requirements.RequirementListener;
+import org.thoughtcrime.securesms.jobmanager.requirements.RequirementProvider;
 
 public class SqlCipherMigrationRequirementProvider implements RequirementProvider {
 
