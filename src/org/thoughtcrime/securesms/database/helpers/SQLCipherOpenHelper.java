@@ -8,9 +8,6 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import net.sqlcipher.CursorWindow;
-import net.sqlcipher.CursorWindowAllocation;
-import net.sqlcipher.CustomCursorWindowAllocation;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
@@ -54,14 +51,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   private static final int    DATABASE_VERSION = 9;
   private static final String DATABASE_NAME    = "signal.db";
-
-  private static final int                    MEMORY_INITIAL    = 128 * 1024;
-  private static final int                    MEMORY_GROW       = 1024 * 1024;
-  private static final int                    MEMORY_MAX        = 4 * 1024 * 1024;
-  private static final CursorWindowAllocation CURSOR_ALLOCATION = new CustomCursorWindowAllocation(MEMORY_INITIAL, MEMORY_GROW, MEMORY_MAX);
-  static {
-    CursorWindow.setCursorWindowAllocation(CURSOR_ALLOCATION);
-  }
 
   private final Context        context;
   private final DatabaseSecret databaseSecret;
