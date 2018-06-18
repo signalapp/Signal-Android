@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 

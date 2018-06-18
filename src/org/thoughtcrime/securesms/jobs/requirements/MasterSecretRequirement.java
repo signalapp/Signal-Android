@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.jobs.requirements;
 
 import android.content.Context;
 
+import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
+import org.thoughtcrime.securesms.jobmanager.requirements.Requirement;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.whispersystems.jobqueue.dependencies.ContextDependent;
-import org.whispersystems.jobqueue.requirements.Requirement;
 
 public class MasterSecretRequirement implements Requirement, ContextDependent {
 

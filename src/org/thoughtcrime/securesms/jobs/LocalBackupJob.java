@@ -11,12 +11,12 @@ import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
 
 import java.io.File;
 import java.io.IOException;

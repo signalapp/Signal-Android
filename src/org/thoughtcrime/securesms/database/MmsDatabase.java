@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -64,7 +65,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -78,7 +78,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.thoughtcrime.securesms.contactshare.Contact.*;
+import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
+import static org.thoughtcrime.securesms.contactshare.Contact.deserialize;
 
 public class MmsDatabase extends MessagingDatabase {
 

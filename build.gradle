@@ -78,7 +78,6 @@ dependencies {
 
     compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
 
-    compile 'org.whispersystems:jobmanager:1.0.2'
     compile('org.whispersystems:libpastelog:1.1.2') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
@@ -174,7 +173,6 @@ dependencyVerification {
         'com.google.android.gms:play-services-places:abf3a4a3b146ec7e6e753be62775e512868cf37d6f88ffe2d81167b33b57132b',
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
-        'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:fe56b4db9ec743c8b565e3e4caa9228fafe132dc0bf82000d6e359b97a81177c',
         'org.whispersystems:signal-service-android:823eed29e64fb0aa30d2078cb5ec0245e2a0713a4028121329c5c28788ef27f8',
         'org.whispersystems:webrtc-android:ed297e8b795dad9658cf306c2aa0f7d296c65f0997a2ac4353fd0157910acc12',
