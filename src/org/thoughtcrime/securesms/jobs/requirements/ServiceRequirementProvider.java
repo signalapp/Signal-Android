@@ -5,8 +5,8 @@ import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 
-import org.whispersystems.jobqueue.requirements.RequirementListener;
-import org.whispersystems.jobqueue.requirements.RequirementProvider;
+import org.thoughtcrime.securesms.jobmanager.requirements.RequirementListener;
+import org.thoughtcrime.securesms.jobmanager.requirements.RequirementProvider;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
