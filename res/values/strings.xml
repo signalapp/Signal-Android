@@ -584,6 +584,9 @@
     <string name="RingtonePreference_add_ringtone_text">Add ringtone</string>
     <string name="RingtonePreference_unable_to_add_ringtone">Unable to add custom ringtone</string>
 
+    <!-- ScribbleActivity -->
+    <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
+
     <!-- Search -->
     <string name="SearchFragment_begin_searching">Begin typing to search for conversations, messages, and contacts.</string>
     <string name="SearchFragment_no_results">No results found for \'%s\'</string>

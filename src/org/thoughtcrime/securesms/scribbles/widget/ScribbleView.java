@@ -98,7 +98,7 @@ public class ScribbleView extends FrameLayout {
     final boolean                isLowMemory = Util.isLowMemory(context);
 
     if (imageUri == null) {
-      future.set(null);
+      future.setException(new IllegalStateException("No image URI."));
       return future;
     }
 
@@ -126,7 +126,7 @@ public class ScribbleView extends FrameLayout {
 
                    @Override
                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                     future.set(null);
+                     future.setException(new Throwable("Failed to load image."));
                    }
                });
 
