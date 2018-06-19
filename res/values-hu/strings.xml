@@ -84,7 +84,17 @@
   <string name="ContactsDatabase_message_s">Üzenet %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal hívás %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Keresztnév</string>
+  <string name="ContactNameEditActivity_family_name">Vezetéknév</string>
+  <string name="ContactNameEditActivity_prefix">Előtag</string>
+  <string name="ContactNameEditActivity_suffix">Utótag</string>
+  <string name="ContactNameEditActivity_middle_name">Második keresztnév</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Otthoni</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobil</string>
+  <string name="ContactShareEditActivity_type_work">Munkahelyi</string>
+  <string name="ContactShareEditActivity_type_missing">Egyéb</string>
+  <string name="ContactShareEditActivity_invalid_contact">A kiválasztott kontakt érvénytelen</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nincs kézbesítve</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Kulcs-csere üzenet érkezett, koppints a feldolgozáshoz.</string>
@@ -136,6 +146,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotók és videók készítéséhez engedélyezd a Signal-nak a kamerához való hozzáférést!</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">A Signal-nak szüksége van a Kamera engedélyre, hogy fotót vagy videót készíthessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">A Signal-nak szüksége van Kamera engedélyekre fotók és videók készítéséhez</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d olvasatlan üzenet</item>
@@ -496,15 +507,29 @@ szám (%s) érvénytelen.
   <string name="RingtonePreference_alarm_sound_default">Alapértelmezett riasztási hang</string>
   <string name="RingtonePreference_add_ringtone_text">Csengőhang hozzáadása</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nem lehet hozzáadni az egyedi csengőhangot</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Nem sikerült elmenteni a kép változásait</string>
   <!--Search-->
+  <string name="SearchFragment_begin_searching">Beszélgetések, üzenetek és kontaktok kereséséhez kezdj el gépelni!</string>
   <string name="SearchFragment_no_results">Nincs találat a \'%s\' kifejezésre</string>
+  <string name="SearchFragment_header_conversations">Beszélgetések</string>
   <string name="SearchFragment_header_contacts">Kontaktok</string>
   <string name="SearchFragment_header_messages">Üzenetek</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Hozzáadás a Névjegyzékhez</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Meghívás a Signal-ba</string>
   <string name="SharedContactDetailsActivity_invite_message">Válts Signal-ra: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Kontakt hozzáadva.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Nem sikerült letölteni a kontaktot</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Kontakt frissítve.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Hiba történt a kontakt szerkesztésekor</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Hiba történt a kontakt olvasásakor</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Hozzáadás új kontaktként</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Hozzáadás egy meglévő kontakthoz</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Hozzáadás a névjegyzékhez</string>
   <string name="SharedContactView_invite_to_signal">Meghívás a Signal-ba</string>
+  <string name="SharedContactView_message">Signal üzenet</string>
   <!--Slide-->
   <string name="Slide_image">Kép</string>
   <string name="Slide_audio">Hang</string>
@@ -611,7 +636,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_media_message">Médiaüzenet</string>
   <string name="MessageNotifier_reply">Válasz</string>
   <string name="MessageNotifier_pending_signal_messages">Függő Signal üzenetek</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Függő Signal üzeneteid vannak, koppint a megnyitáshoz és letöltéshez</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Függő Signal üzeneteid vannak, koppints a megnyitáshoz és letöltéshez</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Névjegy</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -802,6 +828,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="import_fragment__import_a_plaintext_backup_file">Titkosítatlan biztonságimentés-fájl importálása. Kompatibilis az \'SMS Backup &amp; Restore\'-ral.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Teljes beszélgetés megtekintése</string>
+  <string name="load_more_header__loading">Betöltés</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nincs médiafájl</string>
   <!--message_recipients_list_item-->
@@ -842,6 +869,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hívás</string>
   <string name="redphone_call_controls__mute">Némítás</string>
+  <string name="redphone_call_controls__flip_camera_rear">Kameraváltás</string>
   <string name="redphone_call_controls__signal_call">Signal hívás</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONSZÁM</string>
@@ -1115,6 +1143,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="reminder_header_invite_text">Hívd meg %1$s-t, hogy kommunikációtok a következő szintre léphessen!</string>
   <string name="reminder_header_share_title">Hívd meg barátaidat!</string>
   <string name="reminder_header_share_text">Minél több barátod használja a Signal-t, annál jobbá válik.</string>
+  <string name="reminder_header_service_outage_text">A Signal technikai nehézségekkel küzd. Keményen dolgozunk azért, hogy a lehető leghamarabb visszaállítsuk a szolgáltatást.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Mentés</string>
   <string name="media_preview__forward_title">Továbbítás</string>

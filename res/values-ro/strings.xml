@@ -86,7 +86,17 @@
   <string name="ContactsDatabase_message_s">Mesaj %s</string>
   <string name="ContactsDatabase_signal_call_s">Apel Signal %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Prenume</string>
+  <string name="ContactNameEditActivity_family_name">Nume</string>
+  <string name="ContactNameEditActivity_prefix">Prefix</string>
+  <string name="ContactNameEditActivity_suffix">Sufix</string>
+  <string name="ContactNameEditActivity_middle_name">Nume mijlociu</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Acasă</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobil</string>
+  <string name="ContactShareEditActivity_type_work">Serviciu</string>
+  <string name="ContactShareEditActivity_type_missing">Altul</string>
+  <string name="ContactShareEditActivity_invalid_contact">Contactul selectat este invalid</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nelivrat</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, apasă pentru a-l procesa.</string>
@@ -138,6 +148,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pentru a captura poze sau filme, permite-i Signal accesul la cameră.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Cameră\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesaj necitit</item>
@@ -506,15 +517,28 @@ furnizat (%s) este invalid.</string>
   <string name="RingtonePreference_alarm_sound_default">Sunet de alarmă implicit</string>
   <string name="RingtonePreference_add_ringtone_text">Adaugă ton de apel</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nu am putut adăuga tonul de apel personalizat</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">Începe să tastezi pentru a căuta conversații, mesaje și contacte.</string>
   <string name="SearchFragment_no_results">Nu s-a găsit nici un rezultat pentru \'1%s\'</string>
+  <string name="SearchFragment_header_conversations">Conversații</string>
   <string name="SearchFragment_header_contacts">Contacte</string>
   <string name="SearchFragment_header_messages">Mesaje</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Adaugă la contacte</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invită la Signal</string>
   <string name="SharedContactDetailsActivity_invite_message">Hai să folosim Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Contact adăugat.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Contact nu a putut fi obținut</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Contact actualizat.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Eroare la editarea contactului</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Eroare la citirea contactului</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Adaugă ca și contact nou</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Adaugă la un contact existent</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Adaugă la contacte</string>
   <string name="SharedContactView_invite_to_signal">Invită la Signal</string>
+  <string name="SharedContactView_message">Mesaj Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagine</string>
   <string name="Slide_audio">Audio</string>
@@ -620,6 +644,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_reply">Răspunde</string>
   <string name="MessageNotifier_pending_signal_messages">Mesaje Signal în așteptare</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Ai mesaje Signal în așteptare, apasă pentru deschidere și recuperare</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -815,6 +840,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="import_fragment__import_a_plaintext_backup_file">Importă un fișier de backup necriptat. Compatibil cu \'SMS Backup &amp;  Restore.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vezi conversația completă.</string>
+  <string name="load_more_header__loading">Se încarcă</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Nu există fișiere media</string>
   <!--message_recipients_list_item-->
@@ -856,6 +882,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Apel Signal</string>
   <string name="redphone_call_controls__mute">Fără sunet</string>
+  <string name="redphone_call_controls__flip_camera_rear">Schimbă camerele</string>
   <string name="redphone_call_controls__signal_call">Apel Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMĂRUL DE TELEFON</string>

@@ -89,7 +89,10 @@
   <string name="ContactsDatabase_message_s">Wiadomość %s</string>
   <string name="ContactsDatabase_signal_call_s">Połączenie Signal %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Imię</string>
   <string name="ContactNameEditActivity_family_name">Nazwisko</string>
+  <string name="ContactNameEditActivity_prefix">Tytuł</string>
+  <string name="ContactNameEditActivity_suffix">Tytuł zawodowy/naukowy</string>
   <string name="ContactNameEditActivity_middle_name">Drugie imię</string>
   <!--ContactShareEditActivity-->
   <string name="ContactShareEditActivity_type_home">Dom</string>
@@ -529,6 +532,8 @@ wiadomości SMS z domyślnej aplikacji SMS. Jeżeli wcześniej wykonywałeś ju�
   <string name="RingtonePreference_alarm_sound_default">Domyślny d</string>
   <string name="RingtonePreference_add_ringtone_text">Dodaj dzwonek</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nie udało się dodać własnego dzwonka</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
   <!--Search-->
   <string name="SearchFragment_begin_searching">Rozpocznij pisanie, aby wyszukać rozmowy, wiadomości i kontakty.</string>
   <string name="SearchFragment_no_results">Brak wyników dla \'%s\'</string>
@@ -1054,10 +1059,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
   <string name="preferences__support_wifi_calling">Tryb zgodności \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczania SMS/MMS przez WiFi (włącz tylko wtedy gdy \'Połączenia WiFi\' jest włączone na Twoim urządzeniu)</string>
-  <string name="preferences__incognito_keyboard">Klawiatura trybu prywatnego</string>
+  <string name="preferences__incognito_keyboard">Klawiatura w trybie prywatnym</string>
   <string name="preferences__read_receipts">Potwierdzenia przeczytania</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Gdy potwierdzenia przeczytania są wyłączone, Ty również nie będziesz otrzymywać potwierdzeń od innych użytkowników.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Zażądaj od klawiatury wyłączenia mechanizmów uczenia się</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Wymuś na klawiaturze blokadę uczenia się słów</string>
   <string name="preferences_app_protection__blocked_contacts">Zablokowane kontakty</string>
   <string name="preferences_chats__when_using_mobile_data">Podczas używania Danych Mobilnych</string>
   <string name="preferences_chats__when_using_wifi">Podczas używania Wi-Fi</string>
@@ -1177,6 +1182,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="reminder_header_invite_text">Przenieś swoje rozmowy z %1$s na wyższy poziom.</string>
   <string name="reminder_header_share_title">Zaproś swoich znajomych!</string>
   <string name="reminder_header_share_text">Im więcej twoich znajomych używa Signal, tym bardziej staje się on użyteczny.</string>
+  <string name="reminder_header_service_outage_text">Signal ma problemy techniczne. Dokładamy wszelkich starań, aby przywrócić usługę tak szybko, jak to możliwe.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
   <string name="media_preview__forward_title">Przekaż dalej</string>

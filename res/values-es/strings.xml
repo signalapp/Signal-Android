@@ -83,7 +83,17 @@
   <string name="ContactsDatabase_message_s">Mensaje %s</string>
   <string name="ContactsDatabase_signal_call_s">Llamar a %s con Signal</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Nombre dado</string>
+  <string name="ContactNameEditActivity_family_name">Nombre de familia</string>
+  <string name="ContactNameEditActivity_prefix">Prefijo</string>
+  <string name="ContactNameEditActivity_suffix">Sufijo</string>
+  <string name="ContactNameEditActivity_middle_name">Otro nombre</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Domicilio</string>
+  <string name="ContactShareEditActivity_type_mobile">Móvil</string>
+  <string name="ContactShareEditActivity_type_work">Trabajo</string>
+  <string name="ContactShareEditActivity_type_missing">Otros</string>
+  <string name="ContactShareEditActivity_invalid_contact">El contacto que se ha seleccionado no es válido</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">No entregado</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Se recibió un mensaje de intercambio de clave, pulse para proceder.</string>
@@ -135,6 +145,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para capturar fotos y vídeo, permita el acceso de Signal a la cámara.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita el permiso Cámara para tomar fotos o vídeo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita los permisos Cámara para tomar fotos o vídeo.</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -492,15 +503,28 @@ número de teléfono
   <string name="RingtonePreference_alarm_sound_default">Sonido de alarma predeterminado</string>
   <string name="RingtonePreference_add_ringtone_text">Añadir tono de llamada</string>
   <string name="RingtonePreference_unable_to_add_ringtone">No se pudo añadir tono de llamada personalizado</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">Comienza a escribir para buscar conversaciones, mensajes y contactos.</string>
   <string name="SearchFragment_no_results">No se encontraron resultados para \'%s\'</string>
+  <string name="SearchFragment_header_conversations">Conversaciones</string>
   <string name="SearchFragment_header_contacts">Contactos</string>
   <string name="SearchFragment_header_messages">Mensajes</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Añadir a Contactos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitar a Signal</string>
   <string name="SharedContactDetailsActivity_invite_message">Pasémonos a Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Contacto añadido.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Fallo al recuperar el contacto</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Contacto actualizado.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Erro al editar el contacto</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Error al leer el contacto</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Añadir como nuevo contacto</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Añadir a un contacto existente</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Añadir a Contactos</string>
   <string name="SharedContactView_invite_to_signal">Invitar a Signal</string>
+  <string name="SharedContactView_message">Mensaje de Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagen</string>
   <string name="Slide_audio">Audio</string>
@@ -608,6 +632,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_pending_signal_messages">Mensajes de Signal pendientes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tiene mensajes de Signal pendientes, pulse para abrir y descargar</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -797,6 +822,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="import_fragment__import_a_plaintext_backup_file">Importar una copia de seguridad en texto plano. Compatible con \'SMS Backup &amp; Restore.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversación completa</string>
+  <string name="load_more_header__loading">Cargando</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Sin audiovisual</string>
   <!--message_recipients_list_item-->
@@ -837,6 +863,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <string name="redphone_call_controls__mute">Silenciar</string>
+  <string name="redphone_call_controls__flip_camera_rear">Cambiar de Camaras</string>
   <string name="redphone_call_controls__signal_call">Llamada de Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>

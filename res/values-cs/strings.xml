@@ -533,6 +533,8 @@ telefonní číslo</string>
   <string name="RingtonePreference_alarm_sound_default">Výchozí zvuk alarmu</string>
   <string name="RingtonePreference_add_ringtone_text">Přidat vyzvánění</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nelze přidat uživatelské vyzvánění</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Nepodařilo se uložit změny v obrázku.</string>
   <!--Search-->
   <string name="SearchFragment_begin_searching">Začněte psát pro vyhledání konverzace, zpráv nebo kontaktů</string>
   <string name="SearchFragment_no_results">Pro \'%s\' nebylo nic nalezeno</string>
@@ -1181,6 +1183,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="reminder_header_invite_text">Posuňte vaši konverzaci s %1$s na vyšší úroveň.</string>
   <string name="reminder_header_share_title">Pozvěte vaše přátele!</string>
   <string name="reminder_header_share_text">Čím víc bude uživatelů Signal, tím bude lepší.</string>
+  <string name="reminder_header_service_outage_text">Signál zaznamenal technické potíže. Pracujeme tvrdě na co nejrychlejší obnově služby.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložit</string>
   <string name="media_preview__forward_title">Přeposlat</string>

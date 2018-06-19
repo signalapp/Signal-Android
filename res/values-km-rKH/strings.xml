@@ -80,7 +80,17 @@
   <string name="ContactsDatabase_message_s">សារ %s</string>
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់ស៊ីហ្គណល  %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">នាម</string>
+  <string name="ContactNameEditActivity_family_name">ត្រកូល</string>
+  <string name="ContactNameEditActivity_prefix">ខាងដើម</string>
+  <string name="ContactNameEditActivity_suffix">ខាងចុង</string>
+  <string name="ContactNameEditActivity_middle_name">ឈ្មោះកណ្តាល</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">ផ្ទះ</string>
+  <string name="ContactShareEditActivity_type_mobile">ចល័ត</string>
+  <string name="ContactShareEditActivity_type_work">ការងារ</string>
+  <string name="ContactShareEditActivity_type_missing">ផ្សេងៗ</string>
+  <string name="ContactShareEditActivity_invalid_contact">លេខទំនាក់ទំនងដែលបានជ្រើសរើសមិនត្រឹមត្រូវ</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">មិនបានបញ្ជូន</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ទទួលបានសារ ផ្លាស់ប្តូរសោរ សូមចុច ដើម្បីដំណើរការ។</string>
@@ -132,6 +142,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ដើម្បីថតរូបភាព និងវីដេអូ, សូមអនុញ្ញាត Signal ចូលប្រើប្រាស់កាមេរ៉ា។</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal ត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីថតរូបភាព ឬវីដេអូ, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"កាមេរ៉ា\"។</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal​ ត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីថតរូបភាព ឬវីដេអូ</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d សារមិនទាន់អាន</item>
@@ -470,15 +481,28 @@
   <string name="RingtonePreference_alarm_sound_default">សំឡេងរោទិ៍ដើម</string>
   <string name="RingtonePreference_add_ringtone_text">បន្ថែមសំឡេងរោទិ៍</string>
   <string name="RingtonePreference_unable_to_add_ringtone">មិនអាចបន្ថែមសំឡេងរោទិ៍ផ្សេងបាន</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">ចាប់ផ្តើមវាយបញ្ចួល ដើម្បីស្វែងរកការសន្ទនា, សារ, និងបញ្ជីទំនាក់ទំនង។</string>
   <string name="SearchFragment_no_results">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
+  <string name="SearchFragment_header_conversations">ការសន្ទនា</string>
   <string name="SearchFragment_header_contacts">បញ្ជីទំនាក់ទំនង</string>
   <string name="SearchFragment_header_messages">សារ</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">ថែមចូល បញ្ជីទំនាក់ទំនង</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">អញ្ជើញចូលប្រើស៊ីហ្គណល</string>
   <string name="SharedContactDetailsActivity_invite_message">តោះដូរទៅប្រើស៊ីហ្គណល ៖ %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">លេខទំនាក់ទំនងបានបន្ថែម។</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">បរាជ័យក្នុងការទាញយកលេខទំនាក់ទំនង</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">បញ្ជីទំនាក់ទំនងបានធ្វើបច្ចុប្បន្នភាព។</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">បញ្ហាក្នុងការកែប្រែលេខទំនក់ទំនង</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">បញ្ហាក្នុងការអានលេខទំនាក់ទំនង</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">ថែមជាលេខទំនាក់ទំនងថ្មី</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">ថែមជាលេខទំនាក់ទំនងដែលមានស្រាប់</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">ថែមចូល បញ្ជីទំនាក់ទំនង</string>
   <string name="SharedContactView_invite_to_signal">អញ្ជើញចូលប្រើស៊ីហ្គណល</string>
+  <string name="SharedContactView_message">សារSignal </string>
   <!--Slide-->
   <string name="Slide_image">រូបភាព</string>
   <string name="Slide_audio">សំឡេង</string>
@@ -584,6 +608,7 @@
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
   <string name="MessageNotifier_pending_signal_messages">សារ ស៊ីហ្គណល បញ្ចូនមិនទាន់សម្រេច</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">អ្នកមានសារស៊ីហ្គណល មិនទាន់បញ្ចូនសម្រេច ចុចបើក និងទាញយកមកវិញ</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ទំនាក់ទំនង</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -767,6 +792,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">នាំចូលការបម្រុងទុក។ ដែលត្រូវគ្នាជាមួយនឹង ‘ការបម្រុង និងស្តារ SMS’ ។</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">មើលសារសន្ទនាទាំងស្រុង</string>
+  <string name="load_more_header__loading">កំពុងផ្ទុក</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">គ្មានព័ត៌មាន</string>
   <!--message_recipients_list_item-->
@@ -806,6 +832,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">ការហៅស៊ីហ្គណល</string>
   <string name="redphone_call_controls__mute">បិទសំឡេង</string>
+  <string name="redphone_call_controls__flip_camera_rear">ផ្លាស់ប្តូរកាមេរ៉ា</string>
   <string name="redphone_call_controls__signal_call">ការហៅស៊ីហ្គណល</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">លេខទូរស័ព្ទ</string>

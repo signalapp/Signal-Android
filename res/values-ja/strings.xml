@@ -80,7 +80,17 @@
   <string name="ContactsDatabase_message_s">%sにメッセージを送る</string>
   <string name="ContactsDatabase_signal_call_s">Signalコール %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">名</string>
+  <string name="ContactNameEditActivity_family_name">姓</string>
+  <string name="ContactNameEditActivity_prefix">プレフィックス</string>
+  <string name="ContactNameEditActivity_suffix">サフィックス</string>
+  <string name="ContactNameEditActivity_middle_name">ミドルネーム</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">自宅</string>
+  <string name="ContactShareEditActivity_type_mobile">携帯</string>
+  <string name="ContactShareEditActivity_type_work">職場</string>
+  <string name="ContactShareEditActivity_type_missing">その他</string>
+  <string name="ContactShareEditActivity_invalid_contact">選択された連絡先は無効です</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">未送信</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">鍵交換のメッセージを受信しました。タップして手続きを行ってください。</string>
@@ -132,6 +142,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">写真や動画を撮るには、Signalのカメラへのアクセスを許可してください。</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセス許可が必要です。</string>
+  <string name="ConversationActivity_quoted_contact_message">%2$s%1$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d通の未読メッセージ</item>
@@ -461,15 +472,28 @@
   <string name="RingtonePreference_alarm_sound_default">デフォルトのアラーム音</string>
   <string name="RingtonePreference_add_ringtone_text">着信音を追加</string>
   <string name="RingtonePreference_unable_to_add_ringtone">カスタム着信音の追加を無効にする</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">会話やメッセージ、連絡先を検索します。</string>
   <string name="SearchFragment_no_results">「%s」に一致する情報は見つかりませんでした。</string>
+  <string name="SearchFragment_header_conversations">会話</string>
   <string name="SearchFragment_header_contacts">連絡先</string>
   <string name="SearchFragment_header_messages">メッセージ</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">連絡先に追加</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signalに招待する</string>
   <string name="SharedContactDetailsActivity_invite_message">会話アプリをSignalに変更しましょう。%1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">連絡先を追加しました。</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">連絡先の取得に失敗しました</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">連絡先を更新しました。</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">連絡先の編集時にエラー</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">連絡先の読み込み時にエラー</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">新しい連絡先を追加</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">既存の連絡先に追加</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">連絡先に追加</string>
   <string name="SharedContactView_invite_to_signal">Signalに招待する</string>
+  <string name="SharedContactView_message">Signalメッセージ</string>
   <!--Slide-->
   <string name="Slide_image">画像</string>
   <string name="Slide_audio">音声</string>
@@ -573,6 +597,7 @@
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_pending_signal_messages">保留中のメッセージ</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">保留中のメッセージがあります。取得するにはタップしてください。</string>
+  <string name="MessageNotifier_contact_message">%2$s%1$s</string>
   <string name="MessageNotifier_unknown_contact_message">連絡先</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -756,6 +781,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">「SMS Backup &amp; Restore」形式のテキスト・バックアップファイルをインポートする。</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">会話全体を見る</string>
+  <string name="load_more_header__loading">読み込み中</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">メディアがありません</string>
   <!--message_recipients_list_item-->
@@ -795,6 +821,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal通話</string>
   <string name="redphone_call_controls__mute">ミュート</string>
+  <string name="redphone_call_controls__flip_camera_rear">カメラを切り替える</string>
   <string name="redphone_call_controls__signal_call">Signal通話</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">電話番号</string>

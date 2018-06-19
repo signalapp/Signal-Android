@@ -311,7 +311,7 @@
   <string name="ImportFragment_import_system_sms_database">System-SMS-Datenbank importieren?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Dies wird die Nachrichten aus der Standard-SMS-Datenbank in Signal importieren. Falls du dies schon einmal gemacht hast, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_import">Importieren</string>
-  <string name="ImportFragment_cancel">Abbruch</string>
+  <string name="ImportFragment_cancel">Abbrechen</string>
   <string name="ImportFragment_import_plaintext_backup">Klartextsicherung importieren?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dies wird Nachrichten aus einer Klartext-Datensicherung in Signal importieren. Falls du bereits zuvor diese Datensicherung importiert hast, wird es zu doppelten Nachrichten kommen.</string>
   <string name="ImportFragment_importing">Importieren</string>
@@ -491,6 +491,8 @@
   <string name="RingtonePreference_alarm_sound_default">Standardweckerton</string>
   <string name="RingtonePreference_add_ringtone_text">Klingelton hinzufügen</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Klingelton kann nicht hinzugefügt werden</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
   <!--Search-->
   <string name="SearchFragment_begin_searching">Beginne zu tippen, um nach Unterhaltungen, Nachrichten und Kontakten zu suchen.</string>
   <string name="SearchFragment_no_results">Keine Ergebnisse für »%s« gefunden</string>
@@ -1121,6 +1123,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="reminder_header_invite_text">Hebe deine Kommunikation mit %1$s auf die nächste Stufe.</string>
   <string name="reminder_header_share_title">Lade deine Freunde ein!</string>
   <string name="reminder_header_share_text">Je mehr Freunde Signal nutzen, desto besser das Erlebnis.</string>
+  <string name="reminder_header_service_outage_text">Signal hat technische Schwierigkeiten. Wir arbeiten hart daran, den Betrieb so schnell wie möglich wiederherzustellen.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Speichern</string>
   <string name="media_preview__forward_title">Weiterleiten</string>
@@ -1184,7 +1187,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_verify_s">%s verifizieren</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
   <string name="RegistrationActivity_wrong_number">Falsche Rufnummer?</string>
-  <string name="RegistrationActivity_call_me_instead">Mich stattdessen anrufen</string>
+  <string name="RegistrationActivity_call_me_instead">Mich anrufen</string>
   <string name="RegistrationActivity_available_in">Verfügbar in:\u0020</string>
   <string name="BackupUtil_never">Nie</string>
   <string name="BackupUtil_unknown">Unbekannt</string>

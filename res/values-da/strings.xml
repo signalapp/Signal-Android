@@ -78,7 +78,12 @@
   <string name="ContactsDatabase_message_s">Besked %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal opkald %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_middle_name">Mellemnavn</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Hjemme</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobil</string>
+  <string name="ContactShareEditActivity_type_work">Arbejde</string>
+  <string name="ContactShareEditActivity_invalid_contact">Valgte kontakt findes ikke</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Ikke sendt</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Udvekslingsnøgle er modtaget. Klik for at fortsætte</string>
@@ -126,6 +131,7 @@
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Signal adgang til mikrofonen.</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">For at ringe til %s har Signal brug for adgang til din mikrofon og dit kamera.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal har brug for adgang til mikrofon og kamera for at kunne ringe til %s, men det er permanent blevet afvist. Åben indstillinger og gå til \"Tilladelser\" for at give tilladelse til mikrofon og kamera.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal behøver tilladelse, for at bruge kameraet, til at tage billeder og video</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>
@@ -453,6 +459,7 @@ indtastede (%s) er ugyldigt.
   <string name="RingtonePreference_notification_sound_default">Standard notifikationslyd</string>
   <string name="RingtonePreference_alarm_sound_default">Standard alarmlyd</string>
   <string name="RingtonePreference_add_ringtone_text">Tilføj ringetone</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_header_contacts">Kontakter</string>
   <string name="SearchFragment_header_messages">Beskeder</string>

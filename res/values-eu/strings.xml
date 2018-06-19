@@ -83,7 +83,17 @@
   <string name="ContactsDatabase_message_s">Mezu %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Dei %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Izen tipia</string>
+  <string name="ContactNameEditActivity_family_name">Abizena</string>
+  <string name="ContactNameEditActivity_prefix">Aurrizkia</string>
+  <string name="ContactNameEditActivity_suffix">Atzizkia</string>
+  <string name="ContactNameEditActivity_middle_name">Bigarren izena</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Sorlekua</string>
+  <string name="ContactShareEditActivity_type_mobile">Telefono mugikorra</string>
+  <string name="ContactShareEditActivity_type_work">Lana</string>
+  <string name="ContactShareEditActivity_type_missing">Besteak</string>
+  <string name="ContactShareEditActivity_invalid_contact">Aukeratutako kontaktua baliogabea da</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Ez banatua</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Jaso da gakoaren datu-trukatzearen mezua, tap egin prozesatzeko.</string>
@@ -135,6 +145,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Argazkiak eta bideoak grabatzeko, eman baimena Signali kamera erabiltzeko.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mezu irakurri gabe</item>
@@ -251,7 +262,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal orain bideodei seguruak egiteko gai da. Besterik gabe, hasi  Signal dei normal bat, ukitu bideo botoia eta kaixo esan.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal orain bideodei seguruak egiteko gai da.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal orain bideodei seguruak egiteko gai da. Ukitu argibide gehiago lortzeko.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prest zaude?</string>
+  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prest zaude zure gertuko argazkia hartzeko?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signaleko zure lagunekin profileko argazkia eta izena partekatu ditzakezu</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilak heldu dira</string>
   <!--ExportFragment-->
@@ -493,15 +504,28 @@ zenbakia (%s) baliogabea da.
   <string name="RingtonePreference_alarm_sound_default">Defektuzko alarma soinua</string>
   <string name="RingtonePreference_add_ringtone_text">Dei-doinua gehitu</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Ezin izan da dei-doinua gehitu</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">Hasi idazten txatetan, mezuetan eta kontaktuetan bilatzeko.</string>
   <string name="SearchFragment_no_results">Ez dago emaitzarik \'%s\' bilatuta</string>
+  <string name="SearchFragment_header_conversations">Txatak</string>
   <string name="SearchFragment_header_contacts">Kontaktuak</string>
   <string name="SearchFragment_header_messages">Mezuak</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Gehitu kontaktu-zerrendan</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
   <string name="SharedContactDetailsActivity_invite_message">Signalera alda dezagun: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Kontaktua gehituta.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Ezin izan da kontaktua berreskuratu</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Kontaktua eguneratuta.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Akatsa kontaktua editatzean</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Akatsa kontaktua irakurtzean</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Gehitu kontaktu berri bat bezala</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Gehitu existitzen den kontaktu bati</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Gehitu kontaktu-zerrendan</string>
   <string name="SharedContactView_invite_to_signal">Gonbidatu Signal erabiltzera</string>
+  <string name="SharedContactView_message">Signal mezua</string>
   <!--Slide-->
   <string name="Slide_image">Irudia</string>
   <string name="Slide_audio">Audioa</string>
@@ -609,6 +633,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_reply">Erantzun</string>
   <string name="MessageNotifier_pending_signal_messages">Falta diren Signalen mezuak</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signal mezuak  zain dauzkazu, ukitu irekitzeko eta jasotzeko.</string>
+  <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontaktua</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -800,6 +825,7 @@ Esportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
 Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopia bat.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ikusi solasaldi osoa</string>
+  <string name="load_more_header__loading">Kargatzen</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Euskarririk ez</string>
   <!--message_recipients_list_item-->
@@ -840,6 +866,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal deia</string>
   <string name="redphone_call_controls__mute">Isildu</string>
+  <string name="redphone_call_controls__flip_camera_rear">Aldatu kamera</string>
   <string name="redphone_call_controls__signal_call">Signal deia</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONO ZENBAKIA</string>
@@ -1096,6 +1123,10 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Zure Signal bertsioa zaharkitua dago</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Zure Signal-en bertsioa egun %d barru iraungiko da. Sakatu azkenengo bertsiora eguneratzeko.</item>
+    <item quantity="other">Zure Signal-en bertsioa %d egun barru iraungiko da. Sakatu azkenengo bertsiora eguneratzeko.</item>
+  </plurals>
   <string name="reminder_header_outdated_build_details_today">Gaur amaituko da zure Signal bertsioa erabiltzeko epea. Ukitu azken bertsioara eguneratzeko.</string>
   <string name="reminder_header_expired_build">Amaitu da zure Signal bertsioa erabiltzeko epea!</string>
   <string name="reminder_header_expired_build_details">Mezuak ezingo dira bidali.  Ukitu azken bertsiora eguneratzeko.</string>
@@ -1134,19 +1165,83 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="Permissions_not_now">Orain ez</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Singnalek Kontaktuen baimena behar du kontaktuak bilatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kontaktuak\".</string>
   <string name="conversation_activity__enable_signal_messages">GAITU SIGNAL MEZUAK</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-en datu-basea migratzen</string>
+  <string name="PushDecryptJob_new_locked_message">Blokeatutako mezu berria</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Desblokeatu begiratu gabeko mezuak ikusteko</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Desblokeatu eguneratzea burutzeko</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Desblokeatu Signal eguneratzea burutzeko</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Babeskopiaren pasaesaldia</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Babeskopiak kanpoko memoria batean gordeko dira beheko pasaesaldiarekin enkriptatuta. Pasaesaldi hau eduki behar duzu babeskopia bat berrezartzeko.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Pasaesaldia gorde dut. Hori gabe, ezin izango dut babeskopia bat berrezarri.</string>
+  <string name="registration_activity__restore_backup">Berrezarri babeskopia</string>
   <string name="registration_activity__skip">Saltatu</string>
   <string name="registration_activity__register">Erregistratu</string>
+  <string name="preferences_chats__chat_backups">Txaten babeskopiak</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Gorde txaten babeskopia bat kanpoko memoria batean</string>
+  <string name="preferences_chats__create_backup">Sortu babeskopia</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Sartu babeskopiaren pasaesaldia</string>
   <string name="RegistrationActivity_restore">Leheneratu</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Babeskopiaren pasaesaldia okerra da</string>
+  <string name="RegistrationActivity_checking">Egiaztatzen...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mezu orain arte...</string>
+  <string name="RegistrationActivity_restore_from_backup">Babeskopia berrezarri?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Berrezarri babeskopia lokal bateko mezuak eta multimedia gaiak. Orain berrezartzen ez badituzu, gero ezingo dituzu berrezarri.</string>
+  <string name="RegistrationActivity_backup_size_s">Babeskopiaren tamaina: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Babeskopiaren denbora-zigilua: %s</string>
+  <string name="BackupDialog_enable_local_backups">Babeskopia lokalak gaitu?</string>
+  <string name="BackupDialog_enable_backups">Gaitu babeskopiak</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Baieztatu ulertu duzula berrespenaren kontrol-laukia markatuz.</string>
+  <string name="BackupDialog_delete_backups">Babeskopiak ezabatu?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Babeskopia lokal guztiak desgaitu eta ezabatu?</string>
+  <string name="BackupDialog_delete_backups_statement">Ezabatu babeskopiak</string>
+  <string name="BackupDialog_copied_to_clipboard">Arbelera kopiatuta</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal-ek kanpoko memorian gordetzeko baimena behar du babeskopiak egin ahal izateko baina baimena ukatuta izan du beti. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta gaitu \"Biltegiratzea\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Azken babeskopia: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Martxan</string>
+  <string name="LocalBackupJob_creating_backup">Babeskopia sortzen...</string>
+  <string name="ProgressPreference_d_messages_so_far">%d mezu orain arte</string>
+  <string name="RegistrationActivity_verify_s">Egiaztatu %s</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Sartu %s(e)ra bidalitako egiaztapen-kodea.</string>
+  <string name="RegistrationActivity_wrong_number">Zenbaki okerra?</string>
+  <string name="RegistrationActivity_call_me_instead">Dei iezadazu ordea</string>
+  <string name="RegistrationActivity_available_in">Erabilgarri hemen:\u0020</string>
   <string name="BackupUtil_never">Inoiz ez</string>
   <string name="BackupUtil_unknown">Ezezaguna</string>
+  <string name="prompt_passphrase_activity__unlock_signal">Desblokeatu Signal</string>
   <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blokeatu Signal-era sarbidea Android pantaila-blokeoarekin edo hatz-markarekin</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Blokeo-pantailaren inaktibitate denbora-muga</string>
   <string name="AppProtectionPreferenceFragment_none">Bat ere ez</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Erregistratzea blokeatzeko PINa ez da jaso berri duzun SMS bidezko egiaztapen-kodearen berdina. Sartu aurrez aplikazioan konfiguratu duzun PINa.</string>
+  <string name="registration_activity__registration_lock_pin">Erregistratzea blokeatzeko PINa</string>
+  <string name="registration_activity__forgot_pin">PINa ahaztu al duzu?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PINak lau digitu edo gehiago izan ditzake. PINa ahazten baduzu zure kontua 7 egunez erabili ezinik gera zaitezke.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Sartu PINa</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Berretsi PINa</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Sartu erregistratzea blokeatzeko zure PINa</string>
+  <string name="registration_lock_reminder_view__enter_pin">Sartu PINa</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Gaitu erregistratzea blokeatzeko PINa telefono-zenbaki hau Signal-en berriro erregistratu nahi denerako.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Erregistratzea blokeatzeko PINa</string>
   <string name="preferences_app_protection__registration_lock">Erregistratze-blokeoa</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Erregistratzea blokeatzeko zure PINa sartu behar duzu</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Erregistratzea blokeatzeko PINa okerra da</string>
   <string name="RegistrationActivity_too_many_attempts">Saio gehiegi</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Erregistratzea blokeatzeko PINarekin okerreko saiakera gehiegi egin dituzu. Saiatu berriro egun bat barru.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Akatsa zerbitzura konektatzean</string>
+  <string name="RegistrationActivity_oh_no">Ez ba!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Erregistratzea blokeatzeko PINik gabe telefono-zenbaki hau erregistratu ahal izango duzu betiere telefono-zenbaki hau Signal-en aktibo egon zen azken alditik 7 egun igaro ondoren. %d egun gelditzen zaizkizu.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Erregistratzea blokeatzeko PINa</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Telefono-zenbaki honek gaituta du erregistratzea blokeatzeko aukera. Sartu erregistratzea blokeatzeko PINa.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Erregistratzea blokeatzeko aukera gaituta dago zure telefono-zenbakiarentzat. Erregistratzea blokeatzeko PINa buruz ikasten laguntzeko, Signal-ek aldian-aldian berau baieztatzea eskatuko dizu.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Nire PINa ahaztu dut.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">PINa ahaztu al duzu?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Erregistratzea blokeatzeko aukerak zure telefono-zenbakia baimenik gabe erregistratzeko saiakeretatik babesten du. Aukera hau nahi duzunean desgaitu daiteke Signal-eko pribatutasun-ezarpenetan</string>
   <string name="RegistrationLockDialog_registration_lock">Erregistratze-blokeoa</string>
   <string name="RegistrationLockDialog_enable">Gaitu</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Erregistratzea blokeatzeko PINak 4 digitu izan behar ditu gutxienez.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Sartu dituzun bi PINak ez datoz bat.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Akatsa zerbitzura konektatzean</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Erregistratzea blokeatzeko PINa desgaitu?</string>
   <string name="RegistrationLockDialog_disable">Desgaitu</string>
   <string name="RegistrationActivity_continue">Jarraitu</string>
   <string name="preferences_chats__backups">Babes-kopiak</string>

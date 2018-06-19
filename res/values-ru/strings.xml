@@ -89,7 +89,17 @@
   <string name="ContactsDatabase_message_s">Сообщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Позвонить через Signal на %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Имя</string>
+  <string name="ContactNameEditActivity_family_name">Фамилия</string>
+  <string name="ContactNameEditActivity_prefix">Префикс</string>
+  <string name="ContactNameEditActivity_suffix">Суффикс</string>
+  <string name="ContactNameEditActivity_middle_name">Отчество</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Домашний</string>
+  <string name="ContactShareEditActivity_type_mobile">Мобильный</string>
+  <string name="ContactShareEditActivity_type_work">Рабочий</string>
+  <string name="ContactShareEditActivity_type_missing">Другой</string>
+  <string name="ContactShareEditActivity_invalid_contact">Выбранный контакт недействителен</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Не доставлено</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получено сообщение обмена ключами. Нажмите, чтобы его обработать.</string>
@@ -141,6 +151,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Для создания фото и видео разрешите Signal доступ к камере.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Чтобы сделать фото или видео требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Камеру.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Для съемки фото или видео предоставьте Signal доступ к камере</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитанное сообщение</item>
@@ -520,15 +531,28 @@
   <string name="RingtonePreference_alarm_sound_default">Звуковой сигнал по умолчанию</string>
   <string name="RingtonePreference_add_ringtone_text">Добавить мелодию звонка</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Не удается добавить мелодию звонка</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">Начните вводить текст для поиска бесед, сообщений и контактов.</string>
   <string name="SearchFragment_no_results">Результаты не найдены для \'%s\'</string>
+  <string name="SearchFragment_header_conversations">Беседы</string>
   <string name="SearchFragment_header_contacts">Контакты</string>
   <string name="SearchFragment_header_messages">Сообщения</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Пригласить в Signal</string>
   <string name="SharedContactDetailsActivity_invite_message">Давайте перейдём на Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Контакт добавлен</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Не удалось найти контакт</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Контакт обновлен</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Ошибка при редактировании контакта</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Ошибка при чтении контакта</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Добавить как новый контакт</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Добавить к существующему контакту</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactView_invite_to_signal">Пригласить в Signal</string>
+  <string name="SharedContactView_message">Сообщение Signal</string>
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
   <string name="Slide_audio">Аудио</string>
@@ -636,6 +660,7 @@
   <string name="MessageNotifier_reply">Ответить</string>
   <string name="MessageNotifier_pending_signal_messages">Неполученные сообщения</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">У вас есть неполученные сообщения в Signal. Нажмите, чтобы открыть приложение и получить их.</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -837,6 +862,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">Импортировать незашифрованную резервную копию. Совместимо с приложением «SMS Backup &amp; Restore».</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Посмотреть весь разговор</string>
+  <string name="load_more_header__loading">Загрузка</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Нет медиа-файлов</string>
   <!--message_recipients_list_item-->
@@ -879,6 +905,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Звонок через Signal</string>
   <string name="redphone_call_controls__mute">Откл. звук</string>
+  <string name="redphone_call_controls__flip_camera_rear">Переключить камеры</string>
   <string name="redphone_call_controls__signal_call">Звонок через Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>

@@ -521,6 +521,7 @@
   <string name="RingtonePreference_alarm_sound_default">نغمة التنبيه الإفتراضية</string>
   <string name="RingtonePreference_add_ringtone_text">إضافة نغمة</string>
   <string name="RingtonePreference_unable_to_add_ringtone">تعذر إضافة نغمة رنين مخصصة</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">لم يتم العثور على أية نتيجة لـ \'%s\'</string>
   <string name="SearchFragment_header_contacts">جهات الإتصال</string>

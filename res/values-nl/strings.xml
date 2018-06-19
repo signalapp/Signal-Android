@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(locatie)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(beantwoorden)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de opslagruimte om foto\'s, video\'s of audio te kunnen sturen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
@@ -82,7 +83,17 @@
   <string name="ContactsDatabase_message_s">Bericht sturen naar %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oproep %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Voornaam</string>
+  <string name="ContactNameEditActivity_family_name">Achternaam</string>
+  <string name="ContactNameEditActivity_prefix">Voorvoegsel</string>
+  <string name="ContactNameEditActivity_suffix">Achtervoegsel</string>
+  <string name="ContactNameEditActivity_middle_name">2e voornaam</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Adres</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobiel</string>
+  <string name="ContactShareEditActivity_type_work">Werk</string>
+  <string name="ContactShareEditActivity_type_missing">Ander</string>
+  <string name="ContactShareEditActivity_invalid_contact">Het geselecteerde contact was ongeldig</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Niet bezorgd</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik om te verwerken.</string>
@@ -134,6 +145,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Signal toegang tot de camera om foto\'s en video\'s te maken.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal heeft toegang nodig tot de camera om foto\'s en video\'s te kunnen opnemen, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Camera\" in.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal heeft toegang nodig tot de camera om foto\'s en video\'s te kunnen opnemen</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -171,7 +183,7 @@
     <item quantity="other">%1$d bijlagen opslaan...</item>
   </plurals>
   <string name="ConversationFragment_pending">In afwachting...</string>
-  <string name="ConversationFragment_push">Gegevens (Signal)</string>
+  <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">Mms</string>
   <string name="ConversationFragment_sms">Sms</string>
   <string name="ConversationFragment_deleting">Verwijderen</string>
@@ -484,15 +496,29 @@ ingevoerd (%s) is ongeldig.</string>
   <string name="RingtonePreference_alarm_sound_default">Standaardwekkergeluid</string>
   <string name="RingtonePreference_add_ringtone_text">Beltoon toevoegen</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Kan aangepaste beltoon niet toevoegen</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Mislukt om bewerkte afbeelding op te slaan</string>
   <!--Search-->
+  <string name="SearchFragment_begin_searching">Begin te typen om te zoeken naar conversaties, berichten en contacten.</string>
   <string name="SearchFragment_no_results">Geen resultaten gevonden voor \'%s\'</string>
+  <string name="SearchFragment_header_conversations">Conversaties</string>
   <string name="SearchFragment_header_contacts">Contacten</string>
   <string name="SearchFragment_header_messages">Berichten</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Toevoegen aan contacten</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Uitnodigen voor Signal</string>
   <string name="SharedContactDetailsActivity_invite_message">Laten we overstappen naar Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Contact toegevoegd</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Kon contact niet ophalen</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Contact bijgewerkt</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Fout bij het bewerken van het contact</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Fout bij het lezen van het contact</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Toevoegen als nieuw contact</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Toevoegen aan bestaand contact</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Toevoegen aan contacten</string>
   <string name="SharedContactView_invite_to_signal">Uitnodigen voor Signal</string>
+  <string name="SharedContactView_message">Signal bericht</string>
   <!--Slide-->
   <string name="Slide_image">Afbeelding</string>
   <string name="Slide_audio">Audio</string>
@@ -598,6 +624,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="MessageNotifier_reply">Reageren</string>
   <string name="MessageNotifier_pending_signal_messages">Signal-berichten in wachtrij</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Er staan Signal-berichten in de wachtrij, tik om ze te openen en op te halen</string>
+  <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contactpersoon</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -787,6 +814,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="import_fragment__import_a_plaintext_backup_file">Importeer een onversleutelde back-up. Compatibel met \'SMS Back-up &amp; Herstellen\'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Bekijk volledig gesprek</string>
+  <string name="load_more_header__loading">Laden</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Geen media</string>
   <!--message_recipients_list_item-->
@@ -827,6 +855,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal oproep</string>
   <string name="redphone_call_controls__mute">Dempen</string>
+  <string name="redphone_call_controls__flip_camera_rear">Andere camera</string>
   <string name="redphone_call_controls__signal_call">Signal oproep</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
@@ -1024,6 +1053,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="conversation_context__menu_delete_message">Bericht verwijderen</string>
   <string name="conversation_context__menu_forward_message">Bericht doorsturen</string>
   <string name="conversation_context__menu_resend_message">Bericht opnieuw verzenden</string>
+  <string name="conversation_context__menu_reply_to_message">Bericht beantwoorden</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Bijlage opslaan</string>
   <!--conversation_expiring_off-->
@@ -1099,6 +1129,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="reminder_header_invite_text">Neem je gesprek met %1$s naar een hoger niveau.</string>
   <string name="reminder_header_share_title">Nodig je vrienden uit!</string>
   <string name="reminder_header_share_text">Hoe meer vrienden Signal gebruiken, hoe beter het wordt.</string>
+  <string name="reminder_header_service_outage_text">Signal heeft technische problemen. We werken er hard aan om zo snel mogelijk de dienst weer beschikbaar te maken.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Opslaan</string>
   <string name="media_preview__forward_title">Doorsturen</string>

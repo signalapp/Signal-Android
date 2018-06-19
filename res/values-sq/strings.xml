@@ -449,6 +449,7 @@ e zgjodhët (%s) nuk është korrekt.</string>
   <string name="RingtonePreference_alarm_sound_default">Zëri i alarmit i parazgjedhur</string>
   <string name="RingtonePreference_add_ringtone_text">Shto zile</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nuk munda të shtoj zilen e personalizuar</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">Nuk u gjetën rezultate për \'%s\'</string>
   <string name="SearchFragment_header_contacts">Kontaktet</string>

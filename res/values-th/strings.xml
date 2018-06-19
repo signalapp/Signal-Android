@@ -462,6 +462,7 @@
   <string name="RingtonePreference_alarm_sound_default">เสียงเตือนมาตรฐาน</string>
   <string name="RingtonePreference_add_ringtone_text">เพิ่มเสียงเรียกเข้า</string>
   <string name="RingtonePreference_unable_to_add_ringtone">ไม่สามารถเพิ่มเสียงเรียกเข้าที่ตั้งเองได้</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">ไม่พบข้อมูลเกี่ยวกับ \'%s\'</string>
   <string name="SearchFragment_header_contacts">รายชื่อติดต่อ</string>

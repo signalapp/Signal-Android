@@ -456,6 +456,7 @@
   <string name="RingtonePreference_alarm_sound_default">صدای پیش فرض زنگ</string>
   <string name="RingtonePreference_add_ringtone_text">اضافه کردن آهنگ زنگ</string>
   <string name="RingtonePreference_unable_to_add_ringtone">امکان افزودن زنگ دلخواه وجود ندارد</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">نتایجی برای %s یافت نشد</string>
   <string name="SearchFragment_header_contacts">مخاطبین</string>

@@ -492,6 +492,7 @@
   <string name="RingtonePreference_alarm_sound_default">Som padrão de alarme</string>
   <string name="RingtonePreference_add_ringtone_text">Adicionar toque</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Não foi possível adicionar toque personalizado</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">Nenhum resultado encontrado para \'%s\'</string>
   <string name="SearchFragment_header_contacts">Contatos</string>

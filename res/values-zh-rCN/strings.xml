@@ -46,6 +46,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">（音频）</string>
   <string name="DraftDatabase_Draft_video_snippet">（视频）</string>
   <string name="DraftDatabase_Draft_location_snippet">(位置)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(回复)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">无法找到用于选择媒体的应用。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要\"存储空间\"权限才能发送图片、视频以及音频，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"存储空间\"权限。</string>
@@ -79,7 +80,17 @@
   <string name="ContactsDatabase_message_s">信息 %s</string>
   <string name="ContactsDatabase_signal_call_s">暗号呼叫 %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">名字</string>
+  <string name="ContactNameEditActivity_family_name">姓氏</string>
+  <string name="ContactNameEditActivity_prefix">前缀</string>
+  <string name="ContactNameEditActivity_suffix">后缀</string>
+  <string name="ContactNameEditActivity_middle_name">中间名</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">家庭</string>
+  <string name="ContactShareEditActivity_type_mobile">手机</string>
+  <string name="ContactShareEditActivity_type_work">工作</string>
+  <string name="ContactShareEditActivity_type_missing">其他</string>
+  <string name="ContactShareEditActivity_invalid_contact">所选联系人无效</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">未送达</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">已收到密钥交换信息，点击以开始处理。</string>
@@ -131,6 +142,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">要拍照或录像，请允许 Signal 访问相机。</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相机权限来拍摄照片或录制视频。但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要相机权限以拍摄照片或视频</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读信息</item>
@@ -165,6 +177,7 @@
   <string name="ConversationFragment_sms">短信</string>
   <string name="ConversationFragment_deleting">删除中</string>
   <string name="ConversationFragment_deleting_messages">正在删除信息…</string>
+  <string name="ConversationFragment_quoted_message_not_found">没有找到指定的消息</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的设备上无浏览器</string>
   <!--ConversationListFragment-->
@@ -467,15 +480,28 @@
   <string name="RingtonePreference_alarm_sound_default">默认提示音</string>
   <string name="RingtonePreference_add_ringtone_text">添加来电铃声</string>
   <string name="RingtonePreference_unable_to_add_ringtone">无法添加个人来点铃声</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">搜索对话，消息记录和联系人信息。</string>
   <string name="SearchFragment_no_results">没有找到关于“%s”的信息</string>
+  <string name="SearchFragment_header_conversations">对话</string>
   <string name="SearchFragment_header_contacts">联系人</string>
   <string name="SearchFragment_header_messages">信息</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">添加到通讯录</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀请至暗号</string>
   <string name="SharedContactDetailsActivity_invite_message">让我们切换到暗号： %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">已添加到通讯录</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">无法接收联系人信息</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">联系人信息已更新</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">无法编辑联系人</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">无法读取联系人</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">添加为新的联系人</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">添加到已有联系人</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">添加到通讯录</string>
   <string name="SharedContactView_invite_to_signal">邀请至暗号</string>
+  <string name="SharedContactView_message">Signal 消息</string>
   <!--Slide-->
   <string name="Slide_image">图片</string>
   <string name="Slide_audio">音频</string>
@@ -580,6 +606,7 @@
   <string name="MessageNotifier_reply">回复</string>
   <string name="MessageNotifier_pending_signal_messages">暗号信息待处理</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">您有待处理的信号消息，轻触来打开和收取</string>
+  <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">联系人</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -678,6 +705,8 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">音频</string>
   <string name="QuoteView_video">视频</string>
+  <string name="QuoteView_photo">图片</string>
+  <string name="QuoteView_document">文档</string>
   <string name="QuoteView_you">您</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
@@ -761,6 +790,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">导入明文备份文件。兼容“SMS Backup &amp; Restore”备份。</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">查看完整会话</string>
+  <string name="load_more_header__loading">加载中</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">无媒体</string>
   <!--message_recipients_list_item-->
@@ -800,6 +830,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">暗号呼叫</string>
   <string name="redphone_call_controls__mute">静音</string>
+  <string name="redphone_call_controls__flip_camera_rear">切换摄像头</string>
   <string name="redphone_call_controls__signal_call">暗号呼叫</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">电话号码</string>
@@ -996,6 +1027,7 @@
   <string name="conversation_context__menu_delete_message">删除</string>
   <string name="conversation_context__menu_forward_message">转发</string>
   <string name="conversation_context__menu_resend_message">重新发送信息</string>
+  <string name="conversation_context__menu_reply_to_message">回复该消息</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">保存附件</string>
   <!--conversation_expiring_off-->
@@ -1129,10 +1161,13 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 需要存储空间权限才能创建备份，但是此权限已被永久禁用。请转到系统的应用设置，选择“权限”然后启用“存储空间”权限。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">上一次备份：%s</string>
   <string name="ChatsPreferenceFragment_in_progress">进行中</string>
+  <string name="LocalBackupJob_creating_backup">正在创建备份…</string>
   <string name="ProgressPreference_d_messages_so_far">已处理 %d 条消息</string>
   <string name="RegistrationActivity_verify_s">验证%s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">请输入发送到 %s 的验证码。</string>
   <string name="RegistrationActivity_wrong_number">错误的号码？</string>
+  <string name="RegistrationActivity_call_me_instead">改成给我打电话</string>
+  <string name="RegistrationActivity_available_in">可用:\u0020</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="prompt_passphrase_activity__unlock_signal">解锁 Signal</string>
@@ -1176,5 +1211,6 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已锁定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">轻触解锁</string>
   <string name="RegistrationLockDialog_reminder">提醒：</string>
+  <string name="recipient_preferences__about">关于</string>
   <!--EOF-->
 </resources>

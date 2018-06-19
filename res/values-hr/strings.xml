@@ -456,6 +456,7 @@ telefona</string>
   <string name="RingtonePreference_alarm_sound_default">Zadani zvuk alarma</string>
   <string name="RingtonePreference_add_ringtone_text">Dodaj melodiju</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nije moguće dodati prilagođenu melodiju</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_header_contacts">Kontakti</string>
   <string name="SearchFragment_header_messages">Poruke</string>

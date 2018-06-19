@@ -421,6 +421,7 @@
   <string name="RingtonePreference_alarm_sound_default">မူလ နှိုးစက် အသံ</string>
   <string name="RingtonePreference_add_ringtone_text">ဖုန်းသံစဉ် ထည့်ရန်</string>
   <string name="RingtonePreference_unable_to_add_ringtone">စိတ်ကြိုက် ဖုန်းသံစဉ် ထည့်၍မရပါ။</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_header_messages">စာများ</string>
   <!--SharedContactDetailsActivity-->

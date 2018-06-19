@@ -411,7 +411,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Dohodni klic Signal</string>
   <string name="NotificationBarManager__deny_call">Zavrni klic</string>
-  <string name="NotificationBarManager__answer_call">Odgovori</string>
+  <string name="NotificationBarManager__answer_call">Sprejmi klic</string>
   <string name="NotificationBarManager__end_call">Zaključi klic</string>
   <string name="NotificationBarManager__cancel_call">Prekini klic</string>
   <!--NotificationMmsMessageRecord-->
@@ -530,6 +530,8 @@
   <string name="RingtonePreference_alarm_sound_default">Privzet zvok alarma</string>
   <string name="RingtonePreference_add_ringtone_text">Dodaj zvonjenje</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Zvonjenja po meri ni bilo mogoče dodati</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
   <!--Search-->
   <string name="SearchFragment_begin_searching">Za iskanje po pogovorih, sporočilih in stikih pričnite s tipkanjem.</string>
   <string name="SearchFragment_no_results">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
@@ -538,7 +540,7 @@
   <string name="SearchFragment_header_messages">Sporočila</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj med stike</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Povabi k uporabi</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Povabi na Signal</string>
   <string name="SharedContactDetailsActivity_invite_message">Preklopi na Signal: %1$s</string>
   <string name="SharedContactDetailsActivity_new_contact_success">Stik je bil dodan.</string>
   <string name="SharedContactDetailsActivity_new_contact_failure">Napaka med pridobivanjem stika</string>
@@ -570,7 +572,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_secure_session_reset">Varna seja ponastavljena.</string>
   <string name="ThreadRecord_draft">Osnutek:</string>
   <string name="ThreadRecord_called">Klicali ste</string>
-  <string name="ThreadRecord_called_you">Imeli ste klic</string>
+  <string name="ThreadRecord_called_you">Dohodni klic</string>
   <string name="ThreadRecord_missed_call">Neodgovorjen klic</string>
   <string name="ThreadRecord_media_message">Večpredstavno sporočilo</string>
   <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
@@ -1179,6 +1181,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="reminder_header_invite_text">Prenesite svojo komunikacijo z osebo %1$s na novo raven.</string>
   <string name="reminder_header_share_title">Povabi svoje prijatelje!</string>
   <string name="reminder_header_share_text">Več vas bo uporabljalo Signal, boljši bo!</string>
+  <string name="reminder_header_service_outage_text">Prihaja do tehničnih težav v omrežju Signal. Ekipa vzdrževalcev se trudi, da bodo čimprej odravljene.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Shrani</string>
   <string name="media_preview__forward_title">Naprej</string>

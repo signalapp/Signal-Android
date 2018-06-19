@@ -501,6 +501,8 @@ Viss du ikkje er ein erfaren brukar, ikkje køyrer ein tredjeparts Android-ROM, 
   <string name="RingtonePreference_alarm_sound_default">Standard alarmlyd</string>
   <string name="RingtonePreference_add_ringtone_text">Legg til ringelyd</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Klarte ikkje legga til eigen ringelyd</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Klarte ikkje lagra biletendringane</string>
   <!--Search-->
   <string name="SearchFragment_begin_searching">Tast i veg for å søka etter samtalar, meldingar og kontaktar.</string>
   <string name="SearchFragment_no_results">Fann ingen resultat for «%s»</string>
@@ -1135,6 +1137,7 @@ Du er à jour!</string>
   <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>
   <string name="reminder_header_share_title">Inviter vennane dine!</string>
   <string name="reminder_header_share_text">Jo fleire vennar som brukar Signal, desto betre vert det.</string>
+  <string name="reminder_header_service_outage_text">Signal har for tida tekniske problem. Me jobbar hardt med å få tilbake tenesta så fort som mogleg.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagra</string>
   <string name="media_preview__forward_title">Vidaresend</string>

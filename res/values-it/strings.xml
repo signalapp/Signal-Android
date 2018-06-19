@@ -498,6 +498,8 @@ proprio numero di telefono</string>
   <string name="RingtonePreference_alarm_sound_default">Suono di avviso predefinito</string>
   <string name="RingtonePreference_add_ringtone_text">Aggiungi suoneria</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Impossibile aggiungere suoneria personalizzata</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Salvataggio modifiche all\'immagine fallito</string>
   <!--Search-->
   <string name="SearchFragment_begin_searching">Inizia a digitare per cercare conversazioni, messaggi e contatti.</string>
   <string name="SearchFragment_no_results">Nessun risultato trovato per \'%s\'</string>
@@ -1130,6 +1132,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="reminder_header_invite_text">Porta la tua conversazione con %1$s ad un nuovo livello.</string>
   <string name="reminder_header_share_title">Invita i tuoi amici!</string>
   <string name="reminder_header_share_text">Più amici usano Signal, più migliora.</string>
+  <string name="reminder_header_service_outage_text">Signal sta riscontrando problemi tecnici. Stiamo lavorando per ripristinare il servizio nel minor tempo possibile.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
   <string name="media_preview__forward_title">Inoltra</string>

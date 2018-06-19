@@ -80,7 +80,17 @@
   <string name="ContactsDatabase_message_s">%s 則訊息</string>
   <string name="ContactsDatabase_signal_call_s">Signal 通話 %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">名字</string>
+  <string name="ContactNameEditActivity_family_name">姓</string>
+  <string name="ContactNameEditActivity_prefix">前綴名</string>
+  <string name="ContactNameEditActivity_suffix">後綴名</string>
+  <string name="ContactNameEditActivity_middle_name">中間名</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">住家</string>
+  <string name="ContactShareEditActivity_type_mobile">行動電話</string>
+  <string name="ContactShareEditActivity_type_work">工作電話</string>
+  <string name="ContactShareEditActivity_type_missing">其他</string>
+  <string name="ContactShareEditActivity_invalid_contact">選擇的聯絡人無效</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">未送達</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">接收到金鑰交換訊息，按此開始處理。</string>
@@ -132,6 +142,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">請授予 Signal 使用相機的權限，才能拍攝照片和影片</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相機的權限來拍攝照片或是影片 ，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用相機的權限。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要使用相機的權限來拍攝照片和影片</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -471,15 +482,29 @@
   <string name="RingtonePreference_alarm_sound_default">預設鬧鐘鈴聲</string>
   <string name="RingtonePreference_add_ringtone_text">加入鈴聲</string>
   <string name="RingtonePreference_unable_to_add_ringtone">無法加入自訂的鈴聲</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">開始輸入以搜尋對話，訊息和聯絡人。</string>
   <string name="SearchFragment_no_results">沒有找到「%s」的結果</string>
+  <string name="SearchFragment_header_conversations">對話</string>
   <string name="SearchFragment_header_contacts">聯絡人</string>
   <string name="SearchFragment_header_messages">訊息</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">新增至連˙絡人</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀請至 Signal</string>
   <string name="SharedContactDetailsActivity_invite_message">讓我們切換到 Signal：%1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">已新增聯絡人。</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">讀取聯絡人失敗</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">聯絡人更新了。</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">編輯聯絡人失敗</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">讀取聯絡人失敗</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">以新聯絡人新增</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">新增至既有的聯絡人</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">新增至連˙絡人</string>
   <string name="SharedContactView_invite_to_signal">邀請至 Signal</string>
+  <string name="SharedContactView_message">
+signal 訊息</string>
   <!--Slide-->
   <string name="Slide_image">圖片</string>
   <string name="Slide_audio">音訊</string>
@@ -587,6 +612,7 @@
   <string name="MessageNotifier_reply">回覆</string>
   <string name="MessageNotifier_pending_signal_messages">擱置的 Signal 訊息</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Signal 訊息，輕觸打開及取得訊息</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -770,6 +796,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">匯入一個純文字格式備份。相容於“SMS Backup &amp; Restore.”</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">查閱完整對話</string>
+  <string name="load_more_header__loading">讀取中</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">無媒體</string>
   <!--message_recipients_list_item-->
@@ -809,6 +836,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 通話</string>
   <string name="redphone_call_controls__mute">靜音</string>
+  <string name="redphone_call_controls__flip_camera_rear">切換相機</string>
   <string name="redphone_call_controls__signal_call">Signal 通話</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">手機號碼</string>

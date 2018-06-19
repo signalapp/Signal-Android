@@ -83,7 +83,17 @@
   <string name="ContactsDatabase_message_s">Sõnum %s</string>
   <string name="ContactsDatabase_signal_call_s">Signali kõne %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Eesnimi</string>
+  <string name="ContactNameEditActivity_family_name">Perekonnanimi</string>
+  <string name="ContactNameEditActivity_prefix">Eesliide</string>
+  <string name="ContactNameEditActivity_suffix">Järelliide</string>
+  <string name="ContactNameEditActivity_middle_name">Keskmine nimi</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Kodu</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobiil</string>
+  <string name="ContactShareEditActivity_type_work">Töö</string>
+  <string name="ContactShareEditActivity_type_missing">Muu</string>
+  <string name="ContactShareEditActivity_invalid_contact">Valitud kontakt oli sobimatu</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Ei toimetatud kohale</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Võtmevahetussõnum vastuvõetud, koputa töötlemiseks.</string>
@@ -135,6 +145,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Luba Signalile ligipääs kaamerale fotode ja videote salvestamiseks.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal vajab ligipääsu kaamerale, et salvestada fotosid ja videosid, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kaamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal vajab fotode ja videote salvestamiseks ligipääsu kaamerale</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lugemata sõnum</item>
@@ -494,15 +505,28 @@
   <string name="RingtonePreference_alarm_sound_default">Vaikimisi äratuse heli</string>
   <string name="RingtonePreference_add_ringtone_text">Lisa helin</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Kohandatud helina lisamine pole võimalik</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">Alusta kirjutamist, et otsida vestlusi, sõnumeid ja kontakte</string>
   <string name="SearchFragment_no_results">Tulemusi ei leitud otsingule \'%s\'</string>
+  <string name="SearchFragment_header_conversations">Vestlused</string>
   <string name="SearchFragment_header_contacts">Kontaktid</string>
   <string name="SearchFragment_header_messages">Sõnumid</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Lisa kontaktidesse</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Kutsu Signalisse</string>
   <string name="SharedContactDetailsActivity_invite_message">Lähme Signalile üle: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Kontakt lisatud.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Kontakti hankimine ebaõnnestus</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Kontakt uuendatud.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Kontakti muutmisel esines viga</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Kontakti lugemisel esines viga</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Lisa uue kontaktina</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Lisa olemasolevale kontaktile</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Lisa kontaktidesse</string>
   <string name="SharedContactView_invite_to_signal">Kutsu Signalisse</string>
+  <string name="SharedContactView_message">Signali sõnum</string>
   <!--Slide-->
   <string name="Slide_image">Pilt</string>
   <string name="Slide_audio">Heli</string>
@@ -610,6 +634,7 @@
   <string name="MessageNotifier_reply">Vasta</string>
   <string name="MessageNotifier_pending_signal_messages">Ootel Signali sõnumid</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Sul on ootel Signali sõnumeid, koputa vaatamiseks</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -799,6 +824,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">Impordi lihtteksti varundusfail. Ühildub valikuga \"SMS-varundus ja taastamine\".</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Näe tervet vestlust</string>
+  <string name="load_more_header__loading">Laadimine</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Meedia puudub</string>
   <!--message_recipients_list_item-->
@@ -839,6 +865,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signali kõne</string>
   <string name="redphone_call_controls__mute">Vaigista</string>
+  <string name="redphone_call_controls__flip_camera_rear">Vaheta kaameraid</string>
   <string name="redphone_call_controls__signal_call">Signali kõne</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONINUMBER</string>

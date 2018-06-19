@@ -482,6 +482,7 @@ telefónne číslo</string>
   <string name="RingtonePreference_notification_sound_default">Predvolený tón notifikácie</string>
   <string name="RingtonePreference_add_ringtone_text">Pridať zvonenie</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nepodarilo sa pridať vlastné zvonenie</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Správy</string>

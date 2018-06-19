@@ -497,6 +497,7 @@ puhelinnumero</string>
   <string name="RingtonePreference_alarm_sound_default">Oletuksena oleva ilmoitusääni</string>
   <string name="RingtonePreference_add_ringtone_text">Lisää soittoääni</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Soittoäänen lisäys epäonnistui</string>
+  <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_begin_searching">Ala kirjoittaa hakeaksesi keskusteluja, viestejä ja yhteystietoja.</string>
   <string name="SearchFragment_no_results">Ei hakutuloksia: \'%s\'</string>

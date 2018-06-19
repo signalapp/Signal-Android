@@ -89,7 +89,17 @@
   <string name="ContactsDatabase_message_s">שלח הודעה אל %s</string>
   <string name="ContactsDatabase_signal_call_s">שיחת Signal אל %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">שם פרטי</string>
+  <string name="ContactNameEditActivity_family_name">שם משפחה</string>
+  <string name="ContactNameEditActivity_prefix">קידומת</string>
+  <string name="ContactNameEditActivity_suffix">סיומת</string>
+  <string name="ContactNameEditActivity_middle_name">שם אמצעי</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">בית</string>
+  <string name="ContactShareEditActivity_type_mobile">נייד</string>
+  <string name="ContactShareEditActivity_type_work">עבודה</string>
+  <string name="ContactShareEditActivity_type_missing">אחר</string>
+  <string name="ContactShareEditActivity_invalid_contact">איש קשר נבחר היה בלתי תקף</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">לא נמסר</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">התקבלה הודעת החלפת מפתח, הקש כדי להמשיך.</string>
@@ -141,6 +151,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">כדי ללכוד תצלומים ווידיאו, אפשר ל-Signal גישה אל המצלמה.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal צריך את הרשאת המצלמה כדי לצלם תצלומים או וידיאו, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal צריך הרשאות מצלמה כדי לצלם תצלומים או להקליט וידיאו</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -527,15 +538,28 @@
   <string name="RingtonePreference_alarm_sound_default">צליל אזעקה של ברירת מחדל</string>
   <string name="RingtonePreference_add_ringtone_text">הוסף צלצול</string>
   <string name="RingtonePreference_unable_to_add_ringtone">לא היה ניתן להוסיף צלצול מותאם</string>
+  <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_begin_searching">התחל להקליד כדי לחפש שיחות, הודעות ואנשי קשר.</string>
   <string name="SearchFragment_no_results">לא נמצאו תוצאות עבור \'%s\'</string>
+  <string name="SearchFragment_header_conversations">שיחות</string>
   <string name="SearchFragment_header_contacts">אנשי קשר</string>
   <string name="SearchFragment_header_messages">הודעות</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">הוסף לאנשי קשר</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">הזמן אל Signal</string>
   <string name="SharedContactDetailsActivity_invite_message">בוא נחליף אל Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">איש קשר התווסף.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">נכשל באחזור איש הקשר.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">איש קשר עודכן.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">שגיאה בעת עריכת איש קשר</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">שגיאה בעת קריאת איש קשר</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">הוסף כאיש קשר חדש</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">הוסף לאיש קשר קיים</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">הוסף לאנשי קשר</string>
   <string name="SharedContactView_invite_to_signal">הזמן אל Signal</string>
+  <string name="SharedContactView_message">הודעת Signal</string>
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
   <string name="Slide_audio">שמע</string>
@@ -641,6 +665,7 @@
   <string name="MessageNotifier_reply">השב</string>
   <string name="MessageNotifier_pending_signal_messages">הודעות Signal ממתינות</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">יש לך הודעות Signal ממתינות, הקש כדי לפתוח ולאחזר אותן</string>
+  <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">איש קשר</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -842,6 +867,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">שחזור קובץ גיבוי בטקסט פשוט. זה מתאים ל„גיבוי ושחזור SMS”.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">ראה שיחה מלאה</string>
+  <string name="load_more_header__loading">טוען</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">אין מדיה</string>
   <!--message_recipients_list_item-->
@@ -884,6 +910,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">שיחת Signal</string>
   <string name="redphone_call_controls__mute">השתק</string>
+  <string name="redphone_call_controls__flip_camera_rear">החלף מצלמות</string>
   <string name="redphone_call_controls__signal_call">שיחת Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">מספר טלפון</string>
