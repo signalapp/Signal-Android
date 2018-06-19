@@ -40,9 +40,6 @@ repositories {
         url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
     }
     maven {
-        url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
-    }
-    maven {
         url "https://raw.github.com/signalapp/maven/master/sqlcipher/release/"
     }
     maven {
