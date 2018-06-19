@@ -526,6 +526,8 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".service.ExpirationListener" />
+
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"

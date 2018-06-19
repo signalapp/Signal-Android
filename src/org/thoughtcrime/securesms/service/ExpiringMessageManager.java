@@ -46,7 +46,7 @@ public class ExpiringMessageManager {
     }
   }
 
-  void checkSchedule() {
+  public void checkSchedule() {
     synchronized (expiringMessageReferences) {
       expiringMessageReferences.notifyAll();
     }
