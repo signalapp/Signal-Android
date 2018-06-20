@@ -74,8 +74,12 @@ public abstract class PushSendJob extends SendJob {
   }
 
   @Override
-  public void onCanceled() {
-    ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob(context));
+  public void onRetry() {
+    super.onRetry();
+
+    if (getRunIteration() > 1) {
+      ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob(context));
+    }
   }
 
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {
