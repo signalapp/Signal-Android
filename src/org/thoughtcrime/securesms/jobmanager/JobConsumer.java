@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.jobmanager;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.jobmanager.persistence.PersistentStorage;
@@ -59,19 +60,16 @@ class JobConsumer extends Thread {
         if (job.getWakeLock() != null && job.getWakeLockTimeout() == 0) {
           job.getWakeLock().release();
         }
-      }
 
-      if (job.getGroupId() != null) {
-        jobQueue.setGroupIdAvailable(job.getGroupId());
+        if (job.getGroupId() != null) {
+          jobQueue.setGroupIdAvailable(job.getGroupId());
+        }
       }
     }
   }
 
   private JobResult runJob(Job job) {
-    int retryCount   = job.getRetryCount();
-    int runIteration = job.getRunIteration();
-
-    for (;runIteration<retryCount;runIteration++) {
+    while (canRetry(job)) {
       try {
         job.onRun();
         return JobResult.SUCCESS;
@@ -81,8 +79,10 @@ class JobConsumer extends Thread {
           throw (RuntimeException)exception;
         } else if (!job.onShouldRetry(exception)) {
           return JobResult.FAILURE;
-        } else if (!job.isRequirementsMet()) {
-          job.setRunIteration(runIteration+1);
+        }
+
+        job.onRetry();
+        if (!job.isRequirementsMet()) {
           return JobResult.DEFERRED;
         }
       }
@@ -91,4 +91,10 @@ class JobConsumer extends Thread {
     return JobResult.FAILURE;
   }
 
+  private boolean canRetry(@NonNull Job job) {
+    if (job.getRetryCount() > 0) {
+      return job.getRunIteration() < job.getRetryCount();
+    }
+    return System.currentTimeMillis() < job.getRetryUntil();
+  }
 }

@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
 /**
  * A requirement that is satisfied when a network connection is present.
  */
-public class NetworkRequirement implements Requirement, ContextDependent {
+public class NetworkRequirement extends SimpleRequirement implements ContextDependent {
 
   private transient Context context;
 

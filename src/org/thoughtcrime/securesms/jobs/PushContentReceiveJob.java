@@ -12,7 +12,8 @@ import java.io.IOException;
 
 public class PushContentReceiveJob extends PushReceivedJob {
 
-  private static final String TAG = PushContentReceiveJob.class.getSimpleName();
+  private static final long   serialVersionUID = 5685475456901715638L;
+  private static final String TAG              = PushContentReceiveJob.class.getSimpleName();
 
   private final String data;
 

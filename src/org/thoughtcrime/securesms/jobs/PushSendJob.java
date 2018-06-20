@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkBackoffRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -38,10 +38,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public abstract class PushSendJob extends SendJob {
 
-  private static final String TAG = PushSendJob.class.getSimpleName();
+  private static final long   serialVersionUID = 5906098204770900739L;
+  private static final String TAG              = PushSendJob.class.getSimpleName();
 
   protected PushSendJob(Context context, JobParameters parameters) {
     super(context, parameters);
@@ -52,8 +54,8 @@ public abstract class PushSendJob extends SendJob {
     builder.withPersistence();
     builder.withGroupId(destination.serialize());
     builder.withRequirement(new MasterSecretRequirement(context));
-    builder.withRequirement(new NetworkRequirement(context));
-    builder.withRetryCount(5);
+    builder.withRequirement(new NetworkBackoffRequirement(context));
+    builder.withRetryDuration(TimeUnit.DAYS.toMillis(1));
 
     return builder.create();
   }

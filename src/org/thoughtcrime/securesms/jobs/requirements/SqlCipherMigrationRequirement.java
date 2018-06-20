@@ -6,9 +6,10 @@ import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
 import org.thoughtcrime.securesms.jobmanager.requirements.Requirement;
+import org.thoughtcrime.securesms.jobmanager.requirements.SimpleRequirement;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public class SqlCipherMigrationRequirement implements Requirement, ContextDependent {
+public class SqlCipherMigrationRequirement extends SimpleRequirement implements ContextDependent {
 
   @SuppressWarnings("unused")
   private static final String TAG = SqlCipherMigrationRequirement.class.getSimpleName();
