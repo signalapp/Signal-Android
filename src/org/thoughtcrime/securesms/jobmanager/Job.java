@@ -33,6 +33,7 @@ public abstract class Job implements Serializable {
 
   private transient long                  persistentId;
   private transient int                   runIteration;
+  private transient long                  lastRunTime;
   private transient PowerManager.WakeLock wakeLock;
 
   public Job(JobParameters parameters) {
@@ -45,7 +46,7 @@ public abstract class Job implements Serializable {
 
   public boolean isRequirementsMet() {
     for (Requirement requirement : parameters.getRequirements()) {
-      if (!requirement.isPresent()) return false;
+      if (!requirement.isPresent(this)) return false;
     }
 
     return true;
@@ -71,6 +72,19 @@ public abstract class Job implements Serializable {
     return parameters.getRetryCount();
   }
 
+  public long getRetryUntil() {
+    return parameters.getRetryUntil();
+  }
+
+  public long getLastRunTime() {
+    return lastRunTime;
+  }
+
+  public void resetRunStats() {
+    runIteration = 0;
+    lastRunTime  = 0;
+  }
+
   public void setPersistentId(long persistentId) {
     this.persistentId = persistentId;
   }
@@ -81,10 +95,6 @@ public abstract class Job implements Serializable {
 
   public int getRunIteration() {
     return runIteration;
-  }
-
-  public void setRunIteration(int runIteration) {
-    this.runIteration = runIteration;
   }
 
   public boolean needsWakeLock() {
@@ -103,6 +113,15 @@ public abstract class Job implements Serializable {
     return this.wakeLock;
   }
 
+  public void onRetry() {
+    runIteration++;
+    lastRunTime = System.currentTimeMillis();
+
+    for (Requirement requirement : parameters.getRequirements()) {
+      requirement.onRetry(this);
+    }
+  }
+
   /**
    * Called after a job has been added to the JobManager queue.  If it's a persistent job,
    * the state has been persisted to disk before this method is called.
@@ -113,7 +132,7 @@ public abstract class Job implements Serializable {
    * Called to actually execute the job.
    * @throws Exception
    */
-  public abstract void onRun() throws Exception;
+  protected abstract void onRun() throws Exception;
 
   /**
    * If onRun() throws an exception, this method will be called to determine whether the

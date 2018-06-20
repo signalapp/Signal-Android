@@ -16,6 +16,10 @@
  */
 package org.thoughtcrime.securesms.jobmanager.requirements;
 
+import android.support.annotation.NonNull;
+
+import org.thoughtcrime.securesms.jobmanager.Job;
+
 import java.io.Serializable;
 
 /**
@@ -25,5 +29,7 @@ public interface Requirement extends Serializable {
   /**
    * @return true if the requirement is satisfied, false otherwise.
    */
-  public boolean isPresent();
+  boolean isPresent(@NonNull Job job);
+
+  void onRetry(@NonNull Job job);
 }

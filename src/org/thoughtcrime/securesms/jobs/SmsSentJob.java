@@ -18,7 +18,8 @@ import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 
 public class SmsSentJob extends MasterSecretJob {
 
-  private static final String TAG = SmsSentJob.class.getSimpleName();
+  private static final long   serialVersionUID = -2624694558755317560L;
+  private static final String TAG              = SmsSentJob.class.getSimpleName();
 
   private final long   messageId;
   private final String action;

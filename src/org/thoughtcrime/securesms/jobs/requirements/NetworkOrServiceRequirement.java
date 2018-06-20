@@ -5,8 +5,9 @@ import android.content.Context;
 import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
 import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobmanager.requirements.Requirement;
+import org.thoughtcrime.securesms.jobmanager.requirements.SimpleRequirement;
 
-public class NetworkOrServiceRequirement implements Requirement, ContextDependent {
+public class NetworkOrServiceRequirement extends SimpleRequirement implements ContextDependent {
 
   private transient Context context;
 

@@ -4,9 +4,10 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
 import org.thoughtcrime.securesms.jobmanager.requirements.Requirement;
+import org.thoughtcrime.securesms.jobmanager.requirements.SimpleRequirement;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 
-public class MasterSecretRequirement implements Requirement, ContextDependent {
+public class MasterSecretRequirement extends SimpleRequirement implements ContextDependent {
 
   private transient Context context;
 

@@ -28,26 +28,30 @@ import java.util.concurrent.TimeUnit;
  */
 public class JobParameters implements Serializable {
 
+  private static final long serialVersionUID = 4880456378402584584L;
+
   private transient EncryptionKeys encryptionKeys;
 
   private final List<Requirement> requirements;
   private final boolean           isPersistent;
   private final int               retryCount;
+  private final long              retryUntil;
   private final String            groupId;
   private final boolean           wakeLock;
   private final long              wakeLockTimeout;
 
   private JobParameters(List<Requirement> requirements,
-                       boolean isPersistent, String groupId,
-                       EncryptionKeys encryptionKeys,
-                       int retryCount, boolean wakeLock,
-                       long wakeLockTimeout)
+                        boolean isPersistent, String groupId,
+                        EncryptionKeys encryptionKeys,
+                        int retryCount, long retryUntil, boolean wakeLock,
+                        long wakeLockTimeout)
   {
     this.requirements    = requirements;
     this.isPersistent    = isPersistent;
     this.groupId         = groupId;
     this.encryptionKeys  = encryptionKeys;
     this.retryCount      = retryCount;
+    this.retryUntil      = retryUntil;
     this.wakeLock        = wakeLock;
     this.wakeLockTimeout = wakeLockTimeout;
   }
@@ -70,6 +74,10 @@ public class JobParameters implements Serializable {
 
   public int getRetryCount() {
     return retryCount;
+  }
+
+  public long getRetryUntil() {
+    return retryUntil;
   }
 
   /**
@@ -96,6 +104,7 @@ public class JobParameters implements Serializable {
     private boolean           isPersistent    = false;
     private EncryptionKeys    encryptionKeys  = null;
     private int               retryCount      = 100;
+    private long              retryDuration   = 0;
     private String            groupId         = null;
     private boolean           wakeLock        = false;
     private long              wakeLockTimeout = 0;
@@ -139,7 +148,14 @@ public class JobParameters implements Serializable {
      * @return the builder.
      */
     public Builder withRetryCount(int retryCount) {
-      this.retryCount = retryCount;
+      this.retryCount    = retryCount;
+      this.retryDuration = 0;
+      return this;
+    }
+
+    public Builder withRetryDuration(long duration) {
+      this.retryDuration = duration;
+      this.retryCount    = 0;
       return this;
     }
 
@@ -184,7 +200,7 @@ public class JobParameters implements Serializable {
      * @return the JobParameters instance that describes a Job.
      */
     public JobParameters create() {
-      return new JobParameters(requirements, isPersistent, groupId, encryptionKeys, retryCount, wakeLock, wakeLockTimeout);
+      return new JobParameters(requirements, isPersistent, groupId, encryptionKeys, retryCount, System.currentTimeMillis() + retryDuration, wakeLock, wakeLockTimeout);
     }
   }
 }

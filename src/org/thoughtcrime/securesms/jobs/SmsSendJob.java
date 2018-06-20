@@ -29,7 +29,8 @@ import java.util.ArrayList;
 
 public class SmsSendJob extends SendJob {
 
-  private static final String TAG = SmsSendJob.class.getSimpleName();
+  private static final long   serialVersionUID = -5118520036244759718L;
+  private static final String TAG              = SmsSendJob.class.getSimpleName();
 
   private final long messageId;
 
