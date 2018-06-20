@@ -44,16 +44,17 @@ public class ServiceOutageDetectionJob extends ContextJob {
 
     try {
       InetAddress address = InetAddress.getByName(BuildConfig.SIGNAL_SERVICE_STATUS_URL);
+      Log.i(TAG, "Received outage check address: " + address.getHostAddress());
 
       if (IP_SUCCESS.equals(address.getHostAddress())) {
-        Log.w(TAG, "Service is available.");
+        Log.i(TAG, "Service is available.");
         TextSecurePreferences.setServiceOutage(context, false);
       } else if (IP_FAILURE.equals(address.getHostAddress())) {
         Log.w(TAG, "Service is down.");
         TextSecurePreferences.setServiceOutage(context, true);
       } else {
-        Log.w(TAG, "Service status check returned an unrecognized IP address. Assuming outage.");
-        TextSecurePreferences.setServiceOutage(context, true);
+        Log.w(TAG, "Service status check returned an unrecognized IP address. Could be a weird network state. Prompting retry.");
+        throw new RetryLaterException(new Exception("Unrecognized service outage IP address."));
       }
 
       TextSecurePreferences.setLastOutageCheckTime(context, System.currentTimeMillis());
@@ -70,7 +71,7 @@ public class ServiceOutageDetectionJob extends ContextJob {
 
   @Override
   public void onCanceled() {
-    Log.w(TAG, "Service status check could not complete. Assuming success to avoid false positives due to bad network.");
+    Log.i(TAG, "Service status check could not complete. Assuming success to avoid false positives due to bad network.");
     TextSecurePreferences.setServiceOutage(context, false);
     TextSecurePreferences.setLastOutageCheckTime(context, System.currentTimeMillis());
     EventBus.getDefault().post(new ReminderUpdateEvent());
