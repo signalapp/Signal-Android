@@ -30,6 +30,8 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
@@ -567,7 +569,7 @@ public class ThreadDatabase extends Database {
       MessageRecord record;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, record.getBody(), getAttachmentUriFor(record),
+        updateThread(threadId, count, getFormattedBodyFor(record), getAttachmentUriFor(record),
                      record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
                      record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());
         notifyConversationListListeners();
@@ -581,6 +583,15 @@ public class ThreadDatabase extends Database {
       if (reader != null)
         reader.close();
     }
+  }
+
+  private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.isMms() && ((MediaMmsMessageRecord) messageRecord).getSharedContacts().size() > 0) {
+      Contact contact = ((MediaMmsMessageRecord) messageRecord).getSharedContacts().get(0);
+      return ContactUtil.getStringSummary(context, contact).toString();
+    }
+
+    return messageRecord.getBody();
   }
 
   private @Nullable Uri getAttachmentUriFor(MessageRecord record) {
