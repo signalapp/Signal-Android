@@ -76,7 +76,7 @@ public class AttachmentDatabase extends Database {
   public  static final String TABLE_NAME             = "part";
   public  static final String ROW_ID                 = "_id";
           static final String ATTACHMENT_JSON_ALIAS  = "attachment_json";
-          static final String MMS_ID                 = "mid";
+  public  static final String MMS_ID                 = "mid";
           static final String CONTENT_TYPE           = "ct";
           static final String NAME                   = "name";
           static final String CONTENT_DISPOSITION    = "cd";
