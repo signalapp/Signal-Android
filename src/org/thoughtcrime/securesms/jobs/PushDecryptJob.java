@@ -380,8 +380,13 @@ public class PushDecryptJob extends ContextJob {
   private void handleGroupMessage(@NonNull SignalServiceEnvelope envelope,
                                   @NonNull SignalServiceDataMessage message,
                                   @NonNull Optional<Long> smsMessageId)
+      throws MmsException
   {
     GroupMessageProcessor.process(context, envelope, message, false);
+
+    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != getMessageDestination(envelope, message).getExpireMessages()) {
+      handleExpirationUpdate(envelope, message, Optional.absent());
+    }
 
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
