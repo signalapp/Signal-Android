@@ -588,7 +588,6 @@
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
 
     <!-- Search -->
-    <string name="SearchFragment_begin_searching">Begin typing to search for conversations, messages, and contacts.</string>
     <string name="SearchFragment_no_results">No results found for \'%s\'</string>
     <string name="SearchFragment_header_conversations">Conversations</string>
     <string name="SearchFragment_header_contacts">Contacts</string>
