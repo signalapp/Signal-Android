@@ -55,7 +55,7 @@ public class ThreadDatabase extends Database {
 
   private static final String TAG = ThreadDatabase.class.getSimpleName();
 
-          static final String TABLE_NAME             = "thread";
+  public  static final String TABLE_NAME             = "thread";
   public  static final String ID                     = "_id";
   public  static final String DATE                   = "date";
   public  static final String MESSAGE_COUNT          = "message_count";

@@ -13,6 +13,7 @@ import android.util.Pair;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.backup.BackupProtos.Attachment;
 import org.thoughtcrime.securesms.backup.BackupProtos.BackupFrame;
 import org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion;
@@ -22,7 +23,12 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SearchDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
@@ -79,6 +85,8 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
         else if (frame.hasAvatar())     processAvatar(context, frame.getAvatar(), inputStream);
       }
+
+      trimEntriesForExpiredMessages(context, db);
 
       db.setTransactionSuccessful();
     } finally {
@@ -154,6 +162,27 @@ public class FullBackupImporter extends FullBackupBase {
         if ("table".equals(type)) {
           db.execSQL("DROP TABLE IF EXISTS " + name);
         }
+      }
+    }
+  }
+
+  private static void trimEntriesForExpiredMessages(@NonNull Context context, @NonNull SQLiteDatabase db) {
+    String trimmedCondition = " NOT IN (SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME + ")";
+
+    db.delete(GroupReceiptDatabase.TABLE_NAME, GroupReceiptDatabase.MMS_ID + trimmedCondition, null);
+
+    String[] columns = new String[] { AttachmentDatabase.ROW_ID, AttachmentDatabase.UNIQUE_ID };
+    String   where   = AttachmentDatabase.MMS_ID + trimmedCondition;
+
+    try (Cursor cursor = db.query(AttachmentDatabase.TABLE_NAME, columns, where, null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(new AttachmentId(cursor.getLong(0), cursor.getLong(1)));
+      }
+    }
+
+    try (Cursor cursor = db.query(ThreadDatabase.TABLE_NAME, new String[] { ThreadDatabase.ID }, ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false);
       }
     }
   }
