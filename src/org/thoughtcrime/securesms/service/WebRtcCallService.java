@@ -640,7 +640,7 @@ public class WebRtcCallService extends Service implements InjectableType,
       switch (callState) {
         case STATE_DIALING:
         case STATE_REMOTE_RINGING: setCallInProgressNotification(TYPE_OUTGOING_RINGING, this.recipient);    break;
-        case STATE_IDLE:
+        case STATE_IDLE:           setCallInProgressNotification(TYPE_INCOMING_CONNECTING, recipient);      break;
         case STATE_ANSWERING:      setCallInProgressNotification(TYPE_INCOMING_CONNECTING, this.recipient); break;
         case STATE_LOCAL_RINGING:  setCallInProgressNotification(TYPE_INCOMING_RINGING, this.recipient);    break;
         case STATE_CONNECTED:      setCallInProgressNotification(TYPE_ESTABLISHED, this.recipient);         break;
