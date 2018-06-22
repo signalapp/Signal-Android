@@ -359,7 +359,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
         colorPreference.setColor(recipient.getColor().toActionBarColor(getActivity()));
 
-        aboutPreference.setTitle(PhoneNumberUtils.formatNumber(recipient.getAddress().toPhoneString()));
+        aboutPreference.setTitle(formatAddress(recipient.getAddress()));
         aboutPreference.setSummary(recipient.getCustomLabel());
         aboutPreference.setSecure(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED);
 
@@ -386,6 +386,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           }
         });
       }
+    }
+
+    private @NonNull String formatAddress(@NonNull Address address) {
+      if      (address.isPhone()) return PhoneNumberUtils.formatNumber(address.toPhoneString());
+      else if (address.isEmail()) return address.toEmailString();
+      else                        return "";
     }
 
     private @NonNull String getRingtoneSummary(@NonNull Context context, @Nullable Uri ringtone) {
