@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="conversation_red_700">#d32f2f</color>
+    <color name="conversation_pink_600">#d81b60</color>
+    <color name="conversation_indigo_600">#3949ab</color>
+    <color name="conversation_blue_700">#1976d2</color>
+    <color name="conversation_cyan_800">#00838f</color>
+    <color name="conversation_teal_700">#00796b</color>
+    <color name="conversation_green_800">#2e7d32</color>
+    <color name="conversation_deep_orange_900">#bf360c</color>
+</resources>
