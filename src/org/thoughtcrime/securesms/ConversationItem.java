@@ -413,7 +413,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setMediaAttributes(MessageRecord messageRecord) {
-    boolean showControls = !messageRecord.isFailed() && (!messageRecord.isOutgoing() || messageRecord.isPending());
+    boolean showControls = !messageRecord.isFailed();
 
     if (hasSharedContact(messageRecord)) {
       sharedContactStub.get().setVisibility(VISIBLE);
