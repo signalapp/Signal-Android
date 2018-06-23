@@ -62,8 +62,6 @@
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requires Location permission in order to attach a location, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Location\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requires the Camera permission in order to take photos, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
 
-    <!-- AttachmentTypeSelectorAdapter -->
-
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
 
@@ -155,7 +153,6 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
-    <string name="ConversationActivity_error_sending_voice_message">Error sending voice message</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">To send audio messages, allow Signal access to your microphone.</string>
@@ -191,10 +188,6 @@
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Error while saving attachment to storage!</item>
         <item quantity="other">Error while saving attachments to storage!</item>
-    </plurals>
-    <plurals name="ConversationFragment_files_saved_successfully">
-        <item quantity="one">File saved successfully.</item>
-        <item quantity="other">Files saved successfully.</item>
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
@@ -304,17 +297,6 @@
     <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Now you can share a profile photo and name with friends on Signal</string>
     <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiles are here</string>
 
-    <!-- ExportFragment -->
-    <string name="ExportFragment_export">Export</string>
-    <string name="ExportFragment_export_plaintext_to_storage">Export plaintext to storage?</string>
-    <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Warning, this will export the plaintext contents of your Signal messages to storage.</string>
-    <string name="ExportFragment_cancel">Cancel</string>
-    <string name="ExportFragment_exporting">Exporting</string>
-    <string name="ExportFragment_exporting_plaintext_to_storage">Exporting plaintext to storage...</string>
-    <string name="ExportFragment_error_unable_to_write_to_storage">Error, unable to write to storage.</string>
-    <string name="ExportFragment_error_while_writing_to_storage">Error while writing to storage.</string>
-    <string name="ExportFragment_export_successful">Export successful.</string>
-
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
     <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with Google Play Services. Signal messages and calls have been disabled, please try re-registering in Settings &gt; Advanced.</string>
@@ -375,8 +357,6 @@
     <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
     <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
 
-    <!-- KeyScanningActivity -->
-
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
     <string name="MessageDetailsRecipient_new_safety_number">New safety number</string>
@@ -432,7 +412,6 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">You marked your safety number with %s verified from another device</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">You marked your safety number with %s unverified</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">You marked your safety number with %s unverified from another device</string>
-
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
@@ -537,25 +516,6 @@
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
     <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">To easily verify your phone number, Signal can automatically detect your verification code if you allow Signal to view SMS messages.</string>
 
-
-    <!-- RegistrationProblemsActivity -->
-
-    <!-- RegistrationProgressActivity -->
-
-    <!-- RegistrationService -->
-    <string name="RegistrationService_registration_complete">Registration complete</string>
-    <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registration has successfully completed.</string>
-    <string name="RegistrationService_registration_error">Registration error</string>
-    <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal registration has encountered a problem.</string>
-
-    <!-- RingtonePreference -->
-    <string name="RingtonePreference_ringtone_default">Default ringtone</string>
-    <string name="RingtonePreference_ringtone_silent">None</string>
-    <string name="RingtonePreference_notification_sound_default">Default notification sound</string>
-    <string name="RingtonePreference_alarm_sound_default">Default alarm sound</string>
-    <string name="RingtonePreference_add_ringtone_text">Add ringtone</string>
-    <string name="RingtonePreference_unable_to_add_ringtone">Unable to add custom ringtone</string>
-
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
 
@@ -568,14 +528,6 @@
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Add to Contacts</string>
     <string name="SharedContactDetailsActivity_invite_to_signal">Invite to Signal</string>
-    <string name="SharedContactDetailsActivity_invite_message">Let\'s switch to Signal: %1$s</string>
-    <string name="SharedContactDetailsActivity_new_contact_success">Contact added.</string>
-    <string name="SharedContactDetailsActivity_new_contact_failure">Failed to retrieve the contact</string>
-    <string name="SharedContactDetailsActivity_updated_contact_success">Contact updated.</string>
-    <string name="SharedContactDetailsActivity_updated_contact_failure">Error while editing contact</string>
-    <string name="SharedContactDetailsActivity_initialization_failure">Error while reading contact</string>
-    <string name="SharedContactDetailsActivity_add_as_new_contact">Add as a new contact</string>
-    <string name="SharedContactDetailsActivity_add_to_existing_contact">Add to an existing contact</string>
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Add to Contacts</string>
@@ -646,24 +598,11 @@
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal needs the Camera permission in order to scan a QR code, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Unable to scan QR code without Camera permission</string>
 
-    <!-- KeyExchangeInitiator -->
-
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message</string>
-    <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait...</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
 
-    <!-- EncryptingSmsDatabase -->
-    <string name="EncryptingSmsDatabase_error_decrypting_message">Error decrypting message.</string>
-
-    <!-- ThreadDatabase -->
-    <string name="ThreadDatabase_error_decrypting_message">Error decrypting message.</string>
-
-    <!-- MmsDatabase -->
-    <string name="MmsDatabase_error_decrypting_message">Error decrypting message.</string>
-
     <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_decrypting_mms_please_wait">Decrypting MMS, please wait...</string>
     <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message</string>
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session</string>
 
@@ -694,7 +633,6 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
 
-
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %1$s</string>
@@ -712,14 +650,11 @@
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
 
-    <!-- MmsPreferencesFragment -->
-
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
 
     <!-- SaveAttachmentTask -->
-    <string name="SaveAttachmentTask_open_directory">Open directory</string>
     <string name="SaveAttachmentTask_saved_to">Saved to %s</string>
 
     <!-- SearchToolbar -->
@@ -745,12 +680,10 @@
     <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">You may wish to verify your safety number with this contact.</string>
     <string name="WebRtcCallScreen_new_safety_number_title">New safety number</string>
     <string name="WebRtcCallScreen_accept">Accept</string>
-    <string name="WebRtcCallScreen_cancel">Cancel</string>
     <string name="WebRtcCallScreen_end_call">End call</string>
 
     <!-- WebRtcCallControls -->
     <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
-
 
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__audio">Audio</string>
@@ -792,13 +725,9 @@
     <!-- blocked_contacts_fragment -->
     <string name="blocked_contacts_fragment__no_blocked_contacts">No blocked contacts</string>
 
-    <!-- contact_selection_recent_activity -->
-
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal needs access to your contacts in order to display them.</string>
     <string name="contact_selection_list_fragment__show_contacts">Show Contacts</string>
-
-    <!-- conversation_title_view -->
 
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Signal message</string>
@@ -841,10 +770,6 @@
     <string name="QuoteView_document">Document</string>
     <string name="QuoteView_you">You</string>
 
-    <!-- conversation_fragment_cab -->
-    <string name="conversation_fragment_cab__batch_selection_mode">Batch selection mode</string>
-    <string name="conversation_fragment_cab__batch_selection_amount">%s selected</string>
-
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
 
@@ -869,9 +794,7 @@
     <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Optionally see and share when messages have been read</string>
     <string name="experience_upgrade_preference_fragment__enable_read_receipts">Enable read receipts</string>
 
-
     <!-- expiration -->
-
     <string name="expiration_off">Off</string>
     
     <plurals name="expiration_seconds">
@@ -933,8 +856,6 @@
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Nothing found</string>
 
-    <!-- import_export_fragment -->
-
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get a debug log instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
@@ -952,8 +873,6 @@
     <!-- database_upgrade_activity -->
     <string name="database_upgrade_activity__updating_database">Updating database...</string>
 
-    <string name="export_fragment__export_plaintext_backup">Export plaintext backup</string>
-    <string name="export_fragment__export_a_plaintext_backup_compatible_with">Export a plaintext backup compatible with \'SMS Backup &amp; Restore\' to storage</string>
     <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
     <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the default system messenger app</string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
@@ -1013,17 +932,12 @@
     <string name="redphone_call_card__signal_call">Signal Call</string>
     <string name="redphone_call_controls__mute">Mute</string>
     <string name="redphone_call_controls__flip_camera_rear">Switch Cameras</string>
-    <string name="redphone_call_controls__signal_call">Signal Call</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal makes it easy to communicate by using your existing phone number and address book. Friends and contacts who already know how to contact you by phone will be able to easily get in touch by Signal.\n\nRegistration transmits some contact information to the server. It is not stored.</string>
     <string name="registration_activity__verify_your_number">Verify Your Number</string>
     <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Please enter your mobile number to receive a verification code. Carrier rates may apply.</string>
-
-    <!-- registration_problems -->
-
-    <!-- registration_progress_activity -->
 
     <!-- recipients_panel -->
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
@@ -1060,7 +974,6 @@
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>
-    <string name="AndroidManifest__enter_passphrase">Enter passphrase</string>
     <string name="AndroidManifest__select_contacts">Select contacts</string>
     <string name="AndroidManifest__change_passphrase">Change passphrase</string>
     <string name="AndroidManifest__verify_safety_number">Verify safety number</string>
@@ -1220,10 +1133,6 @@
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">New message to...</string>
 
-    <!-- contact_selection -->
-
-    <!-- refreshing push directory from menu -->
-
     <!-- conversation_callable_insecure -->
     <string name="conversation_callable_insecure__menu_call">Call</string>
 
@@ -1249,8 +1158,6 @@
 
     <!-- conversation_insecure -->
     <string name="conversation_insecure__invite">Invite</string>
-
-    <!-- conversation_insecure_no_push -->
 
     <!-- conversation_list_batch -->
     <string name="conversation_list_batch__menu_delete_selected">Delete selected</string>
@@ -1301,10 +1208,7 @@
     <string name="conversation_group_options__conversation">Conversation</string>
     <string name="conversation_group_options__broadcast">Broadcast</string>
 
-    <!-- key_scanning -->
-
     <!-- text_secure_normal -->
-    <string name="text_secure_normal__menu_new_message">New message</string>
     <string name="text_secure_normal__menu_new_group">New group</string>
     <string name="text_secure_normal__menu_settings">Settings</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
@@ -1409,7 +1313,6 @@
     <string name="RegistrationActivity_available_in">Available in:\u0020</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
-    <string name="prompt_passphrase_activity__unlock_signal">Unlock Signal</string>
     <string name="preferences_app_protection__screen_lock">Screen lock</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Signal access with Android screen lock or fingerprint</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>
