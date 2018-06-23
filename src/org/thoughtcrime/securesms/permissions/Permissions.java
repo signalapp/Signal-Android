@@ -16,7 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.annimon.stream.Stream;
@@ -158,9 +157,7 @@ public class Permissions {
       RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
                      .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
                      .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
-                     .show()
-                     .getWindow()
-                     .setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
+                     .show();
     }
 
     private void executePermissionsRequest(PermissionsRequest request) {
