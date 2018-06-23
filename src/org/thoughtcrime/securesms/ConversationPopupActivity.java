@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -31,20 +32,15 @@ public class ConversationPopupActivity extends ConversationActivity {
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND,
-                         WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
     WindowManager.LayoutParams params = getWindow().getAttributes();
     params.alpha     = 1.0f;
-    params.dimAmount = 0.1f;
+    params.dimAmount = 0.25f;
     params.gravity   = Gravity.TOP;
     getWindow().setAttributes(params);
 
-    Display display = getWindowManager().getDefaultDisplay();
-    int     width   = display.getWidth();
-    int     height  = display.getHeight();
-
-    if (height > width) getWindow().setLayout((int) (width * .85), (int) (height * .5));
-    else                getWindow().setLayout((int) (width * .7), (int) (height * .75));
+    updateWindowLayoutParams();
 
     super.onCreate(bundle, ready);
 
@@ -71,6 +67,21 @@ public class ConversationPopupActivity extends ConversationActivity {
 
     inflater.inflate(R.menu.conversation_popup, menu);
     return true;
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    updateWindowLayoutParams();
+  }
+
+  private void updateWindowLayoutParams() {
+    Display display = getWindowManager().getDefaultDisplay();
+    int     width   = display.getWidth();
+    int     height  = display.getHeight();
+
+    if (height > width) getWindow().setLayout((int) (width * .85), (int) (height * .5));
+    else                getWindow().setLayout((int) (width * .7), (int) (height * .75));
   }
 
   @Override
