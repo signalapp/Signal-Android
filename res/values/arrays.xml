@@ -17,6 +17,7 @@
       <item>Español</item>
       <item>Euskara</item>
       <item>Français</item>
+      <item>Gaeilge</item>
       <item>Galego</item>
       <item>Greek ελληνικά</item>
       <item>Hebrew עברית</item>
@@ -26,6 +27,7 @@
       <item>Japanese 日本語</item>
       <item>Khmer ភាសាខ្មែរ</item>
       <item>Korean 한국어</item>
+      <item>Kurdí</item>
       <item>Lietuvių</item>
       <item>Luganda</item>
       <item>Magyar</item>
@@ -45,8 +47,10 @@
       <item>Slovenský</item>
       <item>Suomi</item>
       <item>Svenska</item>
+      <item>Telugu తెలుగు</item>
       <item>Thai ภาษาไทย</item>
       <item>Türkçe</item>
+      <item>Ukrainian Українська</item>
       <item>Vietnamese Tiếng Việt</item>
   </string-array>
 
@@ -66,6 +70,7 @@
       <item>es</item>
       <item>eu</item>
       <item>fr</item>
+      <item>ga</item>
       <item>gl</item>
       <item>el</item>
       <item>iw</item>
@@ -75,6 +80,7 @@
       <item>ja</item>
       <item>km_KH</item>
       <item>ko</item>
+      <item>ku</item>
       <item>lt</item>
       <item>lg</item>
       <item>hu</item>
@@ -94,8 +100,10 @@
       <item>sk</item>
       <item>fi</item>
       <item>sv</item>
+      <item>te</item>
       <item>th</item>
       <item>tr</item>
+      <item>uk</item>
       <item>vi</item>
   </string-array>
 
