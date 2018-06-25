@@ -429,7 +429,6 @@ numrin tuaj të telefonit
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numri që
 e zgjodhët (%s) nuk është korrekt.</string>
   <string name="RegistrationActivity_missing_google_play_services">Mungojnë Shërbimet Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Kësaj pajisje i mungojnë Shërbimet Google Play. Ju ende mund të përdorni Signal, por ky konfigurim mund të rezultojë në uljen e stabilitetit apo të performancës.\n\nNëse ju nuk jeni përdorues i përparuar, nuk po operoni një ROM të Android-it, apo beosni se jeni duke e parë këtë gabimisht, ju lutemi kontaktoni mbështetjen support@whispersystems.org për ndihmë në zgjidhjen e problemit.</string>
   <string name="RegistrationActivity_i_understand">E kuptoj</string>
   <string name="RegistrationActivity_play_services_error">Gabim i Shërbimeve Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Shërbimet Google Play po freskohen ose përkohësisht jashtë dispozicionit. Ju lutemi provoni prap.</string>
@@ -769,7 +768,6 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="unknown_sender_view__block">BLLOKO</string>
   <string name="unknown_sender_view__add_to_contacts">SHTO NË KONTAKTET</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Nëse dëshironi të verifikoni sigurinë e kodofikimit me %s, krahasoni numrat e mësipërm me numrat në pajisjen e tyre. Ose, ju mund të skanoni kodin në telefonin e tyre, ose u kërkoni atyre të skanojnë kodin tuaj. <a href="https://whispersystems.org/redirect/safety-numbers"> Mësoni më shumë.</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Shtypni për të skanuar</string>
   <string name="verify_display_fragment__loading">Duke karikuar...</string>
   <string name="verify_display_fragment__verified">I verifikuar</string>

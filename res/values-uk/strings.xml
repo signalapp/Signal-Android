@@ -248,8 +248,8 @@
   <string name="ConversationListItemAction_archived_conversations_d">Архівовані розмови (%d)</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Інформація щодо вашого профілю</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося оновити фото профілю</string>
-  <string name="CreateProfileActivity_problem_setting_profile">Не вдалося оновити профіль</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося встановити фото профілю</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Не вдалося встановити профіль</string>
   <string name="CreateProfileActivity_profile_photo">Фото профілю</string>
   <string name="CreateProfileActivity_too_long">Задовге</string>
   <!--CustomDefaultPreference-->
@@ -271,8 +271,8 @@
   <string name="DeviceListActivity_network_failed">Помилка мережі!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Неназваний пристрій</string>
-  <string name="DeviceListItem_linked_s">Приєднано %s</string>
-  <string name="DeviceListItem_last_active_s">Останній активний %s</string>
+  <string name="DeviceListItem_linked_s">З\'язано %s</string>
+  <string name="DeviceListItem_last_active_s">Остання активність %s</string>
   <string name="DeviceListItem_today">Сьогодні</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Невідомий файл</string>
@@ -427,8 +427,8 @@
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Отримано повідомлення, яке зашифроване старою версією Signal, яка вже не підтримується. Попросіть друга оновитися до останньої версії та надіслати повідомлення знову.</string>
   <string name="MessageRecord_left_group">Ви покинули групу.</string>
-  <string name="MessageRecord_you_updated_group">Ви оновили групу</string>
-  <string name="MessageRecord_s_updated_group">%s оновив групу</string>
+  <string name="MessageRecord_you_updated_group">Ви оновили групу.</string>
+  <string name="MessageRecord_s_updated_group">%s оновив групу.</string>
   <string name="MessageRecord_s_called_you">%s вам телефонував/-ла</string>
   <string name="MessageRecord_called_s">Телефонували %s</string>
   <string name="MessageRecord_missed_call_from">Пропущено виклик від %s</string>
@@ -445,7 +445,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Хибна стара фраза-пароль!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Введіть нову фразу-пароль!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Приєднати цей пристрій?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">З\'язати цей пристрій?</string>
   <string name="DeviceProvisioningActivity_cancel">СКАСУВАТИ</string>
   <string name="DeviceProvisioningActivity_continue">ПРОДОВЖИТИ</string>
   <string name="DeviceProvisioningActivity_content_intro">Він зможе</string>
@@ -453,16 +453,16 @@
 • Читати усі ваші повідомлення
 \n• Надсилати повідомлення від вашого імені
  </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Приєднання пристрою</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Приєднання нового пристрою...</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">З\'язування пристрою</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">З\'язування нового пристрою...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Пристрій затверджено!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Пристрій не знайдено.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Помилка мережі.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Хибний QR-код.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Вибачте, Ви вже прив\'язали забагато пристроїв, спробуйте видалити декілька</string>
-  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Вибачте, це хибний QR код для прив\'язки пристрою.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Приєднати пристрій Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Здається, ви намагаєтеся приєднати пристрій Signal, використовуючи сканер від 3-ї особи. Для вашого захисту, відскануйте код знову, використовуючи Signal.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Вибачте, Ви вже з\'язали забагато пристроїв, спробуйте видалити декілька</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Вибачте, це хибний QR код для з\'язування пристрою.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">З\'язати пристрій Signal?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Здається, ви намагаєтеся з\'язати пристрій Signal, використовуючи сканер від 3-ї особи. Для вашого захисту, відскануйте код знову, використовуючи Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal потребує дозволу \"Камера\", щоб сканувати QR коди,  але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Для сканування QR коду необхідний доступ до Камери</string>
   <!--ExpirationDialog-->
@@ -524,6 +524,8 @@
   <string name="RegistrationActivity_i_understand">Я розумію</string>
   <string name="RegistrationActivity_play_services_error">Помилка служби Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services оновлюються або тимчасово недоступні. Будь-ласка, спробуйте знов.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Умови та Політика конфіденційності</string>
+  <string name="RegistrationActivity_no_browser">Неможливо відкрити це посилання.  Браузер не знайдений.</string>
   <string name="RegistrationActivity_more_information">Більше інформації</string>
   <string name="RegistrationActivity_less_information">Менше інформації</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal потребує доступу до телефонної книги та файлової системи, щоб підключити друзів, відправляти повідомлення та здійснювати виклики</string>
@@ -544,8 +546,8 @@
   <string name="RingtonePreference_add_ringtone_text">Додати мелодію</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Не вдалося додати мелодію</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Не вдалось змінити зображення</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Почніть вводити текст для пошуку розмови, повідомлень та контактів.</string>
   <string name="SearchFragment_no_results">Не знайдено результатів для \'%s\'</string>
   <string name="SearchFragment_header_conversations">Розмови</string>
   <string name="SearchFragment_header_contacts">Контакти</string>
@@ -570,7 +572,8 @@
   <string name="Slide_audio">Аудіо</string>
   <string name="Slide_video">Відео</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Отримано пошкоджене повідомлення обміну ключами!</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Отримано пошкоджене 
+повідомлення обміну ключами!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Отримано повідомлення обміну ключами для хибної версії протоколу.
  </string>
@@ -637,12 +640,12 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Вимкнути звук сповіщень</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Браузер не встановлено</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Браузер не встановлено!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Імпортування</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпортування текстових повідомлень</string>
   <string name="ApplicationMigrationService_import_complete">Імпорт завершено</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">Імпорт системної бази даних завершено</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Імпорт системної бази даних завершено.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Торкніться, щоб відкрити.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Торкніться, щоб відкрити, чи торкніться замка, щоб закрити.</string>
@@ -686,7 +689,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Нове повідомлення</string>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Цей пристрій більше не зареєстровано</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Скоріше за все це через те, що ви зареєстрували свій телефонний номер на іншому пристрої. Торкніться щоб перереєструвати</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Скоріше за все це через те, що ви зареєстрували свій телефонний номер на іншому пристрої. Торкніться щоб перереєструвати.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Помилка відтворення відео</string>
   <!--WebRtcCallActivity-->
@@ -781,12 +784,12 @@
   <string name="country_selection_fragment__loading_countries">Завантаження країн...</string>
   <string name="country_selection_fragment__search">Пошук</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Проскануйте QR код на пристрої, щоб прив\'язати його</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Проскануйте QR код на пристрої, щоб зв\'язати його</string>
   <!--device_link_fragment-->
-  <string name="device_link_fragment__link_device">Прив\'язати пристрій</string>
+  <string name="device_link_fragment__link_device">Зв\'язати пристрій</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Немає прив\'язаних пристроїв</string>
-  <string name="device_list_fragment__link_new_device">Прив\'язати новий пристрій</string>
+  <string name="device_list_fragment__no_devices_linked">Немає зв\'язаних пристроїв</string>
+  <string name="device_list_fragment__link_new_device">Зв\'язати новий пристрій</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">продовжити</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Звіти про прочитання знаходяться тут</string>
@@ -931,9 +934,9 @@
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Відправника немає у вашій телефонній книзі</string>
   <string name="unknown_sender_view__block">ЗАБЛОКУВАТИ</string>
   <string name="unknown_sender_view__add_to_contacts">ДОДАТИ ДО ТЕЛЕФОННОЇ КНИГИ</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОДАВАТИ АЛЕ ПОКАЗАТИ МІЙ ПРОФІЛЬ</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОДАВАТИ, АЛЕ ПОКАЗАТИ МІЙ ПРОФІЛЬ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Якщо ви хочете перевірити безпеку вашого наскрізного шифрування із %s, порівняйте номер вище із номером на його/її пристрої. Інший спосіб: ви можете сканувати код на його/її телефоні, або попростити його/її сканувати ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Дізнатися більше про перевірку номерів безпеки</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Якщо ви хочете перевірити безпеку вашого шифрування із %s, порівняйте номер вище із номером на його/її пристрої. Інший спосіб: ви можете сканувати код на його/її телефоні, або попросити його/її сканувати ваш код. <a href="https://signal.org/redirect/safety-numbers">Дізнатися більше про перевірку номерів безпеки</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натисніть, щоб сканувати</string>
   <string name="verify_display_fragment__loading">Завантаження...</string>
   <string name="verify_display_fragment__verified">Перевірено</string>
@@ -960,7 +963,7 @@
   <string name="AndroidManifest__log_submit">Відіслати журнал відлагодження</string>
   <string name="AndroidManifest__media_preview">Попередній перегляд медіа</string>
   <string name="AndroidManifest__message_details">Деталі повідомлення</string>
-  <string name="AndroidManifest__linked_devices">Прив\'язані пристрої</string>
+  <string name="AndroidManifest__linked_devices">Зв\'язані пристрої</string>
   <string name="AndroidManifest__invite_friends">Запросити друзів</string>
   <string name="AndroidManifest_archived_conversations">Архівовані розмови</string>
   <string name="AndroidManifest_remove_photo">Видалати світлину</string>
@@ -974,7 +977,7 @@
   <string name="arrays__mute_for_seven_days">Вимкнути звук на 7 днів</string>
   <string name="arrays__mute_for_one_year">Вимкнути звук на 1 рік</string>
   <string name="arrays__settings_default">Типові налаштування</string>
-  <string name="arrays__enabled">Ввімкнено</string>
+  <string name="arrays__enabled">Увімкнено</string>
   <string name="arrays__disabled">Вимкнено</string>
   <string name="arrays__name_and_message">Ім\'я та повідомлення</string>
   <string name="arrays__name_only">Тільки ім\'я</string>
@@ -1194,6 +1197,7 @@
   <string name="reminder_header_invite_text">Спілкуйтеся із %1$s на якісно новому рівні.</string>
   <string name="reminder_header_share_title">Запросити друзів</string>
   <string name="reminder_header_share_text">Що більше друзів використовують Signal, то кращим він стає.</string>
+  <string name="reminder_header_service_outage_text">Signal зазнав технічних труднощів. Ми тяжко працюємо щоб відновити сервіс якомога швидше.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Зберегти</string>
   <string name="media_preview__forward_title">Переслати</string>

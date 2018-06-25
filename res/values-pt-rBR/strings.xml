@@ -469,7 +469,6 @@
         especificou (%s) é inválido.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Ausência do Serviços Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">O Serviços Google Play está ausente neste dispositivo. Você ainda pode usar o Signal, mas esta configuração pode resultar em menor confiabilidade ou performance.\n\nSe você não é um usuário avançado, não está usando uma ROM Android customizada, ou acredita que isto é um erro, favor contatar support@whispersystems.org para ajudar na solução do problema.</string>
   <string name="RegistrationActivity_i_understand">Entendi</string>
   <string name="RegistrationActivity_play_services_error">Erro Serviços Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviços Google Play está sendo atualizado ou temporariamente indisponível. Favor tentar novamente.</string>
@@ -854,7 +853,6 @@
   <string name="unknown_sender_view__add_to_contacts">ADICIONAR AOS CONTATOS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NÃO ADICIONAR, MAS TORNAR MEU PERFIL VISÍVEL</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se você deseja verificar a segurança da sua criptografia com %s, compare o número acima com o número no dispositivo deles. Ou então, você pode escanear o código no telefone deles, ou ainda pedir a eles que escaneiem seu código. <a href="https://whispersystems.org/redirect/safety-numbers">Saiba mais.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Clique para escanear</string>
   <string name="verify_display_fragment__loading">Carregando...</string>
   <string name="verify_display_fragment__verified">Verificado</string>

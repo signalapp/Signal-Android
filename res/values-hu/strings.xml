@@ -484,7 +484,6 @@ telefonszámodat!
 szám (%s) érvénytelen.
  </string>
   <string name="RegistrationActivity_missing_google_play_services">Hiányzó Google Play Szolgáltatások</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ezen a készüléken hiányzik a Google Play Szolgáltatások. Továbbra is használhatod a Signal-t, de ez a konfiguráció csökkent megbízhatóságot vagy teljesítményt eredményezhet.\n\nHa nem egy hozzáértő felhasználó vagy, aki egy utángyártott Android ROM-ot futtat, vagy ez egy hibának tűnik, akkor kérlek vedd fel a kapcsolatot a probléma megoldása érdekében a support@whispersystems.org -gal.</string>
   <string name="RegistrationActivity_i_understand">Megértettem</string>
   <string name="RegistrationActivity_play_services_error">Play Szolgáltatások hiba</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">A Google Play Szolgáltatások épp frissítés alatt áll, vagy átmenetileg nem elérhető. Kérlek próbáld újra.</string>
@@ -510,7 +509,6 @@ szám (%s) érvénytelen.
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nem sikerült elmenteni a kép változásait</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Beszélgetések, üzenetek és kontaktok kereséséhez kezdj el gépelni!</string>
   <string name="SearchFragment_no_results">Nincs találat a \'%s\' kifejezésre</string>
   <string name="SearchFragment_header_conversations">Beszélgetések</string>
   <string name="SearchFragment_header_contacts">Kontaktok</string>
@@ -887,7 +885,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="unknown_sender_view__add_to_contacts">FELVÉTEL A NÉVJEGYZÉKBE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NE ADJA HOZZÁ, DE TEGYE A PROFILOM LÁTHATÓVÁ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosítás biztonságát %s azonosítójú partnereddel, hasonlítsd össze a fenti számot az ő készülékén megjelenő számmal. Alternatív megoldásként beszkennelheted a kódot a telefonjáról, vagy megkérheted őt is, hogy szkennelje be a tied. <a href="https://whispersystems.org/redirect/safety-numbers">További információ</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Kopp a szkenneléshez</string>
   <string name="verify_display_fragment__loading">Betöltés...</string>
   <string name="verify_display_fragment__verified">Ellenőrzött</string>

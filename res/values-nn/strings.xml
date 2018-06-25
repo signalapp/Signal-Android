@@ -476,9 +476,6 @@ telefonnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nummeret du
 skreiv inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_missing_google_play_services">Manglar Google Play-tenester</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne eininga manglar Google Play-tenester. Du kan bruka Signal likevel, men dette oppsettet kan gjera appen mindre påliteleg og gi dårlegare yting.
-
-Viss du ikkje er ein erfaren brukar, ikkje køyrer ein tredjeparts Android-ROM, eller meiner at du ser denne meldinga på grunn av ein feil, kan du ta kontakt med support@whispersystems.org for å få hjelp med å løysa problemet.</string>
   <string name="RegistrationActivity_i_understand">Eg forstår</string>
   <string name="RegistrationActivity_play_services_error">Feil med Play-tenester</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tenester oppdaterer seg eller er mellombels utilgjengeleg. Prøv igjen seinare.</string>
@@ -504,7 +501,6 @@ Viss du ikkje er ein erfaren brukar, ikkje køyrer ein tredjeparts Android-ROM, 
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikkje lagra biletendringane</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Tast i veg for å søka etter samtalar, meldingar og kontaktar.</string>
   <string name="SearchFragment_no_results">Fann ingen resultat for «%s»</string>
   <string name="SearchFragment_header_conversations">Samtalar</string>
   <string name="SearchFragment_header_contacts">Kontaktar</string>
@@ -880,7 +876,6 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="unknown_sender_view__add_to_contacts">LEGG TIL KONTAKTAR</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">IKKJE LEGG TIL, MEN GJER PROFILEN MIN SYNLEG</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Viss du vil stadfesta tryggleiken på krypteringa di med %s, kan du samanlikna nummeret over med nummeret på eininga deira. Alternativt kan du skanna koden på telefonen deira, eller be dei skanna koden din. <a href="https://whispersystems.org/redirect/safety-numbers">Lær meir.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanna</string>
   <string name="verify_display_fragment__loading">Lastar …</string>
   <string name="verify_display_fragment__verified">Stadfesta</string>

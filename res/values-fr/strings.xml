@@ -473,7 +473,6 @@ votre numéro de téléphone</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Le numéro que vous avez
 introduit (%s) n’est pas valide.</string>
   <string name="RegistrationActivity_missing_google_play_services">Absence des services Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Cet appareil ne dispose pas des Service Google Play. Vous pouvez quand même utiliser Signal, mais cette configuration pourrait entraîner une fiabilité ou des performances moindres.\n\nSi vous n’êtes pas un utilisateur expérimenté, que vous n’utilisez pas une ROM Android de remplacement ou si vous pensez voir ceci par erreur, veuillez contacter support@whispersystems.org pour obtenir une aide au dépannage.</string>
   <string name="RegistrationActivity_i_understand">Je comprends</string>
   <string name="RegistrationActivity_play_services_error">Erreur des Services Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Les Services Google Play sont en cours de mise à jour ou temporairement non disponibles. Veuillez ressayer.</string>
@@ -499,7 +498,6 @@ introduit (%s) n’est pas valide.</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Échec d’enregistrement des changements apportés aux images</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Commencer à taper pour chercher des conversations, des messages ou des contacts.</string>
   <string name="SearchFragment_no_results">Aucun résultat n’a été trouvé pour « %s »</string>
   <string name="SearchFragment_header_conversations">Conversations</string>
   <string name="SearchFragment_header_contacts">Contacts</string>
@@ -872,7 +870,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="unknown_sender_view__add_to_contacts">AJOUTER AUX CONTACTS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NE PAS AJOUTER, MAIS RENDRE MON PROFIL VISIBLE</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si vous souhaitez vérifier la sécurité de votre chiffrement avec %s, comparez le numéro ci-dessus avec le numéro sur son appareil. Vous pouvez également lire le code sur son téléphone ou lui demander de lire votre code. <a href="https://whispersystems.org/redirect/safety-numbers">En savoir plus.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Touchez pour lire</string>
   <string name="verify_display_fragment__loading">Chargement…</string>
   <string name="verify_display_fragment__verified">Vérifié</string>
@@ -991,7 +988,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un rapport de transmission pour chaque texto envoyé</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Supprimer automatiquement les messages plus anciens dès qu’une conversation dépasse une certaine longueur</string>
   <string name="preferences__delete_old_messages">Supprimer les anciens messages</string>
-  <string name="preferences__chats">Conversatons et média</string>
+  <string name="preferences__chats">Conversations et média</string>
   <string name="preferences__conversation_length_limit">Limite de taille des conversations</string>
   <string name="preferences__trim_all_conversations_now">Réduire toutes les conversations maintenant</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Passer en revue toutes les conversations et imposer des limites de longueur de conversation</string>

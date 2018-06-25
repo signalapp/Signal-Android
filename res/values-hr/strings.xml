@@ -10,6 +10,11 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">%d poruka po razgovoru</item>
+    <item quantity="few">%d poruke po razgovoru</item>
+    <item quantity="other">%d poruka po razgovoru</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obriši sve stare poruke?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Ovo će automatski skratiti sve razgovore na odabrani broj poruka.</item>
@@ -37,13 +42,23 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Zaključavanje zaslona %1$s, Zaključavanje registracije %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Jezik: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">%d minuta</item>
+    <item quantity="few">%d minute</item>
+    <item quantity="other">%d minute</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(položaj)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(odgovor)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nije moguće pronaći aplikaciju za odabir medija.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal zahtijeva dozvolu pristupa Pohrani podataka za umetanje slikovnih i audio-vizualnih priloga ali zahtjev biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Pohrana\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal zahtijeva dozvolu pristupa Kontaktima za prilaganje informacije o kontaktima ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kontakti\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal zahtijeva dozvolu pristupa Lokaciji za prilaganje informacije o vašoj lokaciji ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Lokacija\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal zahtijeva dozvolu pristupa Kameri za omogućavanje slikanja ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
   <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Greška prilikom reprodukcije zvuka!</string>
@@ -66,11 +81,22 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedavni razgovori</string>
   <string name="ContactsCursorLoader_contacts">Kontakti</string>
+  <string name="ContactsCursorLoader_groups">Grupe</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Poruka %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal poziv %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Ime</string>
+  <string name="ContactNameEditActivity_family_name">Prezime</string>
+  <string name="ContactNameEditActivity_prefix">Predmetak</string>
+  <string name="ContactNameEditActivity_suffix">Dometak</string>
+  <string name="ContactNameEditActivity_middle_name">Srednje ime</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Kućni telefon</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobilni telefon</string>
+  <string name="ContactShareEditActivity_type_work">Posao</string>
+  <string name="ContactShareEditActivity_type_missing">Ostalo</string>
+  <string name="ContactShareEditActivity_invalid_contact">Odabrani kontakt nije valjan</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Nije isporučeno</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Poruka za razmjenu ključeva je primljena, pritisnite da biste nastavili.</string>
@@ -116,9 +142,13 @@
   <string name="ConversationActivity_error_sending_voice_message">Greška prilikom slanja glasovne poruke</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na vašem uređaju ne postoji aplikacija koja bi rukovala ovom poveznicom.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kako biste poslali audio poruku, dozvolite Signalu pristup vašem mikrofonu.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal zahtijeva dozvolu pristupa Mikrofonu za slanje zvučnih poruka ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Mikrofon\".</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Kako biste nazvali %s, Signal treba pristup vašem mikrofonu i kameri.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal zahtijeva pristup Mikrofonu i Kameri za pozivanje %s ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Mikrofon\" i \"Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Kako biste snimili slike i video, dozvolite Signalu pristup kameri.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal zahtijeva pristup Kameri za fotografiranje i snimanje videa ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\". </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal treba pristup kameri kako bi snimio slike ili video.</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>
@@ -169,9 +199,11 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brisanje</string>
   <string name="ConversationFragment_deleting_messages">Brisanje poruka...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Citirana poruka nije pronađena</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Preglednik nije instaliran na vašem uređaju.</string>
   <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">Nema rezultata za \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Obriši odabrane razgovore?</item>
     <item quantity="few">Obriši odabrane razgovore?</item>
@@ -306,6 +338,12 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nije pronađena nekriptirana kopija!</string>
   <string name="ImportFragment_error_importing_backup">Greška prilikom uvoženja kopije!</string>
   <string name="ImportFragment_import_complete">Uvoz završen!</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal zahtijeva pristup SMS porukama za uvoz SMS poruka ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"SMS\".</string>
+  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal zahtijeva pristup SMS porukama za uvoz SMS poruka.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal zahtijeva pristup Pohrani kako bi se omogućilo čitanje podataka s vanjskog medija ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Pohrana\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal zahtijeva pristup Pohrani kako bi se omogućilo čitanje podataka s vanjskog medija.</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal zahtijeva pristup Pohrani kako bi se omogućilo zapisivanje podataka na vanjski medij ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Pohrana\".</string>
+  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal zahtijeva pristup Pohrani kako bi se omogućilo zapisivanje podataka na vanjski medij.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pritisnite i držite kako biste snimili glasovnu poruku, pustite za slanje</string>
   <!--InviteActivity-->
@@ -316,6 +354,16 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
   <string name="InviteActivity_invitations_sent">Pozivnice poslane!</string>
   <string name="InviteActivity_invite_to_signal">Pozovi u Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">POŠALJI SMS %dPRIJATELJU</item>
+    <item quantity="few">POŠALJI SMS %dPRIJATELJA</item>
+    <item quantity="other">POŠALJI SMS %dPRIJATELJU</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Pošalji %dSMS pozivnicu?</item>
+    <item quantity="few">Pošalji %dSMS pozivnice?</item>
+    <item quantity="other">Pošalji %dSMS pozivnica?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Prebacimo se na Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji paze da se njihovi prijatelji kriptirano dopisuju.</string>
@@ -330,6 +378,16 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Greška pri čitanju MMS postavki od operatera</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medij</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Izbriši označenu poruku?</item>
+    <item quantity="few">Izbriši označene poruke?</item>
+    <item quantity="other">Izbriši označene poruke?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Ovo će trajno obrisati označenu poruku.</item>
+    <item quantity="few">Broj poruka koji će biti trajno izbrisan: %1$d</item>
+    <item quantity="other">Broj poruka koji će biti trajno izbrisan: %1$d</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brisanje</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Brisanje poruka...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenti</string>
@@ -384,6 +442,8 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Žao nam je, ovo nije važeći QR kôd za povezivanje uređaja.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Poveži Signal uređaj?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda da pokušavate povezati Signal uređaj pomoću strane aplikacije. Za Vašu vlastitu sigurnost molimo skenirajte kôd ponovno unutar Signal aplikacije.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal zahtijeva pristup Kameri za skeniranje QR koda ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nemoguće je skenirati QR kod bez dozvole pristupa Kameri.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Nestajuće poruke</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Vaše poruke neće isteći.</string>
@@ -436,10 +496,12 @@ telefona</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Broj koji ste unijeli
 (%s) je neispravan.</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services nije dostupan</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Na ovom uređaju Google Play Services nisu dostupne. I dalje možete koristiti Signal, ali ovo može rezultirati smanjenjem sigurnosti dostave poruka ili smanjenim performansama.\n\nUkoliko niste napredni korisnik koji koristi prilagođeni Android ili mislite da vam se ovo upozorenje pojavljuje greškom, kontaktirajte support@whispersystems.org kako bismo vam pokušali pomoći.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Na ovom uređaju Google Play Services nisu dostupne. I dalje možete koristiti Signal, ali ovo može rezultirati umanjenim performansama i pouzdanosti u radu.\n\nUkoliko niste napredni korisnik, ne koristite prilagođeni Android sustav ili mislite da vam se ovo upozorenje pojavljuje greškom, kontaktirajte support@signal.org kako bismo vam pokušali pomoći.</string>
   <string name="RegistrationActivity_i_understand">Razumijem</string>
   <string name="RegistrationActivity_play_services_error">Play Services greška</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se trenutno ažurira ili je nedostupno. Pokušajte ponovno kasnije.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Uvjeti korištenja &amp; Pravila o Privatnosti</string>
+  <string name="RegistrationActivity_no_browser">Nije moguće otvoriti poveznicu. Web preglednik nije pronađen.</string>
   <string name="RegistrationActivity_more_information">Više informacija</string>
   <string name="RegistrationActivity_less_information">Manje informacija</string>
   <!--RegistrationProblemsActivity-->
@@ -458,6 +520,7 @@ telefona</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nije moguće dodati prilagođenu melodiju</string>
   <!--ScribbleActivity-->
   <!--Search-->
+  <string name="SearchFragment_no_results">Nema rezultata za \'%s\'</string>
   <string name="SearchFragment_header_contacts">Kontakti</string>
   <string name="SearchFragment_header_messages">Poruke</string>
   <!--SharedContactDetailsActivity-->
@@ -517,6 +580,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Naš Signal sigurnosni broj:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sigurnosni broj za usporedbu nije pronađen u međuspremniku</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal zahtijeva pristup Kameri za skeniranje QR koda ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Loše kriptirana poruka</string>
@@ -562,6 +626,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MessageNotifier_reply">Odgovori</string>
   <string name="MessageNotifier_pending_signal_messages">Signal poruke na čekanju</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Imate Signal poruka na čekanju, pritisnite kako biste ih otvorili i preuzeli</string>
+  <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -778,7 +843,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="unknown_sender_view__add_to_contacts">DODAJ U KONTAKTE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEMOJ DODATI, ALI UČINI VIDLJIVIM MOJ PROFIL</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ukoliko želite provjeriti sigurnost vašeg kriptiranja s %s, usporedite brojeve koje vidite iznad s brojevima na njihovom uređaju. Ili možete skenirati kod s njihovog telefona ili iz zamoliti da skeniraju kod s vašeg telefona. <a href="https://whispersystems.org/redirect/safety-numbers">Saznajte više.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pritisnite za skeniranje</string>
   <string name="verify_display_fragment__loading">Učitavanje...</string>
   <string name="verify_display_fragment__verified">Provjereno</string>

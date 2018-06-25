@@ -467,8 +467,6 @@
 మీరు పేర్కొన్న
 సంఖ్య (%s) చెల్లదు.</string>
   <string name="RegistrationActivity_missing_google_play_services">గూగుల్ ఫ్లే సేవలు అందుబాటులో లేవు.</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">గూగుల్ వారి ప్లే సేవలు మీ పరికరం నందు లేవు.ప్రస్థుతనికి మీరు సిగ్నల్ సేవలు లభించగలవు కాని ఈ రూపకరణ వలన తక్కువ పనితీరును చూడగలరు.\n\nlf మీరు అధునిక వినియొగదారులు కారు, మీరు ప్రస్థుతం ఉన్నయాండ్రాయిడ్
-ROM ని వాడలేదు ,లేదా ఏదిన దోషం వలన మీరు ఈ సందేశం చుసాము అని మీరు నమ్మితే,దయ చేసి   support@whispersystems.org  ని సంప్రదించ గలరు</string>
   <string name="RegistrationActivity_i_understand">నాకు అర్దం అయ్యినది</string>
   <string name="RegistrationActivity_play_services_error">ప్లే సేవల దోషం.</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">గూగల్ ేవలను నవీకరించుటకు లేదా తాత్కాలికంగా అందుబాటులో చేస్తున్నారు. మళ్ళి ప్రయత్నించండి.</string>

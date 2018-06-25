@@ -510,10 +510,12 @@ telefonní číslo</string>
   <string name="RegistrationActivity_invalid_number">Neplatné číslo</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Zadané číslo (%s) je neplatné</string>
   <string name="RegistrationActivity_missing_google_play_services">Chybí Google Play služba</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Toto zařízení nepodporuje službu Google Play. Můžete stále používat Signal, ale tato konfigurace může mít za náísledek snížení spolehlivosti nebo výkonu.\n\n Jestli nejste zkušený uživatel, nepoužíváte alternativní Android ROM nebo si myslíte, že je to chyba, kontaktujte support@whispersystems.org aby vám pomohli vyřešit tento problém.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Toto zařízení nepodporuje službu Google Play. Můžete stále používat Signal, ale tato konfigurace může mít za náísledek snížení spolehlivosti nebo výkonu.\n\n Jestli nejste zkušený uživatel, nepoužíváte alternativní Android ROM nebo si myslíte, že je to chyba, kontaktujte support@signal.org aby vám pomohli vyřešit tento problém.</string>
   <string name="RegistrationActivity_i_understand">Rozumím</string>
   <string name="RegistrationActivity_play_services_error">Chyba Google Play </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Služba Google Play se aktulizuje nebo je dočasně nedostupná. Zkuste to prosím znovu.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Podmínky a zásady ochrany osobních údajů</string>
+  <string name="RegistrationActivity_no_browser">Nelze otevřít tentp odkaz. Nebyl nalezen žádný prohlížeč.</string>
   <string name="RegistrationActivity_more_information">Více informací</string>
   <string name="RegistrationActivity_less_information">Méně informací</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signál potřebuje přístup ke kontaktům, abyste s emohli spojit s vašimi přáteli, vyměnovat si zprávy a bezpečně telefonovat.</string>
@@ -536,7 +538,6 @@ telefonní číslo</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodařilo se uložit změny v obrázku.</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Začněte psát pro vyhledání konverzace, zpráv nebo kontaktů</string>
   <string name="SearchFragment_no_results">Pro \'%s\' nebylo nic nalezeno</string>
   <string name="SearchFragment_header_conversations">Konverzace</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
@@ -923,7 +924,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="unknown_sender_view__add_to_contacts">PŘIDAT DO KONTAKTŮ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEPŘIDÁVAT, ALE PONECHAT MŮJ PROFIL VIDITELNÝ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://whispersystems.org/redirect/safety-numbers">Zjistěte více o kontrolních kódech.</a>.]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://signal.org/redirect/safety-numbers">Zjistěte více o kontrolních kódech.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
   <string name="verify_display_fragment__loading">Načítám...</string>
   <string name="verify_display_fragment__verified">Ověřeno</string>

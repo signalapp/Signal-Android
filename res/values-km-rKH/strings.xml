@@ -458,7 +458,6 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">លេខរបស់អ្នក
 ដែលបានបញ្ជាក់(%s) មិនត្រឹមត្រូវ</string>
   <string name="RegistrationActivity_missing_google_play_services">រកមិនឃើញ Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">ឧបករណ៍នេះរកមិនមាន Google Play Services។ អ្នកនៅតែអាចប្រើប្រាស់ ស៊ីហ្គណល ប៉ុន្តែការកំណត់នេះ អាចកាត់បន្ថយទំនុកចិត្ត ឬល្បឿនដំណើរការ.\n\nប្រសិនបើអ្នក មិនមែនជាអ្នកប្រើកម្រិតខ្ពស់ មិនដំណើរការប្រព័ន្ធប្រតិបត្តិការ Android ROM ឬបានឃើញបញ្ហានេះ សូមទាក់ទង support@whispersystems.org សម្រាប់ជំនួយ។</string>
   <string name="RegistrationActivity_i_understand">ខ្ញុំយល់</string>
   <string name="RegistrationActivity_play_services_error">Play Services មានបញ្ហាា</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services កំពុងធ្វើបច្ចុប្បន្នភាព ឬមិនអាចប្រើបានជាបណ្តោះអាសន្ន។ សូមព្យាយាមម្តងទៀត។</string>
@@ -483,7 +482,6 @@
   <string name="RingtonePreference_unable_to_add_ringtone">មិនអាចបន្ថែមសំឡេងរោទិ៍ផ្សេងបាន</string>
   <!--ScribbleActivity-->
   <!--Search-->
-  <string name="SearchFragment_begin_searching">ចាប់ផ្តើមវាយបញ្ចួល ដើម្បីស្វែងរកការសន្ទនា, សារ, និងបញ្ជីទំនាក់ទំនង។</string>
   <string name="SearchFragment_no_results">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
   <string name="SearchFragment_header_conversations">ការសន្ទនា</string>
   <string name="SearchFragment_header_contacts">បញ្ជីទំនាក់ទំនង</string>
@@ -850,7 +848,6 @@
   <string name="unknown_sender_view__add_to_contacts">បន្ថែមទៅកាន់បញ្ជីទំនាក់ទំនង</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">កុំបន្ថែម, ប៉ុន្តែបង្ហាញប្រវត្តិរូបរបស់ខ្ញុំ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ ប្រសិនបើ អ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពនៃកាណាល់កូដសម្ងាត់របស់អ្នកជាមួយ %s,  ផ្ទៀងផ្ទាត់លេខខាងលើជាមួយ លេខនៅលើឧបករណ៍របស់គេ។ ផ្សេងពីនេះ អ្នកអាចស្កែនកូដលើ ទូរស័ព្ទ​របស់គេ, ឬប្រាប់គេ ស្កែនកូដរបស់អ្នក។ <a href="https://whispersystems.org/redirect/safety-numbers">ស្វែងយល់បន្ថែម</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
   <string name="verify_display_fragment__loading">កំពុងផ្ទុក...</string>
   <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string>

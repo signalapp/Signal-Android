@@ -439,7 +439,6 @@
         ระบุ (%s) ไม่ถูกต้อง
     </string>
   <string name="RegistrationActivity_missing_google_play_services">ไม่มี Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">อุปกรณ์นี้ไม่มี Google Play Services คุณยังสามารถใช้ Signal แต่การใช้ในแบบนี้อาจทำให้ความเสถียรและประสิทธิภาพลดลง\n\nถ้าคุณไม่ได้เป็นผู้ใช้ที่เชี่ยวชาญ ไม่ได้ใช้ ROM ของแอนดรอยด์ที่ไม่ได้มาจากผู้ผลิต หรือเชื่อว่านี่น่าจะเป็นความผิดพลาดบางอย่าง กรุณาติดต่อ support@whispersystems.org เพื่อประสานความช่วยเหลือในการระบุปัญหา</string>
   <string name="RegistrationActivity_i_understand">ฉันเข้าใจ</string>
   <string name="RegistrationActivity_play_services_error">ข้อผิดพลาดเกี่ยวกับ Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services กำลังปรับปรุงหรือใช้ไม่ได้ชั่วคราว โปรดลองอีกครั้ง</string>
@@ -814,7 +813,6 @@
   <string name="unknown_sender_view__add_to_contacts">เพิ่มลงในรายชื่อติดต่อ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">อย่าเพิ่ม แต่ทำให้โปรไฟล์ของฉันถูกเห็นได้</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ถ้าคุณต้องการจะตรวจยืนยันการเข้ารหัสลับระหว่างคุณกับ %s ให้เปรียบเทียบตัวเลขด้านบนกับตัวเลขบนอุปกรณ์ของเขา หรืออีกวิธีหนึ่ง คุณสามารถสแกนรหัสบนโทรศัพท์ของเขา หรือขอให้เขาสแกนรหัสของคุณ <a href="https://whispersystems.org/redirect/safety-numbers">เรียนรู้เพิ่มเติม</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">แตะเพื่อสแกน</string>
   <string name="verify_display_fragment__loading">กำลังโหลด...</string>
   <string name="verify_display_fragment__verified">ตรวจยืนยันแล้ว</string>

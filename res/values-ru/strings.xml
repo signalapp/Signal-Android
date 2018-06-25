@@ -508,7 +508,6 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Указанный вами 
 номер телефона (%s) неверен.</string>
   <string name="RegistrationActivity_missing_google_play_services">Отсутствуют Службы Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">На устройстве отсутствуют Службы Google Play. Вы всё равно можете пользоваться Signal, но надёжность и производительногсть могут снизиться.\n\nЕсли вы не продвинутый пользователь, не используете стороннюю прошивку Android, либо считаете, что видите это сообщение по ошибке, обратитесь за поддержкой по адресу support@whispersystems.org.</string>
   <string name="RegistrationActivity_i_understand">Я понимаю</string>
   <string name="RegistrationActivity_play_services_error">Ошибка Служб Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Службы Google Play обновляются или временно недоступны. Пожалуйста, попробуйте ещё раз.</string>
@@ -532,8 +531,8 @@
   <string name="RingtonePreference_add_ringtone_text">Добавить мелодию звонка</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Не удается добавить мелодию звонка</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Не удалось сохранить изменения изображения</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Начните вводить текст для поиска бесед, сообщений и контактов.</string>
   <string name="SearchFragment_no_results">Результаты не найдены для \'%s\'</string>
   <string name="SearchFragment_header_conversations">Беседы</string>
   <string name="SearchFragment_header_contacts">Контакты</string>
@@ -923,7 +922,6 @@
   <string name="unknown_sender_view__add_to_contacts">ДОБАВИТЬ В КОНТАКТЫ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОБАВЛЯТЬ, НО ОТКРЫТЬ МОЙ ПРОФИЛЬ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Узнать больше</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <string name="verify_display_fragment__loading">Загрузка...</string>
   <string name="verify_display_fragment__verified">Подтверждён</string>
@@ -1183,6 +1181,7 @@
   <string name="reminder_header_invite_text">Начните общаться с %1$s на новом уровне.</string>
   <string name="reminder_header_share_title">Пригласите своих друзей в Signal!</string>
   <string name="reminder_header_share_text">Чем больше друзей пользуется Signal, тем лучше он становится.</string>
+  <string name="reminder_header_service_outage_text">У Signal возникли технические неполадки. Мы прилагаем все усилия, чтобы как можно быстрее восстановить обслуживание.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Сохранить</string>
   <string name="media_preview__forward_title">Переслать</string>

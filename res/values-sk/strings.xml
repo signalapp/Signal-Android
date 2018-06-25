@@ -463,7 +463,6 @@ telefónne číslo</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Vami zadané telefónne číslo
 (%s) je nesprávne.</string>
   <string name="RegistrationActivity_missing_google_play_services">Chýbajúce Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">V tomto zariadení chýbajú Google Play Services. Signal môžete použiť aj tak, ale táto konfigurácia môže mať za následok nespoľahlivosť a nižší výkon.\n\nAk nie ste pokročilý užívateľ, nemáte neoficiálnu ROM telefónu alebo si myslíte, že sa vám zobrazuje chybné hlásenie, kontaktujte nás na support@whispersystems.org pre vyriešenie problému.</string>
   <string name="RegistrationActivity_i_understand">Rozumiem</string>
   <string name="RegistrationActivity_play_services_error">Chyba Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services sa aktualizujú alebo sú dočasne nedostupné. Prosím skúste to znova.</string>
@@ -823,7 +822,6 @@ Bola prijatá správa vzájomnej výmeny kľúčov s neplatnou verziou protokolu
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__block">BLOKOVAŤ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ak si chcete overiť zabezpečenie vášho šifrovania pre %s, porovnajte číslo vyššie s číslom na ich zariadení. Inak môžete tiež naskenovať kód na ich zariadení alebo ich požiadať o naskenovanie vášho kódu. <a href="https://whispersystems.org/redirect/safety-numbers">Zistiť viac.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ťuknutím naskenujte</string>
   <string name="verify_display_fragment__loading">Načítava sa...</string>
   <string name="verify_display_fragment__verified">Overené</string>

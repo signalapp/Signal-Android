@@ -507,10 +507,12 @@
   <string name="RegistrationActivity_invalid_number">Napačna številka</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Številka, ki ste jo navedli (%s) je neveljavna.</string>
   <string name="RegistrationActivity_missing_google_play_services">Manjkajoča aplikacija Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Naprava nima nameščene aplikacije Google Play Services. Zaradi tega lahko pri delovanju aplikacije Signal prihaja do večje porabe baterije in zmanjšane zanesljivosti pri prejemu sporočil.\n\nČe niste napredni uporabnik, nimate nameščenega prilagojenega sistema Android ali pa menite, da je to obvestilo posledica napake, se za pomoč obrnite na support@whispersystems.org.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Na tej napravi niso nameščene aplikacije Google Play Services. To pomeni, da še vedno lahko uporabljate Signal, vendar bo zanesljivost delovanja aplikacije okrnjena.\n\nče niste napredni uporabnik, če ne uporabljate alternativnega ROM-a Android, ali če mislite, da je prišlo do napake, nam to sporočite na support@signal.org, da vam lahko pomagamo pri odpravljanju težav.</string>
   <string name="RegistrationActivity_i_understand">Razumem</string>
   <string name="RegistrationActivity_play_services_error">Napaka Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Aplikacija Google Play Services se posodablja ali pa je začasno nedosegljiva. Poskusite znova.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Pogoji &amp; politika zasebnosti</string>
+  <string name="RegistrationActivity_no_browser">Ne morem odpreti te povezave. Na tej napravi ni nameščen internetni brskalnik.</string>
   <string name="RegistrationActivity_more_information">Več informacij</string>
   <string name="RegistrationActivity_less_information">Manj informacij</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Aplikacija Signal potrebuje dovoljenje za dostop do vaših stikov in medijskih vsebin za povezavo s prijatelji, izmenjavo sporočil in opravljanje varnih klicev.</string>
@@ -533,7 +535,6 @@
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Za iskanje po pogovorih, sporočilih in stikih pričnite s tipkanjem.</string>
   <string name="SearchFragment_no_results">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
   <string name="SearchFragment_header_conversations">Pogovori</string>
   <string name="SearchFragment_header_contacts">Stiki</string>
@@ -921,7 +922,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="unknown_sender_view__add_to_contacts">DODAJ MED STIKE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NE DODAJ, A NAREDI MOJ PROFIL VIDEN</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti varnost šifrirane komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Namesto tega lahko tudi skenirate kodo na napravi uporabnika ali njega prosite, naj skenira vašo. <a href="https://whispersystems.org/redirect/safety-numbers">Več ...</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[če želite preveriti zasebnost vaše komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Lahko tudi skenirate kodo na njegovi napravi ali ga prosite naj skenira vašo. <a href="https://signal.org/redirect/safety-numbers">Več.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
   <string name="verify_display_fragment__loading">Nalagam ...</string>
   <string name="verify_display_fragment__verified">Potrjeno</string>
@@ -1181,7 +1182,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="reminder_header_invite_text">Prenesite svojo komunikacijo z osebo %1$s na novo raven.</string>
   <string name="reminder_header_share_title">Povabi svoje prijatelje!</string>
   <string name="reminder_header_share_text">Več vas bo uporabljalo Signal, boljši bo!</string>
-  <string name="reminder_header_service_outage_text">Prihaja do tehničnih težav v omrežju Signal. Ekipa vzdrževalcev se trudi, da bodo čimprej odravljene.</string>
+  <string name="reminder_header_service_outage_text">Prihaja do tehničnih težav v omrežju Signal. Ekipa vzdrževalcev se trudi, da bodo čimprej odpravljene.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Shrani</string>
   <string name="media_preview__forward_title">Naprej</string>

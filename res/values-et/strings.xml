@@ -29,9 +29,9 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Keela Signali sõnumid ja kõned, tühistades serveris registratsioon. Sa pead oma telefoninumbri taas-registreerima, kui soovid neid tulevikus kasutada.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Serveriga ühendumisel tekkis viga!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS lubatud</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Klõpsa, et vahetada SMS\'i vaikerakendust</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Klõpsa, et vahetada SMSi vaikerakendust</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS keelatud</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Puuduta, et teha Signal SMS\'i vaikerakenduseks.</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Puuduta, et teha Signal SMSi vaikerakenduseks.</string>
   <string name="ApplicationPreferencesActivity_on">sees</string>
   <string name="ApplicationPreferencesActivity_On">Sees</string>
   <string name="ApplicationPreferencesActivity_off">väljas</string>
@@ -482,10 +482,12 @@
         (%s) on sobimatu.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Puuduvad Google Play teenused</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Sellel seadel puuduvad Google Play teenused. Sa võid siiski kasutada SIgnalit, aga see konfigruatsioon võib vähendada töökindlust või jõudlust.\n\nKui sa pole edasijõudnud kasutaja, ei kasuta järelturu Androidi ROMi, või arvad et näed seda teadet ekslikult, palun kontakteeru support@whispersystems.org, et aidata viga parandada.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Seadmest puuduvad Google Play teenused. Sa saad siiski Signalit kasutada, kuid see konfiguratsioon võib põhjustada vähendatud stabiilsust või jõudlust.\n\nKui sa pole edasijõudnud kasutaja, ei käita järelturu Androidi ROMi või arvad, et see on viga, palun kontakteeru support@signal.org, et saada abi probleemi lahendamisel.</string>
   <string name="RegistrationActivity_i_understand">Saan aru</string>
   <string name="RegistrationActivity_play_services_error">Play teenuste viga</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play teenused uuenevad või pole hetkel saadaval. Palun proovi uuesti.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Tingimused ja privaatsuspoliitika</string>
+  <string name="RegistrationActivity_no_browser">Seda linki ei saanud avada. Veebibrauserit ei leitud.</string>
   <string name="RegistrationActivity_more_information">Rohkem infot</string>
   <string name="RegistrationActivity_less_information">Vähem infot</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal vajab sinu kontaktidele ja meediale ligipääsu, et ühenduda sõpradega, vahetada sõnumeid ja teha turvalisi kõnesid</string>
@@ -506,8 +508,8 @@
   <string name="RingtonePreference_add_ringtone_text">Lisa helin</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Kohandatud helina lisamine pole võimalik</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Alusta kirjutamist, et otsida vestlusi, sõnumeid ja kontakte</string>
   <string name="SearchFragment_no_results">Tulemusi ei leitud otsingule \'%s\'</string>
   <string name="SearchFragment_header_conversations">Vestlused</string>
   <string name="SearchFragment_header_contacts">Kontaktid</string>
@@ -713,7 +715,7 @@
   <string name="conversation_activity__attachment_thumbnail">Manuse pisipilt</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Lülita kiire kaamera manuse sahtel sisse või välja</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Salvesta ja saada helimanus</string>
-  <string name="conversation_activity__enable_signal_for_sms">Luba Signal SMS\'ide jaoks</string>
+  <string name="conversation_activity__enable_signal_for_sms">Luba Signal SMSide jaoks</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">LIBISTA TÜHISTAMISEKS</string>
   <!--conversation_item-->
@@ -883,7 +885,7 @@
   <string name="unknown_sender_view__add_to_contacts">LISA KONTAKTIDESSE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ÄRA LISA, AGA TEE MU PROFIIL NÄHTAVAKS</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kui sa soovid oma krüpteeringut kasutajaga %s kinnitada, võrdle ülalolevat numbrit nende seadmes oleva numbriga. Alternatiivselt võid sa skanneerida koodi nende seadmes, või paluda neil skanneerida sinu koodi. <a href="https://whispersystems.org/redirect/safety-numbers">Loe veel.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kui soovid kinnitada oma krüpteeringut kasutajaga %s, võrdle ülalolevat numbrit nende seadmes oleva numbriga. Võid ka skaneerida nende telefonis olevat koodi või paluda tal skaneerida sinu oma. <a href="https://signal.org/redirect/safety-numbers">Lisateave.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Koputa skäneerimiseks</string>
   <string name="verify_display_fragment__loading">Laadimine...</string>
   <string name="verify_display_fragment__verified">Kinnitatud</string>
@@ -1029,7 +1031,7 @@
   <string name="preferences_chats__media_auto_download">Meedia automaatne allalaadimine</string>
   <string name="preferences_chats__message_trimming">Sõnumi piiramine</string>
   <string name="preferences_advanced__use_system_emoji">Kasuta süsteemi emojisid</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Keela Signali sisseehitatud emoji-tugi</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Keela Signalisse sisseehitatud emoji-tugi</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vahenda kõik kõned Signali serveri kaudu, et vältida oma IP-aadressi levitamist oma kontaktile. Lubamine vähendab kõnekvaliteeti.</string>
   <string name="preferences_advanced__always_relay_calls">Alati vahenda kõned</string>
   <string name="preferences_app_protection__app_access">Rakenduse ligipääs</string>
@@ -1130,7 +1132,7 @@
   <string name="reminder_header_expired_build">Sinu Signali versioon on aegunud!</string>
   <string name="reminder_header_expired_build_details">Sõnumeid ei saadeta enam edukalt. Koputa, et uuendada uusimale versioonile.</string>
   <string name="reminder_header_sms_default_title">Kasuta vaikimisi SMS-rakendusena</string>
-  <string name="reminder_header_sms_default_text">Koputa, et teha Signal SMS\'i vaikerakenduseks.</string>
+  <string name="reminder_header_sms_default_text">Koputa, et teha Signal SMSi vaikerakenduseks.</string>
   <string name="reminder_header_sms_import_title">Impordi süsteemi SMSid</string>
   <string name="reminder_header_sms_import_text">Koputa, et kopeerida oma telefoni SMS-sõnumid Signali krüptitud andmebaasi.</string>
   <string name="reminder_header_push_title">Luba Signali sõnumid ja kõned</string>
@@ -1139,6 +1141,7 @@
   <string name="reminder_header_invite_text">Vii vestlus kontaktiga %1$s järgmisele tasemele.</string>
   <string name="reminder_header_share_title">Kutsu oma sõpru!</string>
   <string name="reminder_header_share_text">Mida rohkem sõpru kasutavad Signalit, seda paremaks see muutub.</string>
+  <string name="reminder_header_service_outage_text">Signalil on hetkel tehnilised probleemid. Töötame selle kallal, et taastada teenus nii kiiresti kui võimalik.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvesta</string>
   <string name="media_preview__forward_title">Edasta</string>
@@ -1211,7 +1214,7 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukusta Signalile juurdepääs Androidi lukukuva või sõrmejäljega</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekraaniluku ebaaktiivsuse ajalõpp</string>
   <string name="AppProtectionPreferenceFragment_none">Puudub</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreerimisluku PIN ei ole sama, mis SMS\'i kinnituskood, mille just said. Palun sisesta PIN, mille seadistasid eelnevalt rakenduse siseselt.</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreerimisluku PIN ei ole sama, mis SMSi kinnituskood, mille just said. Palun sisesta PIN, mille seadistasid eelnevalt rakenduse siseselt.</string>
   <string name="registration_activity__registration_lock_pin">Registreerimisluku PIN</string>
   <string name="registration_activity__forgot_pin">Unustasid PINi?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN võib koosneda neljast või rohkemast numbrist. Kui unustad oma PINi, võidakse sind oma kontost välja lukustada kuni seitsmeks päevaks.</string>

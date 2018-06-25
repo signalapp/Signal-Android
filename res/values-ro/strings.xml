@@ -273,9 +273,9 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure se numește acum Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Signal. Apasă pentru a explora.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Bun venit la apeluri video securizate.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal suportă acum apelare video securizată. Pornește un apel Signal ca în mod normal, apasă pe butonul video și fă cu mâna.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal suportă acum apelare video securizată.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal suportă acum apelare video securizată. Apasă pentru a explora.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal suportă acum apeluri video securizate. Pornește un apel Signal ca în mod normal, apasă pe butonul video și fă cu mâna.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal suportă acum apeluri video securizate.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal suportă acum apeluri video securizate. Apasă pentru a explora.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ești pregătit pentru poza de aproape?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Acum poți distribui numele și o poză de profil la prietenii de pe Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profilurile Signal sunt aici</string>
@@ -410,7 +410,7 @@ mesajele din baza de date SMS implicită de sistem în Signal. Dacă ai importat
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel nepreluat de la %s</string>
   <string name="MessageRecord_s_joined_signal">%s folosește Signal!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Tu ai setat timpul pentru dispariția mesajelor la %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ai setat timpul pentru dispariția mesajelor la %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ai marcat numărul tău de siguranță cu %s ca și verificat</string>
@@ -494,7 +494,6 @@ numărul tău de telefon</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numărul de telefon
 furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_missing_google_play_services">Serviciile Google Play lipsesc</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Acestui dispozitiv îi lipsesc serviciile Google Play. Poți utiliza în continuare Signal, însă această configurație poate duce la fiabilitate și performanță redusă.\n\nDacă nu ești un utilizator avansat, nu rulezi un ROM Android aftermarket,  sau crezi că vezi asta în erori, te tog contactează support@whispersystems.org pentru ajutor la depanare.</string>
   <string name="RegistrationActivity_i_understand">Am înțeles</string>
   <string name="RegistrationActivity_play_services_error">Eroare servicii Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviciile Google Play se actualizează sau sunt temporar indisponibile. Te rog încearcă din nou.</string>
@@ -518,9 +517,9 @@ furnizat (%s) este invalid.</string>
   <string name="RingtonePreference_add_ringtone_text">Adaugă ton de apel</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Nu am putut adăuga tonul de apel personalizat</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Salvarea modificărilor din imagine a eșuat</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Începe să tastezi pentru a căuta conversații, mesaje și contacte.</string>
-  <string name="SearchFragment_no_results">Nu s-a găsit nici un rezultat pentru \'1%s\'</string>
+  <string name="SearchFragment_no_results">Nu s-a găsit nici un rezultat pentru \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversații</string>
   <string name="SearchFragment_header_contacts">Contacte</string>
   <string name="SearchFragment_header_messages">Mesaje</string>
@@ -900,7 +899,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="unknown_sender_view__add_to_contacts">ADAUGĂ LA CONTACTE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NU ADĂUGA, DAR FĂ-MI PROFILUL MEU VIZIBIL</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă dorești să verifici securitatea criptării integrale cu %s, compară numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href="https://whispersystems.org/redirect/safety-numbers">Află mai multe.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apasă pentru a scana</string>
   <string name="verify_display_fragment__loading">Se încarcă...</string>
   <string name="verify_display_fragment__verified">Verificat</string>
@@ -1062,7 +1060,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_notifications__ringtone">Sunet de apel</string>
   <string name="preferences_chats__show_invitation_prompts">Afișează solicitări invitații</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Arată solicitări invitații pentru contactele fără Signal</string>
-  <string name="preferences_chats__message_text_size">Marime font mesaje</string>
+  <string name="preferences_chats__message_text_size">Mărime font mesaje</string>
   <string name="preferences_events__contact_joined_signal">Un contact s-a alăturat pe Signal</string>
   <string name="preferences_notifications__priority">Prioritate</string>
   <!--****************************************-->
@@ -1159,6 +1157,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="reminder_header_invite_text">Treci la următorul nivel al conversației cu %1$s.</string>
   <string name="reminder_header_share_title">Invită-ți prietenii!</string>
   <string name="reminder_header_share_text">Cu cât mai mulți prieteni utilizează Signal, cu atât devine mai bun.</string>
+  <string name="reminder_header_service_outage_text">Signal întâmpină dificultăți tehnice. Muncim din greu pentru a restabili serviciul cât mai repede posibil.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
   <string name="media_preview__forward_title">Redirecționează</string>

@@ -459,7 +459,6 @@
         號碼 (%s) 是無效的
     </string>
   <string name="RegistrationActivity_missing_google_play_services">找不到 Google Play 服務</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">這個裝置找不到 Google Play 服務。你仍然可以使用 Signal，但是這個設定也許會造成降低可靠性或效能。\n\n如果你不是進階使用者，沒有執行非原廠的 Android ROM，或相信你正看到錯誤，請聯絡 support@whispersystems.org 來協助你排除故障。</string>
   <string name="RegistrationActivity_i_understand">我了解</string>
   <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新或暫時無法使用。請再重試。</string>
@@ -483,8 +482,8 @@
   <string name="RingtonePreference_add_ringtone_text">加入鈴聲</string>
   <string name="RingtonePreference_unable_to_add_ringtone">無法加入自訂的鈴聲</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">無法儲存影像的變更</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">開始輸入以搜尋對話，訊息和聯絡人。</string>
   <string name="SearchFragment_no_results">沒有找到「%s」的結果</string>
   <string name="SearchFragment_header_conversations">對話</string>
   <string name="SearchFragment_header_contacts">聯絡人</string>
@@ -854,7 +853,6 @@ signal 訊息</string>
   <string name="unknown_sender_view__add_to_contacts">加入聯絡人</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">不要加入，但讓我的個人資訊可以被看見</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ 如果您想驗證和 %s 的端到端加密，請和他們比較上方的數字是否一致。或者，您可以掃描他們手機上的二維碼，或讓他們掃描您手機上面的二維碼。<a href="https://whispersystems.org/redirect/safety-numbers"> 了解更多有關驗證安全碼的訊息 </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
   <string name="verify_display_fragment__loading">載入中...</string>
   <string name="verify_display_fragment__verified">已驗證</string>
@@ -1108,6 +1106,7 @@ signal 訊息</string>
   <string name="reminder_header_invite_text">與 %1$s 一同將你們的對話提升至更高的等級。</string>
   <string name="reminder_header_share_title">邀請您的好友！</string>
   <string name="reminder_header_share_text">當更多的朋友使用 Signal，它將變得更好。</string>
+  <string name="reminder_header_service_outage_text">Signal 正遇到技術性的問題。我們正在處理，將盡速的修正並恢復服務。</string>
   <!--media_preview-->
   <string name="media_preview__save_title">儲存</string>
   <string name="media_preview__forward_title">轉寄</string>

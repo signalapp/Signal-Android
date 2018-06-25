@@ -192,7 +192,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Нямате инсталиран браузър.</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">Не са открити резултати за \'1%s\'</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Не са открити резултати за \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Изтриване на избрания разговор?</item>
     <item quantity="other">Изтриване на избраните разговори?</item>
@@ -477,7 +477,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Избраният номер
 (%s) е невалиден.</string>
   <string name="RegistrationActivity_missing_google_play_services">Липсват Google Play услуги</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">На това устройство липсват Google Play услуги. Може да продължите да използвате Сигнал, но тази конфигурация може да доведе до намалена надежност.\n\nАко не сте напреднал потребител или не използвате специализиран Android ROM, или смятате, че виждате това съобщение по погрешка, моля свържете се със support@whispersystems.org за помощ и напътствия за решаване на проблема.</string>
   <string name="RegistrationActivity_i_understand">Разбирам</string>
   <string name="RegistrationActivity_play_services_error">Грешка с Play услуги</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play услуги се обновява или временно не е на разположение. Моля, опитайте отново.</string>
@@ -501,8 +500,8 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="RingtonePreference_add_ringtone_text">Добавяне на мелодия за прозвъняване</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Неуспешно добавяне на нов звук за прозвъняване</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Неуспешнп запазване на промененото изображение</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Започнете да пишете, за да намерите чатове, съобщения и контакти.</string>
   <string name="SearchFragment_no_results">Не са открити резултати за \'1%s\'</string>
   <string name="SearchFragment_header_conversations">Чатове</string>
   <string name="SearchFragment_header_contacts">Контакти</string>
@@ -877,7 +876,6 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="unknown_sender_view__add_to_contacts">ДОБАВЯНЕ В КОНТАКТИ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОБАВЯЙ, НО НАПРАВИ ПРОФИЛА ВИДИМ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желаете да потвърдите сигурността на енкрипцията с %s, сравнете числото по-горе с числото на тяхното устройство. Алтернативно, може да скнирате кода на техният телефон или да ги помолите да сканират Вашия код.. <a href="https://whispersystems.org/redirect/safety-numbers">Повече информация</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натиснете за сканиране</string>
   <string name="verify_display_fragment__loading">Зареждане...</string>
   <string name="verify_display_fragment__verified">Потвърдено</string>
@@ -1133,6 +1131,7 @@ SMS-те от системния архив в Сигнал. Ако вече с�
   <string name="reminder_header_invite_text">Издигни разговора си с %1$s до ново ниво.</string>
   <string name="reminder_header_share_title">Поканете приятелите си!</string>
   <string name="reminder_header_share_text">Колкото повече приятели използват Сигнал, толкова по-добър става той.</string>
+  <string name="reminder_header_service_outage_text">Сигнал изпитва технически проблеми. Работи здраво, за да възстановим нормална операция възможно най-бързо.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Запази</string>
   <string name="media_preview__forward_title">Препращане</string>

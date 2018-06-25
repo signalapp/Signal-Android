@@ -736,7 +736,6 @@ a shonrú</string>
   <string name="unknown_sender_view__add_to_contacts">CUIR LE TEAGMHÁLAITHE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NÁ CUIR LEIS, ACH CUIR MO PHRÓIFÍL LE FÁIL</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Má\'s mhian leat deimhniú go bhfuil do criptiú le %s slán, cuir an uimhir seo thuas i gcomórtas leis an uimhir ar a ghléas. Rogha eile ná an cód ar a fón a scanadh, nó fiafraigh air do chód a scanadh. <a href="https://whispersystems.org/redirect/safety-numbers">Tuilleadh a fhoghlaim</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Cnag le scanadh</string>
   <string name="verify_display_fragment__loading">Ag luchtú...</string>
   <string name="verify_display_fragment__verified">Fíordheimhnithe</string>

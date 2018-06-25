@@ -481,7 +481,6 @@ bere dîsa anî, anîn ê peyam kopî bike.</string>
         daxist (%s) nebaş e.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Xizmeta Google Play peyda nakir</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Di cihazê te de Google Play Services nîne. Dikarî Signalê bikarbînî lê pê damizrandin belkî nebaş an hêdî karbike.\n\nHeger tu kêm teknîk dizanî, yan ROM a Android a te orijînal e, yan bawer dikî ku ev peyam şaş e, ji support@whispersystems.org re binivîse ji bo alîkarî bistînî.</string>
   <string name="RegistrationActivity_i_understand">Fêm dikim</string>
   <string name="RegistrationActivity_play_services_error">Xizmeta Play çewtî da</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Xizmetên Google Play rojane dibe an bi dema kurt ne amade ye. Dîsa hewl bide.</string>
@@ -506,7 +505,6 @@ bere dîsa anî, anîn ê peyam kopî bike.</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Zêdekirina zengila şexsî çênabe</string>
   <!--ScribbleActivity-->
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Ji bo lêgirina peyam, peyivîn û tekilî, tiştek binivîse.</string>
   <string name="SearchFragment_no_results">Li ser \'%s\' tiştek peyda nakir</string>
   <string name="SearchFragment_header_conversations">Peyivîn</string>
   <string name="SearchFragment_header_contacts">Danûstendin</string>
@@ -882,7 +880,6 @@ bere dîsa anî, anîn ê peyam kopî bike.</string>
   <string name="unknown_sender_view__add_to_contacts">ZÊDE BIKIN TÊKILIYAN</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ZÊDE NAKIN, LÊ PROFÎLA MIN XUYA BIKIN</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Heger tu dixwazî ewleriya şifrekirina xwe bi %s re misoger bikî, kontrol bike ku hejmara jorê û hejmar li cihazê te wekhev in. An jî dikarî kod li telefona wan sehbikî, an jî ew dikarin koda telefona te sehbikin. <a href="https://whispersystems.org/redirect/safety-numbers">Zêde fêrbibin.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ji bo sehkirin lêxe</string>
   <string name="verify_display_fragment__loading">Tê barkirin...</string>
   <string name="verify_display_fragment__verified">Misoger e</string>

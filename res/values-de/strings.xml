@@ -468,10 +468,12 @@
   <string name="RegistrationActivity_invalid_number">Ungültige Rufnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Rufummer (%s) ist ungültig.</string>
   <string name="RegistrationActivity_missing_google_play_services">Fehlende Google-Play-Dienste</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings führt diese Konfiguration eventuell zu verringerter Zuverlässigkeit oder Leistung.\n\nFalls du kein erfahrener Benutzer bist, kein Custom-ROM verwendest oder glaubst, diese Meldung irrtümlich angezeigt zu bekommen, kontaktiere bitte support@whispersystems.org für Hilfe bei der Problembehandlung.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings führt diese Konfiguration eventuell zu verringerter Zuverlässigkeit oder Leistung.\n\nFalls du kein erfahrener Benutzer bist, kein Custom-ROM verwendest oder glaubst, diese Meldung irrtümlich angezeigt zu bekommen, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
   <string name="RegistrationActivity_i_understand">Verstanden</string>
   <string name="RegistrationActivity_play_services_error">Fehler bei den Google-Play-Diensten</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht erreichbar. Bitte erneut versuchen.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Bedingungen &amp; Datenschutzerklärung</string>
+  <string name="RegistrationActivity_no_browser">Link kann nicht geöffnet werden. Kein Webbrowser gefunden.</string>
   <string name="RegistrationActivity_more_information">Mehr Informationen</string>
   <string name="RegistrationActivity_less_information">Weniger Informationen</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte und Medien, um dich mit Freunden zu verbinden, Nachrichten auszutauschen und sichere Anrufe zu tätigen.</string>
@@ -494,7 +496,6 @@
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Beginne zu tippen, um nach Unterhaltungen, Nachrichten und Kontakten zu suchen.</string>
   <string name="SearchFragment_no_results">Keine Ergebnisse für »%s« gefunden</string>
   <string name="SearchFragment_header_conversations">Unterhaltungen</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
@@ -867,7 +868,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="unknown_sender_view__add_to_contacts">ZU KONTAKTEN HINZUFÜGEN</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NICHT HINZUFÜGEN, ABER MEIN PROFIL SICHTBAR MACHEN</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://whispersystems.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
   <string name="verify_display_fragment__loading">Wird geladen …</string>
   <string name="verify_display_fragment__verified">Verifiziert</string>
@@ -1123,7 +1124,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="reminder_header_invite_text">Hebe deine Kommunikation mit %1$s auf die nächste Stufe.</string>
   <string name="reminder_header_share_title">Lade deine Freunde ein!</string>
   <string name="reminder_header_share_text">Je mehr Freunde Signal nutzen, desto besser das Erlebnis.</string>
-  <string name="reminder_header_service_outage_text">Signal hat technische Schwierigkeiten. Wir arbeiten hart daran, den Betrieb so schnell wie möglich wiederherzustellen.</string>
+  <string name="reminder_header_service_outage_text">Signal hat derzeit technische Schwierigkeiten. Wir arbeiten hart daran, den Betrieb so schnell wie möglich wiederherzustellen.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Speichern</string>
   <string name="media_preview__forward_title">Weiterleiten</string>

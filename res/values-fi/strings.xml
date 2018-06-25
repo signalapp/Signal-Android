@@ -474,7 +474,6 @@ puhelinnumero</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Antamasi puhelinnumero
 (%s) on virheellinen.</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services puuttuu</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Tästä laitteesta puuttuu Google Play Services. Signal toimii myös ilman sitä, mutta viestien ja ilmoitusten välityksen laatu saattaa kärsiä.\n\nJos et ole edistyneempi käyttäjä, et käytä kolmannen osapuolen Android ROM:ia tai uskot, että näet tämän ilmoituksen virheellisesti, ota yhteyttä support@whispersystems.org saadaksesi apua.</string>
   <string name="RegistrationActivity_i_understand">Ymmärrän</string>
   <string name="RegistrationActivity_play_services_error">Play Services -virhe</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servicesiä päivitetään tai se ei ole juuri nyt saavutettavissa. Yritä myöhemmin uudelleen.</string>
@@ -498,8 +497,8 @@ puhelinnumero</string>
   <string name="RingtonePreference_add_ringtone_text">Lisää soittoääni</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Soittoäänen lisäys epäonnistui</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Kuvaan tehtyjen muutosten tallentaminen ei onnistunut.</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Ala kirjoittaa hakeaksesi keskusteluja, viestejä ja yhteystietoja.</string>
   <string name="SearchFragment_no_results">Ei hakutuloksia: \'%s\'</string>
   <string name="SearchFragment_header_conversations">Keskustelut</string>
   <string name="SearchFragment_header_contacts">Yhteystiedot</string>
@@ -873,7 +872,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="unknown_sender_view__add_to_contacts">LISÄÄ YHTEYSTIETOIHIN</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ÄLÄ LISÄÄ, MUTTA TEE PROFIILINI NÄKYVÄKSI</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi. <a href="https://whispersystems.org/redirect/safety-numbers">Lue lisää</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napsauttamalla</string>
   <string name="verify_display_fragment__loading">Ladataan...</string>
   <string name="verify_display_fragment__verified">Varmennettu</string>
@@ -1129,6 +1127,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="reminder_header_invite_text">Vie keskustelusi yhteystiedon %1$s kanssa seuraavalle tasolle.</string>
   <string name="reminder_header_share_title">Kutsu ystäviäsi!</string>
   <string name="reminder_header_share_text">Mitä useampi ystävistäsi käyttää Signalia, sitä paremmaksi se muuttuu.</string>
+  <string name="reminder_header_service_outage_text">Signalissa ilmenee tällä hetkellä teknisiä ongelmia. Työskentelemme parhaillaan palvelun palauttamiseksi.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Tallenna</string>
   <string name="media_preview__forward_title">Välitä</string>

@@ -476,7 +476,6 @@ número de telèfon</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que heu
 especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_missing_google_play_services">No hi ha el Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">El Google Play Services no està instal·lat. Encara podeu utilitzar el Signal, però la fiabilitat i el rendiment pot ser menor.\n\nSi no sou un usuari avançat, no esteu utilitzant una ROM modificada d\'Android o creieu que esteu patint aquest problema, contacteu support@whispersystems.org per rebre ajuda i solucionar-lo.</string>
   <string name="RegistrationActivity_i_understand">Ho entenc</string>
   <string name="RegistrationActivity_play_services_error">Error amb el Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">El Google Play Services s\'està actualitzant o no està disponible. Torneu a provar-ho.</string>
@@ -502,7 +501,6 @@ especificat (%s) no és vàlid.</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">No s\'ha pogut desar els canvis en la imatge</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Comenceu a escriure per cercar converses, missatges i contactes.</string>
   <string name="SearchFragment_no_results">No s\'ha trobat cap resultat per a «%s»</string>
   <string name="SearchFragment_header_conversations">Converses</string>
   <string name="SearchFragment_header_contacts">Contactes</string>
@@ -876,7 +874,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="unknown_sender_view__add_to_contacts">AFEGEIX ALS CONTACTES</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NO L\'AFEGEIXIS, PERÒ FES QUE EL PERFIL SIGUI VISIBLE</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si voleu verificar la seguretat del xifratge amb %s, compareu el número anterior amb el del seu dispositiu. Altrament, podeu escanejar el codi al seu telèfon o demanar-li que escanegi el vostre. <a href="https://whispersystems.org/redirect/safety-numbers">Més informació.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Feu un toc per escanejar</string>
   <string name="verify_display_fragment__loading">S\'està carregant...</string>
   <string name="verify_display_fragment__verified">Verificat</string>

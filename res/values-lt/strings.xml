@@ -520,10 +520,12 @@
         nurodėte (%s) yra neteisingas.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Trūksta „Google Play“ paslaugų</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Šiame įrenginyje nėra „Google Play“ paslaugų. Jūs vis tiek galite naudoti Signal, tačiau tokia konfigūracija gali sąlygoti mažesnį patikimumą ir našumą.\n\nJeigu jūs nesate pažengęs naudotojas, nenaudojate atsarginių dalių Android ROM ar manote, jog matote šią klaidą, tuomet pagalbai ir nesklandumų šalinimui susisiekite su support@whispersystems.org.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Šiame įrenginyje nėra „Google Play“ paslaugų. Jūs vis tiek galite naudoti Signal, tačiau tokia konfigūracija gali sąlygoti mažesnį patikimumą ir našumą.\n\nJeigu jūs nesate pažengęs naudotojas, nenaudojate atsarginių dalių Android ROM ar manote, jog matote tai per klaidą, tuomet pagalbai ir nesklandumų šalinimui susisiekite su support@signal.org.</string>
   <string name="RegistrationActivity_i_understand">Aš suprantu</string>
   <string name="RegistrationActivity_play_services_error">„Play“ paslaugų klaida</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">„Google Play“ paslaugos yra atnaujinamos arba laikinai neprieinamos. Prašome bandyti dar kartą.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Sąlygos ir Privatumo politika</string>
+  <string name="RegistrationActivity_no_browser">Nepavyko atverti šios nuorodos. Nerasta jokios saityno naršyklės.</string>
   <string name="RegistrationActivity_more_information">Daugiau informacijos</string>
   <string name="RegistrationActivity_less_information">Mažiau informacijos</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų kontaktų ir medijos</string>
@@ -546,7 +548,6 @@
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Pradėkite rašyti, norėdami ieškoti pokalbių, žinučių ir kontaktų.</string>
   <string name="SearchFragment_no_results">Nerasta jokių rezultatų, atitinkančių \"%s\"</string>
   <string name="SearchFragment_header_conversations">Pokalbiai</string>
   <string name="SearchFragment_header_contacts">Kontaktai</string>
@@ -936,7 +937,7 @@
   <string name="unknown_sender_view__add_to_contacts">ĮTRAUKTI Į KONTAKTUS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEPRIDĖTI, TAČIAU PADARYTI MANO PROFILĮ MATOMĄ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu kontakto įrenginyje. Arba kitaip, galite nuskenuoti kodą jo telefone arba paprašyti kontakto, kad nuskenuotų jūsų kodą. <a href="https://whispersystems.org/redirect/safety-numbers">Sužinoti daugiau.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeigu norite patvirtinti savo šifravimo su %s saugumą, palyginkite aukščiau esantį numerį su numeriu šio kontakto įrenginyje. Arba kitu atveju, galite nuskenuoti kodą jo telefone arba paprašyti kontakto, kad nuskenuotų jūsų kodą. <a href="https://signal.org/redirect/safety-numbers">Sužinokite daugiau.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Bakstelėkite, norėdami nuskenuoti</string>
   <string name="verify_display_fragment__loading">Įkeliama...</string>
   <string name="verify_display_fragment__verified">Patvirtinta(-s)</string>

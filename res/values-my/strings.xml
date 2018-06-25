@@ -401,7 +401,6 @@
   <string name="RegistrationActivity_invalid_number">နံပါတ် မှားနေသည်</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">သင်ထည့်လိုက်သော နံပါတ် ( %s) သည်မှားယွင်းနေသည်။</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play မရှိပါ</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">ဒီဖုန်းတွင် Google Play Service မရှိပါ။ Signal ကိုသုံး၍ရသော်လည်း အကောင်းဆုံးအနေအထားဖြင့်သုံးနိုင်မည်မဟုတ်ပါ။ \n\n သင့်အနေဖြင့် နည်းပညာအဆင့်မြင့် အသုံးပြုသူမဟုတ်၍သော်လည်းကောင်း၊ Andriod aftermarket ROM သုံးမနေ၍သော်လည်းကောင်း၊ မှားယွင်းစွာပေါ်လာတယ်ဟု ယူဆပါက support@whispersystems.org ကိုဆက်သွယ်ပါ။</string>
   <string name="RegistrationActivity_i_understand">နားလည် လက်ခံပါသည်</string>
   <string name="RegistrationActivity_play_services_error">Google Play အသုံးပြု၍မရပါ</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Serivice ကို အဆင့်မြှင့်တင်နေခြင်း၊ သို့၊ အသုံးပြု၍ မရခြင်းဖြစ်နေပါသည်။ ပြန်လည် စမ်းသပ်ကြည့်ပါ။</string>
@@ -734,7 +733,6 @@
   <string name="unknown_sender_view__add_to_contacts">လိပ်စာစာရင်းထဲကို ထည့်ပါ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">မထည့်ပါနဲ့။ အချက်အလက်တွေကို ကြည့်လို့ရအောင်တော့ ထားပါ။</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ %s ဖြင့် သင့်တို့၏  encrypt လုပ်ခြင်းလုံခြုံမှုစနစ်ကို စစ်ဆေးလိုပါက အထက်ပါ နံပါတ်နှင့် သင့်မိတ်ဆွေ၏ နံပါတ်ကို တိုက်ဆိုင်စစ်ဆေးကြည့်ပါ။ သို့တည်းမဟုတ် ထိုသူတို့ဖုန်းမှ ကုဒ်ကို စကန်ဖတ်နိုင်ပါသည်။ <a href="https://whispersystems.org/redirect/safety-numbers">ပိုမိုသိရှိရန်</a> ]]></string>
   <string name="verify_display_fragment__tap_to_scan">စကန်ဖတ်ရန်နှိပ်ပါ</string>
   <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်...</string>
   <string name="verify_display_fragment__verified">အသိအမှတ်ပြုပြီးပြီ</string>

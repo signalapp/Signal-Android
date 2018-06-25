@@ -440,7 +440,6 @@ telefonnummer
 indtastede (%s) er ugyldigt.
 </string>
   <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enhed mangler Google Play Services. Du kan stadig bruge Signal, men denne konfiguration kan resultere i begrænset stabilitet og ydeevne.\n\nHvis du ikke er en superbruger, ikke kører en alternativ Android ROM eller tror du ser denne besked ved en fejl kan du kontakte support@whispersystems.org (på engelsk) for hjælp.</string>
   <string name="RegistrationActivity_i_understand">Jeg forstår</string>
   <string name="RegistrationActivity_play_services_error">Play Services fejl</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services bliver opdateret eller er midlertidigt utilgængelig. Prøv igen.</string>
@@ -788,7 +787,6 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="recipients_panel__add_members">Tilføj medlem</string>
   <!--unknown_sender_view-->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du ønsker at verificere sikkerheden af din kryptering med %s, sammenlign ovenstående nummer med nummeret på deres enhed. En alternativ mulighed er, at du kan scanne koden på deres telefon, eller bede dem om at scanne din. <a href="https://whispersystems.org/redirect/safety-numbers">Learn more.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryk for at skanne</string>
   <string name="verify_display_fragment__loading">Indlæser...</string>
   <string name="verify_display_fragment__verified">Bekræftet</string>

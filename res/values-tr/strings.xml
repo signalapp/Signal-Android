@@ -475,10 +475,11 @@
         (%s) geçersiz.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Servisleri eksik</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Bu cihazda Google Play Servisleri eksiktir. Signal\'i hala kullanabilirsiniz, ancak bu yapılandırma şekli düşük güvenilirlik veya performans sonucu doğurabilir.\n\nEğer ileri düzey bir kullanıcı değilseniz, ardıl pazar ürünü bir Android ROM çalıştırmıyorsanız veya bunu bir hata olarak görüyorsanız, sorunun giderilmesinde yardımcı olmaları için lütfen support@whispersystems.org adresi ile iletişim kurunuz.</string>
   <string name="RegistrationActivity_i_understand">Anladım</string>
   <string name="RegistrationActivity_play_services_error">Play Servisleri Hatası</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servisleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen yeniden deneyin.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Koşullar ve Gizlilik İlkesi</string>
+  <string name="RegistrationActivity_no_browser">Bu bağlantı açılamıyor. İnternet tarayıcısı bulunamadı.</string>
   <string name="RegistrationActivity_more_information">Daha fazla bilgi</string>
   <string name="RegistrationActivity_less_information">Daha az bilgi</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kişilerle iletişim kurabilmeniz, mesaj alıp, göndermeniz ve güvenli aramalar yapabilmeniz için Signal\'in kişilerinize ve dosyalarınıza erişmesi gerekir</string>
@@ -499,8 +500,8 @@
   <string name="RingtonePreference_add_ringtone_text">Zil sesi ekle</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Özel zil sesi eklenemiyor</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Görüntü değişiklikleri kaydedilirken hata oluştu</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Sohbetleri, mesajları ve kişileri arayın.</string>
   <string name="SearchFragment_no_results">\'%s\' için hiç sonuç bulunamadı.</string>
   <string name="SearchFragment_header_conversations">Sohbetler</string>
   <string name="SearchFragment_header_contacts">Kişiler</string>
@@ -874,7 +875,6 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="unknown_sender_view__add_to_contacts">KİŞİLERE EKLE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">KİŞİLERE EKLEME AMA PROFİLİMİ GÖSTER</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ile şifreleme güvenliğini doğrulamak isterseniz,  yukarıdaki sayıları kişinin aygıtındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilirsiniz, ya da kendisinin taramasını isteyebilirsiniz. <a href="https://whispersystems.org/redirect/safety-numbers">Daha fazla bilgi edinin.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
   <string name="verify_display_fragment__loading">Yükleniyor...</string>
   <string name="verify_display_fragment__verified">Doğrulandı</string>
@@ -1041,7 +1041,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Yeni mesajın gittiği...</string>
+  <string name="contact_selection_list__unknown_contact">Yeni mesaj...</string>
   <!--contact_selection-->
   <!--refreshing push directory from menu-->
   <!--conversation_callable_insecure-->
@@ -1052,7 +1052,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_context__menu_message_details">Mesaj ayrıntıları</string>
   <string name="conversation_context__menu_copy_text">Metni kopyala</string>
   <string name="conversation_context__menu_delete_message">Mesajı sil</string>
-  <string name="conversation_context__menu_forward_message">Mesajı yönlendir</string>
+  <string name="conversation_context__menu_forward_message">Mesajı ilet</string>
   <string name="conversation_context__menu_resend_message">Mesajı tekrar gönder</string>
   <string name="conversation_context__menu_reply_to_message">Mesajı yanıtla</string>
   <!--conversation_context_image-->
@@ -1065,7 +1065,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="conversation_insecure__invite">Davet et</string>
   <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Seçileni sil</string>
+  <string name="conversation_list_batch__menu_delete_selected">Seçilenleri sil</string>
   <string name="conversation_list_batch__menu_select_all">Hepsini seç</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Seçilenleri arşivle</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilenleri arşivden çıkar</string>
@@ -1130,9 +1130,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="reminder_header_invite_text">%1$s ile sohbetinizi bir sonraki seviyeye alın.</string>
   <string name="reminder_header_share_title">Arkadaşlarını davet et!</string>
   <string name="reminder_header_share_text">Ne kadar çok arkadaşın Signal kullanırsa, o kadar iyi hale gelir.</string>
+  <string name="reminder_header_service_outage_text">Signal teknik sorunlar yaşıyor. Hizmeti olabildiğince çabuk düzeltmek için sıkı çalışıyoruz</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Kaydet</string>
-  <string name="media_preview__forward_title">İleri</string>
+  <string name="media_preview__forward_title">İlet</string>
   <string name="media_preview__all_media_title">Tüm medya</string>
   <!--media_overview-->
   <string name="media_overview_documents_fragment__no_documents_found">Belge yok</string>

@@ -457,7 +457,6 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">您所指定的号码
 (%s) 无效。</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play 服务缺失</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">此设备缺少 Google Play 服务框架。您仍能使用 Signal，但是 Signal 的功能与稳定性会因此受到很大影响。\n\n如果您不是高级用户，并且运行的是原厂安卓手机操作系统，或者您觉得此错误信息不正确，请使用英文联系 support@whispersystems.org 我们会尝试帮助您解决此问题。</string>
   <string name="RegistrationActivity_i_understand">了解</string>
   <string name="RegistrationActivity_play_services_error">Google Play 服务错误</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服务正在更新或者暂时不可用。请稍后再试。</string>
@@ -482,7 +481,6 @@
   <string name="RingtonePreference_unable_to_add_ringtone">无法添加个人来点铃声</string>
   <!--ScribbleActivity-->
   <!--Search-->
-  <string name="SearchFragment_begin_searching">搜索对话，消息记录和联系人信息。</string>
   <string name="SearchFragment_no_results">没有找到关于“%s”的信息</string>
   <string name="SearchFragment_header_conversations">对话</string>
   <string name="SearchFragment_header_contacts">联系人</string>
@@ -848,7 +846,6 @@
   <string name="unknown_sender_view__add_to_contacts">添加到通讯录</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">不添加，但使我的信息可见</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[如果您希望验证您的安全和您的加密经由 %s ，在他的设备上对比下面的号码和数字。<a href="https://whispersystems.org/redirect/safety-numbers">了解更多</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">点击扫码</string>
   <string name="verify_display_fragment__loading">载入中…</string>
   <string name="verify_display_fragment__verified">已验证</string>

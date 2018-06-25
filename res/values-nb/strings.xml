@@ -477,10 +477,12 @@ telefonnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nummeret du
 skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play tjenester</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enheten mangler Google Play Tjenester. Du kan fortsatt bruke Signal, men denne konfigurasjonen kan føre til redusert pålitelighet eller ytelse.\n\nHvis du ikke er en avansert bruker, kjører ikke en ettermarked Android ROM, eller tror du ser dette feil, kan du kontakte support@whispersystems.org for å hjelpe med feilsøking.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enheten mangler Google Play-tjenester. Du kan fremdeles bruke Signal, men det kan oppføre seg ustabilit eller gi dårlig ytelse.\n\nHvis du ikke er en avansert bruker, ikke kjører en egeninstallert Android-fastvare, eller du mener at du har Google Play-tjenester installert, ber vi deg om å kontakte support@signal.org så vi kan hjelpe deg med feilsøking.</string>
   <string name="RegistrationActivity_i_understand">Jeg forstår</string>
   <string name="RegistrationActivity_play_services_error">Play Tjenester Feil</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjenester er opptatt eller midlertidig utilgjengelig. Vent litt, og prøv på nytt.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Vilkår og personvernregler</string>
+  <string name="RegistrationActivity_no_browser">Klarte ikke å åpne lenke. Fant ingen nettleser.</string>
   <string name="RegistrationActivity_more_information">Mer informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal må ha tilgang til kontakter og medier på systemet for å kunne koble til venner, sende/motta meldinger og ringe</string>
@@ -501,8 +503,8 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RingtonePreference_add_ringtone_text">Legg til ringetone</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Klarte ikke å legge til selvvalgt ringetone</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Klarte ikke å lagre bildeendringer</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Skriv for å søke etter samtaler, meldinger og kontakter.</string>
   <string name="SearchFragment_no_results">Søket «1%s» ga ingen treff.</string>
   <string name="SearchFragment_header_conversations">Samtaler</string>
   <string name="SearchFragment_header_contacts">Kontakter</string>
@@ -876,7 +878,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="unknown_sender_view__add_to_contacts">LEGG TIL KONTAKTER</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">IKKE LEGG TIL, MEN GJØR PROFILEN MIN SYNLIG</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekrefte at du har en sikker kryptering mot %s, sammenlikner du tallet overfor med tallet på kontaktens enhet. Du kan også skanne koden på kontaktens enhet, eller be personen om å skanne koden på din. <a href="https://whispersystems.org/redirect/safety-numbers">Lær mer.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekrefte at du har sikker kryptering mot %s, bør du sammenlikne tallene overfor med tallene på motpartens enhet. Du kan også skanne koden på motpartens enhet, eller be dem om å skanne din <a href="https://signal.org/redirect/safety-numbers">Les mer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <string name="verify_display_fragment__loading">Laster...</string>
   <string name="verify_display_fragment__verified">Verifisert</string>
@@ -1133,6 +1135,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>
   <string name="reminder_header_share_title">Inviter vennene dine!</string>
   <string name="reminder_header_share_text">Jo flere venner som bruker Signal, desto bedre blir det.</string>
+  <string name="reminder_header_service_outage_text">Signal har tekniske problemer. Vi jobber med å få tjenesten i gang igjen så fort som mulig.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagre</string>
   <string name="media_preview__forward_title">Videresend</string>

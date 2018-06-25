@@ -477,6 +477,8 @@ ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationActivity_i_understand">Ik begrijp het</string>
   <string name="RegistrationActivity_play_services_error">Play services fout</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services zijn momenteel aan het updaten of zijn tijdelijk niet beschikbaar. Probeer het nog eens.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Gebruiksvoorwaarden &amp; privacy policy</string>
+  <string name="RegistrationActivity_no_browser">Kan link niet openen, geen webbrowser gevonden.</string>
   <string name="RegistrationActivity_more_information">Meer informatie</string>
   <string name="RegistrationActivity_less_information">Minder informatie</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal heeft toegang nodig tot je contacten en media om je met je vrienden te laten verbinden, elkaar berichten te sturen en beveiligde oproepen te maken</string>
@@ -499,7 +501,6 @@ ingevoerd (%s) is ongeldig.</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Mislukt om bewerkte afbeelding op te slaan</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Begin te typen om te zoeken naar conversaties, berichten en contacten.</string>
   <string name="SearchFragment_no_results">Geen resultaten gevonden voor \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversaties</string>
   <string name="SearchFragment_header_contacts">Contacten</string>
@@ -873,7 +874,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="unknown_sender_view__add_to_contacts">TOEVOEGEN AAN CONTACTEN</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NIET TOEVOEGEN, MAAR MIJN PROFIEL WEL ZICHTBAAR MAKEN</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je de veiligheid van de beveiligde verbinding met %s wil verifiëren, moet je het nummer hierboven vergelijken met dat op hun apparaat. Een alternatieve methode is om de code op hun telefoon te scannen, of hen te vragen jouw code te scannen. <a href="https://whispersystems.org/redirect/safety-numbers">Lees meer.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je de veiligheid van de beveiligde verbinding met %s wil verifiëren, moet je het nummer hierboven vergelijken met dat op hun apparaat. Een alternatieve methode is om de code op hun telefoon te scannen, of hen te vragen jouw code te scannen. <a href="https://signal.org/redirect/safety-numbers">Lees meer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
   <string name="verify_display_fragment__loading">Laden...</string>
   <string name="verify_display_fragment__verified">Geverifieerd</string>

@@ -474,7 +474,6 @@ telefonnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du
 angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_missing_google_play_services">Saknar Google Play-tjänster</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denna enhet saknar Google Play-tjänster. Du kan fortfarande använda Signal, men denna konfiguration kan medföra nedsatt tillförlitlighet och prestanda.\n\nOm du inte är en avancerad användare, inte kör en eftermarknads Android ROM, eller tror att du felaktigt ser detta, vänligen kontakta support@whispersystems.org för hjälp med felsökning. </string>
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Play-tjänstfel</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt inte tillgängligt. Försök igen senare.</string>
@@ -499,7 +498,6 @@ angav (%s) är ogiltigt.</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Kunde inte lägga till egen ringsignal</string>
   <!--ScribbleActivity-->
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Börja skriva för att söka efter konversationer, meddelanden och kontakter.</string>
   <string name="SearchFragment_no_results">Inga resultat hittades för \'%s\'</string>
   <string name="SearchFragment_header_conversations">Konversationer</string>
   <string name="SearchFragment_header_contacts">Kontakter</string>
@@ -873,7 +871,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="unknown_sender_view__add_to_contacts">LÄGG TILL KONTAKT</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">LÄGG INTE TILL, MEN GÖR PROFILEN SYNLIG</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten i kryptering med %s, jämför numret ovan med numret på deras enhet. Alternativt så kan du skanna koden på deras telefon, eller be dem skanna din kod. <a href="https://whispersystems.org/redirect/safety-numbers">Lär dig mer</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
   <string name="verify_display_fragment__loading">Laddar...</string>
   <string name="verify_display_fragment__verified">Verifierad</string>

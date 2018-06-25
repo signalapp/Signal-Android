@@ -482,7 +482,6 @@
         especifcado (%s) non é válido.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Falta Servizos de Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo non dispón de Servizos de Google Play. Podes seguir a usar Signal, mais é posible que o seu rendemento ou fiabilidade se vexan reducidos.\n\nSe non es un usuario avanzado, se non estás a executar unha ROM de Android modificada ou pensas que isto é un erro, contacta con support@whispersystems.org para obter axuda.</string>
   <string name="RegistrationActivity_i_understand">Entendo</string>
   <string name="RegistrationActivity_play_services_error">Erro de Servizos Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Servizos de Google Play está actualizándose ou non está temporalmente dispoñible. Volve tentalo.</string>
@@ -507,7 +506,6 @@
   <string name="RingtonePreference_unable_to_add_ringtone">Non é posible engadir un ton personalizado</string>
   <!--ScribbleActivity-->
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Comeza a escribir para buscar nas conversas, mensaxes e contactos.</string>
   <string name="SearchFragment_no_results">Ningún resultado atopado para \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversas</string>
   <string name="SearchFragment_header_contacts">Contactos</string>
@@ -883,7 +881,6 @@
   <string name="unknown_sender_view__add_to_contacts">ENGADIR A CONTACTOS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NON ENGADIR, PERO FACER O MEU PERFIL VISIBLE</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se queres comprobar a seguranza da túa cifraxe con %s, compara o número superior co número do seu dispositivo. Outra opción é escanear o código do seu teléfono ou pedirlle que escanee o teu código. <a href="https://whispersystems.org/redirect/safety-numbers">Saber máis.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toca para escanear</string>
   <string name="verify_display_fragment__loading">Cargando...</string>
   <string name="verify_display_fragment__verified">Verificado</string>

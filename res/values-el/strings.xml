@@ -478,10 +478,12 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που καθορίσατε (%s)
 δεν είναι έγκυρος.</string>
   <string name="RegistrationActivity_missing_google_play_services">Υπηρεσίες Google Play που λείπουν</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Σε αυτή την συσκευή λείπουν οι υπηρεσίες Google Play. Μπορείς ακόμα να χρησιμοποιήσεις το Signal, αλλά η συγκεκριμένη διαμόρφωση μπορεί να έχει ως αποτέλεσμα την μειωμένη αξιοπιστία ή απόδοση.\n\nΑν δεν είσαι προχωρημένος/η χρήστης/ρια, αν δεν τρέχεις το πρωτότυπο Android ROM της συσκευής σου, ή αν πιστεύεις ότι αυτό το μήνυμα εμφανίζεται από λάθος, παρακαλώ επικοινώνησε με το support@whispersystems.org για να σε βοηθήσουμε με την αποσφαλμάτωση.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Αυτή η συσκευή δεν έχει τις Υπηρεσίες Google Play. Μπορείς και πάλι να χρησιμοποιήσεις το Signal, αλλά αυτή η διαμόρφωση μπορεί να οδηγήσει σε μειωμένη αξιοπιστία και επιδόσεις.\n\nΑν δεν είσαι προηγμένος/η χρήστης/τρια, αν δεν έχεις εγκαταστήσει κάποιο εναλλακτικό Android ROM, ή αν πιστεύεις πως βλέπεις αυτό το μήνυμα από λάθος, παρακαλώ επικοινώνησε με το support@signal.org για να σε βοηθήσουμε με την αποσφαλμάτωση.</string>
   <string name="RegistrationActivity_i_understand">Καταλαβαίνω</string>
   <string name="RegistrationActivity_play_services_error">Πρόβλημα υπηρεσιών Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Οι υπηρεσίες Google Play αναβαθμίζονται ή είναι προσωρινά μη διαθέσιμες. Παρακαλώ προσπάθησε ξανά.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Όροι &amp; Πολιτική Ιδιωτικότητας</string>
+  <string name="RegistrationActivity_no_browser">Αδυναμία ανοίγματος του συνδέσμου. Δεν βρέθηκε περιηγητής διαδικτύου.</string>
   <string name="RegistrationActivity_more_information">Περισσότερες πληροφορίες</string>
   <string name="RegistrationActivity_less_information">Λιγότερες πληροφορίες</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές και τα πολυμέσα σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να ανταλλάξεις μηνύματα και να κάνεις ασφαλείς κλήσεις.</string>
@@ -504,7 +506,6 @@
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Αποτυχία αποθήκευσης των αλλαγών της εικόνας</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Ξεκινά να πληκτρολογείς για να αναζητήσεις συνομιλίες, μηνύματα και επαφές. </string>
   <string name="SearchFragment_no_results">Δεν βρέθηκαν αποτελέσματα για \"%s\"</string>
   <string name="SearchFragment_header_conversations">Συνομιλίες</string>
   <string name="SearchFragment_header_contacts">Επαφές</string>
@@ -879,7 +880,7 @@
   <string name="unknown_sender_view__add_to_contacts">ΠΡΟΣΘΗΚΗ ΣΤΙΣ ΕΠΑΦΕΣ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ΝΑ ΜΗΝ ΠΡΟΣΤΕΘΕΙ, ΑΛΛΑ ΝΑ ΓΙΝΕΙ ΤΟ ΠΡΟΦΙΛ ΜΟΥ ΟΡΑΤΟ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογραφίας με τον/την %s, σύγκρινε τον παραπάνω αριθμό με τον αριθμό στην συσκευή του/της. Εναλλακτικά, μπορείς να σκανάρεις τον κωδικό στο κινητό του/της, ή να του/της ζητήσεις να σκανάρει τον δικό σου κωδικό. <a href="https://whispersystems.org/redirect/safety-numbers">Μάθε περισσότερα.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλεις να επιβεβαιώσεις την ασφάλεια της κρυπτογράφησης με τον/την%s, σύγκρινε τον παραπάνω αριθμό με τον αριθμό στη συσκευή του/της. Εναλλακτικά, μπορείς να σκανάρεις τον κωδικο στο τηλέφωνό του/της, ή να του/της ζητήσεις να σκανάρει τον δικό σου κωδικό. <a href="https://signal.org/redirect/safety-numbers">Μάθε περισσότερα.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Πάτα για σκανάρισμα</string>
   <string name="verify_display_fragment__loading">Φορτώνει...</string>
   <string name="verify_display_fragment__verified">Επιβεβαιωμένο</string>

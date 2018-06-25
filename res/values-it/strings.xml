@@ -475,7 +475,6 @@ proprio numero di telefono</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Il numero specificato
 (%s) non è valido</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services mancanti</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Su questo dispositivo mancano i Google Play Services. Puoi comunque utilizzare Signal, ma in questa configurazione può risultare meno affidabile e performante.\n\nSe non sei un utente esperto, utilizzi il Firmware Android di fabbrica, o credi che sia un errore, contatta support@whispersystems.org per ricevere aiuto nella risoluzione del problema.</string>
   <string name="RegistrationActivity_i_understand">Accetto</string>
   <string name="RegistrationActivity_play_services_error">Errore di Google Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services si sta aggiornando o non è al momento disponibile. Per favore riprovare</string>
@@ -501,7 +500,6 @@ proprio numero di telefono</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvataggio modifiche all\'immagine fallito</string>
   <!--Search-->
-  <string name="SearchFragment_begin_searching">Inizia a digitare per cercare conversazioni, messaggi e contatti.</string>
   <string name="SearchFragment_no_results">Nessun risultato trovato per \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversazioni</string>
   <string name="SearchFragment_header_contacts">Contatti</string>
@@ -876,7 +874,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="unknown_sender_view__add_to_contacts">AGGIUNTI AI CONTATTI</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NON AGGIUNGERE, MA RENDI IL MIO PROFILO VISIBILE</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua crittografia end-to-end con %s, confronta i codici precedenti con quelli del suo dispositivo. In alternativa puoi fare uno scan del codice sul suo telefono o chiedergli di fare una scansione del tuo. <a href="https://whispersystems.org/redirect/safety-numbers">Impara di più sulla verifica dei codici di sicurezza</a>.]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
   <string name="verify_display_fragment__loading">Caricamento...</string>
   <string name="verify_display_fragment__verified">Verificato</string>
