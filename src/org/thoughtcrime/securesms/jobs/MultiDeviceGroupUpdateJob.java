@@ -75,7 +75,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
 
           out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
                                     members, getAvatar(record.getAvatar()),
-                                    record.isActive(), expirationTimer));
+                                    record.isActive(), expirationTimer, Optional.of(recipient.getColor().serialize())));
         }
       }
 

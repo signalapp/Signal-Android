@@ -5,18 +5,33 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
-public class ExpirationTimerView extends HourglassView {
+public class ExpirationTimerView extends android.support.v7.widget.AppCompatImageView {
 
   private long startedAt;
   private long expiresIn;
 
   private boolean visible = false;
   private boolean stopped = true;
+
+  private final int[] frames = new int[]{ R.drawable.timer00,
+                                          R.drawable.timer05,
+                                          R.drawable.timer10,
+                                          R.drawable.timer15,
+                                          R.drawable.timer20,
+                                          R.drawable.timer25,
+                                          R.drawable.timer30,
+                                          R.drawable.timer35,
+                                          R.drawable.timer40,
+                                          R.drawable.timer45,
+                                          R.drawable.timer50,
+                                          R.drawable.timer55,
+                                          R.drawable.timer60 };
 
   public ExpirationTimerView(Context context) {
     super(context);
@@ -33,8 +48,13 @@ public class ExpirationTimerView extends HourglassView {
   public void setExpirationTime(long startedAt, long expiresIn) {
     this.startedAt = startedAt;
     this.expiresIn = expiresIn;
+    setPercentComplete(calculateProgress(this.startedAt, this.expiresIn));
+  }
 
-    setPercentage(calculateProgress(this.startedAt, this.expiresIn));
+  public void setPercentComplete(float percentage) {
+    float percentFull = 1 - percentage;
+    int frame = (int) Math.ceil(percentFull * (frames.length - 1));
+    setImageResource(frames[frame]);
   }
 
   public void startAnimation() {
@@ -57,7 +77,7 @@ public class ExpirationTimerView extends HourglassView {
     long  progressed      = System.currentTimeMillis() - startedAt;
     float percentComplete = (float)progressed / (float)expiresIn;
 
-    return percentComplete * 100;
+    return percentComplete;
   }
 
   private long calculateAnimationDelay(long startedAt, long expiresIn) {

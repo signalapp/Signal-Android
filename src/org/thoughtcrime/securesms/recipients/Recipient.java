@@ -286,8 +286,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @NonNull MaterialColor getColor() {
-    if      (isGroupRecipient()) return MaterialColor.GROUP;
-    else if (color != null)      return color;
+    if      (color != null)      return color;
     else if (name != null)       return ContactColors.generateFor(name);
     else                         return ContactColors.UNKNOWN_COLOR;
   }

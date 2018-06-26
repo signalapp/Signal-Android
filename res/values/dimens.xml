@@ -16,17 +16,37 @@
     <dimen name="contact_photo_target_size">64dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
 
-    <dimen name="message_bubble_corner_radius">4dp</dimen>
+    <!-- TODO: Consolidate these two message corner things -->
+    <dimen name="message_corner_radius">16dp</dimen>
+    <dimen name="message_corner_collapse_radius">4dp</dimen>
+    <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
+    <dimen name="message_bubble_horizontal_padding">12dp</dimen>
+    <dimen name="message_bubble_top_padding">6dp</dimen>
+    <dimen name="message_bubble_quote_padding">6dp</dimen>
+    <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
+    <dimen name="message_bubble_edge_margin">48dp</dimen>
+    <dimen name="message_bubble_bottom_padding">8dp</dimen>
+    <dimen name="message_bubble_footer_top_padding">4dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
     <dimen name="media_bubble_default_dimens">210dp</dimen>
     <dimen name="media_bubble_min_width">150dp</dimen>
-    <dimen name="media_bubble_max_width">250dp</dimen>
+    <dimen name="media_bubble_max_width">240dp</dimen>
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
 
+    <dimen name="conversation_individual_right_gutter">16dp</dimen>
+    <dimen name="conversation_individual_left_gutter">16dp</dimen>
+    <dimen name="conversation_group_right_gutter">16dp</dimen>
+    <dimen name="conversation_group_left_gutter">52dp</dimen>
+    <dimen name="conversation_vertical_message_spacing_default">16dp</dimen>
+    <dimen name="conversation_vertical_message_spacing_collapse">2dp</dimen>
+
     <dimen name="quote_corner_radius">3dp</dimen>
+    <dimen name="quote_corner_radius_large">10dp</dimen>
+    <dimen name="quote_corner_radius_bottom">4dp</dimen>
+    <dimen name="quote_corner_radius_preview">18dp</dimen>
     <dimen name="quote_outline_width">1dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
@@ -61,5 +81,12 @@
     <dimen name="scribble_stroke_size">2dp</dimen>
 
     <dimen name="floating_action_button_margin">16dp</dimen>
+
+    <dimen name="text_headline_lineSpacingExtra">6sp</dimen>
+    <dimen name="text_body_lineSpacingExtra">8sp</dimen>
+    <dimen name="text_preview_lineSpacingExtra">6sp</dimen>
+    <dimen name="text_caption_lineSpacingExtra">4sp</dimen>
+
+    <dimen name="alertview_small_icon_size">14dp</dimen>
 
 </resources>

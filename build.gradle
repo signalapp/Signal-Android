@@ -78,7 +78,7 @@ dependencies {
     compile('org.whispersystems:libpastelog:1.1.2') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
-    compile 'org.whispersystems:signal-service-android:2.7.6'
+    compile 'org.whispersystems:signal-service-android:2.7.7'
     compile 'org.whispersystems:webrtc-android:M67'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -171,7 +171,7 @@ dependencyVerification {
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
         'org.whispersystems:libpastelog:fe56b4db9ec743c8b565e3e4caa9228fafe132dc0bf82000d6e359b97a81177c',
-        'org.whispersystems:signal-service-android:823eed29e64fb0aa30d2078cb5ec0245e2a0713a4028121329c5c28788ef27f8',
+        'org.whispersystems:signal-service-android:066a2d2f8309eb1e098345fb543cbb6f03b3f5975820b50892719a93a61e68c0',
         'org.whispersystems:webrtc-android:235b3b79f0ea917e4cda447a9919cb8e17a74ae59da6fb8252503b787fe0828f',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -218,7 +218,7 @@ dependencyVerification {
         'com.github.bumptech.glide:gifdecoder:59ccf3bb0cec11dab4b857382cbe0b171111b6fc62bf141adce4e1180889af15',
         'com.android.support:support-annotations:af05330d997eb92a066534dbe0a3ea24347d26d7001221092113ae02a8f233da',
         'org.whispersystems:signal-protocol-android:5b8acded7f2a40178eb90ab8e8cbfec89d170d91b3ff5e78487d1098df6185a1',
-        'org.whispersystems:signal-service-java:6169643c65dcba8c784744006fc3afd9b6f309041b310a33a624121e3577433a',
+        'org.whispersystems:signal-service-java:f9ce6971988c38403f982014188bfce094742a507c17c54641ce842b7a973cbc',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
         'com.github.bumptech.glide:annotations:bede99ef9f71517a4274bac18fd3e483e9f2b6108d7d6fe8f4949be4aa4d9512',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',

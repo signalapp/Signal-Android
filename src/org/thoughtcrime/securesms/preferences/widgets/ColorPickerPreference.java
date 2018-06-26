@@ -46,7 +46,7 @@ public class ColorPickerPreference extends DialogPreference {
 
     colorDescriptions = a.getTextArray(R.styleable.ColorPickerPreference_colorDescriptions);
     color = a.getColor(R.styleable.ColorPickerPreference_currentColor, 0);
-    columns = a.getInt(R.styleable.ColorPickerPreference_columns, 4);
+    columns = a.getInt(R.styleable.ColorPickerPreference_columns, 3);
     size = a.getInt(R.styleable.ColorPickerPreference_colorSize, 2);
     sortColors = a.getBoolean(R.styleable.ColorPickerPreference_sortColors, false);
 

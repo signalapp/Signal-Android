@@ -24,7 +24,6 @@ public class HourglassView extends View {
 
   private Bitmap empty;
   private Bitmap full;
-  private int    tint;
 
   private float percentage;
   private int   offset;
@@ -40,13 +39,15 @@ public class HourglassView extends View {
   public HourglassView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
+    int tint = 0;
+
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.HourglassView, 0, 0);
       this.empty = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(R.styleable.HourglassView_empty, 0));
       this.full  = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(R.styleable.HourglassView_full, 0));
-      this.tint  = typedArray.getColor(R.styleable.HourglassView_tint, 0);
       this.percentage = typedArray.getInt(R.styleable.HourglassView_percentage, 50);
       this.offset = typedArray.getInt(R.styleable.HourglassView_offset, 0);
+      tint = typedArray.getColor(R.styleable.HourglassView_tint, 0);
       typedArray.recycle();
     }
 
@@ -80,6 +81,8 @@ public class HourglassView extends View {
     invalidate();
   }
 
-
-
+  public void setTint(int tint) {
+    this.backgroundPaint.setColorFilter(new PorterDuffColorFilter(tint, PorterDuff.Mode.MULTIPLY));
+    this.foregroundPaint.setColorFilter(new PorterDuffColorFilter(tint, PorterDuff.Mode.MULTIPLY));
+  }
 }

@@ -55,7 +55,7 @@ public abstract class FastCursorRecyclerViewAdapter<VH extends RecyclerView.View
   }
 
   protected abstract T getRecordFromCursor(@NonNull Cursor cursor);
-  protected abstract void onBindItemViewHolder(VH viewHolder, @NonNull T record);
+  protected abstract void onBindItemViewHolder(VH viewHolder, @NonNull T record, int position);
   protected abstract long getItemId(@NonNull T record);
   protected abstract int getItemViewType(@NonNull T record);
   protected abstract boolean isRecordForId(@NonNull T record, long id);
@@ -69,12 +69,13 @@ public abstract class FastCursorRecyclerViewAdapter<VH extends RecyclerView.View
   @Override
   public void onBindItemViewHolder(VH viewHolder, @NonNull Cursor cursor) {
     T record = getRecordFromCursor(cursor);
-    onBindItemViewHolder(viewHolder, record);
+    onBindItemViewHolder(viewHolder, record, cursor.getPosition());
   }
 
   @Override
   public void onBindFastAccessItemViewHolder(VH viewHolder, int position) {
-    onBindItemViewHolder(viewHolder, fastRecords.get(getCalculatedPosition(position)));
+    int calculatedPosition = getCalculatedPosition(position);
+    onBindItemViewHolder(viewHolder, fastRecords.get(calculatedPosition), calculatedPosition);
   }
 
   @Override

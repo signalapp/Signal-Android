@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -34,10 +36,11 @@ import java.util.Map;
 
 public class SharedContactView extends LinearLayout implements RecipientModifiedListener {
 
-  private ImageView avatarView;
-  private TextView  nameView;
-  private TextView  numberView;
-  private TextView  actionButtonView;
+  private ImageView              avatarView;
+  private TextView               nameView;
+  private TextView               numberView;
+  private TextView               actionButtonView;
+  private ConversationItemFooter footer;
 
   private Contact       contact;
   private Locale        locale;
@@ -48,32 +51,44 @@ public class SharedContactView extends LinearLayout implements RecipientModified
 
   public SharedContactView(Context context) {
     super(context);
-    initialize();
+    initialize(null);
   }
 
   public SharedContactView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    initialize();
+    initialize(attrs);
   }
 
   public SharedContactView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    initialize();
+    initialize(attrs);
   }
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public SharedContactView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
-    initialize();
+    initialize(attrs);
   }
 
-  private void initialize() {
+  private void initialize(@Nullable AttributeSet attrs) {
     inflate(getContext(), R.layout.shared_contact_view, this);
 
     avatarView       = findViewById(R.id.contact_avatar);
     nameView         = findViewById(R.id.contact_name);
     numberView       = findViewById(R.id.contact_number);
     actionButtonView = findViewById(R.id.contact_action_button);
+    footer           = findViewById(R.id.contact_footer);
+
+    if (attrs != null) {
+      TypedArray typedArray   = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.SharedContactView, 0, 0);
+      int        titleColor   = typedArray.getInt(R.styleable.SharedContactView_contact_titleColor, Color.BLACK);
+      int        captionColor = typedArray.getInt(R.styleable.SharedContactView_contact_captionColor, Color.BLACK);
+      typedArray.recycle();
+
+      nameView.setTextColor(titleColor);
+      numberView.setTextColor(captionColor);
+      footer.setColor(captionColor);
+    }
   }
 
   public void setContact(@NonNull Contact contact, @NonNull GlideRequests glideRequests, @NonNull Locale locale) {
@@ -89,12 +104,28 @@ public class SharedContactView extends LinearLayout implements RecipientModified
     presentActionButtons(ContactUtil.getRecipients(getContext(), contact));
   }
 
+  public void setSingularStyle() {
+    actionButtonView.setBackgroundResource(R.drawable.shared_contact_button_background_alone);
+  }
+
+  public void setClusteredIncomingStyle() {
+    actionButtonView.setBackgroundResource(R.drawable.shared_contact_button_background_clustered_received);
+  }
+
+  public void setClusteredOutgoingStyle() {
+    actionButtonView.setBackgroundResource(R.drawable.shared_contact_button_background_clustered_sent);
+  }
+
   public void setEventListener(@NonNull EventListener eventListener) {
     this.eventListener = eventListener;
   }
 
   public @NonNull View getAvatarView() {
     return avatarView;
+  }
+
+  public ConversationItemFooter getFooter() {
+    return footer;
   }
 
   @Override

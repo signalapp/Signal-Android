@@ -197,4 +197,51 @@ public class ViewUtil {
   public static int dpToPx(Context context, int dp) {
     return (int)((dp * context.getResources().getDisplayMetrics().density) + 0.5);
   }
+
+  public static void updateLayoutParams(@NonNull View view, int width, int height) {
+    view.getLayoutParams().width  = width;
+    view.getLayoutParams().height = height;
+    view.requestLayout();
+  }
+
+  public static int getLeftMargin(@NonNull View view) {
+    if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+      return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin;
+    }
+    return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin;
+  }
+
+  public static int getRightMargin(@NonNull View view) {
+    if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+      return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin;
+    }
+    return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin;
+  }
+
+  public static void setLeftMargin(@NonNull View view, int margin) {
+    if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+      ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = margin;
+    } else {
+      ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin = margin;
+    }
+    view.requestLayout();
+  }
+
+  public static void setTopMargin(@NonNull View view, int margin) {
+    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = margin;
+    view.requestLayout();
+  }
+
+  public static void setBottomMargin(@NonNull View view, int margin) {
+    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).bottomMargin = margin;
+    view.requestLayout();
+  }
+
+  public static void setPaddingTop(@NonNull View view, int padding) {
+    view.setPadding(view.getPaddingLeft(), padding, view.getPaddingRight(), view.getPaddingBottom());
+  }
+
+  public static void setPaddingBottom(@NonNull View view, int padding) {
+    view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), padding);
+  }
 }

@@ -65,9 +65,9 @@
     <attr name="conversation_item_received_text_secondary_color" format="reference|color"/>
     <attr name="conversation_item_sent_text_indicator_tab_color" format="reference|color"/>
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
-    <attr name="conversation_item_header_background" format="reference"/>
-    <attr name="conversation_item_last_seen_background" format="reference|color"/>
-    <attr name="conversation_item_last_seen_text_background" format="reference"/>
+    <attr name="conversation_item_update_text_color" format="reference"/>
+    <attr name="conversation_item_last_seen_text_color" format="reference"/>
+    <attr name="conversation_item_last_seen_line_color" format="reference"/>
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -133,6 +133,7 @@
 
     <attr name="shared_contact_details_header_background" format="color"/>
     <attr name="shared_contact_details_titlebar" format="color"/>
+    <attr name="shared_contact_item_button_color" format="color"/>
 
     <attr name="search_toolbar_background" format="color"/>
     <attr name="search_background" format="color"/>
@@ -153,7 +154,6 @@
     </declare-styleable>
 
     <declare-styleable name="ThumbnailView">
-        <attr name="backgroundColorHint" format="color" />
         <attr name="minWidth" format="dimension" />
         <attr name="maxWidth" format="dimension" />
         <attr name="minHeight" format="dimension" />
@@ -205,12 +205,6 @@
         <attr name="pickerColors" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="DocumentView">
-        <attr name="documentWidgetBackground" format="color"/>
-        <attr name="documentForegroundTintColor" format="color" />
-        <attr name="documentBackgroundTintColor" format="color" />
-    </declare-styleable>
-    
     <declare-styleable name="EmojiTextView">
         <attr name="scaleEmojis" format="boolean" />
     </declare-styleable>
@@ -252,7 +246,29 @@
             <enum name="outgoing" value="1" />
             <enum name="incoming" value="2" />
         </attr>
+        <attr name="quote_colorPrimary" format="color" />
+        <attr name="quote_colorSecondary" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="SharedContactView">
+        <attr name="contact_titleColor" format="color" />
+        <attr name="contact_captionColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="DocumentView">
+        <attr name="doc_titleColor" format="color" />
+        <attr name="doc_captionColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ConversationItemFooter">
+        <attr name="footer_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ConversationItemThumbnail">
+        <attr name="conversationThumbnail_minWidth" format="dimension" />
+        <attr name="conversationThumbnail_maxWidth" format="dimension" />
+        <attr name="conversationThumbnail_minHeight" format="dimension" />
+        <attr name="conversationThumbnail_maxHeight" format="dimension" />
+    </declare-styleable>
 
 </resources>

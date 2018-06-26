@@ -3,12 +3,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,14 +21,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
-import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -49,16 +40,15 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
   private static final int MESSAGE_TYPE_OUTGOING = 1;
   private static final int MESSAGE_TYPE_INCOMING = 2;
 
-  private View      rootView;
-  private TextView  authorView;
-  private TextView  bodyView;
-  private ImageView quoteBarView;
-  private ImageView attachmentView;
-  private ImageView attachmentVideoOverlayView;
-  private ViewGroup attachmentIconContainerView;
-  private ImageView attachmentIconView;
-  private ImageView attachmentIconBackgroundView;
-  private ImageView dismissView;
+  private CornerMaskingView rootView;
+  private TextView          authorView;
+  private TextView          bodyView;
+  private ImageView         quoteBarView;
+  private ImageView         thumbnailView;
+  private View              attachmentVideoOverlayView;
+  private ViewGroup         attachmentContainerView;
+  private TextView          attachmentNameView;
+  private ImageView         dismissView;
 
   private long      id;
   private Recipient author;
@@ -66,10 +56,9 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
   private TextView  mediaDescriptionText;
   private SlideDeck attachments;
   private int       messageType;
-  private int       roundedCornerRadiusPx;
+  private int       largeCornerRadius;
+  private int       smallCornerRadius;
 
-  private final Path  clipPath = new Path();
-  private final RectF drawRect = new RectF();
 
   public QuoteView(Context context) {
     super(context);
@@ -99,21 +88,36 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
     this.authorView                   = findViewById(R.id.quote_author);
     this.bodyView                     = findViewById(R.id.quote_text);
     this.quoteBarView                 = findViewById(R.id.quote_bar);
-    this.attachmentView               = findViewById(R.id.quote_attachment);
+    this.thumbnailView                = findViewById(R.id.quote_thumbnail);
     this.attachmentVideoOverlayView   = findViewById(R.id.quote_video_overlay);
-    this.attachmentIconContainerView  = findViewById(R.id.quote_attachment_icon_container);
-    this.attachmentIconView           = findViewById(R.id.quote_attachment_icon);
-    this.attachmentIconBackgroundView = findViewById(R.id.quote_attachment_icon_background);
+    this.attachmentContainerView      = findViewById(R.id.quote_attachment_container);
+    this.attachmentNameView           = findViewById(R.id.quote_attachment_name);
     this.dismissView                  = findViewById(R.id.quote_dismiss);
-    this.mediaDescriptionText         = findViewById(R.id.media_name);
-    this.roundedCornerRadiusPx        = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius);
+    this.mediaDescriptionText         = findViewById(R.id.media_type);
+    this.largeCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_large);
+    this.smallCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_bottom);
+
+    rootView.setRadii(largeCornerRadius, largeCornerRadius, smallCornerRadius, smallCornerRadius);
 
     if (attrs != null) {
-      TypedArray typedArray  = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.QuoteView, 0, 0);
-                 messageType = typedArray.getInt(R.styleable.QuoteView_message_type, 0);
+      TypedArray typedArray     = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.QuoteView, 0, 0);
+      int        primaryColor   = typedArray.getColor(R.styleable.QuoteView_quote_colorPrimary, Color.BLACK);
+      int        secondaryColor = typedArray.getColor(R.styleable.QuoteView_quote_colorSecondary, Color.BLACK);
+      messageType = typedArray.getInt(R.styleable.QuoteView_message_type, 0);
       typedArray.recycle();
 
       dismissView.setVisibility(messageType == MESSAGE_TYPE_PREVIEW ? VISIBLE : GONE);
+
+      authorView.setTextColor(primaryColor);
+      bodyView.setTextColor(primaryColor);
+      attachmentNameView.setTextColor(primaryColor);
+      mediaDescriptionText.setTextColor(secondaryColor);
+
+      if (messageType == MESSAGE_TYPE_PREVIEW) {
+        int radius = getResources().getDimensionPixelOffset(R.dimen.quote_corner_radius_preview);
+        rootView.setTopLeftRadius(radius);
+        rootView.setTopRightRadius(radius);
+      }
     }
 
     dismissView.setOnClickListener(view -> setVisibility(GONE));
@@ -122,20 +126,6 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
     if (Build.VERSION.SDK_INT < 18) {
       setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
-  }
-
-  @Override
-  protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
-
-    drawRect.left = 0;
-    drawRect.top = 0;
-    drawRect.right = getWidth();
-    drawRect.bottom = getHeight();
-
-    clipPath.reset();
-    clipPath.addRoundRect(drawRect, roundedCornerRadiusPx, roundedCornerRadiusPx, Path.Direction.CW);
-    canvas.clipPath(clipPath);
   }
 
   public void setQuote(GlideRequests glideRequests, long id, @NonNull Recipient author, @Nullable String body, @NonNull SlideDeck attachments) {
@@ -149,7 +139,12 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
     author.addListener(this);
     setQuoteAuthor(author);
     setQuoteText(body, attachments);
-    setQuoteAttachment(glideRequests, attachments, author);
+    setQuoteAttachment(glideRequests, attachments);
+  }
+
+  public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
+    rootView.setTopLeftRadius(topLeftLarge ? largeCornerRadius : smallCornerRadius);
+    rootView.setTopRightRadius(topRightLarge ? largeCornerRadius : smallCornerRadius);
   }
 
   public void dismiss() {
@@ -177,14 +172,11 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you)
                                    : author.toShortString());
-    authorView.setTextColor(author.getColor().toQuoteTitleColor(getContext()));
+    authorView.setTextColor(author.getColor().toActionBarColor(getContext()));
+
     // We use the raw color resource because Android 4.x was struggling with tints here
     quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));
-
-    GradientDrawable background = (GradientDrawable) rootView.getBackground();
-    background.setColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
-    background.setStroke(getResources().getDimensionPixelSize(R.dimen.quote_outline_width),
-                         author.getColor().toQuoteOutlineColor(getContext(), outgoing));
+    rootView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
   }
 
   private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {
@@ -197,7 +189,6 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
 
     bodyView.setVisibility(GONE);
     mediaDescriptionText.setVisibility(VISIBLE);
-    mediaDescriptionText.setTypeface(null, Typeface.ITALIC);
 
     List<Slide> audioSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasAudio).limit(1).toList();
     List<Slide> documentSlides = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
@@ -208,13 +199,7 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
     if (!audioSlides.isEmpty()) {
       mediaDescriptionText.setText(R.string.QuoteView_audio);
     } else if (!documentSlides.isEmpty()) {
-      String filename = documentSlides.get(0).getFileName().orNull();
-      if (!TextUtils.isEmpty(filename)) {
-        mediaDescriptionText.setTypeface(null, Typeface.NORMAL);
-        mediaDescriptionText.setText(filename);
-      } else {
-        mediaDescriptionText.setText(R.string.QuoteView_document);
-      }
+      mediaDescriptionText.setVisibility(GONE);
     } else if (!videoSlides.isEmpty()) {
       mediaDescriptionText.setText(R.string.QuoteView_video);
     } else if (!imageSlides.isEmpty()) {
@@ -222,19 +207,15 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
     }
   }
 
-  private void setQuoteAttachment(@NonNull GlideRequests glideRequests,
-                                  @NonNull SlideDeck slideDeck,
-                                  @NonNull Recipient author)
-  {
+  private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull SlideDeck slideDeck) {
     List<Slide> imageVideoSlides = Stream.of(slideDeck.getSlides()).filter(s -> s.hasImage() || s.hasVideo()).limit(1).toList();
-    List<Slide> audioSlides = Stream.of(attachments.getSlides()).filter(Slide::hasAudio).limit(1).toList();
-    List<Slide> documentSlides = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
+    List<Slide> documentSlides   = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
 
     attachmentVideoOverlayView.setVisibility(GONE);
 
     if (!imageVideoSlides.isEmpty() && imageVideoSlides.get(0).getThumbnailUri() != null) {
-      attachmentView.setVisibility(VISIBLE);
-      attachmentIconContainerView.setVisibility(GONE);
+      thumbnailView.setVisibility(VISIBLE);
+      attachmentContainerView.setVisibility(GONE);
       dismissView.setBackgroundResource(R.drawable.dismiss_background);
       if (imageVideoSlides.get(0).hasVideo()) {
         attachmentVideoOverlayView.setVisibility(VISIBLE);
@@ -242,26 +223,14 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
       glideRequests.load(new DecryptableUri(imageVideoSlides.get(0).getThumbnailUri()))
                    .centerCrop()
                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                   .into(attachmentView);
-    } else if (!audioSlides.isEmpty() || !documentSlides.isEmpty()){
-      boolean outgoing = messageType != MESSAGE_TYPE_INCOMING;
-
-      dismissView.setBackgroundResource(R.drawable.circle_alpha);
-      attachmentView.setVisibility(GONE);
-      attachmentIconContainerView.setVisibility(VISIBLE);
-
-      if (!audioSlides.isEmpty()) {
-        attachmentIconView.setImageResource(R.drawable.ic_mic_white_48dp);
-      } else {
-        attachmentIconView.setImageResource(R.drawable.ic_insert_drive_file_white_24dp);
-      }
-
-      attachmentIconView.setColorFilter(author.getColor().toQuoteIconForegroundColor(getContext(), outgoing), PorterDuff.Mode.SRC_IN);
-      attachmentIconBackgroundView.setColorFilter(author.getColor().toQuoteIconBackgroundColor(getContext(), outgoing), PorterDuff.Mode.SRC_IN);
-
+                   .into(thumbnailView);
+    } else if (!documentSlides.isEmpty()){
+      thumbnailView.setVisibility(GONE);
+      attachmentContainerView.setVisibility(VISIBLE);
+      attachmentNameView.setText(documentSlides.get(0).getFileName().or(""));
     } else {
-      attachmentView.setVisibility(GONE);
-      attachmentIconContainerView.setVisibility(GONE);
+      thumbnailView.setVisibility(GONE);
+      attachmentContainerView.setVisibility(GONE);
       dismissView.setBackgroundDrawable(null);
     }
 

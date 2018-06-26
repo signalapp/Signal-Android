@@ -28,6 +28,7 @@
     <color name="transparent_black_20">#20000000</color>
     <color name="transparent_black_30">#30000000</color>
     <color name="transparent_black_40">#40000000</color>
+    <color name="transparent_black_70">#70000000</color>
 
     <color name="transparent_white_05">#05ffffff</color>
     <color name="transparent_white_10">#10ffffff</color>
