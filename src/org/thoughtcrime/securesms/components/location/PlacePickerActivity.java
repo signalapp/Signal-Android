@@ -114,7 +114,7 @@ public class PlacePickerActivity extends PassphraseRequiredActionBarActivity
             } else if (manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
               manager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, locationListener, getMainLooper());
             } else {
-              Log.e("PlacePickerActivity", "Unable to request location update. No providers found");
+              Log.d("PlacePickerActivity", "Unable to request location update. No providers found");
               finish();
             }
           }
