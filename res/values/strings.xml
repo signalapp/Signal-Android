@@ -1483,4 +1483,9 @@
     <string name="recipient_preferences__about">About</string>
     <!-- EOF -->
 
+    <!--Location sharing-->
+    <string name="location_sharing_title">Share location</string>
+    <string name="location_sharing_name">Location name (Optional)</string>
+    <string name="location_sharing_address">Address (Optional)</string>
+
 </resources>

@@ -11,6 +11,12 @@
                 android:layout_height="match_parent"
                 android:visibility="gone"/>
 
+        <org.osmdroid.views.MapView
+            android:id="@+id/osmdroid_map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
         <ImageView android:id="@+id/image_view"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
