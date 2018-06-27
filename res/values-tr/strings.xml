@@ -9,7 +9,7 @@
   <string name="AbstractNotificationBuilder_new_message">Yeni mesaj</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hâlâ bir parola belirlememişsiniz!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Henüz bir parola belirlemediniz!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">sohbet başına %d mesaj</item>
     <item quantity="other">sohbet başına %d mesaj</item>
@@ -475,6 +475,7 @@
         (%s) geçersiz.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Servisleri eksik</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Bu cihazda Google Play Hizmetleri bulunmamakta. Signal\'i kullanmaya devam edebilirsiniz ancak bu yapılandırma şekli azaltılmış güvenirlik veya performans gibi sonuçları doğurabilir. \n\nEğer ileri düzey kullanıcı değilseniz, alternatif Android ROM kullanmıyorsanız, veya bunu bir hata olarak görüyorsanız, lütfen sorun giderme konusunda yardım almak için support@signal.org adresinden iletişime geçiniz</string>
   <string name="RegistrationActivity_i_understand">Anladım</string>
   <string name="RegistrationActivity_play_services_error">Play Servisleri Hatası</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servisleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen yeniden deneyin.</string>
@@ -875,6 +876,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="unknown_sender_view__add_to_contacts">KİŞİLERE EKLE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">KİŞİLERE EKLEME AMA PROFİLİMİ GÖSTER</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ile şifreleme güvenliğini doğrulamak isterseniz,  yukarıdaki sayıları kişinin cihazındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilirsiniz, ya da kendisinin taramasını isteyebilirsiniz. <a href="https://signal.org/redirect/safety-numbers">Dahasını öğrenin.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
   <string name="verify_display_fragment__loading">Yükleniyor...</string>
   <string name="verify_display_fragment__verified">Doğrulandı</string>
@@ -1130,7 +1132,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="reminder_header_invite_text">%1$s ile sohbetinizi bir sonraki seviyeye alın.</string>
   <string name="reminder_header_share_title">Arkadaşlarını davet et!</string>
   <string name="reminder_header_share_text">Ne kadar çok arkadaşın Signal kullanırsa, o kadar iyi hale gelir.</string>
-  <string name="reminder_header_service_outage_text">Signal teknik sorunlar yaşıyor. Hizmeti olabildiğince çabuk düzeltmek için sıkı çalışıyoruz</string>
+  <string name="reminder_header_service_outage_text">Signal teknik sorunlar yaşıyor. Hizmeti olabildiğince çabuk düzeltmek için sıkı çalışıyoruz.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Kaydet</string>
   <string name="media_preview__forward_title">İlet</string>

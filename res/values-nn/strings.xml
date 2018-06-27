@@ -476,9 +476,14 @@ telefonnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nummeret du
 skreiv inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_missing_google_play_services">Manglar Google Play-tenester</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne eininga manglar Google Play-tenester. Du kan likevel bruka Signal, men dette oppsettet kan føra til mindre stabilitet eller dårlegare yting.
+
+Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android-ROM, eller meiner at det er ein feil at du ser denne meldinga, så ber me deg ta kontakt med support@signal.org for å få hjelp med å løysa problemet.</string>
   <string name="RegistrationActivity_i_understand">Eg forstår</string>
   <string name="RegistrationActivity_play_services_error">Feil med Play-tenester</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tenester oppdaterer seg eller er mellombels utilgjengeleg. Prøv igjen seinare.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Vilkår &amp; personvernreglar</string>
+  <string name="RegistrationActivity_no_browser">Klarte ikkje opna denne lenkja. Fann ingen nettlesar.</string>
   <string name="RegistrationActivity_more_information">Meir informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine og media for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
@@ -876,6 +881,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="unknown_sender_view__add_to_contacts">LEGG TIL KONTAKTAR</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">IKKJE LEGG TIL, MEN GJER PROFILEN MIN SYNLEG</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Viss du vil stadfesta tryggleiken på krypteringa di med %s, så kan du samanlikna talet vist over med talet på deira eining. Alternativt kan du skanna koden på telefonen deira, eller be dei om å skanna din kode. <a href="https://signal.org/redirect/safety-numbers">Lær meir.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanna</string>
   <string name="verify_display_fragment__loading">Lastar …</string>
   <string name="verify_display_fragment__verified">Stadfesta</string>

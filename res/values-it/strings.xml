@@ -475,9 +475,12 @@ proprio numero di telefono</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Il numero specificato
 (%s) non è valido</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services mancanti</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Il dispositivo non ha Google Play Services. Puoi comunque usare Signal, ma questa configurazione potrebbe essere meno affidabile o performante.\n\nSe non sei un utente avanzato, non usi una ROM Android alternativa o credi che questo messaggio sia un errore, contatta support@signal.org per ricevere aiuto.</string>
   <string name="RegistrationActivity_i_understand">Accetto</string>
   <string name="RegistrationActivity_play_services_error">Errore di Google Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services si sta aggiornando o non è al momento disponibile. Per favore riprovare</string>
+  <string name="RegistrationActivity_terms_and_privacy">Termini e Politica sulla privacy</string>
+  <string name="RegistrationActivity_no_browser">Impossibile aprire questo link. Nessun browser web trovato.</string>
   <string name="RegistrationActivity_more_information">Maggiori informazioni</string>
   <string name="RegistrationActivity_less_information">Meno informazioni</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal richiede l\'accesso ai tuoi contatti e ai tuoi contenuti multimediali per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
@@ -874,6 +877,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="unknown_sender_view__add_to_contacts">AGGIUNTI AI CONTATTI</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NON AGGIUNGERE, MA RENDI IL MIO PROFILO VISIBILE</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua cifratura con %s, confronta il numero sopra con il numero sul suo dispositivo. Altrimenti, puoi scansionare il codice sul suo telefono o viceversa. <a href="https://signal.org/redirect/safety-numbers">Maggiori informazioni.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
   <string name="verify_display_fragment__loading">Caricamento...</string>
   <string name="verify_display_fragment__verified">Verificato</string>

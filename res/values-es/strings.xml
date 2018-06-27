@@ -480,9 +480,12 @@ número de teléfono
 (%s) no es válido.
 </string>
   <string name="RegistrationActivity_missing_google_play_services">Servicios de Google Play ausentes</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo no encuentra los Servicios de Google Play. Todavía puede usar Signal, pero esta configuración puede resultar en una fiabilidad y rendimiento reducidos.\n\nSi no es un usuario avanzado, no está ejecutando una ROM modificada de Android, o cree que está viendo esto indebidamente por favor, contacte con support@signal.org para obtener ayuda para la resolución de problemas.</string>
   <string name="RegistrationActivity_i_understand">Entiendo</string>
   <string name="RegistrationActivity_play_services_error">Error en \"Play Services\"</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se está actualizando o está temporalmente suspendido. Por favor intente de nuevo.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Términos y Política de Privacidad</string>
+  <string name="RegistrationActivity_no_browser">No se ha podido abrir este enlace. No se ha encontrado un navegador web.</string>
   <string name="RegistrationActivity_more_information">Más información</string>
   <string name="RegistrationActivity_less_information">Menos información</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceder a sus contactos y medios para conectar con amigos, intercambiar mensajes, y establecer llamadas seguras.</string>
@@ -503,6 +506,7 @@ número de teléfono
   <string name="RingtonePreference_add_ringtone_text">Añadir tono de llamada</string>
   <string name="RingtonePreference_unable_to_add_ringtone">No se pudo añadir tono de llamada personalizado</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Fallo al guardar los cambios de la imagen</string>
   <!--Search-->
   <string name="SearchFragment_no_results">No se encontraron resultados para \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversaciones</string>
@@ -879,6 +883,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="unknown_sender_view__add_to_contacts">AÑADIR A CONTACTOS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NO AÑADIR, PERO HACER VISIBLE MI PERFIL</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si desea verificar la seguridad de su cifrado con %s, compara el número de arriba con el número presente en el dispositivo de su interlocutor. Como alternativa, puedes escanear el código presente en el teléfono de tu interlocutor, o pedirle que escanee el tu código. <a href="https://signal.org/redirect/safety-numbers">Conocer más.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pulse para escanear</string>
   <string name="verify_display_fragment__loading">Cargando...</string>
   <string name="verify_display_fragment__verified">Verificado</string>
@@ -1135,6 +1140,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="reminder_header_invite_text">Lleva su conversación con %1$s al siguiente nivel.</string>
   <string name="reminder_header_share_title">¡Invite a sus amigos!</string>
   <string name="reminder_header_share_text">Cuantos amigos más usen Signal, mejor será.</string>
+  <string name="reminder_header_service_outage_text">Signal está experimentando dificultades técnicas. Estamos trabajando duro para restablecer el servicio lo antes posible.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
   <string name="media_preview__forward_title">Avanzar</string>

@@ -481,9 +481,12 @@ zehaztu behar duzu
 zenbakia (%s) baliogabea da.
 </string>
   <string name="RegistrationActivity_missing_google_play_services">Ez dira topatzen Google Play-ren zerbitzuak </string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ez dago Google Play Services-ik gailu honetan. Signal erabili dezakezu, baina konfigurazio honek fidagarritasuna edo errendimendua gutxiagotu dezake.\n\nErabiltzaile aurreratua ez bazara, jatorrizkoa ez den Android ROM bat erabiltzen ari ez bazara edo hau errore bat dela uste baduzu, mesedez jarri zaitez harremanetan support@signal.org helbidean.</string>
   <string name="RegistrationActivity_i_understand">Ulertzen dut</string>
   <string name="RegistrationActivity_play_services_error">Play Services-en Errorea</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services eguneratzen ari da edo tenporalki ez dago erabilgarri. Mesedez, berriro saia zaitez.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Baldintzak eta Pribatutasun Arauak</string>
+  <string name="RegistrationActivity_no_browser">Ezin izan da esteka hau ireki. Ez da nabigatzailerik topatu.</string>
   <string name="RegistrationActivity_more_information">Informazio gehiago</string>
   <string name="RegistrationActivity_less_information">Informazio gutxiago</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signalek zure kontaktu eta mediara sartzeko baimena behar du zure lagunekin kontaktuan jarri, mezuak bidali eta dei seguruak egiteko</string>
@@ -504,6 +507,7 @@ zenbakia (%s) baliogabea da.
   <string name="RingtonePreference_add_ringtone_text">Dei-doinua gehitu</string>
   <string name="RingtonePreference_unable_to_add_ringtone">Ezin izan da dei-doinua gehitu</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Irudien aldaketak gordetzeak huts egin du</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ez dago emaitzarik \'%s\' bilatuta</string>
   <string name="SearchFragment_header_conversations">Txatak</string>
@@ -882,6 +886,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="unknown_sender_view__add_to_contacts">KONTAKTUETARA GEHITU</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">EZ GEHITU, BAINA PROFILA ERAKUTSI</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s erabiltzailearekin duzun enkriptazioaren segurtasuna egiaztatu nahi baduzu, goian duzun zenbakia bere gailuan agertzen denarekin alderatu. Beste aukera bat zera da: beraren telefonoan agertzen den kodea eskaneatzea edo berari eskatu zure kodea eskaneatzeko.  <a href="https://signal.org/redirect/safety-numbers">Gehiago ikasi. </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ukitu eskaneatzeko</string>
   <string name="verify_display_fragment__loading">Kargatzen...</string>
   <string name="verify_display_fragment__verified">Egiaztatua</string>
@@ -1137,6 +1142,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="reminder_header_invite_text">Hobetu zure %1$s-(e)kiko solasaldia.</string>
   <string name="reminder_header_share_title">Gonbidatu zure lagunak!</string>
   <string name="reminder_header_share_text">Zenbat eta Signalen adiskide gehiago izan, hobe.</string>
+  <string name="reminder_header_service_outage_text">Signal arazo teknikoak izaten ari da. Gogor ari gara lanean zerbitzua ahal bezain laster berriro martxan jartzeko.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gorde</string>
   <string name="media_preview__forward_title">Birbidali</string>

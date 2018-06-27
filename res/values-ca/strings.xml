@@ -100,16 +100,16 @@
   <string name="ConversationItem_group_action_left">%1$s ha abandonat el grup.</string>
   <string name="ConversationItem_click_for_details">Toqueu per saber-ne més</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Toqueu per al mode no segur</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Voleu canviar a SMS sense xifrar?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Voleu canviar a MMS sense xifrar?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Aquest missatge <b>no</b> es xifrarà perquè el destinatari ja no és usuari del Signal.\n\nVoleu enviar un missatge no segur?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Voleu canviar a SMS sense encriptar?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Voleu canviar a MMS sense encriptar?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Aquest missatge <b>no</b> s\'encriptarà perquè el destinatari ja no és usuari del Signal.\n\nVoleu enviar un missatge no segur?</string>
   <string name="ConversationItem_unable_to_open_media">No s\'ha trobat una aplicació que pugui obrir aquest fitxer.</string>
   <string name="ConversationItem_copied_text">S\'ha copiat %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">a %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes de xifratge en aquesta conversa. Els missatges es mantindran.</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string>
   <string name="ConversationActivity_reset">Restableix</string>
   <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
   <string name="ConversationActivity_select_contact_info">Seleccioneu informació del contacte</string>
@@ -349,7 +349,7 @@ tornar a fer-ho provocarà la generació de missatges duplicats.</string>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Canviem al Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sembla que no teniu cap aplicació on compartir-ho.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Els amics no deixen que els seus amics xerrin sense xifrar.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Els amics no deixen que els seus amics xerrin sense encriptació.</string>
   <!--KeyScanningActivity-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">No s\'ha pogut enviar</string>
@@ -385,7 +385,7 @@ tornar a fer-ho provocarà la generació de missatges duplicats.</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">S\'està baixant el missatge MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">S\'ha produït un error en baixar el missatge MMS. Toqueu per tornar a intentar-ho</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">S\'ha rebut un missatge xifrat amb una versió antiga del Signal que no està suportada. Digueu-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">S\'ha rebut un missatge encriptat amb una versió antiga del Signal que ja no s\'admet. Digueu-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
   <string name="MessageRecord_left_group">Heu abandonat el grup.</string>
   <string name="MessageRecord_you_updated_group">Heu actualitzat el grup.</string>
   <string name="MessageRecord_s_updated_group">%s ha actualitzat el grup.</string>
@@ -476,9 +476,12 @@ número de telèfon</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que heu
 especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_missing_google_play_services">No hi ha el Google Play Services</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Aquest dispositiu no té el Google Play Services. Encara podeu utilitzar el Signal, però aquesta configuració pot resultar en una fiabilitat o un rendiment reduïts.\n\nSi no sou un usuari avançat, si no esteu fent servir una ROM d\'Android de mercat secundari o si creieu que esteu veient això com a error, si us plau, poseu-vos en contacte amb support@signal.org per a la resolució de problemes.</string>
   <string name="RegistrationActivity_i_understand">Ho entenc</string>
   <string name="RegistrationActivity_play_services_error">Error amb el Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">El Google Play Services s\'està actualitzant o no està disponible. Torneu a provar-ho.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Termes i política de privadesa</string>
+  <string name="RegistrationActivity_no_browser">No es pot obrir aquest enllaç. No s\'ha trobat cap navegador web.</string>
   <string name="RegistrationActivity_more_information">Més informació</string>
   <string name="RegistrationActivity_less_information">Menys informació</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">El Signal necessita accés als contactes i als continguts multimèdia per tal de connectar amb amics, intercanviar-hi missatges i fer trucades amb seguretat.</string>
@@ -576,19 +579,19 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No es pot escanejar un codi QR sense permís de la càmera.</string>
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Missatge mal xifrat</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">S\'està desxifrant. Espereu, si us plau...</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Missatge xifrat per a una sessió que no existeix</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Missatge mal encriptat</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">S\'està desencriptant. Espereu, si us plau...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Missatge encriptat per a una sessió que no existeix</string>
   <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">S\'ha produït un error en desxifrar el missatge.</string>
+  <string name="EncryptingSmsDatabase_error_decrypting_message">S\'ha produït un error en desencriptar el missatge.</string>
   <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">S\'ha produït un error en desxifrar el missatge.</string>
+  <string name="ThreadDatabase_error_decrypting_message">S\'ha produït un error en desencriptar el missatge.</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_error_decrypting_message">S\'ha produït un error en desxifrar el missatge.</string>
+  <string name="MmsDatabase_error_decrypting_message">S\'ha produït un error en desencriptar el missatge.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">S\'està desxifrant l\'MMS. Espereu, si us plau...</string>
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Missatge MMS xifrat malament</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Missatge MMS xifrat per a una sessió que no existeix</string>
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">S\'està desencriptant l\'MMS. Espereu, si us plau...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Missatge MMS mal encriptat</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Missatge MMS encriptat per a una sessió que no existeix</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silencia les notificacions</string>
   <!--OutdatedBuildReminder-->
@@ -799,7 +802,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="log_submit_activity__submitting">S\'està enviant</string>
   <string name="log_submit_activity__no_browser_installed">No hi ha cap navegador instal·lat</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voleu importar els missatges de text existents a la base de dades xifrada del Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voleu importar els missatges de text existents a la base de dades encriptada del Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de dades predeterminada del sistema no es modificarà ni  s\'alterarà de cap manera.</string>
   <string name="database_migration_activity__skip">Omet</string>
   <string name="database_migration_activity__import">Importa</string>
@@ -874,6 +877,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="unknown_sender_view__add_to_contacts">AFEGEIX ALS CONTACTES</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NO L\'AFEGEIXIS, PERÒ FES QUE EL PERFIL SIGUI VISIBLE</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si voleu verificar la seguretat de l\'encriptació amb %s, compareu el número anterior amb el del seu dispositiu. Altrament, podeu escanejar el codi al seu telèfon o demanar-los que escanegin el vostre. <a href="https://signal.org/redirect/safety-numbers">Més informació.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Feu un toc per escanejar</string>
   <string name="verify_display_fragment__loading">S\'està carregant...</string>
   <string name="verify_display_fragment__verified">Verificat</string>
@@ -1122,7 +1126,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="reminder_header_sms_default_title">Usa-la com a aplicació d\'SMS predeterminada</string>
   <string name="reminder_header_sms_default_text">Premeu per establir el Signal com a aplicació predeterminada per a SMS.</string>
   <string name="reminder_header_sms_import_title">Importació dels SMS del sistema</string>
-  <string name="reminder_header_sms_import_text">Premeu per copiar els missatges SMS del telèfon a la base de dades xifrada del Signal.</string>
+  <string name="reminder_header_sms_import_text">Premeu per copiar els missatges SMS del telèfon a la base de dades encriptada del Signal.</string>
   <string name="reminder_header_push_title">Habilita els missatges i les trucades del Signal</string>
   <string name="reminder_header_push_text">Actualitza l\'experiència comunicativa.</string>
   <string name="reminder_header_invite_title">Convida al Signal</string>
