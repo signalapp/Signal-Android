@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -586,8 +587,8 @@ public class ThreadDatabase extends Database {
   }
 
   private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {
-    if (messageRecord.isMms() && ((MediaMmsMessageRecord) messageRecord).getSharedContacts().size() > 0) {
-      Contact contact = ((MediaMmsMessageRecord) messageRecord).getSharedContacts().get(0);
+    if (messageRecord.isMms() && ((MmsMessageRecord) messageRecord).getSharedContacts().size() > 0) {
+      Contact contact = ((MmsMessageRecord) messageRecord).getSharedContacts().get(0);
       return ContactUtil.getStringSummary(context, contact).toString();
     }
 
