@@ -212,7 +212,7 @@ public class ConversationItem extends LinearLayout
     this.recipient.addListener(this);
     this.conversationRecipient.addListener(this);
 
-    setMediaAttributes(messageRecord);
+    setMediaAttributes(messageRecord, conversationRecipient);
     setInteractionState(messageRecord, pulseHighlight);
     setBodyText(messageRecord);
     setBubbleState(messageRecord, recipient);
@@ -412,8 +412,8 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setMediaAttributes(MessageRecord messageRecord) {
-    boolean showControls = !messageRecord.isFailed();
+  private void setMediaAttributes(MessageRecord messageRecord, Recipient conversationRecipient) {
+    boolean showControls = !messageRecord.isFailed() && !Util.isOwnNumber(context, conversationRecipient.getAddress());
 
     if (hasSharedContact(messageRecord)) {
       sharedContactStub.get().setVisibility(VISIBLE);
