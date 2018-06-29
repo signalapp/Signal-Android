@@ -318,7 +318,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       @Override
       protected @Nullable BackupUtil.BackupInfo doInBackground(Void... voids) {
         try {
-          return BackupUtil.getLatestBackup(RegistrationActivity.this);
+          return BackupUtil.getLatestBackup();
         } catch (NoExternalStorageException e) {
           Log.w(TAG, e);
           return null;

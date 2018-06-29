@@ -77,7 +77,7 @@ public class BackupDialog {
                    .setPositiveButton(R.string.BackupDialog_delete_backups_statement, (dialog, which) -> {
                      TextSecurePreferences.setBackupPassphrase(context, null);
                      TextSecurePreferences.setBackupEnabled(context, false);
-                     BackupUtil.deleteAllBackups(context);
+                     BackupUtil.deleteAllBackups();
                      preference.setChecked(false);
                    })
                    .create()
