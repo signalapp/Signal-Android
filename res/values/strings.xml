@@ -669,6 +669,7 @@
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Search</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for conversations, contacts, and messages</string>
 
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
