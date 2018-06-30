@@ -25,6 +25,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.TooltipCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -89,6 +90,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     RatingManager.showRatingDialogIfNecessary(this);
     RegistrationLockDialog.showReminderIfNecessary(this);
+
+    TooltipCompat.setTooltipText(searchAction, getText(R.string.SearchToolbar_search));
   }
 
   @Override
