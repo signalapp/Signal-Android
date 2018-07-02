@@ -91,7 +91,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     RatingManager.showRatingDialogIfNecessary(this);
     RegistrationLockDialog.showReminderIfNecessary(this);
 
-    TooltipCompat.setTooltipText(searchAction, getText(R.string.SearchToolbar_search_icon_tooltip));
+    TooltipCompat.setTooltipText(searchAction, getText(R.string.SearchToolbar_search_for_conversations_contacts_and_messages));
   }
 
   @Override
