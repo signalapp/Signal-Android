@@ -399,7 +399,7 @@ public class ConversationFragment extends Fragment
     Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
     composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
     if (message.isMms()) {
-      MediaMmsMessageRecord mediaMessage = (MediaMmsMessageRecord) message;
+      MmsMessageRecord mediaMessage = (MmsMessageRecord) message;
       if (mediaMessage.containsMediaSlide()) {
         Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
         composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
