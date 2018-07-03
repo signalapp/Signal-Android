@@ -352,36 +352,6 @@
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
 
-    <!-- ImportExportActivity -->
-    <string name="ImportExportActivity_import">Import</string>
-    <string name="ImportExportActivity_export">Export</string>
-
-    <!-- ImportFragment -->
-    <string name="ImportFragment_import_system_sms_database">Import system SMS database?</string>
-    <string name="ImportFragment_this_will_import_messages_from_the_system">This will import
-        messages from the system\'s default SMS database to Signal. If you\'ve previously
-        imported the system\'s SMS database, importing again will result in duplicated messages.
-    </string>
-    <string name="ImportFragment_import">Import</string>
-    <string name="ImportFragment_cancel">Cancel</string>
-    <string name="ImportFragment_import_plaintext_backup">Import plaintext backup?</string>
-    <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">This will import
-        messages from a plaintext backup. If you\'ve previously imported this backup,
-        importing again will result in duplicated messages.
-    </string>
-    <string name="ImportFragment_importing">Importing</string>
-    <string name="ImportFragment_import_plaintext_backup_elipse">Importing plaintext backup...</string>
-    <string name="ImportFragment_no_plaintext_backup_found">No plaintext backup found!</string>
-    <string name="ImportFragment_error_importing_backup">Error importing backup!</string>
-    <string name="ImportFragment_import_complete">Import complete!</string>
-
-    <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal needs the SMS permission in order to import SMS messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"SMS\".</string>
-    <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal needs the SMS permission in order to import SMS messages</string>
-    <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to read from external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", then enable \"Storage\".</string>
-    <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal needs the Storage permission in order to read from external storage.</string>
-    <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to write to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", then enable \"Storage\".</string>
-    <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal needs the Storage permission in order to write to external storage.</string>
-
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
 

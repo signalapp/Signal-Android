@@ -120,9 +120,6 @@
     <activity android:name=".CountrySelectionActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ImportExportActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".InviteActivity"
               android:theme="@style/TextSecure.HighlightTheme"
               android:windowSoftInputMode="stateHidden"
