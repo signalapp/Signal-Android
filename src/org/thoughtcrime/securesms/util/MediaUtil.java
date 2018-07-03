@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
@@ -25,6 +27,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
@@ -233,7 +236,7 @@ public class MediaUtil {
     return (null != contentType) && contentType.startsWith("video/");
   }
 
-  public static boolean hasVideoThumbnail(Uri uri) {
+  public static boolean hasVideoThumbnail(Context context, Uri uri) {
     Log.w(TAG, "Checking: " + uri);
 
     if (uri == null || !ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
@@ -244,7 +247,7 @@ public class MediaUtil {
       return uri.getLastPathSegment().contains("video");
     }
 
-    return false;
+    return PartAuthority.isLocalUri(uri) && isVideoType(PartAuthority.getAttachmentContentType(context, uri));
   }
 
   public static @Nullable Bitmap getVideoThumbnail(Context context, Uri uri) {
@@ -255,6 +258,20 @@ public class MediaUtil {
                                                       videoId,
                                                       MediaStore.Images.Thumbnails.MINI_KIND,
                                                       null);
+    }
+
+    if (PartAuthority.isLocalUri(uri)) {
+      Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+      if (attachment != null) {
+        Uri thumbnailUri = attachment.getThumbnailUri();
+        if (thumbnailUri != null) {
+          try (InputStream attachmentStream = PartAuthority.getAttachmentStream(context, thumbnailUri)) {
+            return BitmapFactory.decodeStream(attachmentStream);
+          } catch (IOException e) {
+            Log.w(TAG, e);
+          }
+        }
+      }
     }
 
     return null;

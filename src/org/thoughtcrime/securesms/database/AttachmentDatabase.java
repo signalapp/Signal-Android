@@ -668,7 +668,7 @@ public class AttachmentDatabase extends Database {
     }
 
     if (!hasThumbnail && dataInfo != null) {
-      if (MediaUtil.hasVideoThumbnail(attachment.getDataUri())) {
+      if (MediaUtil.hasVideoThumbnail(context, attachment.getDataUri())) {
         Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getDataUri());
 
         if (bitmap != null) {
