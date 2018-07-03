@@ -73,6 +73,10 @@ public class MediaUtil {
       return PersistentBlobProvider.getMimeType(context, uri);
     }
 
+    if (PartAuthority.isLocalUri(uri)) {
+      return PartAuthority.getAttachmentContentType(context, uri);
+    }
+
     String type = context.getContentResolver().getType(uri);
     if (type == null) {
       final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
