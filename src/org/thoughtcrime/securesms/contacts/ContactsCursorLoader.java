@@ -204,11 +204,13 @@ public class ContactsCursorLoader extends CursorLoader {
     try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(getContext()).getGroupsFilteredByTitle(filter)) {
       GroupDatabase.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
-        groupContacts.addRow(new Object[] { groupRecord.getTitle(),
-                                            groupRecord.getEncodedId(),
-                                            ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
-                                            "",
-                                            ContactsDatabase.NORMAL_TYPE });
+        if (groupRecord.isActive()) {
+          groupContacts.addRow(new Object[] { groupRecord.getTitle(),
+                                              groupRecord.getEncodedId(),
+                                              ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
+                                              "",
+                                              ContactsDatabase.NORMAL_TYPE });
+        }
       }
     }
     return groupContacts;
