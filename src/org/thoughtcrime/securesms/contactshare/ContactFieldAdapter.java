@@ -99,15 +99,13 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
       value.setMaxLines(field.maxLines);
       value.setText(field.value);
       label.setText(field.label);
+      icon.setImageResource(field.iconResId);
 
       if (field.iconUri != null) {
         avatar.setVisibility(View.VISIBLE);
-        icon.setVisibility(View.GONE);
         glideRequests.load(field.iconUri).circleCrop().into(avatar);
       } else {
-        icon.setVisibility(View.VISIBLE);
         avatar.setVisibility(View.GONE);
-        icon.setImageResource(field.iconResId);
       }
 
       if (selectable) {
@@ -211,7 +209,7 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
     Field(@NonNull Avatar avatar) {
       this.value      = "";
-      this.iconResId  = 0;
+      this.iconResId  = R.drawable.baseline_account_circle_white_24;
       this.iconUri    = avatar.getAttachment() != null ? avatar.getAttachment().getDataUri() : null;
       this.maxLines   = 1;
       this.selectable = avatar;
