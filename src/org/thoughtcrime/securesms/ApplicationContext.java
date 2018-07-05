@@ -173,6 +173,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         add("Moto G (5S) Plus");
         add("Moto G4");
         add("TA-1053");
+        add("Mi A1");
       }};
 
       Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{

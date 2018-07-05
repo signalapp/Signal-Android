@@ -22,7 +22,7 @@ public class BackupUtil {
 
   public static @NonNull String getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
     try {
-      BackupInfo backup = getLatestBackup(context);
+      BackupInfo backup = getLatestBackup();
 
       if (backup == null) return context.getString(R.string.BackupUtil_never);
       else                return DateUtils.getExtendedRelativeTimeSpanString(context, locale, backup.getTimestamp());
@@ -32,8 +32,8 @@ public class BackupUtil {
     }
   }
 
-  public static @Nullable BackupInfo getLatestBackup(@NonNull Context context) throws NoExternalStorageException {
-    File       backupDirectory = StorageUtil.getBackupDirectory(context);
+  public static @Nullable BackupInfo getLatestBackup() throws NoExternalStorageException {
+    File       backupDirectory = StorageUtil.getBackupDirectory();
     File[]     backups         = backupDirectory.listFiles();
     BackupInfo latestBackup    = null;
 
@@ -49,9 +49,9 @@ public class BackupUtil {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  public static void deleteAllBackups(@NonNull Context context) {
+  public static void deleteAllBackups() {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory(context);
+      File   backupDirectory = StorageUtil.getBackupDirectory();
       File[] backups         = backupDirectory.listFiles();
 
       for (File backup : backups) {
@@ -62,9 +62,9 @@ public class BackupUtil {
     }
   }
 
-  public static void deleteOldBackups(@NonNull Context context) {
+  public static void deleteOldBackups() {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory(context);
+      File   backupDirectory = StorageUtil.getBackupDirectory();
       File[] backups         = backupDirectory.listFiles();
 
       if (backups != null && backups.length > 2) {

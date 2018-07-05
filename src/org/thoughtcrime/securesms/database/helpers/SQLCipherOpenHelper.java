@@ -198,14 +198,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         Log.i(TAG, "Beginning to build search index.");
         long start = SystemClock.elapsedRealtime();
 
-        db.execSQL("INSERT INTO " + SearchDatabase.SMS_FTS_TABLE_NAME + " (rowid, " + SearchDatabase.BODY + ") " +
-            "SELECT " + SmsDatabase.ID + " , " + SmsDatabase.BODY + " FROM " + SmsDatabase.TABLE_NAME);
+        db.execSQL("INSERT INTO sms_fts (rowid, body) SELECT _id, body FROM sms");
 
         long smsFinished = SystemClock.elapsedRealtime();
         Log.i(TAG, "Indexing SMS completed in " + (smsFinished - start) + " ms");
 
-        db.execSQL("INSERT INTO " + SearchDatabase.MMS_FTS_TABLE_NAME + " (rowid, " + SearchDatabase.BODY + ") " +
-            "SELECT " + MmsDatabase.ID + " , " + MmsDatabase.BODY + " FROM " + MmsDatabase.TABLE_NAME);
+        db.execSQL("INSERT INTO mms_fts (rowid, body) SELECT _id, body FROM mms");
 
         long mmsFinished = SystemClock.elapsedRealtime();
         Log.i(TAG, "Indexing MMS completed in " + (mmsFinished - smsFinished) + " ms");

@@ -135,7 +135,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     messageButtonView   = findViewById(R.id.contact_details_message_button);
     callButtonView      = findViewById(R.id.contact_details_call_button);
 
-    contactFieldAdapter = new ContactFieldAdapter(dynamicLanguage.getCurrentLocale(), false);
+    contactFieldAdapter = new ContactFieldAdapter(dynamicLanguage.getCurrentLocale(), glideRequests, false);
 
     RecyclerView list = findViewById(R.id.contact_details_fields);
     list.setLayoutManager(new LinearLayoutManager(this));
@@ -171,7 +171,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
         }.execute();
       });
 
-      contactFieldAdapter.setFields(this, contact.getPhoneNumbers(), contact.getEmails(), contact.getPostalAddresses());
+      contactFieldAdapter.setFields(this, null, contact.getPhoneNumbers(), contact.getEmails(), contact.getPostalAddresses());
     } else {
       nameView.setText("");
       numberView.setText("");

@@ -582,7 +582,7 @@ public class Contact implements Parcelable {
     }
   }
 
-  public static class Avatar implements Parcelable {
+  public static class Avatar implements Selectable, Parcelable {
 
     @JsonProperty
     private final AttachmentId attachmentId;
@@ -593,10 +593,14 @@ public class Contact implements Parcelable {
     @JsonIgnore
     private final Attachment   attachment;
 
+    @JsonIgnore
+    private boolean selected;
+
     public Avatar(@Nullable AttachmentId attachmentId, @Nullable Attachment attachment, boolean isProfile) {
       this.attachmentId = attachmentId;
       this.attachment   = attachment;
       this.isProfile    = isProfile;
+      this.selected     = true;
     }
 
     Avatar(@Nullable Uri attachmentUri, boolean isProfile) {
@@ -622,6 +626,16 @@ public class Contact implements Parcelable {
 
     public boolean isProfile() {
       return isProfile;
+    }
+
+    @Override
+    public void setSelected(boolean selected) {
+      this.selected = selected;
+    }
+
+    @Override
+    public boolean isSelected() {
+      return selected;
     }
 
     @Override
