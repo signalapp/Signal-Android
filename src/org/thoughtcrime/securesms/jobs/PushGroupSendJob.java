@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkBackoffRequirement;
 import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -44,6 +45,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -64,8 +66,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                 .withPersistence()
                                 .withGroupId(destination.toGroupString())
                                 .withRequirement(new MasterSecretRequirement(context))
-                                .withRequirement(new NetworkRequirement(context))
-                                .withRetryCount(5)
+                                .withRequirement(new NetworkBackoffRequirement(context))
+                                .withRetryDuration(TimeUnit.DAYS.toMillis(1))
                                 .create());
 
     this.messageId         = messageId;
