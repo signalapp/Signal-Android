@@ -22,6 +22,18 @@ public abstract class BaseActivity extends FragmentActivity {
     return super.onKeyUp(keyCode, event);
   }
 
+  @Override
+  protected void onStart() {
+    super.onStart();
+    ApplicationContext.getInstance(this).onActivityVisible();
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    ApplicationContext.getInstance(this).onActivityDismissed();
+  }
+
   public static boolean isMenuWorkaroundRequired() {
     return VERSION.SDK_INT < VERSION_CODES.KITKAT          &&
            VERSION.SDK_INT > VERSION_CODES.GINGERBREAD_MR1 &&

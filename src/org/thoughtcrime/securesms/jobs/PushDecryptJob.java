@@ -479,7 +479,7 @@ public class PushDecryptJob extends ContextJob {
     if (message.isContactsRequest()) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MultiDeviceContactUpdateJob(getContext()));
+                        .add(new MultiDeviceContactUpdateJob(getContext(), true));
     }
 
     if (message.isGroupsRequest()) {

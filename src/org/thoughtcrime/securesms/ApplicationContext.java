@@ -73,6 +73,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private ExpiringMessageManager expiringMessageManager;
   private JobManager             jobManager;
   private ObjectGraph            objectGraph;
+  private int                    activityCount;
 
   public static ApplicationContext getInstance(Context context) {
     return (ApplicationContext)context.getApplicationContext();
@@ -106,6 +107,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public ExpiringMessageManager getExpiringMessageManager() {
     return expiringMessageManager;
+  }
+
+  public synchronized void onActivityVisible() {
+    activityCount++;
+  }
+
+  public synchronized void onActivityDismissed() {
+    activityCount--;
+  }
+
+  public synchronized boolean isAppVisible() {
+    return activityCount > 0;
   }
 
   private void initializeRandomNumberFix() {
