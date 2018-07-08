@@ -536,6 +536,8 @@
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Add to Contacts</string>
     <string name="SharedContactDetailsActivity_invite_to_signal">Invite to Signal</string>
+    <string name="SharedContactDetailsActivity_signal_message">Signal Message</string>
+    <string name="SharedContactDetailsActivity_signal_call">Signal Call</string>
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Add to Contacts</string>
