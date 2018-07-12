@@ -104,18 +104,6 @@ public class SharedContactView extends LinearLayout implements RecipientModified
     presentActionButtons(ContactUtil.getRecipients(getContext(), contact));
   }
 
-  public void setSingularStyle() {
-    actionButtonView.setBackgroundResource(R.drawable.shared_contact_button_background_alone);
-  }
-
-  public void setClusteredIncomingStyle() {
-    actionButtonView.setBackgroundResource(R.drawable.shared_contact_button_background_clustered_received);
-  }
-
-  public void setClusteredOutgoingStyle() {
-    actionButtonView.setBackgroundResource(R.drawable.shared_contact_button_background_clustered_sent);
-  }
-
   public void setEventListener(@NonNull EventListener eventListener) {
     this.eventListener = eventListener;
   }

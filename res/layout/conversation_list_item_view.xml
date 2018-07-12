@@ -149,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    app:iconColor="?attr/conversation_list_item_subject_color"/>
+                    app:iconColor="?attr/conversation_list_item_delivery_icon_color"/>
 
             <ImageView android:id="@+id/unread_indicator"
                        android:layout_width="24dp"

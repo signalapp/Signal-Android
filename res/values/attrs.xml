@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="theme_type" format="string"/>
+
     <attr name="attachment_type_selector_background" format="color"/>
+    <attr name="attachment_document_icon_small" format="reference" />
+    <attr name="attachment_document_icon_large" format="reference" />
+
     <attr name="conversation_list_item_background" format="reference"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>
     <attr name="conversation_list_item_subject_color" format="reference|color"/>
+    <attr name="conversation_list_item_delivery_icon_color" format="reference|color"/>
     <attr name="conversation_list_item_date_color" format="reference|color"/>
     <attr name="conversation_list_item_divider" format="reference"/>
 
@@ -23,6 +28,8 @@
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference|color"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
+    <attr name="conversation_input_background_color" format="color"/>
+    <attr name="conversation_input_outline_color" format="color"/>
     <attr name="conversation_transport_sms_indicator" format="reference"/>
     <attr name="conversation_transport_push_indicator" format="reference"/>
     <attr name="conversation_transport_popup_background" format="reference"/>
@@ -68,6 +75,11 @@
     <attr name="conversation_item_update_text_color" format="reference"/>
     <attr name="conversation_item_last_seen_text_color" format="reference"/>
     <attr name="conversation_item_last_seen_line_color" format="reference"/>
+    <attr name="conversation_item_date_line_color" format="reference"/>
+    <attr name="conversation_item_quote_text_color" format="reference"/>
+    <attr name="conversation_item_sticky_date_background_color" format="color" />
+    <attr name="conversation_item_sticky_date_text_color" format="color" />
+    <attr name="conversation_item_delivery_icon_color" format="color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -158,6 +170,7 @@
         <attr name="maxWidth" format="dimension" />
         <attr name="minHeight" format="dimension" />
         <attr name="maxHeight" format="dimension" />
+        <attr name="thumbnail_radius" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="DeliveryStatusView">
@@ -271,4 +284,7 @@
         <attr name="conversationThumbnail_maxHeight" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="CornerMaskingView">
+        <attr name="cmv_radius" format="dimension" />
+    </declare-styleable>
 </resources>

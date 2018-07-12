@@ -84,7 +84,6 @@ public class ConversationItemFooter extends LinearLayout {
     simView.setTextColor(color);
     timerView.setColorFilter(color);
     insecureIndicatorView.setColorFilter(color);
-    deliveryStatusView.setTint(color);
   }
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {

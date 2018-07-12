@@ -9,6 +9,7 @@
                       android:layout_height="wrap_content"
                       android:clickable="false"
                       android:focusable="false"
+                      android:gravity="center_vertical"
                       android:orientation="horizontal">
 
             <org.thoughtcrime.securesms.components.AnimatingToggle
@@ -45,9 +46,10 @@
                         android:focusable="false">
 
                     <ImageView
+                        android:id="@+id/icon"
                         android:layout_width="38dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_document"/>
+                        android:src="?attachment_document_icon_large"/>
 
                     <TextView android:id="@+id/document"
                               android:layout_width="wrap_content"
@@ -56,7 +58,6 @@
                               android:gravity="center"
                               android:clickable="false"
                               android:visibility="visible"
-                              android:background="@drawable/ic_insert_drive_file_white_24dp"
                               android:textAlignment="center"
                               android:scaleType="centerInside"
                               style="@style/Signal.Text.Caption"
@@ -82,7 +83,8 @@
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="6dp"
+                          android:layout_marginLeft="2dp"
+                          android:layout_marginStart="2dp"
                           android:orientation="vertical"
                           android:focusable="false"
                           android:clickable="false">

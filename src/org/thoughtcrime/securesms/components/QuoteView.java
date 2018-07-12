@@ -41,6 +41,7 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
   private static final int MESSAGE_TYPE_INCOMING = 2;
 
   private CornerMaskingView rootView;
+  private View              backgroundView;
   private TextView          authorView;
   private TextView          bodyView;
   private ImageView         quoteBarView;
@@ -85,6 +86,7 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
     inflate(getContext(), R.layout.quote_view, this);
 
     this.rootView                     = findViewById(R.id.quote_root);
+    this.backgroundView               = findViewById(R.id.quote_background);
     this.authorView                   = findViewById(R.id.quote_author);
     this.bodyView                     = findViewById(R.id.quote_text);
     this.quoteBarView                 = findViewById(R.id.quote_bar);
@@ -172,11 +174,10 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you)
                                    : author.toShortString());
-    authorView.setTextColor(author.getColor().toActionBarColor(getContext()));
 
     // We use the raw color resource because Android 4.x was struggling with tints here
     quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));
-    rootView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
+    backgroundView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
   }
 
   private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {

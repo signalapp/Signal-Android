@@ -43,14 +43,25 @@
                 app:foregroundTintColor="@color/grey_500"
                 app:backgroundTintColor="?conversation_item_bubble_background"/>
 
-        <org.thoughtcrime.securesms.components.DocumentView
+        <org.thoughtcrime.securesms.components.CornerMaskingView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cmv_radius="@dimen/message_corner_radius">
+
+            <org.thoughtcrime.securesms.components.DocumentView
                 android:id="@+id/attachment_document"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp" />
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="@dimen/message_bubble_horizontal_padding"
+                android:paddingRight="@dimen/message_bubble_horizontal_padding"
+                android:background="?attr/conversation_item_bubble_background"
+                app:doc_titleColor="?attr/conversation_item_sent_text_primary_color"
+                app:doc_captionColor="?attr/conversation_item_sent_text_secondary_color"/>
 
+        </org.thoughtcrime.securesms.components.CornerMaskingView>
 
     </org.thoughtcrime.securesms.components.RemovableEditableMediaView>
 

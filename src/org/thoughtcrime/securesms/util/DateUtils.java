@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 public class DateUtils extends android.text.format.DateUtils {
 
   @SuppressWarnings("unused")
-  private static final String TAG = DateUtils.class.getSimpleName();
+  private static final String           TAG         = DateUtils.class.getSimpleName();
   private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {

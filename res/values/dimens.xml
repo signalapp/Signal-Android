@@ -23,11 +23,9 @@
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="message_bubble_horizontal_padding">12dp</dimen>
     <dimen name="message_bubble_top_padding">6dp</dimen>
-    <dimen name="message_bubble_quote_padding">6dp</dimen>
     <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
-    <dimen name="message_bubble_edge_margin">48dp</dimen>
+    <dimen name="message_bubble_edge_margin">32dp</dimen>
     <dimen name="message_bubble_bottom_padding">8dp</dimen>
-    <dimen name="message_bubble_footer_top_padding">4dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
     <dimen name="media_bubble_default_dimens">210dp</dimen>
