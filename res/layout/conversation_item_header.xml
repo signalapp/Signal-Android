@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/message_bubble_horizontal_padding"
-    android:paddingRight="@dimen/message_bubble_horizontal_padding"
-    android:paddingTop="24dp"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
     android:paddingBottom="21dp"
-    android:gravity="center"
-    style="@style/Signal.Text.Caption"
-    android:textColor="?conversation_item_update_text_color"
-    android:textAllCaps="true"
-    tools:text="March 1, 2015" />
+    android:paddingLeft="28dp"
+    android:paddingRight="28dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="?attr/conversation_item_date_line_color"
+        android:layout_marginBottom="3dp"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        style="@style/Signal.Text.Caption"
+        android:textColor="?conversation_item_update_text_color"
+        android:textAllCaps="true"
+        tools:text="March 1, 2015" />
+
+</LinearLayout>

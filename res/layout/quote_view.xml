@@ -14,10 +14,10 @@
     <org.thoughtcrime.securesms.components.CornerMaskingView
         android:id="@+id/quote_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#c0ffffff">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/quote_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -69,7 +69,7 @@
                         android:layout_marginEnd="4dp"
                         android:paddingLeft="-4dp"
                         android:paddingStart="-4dp"
-                        android:src="@drawable/ic_document" />
+                        android:src="?attr/attachment_document_icon_small" />
 
                     <TextView
                         android:id="@+id/quote_attachment_name"

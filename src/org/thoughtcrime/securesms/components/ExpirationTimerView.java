@@ -77,7 +77,7 @@ public class ExpirationTimerView extends android.support.v7.widget.AppCompatImag
     long  progressed      = System.currentTimeMillis() - startedAt;
     float percentComplete = (float)progressed / (float)expiresIn;
 
-    return percentComplete;
+    return Math.min(percentComplete, 1);
   }
 
   private long calculateAnimationDelay(long startedAt, long expiresIn) {

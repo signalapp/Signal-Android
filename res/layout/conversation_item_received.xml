@@ -36,23 +36,29 @@
             android:cropToPadding="true"
             android:contentDescription="@string/conversation_item_received__contact_photo_description" />
 
-        <LinearLayout
+        <org.thoughtcrime.securesms.components.CornerMaskingView
             android:id="@+id/body_bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/message_bubble_edge_margin"
             android:layout_marginEnd="@dimen/message_bubble_edge_margin"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/message_bubble_top_padding"
-            android:background="@drawable/message_bubble_background_received_alone"
+            android:background="@color/white"
             android:clipToPadding="false"
             android:clipChildren="false"
             tools:backgroundTint="@color/conversation_blue">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipToPadding="false"
+            android:clipChildren="false">
 
             <LinearLayout
                 android:id="@+id/group_sender_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
@@ -94,14 +100,13 @@
                 android:id="@+id/quote_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/message_bubble_quote_padding"
-                android:layout_marginBottom="@dimen/message_bubble_quote_padding"
-                android:layout_marginLeft="@dimen/message_bubble_quote_padding"
-                android:layout_marginRight="@dimen/message_bubble_quote_padding"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
                 android:visibility="gone"
                 app:message_type="incoming"
-                app:quote_colorPrimary="?attr/conversation_item_received_text_primary_color"
-                app:quote_colorSecondary="?attr/conversation_item_received_text_primary_color"
+                app:quote_colorPrimary="?attr/conversation_item_quote_text_color"
+                app:quote_colorSecondary="?attr/conversation_item_quote_text_color"
                 tools:visibility="visible"/>
 
             <ViewStub
@@ -109,6 +114,7 @@
                 android:layout="@layout/conversation_item_received_shared_contact"
                 android:layout_width="@dimen/media_bubble_default_dimens"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
                 android:visibility="gone"/>
 
             <ViewStub
@@ -122,6 +128,8 @@
                 android:layout="@layout/conversation_item_received_audio"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
                 android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginRight="@dimen/message_bubble_horizontal_padding" />
 
@@ -130,6 +138,8 @@
                 android:layout="@layout/conversation_item_received_document"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
                 android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginRight="@dimen/message_bubble_horizontal_padding" />
 
@@ -137,6 +147,8 @@
                 android:id="@+id/conversation_item_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
                 android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
                 style="@style/Signal.Text.Body"
@@ -149,14 +161,17 @@
                 android:id="@+id/conversation_item_footer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
                 android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
-                android:layout_marginTop="@dimen/message_bubble_footer_top_padding"
-                android:elevation="9dp"
                 android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 app:footer_color="?conversation_item_received_text_secondary_color"/>
 
-        </LinearLayout>
+            </LinearLayout>
+
+        </org.thoughtcrime.securesms.components.CornerMaskingView>
 
         <org.thoughtcrime.securesms.components.AlertView
             android:id="@+id/indicators_parent"
