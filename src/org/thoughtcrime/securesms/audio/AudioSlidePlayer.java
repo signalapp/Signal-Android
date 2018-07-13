@@ -5,6 +5,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -48,6 +50,9 @@ public class AudioSlidePlayer implements SensorEventListener {
   private @Nullable AttachmentServer        audioAttachmentServer;
   private           long                    startTime;
 
+  private final @NonNull AudioManager.OnAudioFocusChangeListener audioFocusChangeListener;
+  private final AudioFocusRequest  audioFocusRequest;
+
   public synchronized static AudioSlidePlayer createFor(@NonNull Context context,
                                                         @NonNull AudioSlide slide,
                                                         @NonNull Listener listener)
@@ -76,6 +81,21 @@ public class AudioSlidePlayer implements SensorEventListener {
       this.wakeLock = ServiceUtil.getPowerManager(context).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG);
     } else {
       this.wakeLock = null;
+    }
+
+    audioFocusChangeListener =  (focusChange) ->
+    {
+      if (focusChange == AudioManager.AUDIOFOCUS_LOSS || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT
+              || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) stop();
+    };
+    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+                .setAudioAttributes(new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
+                .setWillPauseWhenDucked(true)
+                .setOnAudioFocusChangeListener(audioFocusChangeListener)
+                .build();
+    } else {
+        audioFocusRequest = null;
     }
   }
 
@@ -106,9 +126,19 @@ public class AudioSlidePlayer implements SensorEventListener {
           }
 
           sensorManager.registerListener(AudioSlidePlayer.this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
-          mediaPlayer.start();
+          int audioFocusResult;
+          if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+              audioFocusResult = audioManager.requestAudioFocus(audioFocusRequest);
+          } else {
+              audioFocusResult = audioManager.requestAudioFocus(audioFocusChangeListener, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+          }
+          if(audioFocusResult == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            mediaPlayer.start();
 
-          setPlaying(AudioSlidePlayer.this);
+            setPlaying(AudioSlidePlayer.this);
+          } else {
+            Log.w(TAG, "could not get audio focus");
+          }
         }
 
         notifyOnStart();
@@ -122,6 +152,8 @@ public class AudioSlidePlayer implements SensorEventListener {
         Log.w(TAG, "onComplete");
         synchronized (AudioSlidePlayer.this) {
           mediaPlayer = null;
+          audioManager.abandonAudioFocus(audioFocusChangeListener);
+
 
           if (audioAttachmentServer != null) {
             audioAttachmentServer.stop();
@@ -179,6 +211,7 @@ public class AudioSlidePlayer implements SensorEventListener {
     if (this.mediaPlayer != null) {
       this.mediaPlayer.stop();
       this.mediaPlayer.release();
+      this.audioManager.abandonAudioFocus(audioFocusChangeListener);
     }
 
     if (this.audioAttachmentServer != null) {
