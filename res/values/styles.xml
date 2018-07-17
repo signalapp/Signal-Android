@@ -97,12 +97,6 @@
         <item name="android:textColor">#BFffffff</item>
     </style>
 
-    <style name="TextSecure.IntroActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@null</item>
-        <item name="icon">@android:color/transparent</item>
-        <item name="colorButtonNormal">@color/textsecure_primary</item>
-    </style>
-
     <style name="NotificationText">
       <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>

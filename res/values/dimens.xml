@@ -36,16 +36,13 @@
 
     <dimen name="conversation_individual_right_gutter">16dp</dimen>
     <dimen name="conversation_individual_left_gutter">16dp</dimen>
-    <dimen name="conversation_group_right_gutter">16dp</dimen>
     <dimen name="conversation_group_left_gutter">52dp</dimen>
     <dimen name="conversation_vertical_message_spacing_default">16dp</dimen>
     <dimen name="conversation_vertical_message_spacing_collapse">2dp</dimen>
 
-    <dimen name="quote_corner_radius">3dp</dimen>
     <dimen name="quote_corner_radius_large">10dp</dimen>
     <dimen name="quote_corner_radius_bottom">4dp</dimen>
     <dimen name="quote_corner_radius_preview">18dp</dimen>
-    <dimen name="quote_outline_width">1dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
@@ -58,11 +55,6 @@
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
     <!-- RedPhone -->
-    <dimen name="incoming_widget_outer_radius">135dip</dimen>
-    <dimen name="incoming_widget_horizontal_offset">0dip</dimen>
-    <dimen name="incoming_widget_vertical_offset">20dip</dimen>
-    <dimen name="incoming_widget_hit_radius">60dip</dimen>
-    <dimen name="incoming_widget_snap_margin">20dip</dimen>
 
     <!-- Height of the main row of in-call buttons. -->
 
@@ -79,11 +71,6 @@
     <dimen name="scribble_stroke_size">2dp</dimen>
 
     <dimen name="floating_action_button_margin">16dp</dimen>
-
-    <dimen name="text_headline_lineSpacingExtra">6sp</dimen>
-    <dimen name="text_body_lineSpacingExtra">8sp</dimen>
-    <dimen name="text_preview_lineSpacingExtra">6sp</dimen>
-    <dimen name="text_caption_lineSpacingExtra">4sp</dimen>
 
     <dimen name="alertview_small_icon_size">14dp</dimen>
 
