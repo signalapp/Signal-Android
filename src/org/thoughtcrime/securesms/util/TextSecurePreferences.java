@@ -155,6 +155,7 @@ public class TextSecurePreferences {
   private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";
 
   private static final String LAST_FULL_CONTACT_SYNC_TIME = "pref_last_full_contact_sync_time";
+  private static final String NEEDS_FULL_CONTACT_SYNC     = "pref_needs_full_contact_sync";
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
@@ -931,6 +932,14 @@ public class TextSecurePreferences {
 
   public static void setLastFullContactSyncTime(Context context, long timestamp) {
     setLongPreference(context, LAST_FULL_CONTACT_SYNC_TIME, timestamp);
+  }
+
+  public static boolean needsFullContactSync(Context context) {
+    return getBooleanPreference(context, NEEDS_FULL_CONTACT_SYNC, false);
+  }
+
+  public static void setNeedsFullContactSync(Context context, boolean needsSync) {
+    setBooleanPreference(context, NEEDS_FULL_CONTACT_SYNC, needsSync);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

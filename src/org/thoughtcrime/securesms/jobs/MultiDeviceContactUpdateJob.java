@@ -56,7 +56,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   private static final String TAG = MultiDeviceContactUpdateJob.class.getSimpleName();
 
-  private static final long FULL_SYNC_TIME = TimeUnit.HOURS.toMillis(12);
+  private static final long FULL_SYNC_TIME = TimeUnit.HOURS.toMillis(6);
 
   @Inject transient SignalServiceMessageSender messageSender;
 
@@ -149,11 +149,13 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
     Log.d(TAG, "Requesting a full contact sync. forced = " + forceSync + ", appVisible = " + isAppVisible + ", timeSinceLastSync = " + timeSinceLastSync + " ms");
 
     if (!forceSync && !isAppVisible && timeSinceLastSync < FULL_SYNC_TIME) {
-      Log.i(TAG, "App is backgrounded and the last contact sync was too soon (" + timeSinceLastSync + " ms ago). Skipping multi-device contact update...");
+      Log.i(TAG, "App is backgrounded and the last contact sync was too soon (" + timeSinceLastSync + " ms ago). Marking that we need a sync. Skipping multi-device contact update...");
+      TextSecurePreferences.setNeedsFullContactSync(context, true);
       return;
     }
 
     TextSecurePreferences.setLastFullContactSyncTime(context, System.currentTimeMillis());
+    TextSecurePreferences.setNeedsFullContactSync(context, false);
 
     File contactDataFile = createTempFile("multidevice-contact-update");
 

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
@@ -14,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -35,18 +37,6 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
   protected void onResume() {
     super.onResume();
     initializeScreenshotSecurity();
-  }
-
-  @Override
-  protected void onStart() {
-    super.onStart();
-    ApplicationContext.getInstance(this).onActivityVisible();
-  }
-
-  @Override
-  protected void onStop() {
-    super.onStop();
-    ApplicationContext.getInstance(this).onActivityDismissed();
   }
 
   @Override

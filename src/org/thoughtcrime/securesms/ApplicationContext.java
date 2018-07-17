@@ -17,9 +17,13 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
+import android.arch.lifecycle.DefaultLifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.ProcessLifecycleOwner;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
@@ -35,6 +39,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.JavaJobSerializer;
 import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirementProvider;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
@@ -66,14 +71,15 @@ import dagger.ObjectGraph;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector {
+public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver {
 
   private static final String TAG = ApplicationContext.class.getName();
 
   private ExpiringMessageManager expiringMessageManager;
   private JobManager             jobManager;
   private ObjectGraph            objectGraph;
-  private int                    activityCount;
+
+  private volatile boolean isAppVisible;
 
   public static ApplicationContext getInstance(Context context) {
     return (ApplicationContext)context.getApplicationContext();
@@ -92,6 +98,21 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializePeriodicTasks();
     initializeCircumvention();
     initializeWebRtc();
+    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+  }
+
+  @Override
+  public void onStart(@NonNull LifecycleOwner owner) {
+    isAppVisible = true;
+    Log.i(TAG, "App is now visible.");
+
+    executePendingContactSync();
+  }
+
+  @Override
+  public void onStop(@NonNull LifecycleOwner owner) {
+    isAppVisible = false;
+    Log.i(TAG, "App is no longer visible.");
   }
 
   @Override
@@ -109,16 +130,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return expiringMessageManager;
   }
 
-  public synchronized void onActivityVisible() {
-    activityCount++;
-  }
-
-  public synchronized void onActivityDismissed() {
-    activityCount--;
-  }
-
-  public synchronized boolean isAppVisible() {
-    return activityCount > 0;
+  public boolean isAppVisible() {
+    return isAppVisible;
   }
 
   private void initializeRandomNumberFix() {
@@ -229,4 +242,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
+
+  private void executePendingContactSync() {
+    if (TextSecurePreferences.needsFullContactSync(this)) {
+      ApplicationContext.getInstance(this).getJobManager().add(new MultiDeviceContactUpdateJob(this, true));
+    }
+  }
 }
