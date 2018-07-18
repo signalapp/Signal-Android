@@ -316,7 +316,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
 
     @SuppressWarnings("CodeBlock2Expr")
     @SuppressLint({"InlinedApi","StaticFieldLeak"})
-    private void handleSaveMedia(@NonNull Collection<MediaDatabase.MediaRecord> batchMediaRecords) {
+    private void handleSaveMedia(@NonNull Collection<MediaDatabase.MediaRecord> mediaRecords) {
       final Context context = getContext();
       SaveAttachmentTask.showWarningDialog(context, (dialogInterface, which) -> {
         Permissions.with(this)
@@ -325,11 +325,11 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
                    .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                    .onAnyDenied(() -> Toast.makeText(getContext(), R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
                    .onAllGranted(() -> {
-                     new ProgressDialogAsyncTask<MediaDatabase.MediaRecord, Void, List<SaveAttachmentTask.Attachment>>(context,
-                                                                                                                       R.string.MediaOverviewActivity_collecting_attachments,
-                                                                                                                       R.string.please_wait) {
+                     new ProgressDialogAsyncTask<Void, Void, List<SaveAttachmentTask.Attachment>>(context,
+                                                                                                  R.string.MediaOverviewActivity_collecting_attachments,
+                                                                                                  R.string.please_wait) {
                        @Override
-                       protected List<SaveAttachmentTask.Attachment> doInBackground(MediaDatabase.MediaRecord... mediaRecords) {
+                       protected List<SaveAttachmentTask.Attachment> doInBackground(Void... params) {
                          List<SaveAttachmentTask.Attachment> attachments = new LinkedList<>();
 
                          for (MediaDatabase.MediaRecord mediaRecord : mediaRecords) {
@@ -352,10 +352,10 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
                          saveTask.executeOnExecutor(THREAD_POOL_EXECUTOR,
                                                     attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
                        }
-                     }.execute(batchMediaRecords.toArray(new MediaDatabase.MediaRecord[batchMediaRecords.size()]));
+                     }.execute();
                    })
                    .execute();
-      }, batchMediaRecords.size());
+      }, mediaRecords.size());
     }
 
     @SuppressLint("StaticFieldLeak")
