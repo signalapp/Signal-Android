@@ -56,7 +56,6 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Signal requer permissão de acesso aos Contactos para anexar dados de contacto, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Contactos\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Signal requer permissão de acesso à Localização para anexar uma localização, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Localização\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à Câmara para tirar fotos, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Câmara\".</string>
-  <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao reproduzir áudio!</string>
   <!--BlockedContactsActivity-->
@@ -83,13 +82,20 @@
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada do Signal %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Nome próprio</string>
+  <string name="ContactNameEditActivity_family_name">Apelido</string>
+  <string name="ContactNameEditActivity_prefix">Prefixo</string>
+  <string name="ContactNameEditActivity_suffix">Sufixo</string>
+  <string name="ContactNameEditActivity_middle_name">Nome do meio</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Casa</string>
+  <string name="ContactShareEditActivity_type_mobile">Telemóvel</string>
+  <string name="ContactShareEditActivity_type_work">Trabalho</string>
+  <string name="ContactShareEditActivity_type_missing">Outro</string>
+  <string name="ContactShareEditActivity_invalid_contact">O contacto selecionado é inválido</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Não entregue</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem para intercâmbio de chaves, toque para processar.</string>
   <string name="ConversationItem_group_action_left">%1$s deixou o grupo.</string>
-  <string name="ConversationItem_click_for_details">Toque para ver detalhes</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Toque para enviar de modo inseguro</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não encriptado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Recorrer a MMS não encriptado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será encriptada porque o destinatário já não é um utilizador do Signal.\n\nEnviar mensagem de modo não seguro?</string>
@@ -126,7 +132,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo tem um tamanho superior ao limite do tipo de mensagem que está a enviar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Câmara indisponível</string>
   <string name="ConversationActivity_unable_to_record_audio">Não é possível gravar áudio!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Erro no envio de mensagem de voz</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não existe uma aplicação capaz de lidar com este tipo de ligação no seu dispositivo.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens áudio, dê permissões ao Signal para acesso ao microfone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Signal requer permissão de acesso ao Microfone para enviar mensagens áudio, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Microfone\".</string>
@@ -135,6 +140,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotos e filmar vídeos, dê permissões ao Signal para acesso à câmara.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">O Signal requer permissão de acesso à Câmara para tirar fotos ou vídeo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Câmara\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">O Signal requer permissão de acesso à Câmara para tirar fotos ou vídeo</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -157,10 +163,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Erro ao guardar anexo para o armazenamento local!</item>
     <item quantity="other">Erro ao guardar anexos para o armazenamento local!</item>
-  </plurals>
-  <plurals name="ConversationFragment_files_saved_successfully">
-    <item quantity="one">Ficheiro gravado com sucesso.</item>
-    <item quantity="other">Ficheiros gravados com sucesso.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não é possível escrever para o armazenamento local!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -216,10 +218,13 @@
   <string name="CustomDefaultPreference_using_default">A usar a opção predefinida: %s</string>
   <string name="CustomDefaultPreference_none">Nenhum</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">Agora mesmo</string>
+  <string name="DateUtils_just_now">Agora</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Hoje</string>
   <string name="DateUtils_yesterday">Ontem</string>
+  <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sent">Enviado</string>
+  <string name="DeliveryStatus_delivered">Entregue</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Desassociar \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desassociar este dispositivo, vai deixar de enviar ou receber mensagens.</string>
@@ -253,16 +258,6 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pronto para o seu retrato?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Agora pode partilhar a sua foto de perfil e nome com amigos no Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Chegaram os perfis Signal</string>
-  <!--ExportFragment-->
-  <string name="ExportFragment_export">Exportar</string>
-  <string name="ExportFragment_export_plaintext_to_storage">Exportar em texto simples para o armazenamento local?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Aviso, isto vai exportar os conteúdos das suas mensagens do Signal, em texto simples, para o armazenamento local.</string>
-  <string name="ExportFragment_cancel">Cancelar</string>
-  <string name="ExportFragment_exporting">Exportar</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">A exportar em texto simples para o armazenamento local...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">Erro, não é possível escrever para o armazenamento local.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">Erro ao escrever para o armazenamento local.</string>
-  <string name="ExportFragment_export_successful">Exportação com sucesso.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha de comunicação do Signal permanente!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não se conseguiu registar com os Serviços Google Play. As mensagens e chamadas do Signal estão desativadas, por favor tente registar-se novamente em Definições &gt; Avançadas.</string>
@@ -293,33 +288,6 @@
   <string name="GroupShareProfileView_make_visible">Tornar visível</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
-  <!--ImportExportActivity-->
-  <string name="ImportExportActivity_import">Importar</string>
-  <string name="ImportExportActivity_export">Exportar</string>
-  <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">Importar a base de dados SMS do sistema?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Esta operação
-irá importar as mensagens da base de dados de SMS do sistema para o Signal.
-Se já importou a base de dados de SMS do sistema anteriormente,
-fazê-lo de novo poderá resultar em mensagens duplicadas.
-</string>
-  <string name="ImportFragment_import">Importar</string>
-  <string name="ImportFragment_cancel">Cancelar</string>
-  <string name="ImportFragment_import_plaintext_backup">Importar cópia de segurança em texto simples?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Isto irá importar
-mensagens de um backup em texto simples. Se você já importou este backup anteriormente,
-importá-lo novamente resultará em mensagens duplicadas.</string>
-  <string name="ImportFragment_importing">A importar</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importar cópia de segurança em texto simples...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">Não foi encontrada uma cópia de segurança em texto simples!</string>
-  <string name="ImportFragment_error_importing_backup">Erro a importar cópia de segurança!</string>
-  <string name="ImportFragment_import_complete">Importação completa!</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">O Signal requer permissão de acesso a SMS para importar as mensagens SMS, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"SMS\".</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">O Signal requer permissão de acesso a SMS para importar as mensagens SMS</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">O Signal requer permissão de acesso a Armazenamento para ler o suporte de armazenamento externo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">O Signal requer permissão de acesso a Armazenamento para ler o suporte de armazenamento externo</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal requer permissão de acesso a Armazenamento para escrever para o suporte de armazenamento externo, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Armazenamento\".</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">O Signal requer permissão de acesso a Armazenamento para escrever para o suporte de armazenamento externo</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pressione e mantenha para gravar uma mensagem de voz, liberte para a enviar.</string>
   <!--InviteActivity-->
@@ -341,7 +309,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que não tem aplicações para as quais partilhar.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amigos não deixam amigos falar sem segurança.</string>
-  <!--KeyScanningActivity-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">O envio falhou</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo número de segurança</string>
@@ -375,13 +342,13 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Recebeu uma mensagem encriptada com uma versão anterior do Signal, que já não é suportada. Por favor peça ao remetente para actualizar para a versão mais recente e reenviar a mensagem.</string>
   <string name="MessageRecord_left_group">Abandonou o grupo.</string>
   <string name="MessageRecord_you_updated_group">Tu atualizaste o grupo.</string>
+  <string name="MessageRecord_you_called">Você ligou</string>
+  <string name="MessageRecord_missed_call">Chamada perdida</string>
   <string name="MessageRecord_s_updated_group">%s atualizou o grupo.</string>
   <string name="MessageRecord_s_called_you">%s ligou-lhe</string>
   <string name="MessageRecord_called_s">Ligou para %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
   <string name="MessageRecord_s_joined_signal">%s está no Signal!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Definiu o tempo de mensagens a desaparecer em %1$s</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de mensagens a desaparecer em %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Marcou como verificado o seu número de segurança com %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Marcou como verificado o seu número de segurança com %s a partir de outro dispositivo</string>
@@ -463,38 +430,33 @@ número de telefone</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número que
 especificou (%s) não é válido.</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services em falta</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo tem os Google Play Services em falta. Vai conseguir usar o Signal na mesma, mas esta configuração pode resultar em fiabilidade ou performance reduzidas.\n\nSe não é um utilizador avançado, não está a correr uma ROM personalizada ou acha que isto é um erro, por favor contacte support@signal.org para resolver o problema.</string>
   <string name="RegistrationActivity_i_understand">Eu compreendo</string>
   <string name="RegistrationActivity_play_services_error">Erro dos Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Os Google Play Services estão a ser atualizados ou estão temporariamente indisponíveis. Por favor, tenta outra vez.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Termos e Condições &amp; Política de Privacidade</string>
+  <string name="RegistrationActivity_no_browser">Não foi possível abrir esta hiperligação. Não foi encontrado nenhum browser.</string>
   <string name="RegistrationActivity_more_information">Mais informação</string>
   <string name="RegistrationActivity_less_information">Menos informação</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal precisa de acesso aos contactos e média para poder ligar com os seus amigos, trocar mensagens e efectuar chamadas seguras.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não foi possível conectar ao serviço. Por favor verifique a sua ligação à rede e tente novamente.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar facilmente o seu número de telefone, o Signal pode detectar automaticamente o seu código de verificação, se o permitir ler mensagens SMS.</string>
-  <!--RegistrationProblemsActivity-->
-  <!--RegistrationProgressActivity-->
-  <!--RegistrationService-->
-  <string name="RegistrationService_registration_complete">Registo completo!</string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">O registo do Signal foi completado com sucesso.</string>
-  <string name="RegistrationService_registration_error">Erro de registo</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">O registo do Signal deparou-se com um problema.</string>
-  <!--RingtonePreference-->
-  <string name="RingtonePreference_ringtone_default">Toque padrão</string>
-  <string name="RingtonePreference_ringtone_silent">Nenhum</string>
-  <string name="RingtonePreference_notification_sound_default">Som de notificação padrão</string>
-  <string name="RingtonePreference_alarm_sound_default">Som de alarme padrão</string>
-  <string name="RingtonePreference_add_ringtone_text">Adicionar toque</string>
-  <string name="RingtonePreference_unable_to_add_ringtone">Não é possível adicionar um toque personalizado</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Falha ao guardar alteração de imagem.</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Sem resultados para \'%s\'</string>
+  <string name="SearchFragment_header_conversations">Conversas</string>
   <string name="SearchFragment_header_contacts">Contactos</string>
   <string name="SearchFragment_header_messages">Mensagens</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Adicionar aos Contactos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Convidar para o Signal</string>
-  <string name="SharedContactDetailsActivity_invite_message">Vamos mudar para o Signal %1$s</string>
+  <string name="SharedContactDetailsActivity_signal_message">Mensagem Signal</string>
+  <string name="SharedContactDetailsActivity_signal_call">Chamada do Signal</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Adicionar aos Contactos</string>
   <string name="SharedContactView_invite_to_signal">Convidar para o Signal</string>
+  <string name="SharedContactView_message">Mensagem Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_audio">Áudio</string>
@@ -551,19 +513,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Não foi encontrado um número de segurança com o qual comparar na área de transferência</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à Câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor aceda a permissões da aplicação, seleccione \"Permissões\" e active \"Câmara\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível ler um código QR sem permissão de acesso à câmara.</string>
-  <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem encriptada corrompida</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">A decifrar, por favor aguarde...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem encriptada para sessão inexistente</string>
-  <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
-  <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
-  <!--MmsDatabase-->
-  <string name="MmsDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">A decifrar MMS, por favor, aguarde...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem MMS encriptada corrompida</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS encriptada para sessão inexistente</string>
   <!--MuteDialog-->
@@ -602,13 +555,12 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_pending_signal_messages">Mensagens do Signal pendentes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tem mensagens do Signal pendentes, toque para abrir e obter</string>
+  <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
-  <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida indisponível quando o Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_open_directory">Abrir directório</string>
   <string name="SaveAttachmentTask_saved_to">Guardado para %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Procurar</string>
@@ -628,7 +580,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Pode ser desejável verificar o seu número de segurança com este contracto.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Novo número de segurança</string>
   <string name="WebRtcCallScreen_accept">Aceitar</string>
-  <string name="WebRtcCallScreen_cancel">Cancelar</string>
   <string name="WebRtcCallScreen_end_call">Terminar chamada</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Toque para ligar o vídeo</string>
@@ -664,11 +615,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Problema a obter contactos, verifique a sua ligação à rede</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nenhum contacto bloqueado</string>
-  <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal precisa de acesso aos contactos para os poder mostrar.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostrar contactos</string>
-  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Msg. do Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS não segura</string>
@@ -703,9 +652,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="QuoteView_photo">Foto</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>
-  <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">Modo de selecção em grupo</string>
-  <string name="conversation_fragment_cab__batch_selection_amount">Seleccionado %s</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Deslize até ao fundo</string>
   <!--country_selection_fragment-->
@@ -768,7 +714,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Pesquisar GIFs e autocolantes</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nada foi encontrado</string>
-  <!--import_export_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possivel ler o log no seu dispositivo. Poderá ainda usar ADB para efetuar o debugging do log.</string>
   <string name="log_submit_activity__thanks">Obrigado pela sua ajuda!</string>
@@ -783,14 +728,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="database_migration_activity__importing">A IMPORTAR</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">A actualizar a base de dados...</string>
-  <string name="export_fragment__export_plaintext_backup">Exportar cópia de segurança em texto simples</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exportar uma cópia de segurança de texto simples compatível com \'SMS Backup &amp; Restaurar\' para o armazenamento.</string>
   <string name="import_fragment__import_system_sms_database">Importar a base de dados SMS do sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar a base de dados da aplicação de mensagens do sistema.</string>
   <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importar um backup em texto simples. Compatível com \'SMS Backup &amp; Restaurar\'.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversa integral</string>
+  <string name="load_more_header__loading">A Carregar</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Sem multimédia</string>
   <!--message_recipients_list_item-->
@@ -831,14 +775,12 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <string name="redphone_call_controls__mute">Silenciar</string>
-  <string name="redphone_call_controls__signal_call">Chamada do Signal</string>
+  <string name="redphone_call_controls__flip_camera_rear">Trocar câmeras</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONE</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O Signal facilita as suas comunicações, já que utiliza o seu número e a sua lista telefónica. Amigos e contactos que já lhe conseguem ligar por telemóvel vão poder facilmente entrar em contacto consigo pelo Signal.\n\nO registo envia algumas informações de contacto para o servidor. Estas não são armazenadas.</string>
   <string name="registration_activity__verify_your_number">Verifique o seu número</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Por favor insira o seu número de telefone para receber o código de verificação. Podem haver custos por parte do seu operador.</string>
-  <!--registration_problems-->
-  <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introduza um nome ou número</small></string>
   <string name="recipients_panel__add_members">Adicionar membros</string>
@@ -848,6 +790,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="unknown_sender_view__add_to_contacts">ADICIONAR AOS CONTACTOS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NÃO ADICIONAR, MAS TORNAR O MEU PERFIL VISÍVEL</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se pretende verificar a segurança da sua encriptação ponta-a-ponta com o contacto %s, compare o número acima com o equivalente no dispositivo do seu contacto. Em alternativa, poderá fazer scan do código QR exibido no outro dispositivo ou pedir que façam scan do seu código. <a href="https://signal.org/redirect/safety-numbers">Mais informações</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toque para ler</string>
   <string name="verify_display_fragment__loading">A carregar...</string>
   <string name="verify_display_fragment__verified">Verificado</string>
@@ -867,7 +810,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="message_details_header__with">Com:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Criar frase-chave</string>
-  <string name="AndroidManifest__enter_passphrase">Introduza palavra-chave</string>
   <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
   <string name="AndroidManifest__change_passphrase">Alterar frase-chave</string>
   <string name="AndroidManifest__verify_safety_number">Verificar número de segurança</string>
@@ -1015,8 +957,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nova mensagem para...</string>
-  <!--contact_selection-->
-  <!--refreshing push directory from menu-->
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chamar</string>
   <!--conversation_callable_secure-->
@@ -1036,7 +976,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="menu_conversation_expiring_on__messages_expiring">Mensagens a expirar</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convidar</string>
-  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Apagar seleccionado</string>
   <string name="conversation_list_batch__menu_select_all">Seleccionar tudo</string>
@@ -1072,9 +1011,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Conversa</string>
   <string name="conversation_group_options__broadcast">Emissão</string>
-  <!--key_scanning-->
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">Mensagem nova</string>
   <string name="text_secure_normal__menu_new_group">Grupo novo</string>
   <string name="text_secure_normal__menu_settings">Configurações</string>
   <string name="text_secure_normal__menu_clear_passphrase">Desbloquear</string>
@@ -1099,6 +1036,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="reminder_header_invite_text">Leve a sua conversa com %1$s para o próximo nível.</string>
   <string name="reminder_header_share_title">Convide os seus amigos!</string>
   <string name="reminder_header_share_text">Quanto mais amigos usarem o Signal, melhor este se torna.</string>
+  <string name="reminder_header_service_outage_text">O Signal está a experenciar problemas técncios. Estamos a trabalhar ariduamente para re-establecer o serviço o mais rapidamente possível.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
   <string name="media_preview__forward_title">Reencaminhar</string>
@@ -1149,6 +1087,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_backup_timestamp_s">Data de cópia de segurança: %s</string>
   <string name="BackupDialog_enable_local_backups">Activar cópias de segurança locais?</string>
   <string name="BackupDialog_enable_backups">Activar cópias de segurança</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Por favor, confirme que compreende, marcando a caixa acima.</string>
   <string name="BackupDialog_delete_backups">Apagar cópias de segurança?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Desactivar e apagar todas as cópias de segurança locais?</string>
   <string name="BackupDialog_delete_backups_statement">Apagar cópias de segurança</string>
@@ -1165,10 +1104,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_available_in">Disponível em:\u0020</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
-  <string name="prompt_passphrase_activity__unlock_signal">Desbloquear Signal</string>
   <string name="preferences_app_protection__screen_lock">Bloquear ecrã</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloqueie acesso ao Signal usando o bloqueio de ecrã do Android ou impressão digital</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Bloqueio de écran devido a inatividade</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhum</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O registo de um PIN de bloqueio não é o mesmo que um código de verificação SMS que acabou de receber. Por favor, escreva o pin da sua anterior aplicação.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueio de registo</string>
   <string name="registration_activity__forgot_pin">Esqueceu-se do PIN?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">O PIN consiste em quatro ou mais dígitos. Se esquecer o PIN, pode ficar com a sua conta bloqueada até sete dias.</string>
@@ -1191,6 +1131,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Bloqueio de registo está ativo para o seu número. Para ajudar a memorizar o seu PIN de bloqueio de registo, o Signal vai pedir para o confirmar periodicamente.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci-me do PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O PIN de registo ajuda-o/a porteger o seu número de telefone de tentarivas não autorizadas de registo. Esta capacidade pode ser desativada em qualquer altura, acedendo às Configurações de Privacidade do Signal</string>
   <string name="RegistrationLockDialog_registration_lock">Bloqueio de registo</string>
   <string name="RegistrationLockDialog_enable">Activar</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">O PIN de bloqueio de registo tem de ter pelo menos 4 dígitos.</string>

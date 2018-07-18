@@ -56,7 +56,6 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">సంప్రదింపు సమాచారాన్ని అటాచ్ చేయడానికి సిగ్నల్ కాంటాక్ట్స్ అనుమతి అవసరం, కానీ అది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ఒక స్థానాన్ని అటాచ్ చేయడానికి సిగ్నల్కి నగర అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"స్థానం\" ని ప్రారంభించండి.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ఫోటోలను తీయడానికి సిగ్నల్కు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
-  <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ఆడియో ప్రదర్శనా లోపం!</string>
   <!--BlockedContactsActivity-->
@@ -85,11 +84,8 @@
   <!--ContactNameEditActivity-->
   <!--ContactShareEditActivity-->
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">పంపిణీ కాలేదు</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">స్వీకరించు మీట మార్పిడి సందేశం, తట్టు తో క్రమణం</string>
   <string name="ConversationItem_group_action_left">%1$s సమూహం వదిలి వెళ్లారు</string>
-  <string name="ConversationItem_click_for_details">వివరాల కోసం తాకండి</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">భద్రతలేదు తిరిగి నొక్కండి</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ఎన్క్రిప్టు కాని ఎస్సెమ్మెస్ తిరిగి  అయ్యిందా?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ఎన్క్రిప్టు కాని ఎమ్మెమ్మెస్ తిరిగి  అయ్యిందా?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ఈ సందేశం &lt;b&gt;  &lt;/ b&gt;  భద్రపరచు విధంగా చేయలేము ఎందుకంటే గ్రహీత ఇకపై సిగ్నల్ వినియోగదారుడు కాదు.\n\nభద్రతలేని సందేశాన్ని పంపవచా?</string>
@@ -126,7 +122,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">జోడింపు మీరు పంపే సందేశం రకం పరిమాణ పరిమితి మించిపోయింది.</string>
   <string name="ConversationActivity_quick_camera_unavailable">కెమెరా అందుబాటులో లేదు </string>
   <string name="ConversationActivity_unable_to_record_audio">ఆడియో రికార్డ్ చేయడం సాధ్యపడలేదు!</string>
-  <string name="ConversationActivity_error_sending_voice_message">స్వర సందేశం పంపడంలొ లోపం</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">మీ పరికరం ఈ లింక్ నిర్వహించడానికి ఎలాంటి అనువర్తనం లేదు.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ఆడియో సందేశాలను పంపడానికి, మీ మైక్రోఫోన్కు సిగ్నల్ ప్రాప్తిని అనుమతించండి.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ఆడియో సందేశాలను పంపడానికి సిగ్నల్కు మైక్రోఫోన్ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"మైక్రోఫోన్\" ని ప్రారంభించండి.</string>
@@ -160,10 +155,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">సంగ్రహించిన జోడింపును  నిల్వచేయుటలో లోపం!</item>
     <item quantity="other">సంగ్రహించిన జోడింపులను  నిల్వచేయుటలో లోపం!</item>
-  </plurals>
-  <plurals name="ConversationFragment_files_saved_successfully">
-    <item quantity="one"> ఫైల్ విజయవంతంగా భద్రపరచింది.</item>
-    <item quantity="other">పత్రాలు విజయవంతంగా భధ్రపరచబడినవి.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">నిల్వ వ్రాయలేకపోయింది!!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -219,10 +210,12 @@
   <string name="CustomDefaultPreference_using_default">ఉపయోగించి అప్రమేయం: %s</string>
   <string name="CustomDefaultPreference_none">ఏదీ కాదు</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">ఇప్పుడే</string>
   <string name="DateUtils_minutes_ago">%d కనీస</string>
   <string name="DateUtils_today">నేడు</string>
   <string name="DateUtils_yesterday">నిన్న</string>
+  <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sent">పంపిన</string>
+  <string name="DeliveryStatus_delivered">పంపిణి ఐనది</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">తొలగించరాదనుకుంటే \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ఈ పరికరం లింక్ను తీసివేసిన ద్వారా, అది ఇకపై పంపండి లేదా సందేశాలను అందుకుంటారు చెయ్యగలరు.</string>
@@ -257,16 +250,6 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">క్లోజప్ కోసం సిద్ధంగా ఉన్నారా?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ఇప్పుడు మీరు సిగ్నల్ లో స్నేహితులతో ప్రొఫైల్ ఫోటోను మరియు పేరును పంచుకోవచ్చు</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">సిగ్నల్ ప్రొఫైల్స్ ఇక్కడ ఉన్నాయి</string>
-  <!--ExportFragment-->
-  <string name="ExportFragment_export">ఎగుమతి</string>
-  <string name="ExportFragment_export_plaintext_to_storage">సహజమైన వాక్యాలను నిల్వచేయుటకు ఎగుమతి చేయాలా?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">హెచ్చరిక, ఈ నిల్వకు మీ సిగ్నల్ సందేశాలను సాదా విషయాలు ఎగుమతి చేస్తుంది.</string>
-  <string name="ExportFragment_cancel">రద్దు</string>
-  <string name="ExportFragment_exporting">ఎగుమతి అవుతోంది</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">సహజమైన వాక్యాలు నిల్వచేయుటకు ఎగుమతి చేయబడుతున్నవి...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">లోపం, నిలవచేసే చోటుకు వ్రాయలేరు.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">నిల్వ చేసే చోటుకు  వ్రాసేటపుడు లోపం.</string>
-  <string name="ExportFragment_export_successful">ఎగుమతి విజయవంతమైనది.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">సిగ్నల్ లో శాశ్వత సమాచార వైఫల్యం!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">గూగ్లె ప్లే సదుపాయలతొ సిగ్నల్ నమోదు కాలెదు. సిగ్నల్ సందెశాలు మరియు  కాల్స్ నిలిపివేయబడ్డాయి. దయచేసి ఆధునిక అమరికలు లో మళ్ళి నమోదు చెసుకొనగలరు.</string>
@@ -298,27 +281,6 @@
   <string name="GroupShareProfileView_make_visible">కనిపించేలా చేయండి</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">నేను</string>
-  <!--ImportExportActivity-->
-  <string name="ImportExportActivity_import">దిగుమతి</string>
-  <string name="ImportExportActivity_export">ఎగుమతి</string>
-  <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">దిగుమతి వ్యవస్థ ఎస్సెమ్మెస్ డేటాబేస్?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">ఇది పరికరం యొక్క అప్రమేయ సందెశ దత్తాంశస్థానం లొని సందేశాలను సిగ్నల్  లోకి ఎగుమతి చేయును. మీరు ఇదివరకే పరికరం  యొక్క  సందేశ  దత్తాంశస్థానన్ని ఎగుమతి చెసి ఉన్న యెడల మరలా  ఎగుమతి చెయుట నకిలీ సందెశాలను స్రుష్టించును.   </string>
-  <string name="ImportFragment_import">దిగుమతి</string>
-  <string name="ImportFragment_cancel">రద్దు</string>
-  <string name="ImportFragment_import_plaintext_backup">సాదా బ్యాకప్ దిగుమతి చేయాలనుకుంటున్నారా?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">ఇది సందేశాలను సాదా బ్యాకప్ నుండి దిగుమతి చేస్తుంది.మీరు గతంలో ఈ బ్యాకప్ దిగుమతి చేసి ఉంటే,మళ్లీ దిగుమతి నకిలీ సందేశాలను ఫలితమౌతుంది.</string>
-  <string name="ImportFragment_importing">దిగుమతి అవుతోంది</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">సాదా బ్యాకప్ దిగుమతి అవుతోంది ...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">సాదా బ్యాకప్ దొరకలేదు!</string>
-  <string name="ImportFragment_error_importing_backup">బ్యాకప్ దిగుమతి లోపం!</string>
-  <string name="ImportFragment_import_complete">దిగుమతి పూర్తయింది!</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">SMS సందేశాలను దిగుమతి చెయ్యడానికి సిగ్నల్కు SMS అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి దయచేసి అనువర్తన సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"SMS\" ను ప్రారంభించండి.</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">SMS సందేశాలను దిగుమతి చేసుకోవడానికి సిగ్నల్కు SMS అనుమతి అవసరం</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">బాహ్య నిల్వ నుండి చదవడానికి సిగ్నల్కు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి, ఆపై \"నిల్వ\" ను ప్రారంభించండి.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">బాహ్య నిల్వ నుండి చదవడానికి సిగ్నల్కు నిల్వ అనుమతి అవసరం.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">బాహ్య నిల్వకు రాయడానికి సిగ్నల్కు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి, ఆపై \"నిల్వ\" ను ప్రారంభించండి.</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">బాహ్య నిల్వకు వ్రాయడానికి సిగ్నల్ కి నిల్వ అనుమతి అవసరం.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">మాటతో కూడిన సందేశాన్ని రికార్డు చేయుటకు తడుతూనే ఉంచి , పంపుటకు వదిలివేయండి.</string>
   <!--InviteActivity-->
@@ -340,7 +302,6 @@
   <string name="InviteActivity_lets_switch_to_signal">మనం సిగ్నల్ కు మారుదాం: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">మీరు పంచుకొనడానికి మీ దగ్గర వేరే యాప్స్ లేనట్టు కనబడుతుంది.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">స్నేహితులారా , ఎన్క్రిప్ట్ చేయకుండా స్నేహితులని సంభాషించనివ్వొద్దు.</string>
-  <!--KeyScanningActivity-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">పంపించడం విఫలమైనది</string>
   <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string>
@@ -378,13 +339,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ఇకపై మద్దతు అని సిగ్నల్ యొక్క పాత సంస్కరణను ఉపయోగించి ఎన్క్రిప్ట్ ఒక సందేశాన్ని పొందింది. దయచేసి ఇటీవల సంస్కరణకు అప్డేట్ మరియు సందేశాన్ని మళ్లీ పంపినవారు అడగండి</string>
   <string name="MessageRecord_left_group">మీరు సమూహం నుండి వైదొలిగారు</string>
   <string name="MessageRecord_you_updated_group">మీరు ఈ సమూహాన్ని నవీకరించారు.</string>
+  <string name="MessageRecord_you_called">మీరు కాల్ చెసారు</string>
+  <string name="MessageRecord_missed_call">తప్పిన కాల్</string>
   <string name="MessageRecord_s_updated_group">%s  సమూహాన్ని నవీకరించారు.</string>
   <string name="MessageRecord_s_called_you">%s మీకు కాల్ చెసారు</string>
   <string name="MessageRecord_called_s">కాల్డ్ %s</string>
   <string name="MessageRecord_missed_call_from">%s నుండి తప్పిన కాల్</string>
   <string name="MessageRecord_s_joined_signal">1%s సిగ్నల్లో ఉంది!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">మీరు సందేశం అదృశ్యమవటానికి %1$s సమయం వెచ్చించారు.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s సందేశం అదృశ్యమవటానికి %2$s సమయం వెచ్చించారు.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s తో మీ భద్రత సంఖ్య మార్చబడింది.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">మీరు మీ భద్రతా నంబర్ను%s ధృవీకరించినట్లు గుర్తు పెట్టారు</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">మీరు మరొక పరికరం నుండి %s తో ధృవీకరించినట్లుగా మీ భద్రతా నంబరును గుర్తు పెట్టారు</string>
@@ -475,20 +436,6 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">స్నేహితులతో కనెక్ట్ అవ్వడానికి, సందేశాలు మార్పిడి చేసుకోవడానికి మరియు సురక్షితమైన కాల్లను చేయడానికి మీ పరిచయాలకు మరియు మీడియాకు సిగ్నల్ ప్రాప్తి అవసరం</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">మీ ఫోన్ నంబర్ను సులభంగా ధృవీకరించడానికి, SMS సందేశాలను వీక్షించడానికి సిగ్నల్ను మీరు అనుమతించినట్లయితే సిగ్నల్ మీ ధృవీకరణ కోడ్ను స్వయంచాలకంగా గుర్తించవచ్చు.</string>
-  <!--RegistrationProblemsActivity-->
-  <!--RegistrationProgressActivity-->
-  <!--RegistrationService-->
-  <string name="RegistrationService_registration_complete">నమోదు పూర్తయింది </string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">సిగ్నల్ నమోదు విజయవంతంగా పూర్తి చేయబడింది.</string>
-  <string name="RegistrationService_registration_error">నమోదు లోపం</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">సిగ్నల్ నమోదు సమస్యను ఎదుర్కొంది.</string>
-  <!--RingtonePreference-->
-  <string name="RingtonePreference_ringtone_default">డిఫాల్ట్ రింగ్టోన్</string>
-  <string name="RingtonePreference_ringtone_silent">ఏదీ కాదు</string>
-  <string name="RingtonePreference_notification_sound_default">డిఫాల్ట్ నోటిఫికేషన్ ధ్వని</string>
-  <string name="RingtonePreference_alarm_sound_default">డిఫాల్ట్ అలారం ధ్వని</string>
-  <string name="RingtonePreference_add_ringtone_text">రింగ్టోన్ని జోడించండి</string>
-  <string name="RingtonePreference_unable_to_add_ringtone">అనుకూల రింగ్టోన్ను జోడించలేకపోయాము</string>
   <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' కోసం ఫలితాలు కనుగొనబడలేదు</string>
@@ -496,7 +443,7 @@
   <string name="SearchFragment_header_messages">సందేశాలు</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_invite_to_signal">సిగ్నల్‌కు  ఆహ్వానించండి</string>
-  <string name="SharedContactDetailsActivity_invite_message">మనం సిగ్నల్ కు మారుదాం: %1$s</string>
+  <string name="SharedContactDetailsActivity_signal_call">సిగ్నల్ కాల్ </string>
   <!--SharedContactView-->
   <string name="SharedContactView_invite_to_signal">సిగ్నల్‌కు  ఆహ్వానించండి</string>
   <!--Slide-->
@@ -552,19 +499,10 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard"> ఏ భద్రతకు సంఖ్య పోల్చడానికి క్లిప్బోర్డ్కు లొ కనుగొనబడింది</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ఒక QR కోడ్ను స్కాన్ చేయడానికి సిగ్నల్కు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">కెమెరా అనుమతి లేకుండా QR కోడ్ను స్కాన్ చేయడం సాధ్యపడలేదు</string>
-  <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">సరికాని గుప్తీకరించిన సందేశం</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">మర్చబడుతుంది, దయచేసి వేచిఉండండి</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">సందేశం</string>
-  <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">సందేశం మార్చడంలో లోపం.</string>
-  <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">సందేశం మార్చడంలో లోపం.</string>
-  <!--MmsDatabase-->
-  <string name="MmsDatabase_error_decrypting_message">సందేశం మార్చడంలో లోపం.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">ఎంఎంఎస్ మార్చడంలో, దయచేసి వేచి ఉండండి ..</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">చెడు ఎన్క్రిప్టెడ్ ఎంఎంఎస్ సందేశాన్ని</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ఎంఎంఎస్ సందేశాన్ని మనుగడలో కాని సెషన్ కోసం గుప్తీకరించబడింది</string>
   <!--MuteDialog-->
@@ -604,12 +542,10 @@
   <string name="MessageNotifier_pending_signal_messages">సిగ్నల్ సందేశాలు పెండింగ్లో ఉన్నాయి</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">మీ సిగ్నల్ సందేశాలు పెండింగ్లో ఉన్నాయి, తెరవడానికి మరియు తిరిగి పొందడానికి నొక్కండి</string>
   <string name="MessageNotifier_unknown_contact_message">పరిచయం</string>
-  <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">సిగ్నల్ బంధించినపుడు తక్షణ స్పందన అందుబాటులొ లేదు!</string>
   <string name="QuickResponseService_problem_sending_message">సందేశాన్ని పంపడంలొ సమస్య!</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_open_directory">ఒపెన్  డైరెక్ట్రి</string>
   <string name="SaveAttachmentTask_saved_to">%s కు సేవ్ చేయబడింది</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">వెతకండి</string>
@@ -629,7 +565,6 @@
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ఈ పరిచయంతో మీ భద్రత సంఖ్య ధ్రువీకరించాలనుకోవొచ్చు.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">నూతన భద్రతా సంఖ్య</string>
   <string name="WebRtcCallScreen_accept">అంగీకరించండి</string>
-  <string name="WebRtcCallScreen_cancel">రద్దు</string>
   <string name="WebRtcCallScreen_end_call">కాల్ ముగించండి</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">మీ వీడియో ప్రారంభించడానికి నొక్కండి</string>
@@ -665,11 +600,9 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">పరిచయాలను తిరిగి పొందడంలో లోపం, మీ నెట్వర్క్ కనెక్షన్ను తనిఖీ చేయండి</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">నిరోధించిన పరిచయాలు లేవు</string>
-  <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">మీ పరిచయాలను సిగ్నల్ ప్రదర్శించడానికి పరిచయాలకు ప్రాప్యత అవసరం</string>
   <string name="contact_selection_list_fragment__show_contacts">పరిచయాలను చూపించు</string>
-  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">సిగ్నల్  మెసేజ్</string>
   <string name="conversation_activity__type_message_sms_insecure">భద్రతలేని సందేశం</string>
@@ -704,9 +637,6 @@
   <string name="QuoteView_photo">ఫోటో</string>
   <string name="QuoteView_document">పత్రం</string>
   <string name="QuoteView_you">మీరు</string>
-  <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">గుంపు ఎంపిక  చేయబడిన విధానము</string>
-  <string name="conversation_fragment_cab__batch_selection_amount">ఎంపిక చేసిన %s</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">దిగువకు స్క్రోల్ చెయ్యి</string>
   <!--country_selection_fragment-->
@@ -758,7 +688,6 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">జిఫ్‌లు మరియు స్టిక్కర్లు వెతుకు</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ఏమీ దొరకలేదు</string>
-  <!--import_export_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">మీ పరికరంలో లాగ్ చదవలేము. మీరు దీనికి బదులుగా ఒక డీబగ్ లాగ్ పొందడానికి  ADB  ని ఉపయోగించవచ్చు.</string>
   <string name="log_submit_activity__thanks">మీ సహాయానికి ధన్యవాదాలు!</string>
@@ -773,8 +702,6 @@
   <string name="database_migration_activity__importing">దిగుమతి</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">డేటాబేస్ని నవీకరిస్తోంది/ ప్రస్తుత పరిస్థితికి అనుగుణంగా సవరిస్తోంది</string>
-  <string name="export_fragment__export_plaintext_backup">సాధారణ అక్షరాల బ్యాకప్ ఎగుమతి </string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">సాదా బ్యాకప్ \'ఎస్ఎంఎస్ బ్యాకప్ మరియు amp అనుకూలంగా ఎగుమతి; నిల్వలో పునరుద్ధరించు \'</string>
   <string name="import_fragment__import_system_sms_database">వ్యవస్థ ఎస్సెమ్మెస్ డేటాబేస్ దిగుమతి</string>
   <string name="import_fragment__import_the_database_from_the_default_system">డిఫాల్ట్ వ్యవస్థ మెసెంజర్ అనువర్తనం నుండి డేటాబేస్ దిగుమతి</string>
   <string name="import_fragment__import_plaintext_backup">సాధారణ అక్షరాల బ్యాకప్ దిగుమతి </string>
@@ -821,14 +748,11 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">సిగ్నల్ కాల్ </string>
   <string name="redphone_call_controls__mute">నిశబ్ధం</string>
-  <string name="redphone_call_controls__signal_call">సిగ్నల్ కాల్ </string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ఫోన్ నంబరు</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">సిగ్నల్ మీ ప్రస్తుత ఫోన్ నంబర్ మరియు చిరునామా పుస్తకం ఉపయోగించి సమాచార మార్పిడి సులభం చేస్తుంది. ఫోన్ ద్వారా మిమ్మల్ని ఎలా సంప్రదించాలో ఇప్పటికే తెలిసిన స్నేహితులు మరియు పరిచయాలు సులభంగా సిగ్నల్ ద్వారా సన్నిహితంగా ఉంటాయి. \ N \ n రిజిస్ట్రేషన్ కొంత సంప్రదింపు సమాచారాన్ని సర్వర్కు బదిలీ చేస్తుంది. ఇది నిల్వ చేయబడలేదు.</string>
   <string name="registration_activity__verify_your_number">మీ నంబర్ ని ధృవీకరించండి</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">దయచేసి ధృవీకరణ కోడ్ను స్వీకరించడానికి మీ మొబైల్ నంబర్ను నమోదు చేయండి. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
-  <!--registration_problems-->
-  <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>పేరు లేదా సంఖ్యను రాయండి</small></string>
   <string name="recipients_panel__add_members">సభ్యులు జోడించు</string>
@@ -856,7 +780,6 @@
   <string name="message_details_header__with">ఎవరితో:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">సంకేతపదమును తయారు చేయు</string>
-  <string name="AndroidManifest__enter_passphrase">సంకేతపదమును ప్రవేశపెట్టుము</string>
   <string name="AndroidManifest__select_contacts">పరిచయాలను ఎంచుకోండి</string>
   <string name="AndroidManifest__change_passphrase">సంకేతపదమును మార్చు</string>
   <string name="AndroidManifest__verify_safety_number">భద్రత సంఖ్యను ధృవీకరించండి</string>
@@ -999,8 +922,6 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">....కు కొత్త సందేశం</string>
-  <!--contact_selection-->
-  <!--refreshing push directory from menu-->
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">కాల్</string>
   <!--conversation_callable_secure-->
@@ -1020,7 +941,6 @@
   <string name="menu_conversation_expiring_on__messages_expiring"> సమయ పరిమితి లేని సందేశాలు </string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ఆహ్వానించండి</string>
-  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">ఎంపిక తొలగించు</string>
   <string name="conversation_list_batch__menu_select_all">అన్నీ ఎంచుకో</string>
@@ -1053,9 +973,7 @@
   <string name="conversation_group_options__delivery">చేర్చుట</string>
   <string name="conversation_group_options__conversation">సంభాషణ</string>
   <string name="conversation_group_options__broadcast">ప్రసారం </string>
-  <!--key_scanning-->
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">కొత్త సందేశం</string>
   <string name="text_secure_normal__menu_new_group">కొత్త సమూహం</string>
   <string name="text_secure_normal__menu_settings">అమరికలు</string>
   <string name="text_secure_normal__menu_clear_passphrase">బందించు</string>
@@ -1136,7 +1054,6 @@
   <string name="RegistrationActivity_call_me_instead">బదులుగా నన్ను కాల్ చేయండి</string>
   <string name="BackupUtil_never">ఎప్పుడూ</string>
   <string name="BackupUtil_unknown">తెలియని</string>
-  <string name="prompt_passphrase_activity__unlock_signal">అన్లాక్ సిగ్నల్</string>
   <string name="preferences_app_protection__screen_lock">స్క్రీన్ తాళం</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android స్క్రీన్ లాక్ లేదా వేలిముద్రతో సిగ్నల్ యాక్సెస్ను లాక్ చేయండి</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">స్క్రీన్ లాక్ నిష్క్రియ సమయం</string>

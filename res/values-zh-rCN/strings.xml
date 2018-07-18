@@ -53,7 +53,6 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要\"通讯录\"权限才能发送联系人名片信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要\"位置信息\"权限才能发送位置信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"位置信息\"权限。</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要\"相机\"权限才能拍照并发送相片，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"相机\"权限。</string>
-  <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音频时出现错误！</string>
   <!--BlockedContactsActivity-->
@@ -92,11 +91,8 @@
   <string name="ContactShareEditActivity_type_missing">其他</string>
   <string name="ContactShareEditActivity_invalid_contact">所选联系人无效</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">未送达</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">已收到密钥交换信息，点击以开始处理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已经离开了该群组。</string>
-  <string name="ConversationItem_click_for_details">点击查看详情</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">点击退回不安全的通信</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">退回未加密的短信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">退回到未加密的彩信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于对方已经不再是暗号的使用者，当前消息 <b>不会</b> 被发送。\n\n发送不加密的信息？</string>
@@ -133,7 +129,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">当前信息的附件类型已经已经超过大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">摄像头不可用</string>
   <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
-  <string name="ConversationActivity_error_sending_voice_message">发送语音信息出错</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的设备上没有应用程序能打开这个链接。</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">如果想要发送语音信息，请允许 Signal 使用您设备的麦克风。</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 需要麦克风权限才能发送语音信息，但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“麦克风”。</string>
@@ -160,9 +155,6 @@
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">保存附件到存储时遇到错误！</item>
-  </plurals>
-  <plurals name="ConversationFragment_files_saved_successfully">
-    <item quantity="other">文件保存成功。</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">存储无法写入！</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -212,10 +204,13 @@
   <string name="CustomDefaultPreference_using_default">使用默认：%s</string>
   <string name="CustomDefaultPreference_none">没有</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">刚刚</string>
+  <string name="DateUtils_just_now">现在</string>
   <string name="DateUtils_minutes_ago">%d 分钟</string>
   <string name="DateUtils_today">今天</string>
   <string name="DateUtils_yesterday">昨天</string>
+  <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sent">发送</string>
+  <string name="DeliveryStatus_delivered">已送达</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">断开 \'%s\' ？</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">如果断开此设备的连接，它将不能再接受或发送信息。</string>
@@ -249,16 +244,6 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">要拍近照了，准备好了吗？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">在Signal上和朋友们分享你的头像和昵称</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 个人档案来了</string>
-  <!--ExportFragment-->
-  <string name="ExportFragment_export">导出</string>
-  <string name="ExportFragment_export_plaintext_to_storage">导出明文到存储？</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">警告，这将把您的暗号信息明文导出到存储。</string>
-  <string name="ExportFragment_cancel">取消</string>
-  <string name="ExportFragment_exporting">正在导出</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">正在导出明文存储…</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">错误，存储无法写入。</string>
-  <string name="ExportFragment_error_while_writing_to_storage">在写入存储时遇到错误。</string>
-  <string name="ExportFragment_export_successful">导出成功。</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">暗号持续连接失效！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">暗号无法在 Google Play 服务中注册。暗号消息和呼叫已经被金庸。请尝试在设置 &gt; 高级中重新注册。</string>
@@ -289,31 +274,6 @@
   <string name="GroupShareProfileView_make_visible">设置可见</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">我</string>
-  <!--ImportExportActivity-->
-  <string name="ImportExportActivity_import">导入</string>
-  <string name="ImportExportActivity_export">导出</string>
-  <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">导入系统短信数据库？</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">此信息非常重要
-暗号的信息来自系统默认的短信数据库。如果您事先将
-其导入系统短信数据库，然后再导入暗号，将会出现重复的信息。</string>
-  <string name="ImportFragment_import">导入</string>
-  <string name="ImportFragment_cancel">取消</string>
-  <string name="ImportFragment_import_plaintext_backup">导入明文备份？</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">这将会导入
-来自明文备份的信息。如果您以前已经导入过该备份，
-再次导入将会出现重复信息。</string>
-  <string name="ImportFragment_importing">导入中</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">正在导入明文备份...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">没有发现明文备份！</string>
-  <string name="ImportFragment_error_importing_backup">导入备份的过程中发生错误！</string>
-  <string name="ImportFragment_import_complete">导入完成！</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Signal 需要短信权限以导入短信，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“短信”。</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal 需要短信权限以导入短信</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Signal 需要存储权限以读取外部存储，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“存储”。</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal 需要存储权限以读取外部存储。</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要存储权限以写入外部存储，但是该权限已经被永久拒绝。请进入应用程序设置，点击权限，并启用“存储”。</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal 需要存储权限以写入外部存储。</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住并保持以录制语音信息，松开即发送</string>
   <!--InviteActivity-->
@@ -333,7 +293,6 @@
   <string name="InviteActivity_lets_switch_to_signal">让我们切换到暗号： %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">看起来您没有任何可以共享的应用。</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">您的朋友不想让朋友之间的聊天未经加密。</string>
-  <!--KeyScanningActivity-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">发送失败</string>
   <string name="MessageDetailsRecipient_new_safety_number">新的安全代码</string>
@@ -369,13 +328,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">已收到的信息使用了旧版本的暗号进行加密，并且已经不再被支持。请联系发送者升级暗号到最新版本然后再次发送该信息。</string>
   <string name="MessageRecord_left_group">您已经离开了此群组。</string>
   <string name="MessageRecord_you_updated_group">您更新了此群组</string>
+  <string name="MessageRecord_you_called">您呼叫的</string>
+  <string name="MessageRecord_missed_call">未接来电</string>
   <string name="MessageRecord_s_updated_group">%s 更新了此群组。</string>
   <string name="MessageRecord_s_called_you">%s 呼叫过您</string>
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">来自 %s 的未接来电</string>
   <string name="MessageRecord_s_joined_signal">%s 在 Signal 上！</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">您将信息销毁时间设置为 %1$s</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 将消息销毁时间设置为 %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您与 %s 的安全代码已经改变</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">您已标记您的安全号码 %s 已验证</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">您已标记您的安全号码 %s 已在另一台设备上验证</string>
@@ -465,20 +424,6 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要访问您的联系人和媒体以连接您的朋友，外部存储信息，并建立安全呼叫。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 Signal 服务。请检查您的网络连接。</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">为了方便验证您的号码，如果您能允许 Signal 查看您的短信，便可自动检测您的验证代码。</string>
-  <!--RegistrationProblemsActivity-->
-  <!--RegistrationProgressActivity-->
-  <!--RegistrationService-->
-  <string name="RegistrationService_registration_complete">注册已完成</string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">已经成功的完成了暗号的注册。</string>
-  <string name="RegistrationService_registration_error">注册出现错误</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">在注册暗号的过程中发生一个问题。</string>
-  <!--RingtonePreference-->
-  <string name="RingtonePreference_ringtone_default">默认来电铃声</string>
-  <string name="RingtonePreference_ringtone_silent">无</string>
-  <string name="RingtonePreference_notification_sound_default">默认消息提示音</string>
-  <string name="RingtonePreference_alarm_sound_default">默认提示音</string>
-  <string name="RingtonePreference_add_ringtone_text">添加来电铃声</string>
-  <string name="RingtonePreference_unable_to_add_ringtone">无法添加个人来点铃声</string>
   <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">没有找到关于“%s”的信息</string>
@@ -488,14 +433,8 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">添加到通讯录</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀请至暗号</string>
-  <string name="SharedContactDetailsActivity_invite_message">让我们切换到暗号： %1$s</string>
-  <string name="SharedContactDetailsActivity_new_contact_success">已添加到通讯录</string>
-  <string name="SharedContactDetailsActivity_new_contact_failure">无法接收联系人信息</string>
-  <string name="SharedContactDetailsActivity_updated_contact_success">联系人信息已更新</string>
-  <string name="SharedContactDetailsActivity_updated_contact_failure">无法编辑联系人</string>
-  <string name="SharedContactDetailsActivity_initialization_failure">无法读取联系人</string>
-  <string name="SharedContactDetailsActivity_add_as_new_contact">添加为新的联系人</string>
-  <string name="SharedContactDetailsActivity_add_to_existing_contact">添加到已有联系人</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal 消息</string>
+  <string name="SharedContactDetailsActivity_signal_call">暗号呼叫</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">添加到通讯录</string>
   <string name="SharedContactView_invite_to_signal">邀请至暗号</string>
@@ -553,19 +492,10 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">剪切板中没有安全代码进行比较</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相机权限以扫描 QR 码，但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">无法在没有访问相机的权限时扫描 QR 二维码</string>
-  <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">已损坏的加密消息</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">正在解密，请稍后...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">已为不存在的会话加密其中的信息</string>
-  <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">解密信息时遇到错误。</string>
-  <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">解密消息时遇到错误。</string>
-  <!--MmsDatabase-->
-  <string name="MmsDatabase_error_decrypting_message">解密消息时遇到错误</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">正在解密彩信，请稍后...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">已损坏的加密彩信</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">已为不存在的会话加密其中的彩信</string>
   <!--MuteDialog-->
@@ -606,12 +536,10 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">您有待处理的信号消息，轻触来打开和收取</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">联系人</string>
-  <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">当暗号处于锁定状态时，快速回复不可用！</string>
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_open_directory">打开文件目录</string>
   <string name="SaveAttachmentTask_saved_to">保存到%s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">搜索</string>
@@ -631,7 +559,6 @@
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人的安全代码。</string>
   <string name="WebRtcCallScreen_new_safety_number_title">新的安全代码</string>
   <string name="WebRtcCallScreen_accept">接受</string>
-  <string name="WebRtcCallScreen_cancel">取消</string>
   <string name="WebRtcCallScreen_end_call">结束呼叫</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">点击以启用视频</string>
@@ -667,11 +594,9 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">无法获取通讯录数据，请检查您的网络连接</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">没有屏蔽的联系人</string>
-  <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal 需要访问您的联系人才能显示他们。</string>
   <string name="contact_selection_list_fragment__show_contacts">显示联系人</string>
-  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">发送 Signal 信息</string>
   <string name="conversation_activity__type_message_sms_insecure">未加密的短信</string>
@@ -706,9 +631,6 @@
   <string name="QuoteView_photo">图片</string>
   <string name="QuoteView_document">文档</string>
   <string name="QuoteView_you">您</string>
-  <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">批量选择模式</string>
-  <string name="conversation_fragment_cab__batch_selection_amount">%s 已选择</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">滚动到底部</string>
   <!--country_selection_fragment-->
@@ -765,7 +687,6 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜索 GIF图片与表情</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">无结果</string>
-  <!--import_export_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">无法在您的设备上读取日志。您仍然可以使用 ADB 来获得调试日志。</string>
   <string name="log_submit_activity__thanks">感谢！</string>
@@ -780,8 +701,6 @@
   <string name="database_migration_activity__importing">正在导入</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">更新数据库…</string>
-  <string name="export_fragment__export_plaintext_backup">导出明文备份</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">导出兼容于“SMS Backup &amp; Restore”软件的明文备份到存储。</string>
   <string name="import_fragment__import_system_sms_database">导入系统短信数据库</string>
   <string name="import_fragment__import_the_database_from_the_default_system">从系统默认短信程序导入数据库</string>
   <string name="import_fragment__import_plaintext_backup">导入明文备份</string>
@@ -829,14 +748,11 @@
   <string name="redphone_call_card__signal_call">暗号呼叫</string>
   <string name="redphone_call_controls__mute">静音</string>
   <string name="redphone_call_controls__flip_camera_rear">切换摄像头</string>
-  <string name="redphone_call_controls__signal_call">暗号呼叫</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">电话号码</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal 使用您的电话号码以及您手机上的联系人来更好地帮助您沟通。如此，已经了解您的联系方式的朋友及联系人将能够更轻松地使用 Signal 来与您联络。\n\n注册时联系人将会被上传到服务器，但是他们不会被保存在服务器上。</string>
   <string name="registration_activity__verify_your_number">验证您的号码</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">请输入您的电话号码来接收验证码。运营商可能会对此收费。</string>
-  <!--registration_problems-->
-  <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>输入一个名字或号码</small></string>
   <string name="recipients_panel__add_members">添加成员</string>
@@ -865,7 +781,6 @@
   <string name="message_details_header__with">与：</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">创建口令</string>
-  <string name="AndroidManifest__enter_passphrase">输入密钥</string>
   <string name="AndroidManifest__select_contacts">选择联系人</string>
   <string name="AndroidManifest__change_passphrase"> 修改密码</string>
   <string name="AndroidManifest__verify_safety_number">验证安全代码</string>
@@ -1012,8 +927,6 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">新信息至…</string>
-  <!--contact_selection-->
-  <!--refreshing push directory from menu-->
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">呼叫</string>
   <!--conversation_callable_secure-->
@@ -1033,7 +946,6 @@
   <string name="menu_conversation_expiring_on__messages_expiring">即将过期</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀请</string>
-  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">删除已选</string>
   <string name="conversation_list_batch__menu_select_all">选择全部</string>
@@ -1070,9 +982,7 @@
   <string name="conversation_group_options__delivery">发送</string>
   <string name="conversation_group_options__conversation">对话</string>
   <string name="conversation_group_options__broadcast">广播</string>
-  <!--key_scanning-->
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">新信息</string>
   <string name="text_secure_normal__menu_new_group">新群组</string>
   <string name="text_secure_normal__menu_settings">设置</string>
   <string name="text_secure_normal__menu_clear_passphrase">锁定</string>
@@ -1167,7 +1077,6 @@
   <string name="RegistrationActivity_available_in">可用:\u0020</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
-  <string name="prompt_passphrase_activity__unlock_signal">解锁 Signal</string>
   <string name="preferences_app_protection__screen_lock">锁屏</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">使用 Android 锁屏或者指纹锁定 Signal</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">不活跃锁屏超时</string>
