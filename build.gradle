@@ -77,7 +77,7 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer-core:2.8.4'
     compile 'com.google.android.exoplayer:exoplayer-ui:2.8.4'
 
-    compile 'org.whispersystems:signal-service-android:2.8.1'
+    compile 'org.whispersystems:signal-service-android:2.9.0'
     compile 'org.whispersystems:webrtc-android:M69'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -171,7 +171,7 @@ dependencyVerification {
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
         'com.google.android.exoplayer:exoplayer-ui:027557b2d69b15e1852a2530b36971f0dcc177abae240ee35e05f63502cdb0a7',
         'com.google.android.exoplayer:exoplayer-core:e69b409e11887c955deb373357c30eeabf183395db0092b4817e0f80bb467d5b',
-        'org.whispersystems:signal-service-android:414e91598abd941eb3be9a85702538cc9928d8c22f00e07716b83a096cbbe54d',
+        'org.whispersystems:signal-service-android:bf469abcdcd2b2ba429024aca30713eaa3b83a77af34030a818b1c9fb4780044',
         'org.whispersystems:webrtc-android:5493c92141ce884fc5ce8240d783232f4fe14bd17a8d0d7d1bd4944d0bd1682f',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -218,7 +218,7 @@ dependencyVerification {
         'com.github.bumptech.glide:gifdecoder:59ccf3bb0cec11dab4b857382cbe0b171111b6fc62bf141adce4e1180889af15',
         'com.android.support:support-annotations:af05330d997eb92a066534dbe0a3ea24347d26d7001221092113ae02a8f233da',
         'org.whispersystems:signal-protocol-android:5b8acded7f2a40178eb90ab8e8cbfec89d170d91b3ff5e78487d1098df6185a1',
-        'org.whispersystems:signal-service-java:c7ab92374e9656ba86a8d859cec71d03a68bba3e7ec0b7c597b726bf720eac21',
+        'org.whispersystems:signal-service-java:4db9adf763071756cfd93fe48a40850f684ca02f2dea59601841abba7715c5c1',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
         'com.github.bumptech.glide:annotations:bede99ef9f71517a4274bac18fd3e483e9f2b6108d7d6fe8f4949be4aa4d9512',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
@@ -232,7 +232,9 @@ dependencyVerification {
         'com.googlecode.libphonenumber:libphonenumber:183392c0565be16d3f6f86680b4106bbde6fe31a402ad21bf9823d938c0c8706',
         'com.fasterxml.jackson.core:jackson-databind:835097bcdd11f5bc8a08378c70d4c8054dfa4b911691cc2752063c75534d198d',
         'com.squareup.okhttp3:okhttp:7265adbd6f028aade307f58569d814835cd02bc9beffb70c25f72c9de50d61c4',
+        'com.madgag.spongycastle:pkix:0d9cca6991f68eb373cfad309d5268c9fc38db5efb5fe00dcccf5c973af1eca1',
         'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
+        'org.threeten:threetenbp:f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7',
         'org.whispersystems:curve25519-java:7dd659d8822c06c3aea1a47f18fac9e5761e29cab8100030b877db445005f03e',
         'com.fasterxml.jackson.core:jackson-annotations:0ca408c24202a7626ec8b861e99d85eca5e38b73311dd6dd12e3e9deecc3fe94',
         'com.fasterxml.jackson.core:jackson-core:cbf4604784b4de226262845447a1ad3bb38a6728cebe86562e2c5afada8be2c0',
@@ -265,11 +267,13 @@ android {
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\""
+        buildConfigField "String", "SIGNAL_CONTACT_DISCOVERY_URL", "\"https://api.directory.signal.org\""
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "GIPHY_PROXY_HOST", "\"giphy-proxy-production.whispersystems.org\""
         buildConfigField "int", "GIPHY_PROXY_PORT", "80"
         buildConfigField "String", "USER_AGENT", "\"OWA\""
         buildConfigField "boolean", "DEV_BUILD", "false"
+        buildConfigField "String", "MRENCLAVE", "\"cd6cfc342937b23b1bdd3bbf9721aa5615ac9ff50a75c5527d441cd3276826c9\""
 
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"

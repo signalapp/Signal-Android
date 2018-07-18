@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
+import org.whispersystems.signalservice.internal.configuration.SignalContactDiscoveryUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl;
 
@@ -54,8 +55,10 @@ public class SignalServiceNetworkAccess {
     final TrustStore                 trustStore     = new DomainFrontingTrustStore(context);
     final SignalServiceUrl           service        = new SignalServiceUrl("https://cms.souqcdn.com", SERVICE_REFLECTOR_HOST, trustStore, SOUQ_CONNECTION_SPEC);
     final SignalCdnUrl               serviceCdn     = new SignalCdnUrl("https://cms.souqcdn.com", SERVICE_REFLECTOR_HOST, trustStore, SOUQ_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl  serviceContact = new SignalContactDiscoveryUrl("https://cms.souqcdn.com", SERVICE_REFLECTOR_HOST, trustStore, SOUQ_CONNECTION_SPEC);
     final SignalServiceConfiguration serviceConfig  = new SignalServiceConfiguration(new SignalServiceUrl[] { service },
-                                                                                     new SignalCdnUrl[] { serviceCdn });
+                                                                                     new SignalCdnUrl[] { serviceCdn },
+                                                                                     new SignalContactDiscoveryUrl[] { serviceContact });
 
     this.censorshipConfiguration = new HashMap<String, SignalServiceConfiguration>() {{
       put(COUNTRY_CODE_EGYPT, serviceConfig);
@@ -65,7 +68,8 @@ public class SignalServiceNetworkAccess {
     }};
 
     this.uncensoredConfiguration = new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl(BuildConfig.SIGNAL_URL, new SignalServiceTrustStore(context))},
-                                                                  new SignalCdnUrl[] {new SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, new SignalServiceTrustStore(context))});
+                                                                  new SignalCdnUrl[] {new SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, new SignalServiceTrustStore(context))},
+                                                                  new SignalContactDiscoveryUrl[] {new SignalContactDiscoveryUrl(BuildConfig.SIGNAL_CONTACT_DISCOVERY_URL, new SignalServiceTrustStore(context))});
 
     this.censoredCountries = this.censorshipConfiguration.keySet().toArray(new String[0]);
   }
