@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -46,6 +47,9 @@ public class SharedContactView extends LinearLayout implements RecipientModified
   private Locale        locale;
   private GlideRequests glideRequests;
   private EventListener eventListener;
+  private CornerMask    cornerMask;
+  private int           bigCornerRadius;
+  private int           smallCornerRadius;
 
   private final Map<String, Recipient> activeRecipients = new HashMap<>();
 
@@ -79,6 +83,10 @@ public class SharedContactView extends LinearLayout implements RecipientModified
     actionButtonView = findViewById(R.id.contact_action_button);
     footer           = findViewById(R.id.contact_footer);
 
+    cornerMask        = new CornerMask(this);
+    bigCornerRadius   = getResources().getDimensionPixelOffset(R.dimen.message_corner_radius);
+    smallCornerRadius = getResources().getDimensionPixelOffset(R.dimen.message_corner_collapse_radius);
+
     if (attrs != null) {
       TypedArray typedArray   = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.SharedContactView, 0, 0);
       int        titleColor   = typedArray.getInt(R.styleable.SharedContactView_contact_titleColor, Color.BLACK);
@@ -88,6 +96,26 @@ public class SharedContactView extends LinearLayout implements RecipientModified
       nameView.setTextColor(titleColor);
       numberView.setTextColor(captionColor);
       footer.setColor(captionColor);
+    }
+
+    if (cornerMask.isLegacy()) {
+      setWillNotDraw(false);
+    }
+  }
+
+  @Override
+  protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
+    if (cornerMask.isLegacy()) {
+      cornerMask.mask(canvas);
+    }
+  }
+
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
+    super.dispatchDraw(canvas);
+    if (!cornerMask.isLegacy()) {
+      cornerMask.mask(canvas);
     }
   }
 
@@ -102,6 +130,21 @@ public class SharedContactView extends LinearLayout implements RecipientModified
     presentContact(contact);
     presentAvatar(contact.getAvatarAttachment() != null ? contact.getAvatarAttachment().getDataUri() : null);
     presentActionButtons(ContactUtil.getRecipients(getContext(), contact));
+  }
+
+  public void setSingularStyle() {
+    cornerMask.setBottomLeftRadius(bigCornerRadius);
+    cornerMask.setBottomRightRadius(bigCornerRadius);
+  }
+
+  public void setClusteredIncomingStyle() {
+    cornerMask.setBottomLeftRadius(smallCornerRadius);
+    cornerMask.setBottomRightRadius(bigCornerRadius);
+  }
+
+  public void setClusteredOutgoingStyle() {
+    cornerMask.setBottomLeftRadius(bigCornerRadius);
+    cornerMask.setBottomRightRadius(smallCornerRadius);
   }
 
   public void setEventListener(@NonNull EventListener eventListener) {

@@ -28,7 +28,7 @@
               style="@style/Signal.Text.Caption"
               android:textColor="?attr/conversation_item_sticky_date_text_color"
               android:textAllCaps="true"
-              android:background="@drawable/sticky_date_header_background"
+              android:background="?attr/conversation_item_sticky_date_background"
               android:elevation="9dp"
               android:visibility="gone"
               tools:text="March 1, 2015" />

@@ -27,7 +27,7 @@
             android:id="@+id/compose_bubble"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/compose_background"
+            android:background="?attr/conversation_input_background"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical">

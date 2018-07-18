@@ -48,6 +48,7 @@ public class ConversationItemThumbnail extends FrameLayout {
   private ImageView              shade;
   private ConversationItemFooter footer;
   private Paint                  outlinePaint;
+  private CornerMask             cornerMask;
 
   public ConversationItemThumbnail(Context context) {
     super(context);
@@ -71,6 +72,7 @@ public class ConversationItemThumbnail extends FrameLayout {
     this.shade        = findViewById(R.id.conversation_thumbnail_shade);
     this.footer       = findViewById(R.id.conversation_thumbnail_footer);
     this.outlinePaint = ThemeUtil.isDarkTheme(getContext()) ? DARK_THEME_OUTLINE_PAINT : LIGHT_THEME_OUTLINE_PAINT;
+    this.cornerMask   = new CornerMask(this);
 
     setTouchDelegate(thumbnail.getTouchDelegate());
 
@@ -87,7 +89,15 @@ public class ConversationItemThumbnail extends FrameLayout {
   @SuppressWarnings("SuspiciousNameCombination")
   @Override
   protected void dispatchDraw(Canvas canvas) {
+    if (cornerMask.isLegacy()) {
+      cornerMask.mask(canvas);
+    }
+
     super.dispatchDraw(canvas);
+
+    if (!cornerMask.isLegacy()) {
+      cornerMask.mask(canvas);
+    }
 
     final float halfStrokeWidth = outlinePaint.getStrokeWidth() / 2;
 
@@ -137,6 +147,8 @@ public class ConversationItemThumbnail extends FrameLayout {
     radii[2] = radii[3] = topRight;
     radii[4] = radii[5] = bottomRight;
     radii[6] = radii[7] = bottomLeft;
+
+    cornerMask.setRadii(topLeft, topRight, bottomRight, bottomLeft);
   }
 
   public ConversationItemFooter getFooter() {

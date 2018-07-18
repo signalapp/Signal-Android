@@ -20,6 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/conversation_individual_right_gutter"
         android:layout_marginEnd="@dimen/conversation_individual_right_gutter"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
         android:clipToPadding="false"
         android:clipChildren="false">
 
@@ -28,31 +30,28 @@
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="6dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:cropToPadding="true"
             android:contentDescription="@string/conversation_item_received__contact_photo_description" />
 
-        <org.thoughtcrime.securesms.components.CornerMaskingView
+        <LinearLayout
             android:id="@+id/body_bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/message_bubble_edge_margin"
             android:layout_marginEnd="@dimen/message_bubble_edge_margin"
-            android:background="@color/white"
-            android:clipToPadding="false"
-            android:clipChildren="false"
-            tools:backgroundTint="@color/conversation_blue">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toRightOf="@id/contact_photo"
+            android:layout_toEndOf="@id/contact_photo"
             android:orientation="vertical"
             android:clipToPadding="false"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:background="@color/white"
+            tools:backgroundTint="@color/conversation_blue">
 
             <LinearLayout
                 android:id="@+id/group_sender_holder"
@@ -169,9 +168,7 @@
                 android:clipToPadding="false"
                 app:footer_color="?conversation_item_received_text_secondary_color"/>
 
-            </LinearLayout>
-
-        </org.thoughtcrime.securesms.components.CornerMaskingView>
+        </LinearLayout>
 
         <org.thoughtcrime.securesms.components.AlertView
             android:id="@+id/indicators_parent"

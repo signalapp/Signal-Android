@@ -28,8 +28,7 @@
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference|color"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
-    <attr name="conversation_input_background_color" format="color"/>
-    <attr name="conversation_input_outline_color" format="color"/>
+    <attr name="conversation_input_background" format="reference"/>
     <attr name="conversation_transport_sms_indicator" format="reference"/>
     <attr name="conversation_transport_push_indicator" format="reference"/>
     <attr name="conversation_transport_popup_background" format="reference"/>
@@ -77,7 +76,7 @@
     <attr name="conversation_item_last_seen_line_color" format="reference"/>
     <attr name="conversation_item_date_line_color" format="reference"/>
     <attr name="conversation_item_quote_text_color" format="reference"/>
-    <attr name="conversation_item_sticky_date_background_color" format="color" />
+    <attr name="conversation_item_sticky_date_background" format="reference" />
     <attr name="conversation_item_sticky_date_text_color" format="color" />
     <attr name="conversation_item_delivery_icon_color" format="color" />
 

@@ -224,6 +224,7 @@ public class ViewUtil {
     } else {
       ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin = margin;
     }
+    view.forceLayout();
     view.requestLayout();
   }
 

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -40,25 +41,25 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
   private static final int MESSAGE_TYPE_OUTGOING = 1;
   private static final int MESSAGE_TYPE_INCOMING = 2;
 
-  private CornerMaskingView rootView;
-  private View              backgroundView;
-  private TextView          authorView;
-  private TextView          bodyView;
-  private ImageView         quoteBarView;
-  private ImageView         thumbnailView;
-  private View              attachmentVideoOverlayView;
-  private ViewGroup         attachmentContainerView;
-  private TextView          attachmentNameView;
-  private ImageView         dismissView;
+  private ViewGroup rootView;
+  private TextView  authorView;
+  private TextView  bodyView;
+  private ImageView quoteBarView;
+  private ImageView thumbnailView;
+  private View      attachmentVideoOverlayView;
+  private ViewGroup attachmentContainerView;
+  private TextView  attachmentNameView;
+  private ImageView dismissView;
 
-  private long      id;
-  private Recipient author;
-  private String    body;
-  private TextView  mediaDescriptionText;
-  private SlideDeck attachments;
-  private int       messageType;
-  private int       largeCornerRadius;
-  private int       smallCornerRadius;
+  private long       id;
+  private Recipient  author;
+  private String     body;
+  private TextView   mediaDescriptionText;
+  private SlideDeck  attachments;
+  private int        messageType;
+  private int        largeCornerRadius;
+  private int        smallCornerRadius;
+  private CornerMask cornerMask;
 
 
   public QuoteView(Context context) {
@@ -86,7 +87,6 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
     inflate(getContext(), R.layout.quote_view, this);
 
     this.rootView                     = findViewById(R.id.quote_root);
-    this.backgroundView               = findViewById(R.id.quote_background);
     this.authorView                   = findViewById(R.id.quote_author);
     this.bodyView                     = findViewById(R.id.quote_text);
     this.quoteBarView                 = findViewById(R.id.quote_bar);
@@ -99,7 +99,8 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
     this.largeCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_large);
     this.smallCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_bottom);
 
-    rootView.setRadii(largeCornerRadius, largeCornerRadius, smallCornerRadius, smallCornerRadius);
+    cornerMask = new CornerMask(this);
+    cornerMask.setRadii(largeCornerRadius, largeCornerRadius, smallCornerRadius, smallCornerRadius);
 
     if (attrs != null) {
       TypedArray typedArray     = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.QuoteView, 0, 0);
@@ -117,16 +118,31 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
 
       if (messageType == MESSAGE_TYPE_PREVIEW) {
         int radius = getResources().getDimensionPixelOffset(R.dimen.quote_corner_radius_preview);
-        rootView.setTopLeftRadius(radius);
-        rootView.setTopRightRadius(radius);
+        cornerMask.setTopLeftRadius(radius);
+        cornerMask.setTopRightRadius(radius);
       }
     }
 
     dismissView.setOnClickListener(view -> setVisibility(GONE));
 
-    setWillNotDraw(false);
-    if (Build.VERSION.SDK_INT < 18) {
-      setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+    if (cornerMask.isLegacy()) {
+      setWillNotDraw(false);
+    }
+  }
+
+  @Override
+  protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
+    if (cornerMask.isLegacy()) {
+      cornerMask.mask(canvas);
+    }
+  }
+
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
+    super.dispatchDraw(canvas);
+    if (!cornerMask.isLegacy()) {
+      cornerMask.mask(canvas);
     }
   }
 
@@ -145,8 +161,8 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
-    rootView.setTopLeftRadius(topLeftLarge ? largeCornerRadius : smallCornerRadius);
-    rootView.setTopRightRadius(topRightLarge ? largeCornerRadius : smallCornerRadius);
+    cornerMask.setTopLeftRadius(topLeftLarge ? largeCornerRadius : smallCornerRadius);
+    cornerMask.setTopRightRadius(topRightLarge ? largeCornerRadius : smallCornerRadius);
   }
 
   public void dismiss() {
@@ -177,7 +193,7 @@ public class QuoteView extends LinearLayout implements RecipientModifiedListener
 
     // We use the raw color resource because Android 4.x was struggling with tints here
     quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));
-    backgroundView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
+    rootView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
   }
 
   private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {
