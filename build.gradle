@@ -128,6 +128,8 @@ dependencies {
         exclude group: 'org.freemarker'
     }
 
+    compile 'org.osmdroid:osmdroid-android:6.0.0'
+
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:1.7.1'
     testCompile 'org.mockito:mockito-core:1.9.5'

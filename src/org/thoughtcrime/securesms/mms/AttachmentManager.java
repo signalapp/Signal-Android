@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.components.location.PlacePickerActivity;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
@@ -57,6 +58,7 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -378,14 +380,18 @@ public class AttachmentManager {
                .execute();
   }
 
-  public static void selectLocation(Activity activity, int requestCode) {
+  public static void selectLocation(Activity activity, int requestCode, int requestCodeGs) {
     Permissions.with(activity)
                .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
                .ifNecessary()
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
                .onAllGranted(() -> {
                  try {
-                   activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
+                   if (PlayServicesUtil.getPlayServicesStatus(activity) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
+                     activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCodeGs);
+                   } else {
+                     activity.startActivityForResult(new Intent(activity, PlacePickerActivity.class), requestCode);
+                   }
                  } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
                    Log.w(TAG, e);
                  }

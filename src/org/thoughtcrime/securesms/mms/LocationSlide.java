@@ -21,7 +21,7 @@ public class LocationSlide extends ImageSlide {
   @Override
   @NonNull
   public Optional<String> getBody() {
-    return Optional.of(place.getDescription());
+    return Optional.of(place.getDescription(context));
   }
 
   @NonNull

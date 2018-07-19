@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.location;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,13 +13,15 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.PlayServicesUtil;
 
 import java.io.IOException;
 
 public class SignalPlace {
 
-  private static final String URL = "https://maps.google.com/maps";
-  private static final String TAG = SignalPlace.class.getSimpleName();
+  private static final String URL_OSM    = "https://www.openstreetmap.org/#map=15/%s/%s";
+  private static final String URL_GOOGLE = "https://maps.google.com/maps";
+  private static final String TAG        = SignalPlace.class.getSimpleName();
 
   @JsonProperty
   private CharSequence name;
@@ -33,10 +36,14 @@ public class SignalPlace {
   private double longitude;
 
   public SignalPlace(Place place) {
-    this.name      = place.getName();
-    this.address   = place.getAddress();
-    this.latitude  = place.getLatLng().latitude;
-    this.longitude = place.getLatLng().longitude;
+    this(place.getName(), place.getAddress(), place.getLatLng().latitude, place.getLatLng().longitude);
+  }
+
+  public SignalPlace(CharSequence name, CharSequence address, double locationLat, double locationLong) {
+    this.name      = name == null ? "" : name;
+    this.address   = address == null ? "" : address;
+    this.latitude  = locationLat;
+    this.longitude = locationLong;
   }
 
   public SignalPlace() {}
@@ -47,7 +54,7 @@ public class SignalPlace {
   }
 
   @JsonIgnore
-  public String getDescription() {
+  public String getDescription(Context context) {
     String description = "";
 
     if (!TextUtils.isEmpty(name)) {
@@ -58,10 +65,14 @@ public class SignalPlace {
       description += (address + "\n");
     }
 
-    description += Uri.parse(URL)
-                      .buildUpon()
-                      .appendQueryParameter("q", String.format("%s,%s", latitude, longitude))
-                      .build().toString();
+    if (PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
+      description += Uri.parse(URL_GOOGLE)
+                        .buildUpon()
+                        .appendQueryParameter("q", String.format("%s,%s", latitude, longitude))
+                        .build().toString();
+    } else {
+      description += String.format(URL_OSM, latitude, longitude);
+    }
 
     return description;
   }

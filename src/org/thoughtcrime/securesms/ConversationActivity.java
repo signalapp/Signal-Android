@@ -223,8 +223,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int TAKE_PHOTO          = 7;
   private static final int ADD_CONTACT         = 8;
   private static final int PICK_LOCATION       = 9;
-  private static final int PICK_GIF            = 10;
-  private static final int SMS_DEFAULT         = 11;
+  private static final int PICK_LOCATION_GS    = 10;
+  private static final int PICK_GIF            = 11;
+  private static final int SMS_DEFAULT         = 12;
 
   private   GlideRequests               glideRequests;
   protected ComposeText                 composeText;
@@ -456,6 +457,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       fragment.reloadList();
       break;
     case PICK_LOCATION:
+      double locationLat = data.getDoubleExtra("lat", Double.MIN_VALUE);
+      double locationLong = data.getDoubleExtra("long", Double.MIN_VALUE);
+      if (locationLat != Double.MIN_VALUE && locationLong != Double.MIN_VALUE) {
+        String name = data.getStringExtra("name");
+        String address = data.getStringExtra("address");
+        SignalPlace place = new SignalPlace(name, address, locationLat, locationLong);
+        attachmentManager.setLocation(place, getCurrentMediaConstraints());
+      }
+      break;
+    case PICK_LOCATION_GS:
       SignalPlace place = new SignalPlace(PlacePicker.getPlace(data, this));
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
       break;
@@ -1376,7 +1387,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case AttachmentTypeSelector.ADD_CONTACT_INFO:
       AttachmentManager.selectContactInfo(this, PICK_CONTACT); break;
     case AttachmentTypeSelector.ADD_LOCATION:
-      AttachmentManager.selectLocation(this, PICK_LOCATION); break;
+      AttachmentManager.selectLocation(this, PICK_LOCATION, PICK_LOCATION_GS); break;
     case AttachmentTypeSelector.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     case AttachmentTypeSelector.ADD_GIF:
