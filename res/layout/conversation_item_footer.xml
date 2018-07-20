@@ -8,19 +8,37 @@
     android:orientation="horizontal"
     tools:parentTag="org.thoughtcrime.securesms.components.ConversationItemFooter">
 
-    <TextView
-        android:id="@+id/footer_date"
-        android:autoLink="none"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginRight="6dp"
         android:layout_marginEnd="6dp"
-        android:linksClickable="false"
-        style="@style/Signal.Text.Caption.MessageSent"
-        android:textColor="?conversation_item_sent_text_secondary_color"
-        android:textAllCaps="true"
-        tools:text="30 mins"/>
+        android:orientation="horizontal"
+        android:gravity="left|start|center_vertical">
+
+        <TextView
+            android:id="@+id/footer_date"
+            android:autoLink="none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:linksClickable="false"
+            style="@style/Signal.Text.Caption.MessageSent"
+            android:textColor="?conversation_item_sent_text_secondary_color"
+            android:textAllCaps="true"
+            tools:text="30 mins"/>
+
+        <org.thoughtcrime.securesms.components.ExpirationTimerView
+            android:id="@+id/footer_expiration_timer"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/footer_sim_info"
@@ -38,18 +56,6 @@
         tools:visibility="visible"
         tools:text="to SIM1" />
 
-    <org.thoughtcrime.securesms.components.ExpirationTimerView
-        android:id="@+id/footer_expiration_timer"
-        android:layout_gravity="center_vertical|end"
-        android:layout_marginLeft="3dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginEnd="3dp"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:visibility="gone"
-        tools:visibility="visible"/>
-
     <ImageView
         android:id="@+id/footer_insecure_indicator"
         android:layout_width="12dp"
@@ -57,7 +63,6 @@
         android:src="@drawable/ic_unlocked_white_18dp"
         android:visibility="gone"
         android:layout_gravity="center_vertical|end"
-        android:alpha=".6"
         android:contentDescription="@string/conversation_item__secure_message_description"
         tools:visibility="visible"/>
 
@@ -65,6 +70,8 @@
         android:id="@+id/footer_delivery_status"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="3dp"
+        android:layout_marginStart="3dp"/>
 
 </merge>
