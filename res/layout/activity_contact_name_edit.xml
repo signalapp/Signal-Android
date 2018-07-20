@@ -11,8 +11,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/TextSecure.LightActionBar"
-        android:background="@color/signal_primary"
+        android:theme="?attr/actionBarStyle"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
         android:elevation="4dp"/>
 
     <ScrollView
