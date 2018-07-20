@@ -6,4 +6,5 @@
     android:layout_width="@dimen/media_bubble_default_dimens"
     android:layout_height="wrap_content"
     app:contact_titleColor="?conversation_item_sent_text_primary_color"
-    app:contact_captionColor="?conversation_item_sent_text_secondary_color"/>
+    app:contact_captionColor="?conversation_item_sent_text_secondary_color"
+    app:contact_footerIconColor="?conversation_item_sent_icon_color"/>

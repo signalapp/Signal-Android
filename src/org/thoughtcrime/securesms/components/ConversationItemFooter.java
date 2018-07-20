@@ -60,7 +60,8 @@ public class ConversationItemFooter extends LinearLayout {
 
     if (attrs != null) {
       TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ConversationItemFooter, 0, 0);
-      setColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_color, getResources().getColor(R.color.core_white)));
+      setTextColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_text_color, getResources().getColor(R.color.core_white)));
+      setIconColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_icon_color, getResources().getColor(R.color.core_white)));
       typedArray.recycle();
     }
   }
@@ -79,11 +80,15 @@ public class ConversationItemFooter extends LinearLayout {
     presentDeliveryStatus(messageRecord);
   }
 
-  public void setColor(int color) {
+  public void setTextColor(int color) {
     dateView.setTextColor(color);
     simView.setTextColor(color);
+  }
+
+  public void setIconColor(int color) {
     timerView.setColorFilter(color);
     insecureIndicatorView.setColorFilter(color);
+    deliveryStatusView.setTint(color);
   }
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {

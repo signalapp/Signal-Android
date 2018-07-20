@@ -91,11 +91,15 @@ public class SharedContactView extends LinearLayout implements RecipientModified
       TypedArray typedArray   = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.SharedContactView, 0, 0);
       int        titleColor   = typedArray.getInt(R.styleable.SharedContactView_contact_titleColor, Color.BLACK);
       int        captionColor = typedArray.getInt(R.styleable.SharedContactView_contact_captionColor, Color.BLACK);
+      int        iconColor    = typedArray.getInt(R.styleable.SharedContactView_contact_footerIconColor, Color.BLACK);
+      float      footerAlpha  = typedArray.getFloat(R.styleable.SharedContactView_contact_footerAlpha, 1);
       typedArray.recycle();
 
       nameView.setTextColor(titleColor);
       numberView.setTextColor(captionColor);
-      footer.setColor(captionColor);
+      footer.setTextColor(captionColor);
+      footer.setIconColor(iconColor);
+      footer.setAlpha(footerAlpha);
     }
 
     if (cornerMask.isLegacy()) {

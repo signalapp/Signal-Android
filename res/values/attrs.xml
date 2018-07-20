@@ -71,6 +71,7 @@
     <attr name="conversation_item_received_text_secondary_color" format="reference|color"/>
     <attr name="conversation_item_sent_text_indicator_tab_color" format="reference|color"/>
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
+    <attr name="conversation_item_sent_icon_color" format="color" />
     <attr name="conversation_item_update_text_color" format="reference"/>
     <attr name="conversation_item_last_seen_text_color" format="reference"/>
     <attr name="conversation_item_last_seen_line_color" format="reference"/>
@@ -78,7 +79,6 @@
     <attr name="conversation_item_quote_text_color" format="reference"/>
     <attr name="conversation_item_sticky_date_background" format="reference" />
     <attr name="conversation_item_sticky_date_text_color" format="color" />
-    <attr name="conversation_item_delivery_icon_color" format="color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -265,6 +265,8 @@
     <declare-styleable name="SharedContactView">
         <attr name="contact_titleColor" format="color" />
         <attr name="contact_captionColor" format="color" />
+        <attr name="contact_footerIconColor" format="color" />
+        <attr name="contact_footerAlpha" format="float" />
     </declare-styleable>
 
     <declare-styleable name="DocumentView">
@@ -273,7 +275,8 @@
     </declare-styleable>
 
     <declare-styleable name="ConversationItemFooter">
-        <attr name="footer_color" format="color" />
+        <attr name="footer_text_color" format="color" />
+        <attr name="footer_icon_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="ConversationItemThumbnail">

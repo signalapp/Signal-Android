@@ -65,7 +65,6 @@
         android:id="@+id/footer_delivery_status"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        app:iconColor="?attr/conversation_item_delivery_icon_color"/>
+        android:layout_gravity="center_vertical" />
 
 </merge>
