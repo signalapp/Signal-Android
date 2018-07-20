@@ -113,16 +113,6 @@ public class ConversationItemThumbnail extends FrameLayout {
   }
 
   @Override
-  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-    if (getMeasuredWidth() != thumbnail.getMeasuredWidth()) {
-      getLayoutParams().width = shade.getLayoutParams().width = thumbnail.getMeasuredWidth();
-      measure(widthMeasureSpec, heightMeasureSpec);
-    }
-  }
-
-  @Override
   public void setFocusable(boolean focusable) {
     thumbnail.setFocusable(focusable);
   }
