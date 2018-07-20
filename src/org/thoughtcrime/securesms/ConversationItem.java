@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
-import org.thoughtcrime.securesms.components.CornerMaskingView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.SharedContactView;

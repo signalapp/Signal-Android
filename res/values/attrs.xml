@@ -283,7 +283,4 @@
         <attr name="conversationThumbnail_maxHeight" format="dimension" />
     </declare-styleable>
 
-    <declare-styleable name="CornerMaskingView">
-        <attr name="cmv_radius" format="dimension" />
-    </declare-styleable>
 </resources>

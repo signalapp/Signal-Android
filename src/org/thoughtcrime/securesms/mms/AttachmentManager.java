@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -57,6 +58,7 @@ import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -108,6 +110,7 @@ public class AttachmentManager {
       removableMediaView.setRemoveClickListener(new RemoveButtonListener());
       removableMediaView.setEditClickListener(new EditButtonListener());
       thumbnail.setOnClickListener(new ThumbnailClickListener());
+      documentView.getBackground().setColorFilter(ThemeUtil.getThemedColor(context, R.attr.conversation_item_bubble_background), PorterDuff.Mode.MULTIPLY);
     }
 
   }
