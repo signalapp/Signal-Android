@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
 
-public class QuoteView extends LinearLayout implements RecipientModifiedListener {
+public class QuoteView extends FrameLayout implements RecipientModifiedListener {
 
   private static final String TAG = QuoteView.class.getSimpleName();
 
