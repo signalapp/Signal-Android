@@ -6,21 +6,8 @@
                 android:id="@+id/prompt_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="?attr/login_top_background"
                 android:orientation="vertical">
-
-    <View android:id="@+id/shim"
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:layout_centerVertical="true"
-          android:visibility="invisible"/>
-
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?login_top_background"
-            android:layout_above="@id/shim">
-
-    </FrameLayout>
 
     <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
