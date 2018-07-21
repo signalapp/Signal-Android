@@ -655,7 +655,9 @@ public class ConversationItem extends LinearLayout
 
     boolean differentMinutes = next.isPresent() && !DateUtils.isSameBriefRelativeTimestamp(context, locale, next.get().getTimestamp(), current.getTimestamp());
 
-    if (current.getExpiresIn() > 0 || !current.isSecure() || differentMinutes || isEndOfMessageCluster(current, next, isGroupThread)) {
+    if (current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
+        current.isFailed() || differentMinutes || isEndOfMessageCluster(current, next, isGroupThread))
+    {
       ConversationItemFooter activeFooter = getActiveFooter(current);
       activeFooter.setVisibility(VISIBLE);
       activeFooter.setMessageRecord(current, locale);
