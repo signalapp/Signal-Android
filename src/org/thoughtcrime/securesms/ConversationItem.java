@@ -654,7 +654,8 @@ public class ConversationItem extends LinearLayout
     if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().getFooter().setVisibility(GONE);
 
     boolean differentMinutes = next.isPresent() && !DateUtils.isSameBriefRelativeTimestamp(context, locale, next.get().getTimestamp(), current.getTimestamp());
-    if (current.isOutgoing() || current.getExpiresIn() > 0 || !current.isSecure() || differentMinutes || isEndOfMessageCluster(current, next, isGroupThread)) {
+
+    if (current.getExpiresIn() > 0 || !current.isSecure() || differentMinutes || isEndOfMessageCluster(current, next, isGroupThread)) {
       ConversationItemFooter activeFooter = getActiveFooter(current);
       activeFooter.setVisibility(VISIBLE);
       activeFooter.setMessageRecord(current, locale);
