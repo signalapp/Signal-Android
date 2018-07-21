@@ -416,6 +416,7 @@ public class ConversationItem extends LinearLayout
       setSharedContactCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       footer.setVisibility(GONE);
     } else if (hasAudio(messageRecord)) {
       audioViewStub.get().setVisibility(View.VISIBLE);
@@ -429,6 +430,7 @@ public class ConversationItem extends LinearLayout
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       footer.setVisibility(VISIBLE);
     } else if (hasDocument(messageRecord)) {
       documentViewStub.get().setVisibility(View.VISIBLE);
@@ -443,6 +445,7 @@ public class ConversationItem extends LinearLayout
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       footer.setVisibility(VISIBLE);
     } else if (hasThumbnail(messageRecord)) {
       mediaThumbnailStub.get().setVisibility(View.VISIBLE);
@@ -468,6 +471,7 @@ public class ConversationItem extends LinearLayout
       setThumbnailOutlineCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       footer.setVisibility(VISIBLE);
     } else {
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
@@ -476,6 +480,7 @@ public class ConversationItem extends LinearLayout
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       footer.setVisibility(VISIBLE);
     }
   }

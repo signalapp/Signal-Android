@@ -67,8 +67,9 @@
 
                 <TextView
                     android:id="@+id/group_message_sender"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_marginRight="4sp"
                     android:layout_marginEnd="4sp"
                     style="@style/Signal.Text.Preview"
@@ -81,8 +82,9 @@
 
                 <TextView
                     android:id="@+id/group_message_sender_profile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:paddingRight="4sp"
                     android:paddingLeft="4sp"
                     style="@style/Signal.Text.Preview"
