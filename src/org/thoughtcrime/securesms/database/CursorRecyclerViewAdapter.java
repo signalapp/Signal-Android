@@ -211,6 +211,13 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
     return position - getFastAccessSize();
   }
 
+  protected int getRawCursorPosition(int position) {
+    if (hasHeaderView()) {
+      position += 1;
+    }
+    return position;
+  }
+
   protected int getFastAccessItemViewType(int position) {
     return 0;
   }
