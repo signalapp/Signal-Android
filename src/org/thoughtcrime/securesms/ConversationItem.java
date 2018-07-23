@@ -252,8 +252,8 @@ public class ConversationItem extends LinearLayout
 
     if (needsMeasure) {
       if (measureCalls < MAX_MEASURE_CALLS) {
-        measure(widthMeasureSpec, heightMeasureSpec);
         measureCalls++;
+        measure(widthMeasureSpec, heightMeasureSpec);
       } else {
         Log.w(TAG, "Hit measure() cap of " + MAX_MEASURE_CALLS);
       }
