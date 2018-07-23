@@ -233,6 +233,10 @@ public class ViewUtil {
     view.requestLayout();
   }
 
+  public static void setPaddingTop(@NonNull View view, int padding) {
+    view.setPadding(view.getPaddingLeft(), padding, view.getPaddingRight(), view.getPaddingBottom());
+  }
+
   public static void setPaddingBottom(@NonNull View view, int padding) {
     view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), padding);
   }
