@@ -37,8 +37,8 @@
     <dimen name="conversation_individual_right_gutter">16dp</dimen>
     <dimen name="conversation_individual_left_gutter">16dp</dimen>
     <dimen name="conversation_group_left_gutter">52dp</dimen>
-    <dimen name="conversation_vertical_message_spacing_default">16dp</dimen>
-    <dimen name="conversation_vertical_message_spacing_collapse">2dp</dimen>
+    <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
+    <dimen name="conversation_vertical_message_spacing_collapse">1dp</dimen>
 
     <dimen name="quote_corner_radius_large">10dp</dimen>
     <dimen name="quote_corner_radius_bottom">4dp</dimen>

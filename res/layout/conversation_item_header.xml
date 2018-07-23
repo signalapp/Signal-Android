@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="20dp"
-    android:paddingBottom="21dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="13dp"
     android:paddingLeft="28dp"
     android:paddingRight="28dp">
 

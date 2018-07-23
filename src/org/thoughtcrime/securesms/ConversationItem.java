@@ -215,7 +215,7 @@ public class ConversationItem extends LinearLayout
     setGroupMessageStatus(messageRecord, recipient);
     setAuthor(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
-    setMessageSpacing(context, messageRecord, nextMessageRecord);
+    setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread);
   }
 
@@ -771,19 +771,20 @@ public class ConversationItem extends LinearLayout
     return isStartOfMessageCluster(current, previous, isGroupThread) && isEndOfMessageCluster(current, next, isGroupThread);
   }
 
-  private void setMessageSpacing(@NonNull Context context, @NonNull MessageRecord current, @NonNull Optional<MessageRecord> next) {
-    int spacing = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
+  private void setMessageSpacing(@NonNull Context context, @NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    int spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
+    int spacingBottom = spacingTop;
 
-    if (next.isPresent()) {
-      boolean recipientsMatch = current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress());
-      boolean outgoingMatch   = current.isOutgoing() == next.get().isOutgoing();
-
-      if (!recipientsMatch || !outgoingMatch) {
-        spacing = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
-      }
+    if (isStartOfMessageCluster(current, previous, isGroupThread)) {
+      spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
     }
 
-    ViewUtil.setPaddingBottom(this, spacing);
+    if (isEndOfMessageCluster(current, next, isGroupThread)) {
+      spacingBottom = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
+    }
+
+    ViewUtil.setPaddingTop(this, spacingTop);
+    ViewUtil.setPaddingBottom(this, spacingBottom);
   }
 
   private int readDimen(@NonNull Context context, @DimenRes int dimenId) {
