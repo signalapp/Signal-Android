@@ -6,7 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +17,21 @@ import android.support.annotation.Nullable;
 import android.util.Pair;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.DefaultLoadControl;
+import com.google.android.exoplayer2.DefaultRenderersFactory;
+import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentServer;
 import org.thoughtcrime.securesms.logging.Log;
@@ -43,7 +58,7 @@ public class AudioSlidePlayer implements SensorEventListener {
   private final @Nullable WakeLock          wakeLock;
 
   private @NonNull  WeakReference<Listener> listener;
-  private @Nullable MediaPlayerWrapper      mediaPlayer;
+  private @Nullable SimpleExoPlayer         mediaPlayer;
   private @Nullable AttachmentServer        audioAttachmentServer;
   private           long                    startTime;
 
@@ -85,64 +100,64 @@ public class AudioSlidePlayer implements SensorEventListener {
   private void play(final double progress, boolean earpiece) throws IOException {
     if (this.mediaPlayer != null) return;
 
-    this.mediaPlayer           = new MediaPlayerWrapper();
+    LoadControl loadControl = new DefaultLoadControl.Builder().setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE).createDefaultLoadControl();
+    this.mediaPlayer           = ExoPlayerFactory.newSimpleInstance(context, new DefaultRenderersFactory(context), new DefaultTrackSelector(), loadControl);
     this.audioAttachmentServer = new AttachmentServer(context, slide.asAttachment());
     this.startTime             = System.currentTimeMillis();
 
     audioAttachmentServer.start();
 
-    mediaPlayer.setDataSource(context, audioAttachmentServer.getUri());
+    mediaPlayer.prepare(createMediaSource(audioAttachmentServer.getUri()));
+    mediaPlayer.setPlayWhenReady(true);
     mediaPlayer.setAudioStreamType(earpiece ? AudioManager.STREAM_VOICE_CALL : AudioManager.STREAM_MUSIC);
-    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+    mediaPlayer.addListener(new Player.DefaultEventListener() {
+
       @Override
-      public void onPrepared(MediaPlayer mp) {
-        Log.i(TAG, "onPrepared");
-        synchronized (AudioSlidePlayer.this) {
-          if (mediaPlayer == null) return;
+      public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+        switch (playbackState) {
+          case Player.STATE_READY:
+            Log.w(TAG, "onPrepared");
+            synchronized (AudioSlidePlayer.this) {
+              if (mediaPlayer == null) return;
 
-          if (progress > 0) {
-            mediaPlayer.seekTo((int) (mediaPlayer.getDuration() * progress));
-          }
+              if (progress > 0) {
+                mediaPlayer.seekTo((long) (mediaPlayer.getDuration() * progress));
+              }
 
-          sensorManager.registerListener(AudioSlidePlayer.this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
-          mediaPlayer.start();
+              sensorManager.registerListener(AudioSlidePlayer.this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-          setPlaying(AudioSlidePlayer.this);
+              setPlaying(AudioSlidePlayer.this);
+            }
+
+            notifyOnStart();
+            progressEventHandler.sendEmptyMessage(0);
+            break;
+
+          case Player.STATE_ENDED:
+            Log.w(TAG, "onComplete");
+            synchronized (AudioSlidePlayer.this) {
+              mediaPlayer = null;
+
+              if (audioAttachmentServer != null) {
+                audioAttachmentServer.stop();
+                audioAttachmentServer = null;
+              }
+
+              sensorManager.unregisterListener(AudioSlidePlayer.this);
+
+              if (wakeLock != null && wakeLock.isHeld()) {
+                wakeLock.release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
+              }
+            }
+
+            notifyOnStop();
+            progressEventHandler.removeMessages(0);
         }
-
-        notifyOnStart();
-        progressEventHandler.sendEmptyMessage(0);
       }
-    });
 
-    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
       @Override
-      public void onCompletion(MediaPlayer mp) {
-        Log.i(TAG, "onComplete");
-        synchronized (AudioSlidePlayer.this) {
-          mediaPlayer = null;
-
-          if (audioAttachmentServer != null) {
-            audioAttachmentServer.stop();
-            audioAttachmentServer = null;
-          }
-
-          sensorManager.unregisterListener(AudioSlidePlayer.this);
-
-          if (wakeLock != null && wakeLock.isHeld()) {
-            wakeLock.release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
-          }
-        }
-
-        notifyOnStop();
-        progressEventHandler.removeMessages(0);
-      }
-    });
-
-    mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-      @Override
-      public boolean onError(MediaPlayer mp, int what, int extra) {
-        Log.w(TAG, "MediaPlayer Error: " + what + " , " + extra);
+      public void onPlayerError(ExoPlaybackException error) {
+        Log.w(TAG, "MediaPlayer Error: " + error);
 
         Toast.makeText(context, R.string.AudioSlidePlayer_error_playing_audio, Toast.LENGTH_SHORT).show();
 
@@ -163,11 +178,14 @@ public class AudioSlidePlayer implements SensorEventListener {
 
         notifyOnStop();
         progressEventHandler.removeMessages(0);
-        return true;
       }
     });
+  }
 
-    mediaPlayer.prepareAsync();
+  private MediaSource createMediaSource(@NonNull Uri uri) {
+    return new ExtractorMediaSource.Factory(new DefaultDataSourceFactory(context, BuildConfig.USER_AGENT))
+                                   .setExtractorsFactory(new DefaultExtractorsFactory().setConstantBitrateSeekingEnabled(true))
+                                   .createMediaSource(uri);
   }
 
   public synchronized void stop() {
@@ -199,7 +217,7 @@ public class AudioSlidePlayer implements SensorEventListener {
   public void setListener(@NonNull Listener listener) {
     this.listener = new WeakReference<>(listener);
 
-    if (this.mediaPlayer != null && this.mediaPlayer.isPlaying()) {
+    if (this.mediaPlayer != null && this.mediaPlayer.getPlaybackState() == Player.STATE_READY) {
       notifyOnStart();
     }
   }
@@ -214,7 +232,7 @@ public class AudioSlidePlayer implements SensorEventListener {
       return new Pair<>(0D, 0);
     } else {
       return new Pair<>((double) mediaPlayer.getCurrentPosition() / (double) mediaPlayer.getDuration(),
-                        mediaPlayer.getCurrentPosition());
+                        (int) mediaPlayer.getCurrentPosition());
     }
   }
 
@@ -277,7 +295,7 @@ public class AudioSlidePlayer implements SensorEventListener {
   @Override
   public void onSensorChanged(SensorEvent event) {
     if (event.sensor.getType() != Sensor.TYPE_PROXIMITY) return;
-    if (mediaPlayer == null || !mediaPlayer.isPlaying()) return;
+    if (mediaPlayer == null || mediaPlayer.getPlaybackState() != Player.STATE_READY) return;
 
     int streamType;
 
@@ -335,28 +353,13 @@ public class AudioSlidePlayer implements SensorEventListener {
     public void handleMessage(Message msg) {
       AudioSlidePlayer player = playerReference.get();
 
-      if (player == null || player.mediaPlayer == null || !player.mediaPlayer.isPlaying()) {
+      if (player == null || player.mediaPlayer == null || player.mediaPlayer.getPlaybackState() != ExoPlayer.STATE_READY) {
         return;
       }
 
       Pair<Double, Integer> progress = player.getProgress();
       player.notifyOnProgress(progress.first, progress.second);
       sendEmptyMessageDelayed(0, 50);
-    }
-  }
-
-  private static class MediaPlayerWrapper extends MediaPlayer {
-
-    private int streamType;
-
-    @Override
-    public void setAudioStreamType(int streamType) {
-      this.streamType = streamType;
-      super.setAudioStreamType(streamType);
-    }
-
-    public int getAudioStreamType() {
-      return streamType;
     }
   }
 }
