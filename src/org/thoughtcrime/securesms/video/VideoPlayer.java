@@ -46,6 +46,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
@@ -66,7 +67,7 @@ public class VideoPlayer extends FrameLayout {
   private static final String TAG = VideoPlayer.class.getName();
 
   @Nullable private final VideoView           videoView;
-  @Nullable private final SimpleExoPlayerView exoView;
+  @Nullable private final PlayerView          exoView;
 
   @Nullable private       SimpleExoPlayer     exoPlayer;
   @Nullable private       AttachmentServer    attachmentServer;
