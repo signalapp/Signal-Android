@@ -11,6 +11,7 @@
     <attr name="conversation_list_item_subject_color" format="reference|color"/>
     <attr name="conversation_list_item_delivery_icon_color" format="reference|color"/>
     <attr name="conversation_list_item_date_color" format="reference|color"/>
+    <attr name="conversation_list_item_unread_color" format="reference|color"/>
     <attr name="conversation_list_item_divider" format="reference"/>
 
     <attr name="conversation_sent_card_background" format="reference|color"/>
