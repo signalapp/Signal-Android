@@ -97,7 +97,7 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isGroupQuit()) {
       return new SpannableString(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
     } else if (isIncomingCall()) {
-      return new SpannableString(context.getString(R.string.MessageRecord_called_you));
+      return new SpannableString(context.getString(R.string.MessageRecord_s_called_you, getIndividualRecipient().toShortString()));
     } else if (isOutgoingCall()) {
       return new SpannableString(context.getString(R.string.MessageRecord_you_called));
     } else if (isMissedCall()) {
