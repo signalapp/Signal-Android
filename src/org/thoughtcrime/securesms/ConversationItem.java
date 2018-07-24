@@ -702,7 +702,9 @@ public class ConversationItem extends LinearLayout
 
   private void setAuthor(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     if (isGroupThread && !current.isOutgoing()) {
-      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().getAddress().equals(previous.get().getRecipient().getAddress())) {
+      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().getAddress().equals(previous.get().getRecipient().getAddress()) ||
+          !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()))
+      {
         groupSenderHolder.setVisibility(VISIBLE);
       } else {
         groupSenderHolder.setVisibility(GONE);
