@@ -76,8 +76,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:9.6.1'
     compile 'com.google.android.gms:play-services-places:9.6.1'
 
-    compile 'com.google.android.exoplayer:exoplayer-core:2.8.4'
-    compile 'com.google.android.exoplayer:exoplayer-ui:2.8.4'
+    compile 'com.google.android.exoplayer:exoplayer-core:2.9.1'
+    compile 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
 
     compile 'org.whispersystems:signal-service-android:2.12.2'
     compile 'org.whispersystems:webrtc-android:M69'
@@ -172,8 +172,8 @@ dependencyVerification {
         'com.google.android.gms:play-services-gcm:312e61253a236f2d9b750b9c04fc92fd190d23b0b2755c99de6ce4a28b259dae',
         'com.google.android.gms:play-services-places:abf3a4a3b146ec7e6e753be62775e512868cf37d6f88ffe2d81167b33b57132b',
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
-        'com.google.android.exoplayer:exoplayer-ui:027557b2d69b15e1852a2530b36971f0dcc177abae240ee35e05f63502cdb0a7',
-        'com.google.android.exoplayer:exoplayer-core:e69b409e11887c955deb373357c30eeabf183395db0092b4817e0f80bb467d5b',
+        'com.google.android.exoplayer:exoplayer-ui:7a942afcc402ff01e9bf48e8d3942850986710f06562d50a1408aaf04a683151',
+        'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
         'org.whispersystems:signal-service-android:26639df2a9c31b6f31f82034091a4ea3002ca6b1088e7fe6d30428a8290dcf2a',
         'org.whispersystems:webrtc-android:5493c92141ce884fc5ce8240d783232f4fe14bd17a8d0d7d1bd4944d0bd1682f',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
