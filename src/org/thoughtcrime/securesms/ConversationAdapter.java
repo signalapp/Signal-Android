@@ -190,12 +190,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
   @Override
-  protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord, int adjustedPosition) {
-
+  protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
     long          start            = System.currentTimeMillis();
-    int           rawPosition      = getRawCursorPosition(adjustedPosition);
-    MessageRecord previousRecord   = rawPosition < getItemCount() - 1 && !isFooterPosition(rawPosition + 1) ? getRecordForPositionOrThrow(rawPosition + 1) : null;
-    MessageRecord nextRecord       = rawPosition > 0 && !isHeaderPosition(rawPosition - 1) ? getRecordForPositionOrThrow(rawPosition - 1) : null;
+    int           adapterPosition  = viewHolder.getAdapterPosition();
+    MessageRecord previousRecord   = adapterPosition < getItemCount() - 1 && !isFooterPosition(adapterPosition + 1) ? getRecordForPositionOrThrow(adapterPosition + 1) : null;
+    MessageRecord nextRecord       = adapterPosition > 0 && !isHeaderPosition(adapterPosition - 1) ? getRecordForPositionOrThrow(adapterPosition - 1) : null;
 
     viewHolder.getView().bind(messageRecord,
                               Optional.fromNullable(previousRecord),
