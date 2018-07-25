@@ -190,6 +190,13 @@ public class ConversationFragment extends Fragment
     getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
   }
 
+  public void moveToLastSeen() {
+    if (lastSeen > 0) {
+      int position = getListAdapter().findLastSeenPosition(lastSeen);
+      scrollToLastSeenPosition(position);
+    }
+  }
+
   private void initializeResources() {
     this.recipient         = Recipient.from(getActivity(), getActivity().getIntent().getParcelableExtra(ConversationActivity.ADDRESS_EXTRA), true);
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);

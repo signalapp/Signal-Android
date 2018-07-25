@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -181,12 +182,13 @@ public class AttachmentManager {
     this.slide      = Optional.of(slide);
   }
 
-  public void setLocation(@NonNull final SignalPlace place,
-                          @NonNull final MediaConstraints constraints)
+  public ListenableFuture<Boolean> setLocation(@NonNull final SignalPlace place,
+                                               @NonNull final MediaConstraints constraints)
   {
     inflateStub();
 
-    ListenableFuture<Bitmap> future = mapView.display(place);
+    SettableFuture<Boolean>  returnResult = new SettableFuture<>();
+    ListenableFuture<Bitmap> future       = mapView.display(place);
 
     attachmentViewStub.get().setVisibility(View.VISIBLE);
     removableMediaView.display(mapView, false);
@@ -201,19 +203,24 @@ public class AttachmentManager {
 
         setSlide(locationSlide);
         attachmentListener.onAttachmentChanged();
+        returnResult.set(true);
       }
     });
+
+    return returnResult;
   }
 
   @SuppressLint("StaticFieldLeak")
-  public void setMedia(@NonNull final GlideRequests glideRequests,
-                       @NonNull final Uri uri,
-                       @NonNull final MediaType mediaType,
-                       @NonNull final MediaConstraints constraints,
-                                final int width,
-                                final int height)
+  public ListenableFuture<Boolean> setMedia(@NonNull final GlideRequests glideRequests,
+                                            @NonNull final Uri uri,
+                                            @NonNull final MediaType mediaType,
+                                            @NonNull final MediaConstraints constraints,
+                                                     final int width,
+                                                     final int height)
   {
     inflateStub();
+
+    final SettableFuture<Boolean> result = new SettableFuture<>();
 
     new AsyncTask<Void, Void, Slide>() {
       @Override
@@ -247,11 +254,13 @@ public class AttachmentManager {
           Toast.makeText(context,
                          R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                          Toast.LENGTH_SHORT).show();
+          result.set(false);
         } else if (!areConstraintsSatisfied(context, slide, constraints)) {
           attachmentViewStub.get().setVisibility(View.GONE);
           Toast.makeText(context,
                          R.string.ConversationActivity_attachment_exceeds_size_limits,
                          Toast.LENGTH_SHORT).show();
+          result.set(false);
         } else {
           setSlide(slide);
           attachmentViewStub.get().setVisibility(View.VISIBLE);
@@ -259,12 +268,14 @@ public class AttachmentManager {
           if (slide.hasAudio()) {
             audioView.setAudio((AudioSlide) slide, false);
             removableMediaView.display(audioView, false);
+            result.set(true);
           } else if (slide.hasDocument()) {
             documentView.setDocument((DocumentSlide) slide, false);
             removableMediaView.display(documentView, false);
+            result.set(true);
           } else {
             Attachment attachment = slide.asAttachment();
-            thumbnail.setImageResource(glideRequests, slide, false, true, attachment.getWidth(), attachment.getHeight());
+            result.deferTo(thumbnail.setImageResource(glideRequests, slide, false, true, attachment.getWidth(), attachment.getHeight()));
             removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
           }
 
@@ -330,6 +341,8 @@ public class AttachmentManager {
         return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize, width, height);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    return result;
   }
 
   public boolean isAttachmentPresent() {

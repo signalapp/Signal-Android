@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,12 +15,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -30,6 +35,8 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
@@ -221,16 +228,16 @@ public class ThumbnailView extends FrameLayout {
   }
 
   @UiThread
-  public void setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
-                               boolean showControls, boolean isPreview)
+  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
+                                                    boolean showControls, boolean isPreview)
   {
-    setImageResource(glideRequests, slide, showControls, isPreview, 0, 0);
+    return setImageResource(glideRequests, slide, showControls, isPreview, 0, 0);
   }
 
   @UiThread
-  public void setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
-                               boolean showControls, boolean isPreview, int naturalWidth,
-                               int naturalHeight)
+  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
+                                                    boolean showControls, boolean isPreview, int naturalWidth,
+                                                    int naturalHeight)
   {
     if (showControls) {
       getTransferControls().setSlide(slide);
@@ -249,7 +256,7 @@ public class ThumbnailView extends FrameLayout {
 
     if (Util.equals(slide, this.slide)) {
       Log.w(TAG, "Not re-loading slide " + slide.asAttachment().getDataUri());
-      return;
+      return new SettableFuture<>(false);
     }
 
     if (this.slide != null && this.slide.getFastPreflightId() != null &&
@@ -257,7 +264,7 @@ public class ThumbnailView extends FrameLayout {
     {
       Log.w(TAG, "Not re-loading slide for fast preflight: " + slide.getFastPreflightId());
       this.slide = slide;
-      return;
+      return new SettableFuture<>(false);
     }
 
     Log.w(TAG, "loading part with id " + slide.asAttachment().getDataUri()
@@ -270,19 +277,31 @@ public class ThumbnailView extends FrameLayout {
     dimens[HEIGHT] = naturalHeight;
     invalidate();
 
-    if      (slide.getThumbnailUri() != null) buildThumbnailGlideRequest(glideRequests, slide).into(image);
-    else if (slide.hasPlaceholder())          buildPlaceholderGlideRequest(glideRequests, slide).into(image);
-    else                                      glideRequests.clear(image);
+    SettableFuture<Boolean> result = new SettableFuture<>();
 
+    if (slide.getThumbnailUri() != null) {
+      buildThumbnailGlideRequest(glideRequests, slide).into(new GlideListeningTarget(image, result));
+    } else if (slide.hasPlaceholder()) {
+      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideListeningTarget(image, result));
+    } else {
+      glideRequests.clear(image);
+      result.set(false);
+    }
+
+    return result;
   }
 
-  public void setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {
+  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {
+    SettableFuture<Boolean> future = new SettableFuture<>();
+
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
     glideRequests.load(new DecryptableUri(uri))
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
                  .transforms(new CenterCrop(), new RoundedCorners(radius))
                  .transition(withCrossFade())
-                 .into(image);
+                 .into(new GlideListeningTarget(image, future));
+
+    return future;
   }
 
   public void setThumbnailClickListener(SlideClickListener listener) {

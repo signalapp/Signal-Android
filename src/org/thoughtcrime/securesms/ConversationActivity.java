@@ -180,6 +180,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -294,7 +297,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void onSuccess(Boolean result) {
         initializeProfiles();
-        initializeDraft();
+        initializeDraft().addListener(new AssertedSuccessListener<Boolean>() {
+          @Override
+          public void onSuccess(Boolean result) {
+            if (result != null && result) {
+              Util.runOnMain(() -> {
+                if (fragment != null && fragment.isResumed()) {
+                  fragment.moveToLastSeen();
+                }
+              });
+            }
+          }
+        });
       }
     });
   }
@@ -983,19 +997,29 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   ///// Initializers
 
-  private void initializeDraft() {
+  private ListenableFuture<Boolean> initializeDraft() {
+    final SettableFuture<Boolean> result = new SettableFuture<>();
+
     final String    draftText      = getIntent().getStringExtra(TEXT_EXTRA);
     final Uri       draftMedia     = getIntent().getData();
     final MediaType draftMediaType = MediaType.from(getIntent().getType());
-    
-    if (draftText != null)                            composeText.setText(draftText);
-    if (draftMedia != null && draftMediaType != null) setMedia(draftMedia, draftMediaType);
+
+    if (draftText != null) {
+      composeText.setText(draftText);
+      result.set(true);
+    }
+    if (draftMedia != null && draftMediaType != null) {
+      return setMedia(draftMedia, draftMediaType);
+    }
 
     if (draftText == null && draftMedia == null && draftMediaType == null) {
-      initializeDraftFromDatabase();
+      return initializeDraftFromDatabase();
     } else {
       updateToggleButtonState();
+      result.set(false);
     }
+
+    return result;
   }
 
   private void initializeEnabledCheck() {
@@ -1005,7 +1029,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachButton.setEnabled(enabled);
   }
 
-  private void initializeDraftFromDatabase() {
+  private ListenableFuture<Boolean> initializeDraftFromDatabase() {
+    SettableFuture<Boolean> future = new SettableFuture<>();
+
     new AsyncTask<Void, Void, List<Draft>>() {
       @Override
       protected List<Draft> doInBackground(Void... params) {
@@ -1019,26 +1045,42 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       protected void onPostExecute(List<Draft> drafts) {
+        AtomicInteger                      draftsRemaining = new AtomicInteger(drafts.size());
+        AtomicBoolean                      success         = new AtomicBoolean(false);
+        ListenableFuture.Listener<Boolean> listener        = new AssertedSuccessListener<Boolean>() {
+          @Override
+          public void onSuccess(Boolean result) {
+            success.compareAndSet(false, result);
+
+            if (draftsRemaining.decrementAndGet() <= 0) {
+              future.set(success.get());
+            }
+          }
+        };
+
         for (Draft draft : drafts) {
           try {
             switch (draft.getType()) {
               case Draft.TEXT:
                 composeText.setText(draft.getValue());
+                listener.onSuccess(true);
                 break;
               case Draft.LOCATION:
-                attachmentManager.setLocation(SignalPlace.deserialize(draft.getValue()), getCurrentMediaConstraints());
+                attachmentManager.setLocation(SignalPlace.deserialize(draft.getValue()), getCurrentMediaConstraints()).addListener(listener);
                 break;
               case Draft.IMAGE:
-                setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE);
+                setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE).addListener(listener);
                 break;
               case Draft.AUDIO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO);
+                setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO).addListener(listener);
                 break;
               case Draft.VIDEO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO);
+                setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO).addListener(listener);
                 break;
               case Draft.QUOTE:
-                new QuoteRestorationTask(draft.getValue()).execute();
+                SettableFuture<Boolean> quoteResult = new SettableFuture<>();
+                new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
+                quoteResult.addListener(listener);
                 break;
             }
           } catch (IOException e) {
@@ -1049,6 +1091,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         updateToggleButtonState();
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    return future;
   }
 
   private ListenableFuture<Boolean> initializeSecurity(final boolean currentSecureText,
@@ -1384,17 +1428,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
-    setMedia(uri, mediaType, 0, 0);
+  private ListenableFuture<Boolean> setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
+    return setMedia(uri, mediaType, 0, 0);
   }
 
-  private void setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, int width, int height) {
-    if (uri == null) return;
+  private ListenableFuture<Boolean> setMedia(@Nullable Uri uri, @NonNull MediaType mediaType, int width, int height) {
+    if (uri == null) {
+      return new SettableFuture<>(false);
+    }
 
     if (MediaType.VCARD.equals(mediaType) && isSecureText) {
       openContactShareEditor(uri);
+      return new SettableFuture<>(false);
     } else {
-      attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
+      return attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
     }
   }
 
@@ -2183,10 +2230,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private class QuoteRestorationTask extends AsyncTask<Void, Void, MessageRecord> {
 
-    private final String serialized;
+    private final String                  serialized;
+    private final SettableFuture<Boolean> future;
 
-    QuoteRestorationTask(@NonNull String serialized) {
+    QuoteRestorationTask(@NonNull String serialized, @NonNull SettableFuture<Boolean> future) {
       this.serialized = serialized;
+      this.future     = future;
     }
 
     @Override
@@ -2204,8 +2253,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     protected void onPostExecute(MessageRecord messageRecord) {
       if (messageRecord != null) {
         handleReplyMessage(messageRecord);
+        future.set(true);
       } else {
         Log.e(TAG, "Failed to restore a quote from a draft. No matching message record.");
+        future.set(false);
       }
     }
   }
