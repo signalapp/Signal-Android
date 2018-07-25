@@ -66,6 +66,7 @@ import org.webrtc.PeerConnection;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.RtpReceiver;
 import org.webrtc.SessionDescription;
+import org.webrtc.SurfaceEglRenderer;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.VideoRenderer;
 import org.webrtc.VideoTrack;
@@ -285,7 +286,7 @@ public class WebRtcCallService extends Service implements InjectableType,
 
     this.callState             = CallState.STATE_IDLE;
     this.lockManager           = new LockManager(this);
-    this.peerConnectionFactory = new PeerConnectionFactory(new PeerConnectionFactoryOptions());
+    this.peerConnectionFactory = PeerConnectionFactory.builder().setOptions(new PeerConnectionFactoryOptions()).createPeerConnectionFactory();
     this.audioManager          = new SignalAudioManager(this);
     this.bluetoothStateManager = new BluetoothStateManager(this, this);
     this.messageSender.setSoTimeoutMillis(TimeUnit.SECONDS.toMillis(10));
@@ -1098,7 +1099,7 @@ public class WebRtcCallService extends Service implements InjectableType,
     if (stream.videoTracks != null && stream.videoTracks.size() == 1) {
       VideoTrack videoTrack = stream.videoTracks.get(0);
       videoTrack.setEnabled(true);
-      videoTrack.addRenderer(new VideoRenderer(remoteRenderer));
+      videoTrack.addSink(remoteRenderer);
     }
   }
 
