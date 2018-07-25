@@ -19,7 +19,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:lineSpacingExtra">3sp</item>
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:letterSpacing">0.02</item>
+        <item name="android:letterSpacing">0.01</item>
     </style>
 
     <style name="Signal.Text.Caption" parent="Base.TextAppearance.AppCompat.Caption">
