@@ -109,7 +109,7 @@ public class ConversationItem extends LinearLayout
   private Recipient     recipient;
   private GlideRequests glideRequests;
 
-  protected ViewGroup            bodyBubble;
+  protected ViewGroup              bodyBubble;
   private   QuoteView              quoteView;
   private   TextView               bodyText;
   private   ConversationItemFooter footer;
@@ -117,6 +117,7 @@ public class ConversationItem extends LinearLayout
   private   TextView               groupSenderProfileName;
   private   View                   groupSenderHolder;
   private   AvatarImageView        contactPhoto;
+  private   ViewGroup              contactPhotoHolder;
   private   AlertView              alertView;
   private   ViewGroup              container;
 
@@ -164,6 +165,7 @@ public class ConversationItem extends LinearLayout
     this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
     this.alertView               =            findViewById(R.id.indicators_parent);
     this.contactPhoto            =            findViewById(R.id.contact_photo);
+    this.contactPhotoHolder      =            findViewById(R.id.contact_photo_container);
     this.bodyBubble              =            findViewById(R.id.body_bubble);
     this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));
     this.audioViewStub           = new Stub<>(findViewById(R.id.audio_view_stub));
@@ -702,6 +704,8 @@ public class ConversationItem extends LinearLayout
 
   private void setAuthor(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     if (isGroupThread && !current.isOutgoing()) {
+      contactPhotoHolder.setVisibility(VISIBLE);
+
       if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().getAddress().equals(previous.get().getRecipient().getAddress()) ||
           !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()))
       {
@@ -713,13 +717,13 @@ public class ConversationItem extends LinearLayout
       if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress())) {
         contactPhoto.setVisibility(VISIBLE);
       } else {
-        contactPhoto.setVisibility(INVISIBLE);
+        contactPhoto.setVisibility(GONE);
       }
     } else {
       groupSenderHolder.setVisibility(GONE);
 
-      if (contactPhoto != null) {
-        contactPhoto.setVisibility(GONE);
+      if (contactPhotoHolder != null) {
+        contactPhotoHolder.setVisibility(GONE);
       }
     }
   }
