@@ -54,6 +54,8 @@ import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -171,17 +173,9 @@ public class Util {
     }
   }
 
-  public static void close(InputStream in) {
+  public static void close(Closeable closeable) {
     try {
-      in.close();
-    } catch (IOException e) {
-      Log.w(TAG, e);
-    }
-  }
-
-  public static void close(OutputStream out) {
-    try {
-      out.close();
+      closeable.close();
     } catch (IOException e) {
       Log.w(TAG, e);
     }
@@ -208,14 +202,18 @@ public class Util {
   }
 
   public static void readFully(InputStream in, byte[] buffer) throws IOException {
+    readFully(in, buffer, buffer.length);
+  }
+
+  public static void readFully(InputStream in, byte[] buffer, int len) throws IOException {
     int offset = 0;
 
     for (;;) {
-      int read = in.read(buffer, offset, buffer.length - offset);
-      if (read == -1) throw new IOException("Stream ended early");
+      int read = in.read(buffer, offset, len - offset);
+      if (read == -1) throw new EOFException("Stream ended early");
 
-      if (read + offset < buffer.length) offset += read;
-      else                		           return;
+      if (read + offset < len) offset += read;
+      else                		 return;
     }
   }
 

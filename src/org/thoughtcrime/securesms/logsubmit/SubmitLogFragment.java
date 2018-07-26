@@ -48,6 +48,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -58,6 +59,7 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -77,7 +79,12 @@ import okhttp3.ResponseBody;
  *
  */
 public class SubmitLogFragment extends Fragment {
+
   private static final String TAG = SubmitLogFragment.class.getSimpleName();
+
+  private static final String HEADER_SYSINFO = "========== SYSINFO ========";
+  private static final String HEADER_LOGCAT  = "========== LOGCAT ========";
+  private static final String HEADER_LOGGER  = "========== LOGGER ========";
 
   private EditText logPreview;
   private Button   okButton;
@@ -309,7 +316,22 @@ public class SubmitLogFragment extends Fragment {
       Context context = weakContext.get();
       if (context == null) return null;
 
-      return buildDescription(context) + "\n" + new Scrubber().scrub(grabLogcat());
+      Scrubber scrubber = new Scrubber();
+
+      String newLogs;
+      try {
+        newLogs = scrubber.scrub(ApplicationContext.getInstance(context).getPersistentLogger().getLogs().get());
+      } catch (InterruptedException | ExecutionException e) {
+        android.util.Log.w(TAG, "Failed to retrieve new logs.", e);
+        newLogs = "Failed to retrieve logs.";
+      }
+
+      return HEADER_SYSINFO + "\n\n" +
+             buildDescription(context) + "\n\n\n" +
+             HEADER_LOGCAT + "\n\n" +
+             scrubber.scrub(grabLogcat()) + "\n\n\n" +
+             HEADER_LOGGER + "\n\n" +
+             newLogs;
     }
 
     @Override

@@ -43,6 +43,10 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
+import org.thoughtcrime.securesms.logging.AndroidLogger;
+import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
+import org.thoughtcrime.securesms.logging.PersistentLogger;
+import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -55,7 +59,6 @@ import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
-import org.whispersystems.libsignal.util.AndroidSignalProtocolLogger;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -73,11 +76,12 @@ import dagger.ObjectGraph;
  */
 public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver {
 
-  private static final String TAG = ApplicationContext.class.getName();
+  private static final String TAG = ApplicationContext.class.getSimpleName();
 
   private ExpiringMessageManager expiringMessageManager;
   private JobManager             jobManager;
   private ObjectGraph            objectGraph;
+  private PersistentLogger       persistentLogger;
 
   private volatile boolean isAppVisible;
 
@@ -90,6 +94,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     super.onCreate();
     initializeRandomNumberFix();
     initializeLogging();
+    initializeCrashHandling();
     initializeDependencyInjection();
     initializeJobManager();
     initializeExpiringMessageManager();
@@ -105,7 +110,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onStart(@NonNull LifecycleOwner owner) {
     isAppVisible = true;
     Log.i(TAG, "App is now visible.");
-
     executePendingContactSync();
   }
 
@@ -134,12 +138,24 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return isAppVisible;
   }
 
+  public PersistentLogger getPersistentLogger() {
+    return persistentLogger;
+  }
+
   private void initializeRandomNumberFix() {
     PRNGFixes.apply();
   }
 
   private void initializeLogging() {
-    SignalProtocolLoggerProvider.setProvider(new AndroidSignalProtocolLogger());
+    persistentLogger = new PersistentLogger(this);
+    org.thoughtcrime.securesms.logging.Log.initialize(new AndroidLogger(), persistentLogger);
+
+    SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
+  }
+
+  private void initializeCrashHandling() {
+    final Thread.UncaughtExceptionHandler originalHandler = Thread.getDefaultUncaughtExceptionHandler();
+    Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionLogger(originalHandler, persistentLogger));
   }
 
   private void initializeJobManager() {
