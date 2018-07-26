@@ -91,8 +91,10 @@
   <string name="ContactShareEditActivity_type_missing">Yang lain</string>
   <string name="ContactShareEditActivity_invalid_contact">Kontak yang dipilih salah</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_delivered">Gagal mengirim, ketuk untuk detil</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima pesan pertukaran kunci, ketuk untuk memproses.</string>
   <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Gagal mengirim, ketuk untuk kembali tidak aman</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alihkan ke SMS tanpa enkripsi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Alihkan ke MMS tanpa enkripsi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Signal.\n\nTetap kirim pesan tidak aman?</string>
@@ -209,8 +211,10 @@
   <string name="DateUtils_today">Hari ini</string>
   <string name="DateUtils_yesterday">Kemarin</string>
   <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sending">Mengirim</string>
   <string name="DeliveryStatus_sent">Terkirim</string>
   <string name="DeliveryStatus_delivered">Terkirim</string>
+  <string name="DeliveryStatus_read">Baca</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Buang kaitan \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Dengan membuang kaitan perangkat ini, perangkat tidak akan bisa lagi mengirim atau menerima pesan.</string>
@@ -329,12 +333,15 @@
   <string name="MessageRecord_left_group">Anda telah keluar dari grup.</string>
   <string name="MessageRecord_you_updated_group">Anda memperbarui grup.</string>
   <string name="MessageRecord_you_called">Anda memanggil</string>
+  <string name="MessageRecord_called_you">Kontak panggilan</string>
   <string name="MessageRecord_missed_call">Panggilan tak terjawab</string>
   <string name="MessageRecord_s_updated_group">%s memperbarui grup.</string>
   <string name="MessageRecord_s_called_you">%s menelpon Anda.</string>
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
   <string name="MessageRecord_s_joined_signal">%s ada di Signal!</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Anda mengatur pesan menghilang dalam %1$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s Atur pesan menghilang menjadi %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %s telah berubah.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Anda menandai nomor keamanan anda dengan %s terverifikasi</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Anda menandai nomor keamanan anda dengan %s terverifikasi dari perangkat lain</string>
@@ -553,6 +560,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SaveAttachmentTask_saved_to">Disimpan ke %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Cari</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Mencari untuk percakapan, daftar kontak dan pesan</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>

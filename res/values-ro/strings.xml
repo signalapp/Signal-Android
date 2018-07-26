@@ -24,8 +24,8 @@
   <string name="ApplicationPreferencesActivity_delete">Ștergeți</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Această acțiune va debloca permanent Signal și notificările pentru mesaje.</string>
-  <string name="ApplicationPreferencesActivity_disable">Dezactivează</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Anulare înregistrare</string>
+  <string name="ApplicationPreferencesActivity_disable">Dezactivați</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Anulați înregistrarea</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal... </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivez mesajele și apelurile Signal? </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivare mesaje și apeluri Signal prin dezabonarea de la server. Va trebui să re-înregistrezi numărul tău de telefon pentru a putea să le folosești din nou în viitor.</string>
@@ -55,10 +55,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(răspuns)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal are nevoie de permisiunea pentru spațiul de stocare pentru a putea atașa poze, filme sau audio, dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Spațiu de stocare\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal are nevoie de permisiunea pentru Contacte pentru a putea atașa informații despre contacte dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Contacte\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal are nevoie de permisiunea pentru Locație pentru a putea atașa o locație dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Locație\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Cameră pentru a putea face poze dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Cameră\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal are nevoie de permisiunea pentru spațiul de stocare pentru a putea atașa poze, filme sau audio, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal are nevoie de permisiunea pentru Contacte pentru a putea atașa informații despre contacte dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal are nevoie de permisiunea pentru Locație pentru a putea atașa o locație dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Locație\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Cameră pentru a putea face poze dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Eroare la redarea audio!</string>
   <!--BlockedContactsActivity-->
@@ -97,8 +97,10 @@
   <string name="ContactShareEditActivity_type_missing">Altul</string>
   <string name="ContactShareEditActivity_invalid_contact">Contactul selectat este invalid</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_delivered">Trimitere eșuată, apăsați pentru detalii</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, apăsați pentru a-l procesa.</string>
   <string name="ConversationItem_group_action_left">%1$s a părăsit grupul.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, apăsați pentru varianta nesecurizată</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Revii la SMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Revii la MMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Signal.\n\nTrimit mesaj nesecurizat?</string>
@@ -108,7 +110,7 @@
   <string name="ConversationItem_to_s">către %s</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele tale vor fi păstrate.</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string>
   <string name="ConversationActivity_reset">Resetare</string>
   <string name="ConversationActivity_add_attachment">Adăugați atașament</string>
   <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
@@ -139,9 +141,9 @@
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pentru a trimite mesaje audio, permite-i aplicației Signal accesul la microfonul tău.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal are nevoie de permisiunea pentru Microfon pentru a putea trimite mesaje audio dar i-a fost refuzat accesul permanent. Vă rugăm să navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\".</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Pentru a apela pe %s, Signal are nevoie de acces la microfonul și camera ta.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea apela pe %s dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Microfon\" și \"Cameră\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea apela pe %s dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\" și \"Cameră\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pentru a captura poze sau filme, permite-i Signal accesul la cameră.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Cameră\".</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
@@ -191,7 +193,7 @@
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele...</string>
   <string name="ConversationFragment_quoted_message_not_found">Mesajul citat nu a fost găsit</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu există nici un browser instalat pe dispozitivul tău.</string>
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Nu s-a găsit nici un rezultat pentru \'1%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -211,7 +213,7 @@
     <item quantity="few">%d conversații arhivate</item>
     <item quantity="other">%d conversații arhivate</item>
   </plurals>
-  <string name="ConversationListFragment_undo">ANULARE</string>
+  <string name="ConversationListFragment_undo">ANULAȚI</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Conversație a fost mutată în inbox</item>
     <item quantity="few">%d conversații au fost mutate în inbox</item>
@@ -237,8 +239,10 @@
   <string name="DateUtils_today">Azi</string>
   <string name="DateUtils_yesterday">Ieri</string>
   <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sending">Se trimite</string>
   <string name="DeliveryStatus_sent">Trimis</string>
   <string name="DeliveryStatus_delivered">Livrat</string>
+  <string name="DeliveryStatus_read">Citit</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Disociez \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Prin disocierea acestui dispozitiv, nu v-a mai putea trimite și primi mesaje.</string>
@@ -365,12 +369,17 @@
   <string name="MessageRecord_left_group">Ați parăsit grupul.</string>
   <string name="MessageRecord_you_updated_group">Ați actualizat grupul.</string>
   <string name="MessageRecord_you_called">Ați apelat</string>
+  <string name="MessageRecord_called_you">Contactul te-a sunat</string>
   <string name="MessageRecord_missed_call">Apel nepreluat</string>
   <string name="MessageRecord_s_updated_group">%s a actualizat grupul.</string>
   <string name="MessageRecord_s_called_you">%s te-a sunat</string>
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel nepreluat de la %s</string>
   <string name="MessageRecord_s_joined_signal">%s folosește Signal!</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Ați dezactivat mesajele care dispar.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a dezactivat mesajele care dispar.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ați setat timpul pentru dispariția mesajelor la %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul dvs. de siguranță pentru %s s-a schimbat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ați marcat numărul tău de siguranță cu %s ca și verificat</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ați marcat numărul tău de siguranță cu %s ca și verificat de pe alt dispozitiv</string>
@@ -399,11 +408,11 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ne pare rău, acest cod de asociere QR este invalid.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Asociez un dispozitiv Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Se pare că încercați să asociați un dispozitiv Signal folosind un scaner terț. Pentru protecția dvs, vă rugăm să scanați din nou codul din interiorul aplicației Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Cameră\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Mesaje care dispar</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Mesajele tale nu vor expira.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Mesajele dvs. nu vor expira.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduceți parola</string>
@@ -503,6 +512,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_missed_call">Apel nepreluat</string>
   <string name="ThreadRecord_media_message">Mesaj media</string>
   <string name="ThreadRecord_s_is_on_signal">%s folosește Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Mesajele care dispar sunt dezactivate</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
   <string name="ThreadRecord_safety_number_changed">Numărul de siguranță s-a schimbat</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
@@ -516,7 +526,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Contactele blocate nu vor mai putea sa-ți trimită mesaje sau să te sune.</string>
   <string name="UnknownSenderView_block">Blochează</string>
   <string name="UnknownSenderView_share_profile_with_s">Distribui profilul cu %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Cea mai ușoară modalitate de a distribui informațiile despre profilul tău este să adaugi expeditorul la contactele tale. Dacă nu dorești asta, poți distribui informațiile despre profilul tău prin această modalitate.</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Cea mai ușoară modalitate de a distribui informațiile despre profilul dvs. este să adăugați expeditorul la contactele dvs. Dacă nu doriți asta, puteți distribui informațiile despre profilul dvs. prin această modalitate.</string>
   <string name="UnknownSenderView_share_profile">Distribuie profilul</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Trimit mesajul?</string>
@@ -532,7 +542,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="VerifyIdentityActivity_our_signal_safety_number">Numărul nostru de siguranță:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți distribui.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Nu s-a găsit nici un număr de siguranță în clipboard pentru a fi comparat.</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Cameră\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect</string>
@@ -543,7 +553,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Notificări fără sunet</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">Nu există nici un navigator web instalat!</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Nu aveți nici un navigator web instalat!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import în curs</string>
   <string name="ApplicationMigrationService_importing_text_messages">Se importă mesajele text</string>
@@ -558,7 +568,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
   <string name="MediaPreviewActivity_draft">Ciornă</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru spațiul de stocare extern pentru a salva pe spațiul de stocare extern, dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Spațiu de stocare\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru spațiul de stocare extern pentru a salva pe spațiul de stocare extern, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nu se poate salva pe spațiu de stocare extern fără permisiune</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Șterg mesajul?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
@@ -585,6 +595,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SaveAttachmentTask_saved_to">Salvat în %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Căutați</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Căutați conversații, contacte și mesaje</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
@@ -595,7 +606,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="VideoPlayer_error_playing_video">Eroare la redarea video!</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pentru a răspunde apelului de la %s, oferă-i Signal acces la microfonul tău.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea primi apeluri dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Microfon\" și \"Cameră\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea primi apeluri dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\" și \"Cameră\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numărul de siguranță pentru conversația ta cu %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
@@ -627,15 +638,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Introduceți un nume sau un număr</string>
   <!--contact_selection_group_activity-->
-  <string name="contact_selection_group_activity__no_contacts">Nu există contacte.</string>
+  <string name="contact_selection_group_activity__no_contacts">Nu aveți contacte.</string>
   <string name="contact_selection_group_activity__finding_contacts">Se încarcă contactele...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Poză contact</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal are nevoie de permisiunea pentru Contacte pentru a putea afișa contactele tale dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Contacte\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal are nevoie de permisiunea pentru Contacte pentru a putea afișa contactele tale dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Eroare la obținerea contactelor, verifică conexiune la rețea.</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Nu există contacte blocate</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Nu aveți contacte blocate</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal are nevoie de acces la contactele tale pentru a le afișa.</string>
   <string name="contact_selection_list_fragment__show_contacts">Afișează contactele</string>
@@ -679,11 +690,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="country_selection_fragment__loading_countries">Se încarcă țările...</string>
   <string name="country_selection_fragment__search">Căutați</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scanează codul QR afișat pe dispozitivul care trebuie asociat</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scanați codul QR afișat pe dispozitivul care trebuie asociat</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Asociază dispozitiv</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Nu există nici un dispozitiv asociat</string>
+  <string name="device_list_fragment__no_devices_linked">Nu aveți nici un dispozitiv asociat</string>
   <string name="device_list_fragment__link_new_device">Asociază un dispozitiv nou</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">continuați</string>
@@ -763,7 +774,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="load_more_header__see_full_conversation">Vezi conversația completă.</string>
   <string name="load_more_header__loading">Se încarcă</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">Nu există fișiere media</string>
+  <string name="media_overview_activity__no_media">Nu aveți fișiere media</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VIZUALIZARE</string>
   <string name="message_recipients_list_item__resend">RETRIMITE</string>
@@ -806,7 +817,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="redphone_call_controls__flip_camera_rear">Schimbă camerele</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMĂRUL DE TELEFON</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilitează comunicarea folosind numărul tău existent de telefon și agenda telefonului. Prietenii și contactele care știu deja cum să te contacteze prin telefon vor putea să te contacteze ușor prin Signal.\n\nÎnregistrarea trimite anumite informații ale contactelor la server. Acestea nu sunt stocate.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilitează comunicarea folosind numărul dvs. existent de telefon și agenda telefonului. Prietenii și contactele care știu deja cum să vă contacteze prin telefon vor putea să vă contacteze ușor prin Signal.\n\nÎnregistrarea trimite anumite informații ale contactelor la server. Acestea nu sunt stocate.</string>
   <string name="registration_activity__verify_your_number">Verificați numărul dvs.</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Vă rog introduceți numărul dvs. de mobil pentru a primi un cod de verificare. Se pot percepe taxe de operator.</string>
   <!--recipients_panel-->
@@ -818,7 +829,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="unknown_sender_view__add_to_contacts">ADĂUGAȚI LA CONTACTE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NU ADĂUGA, DAR FĂ-MI PROFILUL MEU VIZIBIL</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă dorești să verifici securitatea criptării cu %s, compară numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, poți scana codul de pe telefonul lor sau îi poți ruga să scaneze codul tău. <a href="https://signal.org/redirect/safety-numbers"> Află mai multe.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă doriți să verificați securitatea criptării cu %s, comparați numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, puteți scana codul de pe telefonul lor sau îi puteți ruga să scaneze codul dvs. <a href="https://signal.org/redirect/safety-numbers">Aflați mai multe.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apăsați pentru a scana</string>
   <string name="verify_display_fragment__loading">Se încarcă...</string>
   <string name="verify_display_fragment__verified">Verificat</string>
@@ -893,10 +904,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__change_passphrase">Schimbă parola</string>
   <string name="preferences__change_your_passphrase">Schimbă-ți parola</string>
   <string name="preferences__enable_passphrase">Activează parola pentru ecranul de blocare</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blochează ecranul și notificările cu o parolă</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blocați ecranul și notificările cu o parolă</string>
   <string name="preferences__screen_security">Securitate ecran</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blochează screenshot-urile în lista cu aplicaţii recente şi în interiorul aplicaţiei</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blochează automat Signal după o perioadă specificată de timp de inactivitate</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blocați screenshot-urile în lista cu aplicaţii recente şi în interiorul aplicaţiei</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocați automat Signal după o perioadă specificată de timp de inactivitate</string>
   <string name="preferences__inactivity_timeout_passphrase">Cere parolă pentru inactivitate</string>
   <string name="preferences__inactivity_timeout_interval">Interval de timp pentru inactivitate</string>
   <string name="preferences__notifications">Notificări</string>
@@ -956,7 +967,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activează dacă dispozitivul tău trimite SMS/MMS prin WiFi (activează atunci când \"Apelare WiFi\" este activat pe dispozitivul tău)</string>
   <string name="preferences__incognito_keyboard">Tastatură incognito</string>
   <string name="preferences__read_receipts">Confirmări de citire</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Dacă confirmările de citire sunt dezactivate, nu vei putea vedea confirmările de citire de la ceilalți.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Dacă confirmările de citire sunt dezactivate, nu veți putea vedea confirmările de citire de la ceilalți.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitați tastaturii dezactivarea învățarii personalizate</string>
   <string name="preferences_app_protection__blocked_contacts">Contacte blocate</string>
   <string name="preferences_chats__when_using_mobile_data">Când se utilizează datele mobile </string>
@@ -965,8 +976,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_chats__media_auto_download">Descărcare automată Media</string>
   <string name="preferences_chats__message_trimming">Scurtarea mesajelor</string>
   <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivează icoanele emoji oferite de Signal </string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționează toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contact tău. Activarea va reduce calitatea apelului.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivați icoanele emoji oferite de Signal </string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționați toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contact tău. Activarea va reduce calitatea apelului.</string>
   <string name="preferences_advanced__always_relay_calls">Redirecționează întotdeauna apelurile</string>
   <string name="preferences_app_protection__app_access">Acces aplicație</string>
   <string name="preferences_app_protection__communication">Comunicare</string>
@@ -1027,7 +1038,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Notificări fără sunet</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Adaugă atașament</string>
+  <string name="conversation__menu_add_attachment">Adăugați atașament</string>
   <string name="conversation__menu_edit_group">Editează grupul</string>
   <string name="conversation__menu_leave_group">Părăseşte grupul</string>
   <string name="conversation__menu_view_all_media">Toate fișierele media</string>
@@ -1035,7 +1046,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Extinde popup-ul</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_add_to_contacts__menu_add_to_contacts">Adaugă la contacte</string>
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Adăugați la contacte</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista destinatari</string>
   <string name="conversation_group_options__delivery">Trimitere</string>
@@ -1092,10 +1103,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationListFragment_loading">Se încarcă...</string>
   <string name="CallNotificationBuilder_connecting">Se conectează...</string>
   <string name="Permissions_permission_required">E nevoie de permisiune</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal are nevoie de permisiunea SMS pentru a putea trimite SMS dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal are nevoie de permisiunea SMS pentru a putea trimite SMS dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"SMS\".</string>
   <string name="Permissions_continue">Continuă</string>
   <string name="Permissions_not_now">Nu acum</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Contacte pentru a putea căuta în contactele tale dar i-a fost refuzat accesul permanent. Te rog navighează în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Contacte\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Contacte pentru a putea căuta în contactele tale dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
   <string name="conversation_activity__enable_signal_messages">ACTIVEAZĂ MESAJELE SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Se migrează baza de date Signal </string>
   <string name="PushDecryptJob_new_locked_message">Mesaj nou blocat</string>
@@ -1103,12 +1114,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Deblocați pentru a finaliza actualizarea</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vă rog deblocați Signal pentru a finaliza actualizarea</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă copie de rezervă</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Copiile de rezervă se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie sa știi această parola pentru a putea restaura o copie de rezervă.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie sa știi această parola pentru a putea restaura un backup.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura o copie de siguranță.</string>
   <string name="registration_activity__restore_backup">Restaurare copie de rezervă</string>
   <string name="registration_activity__skip">Omite</string>
   <string name="registration_activity__register">Înregistrare</string>
-  <string name="preferences_chats__chat_backups">Copii de rezervă pt. conversații</string>
+  <string name="preferences_chats__chat_backups">Backup-uri pt. conversații</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Salvează conversațiile pe stocarea externă</string>
   <string name="preferences_chats__create_backup">Creează copie de rezervă</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Introduceți parola pentru copia de rezervă</string>
@@ -1117,17 +1128,17 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_checking">În curs de verificare</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mesaje până acum...</string>
   <string name="RegistrationActivity_restore_from_backup">Restaurez dintr-o copie de rezervă?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurează mesajele și media dintr-o copie de rezervă locală. Dacă nu restaurezi acum, nu vei putea restaura mai târziu.</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurați mesajele și media dintr-o copie de rezervă locală. Dacă nu restaurați acum, nu veți putea restaura mai târziu.</string>
   <string name="RegistrationActivity_backup_size_s">Mărime copie de rezervă: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Data copiei de rezervă: %s</string>
-  <string name="BackupDialog_enable_local_backups">Activez copiile de rezervă locale?</string>
-  <string name="BackupDialog_enable_backups">Activează copiile de rezervă</string>
+  <string name="BackupDialog_enable_local_backups">Activez backup-urile locale?</string>
+  <string name="BackupDialog_enable_backups">Activează backup-urile</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Vă rog să vă dați acceptul prin marcarea căsuței de confirmare.</string>
-  <string name="BackupDialog_delete_backups">Șterg copiile de rezervă?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Dezactivez și șterg toate copiile de rezervă locale?</string>
-  <string name="BackupDialog_delete_backups_statement">Șterge copiile de rezervă</string>
+  <string name="BackupDialog_delete_backups">Șterg backup-urile?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Dezactivez și șterg toate backup-urile locale?</string>
+  <string name="BackupDialog_delete_backups_statement">Șterge backup-urile</string>
   <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea copii de rezervă, dar a fost refuzat permanent. Te rog continuă la setări aplicație, selectează \"Permisiuni\" și activează \"Stocare\". </string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Vă rog continuați la setări aplicație, selectați \"Permisiuni\" și activați \"Stocare\". </string>
   <string name="ChatsPreferenceFragment_last_backup_s">Ultima copie de rezervă: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">În curs</string>
   <string name="LocalBackupJob_creating_backup">Se creează copia de rezervă...</string>
@@ -1140,7 +1151,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupUtil_never">Niciodată</string>
   <string name="BackupUtil_unknown">Necunoscut</string>
   <string name="preferences_app_protection__screen_lock">Blocare ecran</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blochează accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ai primit prin SMS. Te rog să introduci PIN-ul configurat anterior în aplicație.</string>
@@ -1151,7 +1162,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="registration_lock_dialog_view__confirm_pin">Confirmați PIN-ul</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Introduceți PIN-ul dvs. de blocare a înregistrării</string>
   <string name="registration_lock_reminder_view__enter_pin">Introduceți PIN-ul</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Activează un PIN de blocare a înregistrării care va fi necesar la înregistrarea din nou a acestui număr de telefon la Signal.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Activați un PIN de blocare a înregistrării care va fi necesar la înregistrarea din nou a acestui număr de telefon la Signal.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN de blocare a înregistrării</string>
   <string name="preferences_app_protection__registration_lock">Blocarea înregistrării</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Trebuie să introduceți PIN-ul de blocare al înregistrării</string>
@@ -1173,9 +1184,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Cele 2 PIN-uri introduse nu se potrivesc.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Eroare de conectare la serviciu</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Dezactivare PIN Blocare Înregistrare?</string>
-  <string name="RegistrationLockDialog_disable">Dezactivează</string>
+  <string name="RegistrationLockDialog_disable">Dezactivați</string>
   <string name="RegistrationActivity_continue">Continuați</string>
-  <string name="preferences_chats__backups">Copii de rezervă</string>
+  <string name="preferences_chats__backups">Backup-uri</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal este blocat</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">APĂSAȚI PENTRU DEBLOCARE</string>
   <string name="RegistrationLockDialog_reminder">Memento:</string>

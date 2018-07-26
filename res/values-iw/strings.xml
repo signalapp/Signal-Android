@@ -609,6 +609,7 @@
   <string name="SaveAttachmentTask_saved_to">נשמר ב־%s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">חפש</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">חפש שיחות, אנשי קשר והודעות</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">הודעה חדשה</string>

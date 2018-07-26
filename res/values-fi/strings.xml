@@ -358,8 +358,10 @@
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <string name="MessageRecord_s_joined_signal">%s käyttää Signalia!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajaksi: %1$s</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajaksi: %2$s</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Poistit käytöstä viestien katoamisen</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s poisti käytöstä viestien katoamisen</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajan: %1$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Merkitsit turvanumerosi yhteystiedon %s kanssa varmennetuksi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Merkitsit turvanumerosi yhteystiedon %s kanssa varmennetuksi toisesta laitteestasi.</string>
@@ -446,7 +448,7 @@ puhelinnumero</string>
   <string name="RegistrationActivity_play_services_error">Play Services -virhe</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servicesiä päivitetään tai se ei ole juuri nyt saavutettavissa. Yritä myöhemmin uudelleen.</string>
   <string name="RegistrationActivity_terms_and_privacy">Käyttöehdot ja yksityisyydensuoja</string>
-  <string name="RegistrationActivity_no_browser">Tätä linkkiä ei voida avaita. Verkkoselainta ei löydetty.</string>
+  <string name="RegistrationActivity_no_browser">Tätä linkkiä ei voida avata. Verkkoselainta ei löydetty.</string>
   <string name="RegistrationActivity_more_information">Näytä lisää</string>
   <string name="RegistrationActivity_less_information">Näytä vähemmän</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal tarvitsee lupaa käyttää yhteystietojasi ja mediaa, jotta voit olla yhteydessä ystäviisi, viestitellä ja soitella turvallisesti.</string>
@@ -491,6 +493,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <string name="ThreadRecord_media_message">Mediaviesti</string>
   <string name="ThreadRecord_s_is_on_signal">%s käyttää Signalia!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
   <string name="ThreadRecord_safety_number_changed">Turvanumero vaihtunut</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
@@ -573,6 +576,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SaveAttachmentTask_saved_to">Tallennettu: %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Hae</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Etsi keskusteluja, yhteystietoja ja viestejä</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>

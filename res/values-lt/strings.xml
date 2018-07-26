@@ -394,6 +394,8 @@
   <string name="MessageRecord_called_s">Skambino %s</string>
   <string name="MessageRecord_missed_call_from">Praleistas skambutis nuo %s</string>
   <string name="MessageRecord_s_joined_signal">%s atėjo į Signal!</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Jūs išjungėte išnykstančias žinutes.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s išjungė išnykstančias žinutes.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laikmatį į %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laikmatį į %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
@@ -533,6 +535,7 @@
   <string name="ThreadRecord_missed_call">Praleistas skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
   <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Išnykstančios žinutės išjungtos</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
   <string name="ThreadRecord_safety_number_changed">Saugumo numeris pasikeitė</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
@@ -615,6 +618,7 @@
   <string name="SaveAttachmentTask_saved_to">Įrašyta į %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Ieškoti</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Ieškoti pokalbių, kontaktų ir žinučių</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>

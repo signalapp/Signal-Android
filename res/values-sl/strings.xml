@@ -394,6 +394,8 @@
   <string name="MessageRecord_called_s">Klicali ste: %s</string>
   <string name="MessageRecord_missed_call_from">Neodgovorjen klic: %s</string>
   <string name="MessageRecord_s_joined_signal">%s uporablja Signal!</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Izklopili ste izginjajoča sporočila</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">Uporabnik %1$s je izklopil izginjajoča sporočila.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Čas poteka sporočil ste nastavili na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Uporabnik %1$s je nastavil čas poteka sporočil na %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %s je bilo spremenjeno.</string>
@@ -474,7 +476,7 @@
   <string name="RegistrationActivity_invalid_number">Napačna številka</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Številka, ki ste jo navedli (%s) je neveljavna.</string>
   <string name="RegistrationActivity_missing_google_play_services">Manjkajoča aplikacija Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Na tej napravi niso nameščene aplikacije Google Play Services. To pomeni, da še vedno lahko uporabljate Signal, vendar bo zanesljivost delovanja aplikacije okrnjena.\n\nče niste napredni uporabnik, če ne uporabljate alternativnega ROM-a Android, ali če mislite, da je prišlo do napake, nam to sporočite na support@signal.org, da vam lahko pomagamo pri odpravljanju težav.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Naprava nima nameščene aplikacije Google Play Services. To pomeni, da še vedno lahko uporabljate Signal, vendar bo zanesljivost delovanja aplikacije okrnjena.\n\nče niste napredni uporabnik, če ne uporabljate alternativnega ROM-a Android, ali če mislite, da je prišlo do napake, nam to sporočite na support@signal.org, da vam lahko pomagamo pri odpravljanju težav.</string>
   <string name="RegistrationActivity_i_understand">Razumem</string>
   <string name="RegistrationActivity_play_services_error">Napaka Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Aplikacija Google Play Services se posodablja ali pa je začasno nedosegljiva. Poskusite znova.</string>
@@ -524,6 +526,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_missed_call">Neodgovorjen klic</string>
   <string name="ThreadRecord_media_message">Večpredstavno sporočilo</string>
   <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Izginjajoča sporočila so izklopljena</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
   <string name="ThreadRecord_safety_number_changed">Varnsotno število je bilo spremenjeno</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %s je bilo spremenjeno.</string>
@@ -606,6 +609,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SaveAttachmentTask_saved_to">Shranjeno na %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Poišči</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Iskanje po pogovorih, stikih in sporočilih</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Novo sporočilo</string>

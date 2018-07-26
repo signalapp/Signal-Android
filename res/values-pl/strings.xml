@@ -100,8 +100,10 @@
   <string name="ContactShareEditActivity_type_missing">Inny</string>
   <string name="ContactShareEditActivity_invalid_contact">Wybrany kontakt był nieprawidłowy</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_delivered">Wysyłanie nie powiodło się, dotknij, aby wyświetlić szczegóły</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Otrzymano wiadomość wymiany kluczy, dotknij aby kontynuować.</string>
   <string name="ConversationItem_group_action_left">%1$s opuścił grupę.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Wysyłanie nie powiodło się, dotknij w celu użycia niezabezpieczonej alternatywy</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback do nieszyfrowanej wiadomości SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie</b> będzie zaszyfrowana, ponieważ odbiorca nie jest już użytkownikiem Signal.\n\nWysłać wiadomość nieszyfrowaną?</string>
@@ -385,12 +387,16 @@
   <string name="MessageRecord_left_group">Opuściłeś grupę.</string>
   <string name="MessageRecord_you_updated_group">Zaktualizowałeś grupę.</string>
   <string name="MessageRecord_you_called">Ty zadzwoniłeś</string>
+  <string name="MessageRecord_called_you">Kontakt zadzwonił</string>
   <string name="MessageRecord_missed_call">Nieodebrane połączenie</string>
   <string name="MessageRecord_s_updated_group">%s zaktualizował grupę.</string>
   <string name="MessageRecord_s_called_you">%s dzwonił do Ciebie</string>
   <string name="MessageRecord_called_s">Zadzwoniono do %s</string>
   <string name="MessageRecord_missed_call_from">Nieodebrane połączenie od %s</string>
   <string name="MessageRecord_s_joined_signal">%s jest w Signal!</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s wyłączył/a znikające wiadomości.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ustawiłeś/aś znikanie wiadomości na %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ustawił/a znikanie wiadomości po %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Oznaczyłeś numer bezpieczeństwa z %s jako zweryfikowany</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Oznaczyłeś numer bezpieczeństwa z %s jako zweryfikowany na innym urządzeniu</string>
@@ -519,6 +525,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
   <string name="ThreadRecord_s_is_on_signal">%s jest w Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Znikające wiadomości zostały wyłączone</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
   <string name="ThreadRecord_safety_number_changed">Zmieniono numer bezpieczeństwa</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
@@ -601,6 +608,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SaveAttachmentTask_saved_to">Zapisano do %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Szukaj</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Wyszukaj rozmowy, kontakty i wiadomości</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
