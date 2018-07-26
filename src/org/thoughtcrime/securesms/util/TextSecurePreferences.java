@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Camera.CameraInfo;
@@ -156,6 +157,9 @@ public class TextSecurePreferences {
 
   private static final String LAST_FULL_CONTACT_SYNC_TIME = "pref_last_full_contact_sync_time";
   private static final String NEEDS_FULL_CONTACT_SYNC     = "pref_needs_full_contact_sync";
+
+  private static final String LOG_ENCRYPTED_SECRET   = "pref_log_encrypted_secret";
+  private static final String LOG_UNENCRYPTED_SECRET = "pref_log_unencrypted_secret";
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
@@ -940,6 +944,22 @@ public class TextSecurePreferences {
 
   public static void setNeedsFullContactSync(Context context, boolean needsSync) {
     setBooleanPreference(context, NEEDS_FULL_CONTACT_SYNC, needsSync);
+  }
+
+  public static void setLogEncryptedSecret(Context context, String base64Secret) {
+    setStringPreference(context, LOG_ENCRYPTED_SECRET, base64Secret);
+  }
+
+  public static String getLogEncryptedSecret(Context context) {
+    return getStringPreference(context, LOG_ENCRYPTED_SECRET, null);
+  }
+
+  public static void setLogUnencryptedSecret(Context context, String base64Secret) {
+    setStringPreference(context, LOG_UNENCRYPTED_SECRET, base64Secret);
+  }
+
+  public static String getLogUnencryptedSecret(Context context) {
+    return getStringPreference(context, LOG_UNENCRYPTED_SECRET, null);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

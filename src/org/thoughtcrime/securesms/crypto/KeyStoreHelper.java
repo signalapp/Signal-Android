@@ -152,7 +152,7 @@ public class KeyStoreHelper {
       }
     }
 
-    static SealedData fromString(@NonNull String value) {
+    public static SealedData fromString(@NonNull String value) {
       try {
         return JsonUtils.fromJson(value, SealedData.class);
       } catch (IOException e) {
