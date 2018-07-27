@@ -10,12 +10,6 @@
     android:paddingLeft="28dp"
     android:paddingRight="28dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="?attr/conversation_item_date_line_color"
-        android:layout_marginBottom="3dp"/>
-
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"

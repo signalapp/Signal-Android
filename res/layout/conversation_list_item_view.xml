@@ -23,8 +23,8 @@
         android:cropToPadding="true"
         tools:src="@drawable/ic_contact_picture"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp" />
 
     <RelativeLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
