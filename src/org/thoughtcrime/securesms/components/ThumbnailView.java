@@ -3,9 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.net.Uri;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,16 +13,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -280,9 +274,9 @@ public class ThumbnailView extends FrameLayout {
     SettableFuture<Boolean> result = new SettableFuture<>();
 
     if (slide.getThumbnailUri() != null) {
-      buildThumbnailGlideRequest(glideRequests, slide).into(new GlideListeningTarget(image, result));
+      buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
     } else if (slide.hasPlaceholder()) {
-      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideListeningTarget(image, result));
+      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(image, result));
     } else {
       glideRequests.clear(image);
       result.set(false);
@@ -299,7 +293,7 @@ public class ThumbnailView extends FrameLayout {
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
                  .transforms(new CenterCrop(), new RoundedCorners(radius))
                  .transition(withCrossFade())
-                 .into(new GlideListeningTarget(image, future));
+                 .into(new GlideDrawableListeningTarget(image, future));
 
     return future;
   }
