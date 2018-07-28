@@ -1,214 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationItem
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/conversation_item"
-        android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/conversation_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:focusable="true"
+    android:nextFocusLeft="@id/container"
+    android:nextFocusRight="@id/embedded_text_editor"
+    android:background="@drawable/conversation_item_background"
+    android:clipToPadding="false"
+    android:clipChildren="false">
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:focusable="true"
-        android:nextFocusLeft="@id/container"
-        android:nextFocusRight="@id/embedded_text_editor"
-        android:background="@drawable/conversation_item_background">
+        android:layout_marginRight="@dimen/conversation_individual_right_gutter"
+        android:layout_marginEnd="@dimen/conversation_individual_right_gutter"
+        android:clipToPadding="false"
+        android:clipChildren="false">
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:layout_marginRight="0dp">
-
-        <org.thoughtcrime.securesms.components.AlertView
-                android:id="@+id/indicators_parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="left|center_vertical"
-                android:layout_marginLeft="6dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"/>
-
-        <LinearLayout android:id="@+id/body_bubble"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_alignParentRight="true"
-                      android:layout_marginLeft="50dp"
-                      android:layout_marginRight="5dp"
-                      android:background="@drawable/sent_bubble"
-                      android:orientation="vertical">
-
-            <org.thoughtcrime.securesms.components.QuoteView
-                    android:id="@+id/quote_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
-                    android:visibility="gone"
-                    app:message_type="outgoing"
-                    tools:visibility="visible"/>
-
-            <ViewStub
-                    android:id="@+id/shared_contact_view_stub"
-                    android:layout="@layout/conversation_item_shared_contact"
-                    android:layout_width="@dimen/media_bubble_max_width"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"/>
-
-            <ViewStub
-                    android:id="@+id/image_view_stub"
-                    android:layout_width="@dimen/media_bubble_default_dimens"
-                    android:layout_height="@dimen/media_bubble_default_dimens"
-                    android:layout="@layout/conversation_item_sent_thumbnail" />
-
-            <ViewStub
-                    android:id="@+id/audio_view_stub"
-                    android:layout="@layout/conversation_item_sent_audio"
-                    android:layout_width="210dp"
-                    android:layout_height="wrap_content"/>
-
-            <ViewStub android:id="@+id/document_view_stub"
-                      android:layout="@layout/conversation_item_sent_document"
-                      android:layout_width="210dp"
-                      android:layout_height="wrap_content"/>
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                    android:id="@+id/conversation_item_body"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="4dp"
-                    android:paddingRight="4dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?conversation_item_sent_text_primary_color"
-                    android:textColorLink="?conversation_item_sent_text_primary_color"
-                    android:textSize="@dimen/conversation_item_body_text_size"
-                    app:scaleEmojis="true"
-                    tools:text="Mango pickle lorem ipsum"/>
-
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:paddingLeft="4dp"
-                          android:paddingRight="4dp"
-                          android:layout_gravity="right">
-
-                <View android:id="@+id/group_sender_holder"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:visibility="gone"/>
-
-                <TextView android:id="@+id/group_message_sender"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:linksClickable="false"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:layout_gravity="right"
-                          android:textColor="?conversation_item_sent_text_secondary_color"
-                          android:visibility="gone"
-                          android:layout_marginRight="8dip"
-                          android:paddingTop="1dip"/>
-
-                <TextView android:id="@+id/group_message_sender_profile"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:linksClickable="false"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:layout_gravity="right"
-                          android:textColor="?conversation_item_sent_text_secondary_color"
-                          android:visibility="gone"
-                          android:layout_marginRight="8dip"
-                          android:paddingTop="1dip"/>
-
-
-                <TextView android:id="@+id/conversation_item_date"
-                          android:autoLink="none"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:minWidth="15sp"
-                          android:linksClickable="false"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:layout_gravity="right|bottom"
-                          android:fontFamily="sans-serif-light"
-                          android:textColor="?conversation_item_sent_text_secondary_color"
-                          android:textSize="@dimen/conversation_item_date_text_size"
-                          android:paddingTop="1dip"
-                          android:paddingBottom="2dp"
-                          tools:text="30 mins"/>
-
-                <TextView android:id="@+id/sim_info"
-                          android:autoLink="none"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:minWidth="15sp"
-                          android:linksClickable="false"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:layout_gravity="right|bottom"
-                          android:fontFamily="sans-serif-light"
-                          android:textColor="?conversation_item_sent_text_secondary_color"
-                          android:textSize="@dimen/conversation_item_date_text_size"
-                          android:paddingTop="1dip"
-                          android:paddingBottom="2dp"
-                          android:paddingLeft="4dp"
-                          android:paddingStart="4dp"
-                          android:visibility="gone"
-                          tools:visibility="visible"
-                          tools:text="to SIM1"/>
-
-                <org.thoughtcrime.securesms.components.DeliveryStatusView
-                        android:id="@+id/delivery_status"
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:alpha=".7"
-                        app:iconColor="?conversation_item_sent_text_secondary_color"/>
-
-                <org.thoughtcrime.securesms.components.ExpirationTimerView
-                        android:id="@+id/expiration_indicator"
-                        app:empty="@drawable/ic_hourglass_empty_white_18dp"
-                        app:full="@drawable/ic_hourglass_full_white_18dp"
-                        app:tint="?conversation_item_sent_text_secondary_color"
-                        app:percentage="0"
-                        app:offset="0"
-                        android:layout_gravity="center_vertical|end"
-                        android:alpha=".6"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginStart="3dp"
-                        android:layout_width="7dp"
-                        android:layout_height="11dp"
-                        android:visibility="gone"
-                        tools:visibility="visible"/>
-
-                <ImageView android:id="@+id/insecure_indicator"
-                           android:layout_width="12dp"
-                           android:layout_height="11dp"
-                           android:src="@drawable/ic_unlocked_white_18dp"
-                           android:visibility="gone"
-                           android:layout_gravity="center_vertical|end"
-                           android:alpha=".6"
-                           android:tint="?attr/conversation_item_sent_text_secondary_color"
-                           android:layout_marginLeft="3dp"
-                           android:layout_marginStart="3dp"
-                           android:tintMode="multiply"
-                           android:contentDescription="@string/conversation_item__secure_message_description"
-                           tools:visibility="visible"/>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView android:id="@+id/indicator_text"
+        <LinearLayout
+            android:id="@+id/body_bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/body_bubble"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@+id/indicators_parent"
+            android:layout_toStartOf="@+id/indicators_parent"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_marginLeft="@dimen/message_bubble_edge_margin"
+            android:layout_marginStart="@dimen/message_bubble_edge_margin"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:background="@color/white"
+            tools:backgroundTint="@color/core_light_10">
+
+            <org.thoughtcrime.securesms.components.QuoteView
+                android:id="@+id/quote_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:visibility="gone"
+                app:message_type="outgoing"
+                app:quote_colorPrimary="?attr/conversation_item_quote_text_color"
+                app:quote_colorSecondary="?attr/conversation_item_quote_text_color"
+                tools:visibility="visible"/>
+
+            <ViewStub
+                android:id="@+id/shared_contact_view_stub"
+                android:layout="@layout/conversation_item_sent_shared_contact"
+                android:layout_width="@dimen/media_bubble_default_dimens"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:visibility="gone"/>
+
+            <ViewStub
+                android:id="@+id/image_view_stub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout="@layout/conversation_item_sent_thumbnail" />
+
+            <ViewStub
+                android:id="@+id/audio_view_stub"
+                android:layout="@layout/conversation_item_sent_audio"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
+                android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginRight="@dimen/message_bubble_horizontal_padding" />
+
+            <ViewStub
+                android:id="@+id/document_view_stub"
+                android:layout="@layout/conversation_item_sent_document"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
+                android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginRight="@dimen/message_bubble_horizontal_padding" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/conversation_item_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
+                android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
+                style="@style/Signal.Text.Body"
+                android:textColor="?conversation_item_sent_text_primary_color"
+                android:textColorLink="?conversation_item_sent_text_primary_color"
+                app:scaleEmojis="true"
+                tools:text="Mango pickle lorem ipsum"/>
+
+            <View
+                android:id="@+id/group_sender_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/group_message_sender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/group_message_sender_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <org.thoughtcrime.securesms.components.ConversationItemFooter
+                android:id="@+id/conversation_item_footer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:footer_text_color="?attr/conversation_item_sent_text_secondary_color"
+                app:footer_icon_color="?attr/conversation_item_sent_icon_color"/>
+
+        </LinearLayout>
+
+        <org.thoughtcrime.securesms.components.AlertView
+            android:id="@+id/indicators_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_alignParentRight="true"
-            android:paddingRight="5dip"
-            android:paddingLeft="5dip"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="22dp"
-            android:layout_marginTop="-3dp"
-            android:textSize="12sp"
-            android:textColor="?conversation_item_sent_text_indicator_tab_color"
-            android:background="?conversation_item_sent_indicator_text_background"
-            android:visibility="gone" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
+
 </org.thoughtcrime.securesms.ConversationItem>

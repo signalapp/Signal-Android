@@ -97,12 +97,6 @@
         <item name="android:textColor">#BFffffff</item>
     </style>
 
-    <style name="TextSecure.IntroActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@null</item>
-        <item name="icon">@android:color/transparent</item>
-        <item name="colorButtonNormal">@color/textsecure_primary</item>
-    </style>
-
     <style name="NotificationText">
       <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
@@ -175,7 +169,7 @@
         <item name="android:background">@drawable/error_round</item>
     </style>
 
-    <style name="ComposeEditText" parent="@style/Widget.AppCompat.EditText">
+    <style name="ComposeEditText" parent="@style/Signal.Text.Body">
         <item name="android:padding">2dp</item>
         <item name="android:background">@null</item>
         <item name="android:maxLines">4</item>

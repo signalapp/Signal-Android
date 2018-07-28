@@ -66,8 +66,9 @@ dependencies {
     compile 'com.android.support:preference-v14:27.0.2'
     compile 'com.android.support:gridlayout-v7:27.0.2'
     compile 'com.android.support:multidex:1.0.2'
-    compile "com.android.support:exifinterface:27.0.2"
-    compile "android.arch.lifecycle:extensions:1.1.1"
+    compile 'com.android.support:exifinterface:27.0.2'
+    compile 'android.arch.lifecycle:extensions:1.1.1'
+    compile 'android.arch.lifecycle:common-java8:1.1.1'
 
     compile 'com.google.android.gms:play-services-gcm:9.6.1'
     compile 'com.google.android.gms:play-services-maps:9.6.1'
@@ -79,7 +80,7 @@ dependencies {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
     compile 'org.whispersystems:signal-service-android:2.7.6'
-    compile 'org.whispersystems:webrtc-android:M67'
+    compile 'org.whispersystems:webrtc-android:M68'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -166,13 +167,14 @@ dependencyVerification {
         'com.android.support:multidex:7cd48755c7cfdb6dd2d21cbb02236ec390f6ac91cde87eb62f475b259ab5301d',
         'com.android.support:exifinterface:0e7cd526c4468895cd8549def46b3d33c8bcfb1ae4830569898d8c7326b15bb2',
         'android.arch.lifecycle:extensions:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
+        'android.arch.lifecycle:common-java8:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
         'com.google.android.gms:play-services-gcm:312e61253a236f2d9b750b9c04fc92fd190d23b0b2755c99de6ce4a28b259dae',
         'com.google.android.gms:play-services-places:abf3a4a3b146ec7e6e753be62775e512868cf37d6f88ffe2d81167b33b57132b',
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
         'org.whispersystems:libpastelog:fe56b4db9ec743c8b565e3e4caa9228fafe132dc0bf82000d6e359b97a81177c',
         'org.whispersystems:signal-service-android:823eed29e64fb0aa30d2078cb5ec0245e2a0713a4028121329c5c28788ef27f8',
-        'org.whispersystems:webrtc-android:235b3b79f0ea917e4cda447a9919cb8e17a74ae59da6fb8252503b787fe0828f',
+        'org.whispersystems:webrtc-android:66cb312eb024eaf6aa93e662d37d0c46632e049d47a2dcc9c291207589ee7a43',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
@@ -252,8 +254,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 384
-        versionName "4.23.4"
+        versionCode 390
+        versionName "4.24.5"
 
         minSdkVersion 14
         targetSdkVersion 25

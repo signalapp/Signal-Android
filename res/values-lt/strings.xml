@@ -62,7 +62,6 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Norint pridėti kontaktinę informaciją, Signal reikia kontaktų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kontaktus\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Norint pridėti vietą, Signal reikia vietos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Vietą\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
-  <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
   <!--BlockedContactsActivity-->
@@ -101,11 +100,10 @@
   <string name="ContactShareEditActivity_type_missing">Kitas</string>
   <string name="ContactShareEditActivity_invalid_contact">Pasirinktas kontaktas buvo neteisingas</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Nepristatyta</string>
+  <string name="ConversationItem_error_not_delivered">Siuntimas nepavyko, bakstelėkite išsamesnei informacijai</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Gauta šifro apsikeitimo žinutė, bakstelėkite norėdami tęsti.</string>
   <string name="ConversationItem_group_action_left">%1$s išėjo iš grupės.</string>
-  <string name="ConversationItem_click_for_details">Bakstelėkite išsamesnei informacijai</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Bakstelėkite, norėdami sugrįžti prie nesaugaus surogato</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Siuntimas nepavyko, bakstelėkite, norėdami sugrįžti nesaugaus surogato</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Sugrįžti prie nešifruotų SMS naudojimo?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Sugrįžti prie nešifruotų MMS naudojimo?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ši žinutė <b>nebus</b> užšifruota, nes gavėjas daugiau nebėra Signal naudotojas.\n\nSiųsti neapsaugotą žinutę?</string>
@@ -142,7 +140,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera neprieinama</string>
   <string name="ConversationActivity_unable_to_record_audio">Nepavyksta įrašyti garso!</string>
-  <string name="ConversationActivity_error_sending_voice_message">Klaida, išsiunčiant balso žinutę</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nėra prieinamos programėlės, kuri galėtų apdoroti šią nuorodą jūsų įrenginyje.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Norėdami siųsti garso žinutes, leiskite Signal prieigą prie mikrofono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Norint siųsti garso žinutes, Signal reikia mikrofono leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\".</string>
@@ -184,12 +181,6 @@
     <item quantity="few">Klaida, įrašant priedus į atmintį!</item>
     <item quantity="many">Klaida, įrašant priedus į atmintį!</item>
     <item quantity="other">Klaida, įrašant priedus į atmintį!</item>
-  </plurals>
-  <plurals name="ConversationFragment_files_saved_successfully">
-    <item quantity="one">Failas sėkmingai įrašytas.</item>
-    <item quantity="few">Failai sėkmingai įrašyti.</item>
-    <item quantity="many">Failai sėkmingai įrašyti.</item>
-    <item quantity="other">Failai sėkmingai įrašyti.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nepavyksta įrašyti į atmintį!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -257,10 +248,15 @@
   <string name="CustomDefaultPreference_using_default">Naudojamas numatytasis: %s</string>
   <string name="CustomDefaultPreference_none">Nėra</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">Ką tik</string>
+  <string name="DateUtils_just_now">Dabar</string>
   <string name="DateUtils_minutes_ago">%d min.</string>
   <string name="DateUtils_today">Šiandien</string>
   <string name="DateUtils_yesterday">Vakar</string>
+  <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sending">Siunčiama</string>
+  <string name="DeliveryStatus_sent">Išsiųsta</string>
+  <string name="DeliveryStatus_delivered">Pristatyta</string>
+  <string name="DeliveryStatus_read">Perskaityta</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Atsieti \"%s\"?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Atsiejus šį įrenginį, jis daugiau nebegalės siųsti ar gauti žinučių.</string>
@@ -294,16 +290,6 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pasiruošę artimesniam bendravimui?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Dabar, su Signal draugais galite bendrinti profilio nuotrauką ir vardą</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiliai jau čia</string>
-  <!--ExportFragment-->
-  <string name="ExportFragment_export">Eksportuoti</string>
-  <string name="ExportFragment_export_plaintext_to_storage">Eksportuoti grynąjį tekstą į atmintį?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Įspėjimas, tai eksportuos į atmintį visą jūsų Signal žinučių turinį grynuoju tekstu.</string>
-  <string name="ExportFragment_cancel">Atsisakyti</string>
-  <string name="ExportFragment_exporting">Eksportuojama</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">Eksportuojamas grynasis tekstas į atmintį...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">Klaida, nepavyksta įrašyti į atmintį.</string>
-  <string name="ExportFragment_error_while_writing_to_storage">Klaida, įrašant į atmintį.</string>
-  <string name="ExportFragment_export_successful">Eksportavimas sėkmingas.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Ilgalaikė Signal susisiekimo triktis!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nepavyko prisiregistruoti prie „Google Play“ paslaugų. Signal žinutės ir skambučiai buvo išjungti, prašome pabandyti iš naujo registruotis skyrelyje Nustatymai (angl. Settings) &gt; Išplėstiniai (angl. Advanced).</string>
@@ -334,33 +320,6 @@
   <string name="GroupShareProfileView_make_visible">Padaryti matomą</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Aš</string>
-  <!--ImportExportActivity-->
-  <string name="ImportExportActivity_import">Importuoti</string>
-  <string name="ImportExportActivity_export">Eksportuoti</string>
-  <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">Importuoti sistemos SMS duomenų bazę?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Tai importuos
-        žinutes iš sistemos numatytosios SMS duomenų bazės į Signal. Jeigu anksčiau esate
-        importavę sistemos SMS duomenų bazę, importavimas dar kartą sąlygos dvigubas žinutes.
-    </string>
-  <string name="ImportFragment_import">Importuoti</string>
-  <string name="ImportFragment_cancel">Atsisakyti</string>
-  <string name="ImportFragment_import_plaintext_backup">Importuoti grynojo teksto atsarginę kopiją?</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Tai importuos
-        žinutes iš grynojo teksto atsarginės kopijos. Jeigu anksčiau esate importavę šią atsarginę kopiją,
-        importavimas dar kartą sąlygos dvigubas žinutes.
-    </string>
-  <string name="ImportFragment_importing">Importuojama</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importuojama grynojo teksto atsarginė kopija...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">Nerasta jokios grynojo teksto atsarginės kopijos!</string>
-  <string name="ImportFragment_error_importing_backup">Klaida importuojant atsarginę kopiją!</string>
-  <string name="ImportFragment_import_complete">Importavimas užbaigtas!</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">Norint importuoti SMS žinutes, Signal reikia SMS leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"SMS\".</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Norint importuoti SMS žinutes, Signal reikalingas SMS leidimas</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">Norint skaityti iš išorinės saugyklos, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Norint skaityti iš išorinių įrenginių, Signal reikalingas saugyklos leidimas</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint rašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Norint rašyti į išorinę saugyklą, Signal reikalingas saugyklos leidimas.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Bakstelėkite ir laikykite, kad įrašinėtumėte balso žinutę, atleiskite, kad išsiųstumėte</string>
   <!--InviteActivity-->
@@ -386,7 +345,6 @@
   <string name="InviteActivity_lets_switch_to_signal">Persijunkime į Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis dalintis.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugai neleidžia draugams kalbėtis nešifruotai.</string>
-  <!--KeyScanningActivity-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepavyko išsiųsti</string>
   <string name="MessageDetailsRecipient_new_safety_number">Naujas saugumo numeris</string>
@@ -428,13 +386,18 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Gauta žinutė buvo užšifruota, naudojant seną Signal versiją, kuri daugiau nebepalaikoma. Paprašykite siuntėjo atnaujinti savo programėlę į naujausią versiją ir iš naujo išsiųsti žinutę.</string>
   <string name="MessageRecord_left_group">Jūs išėjote iš grupės.</string>
   <string name="MessageRecord_you_updated_group">Jūs atnaujinote grupę.</string>
+  <string name="MessageRecord_you_called">Jūs skambinote</string>
+  <string name="MessageRecord_called_you">Skambino kontaktas</string>
+  <string name="MessageRecord_missed_call">Praleistas skambutis</string>
   <string name="MessageRecord_s_updated_group">%s atnaujino grupę.</string>
   <string name="MessageRecord_s_called_you">Jums skambino %s</string>
   <string name="MessageRecord_called_s">Skambino %s</string>
   <string name="MessageRecord_missed_call_from">Praleistas skambutis nuo %s</string>
   <string name="MessageRecord_s_joined_signal">%s atėjo į Signal!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laiką į %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laiką į %2$s.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Jūs išjungėte išnykstančias žinutes.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s išjungė išnykstančias žinutes.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laikmatį į %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laikmatį į %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jūs pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
@@ -531,20 +494,6 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų kontaktų ir medijos</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepavyksta prisijungti prie paslaugos. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Norint lengvai patvirtinti jūsų telefono numerį, Signal gali automatiškai aptikti patvirtinimo kodą, jei leisite programai Signal peržiūrėti SMS žinutes.</string>
-  <!--RegistrationProblemsActivity-->
-  <!--RegistrationProgressActivity-->
-  <!--RegistrationService-->
-  <string name="RegistrationService_registration_complete">Registracija užbaigta</string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">Signal registracija sėkmingai užbaigta.</string>
-  <string name="RegistrationService_registration_error">Registracijos klaida</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">Signal registracija susidūrė su problema.</string>
-  <!--RingtonePreference-->
-  <string name="RingtonePreference_ringtone_default">Numatytoji skambučio melodija</string>
-  <string name="RingtonePreference_ringtone_silent">Nėra</string>
-  <string name="RingtonePreference_notification_sound_default">Numatytasis pranešimo garsas</string>
-  <string name="RingtonePreference_alarm_sound_default">Numatytasis signalo garsas</string>
-  <string name="RingtonePreference_add_ringtone_text">Pridėti skambučio melodiją</string>
-  <string name="RingtonePreference_unable_to_add_ringtone">Nepavyksta pridėti tinkintos skambučio melodijos</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
   <!--Search-->
@@ -555,14 +504,8 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Pridėti į kontaktus</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pakviesti į Signal</string>
-  <string name="SharedContactDetailsActivity_invite_message">Persijunkime į Signal: %1$s</string>
-  <string name="SharedContactDetailsActivity_new_contact_success">Kontaktas pridėtas.</string>
-  <string name="SharedContactDetailsActivity_new_contact_failure">Nepavyko gauti kontakto</string>
-  <string name="SharedContactDetailsActivity_updated_contact_success">Kontaktas atnaujintas.</string>
-  <string name="SharedContactDetailsActivity_updated_contact_failure">Klaida, taisant kontaktą</string>
-  <string name="SharedContactDetailsActivity_initialization_failure">Klaida, skaitant kontaktą</string>
-  <string name="SharedContactDetailsActivity_add_as_new_contact">Pridėti kaip naują kontaktą</string>
-  <string name="SharedContactDetailsActivity_add_to_existing_contact">Pridėti kaip esamą kontaktą</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal žinutė</string>
+  <string name="SharedContactDetailsActivity_signal_call">Signal skambutis</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Pridėti į kontaktus</string>
   <string name="SharedContactView_invite_to_signal">Pakviesti į Signal</string>
@@ -592,6 +535,7 @@
   <string name="ThreadRecord_missed_call">Praleistas skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
   <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Išnykstančios žinutės išjungtos</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
   <string name="ThreadRecord_safety_number_changed">Saugumo numeris pasikeitė</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %s pasikeitė.</string>
@@ -623,19 +567,10 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iškarpinėje palyginimui nebuvo rasta jokio saugumo numerio</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
-  <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Blogai šifruota žinutė</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">Iššifruojama, prašome palaukti...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Žinutė šifruota seansui, kurio nėra</string>
-  <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">Klaida iššifruojant žinutę.</string>
-  <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">Klaida iššifruojant žinutę.</string>
-  <!--MmsDatabase-->
-  <string name="MmsDatabase_error_decrypting_message">Klaida iššifruojant žinutę.</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">Iššifruojama MMS, prašome palaukti...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Blogai šifruota MMS žinutė</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS žinutė užšifruota seansui, kurio nėra</string>
   <!--MuteDialog-->
@@ -676,15 +611,14 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">Jūs turite laukiančių Signal žinučių, bakstelėkite, norėdami atverti ir jas gauti</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontaktas</string>
-  <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>
   <string name="QuickResponseService_problem_sending_message">Problemos siunčiant žinutę!</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_open_directory">Atverti katalogą</string>
   <string name="SaveAttachmentTask_saved_to">Įrašyta į %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Ieškoti</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Ieškoti pokalbių, kontaktų ir žinučių</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
@@ -701,7 +635,6 @@
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo kontaktu.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Naujas saugumo numeris</string>
   <string name="WebRtcCallScreen_accept">Priimti</string>
-  <string name="WebRtcCallScreen_cancel">Atsisakyti</string>
   <string name="WebRtcCallScreen_end_call">Baigti skambutį</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Bakstelėkite, norėdami įjungti savo vaizdą</string>
@@ -737,11 +670,9 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klaida gaunant kontaktus, patikrinkite tinklo ryšį</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nėra užblokuotų kontaktų</string>
-  <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Norint rodyti jūsų kontaktus, Signal reikalinga prieiga prie jų.</string>
   <string name="contact_selection_list_fragment__show_contacts">Rodyti kontaktus</string>
-  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal žinutė</string>
   <string name="conversation_activity__type_message_sms_insecure">Neapsaugota SMS</string>
@@ -776,9 +707,6 @@
   <string name="QuoteView_photo">Nuotrauka</string>
   <string name="QuoteView_document">Dokumentas</string>
   <string name="QuoteView_you">Jūs</string>
-  <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">Masinio pasirinkimo veiksena</string>
-  <string name="conversation_fragment_cab__batch_selection_amount">%s pasirinkta</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--country_selection_fragment-->
@@ -853,7 +781,6 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">Ieškoti GIF ir paveikslėlių</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nieko nerasta</string>
-  <!--import_export_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepavyko perskaityti žurnalo jūsų įrenginyje. Jūs vis dar galite naudoti ADB, kad vietoj to, gautumėte derinimo žurnalą.</string>
   <string name="log_submit_activity__thanks">Ačiū už jūsų pagalbą!</string>
@@ -868,8 +795,6 @@
   <string name="database_migration_activity__importing">IMPORTUOJAMA</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Atnaujinama duomenų bazė...</string>
-  <string name="export_fragment__export_plaintext_backup">Eksportuoti grynojo teksto atsarginę kopiją</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksportuoti grynojo teksto atsarginę kopiją, suderinamą su \"SMS atsarginės kopijos darymu ir atkūrimu\" į atmintį</string>
   <string name="import_fragment__import_system_sms_database">Importuoti sistemos SMS duomenų bazę</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importuoti duomenų bazę iš numatytosios sistemos pokalbių programėlės</string>
   <string name="import_fragment__import_plaintext_backup">Importuoti grynojo teksto atsarginę kopiją</string>
@@ -920,14 +845,11 @@
   <string name="redphone_call_card__signal_call">Signal skambutis</string>
   <string name="redphone_call_controls__mute">Nutildyti</string>
   <string name="redphone_call_controls__flip_camera_rear">Perjungti kamerą</string>
-  <string name="redphone_call_controls__signal_call">Signal skambutis</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONO NUMERIS</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal padaro bendravimą, naudojant jūsų esamą telefono numerį ir adresų knygą, lengvą. Draugai ir kontaktai, kurie jau žino kaip susisiekti su jumis telefonu, galės lengvai su jumis susisiekti, naudojant Signal.\n\nRegistracija persiunčia kai kurią kontaktinę informaciją į serverį. Ši informacija nėra kaupiama.</string>
   <string name="registration_activity__verify_your_number">Patvirtinkite savo numerį</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Norėdami gauti patvirtinimo kodą, įveskite savo mobiliojo telefono numerį. Gali būti taikomi mobiliojo ryšio paslaugos teikėjo mokesčiai.</string>
-  <!--registration_problems-->
-  <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Įveskite vardą ar numerį</small></string>
   <string name="recipients_panel__add_members">Pridėti dalyvius</string>
@@ -957,7 +879,6 @@
   <string name="message_details_header__with">Su:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Kurti slaptafrazę</string>
-  <string name="AndroidManifest__enter_passphrase">Įvesti slaptafrazę</string>
   <string name="AndroidManifest__select_contacts">Pasirinkti kontaktus</string>
   <string name="AndroidManifest__change_passphrase">Pakeisti slaptafrazę</string>
   <string name="AndroidManifest__verify_safety_number">Patvirtinti saugumo numerį</string>
@@ -1107,8 +1028,6 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nauja žinutė, skirta...</string>
-  <!--contact_selection-->
-  <!--refreshing push directory from menu-->
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Skambinti</string>
   <!--conversation_callable_secure-->
@@ -1128,7 +1047,6 @@
   <string name="menu_conversation_expiring_on__messages_expiring">Nustojančios galioti žinutės</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pakviesti</string>
-  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ištrinti pasirinktus</string>
   <string name="conversation_list_batch__menu_select_all">Pasirinkti viską</string>
@@ -1164,9 +1082,7 @@
   <string name="conversation_group_options__delivery">Pristatymas</string>
   <string name="conversation_group_options__conversation">Pokalbis</string>
   <string name="conversation_group_options__broadcast">Transliavimas</string>
-  <!--key_scanning-->
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">Nauja žinutė</string>
   <string name="text_secure_normal__menu_new_group">Nauja grupė</string>
   <string name="text_secure_normal__menu_settings">Nustatymai</string>
   <string name="text_secure_normal__menu_clear_passphrase">Užrakinti</string>
@@ -1265,7 +1181,6 @@
   <string name="RegistrationActivity_available_in">Prieinama po:\u0020</string>
   <string name="BackupUtil_never">Niekada</string>
   <string name="BackupUtil_unknown">Nežinoma</string>
-  <string name="prompt_passphrase_activity__unlock_signal">Atrakinti Signal</string>
   <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Užrakinti prieigą prie Signal, naudojant Android ekrano užraktą ar piršto atspaudą</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekrano užrakto neveiklumui skirtas laikas</string>

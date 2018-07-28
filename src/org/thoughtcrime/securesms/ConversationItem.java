@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -25,10 +24,9 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -40,7 +38,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,12 +47,11 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.components.DeliveryStatusView;
+import org.thoughtcrime.securesms.components.ConversationItemFooter;
+import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
 import org.thoughtcrime.securesms.components.DocumentView;
-import org.thoughtcrime.securesms.components.ExpirationTimerView;
 import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.SharedContactView;
-import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -75,18 +71,15 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
-import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -106,7 +99,9 @@ import java.util.Set;
 public class ConversationItem extends LinearLayout
     implements RecipientModifiedListener, BindableConversationItem
 {
-  private final static String TAG = ConversationItem.class.getSimpleName();
+  private static final String TAG = ConversationItem.class.getSimpleName();
+
+  private static final int MAX_MEASURE_CALLS = 3;
 
   private MessageRecord messageRecord;
   private Locale        locale;
@@ -114,30 +109,28 @@ public class ConversationItem extends LinearLayout
   private Recipient     recipient;
   private GlideRequests glideRequests;
 
-  protected View             bodyBubble;
-  private QuoteView          quoteView;
-  private TextView           bodyText;
-  private TextView           dateText;
-  private TextView           simInfoText;
-  private TextView           indicatorText;
-  private TextView           groupSender;
-  private TextView           groupSenderProfileName;
-  private View               groupSenderHolder;
-  private ImageView          insecureImage;
-  private AvatarImageView    contactPhoto;
-  private DeliveryStatusView deliveryStatusIndicator;
-  private AlertView          alertView;
+  protected ViewGroup              bodyBubble;
+  private   QuoteView              quoteView;
+  private   TextView               bodyText;
+  private   ConversationItemFooter footer;
+  private   TextView               groupSender;
+  private   TextView               groupSenderProfileName;
+  private   View                   groupSenderHolder;
+  private   AvatarImageView        contactPhoto;
+  private   ViewGroup              contactPhotoHolder;
+  private   AlertView              alertView;
+  private   ViewGroup              container;
 
-  private @NonNull  Set<MessageRecord>      batchSelected = new HashSet<>();
-  private @NonNull  Recipient               conversationRecipient;
-  private @NonNull  Stub<ThumbnailView>     mediaThumbnailStub;
-  private @NonNull  Stub<AudioView>         audioViewStub;
-  private @NonNull  Stub<DocumentView>      documentViewStub;
-  private @NonNull  Stub<SharedContactView> sharedContactStub;
-  private @NonNull  ExpirationTimerView     expirationTimer;
-  private @Nullable EventListener           eventListener;
+  private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
+  private @NonNull  Recipient                       conversationRecipient;
+  private @NonNull  Stub<ConversationItemThumbnail> mediaThumbnailStub;
+  private @NonNull  Stub<AudioView>                 audioViewStub;
+  private @NonNull  Stub<DocumentView>              documentViewStub;
+  private @NonNull  Stub<SharedContactView>         sharedContactStub;
+  private @Nullable EventListener                   eventListener;
 
   private int defaultBubbleColor;
+  private int measureCalls;
 
   private final PassthroughClickListener        passthroughClickListener   = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener      = new AttachmentDownloadClickListener();
@@ -167,23 +160,20 @@ public class ConversationItem extends LinearLayout
     initializeAttributes();
 
     this.bodyText                =            findViewById(R.id.conversation_item_body);
-    this.dateText                =            findViewById(R.id.conversation_item_date);
-    this.simInfoText             =            findViewById(R.id.sim_info);
-    this.indicatorText           =            findViewById(R.id.indicator_text);
+    this.footer                  =            findViewById(R.id.conversation_item_footer);
     this.groupSender             =            findViewById(R.id.group_message_sender);
     this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
-    this.insecureImage           =            findViewById(R.id.insecure_indicator);
-    this.deliveryStatusIndicator =            findViewById(R.id.delivery_status);
     this.alertView               =            findViewById(R.id.indicators_parent);
     this.contactPhoto            =            findViewById(R.id.contact_photo);
+    this.contactPhotoHolder      =            findViewById(R.id.contact_photo_container);
     this.bodyBubble              =            findViewById(R.id.body_bubble);
     this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));
     this.audioViewStub           = new Stub<>(findViewById(R.id.audio_view_stub));
     this.documentViewStub        = new Stub<>(findViewById(R.id.document_view_stub));
     this.sharedContactStub       = new Stub<>(findViewById(R.id.shared_contact_view_stub));
-    this.expirationTimer         =            findViewById(R.id.expiration_indicator);
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
     this.quoteView               =            findViewById(R.id.quote_view);
+    this.container               =            findViewById(R.id.container);
 
     setOnClickListener(new ClickListener(null));
 
@@ -194,12 +184,14 @@ public class ConversationItem extends LinearLayout
   }
 
   @Override
-  public void bind(@NonNull MessageRecord      messageRecord,
-                   @NonNull GlideRequests      glideRequests,
-                   @NonNull Locale             locale,
-                   @NonNull Set<MessageRecord> batchSelected,
-                   @NonNull Recipient          conversationRecipient,
-                            boolean            pulseHighlight)
+  public void bind(@NonNull MessageRecord           messageRecord,
+                   @NonNull Optional<MessageRecord> previousMessageRecord,
+                   @NonNull Optional<MessageRecord> nextMessageRecord,
+                   @NonNull GlideRequests           glideRequests,
+                   @NonNull Locale                  locale,
+                   @NonNull Set<MessageRecord>      batchSelected,
+                   @NonNull Recipient               conversationRecipient,
+                            boolean                 pulseHighlight)
   {
     this.messageRecord          = messageRecord;
     this.locale                 = locale;
@@ -212,17 +204,19 @@ public class ConversationItem extends LinearLayout
     this.recipient.addListener(this);
     this.conversationRecipient.addListener(this);
 
-    setMediaAttributes(messageRecord, conversationRecipient);
+    setGutterSizes(messageRecord, groupThread);
+    setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
+    setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, conversationRecipient, groupThread);
     setInteractionState(messageRecord, pulseHighlight);
     setBodyText(messageRecord);
-    setBubbleState(messageRecord, recipient);
+    setBubbleState(messageRecord);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient);
     setGroupMessageStatus(messageRecord, recipient);
-    setMinimumWidth();
-    setSimInfo(messageRecord);
-    setExpiration(messageRecord);
-    setQuote(messageRecord);
+    setAuthor(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
+    setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
+    setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
+    setFooter(messageRecord, nextMessageRecord, locale, groupThread);
   }
 
   @Override
@@ -231,52 +225,58 @@ public class ConversationItem extends LinearLayout
   }
 
   @Override
-  public void onLayout(boolean changed, int left, int top, int right, int bottom) {
-    super.onLayout(changed, left, top, right, bottom);
-
-    if (groupSenderHolder != null && groupSenderHolder.getVisibility() == View.VISIBLE) {
-      View content = (View) groupSenderHolder.getParent();
-
-      groupSenderHolder.layout(content.getPaddingLeft(), content.getPaddingTop(),
-                               content.getWidth() - content.getPaddingRight(),
-                               content.getPaddingTop() + groupSenderHolder.getMeasuredHeight());
-
-
-      if (ViewCompat.getLayoutDirection(groupSenderProfileName) == ViewCompat.LAYOUT_DIRECTION_RTL) {
-        groupSenderProfileName.layout(groupSenderHolder.getPaddingLeft(),
-                                      groupSenderHolder.getPaddingTop(),
-                                      groupSenderHolder.getPaddingLeft() + groupSenderProfileName.getWidth(),
-                                      groupSenderHolder.getPaddingTop() + groupSenderProfileName.getHeight());
-      } else {
-        groupSenderProfileName.layout(groupSenderHolder.getWidth() - groupSenderHolder.getPaddingRight() - groupSenderProfileName.getWidth(),
-                                      groupSenderHolder.getPaddingTop(),
-                                      groupSenderHolder.getWidth() - groupSenderProfileName.getPaddingRight(),
-                                      groupSenderHolder.getPaddingTop() + groupSenderProfileName.getHeight());
-      }
-    }
-  }
-
-  @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-    if (hasQuote(messageRecord)) {
-      int quoteWidth = quoteView.getMeasuredWidth();
+    if (isInEditMode()) {
+      return;
+    }
 
-      int availableWidth;
-      if (hasAudio(messageRecord)) {
-        availableWidth = audioViewStub.get().getMeasuredWidth();
-      } else if (hasThumbnail(messageRecord)) {
-        availableWidth = mediaThumbnailStub.get().getMeasuredWidth();
-      } else {
-        availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
-      }
+    boolean needsMeasure = false;
+
+    if (hasQuote(messageRecord)) {
+      int quoteWidth     = quoteView.getMeasuredWidth();
+      int availableWidth = getAvailableMessageBubbleWidth(quoteView);
 
       if (quoteWidth != availableWidth) {
         quoteView.getLayoutParams().width = availableWidth;
-        measure(widthMeasureSpec, heightMeasureSpec);
+        needsMeasure = true;
       }
     }
+
+    ConversationItemFooter activeFooter   = getActiveFooter(messageRecord);
+    int                    availableWidth = getAvailableMessageBubbleWidth(footer);
+
+    if (activeFooter.getVisibility() != GONE && activeFooter.getMeasuredWidth() != availableWidth) {
+      activeFooter.getLayoutParams().width = availableWidth;
+      needsMeasure = true;
+    }
+
+    if (needsMeasure) {
+      if (measureCalls < MAX_MEASURE_CALLS) {
+        measureCalls++;
+        measure(widthMeasureSpec, heightMeasureSpec);
+      } else {
+        Log.w(TAG, "Hit measure() cap of " + MAX_MEASURE_CALLS);
+      }
+    } else {
+      measureCalls = 0;
+    }
+  }
+
+  private int getAvailableMessageBubbleWidth(@NonNull View forView) {
+    int availableWidth;
+    if (hasAudio(messageRecord)) {
+      availableWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
+    } else if (hasThumbnail(messageRecord)) {
+      availableWidth = mediaThumbnailStub.get().getMeasuredWidth();
+    } else {
+      availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
+    }
+
+    availableWidth -= ViewUtil.getLeftMargin(forView) + ViewUtil.getRightMargin(forView);
+
+    return availableWidth;
   }
 
   private void initializeAttributes() {
@@ -292,8 +292,6 @@ public class ConversationItem extends LinearLayout
     if (recipient != null) {
       recipient.removeListener(this);
     }
-
-    this.expirationTimer.stopAnimation();
   }
 
   public MessageRecord getMessageRecord() {
@@ -302,46 +300,28 @@ public class ConversationItem extends LinearLayout
 
   /// MessageRecord Attribute Parsers
 
-  private void setBubbleState(MessageRecord messageRecord, Recipient recipient) {
+  private void setBubbleState(MessageRecord messageRecord) {
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
-      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(defaultBubbleColor);
     } else {
-      int color = recipient.getColor().toConversationColor(context);
-      bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
-      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setBackgroundColorHint(color);
+      bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
+      bodyBubble.getBackground().setColorFilter(messageRecord.getRecipient().getColor().toConversationColor(context), PorterDuff.Mode.MULTIPLY);
     }
 
     if (audioViewStub.resolved()) {
-      setAudioViewTint(messageRecord, conversationRecipient);
-    }
-
-    if (documentViewStub.resolved()) {
-      setDocumentViewTint(messageRecord, conversationRecipient);
+      setAudioViewTint(messageRecord, this.conversationRecipient);
     }
   }
 
   private void setAudioViewTint(MessageRecord messageRecord, Recipient recipient) {
     if (messageRecord.isOutgoing()) {
       if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
-        audioViewStub.get().setTint(recipient.getColor().toConversationColor(context), defaultBubbleColor);
+        audioViewStub.get().setTint(getContext().getResources().getColor(R.color.core_light_60), defaultBubbleColor);
       } else {
         audioViewStub.get().setTint(Color.WHITE, defaultBubbleColor);
       }
     } else {
       audioViewStub.get().setTint(Color.WHITE, recipient.getColor().toConversationColor(context));
-    }
-  }
-
-  private void setDocumentViewTint(MessageRecord messageRecord, Recipient recipient) {
-    if (messageRecord.isOutgoing()) {
-      if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
-        documentViewStub.get().setTint(recipient.getColor().toConversationColor(context), defaultBubbleColor);
-      } else {
-        documentViewStub.get().setTint(Color.WHITE, defaultBubbleColor);
-      }
-    } else {
-      documentViewStub.get().setTint(Color.WHITE, recipient.getColor().toConversationColor(context));
     }
   }
 
@@ -387,6 +367,10 @@ public class ConversationItem extends LinearLayout
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
   }
 
+  private boolean hasOnlyThumbnail(MessageRecord messageRecord) {
+    return hasThumbnail(messageRecord) && !hasAudio(messageRecord) && !hasDocument(messageRecord) && !hasSharedContact(messageRecord);
+  }
+
   private boolean hasDocument(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide() != null;
   }
@@ -412,7 +396,12 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setMediaAttributes(MessageRecord messageRecord, Recipient conversationRecipient) {
+  private void setMediaAttributes(@NonNull MessageRecord           messageRecord,
+                                  @NonNull Optional<MessageRecord> previousRecord,
+                                  @NonNull Optional<MessageRecord> nextRecord,
+                                  @NonNull Recipient               conversationRecipient,
+                                           boolean                 isGroupThread)
+  {
     boolean showControls = !messageRecord.isFailed() && !Util.isOwnNumber(context, conversationRecipient.getAddress());
 
     if (hasSharedContact(messageRecord)) {
@@ -426,7 +415,11 @@ public class ConversationItem extends LinearLayout
       sharedContactStub.get().setOnClickListener(sharedContactClickListener);
       sharedContactStub.get().setOnLongClickListener(passthroughClickListener);
 
-      bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+      setSharedContactCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
+
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      footer.setVisibility(GONE);
     } else if (hasAudio(messageRecord)) {
       audioViewStub.get().setVisibility(View.VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
@@ -438,7 +431,9 @@ public class ConversationItem extends LinearLayout
       audioViewStub.get().setDownloadClickListener(downloadClickListener);
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
 
-      bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      footer.setVisibility(VISIBLE);
     } else if (hasDocument(messageRecord)) {
       documentViewStub.get().setVisibility(View.VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
@@ -451,7 +446,9 @@ public class ConversationItem extends LinearLayout
       documentViewStub.get().setDownloadClickListener(downloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
 
-      bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      footer.setVisibility(VISIBLE);
     } else if (hasThumbnail(messageRecord)) {
       mediaThumbnailStub.get().setVisibility(View.VISIBLE);
       if (audioViewStub.resolved())    audioViewStub.get().setVisibility(View.GONE);
@@ -471,14 +468,92 @@ public class ConversationItem extends LinearLayout
       mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
       mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);
       mediaThumbnailStub.get().setOnClickListener(passthroughClickListener);
+      mediaThumbnailStub.get().showShade(TextUtils.isEmpty(messageRecord.getDisplayBody()));
 
-      bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+      setThumbnailOutlineCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
+
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      footer.setVisibility(VISIBLE);
     } else {
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
-      bodyText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      footer.setVisibility(VISIBLE);
+    }
+  }
+
+  private void setThumbnailOutlineCorners(@NonNull MessageRecord           current,
+                                          @NonNull Optional<MessageRecord> previous,
+                                          @NonNull Optional<MessageRecord> next,
+                                                   boolean                 isGroupThread)
+  {
+    int defaultRadius  = readDimen(R.dimen.message_corner_radius);
+    int collapseRadius = readDimen(R.dimen.message_corner_collapse_radius);
+
+    int topLeft     = defaultRadius;
+    int topRight    = defaultRadius;
+    int bottomLeft  = defaultRadius;
+    int bottomRight = defaultRadius;
+
+    if (isSingularMessage(current, previous, next, isGroupThread)) {
+      topLeft     = defaultRadius;
+      topRight    = defaultRadius;
+      bottomLeft  = defaultRadius;
+      bottomRight = defaultRadius;
+    } else if (isStartOfMessageCluster(current, previous, isGroupThread)) {
+      if (current.isOutgoing()) {
+        bottomRight = collapseRadius;
+      } else {
+        bottomLeft = collapseRadius;
+      }
+    } else if (isEndOfMessageCluster(current, next, isGroupThread)) {
+      if (current.isOutgoing()) {
+        topRight = collapseRadius;
+      } else {
+        topLeft = collapseRadius;
+      }
+    } else {
+      if (current.isOutgoing()) {
+        topRight    = collapseRadius;
+        bottomRight = collapseRadius;
+      } else {
+        topLeft    = collapseRadius;
+        bottomLeft = collapseRadius;
+      }
+    }
+
+    if (!TextUtils.isEmpty(current.getDisplayBody())) {
+      bottomLeft  = 0;
+      bottomRight = 0;
+    }
+
+    if (isStartOfMessageCluster(current, previous, isGroupThread) && !current.isOutgoing() && isGroupThread) {
+      topLeft  = 0;
+      topRight = 0;
+    }
+
+    if (hasQuote(messageRecord)) {
+      topLeft  = 0;
+      topRight = 0;
+    }
+
+    mediaThumbnailStub.get().setOutlineCorners(topLeft, topRight, bottomRight, bottomLeft);
+  }
+
+  private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
+      sharedContactStub.get().setSingularStyle();
+    } else {
+      if (current.isOutgoing()) {
+        sharedContactStub.get().setClusteredOutgoingStyle();
+      } else {
+        sharedContactStub.get().setClusteredIncomingStyle();
+      }
     }
   }
 
@@ -508,85 +583,20 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setStatusIcons(MessageRecord messageRecord) {
-    indicatorText.setVisibility(View.GONE);
-
-    insecureImage.setVisibility(messageRecord.isSecure() ? View.GONE : View.VISIBLE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
-    dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
 
     if (messageRecord.isFailed()) {
-      setFailedStatusIcons();
+      alertView.setFailed();
     } else if (messageRecord.isPendingInsecureSmsFallback()) {
-      setFallbackStatusIcons();
+      alertView.setPendingApproval();
     } else {
       alertView.setNone();
-
-      if      (!messageRecord.isOutgoing())  deliveryStatusIndicator.setNone();
-      else if (messageRecord.isPending())    deliveryStatusIndicator.setPending();
-      else if (messageRecord.isRemoteRead()) deliveryStatusIndicator.setRead();
-      else if (messageRecord.isDelivered())  deliveryStatusIndicator.setDelivered();
-      else                                   deliveryStatusIndicator.setSent();
     }
   }
 
-  private void setSimInfo(MessageRecord messageRecord) {
-    SubscriptionManagerCompat subscriptionManager = new SubscriptionManagerCompat(context);
-
-    if (messageRecord.getSubscriptionId() == -1 || !Permissions.hasAll(context, Manifest.permission.READ_PHONE_STATE) || subscriptionManager.getActiveSubscriptionInfoList().size() < 2) {
-      simInfoText.setVisibility(View.GONE);
-    } else {
-      Optional<SubscriptionInfoCompat> subscriptionInfo = subscriptionManager.getActiveSubscriptionInfo(messageRecord.getSubscriptionId());
-
-      if (subscriptionInfo.isPresent() && messageRecord.isOutgoing()) {
-        simInfoText.setText(getContext().getString(R.string.ConversationItem_from_s, subscriptionInfo.get().getDisplayName()));
-        simInfoText.setVisibility(View.VISIBLE);
-      } else if (subscriptionInfo.isPresent()) {
-        simInfoText.setText(getContext().getString(R.string.ConversationItem_to_s,  subscriptionInfo.get().getDisplayName()));
-        simInfoText.setVisibility(View.VISIBLE);
-      } else {
-        simInfoText.setVisibility(View.GONE);
-      }
-    }
-  }
-
-  @SuppressLint("StaticFieldLeak")
-  private void setExpiration(final MessageRecord messageRecord) {
-    if (messageRecord.getExpiresIn() > 0) {
-      this.expirationTimer.setVisibility(View.VISIBLE);
-      this.expirationTimer.setPercentage(0);
-
-      if (messageRecord.getExpireStarted() > 0) {
-        this.expirationTimer.setExpirationTime(messageRecord.getExpireStarted(),
-                                               messageRecord.getExpiresIn());
-        this.expirationTimer.startAnimation();
-
-        if (messageRecord.getExpireStarted() + messageRecord.getExpiresIn() <= System.currentTimeMillis()) {
-          ApplicationContext.getInstance(context).getExpiringMessageManager().checkSchedule();
-        }
-      } else if (!messageRecord.isOutgoing() && !messageRecord.isMediaPending()) {
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... params) {
-            ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
-            long                   id                = messageRecord.getId();
-            boolean                mms               = messageRecord.isMms();
-
-            if (mms) DatabaseFactory.getMmsDatabase(context).markExpireStarted(id);
-            else     DatabaseFactory.getSmsDatabase(context).markExpireStarted(id);
-
-            expirationManager.scheduleDeletion(id, mms, messageRecord.getExpiresIn());
-            return null;
-          }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-      }
-    } else {
-      this.expirationTimer.setVisibility(View.GONE);
-    }
-  }
-
-  private void setQuote(@NonNull MessageRecord messageRecord) {
-    if (messageRecord.isMms() && !messageRecord.isMmsNotification() && ((MediaMmsMessageRecord)messageRecord).getQuote() != null) {
-      Quote quote = ((MediaMmsMessageRecord)messageRecord).getQuote();
+  private void setQuote(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
+      Quote quote = ((MediaMmsMessageRecord)current).getQuote();
       assert quote != null;
       quoteView.setQuote(glideRequests, quote.getId(), Recipient.from(context, quote.getAuthor(), true), quote.getText(), quote.getAttachment());
       quoteView.setVisibility(View.VISIBLE);
@@ -594,42 +604,80 @@ public class ConversationItem extends LinearLayout
 
       quoteView.setOnClickListener(view -> {
         if (eventListener != null && batchSelected.isEmpty()) {
-          eventListener.onQuoteClicked((MmsMessageRecord) messageRecord);
+          eventListener.onQuoteClicked((MmsMessageRecord) current);
         } else {
           passthroughClickListener.onClick(view);
         }
       });
+
       quoteView.setOnLongClickListener(passthroughClickListener);
+
+      if (isStartOfMessageCluster(current, previous, isGroupThread)) {
+        if (current.isOutgoing()) {
+          quoteView.setTopCornerSizes(true, true);
+        } else if (isGroupThread) {
+          quoteView.setTopCornerSizes(false, false);
+        } else {
+          quoteView.setTopCornerSizes(true, true);
+        }
+      } else if (!isSingularMessage(current, previous, next, isGroupThread)) {
+        if (current.isOutgoing()) {
+          quoteView.setTopCornerSizes(true, false);
+        } else {
+          quoteView.setTopCornerSizes(false, true);
+        }
+      }
+
+      if (mediaThumbnailStub.resolved()) {
+        ViewUtil.setTopMargin(mediaThumbnailStub.get(), readDimen(R.dimen.message_bubble_top_padding));
+      }
     } else {
       quoteView.dismiss();
+
+      if (mediaThumbnailStub.resolved()) {
+        ViewUtil.setTopMargin(mediaThumbnailStub.get(), 0);
+      }
     }
   }
 
-  private void setFailedStatusIcons() {
-    alertView.setFailed();
-    deliveryStatusIndicator.setNone();
-    dateText.setText(R.string.ConversationItem_error_not_delivered);
-
-    if (messageRecord.isOutgoing()) {
-      indicatorText.setText(R.string.ConversationItem_click_for_details);
-      indicatorText.setVisibility(View.VISIBLE);
+  private void setGutterSizes(@NonNull MessageRecord current, boolean isGroupThread) {
+    if (isGroupThread && current.isOutgoing()) {
+      ViewUtil.setLeftMargin(container, readDimen(R.dimen.conversation_group_left_gutter));
+    } else if (current.isOutgoing()) {
+      ViewUtil.setLeftMargin(container, readDimen(R.dimen.conversation_individual_left_gutter));
     }
   }
 
-  private void setFallbackStatusIcons() {
-    alertView.setPendingApproval();
-    deliveryStatusIndicator.setNone();
-    indicatorText.setVisibility(View.VISIBLE);
-    indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
+  private void setFooter(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, @NonNull Locale locale, boolean isGroupThread) {
+    ViewUtil.updateLayoutParams(footer, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+    footer.setVisibility(GONE);
+    if (sharedContactStub.resolved()) sharedContactStub.get().getFooter().setVisibility(GONE);
+    if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().getFooter().setVisibility(GONE);
+
+    boolean differentMinutes = next.isPresent() && !DateUtils.isSameBriefRelativeTimestamp(context, locale, next.get().getTimestamp(), current.getTimestamp());
+
+    if (current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
+        current.isFailed() || differentMinutes || isEndOfMessageCluster(current, next, isGroupThread))
+    {
+      ConversationItemFooter activeFooter = getActiveFooter(current);
+      activeFooter.setVisibility(VISIBLE);
+      activeFooter.setMessageRecord(current, locale);
+    }
   }
 
-  private void setMinimumWidth() {
-    if (indicatorText.getVisibility() == View.VISIBLE && indicatorText.getText() != null) {
-      final float density = getResources().getDisplayMetrics().density;
-      bodyBubble.setMinimumWidth(indicatorText.getText().length() * (int) (6.5 * density) + (int) (22.0 * density));
+  private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
+    if (hasSharedContact(messageRecord)) {
+      return sharedContactStub.get().getFooter();
+    } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody())) {
+      return mediaThumbnailStub.get().getFooter();
     } else {
-      bodyBubble.setMinimumWidth(0);
+      return footer;
     }
+  }
+
+  private int readDimen(@DimenRes int dimenId) {
+    return context.getResources().getDimensionPixelOffset(dimenId);
   }
 
   private boolean shouldInterceptClicks(MessageRecord messageRecord) {
@@ -651,11 +699,96 @@ public class ConversationItem extends LinearLayout
         this.groupSenderProfileName.setText(null);
         this.groupSenderProfileName.setVisibility(View.GONE);
       }
-
-      this.groupSenderHolder.setVisibility(View.VISIBLE);
-    } else {
-      this.groupSenderHolder.setVisibility(View.GONE);
     }
+  }
+
+  private void setAuthor(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    if (isGroupThread && !current.isOutgoing()) {
+      contactPhotoHolder.setVisibility(VISIBLE);
+
+      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().getAddress().equals(previous.get().getRecipient().getAddress()) ||
+          !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()))
+      {
+        groupSenderHolder.setVisibility(VISIBLE);
+      } else {
+        groupSenderHolder.setVisibility(GONE);
+      }
+
+      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress())) {
+        contactPhoto.setVisibility(VISIBLE);
+      } else {
+        contactPhoto.setVisibility(GONE);
+      }
+    } else {
+      groupSenderHolder.setVisibility(GONE);
+
+      if (contactPhotoHolder != null) {
+        contactPhotoHolder.setVisibility(GONE);
+      }
+    }
+  }
+
+  private void setMessageShape(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    int background;
+    if (isSingularMessage(current, previous, next, isGroupThread)) {
+      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_alone
+                                        : R.drawable.message_bubble_background_received_alone;
+    } else if (isStartOfMessageCluster(current, previous, isGroupThread)) {
+      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_start
+                                        : R.drawable.message_bubble_background_received_start;
+    } else if (isEndOfMessageCluster(current, next, isGroupThread)) {
+      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_end
+                                        : R.drawable.message_bubble_background_received_end;
+    } else {
+      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_middle
+                                        : R.drawable.message_bubble_background_received_middle;
+    }
+
+    bodyBubble.setBackgroundResource(background);
+  }
+
+  private boolean isStartOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, boolean isGroupThread) {
+    if (isGroupThread) {
+      return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
+             !current.getRecipient().getAddress().equals(previous.get().getRecipient().getAddress());
+    } else {
+      return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
+             current.isOutgoing() != previous.get().isOutgoing();
+    }
+  }
+
+  private boolean isEndOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    if (isGroupThread) {
+      return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
+             !current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress());
+    } else {
+      return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
+             current.isOutgoing() != next.get().isOutgoing();
+    }
+  }
+
+  private boolean isSingularMessage(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    return isStartOfMessageCluster(current, previous, isGroupThread) && isEndOfMessageCluster(current, next, isGroupThread);
+  }
+
+  private void setMessageSpacing(@NonNull Context context, @NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
+    int spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_collapse);
+    int spacingBottom = spacingTop;
+
+    if (isStartOfMessageCluster(current, previous, isGroupThread)) {
+      spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
+    }
+
+    if (isEndOfMessageCluster(current, next, isGroupThread)) {
+      spacingBottom = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);
+    }
+
+    ViewUtil.setPaddingTop(this, spacingTop);
+    ViewUtil.setPaddingBottom(this, spacingBottom);
+  }
+
+  private int readDimen(@NonNull Context context, @DimenRes int dimenId) {
+    return context.getResources().getDimensionPixelOffset(dimenId);
   }
 
   /// Event handlers
@@ -673,11 +806,10 @@ public class ConversationItem extends LinearLayout
   @Override
   public void onModified(final Recipient modified) {
     Util.runOnMain(() -> {
-      setBubbleState(messageRecord, recipient);
+      setBubbleState(messageRecord);
       setContactPhoto(recipient);
       setGroupMessageStatus(messageRecord, recipient);
       setAudioViewTint(messageRecord, conversationRecipient);
-      setDocumentViewTint(messageRecord, conversationRecipient);
     });
   }
 

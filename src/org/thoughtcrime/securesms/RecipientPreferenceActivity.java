@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.preferences.widgets.ContactPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -666,30 +667,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       @Override
       public void onMessageClicked() {
-        Intent intent = new Intent(getContext(), ConversationActivity.class);
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
-        startActivity(intent);
+        CommunicationActions.startConversation(getContext(), recipient, null);
       }
 
       @Override
       public void onSecureCallClicked() {
-        Permissions.with(RecipientPreferenceFragment.this)
-                   .request(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.CAMERA)
-                   .ifNecessary()
-                   .withRationaleDialog(getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera, recipient.toShortString()),
-                                        R.drawable.ic_mic_white_48dp, R.drawable.ic_videocam_white_48dp)
-                   .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.toShortString()))
-                   .onAllGranted(() -> {
-                     Intent intent = new Intent(getContext(), WebRtcCallService.class);
-                     intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-                     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, recipient.getAddress());
-                     getContext().startService(intent);
-
-                     Intent activityIntent = new Intent(getContext(), WebRtcCallActivity.class);
-                     activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                     startActivity(activityIntent);
-                   })
-                   .execute();
+        CommunicationActions.startVoiceCall(getActivity(), recipient);
       }
 
       @Override

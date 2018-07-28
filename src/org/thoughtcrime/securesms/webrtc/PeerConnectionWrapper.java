@@ -22,6 +22,7 @@ import org.webrtc.PeerConnectionFactory;
 import org.webrtc.SdpObserver;
 import org.webrtc.SessionDescription;
 import org.webrtc.VideoRenderer;
+import org.webrtc.VideoSink;
 import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 
@@ -49,7 +50,7 @@ public class PeerConnectionWrapper {
   public PeerConnectionWrapper(@NonNull Context                        context,
                                @NonNull PeerConnectionFactory          factory,
                                @NonNull PeerConnection.Observer        observer,
-                               @NonNull VideoRenderer.Callbacks        localRenderer,
+                               @NonNull VideoSink                      localRenderer,
                                @NonNull List<PeerConnection.IceServer> turnServers,
                                @NonNull CameraEventListener            cameraEventListener,
                                boolean                                 hideIp)
@@ -88,7 +89,7 @@ public class PeerConnectionWrapper {
       this.videoSource = factory.createVideoSource(camera.capturer);
       this.videoTrack = factory.createVideoTrack("ARDAMSv0", videoSource);
 
-      this.videoTrack.addRenderer(new VideoRenderer(localRenderer));
+      this.videoTrack.addSink(localRenderer);
       this.videoTrack.setEnabled(false);
       mediaStream.addTrack(videoTrack);
     } else {

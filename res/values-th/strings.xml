@@ -9,7 +9,7 @@
   <string name="AbstractNotificationBuilder_new_message">ข้อความใหม่</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ขณะนี้: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">คุณยังไม่ได้ตั้งวลีรหัสผ่าน!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">คุณยังไม่ได้ตั้งวลีรหัสผ่าน</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="other">%d ข้อความต่อบนสนทนา</item>
   </plurals>
@@ -35,6 +35,7 @@
   <string name="ApplicationPreferencesActivity_off">ปิด</string>
   <string name="ApplicationPreferencesActivity_Off">ปิด</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Screen lock %1$s, Registration lock %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">หน้าตา %1$s, ภาษา %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -45,13 +46,13 @@
   <string name="DraftDatabase_Draft_audio_snippet">(เสียง)</string>
   <string name="DraftDatabase_Draft_video_snippet">(วิดีโอ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ตำแหน่งที่ตั้ง)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(reply)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับสื่อที่เลือก</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียงได้ Signal ต้องการคำอนุญาตให้ใช้ที่เก็บข้อมูล แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"ที่เก็บข้อมูล\"</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อได้ Signal ต้องการคำอนุญาตให้ใช้รายชื่อคนที่คุณติดต่อ แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"รายชื่อผู้ติดต่อ\"</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งได้ Signal ต้องการคำอนุญาตให้ใช้ตำแหน่งที่อยู่ แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"ตำแหน่งที่อยู่\"</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูปได้ Signal ต้องการคำอนุญาตให้ใช้กล้อง แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"กล้อง\"</string>
-  <!--AttachmentTypeSelectorAdapter-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">เกิดข้อผิดพลาดในการเล่นเสียง!</string>
   <!--BlockedContactsActivity-->
@@ -73,17 +74,27 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">แชตเร็วๆ นี้</string>
   <string name="ContactsCursorLoader_contacts">รายชื่อติดต่อ</string>
+  <string name="ContactsCursorLoader_groups">Groups</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ข้อความ %s</string>
   <string name="ContactsDatabase_signal_call_s">สาย Signal %s</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Given name</string>
+  <string name="ContactNameEditActivity_family_name">Family name</string>
+  <string name="ContactNameEditActivity_prefix">Prefix</string>
+  <string name="ContactNameEditActivity_suffix">Suffix</string>
+  <string name="ContactNameEditActivity_middle_name">Middle name</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Home</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobile</string>
+  <string name="ContactShareEditActivity_type_work">Work</string>
+  <string name="ContactShareEditActivity_type_missing">Other</string>
+  <string name="ContactShareEditActivity_invalid_contact">Selected contact was invalid</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">ไม่ได้ส่ง</string>
+  <string name="ConversationItem_error_not_delivered">Not delivered</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนกุญแจ แตะเพื่อประมวลผล</string>
   <string name="ConversationItem_group_action_left">%1$s ออกจากกลุ่ม</string>
-  <string name="ConversationItem_click_for_details">แตะเพื่อดูรายละเอียด</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">แตะเพื่อกลับไปใช้วิธีสำรองที่ไม่ปลอดภัย</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Tap for unsecured fallback</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">กลับไปใช้เอสเอ็มเอสที่ไม่ได้เข้ารหัสลับ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">กลับไปใช้เอ็มเอ็มเอสที่ไม่ได้เข้ารหัสลับ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ข้อความนี้จะ<b>ไม่</b>ถูกเข้ารหัสลับ เพราะผู้รับไม่ได้ใช้ Signal แล้ว\n\nส่งข้อความที่ไม่ปลอดภัย?</string>
@@ -120,7 +131,6 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">แฟ้มแนบมีขนาดใหญ่เกินกำหนดสำหรับชนิดข้อความที่คุณกำลังจะส่ง</string>
   <string name="ConversationActivity_quick_camera_unavailable">ไม่มีกล้อง</string>
   <string name="ConversationActivity_unable_to_record_audio">บันทึกเสียงไม่ได้!</string>
-  <string name="ConversationActivity_error_sending_voice_message">เกิดข้อผิดพลาดในการส่งข้อความเสียง</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">อุปกรณ์ของคุณไม่มีแอปที่สามารถจัดการลิงก์นี้ได้</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">เพื่อจะส่งข้อความเสียง ต้องอนุญาตให้ Signal ใช้งานไมโครโฟนของคุณ</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">เพื่อจะส่งข้อความเสียงได้ Signal ต้องการคำอนุญาตให้เข้าถึงไมโครโฟน แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"ไมโครโฟน\"</string>
@@ -129,6 +139,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">อนุญาต Signal ให้ใช้กล้องเพื่อถ่ายรูปและวิดีโอ</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">เพื่อที่จะถ่ายรูปหรือวิดีโอได้  Signal ต้องการคำอนุญาตให้ใช้กล้อง แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"กล้อง\"</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal ต้องการคำอนุญาตให้ใช้กล้อง เพื่อถ่ายรูปและวิดีโอ</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d ข้อความที่ยังไม่ได้อ่าน</item>
@@ -147,9 +158,6 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">เกิดข้อผิดพลาดระหว่างบันทึกแฟ้มแนบลงที่เก็บข้อมูล</item>
   </plurals>
-  <plurals name="ConversationFragment_files_saved_successfully">
-    <item quantity="other">บันทึกแฟ้มสำเร็จ</item>
-  </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ไม่สามารถเขียนลงที่เก็บข้อมูล!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">กำลังบันทึก %1$d แฟ้มแนบ</item>
@@ -163,6 +171,7 @@
   <string name="ConversationFragment_sms">เอสเอ็มเอส</string>
   <string name="ConversationFragment_deleting">กำลังลบ</string>
   <string name="ConversationFragment_deleting_messages">กำลังลบข้อความ...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Quoted message not found</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ไม่มีเบราว์เซอร์ติดตั้งอยู่ในอุปกรณ์ของคุณ</string>
   <!--ConversationListFragment-->
@@ -197,10 +206,13 @@
   <string name="CustomDefaultPreference_using_default">ใช้ค่าเริ่มต้น: %s</string>
   <string name="CustomDefaultPreference_none">ไม่มี</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">เมื่อครู่</string>
+  <string name="DateUtils_just_now">ตอนนี้</string>
   <string name="DateUtils_minutes_ago">%d นาที</string>
   <string name="DateUtils_today">วันนี้</string>
   <string name="DateUtils_yesterday">เมื่อวานนี้</string>
+  <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sent">ส่งแล้ว</string>
+  <string name="DeliveryStatus_delivered">ส่งแล้ว</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">เลิกเชื่อมโยง \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">เมื่อเลิกเชื่อมโยงอุปกรณ์นี้ อุปกรณ์จะไม่สามารถส่งหรือรับข้อความได้อีกต่อไป</string>
@@ -234,16 +246,6 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">พร้อมเข้ามาใกล้ๆ หรือยัง?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ตอนนี้คุณสามารถแบ่งปันรูปประจำตัวและชื่อให้กับเพื่อนบน Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">โปรไฟล์ของ Signal อยู่ที่นี่</string>
-  <!--ExportFragment-->
-  <string name="ExportFragment_export">ส่งออก</string>
-  <string name="ExportFragment_export_plaintext_to_storage">ส่งออกข้อความไม่เข้ารหัสลับลงที่เก็บช้อมูล?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">คำเตือน นี่จะเป็นการส่งออกเนื้อหาที่ไม่ได้เข้ารหัสลับจากข้อความ Signal ของคุณลงที่เก็บข้อมูล</string>
-  <string name="ExportFragment_cancel">ยกเลิก</string>
-  <string name="ExportFragment_exporting">กำลังส่งออก</string>
-  <string name="ExportFragment_exporting_plaintext_to_storage">กำลังส่งออกข้อความไม่เข้ารหัสลับลงที่เก็บข้อมูล...</string>
-  <string name="ExportFragment_error_unable_to_write_to_storage">ผิดพลาด ไม่สามารถเขียนลงที่เก็บข้อมูลได้</string>
-  <string name="ExportFragment_error_while_writing_to_storage">เกิดข้อผิดพลาดระหว่างเขียนลงที่เก็บข้อมูล</string>
-  <string name="ExportFragment_export_successful">ส่งออกสำเร็จ</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">การสื่อสารของ Signal ล้มเหลวอย่างถาวร!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ไม่สามารถลงทะเบียนกับ Google Play Services การรับส่งข้อความและการโทร Signal ได้ถูกปิด กรุณาลองลงทะเบียนอีกครั้งใน การตั้งค่า &gt; ขั้นสูง</string>
@@ -274,33 +276,6 @@
   <string name="GroupShareProfileView_make_visible">ทำให้มองเห็น</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">ฉัน</string>
-  <!--ImportExportActivity-->
-  <string name="ImportExportActivity_import">นำเข้า</string>
-  <string name="ImportExportActivity_export">ส่งออก</string>
-  <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">นำเข้าฐานข้อมูลเอสเอ็มเอสของระบบ?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">นี่จะนำเข้า
-        ข้อความจากฐานข้อมูลเอสเอ็มเอสมาตรฐานของระบบเข้าสู่ Signal ถ้าคุณเคย
-        นำเข้าฐานข้อมูลเอสเอ็มเอสของระบบมาก่อนแล้ว การนำเข้านี้จะทำให้มีข้อความซ้ำ
-    </string>
-  <string name="ImportFragment_import">นำเข้า</string>
-  <string name="ImportFragment_cancel">ยกเลิก</string>
-  <string name="ImportFragment_import_plaintext_backup">นำเข้าข้อมูลสำรองแบบไม่เข้ารหัสลับ</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">นี่จะนำเข้า
-        ข้อความจากข้อมูลสำรองที่ไม่เข้ารหัสลับ ถ้าคุณเคย
-        นำเข้าข้อมูลสำรองนี้มาก่อนแล้ว การนำเข้านี้จะทำให้มีข้อความซ้ำ
-    </string>
-  <string name="ImportFragment_importing">กำลังนำเข้า</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">กำลังนำเข้าข้อมูลสำรองแบบไม่เข้ารหัสลับ...</string>
-  <string name="ImportFragment_no_plaintext_backup_found">ไม่พบข้อมูลสำรองแบบไม่เข้ารหัสลับ!</string>
-  <string name="ImportFragment_error_importing_backup">เกิดข้อผิดพลาดในการนำเข้าข้อมูลสำรอง!</string>
-  <string name="ImportFragment_import_complete">การนำเข้าเสร็จสมบูรณ์!</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages">เพื่อที่จะนำเข้าข้อความเอสเอ็มเอสได้ Signal ต้องการคำอนุญาตให้ใช้เอสเอ็มเอส แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"เอสเอ็มเอส\"</string>
-  <string name="ImportExportFragment_signal_needs_the_sms_permission_in_order_to_import_sms_messages_toast">Signal ต้องการคำอนุญาตให้ใช้เอสเอ็มเอส เพื่อนำเข้าข้อความเอสเอ็มเอส</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage_but_it_has_been_permanently_denied">เพื่อที่จะอ่านข้อมูลจากที่เก็บข้อมูลภายนอกได้ Signal ต้องการคำอนุญาตให้ใช้ที่เก็บข้อมูล แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"ที่เก็บข้อมูล\"</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_read_from_external_storage">Signal ต้องการคำอนุญาตให้ใช้ที่เก็บข้อมูล เพื่ออ่านข้อมูลจากที่เก็บข้อมูลภายนอก</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">เพื่อที่จะเขียนข้อมูลลงที่เก็บข้อมูลภายนอกได้ Signal ต้องการคำอนุญาตให้ใช้ที่เก็บข้อมูล แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"ที่เก็บข้อมูล\"</string>
-  <string name="ImportExportFragment_signal_needs_the_storage_permission_in_order_to_write_to_external_storage">Signal ต้องการคำอนุญาตให้ใช้ที่เก็บข้อมูล เพื่อเขียนข้อมูลลงที่เก็บข้อมูลภายนอก</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">แตะค้างไว้เพื่อบันทึกข้อความเสียง ปล่อยเพื่อส่ง</string>
   <!--InviteActivity-->
@@ -314,10 +289,12 @@
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">ส่งเอสเอ็มเอสให้เพื่อน %d คน</item>
   </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="other">Send %d SMS invites?</item>
+  </plurals>
   <string name="InviteActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กัน: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ดูเหมือนคุณไม่มีแอปอะไรที่จะแบ่งปันไปได้เลย</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">เพื่อนต้องไม่ยอมให้เพื่อนคุยกันโดยไม่เข้ารหัสลับ</string>
-  <!--KeyScanningActivity-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">การส่งล้มเหลว</string>
   <string name="MessageDetailsRecipient_new_safety_number">ตัวเลขความปลอดภัยใหม่</string>
@@ -328,6 +305,12 @@
   <string name="MmsDownloader_error_reading_mms_settings">เกิดข้อผิดพลาดระหว่างอ่านการตั้งค่าเอ็มเอ็มเอสของผู้ให้บริการไร้สาย</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">สื่อ</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="other">Delete selected messages?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">กำลังลบ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">กำลังลบข้อความ...</string>
   <string name="MediaOverviewActivity_Documents">เอกสาร</string>
@@ -347,13 +330,15 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ได้รับข้อความที่เข้ารหัสลับด้วย Signal รุ่นเก่าที่ไม่รองรับอีกต่อไปแล้ว โปรดขอให้ผู้ส่งปรับรุ่นแอปเป็นรุ่นล่าสุดและส่งข้อความอีกครั้ง</string>
   <string name="MessageRecord_left_group">คุณได้ออกจากกลุ่ม</string>
   <string name="MessageRecord_you_updated_group">คุณได้ปรับปรุงกลุ่ม</string>
+  <string name="MessageRecord_you_called">คุณได้โทรหา</string>
+  <string name="MessageRecord_missed_call">สายที่ไม่ได้รับ</string>
   <string name="MessageRecord_s_updated_group">%s ได้ปรับปรุงกลุ่ม</string>
   <string name="MessageRecord_s_called_you">%s ได้โทรหาคุณ</string>
   <string name="MessageRecord_called_s">สายเข้า %s</string>
   <string name="MessageRecord_missed_call_from">สายที่ไม่ได้รับจาก %s</string>
   <string name="MessageRecord_s_joined_signal">%s อยู่บน Signal!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">คุณตั้งเวลาลบตัวเองของข้อความไว้ที่ %1$s</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ตั้งเวลาลบตัวเองของข้อความไว้ที่ %2$s</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set disappearing message time to %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set disappearing message time to %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">ตัวเลขความปลอดภัยระหว่างคุณกับ %s เปลี่ยนไป</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">คุณทำเครื่องหมายว่า ตัวเลขความปลอดภัยระหว่างคุณกับ %s ถูกตรวจยืนยันแล้ว</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า ตัวเลขความปลอดภัยระหว่างคุณกับ %s ถูกตรวจยืนยันแล้ว</string>
@@ -439,38 +424,33 @@
         ระบุ (%s) ไม่ถูกต้อง
     </string>
   <string name="RegistrationActivity_missing_google_play_services">ไม่มี Google Play Services</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">This device is missing Google Play Services. You can still use Signal, but this configuration may result in reduced reliability or performance.\n\nIf you are not an advanced user, are not running an aftermarket Android ROM, or believe that you are seeing this in error, please contact support@signal.org for help troubleshooting.</string>
   <string name="RegistrationActivity_i_understand">ฉันเข้าใจ</string>
   <string name="RegistrationActivity_play_services_error">ข้อผิดพลาดเกี่ยวกับ Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services กำลังปรับปรุงหรือใช้ไม่ได้ชั่วคราว โปรดลองอีกครั้ง</string>
+  <string name="RegistrationActivity_terms_and_privacy">Terms &amp; Privacy Policy</string>
+  <string name="RegistrationActivity_no_browser">Unable to open this link. No web browser found.</string>
   <string name="RegistrationActivity_more_information">ข้อมูลเพิ่มเติม</string>
   <string name="RegistrationActivity_less_information">ข้อมูลน้อยลง</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ต้องการเข้าถึงสื่อและรายชื่อคนที่คุณติดต่อด้วย เพื่อที่จะเชื่อมต่อคุณกับเพื่อน แลกเปลี่ยนข้อความ และโทรหากันแบบปลอดภัย</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">เพื่อให้คุณตรวจยืนยันหมายเลขโทรศัพท์ได้ง่าย Signal สามารถตรวจหารหัสการยืนยันโดยอัตโนมัติ ถ้าคุณอนุญาตให้ Signal อ่านข้อความเอสเอ็มเอสของคุณได้</string>
-  <!--RegistrationProblemsActivity-->
-  <!--RegistrationProgressActivity-->
-  <!--RegistrationService-->
-  <string name="RegistrationService_registration_complete">การลงทะเบียนเสร็จสมบูรณ์</string>
-  <string name="RegistrationService_signal_registration_has_successfully_completed">การลงทะเบียน Signal เสร็จสมบูรณ์แล้ว</string>
-  <string name="RegistrationService_registration_error">การลงทะเบียนมีข้อผิดพลาด</string>
-  <string name="RegistrationService_signal_registration_has_encountered_a_problem">การลงทะเบียน Signal ประสบปัญหา</string>
-  <!--RingtonePreference-->
-  <string name="RingtonePreference_ringtone_default">เสียงเรียกเข้ามาตรฐาน</string>
-  <string name="RingtonePreference_ringtone_silent">ไม่มี</string>
-  <string name="RingtonePreference_notification_sound_default">เสียงแจ้งเตือนมาตรฐาน</string>
-  <string name="RingtonePreference_alarm_sound_default">เสียงเตือนมาตรฐาน</string>
-  <string name="RingtonePreference_add_ringtone_text">เพิ่มเสียงเรียกเข้า</string>
-  <string name="RingtonePreference_unable_to_add_ringtone">ไม่สามารถเพิ่มเสียงเรียกเข้าที่ตั้งเองได้</string>
   <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
   <!--Search-->
   <string name="SearchFragment_no_results">ไม่พบข้อมูลเกี่ยวกับ \'%s\'</string>
+  <string name="SearchFragment_header_conversations">Conversations</string>
   <string name="SearchFragment_header_contacts">รายชื่อติดต่อ</string>
   <string name="SearchFragment_header_messages">ข้อความ</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Add to Contacts</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">เชิญมาใช้ Signal</string>
-  <string name="SharedContactDetailsActivity_invite_message">เปลี่ยนมาใช้ Signal กัน: %1$s</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal Message</string>
+  <string name="SharedContactDetailsActivity_signal_call">โทร Signal</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Add to Contacts</string>
   <string name="SharedContactView_invite_to_signal">เชิญมาใช้ Signal</string>
+  <string name="SharedContactView_message">Signal Message</string>
   <!--Slide-->
   <string name="Slide_image">ภาพ</string>
   <string name="Slide_audio">เสียง</string>
@@ -527,19 +507,10 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ไม่พบตัวเลขความปลอดภัยที่จะเปรียบเทียบในคลิปบอร์ด</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องการคำอนุญาตให้ใช้กล้อง แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"กล้อง\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">สแกนรหัส QR ไม่ได้ หากไม่ได้รับอนุญาตให้ใช้กล้อง</string>
-  <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">ข้อความเข้ารหัสลับมีความผิดปกติ</string>
-  <string name="MessageDisplayHelper_decrypting_please_wait">กำลังถอดรหัสลับ โปรดรอ...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ข้อความถูกเข้ารหัสลับสำหรับวาระที่ไม่มีอยู่</string>
-  <!--EncryptingSmsDatabase-->
-  <string name="EncryptingSmsDatabase_error_decrypting_message">เกิดข้อผิดพลาดระหว่างถอดรหัสลับข้อความ</string>
-  <!--ThreadDatabase-->
-  <string name="ThreadDatabase_error_decrypting_message">เกิดข้อผิดพลาดระหว่างถอดรหัสลับข้อความ</string>
-  <!--MmsDatabase-->
-  <string name="MmsDatabase_error_decrypting_message">เกิดข้อผิดพลาดระหว่างถอดรหัสลับข้อความ</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_decrypting_mms_please_wait">กำลังถอดรหัสลับเอ็มเอ็มเอส โปรดรอ...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ข้อความเอ็มเอ็มเอสเข้ารหัสลับมีความผิดปกติ</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ข้อความเอ็มเอ็มเอสถูกเข้ารหัสลับสำหรับวาระที่ไม่มีอยู่</string>
   <!--MuteDialog-->
@@ -562,6 +533,8 @@
   <string name="MediaPreviewActivity_draft">ร่าง</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">เพื่อที่จะบันทึกข้อมูลลงที่เก็บข้อมูลภายนอกได้ Signal ต้องการคำอนุญาตให้ใช้ที่เก็บข้อมูล แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"ที่เก็บข้อมูล\"</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ไม่สามารถบันทึกลงที่เก็บข้อมูลภายนอกได้ หากไม่ได้รับอนุญาต</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d ข้อความใหม่ จาก %2$d การสนทนา</string>
   <string name="MessageNotifier_most_recent_from_s">ล่าสุดจาก: %1$s</string>
@@ -576,13 +549,12 @@
   <string name="MessageNotifier_reply">ตอบกลับ</string>
   <string name="MessageNotifier_pending_signal_messages">ข้อความ Signal ที่รอดำเนินการ</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Signal ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">รายชื่อ</string>
-  <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Signal ถูกล็อกอยู่!</string>
   <string name="QuickResponseService_problem_sending_message">เกิดปัญหาในการส่งข้อความ!</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_open_directory">เปิดไดเรกทอรี</string>
   <string name="SaveAttachmentTask_saved_to">บันทึกไปยัง %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">ค้นหา</string>
@@ -602,7 +574,6 @@
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">คุณอาจต้องการตรวจยืนยันตัวเลขความปลอดภัยระหว่างคุณกับคนที่คุณติดต่อรายนี้</string>
   <string name="WebRtcCallScreen_new_safety_number_title">ตัวเลขความปลอดภัยใหม่</string>
   <string name="WebRtcCallScreen_accept">ยอมรับ</string>
-  <string name="WebRtcCallScreen_cancel">ยกเลิก</string>
   <string name="WebRtcCallScreen_end_call">วางสาย</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">แตะเพื่อเปิดใช้วิดีโอของคุณ</string>
@@ -638,11 +609,9 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">เกิดข้อผิดพลาดระหว่างดึงรายชื่อ ตรวจสอบการเชื่อมต่อเครือข่ายของคุณ</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ไม่มีชื่อที่ถูกปิดกั้น</string>
-  <!--contact_selection_recent_activity-->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ต้องการเข้าถึงรายชื่อคนที่คุณติดต่อ เพื่อที่จะแสดงมันได้</string>
   <string name="contact_selection_list_fragment__show_contacts">แสดงรายชื่อ</string>
-  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">ข้อความ Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">เอสเอ็มเอสที่ไม่ปลอดภัย</string>
@@ -674,10 +643,9 @@
   <!--QuoteView-->
   <string name="QuoteView_audio">เสียง</string>
   <string name="QuoteView_video">วิดีโอ</string>
+  <string name="QuoteView_photo">Photo</string>
+  <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">คุณ</string>
-  <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">โหมดการเลือกเป็นชุด</string>
-  <string name="conversation_fragment_cab__batch_selection_amount">เลือกแล้ว %s</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงด้านล่าง</string>
   <!--country_selection_fragment-->
@@ -734,7 +702,6 @@
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">ค้นหา GIF และสติกเกอร์</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ไม่พบสิ่งใด</string>
-  <!--import_export_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">ไม่สามารถอ่านปูมบนอุปกรณ์ของคุณได้ คุณยังสามารถใช้ ADB เพื่อเข้าถึงปูมดีบัก</string>
   <string name="log_submit_activity__thanks">ขอบคุณสำหรับความช่วยเหลือของคุณ!</string>
@@ -749,14 +716,13 @@
   <string name="database_migration_activity__importing">กำลังนำเข้า</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">กำลังปรับปรุงฐานข้อมูล...</string>
-  <string name="export_fragment__export_plaintext_backup">ส่งออกข้อมูลสำรองแบบไม่ได้เข้ารหัสลับ</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">ส่งออกข้อมูลสำรองที่ไม่ได้เข้ารหัสลับ ที่เข้ากันได้กับ \'SMS Backup &amp; Restore\' ลงที่เก็บข้อมูล</string>
   <string name="import_fragment__import_system_sms_database">นำเข้าฐานข้อมูลเอสเอ็มเอสของระบบ</string>
   <string name="import_fragment__import_the_database_from_the_default_system">นำเข้าฐานข้อมูลจากแอปรับส่งข้อความมาตรฐานของระบบ</string>
   <string name="import_fragment__import_plaintext_backup">นำเข้าข้อมูลสำรองแบบไม่ได้เข้ารหัสลับ</string>
   <string name="import_fragment__import_a_plaintext_backup_file">นำเข้าแฟ้มข้อมูลสำรองที่ไม่ได้เข้ารหัสลับ ใช้กันได้กับ \'SMS Backup &amp; Restore.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">ดูการสนทนาแบบเต็ม</string>
+  <string name="load_more_header__loading">Loading</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">ไม่มีสื่อ</string>
   <!--message_recipients_list_item-->
@@ -796,14 +762,12 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">โทร Signal</string>
   <string name="redphone_call_controls__mute">ปิดเสียง</string>
-  <string name="redphone_call_controls__signal_call">โทร Signal</string>
+  <string name="redphone_call_controls__flip_camera_rear">Switch Cameras</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">หมายเลขโทรศัพท์</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ทำให้การสื่อสารง่ายขึ้นด้วยการใช้หมายเลขโทรศัพท์และรายชื่อติดต่อที่คุณมีอยู่แล้ว เพื่อนและใครก็ตามที่ติดต่อคุณผ่านทางโทรศัพท์ได้ ก็จะสามารถติดต่อคุณผ่าน Signal ได้เช่นกัน การลงทะเบียนส่งข้อมูลส่วนหนึ่งของรายชื่อติดต่อไปที่เซิร์ฟเวอร์ แต่มันจะไม่ถูกบันทึกไว้</string>
   <string name="registration_activity__verify_your_number">ตรวจยืนยันหมายเลขของคุณ</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">กรุณาป้อนหมายเลขโทรศัพท์ของคุณเพื่อรับรหัสการยืนยัน การส่งนี้อาจถูกคิดเงินตามอัตราของผู้ให้บริการโทรศัพท์</string>
-  <!--registration_problems-->
-  <!--registration_progress_activity-->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ป้อนชื่อหรือหมายเลข</small></string>
   <string name="recipients_panel__add_members">เพิ่มสมาชิก</string>
@@ -813,6 +777,7 @@
   <string name="unknown_sender_view__add_to_contacts">เพิ่มลงในรายชื่อติดต่อ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">อย่าเพิ่ม แต่ทำให้โปรไฟล์ของฉันถูกเห็นได้</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">แตะเพื่อสแกน</string>
   <string name="verify_display_fragment__loading">กำลังโหลด...</string>
   <string name="verify_display_fragment__verified">ตรวจยืนยันแล้ว</string>
@@ -832,7 +797,6 @@
   <string name="message_details_header__with">กับ:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">สร้างวลีรหัสผ่าน</string>
-  <string name="AndroidManifest__enter_passphrase">ใส่วลีรหัสผ่าน</string>
   <string name="AndroidManifest__select_contacts">เลือกรายชื่อติดต่อ</string>
   <string name="AndroidManifest__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
   <string name="AndroidManifest__verify_safety_number">ตรวจยืนยันตัวเลขความปลอดภัย</string>
@@ -885,6 +849,8 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">เลือกชื่อคนที่คุณติดต่อด้วยจากรายชื่อผู้ติดต่อ</string>
   <string name="preferences__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
   <string name="preferences__change_your_passphrase">เปลี่ยนวลีรหัสผ่านของคุณ</string>
+  <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
   <string name="preferences__screen_security">ความปลอดภัยหน้าจอ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">ปิดกั้นการจับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ล็อก Signal อัตโนมัติหากไม่มีความเคลื่อนไหวในช่วงเวลาที่กำหนด</string>
@@ -977,8 +943,6 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">ข้อความใหม่ถึง...</string>
-  <!--contact_selection-->
-  <!--refreshing push directory from menu-->
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">โทร</string>
   <!--conversation_callable_secure-->
@@ -989,6 +953,7 @@
   <string name="conversation_context__menu_delete_message">ลบข้อความ</string>
   <string name="conversation_context__menu_forward_message">ส่งต่อข้อความ</string>
   <string name="conversation_context__menu_resend_message">ส่งข้อความอีกครั้ง</string>
+  <string name="conversation_context__menu_reply_to_message">Reply to message</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">บันทึกแฟ้มแนบ</string>
   <!--conversation_expiring_off-->
@@ -997,7 +962,6 @@
   <string name="menu_conversation_expiring_on__messages_expiring">ข้อความที่กำลังหมดอายุ</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">เชิญ</string>
-  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">ลบที่เลือก</string>
   <string name="conversation_list_batch__menu_select_all">เลือกทั้งหมด</string>
@@ -1033,9 +997,7 @@
   <string name="conversation_group_options__delivery">การส่ง</string>
   <string name="conversation_group_options__conversation">การสนทนา</string>
   <string name="conversation_group_options__broadcast">กระจายเสียง</string>
-  <!--key_scanning-->
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">ข้อความใหม่</string>
   <string name="text_secure_normal__menu_new_group">กลุ่มใหม่</string>
   <string name="text_secure_normal__menu_settings">การตั้งค่า</string>
   <string name="text_secure_normal__menu_clear_passphrase">ล็อก</string>
@@ -1047,6 +1009,9 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">เปรียบเทียบกับคลิปบอร์ด</string>
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Signal รุ่นของคุณล้าสมัยแล้ว</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="other">Your version of Signal will expire in %d days. Tap to update to the most recent version.</item>
+  </plurals>
   <string name="reminder_header_outdated_build_details_today">รุ่น Signal ของคุณจะหมดอายุวันนี้ แตะเพื่อปรับรุ่นเป็นรุ่นล่าสุด</string>
   <string name="reminder_header_expired_build">Signal รุ่นของคุณหมดอายุแล้ว!</string>
   <string name="reminder_header_expired_build_details">ข้อความจะไม่มีทางส่งได้สำเร็จ แตะเพื่อปรับรุ่นเป็นรุ่นล่าสุด</string>
@@ -1060,6 +1025,7 @@
   <string name="reminder_header_invite_text">คุยกับ %1$s ได้อีกระดับ</string>
   <string name="reminder_header_share_title">เชิญเพื่อนของคุณ!</string>
   <string name="reminder_header_share_text">ยิ่งมีเพื่อนใช้ Signal เยอะก็ยิ่งดี</string>
+  <string name="reminder_header_service_outage_text">Signal is experiencing technical difficulties. We are working hard to restore service as quickly as possible.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">บันทึก</string>
   <string name="media_preview__forward_title">ส่งต่อ</string>
@@ -1086,39 +1052,87 @@
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">เพื่อที่จะค้นหาชื่อได้ Signal ต้องการคำอนุญาตให้ใช้รายชื่อคนที่คุณติดต่อ แต่คำขอของมันถูกปฏิเสธอย่างถาวร กรุณาไปยังเมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้ \"รายชื่อผู้ติดต่อ\"</string>
   <string name="conversation_activity__enable_signal_messages">เปิดใช้สัญญาณเรียกเข้าของข้อความ</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">ย้ายฐานข้อมูล Signal</string>
+  <string name="PushDecryptJob_new_locked_message">New locked message</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Unlock to view pending messages</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Unlock to complete update</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Please unlock Signal to complete update</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">สำรองข้อมูลวลีรหัสผ่าน</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
+  <string name="registration_activity__restore_backup">Restore backup</string>
   <string name="registration_activity__skip">ข้าม</string>
   <string name="registration_activity__register">ลงทะเบียน</string>
+  <string name="preferences_chats__chat_backups">Chat backups</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to external storage</string>
+  <string name="preferences_chats__create_backup">Create backup</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
   <string name="RegistrationActivity_restore">เรียกคืน</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup passphrase</string>
+  <string name="RegistrationActivity_checking">Checking...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d messages so far...</string>
+  <string name="RegistrationActivity_restore_from_backup">Restore from backup?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restore your messages and media from a local backup. If you don\'t restore now, you won\'t be able to restore later.</string>
+  <string name="RegistrationActivity_backup_size_s">Backup size: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Backup timestamp: %s</string>
+  <string name="BackupDialog_enable_local_backups">Enable local backups?</string>
+  <string name="BackupDialog_enable_backups">Enable backups</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
+  <string name="BackupDialog_delete_backups">Delete backups?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
+  <string name="BackupDialog_delete_backups_statement">Delete backups</string>
+  <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Last backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">กำลังดำเนินการ</string>
+  <string name="LocalBackupJob_creating_backup">Creating backup...</string>
   <string name="ProgressPreference_d_messages_so_far">%d ข้อความจนถึงตอนนี้</string>
   <string name="RegistrationActivity_verify_s">ตรวจยืนยัน %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">กรุณาใส่รหัสยืนยันเพื่อส่งไปที่ %s</string>
   <string name="RegistrationActivity_wrong_number">หมายเลขไม่ถูกต้อง?</string>
+  <string name="RegistrationActivity_call_me_instead">Call me instead</string>
+  <string name="RegistrationActivity_available_in">Available in:\u0020</string>
   <string name="BackupUtil_never">ไม่เลย</string>
   <string name="BackupUtil_unknown">ไม่ทราบ</string>
-  <string name="prompt_passphrase_activity__unlock_signal">ปลดล๊อค Signal</string>
   <string name="preferences_app_protection__screen_lock">ล๊อคหน้าจอ</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Signal access with Android screen lock or fingerprint</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>
   <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">The Registration Lock PIN is not the same as the SMS verification code you just received. Please enter the PIN you previously configured in the application.</string>
   <string name="registration_activity__registration_lock_pin">ล๊อคการลงทะเบียนหมายเลข PIN</string>
   <string name="registration_activity__forgot_pin">ลืมหมายเลข PIN</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">The PIN can consist of four or more digits. If you forget your PIN, you could be locked out of your account for up to seven days.</string>
   <string name="registration_lock_dialog_view__enter_pin">ป้อนหมายเลข PIN</string>
   <string name="registration_lock_dialog_view__confirm_pin">ยืนยันหมายเลข PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Enter your Registration Lock PIN</string>
   <string name="registration_lock_reminder_view__enter_pin">ป้อนหมายเลข PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Enable a Registration Lock PIN that will be required to register this phone number with Signal again.</string>
   <string name="preferences_app_protection__registration_lock_pin">ล๊อคการลงทะเบียนหมายเลข PIN</string>
   <string name="preferences_app_protection__registration_lock">ล๊อคการลงทะเบียน</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">You must enter your Registration Lock PIN</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Incorrect Registration Lock PIN</string>
   <string name="RegistrationActivity_too_many_attempts">มีการพยายามหลายครั้งเกินไป</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">You\'ve made too many incorrect Registration Lock PIN attempts. Please try again in a day.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Error connecting to service</string>
   <string name="RegistrationActivity_oh_no">ไม่นะ!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registration of this phone number will be possible without your Registration Lock PIN after 7 days have passed since this phone number was last active on Signal. You have %d days remaining.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Registration lock PIN</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">This phone number has Registration Lock enabled. Please enter the Registration Lock PIN.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registration Lock is enabled for your phone number. To help you memorize your Registration Lock PIN, Signal will periodically ask you to confirm it.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">ฉันลืมหมายเลข PIN</string>
   <string name="RegistrationLockDialog_forgotten_pin">ลืมหมายเลข PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registration Lock helps protect your phone number from unauthorized registration attempts. This feature can be disabled at any time in your Signal privacy settings</string>
   <string name="RegistrationLockDialog_registration_lock">ล๊อคการลงทะเบียน</string>
   <string name="RegistrationLockDialog_enable">เปิดใช้</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">The Registration Lock PIN must be at least 4 digits.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">หมายเลข PINs ทั้งสองที่คุณใช้นั้นไม่ตรงกัน</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Error connecting to the service</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
   <string name="RegistrationLockDialog_disable">ปิดการใช้</string>
   <string name="RegistrationActivity_continue">ทำต่อ</string>
   <string name="preferences_chats__backups">ข้อมูลสำรอง</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ได้ถูกล็อก</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">แตะเพื่อปลดล๊อก</string>
   <string name="RegistrationLockDialog_reminder">เตือนความจำ:</string>
+  <string name="recipient_preferences__about">About</string>
   <!--EOF-->
 </resources>

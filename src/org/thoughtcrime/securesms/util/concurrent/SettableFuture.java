@@ -16,6 +16,13 @@ public class SettableFuture<T> implements ListenableFuture<T> {
   private volatile T         result;
   private volatile Throwable exception;
 
+  public SettableFuture() { }
+
+  public SettableFuture(T value) {
+    this.result    = value;
+    this.completed = true;
+  }
+
   @Override
   public synchronized boolean cancel(boolean mayInterruptIfRunning) {
     if (!completed && !canceled) {
@@ -62,6 +69,20 @@ public class SettableFuture<T> implements ListenableFuture<T> {
 
     notifyAllListeners();
     return true;
+  }
+
+  public void deferTo(ListenableFuture<T> other) {
+    other.addListener(new Listener<T>() {
+      @Override
+      public void onSuccess(T result) {
+        SettableFuture.this.set(result);
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        SettableFuture.this.setException(e.getCause());
+      }
+    });
   }
 
   @Override

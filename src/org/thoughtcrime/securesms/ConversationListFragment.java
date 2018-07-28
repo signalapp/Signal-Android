@@ -133,7 +133,6 @@ public class ConversationListFragment extends Fragment
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
-    list.addItemDecoration(new InsetDividerItemDecoration(getActivity()));
 
     new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
 
@@ -574,63 +573,6 @@ public class ConversationListFragment extends Fragment
       }
     }
   }
-
-  private static class InsetDividerItemDecoration extends RecyclerView.ItemDecoration {
-
-    private Drawable divider;
-    private final Rect bounds = new Rect();
-    
-    InsetDividerItemDecoration(Context context) {
-      TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.conversation_list_item_divider});
-      this.divider = typedArray.getDrawable(0);
-      typedArray.recycle();
-    }
-
-    @Override
-    public void onDraw(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
-      if (parent.getLayoutManager() == null) {
-        return;
-      }
-
-      canvas.save();
-
-      final int left;
-      final int right;
-
-      if (parent.getClipToPadding()) {
-        left  = parent.getPaddingLeft();
-        right = parent.getWidth() - parent.getPaddingRight();
-        canvas.clipRect(left, parent.getPaddingTop(), right, parent.getHeight() - parent.getPaddingBottom());
-      } else {
-        left = 0;
-        right = parent.getWidth();
-      }
-
-      final int childCount = parent.getChildCount();
-
-      for (int i = 0; i < childCount-1; i++) {
-        final View child = parent.getChildAt(i);
-        parent.getDecoratedBoundsWithMargins(child, bounds);
-        final int bottom = bounds.bottom + Math.round(child.getTranslationY());
-        final int top = bottom - divider.getIntrinsicHeight();
-        divider.setBounds(left, top, right, bottom);
-        divider.draw(canvas);
-      }
-
-      canvas.restore();
-    }
-
-    @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-      if (divider == null) {
-        outRect.set(0, 0, 0, 0);
-        return;
-      }
-
-      outRect.set(0, 0, 0, divider.getIntrinsicHeight());
-    }
-  }
-
 }
 
 

@@ -15,8 +15,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            app:documentForegroundTintColor="?attr/media_overview_document_foreground"
-            app:documentBackgroundTintColor="?attr/media_overview_document_background"
             android:visibility="visible"
             tools:visibility="visible"/>
 
