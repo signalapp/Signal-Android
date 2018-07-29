@@ -793,11 +793,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     launchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
     Intent intent = new Intent();
-    final String name = recipient.getProfileName() == null ? recipient.getName() : recipient.getProfileName();
+    final String name = Optional.fromNullable(recipient.getProfileName())
+                                .or(Optional.fromNullable(recipient.getName()))
+                                .or(recipient.toShortString());
     // these constants are deprecated but their replacement (ShortcutManager) is available only from API level 25
     intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
     intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon_dialog));
+    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.mipmap.ic_launcher));
     intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
 
     getApplicationContext().sendBroadcast(intent);
