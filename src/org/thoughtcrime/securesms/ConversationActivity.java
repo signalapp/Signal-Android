@@ -777,7 +777,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     Intent launchIntent = new Intent(getApplicationContext(), ConversationActivity.class);
 
-    launchIntent.setAction(Intent.ACTION_MAIN);
     launchIntent.putExtra(ADDRESS_EXTRA, recipient.getAddress().serialize());
     launchIntent.putExtra(TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
     launchIntent.setDataAndType(getIntent().getData(), getIntent().getType());
@@ -791,15 +790,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     launchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
     Intent intent = new Intent();
-    // these constants are deprecated but their replacement is available only from API level 27
+    // these constants are deprecated but their replacement (ShortcutManager) is available only from API level 25
     intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
     intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, recipient.getProfileName());
-    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon_transparent));
-
+    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon_dialog));
     intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
 
     getApplicationContext().sendBroadcast(intent);
-    Toast.makeText(this, "Added to home screen", Toast.LENGTH_LONG).show();
+    Toast.makeText(this, getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
   }
 
   private void handleLeavePushGroup() {

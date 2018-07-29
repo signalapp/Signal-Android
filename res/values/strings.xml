@@ -135,6 +135,7 @@
     <string name="ConversationActivity_group_members">Group members</string>
 
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
+    <string name="ConversationActivity_added_to_home_screen">Added to home screen</string>
     <string name="ConversationActivity_calls_not_supported">Calls not supported</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
     <string name="ConversationActivity_leave_group">Leave group?</string>
