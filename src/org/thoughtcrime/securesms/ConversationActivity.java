@@ -1384,17 +1384,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     recipient.addListener(this);
   }
 
-  static Recipient getRecipientFromExtras(Intent intent, Context context) {
-    Address parcelableAddress = intent.getParcelableExtra(ADDRESS_EXTRA);
-    Recipient recipient;
+  /**
+   * Extracts the Recipient instance from the extras contained in the intent.
+   *
+   * This can be passed in two ways:
+   *
+   * - If the intent was started from inside the app, the address is a parcelable Address instance.
+   * - If it was launched from the home screen then it is a serialised (stringified) form of the Address, as home screen
+   *   shortcuts cannot contain instances of Address (see BadParcelableException).
+   */
+  static Recipient getRecipientFromExtras(@NonNull Intent intent, @NonNull Context context) {
+    Address address;
+    final Address parcelableAddress = intent.getParcelableExtra(ADDRESS_EXTRA);
     if(parcelableAddress != null) {
-      recipient = Recipient.from(context, parcelableAddress, true);
+      address = parcelableAddress;
     } else {
-      // if this activity is launched from a home screen shortcut then the recipient will not be a parcelable extra
-      // but simply a stringified Address, as it is not possible to add an Address instance to the home screen.
-      recipient = Recipient.from(context, Address.fromSerialized((String)intent.getExtras().get(ADDRESS_EXTRA)), true);
+      address = Address.fromSerialized((String) intent.getExtras().get(ADDRESS_EXTRA));
     }
-    return recipient;
+    return Recipient.from(context, address, true);
   }
 
   private void initializeProfiles() {
