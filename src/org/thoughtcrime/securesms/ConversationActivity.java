@@ -27,7 +27,6 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -177,7 +176,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -779,6 +777,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     Intent launchIntent = new Intent(getApplicationContext(), ConversationActivity.class);
 
+    launchIntent.setAction(Intent.ACTION_MAIN);
     launchIntent.putExtra(ADDRESS_EXTRA, recipient.getAddress().serialize());
     launchIntent.putExtra(TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
     launchIntent.setDataAndType(getIntent().getData(), getIntent().getType());
@@ -795,12 +794,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     // these constants are deprecated but their replacement is available only from API level 27
     intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
     intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, recipient.getProfileName());
-    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon));
+    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon_transparent));
 
     intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
 
     getApplicationContext().sendBroadcast(intent);
-    Toast.makeText(this, "Created desktop shortcut", Toast.LENGTH_LONG).show();
+    Toast.makeText(this, "Added to home screen", Toast.LENGTH_LONG).show();
   }
 
   private void handleLeavePushGroup() {
@@ -1370,8 +1369,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeResources() {
     if (recipient != null) recipient.removeListener(this);
-    Log.e(TAG, this.getIntent().getExtras().toString());
-    recipient        = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    recipient        = getRecipientFromExtras(getIntent(), this);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -1384,6 +1382,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     recipient.addListener(this);
+  }
+
+  static Recipient getRecipientFromExtras(Intent intent, Context context) {
+    Address parcelableAddress = intent.getParcelableExtra(ADDRESS_EXTRA);
+    Recipient recipient;
+    if(parcelableAddress != null) {
+      recipient = Recipient.from(context, parcelableAddress, true);
+    } else {
+      // if this activity is launched from a home screen shortcut then the recipient will not be a parcelable extra
+      // but simply a stringified Address, as it is not possible to add an Address instance to the home screen.
+      recipient = Recipient.from(context, Address.fromSerialized((String)intent.getExtras().get(ADDRESS_EXTRA)), true);
+    }
+    return recipient;
   }
 
   private void initializeProfiles() {
