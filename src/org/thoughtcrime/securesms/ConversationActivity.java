@@ -31,10 +31,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Vibrator;
+import android.os.*;
 import android.provider.Browser;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
@@ -782,7 +779,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     Intent launchIntent = new Intent(getApplicationContext(), ConversationActivity.class);
 
-    launchIntent.putExtra(ADDRESS_EXTRA, recipient.getAddress());
+    launchIntent.putExtra(ADDRESS_EXTRA, recipient.getAddress().serialize());
     launchIntent.putExtra(TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
     launchIntent.setDataAndType(getIntent().getData(), getIntent().getType());
 
@@ -797,12 +794,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent();
     // these constants are deprecated but their replacement is available only from API level 27
     intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
-    intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "");
+    intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, recipient.getProfileName());
     intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.icon));
 
     intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
 
     getApplicationContext().sendBroadcast(intent);
+    Toast.makeText(this, "Created desktop shortcut", Toast.LENGTH_LONG).show();
   }
 
   private void handleLeavePushGroup() {
@@ -1372,7 +1370,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeResources() {
     if (recipient != null) recipient.removeListener(this);
-
+    Log.e(TAG, this.getIntent().getExtras().toString());
     recipient        = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
