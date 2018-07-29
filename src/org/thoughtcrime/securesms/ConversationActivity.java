@@ -2000,6 +2000,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
+    audioManager.abandonAudioFocus(audioFocusChangeListener);
     future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {
       @Override
       public void onSuccess(final Pair<Uri, Long> result) {
