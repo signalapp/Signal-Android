@@ -125,8 +125,8 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
           ViewCompat.LAYOUT_DIRECTION_LTR ? -.25f : .25f;
 
       AnimationSet animation = new AnimationSet(true);
-      animation.addAnimation(new TranslateAnimation(Animation.RELATIVE_TO_SELF, translation,
-                                                    Animation.RELATIVE_TO_SELF, translation,
+      animation.addAnimation(new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0,
+                                                    Animation.RELATIVE_TO_SELF, 0,
                                                     Animation.RELATIVE_TO_SELF, -.25f,
                                                     Animation.RELATIVE_TO_SELF, -.25f));
 
@@ -145,11 +145,10 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
     public void moveTo(float x) {
       this.lastPositionX = x;
 
-      float offset          = getOffset(x);
-      int   widthAdjustment = getWidthAdjustment();
+      float offset = getOffset(x);
 
-      Animation translateAnimation = new TranslateAnimation(Animation.ABSOLUTE, widthAdjustment + offset,
-                                                            Animation.ABSOLUTE, widthAdjustment + offset,
+      Animation translateAnimation = new TranslateAnimation(Animation.ABSOLUTE, offset,
+                                                            Animation.ABSOLUTE, offset,
                                                             Animation.RELATIVE_TO_SELF, -.25f,
                                                             Animation.RELATIVE_TO_SELF, -.25f);
 
@@ -163,16 +162,15 @@ public class MicrophoneRecorderView extends FrameLayout implements View.OnTouchL
     public void hide(float x) {
       this.lastPositionX = x;
 
-      float offset          = getOffset(x);
-      int   widthAdjustment = getWidthAdjustment();
+      float offset = getOffset(x);
 
       AnimationSet animation = new AnimationSet(false);
       Animation scaleAnimation = new ScaleAnimation(1, 0.5f, 1, 0.5f,
                                                     Animation.RELATIVE_TO_SELF, 0.5f,
                                                     Animation.RELATIVE_TO_SELF, 0.5f);
 
-      Animation translateAnimation = new TranslateAnimation(Animation.ABSOLUTE, offset + widthAdjustment,
-                                                            Animation.ABSOLUTE, widthAdjustment,
+      Animation translateAnimation = new TranslateAnimation(Animation.ABSOLUTE, offset,
+                                                            Animation.ABSOLUTE, 0,
                                                             Animation.RELATIVE_TO_SELF, -.25f,
                                                             Animation.RELATIVE_TO_SELF, -.25f);
 

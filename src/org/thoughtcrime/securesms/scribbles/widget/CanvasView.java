@@ -20,15 +20,16 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class defines fields and methods for drawing.
@@ -36,6 +37,8 @@ import java.util.List;
 public class CanvasView extends View {
 
   private static final String TAG = CanvasView.class.getSimpleName();
+
+  public static final int DEFAULT_STROKE_WIDTH = 15;
 
   // Enumeration for Mode
   public enum Mode {
@@ -78,7 +81,7 @@ public class CanvasView extends View {
   private Paint.Style paintStyle = Paint.Style.STROKE;
   private int paintStrokeColor   = Color.BLACK;
   private int paintFillColor     = Color.BLACK;
-  private float paintStrokeWidth = 15F;
+  private float paintStrokeWidth = DEFAULT_STROKE_WIDTH;
   private int opacity            = 255;
   private float blur             = 0F;
   private Paint.Cap lineCap      = Paint.Cap.ROUND;
@@ -143,7 +146,7 @@ public class CanvasView extends View {
     paint.setStyle(this.paintStyle);
     paint.setStrokeWidth(this.paintStrokeWidth);
     paint.setStrokeCap(this.lineCap);
-    paint.setStrokeJoin(Paint.Join.MITER);  // fixed
+    paint.setStrokeJoin(Paint.Join.ROUND);  // fixed
 
     if (this.mode == Mode.ERASER) {
       // Eraser
@@ -275,7 +278,9 @@ public class CanvasView extends View {
 
           switch (this.drawer) {
             case PEN :
-              path.lineTo(x, y);
+              for (int i = 0; i < event.getHistorySize(); i++) {
+                path.lineTo(event.getHistoricalX(i), event.getHistoricalY(i));
+              }
               break;
             case LINE :
               path.reset();
@@ -770,4 +775,14 @@ public class CanvasView extends View {
     return this.getBitmapAsByteArray(CompressFormat.PNG, 100);
   }
 
+  public @NonNull Set<Integer> getUniqueColors() {
+    Set<Integer> colors = new LinkedHashSet<>();
+
+    for (int i = 1; i < paintLists.size() && i < historyPointer; i++) {
+      int color = paintLists.get(i).getColor();
+      colors.add(Color.rgb(Color.red(color), Color.green(color), Color.blue(color)));
+    }
+
+    return colors;
+  }
 }

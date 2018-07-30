@@ -21,18 +21,22 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
@@ -43,11 +47,14 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
-import java.util.concurrent.ExecutionException;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class ScribbleView extends FrameLayout {
 
   private static final String TAG = ScribbleView.class.getSimpleName();
+
+  public static final int DEFAULT_BRUSH_WIDTH = CanvasView.DEFAULT_STROKE_WIDTH;
 
   private ImageView imageView;
   private MotionView motionView;
@@ -77,7 +84,7 @@ public class ScribbleView extends FrameLayout {
   }
 
   public void setImage(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {
-    this.imageUri     = uri;
+    this.imageUri = uri;
 
     glideRequests.load(new DecryptableUri(uri))
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -85,54 +92,43 @@ public class ScribbleView extends FrameLayout {
                  .into(imageView);
   }
 
-  @SuppressLint("StaticFieldLeak")
   public @NonNull ListenableFuture<Bitmap> getRenderedImage(@NonNull GlideRequests glideRequests) {
     final SettableFuture<Bitmap> future      = new SettableFuture<>();
     final Context                context     = getContext();
     final boolean                isLowMemory = Util.isLowMemory(context);
 
     if (imageUri == null) {
-      future.set(null);
+      future.setException(new IllegalStateException("No image URI."));
       return future;
     }
 
-    new AsyncTask<Void, Void, Bitmap>() {
-      @Override
-      protected @Nullable Bitmap doInBackground(Void... params) {
-        try {
-          int width  = Target.SIZE_ORIGINAL;
-          int height = Target.SIZE_ORIGINAL;
+    int width  = Target.SIZE_ORIGINAL;
+    int height = Target.SIZE_ORIGINAL;
 
-          if (isLowMemory) {
-            width  = 768;
-            height = 768;
-          }
+    if (isLowMemory) {
+      width  = 768;
+      height = 768;
+    }
 
-          return glideRequests.asBitmap()
-                              .load(new DecryptableUri(imageUri))
-                              .diskCacheStrategy(DiskCacheStrategy.NONE)
-                              .skipMemoryCache(true)
-                              .into(width, height)
-                              .get();
-        } catch (InterruptedException | ExecutionException e) {
-          Log.w(TAG, e);
-          return null;
-        }
-      }
+    glideRequests.asBitmap()
+                 .load(new DecryptableUri(imageUri))
+                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                 .skipMemoryCache(true)
+                 .override(width, height)
+                 .into(new SimpleTarget<Bitmap>() {
+                   @Override
+                   public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
+                     Canvas canvas = new Canvas(bitmap);
+                     motionView.render(canvas);
+                     canvasView.render(canvas);
+                     future.set(bitmap);
+                   }
 
-      @Override
-      protected void onPostExecute(@Nullable Bitmap bitmap) {
-        if (bitmap == null) {
-          future.set(null);
-          return;
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        motionView.render(canvas);
-        canvasView.render(canvas);
-        future.set(bitmap);
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                   @Override
+                   public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                     future.setException(new Throwable("Failed to load image."));
+                   }
+               });
 
     return future;
   }
@@ -149,6 +145,18 @@ public class ScribbleView extends FrameLayout {
     this.motionView.setMotionViewCallback(callback);
   }
 
+  @SuppressLint("ClickableViewAccessibility")
+  public void setDrawingChangedListener(@Nullable DrawingChangedListener listener) {
+    this.canvasView.setOnTouchListener((v, event) -> {
+      if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+        if (listener != null) {
+          listener.onDrawingChanged();
+        }
+      }
+      return false;
+    });
+  }
+
   public void setDrawingMode(boolean enabled) {
     this.canvasView.setActive(enabled);
     if (enabled) this.motionView.unselectEntity();
@@ -157,6 +165,11 @@ public class ScribbleView extends FrameLayout {
   public void setDrawingBrushColor(int color) {
     this.canvasView.setPaintFillColor(color);
     this.canvasView.setPaintStrokeColor(color);
+    this.canvasView.setOpacity(Color.alpha(color));
+  }
+
+  public void setDrawingBrushWidth(int width) {
+    this.canvasView.setPaintStrokeWidth(width);
   }
 
   public void addEntityAndPosition(MotionEntity entity) {
@@ -183,6 +196,15 @@ public class ScribbleView extends FrameLayout {
     this.motionView.startEditing(entity);
   }
 
+  public @NonNull Set<Integer> getUniqueColors() {
+    Set<Integer> colors = new LinkedHashSet<>();
+
+    colors.addAll(motionView.getUniqueColors());
+    colors.addAll(canvasView.getUniqueColors());
+
+    return colors;
+  }
+
   @Override
   public void onMeasure(int width, int height) {
     super.onMeasure(width, height);
@@ -196,4 +218,7 @@ public class ScribbleView extends FrameLayout {
                        MeasureSpec.makeMeasureSpec(imageView.getMeasuredHeight(), MeasureSpec.EXACTLY));
   }
 
+  public interface DrawingChangedListener {
+    void onDrawingChanged();
+  }
 }

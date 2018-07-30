@@ -8,32 +8,28 @@
         android:focusable="true"
         android:nextFocusRight="@+id/fab"
         android:nextFocusLeft="@+id/container"
-        android:layout_height="75dp">
+        android:layout_height="72dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/contact_photo_image"
         android:foreground="@drawable/contact_photo_background"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
         android:cropToPadding="true"
         tools:src="@drawable/ic_contact_picture"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp" />
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp" />
 
     <RelativeLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="4dip"
-                  android:layout_marginStart="4dip"
-                  android:layout_marginRight="8dip"
-                  android:layout_marginEnd="8dip"
+                  android:layout_marginLeft="4dp"
+                  android:layout_marginStart="4dp"
                   android:layout_centerVertical="true"
                   android:layout_toRightOf="@id/contact_photo_image"
                   android:layout_toEndOf="@id/contact_photo_image"
@@ -49,7 +45,8 @@
                   android:layout_alignParentStart="true"
                   android:layout_toLeftOf="@+id/thumbnail"
                   android:layout_toStartOf="@+id/thumbnail"
-                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  style="@style/Signal.Text.Body"
+                  android:fontFamily="sans-serif-medium"
                   android:textColor="?attr/conversation_list_item_contact_color"
                   android:maxLines="1"
                   tools:text="Jules Bonnot"
@@ -81,9 +78,8 @@
                 android:layout_toLeftOf="@+id/status"
                 android:layout_toStartOf="@+id/status"
                 android:paddingRight="1dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                style="@style/Signal.Text.Preview"
                 android:textColor="?attr/conversation_list_item_subject_color"
-                android:fontFamily="sans-serif-light"
                 android:maxLines="1"
                 tools:text="Wheels arrive at 3pm flat. This is a somewhat longer message."
                 android:ellipsize="end" />
@@ -93,30 +89,29 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="5dip"
-                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_toLeftOf="@+id/date"
                 android:layout_toStartOf="@+id/date"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="5dip"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/conversation_activity__attachment_thumbnail"
-                app:backgroundColorHint="?conversation_background"
                 android:visibility="gone"
                 tools:src="@drawable/ic_video_light"
                 tools:visibility="visible" />
 
         <TextView android:id="@id/date"
-                  android:layout_marginLeft="3dip"
-                  android:layout_marginStart="3dip"
+                  android:layout_marginLeft="3dp"
+                  android:layout_marginStart="3dp"
                   android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
                   android:layout_alignParentRight="true"
                   android:layout_alignParentEnd="true"
-                  android:layout_alignParentTop="true"
+                  android:layout_alignBaseline="@+id/from"
                   android:layout_above="@id/subject"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  style="@style/Signal.Text.Caption"
                   android:textColor="?attr/conversation_list_item_date_color"
-                  android:fontFamily="sans-serif-light"
+                  android:textAllCaps="true"
                   tools:text="30 mins"
                   android:singleLine="true"/>
 
@@ -128,17 +123,22 @@
                   android:layout_alignParentEnd="true"
                   android:layout_alignBaseline="@id/subject"
                   android:layout_marginLeft="5dp"
-                  android:layout_marginRight="5dp"
+                  android:layout_marginStart="5dp"
+                  android:paddingLeft="6dp"
+                  android:paddingRight="6dp"
+                  android:paddingTop="2dp"
+                  android:paddingBottom="2dp"
+                  style="@style/Signal.Text.Caption"
                   android:text="@string/conversation_list_item_view__archived"
-                  android:textColor="#ffbbbbbb"
-                  android:background="@drawable/rounded_rectangle"
-                  android:textSize="12sp"
-                />
+                  android:textColor="@color/core_white"
+                  android:textAllCaps="true"
+                  android:background="@drawable/archived_indicator_background" />
 
 
         <FrameLayout android:id="@+id/status"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
+                     android:layout_marginTop="4dp"
                      android:layout_below="@id/date"
                      android:layout_toLeftOf="@id/archived"
                      android:layout_toStartOf="@id/archived"
@@ -148,7 +148,8 @@
                     android:id="@+id/delivery_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:iconColor="?attr/conversation_list_item_subject_color"/>
+                    android:layout_gravity="center_vertical"
+                    app:iconColor="?attr/conversation_list_item_delivery_icon_color"/>
 
             <ImageView android:id="@+id/unread_indicator"
                        android:layout_width="24dp"
@@ -156,6 +157,6 @@
 
         </FrameLayout>
 
-
     </RelativeLayout>
+
 </org.thoughtcrime.securesms.ConversationListItem>

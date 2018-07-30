@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
@@ -75,8 +76,10 @@ public class FullBackupExporter extends FullBackupBase {
     for (String table : tables) {
       if (table.equals(SmsDatabase.TABLE_NAME) || table.equals(MmsDatabase.TABLE_NAME)) {
         count = exportTable(table, input, outputStream, cursor -> cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0, null, count);
+      } else if (table.equals(GroupReceiptDatabase.TABLE_NAME)) {
+        count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count);
       } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
-        count = exportTable(table, input, outputStream, null, cursor -> exportAttachment(attachmentSecret, cursor, outputStream), count);
+        count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), cursor -> exportAttachment(attachmentSecret, cursor, outputStream), count);
       } else if (!table.equals(SignedPreKeyDatabase.TABLE_NAME)       &&
                  !table.equals(OneTimePreKeyDatabase.TABLE_NAME)      &&
                  !table.equals(SessionDatabase.TABLE_NAME)            &&
@@ -229,6 +232,21 @@ public class FullBackupExporter extends FullBackupBase {
     return result;
   }
 
+  private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, long mmsId) {
+    String[] columns = new String[] { MmsDatabase.EXPIRES_IN };
+    String   where   = MmsDatabase.ID + " = ?";
+    String[] args    = new String[] { String.valueOf(mmsId) };
+
+    try (Cursor mmsCursor = db.query(MmsDatabase.TABLE_NAME, columns, where, args, null, null, null)) {
+      if (mmsCursor != null && mmsCursor.moveToFirst()) {
+        return mmsCursor.getLong(0) == 0;
+      }
+    }
+
+    return false;
+  }
+
+
   private static class BackupFrameOutputStream extends BackupStream {
 
     private final OutputStream outputStream;
@@ -358,9 +376,9 @@ public class FullBackupExporter extends FullBackupBase {
       }
     }
 
+
     public void close() throws IOException {
       outputStream.close();
     }
-
   }
 }

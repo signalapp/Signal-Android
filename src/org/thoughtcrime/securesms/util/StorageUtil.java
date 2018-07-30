@@ -14,20 +14,8 @@ import java.io.File;
 
 public class StorageUtil {
 
-  public static File getBackupDirectory(Context context) throws NoExternalStorageException {
-    File storage = null;
-
-    if (Build.VERSION.SDK_INT >= 19) {
-      File[] directories = context.getExternalFilesDirs(null);
-
-      if (directories != null) {
-        storage = getNonEmulated(directories);
-      }
-    }
-
-    if (storage == null) {
-      storage = Environment.getExternalStorageDirectory();
-    }
+  public static File getBackupDirectory() throws NoExternalStorageException {
+    File storage = Environment.getExternalStorageDirectory();
 
     if (!storage.canWrite()) {
       throw new NoExternalStorageException();
@@ -46,25 +34,7 @@ public class StorageUtil {
   }
 
   public static File getBackupCacheDirectory(Context context) {
-    if (Build.VERSION.SDK_INT >= 19) {
-      File[] directories = context.getExternalCacheDirs();
-
-      if (directories != null) {
-        File result = getNonEmulated(directories);
-        if (result != null) return result;
-      }
-    }
-
     return context.getExternalCacheDir();
-  }
-
-  private static @Nullable File getNonEmulated(File[] directories) {
-    return Stream.of(directories)
-                 .withoutNulls()
-                 .filterNot(f -> f.getAbsolutePath().contains("emulated"))
-                 .limit(1)
-                 .findSingle()
-                 .orElse(null);
   }
 
   private static File getSignalStorageDir() throws NoExternalStorageException {

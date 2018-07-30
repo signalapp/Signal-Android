@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -48,8 +49,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int QUOTED_REPLIES                   = 7;
   private static final int SHARED_CONTACTS                  = 8;
   private static final int FULL_TEXT_SEARCH                 = 9;
+  private static final int BAD_IMPORT_CLEANUP               = 10;
 
-  private static final int    DATABASE_VERSION = 9;
+  private static final int    DATABASE_VERSION = 10;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -196,18 +198,41 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         Log.i(TAG, "Beginning to build search index.");
         long start = SystemClock.elapsedRealtime();
 
-        db.execSQL("INSERT INTO " + SearchDatabase.SMS_FTS_TABLE_NAME + " (rowid, " + SearchDatabase.BODY + ") " +
-            "SELECT " + SmsDatabase.ID + " , " + SmsDatabase.BODY + " FROM " + SmsDatabase.TABLE_NAME);
+        db.execSQL("INSERT INTO sms_fts (rowid, body) SELECT _id, body FROM sms");
 
         long smsFinished = SystemClock.elapsedRealtime();
         Log.i(TAG, "Indexing SMS completed in " + (smsFinished - start) + " ms");
 
-        db.execSQL("INSERT INTO " + SearchDatabase.MMS_FTS_TABLE_NAME + " (rowid, " + SearchDatabase.BODY + ") " +
-            "SELECT " + MmsDatabase.ID + " , " + MmsDatabase.BODY + " FROM " + MmsDatabase.TABLE_NAME);
+        db.execSQL("INSERT INTO mms_fts (rowid, body) SELECT _id, body FROM mms");
 
         long mmsFinished = SystemClock.elapsedRealtime();
         Log.i(TAG, "Indexing MMS completed in " + (mmsFinished - smsFinished) + " ms");
         Log.i(TAG, "Indexing finished. Total time: " + (mmsFinished - start) + " ms");
+      }
+
+      if (oldVersion < BAD_IMPORT_CLEANUP) {
+        String trimmedCondition = " NOT IN (SELECT _id FROM mms)";
+
+        db.delete("group_receipts", "mms_id" + trimmedCondition, null);
+
+        String[] columns = new String[] { "_id", "unique_id", "_data", "thumbnail"};
+
+        try (Cursor cursor = db.query("part", columns, "mid" + trimmedCondition, null, null, null, null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            db.delete("part", "_id = ? AND unique_id = ?", new String[] { String.valueOf(cursor.getLong(0)), String.valueOf(cursor.getLong(1)) });
+
+            String data      = cursor.getString(2);
+            String thumbnail = cursor.getString(3);
+
+            if (!TextUtils.isEmpty(data)) {
+              new File(data).delete();
+            }
+
+            if (!TextUtils.isEmpty(thumbnail)) {
+              new File(thumbnail).delete();
+            }
+          }
+        }
       }
 
       db.setTransactionSuccessful();

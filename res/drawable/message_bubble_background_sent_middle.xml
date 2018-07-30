@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:top="2px"
+        android:bottom="2px">
+
+        <shape android:shape="rectangle">
+            <corners
+                android:topLeftRadius="@dimen/message_corner_radius"
+                android:topRightRadius="@dimen/message_corner_collapse_radius"
+                android:bottomRightRadius="@dimen/message_corner_collapse_radius"
+                android:bottomLeftRadius="@dimen/message_corner_radius" />
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</layer-list>

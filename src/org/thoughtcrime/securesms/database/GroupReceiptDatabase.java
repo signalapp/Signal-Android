@@ -18,7 +18,7 @@ public class GroupReceiptDatabase extends Database {
   public  static final String TABLE_NAME = "group_receipts";
 
   private static final String ID        = "_id";
-  private static final String MMS_ID    = "mms_id";
+  public  static final String MMS_ID    = "mms_id";
   private static final String ADDRESS   = "address";
   private static final String STATUS    = "status";
   private static final String TIMESTAMP = "timestamp";

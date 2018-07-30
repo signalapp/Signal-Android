@@ -9,18 +9,21 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 public interface BindableConversationItem extends Unbindable {
-  void bind(@NonNull MessageRecord      messageRecord,
-            @NonNull GlideRequests      glideRequests,
-            @NonNull Locale             locale,
-            @NonNull Set<MessageRecord> batchSelected,
-            @NonNull Recipient          recipients,
-                     boolean            pulseHighlight);
+  void bind(@NonNull MessageRecord           messageRecord,
+            @NonNull Optional<MessageRecord> previousMessageRecord,
+            @NonNull Optional<MessageRecord> nextMessageRecord,
+            @NonNull GlideRequests           glideRequests,
+            @NonNull Locale                  locale,
+            @NonNull Set<MessageRecord>      batchSelected,
+            @NonNull Recipient               recipients,
+                     boolean                 pulseHighlight);
 
   MessageRecord getMessageRecord();
 

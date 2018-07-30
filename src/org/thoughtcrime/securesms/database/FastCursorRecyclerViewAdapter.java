@@ -74,7 +74,8 @@ public abstract class FastCursorRecyclerViewAdapter<VH extends RecyclerView.View
 
   @Override
   public void onBindFastAccessItemViewHolder(VH viewHolder, int position) {
-    onBindItemViewHolder(viewHolder, fastRecords.get(getCalculatedPosition(position)));
+    int calculatedPosition = getCalculatedPosition(position);
+    onBindItemViewHolder(viewHolder, fastRecords.get(calculatedPosition));
   }
 
   @Override

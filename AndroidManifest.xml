@@ -93,8 +93,7 @@
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
 
     <application android:name=".ApplicationContext"
-                 android:icon="@drawable/icon"
-                 android:roundIcon="@drawable/icon_circle"
+                 android:icon="@mipmap/ic_launcher"
                  android:label="@string/app_name"
                  android:supportsRtl="true"
                  tools:replace="android:allowBackup"
@@ -119,9 +118,6 @@
               android:launchMode="singleTask"/>
 
     <activity android:name=".CountrySelectionActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".ImportExportActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".InviteActivity"
@@ -197,9 +193,9 @@
         </intent-filter>
 
         <meta-data android:name="com.sec.minimode.icon.portrait.normal"
-            android:resource="@drawable/icon" />
+                   android:resource="@mipmap/ic_launcher" />
         <meta-data android:name="com.sec.minimode.icon.landscape.normal"
-            android:resource="@drawable/icon" />
+                   android:resource="@mipmap/ic_launcher" />
 
     </activity-alias>
 
@@ -376,7 +372,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".scribbles.ScribbleActivity"
-              android:theme="@style/TextSecure.LightNoActionBar"
+              android:theme="@style/TextSecure.ScribbleTheme"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -527,6 +523,9 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".service.ExpirationListener" />
+
+    <receiver android:name=".jobmanager.requirements.BackoffReceiver" />
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"

@@ -17,17 +17,23 @@
 package org.thoughtcrime.securesms.sms;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
@@ -40,7 +46,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -180,6 +185,7 @@ public class MessageSender {
 
     database.markAsSent(messageId, true);
     database.copyMessageInbox(messageId);
+    markAttachmentsAsUploaded(messageId, database, DatabaseFactory.getAttachmentDatabase(context));
 
     if (expiresIn > 0) {
       database.markExpireStarted(messageId);
@@ -277,4 +283,15 @@ public class MessageSender {
     }
   }
 
+  private static void markAttachmentsAsUploaded(long mmsId, @NonNull MmsDatabase mmsDatabase, @NonNull AttachmentDatabase attachmentDatabase) {
+    try (MmsDatabase.Reader reader = mmsDatabase.readerFor(mmsDatabase.getMessage(mmsId))) {
+      MessageRecord message = reader.getNext();
+
+      if (message != null && message.isMms()) {
+        for (Attachment attachment : ((MmsMessageRecord) message).getSlideDeck().asAttachments()) {
+          attachmentDatabase.markAttachmentUploaded(mmsId, attachment);
+        }
+      }
+    }
+  }
 }

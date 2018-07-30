@@ -40,9 +40,6 @@ repositories {
         url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
     }
     maven {
-        url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
-    }
-    maven {
         url "https://raw.github.com/signalapp/maven/master/sqlcipher/release/"
     }
     maven {
@@ -69,8 +66,9 @@ dependencies {
     compile 'com.android.support:preference-v14:27.0.2'
     compile 'com.android.support:gridlayout-v7:27.0.2'
     compile 'com.android.support:multidex:1.0.2'
-    compile "com.android.support:exifinterface:27.0.2"
-    compile "android.arch.lifecycle:extensions:1.1.1"
+    compile 'com.android.support:exifinterface:27.0.2'
+    compile 'android.arch.lifecycle:extensions:1.1.1'
+    compile 'android.arch.lifecycle:common-java8:1.1.1'
 
     compile 'com.google.android.gms:play-services-gcm:9.6.1'
     compile 'com.google.android.gms:play-services-maps:9.6.1'
@@ -78,12 +76,11 @@ dependencies {
 
     compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
 
-    compile 'org.whispersystems:jobmanager:1.0.2'
     compile('org.whispersystems:libpastelog:1.1.2') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
     compile 'org.whispersystems:signal-service-android:2.7.6'
-    compile 'org.whispersystems:webrtc-android:M64'
+    compile 'org.whispersystems:webrtc-android:M68'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -125,7 +122,7 @@ dependencies {
     }
     compile 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
-    compile 'org.signal:android-database-sqlcipher:3.5.9-S1'
+    compile 'org.signal:android-database-sqlcipher:3.5.9-S3'
     compile ('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'org.freemarker'
@@ -170,14 +167,14 @@ dependencyVerification {
         'com.android.support:multidex:7cd48755c7cfdb6dd2d21cbb02236ec390f6ac91cde87eb62f475b259ab5301d',
         'com.android.support:exifinterface:0e7cd526c4468895cd8549def46b3d33c8bcfb1ae4830569898d8c7326b15bb2',
         'android.arch.lifecycle:extensions:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
+        'android.arch.lifecycle:common-java8:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
         'com.google.android.gms:play-services-gcm:312e61253a236f2d9b750b9c04fc92fd190d23b0b2755c99de6ce4a28b259dae',
         'com.google.android.gms:play-services-places:abf3a4a3b146ec7e6e753be62775e512868cf37d6f88ffe2d81167b33b57132b',
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
         'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
-        'org.whispersystems:jobmanager:506f679fc2fcf7bb6d10f00f41d6f6ea0abf75c70dc95b913398661ad538a181',
         'org.whispersystems:libpastelog:fe56b4db9ec743c8b565e3e4caa9228fafe132dc0bf82000d6e359b97a81177c',
         'org.whispersystems:signal-service-android:823eed29e64fb0aa30d2078cb5ec0245e2a0713a4028121329c5c28788ef27f8',
-        'org.whispersystems:webrtc-android:ed297e8b795dad9658cf306c2aa0f7d296c65f0997a2ac4353fd0157910acc12',
+        'org.whispersystems:webrtc-android:66cb312eb024eaf6aa93e662d37d0c46632e049d47a2dcc9c291207589ee7a43',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
@@ -198,7 +195,7 @@ dependencyVerification {
         'com.annimon:stream:5da6e2e3e0551d61a3ea7014f04312276549e3dd739cf637996e4cf43c5535b9',
         'com.takisoft.fix:colorpicker:f5d0dbabe406a1800498ca9c1faf34db36e021d8488bf10360f29961fe3ab0d1',
         'com.github.dmytrodanylyk.circular-progress-button:library:8dc6a29a5a8db7b2ad5a9a7fda1dc9ae0893f4c8f0545732b2c63854ea693e8e',
-        'org.signal:android-database-sqlcipher:4302551df258883cc5dc5d62ddb141a6b5b8f113d77d70322dc2648c0856ccef',
+        'org.signal:android-database-sqlcipher:33d4063336893af00b9d68b418e7b290cace74c20ce8aacffddc0911010d3d73',
         'com.googlecode.ez-vcard:ez-vcard:7e24ad50b222d2f70ac91bdccfa3c0f6200b078d797cb784837f75e77bb4210f',
         'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
         'com.google.android.gms:play-services-base:0ca636a8fc9a5af45e607cdcd61783bf5d561cbbb0f862021ce69606eee5ad49',
@@ -257,8 +254,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 365
-        versionName "4.20.7"
+        versionCode 390
+        versionName "4.24.5"
 
         minSdkVersion 14
         targetSdkVersion 25
@@ -270,6 +267,7 @@ android {
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\""
+        buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "GIPHY_PROXY_HOST", "\"giphy-proxy-production.whispersystems.org\""
         buildConfigField "int", "GIPHY_PROXY_PORT", "80"
         buildConfigField "String", "USER_AGENT", "\"OWA\""

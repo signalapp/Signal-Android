@@ -83,7 +83,17 @@
   <string name="ContactsDatabase_message_s">Mensaje %s</string>
   <string name="ContactsDatabase_signal_call_s">Llamar a %s con Signal</string>
   <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Nombre dado</string>
+  <string name="ContactNameEditActivity_family_name">Nombre de familia</string>
+  <string name="ContactNameEditActivity_prefix">Prefijo</string>
+  <string name="ContactNameEditActivity_suffix">Sufijo</string>
+  <string name="ContactNameEditActivity_middle_name">Otro nombre</string>
   <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Domicilio</string>
+  <string name="ContactShareEditActivity_type_mobile">Móvil</string>
+  <string name="ContactShareEditActivity_type_work">Trabajo</string>
+  <string name="ContactShareEditActivity_type_missing">Otros</string>
+  <string name="ContactShareEditActivity_invalid_contact">El contacto que se ha seleccionado no es válido</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">No entregado</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Se recibió un mensaje de intercambio de clave, pulse para proceder.</string>
@@ -135,6 +145,7 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para capturar fotos y vídeo, permita el acceso de Signal a la cámara.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita el permiso Cámara para tomar fotos o vídeo, pero ha sido denegado permanentemente. Por favor, continúe hacia el menú de configuración de la aplicación, seleccione \"Permisos\", y habilite \"Cámara\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita los permisos Cámara para tomar fotos o vídeo.</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -469,10 +480,12 @@ número de teléfono
 (%s) no es válido.
 </string>
   <string name="RegistrationActivity_missing_google_play_services">Servicios de Google Play ausentes</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo no encuentra los Servicios de Google Play. Todavía puede usar Signal, pero esta configuración puede resultar en una fiabilidad y rendimiento reducidos.\n\nSi no es un usuario avanzado, no está ejecutando una ROM modificada de Android, o cree que está viendo esto indebidamente por favor, contacte con support@whispersystems.org para obtener ayuda para la resolución de problemas.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo no encuentra los Servicios de Google Play. Todavía puede usar Signal, pero esta configuración puede resultar en una fiabilidad y rendimiento reducidos.\n\nSi no es un usuario avanzado, no está ejecutando una ROM modificada de Android, o cree que está viendo esto indebidamente por favor, contacte con support@signal.org para obtener ayuda para la resolución de problemas.</string>
   <string name="RegistrationActivity_i_understand">Entiendo</string>
   <string name="RegistrationActivity_play_services_error">Error en \"Play Services\"</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se está actualizando o está temporalmente suspendido. Por favor intente de nuevo.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Términos y Política de Privacidad</string>
+  <string name="RegistrationActivity_no_browser">No se ha podido abrir este enlace. No se ha encontrado un navegador web.</string>
   <string name="RegistrationActivity_more_information">Más información</string>
   <string name="RegistrationActivity_less_information">Menos información</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceder a sus contactos y medios para conectar con amigos, intercambiar mensajes, y establecer llamadas seguras.</string>
@@ -492,15 +505,28 @@ número de teléfono
   <string name="RingtonePreference_alarm_sound_default">Sonido de alarma predeterminado</string>
   <string name="RingtonePreference_add_ringtone_text">Añadir tono de llamada</string>
   <string name="RingtonePreference_unable_to_add_ringtone">No se pudo añadir tono de llamada personalizado</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Fallo al guardar los cambios de la imagen</string>
   <!--Search-->
   <string name="SearchFragment_no_results">No se encontraron resultados para \'%s\'</string>
+  <string name="SearchFragment_header_conversations">Conversaciones</string>
   <string name="SearchFragment_header_contacts">Contactos</string>
   <string name="SearchFragment_header_messages">Mensajes</string>
   <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Añadir a Contactos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitar a Signal</string>
   <string name="SharedContactDetailsActivity_invite_message">Pasémonos a Signal: %1$s</string>
+  <string name="SharedContactDetailsActivity_new_contact_success">Contacto añadido.</string>
+  <string name="SharedContactDetailsActivity_new_contact_failure">Fallo al recuperar el contacto</string>
+  <string name="SharedContactDetailsActivity_updated_contact_success">Contacto actualizado.</string>
+  <string name="SharedContactDetailsActivity_updated_contact_failure">Erro al editar el contacto</string>
+  <string name="SharedContactDetailsActivity_initialization_failure">Error al leer el contacto</string>
+  <string name="SharedContactDetailsActivity_add_as_new_contact">Añadir como nuevo contacto</string>
+  <string name="SharedContactDetailsActivity_add_to_existing_contact">Añadir a un contacto existente</string>
   <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Añadir a Contactos</string>
   <string name="SharedContactView_invite_to_signal">Invitar a Signal</string>
+  <string name="SharedContactView_message">Mensaje de Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagen</string>
   <string name="Slide_audio">Audio</string>
@@ -608,6 +634,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_pending_signal_messages">Mensajes de Signal pendientes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tiene mensajes de Signal pendientes, pulse para abrir y descargar</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
   <!--MmsPreferencesFragment-->
   <!--QuickResponseService-->
@@ -797,6 +824,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="import_fragment__import_a_plaintext_backup_file">Importar una copia de seguridad en texto plano. Compatible con \'SMS Backup &amp; Restore.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ver conversación completa</string>
+  <string name="load_more_header__loading">Cargando</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Sin audiovisual</string>
   <!--message_recipients_list_item-->
@@ -837,6 +865,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <string name="redphone_call_controls__mute">Silenciar</string>
+  <string name="redphone_call_controls__flip_camera_rear">Cambiar de Camaras</string>
   <string name="redphone_call_controls__signal_call">Llamada de Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
@@ -854,7 +883,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="unknown_sender_view__add_to_contacts">AÑADIR A CONTACTOS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NO AÑADIR, PERO HACER VISIBLE MI PERFIL</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si desea verificar la seguridad de su cifrado con %s, compara el número de arriba con el número presente en el dispositivo de su interlocutor. Como alternativa, puedes escanear el código presente en el teléfono de tu interlocutor, o pedirle que escanee el tu código. <a href="https://whispersystems.org/redirect/safety-numbers">Conocer más.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Si desea verificar la seguridad de su cifrado con %s, compara el número de arriba con el número presente en el dispositivo de su interlocutor. Como alternativa, puedes escanear el código presente en el teléfono de tu interlocutor, o pedirle que escanee el tu código. <a href="https://signal.org/redirect/safety-numbers">Conocer más.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pulse para escanear</string>
   <string name="verify_display_fragment__loading">Cargando...</string>
   <string name="verify_display_fragment__verified">Verificado</string>
@@ -1111,6 +1140,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="reminder_header_invite_text">Lleva su conversación con %1$s al siguiente nivel.</string>
   <string name="reminder_header_share_title">¡Invite a sus amigos!</string>
   <string name="reminder_header_share_text">Cuantos amigos más usen Signal, mejor será.</string>
+  <string name="reminder_header_service_outage_text">Signal está experimentando dificultades técnicas. Estamos trabajando duro para restablecer el servicio lo antes posible.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
   <string name="media_preview__forward_title">Avanzar</string>

@@ -7,6 +7,6 @@
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:documentForegroundTintColor="@color/white"
-        app:documentBackgroundTintColor="@color/blue_500"
+        app:doc_titleColor="?conversation_item_received_text_primary_color"
+        app:doc_captionColor="?conversation_item_received_text_secondary_color"
         tools:visibility="visible"/>

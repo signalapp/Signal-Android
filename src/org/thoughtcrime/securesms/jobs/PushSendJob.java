@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkBackoffRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -25,8 +27,6 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -38,10 +38,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public abstract class PushSendJob extends SendJob {
 
-  private static final String TAG = PushSendJob.class.getSimpleName();
+  private static final long   serialVersionUID = 5906098204770900739L;
+  private static final String TAG              = PushSendJob.class.getSimpleName();
 
   protected PushSendJob(Context context, JobParameters parameters) {
     super(context, parameters);
@@ -52,8 +54,8 @@ public abstract class PushSendJob extends SendJob {
     builder.withPersistence();
     builder.withGroupId(destination.serialize());
     builder.withRequirement(new MasterSecretRequirement(context));
-    builder.withRequirement(new NetworkRequirement(context));
-    builder.withRetryCount(5);
+    builder.withRequirement(new NetworkBackoffRequirement(context));
+    builder.withRetryDuration(TimeUnit.DAYS.toMillis(1));
 
     return builder.create();
   }
@@ -69,6 +71,15 @@ public abstract class PushSendJob extends SendJob {
     }
 
     onPushSend();
+  }
+
+  @Override
+  public void onRetry() {
+    super.onRetry();
+
+    if (getRunIteration() > 1) {
+      ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob(context));
+    }
   }
 
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {

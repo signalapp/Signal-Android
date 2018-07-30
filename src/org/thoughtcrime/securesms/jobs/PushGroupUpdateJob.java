@@ -9,9 +9,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -88,9 +89,13 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
                                                         .withName(record.get().getTitle())
                                                         .build();
 
+    Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedId(groupId, false));
+    Recipient groupRecipient = Recipient.from(context, groupAddress, false);
+
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
                                                                .asGroupMessage(groupContext)
                                                                .withTimestamp(System.currentTimeMillis())
+                                                               .withExpiration(groupRecipient.getExpireMessages())
                                                                .build();
 
     messageSender.sendMessage(new SignalServiceAddress(source), message);

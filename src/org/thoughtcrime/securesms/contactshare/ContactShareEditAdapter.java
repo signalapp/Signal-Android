@@ -38,12 +38,14 @@ public class ContactShareEditAdapter extends RecyclerView.Adapter<ContactShareEd
 
   @Override
   public ContactEditViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    return new ContactEditViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_editable_contact, parent, false), locale);
+    return new ContactEditViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_editable_contact, parent, false),
+                                     locale,
+                                     glideRequests);
   }
 
   @Override
   public void onBindViewHolder(ContactEditViewHolder holder, int position) {
-    holder.bind(position, contacts.get(position), glideRequests, eventListener);
+    holder.bind(position, contacts.get(position), eventListener);
   }
 
   @Override
@@ -63,18 +65,16 @@ public class ContactShareEditAdapter extends RecyclerView.Adapter<ContactShareEd
 
   static class ContactEditViewHolder extends RecyclerView.ViewHolder {
 
-    private final AvatarImageView     avatar;
     private final TextView            name;
     private final View                nameEditButton;
     private final ContactFieldAdapter fieldAdapter;
 
-    ContactEditViewHolder(View itemView, @NonNull Locale locale) {
+    ContactEditViewHolder(View itemView, @NonNull Locale locale, @NonNull GlideRequests glideRequests) {
       super(itemView);
 
-      this.avatar         = itemView.findViewById(R.id.editable_contact_avatar);
       this.name           = itemView.findViewById(R.id.editable_contact_name);
       this.nameEditButton = itemView.findViewById(R.id.editable_contact_name_edit_button);
-      this.fieldAdapter   = new ContactFieldAdapter(locale, true);
+      this.fieldAdapter   = new ContactFieldAdapter(locale, glideRequests, true);
 
       RecyclerView fields = itemView.findViewById(R.id.editable_contact_fields);
       fields.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
@@ -82,25 +82,12 @@ public class ContactShareEditAdapter extends RecyclerView.Adapter<ContactShareEd
       fields.setAdapter(fieldAdapter);
     }
 
-    void bind(int position, @NonNull Contact contact, @NonNull GlideRequests glideRequests, @NonNull EventListener eventListener) {
+    void bind(int position, @NonNull Contact contact, @NonNull EventListener eventListener) {
       Context context = itemView.getContext();
-
-      if (contact.getAvatarAttachment() != null && contact.getAvatarAttachment().getDataUri() != null) {
-        glideRequests.load(contact.getAvatarAttachment().getDataUri())
-                     .fallback(R.drawable.ic_contact_picture)
-                     .circleCrop()
-                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                     .into(avatar);
-      } else {
-        glideRequests.load(R.drawable.ic_contact_picture)
-            .circleCrop()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(avatar);
-      }
 
       name.setText(ContactUtil.getDisplayName(contact));
       nameEditButton.setOnClickListener(v -> eventListener.onNameEditClicked(position, contact.getName()));
-      fieldAdapter.setFields(context, contact.getPhoneNumbers(), contact.getEmails(), contact.getPostalAddresses());
+      fieldAdapter.setFields(context, contact.getAvatar(), contact.getPhoneNumbers(), contact.getEmails(), contact.getPostalAddresses());
     }
   }
 

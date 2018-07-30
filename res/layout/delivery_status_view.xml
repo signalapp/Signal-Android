@@ -2,19 +2,21 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout android:id="@+id/pending_indicator_stub"
-                 android:layout_width="wrap_content"
-                 android:paddingRight="2dp"
-                 android:layout_height="wrap_content"
-                 tools:visibility="gone"/>
+    <ImageView
+        android:id="@+id/pending_indicator"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginRight="2dp"
+        android:layout_gravity="center_vertical|end"
+        android:src="@drawable/ic_delivery_status_sending"
+        android:visibility="gone" />
 
     <ImageView android:id="@+id/sent_indicator"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_gravity="center_vertical|end"
-               android:src="@drawable/ic_done_white_18dp"
+               android:src="@drawable/ic_delivery_status_sent"
                android:paddingLeft="2dp"
-               android:paddingBottom="2dp"
                android:visibility="gone"
                android:contentDescription="@string/conversation_item_sent__delivered_description" />
 
@@ -22,9 +24,8 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_gravity="center_vertical|end"
-               android:src="@drawable/ic_done_all_white_18dp"
+               android:src="@drawable/ic_delivery_status_delivered"
                android:paddingLeft="2dp"
-               android:paddingBottom="2dp"
                android:visibility="gone"
                android:contentDescription="@string/conversation_item_sent__delivered_description"
                tools:visibility="gone"/>
@@ -33,12 +34,11 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_gravity="center_vertical|end"
-               android:src="@drawable/ic_done_all_white_18dp"
+               android:src="@drawable/ic_delivery_status_read"
                android:paddingLeft="2dp"
-               android:paddingBottom="2dp"
                android:visibility="gone"
                android:contentDescription="@string/conversation_item_sent__message_read"
-               android:tint="@color/blue_800"
+               android:tint="@color/core_blue"
                tools:visibility="visible"/>
 
 </merge>

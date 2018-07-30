@@ -30,12 +30,15 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -55,7 +58,7 @@ public class ThreadDatabase extends Database {
 
   private static final String TAG = ThreadDatabase.class.getSimpleName();
 
-          static final String TABLE_NAME             = "thread";
+  public  static final String TABLE_NAME             = "thread";
   public  static final String ID                     = "_id";
   public  static final String DATE                   = "date";
   public  static final String MESSAGE_COUNT          = "message_count";
@@ -567,7 +570,7 @@ public class ThreadDatabase extends Database {
       MessageRecord record;
 
       if (reader != null && (record = reader.getNext()) != null) {
-        updateThread(threadId, count, record.getBody(), getAttachmentUriFor(record),
+        updateThread(threadId, count, getFormattedBodyFor(record), getAttachmentUriFor(record),
                      record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
                      record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());
         notifyConversationListListeners();
@@ -581,6 +584,15 @@ public class ThreadDatabase extends Database {
       if (reader != null)
         reader.close();
     }
+  }
+
+  private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.isMms() && ((MmsMessageRecord) messageRecord).getSharedContacts().size() > 0) {
+      Contact contact = ((MmsMessageRecord) messageRecord).getSharedContacts().get(0);
+      return ContactUtil.getStringSummary(context, contact).toString();
+    }
+
+    return messageRecord.getBody();
   }
 
   private @Nullable Uri getAttachmentUriFor(MessageRecord record) {

@@ -276,17 +276,8 @@ public class InputPanel extends LinearLayout
       animation.setDuration(MicrophoneRecorderView.ANIMATION_DURATION);
       animation.setFillBefore(true);
       animation.setFillAfter(false);
-      animation.setAnimationListener(new Animation.AnimationListener() {
-        @Override
-        public void onAnimationStart(Animation animation) {}
-        @Override
-        public void onAnimationEnd(Animation animation) {
-          future.set(null);
-        }
-        @Override
-        public void onAnimationRepeat(Animation animation) {}
-      });
 
+      slideToCancelView.postDelayed(() -> future.set(null), MicrophoneRecorderView.ANIMATION_DURATION);
       slideToCancelView.setVisibility(View.GONE);
       slideToCancelView.startAnimation(animation);
 

@@ -17,6 +17,7 @@
       <item>Español</item>
       <item>Euskara</item>
       <item>Français</item>
+      <item>Gaeilge</item>
       <item>Galego</item>
       <item>Greek ελληνικά</item>
       <item>Hebrew עברית</item>
@@ -26,6 +27,7 @@
       <item>Japanese 日本語</item>
       <item>Khmer ភាសាខ្មែរ</item>
       <item>Korean 한국어</item>
+      <item>Kurdí</item>
       <item>Lietuvių</item>
       <item>Luganda</item>
       <item>Magyar</item>
@@ -45,8 +47,10 @@
       <item>Slovenský</item>
       <item>Suomi</item>
       <item>Svenska</item>
+      <item>Telugu తెలుగు</item>
       <item>Thai ภาษาไทย</item>
       <item>Türkçe</item>
+      <item>Ukrainian Українська</item>
       <item>Vietnamese Tiếng Việt</item>
   </string-array>
 
@@ -66,6 +70,7 @@
       <item>es</item>
       <item>eu</item>
       <item>fr</item>
+      <item>ga</item>
       <item>gl</item>
       <item>el</item>
       <item>iw</item>
@@ -75,6 +80,7 @@
       <item>ja</item>
       <item>km_KH</item>
       <item>ko</item>
+      <item>ku</item>
       <item>lt</item>
       <item>lg</item>
       <item>hu</item>
@@ -94,8 +100,10 @@
       <item>sk</item>
       <item>fi</item>
       <item>sv</item>
+      <item>te</item>
       <item>th</item>
       <item>tr</item>
+      <item>uk</item>
       <item>vi</item>
   </string-array>
 
@@ -235,28 +243,6 @@
 
     <!-- RedPhone -->
 
-    <array name="incoming_call_widget_targets">
-        <item>@drawable/redphone_ic_lockscreen_answer</item>
-        <!--         <item>@drawable/ic_lockscreen_send_sms</item> -->
-        <item>@null</item>
-        <item>@drawable/redphone_ic_lockscreen_decline</item>
-        <item>@null</item>
-    </array>
-
-    <array name="incoming_call_widget_target_descriptions">
-        <item>"Answer"</item>
-        <item>"Send SMS"</item>
-        <item>"Decline"</item>
-        <item>@null</item>"
-    </array>
-
-    <array name="incoming_call_widget_direction_descriptions">
-        <item>"Right"</item>
-        <item>"Up"</item>
-        <item>"Left"</item>
-        <item>@null</item>
-    </array>
-
     <integer-array name="expiration_times">
         <item>0</item>
         <item>5</item>
@@ -273,11 +259,15 @@
     </integer-array>
 
     <array name="scribble_colors">
-        <item>#000000</item>
+        <item>#ffffff</item>
         <item>#ff0000</item>
-        <item>#ffff00</item>
-        <item>#00ffff</item>
         <item>#ff00ff</item>
+        <item>#0000ff</item>
+        <item>#00ffff</item>
+        <item>#00ff00</item>
+        <item>#ffff00</item>
+        <item>#ff5500</item>
+        <item>#000000</item>
     </array>
 
     <string-array name="pref_message_font_size_entries">

@@ -29,6 +29,7 @@
                   android:layout_toRightOf="@id/contact_photo_image"
                   android:layout_toEndOf="@id/contact_photo_image"
                   android:layout_centerVertical="true"
+                  android:gravity="center_vertical"
                   android:orientation="horizontal">
 
         <LinearLayout android:layout_width="0dp"
@@ -97,6 +98,7 @@
                 android:id="@+id/delivery_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:iconColor="?attr/conversation_item_sent_text_secondary_color"
                 android:visibility="gone"/>
 
     </LinearLayout>

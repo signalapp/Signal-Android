@@ -11,12 +11,12 @@ import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,7 +52,7 @@ public class LocalBackupJob extends ContextJob {
 
     try {
       String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);
-      File   backupDirectory = StorageUtil.getBackupDirectory(context);
+      File   backupDirectory = StorageUtil.getBackupDirectory();
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
       String fileName        = String.format("signal-%s.backup", timestamp);
       File   backupFile      = new File(backupDirectory, fileName);
@@ -78,7 +78,7 @@ public class LocalBackupJob extends ContextJob {
         throw new IOException("Renaming temporary backup file failed!");
       }
 
-      BackupUtil.deleteOldBackups(context);
+      BackupUtil.deleteOldBackups();
     } finally {
       GenericForegroundService.stopForegroundTask(context);
     }

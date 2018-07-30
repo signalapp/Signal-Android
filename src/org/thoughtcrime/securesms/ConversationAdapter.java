@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
@@ -190,11 +191,24 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
-    long start = System.currentTimeMillis();
-    viewHolder.getView().bind(messageRecord, glideRequests, locale, batchSelected, recipient, messageRecord == recordToPulseHighlight);
+    long          start            = System.currentTimeMillis();
+    int           adapterPosition  = viewHolder.getAdapterPosition();
+    MessageRecord previousRecord   = adapterPosition < getItemCount() - 1 && !isFooterPosition(adapterPosition + 1) ? getRecordForPositionOrThrow(adapterPosition + 1) : null;
+    MessageRecord nextRecord       = adapterPosition > 0 && !isHeaderPosition(adapterPosition - 1) ? getRecordForPositionOrThrow(adapterPosition - 1) : null;
+
+    viewHolder.getView().bind(messageRecord,
+                              Optional.fromNullable(previousRecord),
+                              Optional.fromNullable(nextRecord),
+                              glideRequests,
+                              locale,
+                              batchSelected,
+                              recipient,
+                              messageRecord == recordToPulseHighlight);
+
     if (messageRecord == recordToPulseHighlight) {
       recordToPulseHighlight = null;
     }
+
     Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 
@@ -240,11 +254,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public int getItemViewType(@NonNull MessageRecord messageRecord) {
-    if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined() ||
-        messageRecord.isExpirationTimerUpdate() || messageRecord.isEndSession()                ||
-        messageRecord.isIdentityUpdate() || messageRecord.isIdentityVerified()                 ||
-        messageRecord.isIdentityDefault())
-    {
+    if (messageRecord.isUpdate()) {
       return MESSAGE_TYPE_UPDATE;
     } else if (hasAudio(messageRecord)) {
       if (messageRecord.isOutgoing()) return MESSAGE_TYPE_AUDIO_OUTGOING;
@@ -364,7 +374,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private boolean hasThumbnail(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
   }
-
 
   @Override
   public long getHeaderId(int position) {

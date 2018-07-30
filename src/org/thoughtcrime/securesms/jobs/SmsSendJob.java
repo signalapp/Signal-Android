@@ -23,13 +23,14 @@ import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
 
 import java.util.ArrayList;
 
 public class SmsSendJob extends SendJob {
 
-  private static final String TAG = SmsSendJob.class.getSimpleName();
+  private static final long   serialVersionUID = -5118520036244759718L;
+  private static final String TAG              = SmsSendJob.class.getSimpleName();
 
   private final long messageId;
 

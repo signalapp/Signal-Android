@@ -7,7 +7,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/contact_share_edit_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/contact_share_edit_send"

@@ -3,11 +3,13 @@ package org.thoughtcrime.securesms;
 import android.Manifest;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -118,6 +120,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private TextView               countryCode;
   private TextView               number;
   private CircularProgressButton createButton;
+  private TextView               termsLinkView;
   private TextView               informationView;
   private TextView               informationToggleText;
   private TextView               title;
@@ -183,7 +186,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private void initializeResources() {
     TextView skipButton        = findViewById(R.id.skip_button);
     TextView restoreSkipButton = findViewById(R.id.skip_restore_button);
-    View     informationToggle = findViewById(R.id.information_link_container);
+    View     termsLinkView     = findViewById(R.id.terms_label);
 
     this.countrySpinner        = findViewById(R.id.country_spinner);
     this.countryCode           = findViewById(R.id.country_code);
@@ -219,9 +222,10 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     this.number.addTextChangedListener(new NumberChangedListener());
     this.createButton.setOnClickListener(v -> handleRegister());
     this.callMeCountDownView.setOnClickListener(v -> handlePhoneCallRequest());
-    skipButton.setOnClickListener(v -> handleCancel());
-    informationToggle.setOnClickListener(new InformationToggleListener());
 
+    skipButton.setOnClickListener(v -> handleCancel());
+    informationToggleText.setOnClickListener(new InformationToggleListener());
+    termsLinkView.setOnClickListener(this::onTermsLinkClicked);
     restoreSkipButton.setOnClickListener(v -> displayInitialView(true));
 
     if (getIntent().getBooleanExtra(RE_REGISTRATION_EXTRA, false)) {
@@ -314,7 +318,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       @Override
       protected @Nullable BackupUtil.BackupInfo doInBackground(Void... voids) {
         try {
-          return BackupUtil.getLatestBackup(RegistrationActivity.this);
+          return BackupUtil.getLatestBackup();
         } catch (NoExternalStorageException e) {
           Log.w(TAG, e);
           return null;
@@ -981,6 +985,15 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
     if (verifying) {
       TextSecurePreferences.setPushRegistered(this, false);
+    }
+  }
+
+  private void onTermsLinkClicked(View v) {
+    try {
+      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://signal.org/legal"));
+      startActivity(intent);
+    } catch (ActivityNotFoundException e) {
+      Toast.makeText(this, R.string.RegistrationActivity_no_browser, Toast.LENGTH_SHORT).show();
     }
   }
 

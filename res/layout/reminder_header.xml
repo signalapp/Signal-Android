@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/reminder_background"
+    android:background="@drawable/reminder_background_normal"
     android:focusable="true"
     android:nextFocusRight="@+id/cancel"
     android:orientation="horizontal"

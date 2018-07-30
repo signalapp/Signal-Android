@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -19,12 +20,12 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -45,6 +46,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -54,21 +56,35 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   private static final String TAG = MultiDeviceContactUpdateJob.class.getSimpleName();
 
+  private static final long FULL_SYNC_TIME = TimeUnit.HOURS.toMillis(6);
+
   @Inject transient SignalServiceMessageSender messageSender;
 
   private final @Nullable String address;
 
+  private boolean forceSync;
+
   public MultiDeviceContactUpdateJob(@NonNull Context context) {
-    this(context, null);
+    this(context, false);
+  }
+
+  public MultiDeviceContactUpdateJob(@NonNull Context context, boolean forceSync) {
+    this(context, null, forceSync);
   }
 
   public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address) {
+    this(context, address, true);
+  }
+
+  public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
     super(context, JobParameters.newBuilder()
                                 .withRequirement(new NetworkRequirement(context))
                                 .withRequirement(new MasterSecretRequirement(context))
                                 .withGroupId(MultiDeviceContactUpdateJob.class.getSimpleName())
                                 .withPersistence()
                                 .create());
+
+    this.forceSync = forceSync;
 
     if (address != null) this.address = address.serialize();
     else                 this.address = null;
@@ -126,7 +142,21 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       Log.w(TAG, "No contact permissions, skipping multi-device contact update...");
       return;
     }
-    
+
+    boolean isAppVisible      = ApplicationContext.getInstance(context).isAppVisible();
+    long    timeSinceLastSync = System.currentTimeMillis() - TextSecurePreferences.getLastFullContactSyncTime(context);
+
+    Log.d(TAG, "Requesting a full contact sync. forced = " + forceSync + ", appVisible = " + isAppVisible + ", timeSinceLastSync = " + timeSinceLastSync + " ms");
+
+    if (!forceSync && !isAppVisible && timeSinceLastSync < FULL_SYNC_TIME) {
+      Log.i(TAG, "App is backgrounded and the last contact sync was too soon (" + timeSinceLastSync + " ms ago). Marking that we need a sync. Skipping multi-device contact update...");
+      TextSecurePreferences.setNeedsFullContactSync(context, true);
+      return;
+    }
+
+    TextSecurePreferences.setLastFullContactSyncTime(context, System.currentTimeMillis());
+    TextSecurePreferences.setNeedsFullContactSync(context, false);
+
     File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
