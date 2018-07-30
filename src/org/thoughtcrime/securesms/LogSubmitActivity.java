@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.logsubmit.SubmitLogFragment;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.whispersystems.libpastelog.SubmitLogFragment;
 
 /**
  * Activity for submitting logcat logs to a pastebin service.
