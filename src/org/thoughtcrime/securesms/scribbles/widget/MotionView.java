@@ -39,7 +39,6 @@ import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -51,6 +50,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.scribbles.multitouch.MoveGestureDetector;
 import org.thoughtcrime.securesms.scribbles.multitouch.RotateGestureDetector;
 import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;

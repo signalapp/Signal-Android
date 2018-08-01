@@ -2,9 +2,7 @@ package org.thoughtcrime.securesms.lock;
 
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -19,7 +17,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;

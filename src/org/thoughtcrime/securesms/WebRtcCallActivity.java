@@ -28,7 +28,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.webrtc.CameraState;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 

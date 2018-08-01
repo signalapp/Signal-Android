@@ -31,7 +31,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.ConversationListActivity;

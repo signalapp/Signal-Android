@@ -34,7 +34,7 @@ import android.text.TextUtils;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;

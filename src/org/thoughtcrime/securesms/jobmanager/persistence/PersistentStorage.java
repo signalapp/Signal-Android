@@ -21,11 +21,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.jobmanager.EncryptionKeys;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.dependencies.AggregateDependencyInjector;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.io.IOException;
 import java.util.LinkedList;

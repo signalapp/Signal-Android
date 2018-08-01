@@ -6,11 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 

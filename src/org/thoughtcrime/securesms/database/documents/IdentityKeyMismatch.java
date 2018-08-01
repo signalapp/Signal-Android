@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.database.documents;
 
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -17,7 +17,7 @@
 
 package org.thoughtcrime.securesms.logsubmit.util;
 
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

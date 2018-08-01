@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.app.Activity;
 import android.content.Context;
 import android.telephony.SmsManager;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;

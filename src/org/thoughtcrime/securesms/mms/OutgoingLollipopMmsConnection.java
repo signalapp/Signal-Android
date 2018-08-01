@@ -25,7 +25,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.android.mms.service_alt.MmsConfig;
 import com.google.android.mms.pdu_alt.PduParser;

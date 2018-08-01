@@ -20,7 +20,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;

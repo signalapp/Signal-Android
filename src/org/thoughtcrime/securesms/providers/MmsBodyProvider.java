@@ -24,7 +24,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;

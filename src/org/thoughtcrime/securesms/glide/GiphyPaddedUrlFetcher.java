@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.glide;
 
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
@@ -10,6 +9,7 @@ import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.util.ContentLengthInputStream;
 
 import org.thoughtcrime.securesms.giph.model.GiphyPaddedUrl;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.FilterInputStream;

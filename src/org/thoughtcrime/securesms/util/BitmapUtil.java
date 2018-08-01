@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.*;
 import android.support.annotation.WorkerThread;
 import android.support.media.ExifInterface;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;

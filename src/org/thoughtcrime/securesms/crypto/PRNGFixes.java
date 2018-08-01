@@ -12,7 +12,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.os.Build;
 import android.os.Process;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;

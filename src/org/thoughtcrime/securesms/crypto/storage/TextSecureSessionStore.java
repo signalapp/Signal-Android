@@ -2,33 +2,17 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SessionDatabase;
-import org.thoughtcrime.securesms.util.Conversions;
-import org.whispersystems.libsignal.InvalidMessageException;
+import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionState;
 import org.whispersystems.libsignal.state.SessionStore;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.util.LinkedList;
 import java.util.List;
-
-import static org.whispersystems.libsignal.state.StorageProtos.SessionStructure;
 
 public class TextSecureSessionStore implements SessionStore {
 

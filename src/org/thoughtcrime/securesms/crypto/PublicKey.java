@@ -17,8 +17,7 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import android.util.Log;
-
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;

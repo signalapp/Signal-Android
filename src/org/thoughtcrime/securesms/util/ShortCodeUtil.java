@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.util;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
+
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;

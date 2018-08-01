@@ -1,12 +1,11 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.util.Log;
-
 import com.google.android.mms.ContentType;
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.PduBody;
 import com.google.android.mms.pdu_alt.PduPart;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.UnsupportedEncodingException;

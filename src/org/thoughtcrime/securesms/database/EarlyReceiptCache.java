@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.database;
 
-import android.util.Log;
-
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.util.HashMap;

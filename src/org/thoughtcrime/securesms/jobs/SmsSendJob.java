@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;

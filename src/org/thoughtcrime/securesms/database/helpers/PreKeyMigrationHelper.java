@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.database.helpers;
 import android.content.ContentValues;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +11,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.JsonUtils;

@@ -11,7 +11,7 @@ import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.transition.TransitionInflater;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;

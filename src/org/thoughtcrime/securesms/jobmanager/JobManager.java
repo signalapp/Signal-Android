@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.jobmanager;
 
 import android.content.Context;
 import android.os.PowerManager;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.jobmanager.dependencies.AggregateDependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.dependencies.DependencyInjector;
@@ -26,6 +25,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.JobSerializer;
 import org.thoughtcrime.securesms.jobmanager.persistence.PersistentStorage;
 import org.thoughtcrime.securesms.jobmanager.requirements.RequirementListener;
 import org.thoughtcrime.securesms.jobmanager.requirements.RequirementProvider;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.io.IOException;
 import java.util.Arrays;

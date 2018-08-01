@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.groups;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.protobuf.ByteString;
 

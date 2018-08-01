@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.Manifest;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;

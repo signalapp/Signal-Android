@@ -12,7 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ArgbEvaluator;

@@ -22,8 +22,6 @@
 
 package org.thoughtcrime.securesms.scribbles.viewmodel;
 
-import android.util.Log;
-
 public class TextLayer extends Layer {
 
   private String text;

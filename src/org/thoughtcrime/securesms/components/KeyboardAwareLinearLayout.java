@@ -24,7 +24,7 @@ import android.os.Build.VERSION_CODES;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.Surface;
 import android.view.View;
 

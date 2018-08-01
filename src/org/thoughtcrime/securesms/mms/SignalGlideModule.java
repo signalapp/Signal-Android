@@ -48,7 +48,7 @@ public class SignalGlideModule extends AppGlideModule {
 
   @Override
   public void applyOptions(Context context, GlideBuilder builder) {
-    builder.setLogLevel(Log.ERROR);
+    builder.setLogLevel(Log.INFO);
 //    builder.setDiskCache(new NoopDiskCacheFactory());
   }
 

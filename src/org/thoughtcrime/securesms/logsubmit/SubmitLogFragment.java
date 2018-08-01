@@ -36,7 +36,6 @@ import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +49,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -322,7 +322,7 @@ public class SubmitLogFragment extends Fragment {
       try {
         newLogs = scrubber.scrub(ApplicationContext.getInstance(context).getPersistentLogger().getLogs().get());
       } catch (InterruptedException | ExecutionException e) {
-        android.util.Log.w(TAG, "Failed to retrieve new logs.", e);
+        Log.w(TAG, "Failed to retrieve new logs.", e);
         newLogs = "Failed to retrieve logs.";
       }
 

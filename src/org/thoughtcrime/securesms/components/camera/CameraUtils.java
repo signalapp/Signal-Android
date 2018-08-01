@@ -8,7 +8,7 @@ import android.hardware.Camera.Size;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.Surface;
 
 import java.util.Collections;

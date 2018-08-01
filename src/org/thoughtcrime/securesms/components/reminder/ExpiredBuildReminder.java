@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.reminder;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;

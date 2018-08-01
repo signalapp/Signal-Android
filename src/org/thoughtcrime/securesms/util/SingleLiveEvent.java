@@ -22,7 +22,8 @@ import android.arch.lifecycle.Observer;
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
+
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
