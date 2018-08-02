@@ -60,7 +60,7 @@ public class MmsReceiveJob extends ContextJob {
       MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu, subscriptionId);
 
-      Log.w(TAG, "Inserted received MMS notification...");
+      Log.i(TAG, "Inserted received MMS notification...");
 
       ApplicationContext.getInstance(context)
                         .getJobManager()

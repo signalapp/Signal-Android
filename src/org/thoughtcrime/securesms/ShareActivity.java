@@ -110,7 +110,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onNewIntent(Intent intent) {
-    Log.w(TAG, "onNewIntent()");
+    Log.i(TAG, "onNewIntent()");
     super.onNewIntent(intent);
     setIntent(intent);
     initializeMedia();
@@ -118,7 +118,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onResume() {
-    Log.w(TAG, "onResume()");
+    Log.i(TAG, "onResume()");
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);

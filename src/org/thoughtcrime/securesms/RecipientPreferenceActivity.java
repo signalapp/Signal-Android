@@ -247,7 +247,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     @Override
     public void onCreate(Bundle icicle) {
-      Log.w(TAG, "onCreate (fragment)");
+      Log.i(TAG, "onCreate (fragment)");
       super.onCreate(icicle);
 
       initializeRecipients();
@@ -279,7 +279,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
-      Log.w(TAG, "onCreatePreferences...");
+      Log.i(TAG, "onCreatePreferences...");
       addPreferencesFromResource(R.xml.recipient_preferences);
     }
 
@@ -591,7 +591,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       private final IdentityRecord identityKey;
 
       private IdentityClickedListener(IdentityRecord identityKey) {
-        Log.w(TAG, "Identity record: " + identityKey);
+        Log.i(TAG, "Identity record: " + identityKey);
         this.identityKey = identityKey;
       }
 

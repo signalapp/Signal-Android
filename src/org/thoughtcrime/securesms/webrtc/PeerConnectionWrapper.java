@@ -394,7 +394,7 @@ public class PeerConnectionWrapper {
         Log.w(TAG, "Camera2Enumator.isSupport() threw.", throwable);
       }
 
-      Log.w(TAG, "Camera2 enumerator supported: " + camera2EnumeratorIsSupported);
+      Log.i(TAG, "Camera2 enumerator supported: " + camera2EnumeratorIsSupported);
 
       return camera2EnumeratorIsSupported ? new Camera2Enumerator(context)
                                           : new Camera1Enumerator(true);

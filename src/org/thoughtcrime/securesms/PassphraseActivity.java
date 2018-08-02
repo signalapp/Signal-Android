@@ -34,6 +34,8 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
  */
 public abstract class PassphraseActivity extends BaseActionBarActivity {
 
+  private static final String TAG = PassphraseActivity.class.getSimpleName();
+
   private KeyCachingService keyCachingService;
   private MasterSecret masterSecret;
 
@@ -62,8 +64,7 @@ public abstract class PassphraseActivity extends BaseActionBarActivity {
             try {
                 startActivity(nextIntent);
             } catch (java.lang.SecurityException e) {
-                Log.w("PassphraseActivity",
-                        "Access permission not passed from PassphraseActivity, retry sharing.");
+                Log.w(TAG, "Access permission not passed from PassphraseActivity, retry sharing.");
             }
         }
         finish();

@@ -41,7 +41,7 @@ public class RotateSignedPreKeyJob extends MasterSecretJob implements Injectable
 
   @Override
   public void onRun(MasterSecret masterSecret) throws Exception {
-    Log.w(TAG, "Rotating signed prekey...");
+    Log.i(TAG, "Rotating signed prekey...");
 
     IdentityKeyPair    identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);

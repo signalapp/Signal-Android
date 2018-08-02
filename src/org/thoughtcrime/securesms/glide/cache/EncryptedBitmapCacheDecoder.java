@@ -31,7 +31,7 @@ public class EncryptedBitmapCacheDecoder extends EncryptedCoder implements Resou
   public boolean handles(@NonNull File source, @NonNull Options options)
       throws IOException
   {
-    Log.w(TAG, "Checking item for encrypted Bitmap cache decoder: " + source.toString());
+    Log.i(TAG, "Checking item for encrypted Bitmap cache decoder: " + source.toString());
 
     try (InputStream inputStream = createEncryptedInputStream(secret, source)) {
       return streamBitmapDecoder.handles(inputStream, options);
@@ -46,7 +46,7 @@ public class EncryptedBitmapCacheDecoder extends EncryptedCoder implements Resou
   public Resource<Bitmap> decode(@NonNull File source, int width, int height, @NonNull Options options)
       throws IOException
   {
-    Log.w(TAG, "Encrypted Bitmap cache decoder running: " + source.toString());
+    Log.i(TAG, "Encrypted Bitmap cache decoder running: " + source.toString());
     try (InputStream inputStream = createEncryptedInputStream(secret, source)) {
       return streamBitmapDecoder.decode(inputStream, width, height, options);
     }

@@ -172,7 +172,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
   public static Optional<ExperienceUpgrade> getExperienceUpgrade(Context context) {
     final int currentVersionCode = Util.getCurrentApkReleaseVersion(context);
     final int lastSeenVersion    = TextSecurePreferences.getLastExperienceVersionCode(context);
-    Log.w(TAG, "getExperienceUpgrade(" + lastSeenVersion + ")");
+    Log.i(TAG, "getExperienceUpgrade(" + lastSeenVersion + ")");
 
     if (lastSeenVersion >= currentVersionCode) {
       TextSecurePreferences.setLastExperienceVersionCode(context, currentVersionCode);

@@ -160,7 +160,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
                  .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                  .ifNecessary()
                  .onAllGranted(() -> {
-                   Log.w(TAG, "Queing backup...");
+                   Log.i(TAG, "Queing backup...");
                    ApplicationContext.getInstance(getContext())
                                      .getJobManager()
                                      .add(new LocalBackupJob(getContext()));
@@ -198,7 +198,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   private class MediaDownloadChangeListener implements Preference.OnPreferenceChangeListener {
     @SuppressWarnings("unchecked")
     @Override public boolean onPreferenceChange(Preference preference, Object newValue) {
-      Log.w(TAG, "onPreferenceChange");
+      Log.i(TAG, "onPreferenceChange");
       preference.setSummary(getSummaryForMediaPreference((Set<String>)newValue));
       return true;
     }

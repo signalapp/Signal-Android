@@ -45,7 +45,7 @@ public abstract class LollipopMmsConnection extends BroadcastReceiver {
 
   @Override
   public synchronized void onReceive(Context context, Intent intent) {
-    Log.w(TAG, "onReceive()");
+    Log.i(TAG, "onReceive()");
     if (!action.equals(intent.getAction())) {
       Log.w(TAG, "received broadcast with unexpected action " + intent.getAction());
       return;

@@ -116,13 +116,13 @@ public class MessageRetrievalService extends Service implements InjectableType, 
 
   private synchronized void incrementActive() {
     activeActivities++;
-    Log.w(TAG, "Active Count: " + activeActivities);
+    Log.d(TAG, "Active Count: " + activeActivities);
     notifyAll();
   }
 
   private synchronized void decrementActive() {
     activeActivities--;
-    Log.w(TAG, "Active Count: " + activeActivities);
+    Log.d(TAG, "Active Count: " + activeActivities);
     notifyAll();
   }
 
@@ -142,7 +142,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
   private synchronized boolean isConnectionNecessary() {
     boolean isGcmDisabled = TextSecurePreferences.isGcmDisabled(this);
 
-    Log.w(TAG, String.format("Network requirement: %s, active activities: %s, push pending: %s, gcm disabled: %b",
+    Log.d(TAG, String.format("Network requirement: %s, active activities: %s, push pending: %s, gcm disabled: %b",
                              networkRequirement.isPresent(), activeActivities, pushPending.size(), isGcmDisabled));
 
     return TextSecurePreferences.isPushRegistered(this)                       &&
@@ -195,10 +195,10 @@ public class MessageRetrievalService extends Service implements InjectableType, 
     @Override
     public void run() {
       while (!stopThread.get()) {
-        Log.w(TAG, "Waiting for websocket state change....");
+        Log.i(TAG, "Waiting for websocket state change....");
         waitForConnectionNecessary();
 
-        Log.w(TAG, "Making websocket connection....");
+        Log.i(TAG, "Making websocket connection....");
         pipe = receiver.createMessagePipe();
 
         SignalServiceMessagePipe localPipe = pipe;
@@ -206,10 +206,10 @@ public class MessageRetrievalService extends Service implements InjectableType, 
         try {
           while (isConnectionNecessary() && !stopThread.get()) {
             try {
-              Log.w(TAG, "Reading message...");
+              Log.i(TAG, "Reading message...");
               localPipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
                              envelope -> {
-                               Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
+                               Log.i(TAG, "Retrieved envelope! " + envelope.getSource());
 
                                PushContentReceiveJob receiveJob = new PushContentReceiveJob(MessageRetrievalService.this);
                                receiveJob.handle(envelope);
@@ -229,10 +229,10 @@ public class MessageRetrievalService extends Service implements InjectableType, 
           shutdown(localPipe);
         }
 
-        Log.w(TAG, "Looping...");
+        Log.i(TAG, "Looping...");
       }
 
-      Log.w(TAG, "Exiting...");
+      Log.i(TAG, "Exiting...");
     }
 
     private void stopThread() {

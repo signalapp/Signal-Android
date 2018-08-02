@@ -444,7 +444,7 @@ public class MotionView  extends FrameLayout implements TextWatcher {
     public boolean onScale(ScaleGestureDetector detector) {
       if (selectedEntity != null) {
         float scaleFactorDiff = detector.getScaleFactor();
-        Log.w(TAG, "ScaleFactorDiff: " + scaleFactorDiff);
+        Log.d(TAG, "ScaleFactorDiff: " + scaleFactorDiff);
         selectedEntity.getLayer().postScale(scaleFactorDiff - 1.0F);
         selectedEntity.updateEntity();
         updateUI();

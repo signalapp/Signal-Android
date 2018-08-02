@@ -151,7 +151,7 @@ public class AttachmentDatabase extends Database {
   public @NonNull InputStream getThumbnailStream(@NonNull AttachmentId attachmentId)
       throws IOException
   {
-    Log.w(TAG, "getThumbnailStream(" + attachmentId + ")");
+    Log.d(TAG, "getThumbnailStream(" + attachmentId + ")");
     InputStream dataStream = getDataStream(attachmentId, THUMBNAIL, 0);
 
     if (dataStream != null) {
@@ -351,20 +351,20 @@ public class AttachmentDatabase extends Database {
   @NonNull Map<Attachment, AttachmentId> insertAttachmentsForMessage(long mmsId, @NonNull List<Attachment> attachments, @NonNull List<Attachment> quoteAttachment)
       throws MmsException
   {
-    Log.w(TAG, "insertParts(" + attachments.size() + ")");
+    Log.d(TAG, "insertParts(" + attachments.size() + ")");
 
     Map<Attachment, AttachmentId> insertedAttachments = new HashMap<>();
 
     for (Attachment attachment : attachments) {
       AttachmentId attachmentId = insertAttachment(mmsId, attachment, attachment.isQuote());
       insertedAttachments.put(attachment, attachmentId);
-      Log.w(TAG, "Inserted attachment at ID: " + attachmentId);
+      Log.i(TAG, "Inserted attachment at ID: " + attachmentId);
     }
 
     for (Attachment attachment : quoteAttachment) {
       AttachmentId attachmentId = insertAttachment(mmsId, attachment, true);
       insertedAttachments.put(attachment, attachmentId);
-      Log.w(TAG, "Inserted quoted attachment at ID: " + attachmentId);
+      Log.i(TAG, "Inserted quoted attachment at ID: " + attachmentId);
     }
 
     return insertedAttachments;
@@ -616,7 +616,7 @@ public class AttachmentDatabase extends Database {
   private AttachmentId insertAttachment(long mmsId, Attachment attachment, boolean quote)
       throws MmsException
   {
-    Log.w(TAG, "Inserting attachment for mms id: " + mmsId);
+    Log.d(TAG, "Inserting attachment for mms id: " + mmsId);
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     DataInfo       dataInfo = null;
@@ -624,7 +624,7 @@ public class AttachmentDatabase extends Database {
 
     if (attachment.getDataUri() != null) {
       dataInfo = setAttachmentData(attachment.getDataUri());
-      Log.w(TAG, "Wrote part to file: " + dataInfo.file.getAbsolutePath());
+      Log.d(TAG, "Wrote part to file: " + dataInfo.file.getAbsolutePath());
     }
 
     ContentValues contentValues = new ContentValues();
@@ -679,7 +679,7 @@ public class AttachmentDatabase extends Database {
           thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
         }
       } else {
-        Log.w(TAG, "Submitting thumbnail generation job...");
+        Log.i(TAG, "Submitting thumbnail generation job...");
         thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
       }
     }
@@ -692,7 +692,7 @@ public class AttachmentDatabase extends Database {
   protected void updateAttachmentThumbnail(AttachmentId attachmentId, InputStream in, float aspectRatio)
       throws MmsException
   {
-    Log.w(TAG, "updating part thumbnail for #" + attachmentId);
+    Log.i(TAG, "updating part thumbnail for #" + attachmentId);
 
     DataInfo thumbnailFile = setAttachmentData(in);
 
@@ -728,7 +728,7 @@ public class AttachmentDatabase extends Database {
 
     @Override
     public @Nullable InputStream call() throws Exception {
-      Log.w(TAG, "Executing thumbnail job...");
+      Log.d(TAG, "Executing thumbnail job...");
       final InputStream stream = getDataStream(attachmentId, THUMBNAIL, 0);
 
       if (stream != null) {
@@ -776,7 +776,7 @@ public class AttachmentDatabase extends Database {
 
       Bitmap bitmap = retriever.getFrameAtTime(1000);
 
-      Log.w(TAG, "Generated video thumbnail...");
+      Log.i(TAG, "Generated video thumbnail...");
       return new ThumbnailData(bitmap);
     }
   }

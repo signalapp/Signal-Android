@@ -196,7 +196,7 @@ public class MessageNotifier {
   public static void updateNotification(@NonNull Context context, long threadId)
   {
     if (System.currentTimeMillis() - lastDesktopActivityTimestamp < DESKTOP_ACTIVITY_PERIOD) {
-      Log.w(TAG, "Scheduling delayed notification...");
+      Log.i(TAG, "Scheduling delayed notification...");
       executor.execute(new DelayedNotification(context, threadId));
     } else {
       updateNotification(context, threadId, true);
@@ -526,14 +526,14 @@ public class MessageNotifier {
       MessageNotifier.updateNotification(context);
 
       long delayMillis = delayUntil - System.currentTimeMillis();
-      Log.w(TAG, "Waiting to notify: " + delayMillis);
+      Log.i(TAG, "Waiting to notify: " + delayMillis);
 
       if (delayMillis > 0) {
         Util.sleep(delayMillis);
       }
 
       if (!canceled.get()) {
-        Log.w(TAG, "Not canceled, notifying...");
+        Log.i(TAG, "Not canceled, notifying...");
         MessageNotifier.updateNotification(context, threadId, true);
         MessageNotifier.cancelDelayedNotifications();
       } else {

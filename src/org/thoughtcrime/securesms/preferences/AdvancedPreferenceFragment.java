@@ -70,7 +70,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   public void onActivityResult(int reqCode, int resultCode, Intent data) {
     super.onActivityResult(reqCode, resultCode, data);
 
-    Log.w(TAG, "Got result: " + resultCode + " for req: " + reqCode);
+    Log.i(TAG, "Got result: " + resultCode + " for req: " + reqCode);
     if (resultCode == Activity.RESULT_OK && reqCode == PICK_IDENTITY_CONTACT) {
       handleIdentitySelection(data);
     }

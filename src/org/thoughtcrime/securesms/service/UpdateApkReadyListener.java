@@ -31,7 +31,7 @@ public class UpdateApkReadyListener extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    Log.w(TAG, "onReceive()");
+    Log.i(TAG, "onReceive()");
 
     if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
       long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -2);

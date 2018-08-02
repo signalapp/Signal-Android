@@ -276,15 +276,13 @@ public class AttachmentServer implements Runnable {
           return;
         StringTokenizer st = new StringTokenizer(inLine);
         if (!st.hasMoreTokens())
-          Log.e(TAG,
-                "BAD REQUEST: Syntax error. Usage: GET /example/file.html");
+          Log.e(TAG, "BAD REQUEST: Syntax error. Usage: GET /example/file.html");
 
         String method = st.nextToken();
         pre.put("method", method);
 
         if (!st.hasMoreTokens())
-          Log.e(TAG,
-                "BAD REQUEST: Missing URI. Usage: GET /example/file.html");
+          Log.e(TAG, "BAD REQUEST: Missing URI. Usage: GET /example/file.html");
 
         String uri = st.nextToken();
 
@@ -313,8 +311,7 @@ public class AttachmentServer implements Runnable {
 
         pre.put("uri", uri);
       } catch (IOException ioe) {
-        Log.e(TAG,
-              "SERVER INTERNAL ERROR: IOException: " + ioe.getMessage());
+        Log.e(TAG, "SERVER INTERNAL ERROR: IOException: " + ioe.getMessage());
       }
     }
 

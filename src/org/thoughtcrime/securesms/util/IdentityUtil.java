@@ -116,7 +116,7 @@ public class IdentityUtil {
 
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
-      Log.w(TAG, "Inserting verified outbox...");
+      Log.i(TAG, "Inserting verified outbox...");
       DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoing, false, time, null);
     }
   }

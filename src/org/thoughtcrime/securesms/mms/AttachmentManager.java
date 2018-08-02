@@ -162,14 +162,14 @@ public class AttachmentManager {
 
   private void cleanup(final @Nullable Uri uri) {
     if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
-      Log.w(TAG, "cleaning up " + uri);
+      Log.d(TAG, "cleaning up " + uri);
       PersistentBlobProvider.getInstance(context).delete(context, uri);
     }
   }
 
   private void markGarbage(@Nullable Uri uri) {
     if (uri != null && PersistentBlobProvider.isAuthority(context, uri)) {
-      Log.w(TAG, "Marking garbage that needs cleaning: " + uri);
+      Log.d(TAG, "Marking garbage that needs cleaning: " + uri);
       garbage.add(uri);
     }
   }
@@ -301,7 +301,7 @@ public class AttachmentManager {
               height = dimens.second;
             }
 
-            Log.w(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
+            Log.d(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
             return mediaType.createSlide(context, uri, fileName, mimeType, fileSize, width, height);
           }
         } finally {
@@ -337,7 +337,7 @@ public class AttachmentManager {
           height = dimens.second;
         }
 
-        Log.w(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
+        Log.d(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
         return mediaType.createSlide(context, uri, fileName, mimeType, mediaSize, width, height);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -435,7 +435,7 @@ public class AttachmentManager {
                      if (captureUri == null) {
                        captureUri = PersistentBlobProvider.getInstance(context).createForExternal(context, MediaUtil.IMAGE_JPEG);
                      }
-                     Log.w(TAG, "captureUri path is " + captureUri.getPath());
+                     Log.d(TAG, "captureUri path is " + captureUri.getPath());
                      captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
                      activity.startActivityForResult(captureIntent, requestCode);
                    }

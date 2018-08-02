@@ -54,9 +54,9 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
   @Override
   public synchronized void onResult(Context context, Intent intent) {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP_MR1) {
-      Log.w(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
+      Log.i(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
     }
-    Log.w(TAG, "code: " + getResultCode() + ", result string: " + getResultData());
+    Log.i(TAG, "code: " + getResultCode() + ", result string: " + getResultData());
   }
 
   @Override
@@ -70,7 +70,7 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
     try {
       MmsBodyProvider.Pointer pointer = MmsBodyProvider.makeTemporaryPointer(getContext());
 
-      Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + pointer.getUri());
+      Log.i(TAG, "downloading multimedia from " + contentLocation + " to " + pointer.getUri());
 
       SmsManager smsManager;
 
@@ -92,7 +92,7 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
       Util.copy(pointer.getInputStream(), baos);
       pointer.close();
 
-      Log.w(TAG, baos.size() + "-byte response: ");// + Hex.dump(baos.toByteArray()));
+      Log.i(TAG, baos.size() + "-byte response: ");// + Hex.dump(baos.toByteArray()));
 
       RetrieveConf retrieved = (RetrieveConf) new PduParser(baos.toByteArray()).parse();
 

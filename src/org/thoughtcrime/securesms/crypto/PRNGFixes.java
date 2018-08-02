@@ -47,6 +47,8 @@ import java.security.Security;
  */
 public final class PRNGFixes {
 
+  private static final String TAG = PRNGFixes.class.getSimpleName();
+
   private static final int VERSION_CODE_JELLY_BEAN = 16;
   private static final int VERSION_CODE_JELLY_BEAN_MR2 = 18;
   private static final byte[] BUILD_FINGERPRINT_AND_DEVICE_SERIAL =
@@ -226,8 +228,7 @@ public final class PRNGFixes {
       } catch (IOException e) {
         // On a small fraction of devices /dev/urandom is not writable.
         // Log and ignore.
-        Log.w(PRNGFixes.class.getSimpleName(),
-              "Failed to mix seed into " + URANDOM_FILE);
+        Log.w(TAG, "Failed to mix seed into " + URANDOM_FILE);
       } finally {
         mSeeded = true;
       }

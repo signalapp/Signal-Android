@@ -117,7 +117,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   }
 
   private void updateControlsView() {
-    Log.w(TAG, "updateControlsView()");
+    Log.i(TAG, "updateControlsView()");
     View controls = LayoutInflater.from(getContext()).inflate(isLandscape() ? R.layout.quick_camera_controls_land
                                                                             : R.layout.quick_camera_controls,
                                                               this, false);

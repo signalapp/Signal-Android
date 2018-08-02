@@ -55,6 +55,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class MasterCipher {
 
+  private static final String TAG = MasterCipher.class.getSimpleName();
+
   private final MasterSecret masterSecret;
   private final Cipher encryptingCipher;
   private final Cipher decryptingCipher;
@@ -125,13 +127,13 @@ public class MasterCipher {
 	
   public boolean verifyMacFor(String content, byte[] theirMac) {
     byte[] ourMac = getMacFor(content);
-    Log.w("MasterCipher", "Our Mac: " + Hex.toString(ourMac));
-    Log.w("MasterCipher", "Thr Mac: " + Hex.toString(theirMac));
+    Log.i(TAG, "Our Mac: " + Hex.toString(ourMac));
+    Log.i(TAG, "Thr Mac: " + Hex.toString(theirMac));
     return Arrays.equals(ourMac, theirMac);
   }
 	
   public byte[] getMacFor(String content) {
-    Log.w("MasterCipher", "Macing: " + content);
+    Log.w(TAG, "Macing: " + content);
     try {
       Mac mac = getMac(masterSecret.getMacKey());
       return mac.doFinal(content.getBytes());

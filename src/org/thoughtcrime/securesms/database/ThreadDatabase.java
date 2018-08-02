@@ -220,7 +220,7 @@ public class ThreadDatabase extends Database {
   }
 
   public void trimThread(long threadId, int length) {
-    Log.w("ThreadDatabase", "Trimming thread: " + threadId + " to: " + length);
+    Log.i("ThreadDatabase", "Trimming thread: " + threadId + " to: " + length);
     Cursor cursor = null;
 
     try {
@@ -232,7 +232,7 @@ public class ThreadDatabase extends Database {
 
         long lastTweetDate = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
 
-        Log.w("ThreadDatabase", "Cut off tweet date: " + lastTweetDate);
+        Log.i("ThreadDatabase", "Cut off tweet date: " + lastTweetDate);
 
         DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
         DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);

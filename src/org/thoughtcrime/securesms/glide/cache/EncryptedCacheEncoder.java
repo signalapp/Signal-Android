@@ -29,7 +29,7 @@ public class EncryptedCacheEncoder extends EncryptedCoder implements Encoder<Inp
   @SuppressWarnings("EmptyCatchBlock")
   @Override
   public boolean encode(@NonNull InputStream data, @NonNull File file, @NonNull Options options) {
-    Log.w(TAG, "Encrypted cache encoder running: " + file.toString());
+    Log.i(TAG, "Encrypted cache encoder running: " + file.toString());
 
     byte[] buffer = byteArrayPool.get(ArrayPool.STANDARD_BUFFER_SIZE_BYTES, byte[].class);
 

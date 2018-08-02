@@ -460,7 +460,7 @@ public class ConversationFragment extends Fragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    Log.w(TAG, "onCreateLoader");
+    Log.i(TAG, "onCreateLoader");
     loaderStartTime = System.currentTimeMillis();
 
     int limit  = args.getInt(KEY_LIMIT, PARTIAL_CONVERSATION_LIMIT);
@@ -477,7 +477,7 @@ public class ConversationFragment extends Fragment
   public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
     long loadTime = System.currentTimeMillis() - loaderStartTime;
     int  count    = cursor.getCount();
-    Log.w(TAG, "onLoadFinished - took " + loadTime + " ms to load a cursor of size " + count);
+    Log.i(TAG, "onLoadFinished - took " + loadTime + " ms to load a cursor of size " + count);
     ConversationLoader loader = (ConversationLoader)cursorLoader;
 
     ConversationAdapter adapter = getListAdapter();

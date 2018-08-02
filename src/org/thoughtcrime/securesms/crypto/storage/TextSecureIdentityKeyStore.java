@@ -51,13 +51,13 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
       Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(signalAddress);
 
       if (!identityRecord.isPresent()) {
-        Log.w(TAG, "Saving new identity...");
+        Log.i(TAG, "Saving new identity...");
         identityDatabase.saveIdentity(signalAddress, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
         return false;
       }
 
       if (!identityRecord.get().getIdentityKey().equals(identityKey)) {
-        Log.w(TAG, "Replacing existing identity...");
+        Log.i(TAG, "Replacing existing identity...");
         VerifiedStatus verifiedStatus;
 
         if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED ||
@@ -75,7 +75,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
       }
 
       if (isNonBlockingApprovalRequired(identityRecord.get())) {
-        Log.w(TAG, "Setting approval status...");
+        Log.i(TAG, "Setting approval status...");
         identityDatabase.setApproval(signalAddress, nonBlockingApproval);
         return false;
       }

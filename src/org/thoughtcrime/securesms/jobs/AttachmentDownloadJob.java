@@ -87,7 +87,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       return;
     }
 
-    Log.w(TAG, "Downloading push part " + attachmentId);
+    Log.i(TAG, "Downloading push part " + attachmentId);
     database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
 
     retrieveAttachment(messageId, attachmentId, attachment);
@@ -154,9 +154,9 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       }
 
       if (attachment.getDigest() != null) {
-        Log.w(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.getDigest()));
+        Log.i(TAG, "Downloading attachment with digest: " + Hex.toString(attachment.getDigest()));
       } else {
-        Log.w(TAG, "Downloading attachment with no digest...");
+        Log.i(TAG, "Downloading attachment with no digest...");
       }
 
       return new SignalServiceAttachmentPointer(id, null, key, relay,

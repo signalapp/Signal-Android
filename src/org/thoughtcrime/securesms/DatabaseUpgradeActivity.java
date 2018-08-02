@@ -115,7 +115,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     this.masterSecret = KeyCachingService.getMasterSecret(this);
 
     if (needsUpgradeTask()) {
-      Log.w("DatabaseUpgradeActivity", "Upgrading...");
+      Log.i("DatabaseUpgradeActivity", "Upgrading...");
       setContentView(R.layout.database_upgrade_activity);
 
       ProgressBar indeterminateProgress = findViewById(R.id.indeterminate_progress);
@@ -135,13 +135,13 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     int currentVersionCode = Util.getCurrentApkReleaseVersion(this);
     int lastSeenVersion    = VersionTracker.getLastSeenVersion(this);
 
-    Log.w("DatabaseUpgradeActivity", "LastSeenVersion: " + lastSeenVersion);
+    Log.i("DatabaseUpgradeActivity", "LastSeenVersion: " + lastSeenVersion);
 
     if (lastSeenVersion >= currentVersionCode)
       return false;
 
     for (int version : UPGRADE_VERSIONS) {
-      Log.w("DatabaseUpgradeActivity", "Comparing: " + version);
+      Log.i("DatabaseUpgradeActivity", "Comparing: " + version);
       if (lastSeenVersion < version)
         return true;
     }
@@ -192,7 +192,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     protected Void doInBackground(Integer... params) {
       Context context = DatabaseUpgradeActivity.this.getApplicationContext();
 
-      Log.w("DatabaseUpgradeActivity", "Running background upgrade..");
+      Log.i("DatabaseUpgradeActivity", "Running background upgrade..");
       DatabaseFactory.getInstance(DatabaseUpgradeActivity.this)
                      .onApplicationLevelUpgrade(context, masterSecret, params[0], this);
 
@@ -314,16 +314,16 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       final MmsDatabase              mmsDb              = DatabaseFactory.getMmsDatabase(context);
       final List<DatabaseAttachment> pendingAttachments = DatabaseFactory.getAttachmentDatabase(context).getPendingAttachments();
 
-      Log.w(TAG, pendingAttachments.size() + " pending parts.");
+      Log.i(TAG, pendingAttachments.size() + " pending parts.");
       for (DatabaseAttachment attachment : pendingAttachments) {
         final Reader        reader = mmsDb.readerFor(mmsDb.getMessage(attachment.getMmsId()));
         final MessageRecord record = reader.getNext();
 
         if (attachment.hasData()) {
-          Log.w(TAG, "corrected a pending media part " + attachment.getAttachmentId() + "that already had data.");
+          Log.i(TAG, "corrected a pending media part " + attachment.getAttachmentId() + "that already had data.");
           attachmentDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), AttachmentDatabase.TRANSFER_PROGRESS_DONE);
         } else if (record != null && !record.isOutgoing() && record.isPush()) {
-          Log.w(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
+          Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
           ApplicationContext.getInstance(context)
                             .getJobManager()
                             .add(new AttachmentDownloadJob(context, attachment.getMmsId(), attachment.getAttachmentId(), false));

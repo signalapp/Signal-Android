@@ -800,7 +800,7 @@ public class MmsDatabase extends MessagingDatabase {
     ContentValues        contentValues  = new ContentValues();
     ContentValuesBuilder contentBuilder = new ContentValuesBuilder(contentValues);
 
-    Log.w(TAG, "Message received type: " + notification.getMessageType());
+    Log.i(TAG, "Message received type: " + notification.getMessageType());
 
 
     contentBuilder.add(CONTENT_LOCATION, notification.getContentLocation());
@@ -1056,11 +1056,11 @@ public class MmsDatabase extends MessagingDatabase {
 
       where += (" ELSE " + DATE_RECEIVED + " < " + date + " END)");
 
-      Log.w("MmsDatabase", "Executing trim query: " + where);
+      Log.i("MmsDatabase", "Executing trim query: " + where);
       cursor = db.query(TABLE_NAME, new String[] {ID}, where, new String[] {threadId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        Log.w("MmsDatabase", "Trimming: " + cursor.getLong(0));
+        Log.i("MmsDatabase", "Trimming: " + cursor.getLong(0));
         delete(cursor.getLong(0));
       }
 

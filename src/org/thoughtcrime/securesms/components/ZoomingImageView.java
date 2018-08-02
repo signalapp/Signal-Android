@@ -65,7 +65,7 @@ public class ZoomingImageView extends FrameLayout {
     final Context context        = getContext();
     final int     maxTextureSize = BitmapUtil.getMaxTextureSize();
 
-    Log.w(TAG, "Max texture size: " + maxTextureSize);
+    Log.i(TAG, "Max texture size: " + maxTextureSize);
 
     new AsyncTask<Void, Void, Pair<Integer, Integer>>() {
       @Override
@@ -82,13 +82,13 @@ public class ZoomingImageView extends FrameLayout {
       }
 
       protected void onPostExecute(@Nullable Pair<Integer, Integer> dimensions) {
-        Log.w(TAG, "Dimensions: " + (dimensions == null ? "(null)" : dimensions.first + ", " + dimensions.second));
+        Log.i(TAG, "Dimensions: " + (dimensions == null ? "(null)" : dimensions.first + ", " + dimensions.second));
 
         if (dimensions == null || (dimensions.first <= maxTextureSize && dimensions.second <= maxTextureSize)) {
-          Log.w(TAG, "Loading in standard image view...");
+          Log.i(TAG, "Loading in standard image view...");
           setImageViewUri(glideRequests, uri);
         } else {
-          Log.w(TAG, "Loading in subsampling image view...");
+          Log.i(TAG, "Loading in subsampling image view...");
           setSubsamplingImageViewUri(uri);
         }
       }

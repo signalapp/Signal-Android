@@ -29,6 +29,8 @@ import org.thoughtcrime.securesms.logging.Log;
  */
 public abstract class TwoFingerGestureDetector extends BaseGestureDetector {
 
+    private static final String TAG = TwoFingerGestureDetector.class.getSimpleName();
+
     private final float mEdgeSlop;
     protected float mPrevFingerDiffX;
     protected float mPrevFingerDiffY;
@@ -134,7 +136,7 @@ public abstract class TwoFingerGestureDetector extends BaseGestureDetector {
         final float y1 = getRawY(event, 1);
 
 
-        Log.w("TwoFinger",
+        Log.d(TAG,
               String.format("x0: %f, y0: %f, x1: %f, y1: %f, EdgeSlop: %f, RightSlop: %f, BottomSlop: %f",
                             x0, y0, x1, y1, edgeSlop, rightSlop, bottomSlop));
 

@@ -209,7 +209,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       recordToPulseHighlight = null;
     }
 
-    Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
+    Log.d(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 
   @Override
@@ -228,7 +228,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       return true;
     });
     itemView.setEventListener(clickListener);
-    Log.w(TAG, "Inflate time: " + (System.currentTimeMillis() - start));
+    Log.d(TAG, "Inflate time: " + (System.currentTimeMillis() - start));
     return new ViewHolder(itemView);
   }
 

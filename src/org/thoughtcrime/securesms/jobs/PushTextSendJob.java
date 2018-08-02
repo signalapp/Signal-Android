@@ -51,7 +51,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     SmsMessageRecord       record            = database.getMessage(messageId);
 
     try {
-      Log.w(TAG, "Sending message: " + messageId);
+      Log.i(TAG, "Sending message: " + messageId);
 
       deliver(record);
       database.markAsSent(messageId, true);

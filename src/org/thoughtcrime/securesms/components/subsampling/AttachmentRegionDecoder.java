@@ -27,7 +27,7 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
 
   @Override
   public Point init(Context context, Uri uri) throws Exception {
-    Log.w(TAG, "Init!");
+    Log.d(TAG, "Init!");
     if (!PartAuthority.isLocalUri(uri)) {
       passthrough = new SkiaImageRegionDecoder();
       return passthrough.init(context, uri);
@@ -43,7 +43,7 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
 
   @Override
   public Bitmap decodeRegion(Rect rect, int sampleSize) {
-    Log.w(TAG, "Decode region: " + rect);
+    Log.d(TAG, "Decode region: " + rect);
 
     if (passthrough != null) {
       return passthrough.decodeRegion(rect, sampleSize);
@@ -65,7 +65,7 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
   }
 
   public boolean isReady() {
-    Log.w(TAG, "isReady");
+    Log.d(TAG, "isReady");
     return (passthrough != null && passthrough.isReady()) ||
            (bitmapRegionDecoder != null && !bitmapRegionDecoder.isRecycled());
   }

@@ -240,7 +240,7 @@ public class ContactsCursorLoader extends CursorLoader {
                                      ContactsDatabase.NORMAL_TYPE});
         }
       }
-      Log.w(TAG, "filterNonPushContacts() -> " + (System.currentTimeMillis() - startMillis) + "ms");
+      Log.i(TAG, "filterNonPushContacts() -> " + (System.currentTimeMillis() - startMillis) + "ms");
       return matrix;
     } finally {
       cursor.close();

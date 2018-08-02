@@ -29,7 +29,7 @@ public class EncryptedGifCacheDecoder extends EncryptedCoder implements Resource
 
   @Override
   public boolean handles(@NonNull File source, @NonNull Options options) {
-    Log.w(TAG, "Checking item for encrypted GIF cache decoder: " + source.toString());
+    Log.i(TAG, "Checking item for encrypted GIF cache decoder: " + source.toString());
 
     try (InputStream inputStream = createEncryptedInputStream(secret, source)) {
       return gifDecoder.handles(inputStream, options);
@@ -42,7 +42,7 @@ public class EncryptedGifCacheDecoder extends EncryptedCoder implements Resource
   @Nullable
   @Override
   public Resource<GifDrawable> decode(@NonNull File source, int width, int height, @NonNull Options options) throws IOException {
-    Log.w(TAG, "Encrypted GIF cache decoder running...");
+    Log.i(TAG, "Encrypted GIF cache decoder running...");
     try (InputStream inputStream = createEncryptedInputStream(secret, source)) {
       return gifDecoder.decode(inputStream, width, height, options);
     }

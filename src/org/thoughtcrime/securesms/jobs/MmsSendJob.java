@@ -138,8 +138,8 @@ public class MmsSendJob extends SendJob {
   }
 
   private boolean isInconsistentResponse(SendReq message, SendConf response) {
-    Log.w(TAG, "Comparing: " + Hex.toString(message.getTransactionId()));
-    Log.w(TAG, "With:      " + Hex.toString(response.getTransactionId()));
+    Log.i(TAG, "Comparing: " + Hex.toString(message.getTransactionId()));
+    Log.i(TAG, "With:      " + Hex.toString(response.getTransactionId()));
     return !Arrays.equals(message.getTransactionId(), response.getTransactionId());
   }
 

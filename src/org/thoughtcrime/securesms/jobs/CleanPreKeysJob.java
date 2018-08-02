@@ -51,7 +51,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
     try {
-      Log.w(TAG, "Cleaning prekeys...");
+      Log.i(TAG, "Cleaning prekeys...");
 
       int                activeSignedPreKeyId = PreKeyUtil.getActiveSignedPreKeyId(context);
       SignedPreKeyStore  signedPreKeyStore    = signedPreKeyStoreFactory.create();
@@ -64,8 +64,8 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
 
       Collections.sort(oldRecords, new SignedPreKeySorter());
 
-      Log.w(TAG, "Active signed prekey: " + activeSignedPreKeyId);
-      Log.w(TAG, "Old signed prekey record count: " + oldRecords.size());
+      Log.i(TAG, "Active signed prekey: " + activeSignedPreKeyId);
+      Log.i(TAG, "Old signed prekey record count: " + oldRecords.size());
 
       boolean foundAgedRecord = false;
 
@@ -76,7 +76,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
           if (!foundAgedRecord) {
             foundAgedRecord = true;
           } else {
-            Log.w(TAG, "Removing signed prekey record: " + oldRecord.getId() + " with timestamp: " + oldRecord.getTimestamp());
+            Log.i(TAG, "Removing signed prekey record: " + oldRecord.getId() + " with timestamp: " + oldRecord.getTimestamp());
             signedPreKeyStore.removeSignedPreKey(oldRecord.getId());
           }
         }

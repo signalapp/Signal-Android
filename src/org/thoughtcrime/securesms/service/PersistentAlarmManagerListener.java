@@ -26,7 +26,7 @@ public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
       scheduledTime = onAlarm(context, scheduledTime);
     }
 
-    Log.w(TAG, getClass() + " scheduling for: " + scheduledTime);
+    Log.i(TAG, getClass() + " scheduling for: " + scheduledTime);
 
     alarmManager.cancel(pendingIntent);
     alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);

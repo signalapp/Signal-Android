@@ -1006,7 +1006,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private class ChallengeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-      Log.w(TAG, "Got a challenge broadcast...");
+      Log.i(TAG, "Got a challenge broadcast...");
       handleChallengeReceived(intent.getStringExtra(CHALLENGE_EXTRA));
     }
   }

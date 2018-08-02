@@ -33,7 +33,7 @@ public class EncryptedBitmapResourceEncoder extends EncryptedCoder implements Re
   @SuppressWarnings("EmptyCatchBlock")
   @Override
   public boolean encode(@NonNull Resource<Bitmap> data, @NonNull File file, @NonNull Options options) {
-    Log.w(TAG, "Encrypted resource encoder running: " + file.toString());
+    Log.i(TAG, "Encrypted resource encoder running: " + file.toString());
 
     Bitmap                bitmap  = data.get();
     Bitmap.CompressFormat format  = getFormat(bitmap, options);

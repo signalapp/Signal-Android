@@ -197,7 +197,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       finish();
     }
 
-    Log.w(TAG, "Loading Part URI: " + initialMediaUri);
+    Log.i(TAG, "Loading Part URI: " + initialMediaUri);
 
     if (conversationRecipient != null) {
       getSupportLoaderManager().restartLoader(0, null, this);

@@ -45,7 +45,7 @@ public class SmsReceiveJob extends ContextJob {
 
   @Override
   public void onRun() throws MigrationPendingException {
-    Log.w(TAG, "onRun()");
+    Log.i(TAG, "onRun()");
     
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus, subscriptionId);
 

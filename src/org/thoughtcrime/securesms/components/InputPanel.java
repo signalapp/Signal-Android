@@ -164,7 +164,7 @@ public class InputPanel extends LinearLayout
     long elapsedTime = onRecordHideEvent(x);
 
     if (listener != null) {
-      Log.w(TAG, "Elapsed time: " + elapsedTime);
+      Log.d(TAG, "Elapsed time: " + elapsedTime);
       if (elapsedTime > 1000) {
         listener.onRecorderFinished();
       } else {

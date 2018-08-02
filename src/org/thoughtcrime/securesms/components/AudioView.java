@@ -257,7 +257,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     @Override
     public void onClick(View v) {
       try {
-        Log.w(TAG, "playbutton onClick");
+        Log.d(TAG, "playbutton onClick");
         if (audioSlidePlayer != null) {
           togglePlayToPause();
           audioSlidePlayer.play(getProgress());
@@ -272,7 +272,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
-      Log.w(TAG, "pausebutton onClick");
+      Log.d(TAG, "pausebutton onClick");
       if (audioSlidePlayer != null) {
         togglePauseToPlay();
         audioSlidePlayer.stop();

@@ -31,17 +31,17 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
   {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP_MR1) {
       try {
-        Log.w(TAG, "Sending via Lollipop API");
+        Log.i(TAG, "Sending via Lollipop API");
         return new OutgoingLollipopMmsConnection(context).send(pduBytes, subscriptionId);
       } catch (UndeliverableMessageException e) {
         Log.w(TAG, e);
       }
 
-      Log.w(TAG, "Falling back to legacy connection...");
+      Log.i(TAG, "Falling back to legacy connection...");
     }
 
     if (subscriptionId == -1) {
-      Log.w(TAG, "Sending via legacy connection");
+      Log.i(TAG, "Sending via legacy connection");
       try {
         SendConf result = new OutgoingLegacyMmsConnection(context).send(pduBytes, subscriptionId);
 
@@ -56,7 +56,7 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
     }
 
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP && VERSION.SDK_INT < VERSION_CODES.LOLLIPOP_MR1) {
-      Log.w(TAG, "Falling back to sending via Lollipop API");
+      Log.i(TAG, "Falling back to sending via Lollipop API");
       return new OutgoingLollipopMmsConnection(context).send(pduBytes, subscriptionId);
     }
 
@@ -71,18 +71,18 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
       throws MmsException, MmsRadioException, ApnUnavailableException, IOException
   {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP_MR1) {
-      Log.w(TAG, "Receiving via Lollipop API");
+      Log.i(TAG, "Receiving via Lollipop API");
       try {
         return new IncomingLollipopMmsConnection(context).retrieve(contentLocation, transactionId, subscriptionId);
       } catch (MmsException e) {
         Log.w(TAG, e);
       }
 
-      Log.w(TAG, "Falling back to receiving via legacy connection");
+      Log.i(TAG, "Falling back to receiving via legacy connection");
     }
 
     if (VERSION.SDK_INT < 22 || subscriptionId == -1) {
-      Log.w(TAG, "Receiving via legacy API");
+      Log.i(TAG, "Receiving via legacy API");
       try {
         return new IncomingLegacyMmsConnection(context).retrieve(contentLocation, transactionId, subscriptionId);
       } catch (MmsRadioException | ApnUnavailableException | IOException e) {
@@ -91,7 +91,7 @@ public class CompatMmsConnection implements OutgoingMmsConnection, IncomingMmsCo
     }
 
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP && VERSION.SDK_INT < VERSION_CODES.LOLLIPOP_MR1) {
-      Log.w(TAG, "Falling back to receiving via Lollipop API");
+      Log.i(TAG, "Falling back to receiving via Lollipop API");
       return new IncomingLollipopMmsConnection(context).retrieve(contentLocation, transactionId, subscriptionId);
     }
 

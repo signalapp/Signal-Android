@@ -88,7 +88,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
-    Log.w(TAG, "onCreate()");
+    Log.i(TAG, "onCreate()");
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -269,11 +269,11 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     }
 
     if (Build.VERSION.SDK_INT >= 16 && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
-      Log.w(TAG, "Listening for fingerprints...");
+      Log.i(TAG, "Listening for fingerprints...");
       fingerprintCancellationSignal = new CancellationSignal();
       fingerprintManager.authenticate(null, 0, fingerprintCancellationSignal, fingerprintListener, null);
     } else if (Build.VERSION.SDK_INT >= 21){
-      Log.w(TAG, "firing intent...");
+      Log.i(TAG, "firing intent...");
       Intent intent = keyguardManager.createConfirmDeviceCredentialIntent("Unlock Signal", "");
       startActivityForResult(intent, 1);
     } else {
@@ -345,7 +345,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
-      Log.w(TAG, "onAuthenticationSucceeded");
+      Log.i(TAG, "onAuthenticationSucceeded");
       fingerprintPrompt.setImageResource(R.drawable.ic_check_white_48dp);
       fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
       fingerprintPrompt.animate().setInterpolator(new BounceInterpolator()).scaleX(1.1f).scaleY(1.1f).setDuration(500).setListener(new AnimationCompleteListener() {

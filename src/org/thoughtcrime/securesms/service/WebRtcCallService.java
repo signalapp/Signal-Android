@@ -199,7 +199,7 @@ public class WebRtcCallService extends Service implements InjectableType,
 
   @Override
   public int onStartCommand(final Intent intent, int flags, int startId) {
-    Log.w(TAG, "onStartCommand...");
+    Log.i(TAG, "onStartCommand...");
     if (intent == null || intent.getAction() == null) return START_NOT_STICKY;
 
     serviceExecutor.execute(() -> {
@@ -259,7 +259,7 @@ public class WebRtcCallService extends Service implements InjectableType,
 
   @Override
   public void onBluetoothStateChanged(boolean isAvailable) {
-    Log.w(TAG, "onBluetoothStateChanged: " + isAvailable);
+    Log.i(TAG, "onBluetoothStateChanged: " + isAvailable);
 
     Intent intent = new Intent(this, WebRtcCallService.class);
     intent.setAction(ACTION_BLUETOOTH_CHANGE);
@@ -334,7 +334,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   // Handlers
 
   private void handleIncomingCall(final Intent intent) {
-    Log.w(TAG, "handleIncomingCall()");
+    Log.i(TAG, "handleIncomingCall()");
     if (callState != CallState.STATE_IDLE) throw new IllegalStateException("Incoming on non-idle");
 
     final String offer = intent.getStringExtra(EXTRA_REMOTE_DESCRIPTION);
@@ -376,7 +376,7 @@ public class WebRtcCallService extends Service implements InjectableType,
           WebRtcCallService.this.lockManager.updatePhoneState(LockManager.PhoneState.PROCESSING);
 
           SessionDescription sdp = WebRtcCallService.this.peerConnection.createAnswer(new MediaConstraints());
-          Log.w(TAG, "Answer SDP: " + sdp.description);
+          Log.i(TAG, "Answer SDP: " + sdp.description);
           WebRtcCallService.this.peerConnection.setLocalDescription(sdp);
 
           ListenableFutureTask<Boolean> listenableFutureTask = sendMessage(recipient, SignalServiceCallMessage.forAnswer(new AnswerMessage(WebRtcCallService.this.callId, sdp.description)));
@@ -405,7 +405,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   }
 
   private void handleOutgoingCall(Intent intent) {
-    Log.w(TAG, "handleOutgoingCall...");
+    Log.i(TAG, "handleOutgoingCall...");
 
     if (callState != CallState.STATE_IDLE) throw new IllegalStateException("Dialing from non-idle?");
 
@@ -442,7 +442,7 @@ public class WebRtcCallService extends Service implements InjectableType,
             SessionDescription sdp = WebRtcCallService.this.peerConnection.createOffer(new MediaConstraints());
             WebRtcCallService.this.peerConnection.setLocalDescription(sdp);
 
-            Log.w(TAG, "Sending offer: " + sdp.description);
+            Log.i(TAG, "Sending offer: " + sdp.description);
 
             ListenableFutureTask<Boolean> listenableFutureTask = sendMessage(recipient, SignalServiceCallMessage.forOffer(new OfferMessage(WebRtcCallService.this.callId, sdp.description)));
 
@@ -479,7 +479,7 @@ public class WebRtcCallService extends Service implements InjectableType,
 
   private void handleResponseMessage(Intent intent) {
     try {
-      Log.w(TAG, "Got response: " + intent.getStringExtra(EXTRA_REMOTE_DESCRIPTION));
+      Log.i(TAG, "Got response: " + intent.getStringExtra(EXTRA_REMOTE_DESCRIPTION));
 
       if (callState != CallState.STATE_DIALING || !getRemoteRecipient(intent).equals(recipient) || !Util.isEquals(this.callId, getCallId(intent))) {
         Log.w(TAG, "Got answer for recipient and call id we're not currently dialing: " + getCallId(intent) + ", " + getRemoteRecipient(intent));
@@ -513,7 +513,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   }
 
   private void handleRemoteIceCandidate(Intent intent) {
-    Log.w(TAG, "handleRemoteIceCandidate...");
+    Log.i(TAG, "handleRemoteIceCandidate...");
 
     if (Util.isEquals(this.callId, getCallId(intent))) {
       IceCandidate candidate = new IceCandidate(intent.getStringExtra(EXTRA_ICE_SDP_MID),
@@ -540,7 +540,7 @@ public class WebRtcCallService extends Service implements InjectableType,
                                                              intent.getStringExtra(EXTRA_ICE_SDP));
 
     if (pendingOutgoingIceUpdates != null) {
-      Log.w(TAG, "Adding to pending ice candidates...");
+      Log.i(TAG, "Adding to pending ice candidates...");
       this.pendingOutgoingIceUpdates.add(iceUpdateMessage);
       return;
     }
@@ -656,7 +656,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   }
 
   private void handleBusyMessage(Intent intent) {
-    Log.w(TAG, "handleBusyMessage...");
+    Log.i(TAG, "handleBusyMessage...");
 
     final Recipient recipient = getRemoteRecipient(intent);
     final long      callId    = getCallId(intent);
@@ -829,7 +829,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   }
 
   private void handleSetCameraFlip(Intent intent) {
-    Log.w(TAG, "handleSetCameraFlip()...");
+    Log.i(TAG, "handleSetCameraFlip()...");
 
     if (localCameraState.isEnabled() && peerConnection != null) {
       peerConnection.flipCamera();
@@ -849,7 +849,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   }
 
   private void handleWiredHeadsetChange(Intent intent) {
-    Log.w(TAG, "handleWiredHeadsetChange...");
+    Log.i(TAG, "handleWiredHeadsetChange...");
 
     if (callState == CallState.STATE_CONNECTED ||
         callState == CallState.STATE_DIALING   ||
@@ -875,7 +875,7 @@ public class WebRtcCallService extends Service implements InjectableType,
     if (callState == CallState.STATE_ANSWERING ||
         callState == CallState.STATE_LOCAL_RINGING)
     {
-      Log.w(TAG, "Silencing incoming ringer...");
+      Log.i(TAG, "Silencing incoming ringer...");
       audioManager.silenceIncomingRinger();
     }
   }
@@ -1033,12 +1033,12 @@ public class WebRtcCallService extends Service implements InjectableType,
   /// PeerConnection Observer
   @Override
   public void onSignalingChange(PeerConnection.SignalingState newState) {
-    Log.w(TAG, "onSignalingChange: " + newState);
+    Log.i(TAG, "onSignalingChange: " + newState);
   }
 
   @Override
   public void onIceConnectionChange(PeerConnection.IceConnectionState newState) {
-    Log.w(TAG, "onIceConnectionChange:" + newState);
+    Log.i(TAG, "onIceConnectionChange:" + newState);
 
     if (newState == PeerConnection.IceConnectionState.CONNECTED ||
         newState == PeerConnection.IceConnectionState.COMPLETED)
@@ -1058,18 +1058,18 @@ public class WebRtcCallService extends Service implements InjectableType,
 
   @Override
   public void onIceConnectionReceivingChange(boolean receiving) {
-    Log.w(TAG, "onIceConnectionReceivingChange:" + receiving);
+    Log.i(TAG, "onIceConnectionReceivingChange:" + receiving);
   }
 
   @Override
   public void onIceGatheringChange(PeerConnection.IceGatheringState newState) {
-    Log.w(TAG, "onIceGatheringChange:" + newState);
+    Log.i(TAG, "onIceGatheringChange:" + newState);
 
   }
 
   @Override
   public void onIceCandidate(IceCandidate candidate) {
-    Log.w(TAG, "onIceCandidate:" + candidate);
+    Log.i(TAG, "onIceCandidate:" + candidate);
     Intent intent = new Intent(this, WebRtcCallService.class);
 
     intent.setAction(ACTION_ICE_CANDIDATE);
@@ -1083,12 +1083,12 @@ public class WebRtcCallService extends Service implements InjectableType,
 
   @Override
   public void onIceCandidatesRemoved(IceCandidate[] candidates) {
-    Log.w(TAG, "onIceCandidatesRemoved:" + (candidates != null ? candidates.length : null));
+    Log.i(TAG, "onIceCandidatesRemoved:" + (candidates != null ? candidates.length : null));
   }
 
   @Override
   public void onAddStream(MediaStream stream) {
-    Log.w(TAG, "onAddStream:" + stream);
+    Log.i(TAG, "onAddStream:" + stream);
 
     for (AudioTrack audioTrack : stream.audioTracks) {
       audioTrack.setEnabled(true);
@@ -1103,17 +1103,17 @@ public class WebRtcCallService extends Service implements InjectableType,
 
   @Override
   public void onAddTrack(RtpReceiver rtpReceiver, MediaStream[] mediaStreams) {
-    Log.w(TAG, "onAddTrack: " + mediaStreams);
+    Log.i(TAG, "onAddTrack: " + mediaStreams);
   }
 
   @Override
   public void onRemoveStream(MediaStream stream) {
-    Log.w(TAG, "onRemoveStream:" + stream);
+    Log.i(TAG, "onRemoveStream:" + stream);
   }
 
   @Override
   public void onDataChannel(DataChannel dataChannel) {
-    Log.w(TAG, "onDataChannel:" + dataChannel.label());
+    Log.i(TAG, "onDataChannel:" + dataChannel.label());
 
     if (dataChannel.label().equals(DATA_CHANNEL_NAME)) {
       this.dataChannel = dataChannel;
@@ -1123,23 +1123,23 @@ public class WebRtcCallService extends Service implements InjectableType,
 
   @Override
   public void onRenegotiationNeeded() {
-    Log.w(TAG, "onRenegotiationNeeded");
+    Log.i(TAG, "onRenegotiationNeeded");
     // TODO renegotiate
   }
 
   @Override
   public void onBufferedAmountChange(long l) {
-    Log.w(TAG, "onBufferedAmountChange: " + l);
+    Log.i(TAG, "onBufferedAmountChange: " + l);
   }
 
   @Override
   public void onStateChange() {
-    Log.w(TAG, "onStateChange");
+    Log.i(TAG, "onStateChange");
   }
 
   @Override
   public void onMessage(DataChannel.Buffer buffer) {
-    Log.w(TAG, "onMessage...");
+    Log.i(TAG, "onMessage...");
 
     try {
       byte[] data = new byte[buffer.data.remaining()];
@@ -1148,19 +1148,19 @@ public class WebRtcCallService extends Service implements InjectableType,
       Data dataMessage = Data.parseFrom(data);
 
       if (dataMessage.hasConnected()) {
-        Log.w(TAG, "hasConnected...");
+        Log.i(TAG, "hasConnected...");
         Intent intent = new Intent(this, WebRtcCallService.class);
         intent.setAction(ACTION_CALL_CONNECTED);
         intent.putExtra(EXTRA_CALL_ID, dataMessage.getConnected().getId());
         startService(intent);
       } else if (dataMessage.hasHangup()) {
-        Log.w(TAG, "hasHangup...");
+        Log.i(TAG, "hasHangup...");
         Intent intent = new Intent(this, WebRtcCallService.class);
         intent.setAction(ACTION_REMOTE_HANGUP);
         intent.putExtra(EXTRA_CALL_ID, dataMessage.getHangup().getId());
         startService(intent);
       } else if (dataMessage.hasVideoStreamingStatus()) {
-        Log.w(TAG, "hasVideoStreamingStatus...");
+        Log.i(TAG, "hasVideoStreamingStatus...");
         Intent intent = new Intent(this, WebRtcCallService.class);
         intent.setAction(ACTION_REMOTE_VIDEO_MUTE);
         intent.putExtra(EXTRA_CALL_ID, dataMessage.getVideoStreamingStatus().getId());
@@ -1331,7 +1331,7 @@ public class WebRtcCallService extends Service implements InjectableType,
 
   @WorkerThread
   public static boolean isCallActive(Context context) {
-    Log.w(TAG, "isCallActive()");
+    Log.i(TAG, "isCallActive()");
 
     HandlerThread handlerThread = null;
 
@@ -1343,7 +1343,7 @@ public class WebRtcCallService extends Service implements InjectableType,
 
       ResultReceiver resultReceiver = new ResultReceiver(new Handler(handlerThread.getLooper())) {
         protected void onReceiveResult(int resultCode, Bundle resultData) {
-          Log.w(TAG, "Got result...");
+          Log.i(TAG, "Got result...");
           future.set(resultCode == 1);
         }
       };
@@ -1354,7 +1354,7 @@ public class WebRtcCallService extends Service implements InjectableType,
 
       context.startService(intent);
 
-      Log.w(TAG, "Blocking on result...");
+      Log.i(TAG, "Blocking on result...");
       return future.get();
     } catch (InterruptedException | ExecutionException e) {
       Log.w(TAG, e);

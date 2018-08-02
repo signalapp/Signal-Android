@@ -43,7 +43,7 @@ public class SmsSentJob extends MasterSecretJob {
 
   @Override
   public void onRun(MasterSecret masterSecret) {
-    Log.w(TAG, "Got SMS callback: " + action + " , " + result);
+    Log.i(TAG, "Got SMS callback: " + action + " , " + result);
 
     switch (action) {
       case SmsDeliveryListener.SENT_SMS_ACTION:

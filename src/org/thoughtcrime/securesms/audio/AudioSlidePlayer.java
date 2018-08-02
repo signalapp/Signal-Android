@@ -96,7 +96,7 @@ public class AudioSlidePlayer implements SensorEventListener {
     mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
       @Override
       public void onPrepared(MediaPlayer mp) {
-        Log.w(TAG, "onPrepared");
+        Log.i(TAG, "onPrepared");
         synchronized (AudioSlidePlayer.this) {
           if (mediaPlayer == null) return;
 
@@ -118,7 +118,7 @@ public class AudioSlidePlayer implements SensorEventListener {
     mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
       @Override
       public void onCompletion(MediaPlayer mp) {
-        Log.w(TAG, "onComplete");
+        Log.i(TAG, "onComplete");
         synchronized (AudioSlidePlayer.this) {
           mediaPlayer = null;
 
@@ -171,7 +171,7 @@ public class AudioSlidePlayer implements SensorEventListener {
   }
 
   public synchronized void stop() {
-    Log.w(TAG, "Stop called!");
+    Log.i(TAG, "Stop called!");
 
     removePlaying(this);
 

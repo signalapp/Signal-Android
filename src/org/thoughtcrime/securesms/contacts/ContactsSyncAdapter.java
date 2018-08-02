@@ -25,7 +25,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
   public void onPerformSync(Account account, Bundle extras, String authority,
                             ContentProviderClient provider, SyncResult syncResult)
   {
-    Log.w(TAG, "onPerformSync(" + authority +")");
+    Log.i(TAG, "onPerformSync(" + authority +")");
 
     if (TextSecurePreferences.isPushRegistered(getContext())) {
       try {

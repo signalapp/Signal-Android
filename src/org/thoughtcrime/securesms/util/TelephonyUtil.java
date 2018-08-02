@@ -20,13 +20,13 @@ public class TelephonyUtil {
     final int configMcc = context.getResources().getConfiguration().mcc;
     final int configMnc = context.getResources().getConfiguration().mnc;
     if (tm.getSimState() == TelephonyManager.SIM_STATE_READY) {
-      Log.w(TAG, "Choosing MCC+MNC info from TelephonyManager.getSimOperator()");
+      Log.i(TAG, "Choosing MCC+MNC info from TelephonyManager.getSimOperator()");
       return tm.getSimOperator();
     } else if (tm.getPhoneType() != TelephonyManager.PHONE_TYPE_CDMA) {
-      Log.w(TAG, "Choosing MCC+MNC info from TelephonyManager.getNetworkOperator()");
+      Log.i(TAG, "Choosing MCC+MNC info from TelephonyManager.getNetworkOperator()");
       return tm.getNetworkOperator();
     } else if (configMcc != 0 && configMnc != 0) {
-      Log.w(TAG, "Choosing MCC+MNC info from current context's Configuration");
+      Log.i(TAG, "Choosing MCC+MNC info from current context's Configuration");
       return String.format(Locale.ROOT, "%03d%d",
           configMcc,
           configMnc == Configuration.MNC_ZERO ? 0 : configMnc);

@@ -161,12 +161,12 @@ public class SignalCommunicationModule {
 
     @Override
     public void onConnected() {
-      Log.w(TAG, "onConnected()");
+      Log.i(TAG, "onConnected()");
     }
 
     @Override
     public void onConnecting() {
-      Log.w(TAG, "onConnecting()");
+      Log.i(TAG, "onConnecting()");
     }
 
     @Override

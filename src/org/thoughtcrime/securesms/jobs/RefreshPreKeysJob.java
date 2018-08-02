@@ -53,7 +53,7 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
     int availableKeys = accountManager.getPreKeysCount();
 
     if (availableKeys >= PREKEY_MINIMUM && TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-      Log.w(TAG, "Available keys sufficient: " + availableKeys);
+      Log.i(TAG, "Available keys sufficient: " + availableKeys);
       return;
     }
 
@@ -61,7 +61,7 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
     IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
-    Log.w(TAG, "Registering new prekeys...");
+    Log.i(TAG, "Registering new prekeys...");
 
     accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKeyRecord, preKeyRecords);
 

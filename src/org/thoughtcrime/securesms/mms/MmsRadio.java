@@ -49,14 +49,14 @@ public class MmsRadio {
   }
 
   public synchronized void disconnect() {
-    Log.w("MmsRadio", "MMS Radio Disconnect Called...");
+    Log.i(TAG, "MMS Radio Disconnect Called...");
     wakeLock.release();
     connectedCounter--;
 
-    Log.w("MmsRadio", "Reference count: " + connectedCounter);
+    Log.i(TAG, "Reference count: " + connectedCounter);
 
     if (connectedCounter == 0) {
-      Log.w("MmsRadio", "Turning off MMS radio...");
+      Log.i(TAG, "Turning off MMS radio...");
       try {
         final Method stopUsingNetworkFeatureMethod = connectivityManager.getClass().getMethod("stopUsingNetworkFeature", Integer.TYPE, String.class);
         stopUsingNetworkFeatureMethod.invoke(connectivityManager, ConnectivityManager.TYPE_MOBILE, FEATURE_ENABLE_MMS);
@@ -69,7 +69,7 @@ public class MmsRadio {
       }
       
       if (connectivityListener != null) {
-        Log.w("MmsRadio", "Unregistering receiver...");
+        Log.i(TAG, "Unregistering receiver...");
         context.unregisterReceiver(connectivityListener);
         connectivityListener = null;
       }
@@ -90,7 +90,7 @@ public class MmsRadio {
       throw new MmsRadioException(ite);
     }
 
-    Log.w("MmsRadio", "startUsingNetworkFeature status: " + status);
+    Log.i(TAG, "startUsingNetworkFeature status: " + status);
 
     if (status == APN_ALREADY_ACTIVE) {
       wakeLock.acquire();
@@ -109,7 +109,7 @@ public class MmsRadio {
       Util.wait(this, 30000);
 
       if (!isConnected()) {
-        Log.w("MmsRadio", "Got back from connectivity wait, and not connected...");
+        Log.w(TAG, "Got back from connectivity wait, and not connected...");
         disconnect();
         throw new MmsRadioException("Unable to successfully enable MMS radio.");
       }
@@ -119,7 +119,7 @@ public class MmsRadio {
   private boolean isConnected() {
     NetworkInfo info = connectivityManager.getNetworkInfo(TYPE_MOBILE_MMS);
 
-    Log.w("MmsRadio", "Connected: " + info);
+    Log.i(TAG, "Connected: " + info);
 
     if ((info == null) || (info.getType() != TYPE_MOBILE_MMS) || !info.isConnected())
       return false;
@@ -141,13 +141,13 @@ public class MmsRadio {
 
   private synchronized void issueConnectivityChange() {
     if (isConnected()) {
-      Log.w("MmsRadio", "Notifying connected...");
+      Log.i(TAG, "Notifying connected...");
       notifyAll();
       return;
     }
 
     if (!isConnected() && (isConnectivityFailure() || !isConnectivityPossible())) {
-      Log.w("MmsRadio", "Notifying not connected...");
+      Log.i(TAG, "Notifying not connected...");
       notifyAll();
       return;
     }
@@ -156,7 +156,7 @@ public class MmsRadio {
   private class ConnectivityListener extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-      Log.w("MmsRadio", "Got connectivity change...");
+      Log.i(TAG, "Got connectivity change...");
       issueConnectivityChange();
     }
   }

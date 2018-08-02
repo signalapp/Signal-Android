@@ -38,7 +38,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
-    Log.w(TAG, "onCreate(" + savedInstanceState + ")");
+    Log.i(TAG, "onCreate(" + savedInstanceState + ")");
     this.networkAccess = new SignalServiceNetworkAccess(this);
     onPreCreate();
 
@@ -58,7 +58,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onResume() {
-    Log.w(TAG, "onResume()");
+    Log.i(TAG, "onResume()");
     super.onResume();
     KeyCachingService.registerPassphraseActivityStarted(this);
 
@@ -70,7 +70,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onPause() {
-    Log.w(TAG, "onPause()");
+    Log.i(TAG, "onPause()");
     super.onPause();
     KeyCachingService.registerPassphraseActivityStopped(this);
 
@@ -81,14 +81,14 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onDestroy() {
-    Log.w(TAG, "onDestroy()");
+    Log.i(TAG, "onDestroy()");
     super.onDestroy();
     removeClearKeyReceiver(this);
   }
 
   @Override
   public void onMasterSecretCleared() {
-    Log.w(TAG, "onMasterSecretCleared()");
+    Log.i(TAG, "onMasterSecretCleared()");
     if (isVisible) routeApplicationState(true);
     else           finish();
   }
@@ -134,7 +134,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getIntentForState(int state) {
-    Log.w(TAG, "routeApplicationState(), state: " + state);
+    Log.i(TAG, "routeApplicationState(), state: " + state);
 
     switch (state) {
     case STATE_CREATE_PASSPHRASE:        return getCreatePassphraseIntent();
@@ -200,11 +200,11 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private void initializeClearKeyReceiver() {
-    Log.w(TAG, "initializeClearKeyReceiver()");
+    Log.i(TAG, "initializeClearKeyReceiver()");
     this.clearKeyReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        Log.w(TAG, "onReceive() for clear key event");
+        Log.i(TAG, "onReceive() for clear key event");
         onMasterSecretCleared();
       }
     };

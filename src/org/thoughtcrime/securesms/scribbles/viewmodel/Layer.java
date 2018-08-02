@@ -60,7 +60,7 @@ public class Layer {
   }
 
   public void postScale(float scaleDiff) {
-    Log.w("Layer", "ScaleDiff: " + scaleDiff);
+    Log.i("Layer", "ScaleDiff: " + scaleDiff);
     float newVal = scale + scaleDiff;
     if (newVal >= getMinScale() && newVal <= getMaxScale()) {
       scale = newVal;

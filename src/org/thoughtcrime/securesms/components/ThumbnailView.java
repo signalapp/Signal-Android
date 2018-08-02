@@ -249,19 +249,19 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (Util.equals(slide, this.slide)) {
-      Log.w(TAG, "Not re-loading slide " + slide.asAttachment().getDataUri());
+      Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getDataUri());
       return new SettableFuture<>(false);
     }
 
     if (this.slide != null && this.slide.getFastPreflightId() != null &&
         this.slide.getFastPreflightId().equals(slide.getFastPreflightId()))
     {
-      Log.w(TAG, "Not re-loading slide for fast preflight: " + slide.getFastPreflightId());
+      Log.i(TAG, "Not re-loading slide for fast preflight: " + slide.getFastPreflightId());
       this.slide = slide;
       return new SettableFuture<>(false);
     }
 
-    Log.w(TAG, "loading part with id " + slide.asAttachment().getDataUri()
+    Log.i(TAG, "loading part with id " + slide.asAttachment().getDataUri()
                + ", progress " + slide.getTransferState() + ", fast preflight id: " +
                slide.asAttachment().getFastPreflightId());
 

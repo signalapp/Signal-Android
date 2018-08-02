@@ -231,7 +231,7 @@ public class DirectoryHelper {
     Account        account        = new Account(context.getString(R.string.app_name), "org.thoughtcrime.securesms");
 
     if (accountManager.addAccountExplicitly(account, null, null)) {
-      Log.w(TAG, "Created new account...");
+      Log.i(TAG, "Created new account...");
       ContentResolver.setIsSyncable(account, ContactsContract.AUTHORITY, 1);
       return Optional.of(new AccountHolder(account, true));
     } else {

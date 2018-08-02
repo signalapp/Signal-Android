@@ -122,7 +122,7 @@ public class CustomDefaultPreference extends DialogPreference {
 
     @Override
     protected void onBindDialogView(@NonNull View view) {
-      Log.w(TAG, "onBindDialogView");
+      Log.i(TAG, "onBindDialogView");
       super.onBindDialogView(view);
 
       CustomDefaultPreference preference = (CustomDefaultPreference)getPreference();

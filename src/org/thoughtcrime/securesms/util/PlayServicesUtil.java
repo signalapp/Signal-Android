@@ -30,7 +30,7 @@ public class PlayServicesUtil {
       return PlayServicesStatus.MISSING;
     }
 
-    Log.w(TAG, "Play Services: " + gcmStatus);
+    Log.i(TAG, "Play Services: " + gcmStatus);
 
     switch (gcmStatus) {
       case ConnectionResult.SUCCESS:

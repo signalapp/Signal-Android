@@ -19,6 +19,8 @@ import java.util.List;
 
 public class NotificationState {
 
+  private static final String TAG = NotificationState.class.getSimpleName();
+
   private final LinkedList<NotificationItem> notifications = new LinkedList<>();
   private final LinkedHashSet<Long>          threads       = new LinkedHashSet<>();
 
@@ -102,7 +104,7 @@ public class NotificationState {
     int    index       = 0;
 
     for (long thread : threads) {
-      Log.w("NotificationState", "Added thread: " + thread);
+      Log.i(TAG, "Added thread: " + thread);
       threadArray[index++] = thread;
     }
 
@@ -145,7 +147,7 @@ public class NotificationState {
     long[] threadArray = new long[threads.size()];
     int    index       = 0;
     for (long thread : threads) {
-      Log.w("NotificationState", "getAndroidAutoHeardIntent Added thread: " + thread);
+      Log.i(TAG, "getAndroidAutoHeardIntent Added thread: " + thread);
       threadArray[index++] = thread;
     }
 

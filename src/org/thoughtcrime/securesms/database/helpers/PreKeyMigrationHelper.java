@@ -50,7 +50,7 @@ class PreKeyMigrationHelper {
             contentValues.put(OneTimePreKeyDatabase.PUBLIC_KEY, Base64.encodeBytes(preKey.getKeyPair().getPublicKey().serialize()));
             contentValues.put(OneTimePreKeyDatabase.PRIVATE_KEY, Base64.encodeBytes(preKey.getKeyPair().getPrivateKey().serialize()));
             database.insert(OneTimePreKeyDatabase.TABLE_NAME, null, contentValues);
-            Log.w(TAG, "Migrated one-time prekey: " + preKey.getId());
+            Log.i(TAG, "Migrated one-time prekey: " + preKey.getId());
           } catch (IOException | InvalidMessageException e) {
             Log.w(TAG, e);
             clean = false;
@@ -74,7 +74,7 @@ class PreKeyMigrationHelper {
             contentValues.put(SignedPreKeyDatabase.SIGNATURE, Base64.encodeBytes(signedPreKey.getSignature()));
             contentValues.put(SignedPreKeyDatabase.TIMESTAMP, signedPreKey.getTimestamp());
             database.insert(SignedPreKeyDatabase.TABLE_NAME, null, contentValues);
-            Log.w(TAG, "Migrated signed prekey: " + signedPreKey.getId());
+            Log.i(TAG, "Migrated signed prekey: " + signedPreKey.getId());
           } catch (IOException | InvalidMessageException e) {
             Log.w(TAG, e);
             clean = false;
@@ -92,7 +92,7 @@ class PreKeyMigrationHelper {
         PreKeyIndex        index = JsonUtils.fromJson(reader, PreKeyIndex.class);
         reader.close();
 
-        Log.w(TAG, "Setting next prekey id: " + index.nextPreKeyId);
+        Log.i(TAG, "Setting next prekey id: " + index.nextPreKeyId);
         TextSecurePreferences.setNextPreKeyId(context, index.nextPreKeyId);
       } catch (IOException e) {
         Log.w(TAG, e);
@@ -105,8 +105,8 @@ class PreKeyMigrationHelper {
         SignedPreKeyIndex index  = JsonUtils.fromJson(reader, SignedPreKeyIndex.class);
         reader.close();
 
-        Log.w(TAG, "Setting next signed prekey id: " + index.nextSignedPreKeyId);
-        Log.w(TAG, "Setting active signed prekey id: " + index.activeSignedPreKeyId);
+        Log.i(TAG, "Setting next signed prekey id: " + index.nextSignedPreKeyId);
+        Log.i(TAG, "Setting active signed prekey id: " + index.activeSignedPreKeyId);
         TextSecurePreferences.setNextSignedPreKeyId(context, index.nextSignedPreKeyId);
         TextSecurePreferences.setActiveSignedPreKeyId(context, index.activeSignedPreKeyId);
       } catch (IOException e) {
@@ -123,11 +123,11 @@ class PreKeyMigrationHelper {
 
     if (preKeyFiles != null) {
       for (File preKeyFile : preKeyFiles) {
-        Log.w(TAG, "Deleting: " + preKeyFile.getAbsolutePath());
+        Log.i(TAG, "Deleting: " + preKeyFile.getAbsolutePath());
         preKeyFile.delete();
       }
 
-      Log.w(TAG, "Deleting: " + preKeyDirectory.getAbsolutePath());
+      Log.i(TAG, "Deleting: " + preKeyDirectory.getAbsolutePath());
       preKeyDirectory.delete();
     }
 
@@ -136,11 +136,11 @@ class PreKeyMigrationHelper {
 
     if (signedPreKeyFiles != null) {
       for (File signedPreKeyFile : signedPreKeyFiles) {
-        Log.w(TAG, "Deleting: " + signedPreKeyFile.getAbsolutePath());
+        Log.i(TAG, "Deleting: " + signedPreKeyFile.getAbsolutePath());
         signedPreKeyFile.delete();
       }
 
-      Log.w(TAG, "Deleting: " + signedPreKeyDirectory.getAbsolutePath());
+      Log.i(TAG, "Deleting: " + signedPreKeyDirectory.getAbsolutePath());
       signedPreKeyDirectory.delete();
     }
   }

@@ -50,7 +50,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
           List<MarkedMessageInfo> messageIdsCollection = new LinkedList<>();
 
           for (long threadId : threadIds) {
-            Log.w(TAG, "Marking as read: " + threadId);
+            Log.i(TAG, "Marking as read: " + threadId);
             List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
             messageIdsCollection.addAll(messageIds);
           }

@@ -38,10 +38,10 @@ public class AudioRecorder {
   }
 
   public void startRecording() {
-    Log.w(TAG, "startRecording()");
+    Log.i(TAG, "startRecording()");
 
     executor.execute(() -> {
-      Log.w(TAG, "Running startRecording() + " + Thread.currentThread().getId());
+      Log.i(TAG, "Running startRecording() + " + Thread.currentThread().getId());
       try {
         if (audioCodec != null) {
           throw new AssertionError("We can only record once at a time.");
@@ -61,7 +61,7 @@ public class AudioRecorder {
   }
 
   public @NonNull ListenableFuture<Pair<Uri, Long>> stopRecording() {
-    Log.w(TAG, "stopRecording()");
+    Log.i(TAG, "stopRecording()");
 
     final SettableFuture<Pair<Uri, Long>> future = new SettableFuture<>();
 

@@ -75,7 +75,7 @@ public class AvatarDownloadJob extends MasterSecretJob implements InjectableType
         }
 
         if (digest.isPresent()) {
-          Log.w(TAG, "Downloading group avatar with digest: " + Hex.toString(digest.get()));
+          Log.i(TAG, "Downloading group avatar with digest: " + Hex.toString(digest.get()));
         }
 
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());

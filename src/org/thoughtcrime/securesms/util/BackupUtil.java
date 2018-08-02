@@ -80,7 +80,7 @@ public class BackupUtil {
         });
 
         for (int i=2;i<backups.length;i++) {
-          Log.w(TAG, "Deleting: " + backups[i].getAbsolutePath());
+          Log.i(TAG, "Deleting: " + backups[i].getAbsolutePath());
 
           if (!backups[i].delete()) {
             Log.w(TAG, "Delete failed: " + backups[i].getAbsolutePath());

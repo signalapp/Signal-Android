@@ -48,7 +48,7 @@ public class SmsSendJob extends SendJob {
     SmsMessageRecord record   = database.getMessage(messageId);
 
     try {
-      Log.w(TAG, "Sending message: " + messageId);
+      Log.i(TAG, "Sending message: " + messageId);
 
       deliver(record);
     } catch (UndeliverableMessageException ude) {
@@ -106,8 +106,8 @@ public class SmsSendJob extends SendJob {
       getSmsManagerFor(message.getSubscriptionId()).sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException | IllegalArgumentException npe) {
       Log.w(TAG, npe);
-      Log.w(TAG, "Recipient: " + recipient);
-      Log.w(TAG, "Message Parts: " + messages.size());
+      Log.i(TAG, "Recipient: " + recipient);
+      Log.i(TAG, "Message Parts: " + messages.size());
 
       try {
         for (int i=0;i<messages.size();i++) {

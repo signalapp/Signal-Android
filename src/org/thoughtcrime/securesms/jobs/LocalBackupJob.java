@@ -41,7 +41,7 @@ public class LocalBackupJob extends ContextJob {
 
   @Override
   public void onRun() throws NoExternalStorageException, IOException {
-    Log.w(TAG, "Executing backup job...");
+    Log.i(TAG, "Executing backup job...");
 
     if (!Permissions.hasAll(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
       throw new IOException("No external storage permission!");

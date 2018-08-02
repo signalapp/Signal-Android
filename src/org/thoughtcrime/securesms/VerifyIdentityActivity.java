@@ -592,7 +592,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
         protected Void doInBackground(Recipient... params) {
           synchronized (SESSION_LOCK) {
             if (isChecked) {
-              Log.w(TAG, "Saving identity: " + params[0].getAddress());
+              Log.i(TAG, "Saving identity: " + params[0].getAddress());
               DatabaseFactory.getIdentityDatabase(getActivity())
                              .saveIdentity(params[0].getAddress(),
                                            remoteIdentity,

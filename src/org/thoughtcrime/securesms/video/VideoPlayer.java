@@ -154,14 +154,14 @@ public class VideoPlayer extends FrameLayout {
     }
 
     if (videoSource.getUri() != null && PartAuthority.isLocalUri(videoSource.getUri())) {
-      Log.w(TAG, "Starting video attachment server for part provider Uri...");
+      Log.i(TAG, "Starting video attachment server for part provider Uri...");
       this.attachmentServer = new AttachmentServer(getContext(), videoSource.asAttachment());
       this.attachmentServer.start();
 
       //noinspection ConstantConditions
       this.videoView.setVideoURI(this.attachmentServer.getUri());
     } else if (videoSource.getUri() != null) {
-      Log.w(TAG, "Playing video directly from non-local Uri...");
+      Log.i(TAG, "Playing video directly from non-local Uri...");
       //noinspection ConstantConditions
       this.videoView.setVideoURI(videoSource.getUri());
     } else {

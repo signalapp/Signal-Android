@@ -46,7 +46,7 @@ public class SmsDeliveryListener extends BroadcastReceiver {
 
         int status = message.getStatus();
 
-        Log.w(TAG, "Original status: " + status);
+        Log.i(TAG, "Original status: " + status);
 
         // Note: https://developer.android.com/reference/android/telephony/SmsMessage.html#getStatus()
         //       " CDMA: For not interfering with status codes from GSM, the value is shifted to the bits 31-16"

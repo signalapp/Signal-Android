@@ -159,7 +159,7 @@ public class BluetoothStateManager {
 
       @Override
       public void onServiceDisconnected(int profile) {
-        Log.w(TAG, "onServiceDisconnected");
+        Log.i(TAG, "onServiceDisconnected");
         if (profile == BluetoothProfile.HEADSET) {
           bluetoothHeadset = null;
           handleBluetoothStateChange();
@@ -172,7 +172,7 @@ public class BluetoothStateManager {
     @Override
     public void onReceive(Context context, Intent intent) {
       if (intent == null) return;
-      Log.w(TAG, "onReceive");
+      Log.i(TAG, "onReceive");
 
       synchronized (LOCK) {
         if (getScoChangeIntent().equals(intent.getAction())) {
@@ -212,7 +212,7 @@ public class BluetoothStateManager {
   private class BluetoothConnectionReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-      Log.w(TAG, "onReceive");
+      Log.i(TAG, "onReceive");
       handleBluetoothStateChange();
     }
   }

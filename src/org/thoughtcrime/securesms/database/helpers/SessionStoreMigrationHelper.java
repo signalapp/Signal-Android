@@ -65,13 +65,13 @@ class SessionStoreMigrationHelper {
             SessionRecord sessionRecord;
 
             if (versionMarker == SINGLE_STATE_VERSION) {
-              Log.w(TAG, "Migrating single state version: " + sessionFile.getAbsolutePath());
+              Log.i(TAG, "Migrating single state version: " + sessionFile.getAbsolutePath());
               SessionStructure sessionStructure = SessionStructure.parseFrom(serialized);
               SessionState     sessionState     = new SessionState(sessionStructure);
 
               sessionRecord = new SessionRecord(sessionState);
             } else if (versionMarker >= ARCHIVE_STATES_VERSION) {
-              Log.w(TAG, "Migrating session: " + sessionFile.getAbsolutePath());
+              Log.i(TAG, "Migrating session: " + sessionFile.getAbsolutePath());
               sessionRecord = new SessionRecord(serialized);
             } else {
               throw new AssertionError("Unknown version: " + versionMarker + ", " + sessionFile.getAbsolutePath());

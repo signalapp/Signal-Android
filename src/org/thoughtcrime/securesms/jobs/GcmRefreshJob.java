@@ -62,7 +62,7 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
   public void onRun() throws Exception {
     if (TextSecurePreferences.isGcmDisabled(context)) return;
 
-    Log.w(TAG, "Reregistering GCM...");
+    Log.i(TAG, "Reregistering GCM...");
     int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
 
     if (result != ConnectionResult.SUCCESS) {

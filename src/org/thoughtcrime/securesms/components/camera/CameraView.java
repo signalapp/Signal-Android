@@ -97,7 +97,7 @@ public class CameraView extends ViewGroup {
   public void onResume() {
     if (state != State.PAUSED) return;
     state = State.RESUMED;
-    Log.w(TAG, "onResume() queued");
+    Log.i(TAG, "onResume() queued");
     enqueueTask(new SerialAsyncTask<Void>() {
       @Override
       protected
@@ -106,7 +106,7 @@ public class CameraView extends ViewGroup {
         try {
           long openStartMillis = System.currentTimeMillis();
           camera = Optional.fromNullable(Camera.open(cameraId));
-          Log.w(TAG, "camera.open() -> " + (System.currentTimeMillis() - openStartMillis) + "ms");
+          Log.i(TAG, "camera.open() -> " + (System.currentTimeMillis() - openStartMillis) + "ms");
           synchronized (CameraView.this) {
             CameraView.this.notifyAll();
           }
@@ -130,7 +130,7 @@ public class CameraView extends ViewGroup {
         if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
           onOrientationChange.enable();
         }
-        Log.w(TAG, "onResume() completed");
+        Log.i(TAG, "onResume() completed");
       }
     });
   }
@@ -138,7 +138,7 @@ public class CameraView extends ViewGroup {
   public void onPause() {
     if (state == State.PAUSED) return;
     state = State.PAUSED;
-    Log.w(TAG, "onPause() queued");
+    Log.i(TAG, "onPause() queued");
 
     enqueueTask(new SerialAsyncTask<Void>() {
       private Optional<Camera> cameraToDestroy;
@@ -170,7 +170,7 @@ public class CameraView extends ViewGroup {
         outputOrientation = -1;
         removeView(surface);
         addView(surface);
-        Log.w(TAG, "onPause() completed");
+        Log.i(TAG, "onPause() completed");
       }
     });
 
@@ -220,7 +220,7 @@ public class CameraView extends ViewGroup {
 
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    Log.w(TAG, "onSizeChanged(" + oldw + "x" + oldh + " -> " + w + "x" + h + ")");
+    Log.i(TAG, "onSizeChanged(" + oldw + "x" + oldh + " -> " + w + "x" + h + ")");
     super.onSizeChanged(w, h, oldw, oldh);
     if (camera.isPresent()) startPreview(camera.get().getParameters());
   }
@@ -310,7 +310,7 @@ public class CameraView extends ViewGroup {
         final Size       preferredPreviewSize = getPreferredPreviewSize(parameters);
 
         if (preferredPreviewSize != null && !parameters.getPreviewSize().equals(preferredPreviewSize)) {
-          Log.w(TAG, "starting preview with size " + preferredPreviewSize.width + "x" + preferredPreviewSize.height);
+          Log.i(TAG, "starting preview with size " + preferredPreviewSize.width + "x" + preferredPreviewSize.height);
           if (state == State.ACTIVE) stopPreview();
           previewSize = preferredPreviewSize;
           parameters.setPreviewSize(preferredPreviewSize.width, preferredPreviewSize.height);
@@ -320,7 +320,7 @@ public class CameraView extends ViewGroup {
         }
         long previewStartMillis = System.currentTimeMillis();
         camera.startPreview();
-        Log.w(TAG, "camera.startPreview() -> " + (System.currentTimeMillis() - previewStartMillis) + "ms");
+        Log.i(TAG, "camera.startPreview() -> " + (System.currentTimeMillis() - previewStartMillis) + "ms");
         state = State.ACTIVE;
         Util.runOnMain(new Runnable() {
           @Override
@@ -445,11 +445,11 @@ public class CameraView extends ViewGroup {
         final Size previewSize  = camera.getParameters().getPreviewSize();
         final Rect croppingRect = getCroppedRect(previewSize, previewRect, rotation);
 
-        Log.w(TAG, "previewSize: " + previewSize.width + "x" + previewSize.height);
-        Log.w(TAG, "data bytes: " + data.length);
-        Log.w(TAG, "previewFormat: " + camera.getParameters().getPreviewFormat());
-        Log.w(TAG, "croppingRect: " + croppingRect.toString());
-        Log.w(TAG, "rotation: " + rotation);
+        Log.i(TAG, "previewSize: " + previewSize.width + "x" + previewSize.height);
+        Log.i(TAG, "data bytes: " + data.length);
+        Log.i(TAG, "previewFormat: " + camera.getParameters().getPreviewFormat());
+        Log.i(TAG, "croppingRect: " + croppingRect.toString());
+        Log.i(TAG, "rotation: " + rotation);
         new CaptureTask(previewSize, rotation, croppingRect).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, data);
       }
     });
@@ -536,7 +536,7 @@ public class CameraView extends ViewGroup {
           throw new PreconditionsNotMetException();
         }
         while (getMeasuredHeight() <= 0 || getMeasuredWidth() <= 0 || !surface.isReady()) {
-          Log.w(TAG, String.format("waiting. surface ready? %s", surface.isReady()));
+          Log.i(TAG, String.format("waiting. surface ready? %s", surface.isReady()));
           Util.wait(CameraView.this, 0);
         }
       }

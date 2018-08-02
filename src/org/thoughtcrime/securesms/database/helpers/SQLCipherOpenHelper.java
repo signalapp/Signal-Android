@@ -125,7 +125,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    Log.w(TAG, "Upgrading database: " + oldVersion + ", " + newVersion);
+    Log.i(TAG, "Upgrading database: " + oldVersion + ", " + newVersion);
 
     db.beginTransaction();
 

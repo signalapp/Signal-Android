@@ -45,7 +45,7 @@ public class EmojiPageBitmap {
     } else {
       Callable<Bitmap> callable = () -> {
         try {
-          Log.w(TAG, "loading page " + model.getSprite());
+          Log.i(TAG, "loading page " + model.getSprite());
           return loadPage();
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
@@ -82,7 +82,7 @@ public class EmojiPageBitmap {
       Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, (int)(originalBitmap.getWidth() * decodeScale), (int)(originalBitmap.getHeight() * decodeScale), false);
 
       bitmapReference = new SoftReference<>(scaledBitmap);
-      Log.w(TAG, "onPageLoaded(" + model.getSprite() + ")");
+      Log.i(TAG, "onPageLoaded(" + model.getSprite() + ")");
       return scaledBitmap;
     } catch (InterruptedException e) {
       Log.w(TAG, e);

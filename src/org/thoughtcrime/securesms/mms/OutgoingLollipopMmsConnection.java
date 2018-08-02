@@ -53,7 +53,7 @@ public class OutgoingLollipopMmsConnection extends LollipopMmsConnection impleme
   @Override
   public synchronized void onResult(Context context, Intent intent) {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP_MR1) {
-      Log.w(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
+      Log.i(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
     }
 
     response = intent.getByteArrayExtra(SmsManager.EXTRA_MMS_DATA);
@@ -96,7 +96,7 @@ public class OutgoingLollipopMmsConnection extends LollipopMmsConnection impleme
 
       waitForResult();
 
-      Log.w(TAG, "MMS broadcast received and processed.");
+      Log.i(TAG, "MMS broadcast received and processed.");
       pointer.close();
 
       if (response == null) {

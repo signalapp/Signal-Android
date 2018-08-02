@@ -53,7 +53,7 @@ public abstract class PushReceivedJob extends ContextJob {
   }
 
   private void handleReceipt(SignalServiceEnvelope envelope) {
-    Log.w(TAG, String.format("Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
+    Log.i(TAG, String.format("Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
     DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(new SyncMessageId(Address.fromExternal(context, envelope.getSource()),
                                                                                                envelope.getTimestamp()), System.currentTimeMillis());
   }

@@ -68,7 +68,7 @@ public class UnverifiedBannerView extends LinearLayout {
     this.container.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Log.w(TAG, "onClick()");
+        Log.i(TAG, "onClick()");
         clickListener.onClicked(unverifiedIdentities);
       }
     });
