@@ -143,6 +143,10 @@ public final class ContactUtil {
     Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
     intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
 
+    if (!TextUtils.isEmpty(contact.getName().getDisplayName())) {
+      intent.putExtra(ContactsContract.Intents.Insert.NAME, contact.getName().getDisplayName());
+    }
+
     if (!TextUtils.isEmpty(contact.getOrganization())) {
       intent.putExtra(ContactsContract.Intents.Insert.COMPANY, contact.getOrganization());
     }
