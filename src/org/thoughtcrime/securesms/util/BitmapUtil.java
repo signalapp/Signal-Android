@@ -71,10 +71,12 @@ public class BitmapUtil {
                                     .downsample(DownsampleStrategy.AT_MOST)
                                     .submit(maxImageWidth, maxImageHeight)
                                     .get();
-      
+
       if (scaledBitmap == null) {
         throw new BitmapDecodingException("Unable to decode image");
       }
+
+      Log.i(TAG, "Initial scaled bitmap has size of " + scaledBitmap.getByteCount() + " bytes.");
 
       try {
         do {
@@ -92,9 +94,15 @@ public class BitmapUtil {
           quality = Math.max(nextQuality, MIN_COMPRESSION_QUALITY);
         }
         while (bytes.length > maxImageSize && attempts++ < MAX_COMPRESSION_ATTEMPTS);
+
         if (bytes.length > maxImageSize) {
           throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
         }
+
+        if (bytes.length <= 0) {
+          throw new BitmapDecodingException("Decoding failed. Bitmap has a length of " + bytes.length + " bytes.");
+        }
+
         Log.w(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
         return new ScaleResult(bytes, scaledBitmap.getWidth(), scaledBitmap.getHeight());
       } finally {
