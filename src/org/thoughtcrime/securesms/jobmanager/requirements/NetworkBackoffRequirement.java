@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +13,8 @@ import java.util.concurrent.TimeUnit;
  * Uses exponential backoff to re-schedule network jobs to be retried in the future.
  */
 public class NetworkBackoffRequirement implements Requirement, ContextDependent {
+
+  private static final String TAG = NetworkBackoffRequirement.class.getSimpleName();
 
   private static final long MAX_WAIT = TimeUnit.SECONDS.toMillis(30);
 
@@ -28,7 +31,10 @@ public class NetworkBackoffRequirement implements Requirement, ContextDependent 
 
   @Override
   public void onRetry(@NonNull Job job) {
+    Log.i(TAG, "onRetry()");
+
     if (!(new NetworkRequirement(context).isPresent())) {
+      Log.i(TAG, "No network. Resetting run stats.");
       job.resetRunStats();
       return;
     }

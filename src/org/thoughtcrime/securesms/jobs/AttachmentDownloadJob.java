@@ -64,10 +64,13 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
   @Override
   public void onAdded() {
+    Log.i(TAG, "onAdded() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
   }
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
+    Log.i(TAG, "onRun() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
+
     final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
     final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
     final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
@@ -96,6 +99,8 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
   @Override
   public void onCanceled() {
+    Log.w(TAG, "onCanceled() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
+
     final AttachmentId attachmentId = new AttachmentId(partRowId, partUniqueId);
     markFailed(messageId, attachmentId);
   }
@@ -122,7 +127,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
       database.insertAttachmentsForPlaceholder(messageId, attachmentId, stream);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
-      Log.w(TAG, e);
+      Log.w(TAG, "Experienced exception while trying to download an attachment.", e);
       markFailed(messageId, attachmentId);
     } finally {
       if (attachmentFile != null) {

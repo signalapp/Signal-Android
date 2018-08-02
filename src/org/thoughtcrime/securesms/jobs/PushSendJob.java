@@ -70,14 +70,18 @@ public abstract class PushSendJob extends SendJob {
       throw new TextSecureExpiredException("Too many signed prekey rotation failures");
     }
 
+    Log.i(TAG, "Starting message send attempt");
     onPushSend();
+    Log.i(TAG, "Message send completed");
   }
 
   @Override
   public void onRetry() {
     super.onRetry();
+    Log.i(TAG, "onRetry()");
 
     if (getRunIteration() > 1) {
+      Log.i(TAG, "Scheduling service outage detection job.");
       ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob(context));
     }
   }

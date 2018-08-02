@@ -856,12 +856,15 @@ public class ConversationItem extends LinearLayout
   private class AttachmentDownloadClickListener implements SlideClickListener {
     @Override
     public void onClick(View v, final Slide slide) {
+      Log.i(TAG, "onClick() for attachment download");
       if (messageRecord.isMmsNotification()) {
+        Log.i(TAG, "Scheduling MMS attachment download");
         ApplicationContext.getInstance(context)
                           .getJobManager()
                           .add(new MmsDownloadJob(context, messageRecord.getId(),
                                                   messageRecord.getThreadId(), false));
       } else {
+        Log.i(TAG, "Scheduling push attachment download");
         DatabaseFactory.getAttachmentDatabase(context).setTransferState(messageRecord.getId(),
                                                                         slide.asAttachment(),
                                                                         AttachmentDatabase.TRANSFER_PROGRESS_STARTED);

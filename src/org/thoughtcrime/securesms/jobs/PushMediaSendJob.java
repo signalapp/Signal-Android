@@ -49,7 +49,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onAdded() {
-
+    Log.i(TAG, "onAdded() messageId: " + messageId);
   }
 
   @Override
@@ -62,6 +62,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     OutgoingMediaMessage   message           = database.getOutgoingMessage(messageId);
 
     try {
+      Log.i(TAG, "Sending message: " + messageId);
+
       deliver(message);
       database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
@@ -70,6 +72,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
         database.markExpireStarted(messageId);
         expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
       }
+
+      Log.i(TAG, "Sent message: " + messageId);
 
     } catch (InsecureFallbackApprovalException ifae) {
       Log.w(TAG, ifae);

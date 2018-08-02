@@ -380,8 +380,11 @@ public class ThumbnailView extends FrameLayout {
   private class DownloadClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
+      Log.i(TAG, "onClick() for download button");
       if (downloadClickListener != null && slide != null) {
         downloadClickListener.onClick(view, slide);
+      } else {
+        Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + String.valueOf(slide) + "  downloadClickListener: " + String.valueOf(downloadClickListener));
       }
     }
   }

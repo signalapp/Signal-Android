@@ -76,6 +76,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onAdded() {
+    Log.i(TAG, "onAdded() messageId: " + messageId);
   }
 
   @Override
@@ -86,6 +87,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
 
     try {
+      Log.i(TAG, "Sending message: " + messageId);
+
       deliver(message, filterAddress == null ? null : Address.fromSerialized(filterAddress));
 
       database.markAsSent(messageId, true);
@@ -97,6 +100,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                           .getExpiringMessageManager()
                           .scheduleDeletion(messageId, true, message.getExpiresIn());
       }
+
+      Log.i(TAG, "Sent message: " + messageId);
     } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);

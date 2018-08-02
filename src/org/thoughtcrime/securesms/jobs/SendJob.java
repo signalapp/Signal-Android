@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -38,7 +39,9 @@ public abstract class SendJob extends MasterSecretJob {
                                                          System.currentTimeMillis()));
     }
 
+    Log.i(TAG, "Starting message send attempt");
     onSend(masterSecret);
+    Log.i(TAG, "Message send completed");
   }
 
   protected abstract void onSend(MasterSecret masterSecret) throws Exception;

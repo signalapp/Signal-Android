@@ -70,7 +70,7 @@ public class MmsSendJob extends SendJob {
 
   @Override
   public void onAdded() {
-
+    Log.i(TAG, "onAdded() messageId: " + messageId);
   }
 
   @Override
@@ -79,6 +79,8 @@ public class MmsSendJob extends SendJob {
     OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
 
     try {
+      Log.i(TAG, "Sending message: " + messageId);
+
       SendReq pdu = constructSendPdu(message);
 
       validateDestinations(message, pdu);
@@ -89,6 +91,8 @@ public class MmsSendJob extends SendJob {
 
       database.markAsSent(messageId, false);
       markAttachmentsUploaded(messageId, message.getAttachments());
+
+      Log.i(TAG, "Sent message: " + messageId);
     } catch (UndeliverableMessageException | IOException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
@@ -107,6 +111,7 @@ public class MmsSendJob extends SendJob {
 
   @Override
   public void onCanceled() {
+    Log.i(TAG, "onCanceled() messageId: " + messageId);
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
   }

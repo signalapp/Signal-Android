@@ -42,7 +42,9 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public void onAdded() {}
+  public void onAdded() {
+    Log.i(TAG, "onAdded() messageId: " + messageId);
+  }
 
   @Override
   public void onPushSend() throws NoSuchMessageException, RetryLaterException {
@@ -60,6 +62,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         database.markExpireStarted(messageId);
         expirationManager.scheduleDeletion(record.getId(), record.isMms(), record.getExpiresIn());
       }
+
+      Log.i(TAG, "Sent message: " + messageId);
 
     } catch (InsecureFallbackApprovalException e) {
       Log.w(TAG, e);

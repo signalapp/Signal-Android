@@ -40,7 +40,9 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public void onAdded() {}
+  public void onAdded() {
+    Log.i(TAG, "onAdded() messageId: " + messageId);
+  }
 
   @Override
   public void onSend(MasterSecret masterSecret) throws NoSuchMessageException {
@@ -49,8 +51,8 @@ public class SmsSendJob extends SendJob {
 
     try {
       Log.i(TAG, "Sending message: " + messageId);
-
       deliver(record);
+      Log.i(TAG, "Sent message: " + messageId);
     } catch (UndeliverableMessageException ude) {
       Log.w(TAG, ude);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
@@ -65,7 +67,7 @@ public class SmsSendJob extends SendJob {
 
   @Override
   public void onCanceled() {
-    Log.w(TAG, "onCanceled()");
+    Log.w(TAG, "onCanceled() messageId: " + messageId);
     long      threadId  = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
     Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 

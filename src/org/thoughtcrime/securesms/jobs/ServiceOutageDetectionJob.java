@@ -36,6 +36,8 @@ public class ServiceOutageDetectionJob extends ContextJob {
 
   @Override
   public void onRun() throws RetryLaterException {
+    Log.i(TAG, "onRun()");
+
     long timeSinceLastCheck = System.currentTimeMillis() - TextSecurePreferences.getLastOutageCheckTime(context);
     if (timeSinceLastCheck < CHECK_TIME) {
       Log.w(TAG, "Skipping service outage check. Too soon.");
