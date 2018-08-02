@@ -191,10 +191,18 @@ public class ConversationFragment extends Fragment
   }
 
   public void moveToLastSeen() {
-    if (lastSeen > 0) {
-      int position = getListAdapter().findLastSeenPosition(lastSeen);
-      scrollToLastSeenPosition(position);
+    if (lastSeen <= 0) {
+      Log.i(TAG, "No need to move to last seen.");
+      return;
     }
+
+    if (list == null || getListAdapter() == null) {
+      Log.w(TAG, "Tried to move to last seen position, but we hadn't initialized the view yet.");
+      return;
+    }
+
+    int position = getListAdapter().findLastSeenPosition(lastSeen);
+    scrollToLastSeenPosition(position);
   }
 
   private void initializeResources() {
