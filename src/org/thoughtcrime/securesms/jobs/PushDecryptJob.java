@@ -680,12 +680,13 @@ public class PushDecryptJob extends ContextJob {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long    threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    boolean isGroup   = recipient.getAddress().isGroup();
 
     MessagingDatabase database;
     long              messageId;
 
-    if (recipient.getAddress().isGroup()) {
+    if (isGroup) {
       OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient, new SlideDeck(), body, message.getTimestamp(), -1, expiresInMillis, ThreadDatabase.DistributionTypes.DEFAULT, null, Collections.emptyList());
       outgoingMediaMessage = new OutgoingSecureMediaMessage(outgoingMediaMessage);
 
@@ -704,7 +705,7 @@ public class PushDecryptJob extends ContextJob {
       database.markExpireStarted(messageId, message.getExpirationStartTimestamp());
       ApplicationContext.getInstance(context)
                         .getExpiringMessageManager()
-                        .scheduleDeletion(messageId, false, message.getExpirationStartTimestamp(), expiresInMillis);
+                        .scheduleDeletion(messageId, isGroup, message.getExpirationStartTimestamp(), expiresInMillis);
     }
 
     return threadId;
