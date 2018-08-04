@@ -43,33 +43,28 @@ public class EmojiEditText extends AppCompatEditText {
     setSelection(start + emoji.length());
   }
 
-  /*
-  Paste events are watched here so that rich text is never inserted into an EmojiEditText
-   */
   @Override
   public boolean onTextContextMenuItem(int id) {
-    // we only care about the paste option
-    if (id != android.R.id.paste) return super.onTextContextMenuItem(id);
-    // the paste option was selected
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      // the system handles plain text pasting perfectly fine on M and above
-      return super.onTextContextMenuItem(android.R.id.pasteAsPlainText);
-    } else { // manual fallback for pre-M versions of Android
+    if (id == android.R.id.paste) {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        return super.onTextContextMenuItem(android.R.id.pasteAsPlainText);
       ClipboardManager cm = ((ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE));
-      ClipData primaryClip = cm.getPrimaryClip();
-      if (primaryClip == null || primaryClip.getItemCount() == 0)
-        return super.onTextContextMenuItem(id); // if we don't have anything to paste, leave
-      CharSequence clip = primaryClip.getItemAt(0).coerceToText(getContext());
-      if (clip == null) return super.onTextContextMenuItem(id); // nothing to paste
-      // remove the formatting of the clipped text
-      CharSequence sanitized = (clip instanceof Spanned) ? clip.toString() : clip;
-      ClipData cd = ClipData.newPlainText("signal_sanitized", sanitized);
-      cm.setPrimaryClip(cd);
-      boolean retVal = super.onTextContextMenuItem(id); // apply the sanitized paste
-      // restore the ClipboardManager to its original state
-      cm.setPrimaryClip(primaryClip);
+      ClipData originalClipData = cm.getPrimaryClip();
+      CharSequence textToPaste = getTextFromClipData(originalClipData);
+      if (textToPaste == null) return super.onTextContextMenuItem(id);
+      CharSequence sanitizedText = (textToPaste instanceof Spanned) ? textToPaste.toString() : textToPaste;
+      cm.setPrimaryClip(ClipData.newPlainText("signal_sanitized", sanitizedText));
+      boolean retVal = super.onTextContextMenuItem(id);
+      cm.setPrimaryClip(originalClipData);
       return retVal;
     }
+    return super.onTextContextMenuItem(id);
+  }
+
+  private CharSequence getTextFromClipData(ClipData data) {
+    if (data == null) return null;
+    if (data.getItemCount() == 0) return null;
+    return data.getItemAt(0).coerceToText(getContext());
   }
 
   @Override
