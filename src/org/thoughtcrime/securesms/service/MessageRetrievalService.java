@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirementProvider;
 import org.thoughtcrime.securesms.jobmanager.requirements.RequirementListener;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
@@ -104,7 +105,7 @@ public class MessageRetrievalService extends Service implements InjectableType, 
 
   private void setForegroundIfNecessary() {
     if (TextSecurePreferences.isGcmDisabled(this)) {
-      NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+      NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.OTHER);
       builder.setContentTitle(getString(R.string.MessageRetrievalService_signal));
       builder.setContentText(getString(R.string.MessageRetrievalService_background_connection_enabled));
       builder.setPriority(NotificationCompat.PRIORITY_MIN);

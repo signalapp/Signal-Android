@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
@@ -135,7 +136,7 @@ public class PushDecryptJob extends ContextJob {
     if (TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
       Log.w(TAG, "Skipping job, waiting for sqlcipher migration...");
       NotificationManagerCompat.from(context).notify(494949,
-                                                     new NotificationCompat.Builder(context)
+                                                     new NotificationCompat.Builder(context, NotificationChannels.MESSAGES)
                                                          .setSmallIcon(R.drawable.icon_notification)
                                                          .setPriority(NotificationCompat.PRIORITY_HIGH)
                                                          .setCategory(NotificationCompat.CATEGORY_MESSAGE)

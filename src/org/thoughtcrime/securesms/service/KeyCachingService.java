@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -264,7 +265,7 @@ public class KeyCachingService extends Service {
   @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
   private void foregroundServiceModern() {
     Log.i(TAG, "foregrounding KCS");
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
 
     builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
     builder.setContentText(getString(R.string.KeyCachingService_signal_passphrase_cached));
@@ -280,7 +281,7 @@ public class KeyCachingService extends Service {
   }
 
   private void foregroundServiceICS() {
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
     RemoteViews remoteViews            = new RemoteViews(getPackageName(), R.layout.key_caching_notification);
 
     remoteViews.setOnClickPendingIntent(R.id.lock_cache_icon, buildLockIntent());
@@ -294,7 +295,7 @@ public class KeyCachingService extends Service {
   }
 
   private void foregroundServiceLegacy() {
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
     builder.setSmallIcon(R.drawable.icon_cached);
     builder.setWhen(System.currentTimeMillis());
 
