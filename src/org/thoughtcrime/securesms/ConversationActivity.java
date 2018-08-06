@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
@@ -39,6 +40,9 @@ import android.provider.ContactsContract;
 import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.pm.ShortcutInfoCompat;
+import android.support.v4.content.pm.ShortcutManagerCompat;
+import android.support.v4.graphics.drawable.IconCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.ActionBar;
@@ -781,32 +785,47 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleAddShortcut() {
     Log.i(TAG, "Creating home screen shortcut for recipient " + recipient.getAddress());
 
-    Intent launchIntent = new Intent(getApplicationContext(), ConversationActivity.class);
+    new AsyncTask<Void, Void, IconCompat>() {
 
-    launchIntent.putExtra(ADDRESS_EXTRA, recipient.getAddress().serialize());
-    launchIntent.putExtra(TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
-    launchIntent.setDataAndType(getIntent().getData(), getIntent().getType());
+      @Override
+      protected IconCompat doInBackground(Void... voids) {
+        Context    context = getApplicationContext();
+        IconCompat icon    = null;
 
-    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
+        if (recipient.getContactPhoto() != null) {
+          try {
+            icon = IconCompat.createWithAdaptiveBitmap(BitmapFactory.decodeStream(recipient.getContactPhoto().openInputStream(context)));
+          } catch (IOException e) {
+            Log.w(TAG, "Failed to decode contact photo during shortcut creation. Falling back to generic icon.", e);
+          }
+        }
 
-    launchIntent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
-    launchIntent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+        if (icon == null) {
+          icon = IconCompat.createWithResource(context, recipient.isGroupRecipient() ? R.mipmap.ic_group_shortcut
+                                                                                     : R.mipmap.ic_person_shortcut);
+        }
 
-    launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    launchIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        return icon;
+      }
 
-    Intent intent = new Intent();
-    final String name = Optional.fromNullable(recipient.getProfileName())
-                                .or(Optional.fromNullable(recipient.getName()))
-                                .or(recipient.toShortString());
-    // these constants are deprecated but their replacement (ShortcutManager) is available only from API level 25
-    intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
-    intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
-    intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.mipmap.ic_launcher));
-    intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+      @Override
+      protected void onPostExecute(IconCompat icon) {
+        Context context  = getApplicationContext();
+        String  name     = Optional.fromNullable(recipient.getName())
+                                  .or(Optional.fromNullable(recipient.getProfileName()))
+                                  .or(recipient.toShortString());
 
-    getApplicationContext().sendBroadcast(intent);
-    Toast.makeText(this, getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
+        ShortcutInfoCompat shortcutInfo = new ShortcutInfoCompat.Builder(context, recipient.getAddress().serialize() + '-' + System.currentTimeMillis())
+                                                                .setShortLabel(name)
+                                                                .setIcon(icon)
+                                                                .setIntent(ShortcutLauncherActivity.createIntent(context, recipient.getAddress()))
+                                                                .build();
+
+        if (ShortcutManagerCompat.requestPinShortcut(context, shortcutInfo, null)) {
+          Toast.makeText(context, getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
+        }
+      }
+    }.execute();
   }
 
   private void handleLeavePushGroup() {
@@ -1380,7 +1399,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeResources() {
     if (recipient != null) recipient.removeListener(this);
-    recipient        = getRecipientFromExtras(getIntent(), this);
+
+    recipient        = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -1393,26 +1413,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     recipient.addListener(this);
-  }
-
-  /**
-   * Extracts the Recipient instance from the extras contained in the intent.
-   *
-   * This can be passed in two ways:
-   *
-   * - If the intent was started from inside the app, the address is a parcelable Address instance.
-   * - If it was launched from the home screen then it is a serialised (stringified) form of the Address, as home screen
-   *   shortcuts cannot contain instances of Address (see BadParcelableException).
-   */
-  static Recipient getRecipientFromExtras(@NonNull Intent intent, @NonNull Context context) {
-    Address address;
-    final Address parcelableAddress = intent.getParcelableExtra(ADDRESS_EXTRA);
-    if(parcelableAddress != null) {
-      address = parcelableAddress;
-    } else {
-      address = Address.fromSerialized((String) intent.getExtras().get(ADDRESS_EXTRA));
-    }
-    return Recipient.from(context, address, true);
   }
 
   private void initializeProfiles() {

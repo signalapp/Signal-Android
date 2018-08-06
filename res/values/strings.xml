@@ -1232,6 +1232,7 @@
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
+    <string name="conversation__menu_add_shortcut">Add to home screen</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expand popup</string>
@@ -1390,7 +1391,6 @@
     <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
-    <string name="conversation__menu_add_shortcut">Add to home screen</string>
     <string name="recipient_preferences__about">About</string>
     <!-- EOF -->
 
