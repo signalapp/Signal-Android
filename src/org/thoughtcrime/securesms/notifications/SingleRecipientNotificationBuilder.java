@@ -260,8 +260,10 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder content = new SpannableStringBuilder();
 
     for (CharSequence message : messageBodies) {
+      if (content.length() > 0){
+        content.append('\n');
+      }
       content.append(message);
-      content.append('\n');
     }
 
     return content;
