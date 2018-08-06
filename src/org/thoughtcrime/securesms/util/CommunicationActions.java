@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.TaskStackBuilder;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ConversationActivity;
@@ -43,9 +44,14 @@ public class CommunicationActions {
         .execute();
   }
 
-  public static void startConversation(@NonNull  Context   context,
-                                       @NonNull  Recipient recipient,
-                                       @Nullable String    text)
+  public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
+    startConversation(context, recipient, text, null);
+  }
+
+  public static void startConversation(@NonNull  Context          context,
+                                       @NonNull  Recipient        recipient,
+                                       @Nullable String           text,
+                                       @Nullable TaskStackBuilder backStack)
   {
     new AsyncTask<Void, Void, Long>() {
       @Override
@@ -64,7 +70,12 @@ public class CommunicationActions {
           intent.putExtra(ConversationActivity.TEXT_EXTRA, text);
         }
 
-        context.startActivity(intent);
+        if (backStack != null) {
+          backStack.addNextIntent(intent);
+          backStack.startActivities();
+        } else {
+          context.startActivity(intent);
+        }
       }
     }.execute();
   }

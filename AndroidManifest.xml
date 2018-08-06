@@ -214,7 +214,6 @@
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="true"
               android:parentActivityName=".ConversationListActivity">
         <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -411,6 +410,11 @@
 
     <activity android:name=".contactshare.SharedContactDetailsActivity"
               android:theme="@style/TextSecure.LightNoActionBar"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".ShortcutLauncherActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:exported="true"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
