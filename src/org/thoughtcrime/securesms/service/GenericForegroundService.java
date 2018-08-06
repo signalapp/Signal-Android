@@ -12,13 +12,15 @@ import android.support.v4.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GenericForegroundService extends Service {
 
-  private static final int    NOTIFICATION_ID = 827353982;
-  private static final String EXTRA_TITLE     = "extra_title";
+  private static final int    NOTIFICATION_ID  = 827353982;
+  private static final String EXTRA_TITLE      = "extra_title";
+  private static final String EXTRA_CHANNEL_ID = "extra_channel_id";
 
   private static final String ACTION_START = "start";
   private static final String ACTION_STOP  = "stop";
@@ -40,11 +42,14 @@ public class GenericForegroundService extends Service {
 
 
   private void handleStart(@NonNull Intent intent) {
-    String title = intent.getStringExtra(EXTRA_TITLE);
+    String title     = intent.getStringExtra(EXTRA_TITLE);
+    String channelId = intent.getStringExtra(EXTRA_CHANNEL_ID);
+
     assert title != null;
+    assert channelId != null;
 
     if (foregroundCount.getAndIncrement() == 0) {
-      startForeground(NOTIFICATION_ID, new NotificationCompat.Builder(this)
+      startForeground(NOTIFICATION_ID, new NotificationCompat.Builder(this, channelId)
           .setSmallIcon(R.drawable.ic_signal_grey_24dp)
           .setContentTitle(title)
           .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ConversationListActivity.class), 0))
@@ -66,9 +71,14 @@ public class GenericForegroundService extends Service {
   }
 
   public static void startForegroundTask(@NonNull Context context, @NonNull String task) {
+    startForegroundTask(context, task, NotificationChannels.OTHER);
+  }
+
+  public static void startForegroundTask(@NonNull Context context, @NonNull String task, @NonNull String channelId) {
     Intent intent = new Intent(context, GenericForegroundService.class);
     intent.setAction(ACTION_START);
     intent.putExtra(EXTRA_TITLE, task);
+    intent.putExtra(EXTRA_CHANNEL_ID, channelId);
 
     context.startService(intent);
   }

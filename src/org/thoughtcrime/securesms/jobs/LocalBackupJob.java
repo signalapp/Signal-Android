@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.BackupUtil;
@@ -48,7 +49,8 @@ public class LocalBackupJob extends ContextJob {
     }
 
     GenericForegroundService.startForegroundTask(context,
-                                                 context.getString(R.string.LocalBackupJob_creating_backup));
+                                                 context.getString(R.string.LocalBackupJob_creating_backup),
+                                                 NotificationChannels.BACKUPS);
 
     try {
       String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);

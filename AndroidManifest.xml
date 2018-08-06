@@ -577,6 +577,12 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".notifications.LocaleChangedReceiver">
+        <intent-filter>
+            <action android:name="android.intent.action.LOCALE_CHANGED"/>
+        </intent-filter>
+    </receiver>
+
     <receiver android:name=".notifications.MessageNotifier$ReminderReceiver">
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION"/>

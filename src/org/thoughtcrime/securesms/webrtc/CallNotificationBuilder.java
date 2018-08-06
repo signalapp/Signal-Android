@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -40,7 +41,7 @@ public class CallNotificationBuilder {
 
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
 
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationChannels.CALLS)
         .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
         .setContentIntent(pendingIntent)
         .setOngoing(true)

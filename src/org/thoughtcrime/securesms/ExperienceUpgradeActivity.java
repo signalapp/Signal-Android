@@ -18,6 +18,7 @@ import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ArgbEvaluator;
 
 import org.thoughtcrime.securesms.IntroPagerAdapter.IntroPage;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -221,7 +222,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
         if (TextSecurePreferences.getLastExperienceVersionCode(context) < 339 &&
             !TextSecurePreferences.isPasswordDisabled(context))
         {
-          Notification notification = new NotificationCompat.Builder(context)
+          Notification notification = new NotificationCompat.Builder(context, NotificationChannels.OTHER)
               .setSmallIcon(R.drawable.icon_notification)
               .setColor(context.getResources().getColor(R.color.signal_primary))
               .setContentTitle(context.getString(R.string.ExperienceUpgradeActivity_unlock_to_complete_update))
@@ -250,7 +251,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity {
         Intent dismissIntent = new Intent(context, AppUpgradeReceiver.class);
         dismissIntent.setAction(DISMISS_ACTION);
 
-        Notification notification = new NotificationCompat.Builder(context)
+        Notification notification = new NotificationCompat.Builder(context, NotificationChannels.OTHER)
                                         .setSmallIcon(R.drawable.icon_notification)
                                         .setColor(context.getResources().getColor(R.color.signal_primary))
                                         .setContentTitle(context.getString(experienceUpgrade.get().getNotificationTitle()))
