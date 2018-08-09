@@ -9,14 +9,16 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.Hex;
@@ -26,8 +28,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
-import java.util.concurrent.TimeUnit;
 
+import androidx.work.Data;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -36,17 +38,26 @@ public class UpdateApkJob extends ContextJob {
 
   private static final String TAG = UpdateApkJob.class.getSimpleName();
 
+  public UpdateApkJob() {
+    super(null, null);
+  }
+
   public UpdateApkJob(Context context) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(UpdateApkJob.class.getSimpleName())
-                                .withRequirement(new NetworkRequirement(context))
-                                .withWakeLock(true, 30, TimeUnit.SECONDS)
+                                .withNetworkRequirement()
                                 .withRetryCount(2)
                                 .create());
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.build();
+  }
 
   @Override
   public void onRun() throws IOException, PackageManager.NameNotFoundException {

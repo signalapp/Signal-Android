@@ -1,7 +1,11 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
+
+import android.support.annotation.NonNull;
 import android.util.Pair;
 
 import com.google.android.mms.pdu_alt.GenericPdu;
@@ -15,7 +19,12 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
+
+import java.io.IOException;
+
+import androidx.work.Data;
 
 public class MmsReceiveJob extends ContextJob {
 
@@ -23,21 +32,38 @@ public class MmsReceiveJob extends ContextJob {
 
   private static final String TAG = MmsReceiveJob.class.getSimpleName();
 
-  private final byte[] data;
-  private final int    subscriptionId;
+  private static final String KEY_DATA            = "data";
+  private static final String KEY_SUBSCRIPTION_ID = "subscription_id";
+
+  private byte[] data;
+  private int    subscriptionId;
+
+  public MmsReceiveJob() {
+    super(null, null);
+  }
 
   public MmsReceiveJob(Context context, byte[] data, int subscriptionId) {
-    super(context, JobParameters.newBuilder()
-                                .withWakeLock(true)
-                                .withPersistence().create());
+    super(context, JobParameters.newBuilder().create());
 
     this.data           = data;
     this.subscriptionId = subscriptionId;
   }
 
   @Override
-  public void onAdded() {
+  protected void initialize(@NonNull SafeData data) {
+    try {
+      this.data = Base64.decode(data.getString(KEY_DATA));
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+    subscriptionId = data.getInt(KEY_SUBSCRIPTION_ID);
+  }
 
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putString(KEY_DATA, Base64.encodeBytes(data))
+                      .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
+                      .build();
   }
 
   @Override

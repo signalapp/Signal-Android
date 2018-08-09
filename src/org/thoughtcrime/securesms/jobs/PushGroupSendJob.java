@@ -16,8 +16,7 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkBackoffRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -48,6 +47,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import androidx.work.Data;
+
 public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
@@ -56,16 +57,22 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  private final long   messageId;
-  private final long   filterRecipientId; // Deprecated
-  private final String filterAddress;
+  private static final String KEY_MESSAGE_ID     = "message_id";
+  private static final String KEY_FILTER_ADDRESS = "filter_address";
+
+  private long   messageId;
+  private long   filterRecipientId; // Deprecated
+  private String filterAddress;
+
+  public PushGroupSendJob() {
+    super(null, null);
+  }
 
   public PushGroupSendJob(Context context, long messageId, @NonNull Address destination, @Nullable Address filterAddress) {
     super(context, JobParameters.newBuilder()
-                                .withPersistence()
                                 .withGroupId(destination.toGroupString())
-                                .withRequirement(new MasterSecretRequirement(context))
-                                .withRequirement(new NetworkBackoffRequirement(context))
+                                .withMasterSecretRequirement()
+                                .withNetworkRequirement()
                                 .withRetryDuration(TimeUnit.DAYS.toMillis(1))
                                 .create());
 
@@ -75,8 +82,16 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public void onAdded() {
-    Log.i(TAG, "onAdded() messageId: " + messageId);
+  protected void initialize(@NonNull SafeData data) {
+    messageId     = data.getLong(KEY_MESSAGE_ID);
+    filterAddress = data.getNullableString(KEY_FILTER_ADDRESS);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
+                      .putString(KEY_FILTER_ADDRESS, filterAddress)
+                      .build();
   }
 
   @Override

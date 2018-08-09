@@ -5,7 +5,8 @@ import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -18,21 +19,29 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
+import androidx.work.Data;
+
 public class RequestGroupInfoJob extends ContextJob implements InjectableType {
 
   private static final String TAG = RequestGroupInfoJob.class.getSimpleName();
 
   private static final long serialVersionUID = 0L;
 
+  private static final String KEY_SOURCE   = "source";
+  private static final String KEY_GROUP_ID = "group_id";
+
   @Inject transient SignalServiceMessageSender messageSender;
 
-  private final String source;
-  private final byte[] groupId;
+  private String source;
+  private byte[] groupId;
+
+  public RequestGroupInfoJob() {
+    super(null, null);
+  }
 
   public RequestGroupInfoJob(@NonNull Context context, @NonNull String source, @NonNull byte[] groupId) {
     super(context, JobParameters.newBuilder()
-                                .withRequirement(new NetworkRequirement(context))
-                                .withPersistence()
+                                .withNetworkRequirement()
                                 .withRetryCount(50)
                                 .create());
 
@@ -41,7 +50,21 @@ public class RequestGroupInfoJob extends ContextJob implements InjectableType {
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+    source = data.getString(KEY_SOURCE);
+    try {
+      groupId = GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID));
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putString(KEY_SOURCE, source)
+                      .putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false))
+                      .build();
+  }
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {

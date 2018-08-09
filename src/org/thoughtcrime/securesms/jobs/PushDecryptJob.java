@@ -7,6 +7,8 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
@@ -98,7 +100,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
+import androidx.work.Data;
 
 public class PushDecryptJob extends ContextJob {
 
@@ -106,8 +109,15 @@ public class PushDecryptJob extends ContextJob {
 
   public static final String TAG = PushDecryptJob.class.getSimpleName();
 
-  private final long messageId;
-  private final long smsMessageId;
+  private static final String KEY_MESSAGE_ID     = "message_id";
+  private static final String KEY_SMS_MESSAGE_ID = "sms_message_id";
+
+  private long messageId;
+  private long smsMessageId;
+
+  public PushDecryptJob() {
+    super(null, null);
+  }
 
   public PushDecryptJob(Context context, long pushMessageId) {
     this(context, pushMessageId, -1);
@@ -115,16 +125,24 @@ public class PushDecryptJob extends ContextJob {
 
   public PushDecryptJob(Context context, long pushMessageId, long smsMessageId) {
     super(context, JobParameters.newBuilder()
-                                .withPersistence()
                                 .withGroupId("__PUSH_DECRYPT_JOB__")
-                                .withWakeLock(true, 5, TimeUnit.SECONDS)
                                 .create());
     this.messageId    = pushMessageId;
     this.smsMessageId = smsMessageId;
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+    messageId    = data.getLong(KEY_MESSAGE_ID);
+    smsMessageId = data.getLong(KEY_SMS_MESSAGE_ID);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
+                      .putLong(KEY_SMS_MESSAGE_ID, smsMessageId)
+                      .build();
+  }
 
   @Override
   public void onRun() throws NoSuchMessageException {

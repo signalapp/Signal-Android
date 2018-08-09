@@ -254,7 +254,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   @Override
   protected boolean drawChild(@NonNull Canvas canvas, @NonNull View child, long drawingTime) {
     boolean result;
-    final int save = canvas.save(Canvas.CLIP_SAVE_FLAG);
+    final int save = canvas.save();
 
     canvas.getClipBounds(drawChildrenRect);
     if (child == coverView) {

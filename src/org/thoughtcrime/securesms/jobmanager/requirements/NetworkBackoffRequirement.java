@@ -31,15 +31,6 @@ public class NetworkBackoffRequirement implements Requirement, ContextDependent 
 
   @Override
   public void onRetry(@NonNull Job job) {
-    Log.i(TAG, "onRetry()");
-
-    if (!(new NetworkRequirement(context).isPresent())) {
-      Log.i(TAG, "No network. Resetting run stats.");
-      job.resetRunStats();
-      return;
-    }
-
-    BackoffReceiver.setUniqueAlarm(context, NetworkBackoffRequirement.calculateNextRunTime(job));
   }
 
   @Override
@@ -48,9 +39,6 @@ public class NetworkBackoffRequirement implements Requirement, ContextDependent 
   }
 
   private static long calculateNextRunTime(@NonNull Job job) {
-    long targetTime   = job.getLastRunTime() + (long) (Math.pow(2, job.getRunIteration() - 1) * 1000);
-    long furthestTime = System.currentTimeMillis() + MAX_WAIT;
-
-    return Math.min(targetTime, Math.min(furthestTime, job.getRetryUntil()));
+    return 0;
   }
 }

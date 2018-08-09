@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.database.Address;
@@ -10,7 +13,6 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -28,8 +30,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+
+import androidx.work.Data;
 
 public class PushGroupUpdateJob extends ContextJob implements InjectableType {
 
@@ -37,17 +42,22 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 0L;
 
+  private static final String KEY_SOURCE   = "source";
+  private static final String KEY_GROUP_ID = "group_id";
+
   @Inject transient SignalServiceMessageSender messageSender;
 
-  private final String source;
-  private final byte[] groupId;
+  private String source;
+  private byte[] groupId;
 
+  public PushGroupUpdateJob() {
+    super(null, null);
+  }
 
   public PushGroupUpdateJob(Context context, String source, byte[] groupId) {
     super(context, JobParameters.newBuilder()
-                                .withPersistence()
-                                .withRequirement(new NetworkRequirement(context))
-                                .withRetryCount(50)
+                                .withNetworkRequirement()
+                                .withRetryDuration(TimeUnit.DAYS.toMillis(1))
                                 .create());
 
     this.source  = source;
@@ -55,7 +65,21 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+    source = data.getString(KEY_SOURCE);
+    try {
+      groupId = GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID));
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putString(KEY_SOURCE, source)
+                      .putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false))
+                      .build();
+  }
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {

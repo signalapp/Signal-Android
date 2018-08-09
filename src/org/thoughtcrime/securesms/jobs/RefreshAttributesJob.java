@@ -1,19 +1,22 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+
+import androidx.work.Data;
 
 public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
@@ -23,17 +26,25 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
   @Inject transient SignalServiceAccountManager signalAccountManager;
 
+  public RefreshAttributesJob() {
+    super(null, null);
+  }
+
   public RefreshAttributesJob(Context context) {
     super(context, JobParameters.newBuilder()
-                                .withPersistence()
-                                .withRequirement(new NetworkRequirement(context))
-                                .withWakeLock(true, 30, TimeUnit.SECONDS)
+                                .withNetworkRequirement()
                                 .withGroupId(RefreshAttributesJob.class.getName())
                                 .create());
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.build();
+  }
 
   @Override
   public void onRun() throws IOException {

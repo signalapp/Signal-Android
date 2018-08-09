@@ -15,8 +15,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkBackoffRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -49,12 +47,11 @@ public abstract class PushSendJob extends SendJob {
     super(context, parameters);
   }
 
-  protected static JobParameters constructParameters(Context context, Address destination) {
+  protected static JobParameters constructParameters(Address destination) {
     JobParameters.Builder builder = JobParameters.newBuilder();
-    builder.withPersistence();
     builder.withGroupId(destination.serialize());
-    builder.withRequirement(new MasterSecretRequirement(context));
-    builder.withRequirement(new NetworkBackoffRequirement(context));
+    builder.withMasterSecretRequirement();
+    builder.withNetworkRequirement();
     builder.withRetryDuration(TimeUnit.DAYS.toMillis(1));
 
     return builder.create();
@@ -80,7 +77,7 @@ public abstract class PushSendJob extends SendJob {
     super.onRetry();
     Log.i(TAG, "onRetry()");
 
-    if (getRunIteration() > 1) {
+    if (getRunAttemptCount() > 1) {
       Log.i(TAG, "Scheduling service outage detection job.");
       ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob(context));
     }

@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
@@ -10,12 +13,20 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.io.IOException;
 
+import androidx.work.Data;
+
 public class PushContentReceiveJob extends PushReceivedJob {
 
   private static final long   serialVersionUID = 5685475456901715638L;
   private static final String TAG              = PushContentReceiveJob.class.getSimpleName();
 
-  private final String data;
+  private static final String KEY_DATA = "data";
+
+  private String data;
+
+  public PushContentReceiveJob() {
+    super(null, null);
+  }
 
   public PushContentReceiveJob(Context context) {
     super(context, JobParameters.newBuilder().create());
@@ -23,16 +34,19 @@ public class PushContentReceiveJob extends PushReceivedJob {
   }
 
   public PushContentReceiveJob(Context context, String data) {
-    super(context, JobParameters.newBuilder()
-                                .withPersistence()
-                                .withWakeLock(true)
-                                .create());
-
+    super(context, JobParameters.newBuilder().create());
     this.data = data;
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+    this.data = data.getNullableString(KEY_DATA);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putString(KEY_DATA, data).build();
+  }
 
   @Override
   public void onRun() {

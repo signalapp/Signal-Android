@@ -1,18 +1,21 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import androidx.work.Data;
 
 public class ServiceOutageDetectionJob extends ContextJob {
 
@@ -22,16 +25,26 @@ public class ServiceOutageDetectionJob extends ContextJob {
   private static final String IP_FAILURE = "127.0.0.2";
   private static final long   CHECK_TIME = 1000 * 60;
 
+  public ServiceOutageDetectionJob() {
+    super(null, null);
+  }
+
   public ServiceOutageDetectionJob(Context context) {
     super(context, new JobParameters.Builder()
                                     .withGroupId(ServiceOutageDetectionJob.class.getSimpleName())
-                                    .withRequirement(new NetworkRequirement(context))
+                                    .withDuplicatesIgnored(true)
+                                    .withNetworkRequirement()
                                     .withRetryCount(5)
                                     .create());
   }
 
   @Override
-  public void onAdded() {
+  protected void initialize(@NonNull SafeData data) {
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.build();
   }
 
   @Override
