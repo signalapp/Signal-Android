@@ -20,8 +20,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -50,6 +49,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import androidx.work.Data;
+
 public class MultiDeviceContactUpdateJob extends MasterSecretJob implements InjectableType {
 
   private static final long serialVersionUID = 2L;
@@ -58,11 +59,18 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   private static final long FULL_SYNC_TIME = TimeUnit.HOURS.toMillis(6);
 
+  private static final String KEY_ADDRESS    = "address";
+  private static final String KEY_FORCE_SYNC = "force_sync";
+
   @Inject transient SignalServiceMessageSender messageSender;
 
-  private final @Nullable String address;
+  private @Nullable String address;
 
   private boolean forceSync;
+
+  public MultiDeviceContactUpdateJob() {
+    super(null, null);
+  }
 
   public MultiDeviceContactUpdateJob(@NonNull Context context) {
     this(context, false);
@@ -78,16 +86,28 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
     super(context, JobParameters.newBuilder()
-                                .withRequirement(new NetworkRequirement(context))
-                                .withRequirement(new MasterSecretRequirement(context))
+                                .withNetworkRequirement()
+                                .withMasterSecretRequirement()
                                 .withGroupId(MultiDeviceContactUpdateJob.class.getSimpleName())
-                                .withPersistence()
                                 .create());
 
     this.forceSync = forceSync;
 
     if (address != null) this.address = address.serialize();
     else                 this.address = null;
+  }
+
+  @Override
+  protected void initialize(@NonNull SafeData data) {
+    address   = data.getNullableString(KEY_ADDRESS);
+    forceSync = data.getBoolean(KEY_FORCE_SYNC, false);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putString(KEY_ADDRESS, address)
+                      .putBoolean(KEY_FORCE_SYNC, forceSync)
+                      .build();
   }
 
   @Override
@@ -199,11 +219,6 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   public boolean onShouldRetryThrowable(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
-  }
-
-  @Override
-  public void onAdded() {
-
   }
 
   @Override

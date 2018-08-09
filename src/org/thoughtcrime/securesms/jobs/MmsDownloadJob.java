@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
@@ -20,8 +23,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -45,7 +46,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
+
+import androidx.work.Data;
 
 public class MmsDownloadJob extends MasterSecretJob {
 
@@ -53,22 +55,43 @@ public class MmsDownloadJob extends MasterSecretJob {
 
   private static final String TAG = MmsDownloadJob.class.getSimpleName();
 
-  private final long    messageId;
-  private final long    threadId;
-  private final boolean automatic;
+  private static final String KEY_MESSAGE_ID = "message_id";
+  private static final String KEY_THREAD_ID  = "thread_id";
+  private static final String KEY_AUTOMATIC  = "automatic";
+
+  private long    messageId;
+  private long    threadId;
+  private boolean automatic;
+
+  public MmsDownloadJob() {
+    super(null, null);
+  }
 
   public MmsDownloadJob(Context context, long messageId, long threadId, boolean automatic) {
     super(context, JobParameters.newBuilder()
-                                .withPersistence()
-                                .withRequirement(new MasterSecretRequirement(context))
-                                .withRequirement(new NetworkRequirement(context))
+                                .withMasterSecretRequirement()
+                                .withMasterSecretRequirement()
                                 .withGroupId("mms-operation")
-                                .withWakeLock(true, 30, TimeUnit.SECONDS)
                                 .create());
 
     this.messageId = messageId;
     this.threadId  = threadId;
     this.automatic = automatic;
+  }
+
+  @Override
+  protected void initialize(@NonNull SafeData data) {
+    messageId = data.getLong(KEY_MESSAGE_ID);
+    threadId  = data.getLong(KEY_THREAD_ID);
+    automatic = data.getBoolean(KEY_AUTOMATIC, false);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
+                      .putLong(KEY_THREAD_ID, threadId)
+                      .putBoolean(KEY_AUTOMATIC, automatic)
+                      .build();
   }
 
   @Override

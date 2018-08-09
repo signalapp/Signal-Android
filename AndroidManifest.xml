@@ -541,8 +541,6 @@
 
     <receiver android:name=".service.ExpirationListener" />
 
-    <receiver android:name=".jobmanager.requirements.BackoffReceiver" />
-
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:exported="false"

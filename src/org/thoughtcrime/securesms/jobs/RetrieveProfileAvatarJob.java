@@ -2,14 +2,17 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
@@ -23,21 +26,31 @@ import java.io.InputStream;
 
 import javax.inject.Inject;
 
+import androidx.work.Data;
+
 public class RetrieveProfileAvatarJob extends ContextJob implements InjectableType {
 
   private static final String TAG = RetrieveProfileAvatarJob.class.getSimpleName();
 
   private static final int MAX_PROFILE_SIZE_BYTES = 20 * 1024 * 1024;
 
+  private static final String KEY_PROFILE_AVATAR = "profile_avatar";
+  private static final String KEY_ADDRESS        = "address";
+
   @Inject SignalServiceMessageReceiver receiver;
 
-  private final String    profileAvatar;
-  private final Recipient recipient;
+  private String    profileAvatar;
+  private Recipient recipient;
+
+  public RetrieveProfileAvatarJob() {
+    super(null, null);
+  }
 
   public RetrieveProfileAvatarJob(Context context, Recipient recipient, String profileAvatar) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(RetrieveProfileAvatarJob.class.getSimpleName() + recipient.getAddress().serialize())
-                                .withRequirement(new NetworkRequirement(context))
+                                .withDuplicatesIgnored(true)
+                                .withNetworkRequirement()
                                 .create());
 
     this.recipient     = recipient;
@@ -45,7 +58,17 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+    profileAvatar = data.getString(KEY_PROFILE_AVATAR);
+    recipient     = Recipient.from(context, Address.fromSerialized(data.getString(KEY_ADDRESS)), true);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putString(KEY_PROFILE_AVATAR, profileAvatar)
+                      .putString(KEY_ADDRESS, recipient.getAddress().serialize())
+                      .build();
+  }
 
   @Override
   public void onRun() throws IOException {

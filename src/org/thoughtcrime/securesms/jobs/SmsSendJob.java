@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -14,9 +17,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.NetworkOrServiceRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
@@ -27,16 +27,33 @@ import org.thoughtcrime.securesms.jobmanager.JobParameters;
 
 import java.util.ArrayList;
 
+import androidx.work.Data;
+
 public class SmsSendJob extends SendJob {
 
   private static final long   serialVersionUID = -5118520036244759718L;
   private static final String TAG              = SmsSendJob.class.getSimpleName();
+  private static final String KEY_MESSAGE_ID   = "message_id";
 
-  private final long messageId;
+  private long messageId;
+
+  public SmsSendJob() {
+    super(null, null);
+  }
 
   public SmsSendJob(Context context, long messageId, String name) {
-    super(context, constructParameters(context, name));
+    super(context, constructParameters(name));
     this.messageId = messageId;
+  }
+
+  @Override
+  protected void initialize(@NonNull SafeData data) {
+    messageId = data.getLong(KEY_MESSAGE_ID);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId).build();
   }
 
   @Override
@@ -190,19 +207,11 @@ public class SmsSendJob extends SendJob {
     }
   }
 
-  private static JobParameters constructParameters(Context context, String name) {
+  private static JobParameters constructParameters(String name) {
     JobParameters.Builder builder = JobParameters.newBuilder()
-                                                 .withPersistence()
-                                                 .withRequirement(new MasterSecretRequirement(context))
+                                                 .withMasterSecretRequirement()
                                                  .withRetryCount(15)
                                                  .withGroupId(name);
-
-    if (TextSecurePreferences.isWifiSmsEnabled(context)) {
-      builder.withRequirement(new NetworkOrServiceRequirement(context));
-    } else {
-      builder.withRequirement(new ServiceRequirement(context));
-    }
-
     return builder.create();
   }
 

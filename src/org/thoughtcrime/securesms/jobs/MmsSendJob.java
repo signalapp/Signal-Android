@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 import android.webkit.MimeTypeMap;
 
@@ -27,8 +30,6 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -49,28 +50,41 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.work.Data;
+
 public class MmsSendJob extends SendJob {
 
   private static final long serialVersionUID = 0L;
 
   private static final String TAG = MmsSendJob.class.getSimpleName();
 
-  private final long messageId;
+  private static final String KEY_MESSAGE_ID = "message_id";
+
+  private long messageId;
+
+  public MmsSendJob() {
+    super(null, null);
+  }
 
   public MmsSendJob(Context context, long messageId) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId("mms-operation")
-                                .withRequirement(new NetworkRequirement(context))
-                                .withRequirement(new MasterSecretRequirement(context))
-                                .withPersistence()
+                                .withNetworkRequirement()
+                                .withMasterSecretRequirement()
+                                .withRetryCount(15)
                                 .create());
 
     this.messageId = messageId;
   }
 
   @Override
-  public void onAdded() {
-    Log.i(TAG, "onAdded() messageId: " + messageId);
+  protected void initialize(@NonNull SafeData data) {
+    messageId = data.getLong(KEY_MESSAGE_ID);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId).build();
   }
 
   @Override

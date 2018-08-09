@@ -4,6 +4,8 @@ package org.thoughtcrime.securesms.jobs;
 import android.Manifest;
 import android.content.Context;
 import android.support.annotation.NonNull;
+
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.R;
@@ -24,21 +26,32 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
+
+import androidx.work.Data;
 
 public class LocalBackupJob extends ContextJob {
 
   private static final String TAG = LocalBackupJob.class.getSimpleName();
 
+  public LocalBackupJob() {
+    super(null, null);
+  }
+
   public LocalBackupJob(@NonNull Context context) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId("__LOCAL_BACKUP__")
-                                .withWakeLock(true, 10, TimeUnit.SECONDS)
+                                .withDuplicatesIgnored(true)
                                 .create());
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.build();
+  }
 
   @Override
   public void onRun() throws NoExternalStorageException, IOException {

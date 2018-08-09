@@ -4,6 +4,9 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -29,16 +32,25 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import androidx.work.Data;
+
 public class RetrieveProfileJob extends ContextJob implements InjectableType {
 
   private static final String TAG = RetrieveProfileJob.class.getSimpleName();
 
+  private static final String KEY_ADDRESS = "address";
+
   @Inject transient SignalServiceMessageReceiver receiver;
 
-  private final Recipient recipient;
+  private Recipient recipient;
+
+  public RetrieveProfileJob() {
+    super(null, null);
+  }
 
   public RetrieveProfileJob(Context context, Recipient recipient) {
     super(context, JobParameters.newBuilder()
+                                .withNetworkRequirement()
                                 .withRetryCount(3)
                                 .create());
 
@@ -46,7 +58,14 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+    recipient = Recipient.from(context, Address.fromSerialized(data.getString(KEY_ADDRESS)), true);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putString(KEY_ADDRESS, recipient.getAddress().serialize()).build();
+  }
 
   @Override
   public void onRun() throws IOException, InvalidKeyException {

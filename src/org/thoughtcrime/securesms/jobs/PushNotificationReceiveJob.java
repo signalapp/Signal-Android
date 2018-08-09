@@ -1,19 +1,21 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+
+import androidx.work.Data;
 
 public class PushNotificationReceiveJob extends PushReceivedJob implements InjectableType {
 
@@ -21,15 +23,25 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
 
   @Inject transient SignalServiceMessageReceiver receiver;
 
+  public PushNotificationReceiveJob() {
+    super(null, null);
+  }
+
   public PushNotificationReceiveJob(Context context) {
     super(context, JobParameters.newBuilder()
-                                .withRequirement(new NetworkRequirement(context))
+                                .withNetworkRequirement()
                                 .withGroupId("__notification_received")
-                                .withWakeLock(true, 30, TimeUnit.SECONDS).create());
+                                .create());
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.build();
+  }
 
   @Override
   public void onRun() throws IOException {

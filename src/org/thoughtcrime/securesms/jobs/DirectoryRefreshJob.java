@@ -1,25 +1,35 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 
+import androidx.work.Data;
+
 public class DirectoryRefreshJob extends ContextJob {
 
   private static final String TAG = DirectoryRefreshJob.class.getSimpleName();
 
+  private static final String KEY_ADDRESS             = "address";
+  private static final String KEY_NOTIFY_OF_NEW_USERS = "notify_of_new_users";
+
   @Nullable private transient Recipient    recipient;
             private transient boolean      notifyOfNewUsers;
+
+  public DirectoryRefreshJob() {
+    super(null, null);
+  }
 
   public DirectoryRefreshJob(@NonNull Context context, boolean notifyOfNewUsers) {
     this(context, null, notifyOfNewUsers);
@@ -31,7 +41,7 @@ public class DirectoryRefreshJob extends ContextJob {
   {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(DirectoryRefreshJob.class.getSimpleName())
-                                .withRequirement(new NetworkRequirement(context))
+                                .withNetworkRequirement()
                                 .create());
 
     this.recipient        = recipient;
@@ -39,23 +49,29 @@ public class DirectoryRefreshJob extends ContextJob {
   }
 
   @Override
-  public void onAdded() {}
+  protected void initialize(@NonNull SafeData data) {
+    String  serializedAddress = data.getNullableString(KEY_ADDRESS);
+    Address address           = serializedAddress != null ? Address.fromSerialized(serializedAddress) : null;
+
+    recipient        = address != null ? Recipient.from(context, address, true) : null;
+    notifyOfNewUsers = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS, false);
+  }
+
+  @Override
+  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+    return dataBuilder.putString(KEY_ADDRESS, recipient != null ? recipient.getAddress().serialize() : null)
+                      .putBoolean(KEY_NOTIFY_OF_NEW_USERS, notifyOfNewUsers)
+                      .build();
+  }
 
   @Override
   public void onRun() throws IOException {
     Log.i(TAG, "DirectoryRefreshJob.onRun()");
-    PowerManager          powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-    PowerManager.WakeLock wakeLock     = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Directory Refresh");
 
-    try {
-      wakeLock.acquire();
-      if (recipient == null) {
-        DirectoryHelper.refreshDirectory(context, notifyOfNewUsers);
-      } else {
-        DirectoryHelper.refreshDirectoryFor(context, recipient);
-      }
-    } finally {
-      if (wakeLock.isHeld()) wakeLock.release();
+    if (recipient == null) {
+      DirectoryHelper.refreshDirectory(context, notifyOfNewUsers);
+    } else {
+      DirectoryHelper.refreshDirectoryFor(context, recipient);
     }
   }
 
