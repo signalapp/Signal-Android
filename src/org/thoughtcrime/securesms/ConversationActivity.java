@@ -250,6 +250,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   BroadcastReceiver      securityUpdateReceiver;
   private   Stub<EmojiDrawer>      emojiDrawerStub;
   protected HidingLinearLayout     quickAttachmentToggle;
+  protected HidingLinearLayout     inlineAttachmentToggle;
   private   QuickAttachmentDrawer  quickAttachmentDrawer;
   private   InputPanel             inputPanel;
 
@@ -566,7 +567,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     switch (item.getItemId()) {
     case R.id.menu_call_secure:
     case R.id.menu_call_insecure:             handleDial(getRecipient());                        return true;
-    case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
@@ -1265,26 +1265,28 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar == null) throw new AssertionError();
 
-    titleView             = (ConversationTitleView) supportActionBar.getCustomView();
-    buttonToggle          = ViewUtil.findById(this, R.id.button_toggle);
-    sendButton            = ViewUtil.findById(this, R.id.send_button);
-    attachButton          = ViewUtil.findById(this, R.id.attach_button);
-    composeText           = ViewUtil.findById(this, R.id.embedded_text_editor);
-    charactersLeft        = ViewUtil.findById(this, R.id.space_left);
-    emojiDrawerStub       = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
-    unblockButton         = ViewUtil.findById(this, R.id.unblock_button);
-    makeDefaultSmsButton  = ViewUtil.findById(this, R.id.make_default_sms_button);
-    registerButton        = ViewUtil.findById(this, R.id.register_button);
-    composePanel          = ViewUtil.findById(this, R.id.bottom_panel);
-    container             = ViewUtil.findById(this, R.id.layout_container);
-    reminderView          = ViewUtil.findStubById(this, R.id.reminder_stub);
-    unverifiedBannerView  = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
-    groupShareProfileView = ViewUtil.findStubById(this, R.id.group_share_profile_view_stub);
-    quickAttachmentDrawer = ViewUtil.findById(this, R.id.quick_attachment_drawer);
-    quickAttachmentToggle = ViewUtil.findById(this, R.id.quick_attachment_toggle);
-    inputPanel            = ViewUtil.findById(this, R.id.bottom_panel);
+    titleView              = (ConversationTitleView) supportActionBar.getCustomView();
+    buttonToggle           = ViewUtil.findById(this, R.id.button_toggle);
+    sendButton             = ViewUtil.findById(this, R.id.send_button);
+    attachButton           = ViewUtil.findById(this, R.id.attach_button);
+    composeText            = ViewUtil.findById(this, R.id.embedded_text_editor);
+    charactersLeft         = ViewUtil.findById(this, R.id.space_left);
+    emojiDrawerStub        = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
+    unblockButton          = ViewUtil.findById(this, R.id.unblock_button);
+    makeDefaultSmsButton   = ViewUtil.findById(this, R.id.make_default_sms_button);
+    registerButton         = ViewUtil.findById(this, R.id.register_button);
+    composePanel           = ViewUtil.findById(this, R.id.bottom_panel);
+    container              = ViewUtil.findById(this, R.id.layout_container);
+    reminderView           = ViewUtil.findStubById(this, R.id.reminder_stub);
+    unverifiedBannerView   = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
+    groupShareProfileView  = ViewUtil.findStubById(this, R.id.group_share_profile_view_stub);
+    quickAttachmentDrawer  = ViewUtil.findById(this, R.id.quick_attachment_drawer);
+    quickAttachmentToggle  = ViewUtil.findById(this, R.id.quick_attachment_toggle);
+    inlineAttachmentToggle = ViewUtil.findById(this, R.id.inline_attachment_container);
+    inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
 
-    ImageButton quickCameraToggle = ViewUtil.findById(this, R.id.quick_camera_toggle);
+    ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
+    ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
 
     container.addOnKeyboardShownListener(this);
     inputPanel.setListener(this);
@@ -1330,6 +1332,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       quickCameraToggle.setVisibility(View.GONE);
       quickCameraToggle.setEnabled(false);
     }
+
+    inlineAttachmentButton.setOnClickListener(v -> handleAddAttachment());
   }
 
   protected void initializeActionBar() {
@@ -1844,9 +1848,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
       buttonToggle.display(attachButton);
       quickAttachmentToggle.show();
+      inlineAttachmentToggle.hide();
     } else {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
+      inlineAttachmentToggle.show();
     }
   }
 
