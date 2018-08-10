@@ -30,6 +30,7 @@
     <attr name="conversation_editor_background" format="reference|color"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
     <attr name="conversation_input_background" format="reference"/>
+    <attr name="conversation_input_inline_attach_icon_tint" format="reference"/>
     <attr name="conversation_transport_sms_indicator" format="reference"/>
     <attr name="conversation_transport_push_indicator" format="reference"/>
     <attr name="conversation_transport_popup_background" format="reference"/>
