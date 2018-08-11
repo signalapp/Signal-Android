@@ -103,6 +103,7 @@ public class MmsDatabase extends MessagingDatabase {
           static final String QUOTE_AUTHOR     = "quote_author";
           static final String QUOTE_BODY       = "quote_body";
           static final String QUOTE_ATTACHMENT = "quote_attachment";
+          static final String QUOTE_MISSING    = "quote_missing";
 
           static final String SHARED_CONTACTS  = "shared_contacts";
 
@@ -124,7 +125,7 @@ public class MmsDatabase extends MessagingDatabase {
     EXPIRE_STARTED + " INTEGER DEFAULT 0, " + NOTIFIED + " INTEGER DEFAULT 0, " +
     READ_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + QUOTE_ID + " INTEGER DEFAULT 0, " +
     QUOTE_AUTHOR + " TEXT, " + QUOTE_BODY + " TEXT, " + QUOTE_ATTACHMENT + " INTEGER DEFAULT -1, " +
-    SHARED_CONTACTS + " TEXT);";
+    QUOTE_MISSING + " INTEGER DEFAULT 0, " + SHARED_CONTACTS + " TEXT);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -144,7 +145,7 @@ public class MmsDatabase extends MessagingDatabase {
       MESSAGE_SIZE, STATUS, TRANSACTION_ID,
       BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID,
       DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
-      EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT, SHARED_CONTACTS,
+      EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT, QUOTE_MISSING, SHARED_CONTACTS,
       "json_group_array(json_object(" +
           "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
           "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
@@ -578,6 +579,7 @@ public class MmsDatabase extends MessagingDatabase {
         long             quoteId            = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_ID));
         String           quoteAuthor        = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR));
         String           quoteText          = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_BODY));
+        boolean          quoteMissing       = cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE_MISSING)) == 1;
         List<Attachment> quoteAttachments   = Stream.of(associatedAttachments).filter(Attachment::isQuote).map(a -> (Attachment)a).toList();
         List<Contact>    contacts           = getSharedContacts(cursor, associatedAttachments);
         Set<Attachment>  contactAttachments = new HashSet<>(Stream.of(contacts).map(Contact::getAvatarAttachment).filter(a -> a != null).toList());
@@ -587,7 +589,7 @@ public class MmsDatabase extends MessagingDatabase {
         QuoteModel quote     = null;
 
         if (quoteId > 0 && (!TextUtils.isEmpty(quoteText) || !quoteAttachments.isEmpty())) {
-          quote = new QuoteModel(quoteId, Address.fromSerialized(quoteAuthor), quoteText, quoteAttachments);
+          quote = new QuoteModel(quoteId, Address.fromSerialized(quoteAuthor), quoteText, quoteMissing, quoteAttachments);
         }
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
@@ -739,6 +741,7 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(QUOTE_ID, retrieved.getQuote().getId());
       contentValues.put(QUOTE_BODY, retrieved.getQuote().getText());
       contentValues.put(QUOTE_AUTHOR, retrieved.getQuote().getAuthor().serialize());
+      contentValues.put(QUOTE_MISSING, retrieved.getQuote().isOriginalMissing() ? 1 : 0);
 
       quoteAttachments = retrieved.getQuote().getAttachments();
     }
@@ -882,6 +885,7 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(QUOTE_ID, message.getOutgoingQuote().getId());
       contentValues.put(QUOTE_AUTHOR, message.getOutgoingQuote().getAuthor().serialize());
       contentValues.put(QUOTE_BODY, message.getOutgoingQuote().getText());
+      contentValues.put(QUOTE_MISSING, message.getOutgoingQuote().isOriginalMissing() ? 1 : 0);
 
       quoteAttachments.addAll(message.getOutgoingQuote().getAttachments());
     }
@@ -1174,6 +1178,7 @@ public class MmsDatabase extends MessagingDatabase {
                                            new Quote(message.getOutgoingQuote().getId(),
                                                      message.getOutgoingQuote().getAuthor(),
                                                      message.getOutgoingQuote().getText(),
+                                                     message.getOutgoingQuote().isOriginalMissing(),
                                                      new SlideDeck(context, message.getOutgoingQuote().getAttachments())) :
                                            null,
                                        message.getSharedContacts());
@@ -1330,12 +1335,13 @@ public class MmsDatabase extends MessagingDatabase {
       long                       quoteId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_ID));
       String                     quoteAuthor      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_AUTHOR));
       String                     quoteText        = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_BODY));
+      boolean                    quoteMissing     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_MISSING)) == 1;
       List<DatabaseAttachment>   attachments      = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
       List<? extends Attachment> quoteAttachments = Stream.of(attachments).filter(Attachment::isQuote).toList();
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 
       if (quoteId > 0 && !TextUtils.isEmpty(quoteAuthor)) {
-        return new Quote(quoteId, Address.fromExternal(context, quoteAuthor), quoteText, quoteDeck);
+        return new Quote(quoteId, Address.fromExternal(context, quoteAuthor), quoteText, quoteMissing, quoteDeck);
       } else {
         return null;
       }

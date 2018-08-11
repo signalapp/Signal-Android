@@ -50,8 +50,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int SHARED_CONTACTS                  = 8;
   private static final int FULL_TEXT_SEARCH                 = 9;
   private static final int BAD_IMPORT_CLEANUP               = 10;
+  private static final int QUOTE_MISSING                    = 11;
 
-  private static final int    DATABASE_VERSION = 10;
+  private static final int    DATABASE_VERSION = 11;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -233,6 +234,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             }
           }
         }
+      }
+
+      if (oldVersion < QUOTE_MISSING) {
+        db.execSQL("ALTER TABLE mms ADD COLUMN quote_missing INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

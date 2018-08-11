@@ -29,6 +29,7 @@
     <color name="transparent_black_30">#30000000</color>
     <color name="transparent_black_40">#40000000</color>
     <color name="transparent_black_70">#70000000</color>
+    <color name="transparent_black_90">#90000000</color>
 
     <color name="transparent_white_05">#05ffffff</color>
     <color name="transparent_white_10">#10ffffff</color>
@@ -38,6 +39,7 @@
     <color name="transparent_white_60">#60ffffff</color>
     <color name="transparent_white_70">#70ffffff</color>
     <color name="transparent_white_aa">#aaffffff</color>
+    <color name="transparent_white_bb">#bbffffff</color>
     <color name="transparent_white_dd">#ddffffff</color>
 
     <color name="conversation_compose_divider">#32000000</color>

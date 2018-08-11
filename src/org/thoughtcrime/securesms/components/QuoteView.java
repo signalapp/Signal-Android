@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.annimon.stream.Stream;
@@ -42,7 +41,8 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   private static final int MESSAGE_TYPE_OUTGOING = 1;
   private static final int MESSAGE_TYPE_INCOMING = 2;
 
-  private ViewGroup rootView;
+  private ViewGroup mainView;
+  private ViewGroup footerView;
   private TextView  authorView;
   private TextView  bodyView;
   private ImageView quoteBarView;
@@ -56,6 +56,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   private Recipient  author;
   private String     body;
   private TextView   mediaDescriptionText;
+  private TextView   missingLinkText;
   private SlideDeck  attachments;
   private int        messageType;
   private int        largeCornerRadius;
@@ -87,7 +88,8 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   private void initialize(@Nullable AttributeSet attrs) {
     inflate(getContext(), R.layout.quote_view, this);
 
-    this.rootView                     = findViewById(R.id.quote_root);
+    this.mainView                     = findViewById(R.id.quote_main);
+    this.footerView                   = findViewById(R.id.quote_missing_footer);
     this.authorView                   = findViewById(R.id.quote_author);
     this.bodyView                     = findViewById(R.id.quote_text);
     this.quoteBarView                 = findViewById(R.id.quote_bar);
@@ -97,6 +99,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     this.attachmentNameView           = findViewById(R.id.quote_attachment_name);
     this.dismissView                  = findViewById(R.id.quote_dismiss);
     this.mediaDescriptionText         = findViewById(R.id.media_type);
+    this.missingLinkText              = findViewById(R.id.quote_missing_text);
     this.largeCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_large);
     this.smallCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_bottom);
 
@@ -116,6 +119,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
       bodyView.setTextColor(primaryColor);
       attachmentNameView.setTextColor(primaryColor);
       mediaDescriptionText.setTextColor(secondaryColor);
+      missingLinkText.setTextColor(primaryColor);
 
       if (messageType == MESSAGE_TYPE_PREVIEW) {
         int radius = getResources().getDimensionPixelOffset(R.dimen.quote_corner_radius_preview);
@@ -147,7 +151,13 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     }
   }
 
-  public void setQuote(GlideRequests glideRequests, long id, @NonNull Recipient author, @Nullable String body, @NonNull SlideDeck attachments) {
+  public void setQuote(GlideRequests glideRequests,
+                       long id,
+                       @NonNull Recipient author,
+                       @Nullable String body,
+                       boolean originalMissing,
+                       @NonNull SlideDeck attachments)
+  {
     if (this.author != null) this.author.removeListener(this);
 
     this.id          = id;
@@ -159,6 +169,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     setQuoteAuthor(author);
     setQuoteText(body, attachments);
     setQuoteAttachment(glideRequests, attachments);
+    setQuoteMissingFooter(originalMissing);
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
@@ -194,7 +205,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
     // We use the raw color resource because Android 4.x was struggling with tints here
     quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));
-    rootView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
+    mainView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
   }
 
   private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {
@@ -255,6 +266,11 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     if (ThemeUtil.isDarkTheme(getContext())) {
       dismissView.setBackgroundResource(R.drawable.circle_alpha);
     }
+  }
+
+  private void setQuoteMissingFooter(boolean missing) {
+    footerView.setVisibility(missing ? VISIBLE : GONE);
+    footerView.setBackgroundColor(author.getColor().toQuoteFooterColor(getContext(), messageType != MESSAGE_TYPE_INCOMING));
   }
 
   public long getQuoteId() {
