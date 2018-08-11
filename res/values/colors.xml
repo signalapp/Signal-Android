@@ -57,6 +57,7 @@
 
     <color name="sticker_selected_color">#99ffffff</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="transparent_black">#00000000</color>
 
     <color name="MediaOverview_Media_selected_overlay">#88000000</color>
 
