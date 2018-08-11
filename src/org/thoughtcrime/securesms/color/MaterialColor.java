@@ -107,6 +107,17 @@ public enum MaterialColor {
                                                                 : R.color.transparent_white_aa);
   }
 
+  public int toQuoteFooterColor(@NonNull Context context, boolean outgoing) {
+    if (outgoing) {
+      int color = toConversationColor(context);
+      int alpha = isDarkTheme(context) ? (int) (0.4 * 255) : (int) (0.6 * 255);
+
+      return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+    }
+    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_black_90
+                                                                : R.color.transparent_white_bb);
+  }
+
   public boolean represents(Context context, int colorValue) {
     return context.getResources().getColor(conversationColorDark)  == colorValue ||
            context.getResources().getColor(conversationColorLight) == colorValue ||

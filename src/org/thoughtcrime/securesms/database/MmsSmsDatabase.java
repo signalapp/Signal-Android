@@ -66,6 +66,7 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_ID,
                                               MmsDatabase.QUOTE_AUTHOR,
                                               MmsDatabase.QUOTE_BODY,
+                                              MmsDatabase.QUOTE_MISSING,
                                               MmsDatabase.QUOTE_ATTACHMENT,
                                               MmsDatabase.SHARED_CONTACTS};
 
@@ -160,11 +161,11 @@ public class MmsSmsDatabase extends Database {
     DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false, true);
   }
 
-  public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull Address address, int limit) {
+  public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull Address address) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
-    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.ADDRESS }, selection, order, String.valueOf(limit))) {
+    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.ADDRESS }, selection, order, null)) {
       String  serializedAddress = address.serialize();
       boolean isOwnNumber       = Util.isOwnNumber(context, address);
 
@@ -239,6 +240,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_ID,
                               MmsDatabase.QUOTE_AUTHOR,
                               MmsDatabase.QUOTE_BODY,
+                              MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
                               MmsDatabase.SHARED_CONTACTS};
 
@@ -262,6 +264,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_ID,
                               MmsDatabase.QUOTE_AUTHOR,
                               MmsDatabase.QUOTE_BODY,
+                              MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
                               MmsDatabase.SHARED_CONTACTS};
 
@@ -325,6 +328,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ID);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_AUTHOR);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_BODY);
+    mmsColumnsPresent.add(MmsDatabase.QUOTE_MISSING);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
 

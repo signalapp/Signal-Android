@@ -891,13 +891,14 @@ public class PushDecryptJob extends ContextJob {
         attachments = ((MmsMessageRecord) message).getSlideDeck().asAttachments();
       }
 
-      return Optional.of(new QuoteModel(quote.get().getId(), author, quote.get().getText(), attachments));
+      return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), false, attachments));
     }
 
     Log.w(TAG, "Didn't find matching message record...");
     return Optional.of(new QuoteModel(quote.get().getId(),
                                       author,
                                       quote.get().getText(),
+                                      true,
                                       PointerAttachment.forPointers(quote.get().getAttachments())));
   }
 

@@ -243,6 +243,8 @@
 
         <item name="pref_divider">@drawable/preference_divider_light</item>
 
+        <item name="quote_missing_icon_color">@color/core_light_60</item>
+
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
@@ -385,6 +387,8 @@
         <item name="pref_icon_tint">#FFFFFF</item>
 
         <item name="pref_divider">@drawable/preference_divider_dark</item>
+
+        <item name="quote_missing_icon_color">@color/core_dark_05</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>

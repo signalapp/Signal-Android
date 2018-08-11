@@ -701,6 +701,12 @@ public class ConversationFragment extends Fragment
         return;
       }
 
+      if (messageRecord.getQuote().isOriginalMissing()) {
+        Log.i(TAG, "Clicked on a quote whose original message we never had.");
+        Toast.makeText(getContext(), R.string.ConversationFragment_quoted_message_not_found, Toast.LENGTH_SHORT).show();
+        return;
+      }
+
       new AsyncTask<Void, Void, Integer>() {
         @Override
         protected Integer doInBackground(Void... voids) {
@@ -711,8 +717,7 @@ public class ConversationFragment extends Fragment
           return DatabaseFactory.getMmsSmsDatabase(getContext())
                                 .getQuotedMessagePosition(threadId,
                                                           messageRecord.getQuote().getId(),
-                                                          messageRecord.getQuote().getAuthor(),
-                                                          getListAdapter().getItemCount());
+                                                          messageRecord.getQuote().getAuthor());
         }
 
         @Override
@@ -725,13 +730,15 @@ public class ConversationFragment extends Fragment
           if (position >= 0 && position < getListAdapter().getItemCount()) {
             list.scrollToPosition(position);
             getListAdapter().pulseHighlightItem(position);
+          } else if (position < 0) {
+            Log.w(TAG, "Tried to navigate to quoted message, but it was deleted.");
+            Toast.makeText(getContext(), R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT).show();
           } else {
-            Toast.makeText(getContext(), getResources().getText(R.string.ConversationFragment_quoted_message_not_found), Toast.LENGTH_SHORT).show();
-            if (position < 0) {
-              Log.w(TAG, "Tried to navigate to quoted message, but it was deleted.");
-            } else {
-              Log.w(TAG, "Tried to navigate to quoted message, but it was out of the bounds of the adapter.");
-            }
+            Log.i(TAG, "Quoted message was outside of the loaded range. Need to restart the loader.");
+
+            firstLoad        = true;
+            startingPosition = position;
+            getLoaderManager().restartLoader(0, Bundle.EMPTY, ConversationFragment.this);
           }
         }
       }.execute();
