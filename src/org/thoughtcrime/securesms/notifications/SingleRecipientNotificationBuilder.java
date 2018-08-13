@@ -258,9 +258,11 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   private CharSequence getBigText(List<CharSequence> messageBodies) {
     SpannableStringBuilder content = new SpannableStringBuilder();
 
-    for (CharSequence message : messageBodies) {
-      content.append(message);
-      content.append('\n');
+    for (int i = 0; i < messageBodies.size(); i++) {
+      content.append(messageBodies.get(i));
+      if (i < messageBodies.size() - 1) {
+        content.append('\n');
+      }
     }
 
     return content;
