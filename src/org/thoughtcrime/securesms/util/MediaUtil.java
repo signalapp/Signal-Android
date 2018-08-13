@@ -69,8 +69,8 @@ public class MediaUtil {
   public static @Nullable String getMimeType(Context context, Uri uri) {
     if (uri == null) return null;
 
-    if (PersistentBlobProvider.isAuthority(context, uri)) {
-      return PersistentBlobProvider.getMimeType(context, uri);
+    if (PartAuthority.isLocalUri(uri)) {
+      return PartAuthority.getAttachmentContentType(context, uri);
     }
 
     String type = context.getContentResolver().getType(uri);
@@ -78,6 +78,7 @@ public class MediaUtil {
       final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
       type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
     }
+
     return getCorrectedMimeType(type);
   }
 
