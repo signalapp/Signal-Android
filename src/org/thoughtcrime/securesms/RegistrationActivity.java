@@ -486,7 +486,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
           return new Pair<>(password, gcmToken);
         } catch (IOException e) {
-          Log.w(TAG, e);
+          Log.w(TAG, "Error during account registration", e);
+          createButton.setIndeterminateProgressMode(false);
+          createButton.setProgress(0);
           return null;
         }
       }
