@@ -6,21 +6,32 @@
                 android:id="@+id/prompt_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/login_top_background"
                 android:orientation="vertical">
+
+    <View android:id="@+id/shim"
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_centerVertical="true"
+          android:visibility="invisible"/>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?login_top_background"
+            android:layout_above="@id/shim">
+
+    </FrameLayout>
 
     <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:theme="?attr/actionBarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="20dp">
 
         <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/icon_transparent"
-                android:layout_centerVertical="true"
                 android:layout_gravity="center"/>
 
     </android.support.v7.widget.Toolbar>
@@ -28,7 +39,7 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:orientation="vertical"
@@ -39,19 +50,10 @@
 
         <TextView android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginBottom="2dp"
+                  android:layout_marginBottom="40dp"
                   android:text="@string/prompt_passphrase_activity__signal_is_locked"
-                  android:textColor="?android:textColorPrimary"
                   android:gravity="center_horizontal"
                   android:textSize="25sp"/>
-
-        <TextView android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="@string/PassphrasePromptActivity_confirm_fingerprint"
-            android:textColor="?android:textColorSecondary"
-            android:gravity="center_horizontal"
-            android:textSize="16sp"/>
 
         <ImageView android:id="@+id/fingerprint_auth_container"
                 android:src="@drawable/ic_fingerprint_white_48dp"
@@ -61,16 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="60dp"
                 tools:visibility="visible"/>
-
-        <TextView android:id="@+id/fingerprint_status_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/PassphrasePromptActivity_touch_sensor"
-            android:textColor="@color/gray27"
-            android:gravity="center_horizontal"
-            android:textSize="16sp"/>
 
         <TextView android:id="@+id/lock_screen_auth_container"
                   android:layout_width="match_parent"
