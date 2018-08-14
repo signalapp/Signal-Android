@@ -31,7 +31,7 @@ class LogSecretProvider {
   }
 
   private static byte[] parseEncryptedSecret(String secret) {
-    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.SealedData.fromString(secret);
       return KeyStoreHelper.unseal(encryptedSecret);
     } else {
