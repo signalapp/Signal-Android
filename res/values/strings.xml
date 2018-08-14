@@ -670,7 +670,7 @@
     <string name="NotificationChannel_calls">Calls</string>
     <string name="NotificationChannel_failures">Failures</string>
     <string name="NotificationChannel_backups">Backups</string>
-    <string name="NotificationChannel_locked_status">Locked status</string>
+    <string name="NotificationChannel_locked_status">Lock status</string>
     <string name="NotificationChannel_app_updates">App updates</string>
     <string name="NotificationChannel_other">Other</string>
 
