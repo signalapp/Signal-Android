@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -30,11 +31,19 @@ public class ShortcutLauncherActivity extends AppCompatActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    String           serializedAddress = getIntent().getStringExtra(KEY_SERIALIZED_ADDRESS);
-    Address          address           = Address.fromSerialized(serializedAddress);
-    Recipient        recipient         = Recipient.from(this, address, true);
-    TaskStackBuilder backStack         = TaskStackBuilder.create(this)
-                                                         .addNextIntent(new Intent(this, ConversationListActivity.class));
+    String serializedAddress = getIntent().getStringExtra(KEY_SERIALIZED_ADDRESS);
+
+    if (serializedAddress == null) {
+      Toast.makeText(this, R.string.ShortcutLauncherActivity_invalid_shortcut, Toast.LENGTH_SHORT).show();
+      startActivity(new Intent(this, ConversationListActivity.class));
+      finish();
+      return;
+    }
+
+    Address          address   = Address.fromSerialized(serializedAddress);
+    Recipient        recipient = Recipient.from(this, address, true);
+    TaskStackBuilder backStack = TaskStackBuilder.create(this)
+                                                 .addNextIntent(new Intent(this, ConversationListActivity.class));
 
     CommunicationActions.startConversation(this, recipient, null, backStack);
     finish();

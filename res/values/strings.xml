@@ -685,6 +685,9 @@
     <string name="SearchToolbar_search">Search</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for conversations, contacts, and messages</string>
 
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Invalid shortcut</string>
+
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
