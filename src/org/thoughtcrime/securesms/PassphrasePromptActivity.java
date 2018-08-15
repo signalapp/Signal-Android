@@ -71,7 +71,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
 
   private View            passphraseAuthContainer;
-  private ImageView       fingerprintPrompt;
+  private View            fingerprintAuthContainer;
+  private ImageView       fingerprintIcon;
   private TextView        lockScreenButton;
   private TextView        fingerprintStatusText;
 
@@ -216,7 +217,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     visibilityToggle              = findViewById(R.id.button_toggle);
     passphraseText                = findViewById(R.id.passphrase_edit);
     passphraseAuthContainer       = findViewById(R.id.password_auth_container);
-    fingerprintPrompt             = findViewById(R.id.fingerprint_auth_container);
+    fingerprintAuthContainer      = findViewById(R.id.fingerprint_auth_container);
+    fingerprintIcon               = findViewById(R.id.fingerprint_icon);
     lockScreenButton              = findViewById(R.id.lock_screen_auth_container);
     fingerprintStatusText         = findViewById(R.id.fingerprint_status_text);
     fingerprintManager            = FingerprintManagerCompat.from(this);
@@ -238,8 +240,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock),
                                      EditorInfo.IME_ACTION_DONE);
 
-    fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-    fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
+    fingerprintIcon.setImageResource(R.drawable.ic_fingerprint_white_48dp);
+    fingerprintIcon.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
 
     lockScreenButton.setOnClickListener(v -> resumeScreenLock());
   }
@@ -249,15 +251,15 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       passphraseAuthContainer.setVisibility(View.GONE);
 
       if (fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
-        fingerprintPrompt.setVisibility(View.VISIBLE);
+        fingerprintAuthContainer.setVisibility(View.VISIBLE);
         lockScreenButton.setVisibility(View.GONE);
       } else {
-        fingerprintPrompt.setVisibility(View.GONE);
+        fingerprintAuthContainer.setVisibility(View.GONE);
         lockScreenButton.setVisibility(View.VISIBLE);
       }
     } else {
       passphraseAuthContainer.setVisibility(View.VISIBLE);
-      fingerprintPrompt.setVisibility(View.GONE);
+      fingerprintAuthContainer.setVisibility(View.GONE);
       lockScreenButton.setVisibility(View.GONE);
     }
   }
@@ -350,9 +352,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     @Override
     public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
       Log.w(TAG, "onAuthenticationSucceeded");
-      fingerprintPrompt.setImageResource(R.drawable.ic_check_white_48dp);
-      fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.teal_500), PorterDuff.Mode.SRC_IN);
-      fingerprintPrompt.animate().setInterpolator(new BounceInterpolator()).scaleX(1.1f).scaleY(1.1f).setDuration(500).setListener(new AnimationCompleteListener() {
+      fingerprintIcon.setImageResource(R.drawable.ic_check_white_48dp);
+      fingerprintIcon.getBackground().setColorFilter(getResources().getColor(R.color.teal_500), PorterDuff.Mode.SRC_IN);
+      fingerprintIcon.animate().setInterpolator(new BounceInterpolator()).scaleX(1.1f).scaleY(1.1f).setDuration(500).setListener(new AnimationCompleteListener() {
         @Override
         public void onAnimationEnd(Animator animation) {
           handleAuthenticated();
@@ -368,8 +370,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       Log.w(TAG, "onAuthenticatoinFailed()");
       FingerprintManagerCompat.AuthenticationCallback callback = this;
 
-      fingerprintPrompt.setImageResource(R.drawable.ic_priority_high_white_48dp);
-      fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.deep_orange_600), PorterDuff.Mode.SRC_IN);
+      fingerprintIcon.setImageResource(R.drawable.ic_priority_high_white_48dp);
+      fingerprintIcon.getBackground().setColorFilter(getResources().getColor(R.color.deep_orange_600), PorterDuff.Mode.SRC_IN);
 
       TranslateAnimation shake = new TranslateAnimation(0, 20, 0, 0);
       shake.setDuration(50);
@@ -380,15 +382,15 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
         @Override
         public void onAnimationEnd(Animation animation) {
-          fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
+          fingerprintIcon.setImageResource(R.drawable.ic_fingerprint_white_48dp);
+          fingerprintIcon.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
         }
 
         @Override
         public void onAnimationRepeat(Animation animation) {}
       });
 
-      fingerprintPrompt.startAnimation(shake);
+      fingerprintIcon.startAnimation(shake);
 
       fingerprintStatusText.setText(getResources().getString(R.string.PassphrasePromptActivity_fingerprint_not_recognized_try_again));
       fingerprintStatusText.setTextColor(getResources().getColor(R.color.deep_orange_600));
