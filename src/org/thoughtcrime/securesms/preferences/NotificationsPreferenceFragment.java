@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.preferences.widgets.SignalListPreference;
 import org.thoughtcrime.securesms.preferences.widgets.SignalPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.w3c.dom.Text;
@@ -84,7 +86,21 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF));
-    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
+
+    if (NotificationChannels.supported()) {
+      ((SignalListPreference) this.findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF)).disableDialog();
+
+      this.findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF)
+          .setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+            intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.MESSAGES);
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE, getContext().getPackageName());
+            startActivity(intent);
+            return true;
+          });
+    } else {
+      initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
+    }
 
     initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
     initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));

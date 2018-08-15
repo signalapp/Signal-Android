@@ -16,8 +16,9 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class SignalListPreference extends ListPreference {
 
-  private TextView rightSummary;
+  private TextView     rightSummary;
   private CharSequence summary;
+  private boolean      dialogDisabled;
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public SignalListPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -61,6 +62,17 @@ public class SignalListPreference extends ListPreference {
 
     if (this.rightSummary != null) {
       this.rightSummary.setText(summary);
+    }
+  }
+
+  public void disableDialog() {
+    dialogDisabled = true;
+  }
+
+  @Override
+  protected void onClick() {
+    if (!dialogDisabled) {
+      super.onClick();
     }
   }
 }

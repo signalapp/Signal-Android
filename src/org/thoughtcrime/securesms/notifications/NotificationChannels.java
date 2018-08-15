@@ -26,7 +26,7 @@ public class NotificationChannels {
    * ignored for API < 26.
    */
   public static void create(@NonNull Context context) {
-    if (Build.VERSION.SDK_INT < 26) {
+    if (!supported()) {
       return;
     }
 
@@ -46,5 +46,9 @@ public class NotificationChannels {
     } else {
       notificationManager.deleteNotificationChannel(APP_UPDATES);
     }
+  }
+
+  public static boolean supported() {
+    return Build.VERSION.SDK_INT >= 26;
   }
 }
