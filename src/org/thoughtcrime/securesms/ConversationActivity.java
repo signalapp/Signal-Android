@@ -1903,7 +1903,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
-      inlineAttachmentToggle.show();
+
+      if (!attachmentManager.isAttachmentPresent()) {
+        inlineAttachmentToggle.show();
+      } else {
+        inlineAttachmentToggle.hide();
+      }
     }
   }
 
