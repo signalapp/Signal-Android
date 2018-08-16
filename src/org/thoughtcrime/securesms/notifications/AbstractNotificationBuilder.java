@@ -31,7 +31,7 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
     this.context = context;
     this.privacy = privacy;
 
-    setChannelId(NotificationChannels.MESSAGES);
+    setChannelId(NotificationChannels.getMessagesChannel(context));
     setLed();
   }
 

@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -182,6 +183,14 @@ public class DirectoryHelper {
           handle.finish();
         }
 
+        if (NotificationChannels.supported()) {
+          try (RecipientDatabase.RecipientReader recipients = DatabaseFactory.getRecipientDatabase(context).getRecipientsWithNotificationChannels()) {
+            Recipient recipient;
+            while ((recipient = recipients.getNext()) != null) {
+              NotificationChannels.updateContactChannelName(context, recipient);
+            }
+          }
+        }
       } catch (RemoteException | OperationApplicationException e) {
         Log.w(TAG, e);
       }

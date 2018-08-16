@@ -10,6 +10,12 @@
                             android:defaultValue="true" />
 
         <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
+                android:key="pref_key_system_notification_settings"
+                android:dependency="pref_key_enable_notifications"
+                android:persistent="false"
+                android:title="@string/preferences__system_notification_settings" />
+
+        <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
                 android:dependency="pref_key_enable_notifications"
                 android:key="pref_key_ringtone"
                 android:title="@string/preferences__sound"

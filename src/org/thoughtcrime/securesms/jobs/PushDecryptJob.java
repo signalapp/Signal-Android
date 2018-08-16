@@ -136,7 +136,7 @@ public class PushDecryptJob extends ContextJob {
     if (TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
       Log.w(TAG, "Skipping job, waiting for sqlcipher migration...");
       NotificationManagerCompat.from(context).notify(494949,
-                                                     new NotificationCompat.Builder(context, NotificationChannels.MESSAGES)
+                                                     new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
                                                          .setSmallIcon(R.drawable.icon_notification)
                                                          .setPriority(NotificationCompat.PRIORITY_HIGH)
                                                          .setCategory(NotificationCompat.CATEGORY_MESSAGE)

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -53,11 +54,12 @@ public class RecipientDatabase extends Database {
   private static final String PROFILE_SHARING         = "profile_sharing_approval";
   private static final String CALL_RINGTONE           = "call_ringtone";
   private static final String CALL_VIBRATE            = "call_vibrate";
+  private static final String NOTIFICATION_CHANNEL    = "notification_channel";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       BLOCK, NOTIFICATION, CALL_RINGTONE, VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
       PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_CONTACT_URI,
-      SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING
+      SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -122,7 +124,8 @@ public class RecipientDatabase extends Database {
           SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL, " +
           PROFILE_SHARING + " INTEGER DEFAULT 0, " +
           CALL_RINGTONE + " TEXT DEFAULT NULL, " +
-          CALL_VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ");";
+          CALL_VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
+          NOTIFICATION_CHANNEL + " TEXT DEFAULT NULL);";
 
   public RecipientDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -135,8 +138,16 @@ public class RecipientDatabase extends Database {
                           null, null, null, null, null);
   }
 
-  public BlockedReader readerForBlocked(Cursor cursor) {
-    return new BlockedReader(context, cursor);
+  public RecipientReader readerForBlocked(Cursor cursor) {
+    return new RecipientReader(context, cursor);
+  }
+
+  public RecipientReader getRecipientsWithNotificationChannels() {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = database.query(TABLE_NAME, new String[] {ID, ADDRESS}, NOTIFICATION_CHANNEL  + " NOT NULL",
+                                             null, null, null, null, null);
+
+    return new RecipientReader(context, cursor);
   }
 
 
@@ -177,6 +188,7 @@ public class RecipientDatabase extends Database {
     String  signalProfileName     = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_NAME));
     String  signalProfileAvatar   = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
     boolean profileSharing        = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))      == 1;
+    String  notificationChannel   = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION_CHANNEL));
 
     MaterialColor color;
     byte[]        profileKey = null;
@@ -206,7 +218,8 @@ public class RecipientDatabase extends Database {
                                              RegisteredState.fromId(registeredState),
                                              profileKey, systemDisplayName, systemContactPhoto,
                                              systemPhoneLabel, systemContactUri,
-                                             signalProfileName, signalProfileAvatar, profileSharing));
+                                             signalProfileName, signalProfileAvatar, profileSharing,
+                                             notificationChannel));
   }
 
   public BulkOperationsHandle resetAllSystemContactInfo() {
@@ -322,6 +335,22 @@ public class RecipientDatabase extends Database {
     contentValues.put(PROFILE_SHARING, enabled ? 1 : 0);
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.setProfileSharing(enabled);
+  }
+
+  public void setNotificationChannel(@NonNull Recipient recipient, @Nullable String notificationChannel) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(NOTIFICATION_CHANNEL, notificationChannel);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.setNotificationChannel(notificationChannel);
+  }
+
+  public boolean isNotificationChannelPresent(@NonNull String notificationChannel) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] { ID }, NOTIFICATION_CHANNEL + " = ?",
+                                        new String[] { notificationChannel }, null, null, null, null)) {
+      return cursor != null && cursor.moveToFirst();
+    }
   }
 
   public Set<Address> getAllAddresses() {
@@ -472,6 +501,7 @@ public class RecipientDatabase extends Database {
     private final String          signalProfileName;
     private final String          signalProfileAvatar;
     private final boolean         profileSharing;
+    private final String          notificationChannel;
 
     RecipientSettings(boolean blocked, long muteUntil,
                       @NonNull VibrateState messageVibrateState,
@@ -490,7 +520,8 @@ public class RecipientDatabase extends Database {
                       @Nullable String systemContactUri,
                       @Nullable String signalProfileName,
                       @Nullable String signalProfileAvatar,
-                      boolean profileSharing)
+                      boolean profileSharing,
+                      @Nullable String notificationChannel)
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
@@ -511,6 +542,7 @@ public class RecipientDatabase extends Database {
       this.signalProfileName     = signalProfileName;
       this.signalProfileAvatar   = signalProfileAvatar;
       this.profileSharing        = profileSharing;
+      this.notificationChannel   = notificationChannel;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -588,14 +620,18 @@ public class RecipientDatabase extends Database {
     public boolean isProfileSharing() {
       return profileSharing;
     }
+
+    public @Nullable String getNotificationChannel() {
+      return notificationChannel;
+    }
   }
 
-  public static class BlockedReader {
+  public static class RecipientReader implements Closeable {
 
     private final Context context;
-    private final Cursor cursor;
+    private final Cursor  cursor;
 
-    BlockedReader(Context context, Cursor cursor) {
+    RecipientReader(Context context, Cursor cursor) {
       this.context = context;
       this.cursor  = cursor;
     }
@@ -611,6 +647,10 @@ public class RecipientDatabase extends Database {
       }
 
       return getCurrent();
+    }
+
+    public void close() {
+      cursor.close();
     }
   }
 

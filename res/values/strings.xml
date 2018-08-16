@@ -666,13 +666,14 @@
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
 
     <!-- Notification Channels -->
-    <string name="NotificationChannel_messages">Messages</string>
+    <string name="NotificationChannel_messages">Default</string>
     <string name="NotificationChannel_calls">Calls</string>
     <string name="NotificationChannel_failures">Failures</string>
     <string name="NotificationChannel_backups">Backups</string>
     <string name="NotificationChannel_locked_status">Lock status</string>
     <string name="NotificationChannel_app_updates">App updates</string>
     <string name="NotificationChannel_other">Other</string>
+    <string name="NotificationChannel_group_messages">Messages</string>
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
@@ -960,6 +961,8 @@
 
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
+    <string name="recipient_preferences__custom_notifications">Custom notifications</string>
+    <string name="recipient_preferences__custom_notifications_settings">System notification settings</string>
     <string name="recipient_preferences__notification_sound">Notification sound</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
@@ -1086,6 +1089,7 @@
     <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
     <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
     <string name="preferences__notifications">Notifications</string>
+    <string name="preferences__system_notification_settings">System notification settings</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__led_color_unknown">Unknown</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>

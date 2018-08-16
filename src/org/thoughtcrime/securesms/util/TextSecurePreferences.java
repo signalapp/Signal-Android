@@ -54,7 +54,7 @@ public class TextSecurePreferences {
   private static final String LAST_EXPERIENCE_VERSION_PREF     = "last_experience_version_code";
   private static final String EXPERIENCE_DISMISSED_PREF        = "experience_dismissed";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
-  private static final String VIBRATE_PREF                     = "pref_key_vibrate";
+  public  static final String VIBRATE_PREF                     = "pref_key_vibrate";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
   public  static final String LED_COLOR_PREF                   = "pref_led_color";
   public  static final String LED_BLINK_PREF                   = "pref_led_blink";
@@ -158,6 +158,9 @@ public class TextSecurePreferences {
 
   private static final String LOG_ENCRYPTED_SECRET   = "pref_log_encrypted_secret";
   private static final String LOG_UNENCRYPTED_SECRET = "pref_log_unencrypted_secret";
+
+  private static final String NOTIFICATION_CHANNEL_VERSION          = "pref_notification_channel_version";
+  private static final String NOTIFICATION_MESSAGES_CHANNEL_VERSION = "pref_notification_messages_channel_version";
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
@@ -958,6 +961,22 @@ public class TextSecurePreferences {
 
   public static String getLogUnencryptedSecret(Context context) {
     return getStringPreference(context, LOG_UNENCRYPTED_SECRET, null);
+  }
+
+  public static int getNotificationChannelVersion(Context context) {
+    return getIntegerPreference(context, NOTIFICATION_CHANNEL_VERSION, 1);
+  }
+
+  public static void setNotificationChannelVersion(Context context, int version) {
+    setIntegerPrefrence(context, NOTIFICATION_CHANNEL_VERSION, version);
+  }
+
+  public static int getNotificationMessagesChannelVersion(Context context) {
+    return getIntegerPreference(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, 1);
+  }
+
+  public static void setNotificationMessagesChannelVersion(Context context, int version) {
+    setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

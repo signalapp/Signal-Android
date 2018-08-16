@@ -4,9 +4,12 @@ package org.thoughtcrime.securesms.database.helpers;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -31,6 +34,7 @@ import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -51,8 +55,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int FULL_TEXT_SEARCH                 = 9;
   private static final int BAD_IMPORT_CLEANUP               = 10;
   private static final int QUOTE_MISSING                    = 11;
+  private static final int NOTIFICATION_CHANNELS            = 12;
 
-  private static final int    DATABASE_VERSION = 11;
+  private static final int    DATABASE_VERSION = 12;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -238,6 +243,30 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < QUOTE_MISSING) {
         db.execSQL("ALTER TABLE mms ADD COLUMN quote_missing INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < NOTIFICATION_CHANNELS) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN notification_channel TEXT DEFAULT NULL");
+
+        try (Cursor cursor = db.rawQuery("SELECT recipient_ids, system_display_name, signal_profile_name, notification, vibrate FROM recipient_preferences WHERE notification NOT NULL OR vibrate != 0", null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            String  addressString   = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
+            Address address         = Address.fromExternal(context, addressString);
+            String  systemName      = cursor.getString(cursor.getColumnIndexOrThrow("system_display_name"));
+            String  profileName     = cursor.getString(cursor.getColumnIndexOrThrow("signal_profile_name"));
+            String  messageSound    = cursor.getString(cursor.getColumnIndexOrThrow("notification"));
+            Uri     messageSoundUri = messageSound != null ? Uri.parse(messageSound) : null;
+            int     vibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow("vibrate"));
+            String  displayName     = NotificationChannels.getChannelDisplayNameFor(systemName, profileName, address);
+            boolean vibrateEnabled  = vibrateState == 0 ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == 1;
+
+            String channelId = NotificationChannels.createChannelFor(context, address, displayName, messageSoundUri, vibrateEnabled);
+
+            ContentValues values = new ContentValues(1);
+            values.put("notification_channel", channelId);
+            db.update("recipient_preferences", values, "recipient_ids = ?", new String[] { addressString });
+          }
+        }
       }
 
       db.setTransactionSuccessful();

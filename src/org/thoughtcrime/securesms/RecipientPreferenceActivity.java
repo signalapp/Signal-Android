@@ -28,6 +28,8 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
+
+import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.view.MenuItem;
@@ -53,6 +55,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.ColorPickerPreference;
@@ -81,15 +84,17 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   public static final String ADDRESS_EXTRA                = "recipient_address";
   public static final String CAN_HAVE_SAFETY_NUMBER_EXTRA = "can_have_safety_number";
 
-  private static final String PREFERENCE_MUTED           = "pref_key_recipient_mute";
-  private static final String PREFERENCE_MESSAGE_TONE    = "pref_key_recipient_ringtone";
-  private static final String PREFERENCE_CALL_TONE       = "pref_key_recipient_call_ringtone";
-  private static final String PREFERENCE_MESSAGE_VIBRATE = "pref_key_recipient_vibrate";
-  private static final String PREFERENCE_CALL_VIBRATE    = "pref_key_recipient_call_vibrate";
-  private static final String PREFERENCE_BLOCK           = "pref_key_recipient_block";
-  private static final String PREFERENCE_COLOR           = "pref_key_recipient_color";
-  private static final String PREFERENCE_IDENTITY        = "pref_key_recipient_identity";
-  private static final String PREFERENCE_ABOUT           = "pref_key_number";
+  private static final String PREFERENCE_MUTED                 = "pref_key_recipient_mute";
+  private static final String PREFERENCE_MESSAGE_TONE          = "pref_key_recipient_ringtone";
+  private static final String PREFERENCE_CALL_TONE             = "pref_key_recipient_call_ringtone";
+  private static final String PREFERENCE_MESSAGE_VIBRATE       = "pref_key_recipient_vibrate";
+  private static final String PREFERENCE_CALL_VIBRATE          = "pref_key_recipient_call_vibrate";
+  private static final String PREFERENCE_BLOCK                 = "pref_key_recipient_block";
+  private static final String PREFERENCE_COLOR                 = "pref_key_recipient_color";
+  private static final String PREFERENCE_IDENTITY              = "pref_key_recipient_identity";
+  private static final String PREFERENCE_ABOUT                 = "pref_key_number";
+  private static final String PREFERENCE_CUSTOM_NOTIFICATIONS  = "pref_key_recipient_custom_notifications";
+  private static final String PREFERENCE_NOTIFICATION_SETTINGS = "pref_key_recipient_notification_settings";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -255,16 +260,32 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       this.canHaveSafetyNumber = getActivity().getIntent()
                                  .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA, false);
 
-      this.findPreference(PREFERENCE_MESSAGE_TONE)
-          .setOnPreferenceChangeListener(new RingtoneChangeListener(false));
+      Preference customNotificationsPref  = this.findPreference(PREFERENCE_CUSTOM_NOTIFICATIONS);
+      Preference notificationSettingsPref = this.findPreference(PREFERENCE_NOTIFICATION_SETTINGS);
+      Preference messageTonePref          = this.findPreference(PREFERENCE_MESSAGE_TONE);
+      Preference messageVibratePref       = this.findPreference(PREFERENCE_MESSAGE_VIBRATE);
+
+      if (NotificationChannels.supported()) {
+        messageTonePref.setVisible(false);
+        messageVibratePref.setVisible(false);
+
+        ((SwitchPreferenceCompat) customNotificationsPref).setChecked(recipient.hasCustomNotifications());
+        customNotificationsPref.setOnPreferenceChangeListener(new CustomNotificationsChangedListener());
+        notificationSettingsPref.setOnPreferenceClickListener(new NotificationSettingsClickedListener());
+      } else {
+        customNotificationsPref.setVisible(false);
+        notificationSettingsPref.setVisible(false);
+
+        messageTonePref.setOnPreferenceChangeListener(new RingtoneChangeListener(false));
+        messageVibratePref.setOnPreferenceChangeListener(new VibrateChangeListener(false));
+      }
+
       this.findPreference(PREFERENCE_MESSAGE_TONE)
           .setOnPreferenceClickListener(new RingtoneClickedListener(false));
       this.findPreference(PREFERENCE_CALL_TONE)
           .setOnPreferenceChangeListener(new RingtoneChangeListener(true));
       this.findPreference(PREFERENCE_CALL_TONE)
           .setOnPreferenceClickListener(new RingtoneClickedListener(true));
-      this.findPreference(PREFERENCE_MESSAGE_VIBRATE)
-          .setOnPreferenceChangeListener(new VibrateChangeListener(false));
       this.findPreference(PREFERENCE_CALL_VIBRATE)
           .setOnPreferenceChangeListener(new VibrateChangeListener(true));
       this.findPreference(PREFERENCE_MUTED)
@@ -686,6 +707,39 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                                   getString(R.string.ConversationActivity_calls_not_supported),
                                   getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
         }
+      }
+    }
+
+    private class CustomNotificationsChangedListener implements Preference.OnPreferenceChangeListener {
+
+      @Override
+      public boolean onPreferenceChange(Preference preference, Object newValue) {
+        final boolean enabled = (boolean) newValue;
+
+        new AsyncTask<Void, Void, Void>() {
+          @Override
+          protected Void doInBackground(Void... params) {
+            if (enabled) {
+              String channel = NotificationChannels.createChannelFor(getActivity(), recipient);
+              DatabaseFactory.getRecipientDatabase(getActivity()).setNotificationChannel(recipient, channel);
+            } else {
+              NotificationChannels.deleteChannelFor(getActivity(), recipient);
+              DatabaseFactory.getRecipientDatabase(getActivity()).setNotificationChannel(recipient, null);
+            }
+            return null;
+          }
+        }.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+
+        return true;
+      }
+    }
+
+    private class NotificationSettingsClickedListener implements Preference.OnPreferenceClickListener {
+
+      @Override
+      public boolean onPreferenceClick(Preference preference) {
+        NotificationChannels.openChannelSettings(getActivity(), recipient.getNotificationChannel(getActivity()));
+        return true;
       }
     }
   }

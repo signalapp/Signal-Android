@@ -174,6 +174,7 @@ class RecipientProvider {
     @Nullable final String               profileAvatar;
               final boolean              profileSharing;
               final boolean              systemContact;
+    @Nullable final String               notificationChannel;
 
     RecipientDetails(@Nullable String name, @Nullable Long groupAvatarId,
                      boolean systemContact, @Nullable RecipientSettings settings,
@@ -200,6 +201,7 @@ class RecipientProvider {
       this.profileAvatar         = settings     != null ? settings.getProfileAvatar() : null;
       this.profileSharing        = settings     != null && settings.isProfileSharing();
       this.systemContact         = systemContact;
+      this.notificationChannel   = settings     != null ? settings.getNotificationChannel() : null;
 
       if (name == null && settings != null) this.name = settings.getSystemDisplayName();
       else                                  this.name = name;
