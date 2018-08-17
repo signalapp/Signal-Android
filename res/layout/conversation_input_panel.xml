@@ -152,7 +152,8 @@
                             android:id="@+id/inline_attachment_container"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_gravity="right|end">
+                            android:layout_gravity="right|end"
+                            android:visibility="gone">
 
                             <ImageButton
                                 android:id="@+id/inline_attachment_button"
