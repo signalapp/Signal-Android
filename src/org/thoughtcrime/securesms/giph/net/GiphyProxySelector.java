@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.giph.net;
 
 
 import android.os.AsyncTask;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.util.Util;
@@ -36,7 +36,7 @@ public class GiphyProxySelector extends ProxySelector {
           }
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else {
       initializeGiphyProxy();
     }

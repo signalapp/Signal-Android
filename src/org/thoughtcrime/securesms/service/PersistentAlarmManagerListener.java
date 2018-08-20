@@ -6,7 +6,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
 
@@ -26,7 +26,7 @@ public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
       scheduledTime = onAlarm(context, scheduledTime);
     }
 
-    Log.w(TAG, getClass() + " scheduling for: " + scheduledTime);
+    Log.i(TAG, getClass() + " scheduling for: " + scheduledTime);
 
     alarmManager.cancel(pendingIntent);
     alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);

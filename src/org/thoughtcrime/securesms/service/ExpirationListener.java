@@ -21,6 +21,6 @@ public class ExpirationListener extends BroadcastReceiver {
     AlarmManager  alarmManager  = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
     alarmManager.cancel(pendingIntent);
-    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + waitTimeMillis, pendingIntent);
+    alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + waitTimeMillis, pendingIntent);
   }
 }

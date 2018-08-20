@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.push;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.gms.security.ProviderInstaller;
 
@@ -33,7 +33,7 @@ public class AccountManagerFactory {
           }
           return null;
         }
-      }.execute();
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),

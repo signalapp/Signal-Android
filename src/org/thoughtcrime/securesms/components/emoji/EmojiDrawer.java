@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +28,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class EmojiDrawer extends LinearLayout implements InputView {
+
+  private static final String TAG = EmojiDrawer.class.getSimpleName();
+
   private static final KeyEvent DELETE_KEY_EVENT = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
 
   private ViewPager            pager;
@@ -62,7 +65,7 @@ public class EmojiDrawer extends LinearLayout implements InputView {
   }
 
   private void initializeResources(View v) {
-    Log.w("EmojiDrawer", "initializeResources()");
+    Log.i(TAG, "initializeResources()");
     this.pager     = (ViewPager)            v.findViewById(R.id.emoji_pager);
     this.strip     = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
 
@@ -85,7 +88,7 @@ public class EmojiDrawer extends LinearLayout implements InputView {
     if (this.pager == null) initView();
     ViewGroup.LayoutParams params = getLayoutParams();
     params.height = height;
-    Log.w("EmojiDrawer", "showing emoji drawer with height " + params.height);
+    Log.i(TAG, "showing emoji drawer with height " + params.height);
     setLayoutParams(params);
     setVisibility(VISIBLE);
     if (drawerListener != null) drawerListener.onShown();
@@ -95,7 +98,7 @@ public class EmojiDrawer extends LinearLayout implements InputView {
   public void hide(boolean immediate) {
     setVisibility(GONE);
     if (drawerListener != null) drawerListener.onHidden();
-    Log.w("EmojiDrawer", "hide()");
+    Log.i(TAG, "hide()");
   }
 
   private void initializeEmojiGrid() {
@@ -104,7 +107,7 @@ public class EmojiDrawer extends LinearLayout implements InputView {
                                            new EmojiSelectionListener() {
                                              @Override
                                              public void onEmojiSelected(String emoji) {
-                                               Log.w("EmojiDrawer", "onEmojiSelected()");
+                                               Log.i(TAG, "onEmojiSelected()");
                                                recentModel.onCodePointSelected(emoji);
                                                if (listener != null) listener.onEmojiSelected(emoji);
                                              }

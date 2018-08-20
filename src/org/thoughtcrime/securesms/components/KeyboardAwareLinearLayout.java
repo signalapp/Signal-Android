@@ -24,7 +24,7 @@ import android.os.Build.VERSION_CODES;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.Surface;
 import android.view.View;
 
@@ -86,7 +86,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     int oldRotation = rotation;
     rotation = getDeviceRotation();
     if (oldRotation != rotation) {
-      Log.w(TAG, "rotation changed");
+      Log.i(TAG, "rotation changed");
       onKeyboardClose();
     }
   }
@@ -132,14 +132,14 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   protected void onKeyboardOpen(int keyboardHeight) {
-    Log.w(TAG, "onKeyboardOpen(" + keyboardHeight + ")");
+    Log.i(TAG, "onKeyboardOpen(" + keyboardHeight + ")");
     keyboardOpen = true;
 
     notifyShownListeners();
   }
 
   protected void onKeyboardClose() {
-    Log.w(TAG, "onKeyboardClose()");
+    Log.i(TAG, "onKeyboardClose()");
     keyboardOpen = false;
     notifyHiddenListeners();
   }

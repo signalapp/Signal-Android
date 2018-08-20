@@ -1,16 +1,16 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;

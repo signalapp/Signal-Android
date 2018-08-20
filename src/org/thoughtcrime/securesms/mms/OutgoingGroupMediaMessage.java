@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
@@ -21,11 +22,13 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @NonNull String encodedGroupContext,
                                    @NonNull List<Attachment> avatar,
                                    long sentTimeMillis,
-                                   long expiresIn)
+                                   long expiresIn,
+                                   @Nullable QuoteModel quote,
+                                   @NonNull List<Contact> contacts)
       throws IOException
   {
     super(recipient, encodedGroupContext, avatar, sentTimeMillis,
-          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn);
+          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, quote, contacts);
 
     this.group = GroupContext.parseFrom(Base64.decode(encodedGroupContext));
   }
@@ -34,12 +37,14 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @NonNull GroupContext group,
                                    @Nullable final Attachment avatar,
                                    long sentTimeMillis,
-                                   long expireIn)
+                                   long expireIn,
+                                   @Nullable QuoteModel quote,
+                                   @NonNull List<Contact> contacts)
   {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
           System.currentTimeMillis(),
-          ThreadDatabase.DistributionTypes.CONVERSATION, expireIn);
+          ThreadDatabase.DistributionTypes.CONVERSATION, expireIn, quote, contacts);
 
     this.group = group;
   }

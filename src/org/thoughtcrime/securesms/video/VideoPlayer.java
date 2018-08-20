@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2017 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,6 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -53,7 +52,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentServer;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -95,11 +94,19 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
-  public void setVideoSource(@NonNull MasterSecret masterSecret, @NonNull VideoSlide videoSource)
+  public void setVideoSource(@NonNull VideoSlide videoSource, boolean autoplay)
       throws IOException
   {
-    if (Build.VERSION.SDK_INT >= 16) setExoViewSource(masterSecret, videoSource);
-    else                             setVideoViewSource(masterSecret, videoSource);
+    if (Build.VERSION.SDK_INT >= 16) setExoViewSource(videoSource, autoplay);
+    else                             setVideoViewSource(videoSource, autoplay);
+  }
+
+  public void pause() {
+    if (this.attachmentServer != null && this.videoView != null) {
+      this.videoView.stopPlayback();
+    } else if (this.exoPlayer != null) {
+      this.exoPlayer.setPlayWhenReady(false);
+    }
   }
 
   public void cleanup() {
@@ -112,11 +119,11 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
-  public void setWindow(Window window) {
+  public void setWindow(@Nullable Window window) {
     this.window = window;
   }
 
-  private void setExoViewSource(@NonNull MasterSecret masterSecret, @NonNull VideoSlide videoSource)
+  private void setExoViewSource(@NonNull VideoSlide videoSource, boolean autoplay)
       throws IOException
   {
     BandwidthMeter         bandwidthMeter             = new DefaultBandwidthMeter();
@@ -126,19 +133,20 @@ public class VideoPlayer extends FrameLayout {
 
     exoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
     exoPlayer.addListener(new ExoPlayerListener(window));
+    //noinspection ConstantConditions
     exoView.setPlayer(exoPlayer);
 
     DefaultDataSourceFactory    defaultDataSourceFactory    = new DefaultDataSourceFactory(getContext(), "GenericUserAgent", null);
-    AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(getContext(), masterSecret, defaultDataSourceFactory, null);
+    AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(getContext(), defaultDataSourceFactory, null);
     ExtractorsFactory           extractorsFactory           = new DefaultExtractorsFactory();
 
     MediaSource mediaSource = new ExtractorMediaSource(videoSource.getUri(), attachmentDataSourceFactory, extractorsFactory, null, null);
 
     exoPlayer.prepare(mediaSource);
-    exoPlayer.setPlayWhenReady(true);
+    exoPlayer.setPlayWhenReady(autoplay);
   }
 
-  private void setVideoViewSource(@NonNull MasterSecret masterSecret, @NonNull VideoSlide videoSource)
+  private void setVideoViewSource(@NonNull VideoSlide videoSource, boolean autoplay)
     throws IOException
   {
     if (this.attachmentServer != null) {
@@ -146,20 +154,22 @@ public class VideoPlayer extends FrameLayout {
     }
 
     if (videoSource.getUri() != null && PartAuthority.isLocalUri(videoSource.getUri())) {
-      Log.w(TAG, "Starting video attachment server for part provider Uri...");
-      this.attachmentServer = new AttachmentServer(getContext(), masterSecret, videoSource.asAttachment());
+      Log.i(TAG, "Starting video attachment server for part provider Uri...");
+      this.attachmentServer = new AttachmentServer(getContext(), videoSource.asAttachment());
       this.attachmentServer.start();
 
+      //noinspection ConstantConditions
       this.videoView.setVideoURI(this.attachmentServer.getUri());
     } else if (videoSource.getUri() != null) {
-      Log.w(TAG, "Playing video directly from non-local Uri...");
+      Log.i(TAG, "Playing video directly from non-local Uri...");
+      //noinspection ConstantConditions
       this.videoView.setVideoURI(videoSource.getUri());
     } else {
       Toast.makeText(getContext(), getContext().getString(R.string.VideoPlayer_error_playing_video), Toast.LENGTH_LONG).show();
       return;
     }
 
-    this.videoView.start();
+    if (autoplay) this.videoView.start();
   }
 
   private void initializeVideoViewControls(@NonNull VideoView videoView) {
@@ -170,7 +180,7 @@ public class VideoPlayer extends FrameLayout {
     videoView.setMediaController(mediaController);
   }
 
-  private class ExoPlayerListener implements ExoPlayer.EventListener {
+  private static class ExoPlayerListener implements ExoPlayer.EventListener {
     private final Window window;
 
     ExoPlayerListener(Window window) {

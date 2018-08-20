@@ -2,9 +2,10 @@ package org.thoughtcrime.securesms.scribbles.multitouch;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
+
+import org.thoughtcrime.securesms.logging.Log;
 
 /**
  * @author Almer Thie (code.almeros.com)
@@ -27,6 +28,8 @@ import android.view.ViewConfiguration;
  *         OF SUCH DAMAGE.
  */
 public abstract class TwoFingerGestureDetector extends BaseGestureDetector {
+
+    private static final String TAG = TwoFingerGestureDetector.class.getSimpleName();
 
     private final float mEdgeSlop;
     protected float mPrevFingerDiffX;
@@ -133,7 +136,7 @@ public abstract class TwoFingerGestureDetector extends BaseGestureDetector {
         final float y1 = getRawY(event, 1);
 
 
-        Log.w("TwoFinger",
+        Log.d(TAG,
               String.format("x0: %f, y0: %f, x1: %f, y1: %f, EdgeSlop: %f, RightSlop: %f, BottomSlop: %f",
                             x0, y0, x1, y1, edgeSlop, rightSlop, bottomSlop));
 

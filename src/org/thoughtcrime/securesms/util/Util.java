@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -32,13 +33,13 @@ import android.os.Looper;
 import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
-import android.util.Log;
-import android.widget.EditText;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
@@ -47,12 +48,14 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -113,12 +116,9 @@ public class Util {
   public static ExecutorService newSingleThreadedLifoExecutor() {
     ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
 
-    executor.execute(new Runnable() {
-      @Override
-      public void run() {
+    executor.execute(() -> {
 //        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-        Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
-      }
+      Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
     });
 
     return executor;
@@ -128,8 +128,8 @@ public class Util {
     return value == null || value.length == 0;
   }
 
-  public static boolean isEmpty(EditText value) {
-    return value == null || value.getText() == null || TextUtils.isEmpty(value.getText().toString());
+  public static boolean isEmpty(ComposeText value) {
+    return value == null || value.getText() == null || TextUtils.isEmpty(value.getTextTrimmed());
   }
 
   public static CharSequence getBoldedString(String value) {
@@ -173,17 +173,9 @@ public class Util {
     }
   }
 
-  public static void close(InputStream in) {
+  public static void close(Closeable closeable) {
     try {
-      in.close();
-    } catch (IOException e) {
-      Log.w(TAG, e);
-    }
-  }
-
-  public static void close(OutputStream out) {
-    try {
-      out.close();
+      closeable.close();
     } catch (IOException e) {
       Log.w(TAG, e);
     }
@@ -209,6 +201,22 @@ public class Util {
     return TextSecurePreferences.getLocalNumber(context).equals(address.toPhoneString());
   }
 
+  public static void readFully(InputStream in, byte[] buffer) throws IOException {
+    readFully(in, buffer, buffer.length);
+  }
+
+  public static void readFully(InputStream in, byte[] buffer, int len) throws IOException {
+    int offset = 0;
+
+    for (;;) {
+      int read = in.read(buffer, offset, len - offset);
+      if (read == -1) throw new EOFException("Stream ended early");
+
+      if (read + offset < len) offset += read;
+      else                		 return;
+    }
+  }
+
   public static byte[] readFully(InputStream in) throws IOException {
     ByteArrayOutputStream bout = new ByteArrayOutputStream();
     byte[] buffer              = new byte[4096];
@@ -228,7 +236,7 @@ public class Util {
   }
 
   public static long copy(InputStream in, OutputStream out) throws IOException {
-    byte[] buffer = new byte[4096];
+    byte[] buffer = new byte[8192];
     int read;
     long total = 0;
 
@@ -243,6 +251,12 @@ public class Util {
     return total;
   }
 
+  @RequiresPermission(anyOf = {
+      android.Manifest.permission.READ_PHONE_STATE,
+      android.Manifest.permission.READ_SMS,
+      android.Manifest.permission.READ_PHONE_NUMBERS
+  })
+  @SuppressLint("MissingPermission")
   public static Optional<Phonenumber.PhoneNumber> getDeviceNumber(Context context) {
     try {
       final String           localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
@@ -347,11 +361,7 @@ public class Util {
   }
 
   public static SecureRandom getSecureRandom() {
-    try {
-      return SecureRandom.getInstance("SHA1PRNG");
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    return new SecureRandom();
   }
 
   public static int getDaysTillBuildExpiry() {
@@ -388,13 +398,11 @@ public class Util {
       runnable.run();
     } else {
       final CountDownLatch sync = new CountDownLatch(1);
-      runOnMain(new Runnable() {
-        @Override public void run() {
-          try {
-            runnable.run();
-          } finally {
-            sync.countDown();
-          }
+      runOnMain(() -> {
+        try {
+          runnable.run();
+        } finally {
+          sync.countDown();
         }
       });
       try {
@@ -421,6 +429,11 @@ public class Util {
     return Arrays.hashCode(objects);
   }
 
+  public static @Nullable Uri uri(@Nullable String uri) {
+    if (uri == null) return null;
+    else             return Uri.parse(uri);
+  }
+
   @TargetApi(VERSION_CODES.KITKAT)
   public static boolean isLowMemory(Context context) {
     ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -438,7 +451,7 @@ public class Util {
   }
 
   public static @Nullable String readTextFromClipboard(@NonNull Context context) {
-    if (VERSION.SDK_INT >= 11) {
+    {
       ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
 
       if (clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip().getItemCount() > 0) {
@@ -446,24 +459,13 @@ public class Util {
       } else {
         return null;
       }
-    } else {
-      android.text.ClipboardManager clipboardManager = (android.text.ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-
-      if (clipboardManager.hasText()) {
-        return clipboardManager.getText().toString();
-      } else {
-        return null;
-      }
     }
   }
 
   public static void writeTextToClipboard(@NonNull Context context, @NonNull String text) {
-    if (VERSION.SDK_INT >= 11) {
+    {
       ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
       clipboardManager.setPrimaryClip(ClipData.newPlainText("Safety numbers", text));
-    } else {
-      android.text.ClipboardManager clipboardManager = (android.text.ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-      clipboardManager.setText(text);
     }
   }
 

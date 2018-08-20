@@ -11,7 +11,6 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +26,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.util.Util;
@@ -108,8 +107,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     EventBus.getDefault().unregister(this);
   }
 
-  public void setAudio(final @NonNull MasterSecret masterSecret,
-                       final @NonNull AudioSlide audio,
+  public void setAudio(final @NonNull AudioSlide audio,
                        final boolean showControls)
   {
 
@@ -128,7 +126,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
     }
 
-    this.audioSlidePlayer = AudioSlidePlayer.createFor(getContext(), masterSecret, audio, this);
+    this.audioSlidePlayer = AudioSlidePlayer.createFor(getContext(), audio, this);
   }
 
   public void cleanup() {
@@ -259,7 +257,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     @Override
     public void onClick(View v) {
       try {
-        Log.w(TAG, "playbutton onClick");
+        Log.d(TAG, "playbutton onClick");
         if (audioSlidePlayer != null) {
           togglePlayToPause();
           audioSlidePlayer.play(getProgress());
@@ -274,7 +272,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
-      Log.w(TAG, "pausebutton onClick");
+      Log.d(TAG, "pausebutton onClick");
       if (audioSlidePlayer != null) {
         togglePauseToPlay();
         audioSlidePlayer.stop();
@@ -318,7 +316,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     }
   }
 
-  private class TouchIgnoringListener implements OnTouchListener {
+  private static class TouchIgnoringListener implements OnTouchListener {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
       return true;

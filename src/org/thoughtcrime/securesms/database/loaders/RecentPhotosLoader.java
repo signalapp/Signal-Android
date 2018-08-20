@@ -1,13 +1,14 @@
 package org.thoughtcrime.securesms.database.loaders;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.permissions.Permissions;
 
 public class RecentPhotosLoader extends CursorLoader {
 
@@ -30,9 +31,13 @@ public class RecentPhotosLoader extends CursorLoader {
 
   @Override
   public Cursor loadInBackground() {
-    return context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                              PROJECTION, null, null,
-                                              MediaStore.Images.ImageColumns.DATE_MODIFIED + " DESC");
+    if (Permissions.hasAll(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+      return context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                                PROJECTION, null, null,
+                                                MediaStore.Images.ImageColumns.DATE_MODIFIED + " DESC");
+    } else {
+      return null;
+    }
   }
 
 

@@ -5,7 +5,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.R;
 

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 
 import java.util.Locale;
@@ -42,7 +43,7 @@ public class DynamicLanguage {
     return currentLocale;
   }
 
-  @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
+  @RequiresApi(VERSION_CODES.JELLY_BEAN_MR1)
   public static int getLayoutDirection(Context context) {
     Configuration configuration = context.getResources().getConfiguration();
     return configuration.getLayoutDirection();

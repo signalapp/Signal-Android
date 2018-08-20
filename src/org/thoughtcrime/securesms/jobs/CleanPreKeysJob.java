@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
@@ -51,7 +51,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
     try {
-      Log.w(TAG, "Cleaning prekeys...");
+      Log.i(TAG, "Cleaning prekeys...");
 
       int                activeSignedPreKeyId = PreKeyUtil.getActiveSignedPreKeyId(context);
       SignedPreKeyStore  signedPreKeyStore    = signedPreKeyStoreFactory.create();
@@ -64,8 +64,8 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
 
       Collections.sort(oldRecords, new SignedPreKeySorter());
 
-      Log.w(TAG, "Active signed prekey: " + activeSignedPreKeyId);
-      Log.w(TAG, "Old signed prekey record count: " + oldRecords.size());
+      Log.i(TAG, "Active signed prekey: " + activeSignedPreKeyId);
+      Log.i(TAG, "Old signed prekey record count: " + oldRecords.size());
 
       boolean foundAgedRecord = false;
 
@@ -76,7 +76,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
           if (!foundAgedRecord) {
             foundAgedRecord = true;
           } else {
-            Log.w(TAG, "Removing signed prekey record: " + oldRecord.getId() + " with timestamp: " + oldRecord.getTimestamp());
+            Log.i(TAG, "Removing signed prekey record: " + oldRecord.getId() + " with timestamp: " + oldRecord.getTimestamp());
             signedPreKeyStore.removeSignedPreKey(oldRecord.getId());
           }
         }

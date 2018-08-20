@@ -13,7 +13,6 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.Surface;
@@ -27,6 +26,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.camera.CameraView.CameraViewListener;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -117,7 +117,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   }
 
   private void updateControlsView() {
-    Log.w(TAG, "updateControlsView()");
+    Log.i(TAG, "updateControlsView()");
     View controls = LayoutInflater.from(getContext()).inflate(isLandscape() ? R.layout.quick_camera_controls_land
                                                                             : R.layout.quick_camera_controls,
                                                               this, false);

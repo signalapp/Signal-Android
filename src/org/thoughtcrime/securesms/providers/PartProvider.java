@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,11 +27,10 @@ import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -60,7 +59,7 @@ public class PartProvider extends ContentProvider {
 
   @Override
   public boolean onCreate() {
-    Log.w(TAG, "onCreate()");
+    Log.i(TAG, "onCreate()");
     return true;
   }
 
@@ -71,20 +70,19 @@ public class PartProvider extends ContentProvider {
 
   @Override
   public ParcelFileDescriptor openFile(@NonNull Uri uri, @NonNull String mode) throws FileNotFoundException {
-    final MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
-    Log.w(TAG, "openFile() called!");
+    Log.i(TAG, "openFile() called!");
 
-    if (masterSecret == null) {
+    if (KeyCachingService.isLocked(getContext())) {
       Log.w(TAG, "masterSecret was null, abandoning.");
       return null;
     }
 
     switch (uriMatcher.match(uri)) {
     case SINGLE_ROW:
-      Log.w(TAG, "Parting out a single row...");
+      Log.i(TAG, "Parting out a single row...");
       try {
         final PartUriParser partUri = new PartUriParser(uri);
-        return getParcelStreamForAttachment(masterSecret, partUri.getPartId());
+        return getParcelStreamForAttachment(partUri.getPartId());
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         throw new FileNotFoundException("Error opening file");
@@ -96,19 +94,19 @@ public class PartProvider extends ContentProvider {
 
   @Override
   public int delete(@NonNull Uri arg0, String arg1, String[] arg2) {
-    Log.w(TAG, "delete() called");
+    Log.i(TAG, "delete() called");
     return 0;
   }
 
   @Override
   public String getType(@NonNull Uri uri) {
-    Log.w(TAG, "getType() called: " + uri);
+    Log.i(TAG, "getType() called: " + uri);
 
     switch (uriMatcher.match(uri)) {
       case SINGLE_ROW:
         PartUriParser      partUriParser = new PartUriParser(uri);
         DatabaseAttachment attachment    = DatabaseFactory.getAttachmentDatabase(getContext())
-                                                          .getAttachment(null, partUriParser.getPartId());
+                                                          .getAttachment(partUriParser.getPartId());
 
         if (attachment != null) {
           return attachment.getContentType();
@@ -120,21 +118,20 @@ public class PartProvider extends ContentProvider {
 
   @Override
   public Uri insert(@NonNull Uri arg0, ContentValues arg1) {
-    Log.w(TAG, "insert() called");
+    Log.i(TAG, "insert() called");
     return null;
   }
 
   @Override
   public Cursor query(@NonNull Uri url, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-    Log.w(TAG, "query() called: " + url);
-    MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
+    Log.i(TAG, "query() called: " + url);
 
     if (projection == null || projection.length <= 0) return null;
 
     switch (uriMatcher.match(url)) {
       case SINGLE_ROW:
         PartUriParser      partUri      = new PartUriParser(url);
-        DatabaseAttachment attachment   = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(masterSecret, partUri.getPartId());
+        DatabaseAttachment attachment   = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(partUri.getPartId());
 
         if (attachment == null) return null;
 
@@ -156,15 +153,15 @@ public class PartProvider extends ContentProvider {
 
   @Override
   public int update(@NonNull Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
-    Log.w(TAG, "update() called");
+    Log.i(TAG, "update() called");
     return 0;
   }
 
-  private ParcelFileDescriptor getParcelStreamForAttachment(MasterSecret masterSecret, AttachmentId attachmentId) throws IOException {
-    long       plaintextLength = Util.getStreamLength(DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId));
+  private ParcelFileDescriptor getParcelStreamForAttachment(AttachmentId attachmentId) throws IOException {
+    long       plaintextLength = Util.getStreamLength(DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(attachmentId, 0));
     MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
 
-    InputStream  in  = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(masterSecret, attachmentId);
+    InputStream  in  = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(attachmentId, 0);
     OutputStream out = memoryFile.getOutputStream();
 
     Util.copy(in, out);

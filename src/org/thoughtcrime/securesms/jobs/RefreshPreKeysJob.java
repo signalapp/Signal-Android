@@ -1,17 +1,17 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
@@ -53,7 +53,7 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
     int availableKeys = accountManager.getPreKeysCount();
 
     if (availableKeys >= PREKEY_MINIMUM && TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-      Log.w(TAG, "Available keys sufficient: " + availableKeys);
+      Log.i(TAG, "Available keys sufficient: " + availableKeys);
       return;
     }
 
@@ -61,7 +61,7 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
     IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
-    Log.w(TAG, "Registering new prekeys...");
+    Log.i(TAG, "Registering new prekeys...");
 
     accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKeyRecord, preKeyRecords);
 

@@ -3,21 +3,21 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -75,15 +75,15 @@ public class AvatarDownloadJob extends MasterSecretJob implements InjectableType
         }
 
         if (digest.isPresent()) {
-          Log.w(TAG, "Downloading group avatar with digest: " + Hex.toString(digest.get()));
+          Log.i(TAG, "Downloading group avatar with digest: " + Hex.toString(digest.get()));
         }
 
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());
         attachment.deleteOnExit();
 
-        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, relay, digest, fileName, false);
+        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, relay, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false);
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
-        Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key), 500, 500);
+        Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
 
         database.updateAvatar(encodeId, avatar);
         inputStream.close();

@@ -24,12 +24,17 @@ import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
+import com.google.android.mms.InvalidHeaderValueException;
+import com.google.android.mms.pdu_alt.NotifyRespInd;
+import com.google.android.mms.pdu_alt.PduComposer;
+import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.providers.MmsBodyProvider;
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayOutputStream;
@@ -49,9 +54,9 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
   @Override
   public synchronized void onResult(Context context, Intent intent) {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP_MR1) {
-      Log.w(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
+      Log.i(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
     }
-    Log.w(TAG, "code: " + getResultCode() + ", result string: " + getResultData());
+    Log.i(TAG, "code: " + getResultCode() + ", result string: " + getResultData());
   }
 
   @Override
@@ -65,7 +70,7 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
     try {
       MmsBodyProvider.Pointer pointer = MmsBodyProvider.makeTemporaryPointer(getContext());
 
-      Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + pointer.getUri());
+      Log.i(TAG, "downloading multimedia from " + contentLocation + " to " + pointer.getUri());
 
       SmsManager smsManager;
 
@@ -87,14 +92,30 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
       Util.copy(pointer.getInputStream(), baos);
       pointer.close();
 
-      Log.w(TAG, baos.size() + "-byte response: ");// + Hex.dump(baos.toByteArray()));
+      Log.i(TAG, baos.size() + "-byte response: ");// + Hex.dump(baos.toByteArray()));
 
-      return (RetrieveConf) new PduParser(baos.toByteArray()).parse();
+      RetrieveConf retrieved = (RetrieveConf) new PduParser(baos.toByteArray()).parse();
+
+      if (retrieved == null) return null;
+
+      sendRetrievedAcknowledgement(transactionId, retrieved.getMmsVersion(), subscriptionId);
+      return retrieved;
     } catch (IOException | TimeoutException e) {
       Log.w(TAG, e);
       throw new MmsException(e);
     } finally {
       endTransaction();
+    }
+  }
+
+  private void sendRetrievedAcknowledgement(byte[] transactionId, int mmsVersion, int subscriptionId) {
+    try {
+      NotifyRespInd retrieveResponse = new NotifyRespInd(mmsVersion, transactionId, PduHeaders.STATUS_RETRIEVED);
+      new OutgoingLollipopMmsConnection(getContext()).send(new PduComposer(getContext(), retrieveResponse).make(), subscriptionId);
+    } catch (UndeliverableMessageException e) {
+      Log.w(TAG, e);
+    } catch (InvalidHeaderValueException e) {
+      Log.w(TAG, e);
     }
   }
 }

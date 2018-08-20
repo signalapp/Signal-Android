@@ -13,9 +13,9 @@ import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
-import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libsignal.InvalidMessageException;
 
 import java.io.IOException;
@@ -48,7 +48,7 @@ public class AttachmentFileNameJob extends MasterSecretJob {
     AttachmentId attachmentId      = new AttachmentId(attachmentRowId, attachmentUniqueId);
     String       plaintextFileName = new AsymmetricMasterCipher(MasterSecretUtil.getAsymmetricMasterSecret(context, masterSecret)).decryptBody(encryptedFileName);
 
-    DatabaseFactory.getAttachmentDatabase(context).updateAttachmentFileName(masterSecret, attachmentId, plaintextFileName);
+    DatabaseFactory.getAttachmentDatabase(context).updateAttachmentFileName(attachmentId, plaintextFileName);
   }
 
   @Override

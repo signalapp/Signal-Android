@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="conversation_red">#d32f2f</color>
+    <color name="conversation_red_shade">#9a0007</color>
+
+    <color name="conversation_pink">#d81b60</color>
+    <color name="conversation_pink_shade">#a00037</color>
+
+    <color name="conversation_purple">#8e24aa</color>
+    <color name="conversation_purple_shade">#5c007a</color>
+
+    <color name="conversation_indigo">#3949ab</color>
+    <color name="conversation_indigo_shade">#00227b</color>
+
+    <color name="conversation_blue">#1976d2</color>
+    <color name="conversation_blue_shade">#004ba0</color>
+
+    <color name="conversation_cyan">#00838f</color>
+    <color name="conversation_cyan_shade">#005662</color>
+
+    <color name="conversation_teal">#00796b</color>
+    <color name="conversation_teal_shade">#004c40</color>
+
+    <color name="conversation_green">#2e7d32</color>
+    <color name="conversation_green_shade">#005005</color>
+
+    <color name="conversation_orange">#bf360c</color>
+    <color name="conversation_orange_shade">#870000</color>
+
+    <color name="conversation_grey">#757575</color>
+    <color name="conversation_grey_shade">#494949</color>
+</resources>

@@ -24,7 +24,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,11 +57,11 @@ public class MmsBodyProvider extends ContentProvider {
 
   @Override
   public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
-    Log.w(TAG, "openFile(" + uri + ", " + mode + ")");
+    Log.i(TAG, "openFile(" + uri + ", " + mode + ")");
 
     switch (uriMatcher.match(uri)) {
     case SINGLE_ROW:
-      Log.w(TAG, "Fetching message body for a single row...");
+      Log.i(TAG, "Fetching message body for a single row...");
       File tmpFile = getFile(uri);
 
       final int fileMode;
@@ -73,7 +73,7 @@ public class MmsBodyProvider extends ContentProvider {
       default:  throw new IllegalArgumentException("requested file mode unsupported");
       }
 
-      Log.w(TAG, "returning file " + tmpFile.getAbsolutePath());
+      Log.i(TAG, "returning file " + tmpFile.getAbsolutePath());
       return ParcelFileDescriptor.open(tmpFile, fileMode);
     }
 

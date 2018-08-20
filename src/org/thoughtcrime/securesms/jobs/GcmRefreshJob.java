@@ -22,7 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -31,9 +31,10 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import org.thoughtcrime.securesms.PlayServicesProblemActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -62,7 +63,7 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
   public void onRun() throws Exception {
     if (TextSecurePreferences.isGcmDisabled(context)) return;
 
-    Log.w(TAG, "Reregistering GCM...");
+    Log.i(TAG, "Reregistering GCM...");
     int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
 
     if (result != ConnectionResult.SUCCESS) {
@@ -91,7 +92,7 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
   private void notifyGcmFailure() {
     Intent                     intent        = new Intent(context, PlayServicesProblemActivity.class);
     PendingIntent              pendingIntent = PendingIntent.getActivity(context, 1122, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-    NotificationCompat.Builder builder       = new NotificationCompat.Builder(context);
+    NotificationCompat.Builder builder       = new NotificationCompat.Builder(context, NotificationChannels.FAILURES);
 
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),

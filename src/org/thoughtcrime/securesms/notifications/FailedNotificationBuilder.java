@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 
 public class FailedNotificationBuilder extends AbstractNotificationBuilder {
 
@@ -23,6 +23,7 @@ public class FailedNotificationBuilder extends AbstractNotificationBuilder {
     setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
     setAutoCancel(true);
     setAlarms(null, RecipientDatabase.VibrateState.DEFAULT);
+    setChannelId(NotificationChannels.FAILURES);
   }
 
 

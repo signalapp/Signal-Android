@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.giph.ui;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,13 +14,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -36,6 +37,8 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
   private static final String TAG = GiphyActivity.class.getSimpleName();
 
   public static final String EXTRA_IS_MMS = "extra_is_mms";
+  public static final String EXTRA_WIDTH  = "extra_width";
+  public static final String EXTRA_HEIGHT = "extra_height";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -53,7 +56,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  public void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.giphy_activity);
 
     initializeToolbar();
@@ -99,6 +102,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
     this.stickerFragment.setLayoutManager(type);
   }
 
+  @SuppressLint("StaticFieldLeak")
   @Override
   public void onClick(final GiphyAdapter.GiphyViewHolder viewHolder) {
     if (finishingImage != null) finishingImage.gifProgress.setVisibility(View.GONE);
@@ -109,7 +113,9 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Uri doInBackground(Void... params) {
         try {
-          return Uri.fromFile(viewHolder.getFile(forMms));
+          byte[] data = viewHolder.getData(forMms);
+
+          return PersistentBlobProvider.getInstance(GiphyActivity.this).create(GiphyActivity.this, data, "image/gif", null);
         } catch (InterruptedException | ExecutionException e) {
           Log.w(TAG, e);
           return null;
@@ -120,13 +126,17 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
         if (uri == null) {
           Toast.makeText(GiphyActivity.this, R.string.GiphyActivity_error_while_retrieving_full_resolution_gif, Toast.LENGTH_LONG).show();
         } else if (viewHolder == finishingImage) {
-          setResult(RESULT_OK, new Intent().setData(uri));
+          Intent intent = new Intent();
+          intent.setData(uri);
+          intent.putExtra(EXTRA_WIDTH, viewHolder.image.getGifWidth());
+          intent.putExtra(EXTRA_HEIGHT, viewHolder.image.getGifHeight());
+          setResult(RESULT_OK, intent);
           finish();
         } else {
           Log.w(TAG, "Resolved Uri is no longer the selected element...");
         }
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private static class GiphyFragmentPagerAdapter extends FragmentPagerAdapter {

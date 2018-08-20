@@ -2,7 +2,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <org.thoughtcrime.securesms.preferences.ProfilePreference
+    <org.thoughtcrime.securesms.preferences.widgets.ProfilePreference
             android:key="preference_category_profile"/>
 
     <Preference android:key="preference_category_sms_mms"

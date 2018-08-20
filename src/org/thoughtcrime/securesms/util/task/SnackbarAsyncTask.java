@@ -85,7 +85,7 @@ public abstract class SnackbarAsyncTask<Params>
           progressDialog = null;
         }
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   protected abstract void executeAction(@Nullable Params parameter);

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
-import org.thoughtcrime.securesms.util.deque.LinkedBlockingDeque;
+
+import java.util.concurrent.LinkedBlockingDeque;
 
 public class LinkedBlockingLifoQueue<E> extends LinkedBlockingDeque<E> {
   @Override

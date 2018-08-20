@@ -15,13 +15,12 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
@@ -55,7 +54,7 @@ public class ApplicationMigrationService extends Service
     if (intent == null) return START_NOT_STICKY;
 
     if (intent.getAction() != null && intent.getAction().equals(MIGRATE_DATABASE)) {
-      executor.execute(new ImportRunnable(intent));
+      executor.execute(new ImportRunnable());
     }
 
     return START_NOT_STICKY;
@@ -126,7 +125,7 @@ public class ApplicationMigrationService extends Service
   }
 
   private NotificationCompat.Builder initializeBackgroundNotification() {
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.OTHER);
 
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_notification));
@@ -143,12 +142,8 @@ public class ApplicationMigrationService extends Service
   }
 
   private class ImportRunnable implements Runnable {
-    private final MasterSecret masterSecret;
 
-    public ImportRunnable(Intent intent) {
-      this.masterSecret = intent.getParcelableExtra("master_secret");
-      Log.w(TAG, "Service got mastersecret: " + masterSecret);
-    }
+    ImportRunnable() {}
 
     @Override
     public void run() {
@@ -162,7 +157,6 @@ public class ApplicationMigrationService extends Service
         setState(new ImportState(ImportState.STATE_MIGRATING_BEGIN, null));
 
         SmsMigrator.migrateDatabase(ApplicationMigrationService.this,
-                                    masterSecret,
                                     ApplicationMigrationService.this);
 
         setState(new ImportState(ImportState.STATE_MIGRATING_COMPLETE, null));
@@ -186,7 +180,7 @@ public class ApplicationMigrationService extends Service
   private static class CompletedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-      NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+      NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationChannels.OTHER);
       builder.setSmallIcon(R.drawable.icon_notification);
       builder.setContentTitle(context.getString(R.string.ApplicationMigrationService_import_complete));
       builder.setContentText(context.getString(R.string.ApplicationMigrationService_system_database_import_is_complete));

@@ -10,7 +10,7 @@ import android.support.v4.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -30,8 +30,11 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     setContentTitle(context.getString(R.string.app_name));
     setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
-    setPriority(TextSecurePreferences.getNotificationPriority(context));
     setGroupSummary(true);
+
+    if (!NotificationChannels.supported()) {
+      setPriority(TextSecurePreferences.getNotificationPriority(context));
+    }
   }
 
   public void setMessageCount(int messageCount, int threadCount) {

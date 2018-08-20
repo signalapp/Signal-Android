@@ -12,7 +12,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.os.Build;
 import android.os.Process;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -46,6 +46,8 @@ import java.security.Security;
  * application's {@code onCreate}.
  */
 public final class PRNGFixes {
+
+  private static final String TAG = PRNGFixes.class.getSimpleName();
 
   private static final int VERSION_CODE_JELLY_BEAN = 16;
   private static final int VERSION_CODE_JELLY_BEAN_MR2 = 18;
@@ -226,8 +228,7 @@ public final class PRNGFixes {
       } catch (IOException e) {
         // On a small fraction of devices /dev/urandom is not writable.
         // Log and ignore.
-        Log.w(PRNGFixes.class.getSimpleName(),
-              "Failed to mix seed into " + URANDOM_FILE);
+        Log.w(TAG, "Failed to mix seed into " + URANDOM_FILE);
       } finally {
         mSeeded = true;
       }

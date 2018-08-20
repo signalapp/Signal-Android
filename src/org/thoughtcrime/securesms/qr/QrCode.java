@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.qr;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;

@@ -1,35 +1,50 @@
 package org.thoughtcrime.securesms.color;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.util.TypedValue;
 
 import org.thoughtcrime.securesms.R;
 
-public enum MaterialColor {
-  RED        (R.color.red_400,         R.color.red_700,         R.color.red_700,         R.color.red_900,         "red"),
-  PINK       (R.color.pink_400,        R.color.pink_700,        R.color.pink_700,        R.color.pink_900,        "pink"),
-  PURPLE     (R.color.purple_400,      R.color.purple_700,      R.color.purple_700,      R.color.purple_900,      "purple"),
-  DEEP_PURPLE(R.color.deep_purple_400, R.color.deep_purple_700, R.color.deep_purple_700, R.color.deep_purple_900, "deep_purple"),
-  INDIGO     (R.color.indigo_400,      R.color.indigo_700,      R.color.indigo_700,      R.color.indigo_900,      "indigo"),
-  BLUE       (R.color.blue_500,        R.color.blue_700,        R.color.blue_700,        R.color.blue_900,        "blue"),
-  LIGHT_BLUE (R.color.light_blue_500,  R.color.light_blue_700,  R.color.light_blue_700,  R.color.light_blue_900,  "light_blue"),
-  CYAN       (R.color.cyan_500,        R.color.cyan_700,        R.color.cyan_700,        R.color.cyan_900,        "cyan"),
-  TEAL       (R.color.teal_500,        R.color.teal_700,        R.color.teal_700,        R.color.teal_900,        "teal"),
-  GREEN      (R.color.green_500,       R.color.green_700,       R.color.green_700,       R.color.green_900,       "green"),
-  LIGHT_GREEN(R.color.light_green_600, R.color.light_green_700, R.color.light_green_700, R.color.light_green_900, "light_green"),
-  LIME       (R.color.lime_500,        R.color.lime_700,        R.color.lime_700,        R.color.lime_900,        "lime"),
-  YELLOW     (R.color.yellow_500,      R.color.yellow_700,      R.color.yellow_700,      R.color.yellow_900,      "yellow"),
-  AMBER      (R.color.amber_600,       R.color.amber_700,       R.color.amber_700,       R.color.amber_900,       "amber"),
-  ORANGE     (R.color.orange_500,      R.color.orange_700,      R.color.orange_700,      R.color.orange_900,      "orange"),
-  DEEP_ORANGE(R.color.deep_orange_500, R.color.deep_orange_700, R.color.deep_orange_700, R.color.deep_orange_900, "deep_orange"),
-  BROWN      (R.color.brown_500,       R.color.brown_700,       R.color.brown_700,       R.color.brown_900,       "brown"),
-  GREY       (R.color.grey_500,        R.color.grey_700,        R.color.grey_700,        R.color.grey_900,        "grey"),
-  BLUE_GREY  (R.color.blue_grey_500,   R.color.blue_grey_700,   R.color.blue_grey_700,   R.color.blue_grey_900,   "blue_grey"),
+import java.util.HashMap;
+import java.util.Map;
 
-  GROUP      (GREY.conversationColorLight, R.color.textsecure_primary, R.color.textsecure_primary_dark,
-              GREY.conversationColorDark, R.color.gray95, R.color.black,
-              "group_color");
+import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
+
+public enum MaterialColor {
+  RED        (R.color.conversation_red,    R.color.conversation_red_shade,    "red"),
+  PINK       (R.color.conversation_pink,   R.color.conversation_pink_shade,   "pink"),
+  PURPLE     (R.color.conversation_purple, R.color.conversation_purple_shade, "purple"),
+  INDIGO     (R.color.conversation_indigo, R.color.conversation_indigo_shade, "indigo"),
+  BLUE       (R.color.conversation_blue,   R.color.conversation_blue_shade,   "blue"),
+  CYAN       (R.color.conversation_cyan,   R.color.conversation_cyan_shade,   "cyan"),
+  TEAL       (R.color.conversation_teal,   R.color.conversation_teal_shade,   "teal"),
+  GREEN      (R.color.conversation_green,  R.color.conversation_green_shade,  "green"),
+  ORANGE     (R.color.conversation_orange, R.color.conversation_orange_shade, "orange"),
+  GREY       (R.color.conversation_grey,   R.color.conversation_grey_shade,   "grey");
+
+  private static final Map<String, MaterialColor> COLOR_MATCHES = new HashMap<String, MaterialColor>() {{
+    put("red", RED);
+    put("brown", RED);
+    put("pink", PINK);
+    put("purple", PURPLE);
+    put("deep_purple", PURPLE);
+    put("indigo", INDIGO);
+    put("blue", BLUE);
+    put("light_blue", BLUE);
+    put("cyan", CYAN);
+    put("blue_grey", CYAN);
+    put("teal", TEAL);
+    put("green", GREEN);
+    put("light_green", GREEN);
+    put("lime", GREEN);
+    put("orange", ORANGE);
+    put("amber", ORANGE);
+    put("deep_orange", ORANGE);
+    put("yellow", ORANGE);
+    put("grey", GREY);
+    put("group_color", BLUE);
+  }};
 
   private final int conversationColorLight;
   private final int actionBarColorLight;
@@ -53,35 +68,54 @@ public enum MaterialColor {
     this.serialized             = serialized;
   }
 
-  MaterialColor(int lightColor, int darkColor,
-                int lightStatusBarColor, int darkStatusBarColor, String serialized)
+  MaterialColor(int conversationColor, int statusBarColor, String serialized)
   {
-    this(lightColor, lightColor, lightStatusBarColor,
-         darkColor, darkColor, darkStatusBarColor, serialized);
+    this(conversationColor, conversationColor, statusBarColor,
+         conversationColor, conversationColor, statusBarColor, serialized);
   }
 
   public int toConversationColor(@NonNull Context context) {
-    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
-      return context.getResources().getColor(conversationColorDark);
-    } else {
-      return context.getResources().getColor(conversationColorLight);
-    }
+    return context.getResources().getColor(isDarkTheme(context) ? conversationColorDark
+                                                                : conversationColorLight);
   }
 
   public int toActionBarColor(@NonNull Context context) {
-    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
-      return context.getResources().getColor(actionBarColorDark);
-    } else {
-      return context.getResources().getColor(actionBarColorLight);
-    }
+    return context.getResources().getColor(isDarkTheme(context) ? actionBarColorDark
+                                                                : actionBarColorLight);
   }
 
   public int toStatusBarColor(@NonNull Context context) {
-    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
-      return context.getResources().getColor(statusBarColorDark);
-    } else {
-      return context.getResources().getColor(statusBarColorLight);
+    return context.getResources().getColor(isDarkTheme(context) ? statusBarColorDark
+                                                                : statusBarColorLight);
+  }
+
+  public int toQuoteBarColorResource(@NonNull Context context, boolean outgoing) {
+    if (outgoing) {
+      return conversationColorDark;
     }
+    return R.color.white;
+  }
+
+  public int toQuoteBackgroundColor(@NonNull Context context, boolean outgoing) {
+    if (outgoing) {
+      int color = toConversationColor(context);
+      int alpha = isDarkTheme(context) ? (int) (0.2 * 255) : (int) (0.4 * 255);
+
+      return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+    }
+    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_black_70
+                                                                : R.color.transparent_white_aa);
+  }
+
+  public int toQuoteFooterColor(@NonNull Context context, boolean outgoing) {
+    if (outgoing) {
+      int color = toConversationColor(context);
+      int alpha = isDarkTheme(context) ? (int) (0.4 * 255) : (int) (0.6 * 255);
+
+      return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+    }
+    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_black_90
+                                                                : R.color.transparent_white_bb);
   }
 
   public boolean represents(Context context, int colorValue) {
@@ -97,20 +131,9 @@ public enum MaterialColor {
     return serialized;
   }
 
-  private String getAttribute(Context context, int attribute, String defaultValue) {
-    TypedValue outValue = new TypedValue();
-
-    if (context.getTheme().resolveAttribute(attribute, outValue, true)) {
-      return outValue.coerceToString().toString();
-    } else {
-      return defaultValue;
-    }
-  }
-
-
   public static MaterialColor fromSerialized(String serialized) throws UnknownColorException {
-    for (MaterialColor color : MaterialColor.values()) {
-      if (color.serialized.equals(serialized)) return color;
+    if (COLOR_MATCHES.containsKey(serialized)) {
+      return COLOR_MATCHES.get(serialized);
     }
 
     throw new UnknownColorException("Unknown color: " + serialized);

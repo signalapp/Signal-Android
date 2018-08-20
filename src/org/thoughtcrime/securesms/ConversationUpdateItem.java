@@ -8,20 +8,21 @@ import android.graphics.PorterDuffColorFilter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -37,10 +38,10 @@ public class ConversationUpdateItem extends LinearLayout
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
 
-  private MasterSecret       masterSecret;
   private Set<MessageRecord> batchSelected;
 
   private ImageView     icon;
+  private TextView      title;
   private TextView      body;
   private TextView      date;
   private Recipient     sender;
@@ -59,24 +60,32 @@ public class ConversationUpdateItem extends LinearLayout
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.icon = (ImageView)findViewById(R.id.conversation_update_icon);
-    this.body = (TextView)findViewById(R.id.conversation_update_body);
-    this.date = (TextView)findViewById(R.id.conversation_update_date);
+    this.icon  = findViewById(R.id.conversation_update_icon);
+    this.title = findViewById(R.id.conversation_update_title);
+    this.body  = findViewById(R.id.conversation_update_body);
+    this.date  = findViewById(R.id.conversation_update_date);
 
     this.setOnClickListener(new InternalClickListener(null));
   }
 
   @Override
-  public void bind(@NonNull MasterSecret masterSecret,
-                   @NonNull MessageRecord messageRecord,
-                   @NonNull Locale locale,
-                   @NonNull Set<MessageRecord> batchSelected,
-                   @NonNull Recipient conversationRecipient)
+  public void bind(@NonNull MessageRecord           messageRecord,
+                   @NonNull Optional<MessageRecord> previousMessageRecord,
+                   @NonNull Optional<MessageRecord> nextMessageRecord,
+                   @NonNull GlideRequests           glideRequests,
+                   @NonNull Locale                  locale,
+                   @NonNull Set<MessageRecord>      batchSelected,
+                   @NonNull Recipient               conversationRecipient,
+                            boolean                 pulseUpdate)
   {
-    this.masterSecret  = masterSecret;
     this.batchSelected = batchSelected;
 
     bind(messageRecord, locale);
+  }
+
+  @Override
+  public void setEventListener(@Nullable EventListener listener) {
+    // No events to report yet
   }
 
   @Override
@@ -112,27 +121,37 @@ public class ConversationUpdateItem extends LinearLayout
 
     body.setText(messageRecord.getDisplayBody());
     date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateReceived()));
+
+    title.setVisibility(GONE);
+    body.setVisibility(VISIBLE);
     date.setVisibility(View.VISIBLE);
   }
 
   private void setTimerRecord(final MessageRecord messageRecord) {
     if (messageRecord.getExpiresIn() > 0) {
-      icon.setImageResource(R.drawable.ic_timer_white_24dp);
+      icon.setImageResource(R.drawable.ic_timer);
       icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     } else {
-      icon.setImageResource(R.drawable.ic_timer_off_white_24dp);
+      icon.setImageResource(R.drawable.ic_timer_disabled);
       icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     }
 
+    title.setText(ExpirationUtil.getExpirationDisplayValue(getContext(), (int)(messageRecord.getExpiresIn() / 1000)));
     body.setText(messageRecord.getDisplayBody());
-    date.setVisibility(View.GONE);
+
+    title.setVisibility(VISIBLE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
   }
 
   private void setIdentityRecord(final MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_security_white_24dp);
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     body.setText(messageRecord.getDisplayBody());
-    date.setVisibility(View.GONE);
+
+    title.setVisibility(GONE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
   }
 
   private void setIdentityVerifyUpdate(final MessageRecord messageRecord) {
@@ -141,41 +160,47 @@ public class ConversationUpdateItem extends LinearLayout
 
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     body.setText(messageRecord.getDisplayBody());
-    date.setVisibility(View.GONE);
+
+    title.setVisibility(GONE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
   }
 
   private void setGroupRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_group_grey600_24dp);
     icon.clearColorFilter();
 
-    GroupUtil.getDescription(getContext(), messageRecord.getBody().getBody()).addListener(this);
+    GroupUtil.getDescription(getContext(), messageRecord.getBody()).addListener(this);
     body.setText(messageRecord.getDisplayBody());
 
-    date.setVisibility(View.GONE);
+    title.setVisibility(GONE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
   }
 
   private void setJoinedRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_favorite_grey600_24dp);
     icon.clearColorFilter();
     body.setText(messageRecord.getDisplayBody());
-    date.setVisibility(View.GONE);
+
+    title.setVisibility(GONE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
   }
 
   private void setEndSessionRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_refresh_white_24dp);
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     body.setText(messageRecord.getDisplayBody());
-    date.setVisibility(View.GONE);
+
+    title.setVisibility(GONE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
   }
   
   @Override
   public void onModified(Recipient recipient) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        bind(messageRecord, locale);
-      }
-    });
+    Util.runOnMain(() -> bind(messageRecord, locale));
   }
 
   @Override
@@ -194,7 +219,7 @@ public class ConversationUpdateItem extends LinearLayout
 
     @Nullable private final View.OnClickListener parent;
 
-    public InternalClickListener(@Nullable View.OnClickListener parent) {
+    InternalClickListener(@Nullable View.OnClickListener parent) {
       this.parent = parent;
     }
 

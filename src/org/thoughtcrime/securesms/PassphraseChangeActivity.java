@@ -20,7 +20,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -108,7 +108,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
       this.newPassphrase.setError(getString(R.string.PassphraseChangeActivity_enter_new_passphrase_exclamation));
       this.newPassphrase.requestFocus();
     } else {
-      new ChangePassphraseTask(this).execute(original, passphrase);
+      new ChangePassphraseTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, original, passphrase);
     }
   }
 

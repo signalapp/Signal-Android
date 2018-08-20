@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -182,7 +183,7 @@ public class XmlBackup {
       bufferedWriter.newLine();
       bufferedWriter.write(CREATED_BY);
       bufferedWriter.newLine();
-      bufferedWriter.write(String.format(OPEN_TAG_SMSES, count));
+      bufferedWriter.write(String.format(Locale.ROOT, OPEN_TAG_SMSES, count));
     }
 
     public void writeItem(XmlBackupItem item) throws IOException {

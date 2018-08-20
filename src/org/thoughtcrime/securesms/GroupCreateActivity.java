@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,18 +37,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.soundcloud.android.crop.Crop;
 
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel.RecipientsPanelChangedListener;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -57,7 +56,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
-import org.thoughtcrime.securesms.mms.RoundedCorners;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -102,7 +101,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   private ListView     lv;
   private ImageView    avatar;
   private TextView     creatingText;
-  private MasterSecret masterSecret;
   private Bitmap       avatarBmp;
 
   @NonNull private Optional<GroupData> groupToUpdate = Optional.absent();
@@ -114,9 +112,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-
+  protected void onCreate(Bundle state, boolean ready) {
     setContentView(R.layout.group_create_activity);
     //noinspection ConstantConditions
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -171,7 +167,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void addSelectedContacts(@NonNull Recipient... recipients) {
-    new AddMembersTask(this).execute(recipients);
+    new AddMembersTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipients);
   }
 
   private void addSelectedContacts(@NonNull Collection<Recipient> recipients) {
@@ -191,21 +187,15 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     recipientsEditor.setHint(R.string.recipients_panel__add_members);
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
-    avatar.setImageDrawable(ContactPhotoFactory.getDefaultGroupPhoto()
-                                               .asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
-    avatar.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Crop.pickImage(GroupCreateActivity.this);
-      }
-    });
+    avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
+    avatar.setOnClickListener(view -> Crop.pickImage(GroupCreateActivity.this));
   }
 
   private void initializeExistingGroup() {
     final Address groupAddress = getIntent().getParcelableExtra(GROUP_ADDRESS_EXTRA);
 
     if (groupAddress != null) {
-      new FillExistingGroupInfoAsyncTask(this).execute(groupAddress.toGroupString());
+      new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupAddress.toGroupString());
     }
   }
 
@@ -253,15 +243,15 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       return;
     }
     if (isSignalGroup()) {
-      new CreateSignalGroupTask(this, masterSecret, avatarBmp, getGroupName(), getAdapter().getRecipients()).execute();
+      new CreateSignalGroupTask(this, avatarBmp, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else {
-      new CreateMmsGroupTask(this, masterSecret, getAdapter().getRecipients()).execute();
+      new CreateMmsGroupTask(this, getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
   private void handleGroupUpdate() {
-    new UpdateSignalGroupTask(this, masterSecret, groupToUpdate.get().id, avatarBmp,
-                              getGroupName(), getAdapter().getRecipients()).execute();
+    new UpdateSignalGroupTask(this, groupToUpdate.get().id, avatarBmp,
+                              getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleOpenConversation(long threadId, Recipient recipient) {
@@ -305,16 +295,19 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         new Crop(data.getData()).output(outputFile).asSquare().start(this);
         break;
       case Crop.REQUEST_CROP:
-        Glide.with(this).load(Crop.getOutput(data)).asBitmap()
-             .skipMemoryCache(true)
-             .diskCacheStrategy(DiskCacheStrategy.NONE)
-             .centerCrop().override(AVATAR_SIZE, AVATAR_SIZE)
-             .into(new SimpleTarget<Bitmap>() {
-               @Override
-               public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                 setAvatar(Crop.getOutput(data), resource);
-               }
-             });
+        GlideApp.with(this)
+                .asBitmap()
+                .load(Crop.getOutput(data))
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .centerCrop()
+                .override(AVATAR_SIZE, AVATAR_SIZE)
+                .into(new SimpleTarget<Bitmap>() {
+                  @Override
+                  public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
+                    setAvatar(Crop.getOutput(data), resource);
+                  }
+                });
     }
   }
 
@@ -322,20 +315,21 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onClick(View v) {
       Intent intent = new Intent(GroupCreateActivity.this, PushContactSelectionActivity.class);
-      if (groupToUpdate.isPresent()) intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE,
-                                                     ContactSelectionListFragment.DISPLAY_MODE_PUSH_ONLY);
+      if (groupToUpdate.isPresent()) {
+        intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_PUSH);
+      } else {
+        intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_PUSH | DisplayMode.FLAG_SMS);
+      }
       startActivityForResult(intent, PICK_CONTACT);
     }
   }
 
   private static class CreateMmsGroupTask extends AsyncTask<Void,Void,GroupActionResult> {
     private final GroupCreateActivity activity;
-    private final MasterSecret        masterSecret;
     private final Set<Recipient>      members;
 
-    public CreateMmsGroupTask(GroupCreateActivity activity, MasterSecret masterSecret, Set<Recipient> members) {
+    public CreateMmsGroupTask(GroupCreateActivity activity, Set<Recipient> members) {
       this.activity     = activity;
-      this.masterSecret = masterSecret;
       this.members      = members;
     }
 
@@ -366,20 +360,18 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private abstract static class SignalGroupTask extends AsyncTask<Void,Void,Optional<GroupActionResult>> {
+
     protected GroupCreateActivity activity;
-    protected MasterSecret        masterSecret;
     protected Bitmap              avatar;
     protected Set<Recipient>      members;
     protected String              name;
 
     public SignalGroupTask(GroupCreateActivity activity,
-                           MasterSecret        masterSecret,
                            Bitmap              avatar,
                            String              name,
                            Set<Recipient>      members)
     {
       this.activity     = activity;
-      this.masterSecret = masterSecret;
       this.avatar       = avatar;
       this.name         = name;
       this.members      = members;
@@ -406,13 +398,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private static class CreateSignalGroupTask extends SignalGroupTask {
-    public CreateSignalGroupTask(GroupCreateActivity activity, MasterSecret masterSecret, Bitmap avatar, String name, Set<Recipient> members) {
-      super(activity, masterSecret, avatar, name, members);
+    public CreateSignalGroupTask(GroupCreateActivity activity, Bitmap avatar, String name, Set<Recipient> members) {
+      super(activity, avatar, name, members);
     }
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
-      return Optional.of(GroupManager.createGroup(activity, masterSecret, members, avatar, name, false));
+      return Optional.of(GroupManager.createGroup(activity, members, avatar, name, false));
     }
 
     @Override
@@ -432,18 +424,17 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   private static class UpdateSignalGroupTask extends SignalGroupTask {
     private String groupId;
 
-    public UpdateSignalGroupTask(GroupCreateActivity activity,
-                                 MasterSecret masterSecret, String groupId, Bitmap avatar, String name,
-                                 Set<Recipient> members)
+    public UpdateSignalGroupTask(GroupCreateActivity activity, String groupId,
+                                 Bitmap avatar, String name, Set<Recipient> members)
     {
-      super(activity, masterSecret, avatar, name, members);
+      super(activity, avatar, name, members);
       this.groupId = groupId;
     }
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
       try {
-        return Optional.of(GroupManager.updateGroup(activity, masterSecret, groupId, members, avatar, name));
+        return Optional.of(GroupManager.updateGroup(activity, groupId, members, avatar, name));
       } catch (InvalidNumberException e) {
         return Optional.absent();
       }
@@ -572,12 +563,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private <T> void setAvatar(T model, Bitmap bitmap) {
     avatarBmp = bitmap;
-    Glide.with(this)
-         .load(model)
-         .skipMemoryCache(true)
-         .diskCacheStrategy(DiskCacheStrategy.NONE)
-         .transform(new RoundedCorners(this, avatar.getWidth() / 2))
-         .into(avatar);
+    GlideApp.with(this)
+            .load(model)
+            .circleCrop()
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .into(avatar);
   }
 
   private static class GroupData {

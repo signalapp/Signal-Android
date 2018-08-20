@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -48,7 +48,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
   }
 
   public void display() {
-    execute();
+    executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private static class GroupMembersOnClickListener implements DialogInterface.OnClickListener {
@@ -65,9 +65,10 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
       Recipient recipient = groupMembers.get(item);
 
       if (recipient.getContactUri() != null) {
-        ContactsContract.QuickContact.showQuickContact(context, new Rect(0,0,0,0),
-                                                       recipient.getContactUri(),
-                                                       ContactsContract.QuickContact.MODE_LARGE, null);
+        Intent intent = new Intent(context, RecipientPreferenceActivity.class);
+        intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
+
+        context.startActivity(intent);
       } else {
         final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
         if (recipient.getAddress().isEmail()) {
@@ -113,7 +114,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
         } else {
           String name = recipient.toShortString();
 
-          if (recipient.getName() == null && recipient.getProfileName() != null) {
+          if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
             name += " ~" + recipient.getProfileName();
           }
 

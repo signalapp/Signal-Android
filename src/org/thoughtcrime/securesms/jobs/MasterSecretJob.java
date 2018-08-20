@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.whispersystems.jobqueue.JobParameters;
 
 public abstract class MasterSecretJob extends ContextJob {
 

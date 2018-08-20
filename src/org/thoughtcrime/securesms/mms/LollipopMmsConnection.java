@@ -21,8 +21,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.util.Log;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.concurrent.TimeoutException;
@@ -45,7 +45,7 @@ public abstract class LollipopMmsConnection extends BroadcastReceiver {
 
   @Override
   public synchronized void onReceive(Context context, Intent intent) {
-    Log.w(TAG, "onReceive()");
+    Log.i(TAG, "onReceive()");
     if (!action.equals(intent.getAction())) {
       Log.w(TAG, "received broadcast with unexpected action " + intent.getAction());
       return;

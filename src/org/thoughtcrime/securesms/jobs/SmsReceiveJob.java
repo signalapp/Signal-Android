@@ -4,19 +4,17 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.telephony.SmsMessage;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
+import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.whispersystems.jobqueue.JobParameters;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
@@ -35,6 +33,7 @@ public class SmsReceiveJob extends ContextJob {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
                                 .withWakeLock(true)
+                                .withRequirement(new SqlCipherMigrationRequirement(context))
                                 .create());
 
     this.pdus           = pdus;
@@ -45,25 +44,16 @@ public class SmsReceiveJob extends ContextJob {
   public void onAdded() {}
 
   @Override
-  public void onRun() {
-    Log.w(TAG, "onRun()");
+  public void onRun() throws MigrationPendingException {
+    Log.i(TAG, "onRun()");
     
-    Optional<IncomingTextMessage> message      = assembleMessageFragments(pdus, subscriptionId);
-    MasterSecret                  masterSecret = KeyCachingService.getMasterSecret(context);
-
-    MasterSecretUnion masterSecretUnion;
-
-    if (masterSecret == null) {
-      masterSecretUnion = new MasterSecretUnion(MasterSecretUtil.getAsymmetricMasterSecret(context, null));
-    } else {
-      masterSecretUnion = new MasterSecretUnion(masterSecret);
-    }
+    Optional<IncomingTextMessage> message = assembleMessageFragments(pdus, subscriptionId);
 
     if (message.isPresent() && !isBlocked(message.get())) {
-      Optional<InsertResult> insertResult = storeMessage(masterSecretUnion, message.get());
+      Optional<InsertResult> insertResult = storeMessage(message.get());
 
       if (insertResult.isPresent()) {
-        MessageNotifier.updateNotification(context, masterSecret, insertResult.get().getThreadId());
+        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
       }
     } else if (message.isPresent()) {
       Log.w(TAG, "*** Received blocked SMS, ignoring...");
@@ -79,7 +69,7 @@ public class SmsReceiveJob extends ContextJob {
 
   @Override
   public boolean onShouldRetry(Exception exception) {
-    return false;
+    return exception instanceof MigrationPendingException;
   }
 
   private boolean isBlocked(IncomingTextMessage message) {
@@ -91,8 +81,13 @@ public class SmsReceiveJob extends ContextJob {
     return false;
   }
 
-  private Optional<InsertResult> storeMessage(MasterSecretUnion masterSecret, IncomingTextMessage message) {
-    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
+  private Optional<InsertResult> storeMessage(IncomingTextMessage message) throws MigrationPendingException {
+    SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
+    database.ensureMigration();
+
+    if (TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
+      throw new MigrationPendingException();
+    }
 
     if (message.isSecureMessage()) {
       IncomingTextMessage    placeholder  = new IncomingTextMessage(message, "");
@@ -101,7 +96,7 @@ public class SmsReceiveJob extends ContextJob {
 
       return insertResult;
     } else {
-      return database.insertMessageInbox(masterSecret, message);
+      return database.insertMessageInbox(message);
     }
   }
 
@@ -121,5 +116,9 @@ public class SmsReceiveJob extends ContextJob {
     }
 
     return Optional.of(new IncomingTextMessage(messages));
+  }
+
+  private class MigrationPendingException extends Exception {
+
   }
 }

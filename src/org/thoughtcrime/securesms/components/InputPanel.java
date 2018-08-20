@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -23,12 +22,18 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.mms.QuoteModel;
+import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -43,12 +48,13 @@ public class InputPanel extends LinearLayout
 
   private static final int FADE_TIME = 150;
 
-  private EmojiToggle   emojiToggle;
-  private ComposeText   composeText;
-  private View          quickCameraToggle;
-  private View          quickAudioToggle;
-  private View          buttonToggle;
-  private View          recordingContainer;
+  private QuoteView   quoteView;
+  private EmojiToggle emojiToggle;
+  private ComposeText composeText;
+  private View        quickCameraToggle;
+  private View        quickAudioToggle;
+  private View        buttonToggle;
+  private View        recordingContainer;
 
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
@@ -74,15 +80,18 @@ public class InputPanel extends LinearLayout
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.emojiToggle            = ViewUtil.findById(this, R.id.emoji_toggle);
-    this.composeText            = ViewUtil.findById(this, R.id.embedded_text_editor);
-    this.quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
-    this.quickAudioToggle       = ViewUtil.findById(this, R.id.quick_audio_toggle);
-    this.buttonToggle           = ViewUtil.findById(this, R.id.button_toggle);
-    this.recordingContainer     = ViewUtil.findById(this, R.id.recording_container);
-    this.recordTime             = new RecordTime((TextView) ViewUtil.findById(this, R.id.record_time));
-    this.slideToCancel          = new SlideToCancel(ViewUtil.findById(this, R.id.slide_to_cancel));
-    this.microphoneRecorderView = ViewUtil.findById(this, R.id.recorder_view);
+    View quoteDismiss = findViewById(R.id.quote_dismiss);
+
+    this.quoteView              = findViewById(R.id.quote_view);
+    this.emojiToggle            = findViewById(R.id.emoji_toggle);
+    this.composeText            = findViewById(R.id.embedded_text_editor);
+    this.quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
+    this.quickAudioToggle       = findViewById(R.id.quick_audio_toggle);
+    this.buttonToggle           = findViewById(R.id.button_toggle);
+    this.recordingContainer     = findViewById(R.id.recording_container);
+    this.recordTime             = new RecordTime(findViewById(R.id.record_time));
+    this.slideToCancel          = new SlideToCancel(findViewById(R.id.slide_to_cancel));
+    this.microphoneRecorderView = findViewById(R.id.recorder_view);
     this.microphoneRecorderView.setListener(this);
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -97,25 +106,44 @@ public class InputPanel extends LinearLayout
       emojiToggle.setVisibility(View.VISIBLE);
       emojiVisible = true;
     }
+
+    quoteDismiss.setOnClickListener(v -> clearQuote());
   }
 
   public void setListener(final @NonNull Listener listener) {
     this.listener = listener;
 
-    emojiToggle.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        listener.onEmojiToggle();
-      }
-    });
+    emojiToggle.setOnClickListener(v -> listener.onEmojiToggle());
   }
 
   public void setMediaListener(@NonNull MediaListener listener) {
     composeText.setMediaListener(listener);
   }
 
+  public void setQuote(@NonNull GlideRequests glideRequests, long id, @NonNull Recipient author, @NonNull String body, @NonNull SlideDeck attachments) {
+    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments);
+    this.quoteView.setVisibility(View.VISIBLE);
+  }
+
+  public void clearQuote() {
+    this.quoteView.dismiss();
+  }
+
+  public Optional<QuoteModel> getQuote() {
+    if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
+      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getAddress(), quoteView.getBody(), false, quoteView.getAttachments()));
+    } else {
+      return Optional.absent();
+    }
+  }
+
   public void setEmojiDrawer(@NonNull EmojiDrawer emojiDrawer) {
     emojiToggle.attach(emojiDrawer);
+  }
+
+  @Override
+  public void onRecordPermissionRequired() {
+    if (listener != null) listener.onRecorderPermissionRequired();
   }
 
   @Override
@@ -136,7 +164,7 @@ public class InputPanel extends LinearLayout
     long elapsedTime = onRecordHideEvent(x);
 
     if (listener != null) {
-      Log.w(TAG, "Elapsed time: " + elapsedTime);
+      Log.d(TAG, "Elapsed time: " + elapsedTime);
       if (elapsedTime > 1000) {
         listener.onRecorderFinished();
       } else {
@@ -210,11 +238,13 @@ public class InputPanel extends LinearLayout
     composeText.insertEmoji(emoji);
   }
 
+
   public interface Listener {
-    public void onRecorderStarted();
-    public void onRecorderFinished();
-    public void onRecorderCanceled();
-    public void onEmojiToggle();
+    void onRecorderStarted();
+    void onRecorderFinished();
+    void onRecorderCanceled();
+    void onRecorderPermissionRequired();
+    void onEmojiToggle();
   }
 
   private static class SlideToCancel {
@@ -246,17 +276,8 @@ public class InputPanel extends LinearLayout
       animation.setDuration(MicrophoneRecorderView.ANIMATION_DURATION);
       animation.setFillBefore(true);
       animation.setFillAfter(false);
-      animation.setAnimationListener(new Animation.AnimationListener() {
-        @Override
-        public void onAnimationStart(Animation animation) {}
-        @Override
-        public void onAnimationEnd(Animation animation) {
-          future.set(null);
-        }
-        @Override
-        public void onAnimationRepeat(Animation animation) {}
-      });
 
+      slideToCancelView.postDelayed(() -> future.set(null), MicrophoneRecorderView.ANIMATION_DURATION);
       slideToCancelView.setVisibility(View.GONE);
       slideToCancelView.startAnimation(animation);
 

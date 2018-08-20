@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.database.loaders;
 
 import android.content.Context;
-import android.util.Log;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;

@@ -14,7 +14,7 @@
                       android:layout_width="match_parent"
                       android:orientation="vertical"
                       android:padding="10dp"
-                      android:background="@color/signal_primary">
+                      android:background="?attr/invite_background">
 
             <ImageView android:id="@+id/heart"
                        android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
                       android:layout_height="wrap_content"
                       android:minLines="2"
                       tools:text="Let's switch to Signal: https://sgnl.link/asdfdfsa"
-                      android:background="@drawable/sent_bubble"
+                      android:background="@drawable/message_bubble_background"
                       android:paddingTop="10dp"
                       android:paddingBottom="10dp"
                       android:paddingLeft="10dp"
@@ -90,6 +90,7 @@
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:elevation="4dp"
             android:theme="@style/TextSecure.LightActionBar" />
 
         <fragment android:id="@+id/contact_selection_list_fragment"

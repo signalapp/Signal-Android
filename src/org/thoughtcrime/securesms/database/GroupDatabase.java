@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.database;
 
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +12,9 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -30,8 +32,7 @@ import java.util.List;
 
 public class GroupDatabase extends Database {
 
-  public static final String DATABASE_UPDATE_ACTION = "org.thoughtcrime.securesms.database.GroupDatabase.UPDATE";
-
+  @SuppressWarnings("unused")
   private static final String TAG = GroupDatabase.class.getSimpleName();
 
           static final String TABLE_NAME          = "groups";
@@ -76,7 +77,7 @@ public class GroupDatabase extends Database {
 
   static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).map(columnName -> TABLE_NAME + "." + columnName).toList();
 
-  public GroupDatabase(Context context, SQLiteOpenHelper databaseHelper) {
+  public GroupDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -103,9 +104,10 @@ public class GroupDatabase extends Database {
   }
 
   public Reader getGroupsFilteredByTitle(String constraint) {
+    @SuppressLint("Recycle")
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, TITLE + " LIKE ?",
-                                                               new String[]{"%" + constraint + "%"},
-                                                               null, null, null);
+                                                                                        new String[]{"%" + constraint + "%"},
+                                                                                        null, null, null);
 
     return new Reader(cursor);
   }
@@ -131,6 +133,7 @@ public class GroupDatabase extends Database {
   }
 
   public Reader getGroups() {
+    @SuppressLint("Recycle")
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
     return new Reader(cursor);
   }
@@ -172,7 +175,13 @@ public class GroupDatabase extends Database {
     contentValues.put(MMS, GroupUtil.isMmsGroup(groupId));
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
-    Recipient.clearCache(context);
+
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+      recipient.setName(title);
+      recipient.setGroupAvatarId(avatar != null ? avatar.getId() : null);
+      recipient.setParticipants(Stream.of(members).map(memberAddress -> Recipient.from(context, memberAddress, true)).toList());
+    });
+
     notifyConversationListListeners();
   }
 
@@ -191,8 +200,11 @@ public class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Recipient.clearCache(context);
-    notifyDatabaseListeners();
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+      recipient.setName(title);
+      recipient.setGroupAvatarId(avatar != null ? avatar.getId() : null);
+    });
+
     notifyConversationListListeners();
   }
 
@@ -202,8 +214,8 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    Recipient.clearCache(context);
-    notifyDatabaseListeners();
+    Recipient recipient = Recipient.from(context, Address.fromSerialized(groupId), false);
+    recipient.setName(title);
   }
 
   public void updateAvatar(String groupId, Bitmap avatar) {
@@ -211,14 +223,20 @@ public class GroupDatabase extends Database {
   }
 
   public void updateAvatar(String groupId, byte[] avatar) {
-    ContentValues contentValues = new ContentValues();
+    long avatarId;
+
+    if (avatar != null) avatarId = Math.abs(new SecureRandom().nextLong());
+    else                avatarId = 0;
+
+
+    ContentValues contentValues = new ContentValues(2);
     contentValues.put(AVATAR, avatar);
+    contentValues.put(AVATAR_ID, avatarId);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    Recipient.clearCache(context);
-    notifyDatabaseListeners();
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
   }
 
   public void updateMembers(String groupId, List<Address> members) {
@@ -287,12 +305,7 @@ public class GroupDatabase extends Database {
     }
   }
 
-  private void notifyDatabaseListeners() {
-    Intent intent = new Intent(DATABASE_UPDATE_ACTION);
-    context.sendBroadcast(intent);
-  }
-
-  public static class Reader {
+  public static class Reader implements Closeable {
 
     private final Cursor cursor;
 
@@ -326,6 +339,7 @@ public class GroupDatabase extends Database {
                              cursor.getInt(cursor.getColumnIndexOrThrow(MMS)) == 1);
     }
 
+    @Override
     public void close() {
       if (this.cursor != null)
         this.cursor.close();

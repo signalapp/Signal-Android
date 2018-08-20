@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp"
         app:square_height="true">
 
     <ImageView android:id="@+id/thumbnail"

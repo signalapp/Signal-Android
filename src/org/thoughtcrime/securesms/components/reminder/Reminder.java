@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.reminder;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View.OnClickListener;
 
 public abstract class Reminder {
@@ -10,14 +11,14 @@ public abstract class Reminder {
   private OnClickListener okListener;
   private OnClickListener dismissListener;
 
-  public Reminder(@NonNull CharSequence title,
-                  @NonNull CharSequence text)
+  public Reminder(@Nullable CharSequence title,
+                  @NonNull  CharSequence text)
   {
-    this.title      = title;
-    this.text       = text;
+    this.title = title;
+    this.text  = text;
   }
 
-  public CharSequence getTitle() {
+  public @Nullable CharSequence getTitle() {
     return title;
   }
 
@@ -43,5 +44,14 @@ public abstract class Reminder {
 
   public boolean isDismissable() {
     return true;
+  }
+
+  public @NonNull Importance getImportance() {
+    return Importance.NORMAL;
+  }
+
+
+  public enum Importance {
+    NORMAL, ERROR
   }
 }

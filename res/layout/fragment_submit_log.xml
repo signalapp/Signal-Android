@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+~ /**
+~ * Copyright (C) 2014 Whisper Systems
+~ *
+~ * This program is free software: you can redistribute it and/or modify
+~ * it under the terms of the GNU General Public License as published by
+~ * the Free Software Foundation, either version 3 of the License, or
+~ * (at your option) any later version.
+~ *
+~ * This program is distributed in the hope that it will be useful,
+~ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+~ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+~ * GNU General Public License for more details.
+~ *
+~ * You should have received a copy of the GNU General Public License
+~ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+~ */
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView android:id="@+id/log_submit_confirmation"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="15sp"
+              android:text="@string/log_submit_activity__this_log_will_be_posted_online"
+              android:paddingLeft="15dp"
+              android:paddingRight="15dp"
+              android:paddingTop="10dp"
+              android:paddingBottom="10dp"
+              android:background="@color/logsubmit_confirmation_background"
+              android:fontFamily="sans-serif-light"
+              tools:ignore="UnusedAttribute"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/log_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+
+        <ImageButton
+            android:id="@+id/scroll_to_bottom_button"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/circle_tintable"
+            android:tint="@color/grey_600"
+            android:elevation="1dp"
+            android:alpha="0.9"
+            android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
+            android:src="@drawable/ic_scroll_down"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button android:id="@+id/cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_submit_activity__button_dont_submit"
+                android:layout_weight="1"/>
+        <Button android:id="@+id/ok"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_submit_activity__button_submit"
+                android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>

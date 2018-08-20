@@ -35,7 +35,7 @@ public class HidingLinearLayout extends LinearLayout {
     if (!isEnabled() || getVisibility() == GONE) return;
 
     AnimationSet animation = new AnimationSet(true);
-    animation.addAnimation(new ScaleAnimation(1, 0, 1, 1, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0.5f));
+    animation.addAnimation(new ScaleAnimation(1, 0.5f, 1, 1, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0.5f));
     animation.addAnimation(new AlphaAnimation(1, 0));
     animation.setDuration(100);
 
@@ -63,7 +63,7 @@ public class HidingLinearLayout extends LinearLayout {
     setVisibility(VISIBLE);
 
     AnimationSet animation = new AnimationSet(true);
-    animation.addAnimation(new ScaleAnimation(0, 1, 1, 1, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0.5f));
+    animation.addAnimation(new ScaleAnimation(0.5f, 1, 1, 1, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0.5f));
     animation.addAnimation(new AlphaAnimation(0, 1));
     animation.setDuration(100);
 

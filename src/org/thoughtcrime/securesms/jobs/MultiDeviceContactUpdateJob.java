@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
@@ -8,8 +9,8 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -18,13 +19,13 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -45,6 +46,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -54,21 +56,35 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   private static final String TAG = MultiDeviceContactUpdateJob.class.getSimpleName();
 
-  @Inject transient SignalMessageSenderFactory messageSenderFactory;
+  private static final long FULL_SYNC_TIME = TimeUnit.HOURS.toMillis(6);
+
+  @Inject transient SignalServiceMessageSender messageSender;
 
   private final @Nullable String address;
 
+  private boolean forceSync;
+
   public MultiDeviceContactUpdateJob(@NonNull Context context) {
-    this(context, null);
+    this(context, false);
+  }
+
+  public MultiDeviceContactUpdateJob(@NonNull Context context, boolean forceSync) {
+    this(context, null, forceSync);
   }
 
   public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address) {
+    this(context, address, true);
+  }
+
+  public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
     super(context, JobParameters.newBuilder()
                                 .withRequirement(new NetworkRequirement(context))
                                 .withRequirement(new MasterSecretRequirement(context))
                                 .withGroupId(MultiDeviceContactUpdateJob.class.getSimpleName())
                                 .withPersistence()
                                 .create());
+
+    this.forceSync = forceSync;
 
     if (address != null) this.address = address.serialize();
     else                 this.address = null;
@@ -90,8 +106,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private void generateSingleContactUpdate(@NonNull Address address)
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    SignalServiceMessageSender messageSender   = messageSenderFactory.create();
-    File                       contactDataFile = createTempFile("multidevice-contact-update");
+    File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
       DeviceContactsOutputStream                out             = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
@@ -104,7 +119,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                   getAvatar(recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize()),
                                   verifiedMessage,
-                                  Optional.fromNullable(recipient.getProfileKey())));
+                                  Optional.fromNullable(recipient.getProfileKey()),
+                                  recipient.isBlocked(),
+                                  recipient.getExpireMessages() > 0 ?
+                                      Optional.of(recipient.getExpireMessages()) :
+                                      Optional.absent()));
 
       out.close();
       sendUpdate(messageSender, contactDataFile, false);
@@ -119,31 +138,52 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   private void generateFullContactUpdate()
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    SignalServiceMessageSender messageSender   = messageSenderFactory.create();
-    File                       contactDataFile = createTempFile("multidevice-contact-update");
+    if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+      Log.w(TAG, "No contact permissions, skipping multi-device contact update...");
+      return;
+    }
+
+    boolean isAppVisible      = ApplicationContext.getInstance(context).isAppVisible();
+    long    timeSinceLastSync = System.currentTimeMillis() - TextSecurePreferences.getLastFullContactSyncTime(context);
+
+    Log.d(TAG, "Requesting a full contact sync. forced = " + forceSync + ", appVisible = " + isAppVisible + ", timeSinceLastSync = " + timeSinceLastSync + " ms");
+
+    if (!forceSync && !isAppVisible && timeSinceLastSync < FULL_SYNC_TIME) {
+      Log.i(TAG, "App is backgrounded and the last contact sync was too soon (" + timeSinceLastSync + " ms ago). Marking that we need a sync. Skipping multi-device contact update...");
+      TextSecurePreferences.setNeedsFullContactSync(context, true);
+      return;
+    }
+
+    TextSecurePreferences.setLastFullContactSyncTime(context, System.currentTimeMillis());
+    TextSecurePreferences.setNeedsFullContactSync(context, false);
+
+    File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
       DeviceContactsOutputStream out      = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
       Collection<ContactData>    contacts = ContactAccessor.getInstance().getContactsWithPush(context);
 
       for (ContactData contactData : contacts) {
-        Uri                                       contactUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactData.id));
-        Address                                   address    = Address.fromExternal(context, contactData.numbers.get(0).number);
-        Recipient                                 recipient  = Recipient.from(context, address, false);
-        Optional<IdentityDatabase.IdentityRecord> identity   = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
-        Optional<VerifiedMessage>                 verified   = getVerifiedMessage(recipient, identity);
-        Optional<String>                          name       = Optional.fromNullable(contactData.name);
-        Optional<String>                          color      = Optional.of(recipient.getColor().serialize());
-        Optional<byte[]>                          profileKey = Optional.fromNullable(recipient.getProfileKey());
+        Uri                                       contactUri  = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactData.id));
+        Address                                   address     = Address.fromExternal(context, contactData.numbers.get(0).number);
+        Recipient                                 recipient   = Recipient.from(context, address, false);
+        Optional<IdentityDatabase.IdentityRecord> identity    = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
+        Optional<VerifiedMessage>                 verified    = getVerifiedMessage(recipient, identity);
+        Optional<String>                          name        = Optional.fromNullable(contactData.name);
+        Optional<String>                          color       = Optional.of(recipient.getColor().serialize());
+        Optional<byte[]>                          profileKey  = Optional.fromNullable(recipient.getProfileKey());
+        boolean                                   blocked     = recipient.isBlocked();
+        Optional<Integer>                         expireTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
 
-        out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified, profileKey));
+        out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified, profileKey, blocked, expireTimer));
       }
 
       if (ProfileKeyUtil.hasProfileKey(context)) {
         out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(context),
                                     Optional.absent(), Optional.absent(),
                                     Optional.absent(), Optional.absent(),
-                                    Optional.of(ProfileKeyUtil.getProfileKey(context))));
+                                    Optional.of(ProfileKeyUtil.getProfileKey(context)),
+                                    false, Optional.absent()));
       }
 
       out.close();

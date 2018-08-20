@@ -3,18 +3,16 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -84,10 +82,6 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
     }
 
     database.setProfileAvatar(recipient, profileAvatar);
-
-    if (recipient.resolve().getContactPhoto().isGenerated()) {
-      recipient.setContactPhoto(ContactPhotoFactory.getSignalAvatarContactPhoto(context, recipient.getAddress(), recipient.getName(), context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size)));
-    }
   }
 
   @Override

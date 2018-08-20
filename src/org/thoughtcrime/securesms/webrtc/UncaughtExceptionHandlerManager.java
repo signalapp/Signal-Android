@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.webrtc;
 
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.ArrayList;
 import java.util.List;

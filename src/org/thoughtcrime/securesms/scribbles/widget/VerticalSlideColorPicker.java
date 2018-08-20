@@ -43,8 +43,12 @@ import org.thoughtcrime.securesms.R;
 
 public class VerticalSlideColorPicker extends View {
 
+  private static final float INDICATOR_TO_BAR_WIDTH_RATIO = 0.8f;
+
   private Paint  paint;
   private Paint  strokePaint;
+  private Paint  indicatorStrokePaint;
+  private Paint  indicatorFillPaint;
   private Path   path;
   private Bitmap bitmap;
   private Canvas bitmapCanvas;
@@ -59,7 +63,11 @@ public class VerticalSlideColorPicker extends View {
 
   private int     borderColor;
   private float   borderWidth;
+  private float   indicatorRadius;
   private int[]   colors;
+
+  private int     touchY;
+  private int     activeColor;
 
   public VerticalSlideColorPicker(Context context) {
     super(context);
@@ -74,9 +82,9 @@ public class VerticalSlideColorPicker extends View {
     try {
       int colorsResourceId = a.getResourceId(R.styleable.VerticalSlideColorPicker_pickerColors, R.array.scribble_colors);
 
-      colors      = a.getResources().getIntArray(colorsResourceId);
-      borderColor = a.getColor(R.styleable.VerticalSlideColorPicker_pickerBorderColor, Color.WHITE);
-      borderWidth = a.getDimension(R.styleable.VerticalSlideColorPicker_pickerBorderWidth, 10f);
+      colors          = a.getResources().getIntArray(colorsResourceId);
+      borderColor     = a.getColor(R.styleable.VerticalSlideColorPicker_pickerBorderColor, Color.WHITE);
+      borderWidth     = a.getDimension(R.styleable.VerticalSlideColorPicker_pickerBorderWidth, 10f);
 
     } finally {
       a.recycle();
@@ -110,6 +118,13 @@ public class VerticalSlideColorPicker extends View {
     strokePaint.setColor(borderColor);
     strokePaint.setAntiAlias(true);
     strokePaint.setStrokeWidth(borderWidth);
+
+    indicatorStrokePaint = new Paint(strokePaint);
+    indicatorStrokePaint.setStrokeWidth(borderWidth / 2);
+
+    indicatorFillPaint = new Paint();
+    indicatorFillPaint.setStyle(Paint.Style.FILL);
+    indicatorFillPaint.setAntiAlias(true);
   }
 
   @Override
@@ -126,19 +141,26 @@ public class VerticalSlideColorPicker extends View {
     bitmapCanvas.drawPath(path, paint);
 
     canvas.drawBitmap(bitmap, 0, 0, null);
+
+    touchY = Math.max((int) colorPickerBody.top, touchY);
+
+    indicatorFillPaint.setColor(activeColor);
+    canvas.drawCircle(centerX, touchY, indicatorRadius, indicatorFillPaint);
+    canvas.drawCircle(centerX, touchY, indicatorRadius, indicatorStrokePaint);
   }
 
   @Override
   public boolean onTouchEvent(MotionEvent event) {
+    touchY = (int) Math.min(event.getY(), colorPickerBody.bottom);
+    touchY = (int) Math.max(colorPickerBody.top, touchY);
 
-    float yPos = Math.min(event.getY(), colorPickerBody.bottom);
-    yPos = Math.max(colorPickerBody.top, yPos);
-
-    int selectedColor = bitmap.getPixel(viewWidth/2, (int) yPos);
+    activeColor = bitmap.getPixel(viewWidth/2, touchY);
 
     if (onColorChangeListener != null) {
-      onColorChangeListener.onColorChange(selectedColor);
+      onColorChangeListener.onColorChange(activeColor);
     }
+
+    invalidate();
 
     return true;
   }
@@ -147,13 +169,16 @@ public class VerticalSlideColorPicker extends View {
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
 
-    viewWidth = w;
+    viewWidth  = w;
     viewHeight = h;
 
-    centerX           = viewWidth / 2;
-    colorPickerRadius = (viewWidth / 2) - borderWidth;
+    int barWidth = (int) (viewWidth * INDICATOR_TO_BAR_WIDTH_RATIO);
 
-    colorPickerBody = new RectF(centerX - colorPickerRadius, borderWidth + colorPickerRadius, centerX + colorPickerRadius, viewHeight - (borderWidth + colorPickerRadius));
+    centerX           = viewWidth / 2;
+    indicatorRadius   = (viewWidth / 2) - borderWidth;
+    colorPickerRadius = (barWidth / 2) - borderWidth;
+
+    colorPickerBody   = new RectF(centerX - colorPickerRadius, borderWidth + colorPickerRadius, centerX + colorPickerRadius, viewHeight - (borderWidth + colorPickerRadius));
 
     LinearGradient gradient = new LinearGradient(0, colorPickerBody.top, 0, colorPickerBody.bottom, colors, null, Shader.TileMode.CLAMP);
     paint.setShader(gradient);
@@ -164,8 +189,6 @@ public class VerticalSlideColorPicker extends View {
 
     bitmap       = Bitmap.createBitmap(viewWidth, viewHeight, Bitmap.Config.ARGB_8888);
     bitmapCanvas = new Canvas(bitmap);
-
-    resetToDefault();
   }
 
   public void setBorderColor(int borderColor) {
@@ -183,12 +206,22 @@ public class VerticalSlideColorPicker extends View {
     invalidate();
   }
 
-  public void resetToDefault() {
+  public void setActiveColor(int color) {
+    activeColor = color;
+
+    if (colorPickerBody != null) {
+      touchY = (int) colorPickerBody.top;
+    }
+
     if (onColorChangeListener != null) {
-      onColorChangeListener.onColorChange(Color.RED);
+      onColorChangeListener.onColorChange(color);
     }
 
     invalidate();
+  }
+
+  public int getActiveColor() {
+    return activeColor;
   }
 
   public void setOnColorChangeListener(OnColorChangeListener onColorChangeListener) {
@@ -196,7 +229,6 @@ public class VerticalSlideColorPicker extends View {
   }
 
   public interface OnColorChangeListener {
-
     void onColorChange(int selectedColor);
   }
 }

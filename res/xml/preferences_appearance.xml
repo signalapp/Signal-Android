@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <org.thoughtcrime.securesms.preferences.SignalListPreference
+    <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
             android:key="pref_theme"
             android:title="@string/preferences__theme"
             android:entries="@array/pref_theme_entries"
             android:entryValues="@array/pref_theme_values"
             android:defaultValue="light">
-    </org.thoughtcrime.securesms.preferences.SignalListPreference>
+    </org.thoughtcrime.securesms.preferences.widgets.SignalListPreference>
 
-    <org.thoughtcrime.securesms.preferences.SignalListPreference
+    <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
             android:key="pref_language"
             android:title="@string/preferences__language"
             android:entries="@array/language_entries"

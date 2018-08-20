@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.util;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
+
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,11 +29,6 @@ public class ShortCodeUtil {
       Phonenumber.PhoneNumber localNumberObject = util.parse(localNumber, null);
       String                  localCountryCode  = util.getRegionCodeForNumber(localNumberObject);
       String                  bareNumber        = number.replaceAll("[^0-9+]", "");
-
-      // libphonenumber doesn't seem to be correct for Germany and Finland
-      if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode) || "SK".equals(localCountryCode))) {
-        return true;
-      }
 
       // libphonenumber seems incorrect for Russia and a few other countries with 4 digit short codes.
       if (bareNumber.length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {

@@ -9,6 +9,7 @@
                       android:layout_height="wrap_content"
                       android:clickable="false"
                       android:focusable="false"
+                      android:gravity="center_vertical"
                       android:orientation="horizontal">
 
             <org.thoughtcrime.securesms.components.AnimatingToggle
@@ -32,16 +33,23 @@
                         app:matProg_spinSpeed="0.333"
                         tools:visibility="gone"/>
 
-                <FrameLayout android:id="@+id/document_background"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_gravity="center_vertical"
-                             android:gravity="center_vertical"
-                             android:background="@drawable/ic_circle_fill_white_48dp"
-                             android:visibility="visible"
-                             android:clickable="false"
-                             android:focusable="false"
-                             tools:backgroundTint="@color/blue_400">
+                <FrameLayout
+                        android:id="@+id/icon_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="-4dp"
+                        android:layout_marginStart="-4dp"
+                        android:gravity="center"
+                        android:visibility="visible"
+                        android:clickable="false"
+                        android:focusable="false">
+
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="38dp"
+                        android:layout_height="50dp"
+                        android:src="?attachment_document_icon_large"/>
 
                     <TextView android:id="@+id/document"
                               android:layout_width="wrap_content"
@@ -50,16 +58,14 @@
                               android:gravity="center"
                               android:clickable="false"
                               android:visibility="visible"
-                              android:background="@drawable/ic_insert_drive_file_white_24dp"
                               android:textAlignment="center"
                               android:scaleType="centerInside"
+                              style="@style/Signal.Text.Caption"
                               android:textAllCaps="true"
-                              android:textSize="8sp"
-                              android:paddingTop="8dp"
-                              android:typeface="monospace"
+                              android:textSize="10sp"
+                              android:textColor="@color/core_black"
                               tools:visibility="visible"
-                              tools:text="PDF"
-                              tools:textColor="@color/blue_400"/>
+                              tools:text="PDF" />
 
                 </FrameLayout>
 
@@ -75,18 +81,18 @@
 
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 
-            <LinearLayout android:orientation="vertical"
-                          android:layout_marginLeft="7dp"
-                          android:layout_gravity="center_vertical"
-                          android:layout_width="match_parent"
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="2dp"
+                          android:layout_marginStart="2dp"
+                          android:orientation="vertical"
                           android:focusable="false"
-                          android:clickable="false"
-                          android:layout_height="wrap_content">
+                          android:clickable="false">
 
                 <TextView android:id="@+id/file_name"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:textStyle="bold"
+                          style="@style/Signal.Text.Body"
                           android:singleLine="true"
                           android:maxLines="1"
                           android:clickable="false"
@@ -96,8 +102,7 @@
                 <TextView android:id="@+id/file_size"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_marginTop="5dp"
-                          android:textSize="12sp"
+                          style="@style/Signal.Text.Caption"
                           android:clickable="false"
                           tools:text="24kb"/>
             </LinearLayout>

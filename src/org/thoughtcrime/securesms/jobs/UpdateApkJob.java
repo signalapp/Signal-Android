@@ -10,18 +10,18 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -52,7 +52,7 @@ public class UpdateApkJob extends ContextJob {
   public void onRun() throws IOException, PackageManager.NameNotFoundException {
     if (!BuildConfig.PLAY_STORE_DISABLED) return;
 
-    Log.w(TAG, "Checking for APK update...");
+    Log.i(TAG, "Checking for APK update...");
 
     OkHttpClient client  = new OkHttpClient();
     Request      request = new Request.Builder().url(String.format("%s/latest.json", BuildConfig.NOPLAY_UPDATE_URL)).build();
@@ -66,18 +66,18 @@ public class UpdateApkJob extends ContextJob {
     UpdateDescriptor updateDescriptor = JsonUtils.fromJson(response.body().string(), UpdateDescriptor.class);
     byte[]           digest           = Hex.fromStringCondensed(updateDescriptor.getDigest());
 
-    Log.w(TAG, "Got descriptor: " + updateDescriptor);
+    Log.i(TAG, "Got descriptor: " + updateDescriptor);
 
     if (updateDescriptor.getVersionCode() > getVersionCode()) {
       DownloadStatus downloadStatus = getDownloadStatus(updateDescriptor.getUrl(), digest);
 
-      Log.w(TAG, "Download status: "  + downloadStatus.getStatus());
+      Log.i(TAG, "Download status: "  + downloadStatus.getStatus());
 
       if (downloadStatus.getStatus() == DownloadStatus.Status.COMPLETE) {
-        Log.w(TAG, "Download status complete, notifying...");
+        Log.i(TAG, "Download status complete, notifying...");
         handleDownloadNotify(downloadStatus.getDownloadId());
       } else if (downloadStatus.getStatus() == DownloadStatus.Status.MISSING) {
-        Log.w(TAG, "Download status missing, starting download...");
+        Log.i(TAG, "Download status missing, starting download...");
         handleDownloadStart(updateDescriptor.getUrl(), updateDescriptor.getVersionName(), digest);
       }
     }

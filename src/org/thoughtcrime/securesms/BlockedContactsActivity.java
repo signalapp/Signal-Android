@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -16,9 +17,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.loaders.BlockedContactsLoader;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.preferences.BlockedContactListItem;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -37,10 +39,10 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
 
   @Override
-  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+  public void onCreate(Bundle bundle, boolean ready) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.BlockedContactsActivity_blocked_contacts);
-    initFragment(android.R.id.content, new BlockedContactsFragment(), masterSecret);
+    initFragment(android.R.id.content, new BlockedContactsFragment());
   }
 
   @Override
@@ -72,7 +74,7 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onCreate(Bundle bundle) {
       super.onCreate(bundle);
-      setListAdapter(new BlockedContactAdapter(getActivity(), null));
+      setListAdapter(new BlockedContactAdapter(getActivity(), GlideApp.with(this), null));
       getLoaderManager().initLoader(0, null, this);
     }
 
@@ -112,8 +114,11 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
     private static class BlockedContactAdapter extends CursorAdapter {
 
-      public BlockedContactAdapter(Context context, Cursor c) {
+      private final GlideRequests glideRequests;
+
+      BlockedContactAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests, @Nullable Cursor c) {
         super(context, c);
+        this.glideRequests = glideRequests;
       }
 
       @Override
@@ -127,7 +132,7 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
         String    address   = cursor.getString(1);
         Recipient recipient = Recipient.from(context, Address.fromSerialized(address), true);
 
-        ((BlockedContactListItem) view).set(recipient);
+        ((BlockedContactListItem) view).set(glideRequests, recipient);
       }
     }
 

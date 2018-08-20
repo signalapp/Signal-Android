@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.content.AsyncTaskLoader;
@@ -9,10 +10,13 @@ import android.support.v4.content.AsyncTaskLoader;
  * to get the benefits of reloading when content has changed.
  */
 public abstract class AbstractCursorLoader extends AsyncTaskLoader<Cursor> {
+
+  @SuppressWarnings("unused")
   private static final String TAG = AbstractCursorLoader.class.getSimpleName();
 
-  protected final ForceLoadContentObserver observer;
+  @SuppressLint("StaticFieldLeak")
   protected final Context                  context;
+  private   final ForceLoadContentObserver observer;
   protected       Cursor                   cursor;
 
   public AbstractCursorLoader(Context context) {

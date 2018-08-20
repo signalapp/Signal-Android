@@ -1,5 +1,6 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2013 - 2017 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,22 +17,34 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
+import android.app.NotificationChannel;
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.text.TextUtils;
 
+import com.annimon.stream.function.Consumer;
+
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.GroupRecordContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -48,9 +61,8 @@ import java.util.concurrent.ExecutionException;
 
 public class Recipient implements RecipientModifiedListener {
 
-  public static final  String            RECIPIENT_CLEAR_ACTION = "org.thoughtcrime.securesms.database.RecipientFactory.CLEAR";
-  private static final String            TAG                    = Recipient.class.getSimpleName();
-  private static final RecipientProvider provider               = new RecipientProvider();
+  private static final String            TAG      = Recipient.class.getSimpleName();
+  private static final RecipientProvider provider = new RecipientProvider();
 
   private final Set<RecipientModifiedListener> listeners = Collections.newSetFromMap(new WeakHashMap<RecipientModifiedListener, Boolean>());
 
@@ -59,18 +71,20 @@ public class Recipient implements RecipientModifiedListener {
 
   private @Nullable String  name;
   private @Nullable String  customLabel;
-  private           boolean stale;
   private           boolean resolving;
 
-  private           ContactPhoto      contactPhoto;
-  private           Uri               contactUri;
-  private @Nullable Uri               ringtone              = null;
-  private           long              mutedUntil            = 0;
-  private           boolean           blocked               = false;
-  private           VibrateState      vibrate               = VibrateState.DEFAULT;
-  private           int               expireMessages        = 0;
-  private           Optional<Integer> defaultSubscriptionId = Optional.absent();
-  private @NonNull  RegisteredState   registered            = RegisteredState.UNKNOWN;
+  private @Nullable Uri                  systemContactPhoto;
+  private @Nullable Long                 groupAvatarId;
+  private           Uri                  contactUri;
+  private @Nullable Uri                  messageRingtone       = null;
+  private @Nullable Uri                  callRingtone          = null;
+  private           long                 mutedUntil            = 0;
+  private           boolean              blocked               = false;
+  private           VibrateState         messageVibrate        = VibrateState.DEFAULT;
+  private           VibrateState         callVibrate           = VibrateState.DEFAULT;
+  private           int                  expireMessages        = 0;
+  private           Optional<Integer>    defaultSubscriptionId = Optional.absent();
+  private @NonNull  RegisteredState      registered            = RegisteredState.UNKNOWN;
 
   private @Nullable MaterialColor  color;
   private           boolean        seenInviteReminder;
@@ -78,22 +92,24 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable String         profileName;
   private @Nullable String         profileAvatar;
   private           boolean        profileSharing;
-  private           boolean        isSystemContact;
+  private           String         notificationChannel;
 
 
+  @SuppressWarnings("ConstantConditions")
   public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, boolean asynchronous) {
     if (address == null) throw new AssertionError(address);
     return provider.getRecipient(context, address, Optional.absent(), Optional.absent(), asynchronous);
   }
 
+  @SuppressWarnings("ConstantConditions")
   public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, @NonNull Optional<RecipientSettings> settings, @NonNull Optional<GroupDatabase.GroupRecord> groupRecord, boolean asynchronous) {
     if (address == null) throw new AssertionError(address);
     return provider.getRecipient(context, address, settings, groupRecord, asynchronous);
   }
 
-  public static void clearCache(Context context) {
-    provider.clearCache();
-    context.sendBroadcast(new Intent(RECIPIENT_CLEAR_ACTION));
+  public static void applyCached(@NonNull Address address, Consumer<Recipient> consumer) {
+    Optional<Recipient> recipient = provider.getCached(address);
+    if (recipient.isPresent()) consumer.accept(recipient.get());
   }
 
   Recipient(@NonNull  Address address,
@@ -101,51 +117,56 @@ public class Recipient implements RecipientModifiedListener {
             @NonNull  Optional<RecipientDetails> details,
             @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
-    this.address      = address;
-    this.contactPhoto = ContactPhotoFactory.getLoadingPhoto();
-    this.color        = null;
-    this.resolving    = true;
+    this.address              = address;
+    this.color                = null;
+    this.resolving            = true;
 
     if (stale != null) {
       this.name                  = stale.name;
       this.contactUri            = stale.contactUri;
-      this.contactPhoto          = stale.contactPhoto;
+      this.systemContactPhoto    = stale.systemContactPhoto;
+      this.groupAvatarId         = stale.groupAvatarId;
       this.color                 = stale.color;
       this.customLabel           = stale.customLabel;
-      this.ringtone              = stale.ringtone;
+      this.messageRingtone       = stale.messageRingtone;
+      this.callRingtone          = stale.callRingtone;
       this.mutedUntil            = stale.mutedUntil;
       this.blocked               = stale.blocked;
-      this.vibrate               = stale.vibrate;
+      this.messageVibrate        = stale.messageVibrate;
+      this.callVibrate           = stale.callVibrate;
       this.expireMessages        = stale.expireMessages;
       this.seenInviteReminder    = stale.seenInviteReminder;
       this.defaultSubscriptionId = stale.defaultSubscriptionId;
       this.registered            = stale.registered;
+      this.notificationChannel   = stale.notificationChannel;
       this.profileKey            = stale.profileKey;
       this.profileName           = stale.profileName;
       this.profileAvatar         = stale.profileAvatar;
       this.profileSharing        = stale.profileSharing;
-      this.isSystemContact       = stale.isSystemContact;
       this.participants.clear();
       this.participants.addAll(stale.participants);
     }
 
     if (details.isPresent()) {
       this.name                  = details.get().name;
-      this.contactPhoto          = details.get().avatar;
+      this.systemContactPhoto    = details.get().systemContactPhoto;
+      this.groupAvatarId         = details.get().groupAvatarId;
       this.color                 = details.get().color;
-      this.ringtone              = details.get().ringtone;
+      this.messageRingtone       = details.get().messageRingtone;
+      this.callRingtone          = details.get().callRingtone;
       this.mutedUntil            = details.get().mutedUntil;
       this.blocked               = details.get().blocked;
-      this.vibrate               = details.get().vibrateState;
+      this.messageVibrate        = details.get().messageVibrateState;
+      this.callVibrate           = details.get().callVibrateState;
       this.expireMessages        = details.get().expireMessages;
       this.seenInviteReminder    = details.get().seenInviteReminder;
       this.defaultSubscriptionId = details.get().defaultSubscriptionId;
       this.registered            = details.get().registered;
+      this.notificationChannel   = details.get().notificationChannel;
       this.profileKey            = details.get().profileKey;
       this.profileName           = details.get().profileName;
       this.profileAvatar         = details.get().profileAvatar;
       this.profileSharing        = details.get().profileSharing;
-      this.isSystemContact       = details.get().systemContact;
       this.participants.clear();
       this.participants.addAll(details.get().participants);
     }
@@ -157,23 +178,26 @@ public class Recipient implements RecipientModifiedListener {
           synchronized (Recipient.this) {
             Recipient.this.name                  = result.name;
             Recipient.this.contactUri            = result.contactUri;
-            Recipient.this.contactPhoto          = result.avatar;
+            Recipient.this.systemContactPhoto    = result.systemContactPhoto;
+            Recipient.this.groupAvatarId         = result.groupAvatarId;
             Recipient.this.color                 = result.color;
             Recipient.this.customLabel           = result.customLabel;
-            Recipient.this.ringtone              = result.ringtone;
+            Recipient.this.messageRingtone       = result.messageRingtone;
+            Recipient.this.callRingtone          = result.callRingtone;
             Recipient.this.mutedUntil            = result.mutedUntil;
             Recipient.this.blocked               = result.blocked;
-            Recipient.this.vibrate               = result.vibrateState;
+            Recipient.this.messageVibrate        = result.messageVibrateState;
+            Recipient.this.callVibrate           = result.callVibrateState;
             Recipient.this.expireMessages        = result.expireMessages;
             Recipient.this.seenInviteReminder    = result.seenInviteReminder;
             Recipient.this.defaultSubscriptionId = result.defaultSubscriptionId;
             Recipient.this.registered            = result.registered;
+            Recipient.this.notificationChannel   = result.notificationChannel;
             Recipient.this.profileKey            = result.profileKey;
             Recipient.this.profileName           = result.profileName;
             Recipient.this.profileAvatar         = result.profileAvatar;
             Recipient.this.profileSharing        = result.profileSharing;
             Recipient.this.profileName           = result.profileName;
-            Recipient.this.isSystemContact       = result.systemContact;
 
             Recipient.this.participants.clear();
             Recipient.this.participants.addAll(result.participants);
@@ -201,28 +225,44 @@ public class Recipient implements RecipientModifiedListener {
     this.address               = address;
     this.contactUri            = details.contactUri;
     this.name                  = details.name;
-    this.contactPhoto          = details.avatar;
+    this.systemContactPhoto    = details.systemContactPhoto;
+    this.groupAvatarId         = details.groupAvatarId;
     this.color                 = details.color;
     this.customLabel           = details.customLabel;
-    this.ringtone              = details.ringtone;
+    this.messageRingtone       = details.messageRingtone;
+    this.callRingtone          = details.callRingtone;
     this.mutedUntil            = details.mutedUntil;
     this.blocked               = details.blocked;
-    this.vibrate               = details.vibrateState;
+    this.messageVibrate        = details.messageVibrateState;
+    this.callVibrate           = details.callVibrateState;
     this.expireMessages        = details.expireMessages;
     this.seenInviteReminder    = details.seenInviteReminder;
     this.defaultSubscriptionId = details.defaultSubscriptionId;
     this.registered            = details.registered;
+    this.notificationChannel   = details.notificationChannel;
     this.profileKey            = details.profileKey;
     this.profileName           = details.profileName;
     this.profileAvatar         = details.profileAvatar;
     this.profileSharing        = details.profileSharing;
-    this.isSystemContact       = details.systemContact;
     this.participants.addAll(details.participants);
     this.resolving    = false;
   }
 
   public synchronized @Nullable Uri getContactUri() {
     return this.contactUri;
+  }
+
+  public void setContactUri(@Nullable Uri contactUri) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(contactUri, this.contactUri)) {
+        this.contactUri = contactUri;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
   }
 
   public synchronized @Nullable String getName() {
@@ -239,8 +279,21 @@ public class Recipient implements RecipientModifiedListener {
     return this.name;
   }
 
+  public void setName(@Nullable String name) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(this.name, name)) {
+        this.name = name;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
+  }
+
   public synchronized @NonNull MaterialColor getColor() {
-    if      (isGroupRecipient()) return MaterialColor.GROUP;
+    if      (isGroupRecipient()) return MaterialColor.BLUE;
     else if (color != null)      return color;
     else if (name != null)       return ContactColors.generateFor(name);
     else                         return ContactColors.UNKNOWN_COLOR;
@@ -258,8 +311,21 @@ public class Recipient implements RecipientModifiedListener {
     return address;
   }
 
-  public @Nullable String getCustomLabel() {
+  public synchronized @Nullable String getCustomLabel() {
     return customLabel;
+  }
+
+  public void setCustomLabel(@Nullable String customLabel) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(customLabel, this.customLabel)) {
+        this.customLabel = customLabel;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
   }
 
   public synchronized Optional<Integer> getDefaultSubscriptionId() {
@@ -322,8 +388,17 @@ public class Recipient implements RecipientModifiedListener {
     return address.isGroup() && !address.isMmsGroup();
   }
 
-  public @NonNull List<Recipient> getParticipants() {
-    return participants;
+  public @NonNull synchronized List<Recipient> getParticipants() {
+    return new LinkedList<>(participants);
+  }
+
+  public void setParticipants(@NonNull List<Recipient> participants) {
+    synchronized (this) {
+      this.participants.clear();
+      this.participants.addAll(participants);
+    }
+
+    notifyListeners();
   }
 
   public synchronized void addListener(RecipientModifiedListener listener) {
@@ -345,25 +420,77 @@ public class Recipient implements RecipientModifiedListener {
     return (getName() == null ? address.serialize() : getName());
   }
 
-  public synchronized @NonNull ContactPhoto getContactPhoto() {
-    return contactPhoto;
+  public synchronized @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
+    return getFallbackContactPhoto().asDrawable(context, getColor().toConversationColor(context), inverted);
   }
 
-  public void setContactPhoto(@NonNull ContactPhoto contactPhoto) {
+  public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
+    if      (isResolving())            return new TransparentContactPhoto();
+    else if (isGroupRecipient())       return new ResourceContactPhoto(R.drawable.ic_group_white_24dp, R.drawable.ic_group_large);
+    else if (!TextUtils.isEmpty(name)) return new GeneratedContactPhoto(name);
+    else                               return new GeneratedContactPhoto("#");
+  }
+
+  public synchronized @Nullable ContactPhoto getContactPhoto() {
+    if      (isGroupRecipient() && groupAvatarId != null) return new GroupRecordContactPhoto(address, groupAvatarId);
+    else if (systemContactPhoto != null)                  return new SystemContactPhoto(address, systemContactPhoto, 0);
+    else if (profileAvatar != null)                       return new ProfileContactPhoto(address, profileAvatar);
+    else                                                  return null;
+  }
+
+  public void setSystemContactPhoto(@Nullable Uri systemContactPhoto) {
+    boolean notify = false;
+
     synchronized (this) {
-      this.contactPhoto = contactPhoto;
+      if (!Util.equals(systemContactPhoto, this.systemContactPhoto)) {
+        this.systemContactPhoto = systemContactPhoto;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
+  }
+
+  public void setGroupAvatarId(@Nullable Long groupAvatarId) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(this.groupAvatarId, groupAvatarId)) {
+        this.groupAvatarId = groupAvatarId;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
+  }
+
+  public synchronized @Nullable Uri getMessageRingtone() {
+    if (messageRingtone != null && messageRingtone.getScheme() != null && messageRingtone.getScheme().startsWith("file")) {
+      return null;
+    }
+
+    return messageRingtone;
+  }
+
+  public void setMessageRingtone(@Nullable Uri ringtone) {
+    synchronized (this) {
+      this.messageRingtone = ringtone;
     }
 
     notifyListeners();
   }
 
-  public synchronized @Nullable Uri getRingtone() {
-    return ringtone;
+  public synchronized @Nullable Uri getCallRingtone() {
+    if (callRingtone != null && callRingtone.getScheme() != null && callRingtone.getScheme().startsWith("file")) {
+      return null;
+    }
+
+    return callRingtone;
   }
 
-  public void setRingtone(Uri ringtone) {
+  public void setCallRingtone(@Nullable Uri ringtone) {
     synchronized (this) {
-      this.ringtone = ringtone;
+      this.callRingtone = ringtone;
     }
 
     notifyListeners();
@@ -393,13 +520,25 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
-  public synchronized VibrateState getVibrate() {
-    return vibrate;
+  public synchronized VibrateState getMessageVibrate() {
+    return messageVibrate;
   }
 
-  public void setVibrate(VibrateState vibrate) {
+  public void setMessageVibrate(VibrateState vibrate) {
     synchronized (this) {
-      this.vibrate = vibrate;
+      this.messageVibrate = vibrate;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized  VibrateState getCallVibrate() {
+    return callVibrate;
+  }
+
+  public void setCallVibrate(VibrateState vibrate) {
+    synchronized (this) {
+      this.callVibrate = vibrate;
     }
 
     notifyListeners();
@@ -437,11 +576,40 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public void setRegistered(@NonNull RegisteredState value) {
+    boolean notify = false;
+
     synchronized (this) {
-      this.registered = value;
+      if (this.registered != value) {
+        this.registered = value;
+        notify = true;
+      }
     }
 
-    notifyListeners();
+    if (notify) notifyListeners();
+  }
+
+  public synchronized @NonNull String getNotificationChannel(@NonNull Context context) {
+    if (!NotificationChannels.supported() || notificationChannel == null) {
+      return NotificationChannels.getMessagesChannel(context);
+    }
+    return notificationChannel;
+  }
+
+  public void setNotificationChannel(@Nullable String value) {
+    boolean notify = false;
+
+    synchronized (this) {
+      if (!Util.equals(this.notificationChannel, value)) {
+        this.notificationChannel = value;
+        notify = true;
+      }
+    }
+
+    if (notify) notifyListeners();
+  }
+
+  public synchronized boolean hasCustomNotifications() {
+    return NotificationChannels.supported() && notificationChannel != null;
   }
 
   public synchronized @Nullable byte[] getProfileKey() {
@@ -457,16 +625,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized boolean isSystemContact() {
-    return isSystemContact;
-  }
-
-  public void setSystemDisplayName(@Nullable String displayName) {
-    synchronized (this) {
-      if (displayName == null) this.name = profileName;
-      else                     this.name = displayName;
-    }
-
-    notifyListeners();
+    return contactUri != null;
   }
 
   public synchronized Recipient resolve() {
@@ -506,15 +665,7 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
-  boolean isStale() {
-    return stale;
-  }
-
-  void setStale() {
-    this.stale = true;
-  }
-
-  synchronized boolean isResolving() {
+  public synchronized boolean isResolving() {
     return resolving;
   }
 

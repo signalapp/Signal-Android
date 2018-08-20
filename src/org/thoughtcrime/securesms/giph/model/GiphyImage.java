@@ -12,16 +12,36 @@ public class GiphyImage {
     return images.downsized.url;
   }
 
+  public long getGifSize() {
+    return images.downsized.size;
+  }
+
   public String getGifMmsUrl() {
     return images.fixed_height_downsampled.url;
+  }
+
+  public long getMmsGifSize() {
+    return images.fixed_height_downsampled.size;
   }
 
   public float getGifAspectRatio() {
     return (float)images.downsized.width / (float)images.downsized.height;
   }
 
+  public int getGifWidth() {
+    return images.downsized.width;
+  }
+
+  public int getGifHeight() {
+    return images.downsized.height;
+  }
+
   public String getStillUrl() {
     return images.downsized_still.url;
+  }
+
+  public long getStillSize() {
+    return images.downsized_still.size;
   }
 
   public static class ImageTypes {

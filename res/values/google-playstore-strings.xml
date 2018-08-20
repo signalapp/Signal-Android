@@ -9,7 +9,7 @@
 	later without the need to renumber existing strings.
 
 	How these strings are translated:
-	see https://github.com/WhisperSystems/TextSecure/wiki/Translation-workflow
+	see https://github.com/signalapp/TextSecure/wiki/Translation-workflow
 
 -->
 
@@ -26,7 +26,7 @@
 	<string name="PlaystoreDescription_para_0700">* Fast. The TextSecure protocol is designed to operate in the most constrained environment possible. Using TextSecure, messages are instantly delivered to friends.</string>
 
 	<string name="PlaystoreDescription_para_0800">Please file any bugs, issues, or feature requests at:</string>
-	<string name="PlaystoreDescription_para_0900">https://github.com/whispersystems/textsecure/issues</string>
+	<string name="PlaystoreDescription_para_0900">https://github.com/signalapp/textsecure/issues</string>
 
 	<string name="PlaystoreDescription_para_1000">More details:</string>
 	<string name="PlaystoreDescription_para_1100">http://www.whispersystems.org/#encrypted_texts</string>

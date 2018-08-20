@@ -8,7 +8,7 @@ import android.hardware.Camera.Size;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.Surface;
 
 import java.util.Collections;
@@ -30,7 +30,7 @@ public class CameraUtils {
     final int    targetHeight = displayOrientation % 180 == 90 ? width  : height;
     final double targetRatio  = (double) targetWidth / targetHeight;
 
-    Log.w(TAG, String.format("getPreferredPreviewSize(%d, %d, %d) -> target %dx%d, AR %.02f",
+    Log.d(TAG, String.format("getPreferredPreviewSize(%d, %d, %d) -> target %dx%d, AR %.02f",
                              displayOrientation, width, height,
                              targetWidth, targetHeight, targetRatio));
 
@@ -39,14 +39,14 @@ public class CameraUtils {
     List<Size> bigEnough = new LinkedList<>();
 
     for (Size size : sizes) {
-      Log.w(TAG, String.format("  %dx%d (%.02f)", size.width, size.height, (float)size.width / size.height));
+      Log.d(TAG, String.format("  %dx%d (%.02f)", size.width, size.height, (float)size.width / size.height));
 
       if (size.height == size.width * targetRatio && size.height >= targetHeight && size.width >= targetWidth) {
         ideals.add(size);
-        Log.w(TAG, "    (ideal ratio)");
+        Log.d(TAG, "    (ideal ratio)");
       } else if (size.width >= targetWidth && size.height >= targetHeight) {
         bigEnough.add(size);
-        Log.w(TAG, "    (good size, suboptimal ratio)");
+        Log.d(TAG, "    (good size, suboptimal ratio)");
       }
     }
 

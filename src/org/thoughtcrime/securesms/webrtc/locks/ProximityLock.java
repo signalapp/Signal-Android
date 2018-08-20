@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.webrtc.locks;
 
 import android.os.Build;
 import android.os.PowerManager;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.whispersystems.libsignal.util.guava.Optional;
 

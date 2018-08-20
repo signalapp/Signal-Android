@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -74,7 +72,8 @@ public abstract class FastCursorRecyclerViewAdapter<VH extends RecyclerView.View
 
   @Override
   public void onBindFastAccessItemViewHolder(VH viewHolder, int position) {
-    onBindItemViewHolder(viewHolder, fastRecords.get(getCalculatedPosition(position)));
+    int calculatedPosition = getCalculatedPosition(position);
+    onBindItemViewHolder(viewHolder, fastRecords.get(calculatedPosition));
   }
 
   @Override

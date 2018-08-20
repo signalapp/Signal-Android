@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.telephony.TelephonyManager;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 
@@ -26,7 +26,7 @@ public class IncomingPstnCallReceiver extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    Log.w(TAG, "Checking incoming call...");
+    Log.i(TAG, "Checking incoming call...");
 
     if (intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER) == null) {
       Log.w(TAG, "Telephony event does not contain number...");
@@ -34,7 +34,7 @@ public class IncomingPstnCallReceiver extends BroadcastReceiver {
     }
 
     if (!intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
-      Log.w(TAG, "Telephony event is not state rining...");
+      Log.w(TAG, "Telephony event is not state ringing...");
       return;
     }
 
@@ -54,7 +54,7 @@ public class IncomingPstnCallReceiver extends BroadcastReceiver {
 
     protected void onReceiveResult(int resultCode, Bundle resultData) {
       if (resultCode == 1) {
-        Log.w(TAG, "Attempting to deny incoming PSTN call.");
+        Log.i(TAG, "Attempting to deny incoming PSTN call.");
 
         TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
 
@@ -64,7 +64,7 @@ public class IncomingPstnCallReceiver extends BroadcastReceiver {
           Object telephonyService = getTelephony.invoke(tm);
           Method endCall = telephonyService.getClass().getDeclaredMethod("endCall");
           endCall.invoke(telephonyService);
-          Log.w(TAG, "Denied Incoming Call.");
+          Log.i(TAG, "Denied Incoming Call.");
         } catch (NoSuchMethodException e) {
           Log.w(TAG, "Unable to access ITelephony API", e);
         } catch (IllegalAccessException e) {

@@ -17,8 +17,7 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import android.util.Log;
-
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -30,6 +29,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class PublicKey {
+
+  private static final String TAG = PublicKey.class.getSimpleName();
 
   public static final int KEY_SIZE = 3 + ECPublicKey.KEY_SIZE;
 
@@ -49,7 +50,7 @@ public class PublicKey {
   }
 
   public PublicKey(byte[] bytes, int offset) throws InvalidKeyException {
-    Log.w("PublicKey", "PublicKey Length: " + (bytes.length - offset));
+    Log.i(TAG, "PublicKey Length: " + (bytes.length - offset));
 
     if ((bytes.length - offset) < KEY_SIZE)
       throw new InvalidKeyException("Provided bytes are too short.");
@@ -96,7 +97,7 @@ public class PublicKey {
     byte[] keyIdBytes      = Conversions.mediumToByteArray(id);
     byte[] serializedPoint = publicKey.serialize();
 
-    Log.w("PublicKey", "Serializing public key point: " + Hex.toString(serializedPoint));
+    Log.i(TAG, "Serializing public key point: " + Hex.toString(serializedPoint));
 
     return Util.combine(keyIdBytes, serializedPoint);
   }

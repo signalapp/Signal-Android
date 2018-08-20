@@ -32,6 +32,8 @@ public class EmojiTree {
 
   private final EmojiTreeNode root = new EmojiTreeNode();
 
+  private static final char TERMINATOR = '\ufe0f';
+
   public void add(String emojiEncoding, EmojiDrawInfo emoji) {
     EmojiTreeNode tree = root;
 
@@ -63,7 +65,13 @@ public class EmojiTree {
       tree = tree.getChild(character);
     }
 
-    return tree.isEndOfEmoji() ? Matches.EXACTLY : Matches.POSSIBLY;
+    if (tree.isEndOfEmoji()) {
+      return Matches.EXACTLY;
+    } else if (sequence.charAt(endPosition-1) != TERMINATOR && tree.hasChild(TERMINATOR) && tree.getChild(TERMINATOR).isEndOfEmoji()) {
+      return Matches.EXACTLY;
+    } else {
+      return Matches.POSSIBLY;
+    }
   }
 
   public @Nullable EmojiDrawInfo getEmoji(CharSequence unicode, int startPosition, int endPostiion) {
@@ -79,7 +87,9 @@ public class EmojiTree {
       tree = tree.getChild(character);
     }
 
-    return tree.getEmoji();
+    if      (tree.getEmoji() != null)                                                  return tree.getEmoji();
+    else if (unicode.charAt(endPostiion-1) != TERMINATOR && tree.hasChild(TERMINATOR)) return tree.getChild(TERMINATOR).getEmoji();
+    else    return null;
   }
 
 

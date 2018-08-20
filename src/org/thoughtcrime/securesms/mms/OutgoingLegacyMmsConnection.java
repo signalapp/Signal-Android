@@ -22,7 +22,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.SendConf;
@@ -78,7 +78,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
       MmsRadio radio = MmsRadio.getInstance(context);
 
       if (isDirectConnect()) {
-        Log.w(TAG, "Sending MMS directly without radio change...");
+        Log.i(TAG, "Sending MMS directly without radio change...");
         try {
           return send(pduBytes, false, false);
         } catch (IOException e) {
@@ -86,7 +86,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
         }
       }
 
-      Log.w(TAG, "Sending MMS with radio change and proxy...");
+      Log.i(TAG, "Sending MMS with radio change and proxy...");
       radio.connect();
 
       try {
@@ -96,7 +96,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
           Log.w(TAG, e);
         }
 
-        Log.w(TAG, "Sending MMS with radio change and without proxy...");
+        Log.i(TAG, "Sending MMS with radio change and without proxy...");
 
         try {
           return send(pduBytes, true, false);
@@ -126,13 +126,13 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
                              ? apn.getProxy()
                              : Uri.parse(apn.getMmsc()).getHost();
 
-    Log.w(TAG, "Sending MMS of length: " + pduBytes.length
+    Log.i(TAG, "Sending MMS of length: " + pduBytes.length
                + (useMmsRadio ? ", using mms radio" : "")
                + (useProxy ? ", using proxy" : ""));
 
     try {
       if (checkRouteToHost(context, targetHost, useMmsRadio)) {
-        Log.w(TAG, "got successful route to host " + targetHost);
+        Log.i(TAG, "got successful route to host " + targetHost);
         byte[] response = execute(constructRequest(pduBytes, useProxy));
         if (response != null) return response;
       }

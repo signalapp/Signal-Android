@@ -2,16 +2,16 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.content.Context;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule.SignalMessageSenderFactory;
+import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
@@ -19,7 +19,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.ByteArrayInputStream;
@@ -33,7 +32,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceProfileKeyUpdateJob.class.getSimpleName();
 
-  @Inject SignalMessageSenderFactory messageSender;
+  @Inject transient SignalServiceMessageSender messageSender;
 
   public MultiDeviceProfileKeyUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()
@@ -55,11 +54,11 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
     DeviceContactsOutputStream out        = new DeviceContactsOutputStream(baos);
 
     out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(getContext()),
-                                Optional.<String>absent(),
-                                Optional.<SignalServiceAttachmentStream>absent(),
-                                Optional.<String>absent(),
-                                Optional.<VerifiedMessage>absent(),
-                                profileKey));
+                                Optional.absent(),
+                                Optional.absent(),
+                                Optional.absent(),
+                                Optional.absent(),
+                                profileKey, false, Optional.absent()));
 
     out.close();
 
@@ -71,7 +70,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
 
     SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
-    messageSender.create().sendMessage(syncMessage);
+    messageSender.sendMessage(syncMessage);
   }
 
   @Override

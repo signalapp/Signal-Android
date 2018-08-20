@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -26,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class AttachmentTypeSelector extends PopupWindow {
@@ -40,16 +42,19 @@ public class AttachmentTypeSelector extends PopupWindow {
 
   private static final int ANIMATION_DURATION = 300;
 
+  @SuppressWarnings("unused")
   private static final String TAG = AttachmentTypeSelector.class.getSimpleName();
 
-  private final @NonNull ImageView   imageButton;
-  private final @NonNull ImageView   audioButton;
-  private final @NonNull ImageView   documentButton;
-  private final @NonNull ImageView   contactButton;
-  private final @NonNull ImageView   cameraButton;
-  private final @NonNull ImageView   locationButton;
-  private final @NonNull ImageView   gifButton;
-  private final @NonNull ImageView   closeButton;
+  private final @NonNull LoaderManager       loaderManager;
+  private final @NonNull RecentPhotoViewRail recentRail;
+  private final @NonNull ImageView           imageButton;
+  private final @NonNull ImageView           audioButton;
+  private final @NonNull ImageView           documentButton;
+  private final @NonNull ImageView           contactButton;
+  private final @NonNull ImageView           cameraButton;
+  private final @NonNull ImageView           locationButton;
+  private final @NonNull ImageView           gifButton;
+  private final @NonNull ImageView           closeButton;
 
   private @Nullable View                      currentAnchor;
   private @Nullable AttachmentClickedListener listener;
@@ -57,11 +62,12 @@ public class AttachmentTypeSelector extends PopupWindow {
   public AttachmentTypeSelector(@NonNull Context context, @NonNull LoaderManager loaderManager, @Nullable AttachmentClickedListener listener) {
     super(context);
 
-    LayoutInflater      inflater     = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    LinearLayout        layout       = (LinearLayout) inflater.inflate(R.layout.attachment_type_selector, null, true);
-    RecentPhotoViewRail recentPhotos = ViewUtil.findById(layout, R.id.recent_photos);
+    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    LinearLayout   layout   = (LinearLayout) inflater.inflate(R.layout.attachment_type_selector, null, true);
 
     this.listener       = listener;
+    this.loaderManager  = loaderManager;
+    this.recentRail     = ViewUtil.findById(layout, R.id.recent_photos);
     this.imageButton    = ViewUtil.findById(layout, R.id.gallery_button);
     this.audioButton    = ViewUtil.findById(layout, R.id.audio_button);
     this.documentButton = ViewUtil.findById(layout, R.id.document_button);
@@ -79,7 +85,7 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.locationButton.setOnClickListener(new PropagatingClickListener(ADD_LOCATION));
     this.gifButton.setOnClickListener(new PropagatingClickListener(ADD_GIF));
     this.closeButton.setOnClickListener(new CloseClickListener());
-    recentPhotos.setListener(new RecentPhotoSelectedListener());
+    this.recentRail.setListener(new RecentPhotoSelectedListener());
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
       ViewUtil.findById(layout, R.id.location_linear_layout).setVisibility(View.INVISIBLE);
@@ -94,10 +100,17 @@ public class AttachmentTypeSelector extends PopupWindow {
     setFocusable(true);
     setTouchable(true);
 
-    loaderManager.initLoader(1, null, recentPhotos);
+    loaderManager.initLoader(1, null, recentRail);
   }
 
   public void show(@NonNull Activity activity, final @NonNull View anchor) {
+    if (Permissions.hasAll(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+      recentRail.setVisibility(View.VISIBLE);
+      loaderManager.restartLoader(1, null, recentRail);
+    } else {
+      recentRail.setVisibility(View.GONE);
+    }
+
     this.currentAnchor = anchor;
 
     showAtLocation(anchor, Gravity.BOTTOM, 0, 0);

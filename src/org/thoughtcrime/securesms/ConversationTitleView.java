@@ -1,24 +1,36 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
+import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class ConversationTitleView extends LinearLayout {
+public class ConversationTitleView extends RelativeLayout {
 
+  @SuppressWarnings("unused")
   private static final String TAG = ConversationTitleView.class.getSimpleName();
 
-  private TextView  title;
-  private TextView  subtitle;
-  private ImageView verified;
+  private View            content;
+  private ImageView       back;
+  private AvatarImageView avatar;
+  private TextView        title;
+  private TextView        subtitle;
+  private ImageView       verified;
 
   public ConversationTitleView(Context context) {
     this(context, null);
@@ -33,15 +45,18 @@ public class ConversationTitleView extends LinearLayout {
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.title    = (TextView)  findViewById(R.id.title);
-    this.subtitle = (TextView)  findViewById(R.id.subtitle);
-    this.verified = (ImageView) findViewById(R.id.verified_indicator);
+    this.back     = ViewUtil.findById(this, R.id.up_button);
+    this.content  = ViewUtil.findById(this, R.id.content);
+    this.title    = ViewUtil.findById(this, R.id.title);
+    this.subtitle = ViewUtil.findById(this, R.id.subtitle);
+    this.verified = ViewUtil.findById(this, R.id.verified_indicator);
+    this.avatar   = ViewUtil.findById(this, R.id.contact_photo_image);
 
     ViewUtil.setTextViewGravityStart(this.title, getContext());
     ViewUtil.setTextViewGravityStart(this.subtitle, getContext());
   }
 
-  public void setTitle(@Nullable Recipient recipient) {
+  public void setTitle(@NonNull GlideRequests glideRequests, @Nullable Recipient recipient) {
     if      (recipient == null) setComposeTitle();
     else                        setRecipientTitle(recipient);
 
@@ -52,10 +67,30 @@ public class ConversationTitleView extends LinearLayout {
     } else {
       title.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
     }
+
+    if (recipient != null) {
+      this.avatar.setAvatar(glideRequests, recipient, false);
+    }
   }
 
   public void setVerified(boolean verified) {
     this.verified.setVisibility(verified ? View.VISIBLE : View.GONE);
+  }
+
+  @Override
+  public void setOnClickListener(@Nullable OnClickListener listener) {
+    this.content.setOnClickListener(listener);
+    this.avatar.setOnClickListener(listener);
+  }
+
+  @Override
+  public void setOnLongClickListener(@Nullable OnLongClickListener listener) {
+    this.content.setOnLongClickListener(listener);
+    this.avatar.setOnLongClickListener(listener);
+  }
+
+  public void setOnBackClickedListener(@Nullable OnClickListener listener) {
+    this.back.setOnClickListener(listener);
   }
 
   private void setComposeTitle() {
@@ -71,11 +106,18 @@ public class ConversationTitleView extends LinearLayout {
   }
 
   private void setGroupRecipientTitle(Recipient recipient) {
+    String localNumber = TextSecurePreferences.getLocalNumber(getContext());
+
     this.title.setText(recipient.getName());
-    this.subtitle.setText(null);
-    this.subtitle.setVisibility(View.GONE);
+    this.subtitle.setText(Stream.of(recipient.getParticipants())
+                                .filter(r -> !r.getAddress().serialize().equals(localNumber))
+                                .map(Recipient::toShortString)
+                                .collect(Collectors.joining(", ")));
+
+    this.subtitle.setVisibility(View.VISIBLE);
   }
 
+  @SuppressLint("SetTextI18n")
   private void setNonContactRecipientTitle(Recipient recipient) {
     this.title.setText(recipient.getAddress().serialize());
 

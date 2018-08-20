@@ -8,8 +8,8 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Locale;
@@ -39,7 +39,7 @@ public class ConversationListItemAction extends LinearLayout implements Bindable
   }
 
   @Override
-  public void bind(@NonNull MasterSecret masterSecret, @NonNull ThreadRecord thread, @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode) {
+  public void bind(@NonNull ThreadRecord thread, @NonNull GlideRequests glideRequests, @NonNull Locale locale, @NonNull Set<Long> selectedThreads, boolean batchMode) {
     this.description.setText(getContext().getString(R.string.ConversationListItemAction_archived_conversations_d, thread.getCount()));
   }
 

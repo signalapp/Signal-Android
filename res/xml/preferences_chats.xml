@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools">
     <PreferenceCategory android:key="media_download" android:title="@string/preferences_chats__media_auto_download">
-        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+        <MultiSelectListPreference
                 android:title="@string/preferences_chats__when_using_mobile_data"
                 android:key="pref_media_download_mobile"
                 android:defaultValue="@array/pref_media_download_mobile_data_default"
@@ -10,7 +11,7 @@
                 android:entries="@array/pref_media_download_values"
                 android:entryValues="@array/pref_media_download_entries" />
 
-        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+        <MultiSelectListPreference
                 android:title="@string/preferences_chats__when_using_wifi"
                 android:key="pref_media_download_wifi"
                 android:defaultValue="@array/pref_media_download_wifi_default"
@@ -18,7 +19,7 @@
                 android:entries="@array/pref_media_download_values"
                 android:entryValues="@array/pref_media_download_entries" />
 
-        <com.h6ah4i.android.compat.preference.MultiSelectListPreferenceCompat
+        <MultiSelectListPreference
                 android:title="@string/preferences_chats__when_roaming"
                 android:key="pref_media_download_roaming"
                 android:defaultValue="@array/pref_media_download_roaming_default"
@@ -30,13 +31,13 @@
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:title="@string/preferences_chats__chats">
-        <org.thoughtcrime.securesms.preferences.SignalListPreference
+        <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
                 android:key="pref_message_body_text_size"
                 android:title="@string/preferences_chats__message_text_size"
                 android:entries="@array/pref_message_font_size_entries"
                 android:entryValues="@array/pref_message_font_size_values"
                 android:defaultValue="16">
-        </org.thoughtcrime.securesms.preferences.SignalListPreference>
+        </org.thoughtcrime.securesms.preferences.widgets.SignalListPreference>
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="true"
@@ -77,4 +78,23 @@
                     android:summary="@string/preferences__scan_through_all_conversations_and_enforce_conversation_length_limits"
                     android:dependency="pref_trim_threads" />
     </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:key="backup_category" android:title="@string/preferences_chats__backups">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                android:defaultValue="false"
+                android:key="pref_backup_enabled"
+                android:title="@string/preferences_chats__chat_backups"
+                android:summary="@string/preferences_chats__backup_chats_to_external_storage" />
+
+        <org.thoughtcrime.securesms.preferences.widgets.ProgressPreference
+                android:key="pref_backup_create"
+                android:title="@string/preferences_chats__create_backup"
+                android:persistent="false"
+                android:dependency="pref_backup_enabled"
+                tools:summary="Last backup: 3 days ago"/>
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

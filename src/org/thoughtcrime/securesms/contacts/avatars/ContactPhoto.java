@@ -1,13 +1,23 @@
 package org.thoughtcrime.securesms.contacts.avatars;
 
+
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-public interface ContactPhoto {
 
-  public Drawable asDrawable(Context context, int color);
-  public Drawable asDrawable(Context context, int color, boolean inverted);
-  public Drawable asCallCard(Context context);
-  public boolean  isGenerated();
+import com.bumptech.glide.load.Key;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public interface ContactPhoto extends Key {
+
+  InputStream openInputStream(Context context) throws IOException;
+
+  @Nullable Uri getUri(@NonNull Context context);
+
+  boolean isProfilePhoto();
 
 }

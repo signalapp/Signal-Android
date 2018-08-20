@@ -26,9 +26,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.telephony.SmsMessage;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -141,20 +142,20 @@ public class SmsListener extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    Log.w("SMSListener", "Got SMS broadcast...");
+    Log.i("SMSListener", "Got SMS broadcast...");
 
     String messageBody = getSmsMessageBodyFromIntent(intent);
     if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, messageBody)) {
       Log.w("SmsListener", "Got challenge!");
-      Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
-      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(messageBody));
+      Intent challengeIntent = new Intent(RegistrationActivity.CHALLENGE_EVENT);
+      challengeIntent.putExtra(RegistrationActivity.CHALLENGE_EXTRA, parseChallenge(messageBody));
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
     } else if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
                (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
     {
-      Log.w("SmsListener", "Constructing SmsReceiveJob...");
+      Log.i("SmsListener", "Constructing SmsReceiveJob...");
       Object[] pdus           = (Object[]) intent.getExtras().get("pdus");
       int      subscriptionId = intent.getExtras().getInt("subscription", -1);
 

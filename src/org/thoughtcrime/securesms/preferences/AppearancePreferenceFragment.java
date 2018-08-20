@@ -2,7 +2,8 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.ListPreference;
+import android.support.annotation.Nullable;
+import android.support.v7.preference.ListPreference;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
@@ -15,12 +16,16 @@ public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment 
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    addPreferencesFromResource(R.xml.preferences_appearance);
 
     this.findPreference(TextSecurePreferences.THEME_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.LANGUAGE_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
     initializeListSummary((ListPreference)findPreference(TextSecurePreferences.THEME_PREF));
     initializeListSummary((ListPreference)findPreference(TextSecurePreferences.LANGUAGE_PREF));
+  }
+
+  @Override
+  public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+    addPreferencesFromResource(R.xml.preferences_appearance);
   }
 
   @Override

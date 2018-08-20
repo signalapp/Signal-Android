@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -69,7 +68,7 @@ public class UnverifiedBannerView extends LinearLayout {
     this.container.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Log.w(TAG, "onClick()");
+        Log.i(TAG, "onClick()");
         clickListener.onClicked(unverifiedIdentities);
       }
     });

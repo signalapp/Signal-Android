@@ -3,12 +3,13 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -183,7 +184,7 @@ public class DeviceListFragment extends ListFragment
         super.onPostExecute(result);
         getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   @Override

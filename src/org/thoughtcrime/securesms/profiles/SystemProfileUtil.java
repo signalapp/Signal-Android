@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.profiles;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -12,9 +13,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
-
-import com.bumptech.glide.load.data.StreamLocalUriFetcher;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -26,6 +25,7 @@ public class SystemProfileUtil {
 
   private static final String TAG = SystemProfileUtil.class.getSimpleName();
 
+  @SuppressLint("StaticFieldLeak")
   public  static ListenableFuture<byte[]> getSystemProfileAvatar(final @NonNull Context context, MediaConstraints mediaConstraints) {
     SettableFuture<byte[]> future = new SettableFuture<>();
 
@@ -39,12 +39,15 @@ public class SystemProfileUtil {
 
               if (!TextUtils.isEmpty(photoUri)) {
                 try {
-                  return BitmapUtil.createScaledBytes(context, Uri.parse(photoUri), mediaConstraints);
+                  BitmapUtil.ScaleResult result = BitmapUtil.createScaledBytes(context, Uri.parse(photoUri), mediaConstraints);
+                  return result.getBitmap();
                 } catch (BitmapDecodingException e) {
                   Log.w(TAG, e);
                 }
               }
             }
+          } catch (SecurityException se) {
+            Log.w(TAG, se);
           }
         }
 
@@ -56,11 +59,12 @@ public class SystemProfileUtil {
         future.set(result);
       }
 
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     return future;
   }
 
+  @SuppressLint("StaticFieldLeak")
   public static ListenableFuture<String> getSystemProfileName(final @NonNull Context context) {
     SettableFuture<String> future = new SettableFuture<>();
 
@@ -74,6 +78,8 @@ public class SystemProfileUtil {
             if (cursor != null && cursor.moveToNext()) {
               name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Profile.DISPLAY_NAME));
             }
+          } catch (SecurityException se) {
+            Log.w(TAG, se);
           }
         }
 
@@ -101,7 +107,7 @@ public class SystemProfileUtil {
       protected void onPostExecute(@Nullable String result) {
         future.set(result);
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     return future;
   }

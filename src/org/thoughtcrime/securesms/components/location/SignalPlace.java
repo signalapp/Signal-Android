@@ -1,22 +1,23 @@
 package org.thoughtcrime.securesms.components.location;
 
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.model.LatLng;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
 import java.io.IOException;
 
 public class SignalPlace {
 
-  private static final String URL = "https://maps.google.com/maps?q=%s,%s";
+  private static final String URL = "https://maps.google.com/maps";
   private static final String TAG = SignalPlace.class.getSimpleName();
 
   @JsonProperty
@@ -57,7 +58,10 @@ public class SignalPlace {
       description += (address + "\n");
     }
 
-    description += String.format(URL, latitude, longitude);
+    description += Uri.parse(URL)
+                      .buildUpon()
+                      .appendQueryParameter("q", String.format("%s,%s", latitude, longitude))
+                      .build().toString();
 
     return description;
   }

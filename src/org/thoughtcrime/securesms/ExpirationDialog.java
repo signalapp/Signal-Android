@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -35,12 +34,9 @@ public class ExpirationDialog extends AlertDialog {
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(context.getString(R.string.ExpirationDialog_disappearing_messages));
     builder.setView(view);
-    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        int selected = ((NumberPickerView)view.findViewById(R.id.expiration_number_picker)).getValue();
-        listener.onClick(context.getResources().getIntArray(R.array.expiration_times)[selected]);
-      }
+    builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+      int selected = ((NumberPickerView)view.findViewById(R.id.expiration_number_picker)).getValue();
+      listener.onClick(context.getResources().getIntArray(R.array.expiration_times)[selected]);
     });
     builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
@@ -49,8 +45,8 @@ public class ExpirationDialog extends AlertDialog {
   private static View createNumberPickerView(final Context context, final int currentExpiration) {
     final LayoutInflater   inflater                = LayoutInflater.from(context);
     final View             view                    = inflater.inflate(R.layout.expiration_dialog, null);
-    final NumberPickerView numberPickerView        = (NumberPickerView)view.findViewById(R.id.expiration_number_picker);
-    final TextView         textView                = (TextView)view.findViewById(R.id.expiration_details);
+    final NumberPickerView numberPickerView        = view.findViewById(R.id.expiration_number_picker);
+    final TextView         textView                = view.findViewById(R.id.expiration_details);
     final int[]            expirationTimes         = context.getResources().getIntArray(R.array.expiration_times);
     final String[]         expirationDisplayValues = new String[expirationTimes.length];
 
@@ -69,14 +65,11 @@ public class ExpirationDialog extends AlertDialog {
     numberPickerView.setMinValue(0);
     numberPickerView.setMaxValue(expirationTimes.length-1);
 
-    NumberPickerView.OnValueChangeListener listener = new NumberPickerView.OnValueChangeListener() {
-      @Override
-      public void onValueChange(NumberPickerView picker, int oldVal, int newVal) {
-        if (newVal == 0) {
-          textView.setText(R.string.ExpirationDialog_your_messages_will_not_expire);
-        } else {
-          textView.setText(context.getString(R.string.ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen, picker.getDisplayedValues()[newVal]));
-        }
+    NumberPickerView.OnValueChangeListener listener = (picker, oldVal, newVal) -> {
+      if (newVal == 0) {
+        textView.setText(R.string.ExpirationDialog_your_messages_will_not_expire);
+      } else {
+        textView.setText(context.getString(R.string.ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen, picker.getDisplayedValues()[newVal]));
       }
     };
 

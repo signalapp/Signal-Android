@@ -6,6 +6,7 @@
       <item>English</item>
       <item>Arabic العربية</item>
       <item>Bulgarian български</item>
+      <item>Burmese ဗမာစကား</item>
       <item>Català</item>
       <item>Čeština</item>
       <item>Chinese (Simplified) 中文 (简体)</item>
@@ -16,14 +17,18 @@
       <item>Español</item>
       <item>Euskara</item>
       <item>Français</item>
+      <item>Gaeilge</item>
+      <item>Galego</item>
       <item>Greek ελληνικά</item>
       <item>Hebrew עברית</item>
       <item>Hrvatski</item>
       <item>Indonesia</item>
       <item>Italiano</item>
       <item>Japanese 日本語</item>
-      <item>Kannada ಕನ್ನಡ</item>
+      <item>Khmer ភាសាខ្មែរ</item>
       <item>Korean 한국어</item>
+      <item>Kurdí</item>
+      <item>Lietuvių</item>
       <item>Luganda</item>
       <item>Magyar</item>
       <item>Macedonian македонски јазик</item>
@@ -42,7 +47,10 @@
       <item>Slovenský</item>
       <item>Suomi</item>
       <item>Svenska</item>
+      <item>Telugu తెలుగు</item>
+      <item>Thai ภาษาไทย</item>
       <item>Türkçe</item>
+      <item>Ukrainian Українська</item>
       <item>Vietnamese Tiếng Việt</item>
   </string-array>
 
@@ -51,6 +59,7 @@
       <item>en</item>
       <item>ar</item>
       <item>bg</item>
+      <item>my</item>
       <item>ca</item>
       <item>cs</item>
       <item>zh_CN</item>
@@ -61,14 +70,18 @@
       <item>es</item>
       <item>eu</item>
       <item>fr</item>
+      <item>ga</item>
+      <item>gl</item>
       <item>el</item>
       <item>iw</item>
       <item>hr</item>
       <item>in</item>
       <item>it</item>
       <item>ja</item>
-      <item>kn_IN</item>
+      <item>km_KH</item>
       <item>ko</item>
+      <item>ku</item>
+      <item>lt</item>
       <item>lg</item>
       <item>hu</item>
       <item>mk</item>
@@ -87,16 +100,14 @@
       <item>sk</item>
       <item>fi</item>
       <item>sv</item>
+      <item>te</item>
+      <item>th</item>
       <item>tr</item>
+      <item>uk</item>
       <item>vi</item>
   </string-array>
 
-  <string-array name="minutes_hours">
-  	<item>@string/preferences__minutes</item>
-  	<item>@string/preferences__hours</item>
-  </string-array>
-
-  <string-array name="pref_theme_entries">
+    <string-array name="pref_theme_entries">
       <item>@string/preferences__light_theme</item>
       <item>@string/preferences__dark_theme</item>
   </string-array>
@@ -133,14 +144,12 @@
     <item>@string/preferences__fast</item>
     <item>@string/preferences__normal</item>
     <item>@string/preferences__slow</item>
-    <item>@string/preferences__custom</item>
   </string-array>
 
   <string-array name="pref_led_blink_pattern_values" translatable="false">
     <item>300,300</item>
     <item>500,2000</item>
     <item>3000,3000</item>
-    <item>custom</item>
   </string-array>
 
   <string-array name="pref_repeat_alerts_entries">
@@ -234,28 +243,6 @@
 
     <!-- RedPhone -->
 
-    <array name="incoming_call_widget_targets">
-        <item>@drawable/redphone_ic_lockscreen_answer</item>
-        <!--         <item>@drawable/ic_lockscreen_send_sms</item> -->
-        <item>@null</item>
-        <item>@drawable/redphone_ic_lockscreen_decline</item>
-        <item>@null</item>
-    </array>
-
-    <array name="incoming_call_widget_target_descriptions">
-        <item>"Answer"</item>
-        <item>"Send SMS"</item>
-        <item>"Decline"</item>
-        <item>@null</item>"
-    </array>
-
-    <array name="incoming_call_widget_direction_descriptions">
-        <item>"Right"</item>
-        <item>"Up"</item>
-        <item>"Left"</item>
-        <item>@null</item>
-    </array>
-
     <integer-array name="expiration_times">
         <item>0</item>
         <item>5</item>
@@ -272,11 +259,15 @@
     </integer-array>
 
     <array name="scribble_colors">
-        <item>#000000</item>
+        <item>#ffffff</item>
         <item>#ff0000</item>
-        <item>#ffff00</item>
-        <item>#00ffff</item>
         <item>#ff00ff</item>
+        <item>#0000ff</item>
+        <item>#00ffff</item>
+        <item>#00ff00</item>
+        <item>#ffff00</item>
+        <item>#ff5500</item>
+        <item>#000000</item>
     </array>
 
     <string-array name="pref_message_font_size_entries">

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/editable_contact_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:text="Peter Parker"/>
+
+        <ImageButton
+            android:id="@+id/editable_contact_name_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_create_white_24dp"
+            android:tint="@color/signal_primary"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey_400"/>
+    
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/editable_contact_fields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

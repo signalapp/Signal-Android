@@ -9,9 +9,11 @@
 
     <ImageView
             android:id="@+id/menu_badge_icon"
-            android:src="@drawable/ic_timer_white_24dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_timer"
+            android:scaleType="fitCenter"/>
 
     <TextView
             android:id="@+id/expiration_badge"

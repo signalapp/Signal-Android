@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:background="#FF2090ea">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:id="@+id/blurb"
+                  android:textSize="@dimen/onboarding_title_size"
+                  android:textIsSelectable="false"
+                  android:gravity="center_horizontal"
+                  android:paddingLeft="20dp"
+                  android:paddingRight="20dp"
+                  android:fontFamily="sans-serif-light"
+                  android:text="@string/experience_upgrade_preference_fragment__read_receipts_are_here"
+                  android:layout_marginTop="20dp"
+                  android:textColor="@android:color/white" />
+
+        <FrameLayout android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+                     android:layout_marginBottom="20dp"
+                     android:layout_marginTop="20dp">
+
+            <ImageView android:layout_width="170dp"
+                       android:layout_height="170dp"
+                       android:src="@drawable/circle_tintable"
+                       android:scaleType="fitCenter"/>
+
+            <ImageView android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:layout_gravity="center"
+                       app:srcCompat="@drawable/read_receipt_vector"/>
+        </FrameLayout>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/subblurb"
+                  android:textSize="@dimen/onboarding_subtitle_size"
+                  android:textIsSelectable="false"
+                  android:gravity="center_horizontal"
+                  android:paddingLeft="20dp"
+                  android:paddingRight="20dp"
+                  android:fontFamily="sans-serif-light"
+                  android:text="@string/experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read"
+                  android:textColor="@android:color/white" />
+
+            <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/preference"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:enabled="true"
+                    android:checked="true"
+                    android:text="@string/experience_upgrade_preference_fragment__enable_read_receipts"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/white"
+                    app:theme="@style/Color1SwitchStyle"/>
+
+</LinearLayout>

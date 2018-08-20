@@ -22,7 +22,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -123,7 +123,7 @@ public class ApnDatabase {
 
     try {
       if (apn != null) {
-        Log.w(TAG, "Querying table for MCC+MNC " + mccmnc + " and APN name " + apn);
+        Log.d(TAG, "Querying table for MCC+MNC " + mccmnc + " and APN name " + apn);
         cursor = db.query(TABLE_NAME, null,
                           BASE_SELECTION + " AND " + APN_COLUMN + " = ?",
                           new String[] {mccmnc, apn},
@@ -132,7 +132,7 @@ public class ApnDatabase {
 
       if (cursor == null || !cursor.moveToFirst()) {
         if (cursor != null) cursor.close();
-        Log.w(TAG, "Querying table for MCC+MNC " + mccmnc + " without APN name");
+        Log.d(TAG, "Querying table for MCC+MNC " + mccmnc + " without APN name");
         cursor = db.query(TABLE_NAME, null,
                           BASE_SELECTION,
                           new String[] {mccmnc},
@@ -145,7 +145,7 @@ public class ApnDatabase {
                              cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)),
                              cursor.getString(cursor.getColumnIndexOrThrow(USER_COLUMN)),
                              cursor.getString(cursor.getColumnIndexOrThrow(PASSWORD_COLUMN)));
-        Log.w(TAG, "Returning preferred APN " + params);
+        Log.d(TAG, "Returning preferred APN " + params);
         return params;
       }
 

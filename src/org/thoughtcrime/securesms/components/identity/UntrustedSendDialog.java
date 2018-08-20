@@ -57,7 +57,7 @@ public class UntrustedSendDialog extends AlertDialog.Builder implements DialogIn
       protected void onPostExecute(Void result) {
         resendListener.onResendMessage();
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   public interface ResendListener {

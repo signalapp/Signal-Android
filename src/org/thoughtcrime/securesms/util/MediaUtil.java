@@ -7,19 +7,21 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
+import android.util.Pair;
 import android.webkit.MimeTypeMap;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -27,6 +29,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
@@ -41,43 +44,8 @@ public class MediaUtil {
   public static final String AUDIO_AAC         = "audio/aac";
   public static final String AUDIO_UNSPECIFIED = "audio/*";
   public static final String VIDEO_UNSPECIFIED = "video/*";
+  public static final String VCARD             = "text/x-vcard";
 
-
-  public static @Nullable ThumbnailData generateThumbnail(Context context, MasterSecret masterSecret, String contentType, Uri uri)
-      throws BitmapDecodingException
-  {
-    long   startMillis = System.currentTimeMillis();
-    ThumbnailData data = null;
-
-    if (isImageType(contentType)) {
-      data = new ThumbnailData(generateImageThumbnail(context, masterSecret, uri));
-    }
-
-    if (data != null) {
-      Log.w(TAG, String.format("generated thumbnail for part, %dx%d (%.3f:1) in %dms",
-                               data.getBitmap().getWidth(), data.getBitmap().getHeight(),
-                               data.getAspectRatio(), System.currentTimeMillis() - startMillis));
-    }
-
-    return data;
-  }
-
-  private static Bitmap generateImageThumbnail(Context context, MasterSecret masterSecret, Uri uri)
-      throws BitmapDecodingException
-  {
-    try {
-      int maxSize = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
-      return Glide.with(context)
-                  .load(new DecryptableUri(masterSecret, uri))
-                  .asBitmap()
-                  .centerCrop()
-                  .into(maxSize, maxSize)
-                  .get();
-    } catch (InterruptedException | ExecutionException e) {
-      Log.w(TAG, e);
-      throw new BitmapDecodingException(e);
-    }
-  }
 
   public static Slide getSlideForAttachment(Context context, Attachment attachment) {
     Slide slide = null;
@@ -101,8 +69,8 @@ public class MediaUtil {
   public static @Nullable String getMimeType(Context context, Uri uri) {
     if (uri == null) return null;
 
-    if (PersistentBlobProvider.isAuthority(context, uri)) {
-      return PersistentBlobProvider.getMimeType(context, uri);
+    if (PartAuthority.isLocalUri(uri)) {
+      return PartAuthority.getAttachmentContentType(context, uri);
     }
 
     String type = context.getContentResolver().getType(uri);
@@ -110,6 +78,7 @@ public class MediaUtil {
       final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
       type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
     }
+
     return getCorrectedMimeType(type);
   }
 
@@ -126,8 +95,8 @@ public class MediaUtil {
     }
   }
 
-  public static long getMediaSize(Context context, MasterSecret masterSecret, Uri uri) throws IOException {
-    InputStream in = PartAuthority.getAttachmentStream(context, masterSecret, uri);
+  public static long getMediaSize(Context context, Uri uri) throws IOException {
+    InputStream in = PartAuthority.getAttachmentStream(context, uri);
     if (in == null) throw new IOException("Couldn't obtain input stream.");
 
     long   size   = 0;
@@ -142,12 +111,75 @@ public class MediaUtil {
     return size;
   }
 
+  @WorkerThread
+  public static Pair<Integer, Integer> getDimensions(@NonNull Context context, @Nullable String contentType, @Nullable Uri uri) {
+    if (uri == null || !MediaUtil.isImageType(contentType)) {
+      return new Pair<>(0, 0);
+    }
+
+    Pair<Integer, Integer> dimens = null;
+
+    if (MediaUtil.isGif(contentType)) {
+      try {
+        GifDrawable drawable = GlideApp.with(context)
+                .asGif()
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .load(new DecryptableUri(uri))
+                .submit()
+                .get();
+        dimens = new Pair<>(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+      } catch (InterruptedException e) {
+        Log.w(TAG, "Was unable to complete work for GIF dimensions.", e);
+      } catch (ExecutionException e) {
+        Log.w(TAG, "Glide experienced an exception while trying to get GIF dimensions.", e);
+      }
+    } else {
+      InputStream attachmentStream = null;
+      try {
+        if (MediaUtil.isJpegType(contentType)) {
+          attachmentStream = PartAuthority.getAttachmentStream(context, uri);
+          dimens = BitmapUtil.getExifDimensions(attachmentStream);
+          attachmentStream.close();
+          attachmentStream = null;
+        }
+        if (dimens == null) {
+          attachmentStream = PartAuthority.getAttachmentStream(context, uri);
+          dimens = BitmapUtil.getDimensions(attachmentStream);
+        }
+      } catch (FileNotFoundException e) {
+        Log.w(TAG, "Failed to find file when retrieving media dimensions.", e);
+      } catch (IOException e) {
+        Log.w(TAG, "Experienced a read error when retrieving media dimensions.", e);
+      } catch (BitmapDecodingException e) {
+        Log.w(TAG, "Bitmap decoding error when retrieving dimensions.", e);
+      } finally {
+        if (attachmentStream != null) {
+          try {
+            attachmentStream.close();
+          } catch (IOException e) {
+            Log.w(TAG, "Failed to close stream after retrieving dimensions.", e);
+          }
+        }
+      }
+    }
+    if (dimens == null) {
+      dimens = new Pair<>(0, 0);
+    }
+    Log.d(TAG, "Dimensions for [" + uri + "] are " + dimens.first + " x " + dimens.second);
+    return dimens;
+  }
+
   public static boolean isMms(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals("application/mms");
   }
 
   public static boolean isGif(Attachment attachment) {
     return isGif(attachment.getContentType());
+  }
+
+  public static boolean isJpeg(Attachment attachment) {
+    return isJpegType(attachment.getContentType());
   }
 
   public static boolean isImage(Attachment attachment) {
@@ -166,8 +198,16 @@ public class MediaUtil {
     return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("video/");
   }
 
+  public static boolean isVcard(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(VCARD);
+  }
+
   public static boolean isGif(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif");
+  }
+
+  public static boolean isJpegType(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_JPEG);
   }
 
   public static boolean isFile(Attachment attachment) {
@@ -191,7 +231,7 @@ public class MediaUtil {
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {
-    Log.w(TAG, "Checking: " + uri);
+    Log.i(TAG, "Checking: " + uri);
 
     if (uri == null || !ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
       return false;

@@ -23,7 +23,7 @@
 package org.thoughtcrime.securesms.scribbles.viewmodel;
 
 import android.support.annotation.FloatRange;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 public class Layer {
 
@@ -60,7 +60,7 @@ public class Layer {
   }
 
   public void postScale(float scaleDiff) {
-    Log.w("Layer", "ScaleDiff: " + scaleDiff);
+    Log.i("Layer", "ScaleDiff: " + scaleDiff);
     float newVal = scale + scaleDiff;
     if (newVal >= getMinScale() && newVal <= getMaxScale()) {
       scale = newVal;

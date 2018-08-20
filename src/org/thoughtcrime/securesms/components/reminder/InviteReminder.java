@@ -26,7 +26,7 @@ public class InviteReminder extends Reminder {
             DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient, true);
             return null;
           }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     });
   }

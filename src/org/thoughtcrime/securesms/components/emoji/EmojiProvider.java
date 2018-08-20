@@ -15,7 +15,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
@@ -23,8 +22,10 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiPageBitmap;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.util.concurrent.ExecutionException;
 
@@ -68,6 +69,10 @@ class EmojiProvider {
         }
       }
     }
+
+    for (Pair<String,String> obsolete : EmojiPages.OBSOLETE) {
+      emojiTree.add(obsolete.first(), emojiTree.getEmoji(obsolete.second(), 0, obsolete.second().length()));
+    }
   }
 
   @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
@@ -110,11 +115,7 @@ class EmojiProvider {
     final EmojiDrawable drawable = new EmojiDrawable(drawInfo, decodeScale);
     drawInfo.getPage().get().addListener(new FutureTaskListener<Bitmap>() {
       @Override public void onSuccess(final Bitmap result) {
-        Util.runOnMain(new Runnable() {
-          @Override public void run() {
-            drawable.setBitmap(result);
-          }
-        });
+        Util.runOnMain(() -> drawable.setBitmap(result));
       }
 
       @Override public void onFailure(ExecutionException error) {

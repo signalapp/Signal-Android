@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2011 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,23 +23,23 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.FastCursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Conversions;
@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
@@ -56,6 +57,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -91,13 +93,15 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
   private final @Nullable ItemClickListener clickListener;
-  private final @NonNull  MasterSecret      masterSecret;
+  private final @NonNull  GlideRequests     glideRequests;
   private final @NonNull  Locale            locale;
   private final @NonNull  Recipient         recipient;
   private final @NonNull  MmsSmsDatabase    db;
   private final @NonNull  LayoutInflater    inflater;
   private final @NonNull  Calendar          calendar;
   private final @NonNull  MessageDigest     digest;
+
+  private MessageRecord recordToPulseHighlight;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -130,7 +134,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
 
-  public interface ItemClickListener {
+  interface ItemClickListener extends BindableConversationItem.EventListener {
     void onItemClick(MessageRecord item);
     void onItemLongClick(MessageRecord item);
   }
@@ -140,7 +144,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   ConversationAdapter(Context context, Cursor cursor) {
     super(context, cursor);
     try {
-      this.masterSecret  = null;
+      this.glideRequests = null;
       this.locale        = null;
       this.clickListener = null;
       this.recipient     = null;
@@ -154,7 +158,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   }
 
   public ConversationAdapter(@NonNull Context context,
-                             @NonNull MasterSecret masterSecret,
+                             @NonNull GlideRequests glideRequests,
                              @NonNull Locale locale,
                              @Nullable ItemClickListener clickListener,
                              @Nullable Cursor cursor,
@@ -163,7 +167,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     super(context, cursor);
 
     try {
-      this.masterSecret  = masterSecret;
+      this.glideRequests = glideRequests;
       this.locale        = locale;
       this.clickListener = clickListener;
       this.recipient     = recipient;
@@ -187,33 +191,44 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
-    long start = System.currentTimeMillis();
-    viewHolder.getView().bind(masterSecret, messageRecord, locale, batchSelected, recipient);
-    Log.w(TAG, "Bind time: " + (System.currentTimeMillis() - start));
+    long          start            = System.currentTimeMillis();
+    int           adapterPosition  = viewHolder.getAdapterPosition();
+    MessageRecord previousRecord   = adapterPosition < getItemCount() - 1 && !isFooterPosition(adapterPosition + 1) ? getRecordForPositionOrThrow(adapterPosition + 1) : null;
+    MessageRecord nextRecord       = adapterPosition > 0 && !isHeaderPosition(adapterPosition - 1) ? getRecordForPositionOrThrow(adapterPosition - 1) : null;
+
+    viewHolder.getView().bind(messageRecord,
+                              Optional.fromNullable(previousRecord),
+                              Optional.fromNullable(nextRecord),
+                              glideRequests,
+                              locale,
+                              batchSelected,
+                              recipient,
+                              messageRecord == recordToPulseHighlight);
+
+    if (messageRecord == recordToPulseHighlight) {
+      recordToPulseHighlight = null;
+    }
+
+    Log.d(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 
   @Override
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     long start = System.currentTimeMillis();
     final V itemView = ViewUtil.inflate(inflater, parent, getLayoutForViewType(viewType));
-    itemView.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        if (clickListener != null) {
-          clickListener.onItemClick(itemView.getMessageRecord());
-        }
+    itemView.setOnClickListener(view -> {
+      if (clickListener != null) {
+        clickListener.onItemClick(itemView.getMessageRecord());
       }
     });
-    itemView.setOnLongClickListener(new OnLongClickListener() {
-      @Override
-      public boolean onLongClick(View view) {
-        if (clickListener != null) {
-          clickListener.onItemLongClick(itemView.getMessageRecord());
-        }
-        return true;
+    itemView.setOnLongClickListener(view -> {
+      if (clickListener != null) {
+        clickListener.onItemLongClick(itemView.getMessageRecord());
       }
+      return true;
     });
-    Log.w(TAG, "Inflate time: " + (System.currentTimeMillis() - start));
+    itemView.setEventListener(clickListener);
+    Log.d(TAG, "Inflate time: " + (System.currentTimeMillis() - start));
     return new ViewHolder(itemView);
   }
 
@@ -239,11 +254,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public int getItemViewType(@NonNull MessageRecord messageRecord) {
-    if (messageRecord.isGroupAction() || messageRecord.isCallLog() || messageRecord.isJoined() ||
-        messageRecord.isExpirationTimerUpdate() || messageRecord.isEndSession()                ||
-        messageRecord.isIdentityUpdate() || messageRecord.isIdentityVerified()                 ||
-        messageRecord.isIdentityDefault())
-    {
+    if (messageRecord.isUpdate()) {
       return MESSAGE_TYPE_UPDATE;
     } else if (hasAudio(messageRecord)) {
       if (messageRecord.isOutgoing()) return MESSAGE_TYPE_AUDIO_OUTGOING;
@@ -268,10 +279,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   public long getItemId(@NonNull Cursor cursor) {
-    String fastPreflightId = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.FAST_PREFLIGHT_ID));
+    List<DatabaseAttachment> attachments        = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(cursor);
+    List<DatabaseAttachment> messageAttachments = Stream.of(attachments).filterNot(DatabaseAttachment::isQuote).toList();
 
-    if (fastPreflightId != null) {
-      return Long.valueOf(fastPreflightId);
+    if (messageAttachments.size() > 0 && messageAttachments.get(0).getFastPreflightId() != null) {
+      return Long.valueOf(messageAttachments.get(0).getFastPreflightId());
     }
 
     final String unique = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
@@ -303,7 +315,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       if (record != null) return record;
     }
 
-    final MessageRecord messageRecord = db.readerFor(cursor, masterSecret).getCurrent();
+    final MessageRecord messageRecord = db.readerFor(cursor).getCurrent();
     messageRecordCache.put(type + messageId, new SoftReference<>(messageRecord));
 
     return messageRecord;
@@ -344,6 +356,13 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     return Collections.unmodifiableSet(new HashSet<>(batchSelected));
   }
 
+  public void pulseHighlightItem(int position) {
+    if (position < getItemCount()) {
+      recordToPulseHighlight = getRecordForPositionOrThrow(position);
+      notifyItemChanged(position);
+    }
+  }
+
   private boolean hasAudio(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getAudioSlide() != null;
   }
@@ -355,7 +374,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private boolean hasThumbnail(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
   }
-
 
   @Override
   public long getHeaderId(int position) {

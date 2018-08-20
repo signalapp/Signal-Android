@@ -70,13 +70,13 @@ public class OutgoingTextMessage {
 
   public static OutgoingTextMessage from(SmsMessageRecord record) {
     if (record.isSecure()) {
-      return new OutgoingEncryptedMessage(record.getRecipient(), record.getBody().getBody(), record.getExpiresIn());
+      return new OutgoingEncryptedMessage(record.getRecipient(), record.getBody(), record.getExpiresIn());
     } else if (record.isKeyExchange()) {
-      return new OutgoingKeyExchangeMessage(record.getRecipient(), record.getBody().getBody());
+      return new OutgoingKeyExchangeMessage(record.getRecipient(), record.getBody());
     } else if (record.isEndSession()) {
-      return new OutgoingEndSessionMessage(new OutgoingTextMessage(record.getRecipient(), record.getBody().getBody(), 0, -1));
+      return new OutgoingEndSessionMessage(new OutgoingTextMessage(record.getRecipient(), record.getBody(), 0, -1));
     } else {
-      return new OutgoingTextMessage(record.getRecipient(), record.getBody().getBody(), record.getExpiresIn(), record.getSubscriptionId());
+      return new OutgoingTextMessage(record.getRecipient(), record.getBody(), record.getExpiresIn(), record.getSubscriptionId());
     }
   }
 

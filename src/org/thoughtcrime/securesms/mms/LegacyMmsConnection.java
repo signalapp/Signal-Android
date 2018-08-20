@@ -20,7 +20,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.apache.http.Header;
 import org.apache.http.auth.AuthScope;
@@ -37,7 +37,6 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.thoughtcrime.securesms.database.ApnDatabase;
-import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -128,12 +127,13 @@ public abstract class LegacyMmsConnection {
       return true;
     }
 
-    Log.w(TAG, "Checking route to address: " + host + ", " + inetAddress.getHostAddress());
+    Log.i(TAG, "Checking route to address: " + host + ", " + inetAddress.getHostAddress());
     ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
     try {
       final Method  requestRouteMethod  = manager.getClass().getMethod("requestRouteToHostAddress", Integer.TYPE, InetAddress.class);
       final boolean routeToHostObtained = (Boolean) requestRouteMethod.invoke(manager, MmsRadio.TYPE_MOBILE_MMS, inetAddress);
-      Log.w(TAG, "requestRouteToHostAddress(" + inetAddress + ") -> " + routeToHostObtained);
+      Log.i(TAG, "requestRouteToHostAddress(" + inetAddress + ") -> " + routeToHostObtained);
       return routeToHostObtained;
     } catch (NoSuchMethodException nsme) {
       Log.w(TAG, nsme);
@@ -143,10 +143,7 @@ public abstract class LegacyMmsConnection {
       Log.w(TAG, ite);
     }
 
-    final int     ipAddress           = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
-    final boolean routeToHostObtained = manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
-    Log.w(TAG, "requestRouteToHost(" + ipAddress + ") -> " + routeToHostObtained);
-    return routeToHostObtained;
+    return false;
   }
 
   protected static byte[] parseResponse(InputStream is) throws IOException {
@@ -154,7 +151,7 @@ public abstract class LegacyMmsConnection {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     Util.copy(in, baos);
 
-    Log.w(TAG, "Received full server response, " + baos.size() + " bytes");
+    Log.i(TAG, "Received full server response, " + baos.size() + " bytes");
 
     return baos.toByteArray();
   }
@@ -186,7 +183,7 @@ public abstract class LegacyMmsConnection {
   }
 
   protected byte[] execute(HttpUriRequest request) throws IOException {
-    Log.w(TAG, "connecting to " + apn.getMmsc());
+    Log.i(TAG, "connecting to " + apn.getMmsc());
 
     CloseableHttpClient   client   = null;
     CloseableHttpResponse response = null;
@@ -194,14 +191,14 @@ public abstract class LegacyMmsConnection {
       client   = constructHttpClient();
       response = client.execute(request);
 
-      Log.w(TAG, "* response code: " + response.getStatusLine());
+      Log.i(TAG, "* response code: " + response.getStatusLine());
 
       if (response.getStatusLine().getStatusCode() == 200) {
         return parseResponse(response.getEntity().getContent());
       }
     } catch (NullPointerException npe) {
       // TODO determine root cause
-      // see: https://github.com/WhisperSystems/Signal-Android/issues/4379
+      // see: https://github.com/signalapp/Signal-Android/issues/4379
       throw new IOException(npe);
     } finally {
       if (response != null) response.close();

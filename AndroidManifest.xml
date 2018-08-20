@@ -3,7 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms">
 
-    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview,com.tomergoldst.tooltips,com.klinker.android.send_message"/>
+    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots,com.h6ah4i.android.multiselectlistpreferencecompat,android.support.v13,com.davemorrissey.labs.subscaleview,com.tomergoldst.tooltips,com.klinker.android.send_message,com.takisoft.colorpicker,android.support.v14.preference"/>
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -19,6 +19,7 @@
     <uses-feature android:name="android.hardware.portrait" android:required="false"/>
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
 
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
@@ -26,27 +27,42 @@
                      tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_MMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.READ_CALL_STATE"/>
+
+    <!-- For sending/receiving events -->
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+
+
+    <!-- Normal -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_CALL_LOG" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-    <!-- For sending location tiles in the future -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <!-- So we can add a TextSecure 'Account' -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
@@ -56,10 +72,7 @@
 
     <!-- For conversation 'shortcuts' on the desktop -->
     <uses-permission android:name="android.permission.INSTALL_SHORTCUT"/>
-
-    <!-- For sending/receiving events -->
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <!-- For fixing MMS -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -68,20 +81,12 @@
     <!-- Set image as wallpaper -->
     <uses-permission android:name="android.permission.SET_WALLPAPER"/>
 
-    <!-- Permissions from RedPhone -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.RAISED_THREAD_PRIORITY" />
-    <uses-permission android:name="android.permission.READ_CALL_STATE"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
     <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
@@ -89,8 +94,7 @@
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
 
     <application android:name=".ApplicationContext"
-                 android:icon="@drawable/icon"
-                 android:roundIcon="@drawable/icon_circle"
+                 android:icon="@mipmap/ic_launcher"
                  android:label="@string/app_name"
                  android:supportsRtl="true"
                  tools:replace="android:allowBackup"
@@ -105,9 +109,6 @@
     <meta-data android:name="com.google.android.gms.version"
                android:value="@integer/google_play_services_version" />
 
-    <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
-               android:value="GlideModule" />
-
     <meta-data android:name="com.google.android.gms.car.application"
                android:resource="@xml/automotive_app_desc" />
 
@@ -118,9 +119,6 @@
               android:launchMode="singleTask"/>
 
     <activity android:name=".CountrySelectionActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".ImportExportActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".InviteActivity"
@@ -152,8 +150,10 @@
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ShareActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
               android:excludeFromRecents="true"
               android:launchMode="singleTask"
+              android:taskAffinity=""
               android:noHistory="true"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
@@ -177,10 +177,11 @@
     </activity>
 
     <activity android:name=".ConversationListActivity"
-          android:label="@string/app_name"
-          android:launchMode="singleTask"
-          android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-          android:exported="true" />
+              android:label="@string/app_name"
+              android:launchMode="singleTask"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:exported="true" />
 
     <activity-alias android:name=".RoutingActivity"
                     android:targetActivity=".ConversationListActivity"
@@ -193,9 +194,9 @@
         </intent-filter>
 
         <meta-data android:name="com.sec.minimode.icon.portrait.normal"
-            android:resource="@drawable/icon" />
+                   android:resource="@mipmap/ic_launcher" />
         <meta-data android:name="com.sec.minimode.icon.landscape.normal"
-            android:resource="@drawable/icon" />
+                   android:resource="@mipmap/ic_launcher" />
 
     </activity-alias>
 
@@ -260,10 +261,8 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphrasePromptActivity"
-              android:label="@string/AndroidManifest__enter_passphrase"
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.LightIntroTheme"
-              android:windowSoftInputMode="stateAlwaysVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".NewConversationActivity"
@@ -289,13 +288,17 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ApplicationPreferencesActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.NOTIFICATION_PREFERENCES" />
+        </intent-filter>
+    </activity>
 
     <activity android:name=".RegistrationActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/TextSecure.LightNoActionBar"
               android:windowSoftInputMode="stateUnchanged"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".RegistrationProgressActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
      <activity android:name=".DeviceActivity"
@@ -314,6 +317,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".MediaOverviewActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
               android:windowSoftInputMode="stateHidden"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -374,7 +378,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".scribbles.ScribbleActivity"
-              android:theme="@style/TextSecure.LightNoActionBar"
+              android:theme="@style/TextSecure.ScribbleTheme"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -386,6 +390,7 @@
 
     <activity android:name=".CreateProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
+              android:windowSoftInputMode="stateVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ClearProfileAvatarActivity"
@@ -400,11 +405,26 @@
         </intent-filter>
     </activity>
 
-    <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
+    <activity android:name=".contactshare.ContactShareEditActivity"
+              android:theme="@style/TextSecure.LightTheme"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".contactshare.ContactNameEditActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".contactshare.SharedContactDetailsActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".ShortcutLauncherActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:exported="true"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
-    <service android:enabled="true" android:name=".service.KeyCachingService"/>
-    <service android:enabled="true" android:name=".service.RegistrationService"/>
+    <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.MessageRetrievalService"/>
 
     <service android:name=".service.QuickResponseService"
@@ -441,6 +461,8 @@
             <action android:name="android.service.chooser.ChooserTargetService" />
         </intent-filter>
     </service>
+
+    <service android:name=".service.GenericForegroundService"/>
 
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>
@@ -512,6 +534,9 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".service.ExpirationListener" />
+
+    <receiver android:name=".jobmanager.requirements.BackoffReceiver" />
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
@@ -523,12 +548,14 @@
               android:exported="false"
               android:authorities="org.thoughtcrime.provider.securesms.mms" />
 
-    <receiver android:name=".service.RegistrationNotifier"
-              android:exported="false">
-        <intent-filter>
-            <action android:name="org.thoughtcrime.securesms.REGISTRATION_EVENT" />
-        </intent-filter>
-    </receiver>
+    <provider android:name="android.support.v4.content.FileProvider"
+              android:authorities="org.thoughtcrime.securesms.fileprovider"
+              android:exported="false"
+              android:grantUriPermissions="true">
+
+        <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_provider_paths" />
+
+    </provider>
 
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
@@ -549,9 +576,21 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".service.LocalBackupListener">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
     <receiver android:name=".service.PersistentConnectionBootListener">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".notifications.LocaleChangedReceiver">
+        <intent-filter>
+            <action android:name="android.intent.action.LOCALE_CHANGED"/>
         </intent-filter>
     </receiver>
 
@@ -569,7 +608,7 @@
 
     <receiver android:name=".ExperienceUpgradeActivity$AppUpgradeReceiver">
         <intent-filter>
-            <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+            <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
             <data android:scheme="package" />
         </intent-filter>
 

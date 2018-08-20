@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2012 Moxie Marlinpsike
  *
  * This program is free software: you can redistribute it and/or modify
@@ -54,16 +54,17 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      expiresIn;
   private final long                      expireStarted;
 
-  MessageRecord(Context context, long id, Body body, Recipient conversationRecipient,
+  MessageRecord(Context context, long id, String body, Recipient conversationRecipient,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
-                int deliveryStatus, int receiptCount, long type,
+                int deliveryStatus, int deliveryReceiptCount, long type,
                 List<IdentityKeyMismatch> mismatches,
                 List<NetworkFailure> networkFailures,
-                int subscriptionId, long expiresIn, long expireStarted)
+                int subscriptionId, long expiresIn, long expireStarted,
+                int readReceiptCount)
   {
-    super(context, body, conversationRecipient, dateSent, dateReceived, threadId, deliveryStatus, receiptCount,
-          type);
+    super(context, body, conversationRecipient, dateSent, dateReceived,
+          threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;
@@ -85,45 +86,46 @@ public abstract class MessageRecord extends DisplayRecord {
     return MmsSmsColumns.Types.isLegacyType(type);
   }
 
-  public boolean isAsymmetricEncryption() {
-    return MmsSmsColumns.Types.isAsymmetricEncryption(type);
-  }
-
   @Override
   public SpannableString getDisplayBody() {
     if (isGroupUpdate() && isOutgoing()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_you_updated_group));
+      return new SpannableString(context.getString(R.string.MessageRecord_you_updated_group));
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()).toString(getIndividualRecipient()));
+      return new SpannableString(GroupUtil.getDescription(context, getBody()).toString(getIndividualRecipient()));
     } else if (isGroupQuit() && isOutgoing()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_left_group));
+      return new SpannableString(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
-      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
+      return new SpannableString(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
     } else if (isIncomingCall()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_s_called_you, getIndividualRecipient().toShortString()));
+      return new SpannableString(context.getString(R.string.MessageRecord_s_called_you, getIndividualRecipient().toShortString()));
     } else if (isOutgoingCall()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_called_s, getIndividualRecipient().toShortString()));
+      return new SpannableString(context.getString(R.string.MessageRecord_you_called));
     } else if (isMissedCall()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_missed_call_from, getIndividualRecipient().toShortString()));
+      return new SpannableString(context.getString(R.string.MessageRecord_missed_call));
     } else if (isJoined()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().toShortString()));
+      return new SpannableString(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().toShortString()));
     } else if (isExpirationTimerUpdate()) {
-      String time = ExpirationUtil.getExpirationDisplayValue(context, (int)(getExpiresIn() / 1000));
-      return isOutgoing() ? emphasisAdded(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time))
-                          : emphasisAdded(context.getString(R.string.MessageRecord_s_set_disappearing_message_time_to_s, getIndividualRecipient().toShortString(), time));
+      int seconds = (int)(getExpiresIn() / 1000);
+      if (seconds <= 0) {
+        return isOutgoing() ? new SpannableString(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages))
+                            : new SpannableString(context.getString(R.string.MessageRecord_s_disabled_disappearing_messages, getIndividualRecipient().toShortString()));
+      }
+      String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
+      return isOutgoing() ? new SpannableString(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time))
+                          : new SpannableString(context.getString(R.string.MessageRecord_s_set_disappearing_message_time_to_s, getIndividualRecipient().toShortString(), time));
     } else if (isIdentityUpdate()) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_your_safety_number_with_s_has_changed, getIndividualRecipient().toShortString()));
+      return new SpannableString(context.getString(R.string.MessageRecord_your_safety_number_with_s_has_changed, getIndividualRecipient().toShortString()));
     } else if (isIdentityVerified()) {
-      if (isOutgoing()) return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified, getIndividualRecipient().toShortString()));
-      else              return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device, getIndividualRecipient().toShortString()));
+      if (isOutgoing()) return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified, getIndividualRecipient().toShortString()));
+      else              return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device, getIndividualRecipient().toShortString()));
     } else if (isIdentityDefault()) {
-      if (isOutgoing()) return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, getIndividualRecipient().toShortString()));
-      else              return emphasisAdded(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, getIndividualRecipient().toShortString()));
-    } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
-      return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
+      if (isOutgoing()) return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, getIndividualRecipient().toShortString()));
+      else              return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, getIndividualRecipient().toShortString()));
+    } else if (getBody().length() > MAX_DISPLAY_LENGTH) {
+      return new SpannableString(getBody().substring(0, MAX_DISPLAY_LENGTH));
     }
 
-    return new SpannableString(getBody().getBody());
+    return new SpannableString(getBody());
   }
 
   public long getId() {
@@ -175,6 +177,11 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isInvalidVersionKeyExchange() {
     return SmsDatabase.Types.isInvalidVersionKeyExchange(type);
+  }
+
+  public boolean isUpdate() {
+    return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
+           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault();
   }
 
   public boolean isMediaPending() {

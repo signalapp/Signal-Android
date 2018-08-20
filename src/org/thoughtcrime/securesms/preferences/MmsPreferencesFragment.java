@@ -19,13 +19,13 @@ package org.thoughtcrime.securesms.preferences;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.preference.PreferenceFragment;
-import android.util.Log;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CustomDefaultPreference;
 import org.thoughtcrime.securesms.database.ApnDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.LegacyMmsConnection;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -33,23 +33,27 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.IOException;
 
 
-public class MmsPreferencesFragment extends PreferenceFragment {
+public class MmsPreferencesFragment extends CorrectedPreferenceFragment {
 
   private static final String TAG = MmsPreferencesFragment.class.getSimpleName();
 
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    addPreferencesFromResource(R.xml.preferences_manual_mms);
 
     ((PassphraseRequiredActionBarActivity) getActivity()).getSupportActionBar()
         .setTitle(R.string.preferences__advanced_mms_access_point_names);
   }
 
   @Override
+  public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
+    addPreferencesFromResource(R.xml.preferences_manual_mms);
+  }
+
+  @Override
   public void onResume() {
     super.onResume();
-    new LoadApnDefaultsTask().execute();
+    new LoadApnDefaultsTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private class LoadApnDefaultsTask extends AsyncTask<Void, Void, LegacyMmsConnection.Apn> {
@@ -74,15 +78,15 @@ public class MmsPreferencesFragment extends PreferenceFragment {
     @Override
     protected void onPostExecute(LegacyMmsConnection.Apn apnDefaults) {
       ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_HOST_PREF))
-          .setValidator(new CustomDefaultPreference.UriValidator())
+          .setValidator(new CustomDefaultPreference.CustomDefaultPreferenceDialogFragmentCompat.UriValidator())
           .setDefaultValue(apnDefaults.getMmsc());
 
       ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_PROXY_HOST_PREF))
-          .setValidator(new CustomDefaultPreference.HostnameValidator())
+          .setValidator(new CustomDefaultPreference.CustomDefaultPreferenceDialogFragmentCompat.HostnameValidator())
           .setDefaultValue(apnDefaults.getProxy());
 
       ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_PROXY_PORT_PREF))
-          .setValidator(new CustomDefaultPreference.PortValidator())
+          .setValidator(new CustomDefaultPreference.CustomDefaultPreferenceDialogFragmentCompat.PortValidator())
           .setDefaultValue(apnDefaults.getPort());
 
       ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_USERNAME_PREF))

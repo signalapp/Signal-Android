@@ -11,7 +11,8 @@ public interface MmsSmsColumns {
   public static final String BODY                     = "body";
   public static final String ADDRESS                  = "address";
   public static final String ADDRESS_DEVICE_ID        = "address_device_id";
-  public static final String RECEIPT_COUNT            = "delivery_receipt_count";
+  public static final String DELIVERY_RECEIPT_COUNT   = "delivery_receipt_count";
+  public static final String READ_RECEIPT_COUNT       = "read_receipt_count";
   public static final String MISMATCHED_IDENTITIES    = "mismatched_identities";
   public static final String UNIQUE_ROW_ID            = "unique_row_id";
   public static final String SUBSCRIPTION_ID          = "subscription_id";
@@ -70,10 +71,10 @@ public interface MmsSmsColumns {
     protected static final long GROUP_QUIT_BIT              = 0x20000;
     protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
 
-    // Encrypted Storage Information
-    protected static final long ENCRYPTION_MASK                  = 0xFF000000;
-    protected static final long ENCRYPTION_SYMMETRIC_BIT         = 0x80000000;
-    protected static final long ENCRYPTION_ASYMMETRIC_BIT        = 0x40000000;
+    // Encrypted Storage Information XXX
+    public    static final long ENCRYPTION_MASK                  = 0xFF000000;
+    // public    static final long ENCRYPTION_SYMMETRIC_BIT         = 0x80000000; Deprecated
+    // protected static final long ENCRYPTION_ASYMMETRIC_BIT        = 0x40000000; Deprecated
     protected static final long ENCRYPTION_REMOTE_BIT            = 0x20000000;
     protected static final long ENCRYPTION_REMOTE_FAILED_BIT     = 0x10000000;
     protected static final long ENCRYPTION_REMOTE_NO_SESSION_BIT = 0x08000000;
@@ -208,14 +209,6 @@ public interface MmsSmsColumns {
       return (type & GROUP_QUIT_BIT) != 0;
     }
 
-    public static boolean isSymmetricEncryption(long type) {
-      return (type & ENCRYPTION_SYMMETRIC_BIT) != 0;
-    }
-
-    public static boolean isAsymmetricEncryption(long type) {
-      return (type & ENCRYPTION_ASYMMETRIC_BIT) != 0;
-    }
-
     public static boolean isFailedDecryptType(long type) {
       return (type & ENCRYPTION_REMOTE_FAILED_BIT) != 0;
     }
@@ -225,7 +218,7 @@ public interface MmsSmsColumns {
     }
 
     public static boolean isDecryptInProgressType(long type) {
-      return (type & ENCRYPTION_ASYMMETRIC_BIT) != 0;
+      return (type & 0x40000000) != 0; // Inline deprecated asymmetric encryption type
     }
 
     public static boolean isNoRemoteSessionType(long type) {

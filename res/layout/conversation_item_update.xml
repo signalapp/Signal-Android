@@ -1,53 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationUpdateItem
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/conversation_update_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conversation_update_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/conversation_item_background"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="6dp"
+    android:paddingLeft="28dp"
+    android:paddingRight="28dp"
+    android:paddingTop="8dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true"
-        android:background="@drawable/conversation_item_background"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="20dp">
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center">
 
-    <ImageView android:id="@+id/conversation_update_icon"
-               android:layout_marginRight="7dp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_gravity="center_vertical"
-               android:src="@drawable/ic_call_received_grey600_24dp" />
+        <ImageView
+            android:id="@+id/conversation_update_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
+            android:src="@drawable/ic_timer" />
 
-    <LinearLayout android:orientation="vertical"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content">
-
-        <TextView android:id="@+id/conversation_update_body"
-                  android:autoLink="all"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:linksClickable="true"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:textStyle="italic"
-                  android:textColor="?attr/conversation_group_member_name"
-                  tools:text="Sasha called you"/>
-
-        <TextView android:id="@+id/conversation_update_date"
-                  android:autoLink="none"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:minWidth="15sp"
-                  android:linksClickable="false"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_gravity="center"
-                  android:fontFamily="sans-serif-light"
-                  android:textColor="?conversation_item_sent_text_secondary_color"
-                  android:textSize="@dimen/conversation_item_date_text_size"
-                  android:paddingTop="1dip"
-                  android:paddingBottom="2dp"
-                  tools:text="30 min ago" />
+        <TextView
+            android:id="@+id/conversation_update_title"
+            style="@style/Signal.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textColor="?conversation_item_update_text_color"
+            tools:text="1 hour" />
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/conversation_update_body"
+            style="@style/Signal.Text.Preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="all"
+            android:gravity="center"
+            android:linksClickable="true"
+            android:textColor="?attr/conversation_item_update_text_color"
+            tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
+
+        <TextView
+            android:id="@+id/conversation_update_date"
+            style="@style/Signal.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="6dp"
+            android:autoLink="none"
+            android:gravity="center"
+            android:linksClickable="false"
+            android:minWidth="15sp"
+            android:textAllCaps="true"
+            android:textColor="?conversation_item_update_text_color"
+            tools:text="30 min ago" />
+
+    </LinearLayout>
 
 </org.thoughtcrime.securesms.ConversationUpdateItem>

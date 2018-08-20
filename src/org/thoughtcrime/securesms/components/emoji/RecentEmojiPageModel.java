@@ -5,12 +5,12 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
   }
 
   public void onCodePointSelected(String emoji) {
-    Log.w(TAG, "onCodePointSelected(" + emoji + ")");
+    Log.i(TAG, "onCodePointSelected(" + emoji + ")");
     recentlyUsed.remove(emoji);
     recentlyUsed.add(emoji);
 
@@ -89,7 +89,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
 
         return null;
       }
-    }.execute();
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private String[] toReversePrimitiveArray(@NonNull LinkedHashSet<String> emojiSet) {
