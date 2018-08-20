@@ -46,18 +46,23 @@ public class Scrubber {
     Log.d(TAG, "scrubbing input");
     String out = in;
     for (Pattern pattern : patterns) {
-      Matcher matcher = pattern.matcher(out);
-      while (matcher.find()) {
+      Matcher       matcher       = pattern.matcher(out);
+      StringBuilder builder       = new StringBuilder();
+      int           lastEndingPos = 0;
 
-        StringBuilder builder = new StringBuilder(out.substring(0, matcher.start()));
+      while (matcher.find()) {
+        builder.append(out.substring(lastEndingPos, matcher.start()));
+
         final String censored = matcher.group().substring(0,1)                                      +
                                 new String(new char[matcher.group().length()-3]).replace("\0", "*") +
                                 matcher.group().substring(matcher.group().length()-2);
         builder.append(censored);
-        builder.append(out.substring(matcher.end()));
+
+        lastEndingPos = matcher.end();
         Log.i(TAG, "replacing a match on /" + pattern.toString() + "/ => " + censored);
-        out = builder.toString();
       }
+      builder.append(out.substring(lastEndingPos));
+      out = builder.toString();
     }
     return out;
   }
