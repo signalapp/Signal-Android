@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
@@ -104,53 +102,37 @@ public class ContactNameEditActivity extends PassphraseRequiredActionBarActivity
 
     givenName.addTextChangedListener(new SimpleTextWatcher() {
       @Override
-      void onTextChanged(String text) {
+      public void onTextChanged(String text) {
         viewModel.updateGivenName(text);
       }
     });
 
     familyName.addTextChangedListener(new SimpleTextWatcher() {
       @Override
-      void onTextChanged(String text) {
+      public void onTextChanged(String text) {
         viewModel.updateFamilyName(text);
       }
     });
 
     middleName.addTextChangedListener(new SimpleTextWatcher() {
       @Override
-      void onTextChanged(String text) {
+      public void onTextChanged(String text) {
         viewModel.updateMiddleName(text);
       }
     });
 
     prefix.addTextChangedListener(new SimpleTextWatcher() {
       @Override
-      void onTextChanged(String text) {
+      public void onTextChanged(String text) {
         viewModel.updatePrefix(text);
       }
     });
 
     suffix.addTextChangedListener(new SimpleTextWatcher() {
       @Override
-      void onTextChanged(String text) {
+      public void onTextChanged(String text) {
         viewModel.updateSuffix(text);
       }
     });
-  }
-
-  private static abstract class SimpleTextWatcher implements TextWatcher {
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-      onTextChanged(s.toString());
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) { }
-
-    abstract void onTextChanged(String text);
   }
 }

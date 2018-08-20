@@ -25,42 +25,47 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <ScrollView android:id="@+id/log_preview_container"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2">
+    <TextView android:id="@+id/log_submit_confirmation"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="15sp"
+              android:text="@string/log_submit_activity__this_log_will_be_posted_online"
+              android:paddingLeft="15dp"
+              android:paddingRight="15dp"
+              android:paddingTop="10dp"
+              android:paddingBottom="10dp"
+              android:background="@color/logsubmit_confirmation_background"
+              android:fontFamily="sans-serif-light"
+              tools:ignore="UnusedAttribute"/>
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-            <TextView android:id="@+id/log_submit_confirmation"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:textSize="15sp"
-                      android:text="@string/log_submit_activity__this_log_will_be_posted_online"
-                      android:paddingLeft="15dp"
-                      android:paddingRight="15dp"
-                      android:paddingTop="10dp"
-                      android:paddingBottom="10dp"
-                      android:background="@color/logsubmit_confirmation_background"
-                      android:fontFamily="sans-serif-light"
-                      tools:ignore="UnusedAttribute"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/log_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
 
-            <EditText android:id="@+id/log_preview"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      style="?android:attr/textViewStyle"
-                      android:padding="10dp"
-                      android:background="@null"
-                      android:fontFamily="monospace"
-                      android:hint=""
-                      android:scrollHorizontally="true"
-                      android:inputType="textImeMultiLine|textNoSuggestions|textMultiLine"
-                      android:textSize="10sp"
-                      tools:ignore="UnusedAttribute,SmallSp"/>
-        </LinearLayout>
-    </ScrollView>
+        <ImageButton
+            android:id="@+id/scroll_to_bottom_button"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/circle_tintable"
+            android:tint="@color/grey_600"
+            android:elevation="1dp"
+            android:alpha="0.9"
+            android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
+            android:src="@drawable/ic_scroll_down"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"

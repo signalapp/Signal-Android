@@ -31,7 +31,10 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -49,8 +52,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
 import java.io.BufferedReader;
@@ -82,20 +87,23 @@ public class SubmitLogFragment extends Fragment {
 
   private static final String TAG = SubmitLogFragment.class.getSimpleName();
 
+  private static final String API_ENDPOINT = "https://debuglogs.org";
+
   private static final String HEADER_SYSINFO = "========== SYSINFO ========";
   private static final String HEADER_LOGCAT  = "========== LOGCAT ========";
   private static final String HEADER_LOGGER  = "========== LOGGER ========";
 
-  private EditText logPreview;
   private Button   okButton;
   private Button   cancelButton;
+  private View     scrollButton;
   private String   supportEmailAddress;
   private String   supportEmailSubject;
   private String   hackSavedLogUrl;
   private boolean  emailActivityWasStarted = false;
 
-  private static final String API_ENDPOINT = "https://debuglogs.org";
 
+  private RecyclerView           logPreview;
+  private LogPreviewAdapter      logPreviewAdapter;
   private OnLogSubmittedListener mListener;
 
   /**
@@ -165,14 +173,15 @@ public class SubmitLogFragment extends Fragment {
   }
 
   private void initializeResources() {
-    logPreview   = (EditText) getView().findViewById(R.id.log_preview);
-    okButton     = (Button  ) getView().findViewById(R.id.ok         );
-    cancelButton = (Button  ) getView().findViewById(R.id.cancel     );
+    okButton     = getView().findViewById(R.id.ok);
+    cancelButton = getView().findViewById(R.id.cancel);
+    logPreview   = getView().findViewById(R.id.log_preview);
+    scrollButton = getView().findViewById(R.id.scroll_to_bottom_button);
 
     okButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        new SubmitToPastebinAsyncTask(logPreview.getText().toString()).execute();
+        new SubmitToPastebinAsyncTask(logPreviewAdapter.getText()).execute();
       }
     });
 
@@ -182,6 +191,25 @@ public class SubmitLogFragment extends Fragment {
         if (mListener != null) mListener.onCancel();
       }
     });
+
+    scrollButton.setOnClickListener(v -> logPreview.scrollToPosition(logPreviewAdapter.getItemCount() - 1));
+
+    logPreview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        if (((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition() < logPreviewAdapter.getItemCount() - 10) {
+          scrollButton.setVisibility(View.VISIBLE);
+        } else {
+          scrollButton.setVisibility(View.GONE);
+        }
+      }
+    });
+
+    logPreviewAdapter = new LogPreviewAdapter();
+
+    logPreview.setLayoutManager(new LinearLayoutManager(getContext()));
+    logPreview.setAdapter(logPreviewAdapter);
+
     new PopulateLogcatAsyncTask(getActivity()).execute();
   }
 
@@ -320,16 +348,30 @@ public class SubmitLogFragment extends Fragment {
 
       String newLogs;
       try {
-        newLogs = scrubber.scrub(ApplicationContext.getInstance(context).getPersistentLogger().getLogs().get());
+        long t1 = System.currentTimeMillis();
+        String logs = ApplicationContext.getInstance(context).getPersistentLogger().getLogs().get();
+        Log.i(TAG, "Fetch our logs : " + (System.currentTimeMillis() - t1) + " ms");
+
+        long t2 = System.currentTimeMillis();
+        newLogs = scrubber.scrub(logs);
+        Log.i(TAG, "Scrub our logs: " + (System.currentTimeMillis() - t2) + " ms");
       } catch (InterruptedException | ExecutionException e) {
         Log.w(TAG, "Failed to retrieve new logs.", e);
         newLogs = "Failed to retrieve logs.";
       }
 
+      long t3 = System.currentTimeMillis();
+      String logcat = grabLogcat();
+      Log.i(TAG, "Fetch logcat: " + (System.currentTimeMillis() - t3) + " ms");
+
+      long t4 = System.currentTimeMillis();
+      String scrubbedLogcat = scrubber.scrub(logcat);
+      Log.i(TAG, "Scrub logcat: " + (System.currentTimeMillis() - t4) + " ms");
+
       return HEADER_SYSINFO + "\n\n" +
              buildDescription(context) + "\n\n\n" +
              HEADER_LOGCAT + "\n\n" +
-             scrubber.scrub(grabLogcat()) + "\n\n\n" +
+             scrubbedLogcat + "\n\n\n" +
              HEADER_LOGGER + "\n\n" +
              newLogs;
     }
@@ -337,7 +379,7 @@ public class SubmitLogFragment extends Fragment {
     @Override
     protected void onPreExecute() {
       super.onPreExecute();
-      logPreview.setText(R.string.log_submit_activity__loading_logs);
+      logPreviewAdapter.setText(getString(R.string.log_submit_activity__loading_logs));
       okButton.setEnabled(false);
     }
 
@@ -348,7 +390,7 @@ public class SubmitLogFragment extends Fragment {
         if (mListener != null) mListener.onFailure();
         return;
       }
-      logPreview.setText(logcat);
+      logPreviewAdapter.setText(logcat);
       okButton.setEnabled(true);
     }
   }
@@ -480,5 +522,72 @@ public class SubmitLogFragment extends Fragment {
     public void onSuccess();
     public void onFailure();
     public void onCancel();
+  }
+
+  private static final class LogPreviewAdapter extends RecyclerView.Adapter<LogPreviewViewHolder> {
+
+    private String[] lines = new String[0];
+
+    @Override
+    public LogPreviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+      return new LogPreviewViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_log_preview, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(LogPreviewViewHolder holder, int position) {
+      holder.bind(lines, position);
+    }
+
+    @Override
+    public void onViewRecycled(LogPreviewViewHolder holder) {
+      holder.unbind();
+    }
+
+    @Override
+    public int getItemCount() {
+      return lines.length;
+    }
+
+    void setText(@NonNull String text) {
+      lines = text.split("\n");
+      notifyDataSetChanged();
+    }
+
+    String getText() {
+      return Util.join(lines, "\n");
+    }
+  }
+
+  private static final class LogPreviewViewHolder extends RecyclerView.ViewHolder {
+
+    private EditText text;
+    private String[] lines;
+    private int      index;
+
+    LogPreviewViewHolder(View itemView) {
+      super(itemView);
+      text = (EditText) itemView;
+    }
+
+    void bind(String[] lines, int index) {
+      this.lines = lines;
+      this.index = index;
+
+      text.setText(lines[index]);
+      text.addTextChangedListener(textWatcher);
+    }
+
+    void unbind() {
+      text.removeTextChangedListener(textWatcher);
+    }
+
+    private final SimpleTextWatcher textWatcher = new SimpleTextWatcher() {
+      @Override
+      public void onTextChanged(String text) {
+        if (lines != null) {
+          lines[index] = text;
+        }
+      }
+    };
   }
 }
