@@ -557,6 +557,18 @@
 
     </provider>
 
+    <provider android:name=".database.DatabaseContentProviders$Conversation"
+              android:authorities="org.thoughtcrime.securesms.database.conversation"
+              android:exported="false" />
+
+    <provider android:name=".database.DatabaseContentProviders$ConversationList"
+              android:authorities="org.thoughtcrime.securesms.database.conversationlist"
+              android:exported="false" />
+
+    <provider android:name=".database.DatabaseContentProviders$Attachment"
+              android:authorities="org.thoughtcrime.securesms.database.attachment"
+              android:exported="false" />
+
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
