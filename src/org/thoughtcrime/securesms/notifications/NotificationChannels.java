@@ -99,7 +99,7 @@ public class NotificationChannels {
     boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == VibrateState.ENABLED;
     String       displayName      = getChannelDisplayNameFor(recipient.getName(), recipient.getProfileName(), recipient.getAddress());
 
-    return createChannelFor(context, recipient.getAddress(), displayName, recipient.getMessageRingtone(), vibrationEnabled);
+    return createChannelFor(context, recipient.getAddress(), displayName, recipient.getMessageRingtone(context), vibrationEnabled);
   }
 
   /**
@@ -217,6 +217,26 @@ public class NotificationChannels {
                                                           NotificationManager.IMPORTANCE_HIGH);
     channel.setGroup(CATEGORY_MESSAGES);
     notificationManager.createNotificationChannel(channel);
+  }
+
+  public static @Nullable Uri getMessageRingtone(@NonNull Context context, @NonNull Recipient recipient) {
+    if (!supported()) {
+      return null;
+    }
+
+    NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+    if (notificationManager == null) {
+      Log.w(TAG, "Unable to retrieve notification manager. Cannot update channel name.");
+      return null;
+    }
+
+    NotificationChannel channel = notificationManager.getNotificationChannel(recipient.getNotificationChannel(context));
+    if (channel == null) {
+      Log.w(TAG, "Recipient had an invalid channel. Returning null.");
+      return null;
+    }
+
+    return channel.getSound();
   }
 
   @TargetApi(26)

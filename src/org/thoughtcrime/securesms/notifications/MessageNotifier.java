@@ -325,7 +325,7 @@ public class MessageNotifier {
     }
 
     if (signal) {
-      builder.setAlarms(notificationState.getRingtone(), notificationState.getVibrate());
+      builder.setAlarms(notificationState.getRingtone(context), notificationState.getVibrate());
       builder.setTicker(notifications.get(0).getIndividualRecipient(),
                         notifications.get(0).getText());
     }
@@ -363,7 +363,7 @@ public class MessageNotifier {
     }
 
     if (signal) {
-      builder.setAlarms(notificationState.getRingtone(), notificationState.getVibrate());
+      builder.setAlarms(notificationState.getRingtone(context), notificationState.getVibrate());
       builder.setTicker(notifications.get(0).getIndividualRecipient(),
                         notifications.get(0).getText());
     }
@@ -378,7 +378,7 @@ public class MessageNotifier {
       return;
     }
 
-    Uri uri = recipient != null ? recipient.resolve().getMessageRingtone() : null;
+    Uri uri = recipient != null ? recipient.resolve().getMessageRingtone(context) : null;
 
     if (uri == null) {
       uri = TextSecurePreferences.getNotificationRingtone(context);

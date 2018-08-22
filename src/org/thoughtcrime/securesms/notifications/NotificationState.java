@@ -45,12 +45,12 @@ public class NotificationState {
     notificationCount++;
   }
 
-  public @Nullable Uri getRingtone() {
+  public @Nullable Uri getRingtone(@NonNull Context context) {
     if (!notifications.isEmpty()) {
       Recipient recipient = notifications.getFirst().getRecipient();
 
       if (recipient != null) {
-        return recipient.resolve().getMessageRingtone();
+        return recipient.resolve().getMessageRingtone(context);
       }
     }
 
