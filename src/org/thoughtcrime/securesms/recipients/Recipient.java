@@ -17,7 +17,6 @@
  */
 package org.thoughtcrime.securesms.recipients;
 
-import android.app.NotificationChannel;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;

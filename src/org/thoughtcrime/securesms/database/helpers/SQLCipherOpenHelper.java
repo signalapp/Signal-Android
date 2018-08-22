@@ -261,6 +261,18 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, address);
             boolean vibrateEnabled  = vibrateState == 0 ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == 1;
 
+            if (address.isGroup()) {
+              try(Cursor groupCursor = db.rawQuery("SELECT title FROM groups WHERE group_id = ?", new String[] { address.toGroupString() })) {
+                if (groupCursor != null && groupCursor.moveToFirst()) {
+                  String title = groupCursor.getString(groupCursor.getColumnIndexOrThrow("title"));
+
+                  if (!TextUtils.isEmpty(title)) {
+                    displayName = title;
+                  }
+                }
+              }
+            }
+
             String channelId = NotificationChannels.createChannelFor(context, address, displayName, messageSoundUri, vibrateEnabled);
 
             ContentValues values = new ContentValues(1);
