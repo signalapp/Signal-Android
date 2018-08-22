@@ -674,6 +674,7 @@
     <string name="NotificationChannel_app_updates">App updates</string>
     <string name="NotificationChannel_other">Other</string>
     <string name="NotificationChannel_group_messages">Messages</string>
+    <string name="NotificationChannel_missing_display_name">Unknown</string>
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>

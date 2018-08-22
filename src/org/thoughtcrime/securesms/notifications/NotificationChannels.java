@@ -86,8 +86,16 @@ public class NotificationChannels {
     return Build.VERSION.SDK_INT >= 26;
   }
 
-  public static String getChannelDisplayNameFor(@Nullable String systemName, @Nullable String profileName, @NonNull Address address) {
-    return TextUtils.isEmpty(systemName) ? (TextUtils.isEmpty(profileName) ? address.serialize() : profileName) : systemName;
+  public static @NonNull String getChannelDisplayNameFor(@NonNull Context context, @Nullable String systemName, @Nullable String profileName, @NonNull Address address) {
+    if (!TextUtils.isEmpty(systemName)) {
+      return systemName;
+    } else if (!TextUtils.isEmpty(profileName)) {
+      return profileName;
+    } else if (!TextUtils.isEmpty(address.serialize())) {
+      return address.serialize();
+    } else {
+      return context.getString(R.string.NotificationChannel_missing_display_name);
+    }
   }
 
   /**
@@ -97,7 +105,7 @@ public class NotificationChannels {
   public static String createChannelFor(@NonNull Context context, @NonNull Recipient recipient) {
     VibrateState vibrateState     = recipient.getMessageVibrate();
     boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == VibrateState.ENABLED;
-    String       displayName      = getChannelDisplayNameFor(recipient.getName(), recipient.getProfileName(), recipient.getAddress());
+    String       displayName      = getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getAddress());
 
     return createChannelFor(context, recipient.getAddress(), displayName, recipient.getMessageRingtone(context), vibrationEnabled);
   }
@@ -121,9 +129,12 @@ public class NotificationChannels {
     setLedPreference(channel, TextSecurePreferences.getNotificationLedColor(context));
     channel.setGroup(CATEGORY_MESSAGES);
     channel.enableVibration(vibrationEnabled);
-    channel.setSound(messageSound, new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                                                                .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
-                                                                .build());
+
+    if (messageSound != null) {
+      channel.setSound(messageSound, new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                                                                  .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
+                                                                  .build());
+    }
 
     NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
     if (notificationManager == null) {
@@ -213,7 +224,7 @@ public class NotificationChannels {
     }
 
     NotificationChannel channel = new NotificationChannel(recipient.getNotificationChannel(context),
-                                                          getChannelDisplayNameFor(recipient.getName(), recipient.getProfileName(), recipient.getAddress()),
+                                                          getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getAddress()),
                                                           NotificationManager.IMPORTANCE_HIGH);
     channel.setGroup(CATEGORY_MESSAGES);
     notificationManager.createNotificationChannel(channel);
