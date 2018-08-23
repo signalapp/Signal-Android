@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class QuickAttachmentDrawer extends ViewGroup implements InputView, CameraViewListener {
   private static final String TAG = QuickAttachmentDrawer.class.getSimpleName();
-
+  private static final int STATUS_BAR_HEIGHT = 24;
   private final ViewDragHelper dragHelper;
 
   private CameraView                cameraView;
@@ -114,6 +114,10 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
       updateControlsView();
       setDrawerStateAndUpdate(drawerState, true);
     }
+  }
+
+  public DrawerState getDrawerState() {
+    return drawerState;
   }
 
   private void updateControlsView() {
@@ -317,7 +321,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
 
   public int getTargetSlideOffset() {
     switch (drawerState) {
-    case FULL_EXPANDED: return getMeasuredHeight();
+    case FULL_EXPANDED: return getMeasuredHeight() + getStatusBarHeight();
     case HALF_EXPANDED: return halfExpandedHeight;
     default:            return 0;
     }
@@ -532,6 +536,10 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   public void onResume() {
     paused = false;
     if (drawerState.isVisible()) cameraView.onResume();
+  }
+
+  private int getStatusBarHeight() {
+    return (int)(STATUS_BAR_HEIGHT * getResources().getDisplayMetrics().density);
   }
 
   public enum DrawerState {
