@@ -74,7 +74,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:9.6.1'
     compile 'com.google.android.gms:play-services-places:9.6.1'
 
-    compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
+    compile 'com.google.android.exoplayer:exoplayer-core:2.8.4'
+    compile 'com.google.android.exoplayer:exoplayer-ui:2.8.4'
 
     compile 'org.whispersystems:signal-service-android:2.7.6'
     compile 'org.whispersystems:webrtc-android:M68'
@@ -168,7 +169,8 @@ dependencyVerification {
         'com.google.android.gms:play-services-gcm:312e61253a236f2d9b750b9c04fc92fd190d23b0b2755c99de6ce4a28b259dae',
         'com.google.android.gms:play-services-places:abf3a4a3b146ec7e6e753be62775e512868cf37d6f88ffe2d81167b33b57132b',
         'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
-        'com.google.android.exoplayer:exoplayer:955085aa611a8f7cf6c61b88ae03d1a392f4ad94c9bfbc153f3dedb9ffb14718',
+        'com.google.android.exoplayer:exoplayer-ui:027557b2d69b15e1852a2530b36971f0dcc177abae240ee35e05f63502cdb0a7',
+        'com.google.android.exoplayer:exoplayer-core:e69b409e11887c955deb373357c30eeabf183395db0092b4817e0f80bb467d5b',
         'org.whispersystems:signal-service-android:823eed29e64fb0aa30d2078cb5ec0245e2a0713a4028121329c5c28788ef27f8',
         'org.whispersystems:webrtc-android:66cb312eb024eaf6aa93e662d37d0c46632e049d47a2dcc9c291207589ee7a43',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
@@ -202,13 +204,13 @@ dependencyVerification {
         'com.android.support:animated-vector-drawable:5b117a2c13a898c2a3c84c480d64edcfac2ef720aa9b742c29249fac774ffc48',
         'com.android.support:support-core-ui:2284072511a95d504c074de80c82cd33724c6d2754117833b98ba3a09994163e',
         'com.android.support:transition:1a7db0453c1467fc8fd815e6d50ca6bb475a7a9ba6b5f3b307329688a7c62a68',
-        'com.android.support:support-core-utils:b69c6e1e7731b876b910fc7100bcadf40a57f27b32ca26b91400995542112c96',
-        'com.android.support:support-media-compat:6dd9327ee9aa467cab479aad97df375072b2b6ba61eadffdaa5a88de3843c457',
-        'com.android.support:support-vector-drawable:bf4f4fcbf58b1380616581224e6487c230bfdb3434ec353d4adaa4b1f4865cfa',
-        'com.android.support:support-compat:ed4d25d91a0b13d8b9def1c0de69ed03d7fb89d50fb37eb0e9b63b0cf7a42357',
         'android.arch.lifecycle:livedata:50ab0490c1ff1a7cfb4e554032998b080888946d0dd424f39900efc4a1bcd750',
         'android.arch.lifecycle:livedata-core:d6fdd8b985d6178d7ea2f16986a24e83f1bee936b74d43167c69e08d3cc12c50',
         'android.arch.core:runtime:c3215aa5873311b3f88a6f4e4a3c25ad89971bc127de8c3e1291c57f93a05c39',
+        'com.android.support:support-core-utils:b69c6e1e7731b876b910fc7100bcadf40a57f27b32ca26b91400995542112c96',
+        'com.android.support:support-vector-drawable:bf4f4fcbf58b1380616581224e6487c230bfdb3434ec353d4adaa4b1f4865cfa',
+        'com.android.support:support-media-compat:6dd9327ee9aa467cab479aad97df375072b2b6ba61eadffdaa5a88de3843c457',
+        'com.android.support:support-compat:ed4d25d91a0b13d8b9def1c0de69ed03d7fb89d50fb37eb0e9b63b0cf7a42357',
         'android.arch.lifecycle:runtime:c4e4be66c1b2f0abec593571454e1de14013f7e0f96bf2a9f212931a48cae550',
         'android.arch.core:common:3a616a32f433e9e23f556b38575c31b013613d3ae85206263b7625fe1f4c151a',
         'android.arch.lifecycle:common:8d378e88ebd5189e09eef623414812c868fd90aa519d6160e2311fb8b81cff56',
