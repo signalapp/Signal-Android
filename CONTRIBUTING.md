@@ -77,8 +77,8 @@ There are several other ways to get involved:
 * Improve documentation in the [wiki](https://github.com/signalapp/Signal-Android/wiki).
 * Join the community of volunteer translators on Transifex:
   * [Android](https://www.transifex.com/projects/p/signal-android/)
-  * [iOS](https://www.transifex.com/open-whisper-systems/signal-ios/)
-  * [Desktop](https://www.transifex.com/projects/p/signal-desktop/)
+  * [iOS](https://www.transifex.com/signalapp/signal-ios/)
+  * [Desktop](https://www.transifex.com/signalapp/signal-desktop/)
 * Find and mark duplicate issues.
 * Try to reproduce issues and help with troubleshooting.
 * Discover solutions to open issues and post any relevant findings.
