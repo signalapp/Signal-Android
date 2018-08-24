@@ -123,6 +123,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Žinutė tuščia!</string>
   <string name="ConversationActivity_group_members">Grupės dalyviai</string>
   <string name="ConversationActivity_invalid_recipient">Neteisingas gavėjas!</string>
+  <string name="ConversationActivity_added_to_home_screen">Pridėta į pradžios ekraną</string>
   <string name="ConversationActivity_calls_not_supported">Skambučiai nepalaikomi</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Atrodo, kad šis įrenginys nepalaiko numerio rinkimo veiksmų.</string>
   <string name="ConversationActivity_leave_group">Išeiti iš grupės?</string>
@@ -201,7 +202,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ištrinama</string>
   <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Cituota žinutė nerasta</string>
+  <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -611,6 +613,16 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">Jūs turite laukiančių Signal žinučių, bakstelėkite, norėdami atverti ir jas gauti</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontaktas</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Numatytoji</string>
+  <string name="NotificationChannel_calls">Skambučiai</string>
+  <string name="NotificationChannel_failures">Nesėkmės</string>
+  <string name="NotificationChannel_backups">Atsarginės kopijos</string>
+  <string name="NotificationChannel_locked_status">Užrakinimo būsena</string>
+  <string name="NotificationChannel_app_updates">Programėlės atnaujinimai</string>
+  <string name="NotificationChannel_other">Kitas</string>
+  <string name="NotificationChannel_group_messages">Žinutės</string>
+  <string name="NotificationChannel_missing_display_name">Nežinoma</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>
   <string name="QuickResponseService_problem_sending_message">Problemos siunčiant žinutę!</string>
@@ -619,6 +631,8 @@
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Ieškoti</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Ieškoti pokalbių, kontaktų ir žinučių</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Neteisingas šaukinys</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
@@ -707,6 +721,7 @@
   <string name="QuoteView_photo">Nuotrauka</string>
   <string name="QuoteView_document">Dokumentas</string>
   <string name="QuoteView_you">Jūs</string>
+  <string name="QuoteView_original_missing">Pradinė žinutė nerasta</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--country_selection_fragment-->
@@ -786,6 +801,19 @@
   <string name="log_submit_activity__thanks">Ačiū už jūsų pagalbą!</string>
   <string name="log_submit_activity__submitting">Pateikiama</string>
   <string name="log_submit_activity__no_browser_installed">Neįdiegta jokia naršyklė</string>
+  <string name="log_submit_activity__button_dont_submit">Nepateikti</string>
+  <string name="log_submit_activity__button_submit">Pateikti</string>
+  <string name="log_submit_activity__button_got_it">Supratau</string>
+  <string name="log_submit_activity__button_compose_email">Rašyti el. laišką</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Šis žurnalas bus viešai paskelbtas internete talkininkams peržiūrėti, prieš jį pateikdami, galite jį išnagrinėti ir redaguoti .</string>
+  <string name="log_submit_activity__loading_logs">Įkeliami žurnalai…</string>
+  <string name="log_submit_activity__uploading_logs">Įkeliami žurnalai…</string>
+  <string name="log_submit_activity__success">Įvykdyta!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Nukopijuokite šį URL ir pridėkite jį į savo pranešimą apie klaidą ar palaikymo el. laišką:\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">Nukopijuota į iškarpinę</string>
+  <string name="log_submit_activity__choose_email_app">Pasirinkite el. pašto programėlę</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Peržiūrėkite šį žurnalą iš mano programėlės: %1$s</string>
+  <string name="log_submit_activity__network_failure">Tinklo nesėkmė. Bandykite dar kartą.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ar norėtumėte importuoti savo esamas tekstines žinutes į užšifruotą Signal duomenų bazę?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Numatytoji sistemos duomenų bazė jokiu būdu nebus pakeista ar modifikuota.</string>
@@ -832,6 +860,8 @@
   <string name="recipient_preference_activity__shared_media">Bendrinama medija</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Nutildyti pokalbį</string>
+  <string name="recipient_preferences__custom_notifications">Tinkinti pranešimai</string>
+  <string name="recipient_preferences__custom_notifications_settings">Sistemos pranešimų nustatymai</string>
   <string name="recipient_preferences__notification_sound">Pranešimų garsas</string>
   <string name="recipient_preferences__vibrate">Vibruoti</string>
   <string name="recipient_preferences__block">Užblokuoti</string>
@@ -942,6 +972,7 @@
   <string name="preferences__inactivity_timeout_passphrase">Slaptafrazė po neveiklumui skirto laiko</string>
   <string name="preferences__inactivity_timeout_interval">Neveiklumui skirtas laiko intervalas</string>
   <string name="preferences__notifications">Pranešimai</string>
+  <string name="preferences__system_notification_settings">Sistemos pranešimų nustatymai</string>
   <string name="preferences__led_color">Šviesos diodo spalva</string>
   <string name="preferences__led_color_unknown">Nežinoma</string>
   <string name="preferences__pref_led_blink_title">Šviesos diodo mirksėjimo šablonas</string>
@@ -1073,6 +1104,7 @@
   <string name="conversation__menu_leave_group">Išeiti iš grupės</string>
   <string name="conversation__menu_view_all_media">Visa medija</string>
   <string name="conversation__menu_conversation_settings">Pokalbio nustatymai</string>
+  <string name="conversation__menu_add_shortcut">Pridėti į pradžios ekraną</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Išskleisti iškylantįjį langą</string>
   <!--conversation_callable_insecure-->

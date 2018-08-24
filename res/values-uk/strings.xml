@@ -199,7 +199,6 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Видалення</string>
   <string name="ConversationFragment_deleting_messages">Видалення повідомлень...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Повідомлення, що цитується, не знайдено</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашому пристрої не встановлено браузер.</string>
   <!--ConversationListFragment-->
@@ -600,6 +599,13 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">У вас є повідомлення в очікуванні, торкніться щоб отримати їх</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Типово</string>
+  <string name="NotificationChannel_calls">Виклики</string>
+  <string name="NotificationChannel_backups">Резервні копії</string>
+  <string name="NotificationChannel_other">Інший</string>
+  <string name="NotificationChannel_group_messages">Повідомлення</string>
+  <string name="NotificationChannel_missing_display_name">Невідомо</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Швидка відповідь неможлива, коли Signal заблоковано!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема під час надсилання повідомлення!</string>
@@ -607,6 +613,7 @@
   <string name="SaveAttachmentTask_saved_to">Збережено до %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Пошук</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нове повідомлення</string>
@@ -774,6 +781,11 @@
   <string name="log_submit_activity__thanks">Дякуємо за вашу допомогу!</string>
   <string name="log_submit_activity__submitting">Надсилання</string>
   <string name="log_submit_activity__no_browser_installed">Браузер не встановлено</string>
+  <string name="log_submit_activity__button_dont_submit">Не відсилати</string>
+  <string name="log_submit_activity__button_submit">Відіслати</string>
+  <string name="log_submit_activity__button_got_it">Ясно</string>
+  <string name="log_submit_activity__success">Успішно!</string>
+  <string name="log_submit_activity__copied_to_clipboard">Скопійовано до буфера обміну</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Імпорутвати ваші SMS повідомлення у зашифровану базу даних Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системна база даних не буде порушена.</string>

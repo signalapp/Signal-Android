@@ -541,6 +541,12 @@
   <string name="MessageNotifier_pending_signal_messages">Mensagens Signal pendentes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Você tem mensagens Signal pendentes. Clique para abrir e recuperá-las.</string>
   <string name="MessageNotifier_unknown_contact_message">Contato</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Padrão</string>
+  <string name="NotificationChannel_calls">Chamadas</string>
+  <string name="NotificationChannel_backups">Backups</string>
+  <string name="NotificationChannel_group_messages">Mensagens</string>
+  <string name="NotificationChannel_missing_display_name">Desconhecida</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está trancado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
@@ -548,6 +554,7 @@
   <string name="SaveAttachmentTask_saved_to">Gravado no %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Procurar</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
@@ -703,6 +710,11 @@
   <string name="log_submit_activity__thanks">Obrigado por sua ajuda!</string>
   <string name="log_submit_activity__submitting">Enviando</string>
   <string name="log_submit_activity__no_browser_installed">Nenhum navegador instalado</string>
+  <string name="log_submit_activity__button_dont_submit">Não enviar</string>
+  <string name="log_submit_activity__button_submit">Enviar</string>
+  <string name="log_submit_activity__button_got_it">Entendi</string>
+  <string name="log_submit_activity__success">Sucesso!</string>
+  <string name="log_submit_activity__copied_to_clipboard">Copiada para a área de transferência</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar suas mensagens para a base de dados criptografada do Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados padrão do sistema não será alterada.</string>

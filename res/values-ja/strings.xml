@@ -114,6 +114,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です。</string>
   <string name="ConversationActivity_group_members">グループメンバー</string>
   <string name="ConversationActivity_invalid_recipient">受信先が無効です。</string>
+  <string name="ConversationActivity_added_to_home_screen">ホーム画面に追加された</string>
   <string name="ConversationActivity_calls_not_supported">通話には対応していません</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末は、ダイヤル機能に対応していないようです。</string>
   <string name="ConversationActivity_leave_group">グループを抜けますか？</string>
@@ -171,7 +172,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">削除中</string>
   <string name="ConversationFragment_deleting_messages">メッセージを削除しています...</string>
-  <string name="ConversationFragment_quoted_message_not_found">引用されたメッセージが見つかりません</string>
+  <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはもはや手に入らない</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->
@@ -340,6 +342,8 @@
   <string name="MessageRecord_called_s">%sに発信</string>
   <string name="MessageRecord_missed_call_from">%sから不在着信</string>
   <string name="MessageRecord_s_joined_signal">%sがSignalに登録しています！</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">消えるメッセージを無効にしました。</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$sが消えるメッセージを無効にしました。</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">消えるメッセージの消去時間を%1$sに設定しました</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sが消えるメッセージの消去時間を%2$sに設定しました</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
@@ -468,6 +472,7 @@
   <string name="ThreadRecord_missed_call">不在着信</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalに登録しています！</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージの消去時間が%sに設定されました</string>
   <string name="ThreadRecord_safety_number_changed">安全番号が変わりました</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
@@ -543,6 +548,16 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">保留中のメッセージがあります。取得するにはタップしてください。</string>
   <string name="MessageNotifier_contact_message">%2$s%1$s</string>
   <string name="MessageNotifier_unknown_contact_message">連絡先</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">デフォルト</string>
+  <string name="NotificationChannel_calls">通話</string>
+  <string name="NotificationChannel_failures">障害</string>
+  <string name="NotificationChannel_backups">バックアップ</string>
+  <string name="NotificationChannel_locked_status">アプリのロック状態</string>
+  <string name="NotificationChannel_app_updates">アプリ更新</string>
+  <string name="NotificationChannel_other">その他</string>
+  <string name="NotificationChannel_group_messages">メッセージ</string>
+  <string name="NotificationChannel_missing_display_name">不明</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイック・レスポンスは使えません</string>
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
@@ -551,6 +566,7 @@
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">検索</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">会話やメッセージ、連絡先を検索します。</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新着メッセージ</string>
@@ -639,6 +655,7 @@
   <string name="QuoteView_photo">写真</string>
   <string name="QuoteView_document">ドキュメント</string>
   <string name="QuoteView_you">あなた</string>
+  <string name="QuoteView_original_missing">元のメッセージが見つかりません</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">最後までスクロール</string>
   <!--country_selection_fragment-->
@@ -700,6 +717,19 @@
   <string name="log_submit_activity__thanks">ご協力ありがとうございます！</string>
   <string name="log_submit_activity__submitting">送信中</string>
   <string name="log_submit_activity__no_browser_installed">ブラウザがインストールされていません</string>
+  <string name="log_submit_activity__button_dont_submit">提出しない</string>
+  <string name="log_submit_activity__button_submit">提出する</string>
+  <string name="log_submit_activity__button_got_it">分かりました</string>
+  <string name="log_submit_activity__button_compose_email">メール作成</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">このログは、公共に貢献者に見られるようになります。提出する前にログの内容をチェックしたり変更してもよろしいです。</string>
+  <string name="log_submit_activity__loading_logs">ログを読み込み中</string>
+  <string name="log_submit_activity__uploading_logs">ログをアップロード中</string>
+  <string name="log_submit_activity__success">成功しました。</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">このリンクをコピーして問題報告またはサポートのメールに貼り付けてください:\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">クリップボードにコピーしました</string>
+  <string name="log_submit_activity__choose_email_app">メールアプリを選んで下さい</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">私のアプリからのログを見直して下さい：%1$s</string>
+  <string name="log_submit_activity__network_failure">ネットワーク失敗。再接続してみて下さい。</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Signalの暗号化されたデータベースにメッセージをインポートしますか？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">携帯端末にある既定データベースは変更されません。</string>
@@ -981,6 +1011,7 @@
   <string name="conversation__menu_leave_group">グループを抜ける</string>
   <string name="conversation__menu_view_all_media">すべてのメディア</string>
   <string name="conversation__menu_conversation_settings">会話の設定</string>
+  <string name="conversation__menu_add_shortcut">ホーム画面に追加する</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ポップアップを拡大</string>
   <!--conversation_callable_insecure-->

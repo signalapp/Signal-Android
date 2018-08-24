@@ -123,6 +123,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Sporočilo je prazno!</string>
   <string name="ConversationActivity_group_members">Člani skupine</string>
   <string name="ConversationActivity_invalid_recipient">Neveljaven prejemnik!</string>
+  <string name="ConversationActivity_added_to_home_screen">Dodano na domači zaslon</string>
   <string name="ConversationActivity_calls_not_supported">Klici niso podprti</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Izgleda, da naprava ne podpira klicanja.</string>
   <string name="ConversationActivity_leave_group">Želite zapustiti skupino?</string>
@@ -201,7 +202,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brišem</string>
   <string name="ConversationFragment_deleting_messages">Brišem sporočila ...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Citirano sporočilo ni bilo najdeno</string>
+  <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na svoji napravi nimate nameščenega spletnega brskalnika.</string>
   <!--ConversationListFragment-->
@@ -602,6 +604,16 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_you_have_pending_signal_messages">Imate čakajoča sporočila Signal. Tapnite za pridobitev in pregled.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Stik</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Privzeto</string>
+  <string name="NotificationChannel_calls">Klici</string>
+  <string name="NotificationChannel_failures">Napake</string>
+  <string name="NotificationChannel_backups">Varnostne kopije</string>
+  <string name="NotificationChannel_locked_status">Stanje zaklepa</string>
+  <string name="NotificationChannel_app_updates">Posodobitve aplikacije</string>
+  <string name="NotificationChannel_other">Drugo</string>
+  <string name="NotificationChannel_group_messages">Sporočila</string>
+  <string name="NotificationChannel_missing_display_name">Neznano</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hitri odziv ni mogoč, kadar je aplikacija Signal zaklenjena!</string>
   <string name="QuickResponseService_problem_sending_message">Težava pri pošiljanju sporočila</string>
@@ -610,6 +622,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Poišči</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Iskanje po pogovorih, stikih in sporočilih</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Neveljavna bližnjica</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Novo sporočilo</string>
@@ -698,6 +712,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_photo">Fotografija</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vi</string>
+  <string name="QuoteView_original_missing">Izvorno sporočilo ni bilo najdeno</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na dno</string>
   <!--country_selection_fragment-->
@@ -777,6 +792,19 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
   <string name="log_submit_activity__submitting">Oddajam</string>
   <string name="log_submit_activity__no_browser_installed">Ni nameščenega brskalnika</string>
+  <string name="log_submit_activity__button_dont_submit">Ne oddaj</string>
+  <string name="log_submit_activity__button_submit">Oddaj</string>
+  <string name="log_submit_activity__button_got_it">Razumem</string>
+  <string name="log_submit_activity__button_compose_email">Sestavi elektronsko sporočilo</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Ta zabeležba bo javno objavljena na spletu in v ogled razvijalcem aplikacije. Pred oddajo jo lahko pregledate in popravite.</string>
+  <string name="log_submit_activity__loading_logs">Nalagam sistemske zabaležbe ...</string>
+  <string name="log_submit_activity__uploading_logs">Prenašam sistemske zabeležbe ...</string>
+  <string name="log_submit_activity__success">Uspešno opravljeno!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Prekopirajte ta URL in ga dodajte k prijavi napake ali v elektronsko sporočilo podpori:\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">Prekopirano v odložišče</string>
+  <string name="log_submit_activity__choose_email_app">Izberite odjemalca za e-pošto</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Prosim preglejte to sistemsko zabeležbo mojega odjemalca: %1$s</string>
+  <string name="log_submit_activity__network_failure">Napaka omrežja. Poskusite znova.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite uvoziti obstoječa sporočila SMS v šifrirano zbirko aplikacije Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Osnovna SMS podatkovna zbirka bo ostala nespremenjena.</string>
@@ -823,6 +851,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="recipient_preference_activity__shared_media">Deljene datoteke</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Utišaj pogovor</string>
+  <string name="recipient_preferences__custom_notifications">Obvestila po meri</string>
+  <string name="recipient_preferences__custom_notifications_settings">Nastavitve za sistemska obvestila</string>
   <string name="recipient_preferences__notification_sound">Zvok obvestila</string>
   <string name="recipient_preferences__vibrate">Vibriranje</string>
   <string name="recipient_preferences__block">Blokiraj</string>
@@ -850,7 +880,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="unknown_sender_view__add_to_contacts">DODAJ MED STIKE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NE DODAJ, A NAREDI MOJ PROFIL VIDEN</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[če želite preveriti zasebnost vaše komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Lahko tudi skenirate kodo na njegovi napravi ali ga prosite, naj skenira vašo. <a href="https://signal.org/redirect/safety-numbers">Več.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti zasebnost vaše komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Lahko tudi skenirate kodo na njegovi napravi ali ga prosite, naj skenira vašo. <a href="https://signal.org/redirect/safety-numbers">Več.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
   <string name="verify_display_fragment__loading">Nalagam ...</string>
   <string name="verify_display_fragment__verified">Potrjeno</string>
@@ -933,6 +963,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__inactivity_timeout_passphrase">Geslo za zaklep aplikacije</string>
   <string name="preferences__inactivity_timeout_interval">Časovni interval za zaklep aplikacije</string>
   <string name="preferences__notifications">Obvestila</string>
+  <string name="preferences__system_notification_settings">Nastavitve za sistemska obvestila</string>
   <string name="preferences__led_color">Barva LED</string>
   <string name="preferences__led_color_unknown">Neznano</string>
   <string name="preferences__pref_led_blink_title">Utripanje LED</string>
@@ -1064,6 +1095,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_view_all_media">Vsa multimedijska sporočila</string>
   <string name="conversation__menu_conversation_settings">Nastavitve pogovora</string>
+  <string name="conversation__menu_add_shortcut">Dodaj na domači zaslon</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Razširi pojavno okno</string>
   <!--conversation_callable_insecure-->

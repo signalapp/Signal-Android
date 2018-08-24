@@ -117,6 +117,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Viesti on tyhjä!</string>
   <string name="ConversationActivity_group_members">Ryhmän jäsenet</string>
   <string name="ConversationActivity_invalid_recipient">Virheellinen vastaanottaja!</string>
+  <string name="ConversationActivity_added_to_home_screen">Lisätty kotiruudulle</string>
   <string name="ConversationActivity_calls_not_supported">Puheluita ei tueta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Tämä laite ei näytä tukevan valintanäppäintoimintoja.</string>
   <string name="ConversationActivity_leave_group">Poistutaanko ryhmästä?</string>
@@ -181,7 +182,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Poistetaan</string>
   <string name="ConversationFragment_deleting_messages">Viestejä poistetaan...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Lainattua viestiä ei löytynyt</string>
+  <string name="ConversationFragment_quoted_message_not_found">Alkuperäistä viestiä ei löytynyt</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Alkuperäinen viesti ei ole enää saatavilla</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>
   <!--ConversationListFragment-->
@@ -358,8 +360,8 @@
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
   <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string>
   <string name="MessageRecord_s_joined_signal">%s käyttää Signalia!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Poistit käytöstä viestien katoamisen</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s poisti käytöstä viestien katoamisen</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Sinä asetit katoavat viestit pois päältä.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s asetti katoavat viestit pois päältä.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajan: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
@@ -569,6 +571,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_you_have_pending_signal_messages">Sinulle on Signal-viestejä. Avaa ja hae napauttamalla.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Yhteystieto</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Oletus</string>
+  <string name="NotificationChannel_calls">Puhelut</string>
+  <string name="NotificationChannel_failures">Viat</string>
+  <string name="NotificationChannel_backups">Varmuuskopiot</string>
+  <string name="NotificationChannel_locked_status">Lukituksen tila</string>
+  <string name="NotificationChannel_app_updates">Sovellusten päivitykset</string>
+  <string name="NotificationChannel_other">Muu</string>
+  <string name="NotificationChannel_group_messages">Viestit</string>
+  <string name="NotificationChannel_missing_display_name">Tuntematon</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
@@ -577,6 +589,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Hae</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Etsi keskusteluja, yhteystietoja ja viestejä</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Virheellinen pikakuvake</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
@@ -665,6 +679,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuoteView_photo">Kuva</string>
   <string name="QuoteView_document">Dokumentti</string>
   <string name="QuoteView_you">Sinä</string>
+  <string name="QuoteView_original_missing">Alkuperäistä viestiä ei löytynyt</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Vieritä alas</string>
   <!--country_selection_fragment-->
@@ -732,6 +747,19 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>
   <string name="log_submit_activity__submitting">Lähetetään</string>
   <string name="log_submit_activity__no_browser_installed">Selainta ei ole asennettu</string>
+  <string name="log_submit_activity__button_dont_submit">Älä lähetä</string>
+  <string name="log_submit_activity__button_submit">Lähetä</string>
+  <string name="log_submit_activity__button_got_it">Ymmärrän</string>
+  <string name="log_submit_activity__button_compose_email">Uusi sähköposti</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Tämä loki lähetetään Internetiin, jossa se on julkisesti kehittäjien nähtävillä. Voit tutkia ja muokata sitä ennen kuin lähetät sen.</string>
+  <string name="log_submit_activity__loading_logs">Ladataan lokeja...</string>
+  <string name="log_submit_activity__uploading_logs">Lähetetään lokeja...</string>
+  <string name="log_submit_activity__success">Onnistui!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja liitä se bugiraporttiisi tai lähetä se tuen sähköpostiin:\n\n%1$s\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">Kopioitu leikepöydälle</string>
+  <string name="log_submit_activity__choose_email_app">Valitse sähköpostiohjelma</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Please review this log from my app: %1$s</string>
+  <string name="log_submit_activity__network_failure">Verkkovirhe. Yritä uudelleen.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Napauta, jos haluat kopioida puhelimesi tekstiviestit Signalin salattuun tietokantaan.</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Järjestelmän oletustietokantaa ei tulla muuttamaan millään tavalla.</string>
@@ -776,6 +804,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="recipient_preference_activity__shared_media">Jaettu media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Mykistä keskustelu</string>
+  <string name="recipient_preferences__custom_notifications">Mukautetut ilmoitukset</string>
+  <string name="recipient_preferences__custom_notifications_settings">Järjestelmän ilmoitusasetukset</string>
   <string name="recipient_preferences__notification_sound">Ilmoitusääni</string>
   <string name="recipient_preferences__vibrate">Värinä</string>
   <string name="recipient_preferences__block">Estä</string>
@@ -884,6 +914,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__inactivity_timeout_passphrase">Ajasta lukitus</string>
   <string name="preferences__inactivity_timeout_interval">Automaattisen lukituksen aikaväli</string>
   <string name="preferences__notifications">Ilmoitukset</string>
+  <string name="preferences__system_notification_settings">Järjestelmän ilmoitusasetukset</string>
   <string name="preferences__led_color">LED:in väri</string>
   <string name="preferences__led_color_unknown">Tuntematon</string>
   <string name="preferences__pref_led_blink_title">LED:in vilkkumistahti</string>
@@ -1015,6 +1046,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation__menu_leave_group">Poistu ryhmästä</string>
   <string name="conversation__menu_view_all_media">Kaikki media</string>
   <string name="conversation__menu_conversation_settings">Keskustelun asetukset</string>
+  <string name="conversation__menu_add_shortcut">Lisää kotiruudulle</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Suurenna ponnahdusikkuna</string>
   <!--conversation_callable_insecure-->

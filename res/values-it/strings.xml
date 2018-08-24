@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Blocco schermo %1$s, Sicurezza schermo %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Blocco schermo %1$s, sicurezza schermo %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Lingua %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -106,9 +106,9 @@
   <string name="ConversationItem_from_s">da %s</string>
   <string name="ConversationItem_to_s">a %s</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Reimpostare la sessione sicura?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Resettare la sessione sicura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Questo potrebbe aiutare se stai avendo problemi di crittografia in questa conversazione. I tuoi messaggi verranno conservati.</string>
-  <string name="ConversationActivity_reset">Reimposta</string>
+  <string name="ConversationActivity_reset">Resetta</string>
   <string name="ConversationActivity_add_attachment">Aggiungi allegato</string>
   <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
   <string name="ConversationActivity_compose_message">Componi messaggio</string>
@@ -117,6 +117,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Il messaggio è vuoto!</string>
   <string name="ConversationActivity_group_members">Membri del gruppo</string>
   <string name="ConversationActivity_invalid_recipient">Destinatario non valido!</string>
+  <string name="ConversationActivity_added_to_home_screen">Aggiunto alla schermata principale</string>
   <string name="ConversationActivity_calls_not_supported">Chiamate non supportate</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Il dispositivo non sembra supportare le telefonate.</string>
   <string name="ConversationActivity_leave_group">Vuoi lasciare il gruppo?</string>
@@ -181,7 +182,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Cancellazione</string>
   <string name="ConversationFragment_deleting_messages">Cancellazione messaggi...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Messagio citato non trovato</string>
+  <string name="ConversationFragment_quoted_message_not_found">Messaggio originale non trovato</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Messaggio originale non più disponibile</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sul tuo dispositivo non ci sono browser installati.</string>
   <!--ConversationListFragment-->
@@ -359,6 +361,8 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MessageRecord_called_s">Hai chiamato %s</string>
   <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
   <string name="MessageRecord_s_joined_signal">%s è su Signal!</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Hai disabilitato i messaggi a scomparsa.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha disabilitato i messaggi a scomparsa.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Hai settato i messaggi a scomparsa a %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha settato i messaggi a scomparsa a %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Il tuo codice di sicurezza con %s è cambiato.</string>
@@ -493,6 +497,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_missed_call">Chiamata persa</string>
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
   <string name="ThreadRecord_s_is_on_signal">%s è su Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Messaggi a scomparsa disabilitati</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
   <string name="ThreadRecord_safety_number_changed">Codice di sicurezza cambiato</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Il codice di sicurezza con %s è cambiato.</string>
@@ -568,6 +573,16 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_you_have_pending_signal_messages">Hai messaggi Signal in attesa, tocca per aprire e ricevere</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contatto</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Predefinito</string>
+  <string name="NotificationChannel_calls">Chiamate</string>
+  <string name="NotificationChannel_failures">Errori</string>
+  <string name="NotificationChannel_backups">Backup</string>
+  <string name="NotificationChannel_locked_status">In stato bloccato</string>
+  <string name="NotificationChannel_app_updates">Aggiornamenti app</string>
+  <string name="NotificationChannel_other">Altro</string>
+  <string name="NotificationChannel_group_messages">Messaggi</string>
+  <string name="NotificationChannel_missing_display_name">Sconosciuto</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Risposta veloce non disponibile quando Signal è bloccato!</string>
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
@@ -576,6 +591,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Cerca</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Cerca conversazioni, contatti e messaggi</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Scorciatoia non valida</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio</string>
@@ -664,6 +681,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="QuoteView_photo">Foto</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Tu</string>
+  <string name="QuoteView_original_missing">Messaggio originale non trovato</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Salta alla fine</string>
   <!--country_selection_fragment-->
@@ -731,6 +749,19 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
   <string name="log_submit_activity__submitting">Invio in corso</string>
   <string name="log_submit_activity__no_browser_installed">Nessun browser installato</string>
+  <string name="log_submit_activity__button_dont_submit">Non inviare</string>
+  <string name="log_submit_activity__button_submit">Invia</string>
+  <string name="log_submit_activity__button_got_it">Capito</string>
+  <string name="log_submit_activity__button_compose_email">Componi email</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Questo log verrà postato pubblicamente online per i contributori, è possibile esaminarlo e modificarlo prima di inviare.</string>
+  <string name="log_submit_activity__loading_logs">Caricamento log…</string>
+  <string name="log_submit_activity__uploading_logs">Invio log…</string>
+  <string name="log_submit_activity__success">Completato!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copia questo URL e aggiungilo alla tua segnalazione o all\'email di supporto:\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">Aggiunto agli appunti</string>
+  <string name="log_submit_activity__choose_email_app">Scegli app email</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Per favore controllate questo mio log dell\'app: %1$s</string>
+  <string name="log_submit_activity__network_failure">Errore di rete. Riprova.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vuoi importare i tuoi vecchi messaggi nel database criptato di Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Il database di default non verrà modificato o alterato in nessun modo.</string>
@@ -775,6 +806,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="recipient_preference_activity__shared_media">Media condivisi</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Silenzia conversazione</string>
+  <string name="recipient_preferences__custom_notifications">Notifiche personalizzate</string>
+  <string name="recipient_preferences__custom_notifications_settings">Impostazioni notifiche di sistema</string>
   <string name="recipient_preferences__notification_sound">Suono di notifica</string>
   <string name="recipient_preferences__vibrate">Vibra</string>
   <string name="recipient_preferences__block">Blocca</string>
@@ -883,6 +916,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__inactivity_timeout_passphrase">Password intervallo di inattività</string>
   <string name="preferences__inactivity_timeout_interval">Intervallo di timeout per inattività</string>
   <string name="preferences__notifications">Notifiche</string>
+  <string name="preferences__system_notification_settings">Impostazioni notifiche di sistema</string>
   <string name="preferences__led_color">Colore del LED</string>
   <string name="preferences__led_color_unknown">Sconosciuto</string>
   <string name="preferences__pref_led_blink_title">Impostazioni LED</string>
@@ -1014,6 +1048,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation__menu_leave_group">Abbandona il gruppo</string>
   <string name="conversation__menu_view_all_media">Tutti i file multimediali</string>
   <string name="conversation__menu_conversation_settings">Impostazioni conversazione</string>
+  <string name="conversation__menu_add_shortcut">Aggiungi alla schermata principale</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Espandi popup</string>
   <!--conversation_callable_insecure-->

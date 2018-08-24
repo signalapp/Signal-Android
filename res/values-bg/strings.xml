@@ -179,7 +179,6 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Изтриване</string>
   <string name="ConversationFragment_deleting_messages">Изтриване на съобщения...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Цитираното съобщение неможе да бъде намерено</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Нямате инсталиран браузър.</string>
   <!--ConversationListFragment-->
@@ -558,6 +557,13 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">Имате непрочетени Сигнал съобщения, натиснете, за да ги отворите и прегледате</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">По подразбиране</string>
+  <string name="NotificationChannel_calls">Обаждания</string>
+  <string name="NotificationChannel_backups">Архиви</string>
+  <string name="NotificationChannel_other">Друг</string>
+  <string name="NotificationChannel_group_messages">Съобщения</string>
+  <string name="NotificationChannel_missing_display_name">Непознат</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Сигнал е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
@@ -565,6 +571,7 @@
   <string name="SaveAttachmentTask_saved_to">Запзване в %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Търсене</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Сигнал</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
@@ -720,6 +727,11 @@
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
   <string name="log_submit_activity__submitting">Изпращане</string>
   <string name="log_submit_activity__no_browser_installed">Няма инсталиран браузър</string>
+  <string name="log_submit_activity__button_dont_submit">Не изпращай</string>
+  <string name="log_submit_activity__button_submit">Изпрати</string>
+  <string name="log_submit_activity__button_got_it">Ясно</string>
+  <string name="log_submit_activity__success">Успех!</string>
+  <string name="log_submit_activity__copied_to_clipboard">Копирано</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желаете ли да внесете вече съществуващите текстови съобщения в криптираната база данни на Сигнал?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системната база данни няма да бъде променена по никакъв начин.</string>

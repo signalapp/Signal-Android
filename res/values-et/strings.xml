@@ -117,6 +117,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Sõnum on tühi!</string>
   <string name="ConversationActivity_group_members">Grupiliikmed</string>
   <string name="ConversationActivity_invalid_recipient">Sobimatu saaja!</string>
+  <string name="ConversationActivity_added_to_home_screen">Avakuvale lisatud</string>
   <string name="ConversationActivity_calls_not_supported">Kõned pole toetatud</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">See seade ei tundu toetavat kõnevõimalusi.</string>
   <string name="ConversationActivity_leave_group">Lahkud grupist?</string>
@@ -181,7 +182,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Kustutan</string>
   <string name="ConversationFragment_deleting_messages">Kustutan sõnumeid...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Tsiteeritud sõnumit ei leitud</string>
+  <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sinu seadmesse pole installitud brauserit.</string>
   <!--ConversationListFragment-->
@@ -575,6 +577,16 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">Sul on ootel Signali sõnumeid, koputa vaatamiseks</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Vaikimisi</string>
+  <string name="NotificationChannel_calls">Kõned</string>
+  <string name="NotificationChannel_failures">Ebaõnnestumised</string>
+  <string name="NotificationChannel_backups">Varundused</string>
+  <string name="NotificationChannel_locked_status">Luku olek</string>
+  <string name="NotificationChannel_app_updates">Rakenduse uuendused</string>
+  <string name="NotificationChannel_other">Muu</string>
+  <string name="NotificationChannel_group_messages">Sõnumid</string>
+  <string name="NotificationChannel_missing_display_name">Tundmatu</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>
   <string name="QuickResponseService_problem_sending_message">Sõnumi saatmisel esines probleem!</string>
@@ -583,6 +595,8 @@
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Otsi</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Otsi vestlusi, kontakte ja sõnumeid</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Sobimatu otsetee</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>
@@ -671,6 +685,7 @@
   <string name="QuoteView_photo">Foto</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Sina</string>
+  <string name="QuoteView_original_missing">Originaalsõnumit ei leitud</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Keri alla</string>
   <!--country_selection_fragment-->
@@ -738,6 +753,19 @@
   <string name="log_submit_activity__thanks">Täname abi eest!</string>
   <string name="log_submit_activity__submitting">Saatmine</string>
   <string name="log_submit_activity__no_browser_installed">Brauserit pole installitud</string>
+  <string name="log_submit_activity__button_dont_submit">Ära saada</string>
+  <string name="log_submit_activity__button_submit">Saada</string>
+  <string name="log_submit_activity__button_got_it">Selge</string>
+  <string name="log_submit_activity__button_compose_email">Koosta e-kiri</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">See logi postitatakse Internetti avalikult, et kaastöötajad saaksid seda näha, sa võid seda enne postitamist vaadata ja muuta. </string>
+  <string name="log_submit_activity__loading_logs">Logide laadimine...</string>
+  <string name="log_submit_activity__uploading_logs">Logide üleslaadimine...</string>
+  <string name="log_submit_activity__success">Edu!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kopeeri see aadress ja lisa see oma probleemiteatesse või toe e-kirja:\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">Lõikelauale kopeeritud</string>
+  <string name="log_submit_activity__choose_email_app">Vali e-posti rakendus</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Palun vaata see logi üle minu rakendusest: %1$s</string>
+  <string name="log_submit_activity__network_failure">Võrgu viga. Palun proovi uuesti.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Kas soovid importida kõik oma olemasolevad tekstsõnumid Signali krüptitud andmebaasi?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Vaikimisi süsteemi andmebaasi ei muudeta mistahes viisil.</string>
@@ -782,6 +810,8 @@
   <string name="recipient_preference_activity__shared_media">Jagatud meedia</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Vaigista vestlus</string>
+  <string name="recipient_preferences__custom_notifications">Kohandatud teated</string>
+  <string name="recipient_preferences__custom_notifications_settings">Süsteemi teadete seaded</string>
   <string name="recipient_preferences__notification_sound">Teadete heli</string>
   <string name="recipient_preferences__vibrate">Vibratsioon</string>
   <string name="recipient_preferences__block">Blokeeri</string>
@@ -890,6 +920,7 @@
   <string name="preferences__inactivity_timeout_passphrase">Salaväljend ebaaktiivsuse ajalõpus</string>
   <string name="preferences__inactivity_timeout_interval">Ebaaktiivsuse ajalõpu pikkus</string>
   <string name="preferences__notifications">Teated</string>
+  <string name="preferences__system_notification_settings">Süsteemi teadete seaded</string>
   <string name="preferences__led_color">LEDi värv</string>
   <string name="preferences__led_color_unknown">Tundmatu</string>
   <string name="preferences__pref_led_blink_title">LEDi välkumismuster</string>
@@ -1021,6 +1052,7 @@
   <string name="conversation__menu_leave_group">Lahku grupist</string>
   <string name="conversation__menu_view_all_media">Kogu meedia</string>
   <string name="conversation__menu_conversation_settings">Vestluse seaded</string>
+  <string name="conversation__menu_add_shortcut">Lisa avakuvale</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Laienda hüpikut</string>
   <!--conversation_callable_insecure-->

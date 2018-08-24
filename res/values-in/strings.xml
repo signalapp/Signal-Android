@@ -171,7 +171,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Menghapus</string>
   <string name="ConversationFragment_deleting_messages">Menghapus pesan...</string>
-  <string name="ConversationFragment_quoted_message_not_found">pesan yang dikutip tidak ditemukan</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Pesan asli tidak lagi tersedia</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Tidak ada peramban yang terpasang pada perangkat Anda.</string>
   <!--ConversationListFragment-->
@@ -214,7 +214,7 @@
   <string name="DeliveryStatus_sending">Mengirim</string>
   <string name="DeliveryStatus_sent">Terkirim</string>
   <string name="DeliveryStatus_delivered">Terkirim</string>
-  <string name="DeliveryStatus_read">Baca</string>
+  <string name="DeliveryStatus_read">Terbaca</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Buang kaitan \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Dengan membuang kaitan perangkat ini, perangkat tidak akan bisa lagi mengirim atau menerima pesan.</string>
@@ -340,8 +340,10 @@
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
   <string name="MessageRecord_s_joined_signal">%s ada di Signal!</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Anda menonaktifkan pesan menghilang.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s menonaktifkan pesan menghilang.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Anda mengatur pesan menghilang dalam %1$s</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s Atur pesan menghilang menjadi %2$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s atur pesan menghilang menjadi %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %s telah berubah.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Anda menandai nomor keamanan anda dengan %s terverifikasi</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Anda menandai nomor keamanan anda dengan %s terverifikasi dari perangkat lain</string>
@@ -478,6 +480,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
   <string name="ThreadRecord_media_message">Pesan media</string>
   <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu pesan hilang diatur ke %s</string>
   <string name="ThreadRecord_safety_number_changed">Nomor keamanan berubah</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Angka keamanan anda dengan %s telah berubah.</string>
@@ -553,6 +556,14 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Signal yang tertunda, ketuk untuk membuka dan menerima</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontak</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Bawaan</string>
+  <string name="NotificationChannel_calls">Panggilan</string>
+  <string name="NotificationChannel_backups">Cadangan</string>
+  <string name="NotificationChannel_app_updates">pembaruan aplikasi</string>
+  <string name="NotificationChannel_other">Yang lain</string>
+  <string name="NotificationChannel_group_messages">Pesan</string>
+  <string name="NotificationChannel_missing_display_name">Tidak dikenal</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
@@ -560,7 +571,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SaveAttachmentTask_saved_to">Disimpan ke %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Cari</string>
-  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Mencari untuk percakapan, daftar kontak dan pesan</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Cari untuk percakapan, daftar kontak dan pesan</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
@@ -710,6 +722,13 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="log_submit_activity__thanks">Terima kasih atas bantuan Anda!</string>
   <string name="log_submit_activity__submitting">Mengirimkan</string>
   <string name="log_submit_activity__no_browser_installed">Tidak ada peramban yang terpasang</string>
+  <string name="log_submit_activity__button_dont_submit">Jangan Kirim</string>
+  <string name="log_submit_activity__button_submit">Kirim</string>
+  <string name="log_submit_activity__button_got_it">Paham</string>
+  <string name="log_submit_activity__success">Sukses!</string>
+  <string name="log_submit_activity__copied_to_clipboard">Disalin ke papan klip</string>
+  <string name="log_submit_activity__choose_email_app">Pilih aplikasi email</string>
+  <string name="log_submit_activity__network_failure">Kesalahan jaringan. Silakan coba lagi.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Apakah Anda ingin mengimpor pesan teks yang ada ke basis data Signal yang terenkripsi?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Basis data sistem standar tidak akan diubah atau dimodifikasi</string>
@@ -991,6 +1010,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation__menu_leave_group">Keluar grup</string>
   <string name="conversation__menu_view_all_media">Semua media</string>
   <string name="conversation__menu_conversation_settings">Pengaturan percakapan</string>
+  <string name="conversation__menu_add_shortcut">tambahkan ke layar utama</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Lebarkan munculan</string>
   <!--conversation_callable_insecure-->

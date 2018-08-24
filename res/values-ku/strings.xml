@@ -51,10 +51,10 @@
   <string name="DraftDatabase_Draft_location_snippet">(cih)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(bersiv)</string>
   <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Bername ji bo bijartina medya hat peyda nakir</string>
+  <string name="AttachmentManager_cant_open_media_selection">Bername ji bo bijartina medya ne hat peyde kirin</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Ji bo zêdekirina wêne, vidyo yan dengê, Signal destûra Embarê dixwaze, lê ew hat herdemî rakirin. Li \'Şikil\' &gt; \'Destûr\' &gt; \'Embar\' destûr bide.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Ji bo zêdekirina agahiya têkilî, Signal destûra Têkilî dixwaze, lê ew hat herdemî rakirin. Li \'Şikil\' &gt; \'Destûr\' &gt; \'Têkilî\' destûr bide.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Ji bo zşdekirina cihek, Signal destûra Cih dixwazeî lê ew hat herdemî rakirin. Li \'Şikil\' &gt; \'Destûr\' &gt; \'Cih\' destûr bide.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Ji bo zêdekirina Cihek, Signal destûra Cih dixwaze, lê ew hat herdemî rakirin. Li \'Şikil\' &gt; \'Destûr\' &gt; \'Cih\' destûr bide.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Ji bo kişandina wêneyan, Signal destûra Kamera dixwaze, lê ew hat herdemî rakirin. Li \'Şikil\' &gt; \'Destûr\' &gt; \'Kamera\' destûr bide.</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Lêxistina dengê çênebû!</string>
@@ -71,7 +71,7 @@
   <string name="ClearProfileActivity_remove">Derxistin</string>
   <string name="ClearProfileActivity_remove_profile_photo">Derxistina wêneya profîlê?</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Hejmara ewletî bi %1$s re hat guhartin. Belkî kesek dixwaze rêya we birîn, an belkî %2$s tenê Signalê xwe dîsa saz kir.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Hejmara ewletî bi %1$s re hat guhartin. Belkî kesek dixwaze rêya we bibire, an belkî %2$s tenê Signalê xwe dîsa saz kir.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Belkî tu dixwazî hejmara ewletî pê têkilî piştrastbikî.</string>
   <string name="ConfirmIdentityDialog_accept">Temam</string>
   <!--ContactsCursorLoader-->
@@ -94,6 +94,7 @@
   <string name="ContactShareEditActivity_type_missing">Din</string>
   <string name="ContactShareEditActivity_invalid_contact">Têkilî bijarte ne çewt bû</string>
   <!--ConversationItem-->
+  <string name="ConversationItem_error_not_delivered">Peyam ne hat şandin, ji bo bêhtir hîn bûyinê </string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Peyama veguhastina kilît hat, ji bo vekirina wê lêxe.</string>
   <string name="ConversationItem_group_action_left">%1$s ji kom derket.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Vegere SMS a neveşartî?</string>
@@ -179,7 +180,6 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Radikim</string>
   <string name="ConversationFragment_deleting_messages">Peyam radikim...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Peyama nîşankirî nahat peydakirin</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Di cihazê te de geroka web nîne.</string>
   <!--ConversationListFragment-->
@@ -560,6 +560,13 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">Peyamên Signalê te ma, ji bo vekirina wan lêxe</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Tekilî</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Standar</string>
+  <string name="NotificationChannel_calls">Gazî</string>
+  <string name="NotificationChannel_backups">Kopî</string>
+  <string name="NotificationChannel_other">Din</string>
+  <string name="NotificationChannel_group_messages">Peyam</string>
+  <string name="NotificationChannel_missing_display_name">Nenas</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Bersiva zû nabe dema Signal biqilf e!</string>
   <string name="QuickResponseService_problem_sending_message">Dema şandina peyamê pirsgirêk hebû!</string>
@@ -567,6 +574,7 @@
   <string name="SaveAttachmentTask_saved_to">Hat li %s tomarkirin</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Lêgerrîn</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Peyama nû</string>
@@ -722,6 +730,8 @@
   <string name="log_submit_activity__thanks">Ji ber alîkariya te sipas!</string>
   <string name="log_submit_activity__submitting">Wedişînin...</string>
   <string name="log_submit_activity__no_browser_installed">Geroka torr nîne</string>
+  <string name="log_submit_activity__button_got_it">Temam</string>
+  <string name="log_submit_activity__copied_to_clipboard">Hat kopîkirin</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Dixwazî peyamên nivîs ên te ji derve bînin databanka bişifreya Signalê?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Databanka pergal a standar qet nebê guhartin.</string>

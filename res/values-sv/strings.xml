@@ -179,7 +179,6 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Raderar</string>
   <string name="ConversationFragment_deleting_messages">Raderar meddelanden...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Citerat meddelande hittades inte</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
@@ -555,6 +554,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du har väntande Signal-meddelanden, tryck för att öppna och hämta</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Standard</string>
+  <string name="NotificationChannel_calls">Samtal</string>
+  <string name="NotificationChannel_backups">Säkerhetskopia</string>
+  <string name="NotificationChannel_other">Övrigt</string>
+  <string name="NotificationChannel_group_messages">Meddelanden</string>
+  <string name="NotificationChannel_missing_display_name">Okänd</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är ej tillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
@@ -562,6 +568,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SaveAttachmentTask_saved_to">Sparad till %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Sök</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
@@ -717,6 +724,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
   <string name="log_submit_activity__submitting">Skickar</string>
   <string name="log_submit_activity__no_browser_installed">Ingen webbläsare installerad</string>
+  <string name="log_submit_activity__button_dont_submit">Skicka ej</string>
+  <string name="log_submit_activity__button_submit">Skicka</string>
+  <string name="log_submit_activity__button_got_it">Uppfattat</string>
+  <string name="log_submit_activity__success">Klart!</string>
+  <string name="log_submit_activity__copied_to_clipboard">Kopierade till urklipp</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera dina existerande SMS-meddelanden till Signals krypterade databas?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Systemets standarddatabas kommer på intet sätt att modifieras eller ändras.</string>

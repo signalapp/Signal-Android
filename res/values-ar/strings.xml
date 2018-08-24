@@ -220,7 +220,6 @@
   <string name="ConversationFragment_sms">رسالة نصية</string>
   <string name="ConversationFragment_deleting">جارٍ الحذف</string>
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
-  <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة المقتبسة</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح بالجهاز.</string>
   <!--ConversationListFragment-->
@@ -622,6 +621,13 @@
   <string name="MessageNotifier_pending_signal_messages">رسائل سيجنال المعلقة</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">متصل</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">افتراضي</string>
+  <string name="NotificationChannel_calls">المُكالمات</string>
+  <string name="NotificationChannel_backups">النُسخ الإحتياطية</string>
+  <string name="NotificationChannel_other">أخرى</string>
+  <string name="NotificationChannel_group_messages">الرسائل</string>
+  <string name="NotificationChannel_missing_display_name">مجهول</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل سيجنال!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
@@ -629,6 +635,7 @@
   <string name="SaveAttachmentTask_saved_to">تم الإحتفاظ به في %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">بحث</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سيجنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
@@ -800,6 +807,11 @@
   <string name="log_submit_activity__thanks">شكرا للمساعدة!</string>
   <string name="log_submit_activity__submitting">إرسال</string>
   <string name="log_submit_activity__no_browser_installed">لا يوجد متصفح.</string>
+  <string name="log_submit_activity__button_dont_submit">لا تقدم</string>
+  <string name="log_submit_activity__button_submit">قدَم</string>
+  <string name="log_submit_activity__button_got_it">عُلم</string>
+  <string name="log_submit_activity__success">تم بنجاح!</string>
+  <string name="log_submit_activity__copied_to_clipboard">نسخ إلى الحافظة</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">هل تود استيراد الرسائل النصية الموجودة إلى قاعدة بيانات سيجنال المشفرة؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>

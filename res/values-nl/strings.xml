@@ -88,10 +88,10 @@
   <string name="ContactNameEditActivity_suffix">Achtervoegsel</string>
   <string name="ContactNameEditActivity_middle_name">2e voornaam</string>
   <!--ContactShareEditActivity-->
-  <string name="ContactShareEditActivity_type_home">Adres</string>
+  <string name="ContactShareEditActivity_type_home">Thuis</string>
   <string name="ContactShareEditActivity_type_mobile">Mobiel</string>
   <string name="ContactShareEditActivity_type_work">Werk</string>
-  <string name="ContactShareEditActivity_type_missing">Ander</string>
+  <string name="ContactShareEditActivity_type_missing">Anders</string>
   <string name="ContactShareEditActivity_invalid_contact">Het geselecteerde contact was ongeldig</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Verzenden is mislukt, tap voor details</string>
@@ -117,6 +117,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Bericht is leeg!</string>
   <string name="ConversationActivity_group_members">Groepsleden</string>
   <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
+  <string name="ConversationActivity_added_to_home_screen">Aan thuisscherm toevoegen</string>
   <string name="ConversationActivity_calls_not_supported">Bellen niet ondersteund</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt belacties niet te ondersteunen.</string>
   <string name="ConversationActivity_leave_group">Groep verlaten?</string>
@@ -181,7 +182,8 @@
   <string name="ConversationFragment_sms">Sms</string>
   <string name="ConversationFragment_deleting">Verwijderen</string>
   <string name="ConversationFragment_deleting_messages">Berichten verwijderen...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Geciteerde bericht niet gevonden</string>
+  <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Het originele bericht is niet meer beschikbaar</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op het apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
@@ -358,7 +360,9 @@
   <string name="MessageRecord_called_s">%s gebeld</string>
   <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
   <string name="MessageRecord_s_joined_signal">%s zit op Signal!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verdwijnende berichten op %1$sgezet.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt verdwijnende berichten uitgezet.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$sschakelde verdwijnende berichten uit.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verdwijnende berichten op %1$s gezet.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$szet de timervoor verdwijnende berichten op %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Je hebt je veiligheidsnummer met %s gemarkeerd als geverifieerd</string>
@@ -492,6 +496,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_s_is_on_signal">%s zit op Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Verdwijnende berichten uitgeschakeld</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen verdwijnen na %s</string>
   <string name="ThreadRecord_safety_number_changed">Veiligheidsnummer veranderd</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
@@ -567,6 +572,16 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="MessageNotifier_you_have_pending_signal_messages">Er staan Signal-berichten in de wachtrij, tik om ze te openen en op te halen</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contactpersoon</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Standaard</string>
+  <string name="NotificationChannel_calls">Oproepen</string>
+  <string name="NotificationChannel_failures">Mislukkingen</string>
+  <string name="NotificationChannel_backups">Back-ups</string>
+  <string name="NotificationChannel_locked_status">Vergrendelingstoestand</string>
+  <string name="NotificationChannel_app_updates">Bijgewerkte app versies</string>
+  <string name="NotificationChannel_other">Anders</string>
+  <string name="NotificationChannel_group_messages">Berichten</string>
+  <string name="NotificationChannel_missing_display_name">Onbekend</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal vergrendeld is!</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij verzenden van bericht!</string>
@@ -575,6 +590,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Zoeken</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Zoek naar conversaties, contacten, en berichten</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Ongeldige snelkoppeling</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
@@ -663,6 +680,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="QuoteView_photo">Foto</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Jij</string>
+  <string name="QuoteView_original_missing">Oorspronkelijk bericht niet gevonden</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar beneden</string>
   <!--country_selection_fragment-->
@@ -730,6 +748,19 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="log_submit_activity__thanks">Bedankt voor je hulp!</string>
   <string name="log_submit_activity__submitting">Indienen</string>
   <string name="log_submit_activity__no_browser_installed">Geen browser geïnstalleerd</string>
+  <string name="log_submit_activity__button_dont_submit">Dien niet in</string>
+  <string name="log_submit_activity__button_submit">Dien in</string>
+  <string name="log_submit_activity__button_got_it">Begrepen</string>
+  <string name="log_submit_activity__button_compose_email">Email opstellen</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Dit logbestand wordt publiek beschikbaar op internet gezet zodat de ontwikkelaars het kunnen zien, je kunt het bestuderen en aanpassen voor versturen.</string>
+  <string name="log_submit_activity__loading_logs">Logbestanden inladen...</string>
+  <string name="log_submit_activity__uploading_logs">Logbestanden aan het uploaden...</string>
+  <string name="log_submit_activity__success">Succesvol!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiëer deze URL en voeg het toe aan het foutrapport of de helpdesk email:\n\n <b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">Gekopieerd naar klembord</string>
+  <string name="log_submit_activity__choose_email_app">Kies email app</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Bestudeer a.u.b. dit logbestand van mijn app: %1$s</string>
+  <string name="log_submit_activity__network_failure">Netwerkfout. Probeer het opnieuw.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je huidige tekstberichtendatabase importeren naar de versleutelde database van Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaardsysteemdatabase zal niet gewijzigd of aangepast worden op enige wijze.</string>
@@ -774,6 +805,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="recipient_preference_activity__shared_media">Gedeelde media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Gesprek dempen</string>
+  <string name="recipient_preferences__custom_notifications">Aangepaste meldingen</string>
+  <string name="recipient_preferences__custom_notifications_settings">Systeemmeldingsinstellingen</string>
   <string name="recipient_preferences__notification_sound">Meldingsgeluid</string>
   <string name="recipient_preferences__vibrate">Vibreren</string>
   <string name="recipient_preferences__block">Blokkeren</string>
@@ -882,6 +915,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
   <string name="preferences__notifications">Meldingen</string>
+  <string name="preferences__system_notification_settings">Systeemmeldingsinstellingen</string>
   <string name="preferences__led_color">LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">LED-knipperpatroon</string>
@@ -1013,6 +1047,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="conversation__menu_leave_group">Groep verlaten</string>
   <string name="conversation__menu_view_all_media">Alle media</string>
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
+  <string name="conversation__menu_add_shortcut">Aan thuisscherm toevoegen</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Pop-up vergroten</string>
   <!--conversation_callable_insecure-->

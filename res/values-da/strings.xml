@@ -209,6 +209,7 @@
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sent">Sendt</string>
   <string name="DeliveryStatus_delivered">Indikator for leveret besked</string>
+  <string name="DeliveryStatus_read">Læst</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Frakobl \"%s\"?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Frakobler du denne enhed, vil den ikke være i stand til at sende og modtage beskeder.</string>
@@ -501,13 +502,17 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kunne ikke sende besked.</string>
   <string name="MessageNotifier_error_delivering_message">Fejl ved levering af besked.</string>
-  <string name="MessageNotifier_mark_all_as_read">Læst</string>
+  <string name="MessageNotifier_mark_all_as_read">Marker alle som læst</string>
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Multimediebesked</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_pending_signal_messages">Afventende Signal beskeder</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du har afventende Signal beskeder, tryk for at åbne og modtage</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Standard</string>
+  <string name="NotificationChannel_group_messages">Beskeder</string>
+  <string name="NotificationChannel_missing_display_name">Ukendt</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig-svar utilgængelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
@@ -515,6 +520,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="SaveAttachmentTask_saved_to">Gemt til %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Søg</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
@@ -658,6 +664,11 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="log_submit_activity__thanks">Tak for hjælpen!</string>
   <string name="log_submit_activity__submitting">Sender</string>
   <string name="log_submit_activity__no_browser_installed">Ingen browser installeret</string>
+  <string name="log_submit_activity__button_dont_submit">Annullere</string>
+  <string name="log_submit_activity__button_submit">Send</string>
+  <string name="log_submit_activity__button_got_it">Modtaget</string>
+  <string name="log_submit_activity__success">Fuldført!</string>
+  <string name="log_submit_activity__copied_to_clipboard">Kopieret til udklipsholder</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere dine eksisterende beskeder til Signals krypterede database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabase vil ikke blive ændret.</string>
@@ -785,7 +796,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="preferences__change_passphrase">Ændr kodeord</string>
   <string name="preferences__change_your_passphrase">Ændring af dit kodeord</string>
   <string name="preferences__screen_security">Skærmsikkerhed</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \\"forrige apps\\" og i Signal</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \"forrige apps\" og i Signal</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal efter et valgt tidsinterval med inaktivitet</string>
   <string name="preferences__inactivity_timeout_passphrase">Kodeord for timeout ved inaktivitet.</string>
   <string name="preferences__inactivity_timeout_interval">Længde for interval ved inaktivitet</string>
@@ -843,6 +854,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="preferences__submit_debug_log">Indsend fejlfindingslog</string>
   <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for WiFi-opkald</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivér hvis din enhed sender SMS/MMS via WiFI (aktivér kun, hvis WiFI-opkald er aktiveret på din enhed)</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Bed tastatur om at slå personaliseret læring fra</string>
   <string name="preferences_app_protection__blocked_contacts">Blokerede kontakter</string>
   <string name="preferences_chats__when_using_mobile_data">Når der anvendes mobildata</string>
   <string name="preferences_chats__when_using_wifi">Når der anvendes WiFi</string>
@@ -971,9 +983,25 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="BackupDialog_copied_to_clipboard">Kopieret til udklipsholder</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Ukendt</string>
+  <string name="preferences_app_protection__screen_lock">Skærmlås</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås adgang til Signal med Android skærmlås eller fingeraftryk</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Skærmlås inaktivitets-timeout</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
+  <string name="registration_activity__registration_lock_pin">Registreringslås pinkode</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Indtast din registreringslås pinkode</string>
+  <string name="preferences_app_protection__registration_lock_pin">Registreringslås pinkode</string>
+  <string name="preferences_app_protection__registration_lock">Registreringslås</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du skal indtaste din registreringslås pinkode</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Forkert registreringslås pinkode</string>
   <string name="RegistrationActivity_too_many_attempts">For mange forsøg</string>
   <string name="RegistrationActivity_oh_no">Åh nej!</string>
+  <string name="RegistrationActivity_registration_lock_pin">Registreringslås pinkode</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Denne telefon har registreringslås slået til. Venligst indtast pinkoden.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslås pinkode er slået til for dit telefonnummer. For at hjælpe dig med at huske pinkoden beder Signal dig periodisk bekræfte den.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås pinkoden hjælper dig med at beskytte dit telefonnummer fra uautoriserede registreringsforsøg. Denne funktion kan til enhver tid slås fra under privatlivsindstillinger.</string>
+  <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Registreringslås pinkoden skal være på mindst 4 cifre.</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Slå registreringslås pinkode fra?</string>
   <string name="RegistrationLockDialog_disable">Deaktivér</string>
   <string name="RegistrationActivity_continue">Fortsæt</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>

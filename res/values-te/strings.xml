@@ -171,7 +171,6 @@
   <string name="ConversationFragment_sms">ఎస్సెమ్మెస్</string>
   <string name="ConversationFragment_deleting">తొలగిపోతున్నాయ్</string>
   <string name="ConversationFragment_deleting_messages">సందేశాలను తొలగిస్తోంది ...</string>
-  <string name="ConversationFragment_quoted_message_not_found">కోట్ చేసిన సందేశం కనుగొనబడలేదు</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">మీ పరికరంలో ఎటువంటి బ్రౌజర్ ఇన్స్టాల్ అయి లేదు</string>
   <!--ConversationListFragment-->
@@ -542,6 +541,12 @@
   <string name="MessageNotifier_pending_signal_messages">సిగ్నల్ సందేశాలు పెండింగ్లో ఉన్నాయి</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">మీ సిగ్నల్ సందేశాలు పెండింగ్లో ఉన్నాయి, తెరవడానికి మరియు తిరిగి పొందడానికి నొక్కండి</string>
   <string name="MessageNotifier_unknown_contact_message">పరిచయం</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">అప్రమేయం</string>
+  <string name="NotificationChannel_calls">కాల్స్</string>
+  <string name="NotificationChannel_backups">బ్యాకప్లు</string>
+  <string name="NotificationChannel_group_messages">సందేశాలు</string>
+  <string name="NotificationChannel_missing_display_name">తెలియని</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">సిగ్నల్ బంధించినపుడు తక్షణ స్పందన అందుబాటులొ లేదు!</string>
   <string name="QuickResponseService_problem_sending_message">సందేశాన్ని పంపడంలొ సమస్య!</string>
@@ -549,6 +554,7 @@
   <string name="SaveAttachmentTask_saved_to">%s కు సేవ్ చేయబడింది</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">వెతకండి</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">సిగ్నల్</string>
   <string name="SingleRecipientNotificationBuilder_new_message">కొత్త సందేశం</string>
@@ -693,6 +699,8 @@
   <string name="log_submit_activity__thanks">మీ సహాయానికి ధన్యవాదాలు!</string>
   <string name="log_submit_activity__submitting">సమర్పిస్తోంది</string>
   <string name="log_submit_activity__no_browser_installed">బ్రౌజర్ వ్యవస్థాపన లేదు</string>
+  <string name="log_submit_activity__button_got_it">దొరికింది</string>
+  <string name="log_submit_activity__copied_to_clipboard">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">మీరు సిగ్నల్ యొక్క ఎన్క్రిప్టెడ్ డేటాబేస్లో ఇప్పటికే  మీ వద్ద ఉన్నటెక్స్ట్ సందేశాలను దిగుమతి చేయాలనుకుంటున్నారా?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">డిఫాల్ట్ డాటాబెశ్  వ్యవస్థల్లొ ఏట్టీ పరిస్థిథుల్లొ చివరి మార్పు చెయ్యబడదు</string>

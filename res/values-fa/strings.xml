@@ -165,7 +165,6 @@
   <string name="ConversationFragment_sms">پیامک</string>
   <string name="ConversationFragment_deleting">در حال حذف کردن</string>
   <string name="ConversationFragment_deleting_messages">حذف پیام های...</string>
-  <string name="ConversationFragment_quoted_message_not_found">پیام انتخاب شده پیدا نشد</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">برروی دستگاه شما هیچ مرورگری نصب نیست.</string>
   <!--ConversationListFragment-->
@@ -506,12 +505,17 @@
   <string name="MessageNotifier_pending_signal_messages">پیام در انتظار سیگنال</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">شما در سیگنال پیام در انتظار دارید، برای مشاهده و بازیابی پیام اینجا ضربه بزنید</string>
   <string name="MessageNotifier_unknown_contact_message">مخاطب</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">پیش فرض</string>
+  <string name="NotificationChannel_group_messages">پیام ها</string>
+  <string name="NotificationChannel_missing_display_name">ناشناخته</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخگوی سریع هنگامی که نرم‌افزار سیگنال قفل باشد غیرفعال می‌شود.</string>
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
   <!--SaveAttachmentTask-->
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">جستجو</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سیگنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
@@ -634,6 +638,8 @@
   <string name="log_submit_activity__thanks">تشکر از کمک شما!</string>
   <string name="log_submit_activity__submitting">ارسال</string>
   <string name="log_submit_activity__no_browser_installed">هیچ مرورگری نصب نشده است</string>
+  <string name="log_submit_activity__button_got_it">فهمیدم</string>
+  <string name="log_submit_activity__success">موفقیت!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">دوست دارید که پیام های گوشی داخل دیتابیس رمزنگاری شده وارد شوند؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">پايگاه داده‌ی پيش‌فرض سيستم، به هيچ وجه دستکاری يا تغيير نخواهد کرد</string>

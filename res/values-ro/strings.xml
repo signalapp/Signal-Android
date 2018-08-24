@@ -28,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Anulați înregistrarea</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal... </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivez mesajele și apelurile Signal? </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivare mesaje și apeluri Signal prin dezabonarea de la server. Va trebui să re-înregistrezi numărul tău de telefon pentru a putea să le folosești din nou în viitor.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apeluri Signal prin dezabonarea de la server. Va trebui să vă re-înregistrezi numărul dvs. de telefon pentru a putea să le folosiți din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atingeți pentru a schimba aplicaţia implicită de SMS </string>
@@ -120,6 +120,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Mesajul este gol!</string>
   <string name="ConversationActivity_group_members">Membrii grupului</string>
   <string name="ConversationActivity_invalid_recipient">Destinatar invalid!</string>
+  <string name="ConversationActivity_added_to_home_screen">Adăugat pe ecranul principal</string>
   <string name="ConversationActivity_calls_not_supported">Nu există suport pentru apeluri</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Acest dispozitiv nu pare să suporte acțiune de apelare.</string>
   <string name="ConversationActivity_leave_group">Părăsiți grupul?</string>
@@ -191,7 +192,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Se șterge</string>
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Mesajul citat nu a fost găsit</string>
+  <string name="ConversationFragment_quoted_message_not_found">Mesajul original nu a fost găsit</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Mesajul original nu mai este disponibil</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
@@ -588,6 +590,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_you_have_pending_signal_messages">Ai mesaje Signal în așteptare, apasă pentru deschidere și recuperare</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Implicit</string>
+  <string name="NotificationChannel_calls">Apeluri</string>
+  <string name="NotificationChannel_failures">Erori</string>
+  <string name="NotificationChannel_backups">Backup-uri</string>
+  <string name="NotificationChannel_locked_status">Stare blocare</string>
+  <string name="NotificationChannel_app_updates">Actualizări aplicație</string>
+  <string name="NotificationChannel_other">Altul</string>
+  <string name="NotificationChannel_group_messages">Mesaje</string>
+  <string name="NotificationChannel_missing_display_name">Necunoscut</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
@@ -596,6 +608,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Căutați</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Căutați conversații, contacte și mesaje</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Scurtătură invalidă</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
@@ -684,6 +698,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="QuoteView_photo">Poză</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Tu</string>
+  <string name="QuoteView_original_missing">Mesajul original nu a fost găsit</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Derulați până jos</string>
   <!--country_selection_fragment-->
@@ -757,6 +772,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
   <string name="log_submit_activity__submitting">Se trimite</string>
   <string name="log_submit_activity__no_browser_installed">Nici un browser instalat</string>
+  <string name="log_submit_activity__button_dont_submit">Nu trimite</string>
+  <string name="log_submit_activity__button_submit">Trimite</string>
+  <string name="log_submit_activity__button_got_it">Am înțeles</string>
+  <string name="log_submit_activity__button_compose_email">Compune e-mail</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Acest jurnal va fi postat public online pentru a fi analizat de contribuitori, puteți examina şi edita jurnalul înainte de al trimite.</string>
+  <string name="log_submit_activity__loading_logs">Se încarcă jurnalele...</string>
+  <string name="log_submit_activity__uploading_logs">Se încarcă jurnalele...</string>
+  <string name="log_submit_activity__success">Succes!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiați acest URL și adăugați-l la raportul de probleme sau la mail-ul de suport:\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">S-a copiat în clipboard</string>
+  <string name="log_submit_activity__choose_email_app">Alegeți aplicație de e-mail</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Vă rog revizuiți acest jurnal din aplicația mea: %1$s</string>
+  <string name="log_submit_activity__network_failure">Eroare de rețea. Vă rugăm încercați din nou.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doriți să importaţi mesajale dvs. text existente în baza de date criptată Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza de date a sistemului nu va fi modificată în nici un fel.</string>
@@ -802,6 +830,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="recipient_preference_activity__shared_media">Fișiere media distribuite</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Conversaţie fără sunet</string>
+  <string name="recipient_preferences__custom_notifications">Notificări personalizate</string>
+  <string name="recipient_preferences__custom_notifications_settings">Setări notificări de sistem</string>
   <string name="recipient_preferences__notification_sound">Sunet de notificare</string>
   <string name="recipient_preferences__vibrate">Vibrează</string>
   <string name="recipient_preferences__block">Blochează</string>
@@ -911,6 +941,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__inactivity_timeout_passphrase">Cere parolă pentru inactivitate</string>
   <string name="preferences__inactivity_timeout_interval">Interval de timp pentru inactivitate</string>
   <string name="preferences__notifications">Notificări</string>
+  <string name="preferences__system_notification_settings">Setări notificări de sistem</string>
   <string name="preferences__led_color">Culoare LED</string>
   <string name="preferences__led_color_unknown">Necunoscut</string>
   <string name="preferences__pref_led_blink_title">Tipar de clipire LED</string>
@@ -1043,6 +1074,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation__menu_leave_group">Părăseşte grupul</string>
   <string name="conversation__menu_view_all_media">Toate fișierele media</string>
   <string name="conversation__menu_conversation_settings">Setări conversaţie</string>
+  <string name="conversation__menu_add_shortcut">Adaugă pe ecranul principal</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Extinde popup-ul</string>
   <!--conversation_callable_insecure-->
@@ -1088,7 +1120,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="media_preview__forward_title">Redirecționează</string>
   <string name="media_preview__all_media_title">Toate fișierele media</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Nici un document</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Nu aveți documente</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Previzualizare media</string>
   <!--new_conversation_activity-->
@@ -1113,24 +1145,24 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Deblocați pentru a vedea mesajele în curs</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Deblocați pentru a finaliza actualizarea</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vă rog deblocați Signal pentru a finaliza actualizarea</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă copie de rezervă</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie sa știi această parola pentru a putea restaura un backup.</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura o copie de siguranță.</string>
-  <string name="registration_activity__restore_backup">Restaurare copie de rezervă</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă backup</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie sa aveți această parola pentru a putea restaura un backup.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura un backup.</string>
+  <string name="registration_activity__restore_backup">Restaurare backup</string>
   <string name="registration_activity__skip">Omite</string>
   <string name="registration_activity__register">Înregistrare</string>
   <string name="preferences_chats__chat_backups">Backup-uri pt. conversații</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Salvează conversațiile pe stocarea externă</string>
-  <string name="preferences_chats__create_backup">Creează copie de rezervă</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Introduceți parola pentru copia de rezervă</string>
+  <string name="preferences_chats__create_backup">Creează backup</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Introduceți parola pentru backup</string>
   <string name="RegistrationActivity_restore">Restaurează</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">Parola pentru copia de rezervă este incorectă</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Parola pentru backup este incorectă</string>
   <string name="RegistrationActivity_checking">În curs de verificare</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mesaje până acum...</string>
-  <string name="RegistrationActivity_restore_from_backup">Restaurez dintr-o copie de rezervă?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurați mesajele și media dintr-o copie de rezervă locală. Dacă nu restaurați acum, nu veți putea restaura mai târziu.</string>
-  <string name="RegistrationActivity_backup_size_s">Mărime copie de rezervă: %s</string>
-  <string name="RegistrationActivity_backup_timestamp_s">Data copiei de rezervă: %s</string>
+  <string name="RegistrationActivity_restore_from_backup">Restaurez din backup?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurați mesajele și media dintr-un backup local. Dacă nu restaurați acum, nu veți putea restaura mai târziu.</string>
+  <string name="RegistrationActivity_backup_size_s">Mărime backup: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Dată backup: %s</string>
   <string name="BackupDialog_enable_local_backups">Activez backup-urile locale?</string>
   <string name="BackupDialog_enable_backups">Activează backup-urile</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Vă rog să vă dați acceptul prin marcarea căsuței de confirmare.</string>
@@ -1139,9 +1171,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_delete_backups_statement">Șterge backup-urile</string>
   <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Vă rog continuați la setări aplicație, selectați \"Permisiuni\" și activați \"Stocare\". </string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Ultima copie de rezervă: %s</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Ultimul backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">În curs</string>
-  <string name="LocalBackupJob_creating_backup">Se creează copia de rezervă...</string>
+  <string name="LocalBackupJob_creating_backup">Se creează backup-ul...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesaje până acum</string>
   <string name="RegistrationActivity_verify_s">Verifică %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Vă rugăm să introduceți codul de verificare trimis la %s.</string>

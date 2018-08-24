@@ -117,6 +117,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Mezua hutsik dago!</string>
   <string name="ConversationActivity_group_members">Taldeko partaideak</string>
   <string name="ConversationActivity_invalid_recipient">Hartzaile baliogabea!</string>
+  <string name="ConversationActivity_added_to_home_screen">Hasiera pantailara gehituta</string>
   <string name="ConversationActivity_calls_not_supported">Deiak ez daude onartuta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Badirudi gailu honek ez duela onartzen telefono deiekin lotutako ekintzak.</string>
   <string name="ConversationActivity_leave_group">Taldea utzi?</string>
@@ -182,7 +183,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ezabatzen</string>
   <string name="ConversationFragment_deleting_messages">Mezuak ezabatzen...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Ez da aipatutako mezua aurkitu</string>
+  <string name="ConversationFragment_quoted_message_not_found">Jatorrizko mezua ez da aurkitu</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Jatorrizko mezua ez dago eskuragarri jada</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ez dago nabigatzaile instalaturik zure gailuan.</string>
   <!--ConversationListFragment-->
@@ -359,8 +361,10 @@
   <string name="MessageRecord_called_s">%s-(e)ri deitu duzu</string>
   <string name="MessageRecord_missed_call_from">%s-en erantzun gabeko deia</string>
   <string name="MessageRecord_s_joined_signal">%sSignal-en dago!</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Desagertzen diren mezuen debora %1$s-tan ezarrita</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">Desagertzen diren mezuen debora %2$s-tan ezarri du %1$s-k</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Mezuen desagerpena ezgaitu duzu.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s-k mezuen desagerpena ezgaitu du.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Mezuen desagerpenaren debora %1$s-tan ezarrita</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">Mezuen desagerpenaren debora %2$s-tan ezarri du %1$s-k</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Zure segurtasun zenbakia %s aldatu da.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%srekin duzun segurtasun zenbakia egiaztatu da</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%srekin duzun segurtasun zenbakia egiaztatutzat markatu duzu beste gailu batetik</string>
@@ -392,7 +396,7 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signalek Kamera baimena behar du QR kodea eskaneatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ezin da QR koderik eskaneatu Kamera baimen gabe</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Desagertzen diren mezuak</string>
+  <string name="ExpirationDialog_disappearing_messages">Mezuen desagerpena</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Zure mezuak ez dira iraungiko.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetan jaso eta bidalitako mezuak ikusi eta %s gero desagertuko dira.</string>
   <!--PassphrasePromptActivity-->
@@ -498,6 +502,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_missed_call">Erantzun gabeko deia</string>
   <string name="ThreadRecord_media_message">Multimedia mezua</string>
   <string name="ThreadRecord_s_is_on_signal">%sSignal-en dago!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Mezuen desagerpena ezgaituta dago</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen debora %s-tan ezarrita</string>
   <string name="ThreadRecord_safety_number_changed">Seguratsun zenbakia aldatua</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Zure segurtasun zenbakia %s aldatu da.</string>
@@ -573,6 +578,16 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_you_have_pending_signal_messages">Signal mezuak  zain dauzkazu, ukitu irekitzeko eta jasotzeko.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontaktua</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Lehenetsia</string>
+  <string name="NotificationChannel_calls">Deiak</string>
+  <string name="NotificationChannel_failures">Hutsegiteak</string>
+  <string name="NotificationChannel_backups">Babes-kopiak</string>
+  <string name="NotificationChannel_locked_status">Blokeo egoera</string>
+  <string name="NotificationChannel_app_updates">Aplikazioaren eguneraketak</string>
+  <string name="NotificationChannel_other">Besteak</string>
+  <string name="NotificationChannel_group_messages">Mezuak</string>
+  <string name="NotificationChannel_missing_display_name">Ezezaguna</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Erantzun bizkorra eskuraezina Signal blokeatuta badago!</string>
   <string name="QuickResponseService_problem_sending_message">Arazoa mezua bidaltzen!</string>
@@ -581,6 +596,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Bilatu</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Bilatu solasaldiak, kontaktuak eta mezuak</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mezu berria</string>
@@ -669,6 +685,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="QuoteView_photo">Argazkia</string>
   <string name="QuoteView_document">Dokumentua</string>
   <string name="QuoteView_you">Zu</string>
+  <string name="QuoteView_original_missing">Jatorrizko mezua ez da aurkitu</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Hondora korritu</string>
   <!--country_selection_fragment-->
@@ -736,6 +753,19 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="log_submit_activity__thanks">Eskerrik asko zure laguntzagatik!</string>
   <string name="log_submit_activity__submitting">Bidaltzen</string>
   <string name="log_submit_activity__no_browser_installed">Nabigatzaile instalaturik ez</string>
+  <string name="log_submit_activity__button_dont_submit">Ez bidali</string>
+  <string name="log_submit_activity__button_submit">Bidali</string>
+  <string name="log_submit_activity__button_got_it">Jasota</string>
+  <string name="log_submit_activity__button_compose_email">Idatzi e-maila</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Egunkari hau publikoki argitaratuko da ekarleek ikus dezaten, bidali aurretik aztertu eta aldatu dezakezu.</string>
+  <string name="log_submit_activity__loading_logs">Egunkariak kargatzen...</string>
+  <string name="log_submit_activity__uploading_logs">Egunkariak igotzen...</string>
+  <string name="log_submit_activity__success">Arrakasta!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kopiatu URL hau eta gehitu zure arazo-txostenera edo laguntza e-mailera:\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copied_to_clipboard">Arbelera kopiatuta</string>
+  <string name="log_submit_activity__choose_email_app">Hautatu e-mail aplikazioa</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Egiaztatu mesedez nire aplikazioaren egunkari hau: %1$s</string>
+  <string name="log_submit_activity__network_failure">Sare hutsegitea. Saiatu beriro</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Oraingo telefonoaren zifratu gabeko mezuak Signalen datu-base zifratura inportatzea gustatuko litzaizuke?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Sistemaren lehenetsitako datubasea ez da inolako moduan aldatuko.</string>
@@ -989,7 +1019,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Eraskina gorde</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Desagertzen diren mezuak</string>
+  <string name="conversation_expiring_off__disappearing_messages">Mezuen desagerpena</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Mezuak iraungitzen</string>
   <!--conversation_insecure-->
@@ -1020,6 +1050,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="conversation__menu_leave_group">Taldea utzi</string>
   <string name="conversation__menu_view_all_media">Euskarri guztiak</string>
   <string name="conversation__menu_conversation_settings">Solasaldiaren ezarpenak</string>
+  <string name="conversation__menu_add_shortcut">Gehitu hasiera pantailara</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Zabaldu leihoa</string>
   <!--conversation_callable_insecure-->

@@ -169,7 +169,6 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">ဖျက်နေသည်</string>
   <string name="ConversationFragment_deleting_messages">စာများဖျက်နေသည်</string>
-  <string name="ConversationFragment_quoted_message_not_found">မိမိရှာနေသော စာတိုအား မတွေ့ရှိပါ</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ဖုန်းထဲတွင်  browser သွင်းထားခြင်းမရှိပါ</string>
   <!--ConversationListFragment-->
@@ -540,6 +539,13 @@
   <string name="MessageNotifier_you_have_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားပါသည်၊ ပြန်ဖွင့်ရန် နှိပ်လိုက်ပါ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">အဆက်အသွယ်</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">မူလ</string>
+  <string name="NotificationChannel_calls">ဖုန်းခေါ်ဆိုမှုများ</string>
+  <string name="NotificationChannel_backups">အရံသိမ်းဆည်းမှုများ</string>
+  <string name="NotificationChannel_other">အခြား</string>
+  <string name="NotificationChannel_group_messages">စာများ</string>
+  <string name="NotificationChannel_missing_display_name">မသိ</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal လော့ခ်ကျသွားသည့်အခါ ချက်ချင်းမတုံ့ပြန်နိုင်ပါ!</string>
   <string name="QuickResponseService_problem_sending_message">စာပို့ခြင်းအခက်အခဲ</string>
@@ -547,6 +553,7 @@
   <string name="SaveAttachmentTask_saved_to">%s တွင် သိမ်းဆည်းပြီးပါပြီ</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">ရှာရန်</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">စာအသစ်</string>
@@ -697,6 +704,9 @@
   <string name="log_submit_activity__thanks">ကူညီပေးတာ ကျေးဇူးပါ။</string>
   <string name="log_submit_activity__submitting">ပေးပို့တင်ပြခြင်း</string>
   <string name="log_submit_activity__no_browser_installed">Browser မတပ်ဆင်ရသေးပါ</string>
+  <string name="log_submit_activity__button_got_it">ရပြီ</string>
+  <string name="log_submit_activity__success">အောင်မြင်!</string>
+  <string name="log_submit_activity__copied_to_clipboard">clipboard သို့ ကူးယူပါ</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">သင်၏စာသားသတင်းစကားများကို Signal ၏encrypt အချက်အလက်အဖြစ်ကူးပြောင်းချင်ပါသလား?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">မူလဒေတာဘေ့စ်စနစ်ကို ပြောင်းလဲမည် မဟုတ်ပါ။</string>

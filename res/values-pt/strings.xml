@@ -179,7 +179,6 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">A apagar</string>
   <string name="ConversationFragment_deleting_messages">A apagar mensagens...</string>
-  <string name="ConversationFragment_quoted_message_not_found">Mensagem citada não encontrada</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe um navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -557,6 +556,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_you_have_pending_signal_messages">Tem mensagens do Signal pendentes, toque para abrir e obter</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Predefinição</string>
+  <string name="NotificationChannel_calls">Chamadas</string>
+  <string name="NotificationChannel_backups">Cópias de segurança</string>
+  <string name="NotificationChannel_other">Outro</string>
+  <string name="NotificationChannel_group_messages">Mensagens</string>
+  <string name="NotificationChannel_missing_display_name">Desconhecido</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida indisponível quando o Signal está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
@@ -564,6 +570,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="SaveAttachmentTask_saved_to">Guardado para %s</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Procurar</string>
+  <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mensagem nova</string>
@@ -719,6 +726,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="log_submit_activity__thanks">Obrigado pela sua ajuda!</string>
   <string name="log_submit_activity__submitting">A enviar</string>
   <string name="log_submit_activity__no_browser_installed">Não existe um navegador instalado</string>
+  <string name="log_submit_activity__button_dont_submit">Não enviar</string>
+  <string name="log_submit_activity__button_submit">Enviar</string>
+  <string name="log_submit_activity__button_got_it">Recebido</string>
+  <string name="log_submit_activity__success">Sucesso!</string>
+  <string name="log_submit_activity__copied_to_clipboard">Copiado para a área de transferência</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar as suas mensagens de texto existentes para a base de dados encriptada do Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados de sistema não será modificada ou alterada de nenhuma forma.</string>
