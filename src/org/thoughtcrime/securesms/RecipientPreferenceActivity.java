@@ -443,7 +443,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     @Override
     public void onModified(final Recipient recipient) {
-      Util.runOnMain(() -> setSummaries(recipient));
+      Util.runOnMain(() -> {
+        if (getContext() != null && getActivity() != null && !getActivity().isFinishing()) {
+          setSummaries(recipient);
+        }
+      });
     }
 
     private class RingtoneChangeListener implements Preference.OnPreferenceChangeListener {
