@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
@@ -156,6 +157,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Dialogs;
@@ -796,7 +798,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         if (recipient.getContactPhoto() != null) {
           try {
-            icon = IconCompat.createWithAdaptiveBitmap(BitmapFactory.decodeStream(recipient.getContactPhoto().openInputStream(context)));
+            Bitmap bitmap = BitmapFactory.decodeStream(recipient.getContactPhoto().openInputStream(context));
+            bitmap = BitmapUtil.createScaledBitmap(bitmap, 300, 300);
+            icon   = IconCompat.createWithAdaptiveBitmap(bitmap);
           } catch (IOException e) {
             Log.w(TAG, "Failed to decode contact photo during shortcut creation. Falling back to generic icon.", e);
           }
