@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class QuickAttachmentDrawer extends ViewGroup implements InputView, CameraViewListener {
   private static final String TAG = QuickAttachmentDrawer.class.getSimpleName();
-  private static final int STATUS_BAR_HEIGHT = 24;
   private final ViewDragHelper dragHelper;
 
   private CameraView                cameraView;
@@ -544,8 +543,11 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   }
 
   private int getStatusBarHeight() {
-    if (statusBarHeight == 0) {
-      statusBarHeight = (int)(STATUS_BAR_HEIGHT * getResources().getDisplayMetrics().density);
+    if (statusBarHeight == 0 ) {
+      int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+      if (resourceId > 0) {
+        statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+      }
     }
     return statusBarHeight;
   }
