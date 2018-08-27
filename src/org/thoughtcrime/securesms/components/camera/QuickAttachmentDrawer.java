@@ -56,6 +56,8 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   private Rect        drawChildrenRect = new Rect();
   private boolean     paused           = false;
 
+  private int statusBarHeight          = 0;
+
   public QuickAttachmentDrawer(Context context) {
     this(context, null);
   }
@@ -183,6 +185,9 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
         if (cameraView.getMeasuredWidth() < getMeasuredWidth())
           childLeft = (getMeasuredWidth() - cameraView.getMeasuredWidth()) / 2 + paddingLeft;
       } else if (child == controls) {
+        if (!isLandscape()) {
+          childTop = childTop - getStatusBarHeight();
+        }
         childBottom = getMeasuredHeight();
       } else {
         childTop    = computeCoverTopPosition(slideOffset);
@@ -207,7 +212,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
       throw new IllegalStateException("Height must have an exact value or MATCH_PARENT");
     }
 
-    int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom();
+    int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom() + getStatusBarHeight();
 
     for (int i = 0; i < getChildCount(); i++) {
       final View child = getChildAt(i);
@@ -321,7 +326,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
 
   public int getTargetSlideOffset() {
     switch (drawerState) {
-    case FULL_EXPANDED: return getMeasuredHeight() + getStatusBarHeight();
+    case FULL_EXPANDED: return getMeasuredHeight();
     case HALF_EXPANDED: return halfExpandedHeight;
     default:            return 0;
     }
@@ -336,7 +341,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
     setDrawerState(requestedDrawerState);
     if (oldDrawerState != drawerState) {
       updateHalfExpandedAnchorPoint();
-      slideTo(getTargetSlideOffset(), instant);
+      slideTo(getTargetSlideOffset() + getStatusBarHeight(), instant);
     }
   }
 
@@ -539,7 +544,10 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   }
 
   private int getStatusBarHeight() {
-    return (int)(STATUS_BAR_HEIGHT * getResources().getDisplayMetrics().density);
+    if (statusBarHeight == 0) {
+      statusBarHeight = (int)(STATUS_BAR_HEIGHT * getResources().getDisplayMetrics().density);
+    }
+    return statusBarHeight;
   }
 
   public enum DrawerState {
