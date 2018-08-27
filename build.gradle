@@ -241,7 +241,7 @@ dependencyVerification {
 
 android {
     flavorDimensions "none"
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion '27.0.1'
     useLibrary 'org.apache.http.legacy'
 
