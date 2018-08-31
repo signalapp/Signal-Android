@@ -855,6 +855,10 @@ public class TextSecurePreferences {
     setStringPreference(context, CALL_RINGTONE_PREF, ringtone);
   }
 
+  public static void setNotificationVibrateEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, VIBRATE_PREF, enabled);
+  }
+
   public static boolean isNotificationVibrateEnabled(Context context) {
     return getBooleanPreference(context, VIBRATE_PREF, true);
   }

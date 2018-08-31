@@ -591,11 +591,8 @@ public class Recipient implements RecipientModifiedListener {
     if (notify) notifyListeners();
   }
 
-  public synchronized @NonNull String getNotificationChannel(@NonNull Context context) {
-    if (!NotificationChannels.supported() || notificationChannel == null) {
-      return NotificationChannels.getMessagesChannel(context);
-    }
-    return notificationChannel;
+  public synchronized @Nullable String getNotificationChannel() {
+    return !NotificationChannels.supported() ? null : notificationChannel;
   }
 
   public void setNotificationChannel(@Nullable String value) {
@@ -609,10 +606,6 @@ public class Recipient implements RecipientModifiedListener {
     }
 
     if (notify) notifyListeners();
-  }
-
-  public synchronized boolean hasCustomNotifications() {
-    return NotificationChannels.supported() && notificationChannel != null;
   }
 
   public synchronized @Nullable byte[] getProfileKey() {

@@ -28,38 +28,26 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
   @SuppressWarnings("unused")
   private static final String TAG = NotificationsPreferenceFragment.class.getSimpleName();
 
-  private static final String PREF_SYSTEM_SETTINGS = "pref_key_system_notification_settings";
-
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
 
-    Preference ledBlinkPref    = this.findPreference(TextSecurePreferences.LED_BLINK_PREF);
-    Preference messageTonePref = this.findPreference(TextSecurePreferences.RINGTONE_PREF);
-    Preference vibratePref     = this.findPreference(TextSecurePreferences.VIBRATE_PREF);
-    Preference systemPref      = this.findPreference(PREF_SYSTEM_SETTINGS);
+    Preference ledBlinkPref = this.findPreference(TextSecurePreferences.LED_BLINK_PREF);
 
     if (NotificationChannels.supported()) {
       ledBlinkPref.setVisible(false);
-      messageTonePref.setVisible(false);
-      vibratePref.setVisible(false);
+      TextSecurePreferences.setNotificationRingtone(getContext(), NotificationChannels.getMessageRingtone(getContext()).toString());
+      TextSecurePreferences.setNotificationVibrateEnabled(getContext(), NotificationChannels.getMessageVibrate(getContext()));
 
-      systemPref.setOnPreferenceClickListener(p -> {
-        NotificationChannels.openChannelSettings(getContext(), NotificationChannels.getMessagesChannel(getContext()));
-        return true;
-      });
     } else {
-      systemPref.setVisible(false);
-
       ledBlinkPref.setOnPreferenceChangeListener(new ListSummaryListener());
-      messageTonePref.setOnPreferenceChangeListener(new RingtoneSummaryListener());
-
       initializeListSummary((ListPreference) ledBlinkPref);
-      initializeRingtoneSummary(messageTonePref);
     }
 
     this.findPreference(TextSecurePreferences.LED_COLOR_PREF)
         .setOnPreferenceChangeListener(new LedColorChangeListener());
+    this.findPreference(TextSecurePreferences.RINGTONE_PREF)
+        .setOnPreferenceChangeListener(new RingtoneSummaryListener());
     this.findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF)
         .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF)
@@ -68,6 +56,11 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.CALL_RINGTONE_PREF)
         .setOnPreferenceChangeListener(new RingtoneSummaryListener());
+    this.findPreference(TextSecurePreferences.VIBRATE_PREF)
+        .setOnPreferenceChangeListener((preference, newValue) -> {
+          NotificationChannels.updateMessageVibrate(getContext(), (boolean) newValue);
+          return true;
+        });
 
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
         .setOnPreferenceClickListener(preference -> {
@@ -118,7 +111,9 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
       initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
     }
 
+    initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
     initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
+    initializeMessageVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.VIBRATE_PREF));
     initializeCallVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.CALL_VIBRATE_PREF));
   }
 
@@ -139,8 +134,10 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
       Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
 
       if (Settings.System.DEFAULT_NOTIFICATION_URI.equals(uri)) {
+        NotificationChannels.updateMessageRingtone(getContext(), uri);
         TextSecurePreferences.removeNotificationRingtone(getContext());
       } else {
+        NotificationChannels.updateMessageRingtone(getContext(), uri);
         TextSecurePreferences.setNotificationRingtone(getContext(), uri != null ? uri.toString() : Uri.EMPTY.toString());
       }
 
@@ -189,6 +186,10 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     Uri                     uri      = TextSecurePreferences.getCallNotificationRingtone(getContext());
 
     listener.onPreferenceChange(pref, uri);
+  }
+
+  private void initializeMessageVibrateSummary(SwitchPreferenceCompat pref) {
+    pref.setChecked(TextSecurePreferences.isNotificationVibrateEnabled(getContext()));
   }
 
   private void initializeCallVibrateSummary(SwitchPreferenceCompat pref) {

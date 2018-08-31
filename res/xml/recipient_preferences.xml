@@ -23,12 +23,6 @@
             android:persistent="false" />
 
         <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
-            android:key="pref_key_recipient_notification_settings"
-            android:dependency="pref_key_recipient_custom_notifications"
-            android:title="@string/recipient_preferences__custom_notifications_settings"
-            android:persistent="false" />
-
-        <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
                             android:dependency="pref_key_recipient_mute"
                             android:key="pref_key_recipient_ringtone"
                             android:title="@string/recipient_preferences__notification_sound"

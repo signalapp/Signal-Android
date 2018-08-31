@@ -344,15 +344,6 @@ public class RecipientDatabase extends Database {
     recipient.setNotificationChannel(notificationChannel);
   }
 
-  public boolean isNotificationChannelPresent(@NonNull String notificationChannel) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
-
-    try (Cursor cursor = database.query(TABLE_NAME, new String[] { ID }, NOTIFICATION_CHANNEL + " = ?",
-                                        new String[] { notificationChannel }, null, null, null, null)) {
-      return cursor != null && cursor.moveToFirst();
-    }
-  }
-
   public Set<Address> getAllAddresses() {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
     Set<Address>   results = new HashSet<>();
