@@ -67,6 +67,7 @@ public class ComposeText extends EmojiEditText {
         setHint(ellipsizeToWidth(hint));
       }
     }
+    setLayoutParams(getLayoutParams());
   }
 
   private CharSequence ellipsizeToWidth(CharSequence text) {
