@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
+
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
@@ -28,7 +30,9 @@ import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
@@ -85,6 +89,7 @@ public class FullBackupImporter extends FullBackupBase {
       }
 
       trimEntriesForExpiredMessages(context, db);
+      restoreNotificationChannels(context);
 
       db.setTransactionSuccessful();
     } finally {
@@ -181,6 +186,21 @@ public class FullBackupImporter extends FullBackupBase {
     try (Cursor cursor = db.query(ThreadDatabase.TABLE_NAME, new String[] { ThreadDatabase.ID }, ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false);
+      }
+    }
+  }
+
+  private static void restoreNotificationChannels(@NonNull Context context) {
+    if (!NotificationChannels.supported()) {
+      return;
+    }
+
+    RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
+
+    try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
+      Recipient recipient;
+      while ((recipient = reader.getNext()) != null) {
+        NotificationChannels.createChannelFor(context, recipient);
       }
     }
   }
