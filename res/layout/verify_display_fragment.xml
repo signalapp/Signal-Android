@@ -58,7 +58,7 @@
 
 
         <TableLayout android:id="@+id/number_table"
-                     android:layout_width="wrap_content"
+                     android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:layout_marginTop="5dp"
                      android:clickable="true"
@@ -69,87 +69,114 @@
                       android:focusable="false">
 
                 <TextView android:id="@+id/code_first"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
+                          android:layout_marginRight="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="22934"/>
 
                 <TextView android:id="@+id/code_second"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginHorizontal="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="56944"/>
 
                 <TextView android:id="@+id/code_third"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginHorizontal="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="42738"/>
 
                 <TextView android:id="@+id/code_fourth"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginLeft="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="20038"/>
             </TableRow>
 
             <TableRow android:gravity="center_horizontal">
                 <TextView android:id="@+id/code_fifth"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
+                          android:layout_marginRight="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="34431"/>
 
                 <TextView android:id="@+id/code_sixth"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginHorizontal="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="24922"/>
 
                 <TextView android:id="@+id/code_seventh"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginHorizontal="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="58594"/>
 
                 <TextView android:id="@+id/code_eighth"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginLeft="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="24109"/>
             </TableRow>
 
             <TableRow android:gravity="center_horizontal">
                 <TextView android:id="@+id/code_ninth"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
+                          android:layout_marginRight="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="00257"/>
 
                 <TextView android:id="@+id/code_tenth"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginHorizontal="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="34956"/>
 
                 <TextView android:id="@+id/code_eleventh"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginHorizontal="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="32440"/>
 
                 <TextView android:id="@+id/code_twelth"
-                          android:layout_width="wrap_content"
+                          android:layout_width="0dp"
+                          android:layout_weight="1"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="20dp"
+                          android:layout_marginLeft="2dp"
+                          android:gravity="center_horizontal"
                           style="@style/IdentityKey"
                           tools:text="15774"/>
             </TableRow>
