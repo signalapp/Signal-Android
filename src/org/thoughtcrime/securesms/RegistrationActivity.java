@@ -109,6 +109,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   private static final int    PICK_COUNTRY              = 1;
   private static final int    SCENE_TRANSITION_DURATION = 250;
+  private static final int    DEBUG_TAP_TARGET          = 8;
+  private static final int    DEBUG_TAP_ANNOUNCE        = 4;
   public static final  String CHALLENGE_EVENT           = "org.thoughtcrime.securesms.CHALLENGE_EVENT";
   public static final  String CHALLENGE_EXTRA           = "CAAChallenge";
   public static final  String RE_REGISTRATION_EXTRA     = "re_registration";
@@ -148,6 +150,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private RegistrationState           registrationState;
   private ChallengeReceiver           challengeReceiver;
   private SignalServiceAccountManager accountManager;
+  private int                         debugTapCounter;
 
 
   @Override
@@ -240,8 +243,22 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       else          verificationCodeView.delete();
     });
 
+    fab.setOnClickListener(this::onDebugClick);
+    fab.setRippleColor(Color.TRANSPARENT);
+
     this.verificationCodeView.setOnCompleteListener(this);
     EventBus.getDefault().register(this);
+  }
+
+  private void onDebugClick(View view) {
+    debugTapCounter++;
+
+    if (debugTapCounter >= DEBUG_TAP_TARGET) {
+      startActivity(new Intent(this, LogSubmitActivity.class));
+    } else if (debugTapCounter >= DEBUG_TAP_ANNOUNCE) {
+      int remaining = DEBUG_TAP_TARGET - debugTapCounter;
+      Toast.makeText(this, getResources().getQuantityString(R.plurals.RegistrationActivity_debug_log_hint, remaining, remaining), Toast.LENGTH_SHORT).show();
+    }
   }
 
   @SuppressLint("ClickableViewAccessibility")
