@@ -32,7 +32,6 @@ public class ComposeText extends EmojiEditText {
 
   private CharSequence    hint;
   private SpannableString subHint;
-  private boolean refreshLayout = false;
 
   @Nullable private InputPanel.MediaListener mediaListener;
 
