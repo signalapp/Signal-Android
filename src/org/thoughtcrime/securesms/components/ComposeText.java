@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -32,6 +33,7 @@ public class ComposeText extends EmojiEditText {
 
   private CharSequence    hint;
   private SpannableString subHint;
+  private boolean refreshLayout = false;
 
   @Nullable private InputPanel.MediaListener mediaListener;
 
@@ -67,7 +69,10 @@ public class ComposeText extends EmojiEditText {
         setHint(ellipsizeToWidth(hint));
       }
     }
-    setLayoutParams(getLayoutParams());
+    if (refreshLayout) {
+      
+      refreshLayout = false;
+    }
   }
 
   private CharSequence ellipsizeToWidth(CharSequence text) {
@@ -94,6 +99,7 @@ public class ComposeText extends EmojiEditText {
     } else {
       super.setHint(ellipsizeToWidth(this.hint));
     }
+    refreshLayout = true;
   }
 
   public void appendInvite(String invite) {
