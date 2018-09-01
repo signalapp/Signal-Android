@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
