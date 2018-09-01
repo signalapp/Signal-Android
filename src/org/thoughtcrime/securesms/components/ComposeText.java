@@ -67,9 +67,9 @@ public class ComposeText extends EmojiEditText {
         setHint(ellipsizeToWidth(hint));
       }
     }
-    if (refreshLayout) {
-      
-      refreshLayout = false;
+
+    if(getText().toString().isEmpty()) {
+      setLayoutParams(getLayoutParams());
     }
   }
 
@@ -97,7 +97,6 @@ public class ComposeText extends EmojiEditText {
     } else {
       super.setHint(ellipsizeToWidth(this.hint));
     }
-    refreshLayout = true;
   }
 
   public void appendInvite(String invite) {
