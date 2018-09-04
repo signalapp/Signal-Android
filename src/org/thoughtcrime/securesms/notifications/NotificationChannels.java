@@ -68,6 +68,26 @@ public class NotificationChannels {
   }
 
   /**
+   * Recreates all notification channels for contacts with custom notifications enabled. Should be
+   * safe to call repeatedly. Needs to be executed on a background thread.
+   */
+  @WorkerThread
+  public static void restoreContactNotificationChannels(@NonNull Context context) {
+    if (!NotificationChannels.supported()) {
+      return;
+    }
+
+    RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
+
+    try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
+      Recipient recipient;
+      while ((recipient = reader.getNext()) != null) {
+        NotificationChannels.createChannelFor(context, recipient);
+      }
+    }
+  }
+
+  /**
    * @return The channel ID for the default messages channel.
    */
   public static @NonNull String getMessagesChannel(@NonNull Context context) {
