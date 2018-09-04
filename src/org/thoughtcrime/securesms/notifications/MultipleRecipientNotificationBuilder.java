@@ -49,6 +49,10 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
       setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
                                        recipient.toShortString()));
     }
+
+    if (recipient.getNotificationChannel() != null) {
+      setChannelId(recipient.getNotificationChannel());
+    }
   }
 
   public void addActions(PendingIntent markAsReadIntent) {
