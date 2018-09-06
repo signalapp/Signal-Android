@@ -240,6 +240,10 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
         Uri                 displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
         AssetFileDescriptor fd              = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
 
+        if (fd == null) {
+          return Optional.absent();
+        }
+
         return Optional.of(SignalServiceAttachment.newStreamBuilder()
                                                   .withStream(fd.createInputStream())
                                                   .withContentType("image/*")
