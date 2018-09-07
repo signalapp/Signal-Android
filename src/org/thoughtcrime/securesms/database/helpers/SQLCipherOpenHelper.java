@@ -241,11 +241,13 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         }
       }
 
-      if (oldVersion < QUOTE_MISSING) {
+      // Note: This column only being checked due to upgrade issues as described in #8184
+      if (oldVersion < QUOTE_MISSING && !columnExists(db, "mms", "quote_missing")) {
         db.execSQL("ALTER TABLE mms ADD COLUMN quote_missing INTEGER DEFAULT 0");
       }
 
-      if (oldVersion < NOTIFICATION_CHANNELS) {
+      // Note: The column only being checked due to upgrade issues as described in #8184
+      if (oldVersion < NOTIFICATION_CHANNELS && !columnExists(db, "recipient_preferences", "notification_channel")) {
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN notification_channel TEXT DEFAULT NULL");
         NotificationChannels.create(context);
 
@@ -309,5 +311,19 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       db.execSQL(statement);
   }
 
+  private static boolean columnExists(@NonNull SQLiteDatabase db, @NonNull String table, @NonNull String column) {
+    try (Cursor cursor = db.rawQuery("PRAGMA table_info(" + table + ")", null)) {
+      int nameColumnIndex = cursor.getColumnIndexOrThrow("name");
 
+      while (cursor.moveToNext()) {
+        String name = cursor.getString(nameColumnIndex);
+
+        if (name.equals(column)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
 }
