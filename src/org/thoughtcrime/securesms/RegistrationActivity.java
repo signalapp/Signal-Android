@@ -489,14 +489,14 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           return new Pair<>(password, gcmToken);
         } catch (IOException e) {
           Log.w(TAG, "Error during account registration", e);
-          createButton.setIndeterminateProgressMode(false);
-          createButton.setProgress(0);
           return null;
         }
       }
 
       protected void onPostExecute(@Nullable Pair<String, Optional<String>> result) {
         if (result == null) {
+          createButton.setIndeterminateProgressMode(false);
+          createButton.setProgress(0);
           Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
           return;
         }
