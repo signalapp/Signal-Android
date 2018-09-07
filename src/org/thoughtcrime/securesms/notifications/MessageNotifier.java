@@ -381,7 +381,10 @@ public class MessageNotifier {
       return;
     }
 
-    Uri uri = recipient != null ? recipient.resolve().getMessageRingtone(context) : null;
+    Uri uri = null;
+    if (recipient != null) {
+      uri = NotificationChannels.supported() ? NotificationChannels.getMessageRingtone(context, recipient) : recipient.getMessageRingtone();
+    }
 
     if (uri == null) {
       uri = NotificationChannels.supported() ? NotificationChannels.getMessageRingtone(context) : TextSecurePreferences.getNotificationRingtone(context);

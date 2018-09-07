@@ -463,13 +463,9 @@ public class Recipient implements RecipientModifiedListener {
     if (notify) notifyListeners();
   }
 
-  public synchronized @Nullable Uri getMessageRingtone(@NonNull Context context) {
+  public synchronized @Nullable Uri getMessageRingtone() {
     if (messageRingtone != null && messageRingtone.getScheme() != null && messageRingtone.getScheme().startsWith("file")) {
       return null;
-    }
-
-    if (NotificationChannels.supported()) {
-      return NotificationChannels.getMessageRingtone(context, this);
     }
 
     return messageRingtone;

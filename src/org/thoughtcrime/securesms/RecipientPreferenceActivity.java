@@ -364,7 +364,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       mutePreference.setChecked(recipient.isMuted());
 
-      ringtoneMessagePreference.setSummary(ringtoneMessagePreference.isEnabled() ? getRingtoneSummary(getContext(), recipient.getMessageRingtone(getContext())) : "");
+      ringtoneMessagePreference.setSummary(ringtoneMessagePreference.isEnabled() ? getRingtoneSummary(getContext(), recipient.getMessageRingtone()) : "");
       ringtoneCallPreference.setSummary(getRingtoneSummary(getContext(), recipient.getCallRingtone()));
 
       Pair<String, Integer> vibrateMessageSummary = getVibrateSummary(getContext(), recipient.getMessageVibrate());
@@ -512,7 +512,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           current    = recipient.getCallRingtone();
           defaultUri = TextSecurePreferences.getCallNotificationRingtone(getContext());
         } else  {
-          current    = recipient.getMessageRingtone(getContext());
+          current    = recipient.getMessageRingtone();
           defaultUri = TextSecurePreferences.getNotificationRingtone(getContext());
         }
 
@@ -751,18 +751,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           }
         }.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
 
-        return true;
-      }
-    }
-
-    private class NotificationSettingsClickedListener implements Preference.OnPreferenceClickListener {
-
-      @Override
-      public boolean onPreferenceClick(Preference preference) {
-        String channel = recipient.getNotificationChannel();
-        if (channel != null) {
-          NotificationChannels.openChannelSettings(getActivity(), channel);
-        }
         return true;
       }
     }

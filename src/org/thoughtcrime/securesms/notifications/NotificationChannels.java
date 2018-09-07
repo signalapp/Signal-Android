@@ -82,7 +82,11 @@ public class NotificationChannels {
     try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
       Recipient recipient;
       while ((recipient = reader.getNext()) != null) {
-        NotificationChannels.createChannelFor(context, recipient);
+        NotificationManager notificationManager = getNotificationManager(context);
+        if (!channelExists(notificationManager.getNotificationChannel(recipient.getNotificationChannel()))) {
+          String id = createChannelFor(context, recipient);
+          db.setNotificationChannel(recipient, id);
+        }
       }
     }
   }
@@ -123,7 +127,7 @@ public class NotificationChannels {
   public static String createChannelFor(@NonNull Context context, @NonNull Recipient recipient) {
     VibrateState vibrateState     = recipient.getMessageVibrate();
     boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == VibrateState.ENABLED;
-    Uri          messageRingtone  = recipient.getMessageRingtone(context) != null ? recipient.getMessageRingtone(context) : getMessageRingtone(context);
+    Uri          messageRingtone  = recipient.getMessageRingtone() != null ? recipient.getMessageRingtone() : getMessageRingtone(context);
     String       displayName      = getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getAddress());
 
     return createChannelFor(context, recipient.getAddress(), displayName, messageRingtone, vibrationEnabled);

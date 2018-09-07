@@ -50,7 +50,8 @@ public class NotificationState {
       Recipient recipient = notifications.getFirst().getRecipient();
 
       if (recipient != null) {
-        return recipient.resolve().getMessageRingtone(context);
+        return NotificationChannels.supported() ? NotificationChannels.getMessageRingtone(context, recipient)
+                                                : recipient.resolve().getMessageRingtone();
       }
     }
 
