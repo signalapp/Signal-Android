@@ -28,6 +28,7 @@
     <dimen name="message_bubble_bottom_padding">8dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
+    <dimen name="media_bubble_crop_button_size">24dp</dimen>
     <dimen name="media_bubble_default_dimens">210dp</dimen>
     <dimen name="media_bubble_min_width">150dp</dimen>
     <dimen name="media_bubble_max_width">240dp</dimen>
