@@ -366,9 +366,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           restoreButton.setIndeterminateProgressMode(true);
           restoreButton.setProgress(50);
 
-          new AsyncTask<Void, Void, Boolean>() {
+          new AsyncTask<Void, Void, BackupImportResult>() {
             @Override
-            protected Boolean doInBackground(Void... voids) {
+            protected BackupImportResult doInBackground(Void... voids) {
               try {
                 Context        context    = RegistrationActivity.this;
                 String         passphrase = prompt.getText().toString();
@@ -383,23 +383,32 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
                 TextSecurePreferences.setBackupEnabled(context, true);
                 TextSecurePreferences.setBackupPassphrase(context, passphrase);
-                return true;
+                return BackupImportResult.SUCCESS;
+              } catch (FullBackupImporter.DatabaseDowngradeException e) {
+                Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e);
+                return BackupImportResult.FAILURE_VERSION_DOWNGRADE;
               } catch (IOException e) {
                 Log.w(TAG, e);
-                return false;
+                return BackupImportResult.FAILURE_UNKNOWN;
               }
             }
 
             @Override
-            protected void onPostExecute(@NonNull Boolean result) {
+            protected void onPostExecute(@NonNull BackupImportResult result) {
               restoreButton.setIndeterminateProgressMode(false);
               restoreButton.setProgress(0);
               restoreBackupProgress.setText("");
 
-              if (result) {
-                displayInitialView(true);
-              } else {
-                Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show();
+              switch (result) {
+                case SUCCESS:
+                  displayInitialView(true);
+                  break;
+                case FAILURE_VERSION_DOWNGRADE:
+                  Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show();
+                  break;
+                case FAILURE_UNKNOWN:
+                  Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show();
+                  break;
               }
             }
           }.execute();
@@ -1114,5 +1123,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       this.password   = previous.password;
       this.gcmToken   = previous.gcmToken;
     }
+  }
+
+  private enum BackupImportResult {
+    SUCCESS, FAILURE_VERSION_DOWNGRADE, FAILURE_UNKNOWN
   }
 }
