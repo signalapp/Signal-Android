@@ -1652,7 +1652,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void calculateCharactersRemaining() {
-    String          messageBody     = composeText.getTextTrimmed();
+    String          messageBody     = composeText.getText().toString();
     TransportOption transportOption = sendButton.getSelectedTransport();
     CharacterState  characterState  = transportOption.calculateCharacters(messageBody);
 
