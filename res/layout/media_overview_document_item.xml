@@ -16,6 +16,8 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:visibility="visible"
+            app:doc_titleColor="?media_overview_document_primary"
+            app:doc_captionColor="?media_overview_document_secondary"
             tools:visibility="visible"/>
 
     <TextView android:id="@+id/date"
@@ -23,7 +25,7 @@
               android:layout_height="wrap_content"
               android:layout_gravity="center_vertical"
               android:textSize="12sp"
-              android:textColor="?attr/media_overview_document_foreground"
+              android:textColor="?media_overview_document_secondary"
               android:paddingTop="20dp"
               tools:text="Jun 1"/>
 
