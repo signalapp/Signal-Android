@@ -16,6 +16,8 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:visibility="visible"
+            app:doc_titleColor="?conversation_item_received_text_primary_color"
+            app:doc_captionColor="?conversation_item_received_text_secondary_color"
             tools:visibility="visible"/>
 
     <TextView android:id="@+id/date"
