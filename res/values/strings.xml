@@ -148,7 +148,9 @@
     <string name="ConversationActivity_error_leaving_group">Error leaving group</string>
     <string name="ConversationActivity_specify_recipient">Please choose a contact</string>
     <string name="ConversationActivity_unblock_this_contact_question">Unblock this contact?</string>
+    <string name="ConversationActivity_unblock_this_group_question">Unblock this group?</string>
     <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">You will once again be able to receive messages and calls from this contact.</string>
+    <string name="ConversationActivity_unblock_this_group_description">Existing members will be able to add you to the group again.</string>
     <string name="ConversationActivity_unblock">Unblock</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
@@ -479,9 +481,15 @@
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
     <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">You will no longer receive messages and calls from this contact.</string>
+    <string name="RecipientPreferenceActivity_block_and_leave_group">Block and leave this group?</string>
+    <string name="RecipientPreferenceActivity_block_group">Block this group?</string>
+    <string name="RecipientPreferenceActivity_block_and_leave_group_description">You will no longer receive messages or updates from this group.</string>
     <string name="RecipientPreferenceActivity_block">Block</string>
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Unblock this contact?</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">You will once again be able to receive messages and calls from this contact.</string>
+    <string name="RecipientPreferenceActivity_unblock_this_group_question">Unblock this group?</string>
+    <string name="RecipientPreferenceActivity_unblock_this_group_description">Existing members will be able to add you to the group again.</string>
+    <string name="RecipientPreferenceActivity_error_leaving_group">Error leaving group</string>
     <string name="RecipientPreferenceActivity_unblock">Unblock</string>
     <string name="RecipientPreferenceActivity_enabled">Enabled</string>
     <string name="RecipientPreferenceActivity_disabled">Disabled</string>
