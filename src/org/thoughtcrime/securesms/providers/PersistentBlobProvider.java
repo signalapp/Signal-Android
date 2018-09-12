@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.logging.Log;
+
 import android.util.Pair;
 import android.webkit.MimeTypeMap;
 
@@ -145,7 +146,7 @@ public class PersistentBlobProvider {
 
     //noinspection SimplifiableIfStatement
     if (isExternalBlobUri(context, uri)) {
-      return new File(uri.getPath()).delete();
+      return FileProviderUtil.delete(context, uri);
     }
 
     return false;
@@ -238,8 +239,9 @@ public class PersistentBlobProvider {
 
   private static boolean isExternalBlobUri(@NonNull Context context, @NonNull Uri uri) {
     try {
-      return uri.getPath().startsWith(getExternalDir(context).getAbsolutePath());
+      return uri.getPath().startsWith(getExternalDir(context).getAbsolutePath()) || FileProviderUtil.isAuthority(uri);
     } catch (IOException ioe) {
+      Log.w(TAG, "Failed to determine if it's an external blob URI.", ioe);
       return false;
     }
   }

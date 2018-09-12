@@ -18,4 +18,14 @@ public class FileProviderUtil {
     else                                                       return Uri.fromFile(file);
   }
 
+  public static boolean isAuthority(@NonNull Uri uri) {
+    return AUTHORITY.equals(uri.getAuthority());
+  }
+
+  public static boolean delete(@NonNull Context context, @NonNull Uri uri) {
+    if (AUTHORITY.equals(uri.getAuthority())) {
+      return context.getContentResolver().delete(uri, null, null) > 0;
+    }
+    return new File(uri.getPath()).delete();
+  }
 }

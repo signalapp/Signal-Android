@@ -175,11 +175,16 @@ public class AttachmentManager {
   }
 
   private void setSlide(@NonNull Slide slide) {
-    if (getSlideUri() != null)                                    cleanup(getSlideUri());
-    if (captureUri != null && !captureUri.equals(slide.getUri())) cleanup(captureUri);
+    if (getSlideUri() != null) {
+      cleanup(getSlideUri());
+    }
 
-    this.captureUri = null;
-    this.slide      = Optional.of(slide);
+    if (captureUri != null && !captureUri.equals(slide.getUri())) {
+      cleanup(captureUri);
+      captureUri = null;
+    }
+
+    this.slide = Optional.of(slide);
   }
 
   public ListenableFuture<Boolean> setLocation(@NonNull final SignalPlace place,
