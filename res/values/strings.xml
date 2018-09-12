@@ -1038,6 +1038,7 @@
 
     <string name="arrays__mute_for_one_hour">Mute for 1 hour</string>
     <string name="arrays__mute_for_two_hours">Mute for 2 hours</string>
+    <string name="arrays__mute_for_eight_hours">Mute for 8 hours</string>
     <string name="arrays__mute_for_one_day">Mute for 1 day</string>
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
     <string name="arrays__mute_for_one_year">Mute for 1 year</string>
