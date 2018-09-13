@@ -112,19 +112,16 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     }
 
     protected void onReceiveResult(int resultCode, Bundle resultData) {
+      elapsedTime.stop();
+
       if (resultCode == 1) {
-        int callActive = resultData.getInt(WebRtcCallService.CALL_DETAILS_CALL_ACTIVE);
-        if (callActive == 1) {
+        if (resultData.getInt(WebRtcCallService.CALL_DETAILS_IS_ACTIVE) == 1) {
           long callDuration = resultData.getLong(WebRtcCallService.CALL_DETAILS_DURATION);
 
           elapsedTime.setBase(SystemClock.elapsedRealtime() - callDuration);
           elapsedTime.start();
           elapsedTime.setVisibility(View.VISIBLE);
-        } else {
-          elapsedTime.stop();
 		}
-      } else {
-        elapsedTime.stop();
       }
     }
   }

@@ -712,8 +712,8 @@ public class WebRtcCallService extends Service implements InjectableType,
     }
   }
 
-  public static final String CALL_DETAILS_CALL_ACTIVE = "call_active";
-  public static final String CALL_DETAILS_DURATION = "duration";
+  public static final String CALL_DETAILS_IS_ACTIVE = "is_active";
+  public static final String CALL_DETAILS_DURATION  = "call_duration";
 
   private void handleCallDetails(Intent intent) {
     ResultReceiver resultReceiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
@@ -721,7 +721,7 @@ public class WebRtcCallService extends Service implements InjectableType,
     if (resultReceiver != null) {
       Bundle details = new Bundle();
 
-      details.putInt(CALL_DETAILS_CALL_ACTIVE, (callState == CallState.STATE_CONNECTED) ? 1 : 0);
+      details.putInt(CALL_DETAILS_IS_ACTIVE, (callState == CallState.STATE_CONNECTED) ? 1 : 0);
       details.putLong(CALL_DETAILS_DURATION, (callState != CallState.STATE_CONNECTED) ? 0 : SystemClock.elapsedRealtime() - callStartElapsedRealtime);
 
       resultReceiver.send((callState == CallState.STATE_CONNECTED) ? 1 : 0, details);
