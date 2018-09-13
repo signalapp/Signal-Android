@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.ResultReceiver;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
@@ -142,6 +143,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   public static final String ACTION_SCREEN_OFF           = "SCREEN_OFF";
   public static final String ACTION_CHECK_TIMEOUT        = "CHECK_TIMEOUT";
   public static final String ACTION_IS_IN_CALL_QUERY     = "IS_IN_CALL";
+  public static final String ACTION_CALL_DETAILS_QUERY   = "CALL_DETAILS";
 
   public static final String ACTION_RESPONSE_MESSAGE  = "RESPONSE_MESSAGE";
   public static final String ACTION_ICE_MESSAGE       = "ICE_MESSAGE";
@@ -157,6 +159,8 @@ public class WebRtcCallService extends Service implements InjectableType,
   private boolean     microphoneEnabled  = true;
   private boolean     remoteVideoEnabled = false;
   private boolean     bluetoothAvailable = false;
+
+  private static long callStartElapsedRealtime = 0;
 
   @Inject public SignalServiceMessageSender  messageSender;
   @Inject public SignalServiceAccountManager accountManager;
@@ -225,6 +229,7 @@ public class WebRtcCallService extends Service implements InjectableType,
       else if (intent.getAction().equals(ACTION_CALL_CONNECTED))            handleCallConnected(intent);
       else if (intent.getAction().equals(ACTION_CHECK_TIMEOUT))             handleCheckTimeout(intent);
       else if (intent.getAction().equals(ACTION_IS_IN_CALL_QUERY))          handleIsInCallQuery(intent);
+      else if (intent.getAction().equals(ACTION_CALL_DETAILS_QUERY))        handleCallDetails(intent);
     });
 
     return START_NOT_STICKY;
@@ -610,6 +615,7 @@ public class WebRtcCallService extends Service implements InjectableType,
     bluetoothStateManager.setWantsConnection(true);
 
     callState = CallState.STATE_CONNECTED;
+    callStartElapsedRealtime = SystemClock.elapsedRealtime();
 
     if (localCameraState.isEnabled()) lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
     else                              lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
@@ -706,10 +712,34 @@ public class WebRtcCallService extends Service implements InjectableType,
     }
   }
 
+  public static final String CALL_DETAILS_CALL_ACTIVE = "call_active";
+  public static final String CALL_DETAILS_DURATION = "duration";
+
+  private void handleCallDetails(Intent intent) {
+    ResultReceiver resultReceiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
+
+    if (resultReceiver != null) {
+      Bundle details = new Bundle();
+
+      details.putInt(CALL_DETAILS_CALL_ACTIVE, (callState == CallState.STATE_CONNECTED) ? 1 : 0);
+      details.putLong(CALL_DETAILS_DURATION, (callState != CallState.STATE_CONNECTED) ? 0 : SystemClock.elapsedRealtime() - callStartElapsedRealtime);
+
+      resultReceiver.send((callState == CallState.STATE_CONNECTED) ? 1 : 0, details);
+    }
+  }
+
+  public static void getCallDetails(Context context, ResultReceiver resultReceiver) {
+    Intent intent = new Intent(context, WebRtcCallService.class);
+    intent.setAction(ACTION_CALL_DETAILS_QUERY);
+    intent.putExtra(EXTRA_RESULT_RECEIVER, resultReceiver);
+    context.startService(intent);
+  }
+
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getAddress());
     MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
   }
+
 
   private void handleAnswerCall(Intent intent) {
     if (callState != CallState.STATE_LOCAL_RINGING) {

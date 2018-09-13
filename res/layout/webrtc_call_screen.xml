@@ -158,7 +158,7 @@
                 </LinearLayout>
 
                 <!-- Elapsed time indication for a call in progress. -->
-                <TextView android:id="@+id/elapsedTime"
+                <Chronometer android:id="@+id/elapsedTime"
                           android:layout_alignParentRight="true"
                           android:layout_centerVertical="true"
                           android:layout_width="wrap_content"
@@ -166,6 +166,7 @@
                           android:textAppearance="?android:attr/textAppearanceMedium"
                           android:textColor="#FFFFFF"
                           android:singleLine="true"
+                          android:visibility="invisible"
                         />
 
             </RelativeLayout>
