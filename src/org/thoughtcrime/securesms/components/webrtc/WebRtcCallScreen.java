@@ -116,9 +116,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
 
       if (resultCode == 1) {
         if (resultData.getInt(WebRtcCallService.CALL_DETAILS_IS_ACTIVE) == 1) {
-          long callDuration = resultData.getLong(WebRtcCallService.CALL_DETAILS_DURATION);
-
-          elapsedTime.setBase(SystemClock.elapsedRealtime() - callDuration);
+          elapsedTime.setBase(resultData.getLong(WebRtcCallService.CALL_DETAILS_CONNECTED_SINCE));
           elapsedTime.start();
           elapsedTime.setVisibility(View.VISIBLE);
 		}
