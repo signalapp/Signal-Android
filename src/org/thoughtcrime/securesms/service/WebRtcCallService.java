@@ -721,10 +721,12 @@ public class WebRtcCallService extends Service implements InjectableType,
     if (resultReceiver != null) {
       Bundle callDetails = new Bundle();
 
-      callDetails.putInt(CALL_DETAILS_IS_ACTIVE, (callState == CallState.STATE_CONNECTED) ? 1 : 0);
-      callDetails.putLong(CALL_DETAILS_CONNECTED_SINCE, (callState != CallState.STATE_CONNECTED) ? 0 : callStartElapsedRealtime);
+      int isConnected = (callState == CallState.STATE_CONNECTED) ? 1 : 0;
 
-      resultReceiver.send((callState == CallState.STATE_CONNECTED) ? 1 : 0, callDetails);
+      callDetails.putInt(CALL_DETAILS_IS_ACTIVE, isConnected);
+      callDetails.putLong(CALL_DETAILS_CONNECTED_SINCE, (isConnected == 1) ? callStartElapsedRealtime : 0);
+
+      resultReceiver.send(isConnected, callDetails);
     }
   }
 
