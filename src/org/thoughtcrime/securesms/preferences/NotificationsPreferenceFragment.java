@@ -137,8 +137,9 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         NotificationChannels.updateMessageRingtone(getContext(), uri);
         TextSecurePreferences.removeNotificationRingtone(getContext());
       } else {
-        NotificationChannels.updateMessageRingtone(getContext(), uri);
-        TextSecurePreferences.setNotificationRingtone(getContext(), uri != null ? uri.toString() : Uri.EMPTY.toString());
+        uri = uri == null ? Uri.EMPTY : uri;
+        NotificationChannels.updateMessageRingtone(getContext(), uri );
+        TextSecurePreferences.setNotificationRingtone(getContext(), uri.toString());
       }
 
       initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
