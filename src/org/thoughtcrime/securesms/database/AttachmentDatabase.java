@@ -31,6 +31,8 @@ import android.text.TextUtils;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
+import com.bumptech.glide.Glide;
+
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.json.JSONArray;
@@ -248,11 +250,11 @@ public class AttachmentDatabase extends Database {
     Cursor cursor           = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {DATA, THUMBNAIL}, MMS_ID + " = ?",
+      cursor = database.query(TABLE_NAME, new String[] {DATA, THUMBNAIL, CONTENT_TYPE}, MMS_ID + " = ?",
                               new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        deleteAttachmentOnDisk(cursor.getString(0), cursor.getString(1));
+        deleteAttachmentOnDisk(cursor.getString(0), cursor.getString(1), cursor.getString(2));
       }
     } finally {
       if (cursor != null)
@@ -267,7 +269,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     try (Cursor cursor = database.query(TABLE_NAME,
-                                        new String[]{DATA, THUMBNAIL},
+                                        new String[]{DATA, THUMBNAIL, CONTENT_TYPE},
                                         PART_ID_WHERE,
                                         id.toStrings(),
                                         null,
@@ -278,11 +280,12 @@ public class AttachmentDatabase extends Database {
         Log.w(TAG, "Tried to delete an attachment, but it didn't exist.");
         return;
       }
-      String data      = cursor.getString(0);
-      String thumbnail = cursor.getString(1);
+      String data        = cursor.getString(0);
+      String thumbnail   = cursor.getString(1);
+      String contentType = cursor.getString(2);
 
       database.delete(TABLE_NAME, PART_ID_WHERE, id.toStrings());
-      deleteAttachmentOnDisk(data, thumbnail);
+      deleteAttachmentOnDisk(data, thumbnail, contentType);
       notifyAttachmentListeners();
     }
   }
@@ -303,13 +306,17 @@ public class AttachmentDatabase extends Database {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  private void deleteAttachmentOnDisk(@Nullable String data, @Nullable String thumbnail) {
+  private void deleteAttachmentOnDisk(@Nullable String data, @Nullable String thumbnail, @Nullable String contentType) {
     if (!TextUtils.isEmpty(data)) {
       new File(data).delete();
     }
 
     if (!TextUtils.isEmpty(thumbnail)) {
       new File(thumbnail).delete();
+    }
+
+    if (MediaUtil.isImageType(contentType) || thumbnail != null) {
+      Glide.get(context).clearDiskCache();
     }
   }
 
