@@ -742,7 +742,6 @@ public class WebRtcCallService extends Service implements InjectableType,
     MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
   }
 
-
   private void handleAnswerCall(Intent intent) {
     if (callState != CallState.STATE_LOCAL_RINGING) {
       Log.w(TAG, "Can only answer from ringing!");

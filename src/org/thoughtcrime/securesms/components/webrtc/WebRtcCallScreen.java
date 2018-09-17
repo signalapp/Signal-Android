@@ -263,13 +263,13 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.webrtc_call_screen, this, true);
 
+    this.elapsedTime                  = findViewById(R.id.elapsedTime);
     this.photo                        = findViewById(R.id.photo);
     this.localRenderLayout            = findViewById(R.id.local_render_layout);
     this.remoteRenderLayout           = findViewById(R.id.remote_render_layout);
     this.phoneNumber                  = findViewById(R.id.phoneNumber);
     this.name                         = findViewById(R.id.name);
     this.label                        = findViewById(R.id.label);
-    this.elapsedTime                  = findViewById(R.id.elapsedTime);
     this.status                       = findViewById(R.id.callStateLabel);
     this.controls                     = findViewById(R.id.inCallControls);
     this.endCallButton                = findViewById(R.id.hangup_fab);
