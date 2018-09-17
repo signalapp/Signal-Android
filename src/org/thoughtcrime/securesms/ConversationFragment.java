@@ -242,6 +242,7 @@ public class ConversationFragment extends Fragment
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
     boolean            actionMessage  = false;
     boolean            hasText        = false;
+    boolean            sharedContact  = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
@@ -256,11 +257,13 @@ public class ConversationFragment extends Fragment
       {
         actionMessage = true;
       }
+
       if (messageRecord.getBody().length() > 0) {
         hasText = true;
       }
-      if (actionMessage && hasText) {
-        break;
+
+      if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
+        sharedContact = true;
       }
     }
 
@@ -279,7 +282,7 @@ public class ConversationFragment extends Fragment
                                                                   !messageRecord.isMmsNotification() &&
                                                                   ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
 
-      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage);
+      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
                                                         !messageRecord.isPending() &&
