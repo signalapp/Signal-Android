@@ -141,7 +141,7 @@
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Kako biste nazvali %s, Signal treba pristup vašem mikrofonu i kameri.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal zahtijeva pristup Mikrofonu i Kameri za pozivanje %s ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Mikrofon\" i \"Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Kako biste snimili slike i video, dozvolite Signalu pristup kameri.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal zahtijeva pristup Kameri za fotografiranje i snimanje videa ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\". </string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal zahtijeva dozvolu Kameri za fotografiranje ili snimanje videa, ali pristup biva odbijen. Molim nastavite s postavkama aplikacije, odaberite \"Dozvole\" i omogućite \"Kamera\". </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal treba pristup kameri kako bi snimio slike ili video.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <!--ConversationAdapter-->

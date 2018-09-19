@@ -114,6 +114,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">សារទទេ!</string>
   <string name="ConversationActivity_group_members">សមាជិកក្រុម</string>
   <string name="ConversationActivity_invalid_recipient">អ្នកទទួលមិនត្រឹមត្រូវ!</string>
+  <string name="ConversationActivity_added_to_home_screen">បានបន្ថែមទៅអេក្រង់ដើម</string>
   <string name="ConversationActivity_calls_not_supported">មិនគាំទ្រការហៅចេញ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ឧបករណ៍នេះមិនបង្ហាញដើម្បីគាំទ្រសកម្មភាពការហៅ។</string>
   <string name="ConversationActivity_leave_group">ចាកចេញពីក្រុម?</string>
@@ -171,6 +172,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">កំពុងលុប</string>
   <string name="ConversationFragment_deleting_messages">កំពុងលុបសារ...</string>
+  <string name="ConversationFragment_quoted_message_not_found">រកមិនឃើញសារដើម</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">សារដើមលែងមានទៀតហើយ</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
   <!--ConversationListFragment-->
@@ -553,7 +556,10 @@
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">លំនាំដើម</string>
   <string name="NotificationChannel_calls">ការហៅ</string>
+  <string name="NotificationChannel_failures">បរាជ័យ</string>
   <string name="NotificationChannel_backups">បម្រុងទុក</string>
+  <string name="NotificationChannel_locked_status">ស្ថានភាពចាក់សោរ</string>
+  <string name="NotificationChannel_app_updates">បច្ចុប្បន្នភាពកម្មវិធី</string>
   <string name="NotificationChannel_other">ផ្សេងៗ</string>
   <string name="NotificationChannel_group_messages">សារ</string>
   <string name="NotificationChannel_missing_display_name">មិនស្គាល់</string>
@@ -566,6 +572,7 @@
   <string name="SearchToolbar_search">ស្វែងរក</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">ការស្វែងរកសម្រាប់ការសន្ទនា បញ្ជីទំនាក់ទំនង និងសារ</string>
   <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">រូបតំណាងផ្លូវកាត់មិនត្រឹមត្រូវ</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal"> ស៊ីហ្គណល</string>
   <string name="SingleRecipientNotificationBuilder_new_message">សារថ្មី</string>
@@ -654,6 +661,7 @@
   <string name="QuoteView_photo">រូបភាព</string>
   <string name="QuoteView_document">ឯកសារ</string>
   <string name="QuoteView_you">អ្នក</string>
+  <string name="QuoteView_original_missing">រកមិនឃើញសារដើម</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">អូសចុះក្រោម</string>
   <!--country_selection_fragment-->
@@ -715,8 +723,19 @@
   <string name="log_submit_activity__thanks">អរគុណសម្រាប់ការជួយរបស់អ្នក!</string>
   <string name="log_submit_activity__submitting">កំពុងបញ្ជូន</string>
   <string name="log_submit_activity__no_browser_installed">ពុំមានកម្មវិធីរុករកបានដំឡើងទេ</string>
+  <string name="log_submit_activity__button_dont_submit">មិនបញ្ជូន</string>
+  <string name="log_submit_activity__button_submit">បញ្ជូន</string>
   <string name="log_submit_activity__button_got_it">ទទួលបាន</string>
+  <string name="log_submit_activity__button_compose_email">បង្កើតសារថ្មី</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">កំណត់ត្រានេះនឹងត្រូវបិតផ្សាយជាសាធារណៈតាមអនឡាញ សម្រាប់អ្នកចូលរួម ដើម្បីបង្ហើញ អ្នកអាចត្រួតពិនិត្យ និងកែប្រែ មុនពេលដាក់បញ្ជូន។</string>
+  <string name="log_submit_activity__loading_logs">កំពុងផ្ទុកកំណត់ត្រា...</string>
+  <string name="log_submit_activity__uploading_logs">កំពុងបញ្ជូនកំណត់ត្រា...</string>
+  <string name="log_submit_activity__success">ជោគជ័យ!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">ចម្លងតំណ URL នេះ និងបន្ថែមវាទៅក្នុងរបាយការណ៍បញ្ហារបស់អ្នក ឬអ៊ីមែលជំនួយ:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">បានចម្លងទៅ clipboard</string>
+  <string name="log_submit_activity__choose_email_app">ជ្រើសរើសកម្មវិធីអ៊ីមែល</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">សូមពិនិត្យកំណត់ត្រានេះពីកម្មវិធីរបស់ខ្ញុំ៖ %1$s</string>
+  <string name="log_submit_activity__network_failure">បញ្ហាបណ្តាញ។ សូមសាកល្បងម្តងទៀត។</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">តើអ្នកចង់នាំចូលសារជាអក្សរដែលមានស្រាប់ ចូលក្នុងមូលដ្ឋានទិន្នន័យដែលមានកាណាល់កូដសម្ងាត់របស់ស៊ីហ្គណលទេ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ប្រព័ន្ទមូលដ្ឋានទិន្នន័យលំនាំដើម នឹងមិនត្រូវបានកែប្រែ ឬផ្លាស់ប្តូរ តាមវិធីណាមួយឡើយ។ </string>
@@ -760,6 +779,8 @@
   <string name="recipient_preference_activity__shared_media">ចែករំលែកព័ត៌មាន</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">បិទសំឡេងការសន្ទនា</string>
+  <string name="recipient_preferences__custom_notifications">សារជូនដំណឹងផ្សេង</string>
+  <string name="recipient_preferences__custom_notifications_settings">ការកំណត់ប្រព័ន្ធសារជូនដំណឹង</string>
   <string name="recipient_preferences__notification_sound">សំឡេងសារជូនដំណឹង</string>
   <string name="recipient_preferences__vibrate">ញ័រ</string>
   <string name="recipient_preferences__block">បិទ</string>
@@ -867,6 +888,7 @@
   <string name="preferences__inactivity_timeout_passphrase">ឃ្លាសម្ងាត់ពេលអសកម្ម</string>
   <string name="preferences__inactivity_timeout_interval">ចន្លោះពេលអសកម្ម</string>
   <string name="preferences__notifications">សារជូនដំណឹង</string>
+  <string name="preferences__system_notification_settings">ការកំណត់ប្រព័ន្ធសារជូនដំណឹង</string>
   <string name="preferences__led_color">ពណ៌​LED</string>
   <string name="preferences__led_color_unknown">មិនដឹង</string>
   <string name="preferences__pref_led_blink_title">លំនាំលោតភ្លើង LED</string>
@@ -998,6 +1020,7 @@
   <string name="conversation__menu_leave_group">ចាកចេញពីក្រុម</string>
   <string name="conversation__menu_view_all_media">ព័ត៌មានទាំងអស់</string>
   <string name="conversation__menu_conversation_settings">កំណត់ការសន្ទនា</string>
+  <string name="conversation__menu_add_shortcut">បន្ថែមទៅអេក្រង់ដើម</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ពង្រីកការផុសឡើង</string>
   <!--conversation_callable_insecure-->

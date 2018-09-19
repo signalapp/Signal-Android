@@ -114,6 +114,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Pesan kosong!</string>
   <string name="ConversationActivity_group_members">Anggota grup</string>
   <string name="ConversationActivity_invalid_recipient">Penerima tidak lengkap!</string>
+  <string name="ConversationActivity_added_to_home_screen">Tambahkan ke layar utama</string>
   <string name="ConversationActivity_calls_not_supported">Panggilan tidak didukung</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Perangkat ini sepertinya tidak mendukung untuk panggilan.</string>
   <string name="ConversationActivity_leave_group">Tinggalkan grup?</string>
@@ -171,6 +172,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Menghapus</string>
   <string name="ConversationFragment_deleting_messages">Menghapus pesan...</string>
+  <string name="ConversationFragment_quoted_message_not_found">Pesan asli tidak lagi tersedia</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pesan asli tidak lagi tersedia</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Tidak ada peramban yang terpasang pada perangkat Anda.</string>
@@ -559,6 +561,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Bawaan</string>
   <string name="NotificationChannel_calls">Panggilan</string>
+  <string name="NotificationChannel_failures">Gagal</string>
   <string name="NotificationChannel_backups">Cadangan</string>
   <string name="NotificationChannel_app_updates">pembaruan aplikasi</string>
   <string name="NotificationChannel_other">Yang lain</string>
@@ -661,6 +664,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QuoteView_photo">Foto</string>
   <string name="QuoteView_document">Dokumen</string>
   <string name="QuoteView_you">Anda</string>
+  <string name="QuoteView_original_missing">Pesan asli tidak lagi tersedia</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Gulir ke bawah</string>
   <!--country_selection_fragment-->
