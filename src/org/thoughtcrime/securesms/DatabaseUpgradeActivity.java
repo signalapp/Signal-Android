@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.FileUtils;
@@ -83,6 +84,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int REMOVE_CACHE                         = 354;
   public static final int FULL_TEXT_SEARCH                     = 358;
   public static final int BAD_IMPORT_CLEANUP                   = 373;
+  public static final int IMAGE_CACHE_CLEANUP                  = 406;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -105,6 +107,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(REMOVE_CACHE);
     add(FULL_TEXT_SEARCH);
     add(BAD_IMPORT_CLEANUP);
+    add(IMAGE_CACHE_CLEANUP);
   }};
 
   private MasterSecret masterSecret;
@@ -301,6 +304,15 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < REMOVE_CACHE) {
         try {
           FileUtils.deleteDirectoryContents(context.getCacheDir());
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
+      }
+
+      if (params[0] < IMAGE_CACHE_CLEANUP) {
+        try {
+          FileUtils.deleteDirectoryContents(context.getExternalCacheDir());
+          GlideApp.get(context).clearDiskCache();
         } catch (IOException e) {
           Log.w(TAG, e);
         }
