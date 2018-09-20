@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
@@ -81,6 +82,10 @@ public class SendButton extends ImageButton
 
   public void setDefaultTransport(TransportOption.Type type) {
     transportOptions.setDefaultTransport(type);
+  }
+
+  public void setTransport(@NonNull TransportOption option) {
+    transportOptions.setSelectedTransport(option);
   }
 
   public void setDefaultSubscriptionId(Optional<Integer> subscriptionId) {

@@ -1,13 +1,16 @@
 package org.thoughtcrime.securesms;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-public class TransportOption {
+public class TransportOption implements Parcelable {
 
   public enum Type {
     SMS,
@@ -53,6 +56,16 @@ public class TransportOption {
     this.simSubscriptionId   = simSubscriptionId;
   }
 
+  TransportOption(Parcel in) {
+    this(Type.valueOf(in.readString()),
+         in.readInt(),
+         in.readInt(),
+         in.readString(),
+         in.readString(),
+         CharacterCalculator.readFromParcel(in),
+         Optional.fromNullable(TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in)),
+         in.readInt() == 1 ? Optional.of(in.readInt()) : Optional.absent());
+  }
 
   public @NonNull Type getType() {
     return type;
@@ -96,4 +109,38 @@ public class TransportOption {
     return simSubscriptionId;
   }
 
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(type.name());
+    dest.writeInt(drawable);
+    dest.writeInt(backgroundColor);
+    dest.writeString(text);
+    dest.writeString(composeHint);
+    CharacterCalculator.writeToParcel(dest, characterCalculator);
+    TextUtils.writeToParcel(simName.orNull(), dest, flags);
+
+    if (simSubscriptionId.isPresent()) {
+      dest.writeInt(1);
+      dest.writeInt(simSubscriptionId.get());
+    } else {
+      dest.writeInt(0);
+    }
+  }
+
+  public static final Creator<TransportOption> CREATOR = new Creator<TransportOption>() {
+    @Override
+    public TransportOption createFromParcel(Parcel in) {
+      return new TransportOption(in);
+    }
+
+    @Override
+    public TransportOption[] newArray(int size) {
+      return new TransportOption[size];
+    }
+  };
 }

@@ -77,7 +77,7 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
     });
   }
 
-  private void hideSoftkey(final EditText inputTarget, @Nullable Runnable runAfterClose) {
+  protected void hideSoftkey(final EditText inputTarget, @Nullable Runnable runAfterClose) {
     if (runAfterClose != null) postOnKeyboardClose(runAfterClose);
 
     ServiceUtil.getInputMethodManager(inputTarget.getContext())
