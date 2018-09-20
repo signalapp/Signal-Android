@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginRight="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_gravity="right|end">
+
+    <Button
+        android:id="@+id/camera_capture_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_camera_shutter" />
+
+    <ImageButton
+        android:id="@+id/camera_flip_button"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/camera_capture_button"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_camera_front"
+        android:scaleType="fitCenter"
+        android:background="?selectableItemBackgroundBorderless"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</RelativeLayout>
+

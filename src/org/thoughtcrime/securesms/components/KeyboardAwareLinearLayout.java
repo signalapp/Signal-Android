@@ -56,6 +56,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
   private boolean keyboardOpen = false;
   private int     rotation     = -1;
+  private boolean isFullscreen = false;
 
   public KeyboardAwareLinearLayout(Context context) {
     this(context, null);
@@ -98,10 +99,11 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     }
 
     if (viewInset == 0 && Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) viewInset = getViewInset();
-    final int availableHeight = this.getRootView().getHeight() - statusBarHeight - viewInset;
+
     getWindowVisibleDisplayFrame(rect);
 
-    final int keyboardHeight = availableHeight - (rect.bottom - rect.top);
+    final int availableHeight = this.getRootView().getHeight() - viewInset - (!isFullscreen ? statusBarHeight : 0);
+    final int keyboardHeight  = availableHeight - (rect.bottom - rect.top);
 
     if (keyboardHeight > minKeyboardSize) {
       if (getKeyboardHeight() != keyboardHeight) setKeyboardPortraitHeight(keyboardHeight);
@@ -215,6 +217,10 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
   public void removeOnKeyboardShownListener(OnKeyboardShownListener listener) {
     shownListeners.remove(listener);
+  }
+
+  public void setFullscreen(boolean isFullscreen) {
+    this.isFullscreen = isFullscreen;
   }
 
   private void notifyHiddenListeners() {

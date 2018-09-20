@@ -77,6 +77,10 @@
     <!-- CallScreen -->
     <string name="CallScreen_Incoming_call">Incoming call</string>
 
+    <!-- CameraActivity -->
+    <string name="CameraActivity_camera_unavailable">Camera unavailable.</string>
+    <string name="CameraActivity_image_save_failure">Failed to save image.</string>
+
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
     <string name="ClearProfileActivity_remove_profile_photo">Remove profile photo?</string>

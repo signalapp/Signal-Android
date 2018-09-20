@@ -16,9 +16,33 @@
  */
 package org.thoughtcrime.securesms.util;
 
+import android.os.Parcel;
+import android.support.annotation.NonNull;
+
 public abstract class CharacterCalculator {
 
   public abstract CharacterState calculateCharacters(String messageBody);
+
+  public static CharacterCalculator readFromParcel(@NonNull Parcel in) {
+    switch (in.readInt()) {
+      case 1:  return new SmsCharacterCalculator();
+      case 2:  return new MmsCharacterCalculator();
+      case 3:  return new PushCharacterCalculator();
+      default: throw new IllegalArgumentException("Read an unsupported value for a calculator.");
+    }
+  }
+
+  public static void writeToParcel(@NonNull Parcel dest, @NonNull CharacterCalculator calculator) {
+    if (calculator instanceof SmsCharacterCalculator) {
+      dest.writeInt(1);
+    } else if (calculator instanceof MmsCharacterCalculator) {
+      dest.writeInt(2);
+    } else if (calculator instanceof PushCharacterCalculator) {
+      dest.writeInt(3);
+    } else {
+      throw new IllegalArgumentException("Tried to write an unsupported calculator to a parcel.");
+    }
+  }
 
   public static class CharacterState {
     public int charactersRemaining;

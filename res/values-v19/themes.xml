@@ -3,6 +3,5 @@
     <style name="TextSecure.ScribbleTheme" parent="TextSecure.DarkNoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 </resources>
