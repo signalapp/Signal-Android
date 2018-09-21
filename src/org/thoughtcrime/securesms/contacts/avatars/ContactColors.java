@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.color.MaterialColors;
 
 public class ContactColors {
 
-  public static final MaterialColor UNKNOWN_COLOR = MaterialColor.GREY;
+  public static final MaterialColor UNKNOWN_COLOR = MaterialColor.STEEL;
 
   private static final String[] LEGACY_PALETTE = new String[] {
       "red",

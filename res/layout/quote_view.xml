@@ -75,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Signal.Text.Body"
-                        android:textColor="@color/core_light_90"
+                        android:textColor="@color/core_grey_90"
                         android:maxLines="1"
                         android:ellipsize="end"
                         tools:text="The-Amazing-Spider-Man.cba" />
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
                     style="@style/Signal.Text.Caption"
-                    android:textColor="@color/core_light_90"
+                    android:textColor="@color/core_grey_90"
                     android:paddingTop="4dp"
                     android:textStyle="italic"
                     android:visibility="gone"
@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 style="@style/Signal.Text.Caption"
                 android:text="@string/QuoteView_original_missing"
-                android:textColor="@color/core_light_90"/>
+                android:textColor="@color/core_grey_90"/>
 
         </LinearLayout>
 

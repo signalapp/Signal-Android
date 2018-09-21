@@ -54,6 +54,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
   private long       id;
   private Recipient  author;
+  private Recipient  conversation;
   private String     body;
   private TextView   mediaDescriptionText;
   private TextView   missingLinkText;
@@ -154,22 +155,24 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   public void setQuote(GlideRequests glideRequests,
                        long id,
                        @NonNull Recipient author,
+                       @NonNull Recipient conversation,
                        @Nullable String body,
                        boolean originalMissing,
                        @NonNull SlideDeck attachments)
   {
     if (this.author != null) this.author.removeListener(this);
 
-    this.id          = id;
-    this.author      = author;
-    this.body        = body;
-    this.attachments = attachments;
+    this.id           = id;
+    this.author       = author;
+    this.conversation = conversation;
+    this.body         = body;
+    this.attachments  = attachments;
 
     author.addListener(this);
-    setQuoteAuthor(author);
+    setQuoteAuthor(author, conversation);
     setQuoteText(body, attachments);
     setQuoteAttachment(glideRequests, attachments);
-    setQuoteMissingFooter(originalMissing);
+    setQuoteMissingFooter(originalMissing, conversation);
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
@@ -191,21 +194,21 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   public void onModified(Recipient recipient) {
     Util.runOnMain(() -> {
       if (recipient == author) {
-        setQuoteAuthor(recipient);
+        setQuoteAuthor(recipient, conversation);
       }
     });
   }
 
-  private void setQuoteAuthor(@NonNull Recipient author) {
-    boolean outgoing    = messageType != MESSAGE_TYPE_INCOMING;
+  private void setQuoteAuthor(@NonNull Recipient author, @NonNull Recipient conversation) {
+    boolean outgoing    = messageType == MESSAGE_TYPE_OUTGOING;
     boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress());
 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you)
                                    : author.toShortString());
 
     // We use the raw color resource because Android 4.x was struggling with tints here
-    quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));
-    mainView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
+    quoteBarView.setImageResource(conversation.getColor().toQuoteBarColorResource(getContext(), outgoing));
+    mainView.setBackgroundColor(conversation.getColor().toQuoteBackgroundColor(getContext(), outgoing));
   }
 
   private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {
@@ -268,9 +271,9 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     }
   }
 
-  private void setQuoteMissingFooter(boolean missing) {
+  private void setQuoteMissingFooter(boolean missing, @NonNull Recipient conversation) {
     footerView.setVisibility(missing ? VISIBLE : GONE);
-    footerView.setBackgroundColor(author.getColor().toQuoteFooterColor(getContext(), messageType != MESSAGE_TYPE_INCOMING));
+    footerView.setBackgroundColor(conversation.getColor().toQuoteFooterColor(getContext(), messageType == MESSAGE_TYPE_OUTGOING));
   }
 
   public long getQuoteId() {
