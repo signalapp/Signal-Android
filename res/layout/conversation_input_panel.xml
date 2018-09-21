@@ -41,8 +41,8 @@
                 android:layout_marginTop="6dp"
                 android:visibility="gone"
                 app:message_type="preview"
-                app:quote_colorPrimary="?attr/conversation_item_sent_text_primary_color"
-                app:quote_colorSecondary="?attr/conversation_item_sent_text_primary_color"
+                app:quote_colorPrimary="?attr/conversation_item_received_text_primary_color"
+                app:quote_colorSecondary="?attr/conversation_item_received_text_primary_color"
                 tools:visibility="visible"/>
 
             <FrameLayout
@@ -189,7 +189,7 @@
                         android:layout_marginStart="20dp"
                         style="@style/Signal.Text.Body"
                         android:text="00:00"
-                        android:textColor="@color/core_light_60"
+                        android:textColor="@color/core_grey_60"
                         android:singleLine="true"
                         android:visibility="gone"
                         tools:visibility="visible"/>
@@ -209,7 +209,7 @@
                             style="@style/Signal.Text.Caption"
                             android:text="@string/conversation_input_panel__slide_to_cancel"
                             android:textAllCaps="true"
-                            android:textColor="@color/core_light_60"
+                            android:textColor="@color/core_grey_60"
                             android:ellipsize="none"
                             android:visibility="gone"
                             android:paddingRight="50dp"

@@ -36,7 +36,7 @@
             android:clipToPadding="false"
             android:clipChildren="false"
             android:background="@color/white"
-            tools:backgroundTint="@color/core_light_10">
+            tools:backgroundTint="@color/core_grey_05">
 
             <org.thoughtcrime.securesms.components.QuoteView
                 android:id="@+id/quote_view"
@@ -127,6 +127,7 @@
                 android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
                 android:clipChildren="false"
                 android:clipToPadding="false"
+                android:alpha="0.8"
                 app:footer_text_color="?attr/conversation_item_sent_text_secondary_color"
                 app:footer_icon_color="?attr/conversation_item_sent_icon_color"/>
 

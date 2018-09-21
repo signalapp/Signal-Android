@@ -6,19 +6,16 @@
     <color name="core_red_highlight">#ef5350</color>
 
     <color name="core_white">#ffffff</color>
-    <color name="core_light_02">#F9FAFA</color>
-    <color name="core_light_10">#EEEFEF</color>
-    <color name="core_light_35">#A4A6A9</color>
-    <color name="core_light_45">#8B8E91</color>
-    <color name="core_light_60">#62656A</color>
-    <color name="core_light_90">#070C14</color>
-
     <color name="core_black">#000000</color>
-    <color name="core_dark_05">#EFEFEF</color>
-    <color name="core_dark_30">#A8A9AA</color>
-    <color name="core_dark_55">#88898C</color>
-    <color name="core_dark_60">#797A7C</color>
-    <color name="core_dark_70">#414347</color>
-    <color name="core_dark_85">#1A1C20</color>
-    <color name="core_dark_95">#0A0C11</color>
+
+    <color name="core_grey_02">#f8f9f9</color>
+    <color name="core_grey_05">#eeefef</color>
+    <color name="core_grey_15">#d5d6d6</color>
+    <color name="core_grey_25">#bbbdbe</color>
+    <color name="core_grey_45">#898a8c</color>
+    <color name="core_grey_60">#636467</color>
+    <color name="core_grey_75">#3d3e44</color>
+    <color name="core_grey_85">#23252a</color>
+    <color name="core_grey_90">#17191d</color>
+    <color name="core_grey_95">#0f1012</color>
 </resources>

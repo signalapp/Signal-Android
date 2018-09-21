@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:parentTag="android.widget.LinearLayout"
-    tools:background="@color/core_light_60">
+    tools:background="@color/core_grey_60">
 
     <FrameLayout
         android:layout_width="match_parent"

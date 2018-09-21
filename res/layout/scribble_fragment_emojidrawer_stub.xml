@@ -4,5 +4,5 @@
         android:id="@+id/emoji_drawer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/core_light_90"
+        android:background="@color/core_grey_90"
         android:visibility="gone" />
