@@ -31,10 +31,10 @@ Instructions on how to setup your development environment and build Signal can b
 
 If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/master/CONTRIBUTING.md), that might answer some of your questions.
 
-For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://whispersystems.discoursehosting.net) for a high-level discussion with the wider community before implementation.
+For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
 
 ## Contributing Ideas
-Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://whispersystems.discoursehosting.net).
+Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
 
 Help
 ====
