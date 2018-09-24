@@ -12,27 +12,47 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
-        android:id="@+id/contact_photo_image"
-        android:foreground="@drawable/contact_photo_background"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+    <FrameLayout
+        android:id="@+id/avatar_container"
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:cropToPadding="true"
-        tools:src="@drawable/ic_contact_picture"
-        android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp" />
+        android:layout_marginRight="6dp"
+        android:layout_marginEnd="6dp">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/contact_photo_image"
+            android:foreground="@drawable/contact_photo_background"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            tools:src="@drawable/ic_contact_picture"
+            android:contentDescription="@string/conversation_list_item_view__contact_photo_image" />
+
+        <TextView
+            android:id="@+id/unread_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|end|top"
+            style="@style/Signal.Text.Caption"
+            android:fontFamily="sans-serif-medium"
+            android:minWidth="@dimen/unread_count_bubble_diameter"
+            android:padding="5sp"
+            android:background="?conversation_list_item_unread_background"
+            android:textColor="@color/core_white"
+            android:gravity="center"
+            tools:text="1"/>
+
+    </FrameLayout>
 
     <RelativeLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="4dp"
                   android:layout_marginStart="4dp"
                   android:layout_centerVertical="true"
-                  android:layout_toRightOf="@id/contact_photo_image"
-                  android:layout_toEndOf="@id/contact_photo_image"
+                  android:layout_toRightOf="@id/avatar_container"
+                  android:layout_toEndOf="@id/avatar_container"
                   android:weightSum="1"
                   android:orientation="horizontal">
 
@@ -150,10 +170,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     app:iconColor="?attr/conversation_list_item_delivery_icon_color"/>
-
-            <ImageView android:id="@+id/unread_indicator"
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"/>
 
         </FrameLayout>
 

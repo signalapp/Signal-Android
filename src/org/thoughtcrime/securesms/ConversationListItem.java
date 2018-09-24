@@ -81,7 +81,7 @@ public class ConversationListItem extends RelativeLayout
   private TextView           archivedView;
   private DeliveryStatusView deliveryStatusIndicator;
   private AlertView          alertView;
-  private ImageView          unreadIndicator;
+  private TextView           unreadIndicator;
   private long               lastSeen;
 
   private int             unreadCount;
@@ -311,14 +311,7 @@ public class ConversationListItem extends RelativeLayout
       return;
     }
 
-    unreadIndicator.setImageDrawable(TextDrawable.builder()
-                                                 .beginConfig()
-                                                 .width(ViewUtil.dpToPx(getContext(), 24))
-                                                 .height(ViewUtil.dpToPx(getContext(), 24))
-                                                 .textColor(Color.WHITE)
-                                                 .bold()
-                                                 .endConfig()
-                                                 .buildRound(String.valueOf(thread.getUnreadCount()), getResources().getColor(R.color.textsecure_primary_dark)));
+    unreadIndicator.setText(String.valueOf(unreadCount));
     unreadIndicator.setVisibility(View.VISIBLE);
   }
 

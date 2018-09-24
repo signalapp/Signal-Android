@@ -55,6 +55,9 @@
     <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
+    <dimen name="unread_count_bubble_radius">13sp</dimen>
+    <dimen name="unread_count_bubble_diameter">26sp</dimen>
+
     <!-- RedPhone -->
 
     <!-- Height of the main row of in-call buttons. -->

@@ -137,6 +137,7 @@
         <item name="conversation_list_item_delivery_icon_color">@color/core_grey_45</item>
         <item name="conversation_list_item_date_color">@color/core_grey_60</item>
         <item name="conversation_list_item_unread_color">@color/core_black</item>
+        <item name="conversation_list_item_unread_background">@drawable/unread_count_background_light</item>
         <item name="conversation_list_item_divider">@drawable/conversation_list_divider_shape</item>
         <item name="conversation_list_toolbar_background">@color/core_blue</item>
 
@@ -284,6 +285,7 @@
         <item name="conversation_list_item_delivery_icon_color">@color/core_grey_45</item>
         <item name="conversation_list_item_date_color">#ffdddddd</item>
         <item name="conversation_list_item_unread_color">@color/core_white</item>
+        <item name="conversation_list_item_unread_background">@drawable/unread_count_background_dark</item>
         <item name="conversation_list_item_divider">@drawable/conversation_list_divider_shape_dark</item>
         <item name="conversation_list_toolbar_background">@color/core_grey_90</item>
 
