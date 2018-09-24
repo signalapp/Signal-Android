@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.providers.SingleUseBlobProvider;
+import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -174,7 +174,7 @@ public class MmsDownloadJob extends MasterSecretJob {
              LegacyMessageException
   {
     MmsDatabase           database    = DatabaseFactory.getMmsDatabase(context);
-    SingleUseBlobProvider provider    = SingleUseBlobProvider.getInstance();
+    MemoryBlobProvider    provider    = MemoryBlobProvider.getInstance();
     Optional<Address>     group       = Optional.absent();
     Set<Address>          members     = new HashSet<>();
     String                body        = null;
@@ -213,7 +213,7 @@ public class MmsDownloadJob extends MasterSecretJob {
         PduPart part = media.getPart(i);
 
         if (part.getData() != null) {
-          Uri    uri  = provider.createUri(part.getData());
+          Uri    uri  = provider.createSingleUseUri(part.getData());
           String name = null;
 
           if (part.getName() != null) name = Util.toIsoString(part.getName());
