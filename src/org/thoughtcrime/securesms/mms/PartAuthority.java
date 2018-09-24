@@ -9,11 +9,10 @@ import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.providers.PartProvider;
-import org.thoughtcrime.securesms.providers.SingleUseBlobProvider;
+import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +37,7 @@ public class PartAuthority {
     uriMatcher.addURI("org.thoughtcrime.securesms", "thumb/*/#", THUMB_ROW);
     uriMatcher.addURI(PersistentBlobProvider.AUTHORITY, PersistentBlobProvider.EXPECTED_PATH_OLD, PERSISTENT_ROW);
     uriMatcher.addURI(PersistentBlobProvider.AUTHORITY, PersistentBlobProvider.EXPECTED_PATH_NEW, PERSISTENT_ROW);
-    uriMatcher.addURI(SingleUseBlobProvider.AUTHORITY, SingleUseBlobProvider.PATH, SINGLE_USE_ROW);
+    uriMatcher.addURI(MemoryBlobProvider.AUTHORITY, MemoryBlobProvider.PATH, SINGLE_USE_ROW);
   }
 
   public static InputStream getAttachmentStream(@NonNull Context context, @NonNull Uri uri)
@@ -50,7 +49,7 @@ public class PartAuthority {
       case PART_ROW:       return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
       case THUMB_ROW:      return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(new PartUriParser(uri).getPartId());
       case PERSISTENT_ROW: return PersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
-      case SINGLE_USE_ROW: return SingleUseBlobProvider.getInstance().getStream(ContentUris.parseId(uri));
+      case SINGLE_USE_ROW: return MemoryBlobProvider.getInstance().getStream(ContentUris.parseId(uri));
       default:             return context.getContentResolver().openInputStream(uri);
       }
     } catch (SecurityException se) {
