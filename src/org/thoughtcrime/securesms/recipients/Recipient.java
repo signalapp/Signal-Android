@@ -419,7 +419,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
-    return getFallbackContactPhoto().asDrawable(context, getColor().toConversationColor(context), inverted);
+    return getFallbackContactPhoto().asDrawable(context, getColor().toAvatarColor(context), inverted);
   }
 
   public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
