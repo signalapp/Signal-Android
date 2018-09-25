@@ -68,6 +68,10 @@ public enum MaterialColor {
     return context.getResources().getColor(mainColor);
   }
 
+  public @ColorInt int toAvatarColor(@NonNull Context context) {
+    return context.getResources().getColor(isDarkTheme(context) ? shadeColor : mainColor);
+  }
+
   public @ColorInt int toActionBarColor(@NonNull Context context) {
     return context.getResources().getColor(mainColor);
   }

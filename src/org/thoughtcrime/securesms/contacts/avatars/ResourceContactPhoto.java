@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ThemeUtil;
+
 public class ResourceContactPhoto implements FallbackContactPhoto {
 
   private final int resourceId;
@@ -42,7 +45,10 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
       foreground.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
     }
 
-    return new ExpandingLayerDrawable(new Drawable[] {background, foreground});
+    Drawable gradient = context.getResources().getDrawable(ThemeUtil.isDarkTheme(context) ? R.drawable.avatar_gradient_dark
+                                                                                          : R.drawable.avatar_gradient_light);
+
+    return new ExpandingLayerDrawable(new Drawable[] {background, foreground, gradient});
   }
 
   @Override
