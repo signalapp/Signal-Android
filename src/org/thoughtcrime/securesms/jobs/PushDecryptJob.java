@@ -961,6 +961,10 @@ public class PushDecryptJob extends ContextJob {
         Optional<String> groupId       = message.getGroupInfo().isPresent() ? Optional.of(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))
                                                                             : Optional.absent();
 
+        if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
+          return false;
+        }
+
         boolean isTextMessage    = message.getBody().isPresent();
         boolean isMediaMessage   = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent();
         boolean isExpireMessage  = message.isExpirationUpdate();
