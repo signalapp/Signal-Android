@@ -38,7 +38,6 @@
                 android:foreground="@drawable/contact_photo_background"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_marginBottom="6dp"
                 android:cropToPadding="true"
                 android:contentDescription="@string/conversation_item_received__contact_photo_description" />
 
