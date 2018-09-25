@@ -29,7 +29,7 @@ public enum MaterialColor {
 
   private static final Map<String, MaterialColor> COLOR_MATCHES = new HashMap<String, MaterialColor>() {{
     put("red",         CRIMSON);
-    put("deep_orange", VERMILLION);
+    put("deep_orange", CRIMSON);
     put("orange",      VERMILLION);
     put("amber",       VERMILLION);
     put("brown",       BURLAP);
