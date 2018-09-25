@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 
@@ -23,37 +25,43 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
   private static final Typeface TYPEFACE = Typeface.create("sans-serif-medium", Typeface.NORMAL);
 
   private final String name;
+  private final int    fallbackResId;
 
-  public GeneratedContactPhoto(@NonNull String name) {
-    this.name  = name;
+  public GeneratedContactPhoto(@NonNull String name, @DrawableRes int fallbackResId) {
+    this.name          = name;
+    this.fallbackResId = fallbackResId;
   }
 
   @Override
   public Drawable asDrawable(Context context, int color) {
-    return asDrawable(context, color, false);
+    return asDrawable(context, color,false);
   }
 
   @Override
   public Drawable asDrawable(Context context, int color, boolean inverted) {
     int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+    String character = getAbbreviation(name);
 
-    Drawable base = TextDrawable.builder()
-                                .beginConfig()
-                                .width(targetSize)
-                                .height(targetSize)
-                                .useFont(TYPEFACE)
-                                .fontSize(ViewUtil.dpToPx(context, 24))
-                                .textColor(inverted ? color : Color.WHITE)
-                                .endConfig()
-                                .buildRound(getAbbreviation(name), inverted ? Color.WHITE : color);
+    if (!TextUtils.isEmpty(character)) {
+      Drawable base = TextDrawable.builder()
+                                  .beginConfig()
+                                  .width(targetSize)
+                                  .height(targetSize)
+                                  .useFont(TYPEFACE)
+                                  .fontSize(ViewUtil.dpToPx(context, 24))
+                                  .textColor(inverted ? color : Color.WHITE)
+                                  .endConfig()
+                                  .buildRound(character, inverted ? Color.WHITE : color);
 
-    Drawable gradient = context.getResources().getDrawable(ThemeUtil.isDarkTheme(context) ? R.drawable.avatar_gradient_dark
-                                                                                          : R.drawable.avatar_gradient_light);
+      Drawable gradient = context.getResources().getDrawable(ThemeUtil.isDarkTheme(context) ? R.drawable.avatar_gradient_dark
+                                                                                            : R.drawable.avatar_gradient_light);
+      return new LayerDrawable(new Drawable[] { base, gradient });
+    }
 
-    return new LayerDrawable(new Drawable[] { base, gradient });
+    return new ResourceContactPhoto(fallbackResId).asDrawable(context, color, inverted);
   }
 
-  private String getAbbreviation(String name) {
+  private @Nullable String getAbbreviation(String name) {
     String[]      parts   = name.split(" ");
     StringBuilder builder = new StringBuilder();
     int           count   = 0;
@@ -67,7 +75,7 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
     }
 
     if (builder.length() == 0) {
-      return "#";
+      return null;
     } else {
       return builder.toString();
     }

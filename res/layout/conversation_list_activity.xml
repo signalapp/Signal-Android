@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <ImageView android:layout_width="36dp"
+            <ImageView android:id="@+id/toolbar_icon"
+                       android:layout_width="36dp"
                        android:layout_height="36dp"
                        android:layout_marginLeft="8dp"
                        android:layout_marginStart="8dp"
