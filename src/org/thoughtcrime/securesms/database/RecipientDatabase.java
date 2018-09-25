@@ -27,6 +27,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class RecipientDatabase extends Database {
 
@@ -149,7 +150,6 @@ public class RecipientDatabase extends Database {
 
     return new RecipientReader(context, cursor);
   }
-
 
   public Optional<RecipientSettings> getRecipientSettings(@NonNull Address address) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
@@ -410,6 +410,35 @@ public class RecipientDatabase extends Database {
     return results;
   }
 
+  public void updateSystemContactColors(@NonNull ColorUpdater updater) {
+    SQLiteDatabase              db      = databaseHelper.getReadableDatabase();
+    Map<Address, MaterialColor> updates = new HashMap<>();
+
+    db.beginTransaction();
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS, COLOR, SYSTEM_DISPLAY_NAME}, SYSTEM_DISPLAY_NAME + " IS NOT NULL AND " + SYSTEM_DISPLAY_NAME + " != \"\"", null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        MaterialColor newColor = updater.update(cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME)),
+                                                cursor.getString(cursor.getColumnIndexOrThrow(COLOR)));
+
+        ContentValues contentValues = new ContentValues(1);
+        contentValues.put(COLOR, newColor.serialize());
+        db.update(TABLE_NAME, contentValues, ADDRESS + " = ?", new String[]{address.serialize()});
+
+        updates.put(address, newColor);
+      }
+    } finally {
+      db.setTransactionSuccessful();
+      db.endTransaction();
+
+      Stream.of(updates.entrySet()).forEach(entry -> {
+        Recipient.applyCached(entry.getKey(), recipient -> {
+          recipient.setColor(entry.getValue());
+        });
+      });
+    }
+  }
+
   // XXX This shouldn't be here, and is just a temporary workaround
   public RegisteredState isRegistered(@NonNull Address address) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
@@ -470,6 +499,10 @@ public class RecipientDatabase extends Database {
               recipient.setContactUri(Util.uri(entry.getValue().contactUri));
             }));
     }
+  }
+
+  public interface ColorUpdater {
+    MaterialColor update(@NonNull String name, @Nullable String color);
   }
 
   public static class RecipientSettings {
@@ -633,7 +666,7 @@ public class RecipientDatabase extends Database {
     }
 
     public @Nullable Recipient getNext() {
-      if (!cursor.moveToNext()) {
+      if (cursor != null && !cursor.moveToNext()) {
         return null;
       }
 

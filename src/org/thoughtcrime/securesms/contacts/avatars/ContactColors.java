@@ -5,35 +5,30 @@ import android.support.annotation.NonNull;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ContactColors {
 
   public static final MaterialColor UNKNOWN_COLOR = MaterialColor.STEEL;
 
-  private static final String[] LEGACY_PALETTE = new String[] {
-      "red",
-      "pink",
-      "purple",
-      "deep_purple",
-      "indigo",
-      "blue",
-      "light_blue",
-      "cyan",
-      "teal",
-      "green",
-      "light_green",
-      "orange",
-      "deep_orange",
-      "amber",
-      "blue_grey"
-  };
+  private static final List<MaterialColor> CONVERSATION_PALETTE = new ArrayList<>(Arrays.asList(
+      MaterialColor.PLUM,
+      MaterialColor.CRIMSON,
+      MaterialColor.VERMILLION,
+      MaterialColor.VIOLET,
+      MaterialColor.BLUE,
+      MaterialColor.INDIGO,
+      MaterialColor.FOREST,
+      MaterialColor.WINTERGREEN,
+      MaterialColor.TEAL,
+      MaterialColor.BURLAP,
+      MaterialColor.TAUPE,
+      MaterialColor.STEEL
+  ));
 
   public static MaterialColor generateFor(@NonNull String name) {
-    String serialized = LEGACY_PALETTE[Math.abs(name.hashCode()) % LEGACY_PALETTE.length];
-    try {
-      return MaterialColor.fromSerialized(serialized);
-    } catch (MaterialColor.UnknownColorException e) {
-      return MaterialColors.CONVERSATION_PALETTE.get(Math.abs(name.hashCode()) % MaterialColors.CONVERSATION_PALETTE.size());
-    }
+    return CONVERSATION_PALETTE.get(Math.abs(name.hashCode()) % CONVERSATION_PALETTE.size());
   }
-
 }
