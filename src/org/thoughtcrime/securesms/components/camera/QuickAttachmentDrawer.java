@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class QuickAttachmentDrawer extends ViewGroup implements InputView, CameraViewListener {
   private static final String TAG = QuickAttachmentDrawer.class.getSimpleName();
-
   private final ViewDragHelper dragHelper;
 
   private CameraView                cameraView;
@@ -55,6 +54,8 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   private DrawerState drawerState      = DrawerState.COLLAPSED;
   private Rect        drawChildrenRect = new Rect();
   private boolean     paused           = false;
+
+  private int statusBarHeight          = 0;
 
   public QuickAttachmentDrawer(Context context) {
     this(context, null);
@@ -114,6 +115,10 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
       updateControlsView();
       setDrawerStateAndUpdate(drawerState, true);
     }
+  }
+
+  public DrawerState getDrawerState() {
+    return drawerState;
   }
 
   private void updateControlsView() {
@@ -179,6 +184,9 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
         if (cameraView.getMeasuredWidth() < getMeasuredWidth())
           childLeft = (getMeasuredWidth() - cameraView.getMeasuredWidth()) / 2 + paddingLeft;
       } else if (child == controls) {
+        if (!isLandscape()) {
+          childTop = childTop - getStatusBarHeight();
+        }
         childBottom = getMeasuredHeight();
       } else {
         childTop    = computeCoverTopPosition(slideOffset);
@@ -203,7 +211,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
       throw new IllegalStateException("Height must have an exact value or MATCH_PARENT");
     }
 
-    int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom();
+    int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom() + getStatusBarHeight();
 
     for (int i = 0; i < getChildCount(); i++) {
       final View child = getChildAt(i);
@@ -332,7 +340,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
     setDrawerState(requestedDrawerState);
     if (oldDrawerState != drawerState) {
       updateHalfExpandedAnchorPoint();
-      slideTo(getTargetSlideOffset(), instant);
+      slideTo(getTargetSlideOffset() + getStatusBarHeight(), instant);
     }
   }
 
@@ -532,6 +540,16 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView, Camer
   public void onResume() {
     paused = false;
     if (drawerState.isVisible()) cameraView.onResume();
+  }
+
+  private int getStatusBarHeight() {
+    if (statusBarHeight == 0 ) {
+      int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+      if (resourceId > 0) {
+        statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+      }
+    }
+    return statusBarHeight;
   }
 
   public enum DrawerState {

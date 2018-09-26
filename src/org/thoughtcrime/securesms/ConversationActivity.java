@@ -280,6 +280,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicLanguage.onCreate(this);
   }
 
+  private void hideStatusBar(boolean hide) {
+    View decorView = getWindow().getDecorView();
+    int uiOptions = hide ? View.SYSTEM_UI_FLAG_FULLSCREEN : View.SYSTEM_UI_FLAG_VISIBLE;
+    decorView.setSystemUiVisibility(uiOptions);
+  }
+
   @Override
   protected void onCreate(Bundle state, boolean ready) {
     Log.i(TAG, "onCreate()");
@@ -363,6 +369,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     quickAttachmentDrawer.onResume();
+    hideStatusBar(quickAttachmentDrawer.getDrawerState() == DrawerState.FULL_EXPANDED);
 
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
@@ -1941,8 +1948,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (drawerState == DrawerState.FULL_EXPANDED) {
       supportActionBar.hide();
+      hideStatusBar(true);
     } else {
       supportActionBar.show();
+      hideStatusBar(false);
     }
 
     if (drawerState == DrawerState.COLLAPSED) {
