@@ -71,7 +71,7 @@ import java.util.Locale;
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  {
+public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
   @SuppressWarnings("unused")
   private final static String TAG = MediaOverviewActivity.class.getSimpleName();
@@ -135,6 +135,16 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
     getSupportActionBar().setTitle(recipient.toShortString());
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     this.recipient.addListener(recipient -> getSupportActionBar().setTitle(recipient.toShortString()));
+  }
+
+  public void onEnterMultiSelect() {
+    tabLayout.setEnabled(false);
+    viewPager.setEnabled(false);
+  }
+
+  public void onExitMultiSelect() {
+    tabLayout.setEnabled(true);
+    viewPager.setEnabled(true);
   }
 
   private class MediaOverviewPagerAdapter extends FragmentStatePagerAdapter {
@@ -270,8 +280,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
 
       adapter.toggleSelection(mediaRecord);
       if (adapter.getSelectedMediaCount() == 0) {
-        actionMode.finish();
-        actionMode = null;
+        exitMultiSelect();
       } else {
         actionMode.setTitle(String.valueOf(adapter.getSelectedMediaCount()));
       }
@@ -304,7 +313,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
         ((MediaGalleryAdapter) recyclerView.getAdapter()).toggleSelection(mediaRecord);
         recyclerView.getAdapter().notifyDataSetChanged();
 
-        actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(actionModeCallback);
+        enterMultiSelect();
       }
     }
 
@@ -352,6 +361,17 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
       return (MediaGalleryAdapter) recyclerView.getAdapter();
     }
 
+    private void enterMultiSelect() {
+      actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(actionModeCallback);
+      ((MediaOverviewActivity) getActivity()).onEnterMultiSelect();
+    }
+
+    private void exitMultiSelect() {
+      actionMode.finish();
+      actionMode = null;
+      ((MediaOverviewActivity) getActivity()).onExitMultiSelect();
+    }
+
     private class ActionModeCallback implements ActionMode.Callback {
 
       private int originalStatusBarColor;
@@ -379,7 +399,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
         switch (menuItem.getItemId()) {
           case R.id.delete:
             handleDeleteMedia(getListAdapter().getSelectedMedia());
-            mode.finish();
+            exitMultiSelect();
             return true;
         }
         return false;
