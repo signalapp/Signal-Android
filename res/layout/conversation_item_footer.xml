@@ -45,13 +45,15 @@
         android:autoLink="none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="15sp"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:maxWidth="140dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:linksClickable="false"
         style="@style/Signal.Text.Caption.MessageSent"
         android:layout_gravity="right|end|bottom"
         android:fontFamily="sans-serif-light"
-        android:paddingLeft="4dp"
-        android:paddingStart="4dp"
         android:visibility="gone"
         tools:visibility="visible"
         tools:text="to SIM1" />
@@ -62,7 +64,7 @@
         android:layout_height="11dp"
         android:src="@drawable/ic_unlocked_white_18dp"
         android:visibility="gone"
-        android:layout_gravity="center_vertical|end"
+        android:layout_gravity="center_vertical|right|end"
         android:contentDescription="@string/conversation_item__secure_message_description"
         tools:visibility="visible"/>
 
@@ -70,8 +72,6 @@
         android:id="@+id/footer_delivery_status"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="3dp"
-        android:layout_marginStart="3dp"/>
+        android:layout_gravity="center_vertical" />
 
 </merge>
