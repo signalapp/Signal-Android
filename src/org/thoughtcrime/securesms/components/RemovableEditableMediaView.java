@@ -15,9 +15,11 @@ public class RemovableEditableMediaView extends FrameLayout {
 
   private final @NonNull ImageView remove;
   private final @NonNull ImageView edit;
+  private final @NonNull ImageView crop;
 
   private final int removeSize;
   private final int editSize;
+  private final int cropSize;
 
   private @Nullable View current;
 
@@ -34,12 +36,16 @@ public class RemovableEditableMediaView extends FrameLayout {
 
     this.remove     = (ImageView)LayoutInflater.from(context).inflate(R.layout.media_view_remove_button, this, false);
     this.edit       = (ImageView)LayoutInflater.from(context).inflate(R.layout.media_view_edit_button, this, false);
+    this.crop       = (ImageView)LayoutInflater.from(context).inflate(R.layout.media_view_crop_button, this, false);
+
 
     this.removeSize = getResources().getDimensionPixelSize(R.dimen.media_bubble_remove_button_size);
     this.editSize   = getResources().getDimensionPixelSize(R.dimen.media_bubble_edit_button_size);
+    this.cropSize   = getResources().getDimensionPixelSize(R.dimen.media_bubble_crop_button_size);
 
     this.remove.setVisibility(View.GONE);
     this.edit.setVisibility(View.GONE);
+    this.crop.setVisibility(View.GONE);
   }
 
   @Override
@@ -47,23 +53,27 @@ public class RemovableEditableMediaView extends FrameLayout {
     super.onFinishInflate();
     this.addView(remove);
     this.addView(edit);
+    this.addView(crop);
   }
 
   public void display(@Nullable View view, boolean editable) {
     edit.setVisibility(editable ? View.VISIBLE : View.GONE);
+    crop.setVisibility(editable ? View.VISIBLE : View.GONE);
     
     if (view == current) return;
     if (current != null) current.setVisibility(View.GONE);
 
     if (view != null) {
       view.setPadding(view.getPaddingLeft(), removeSize / 2, removeSize / 2, view.getPaddingRight());
-      edit.setPadding(0, 0, removeSize / 2, 0);
+      ((FrameLayout.LayoutParams)edit.getLayoutParams()).setMargins(0, 0, editSize / 2, 0);
+
 
       view.setVisibility(View.VISIBLE);
       remove.setVisibility(View.VISIBLE);
     } else {
       remove.setVisibility(View.GONE);
       edit.setVisibility(View.GONE);
+      crop.setVisibility(View.GONE);
     }
 
     current = view;
@@ -75,5 +85,9 @@ public class RemovableEditableMediaView extends FrameLayout {
 
   public void setEditClickListener(View.OnClickListener listener) {
     this.edit.setOnClickListener(listener);
+  }
+
+  public void setCropClickListener(View.OnClickListener listener) {
+    this.crop.setOnClickListener(listener);
   }
 }

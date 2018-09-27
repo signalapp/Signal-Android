@@ -34,6 +34,8 @@ import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.view.View;
@@ -110,6 +112,7 @@ public class AttachmentManager {
 
       removableMediaView.setRemoveClickListener(new RemoveButtonListener());
       removableMediaView.setEditClickListener(new EditButtonListener());
+      removableMediaView.setCropClickListener(new CropButtonListener());
       thumbnail.setOnClickListener(new ThumbnailClickListener());
       documentView.getBackground().setColorFilter(ThemeUtil.getThemedColor(context, R.attr.conversation_item_bubble_background), PorterDuff.Mode.MULTIPLY);
     }
@@ -521,6 +524,16 @@ public class AttachmentManager {
       Intent intent = new Intent(context, ScribbleActivity.class);
       intent.setData(getSlideUri());
       ((Activity)context).startActivityForResult(intent, ScribbleActivity.SCRIBBLE_REQUEST_CODE);
+    }
+  }
+
+  private class CropButtonListener implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent("com.android.camera.action.CROP");
+      intent.setData(getSlideUri());
+      intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+      ((Activity)context).startActivityForResult(intent, ConversationActivity.CROP_IMAGE);
     }
   }
 

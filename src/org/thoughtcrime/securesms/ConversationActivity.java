@@ -233,6 +233,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_LOCATION       = 9;
   private static final int PICK_GIF            = 10;
   private static final int SMS_DEFAULT         = 11;
+  public static final int CROP_IMAGE           = 12;
 
   private   GlideRequests               glideRequests;
   protected ComposeText                 composeText;
@@ -494,6 +495,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case SMS_DEFAULT:
       initializeSecurity(isSecureText, isDefaultSms);
+      break;
+    case CROP_IMAGE:
+      setMedia(data.getData(), MediaType.IMAGE);
       break;
     }
   }
