@@ -348,6 +348,11 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
       builder.show();
     }
 
+    private void handleSelectAllMedia() {
+      getListAdapter().selectAllMedia();
+      actionMode.setTitle(String.valueOf(getListAdapter().getSelectedMediaCount()));
+    }
+
     private MediaGalleryAdapter getListAdapter() {
       return (MediaGalleryAdapter) recyclerView.getAdapter();
     }
@@ -380,6 +385,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity  
           case R.id.delete:
             handleDeleteMedia(getListAdapter().getSelectedMedia());
             mode.finish();
+            return true;
+          case R.id.select_all:
+            handleSelectAllMedia();
             return true;
         }
         return false;
