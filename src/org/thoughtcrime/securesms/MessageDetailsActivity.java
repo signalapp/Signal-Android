@@ -17,6 +17,8 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
@@ -203,6 +205,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   private void updateTime(MessageRecord messageRecord) {
+    sentDate.setOnLongClickListener(null);
+    receivedDate.setOnLongClickListener(null);
+
     if (messageRecord.isPending() || messageRecord.isFailed()) {
       sentDate.setText("-");
       receivedContainer.setVisibility(View.GONE);
@@ -210,9 +215,17 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       Locale           dateLocale    = dynamicLanguage.getCurrentLocale();
       SimpleDateFormat dateFormatter = DateUtils.getDetailedDateFormatter(this, dateLocale);
       sentDate.setText(dateFormatter.format(new Date(messageRecord.getDateSent())));
+      sentDate.setOnLongClickListener(v -> {
+        copyToClipboard(String.valueOf(messageRecord.getDateSent()));
+        return true;
+      });
 
       if (messageRecord.getDateReceived() != messageRecord.getDateSent() && !messageRecord.isOutgoing()) {
         receivedDate.setText(dateFormatter.format(new Date(messageRecord.getDateReceived())));
+        receivedDate.setOnLongClickListener(v -> {
+          copyToClipboard(String.valueOf(messageRecord.getDateReceived()));
+          return true;
+        });
         receivedContainer.setVisibility(View.VISIBLE);
       } else {
         receivedContainer.setVisibility(View.GONE);
@@ -285,6 +298,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
   }
 
+  private void copyToClipboard(@NonNull String text) {
+    ((ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", text));
+  }
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
