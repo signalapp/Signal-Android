@@ -701,6 +701,7 @@
 
     <!-- SaveAttachmentTask -->
     <string name="SaveAttachmentTask_saved_to">Saved to %s</string>
+    <string name="SaveAttachmentTask_saved">Saved</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Search</string>

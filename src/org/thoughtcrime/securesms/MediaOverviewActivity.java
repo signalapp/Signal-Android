@@ -360,6 +360,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
                                                                               attachments.size());
                          saveTask.executeOnExecutor(THREAD_POOL_EXECUTOR,
                                                     attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
+                         exitMultiSelect();
                        }
                      }.execute();
                    })
