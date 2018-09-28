@@ -43,7 +43,7 @@ public class Scrubber {
   }
 
   public String scrub(final String in) {
-    Log.d(TAG, "scrubbing input");
+    android.util.Log.d(TAG, "scrubbing input");
     String out = in;
     for (Pattern pattern : patterns) {
       Matcher       matcher       = pattern.matcher(out);
@@ -59,7 +59,7 @@ public class Scrubber {
         builder.append(censored);
 
         lastEndingPos = matcher.end();
-        Log.i(TAG, "replacing a match on /" + pattern.toString() + "/ => " + censored);
+        android.util.Log.i(TAG, "replacing a match on /" + pattern.toString() + "/ => " + censored);
       }
       builder.append(out.substring(lastEndingPos));
       out = builder.toString();
