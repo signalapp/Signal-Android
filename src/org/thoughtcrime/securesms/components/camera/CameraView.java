@@ -485,60 +485,40 @@ public class CameraView extends ViewGroup {
   }
 
   private void enqueueTask(SerialAsyncTask job) {
-    ApplicationContext.getInstance(getContext()).getJobManager().add(job);
+    AsyncTask.SERIAL_EXECUTOR.execute(job);
   }
 
-  private static abstract class SerialAsyncTask<Result> extends Job {
+  public static abstract class SerialAsyncTask<Result> implements Runnable {
 
-    public SerialAsyncTask() {
-      super(JobParameters.newBuilder().withGroupId(CameraView.class.getSimpleName()).create());
-    }
-
-    @Override public void onAdded() {}
-
-    @Override public final void onRun() {
-      try {
-        onWait();
-        Util.runOnMainSync(new Runnable() {
-          @Override public void run() {
-            onPreMain();
-          }
-        });
-
-        final Result result = onRunBackground();
-
-        Util.runOnMainSync(new Runnable() {
-          @Override public void run() {
-            onPostMain(result);
-          }
-        });
-      } catch (PreconditionsNotMetException e) {
+    @Override
+    public final void run() {
+      if (!onWait()) {
         Log.w(TAG, "skipping task, preconditions not met in onWait()");
+        return;
       }
+
+      Util.runOnMainSync(this::onPreMain);
+      final Result result = onRunBackground();
+      Util.runOnMainSync(() -> onPostMain(result));
     }
 
-    @Override public boolean onShouldRetry(Exception e) {
-      return false;
-    }
-
-    @Override public void onCanceled() { }
-
-    protected void onWait() throws PreconditionsNotMetException {}
+    protected boolean onWait() { return true; }
     protected void onPreMain() {}
     protected Result onRunBackground() { return null; }
     protected void onPostMain(Result result) {}
   }
 
   private abstract class PostInitializationTask<Result> extends SerialAsyncTask<Result> {
-    @Override protected void onWait() throws PreconditionsNotMetException {
+    @Override protected boolean onWait() {
       synchronized (CameraView.this) {
         if (!camera.isPresent()) {
-          throw new PreconditionsNotMetException();
+          return false;
         }
         while (getMeasuredHeight() <= 0 || getMeasuredWidth() <= 0 || !surface.isReady()) {
           Log.i(TAG, String.format("waiting. surface ready? %s", surface.isReady()));
           Util.wait(CameraView.this, 0);
         }
+        return true;
       }
     }
   }
