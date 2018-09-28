@@ -236,9 +236,10 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
     }
     
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+      Uri displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
+
       try {
-        Uri                 displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
-        AssetFileDescriptor fd              = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
+        AssetFileDescriptor fd = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
 
         if (fd == null) {
           return Optional.absent();
@@ -250,7 +251,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                                   .withLength(fd.getLength())
                                                   .build());
       } catch (IOException e) {
-        Log.w(TAG, e);
+        Log.i(TAG, "Could not find avatar for URI: " + displayPhotoUri);
       }
     }
 
