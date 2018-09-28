@@ -348,8 +348,9 @@ public class DirectoryHelper {
                                                                             @NonNull SignalServiceAccountManager accountManager,
                                                                             @NonNull Set<String>                 eligibleContactNumbers)
   {
-    List<Set<String>>         batches = splitIntoBatches(eligibleContactNumbers, CONTACT_DISCOVERY_BATCH_SIZE);
-    List<Future<Set<String>>> futures = new ArrayList<>(batches.size());
+    Set<String>               sanitizedNumbers = sanitizeNumbers(eligibleContactNumbers);
+    List<Set<String>>         batches          = splitIntoBatches(sanitizedNumbers, CONTACT_DISCOVERY_BATCH_SIZE);
+    List<Future<Set<String>>> futures          = new ArrayList<>(batches.size());
 
     for (Set<String> batch : batches) {
       Future<Set<String>> future = SignalExecutors.IO.submit(() -> {
@@ -358,6 +359,10 @@ public class DirectoryHelper {
       futures.add(future);
     }
     return futures;
+  }
+
+  private static Set<String> sanitizeNumbers(@NonNull Set<String> numbers) {
+    return Stream.of(numbers).filter(number -> number.startsWith("+")).collect(Collectors.toSet());
   }
 
   private static List<Set<String>> splitIntoBatches(@NonNull Set<String> numbers, int batchSize) {
