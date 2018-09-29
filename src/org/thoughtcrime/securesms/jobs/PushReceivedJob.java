@@ -34,22 +34,17 @@ public abstract class PushReceivedJob extends ContextJob {
     if (envelope.isReceipt()) {
       handleReceipt(envelope);
     } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage()) {
-      handleMessage(envelope, source);
+      handleMessage(envelope);
     } else {
       Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
     }
   }
 
-  private void handleMessage(SignalServiceEnvelope envelope, Address source) {
-    Recipient  recipients = Recipient.from(context, source, false);
-    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-
-    if (!recipients.isBlocked()) {
-      long messageId = DatabaseFactory.getPushDatabase(context).insert(envelope);
-      jobManager.add(new PushDecryptJob(context, messageId));
-    } else {
-      Log.w(TAG, "*** Received blocked push message, ignoring...");
-    }
+  private void handleMessage(SignalServiceEnvelope envelope) {
+    long messageId = DatabaseFactory.getPushDatabase(context).insert(envelope);
+    ApplicationContext.getInstance(context)
+                      .getJobManager()
+                      .add(new PushDecryptJob(context, messageId));
   }
 
   private void handleReceipt(SignalServiceEnvelope envelope) {

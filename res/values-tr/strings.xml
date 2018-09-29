@@ -138,7 +138,7 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu bağlantıyı işleyebilecek uygulama bulunmamaktadır.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Sesli mesaj göndermek için Signal\'in mikrofonunuza erişmesine izin verin.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal,sesli mesaj göndermek için Mikrofon iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" u etkinleştirin.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Arama yapmak için %s Signal\'in mikrofon ve kameranıza erişime ihtiyacı var.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s aramak için, Signal\'in mikrofonunuza ve kameranıza erişime ihtiyacı var.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal, %s \'ı aramak için Mikrofon ve Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" ve \"Kamera\" yı etkinleştirin.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotoğraf veya video çekmek için, Signal\'in kameraya erişmesine izin verin.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal, fotoğraf ve görüntü çekmek için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
@@ -330,8 +330,8 @@
     <item quantity="other">Seçilen mesajları sil?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Bu işlem seçtiğiniz  mesajı kalıcı olarak silecektir.</item>
-    <item quantity="other">Bu işlem seçtiğiniz %1$d mesajı kalıcı olarak silecektir.</item>
+    <item quantity="one">Bu eylem seçtiğiniz mesajı kalıcı olarak silecektir.</item>
+    <item quantity="other">Bu eylem seçtiğiniz %1$d mesajı kalıcı olarak silecektir.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Siliniyor</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajlar siliniyor...</string>
@@ -523,7 +523,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="UnverifiedSendDialog_send_message">Mesaj gönderilsin mi?</string>
   <string name="UnverifiedSendDialog_send">Gönder</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişi Signal\'in eski bir sürümünü kullanıyor. Güvenlik numaranızı doğrulamadan önce güncelleme yapmalarını isteyin. </string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişiniz Signal\'in eski bir sürümünü kullanmakta. Güvenlik numaranızı doğrulamadan önce uygulamayı güncellemelerini rica edin.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kişiniz Signal\'in uyumsuz karekod formatına sahip yeni bir sürümünü kullanıyor. Karşılaştırmak için lütfen güncelleyin.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Taranan karekod düzgün biçimlendirilmiş bir güvenlik numarası doğrulama kodu değil. Lütfen tekrar taramayı deneyin.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Güvenlik numarasını paylaş...</string>
@@ -559,7 +559,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal, harici depolama birimine kaydedebilmek için Depolama iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Depolama\" yı etkinleştirin.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">İzinler olmadan harici depolamaya kaydedilemiyor</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Mesajı sil?</string>
-  <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu işlem bu mesajı kalıcı olarak silecektir.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu eylem bu mesajı kalıcı olarak silecektir.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d sohbetten %1$d yeni mesaj</string>
   <string name="MessageNotifier_most_recent_from_s">En yeni mesaj: %1$s</string>
@@ -585,7 +585,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="NotificationChannel_app_updates">Uygulama güncellemeleri</string>
   <string name="NotificationChannel_other">Diğer</string>
   <string name="NotificationChannel_group_messages">Mesajlar</string>
-  <string name="NotificationChannel_missing_display_name">Bilinmiyor</string>
+  <string name="NotificationChannel_missing_display_name">Bilinmeyen</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilitliyken hızlı cevap kullanılamaz!</string>
   <string name="QuickResponseService_problem_sending_message">Mesaj gönderilirken hata!</string>

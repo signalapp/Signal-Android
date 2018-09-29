@@ -4,7 +4,7 @@
   <string name="yes">Sí</string>
   <string name="no">No</string>
   <string name="delete">Elimina</string>
-  <string name="please_wait">Espereu...</string>
+  <string name="please_wait">Espereu, si us plau...</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Missatge nou</string>
   <!--ApplicationPreferencesActivity-->
@@ -20,17 +20,17 @@
     <item quantity="other">Això reduirà immediatament totes les converses als %d missatges més recents.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Voleu desactivar la contrasenya?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Voleu inhabilitar la contrasenya?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">El Signal i les notificacions es desblocaran permanentment.</string>
   <string name="ApplicationPreferencesActivity_disable">Inhabilita</string>
   <string name="ApplicationPreferencesActivity_unregistering">Cancel·lació del registre</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">S\'està cancel·lant el registre per als missatges i les trucades del Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Voleu inhabilitar els missatges i les trucades del Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desactiveu els missatges i les trucades del Signal cancel·lant el registre del servidor. Haureu de tornar a registrar el número de telèfon per usar-los de nou.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Inhabiliteu els missatges i les trucades del Signal cancel·lant el registre del servidor. Haureu de tornar a registrar el número de telèfon per usar-los de nou.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">S\'ha produït un error en connectar amb el servidor.</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS activats</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toqueu per a canviar l\'aplicació d\'SMS predeterminada</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS desactivats</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS inhabilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toqueu perquè el Signal sigui l\'aplicació d\'SMS predeterminada</string>
   <string name="ApplicationPreferencesActivity_on">actiu</string>
   <string name="ApplicationPreferencesActivity_On">Actiu</string>
@@ -747,14 +747,14 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="log_submit_activity__thanks">Gràcies per ajudar-nos!</string>
   <string name="log_submit_activity__submitting">S\'està enviant</string>
   <string name="log_submit_activity__no_browser_installed">No hi ha cap navegador instal·lat</string>
-  <string name="log_submit_activity__button_dont_submit">No enviïs</string>
-  <string name="log_submit_activity__button_submit">Envia</string>
+  <string name="log_submit_activity__button_dont_submit">No ho enviïs</string>
+  <string name="log_submit_activity__button_submit">Envia-ho</string>
   <string name="log_submit_activity__button_got_it">Entesos</string>
   <string name="log_submit_activity__button_compose_email">Escriu un correu electrònic</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Aquest registre es penjarà públicament perquè el vegin els col·laboradors. Podeu examinar-lo i editar-lo abans d\'enviar-lo.</string>
   <string name="log_submit_activity__loading_logs">S\'estan carregant els registres...</string>
   <string name="log_submit_activity__uploading_logs">S\'estan pujant els registres...</string>
-  <string name="log_submit_activity__success">Èxit!</string>
+  <string name="log_submit_activity__success">Correcte!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">Copiat al porta-retalls</string>
   <string name="log_submit_activity__choose_email_app">Trieu una aplicació de correu.</string>
@@ -1174,7 +1174,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Heu introduït un PIN de bloqueig de registre incorrecte massa vegades. Si us plau, torneu-ho a provar d\'aquí a un dia.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Error en connectar al servei</string>
   <string name="RegistrationActivity_oh_no">Oh, no!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registre d\'aquest número de telèfon serà possible sense el PIN de bloqueig del registre 7 dies després des de l\'últim cop que el número va ser actiu al Signal. Us falten %d dies.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registre d\'aquest número de telèfon serà possible sense el PIN de bloqueig del registre 7 dies després des de l\'últim cop que el número es va usar al Signal. Us manquen %d dies.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de bloqueig del registre</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Aquest número de telèfon té el bloqueig de registre habilitat. Si us plau, escriviu el PIN de bloqueig del registre.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueig de registre està habilitat per al vostre número de telèfon.  Per a ajudar-vos a memoritzar el PIN de bloqueig de registre, el Signal us demanarà periòdicament que el confirmeu.</string>

@@ -143,8 +143,8 @@
     <attr name="media_overview_toolbar_background" format="color"/>
     <attr name="media_overview_toolbar_foreground" format="color"/>
     <attr name="media_overview_header_foreground" format="color"/>
-    <attr name="media_overview_document_background" format="color"/>
-    <attr name="media_overview_document_foreground" format="color"/>
+    <attr name="media_overview_document_primary" format="color"/>
+    <attr name="media_overview_document_secondary" format="color"/>
 
     <attr name="shared_contact_details_header_background" format="color"/>
     <attr name="shared_contact_details_titlebar" format="color"/>

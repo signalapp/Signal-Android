@@ -3,6 +3,7 @@
     <external-cache-path name="external_cache" path="." />
     <external-files-path name="external_files" path="." />
 
+    <external-path name="external_path" path="." />
     <external-path name="external_pictures" path="Pictures"/>
     <external-path name="external_video" path="Movies"/>
     <external-path name="external_audio" path="Music"/>

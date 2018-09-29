@@ -175,6 +175,11 @@ public class PushDecryptJob extends ContextJob {
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
+      if (shouldIgnore(envelope, content)) {
+        Log.i(TAG, "Ignoring message.");
+        return;
+      }
+
       if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent();
@@ -940,5 +945,41 @@ public class PushDecryptJob extends ContextJob {
     } else {
       return Recipient.from(context, Address.fromExternal(context, envelope.getSource()), false);
     }
+  }
+
+  private boolean shouldIgnore(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+    Recipient sender = Recipient.from(context, Address.fromExternal(context, envelope.getSource()), false);
+
+    if (content.getDataMessage().isPresent()) {
+      SignalServiceDataMessage message      = content.getDataMessage().get();
+      Recipient                conversation = getMessageDestination(envelope, message);
+
+      if (conversation.isGroupRecipient() && conversation.isBlocked()) {
+        return true;
+      } else if (conversation.isGroupRecipient()) {
+        GroupDatabase    groupDatabase = DatabaseFactory.getGroupDatabase(context);
+        Optional<String> groupId       = message.getGroupInfo().isPresent() ? Optional.of(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))
+                                                                            : Optional.absent();
+
+        if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
+          return false;
+        }
+
+        boolean isTextMessage    = message.getBody().isPresent();
+        boolean isMediaMessage   = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent();
+        boolean isExpireMessage  = message.isExpirationUpdate();
+        boolean isContentMessage = !message.isGroupUpdate() && (isTextMessage || isMediaMessage || isExpireMessage);
+        boolean isGroupActive    = groupId.isPresent() && groupDatabase.isActive(groupId.get());
+        boolean isLeaveMessage   = message.getGroupInfo().isPresent() && message.getGroupInfo().get().getType() == SignalServiceGroup.Type.QUIT;
+
+        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage);
+      } else {
+        return sender.isBlocked();
+      }
+    } else if (content.getCallMessage().isPresent()) {
+      return sender.isBlocked();
+    }
+
+    return false;
   }
 }

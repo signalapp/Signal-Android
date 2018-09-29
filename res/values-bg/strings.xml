@@ -217,7 +217,7 @@
   <string name="CustomDefaultPreference_using_default">Използване на подразбиращ се: %s</string>
   <string name="CustomDefaultPreference_none">Нищо</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">Сега</string>
+  <string name="DateUtils_just_now">Току що</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
   <string name="DateUtils_today">Днес</string>
   <string name="DateUtils_yesterday">Вчера</string>

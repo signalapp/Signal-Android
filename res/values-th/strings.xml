@@ -114,6 +114,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">ข้อความว่างเปล่า</string>
   <string name="ConversationActivity_group_members">สมาชิกกลุ่ม</string>
   <string name="ConversationActivity_invalid_recipient">ผู้รับไม่ถูกต้อง</string>
+  <string name="ConversationActivity_added_to_home_screen">เพิ่มไปยังหน้าจอหลักแล้ว</string>
   <string name="ConversationActivity_calls_not_supported">ไม่รองรับการโทร</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">อุปกรณ์นี้ไม่รองรับการโทรออก</string>
   <string name="ConversationActivity_leave_group">ออกจากกลุ่มหรือไม่</string>
@@ -560,6 +561,7 @@
   <string name="NotificationChannel_messages">ค่าเริ่มต้น</string>
   <string name="NotificationChannel_calls">การโทร</string>
   <string name="NotificationChannel_backups">การสำรองข้อมูล</string>
+  <string name="NotificationChannel_app_updates">การอัปเดตแอป</string>
   <string name="NotificationChannel_other">ที่อื่น</string>
   <string name="NotificationChannel_group_messages">ข้อความ</string>
   <string name="NotificationChannel_missing_display_name">ไม่ทราบ</string>
@@ -721,8 +723,13 @@
   <string name="log_submit_activity__thanks">ขอบคุณสำหรับความช่วยเหลือของคุณ</string>
   <string name="log_submit_activity__submitting">กำลังส่ง</string>
   <string name="log_submit_activity__no_browser_installed">ไม่มีเบราว์เซอร์ติดตั้งอยู่</string>
+  <string name="log_submit_activity__button_dont_submit">ไม่ส่ง</string>
+  <string name="log_submit_activity__button_submit">ส่ง</string>
   <string name="log_submit_activity__button_got_it">เข้าใจแล้ว</string>
+  <string name="log_submit_activity__button_compose_email">เขียนอีเมล</string>
+  <string name="log_submit_activity__success">สำเร็จ!</string>
   <string name="log_submit_activity__copied_to_clipboard">คัดลอกไปยังคลิปบอร์ดแล้ว</string>
+  <string name="log_submit_activity__choose_email_app">เลือกแอปอีเมล</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">คุณต้องการนำเข้าข้อความตัวอักษรไปเก็บในฐานข้อมูลที่เข้ารหัสของ Signal หรือไม่</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ฐานข้อมูลมาตรฐานของระบบจะไม่ถูกแก้ไขหรือเปลี่ยนแปลงใดๆ</string>
@@ -766,6 +773,8 @@
   <string name="recipient_preference_activity__shared_media">สื่อที่ถูกแบ่งปัน</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">ปิดการแจ้งเตือนการสนทนา</string>
+  <string name="recipient_preferences__custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
+  <string name="recipient_preferences__custom_notifications_settings">การตั้งค่าการแจ้งเตือนของระบบ</string>
   <string name="recipient_preferences__notification_sound">เสียงการแจ้งเตือน</string>
   <string name="recipient_preferences__vibrate">สั่น</string>
   <string name="recipient_preferences__block">ปิดกั้น</string>
@@ -873,6 +882,7 @@
   <string name="preferences__inactivity_timeout_passphrase">วลีรหัสผ่านเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
   <string name="preferences__inactivity_timeout_interval">ช่วงระยะเวลาเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
   <string name="preferences__notifications">การแจ้งเตือน</string>
+  <string name="preferences__system_notification_settings">การตั้งค่าการแจ้งเตือนของระบบ</string>
   <string name="preferences__led_color">สี LED</string>
   <string name="preferences__led_color_unknown">ไม่ทราบ</string>
   <string name="preferences__pref_led_blink_title">รูปแบบการกระพริบไฟ LED</string>
@@ -1004,6 +1014,7 @@
   <string name="conversation__menu_leave_group">ออกจากกลุ่ม</string>
   <string name="conversation__menu_view_all_media">สื่อทั้งหมด</string>
   <string name="conversation__menu_conversation_settings">ตั้งค่าการสนทนา</string>
+  <string name="conversation__menu_add_shortcut">เพิ่มไปยังหน้าจอหลัก</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ขยายป็อปอัพ</string>
   <!--conversation_callable_insecure-->

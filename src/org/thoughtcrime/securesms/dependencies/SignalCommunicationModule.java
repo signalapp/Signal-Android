@@ -44,6 +44,9 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
+import org.whispersystems.signalservice.api.util.RealtimeSleepTimer;
+import org.whispersystems.signalservice.api.util.SleepTimer;
+import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 
 import dagger.Module;
@@ -124,10 +127,13 @@ public class SignalCommunicationModule {
   @Provides
   synchronized SignalServiceMessageReceiver provideSignalMessageReceiver() {
     if (this.messageReceiver == null) {
+      SleepTimer sleepTimer =  TextSecurePreferences.isGcmDisabled(context) ? new RealtimeSleepTimer(context) : new UptimeSleepTimer();
+
       this.messageReceiver = new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
                                                               new DynamicCredentialsProvider(context),
                                                               BuildConfig.USER_AGENT,
-                                                              new PipeConnectivityListener());
+                                                              new PipeConnectivityListener(),
+                                                              sleepTimer);
     }
 
     return this.messageReceiver;

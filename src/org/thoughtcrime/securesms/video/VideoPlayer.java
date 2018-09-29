@@ -33,6 +33,7 @@ import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
@@ -180,7 +181,7 @@ public class VideoPlayer extends FrameLayout {
     videoView.setMediaController(mediaController);
   }
 
-  private static class ExoPlayerListener implements ExoPlayer.EventListener {
+  private static class ExoPlayerListener extends Player.DefaultEventListener {
     private final Window window;
 
     ExoPlayerListener(Window window) {
@@ -190,12 +191,12 @@ public class VideoPlayer extends FrameLayout {
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
       switch(playbackState) {
-        case ExoPlayer.STATE_IDLE:
-        case ExoPlayer.STATE_BUFFERING:
-        case ExoPlayer.STATE_ENDED:
+        case Player.STATE_IDLE:
+        case Player.STATE_BUFFERING:
+        case Player.STATE_ENDED:
           window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
           break;
-        case ExoPlayer.STATE_READY:
+        case Player.STATE_READY:
           if (playWhenReady) {
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
           } else {
@@ -206,20 +207,5 @@ public class VideoPlayer extends FrameLayout {
           break;
       }
     }
-
-    @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) { }
-
-    @Override
-    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) { }
-
-    @Override
-    public void onLoadingChanged(boolean isLoading) { }
-
-    @Override
-    public void onPlayerError(ExoPlaybackException error) { }
-
-    @Override
-    public void onPositionDiscontinuity() { }
   }
 }

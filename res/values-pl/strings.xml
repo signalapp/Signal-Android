@@ -1225,13 +1225,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Zbyt wiele nieprawidłowych prób wprowadzenia PIN blokady rejestracji. Spróbuj ponownie za jeden dzień.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Błąd podczas łączenia się z usługą</string>
   <string name="RegistrationActivity_oh_no">O nie!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Rejestracja tego numeru telefonu będzie możliwa bez kodu PIN blokady rejestracyjnej po upływie 7 dni od ostatniego aktywowania tego numeru telefonu w usłudze Signal. Pozostało Ci %d dni.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Rejestracja tego numeru telefonu będzie możliwa bez kodu PIN blokady rejestracji, po upływie 7 dni od ostatniej aktywności tego numeru telefonu w usłudze Signal. Pozostało Ci %d dni.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN blokady rejestracji</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Ten numer telefonu ma włączoną blokadę rejestracji. Wprowadź kod PIN blokady rejestracji.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blokada rejestracji jest włączona dla Twojego numeru telefonu. Aby pomóc Ci zapamiętać PIN blokady rejestracji, Signal okresowo poprosi Cię o jego wprowadzenie.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Zapomniałem(am) PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Nie pamiętasz PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blokada rejestracji pomaga chronić swój numer telefonu przed nieautoryzowanymi próbami rejestracji. Ta funkcja może być w dowolnym momencie wyłączona w ustawieniach prywatności Signal</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blokada rejestracji pomaga chronić Twój numer telefonu przed nieautoryzowanymi próbami rejestracji. Ta funkcja może być w dowolnym momencie wyłączona w ustawieniach prywatności Signal</string>
   <string name="RegistrationLockDialog_registration_lock">Blokada rejestracji</string>
   <string name="RegistrationLockDialog_enable">Włącz</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Kod PIN blokady rejestracji musi składać się z co najmniej 4 cyfr.</string>

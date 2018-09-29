@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
@@ -47,17 +48,20 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
     RecipientDatabase database = DatabaseFactory.getRecipientDatabase(context);
 
     try (RecipientReader reader = database.readerForBlocked(database.getBlocked())) {
-      List<String> blocked = new LinkedList<>();
+      List<String> blockedIndividuals = new LinkedList<>();
+      List<byte[]> blockedGroups      = new LinkedList<>();
 
       Recipient recipient;
 
       while ((recipient = reader.getNext()) != null) {
-        if (!recipient.isGroupRecipient()) {
-          blocked.add(recipient.getAddress().serialize());
+        if (recipient.isGroupRecipient()) {
+          blockedGroups.add(GroupUtil.getDecodedId(recipient.getAddress().toGroupString()));
+        } else {
+          blockedIndividuals.add(recipient.getAddress().serialize());
         }
       }
 
-      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blocked)));
+      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)));
     }
   }
 
