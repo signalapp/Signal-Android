@@ -97,6 +97,9 @@
                 android:textColor="?conversation_item_sent_text_primary_color"
                 android:textColorLink="?conversation_item_sent_text_primary_color"
                 app:scaleEmojis="true"
+                android:clickable="false"
+                android:focusable="true"
+                android:textIsSelectable="true"
                 tools:text="Mango pickle lorem ipsum"/>
 
             <View
