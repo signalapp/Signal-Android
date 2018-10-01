@@ -142,7 +142,7 @@
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal, %s \'ı aramak için Mikrofon ve Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" ve \"Kamera\" yı etkinleştirin.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotoğraf veya video çekmek için, Signal\'in kameraya erişmesine izin verin.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal, fotoğraf ve görüntü çekmek için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal fotoğraf veya video çekebilmek için kamera erişimine ihtiyaç duyar.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal fotoğraf veya video çekebilmek için kamera erişimine ihtiyaç duyar</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -985,7 +985,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences_chats__message_trimming">Mesaj kırpma</string>
   <string name="preferences_advanced__use_system_emoji">Sistem emojilerini kullan</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal\'in dahili emoji desteğini devre dışı bırak</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kişinize IP adresinizi göstermemek için aramaları Signal sunucusuyla aktar. Etkinleştirmek arama kalitesini düşürür.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP adresinizi kişinize göstermekten kaçınmak için tüm aramaları Signal sunucusundan aktarın. Etkinleştirildiğinde arama kalitesi düşecektir.</string>
   <string name="preferences_advanced__always_relay_calls">Aramaları her zaman aktar</string>
   <string name="preferences_app_protection__app_access">Uygulama erişimi</string>
   <string name="preferences_app_protection__communication">İletişim</string>

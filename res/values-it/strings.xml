@@ -102,7 +102,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Tornare agli MMS non cifrati?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perché il destinatario non è più  un utente Signal.\n\nInviare un messaggio non sicuro?</string>
   <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire il file.</string>
-  <string name="ConversationItem_copied_text">%s copiato</string>
+  <string name="ConversationItem_copied_text">Copiato %s</string>
   <string name="ConversationItem_from_s">da %s</string>
   <string name="ConversationItem_to_s">a %s</string>
   <!--ConversationActivity-->

@@ -4,7 +4,7 @@
   <string name="yes">Ja</string>
   <string name="no">Nein</string>
   <string name="delete">Löschen</string>
-  <string name="please_wait">Bitte warten …</string>
+  <string name="please_wait">Bitte warten …</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Neue Nachricht</string>
   <!--ApplicationPreferencesActivity-->
@@ -24,7 +24,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies wird Signal und Benachrichtigungen über Nachrichten dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und -Anrufe deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und -Anrufe durch Löschen deiner Registrierung vom Server deaktivieren. Du wirst deine Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden mit Server!</string>
@@ -174,14 +174,14 @@
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Anhang wird im Gerätespeicher gespeichert …</item>
-    <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
+    <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
   </plurals>
-  <string name="ConversationFragment_pending">Ausstehend …</string>
+  <string name="ConversationFragment_pending">Ausstehend …</string>
   <string name="ConversationFragment_push">Internet (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Löschen</string>
-  <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
+  <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
   <string name="ConversationFragment_quoted_message_not_found">Originalnachricht nicht gefunden</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalnachricht nicht mehr verfügbar</string>
   <!--ConversationListActivity-->
@@ -197,7 +197,7 @@
     <item quantity="other">Dies wird alle %1$d ausgewählten Unterhaltungen unwiderruflich löschen.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Löschen</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Ausgewählte Unterhaltungen werden gelöscht …</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Ausgewählte Unterhaltungen werden gelöscht …</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Unterhaltung archiviert</item>
     <item quantity="other">%d Unterhaltungen archiviert</item>
@@ -236,7 +236,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Nach Entkoppeln dieses Geräts wird es keine weiteren Nachrichten senden oder empfangen können.</string>
   <string name="DeviceListActivity_network_connection_failed">Keine Netzverbindung</string>
   <string name="DeviceListActivity_try_again">Erneut versuchen</string>
-  <string name="DeviceListActivity_unlinking_device">Gerät wird entkoppelt …</string>
+  <string name="DeviceListActivity_unlinking_device">Gerät wird entkoppelt …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Gerät entkoppeln</string>
   <string name="DeviceListActivity_network_failed">Netzwerkfehler!</string>
   <!--DeviceListItem-->
@@ -284,9 +284,9 @@
   <string name="GroupCreateActivity_avatar_content_description">Gruppenavatar</string>
   <string name="GroupCreateActivity_menu_apply_button">Anwenden</string>
   <string name="GroupCreateActivity_creating_group">%1$s wird erstellt …</string>
-  <string name="GroupCreateActivity_updating_group">%1$s wird aktualisiert …</string>
+  <string name="GroupCreateActivity_updating_group">%1$s wird aktualisiert …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s konnte nicht hinzugefügt werden, da kein Signal-Kontakt.</string>
-  <string name="GroupCreateActivity_loading_group_details">Gruppendetails werden geladen …</string>
+  <string name="GroupCreateActivity_loading_group_details">Gruppendetails werden geladen …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du bist bereits in der Gruppe.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Deinen Profilnamen und dein Profilfoto mit dieser Gruppe teilen?</string>
@@ -300,7 +300,7 @@
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
-  <string name="InviteActivity_sending">Wird gesendet …</string>
+  <string name="InviteActivity_sending">Wird gesendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
@@ -334,7 +334,7 @@
     <item quantity="other">Dies wird alle %1$d ausgewählten Nachrichten unwiderruflich löschen.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
   <string name="MediaOverviewActivity_Documents">Dokumente</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
@@ -381,7 +381,7 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 • Alle deine Nachrichten lesen\n• Nachrichten in deinem Namen versenden</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Gerät koppeln</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Neues Gerät wird gekoppelt …</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Neues Gerät wird gekoppelt …</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Gerät freigeschaltet!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Kein Gerät gefunden.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netzwerkfehler.</string>
@@ -516,7 +516,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Version von Signal mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Der eingescannte QR-Code ist kein korrekt formatierter Verifikationscode einer Sicherheitsnummer. Bitte versuche es erneut.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Sicherheitsnummer teilen über …</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Sicherheitsnummer teilen über …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Unsere Signal-Sicherheitsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Anscheinend hast du keine zum Teilen geeigneten Apps installiert.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Keine zu vergleichende Sicherheitsnummer in der Zwischenablage gefunden</string>
@@ -678,7 +678,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Zum unteren Ende scrollen</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Länder werden geladen …</string>
+  <string name="country_selection_fragment__loading_countries">Länder werden geladen …</string>
   <string name="country_selection_fragment__search">Suchen</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scanne zum Koppeln den auf dem Gerät angezeigten QR-Code ein</string>
@@ -763,7 +763,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dies kann eine Weile dauern, bitte etwas Geduld. Du wirst benachrichtigt, sobald der Import abgeschlossen ist.</string>
   <string name="database_migration_activity__importing">IMPORTIEREN</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert …</string>
+  <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert …</string>
   <string name="import_fragment__import_system_sms_database">System-SMS-Datenbank importieren</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Datenbank aus der Standard-SMS-App importieren</string>
   <string name="import_fragment__import_plaintext_backup">Klartextsicherung importieren</string>
@@ -776,7 +776,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ANZEIGEN</string>
   <string name="message_recipients_list_item__resend">ERNEUT SENDEN</string>
-  <string name="message_recipients_list_item__resending">Wird erneut gesendet …</string>
+  <string name="message_recipients_list_item__resending">Wird erneut gesendet …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ist der Gruppe beigetreten.</item>
@@ -830,7 +830,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
-  <string name="verify_display_fragment__loading">Wird geladen …</string>
+  <string name="verify_display_fragment__loading">Wird geladen …</string>
   <string name="verify_display_fragment__verified">Verifiziert</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
@@ -995,7 +995,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Neue Nachricht an …</string>
+  <string name="contact_selection_list__unknown_contact">Neue Nachricht an …</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Anruf</string>
   <!--conversation_callable_secure-->
@@ -1094,12 +1094,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Löschen</string>
-  <string name="trimmer__deleting_old_messages">Alte Nachrichten werden gelöscht …</string>
+  <string name="trimmer__deleting_old_messages">Alte Nachrichten werden gelöscht …</string>
   <string name="trimmer__old_messages_successfully_deleted">Alte Nachrichten wurden erfolgreich gelöscht</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
-  <string name="ConversationListFragment_loading">Wird geladen …</string>
-  <string name="CallNotificationBuilder_connecting">Verbindung wird hergestellt …</string>
+  <string name="ConversationListFragment_loading">Wird geladen …</string>
+  <string name="CallNotificationBuilder_connecting">Verbindung wird hergestellt …</string>
   <string name="Permissions_permission_required">Berechtigung erforderlich</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal benötigt die Berechtigung »SMS« für das Senden von SMS, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »SMS«.</string>
   <string name="Permissions_continue">Weiter</string>
@@ -1123,8 +1123,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_enter_backup_passphrase">Sicherungspassphrase eingeben</string>
   <string name="RegistrationActivity_restore">Wiederherstellen</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Sicherungspassphrase</string>
-  <string name="RegistrationActivity_checking">Wird überprüft …</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d Nachrichten bisher …</string>
+  <string name="RegistrationActivity_checking">Wird überprüft …</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d Nachrichten bisher …</string>
   <string name="RegistrationActivity_restore_from_backup">Aus Sicherung wiederherstellen?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
   <string name="RegistrationActivity_backup_size_s">Sicherungsgröße: %s</string>
@@ -1139,7 +1139,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal benötigt die Berechtigung »Speicher« für das Erstellen von Datensicherungen, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Letzte Sicherung: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">In Arbeit …</string>
-  <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
+  <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
   <string name="RegistrationActivity_verify_s">%s verifizieren</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>

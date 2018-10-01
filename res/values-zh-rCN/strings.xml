@@ -113,6 +113,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">信息为空！</string>
   <string name="ConversationActivity_group_members">群组成员</string>
   <string name="ConversationActivity_invalid_recipient">无效收件人！</string>
+  <string name="ConversationActivity_added_to_home_screen">添加到主屏幕</string>
   <string name="ConversationActivity_calls_not_supported">不支持呼叫</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">当前设备不支持拨号动作。</string>
   <string name="ConversationActivity_leave_group">离开此群组？</string>
@@ -711,8 +712,11 @@
   <string name="log_submit_activity__button_dont_submit">不要提交</string>
   <string name="log_submit_activity__button_submit">提交</string>
   <string name="log_submit_activity__button_got_it">收到</string>
+  <string name="log_submit_activity__loading_logs">正在加载日志…</string>
+  <string name="log_submit_activity__uploading_logs">正在上传日志…</string>
   <string name="log_submit_activity__success">成功！</string>
   <string name="log_submit_activity__copied_to_clipboard">已复制到剪切板</string>
+  <string name="log_submit_activity__choose_email_app">选择电子邮件客户端</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想要导入您已经存在的短信到暗号的加密数据库？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">默认的系统数据库将不会被修改或改变。</string>
@@ -756,6 +760,8 @@
   <string name="recipient_preference_activity__shared_media">分享媒体文件</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">静音会话</string>
+  <string name="recipient_preferences__custom_notifications">自定义通知</string>
+  <string name="recipient_preferences__custom_notifications_settings">系统通知设置</string>
   <string name="recipient_preferences__notification_sound">通知声音</string>
   <string name="recipient_preferences__vibrate">振动</string>
   <string name="recipient_preferences__block">屏蔽</string>
@@ -862,6 +868,7 @@
   <string name="preferences__inactivity_timeout_passphrase">不活动密码超时</string>
   <string name="preferences__inactivity_timeout_interval">不活动超时间隔</string>
   <string name="preferences__notifications">通知</string>
+  <string name="preferences__system_notification_settings">系统通知设置</string>
   <string name="preferences__led_color">LED颜色</string>
   <string name="preferences__led_color_unknown">未知</string>
   <string name="preferences__pref_led_blink_title">LED闪烁规律</string>
@@ -994,6 +1001,7 @@
   <string name="conversation__menu_leave_group">离开群组</string>
   <string name="conversation__menu_view_all_media">所有媒体</string>
   <string name="conversation__menu_conversation_settings">会话设置</string>
+  <string name="conversation__menu_add_shortcut">添加到主屏幕</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">展开弹窗</string>
   <!--conversation_callable_insecure-->

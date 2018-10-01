@@ -651,7 +651,7 @@
   <string name="conversation_activity__type_message_push">Μήνυμα Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Μη ασφαλές SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Μη ασφαλές MMS</string>
-  <string name="conversation_activity__from_sim_name">Από τον/την %1$s</string>
+  <string name="conversation_activity__from_sim_name">Από%1$s</string>
   <string name="conversation_activity__send">Αποστολή</string>
   <string name="conversation_activity__compose_description">Σύνθεση μηνύματος</string>
   <string name="conversation_activity__emoji_toggle_description">Εναλλαγή πληκτρολογίου emoji</string>
