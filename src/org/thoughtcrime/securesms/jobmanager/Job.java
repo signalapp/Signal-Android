@@ -74,7 +74,7 @@ public abstract class Job extends Worker implements Serializable {
       }
     } catch (Exception e) {
       if (onShouldRetry(e)) {
-        log("Retrying after a retryable exception." + logSuffix());
+        log("Retrying after a retryable exception." + logSuffix(), e);
         return retry();
       }
       warn("Failing due to an exception." + logSuffix(), e);
@@ -91,7 +91,7 @@ public abstract class Job extends Worker implements Serializable {
   }
 
   final void onSubmit(UUID id) {
-    log(id, "onSubmit()");
+    Log.i(TAG, buildLog(id, "onSubmit()"));
     onAdded();
   }
 
@@ -184,11 +184,11 @@ public abstract class Job extends Worker implements Serializable {
   }
 
   private void log(@NonNull String message) {
-    log(getId(), message);
+    log(message, null);
   }
 
-  private void log(@NonNull UUID id, @NonNull String message) {
-    Log.i(TAG, buildLog(id, message));
+  private void log(@NonNull String message, @Nullable Throwable t) {
+    Log.i(TAG, buildLog(getId(), message), t);
   }
 
   private void warn(@NonNull String message) {
