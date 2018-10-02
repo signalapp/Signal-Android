@@ -78,7 +78,7 @@ public class Camera1Controller {
         camera.setPreviewTexture(surfaceTexture);
         camera.startPreview();
         enforcer.markCompleted(Stage.PREVIEW_STARTED);
-      } catch (IOException e) {
+      } catch (Exception e) {
         Log.w(TAG, "Failed to start preview.", e);
         eventListener.onCameraUnavailable();
       }
