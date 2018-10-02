@@ -106,10 +106,15 @@ public class DirectoryHelper {
     List<Future<Set<String>>> contactServiceRequest = getContactServiceDirectoryResult(context, accountManager, eligibleContactNumbers);
 
     try {
-      DirectoryResult legacyResult         = legacyRequest.get();
-      Set<String>     contactServiceResult = executeAndMergeContactDiscoveryRequests(accountManager, contactServiceRequest);
+      DirectoryResult       legacyResult         = legacyRequest.get();
+      Optional<Set<String>> contactServiceResult = executeAndMergeContactDiscoveryRequests(accountManager, contactServiceRequest);
 
-      if (legacyResult.getNumbers().size() == contactServiceResult.size() && legacyResult.getNumbers().containsAll(contactServiceResult)) {
+      if (!contactServiceResult.isPresent()) {
+        Log.i(TAG, "[Batch] New contact discovery service failed, so we're skipping the comparison.");
+        return legacyResult.getNewlyActiveAddresses();
+      }
+
+      if (legacyResult.getNumbers().size() == contactServiceResult.get().size() && legacyResult.getNumbers().containsAll(contactServiceResult.get())) {
         Log.i(TAG, "[Batch] New contact discovery service request matched existing results.");
         accountManager.reportContactDiscoveryServiceMatch();
       } else {
@@ -142,9 +147,15 @@ public class DirectoryHelper {
     List<Future<Set<String>>> contactServiceRequest = getContactServiceDirectoryResult(context, accountManager, Collections.singleton(recipient.getAddress().serialize()));
 
     try {
-      RegisteredState legacyState          = legacyRequest.get();
-      Set<String>     contactServiceResult = executeAndMergeContactDiscoveryRequests(accountManager, contactServiceRequest);
-      RegisteredState contactServiceState  = contactServiceResult.size() == 1 ? RegisteredState.REGISTERED : RegisteredState.NOT_REGISTERED;
+      RegisteredState       legacyState          = legacyRequest.get();
+      Optional<Set<String>> contactServiceResult = executeAndMergeContactDiscoveryRequests(accountManager, contactServiceRequest);
+
+      if (!contactServiceResult.isPresent()) {
+        Log.i(TAG, "[Singular] New contact discovery service failed, so we're skipping the comparison.");
+        return legacyState;
+      }
+
+      RegisteredState contactServiceState = contactServiceResult.get().size() == 1 ? RegisteredState.REGISTERED : RegisteredState.NOT_REGISTERED;
 
       if (legacyState == contactServiceState) {
         Log.i(TAG, "[Singular] New contact discovery service request matched existing results.");
@@ -362,7 +373,13 @@ public class DirectoryHelper {
   }
 
   private static Set<String> sanitizeNumbers(@NonNull Set<String> numbers) {
-    return Stream.of(numbers).filter(number -> number.startsWith("+")).collect(Collectors.toSet());
+    return Stream.of(numbers).filter(number -> {
+      try {
+        return number.startsWith("+") && number.length() > 1 && Long.parseLong(number.substring(1)) > 0;
+      } catch (NumberFormatException e) {
+        return false;
+      }
+    }).collect(Collectors.toSet());
   }
 
   private static List<Set<String>> splitIntoBatches(@NonNull Set<String> numbers, int batchSize) {
@@ -377,28 +394,32 @@ public class DirectoryHelper {
     return batches;
   }
 
-  private static Set<String> executeAndMergeContactDiscoveryRequests(@NonNull SignalServiceAccountManager accountManager, @NonNull List<Future<Set<String>>> futures) {
+  private static Optional<Set<String>> executeAndMergeContactDiscoveryRequests(@NonNull SignalServiceAccountManager accountManager, @NonNull List<Future<Set<String>>> futures) {
     Set<String> results = new HashSet<>();
-    for (Future<Set<String>> future : futures) {
-      try {
+    try {
+      for (Future<Set<String>> future : futures) {
         results.addAll(future.get());
-      } catch (InterruptedException e) {
-        Log.w(TAG, "Contact discovery batch was interrupted.", e);
+      }
+    } catch (InterruptedException e) {
+      Log.w(TAG, "Contact discovery batch was interrupted.", e);
+      accountManager.reportContactDiscoveryServiceUnexpectedError();
+      return Optional.absent();
+    } catch (ExecutionException e) {
+      if (isAttestationError(e.getCause())) {
+        Log.w(TAG, "Failed during attestation.", e);
+        accountManager.reportContactDiscoveryServiceAttestationError();
+        return Optional.absent();
+      } else if (e.getCause() instanceof PushNetworkException) {
+        Log.w(TAG, "Failed due to poor network.", e);
+        return Optional.absent();
+      } else {
+        Log.w(TAG, "Failed for an unknown reason.", e);
         accountManager.reportContactDiscoveryServiceUnexpectedError();
-      } catch (ExecutionException e) {
-        if (isAttestationError(e.getCause())) {
-          Log.w(TAG, "Failed during attestation.", e);
-          accountManager.reportContactDiscoveryServiceAttestationError();
-        } else if (e.getCause() instanceof PushNetworkException) {
-          Log.w(TAG, "Failed due to poor network.", e);
-        } else {
-          Log.w(TAG, "Failed for an unknown reason.", e);
-          accountManager.reportContactDiscoveryServiceUnexpectedError();
-        }
+        return Optional.absent();
       }
     }
 
-    return results;
+    return Optional.of(results);
   }
 
   private static boolean isAttestationError(Throwable e) {
