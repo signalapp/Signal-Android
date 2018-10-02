@@ -193,12 +193,12 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
     shutterSound.play();
     orderEnforcer.reset();
 
+    Stopwatch fastCaptureTimer = new Stopwatch("Fast Capture");
+
+    Bitmap preview = cameraPreview.getBitmap();
+    fastCaptureTimer.split("captured");
+
     LifecycleBoundTask.run(getLifecycle(), () -> {
-      Stopwatch fastCaptureTimer = new Stopwatch("Fast Capture");
-
-      Bitmap preview = cameraPreview.getBitmap();
-      fastCaptureTimer.split("captured");
-
       Bitmap full = preview;
       if (Build.VERSION.SDK_INT < 28) {
         PointF scale  = getScaleTransform(cameraPreview.getWidth(), cameraPreview.getHeight(), properties.getPreviewWidth(), properties.getPreviewHeight());
