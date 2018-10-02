@@ -78,7 +78,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
     messageId    = data.getLong(KEY_MESSAGE_ID);
     partRowId    = data.getLong(KEY_PART_ROW_ID);
     partUniqueId = data.getLong(KEY_PAR_UNIQUE_ID);
-    manual       = data.getBoolean(KEY_MANUAL, false);
+    manual       = data.getBoolean(KEY_MANUAL);
   }
 
   @Override

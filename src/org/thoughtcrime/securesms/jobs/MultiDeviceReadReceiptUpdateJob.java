@@ -48,7 +48,7 @@ public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements Injec
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    enabled = data.getBoolean(KEY_ENABLED, false);
+    enabled = data.getBoolean(KEY_ENABLED);
   }
 
   @Override

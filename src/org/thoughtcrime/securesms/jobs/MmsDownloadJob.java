@@ -83,7 +83,7 @@ public class MmsDownloadJob extends MasterSecretJob {
   protected void initialize(@NonNull SafeData data) {
     messageId = data.getLong(KEY_MESSAGE_ID);
     threadId  = data.getLong(KEY_THREAD_ID);
-    automatic = data.getBoolean(KEY_AUTOMATIC, false);
+    automatic = data.getBoolean(KEY_AUTOMATIC);
   }
 
   @Override

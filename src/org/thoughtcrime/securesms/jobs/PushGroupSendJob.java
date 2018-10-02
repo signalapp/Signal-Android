@@ -84,7 +84,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   @Override
   protected void initialize(@NonNull SafeData data) {
     messageId     = data.getLong(KEY_MESSAGE_ID);
-    filterAddress = data.getNullableString(KEY_FILTER_ADDRESS);
+    filterAddress = data.getString(KEY_FILTER_ADDRESS);
   }
 
   @Override
