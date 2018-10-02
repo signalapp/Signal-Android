@@ -286,7 +286,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
       adapter.toggleSelection(mediaRecord);
       if (adapter.getSelectedMediaCount() == 0) {
-        exitMultiSelect();
+        actionMode.finish();
       } else {
         actionMode.setTitle(String.valueOf(adapter.getSelectedMediaCount()));
       }
@@ -360,7 +360,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
                                                                               attachments.size());
                          saveTask.executeOnExecutor(THREAD_POOL_EXECUTOR,
                                                     attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
-                         exitMultiSelect();
+                         actionMode.finish();
                        }
                      }.execute();
                    })
@@ -422,12 +422,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       ((MediaOverviewActivity) getActivity()).onEnterMultiSelect();
     }
 
-    private void exitMultiSelect() {
-      actionMode.finish();
-      actionMode = null;
-      ((MediaOverviewActivity) getActivity()).onExitMultiSelect();
-    }
-
     private class ActionModeCallback implements ActionMode.Callback {
 
       private int originalStatusBarColor;
@@ -458,7 +452,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
             return true;
           case R.id.delete:
             handleDeleteMedia(getListAdapter().getSelectedMedia());
-            exitMultiSelect();
+            actionMode.finish();
             return true;
           case R.id.select_all:
             handleSelectAllMedia();
@@ -471,6 +465,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       public void onDestroyActionMode(ActionMode mode) {
         actionMode = null;
         getListAdapter().clearSelection();
+        ((MediaOverviewActivity) getActivity()).onExitMultiSelect();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
           getActivity().getWindow().setStatusBarColor(originalStatusBarColor);
