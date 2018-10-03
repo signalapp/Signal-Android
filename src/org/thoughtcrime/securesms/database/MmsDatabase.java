@@ -1327,8 +1327,8 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     private SlideDeck getSlideDeck(@NonNull List<DatabaseAttachment> attachments) {
-      List<? extends Attachment> messageAttachmnets = Stream.of(attachments).filterNot(Attachment::isQuote).toList();
-      return new SlideDeck(context, messageAttachmnets);
+      List<? extends Attachment> messageAttachments = Stream.of(attachments).filterNot(Attachment::isQuote).toList();
+      return new SlideDeck(context, messageAttachments);
     }
 
     private @Nullable Quote getQuote(@NonNull Cursor cursor) {
