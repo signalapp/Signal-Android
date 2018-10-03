@@ -68,7 +68,6 @@ public class SignalListPreference extends ListPreference {
 
   @Override
   public void setOnPreferenceClickListener(OnPreferenceClickListener onPreferenceClickListener) {
-    super.setOnPreferenceClickListener(onPreferenceClickListener);
     this.clickListener = onPreferenceClickListener;
   }
 
