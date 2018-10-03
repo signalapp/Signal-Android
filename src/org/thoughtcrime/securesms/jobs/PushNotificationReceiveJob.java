@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
@@ -41,6 +42,11 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
   @Override
   protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
     return dataBuilder.build();
+  }
+
+  @Override
+  protected String getDescription() {
+    return context.getString(R.string.PushNotificationReceiveJob_retrieving_a_message);
   }
 
   @Override

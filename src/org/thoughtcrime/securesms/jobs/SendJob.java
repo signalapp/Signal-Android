@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -29,6 +30,11 @@ public abstract class SendJob extends MasterSecretJob {
 
   public SendJob(Context context, JobParameters parameters) {
     super(context, parameters);
+  }
+
+  @Override
+  protected String getDescription() {
+    return context.getString(R.string.SendJob_sending_a_message);
   }
 
   @Override

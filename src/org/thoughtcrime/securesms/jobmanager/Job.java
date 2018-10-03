@@ -5,10 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirement;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.service.GenericForegroundService;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -26,6 +29,7 @@ public abstract class Job extends Worker implements Serializable {
   static final String KEY_RETRY_COUNT            = "Job_retry_count";
   static final String KEY_RETRY_UNTIL            = "Job_retry_until";
   static final String KEY_SUBMIT_TIME            = "Job_submit_time";
+  static final String KEY_REQUIRES_NETWORK       = "Job_requires_network";
   static final String KEY_REQUIRES_MASTER_SECRET = "Job_requires_master_secret";
   static final String KEY_REQUIRES_SQLCIPHER     = "Job_requires_sqlcipher";
 
@@ -58,10 +62,19 @@ public abstract class Job extends Worker implements Serializable {
 
     initialize(new SafeData(data));
 
+    boolean foregroundRunning = false;
+
     try {
       if (withinRetryLimits(data)) {
         if (requirementsMet(data)) {
+          if (needsForegroundService(data)) {
+            Log.i(TAG, "Running a foreground service with description '" + getDescription() + "' to aid in job execution." + logSuffix());
+            GenericForegroundService.startForegroundTask(getApplicationContext(), getDescription());
+            foregroundRunning = true;
+          }
+
           onRun();
+
           log("Successfully completed." + logSuffix());
           return Result.SUCCESS;
         } else {
@@ -79,6 +92,11 @@ public abstract class Job extends Worker implements Serializable {
       }
       warn("Failing due to an exception." + logSuffix(), e);
       return cancel();
+    } finally {
+      if (foregroundRunning) {
+        Log.i(TAG, "Stopping the foreground service." + logSuffix());
+        GenericForegroundService.stopForegroundTask(getApplicationContext());
+      }
     }
   }
 
@@ -93,6 +111,14 @@ public abstract class Job extends Worker implements Serializable {
   final void onSubmit(UUID id) {
     Log.i(TAG, buildLog(id, "onSubmit()"));
     onAdded();
+  }
+
+  /**
+   * @return A string that represents what the task does. Will be shown in a foreground notification
+   *         if necessary.
+   */
+  protected String getDescription() {
+    return getApplicationContext().getString(R.string.Job_working_in_the_background);
   }
 
   /**
@@ -158,7 +184,7 @@ public abstract class Job extends Worker implements Serializable {
     return Result.SUCCESS;
   }
 
-  private boolean requirementsMet(Data data) {
+  private boolean requirementsMet(@NonNull Data data) {
     boolean met = true;
 
     if (data.getBoolean(KEY_REQUIRES_MASTER_SECRET, false)) {
@@ -172,7 +198,7 @@ public abstract class Job extends Worker implements Serializable {
     return met;
   }
 
-  private boolean withinRetryLimits(Data data) {
+  private boolean withinRetryLimits(@NonNull Data data) {
     int  retryCount = data.getInt(KEY_RETRY_COUNT, 0);
     long retryUntil = data.getLong(KEY_RETRY_UNTIL, 0);
 
@@ -181,6 +207,13 @@ public abstract class Job extends Worker implements Serializable {
     }
 
     return System.currentTimeMillis() < retryUntil;
+  }
+
+  private boolean needsForegroundService(@NonNull Data data) {
+    NetworkRequirement networkRequirement = new NetworkRequirement(getApplicationContext());
+    boolean            requiresNetwork    = data.getBoolean(KEY_REQUIRES_NETWORK, false);
+
+    return requiresNetwork && !networkRequirement.isPresent();
   }
 
   private void log(@NonNull String message) {
