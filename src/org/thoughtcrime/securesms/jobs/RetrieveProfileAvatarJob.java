@@ -59,7 +59,7 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    profileAvatar = data.getNullableString(KEY_PROFILE_AVATAR);
+    profileAvatar = data.getString(KEY_PROFILE_AVATAR);
     recipient     = Recipient.from(context, Address.fromSerialized(data.getString(KEY_ADDRESS)), true);
   }
 

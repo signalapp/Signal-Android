@@ -99,8 +99,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    address   = data.getNullableString(KEY_ADDRESS);
-    forceSync = data.getBoolean(KEY_FORCE_SYNC, false);
+    address   = data.getString(KEY_ADDRESS);
+    forceSync = data.getBoolean(KEY_FORCE_SYNC);
   }
 
   @Override

@@ -50,11 +50,11 @@ public class DirectoryRefreshJob extends ContextJob {
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    String  serializedAddress = data.getNullableString(KEY_ADDRESS);
+    String  serializedAddress = data.getString(KEY_ADDRESS);
     Address address           = serializedAddress != null ? Address.fromSerialized(serializedAddress) : null;
 
     recipient        = address != null ? Recipient.from(context, address, true) : null;
-    notifyOfNewUsers = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS, false);
+    notifyOfNewUsers = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS);
   }
 
   @Override

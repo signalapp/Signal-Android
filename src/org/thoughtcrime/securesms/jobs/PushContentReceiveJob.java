@@ -40,7 +40,7 @@ public class PushContentReceiveJob extends PushReceivedJob {
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    this.data = data.getNullableString(KEY_DATA);
+    this.data = data.getString(KEY_DATA);
   }
 
   @Override
