@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top|left|start"
             android:padding="12dp"
-            android:src="@drawable/ic_check_white_24dp"
+            android:src="@drawable/ic_scribble_save"
             android:background="?attr/selectableItemBackgroundBorderless"/>
 
         <LinearLayout
