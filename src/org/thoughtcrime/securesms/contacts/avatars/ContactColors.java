@@ -24,8 +24,7 @@ public class ContactColors {
       MaterialColor.WINTERGREEN,
       MaterialColor.TEAL,
       MaterialColor.BURLAP,
-      MaterialColor.TAUPE,
-      MaterialColor.STEEL
+      MaterialColor.TAUPE
   ));
 
   public static MaterialColor generateFor(@NonNull String name) {
