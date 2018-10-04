@@ -53,7 +53,6 @@ public abstract class Job extends Worker implements Serializable {
 
     log("doWork()" + logSuffix());
 
-    ApplicationContext.getInstance(getApplicationContext()).ensureInitialized();
     ApplicationContext.getInstance(getApplicationContext()).injectDependencies(this);
 
     if (this instanceof ContextDependent) {

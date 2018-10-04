@@ -61,6 +61,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import androidx.work.Configuration;
 import androidx.work.WorkManager;
 import dagger.ObjectGraph;
 
@@ -80,7 +81,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private JobManager             jobManager;
   private ObjectGraph            objectGraph;
   private PersistentLogger       persistentLogger;
-  private boolean                initialized;
 
   private volatile boolean isAppVisible;
 
@@ -90,33 +90,20 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   @Override
   public void onCreate() {
-    synchronized (this) {
-      super.onCreate();
-      initializeRandomNumberFix();
-      initializeLogging();
-      initializeCrashHandling();
-      initializeDependencyInjection();
-      initializeJobManager();
-      initializeExpiringMessageManager();
-      initializeGcmCheck();
-      initializeSignedPreKeyCheck();
-      initializePeriodicTasks();
-      initializeCircumvention();
-      initializeWebRtc();
-      NotificationChannels.create(this);
-      ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-
-      initialized = true;
-      notifyAll();
-    }
-  }
-
-  public void ensureInitialized() {
-    synchronized (this) {
-      while (!initialized) {
-        Util.wait(this, 0);
-      }
-    }
+    super.onCreate();
+    initializeRandomNumberFix();
+    initializeLogging();
+    initializeCrashHandling();
+    initializeDependencyInjection();
+    initializeJobManager();
+    initializeExpiringMessageManager();
+    initializeGcmCheck();
+    initializeSignedPreKeyCheck();
+    initializePeriodicTasks();
+    initializeCircumvention();
+    initializeWebRtc();
+    NotificationChannels.create(this);
+    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
   }
 
   @Override
@@ -172,6 +159,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeJobManager() {
+    WorkManager.initialize(this, new Configuration.Builder()
+                                                  .setMinimumLoggingLevel(android.util.Log.DEBUG)
+                                                  .build());
+
     this.jobManager = new JobManager(WorkManager.getInstance());
   }
 
