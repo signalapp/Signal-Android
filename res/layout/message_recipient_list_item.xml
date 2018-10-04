@@ -98,7 +98,7 @@
                 android:id="@+id/delivery_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:iconColor="?attr/conversation_item_sent_text_secondary_color"
+                app:iconColor="?attr/conversation_item_received_text_secondary_color"
                 android:visibility="gone"/>
 
     </LinearLayout>
