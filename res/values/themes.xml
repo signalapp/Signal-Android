@@ -402,7 +402,7 @@
 
         <item name="shared_contact_details_header_background">@color/grey_800</item>
         <item name="shared_contact_details_titlebar">@color/grey_900</item>
-        <item name="shared_contact_item_button_color">@color/core_grey_90</item>
+        <item name="shared_contact_item_button_color">@color/core_grey_85</item>
     </style>
     
     <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
