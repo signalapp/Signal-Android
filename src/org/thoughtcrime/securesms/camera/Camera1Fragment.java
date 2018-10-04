@@ -46,7 +46,6 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
   private Camera1Controller            camera;
   private Controller                   controller;
   private OrderEnforcer<Stage>         orderEnforcer;
-  private ShutterSound                 shutterSound;
   private Camera1Controller.Properties properties;
 
   public static Camera1Fragment newInstance() {
@@ -63,7 +62,6 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
     controller    = (Controller) getActivity();
     camera        = new Camera1Controller(TextSecurePreferences.getDirectCaptureCameraId(getContext()), this);
     orderEnforcer = new OrderEnforcer<>(Stage.SURFACE_AVAILABLE, Stage.CAMERA_PROPERTIES_AVAILABLE);
-    shutterSound  = Build.VERSION.SDK_INT >= 16 ? new MediaActionShutterSound() : new NoopShutterSound();
   }
 
   @Nullable
@@ -190,7 +188,6 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
   }
 
   private void onCaptureClicked() {
-    shutterSound.play();
     orderEnforcer.reset();
 
     Stopwatch fastCaptureTimer = new Stopwatch("Fast Capture");
@@ -292,30 +289,5 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
 
   private enum Stage {
     SURFACE_AVAILABLE, CAMERA_PROPERTIES_AVAILABLE
-  }
-
-  private interface ShutterSound {
-    void play();
-  }
-
-  @TargetApi(16)
-  private static class MediaActionShutterSound implements ShutterSound {
-
-    private final MediaActionSound mediaActionSound;
-
-    public MediaActionShutterSound() {
-      mediaActionSound = new MediaActionSound();
-      mediaActionSound.load(MediaActionSound.SHUTTER_CLICK);
-    }
-
-    @Override
-    public void play() {
-      mediaActionSound.play(MediaActionSound.SHUTTER_CLICK);
-    }
-  }
-
-  private static class NoopShutterSound implements ShutterSound {
-    @Override
-    public void play() { }
   }
 }
