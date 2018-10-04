@@ -177,9 +177,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private void initializeProfileIcon() {
     ImageView     icon          = findViewById(R.id.toolbar_icon);
     Address       localAddress  = Address.fromSerialized(TextSecurePreferences.getLocalNumber(this));
-    String        profileName   = Optional.fromNullable(TextSecurePreferences.getProfileName(this)).or("");
-    MaterialColor fallbackColor = TextUtils.isEmpty(profileName) ? MaterialColor.STEEL : ContactColors.generateFor(profileName);
-    Drawable      fallback      = new GeneratedContactPhoto(profileName, R.drawable.ic_profile_default).asDrawable(this, fallbackColor.toAvatarColor(this));
+    Recipient     recipient     = Recipient.from(this, localAddress, true);
+    String        name          = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(this))).or("");
+    MaterialColor fallbackColor = recipient.getColor();
+
+    if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
+      fallbackColor = ContactColors.generateFor(name);
+    }
+
+    Drawable fallback = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(this, fallbackColor.toAvatarColor(this));
 
     GlideApp.with(this)
             .load(new ProfileContactPhoto(localAddress, String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
