@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.dependencies;
 
 import android.content.Context;
+
+import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.greenrobot.eventbus.EventBus;
@@ -80,7 +82,8 @@ import dagger.Provides;
                                      MultiDeviceProfileKeyUpdateJob.class,
                                      SendReadReceiptJob.class,
                                      MultiDeviceReadReceiptUpdateJob.class,
-                                     AppProtectionPreferenceFragment.class})
+                                     AppProtectionPreferenceFragment.class,
+                                     GcmBroadcastReceiver.class})
 public class SignalCommunicationModule {
 
   private static final String TAG = SignalCommunicationModule.class.getSimpleName();

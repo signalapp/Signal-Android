@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.jobmanager.dependencies.DependencyInjector;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
@@ -50,7 +51,6 @@ import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
@@ -91,6 +91,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onCreate() {
     super.onCreate();
+    Log.i(TAG, "onCreate()");
     initializeRandomNumberFix();
     initializeLogging();
     initializeCrashHandling();
@@ -102,6 +103,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializePeriodicTasks();
     initializeCircumvention();
     initializeWebRtc();
+    initializePendingMessages();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
   }
@@ -257,6 +259,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void executePendingContactSync() {
     if (TextSecurePreferences.needsFullContactSync(this)) {
       ApplicationContext.getInstance(this).getJobManager().add(new MultiDeviceContactUpdateJob(this, true));
+    }
+  }
+
+  private void initializePendingMessages() {
+    if (TextSecurePreferences.getNeedsMessagePull(this)) {
+      Log.i(TAG, "Scheduling a message fetch.");
+      ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob());
+      TextSecurePreferences.setNeedsMessagePull(this, false);
     }
   }
 }

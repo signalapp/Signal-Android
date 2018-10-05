@@ -311,6 +311,9 @@
     <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Now you can share a profile photo and name with friends on Signal</string>
     <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiles are here</string>
 
+    <!-- GcmBroadcastReceiver -->
+    <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message...</string>
+
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
     <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with Google Play Services. Signal messages and calls have been disabled, please try re-registering in Settings &gt; Advanced.</string>
