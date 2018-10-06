@@ -167,7 +167,7 @@
 
         <item name="contact_list_divider">@drawable/contact_list_divider_light</item>
 
-        <item name="verification_background">@color/gray5</item>
+        <item name="verification_background">@color/core_grey_05</item>
 
         <item name="emoji_tab_strip_background">@color/gray12</item>
         <item name="emoji_tab_indicator">#66555555</item>
@@ -309,7 +309,7 @@
 
         <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>
 
-        <item name="verification_background">#ff333333</item>
+        <item name="verification_background">@color/core_grey_95</item>
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>
