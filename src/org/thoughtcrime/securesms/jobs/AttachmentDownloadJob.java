@@ -115,6 +115,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
     if (!manual && !AttachmentUtil.isAutoDownloadPermitted(context, attachment)) {
       Log.w(TAG, "Attachment can't be auto downloaded...");
+      database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_PENDING);
       return;
     }
 
