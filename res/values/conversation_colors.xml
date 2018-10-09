@@ -47,4 +47,8 @@
     <color name="conversation_steel">#6b6b78</color>
     <color name="conversation_steel_tint">#bebec6</color>
     <color name="conversation_steel_shade">#5a5a63</color>
+
+    <color name="conversation_group">@color/textsecure_primary</color>
+    <color name="conversation_group_tint">@color/textsecure_primary</color>
+    <color name="conversation_group_shade">@color/textsecure_primary_dark</color>
 </resources>
