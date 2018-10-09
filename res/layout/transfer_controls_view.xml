@@ -18,7 +18,7 @@
               android:padding="15dp"
               android:gravity="center"
               android:longClickable="false"
-              android:textColor="?conversation_item_sent_text_primary_color"
+              android:textColor="?conversation_item_received_text_primary_color"
               android:drawableLeft="@drawable/ic_file_download_white_36dp"
               android:textSize="16dp"
               android:visibility="gone"

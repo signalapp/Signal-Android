@@ -127,7 +127,6 @@
                 android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                android:alpha="0.8"
                 app:footer_text_color="?attr/conversation_item_sent_text_secondary_color"
                 app:footer_icon_color="?attr/conversation_item_sent_icon_color"/>
 

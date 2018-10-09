@@ -41,8 +41,8 @@
                 android:layout_marginTop="6dp"
                 android:visibility="gone"
                 app:message_type="preview"
-                app:quote_colorPrimary="?attr/conversation_item_received_text_primary_color"
-                app:quote_colorSecondary="?attr/conversation_item_received_text_primary_color"
+                app:quote_colorPrimary="?attr/conversation_item_sent_text_primary_color"
+                app:quote_colorSecondary="?attr/conversation_item_sent_text_primary_color"
                 tools:visibility="visible"/>
 
             <FrameLayout

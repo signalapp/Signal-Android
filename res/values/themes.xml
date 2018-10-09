@@ -188,12 +188,12 @@
 
 
         <item name="conversation_item_bubble_background">@color/core_grey_05</item>
-        <item name="conversation_item_sent_text_primary_color">@color/core_white</item>
-        <item name="conversation_item_sent_text_secondary_color">@color/core_white</item>
-        <item name="conversation_item_sent_icon_color">@color/core_white</item>
+        <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
+        <item name="conversation_item_sent_text_secondary_color">@color/core_grey_60</item>
+        <item name="conversation_item_sent_icon_color">@color/core_grey_60</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99000000</item>
-        <item name="conversation_item_received_text_primary_color">@color/core_grey_90</item>
-        <item name="conversation_item_received_text_secondary_color">@color/core_grey_60</item>
+        <item name="conversation_item_received_text_primary_color">@color/core_white</item>
+        <item name="conversation_item_received_text_secondary_color">@color/core_white</item>
         <item name="conversation_item_update_text_color">@color/core_grey_60</item>
         <item name="conversation_item_last_seen_text_color">@color/core_grey_90</item>
         <item name="conversation_item_last_seen_line_color">@color/core_grey_60</item>
@@ -293,8 +293,8 @@
 
         <item name="conversation_item_bubble_background">@color/core_grey_75</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_05</item>
-        <item name="conversation_item_sent_text_secondary_color">@color/core_grey_05</item>
-        <item name="conversation_item_sent_icon_color">@color/core_grey_05</item>
+        <item name="conversation_item_sent_text_secondary_color">@color/core_grey_25</item>
+        <item name="conversation_item_sent_icon_color">@color/core_grey_25</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99ffffff</item>
         <item name="conversation_item_received_text_primary_color">@color/core_grey_05</item>
         <item name="conversation_item_received_text_secondary_color">@color/core_grey_25</item>
