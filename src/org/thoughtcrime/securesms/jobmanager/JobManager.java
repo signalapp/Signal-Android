@@ -35,7 +35,7 @@ public class JobManager {
       JobParameters jobParameters = job.getJobParameters();
 
       if (jobParameters == null) {
-        throw new IllegalStateException("Jobs must have JobParameters at this stage.");
+        throw new IllegalStateException("Jobs must have JobParameters at this stage. (" + job.getClass().getSimpleName() + ")");
       }
 
       Data.Builder dataBuilder = new Data.Builder().putInt(Job.KEY_RETRY_COUNT, jobParameters.getRetryCount())
