@@ -96,7 +96,7 @@ public class MmsDownloadJob extends MasterSecretJob {
 
   @Override
   public void onAdded() {
-    if (automatic && KeyCachingService.getMasterSecret(context) == null) {
+    if (automatic && KeyCachingService.isLocked(context)) {
       DatabaseFactory.getMmsDatabase(context).markIncomingNotificationReceived(threadId);
       MessageNotifier.updateNotification(context);
     }

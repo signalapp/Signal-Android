@@ -89,12 +89,7 @@ public class KeyCachingService extends Service {
   public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {
     if (masterSecret == null && (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context))) {
       try {
-        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-        Intent       intent       = new Intent(context, KeyCachingService.class);
-
-        context.startService(intent);
-
-        return masterSecret;
+        return MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
       } catch (InvalidPassphraseException e) {
         Log.w("KeyCachingService", e);
       }
