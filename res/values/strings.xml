@@ -1435,6 +1435,7 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <string name="recipient_preferences__about">About</string>
+    <string name="RegistrationLockDialog_the_pin_must_be_no_more_than_twenty_digits">The PIN must be no more than twenty digits.</string>
     <!-- EOF -->
 
 </resources>

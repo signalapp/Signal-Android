@@ -134,6 +134,11 @@ public class RegistrationLockDialog {
           return;
         }
 
+        if (pinValue.length() > 20) {
+          Toast.makeText(context, R.string.RegistrationLockDialog_the_pin_must_be_no_more_than_twenty_digits, Toast.LENGTH_LONG).show();
+          return;
+        }
+
         if (!pinValue.equals(repeatValue)) {
           Toast.makeText(context, R.string.RegistrationLockDialog_the_two_pins_you_entered_do_not_match, Toast.LENGTH_LONG).show();
           return;
