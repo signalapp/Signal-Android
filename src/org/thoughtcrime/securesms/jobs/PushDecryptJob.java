@@ -20,6 +20,7 @@ import org.signal.libsignal.metadata.ProtocolInvalidVersionException;
 import org.signal.libsignal.metadata.ProtocolLegacyMessageException;
 import org.signal.libsignal.metadata.ProtocolNoSessionException;
 import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
+import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
@@ -36,6 +37,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
@@ -242,6 +244,8 @@ public class PushDecryptJob extends ContextJob {
           handleNeedsDeliveryReceipt(content, message);
         }
       } else if (content.getSyncMessage().isPresent()) {
+        TextSecurePreferences.setMultiDevice(context, true);
+
         SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
 
         if      (syncMessage.getSent().isPresent())     handleSynchronizeSentMessage(content, syncMessage.getSent().get());
@@ -273,7 +277,11 @@ public class PushDecryptJob extends ContextJob {
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
       handleInvalidVersionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (ProtocolInvalidMessageException | ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
+    } catch (ProtocolInvalidMessageException  e) {
+      Log.w(TAG, e);
+      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
+    }
+    catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
     } catch (StorageFailedException e) {
@@ -290,6 +298,8 @@ public class PushDecryptJob extends ContextJob {
       handleDuplicateMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
     } catch (InvalidMetadataVersionException | InvalidMetadataMessageException e) {
       Log.w(TAG, e);
+    } catch (SelfSendException e) {
+      Log.i(TAG, "Dropping UD message from self.");
     }
   }
 
@@ -542,6 +552,10 @@ public class PushDecryptJob extends ContextJob {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new MultiDeviceContactUpdateJob(getContext(), true));
+
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new RefreshUnidentifiedDeliveryAbilityJob(context));
     }
 
     if (message.isGroupsRequest()) {
@@ -559,7 +573,9 @@ public class PushDecryptJob extends ContextJob {
     if (message.isConfigurationRequest()) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MultiDeviceReadReceiptUpdateJob(getContext(), TextSecurePreferences.isReadReceiptsEnabled(getContext())));
+                        .add(new MultiDeviceConfigurationUpdateJob(getContext(),
+                                                                   TextSecurePreferences.isReadReceiptsEnabled(getContext()),
+                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
     }
   }
 
@@ -670,7 +686,17 @@ public class PushDecryptJob extends ContextJob {
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
     long messageId = database.insertMessageOutbox(mediaMessage, threadId, false, null);
 
+    if (recipients.getAddress().isGroup()) {
+      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipients.getAddress().toGroupString(), false);
+
+      for (Recipient member : members) {
+        receiptDatabase.setUnidentified(member.getAddress(), messageId, message.isUnidentified(member.getAddress().serialize()));
+      }
+    }
+
     database.markAsSent(messageId, true);
+    database.markUnidentified(messageId, message.isUnidentified(recipients.getAddress().serialize()));
 
     for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId)) {
       ApplicationContext.getInstance(context)
@@ -753,11 +779,19 @@ public class PushDecryptJob extends ContextJob {
 
       messageId = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMediaMessage, threadId, false, null);
       database  = DatabaseFactory.getMmsDatabase(context);
+
+      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
+
+      for (Recipient member : members) {
+        receiptDatabase.setUnidentified(member.getAddress(), messageId, message.isUnidentified(member.getAddress().serialize()));
+      }
     } else {
       OutgoingTextMessage outgoingTextMessage = new OutgoingEncryptedMessage(recipient, body, expiresInMillis);
 
       messageId = DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
       database  = DatabaseFactory.getSmsDatabase(context);
+      database.markUnidentified(messageId, message.isUnidentified(recipient.getAddress().serialize()));
     }
 
     database.markAsSent(messageId, true);

@@ -24,12 +24,4 @@ public class SecurityEventListener implements SignalServiceMessageSender.EventLi
   public void onSecurityEvent(SignalServiceAddress textSecureAddress) {
     SecurityEvent.broadcastSecurityUpdateEvent(context);
   }
-
-  @Override
-  public void onUnidentifiedAccessFailed(SignalServiceAddress address) {
-    // XXX Update UI
-    DatabaseFactory.getRecipientDatabase(context)
-                   .setUnidentifiedAccessMode(Recipient.from(context, Address.fromSerialized(address.getNumber()), false),
-                                              RecipientDatabase.UnidentifiedAccessMode.DISABLED);
-  }
 }

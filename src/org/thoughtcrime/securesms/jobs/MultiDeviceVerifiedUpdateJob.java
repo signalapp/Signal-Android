@@ -91,7 +91,7 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
   public void onRun() throws IOException, UntrustedIdentityException {
     try {
       if (!TextSecurePreferences.isMultiDevice(context)) {
-        Log.w(TAG, "Not multi device...");
+        Log.i(TAG, "Not multi device...");
         return;
       }
 

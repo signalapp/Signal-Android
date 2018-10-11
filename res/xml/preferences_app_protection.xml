@@ -69,6 +69,27 @@
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
+    <PreferenceCategory android:title="@string/preferences_communication__category_sealed_sender">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_show_unidentifed_delivery_indicators"
+            android:title="@string/preferences_communication__sealed_sender_display_indicators"
+            android:summary="@string/preferences_communication__sealed_sender_display_indicators_description"/>
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_universal_unidentified_access"
+            android:title="@string/preferences_communication__sealed_sender_allow_from_anyone"
+            android:summary="@string/preferences_communication__sealed_sender_allow_from_anyone_description"/>
+
+        <Preference
+            android:key="pref_unidentified_learn_more"
+            android:layout="@layout/unidentified_delivery_learn_more" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
     <PreferenceCategory android:title="@string/preferences_app_protection__registration_lock">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"

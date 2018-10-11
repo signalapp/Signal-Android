@@ -164,10 +164,12 @@ public class TextSecurePreferences {
   private static final String NOTIFICATION_MESSAGES_CHANNEL_VERSION = "pref_notification_messages_channel_version";
 
   private static final String NEEDS_MESSAGE_PULL = "pref_needs_message_pull";
-  
+
   private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time";
   private static final String UNIDENTIFIED_ACCESS_CERTIFICATE                    = "pref_unidentified_access_certificate";
-  private static final String UNIVERSAL_UNIDENTIFIED_ACCESS                      = "pref_universal_unidentified_access";
+  public  static final String UNIVERSAL_UNIDENTIFIED_ACCESS                      = "pref_universal_unidentified_access";
+  public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
+  private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
@@ -540,8 +542,16 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false);
   }
 
-  public static void setUniversalUnidentifiedAccess(Context context, boolean value) {
-    setBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, value);
+  public static boolean isShowUnidentifiedDeliveryIndicatorsEnabled(Context context) {
+    return getBooleanPreference(context, SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, false);
+  }
+
+  public static void setIsUnidentifiedDeliveryEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, enabled);
+  }
+
+  public static boolean isUnidentifiedDeliveryEnabled(Context context) {
+    return getBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, true);
   }
 
   public static long getSignedPreKeyRotationTime(Context context) {

@@ -30,6 +30,7 @@ import android.telephony.PhoneNumberUtils;
 
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.view.MenuItem;
@@ -738,6 +739,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                 Log.w(TAG, "Failed to leave group. Can't block.");
                 Toast.makeText(context, R.string.RecipientPreferenceActivity_error_leaving_group, Toast.LENGTH_LONG).show();
               }
+            }
+
+            if (blocked && (recipient.resolve().isSystemContact() || recipient.resolve().isProfileSharing())) {
+              ApplicationContext.getInstance(context)
+                                .getJobManager()
+                                .add(new RotateProfileKeyJob(context));
             }
 
             ApplicationContext.getInstance(context)

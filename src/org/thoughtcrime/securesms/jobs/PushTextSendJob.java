@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -19,11 +20,11 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
-import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
@@ -68,6 +69,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   @Override
   public void onAdded() {
     Log.i(TAG, "onAdded() messageId: " + messageId);
+    DatabaseFactory.getSmsDatabase(context).markAsSending(messageId);
   }
 
   @Override
@@ -82,6 +84,19 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       boolean unidentified = deliver(record);
       database.markAsSent(messageId, true);
       database.markUnidentified(messageId, unidentified);
+
+      if (TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
+        Recipient              recipient  = record.getRecipient().resolve();
+        UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
+
+        if (unidentified && (accessMode == UnidentifiedAccessMode.UNKNOWN || accessMode == UnidentifiedAccessMode.DISABLED)) {
+          Log.i(TAG, "Marking recipient as UD-enabled following a UD send.");
+          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.ENABLED);
+        } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {
+          Log.i(TAG, "Marking recipient as UD-disabled following a non-UD send.");
+          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.DISABLED);
+        }
+      }
 
       if (record.getExpiresIn() > 0) {
         database.markExpireStarted(messageId);

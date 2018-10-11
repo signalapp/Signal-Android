@@ -23,43 +23,45 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-/**
- * Use {@link MultiDeviceConfigurationUpdateJob}.
- */
-@Deprecated
-public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements InjectableType {
+public class MultiDeviceConfigurationUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
 
-  private static final String TAG = MultiDeviceReadReceiptUpdateJob.class.getSimpleName();
+  private static final String TAG = MultiDeviceConfigurationUpdateJob.class.getSimpleName();
 
-  private static final String KEY_ENABLED = "enabled";
+  private static final String KEY_READ_RECEIPTS_ENABLED                    = "read_receipts_enabled";
+  private static final String KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED = "unidentified_delivery_indicators_enabled";
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  private boolean enabled;
+  private boolean readReceiptsEnabled;
+  private boolean unidentifiedDeliveryIndicatorsEnabled;
 
-  public MultiDeviceReadReceiptUpdateJob() {
+  public MultiDeviceConfigurationUpdateJob() {
     super(null, null);
   }
 
-  public MultiDeviceReadReceiptUpdateJob(Context context, boolean enabled) {
+  public MultiDeviceConfigurationUpdateJob(Context context, boolean readReceiptsEnabled, boolean unidentifiedDeliveryIndicatorsEnabled) {
     super(context, JobParameters.newBuilder()
-                                .withGroupId("__MULTI_DEVICE_READ_RECEIPT_UPDATE_JOB__")
+                                .withGroupId("__MULTI_DEVICE_CONFIGURATION_UPDATE_JOB__")
                                 .withNetworkRequirement()
                                 .create());
 
-    this.enabled = enabled;
+    this.readReceiptsEnabled                   = readReceiptsEnabled;
+    this.unidentifiedDeliveryIndicatorsEnabled = unidentifiedDeliveryIndicatorsEnabled;
   }
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    enabled = data.getBoolean(KEY_ENABLED);
+    readReceiptsEnabled                   = data.getBoolean(KEY_READ_RECEIPTS_ENABLED);
+    unidentifiedDeliveryIndicatorsEnabled = data.getBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED);
   }
 
   @Override
   protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putBoolean(KEY_ENABLED, enabled).build();
+    return dataBuilder.putBoolean(KEY_READ_RECEIPTS_ENABLED, readReceiptsEnabled)
+                      .putBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED, unidentifiedDeliveryIndicatorsEnabled)
+                      .build();
   }
 
   @Override
@@ -69,7 +71,7 @@ public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements Injec
       return;
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled), Optional.absent())),
+    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled), Optional.of(unidentifiedDeliveryIndicatorsEnabled))),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

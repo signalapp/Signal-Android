@@ -11,6 +11,7 @@ import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.transition.TransitionInflater;
+
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -179,6 +180,7 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
           Optional<byte[]> profileKey        = Optional.of(ProfileKeyUtil.getProfileKey(getContext()));
 
           TextSecurePreferences.setMultiDevice(DeviceActivity.this, true);
+          TextSecurePreferences.setIsUnidentifiedDeliveryEnabled(context, false);
           accountManager.addDevice(ephemeralId, publicKey, identityKeyPair, profileKey, verificationCode);
 
           return SUCCESS;

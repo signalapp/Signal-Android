@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.TaskStackBuilder;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
@@ -86,5 +88,14 @@ public class CommunicationActions {
       intent.putExtra("sms_body", text);
     }
     context.startActivity(intent);
+  }
+
+  public static void openBrowserLink(@NonNull Context context, @NonNull String link) {
+    try {
+      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+      context.startActivity(intent);
+    } catch (ActivityNotFoundException e) {
+      Toast.makeText(context, R.string.CommunicationActions_no_browser_found, Toast.LENGTH_SHORT).show();
+    }
   }
 }

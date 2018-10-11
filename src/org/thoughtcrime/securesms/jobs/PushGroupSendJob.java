@@ -45,6 +45,7 @@ import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -100,6 +101,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
+  protected void onAdded() {
+    DatabaseFactory.getMmsDatabase(context).markAsSending(messageId);
+  }
+
+  @Override
   public void onPushSend()
       throws IOException, MmsException, NoSuchMessageException,  RetryLaterException
   {
@@ -110,6 +116,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
     try {
       Log.i(TAG, "Sending message: " + messageId);
+
       List<Address> target;
 
       if      (filterAddress != null)              target = Collections.singletonList(Address.fromSerialized(filterAddress));

@@ -62,7 +62,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException, UntrustedIdentityException {
     if (!TextSecurePreferences.isMultiDevice(getContext())) {
-      Log.w(TAG, "Not multi device...");
+      Log.i(TAG, "Not multi device...");
       return;
     }
 

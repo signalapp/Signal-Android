@@ -10,6 +10,7 @@ import android.util.Log;
 import org.signal.libsignal.metadata.certificate.CertificateValidator;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -40,6 +41,11 @@ public class UnidentifiedAccessUtil {
   public static Optional<UnidentifiedAccessPair> getAccessFor(@NonNull Context context,
                                                               @NonNull Recipient recipient)
   {
+    if (!TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
+      Log.i(TAG, "Unidentified delivery is disabled. [other]");
+      return Optional.absent();
+    }
+
     try {
       byte[] theirUnidentifiedAccessKey       = getTargetUnidentifiedAccessKey(recipient);
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
@@ -49,9 +55,9 @@ public class UnidentifiedAccessUtil {
         ourUnidentifiedAccessKey = Util.getSecretBytes(16);
       }
 
-      Log.w(TAG, "Their access key: " + (theirUnidentifiedAccessKey == null));
-      Log.w(TAG, "Our access key: " + (ourUnidentifiedAccessKey == null));
-      Log.w(TAG, "Our certificatE: " + (ourUnidentifiedAccessCertificate == null));
+      Log.i(TAG, "Their access key present? " + (theirUnidentifiedAccessKey != null));
+      Log.i(TAG, "Our access key present? " + (ourUnidentifiedAccessKey != null));
+      Log.i(TAG, "Our certificate present? " + (ourUnidentifiedAccessCertificate != null));
 
       if (theirUnidentifiedAccessKey != null &&
           ourUnidentifiedAccessKey != null   &&
@@ -71,6 +77,11 @@ public class UnidentifiedAccessUtil {
   }
 
   public static Optional<UnidentifiedAccessPair> getAccessForSync(@NonNull Context context) {
+    if (!TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
+      Log.i(TAG, "Unidentified delivery is disabled. [self]");
+      return Optional.absent();
+    }
+
     try {
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
       byte[] ourUnidentifiedAccessCertificate = TextSecurePreferences.getUnidentifiedAccessCertificate(context);

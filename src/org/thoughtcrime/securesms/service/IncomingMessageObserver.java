@@ -41,7 +41,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
   private static final long REQUEST_TIMEOUT_MINUTES  = 1;
 
   private static SignalServiceMessagePipe pipe             = null;
-  public static SignalServiceMessagePipe  unidentifiedPipe = null;
+  private static SignalServiceMessagePipe unidentifiedPipe = null;
 
   private final Context            context;
   private final NetworkRequirement networkRequirement;
@@ -158,7 +158,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
               Log.i(TAG, "Reading message...");
               localPipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
                              envelope -> {
-                               Log.i(TAG, "Retrieved envelope! " + envelope.getSource());
+                               Log.i(TAG, "Retrieved envelope! " + String.valueOf(envelope.getSource()));
                                new PushContentReceiveJob(context).processEnvelope(envelope);
                              });
             } catch (TimeoutException e) {

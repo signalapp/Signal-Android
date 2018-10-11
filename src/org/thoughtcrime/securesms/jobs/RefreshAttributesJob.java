@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -10,10 +11,6 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
@@ -63,6 +60,10 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
     signalAccountManager.setAccountAttributes(signalingKey, registrationId, fetchesMessages, pin,
                                               unidentifiedAccessKey, universalUnidentifiedAccess);
+
+    ApplicationContext.getInstance(context)
+                      .getJobManager()
+                      .add(new RefreshUnidentifiedDeliveryAbilityJob(context));
   }
 
   @Override

@@ -30,7 +30,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -101,9 +101,8 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
 
     try {
       profile = retrieveProfile(number, unidentifiedAccess);
-    } catch (AuthorizationFailedException e) {
+    } catch (NonSuccessfulResponseCodeException e) {
       if (unidentifiedAccess.isPresent()) {
-        // XXX Update UI
         profile = retrieveProfile(number, Optional.absent());
       } else {
         throw e;
@@ -129,7 +128,10 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   private SignalServiceProfile retrieveProfile(@NonNull String number, Optional<UnidentifiedAccess> unidentifiedAccess)
       throws IOException
   {
-    SignalServiceMessagePipe pipe = IncomingMessageObserver.getPipe();
+    SignalServiceMessagePipe authPipe         = IncomingMessageObserver.getPipe();
+    SignalServiceMessagePipe unidentifiedPipe = IncomingMessageObserver.getUnidentifiedPipe();
+    SignalServiceMessagePipe pipe             = unidentifiedPipe != null && unidentifiedAccess.isPresent() ? unidentifiedPipe
+                                                                                                           : authPipe;
 
     if (pipe != null) {
       try {
@@ -169,10 +171,11 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     byte[]            profileKey        = recipient.getProfileKey();
 
-    // XXX Update UI
     if (unrestrictedUnidentifiedAccess) {
+      Log.i(TAG, "Marking recipient UD status as unrestricted.");
       recipientDatabase.setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.UNRESTRICTED);
     } else if (profileKey == null || unidentifiedAccessVerifier == null) {
+      Log.i(TAG, "Marking recipient UD status as disabled.");
       recipientDatabase.setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.DISABLED);
     } else {
       ProfileCipher profileCipher = new ProfileCipher(profileKey);
@@ -185,7 +188,9 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
         verifiedUnidentifiedAccess = false;
       }
 
-      recipientDatabase.setUnidentifiedAccessMode(recipient, verifiedUnidentifiedAccess ? UnidentifiedAccessMode.ENABLED : UnidentifiedAccessMode.DISABLED);
+      UnidentifiedAccessMode mode = verifiedUnidentifiedAccess ? UnidentifiedAccessMode.ENABLED : UnidentifiedAccessMode.DISABLED;
+      Log.i(TAG, "Marking recipient UD status as " + mode.name() + " after verification.");
+      recipientDatabase.setUnidentifiedAccessMode(recipient, mode);
     }
   }
 

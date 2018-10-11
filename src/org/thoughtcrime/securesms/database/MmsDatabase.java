@@ -343,11 +343,11 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
   }
 
-//  public void markAsSending(long messageId) {
-//    long threadId = getThreadIdForMessage(messageId);
-//    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE, Optional.of(threadId));
-//    notifyConversationListeners(threadId);
-//  }
+  public void markAsSending(long messageId) {
+    long threadId = getThreadIdForMessage(messageId);
+    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE, Optional.of(threadId));
+    notifyConversationListeners(threadId);
+  }
 
   public void markAsSentFailed(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
@@ -403,6 +403,7 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
   }
 
+  @Override
   public void markUnidentified(long messageId, boolean unidentified) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(UNIDENTIFIED, unidentified ? 1 : 0);

@@ -116,7 +116,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       throws IOException, UntrustedIdentityException, NetworkException
   {
     if (!TextSecurePreferences.isMultiDevice(context)) {
-      Log.w(TAG, "Not multi device, aborting...");
+      Log.i(TAG, "Not multi device, aborting...");
       return;
     }
 

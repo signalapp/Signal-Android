@@ -9,6 +9,8 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
+
+import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -172,6 +174,10 @@ public class DeviceListFragment extends ListFragment
       protected Void doInBackground(Void... params) {
         try {
           accountManager.removeDevice(deviceId);
+
+          ApplicationContext.getInstance(getContext())
+                            .getJobManager()
+                            .add(new RefreshUnidentifiedDeliveryAbilityJob(getContext()));
         } catch (IOException e) {
           Log.w(TAG, e);
           Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();
