@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">సిగ్నల్</string>
+  <string name="app_name">Signal</string>
   <string name="yes">అవును</string>
   <string name="no">కాదు</string>
   <string name="delete">తొలగించండి</string>
@@ -21,12 +21,12 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">తొలగించండి</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">సంకేతపదమును ఆపివేయాలా?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ఇది శాశ్వతంగా  సిగ్నల్ మరియు సందేశ ప్రకటనలను అన్లాక్ చేస్తుంది</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ఇది శాశ్వతంగా  Signal మరియు సందేశ ప్రకటనలను అన్లాక్ చేస్తుంది</string>
   <string name="ApplicationPreferencesActivity_disable">అచేతనించు</string>
   <string name="ApplicationPreferencesActivity_unregistering">నమోదు చేయలేనిది</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">సిగ్నల్ సందేశాలు మరియు కాల్స్ నుండి నమోదును ...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">   సిగ్నల్ సందేశాలు మరియు కాల్స్ ఆపివేయాలా?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">సర్వర్ నుండి నమోదుని తీసివేయడానికి ద్వారా సిగ్నల్ సందేశాలు మరియు కాల్స్ ఆపివేయి. మీరు భవిష్యత్తులో మళ్ళీ వాటిని ఉపయోగించడానికి మీ ఫోన్ నంబర్ తిరిగి నమోదు అవసరం.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal సందేశాలు మరియు కాల్స్ నుండి నమోదును ...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">   Signal సందేశాలు మరియు కాల్స్ ఆపివేయాలా?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">సర్వర్ నుండి నమోదుని తీసివేయడానికి ద్వారా Signal సందేశాలు మరియు కాల్స్ ఆపివేయి. మీరు భవిష్యత్తులో మళ్ళీ వాటిని ఉపయోగించడానికి మీ ఫోన్ నంబర్ తిరిగి నమోదు అవసరం.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server"> సర్వర్ కి కలిపినపుడు లోపం!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">ఎస్సెమ్మెస్ చేతనం అయింది</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">మీ అప్రమేయ ఎస్సెమ్మెస్ అప్ మార్చడానికి తాకండి</string>
@@ -52,10 +52,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">స్పంధించు</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">మీడియా ఎంచుకోవడానికి అనువర్తనం దొరకదు.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ఫోటోలు, వీడియోలు లేదా ఆడియోను అటాచ్ చేయడానికి సిగ్నల్కు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకు కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"నిల్వ\" ను ప్రారంభించండి.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">సంప్రదింపు సమాచారాన్ని అటాచ్ చేయడానికి సిగ్నల్ కాంటాక్ట్స్ అనుమతి అవసరం, కానీ అది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ఒక స్థానాన్ని అటాచ్ చేయడానికి సిగ్నల్కి నగర అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"స్థానం\" ని ప్రారంభించండి.</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ఫోటోలను తీయడానికి సిగ్నల్కు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ఫోటోలు, వీడియోలు లేదా ఆడియోను అటాచ్ చేయడానికి Signalకు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకు కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"నిల్వ\" ను ప్రారంభించండి.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">సంప్రదింపు సమాచారాన్ని అటాచ్ చేయడానికి Signal కాంటాక్ట్స్ అనుమతి అవసరం, కానీ అది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ఒక స్థానాన్ని అటాచ్ చేయడానికి Signalకి నగర అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"స్థానం\" ని ప్రారంభించండి.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ఫోటోలను తీయడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ఆడియో ప్రదర్శనా లోపం!</string>
   <!--BlockedContactsActivity-->
@@ -71,7 +71,7 @@
   <string name="ClearProfileActivity_remove">తొలగించు</string>
   <string name="ClearProfileActivity_remove_profile_photo">ప్రొఫైల్ ఫోటోని తీసివేయాలా?</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">మీ భద్రత అంకె %1$s మర్చబడింధి.ధీని అర్ధం ఎమిటీ అంటె మీ సంభాషనని ఎవరొ అడ్డూకుంటునారు ,లేదా %2$s కేవలం సిగ్నల్ తిరిగి పునఃస్థాపన జరుగుతుంధి.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">మీ భద్రత అంకె %1$s మర్చబడింధి.ధీని అర్ధం ఎమిటీ అంటె మీ సంభాషనని ఎవరొ అడ్డూకుంటునారు ,లేదా %2$s కేవలం Signal తిరిగి పునఃస్థాపన జరుగుతుంధి.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ఈ పరిచయంతో మీ భద్రత సంఖ్య ధ్రువీకరించాలనుకోవొచ్చు.</string>
   <string name="ConfirmIdentityDialog_accept">అంగీకరించండి</string>
   <!--ContactsCursorLoader-->
@@ -80,7 +80,7 @@
   <string name="ContactsCursorLoader_groups">సమూహాలు</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%sకి సందేశం పంపు</string>
-  <string name="ContactsDatabase_signal_call_s">సిగ్నల్ కాల్ %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal కాల్ %s</string>
   <!--ContactNameEditActivity-->
   <!--ContactShareEditActivity-->
   <!--ConversationItem-->
@@ -88,7 +88,7 @@
   <string name="ConversationItem_group_action_left">%1$s సమూహం వదిలి వెళ్లారు</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ఎన్క్రిప్టు కాని ఎస్సెమ్మెస్ తిరిగి  అయ్యిందా?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ఎన్క్రిప్టు కాని ఎమ్మెమ్మెస్ తిరిగి  అయ్యిందా?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ఈ సందేశం &lt;b&gt;  &lt;/ b&gt;  భద్రపరచు విధంగా చేయలేము ఎందుకంటే గ్రహీత ఇకపై సిగ్నల్ వినియోగదారుడు కాదు.\n\nభద్రతలేని సందేశాన్ని పంపవచా?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ఈ సందేశం &lt;b&gt;  &lt;/ b&gt;  భద్రపరచు విధంగా చేయలేము ఎందుకంటే గ్రహీత ఇకపై Signal వినియోగదారుడు కాదు.\n\nభద్రతలేని సందేశాన్ని పంపవచా?</string>
   <string name="ConversationItem_unable_to_open_media">మీడియా ఎంచుకోవడానికి అనువర్తనం దొరకదు.</string>
   <string name="ConversationItem_copied_text">ప్రతి  తీసుకోబడింది %s</string>
   <string name="ConversationItem_from_s">%s నుండి</string>
@@ -111,8 +111,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">మీరు ఈ సమూహాన్ని వదిలిపెట్టాలనుకుంటున్నారా?</string>
   <string name="ConversationActivity_transport_insecure_sms">అసురక్షిత సందేశం</string>
   <string name="ConversationActivity_transport_insecure_mms">అసురక్షిత ఎమ్మెమ్మెస్</string>
-  <string name="ConversationActivity_transport_signal">సిగ్నల్</string>
-  <string name="ConversationActivity_lets_switch_to_signal">మనం సిగ్నల్ %1$sకు మారుదాం</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_lets_switch_to_signal">మనం Signal %1$sకు మారుదాం</string>
   <string name="ConversationActivity_lets_use_this_to_chat">ఈ యొక్క చాట్ ని  ఉపయోగించు: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">సమూహం నుండి వైదొలగటంలో లోపం</string>
   <string name="ConversationActivity_specify_recipient">దయచేసి ఒక పరిచయం ఎంచుకోండి</string>
@@ -123,12 +123,12 @@
   <string name="ConversationActivity_quick_camera_unavailable">కెమెరా అందుబాటులో లేదు </string>
   <string name="ConversationActivity_unable_to_record_audio">ఆడియో రికార్డ్ చేయడం సాధ్యపడలేదు!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">మీ పరికరం ఈ లింక్ నిర్వహించడానికి ఎలాంటి అనువర్తనం లేదు.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ఆడియో సందేశాలను పంపడానికి, మీ మైక్రోఫోన్కు సిగ్నల్ ప్రాప్తిని అనుమతించండి.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ఆడియో సందేశాలను పంపడానికి సిగ్నల్కు మైక్రోఫోన్ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"మైక్రోఫోన్\" ని ప్రారంభించండి.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">1%s కాల్ చేయడానికి, మీ మైక్రోఫోన్ మరియు కెమెరాకి సిగ్నల్కి ప్రాప్యత అవసరం.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ఫోటోలు మరియు వీడియోలను సంగ్రహించడానికి, కెమెరాకి సిగ్నల్ ప్రాప్తిని అనుమతించండి.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ఫోటోలను లేదా వీడియోను తీసుకోవడానికి సిగ్నల్కు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ఛాయాచిత్రాలను లేదా వీడియోను తీసుకోవడానికి కెమెరా అనుమతులను సిగ్నల్కి అవసరం</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ఆడియో సందేశాలను పంపడానికి, మీ మైక్రోఫోన్కు Signal ప్రాప్తిని అనుమతించండి.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ఆడియో సందేశాలను పంపడానికి Signalకు మైక్రోఫోన్ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"మైక్రోఫోన్\" ని ప్రారంభించండి.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">1%s కాల్ చేయడానికి, మీ మైక్రోఫోన్ మరియు కెమెరాకి Signalకి ప్రాప్యత అవసరం.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ఫోటోలు మరియు వీడియోలను సంగ్రహించడానికి, కెమెరాకి Signal ప్రాప్తిని అనుమతించండి.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ఫోటోలను లేదా వీడియోను తీసుకోవడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ఛాయాచిత్రాలను లేదా వీడియోను తీసుకోవడానికి కెమెరా అనుమతులను Signalకి అవసరం</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d చదవని సందేశం </item>
@@ -166,7 +166,7 @@
     <item quantity="other">%1$d జత పరిచినది నిల్వలొ దాచిపెడుతున్నాము...</item>
   </plurals>
   <string name="ConversationFragment_pending">పెండింగ్...</string>
-  <string name="ConversationFragment_push">సమాచారం(సిగ్నల్)</string>
+  <string name="ConversationFragment_push">సమాచారం(Signal)</string>
   <string name="ConversationFragment_mms">ఎమ్మెమ్మెస్</string>
   <string name="ConversationFragment_sms">ఎస్సెమ్మెస్</string>
   <string name="ConversationFragment_deleting">తొలగిపోతున్నాయ్</string>
@@ -233,25 +233,25 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">తప్పిపోయిన ప్లే సర్వీసులు కోసం ఆప్టిమైజ్</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ఈ వస్తువు ఆట సేవలను సహకరించదు.
-క్రియారహితంగా ఉన్నప్పుడు సందేశాలను పొందటం నుండి సిగ్నల్ నిరోధించే వ్యవస్థ బ్యాటరీ అనుకూలతలు డిసేబుల్ నొక్కండి.</string>
+క్రియారహితంగా ఉన్నప్పుడు సందేశాలను పొందటం నుండి Signal నిరోధించే వ్యవస్థ బ్యాటరీ అనుకూలతలు డిసేబుల్ నొక్కండి.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">తో పంచు</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">సిగ్నల్‌కి స్వాగతం.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">టెక్స్టనెక్యర్ మరియు రెడ్ ఫోన్ అన్నీ పరిస్థితిలొను ఒక ప్రైవేట్ మెసెంజర్ ఇప్పుడు క్రిందివిధంగా ఉన్నాయి: సిగ్నల్.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">సిగ్నల్ కి స్వాగతం!</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signalకి స్వాగతం.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">టెక్స్టనెక్యర్ మరియు రెడ్ ఫోన్ అన్నీ పరిస్థితిలొను ఒక ప్రైవేట్ మెసెంజర్ ఇప్పుడు క్రిందివిధంగా ఉన్నాయి: Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal కి స్వాగతం!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ఇప్పుడు Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">సిగ్నల్: టెక్స్టనెక్యర్ మరియు రెడ్ ఫోన్ ఇప్పుడు ఒకే అప్లికేషన్. విశ్లేషించడానికి నొక్కండి.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Signal: టెక్స్టనెక్యర్ మరియు రెడ్ ఫోన్ ఇప్పుడు ఒకే అప్లికేషన్. విశ్లేషించడానికి నొక్కండి.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">సురక్షితమైన దర్శన పిలుపు కొరకు హలో అనండి.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">సిగ్నల్ ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.మాములుగా ఒక సిగ్నల్ పిలుపును మొదలుపెట్టండి, దర్శన బొత్తాన్ని తట్టండి, మరియు పలకరించండి.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">సిగ్నల్ ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">సిగ్నల్ ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.అన్వేషించడానికి తట్టండి.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.మాములుగా ఒక Signal పిలుపును మొదలుపెట్టండి, దర్శన బొత్తాన్ని తట్టండి, మరియు పలకరించండి.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.అన్వేషించడానికి తట్టండి.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">క్లోజప్ కోసం సిద్ధంగా ఉన్నారా?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ఇప్పుడు మీరు సిగ్నల్ లో స్నేహితులతో ప్రొఫైల్ ఫోటోను మరియు పేరును పంచుకోవచ్చు</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">సిగ్నల్ ప్రొఫైల్స్ ఇక్కడ ఉన్నాయి</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ఇప్పుడు మీరు Signal లో స్నేహితులతో ప్రొఫైల్ ఫోటోను మరియు పేరును పంచుకోవచ్చు</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal ప్రొఫైల్స్ ఇక్కడ ఉన్నాయి</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">సిగ్నల్ లో శాశ్వత సమాచార వైఫల్యం!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">గూగ్లె ప్లే సదుపాయలతొ సిగ్నల్ నమోదు కాలెదు. సిగ్నల్ సందెశాలు మరియు  కాల్స్ నిలిపివేయబడ్డాయి. దయచేసి ఆధునిక అమరికలు లో మళ్ళి నమోదు చెసుకొనగలరు.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal లో శాశ్వత సమాచార వైఫల్యం!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">గూగ్లె ప్లే సదుపాయలతొ Signal నమోదు కాలెదు. Signal సందెశాలు మరియు  కాల్స్ నిలిపివేయబడ్డాయి. దయచేసి ఆధునిక అమరికలు లో మళ్ళి నమోదు చెసుకొనగలరు.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">పూతి స్పష్టత జి.ఐ.ఎఫ్. ను తిరిగి రప్పించుట లొ లొపము</string>
   <!--GiphyFragmentPageAdapter-->
@@ -262,16 +262,16 @@
   <string name="GroupCreateActivity_actionbar_edit_title">సమూహాన్ని మార్చు</string>
   <string name="GroupCreateActivity_group_name_hint">సమూహం పేరు</string>
   <string name="GroupCreateActivity_actionbar_mms_title">కొత్త ఎమ్మెమ్మెస్ సమూహం</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">మీరు ఎంపిక చేసి సిగ్నల్ వర్గములకు మద్దత్తు లేని పరిచయం,కాబట్టి ఈ సమూహ ఎంఎంఎస్ ఉంటుంది.
+  <string name="GroupCreateActivity_contacts_dont_support_push">మీరు ఎంపిక చేసి Signal వర్గములకు మద్దత్తు లేని పరిచయం,కాబట్టి ఈ సమూహ ఎంఎంఎస్ ఉంటుంది.
 </string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">మీరు సిగ్నల్ సందెసాలకు మరియు చరవానీ పిలుపులకు నమొదు చెసుకొలేదు,అందువల్ల సిగ్నల్ సముదాయాలు నిలిపివెయడమైనది.దయ ఉంచి సెట్టింగ్సులో నమూదు చెసుకొనుటకు ప్రయత్నించి ఉన్నత స్తితికి చేరుకొగలరు.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">మీరు Signal సందెసాలకు మరియు చరవానీ పిలుపులకు నమొదు చెసుకొలేదు,అందువల్ల Signal సముదాయాలు నిలిపివెయడమైనది.దయ ఉంచి సెట్టింగ్సులో నమూదు చెసుకొనుటకు ప్రయత్నించి ఉన్నత స్తితికి చేరుకొగలరు.</string>
   <string name="GroupCreateActivity_contacts_no_members">మీకు మీ సమూహంలొ కనీసం ఒక వ్యక్తి అవసరం!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">మీ సమూహంలొ ఉన్న ఒకరి నంబరు సరిగ్గా చదవడానికి వీలు కావడం లేదు . దయ చేసి దానిని సరి చేయండి లేదా ఆ సంప్రదించే నంబరును తీసివేసి మరల ప్రయత్నించండి.</string>
   <string name="GroupCreateActivity_avatar_content_description">గ్రూప్ అవతార్</string>
   <string name="GroupCreateActivity_menu_apply_button">అనువర్తించు</string>
   <string name="GroupCreateActivity_creating_group">%1$s సృష్టించబడుతుంది</string>
   <string name="GroupCreateActivity_updating_group"> నవీకరిస్తోంది %1$s ...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">వారిని ఇందులో %1$sకలపలేము ఎందుకంటే వారు సిగ్నల్ వినియోగదరులు కారు</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">వారిని ఇందులో %1$sకలపలేము ఎందుకంటే వారు Signal వినియోగదరులు కారు</string>
   <string name="GroupCreateActivity_loading_group_details">లోడ్ సమూహం వివరాలు ...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">మీరు ఇప్పటికే సమూహంలో ఉన్నారు.</string>
   <!--GroupShareProfileView-->
@@ -289,7 +289,7 @@
   <string name="InviteActivity_sending">పంపుతోంది ...</string>
   <string name="InviteActivity_heart_content_description">హృదయం</string>
   <string name="InviteActivity_invitations_sent">ఆహ్వనం పంపబడింది!</string>
-  <string name="InviteActivity_invite_to_signal">సిగ్నల్ కు  ఆహ్వానించండి</string>
+  <string name="InviteActivity_invite_to_signal">Signal కు  ఆహ్వానించండి</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">1%d స్నేహితులకు SMS పంపండి</item>
     <item quantity="other">%d స్నేహితులకు SMS పంపండి</item>
@@ -298,14 +298,14 @@
     <item quantity="one">1%d SMS ఆహ్వానాలను పంపాలా?</item>
     <item quantity="other">%d SMS ఆహ్వానాలను పంపాలా?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">మనం సిగ్నల్ కు మారుదాం: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">మనం Signal కు మారుదాం: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">మీరు పంచుకొనడానికి మీ దగ్గర వేరే యాప్స్ లేనట్టు కనబడుతుంది.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">స్నేహితులారా , ఎన్క్రిప్ట్ చేయకుండా స్నేహితులని సంభాషించనివ్వొద్దు.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">పంపించడం విఫలమైనది</string>
   <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">సిగ్నల్</string>
+  <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">నేపధ్యం కనెక్షన్ ప్రారంభించ</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">వైర్లెస్ ప్రొవైడర్ ఎంఎంఎస్ సెట్టింగులను చదువుటలో దోషం</string>
@@ -323,9 +323,9 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">సందేశాలను తొలగిస్తోంది ...</string>
   <string name="MediaOverviewActivity_Documents">పత్రాలు</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో సిగ్నల్ కాల్</string>
-  <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న సిగ్నల్ కాల్</string>
-  <string name="NotificationBarManager__incoming_signal_call">కొత్తగా వచ్చిన సిగ్నల్ కాల్</string>
+  <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో Signal కాల్</string>
+  <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న Signal కాల్</string>
+  <string name="NotificationBarManager__incoming_signal_call">కొత్తగా వచ్చిన Signal కాల్</string>
   <string name="NotificationBarManager__deny_call">కాల్ నిరాకరించండి</string>
   <string name="NotificationBarManager__answer_call">కాల్ ఆన్సర్ చేయండి</string>
   <string name="NotificationBarManager__end_call">కాల్ ముగించండి</string>
@@ -335,7 +335,7 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">ఎమ్మెమ్మెస్ సందేశం దిగుమతి </string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">ఎమ్మెమ్మెస్ సందేశం దిగుమతిలో లోపం, తట్టి మళ్ళీ ప్రయత్నించండి</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ఇకపై మద్దతు అని సిగ్నల్ యొక్క పాత సంస్కరణను ఉపయోగించి ఎన్క్రిప్ట్ ఒక సందేశాన్ని పొందింది. దయచేసి ఇటీవల సంస్కరణకు అప్డేట్ మరియు సందేశాన్ని మళ్లీ పంపినవారు అడగండి</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ఇకపై మద్దతు అని Signal యొక్క పాత సంస్కరణను ఉపయోగించి ఎన్క్రిప్ట్ ఒక సందేశాన్ని పొందింది. దయచేసి ఇటీవల సంస్కరణకు అప్డేట్ మరియు సందేశాన్ని మళ్లీ పంపినవారు అడగండి</string>
   <string name="MessageRecord_left_group">మీరు సమూహం నుండి వైదొలిగారు</string>
   <string name="MessageRecord_you_updated_group">మీరు ఈ సమూహాన్ని నవీకరించారు.</string>
   <string name="MessageRecord_you_called">మీరు కాల్ చెసారు</string>
@@ -370,9 +370,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">చెల్లని QR కోడ్.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">క్షమించండి,మీరు చాల పరికరాలను అనుసంధానం చేసారు, కొన్ని తొలగించడానికి ప్రయత్నించండి.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">క్షమించండి,ఇది ఒక చెల్లని అనుసంధానం చేసిన పరికరం యొక్క QR కోడ్.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">ఒక సిగ్నల్ పరికరం లింక్ చేయాలా?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">మీరు ఒక 3 వ పార్టీ స్కానర్ను ఉపయోగించి ఒక సిగ్నల్ పరికరం లింక్ ప్రయత్నిస్తున్నట్లుగా కనిపిస్తోంది. మీ రక్షణ కోసం, సిగ్నల్ లోపల నుండి మళ్ళీ కోడ్ స్కాన్ చెయ్యండి.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ఒక QR కోడ్ను స్కాన్ చేయడానికి సిగ్నల్కు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">ఒక Signal పరికరం లింక్ చేయాలా?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">మీరు ఒక 3 వ పార్టీ స్కానర్ను ఉపయోగించి ఒక Signal పరికరం లింక్ ప్రయత్నిస్తున్నట్లుగా కనిపిస్తోంది. మీ రక్షణ కోసం, Signal లోపల నుండి మళ్ళీ కోడ్ స్కాన్ చెయ్యండి.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ఒక QR కోడ్ను స్కాన్ చేయడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">కెమెరా అనుమతి లేకుండా QR కోడ్ను స్కాన్ చేయడం సాధ్యపడలేదు</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
@@ -380,7 +380,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">వారు చూసిన తరువాత ఈ సంభాషణ లో పంపిన మరియు అందుకున్న సందేశాలు %s కనిపించదు.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">సంకేతపదమును ప్రవేశపెట్టుము</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">సిగ్నల్ చిహ్నం</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal చిహ్నం</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">సంకేతపదమును సమర్పించండి</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">చెల్లని సంకేతపదము!</string>
   <!--PlayServicesProblemFragment-->
@@ -432,19 +432,19 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">గూగల్ ేవలను నవీకరించుటకు లేదా తాత్కాలికంగా అందుబాటులో చేస్తున్నారు. మళ్ళి ప్రయత్నించండి.</string>
   <string name="RegistrationActivity_more_information">మరింత సమాచారం</string>
   <string name="RegistrationActivity_less_information">తక్కువ సమాచారం</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">స్నేహితులతో కనెక్ట్ అవ్వడానికి, సందేశాలు మార్పిడి చేసుకోవడానికి మరియు సురక్షితమైన కాల్లను చేయడానికి మీ పరిచయాలకు మరియు మీడియాకు సిగ్నల్ ప్రాప్తి అవసరం</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">స్నేహితులతో కనెక్ట్ అవ్వడానికి, సందేశాలు మార్పిడి చేసుకోవడానికి మరియు సురక్షితమైన కాల్లను చేయడానికి మీ పరిచయాలకు మరియు మీడియాకు Signal ప్రాప్తి అవసరం</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">మీ ఫోన్ నంబర్ను సులభంగా ధృవీకరించడానికి, SMS సందేశాలను వీక్షించడానికి సిగ్నల్ను మీరు అనుమతించినట్లయితే సిగ్నల్ మీ ధృవీకరణ కోడ్ను స్వయంచాలకంగా గుర్తించవచ్చు.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">మీ ఫోన్ నంబర్ను సులభంగా ధృవీకరించడానికి, SMS సందేశాలను వీక్షించడానికి సిగ్నల్ను మీరు అనుమతించినట్లయితే Signal మీ ధృవీకరణ కోడ్ను స్వయంచాలకంగా గుర్తించవచ్చు.</string>
   <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' కోసం ఫలితాలు కనుగొనబడలేదు</string>
   <string name="SearchFragment_header_contacts">కాంటాక్ట్స్</string>
   <string name="SearchFragment_header_messages">సందేశాలు</string>
   <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_invite_to_signal">సిగ్నల్‌కు  ఆహ్వానించండి</string>
-  <string name="SharedContactDetailsActivity_signal_call">సిగ్నల్ కాల్ </string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Signalకు ఆహ్వానించండి</string>
+  <string name="SharedContactDetailsActivity_signal_call">Signal కాల్ </string>
   <!--SharedContactView-->
-  <string name="SharedContactView_invite_to_signal">సిగ్నల్‌కు  ఆహ్వానించండి</string>
+  <string name="SharedContactView_invite_to_signal">Signalకు ఆహ్వానించండి</string>
   <!--Slide-->
   <string name="Slide_image">చిత్రం</string>
   <string name="Slide_audio">ఆడియో</string>
@@ -473,8 +473,8 @@
   <string name="ThreadRecord_you_marked_verified">మీరు ధృవీకరించినట్లుగా గుర్తు పెట్టారు</string>
   <string name="ThreadRecord_you_marked_unverified">మీరు ధృవీకరించబడనిదిగా గుర్తు పెట్టారు</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">సిగ్నల్ నవీకరణ</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">సిగ్నల్ యొక్క కొత్త వివరణం అందుబాటులో ఉంది, నవీకరణ కొరకు తట్టండి</string>
+  <string name="UpdateApkReadyListener_Signal_update">Signal నవీకరణ</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal యొక్క కొత్త వివరణం అందుబాటులో ఉంది, నవీకరణ కొరకు తట్టండి</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">%s ని నిరోధించాల?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">నిరోధించబడిన పరిచయాలు ఇకపై మీకు సందేశాలను పంపలేవు మరియు మీకు కాల్ చేయలేవు.</string>
@@ -489,14 +489,14 @@
   <string name="UnverifiedSendDialog_send_message">సందేశం పంపాల?</string>
   <string name="UnverifiedSendDialog_send">పంపుము</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">మీ పరిచయం సిగ్నల్ యొక్క ఒక పాత వెర్షన్ను పై నడుస్థుంది. మీ భద్రత సంఖ్య ధ్రువీకరించే ముందుగా అప్డేట్ కోరండి.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">మీ పరిచయం అననుకూల QR కోడ్ ఫార్మాట్ సిగ్నెల్ యొక్క కొత్త సంస్కరణను అమలు చేస్తోంది. దయచేసి పోల్చడానికి అప్డేట్  చెయండీ.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">మీ పరిచయం Signal యొక్క ఒక పాత వెర్షన్ను పై నడుస్థుంది. మీ భద్రత సంఖ్య ధ్రువీకరించే ముందుగా అప్డేట్ కోరండి.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">మీ పరిచయం అననుకూల QR కోడ్ ఫార్మాట్ Signal యొక్క కొత్త సంస్కరణను అమలు చేస్తోంది. దయచేసి పోల్చడానికి అప్డేట్ చెయండీ.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">స్కాన్ QR కోడ్ సంఖ్య ధృవీకరణ సరైన ఫార్మాట్ భద్రత కోడ్ కాదు. దయచేసి మళ్ళీ స్కానింగ్ చెయండీ.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">భద్రతా సంఖ్యను... ద్వారా పంచు</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">మన సిగ్నల్ భద్రత సంఖ్య:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">మన Signal భద్రత సంఖ్య:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">మీరు పంచుకొనడానికి మీ దగ్గర వేరే యాప్స్ లేనట్టు కనబడుతుంది.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard"> ఏ భద్రతకు సంఖ్య పోల్చడానికి క్లిప్బోర్డ్కు లొ కనుగొనబడింది</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ఒక QR కోడ్ను స్కాన్ చేయడానికి సిగ్నల్కు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ఒక QR కోడ్ను స్కాన్ చేయడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">కెమెరా అనుమతి లేకుండా QR కోడ్ను స్కాన్ చేయడం సాధ్యపడలేదు</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">సరికాని గుప్తీకరించిన సందేశం</string>
@@ -516,13 +516,13 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">తెరవడానికి తాకు</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">తెరవడానికి నొక్కండి,  లేదా మూయడానికి తాళంని నొక్కండి.</string>
-  <string name="KeyCachingService_passphrase_cached">సైగ తాళం తీయబడినది</string>
-  <string name="KeyCachingService_lock">లాక్ సిగ్నల్</string>
+  <string name="KeyCachingService_passphrase_cached">సైగ్నల్ తాళం తీయబడినది</string>
+  <string name="KeyCachingService_lock">లాక్ Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">మీరు</string>
   <string name="MediaPreviewActivity_unssuported_media_type">మద్ధతు  లేనటువంటి ప్రసార మాధ్యమం</string>
   <string name="MediaPreviewActivity_draft">చిత్తు పత్రం</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">బాహ్య నిల్వకు సేవ్ చేయడానికి సిగ్నల్కు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి, ఆపై \"నిల్వ\" ను ప్రారంభించండి.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">బాహ్య నిల్వకు సేవ్ చేయడానికి Signalకు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి, ఆపై \"నిల్వ\" ను ప్రారంభించండి.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">అనుమతులు లేకుండా బాహ్య నిల్వకి సేవ్ చేయడం సాధ్యపడలేదు</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">సందేశాన్ని తొలగించాలా?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ఇది శాశ్వతంగా ఈ సందేశాన్ని తొలగిస్తుంది.</string>
@@ -538,8 +538,8 @@
   <string name="MessageNotifier_mark_read">చదివినట్టు గుర్తుపెట్టు</string>
   <string name="MessageNotifier_media_message">మీడియ సందేశం</string>
   <string name="MessageNotifier_reply">స్పంధించు</string>
-  <string name="MessageNotifier_pending_signal_messages">సిగ్నల్ సందేశాలు పెండింగ్లో ఉన్నాయి</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">మీ సిగ్నల్ సందేశాలు పెండింగ్లో ఉన్నాయి, తెరవడానికి మరియు తిరిగి పొందడానికి నొక్కండి</string>
+  <string name="MessageNotifier_pending_signal_messages">Signal సందేశాలు పెండింగ్లో ఉన్నాయి</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">మీ Signal సందేశాలు పెండింగ్లో ఉన్నాయి, తెరవడానికి మరియు తిరిగి పొందడానికి నొక్కండి</string>
   <string name="MessageNotifier_unknown_contact_message">పరిచయం</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">అప్రమేయం</string>
@@ -548,7 +548,7 @@
   <string name="NotificationChannel_group_messages">సందేశాలు</string>
   <string name="NotificationChannel_missing_display_name">తెలియని</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">సిగ్నల్ బంధించినపుడు తక్షణ స్పందన అందుబాటులొ లేదు!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal బంధించినపుడు తక్షణ స్పందన అందుబాటులొ లేదు!</string>
   <string name="QuickResponseService_problem_sending_message">సందేశాన్ని పంపడంలొ సమస్య!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">%s కు సేవ్ చేయబడింది</string>
@@ -556,7 +556,7 @@
   <string name="SearchToolbar_search">వెతకండి</string>
   <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">సిగ్నల్</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">కొత్త సందేశం</string>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">పరికరం నమోదు చేయబడలేదు</string>
@@ -564,10 +564,10 @@
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">వీడియో ప్రదర్శనా లోపం</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s నుండి కాల్కు సమాధానం ఇవ్వడానికి, సిగ్నల్కు మీ మైక్రోఫోన్ ప్రాప్యతను ఇవ్వండి.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">కాల్స్ చేయడానికి మరియు కాల్స్ స్వీకరించడానికి సిగ్నల్కి మైక్రోఫోన్ మరియు కెమెరా అనుమతులు అవసరం, కానీ అవి శాశ్వతంగా తిరస్కరించబడ్డాయి. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"మైక్రోఫోన్\" మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s నుండి కాల్కు సమాధానం ఇవ్వడానికి, Signalకు మీ మైక్రోఫోన్ ప్రాప్యతను ఇవ్వండి.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">కాల్స్ చేయడానికి మరియు కాల్స్ స్వీకరించడానికి Signalకి మైక్రోఫోన్ మరియు కెమెరా అనుమతులు అవసరం, కానీ అవి శాశ్వతంగా తిరస్కరించబడ్డాయి. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"మైక్రోఫోన్\" మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">%1$s తో మీ సంభాషణ భద్రతా సంఖ్య మార్చబడింది. ఈ గాని ఎవరైనా మీ కమ్యూనికేషన్ అంతరాయం కలిగించడానికి ప్రయత్నిస్తున్నారు, లేదా అని %2$s కేవలం తిరిగి ఇన్స్టాల్ సిగ్నల్ అర్ధము</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">%1$s తో మీ సంభాషణ భద్రతా సంఖ్య మార్చబడింది. ఈ గాని ఎవరైనా మీ కమ్యూనికేషన్ అంతరాయం కలిగించడానికి ప్రయత్నిస్తున్నారు, లేదా అని %2$s కేవలం తిరిగి ఇన్స్టాల్ Signal అర్ధము</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ఈ పరిచయంతో మీ భద్రత సంఖ్య ధ్రువీకరించాలనుకోవొచ్చు.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">నూతన భద్రతా సంఖ్య</string>
   <string name="WebRtcCallScreen_accept">అంగీకరించండి</string>
@@ -602,15 +602,15 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">పరిచయస్థుల ఫొటో</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">మీ పరిచయాలను ప్రదర్శించడానికి సిగ్నల్ కాంటాక్ట్స్ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">మీ పరిచయాలను ప్రదర్శించడానికి Signal కాంటాక్ట్స్ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">పరిచయాలను తిరిగి పొందడంలో లోపం, మీ నెట్వర్క్ కనెక్షన్ను తనిఖీ చేయండి</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">నిరోధించిన పరిచయాలు లేవు</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">మీ పరిచయాలను సిగ్నల్ ప్రదర్శించడానికి పరిచయాలకు ప్రాప్యత అవసరం</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">మీ పరిచయాలను Signal ప్రదర్శించడానికి పరిచయాలకు ప్రాప్యత అవసరం</string>
   <string name="contact_selection_list_fragment__show_contacts">పరిచయాలను చూపించు</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">సిగ్నల్  మెసేజ్</string>
+  <string name="conversation_activity__type_message_push">Signal  మెసేజ్</string>
   <string name="conversation_activity__type_message_sms_insecure">భద్రతలేని సందేశం</string>
   <string name="conversation_activity__type_message_mms_insecure">భద్రతలేని MMS</string>
   <string name="conversation_activity__from_sim_name">%1$s నుండి</string>
@@ -702,7 +702,7 @@
   <string name="log_submit_activity__button_got_it">దొరికింది</string>
   <string name="log_submit_activity__copied_to_clipboard">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">మీరు సిగ్నల్ యొక్క ఎన్క్రిప్టెడ్ డేటాబేస్లో ఇప్పటికే  మీ వద్ద ఉన్నటెక్స్ట్ సందేశాలను దిగుమతి చేయాలనుకుంటున్నారా?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">మీరు Signal యొక్క ఎన్క్రిప్టెడ్ డేటాబేస్లో ఇప్పటికే  మీ వద్ద ఉన్నటెక్స్ట్ సందేశాలను దిగుమతి చేయాలనుకుంటున్నారా?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">డిఫాల్ట్ డాటాబెశ్  వ్యవస్థల్లొ ఏట్టీ పరిస్థిథుల్లొ చివరి మార్పు చెయ్యబడదు</string>
   <string name="database_migration_activity__skip">వదిలివేయి</string>
   <string name="database_migration_activity__import">దిగుమతి</string>
@@ -733,7 +733,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">అన్లాక్</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">సిగ్నల్ మీ వైర్లెస్ క్యారియర్ ద్వారా మీడియా మరియు గుంపు సందేశాలు బట్వాడా ఎంఎంఎస్ సెట్టింగులు అవసరం. మీ పరికరం లాక్ పరికరాలు మరియు ఇతర మితమైన ఆకృతీకరణలు కోసం అప్పుడప్పుడు నిజం ఈ సమాచారాన్ని అందుబాటులో, ఉండవని.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal మీ వైర్లెస్ క్యారియర్ ద్వారా మీడియా మరియు గుంపు సందేశాలు బట్వాడా ఎంఎంఎస్ సెట్టింగులు అవసరం. మీ పరికరం లాక్ పరికరాలు మరియు ఇతర మితమైన ఆకృతీకరణలు కోసం అప్పుడప్పుడు నిజం ఈ సమాచారాన్ని అందుబాటులో, ఉండవని.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">మీడియా మరియు గుంపు సందేశాలు పంపేందుకు, \'సరే\' నొక్కండి మరియు అభ్యర్థించిన సెట్టింగులను పూర్తి. మీ క్యారియర్ ఎంఎంఎస్ సెట్టింగులను సాధారణంగా \'మీ క్యారియర్ APN\' శోధించడం ద్వారా గుర్తించవచ్చు. మీరు ఒకసారి ఈ చెయ్యాల్సి ఉంటుంది.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">తర్వాత సెట్ చేయండి</string>
@@ -754,11 +754,11 @@
   <string name="recipient_preferences__call_settings">కాల్ సెట్టింగ్లు</string>
   <string name="recipient_preferences__ringtone">రింగ్టోన్</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">సిగ్నల్ కాల్ </string>
+  <string name="redphone_call_card__signal_call">Signal కాల్ </string>
   <string name="redphone_call_controls__mute">నిశబ్ధం</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ఫోన్ నంబరు</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">సిగ్నల్ మీ ప్రస్తుత ఫోన్ నంబర్ మరియు చిరునామా పుస్తకం ఉపయోగించి సమాచార మార్పిడి సులభం చేస్తుంది. ఫోన్ ద్వారా మిమ్మల్ని ఎలా సంప్రదించాలో ఇప్పటికే తెలిసిన స్నేహితులు మరియు పరిచయాలు సులభంగా సిగ్నల్ ద్వారా సన్నిహితంగా ఉంటాయి. \ N \ n రిజిస్ట్రేషన్ కొంత సంప్రదింపు సమాచారాన్ని సర్వర్కు బదిలీ చేస్తుంది. ఇది నిల్వ చేయబడలేదు.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal మీ ప్రస్తుత ఫోన్ నంబర్ మరియు చిరునామా పుస్తకం ఉపయోగించి సమాచార మార్పిడి సులభం చేస్తుంది. ఫోన్ ద్వారా మిమ్మల్ని ఎలా సంప్రదించాలో ఇప్పటికే తెలిసిన స్నేహితులు మరియు పరిచయాలు సులభంగా Signal ద్వారా సన్నిహితంగా ఉంటాయి. \ N \ n రిజిస్ట్రేషన్ కొంత సంప్రదింపు సమాచారాన్ని సర్వర్కు బదిలీ చేస్తుంది. ఇది నిల్వ చేయబడలేదు.</string>
   <string name="registration_activity__verify_your_number">మీ నంబర్ ని ధృవీకరించండి</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">దయచేసి ధృవీకరణ కోడ్ను స్వీకరించడానికి మీ మొబైల్ నంబర్ను నమోదు చేయండి. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
   <!--recipients_panel-->
@@ -833,8 +833,8 @@
   <string name="preferences__sms_mms">ఎస్సెమ్మెస్ మరియు ఎమ్మెమ్మెస్</string>
   <string name="preferences__pref_all_sms_title">అన్ని ఎస్సెమ్మెస్ లను స్వీకరించండి</string>
   <string name="preferences__pref_all_mms_title">అన్ని ఎమ్మెమ్మెస్‌లను స్వీకరించండి </string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">వచ్చే టెక్స్ట్ సందేశాలను సిగ్నల్ ఉపయోగించండి</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">వచ్చే మల్టీమీడియా సందేశాల కోసం సిగ్నల్ ఉపయోగించండి</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">వచ్చే టెక్స్ట్ సందేశాలను Signal ఉపయోగించండి</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">వచ్చే మల్టీమీడియా సందేశాల కోసం Signal ఉపయోగించండి</string>
   <string name="preferences__pref_enter_sends_title">ఎంటర్ కీ పంపుతుంది </string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages"> ప్రారంబించే కీ ని నొక్కడం ద్వారా సందేశాలను పంపుతోంది</string>
   <string name="preferences__choose_identity">గుర్తింపును ఎంచుకోండి</string>
@@ -844,7 +844,7 @@
   <string name="preferences__enable_passphrase">పాస్ఫ్రేజ్ స్క్రీన్ లాక్ను ప్రారంభించండి</string>
   <string name="preferences__screen_security">స్క్రీన్ భద్రత</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">  నిరోధించు స్క్రీన్షాట్లు లో ది ఇటీవలి జాబితా మరియు లోపల ది అనువర్తనం</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">తనంతట తానే తాళంవేసుకొను సిగ్నల్ తరువాత ఒక పేర్కొన్నసమయం విరామం ఆఫ్ సోమరితనము</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">తనంతట తానే తాళంవేసుకొను Signal తరువాత ఒక పేర్కొన్నసమయం విరామం ఆఫ్ సోమరితనము</string>
   <string name="preferences__inactivity_timeout_passphrase">క్రియాశూన్యత సంకేతపదముకు  విరామసమయము</string>
   <string name="preferences__inactivity_timeout_interval">క్రియాశూన్యత మధ్యకాలము విరామసమయము</string>
   <string name="preferences__notifications">ప్రకటనలు</string>
@@ -896,8 +896,8 @@
   <string name="preferences__theme">థీమ్</string>
   <string name="preferences__default">అప్రమేయ</string>
   <string name="preferences__language">భాష</string>
-  <string name="preferences__signal_messages_and_calls">సిగ్నల్ సందేశాలు మరియు కాల్స్</string>
-  <string name="preferences__free_private_messages_and_calls">  సిగ్నల్ వినుయోగదారులకు ఉచిత వ్యక్తిగత సందేశాలు మరియు కాల్స్</string>
+  <string name="preferences__signal_messages_and_calls">Signal సందేశాలు మరియు కాల్స్</string>
+  <string name="preferences__free_private_messages_and_calls">  Signal వినుయోగదారులకు ఉచిత వ్యక్తిగత సందేశాలు మరియు కాల్స్</string>
   <string name="preferences__submit_debug_log">డీబగ్ లాగ్ను సమర్పించండి</string>
   <string name="preferences__support_wifi_calling">\'వైఫై కాలింగ్\' కి అనుకూలమైన పద్ధతి</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">మీ పరికరం వైఫై ద్వారా SMS / MMS డెలివరీ చెస్తునట్లు అయితె మీ పరికరం ప్రరంబించండి ( \'వైఫై కాలింగ్\'ఉన్నప్పుడు మాత్రమే  మీ పరికరం ప్రరంబించండి)</string>
@@ -911,8 +911,8 @@
   <string name="preferences_chats__media_auto_download">ప్రసార మాధ్యమం దానంతట అదే దిగుమతి</string>
   <string name="preferences_chats__message_trimming">సందేశం కత్తిరించి సరి చేయుట </string>
   <string name="preferences_advanced__use_system_emoji">యంత్రము యొక్క  ఎమొజిలను  ఉపయొగించు</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">సిగ్నల్ యొక్క అంతర్నిర్మిత ఎమోజి మద్దతును నిలిపివేయి  </string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">మీ పరిచయం మీ IP చిరునామా బహిర్గతం నివారించేందుకు సిగ్నల్ సర్వర్ ద్వారా అన్ని కాల్స్ ప్రసారం. సమర్ధించే కాల్ నాణ్యత తగ్గిస్తుంది.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal యొక్క అంతర్నిర్మిత ఎమోజి మద్దతును నిలిపివేయి  </string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">మీ పరిచయం మీ IP చిరునామా బహిర్గతం నివారించేందుకు Signal సర్వర్ ద్వారా అన్ని కాల్స్ ప్రసారం. సమర్ధించే కాల్ నాణ్యత తగ్గిస్తుంది.</string>
   <string name="preferences_advanced__always_relay_calls">ఎల్లప్పుడూ కాల్స్ రిలే </string>
   <string name="preferences_app_protection__communication">సమాచారం</string>
   <string name="preferences_chats__chats">మాటామంతి</string>
@@ -923,7 +923,7 @@
   <string name="preferences_notifications__ringtone">రింగ్టోన్</string>
   <string name="preferences_chats__show_invitation_prompts">ఆహ్వాన ప్రాంప్ట్లను చూపించు</string>
   <string name="preferences_chats__message_text_size">సందేశం ఫాంట్ పరిమాణం</string>
-  <string name="preferences_events__contact_joined_signal">పరిచయం సిగ్నల్ లొ చేరారు</string>
+  <string name="preferences_events__contact_joined_signal">పరిచయం Signal లొ చేరారు</string>
   <string name="preferences_notifications__priority">ప్రాధాన్యత</string>
   <!--****************************************-->
   <!--menus-->
@@ -933,7 +933,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">కాల్</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">సిగ్నల్ కాల్</string>
+  <string name="conversation_callable_secure__menu_call">Signal కాల్</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">సందేశం వివరాలు</string>
   <string name="conversation_context__menu_copy_text">మూల గ్రంథము అనుకరణ</string>
@@ -992,20 +992,20 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">తాత్కాలికంగా  భద్రపరుచు  ప్రదేశముకు నకలు చెయ్యి</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard"> తాత్కాలికంగా  భద్రపరుచు ప్రదేశముతో పోల్చడం</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">మీ సిగ్నల్ అనువాదముకు కాలం చెల్లినది</string>
-  <string name="reminder_header_outdated_build_details_today">మీ సిగ్నల్ వెర్షన్ను యొక్క  గడువు నేటితో తీరిపోయింది. ఇటీవల వెర్షన్ కు  నవీకరించడానికి నొక్కండి.</string>
-  <string name="reminder_header_expired_build">మీ సిగ్నల్ అనువాదము గడువు ముగిసింది!</string>
+  <string name="reminder_header_outdated_build">మీ Signal అనువాదముకు కాలం చెల్లినది</string>
+  <string name="reminder_header_outdated_build_details_today">మీ Signal వెర్షన్ను యొక్క  గడువు నేటితో తీరిపోయింది. ఇటీవల వెర్షన్ కు  నవీకరించడానికి నొక్కండి.</string>
+  <string name="reminder_header_expired_build">మీ Signal అనువాదము గడువు ముగిసింది!</string>
   <string name="reminder_header_expired_build_details">సందేశాలు విజయవంతంగా పంపుతుంది. ఇటీవల సంస్కరణకు అప్డేట్ నొక్కండి.</string>
   <string name="reminder_header_sms_default_title">డిఫాల్ట్ ఎస్ఎంఎస్ అప్లికేషన్ ని  ఉపయోగించండి</string>
-  <string name="reminder_header_sms_default_text">సిగ్నల్ ను  మీ వైఫల్య  యస్  యం యస్ అనువర్తనంగా చేయడానికి నొక్కండి.</string>
+  <string name="reminder_header_sms_default_text">Signal ను  మీ వైఫల్య  యస్  యం యస్ అనువర్తనంగా చేయడానికి నొక్కండి.</string>
   <string name="reminder_header_sms_import_title">వ్యవస్థ ఎస్సెమ్మెస్ దిగుమతి</string>
-  <string name="reminder_header_sms_import_text">మీ ఫోన్ లో వున్న యెస్.యం.యెస్ సందెశలను సిగ్నల్ యొక్క ఎన్క్రిప్టెడ్ దత్తాంశస్థానం లోకి నకలు చెయ్యలి అంటె ఇక్కడ నొక్కండి</string>
-  <string name="reminder_header_push_title">  సిగ్నల్ సందేశాలు మరియు కాల్స్ ని   ప్రారంభించు</string>
+  <string name="reminder_header_sms_import_text">మీ ఫోన్ లో వున్న యెస్.యం.యెస్ సందెశలను Signal యొక్క ఎన్క్రిప్టెడ్ దత్తాంశస్థానం లోకి నకలు చెయ్యలి అంటె ఇక్కడ నొక్కండి</string>
+  <string name="reminder_header_push_title">  Signal సందేశాలు మరియు కాల్స్ ని   ప్రారంభించు</string>
   <string name="reminder_header_push_text">మీ యుక్క కమ్యూనికేషన్ అనుభవం అప్గ్రేడ్ చెయండి</string>
-  <string name="reminder_header_invite_title">సిగ్నల్‌కు  ఆహ్వానించండి</string>
+  <string name="reminder_header_invite_title">Signalకు ఆహ్వానించండి</string>
   <string name="reminder_header_invite_text">  మీ సంభాషణను %1$s తో  తదుపరి స్థాయికి  తీసికొనివెళ్లు</string>
   <string name="reminder_header_share_title">మీ స్నేహితులను ఆహ్వానించండి!</string>
-  <string name="reminder_header_share_text"> ఎక్కువ మంది స్నేహితులు సిగ్నల్ ఉపయోగిస్తె అది   మరింత మెరుగుపడుతుంది</string>
+  <string name="reminder_header_share_text"> ఎక్కువ మంది స్నేహితులు Signal ఉపయోగిస్తె అది   మరింత మెరుగుపడుతుంది</string>
   <!--media_preview-->
   <string name="media_preview__save_title">భద్రపరుచు</string>
   <string name="media_preview__forward_title">బదలాయించు</string>
@@ -1028,8 +1028,8 @@
   <string name="Permissions_permission_required">అనుమతి అవసరం</string>
   <string name="Permissions_continue">కొనసాగించు</string>
   <string name="Permissions_not_now">ఇప్పుడు కాదు</string>
-  <string name="conversation_activity__enable_signal_messages">సిగ్నల్ సందేశాలను ప్రారంభించు</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">సిగ్నల్ డేటాబేస్ను మైగ్రేట్ చేస్తోంది</string>
+  <string name="conversation_activity__enable_signal_messages">Signal సందేశాలను ప్రారంభించు</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal డేటాబేస్ను మైగ్రేట్ చేస్తోంది</string>
   <string name="PushDecryptJob_new_locked_message">కొత్త లాక్ చేయబడిన సందేశం</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">పెండింగ్లో ఉన్న సందేశాలను వీక్షించడానికి అన్లాక్ చేయండి</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">నవీకరణను పూర్తి చేయడానికి అన్లాక్ చేయండి</string>
@@ -1063,7 +1063,7 @@
   <string name="BackupUtil_never">ఎప్పుడూ</string>
   <string name="BackupUtil_unknown">తెలియని</string>
   <string name="preferences_app_protection__screen_lock">స్క్రీన్ తాళం</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android స్క్రీన్ లాక్ లేదా వేలిముద్రతో సిగ్నల్ యాక్సెస్ను లాక్ చేయండి</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android స్క్రీన్ లాక్ లేదా వేలిముద్రతో Signal యాక్సెస్ను లాక్ చేయండి</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">స్క్రీన్ లాక్ నిష్క్రియ సమయం</string>
   <string name="AppProtectionPreferenceFragment_none">ఏదీ కాదు</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">మీరు అందుకున్న SMS ధృవీకరణ కోడ్ వలె నమోదు లాక్ పిన్ అదే కాదు. దయచేసి మీరు మునుపు అనువర్తనం లో కాన్ఫిగర్ చేసిన పిన్ ను నమోదు చేయండి.</string>
@@ -1085,10 +1085,10 @@
   <string name="RegistrationActivity_oh_no">అరెరే!</string>
   <string name="RegistrationActivity_registration_lock_pin">నమోదు లాక్ పిన్</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">ఈ ఫోన్ నంబర్ నమోదు లాక్ ఎనేబుల్ చెయ్యబడింది. దయచేసి నమోదు లాక్ పిన్ నమోదు చేయండి.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">మీ ఫోన్ నంబర్ కోసం నమోదు లాక్ ప్రారంభించబడింది. మీ రిజిస్ట్రేషన్ లాక్ పిన్ను గుర్తుంచుకోవడంలో మీకు సహాయం చేయడానికి, సిగ్నల్ దీనిని క్రమం తప్పకుండా ధృవీకరించమని అడుగుతుంది.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">మీ ఫోన్ నంబర్ కోసం నమోదు లాక్ ప్రారంభించబడింది. మీ రిజిస్ట్రేషన్ లాక్ పిన్ను గుర్తుంచుకోవడంలో మీకు సహాయం చేయడానికి, Signal దీనిని క్రమం తప్పకుండా ధృవీకరించమని అడుగుతుంది.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">నేను పిన్ను మరచిపోయాను.</string>
   <string name="RegistrationLockDialog_forgotten_pin">పిన్ మర్చిపోయారా?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">నమోదు లాక్ అనధికార నమోదు ప్రయత్నాల నుండి మీ ఫోన్ నంబర్ను రక్షించడంలో సహాయపడుతుంది. మీ సిగ్నల్ గోప్యతా సెట్టింగ్ల్లో ఎప్పుడైనా ఈ లక్షణం నిలిపివేయబడుతుంది</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">నమోదు లాక్ అనధికార నమోదు ప్రయత్నాల నుండి మీ ఫోన్ నంబర్ను రక్షించడంలో సహాయపడుతుంది. మీ Signal గోప్యతా సెట్టింగ్ల్లో ఎప్పుడైనా ఈ లక్షణం నిలిపివేయబడుతుంది</string>
   <string name="RegistrationLockDialog_registration_lock">నమోదు లాక్</string>
   <string name="RegistrationLockDialog_enable">ప్రారంభించు</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">నమోదు లాక్ పిన్ తప్పనిసరిగా కనీసం 4 అంకెలు ఉండాలి.</string>
@@ -1098,7 +1098,7 @@
   <string name="RegistrationLockDialog_disable">అచేతనించు</string>
   <string name="RegistrationActivity_continue">కొనసాగించు</string>
   <string name="preferences_chats__backups">బ్యాకప్లు</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">సిగ్నల్ లాక్ చేయబడింది</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal లాక్ చేయబడింది</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">అన్లాక్ చేయడానికి ట్యాప్ చేయండి</string>
   <string name="RegistrationLockDialog_reminder">రిమైండర్:</string>
   <string name="recipient_preferences__about">గురించి</string>

@@ -283,7 +283,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">Eines der Gruppenmitglieder hat eine nicht korrekt lesbare Rufnummer. Bitte beheben oder Kontakt entfernen und erneut versuchen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppenavatar</string>
   <string name="GroupCreateActivity_menu_apply_button">Anwenden</string>
-  <string name="GroupCreateActivity_creating_group">%1$s wird erstellt …</string>
+  <string name="GroupCreateActivity_creating_group">%1$s wird erstellt …</string>
   <string name="GroupCreateActivity_updating_group">%1$s wird aktualisiert …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s konnte nicht hinzugefügt werden, da kein Signal-Kontakt.</string>
   <string name="GroupCreateActivity_loading_group_details">Gruppendetails werden geladen …</string>
@@ -346,7 +346,7 @@
   <string name="NotificationBarManager__cancel_call">Anruf abbrechen</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS wird heruntergeladen …</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS wird heruntergeladen …</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fehler beim Herunterladen der MMS. Für erneuten Versuch antippen.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitte den Absender, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
@@ -629,7 +629,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="contact_selection_activity__enter_name_or_number">Name/Nummer eingeben</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Keine Kontakte.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Kontakte werden geladen …</string>
+  <string name="contact_selection_group_activity__finding_contacts">Kontakte werden geladen …</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktbild</string>
   <!--ContactSelectionListFragment-->
@@ -747,8 +747,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="log_submit_activity__button_got_it">Verstanden</string>
   <string name="log_submit_activity__button_compose_email">E-Mail verfassen</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Dieses Protokoll wird für Mitwirkende im Internet veröffentlicht werden. Vor Übermittlung kannst du es noch überprüfen und bearbeiten.</string>
-  <string name="log_submit_activity__loading_logs">Protokolle werden geladen …</string>
-  <string name="log_submit_activity__uploading_logs">Protokolle werden übermittelt …</string>
+  <string name="log_submit_activity__loading_logs">Protokolle werden geladen …</string>
+  <string name="log_submit_activity__uploading_logs">Protokolle werden übermittelt …</string>
   <string name="log_submit_activity__success">Erfolgreich!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">In Zwischenablage kopiert</string>
@@ -770,7 +770,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="import_fragment__import_a_plaintext_backup_file">Eine mit »SMS Backup &amp; Restore« kompatible Klartextsicherung importieren</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Gesamte Unterhaltung anzeigen</string>
-  <string name="load_more_header__loading">Wird geladen …</string>
+  <string name="load_more_header__loading">Wird geladen …</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Keine Medieninhalte</string>
   <!--message_recipients_list_item-->
@@ -1106,7 +1106,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Permissions_not_now">Nicht jetzt</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Suchen in deinen Kontakten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL-NACHRICHTEN AKTIVIEREN</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-Datenbank wird migriert …</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-Datenbank wird migriert …</string>
   <string name="PushDecryptJob_new_locked_message">Neue gesperrte Nachricht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Entsperren, um ausstehende Nachrichten anzuzeigen</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Abschließen der Aktualisierung</string>
@@ -1138,7 +1138,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupDialog_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal benötigt die Berechtigung »Speicher« für das Erstellen von Datensicherungen, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Letzte Sicherung: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">In Arbeit …</string>
+  <string name="ChatsPreferenceFragment_in_progress">In Arbeit …</string>
   <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
   <string name="RegistrationActivity_verify_s">%s verifizieren</string>

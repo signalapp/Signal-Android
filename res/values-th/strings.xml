@@ -172,6 +172,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">กำลังลบ</string>
   <string name="ConversationFragment_deleting_messages">กำลังลบข้อความ...</string>
+  <string name="ConversationFragment_quoted_message_not_found">ไม่พบข้อความดั้งเดิม</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">ข้อความดั้งเดิมไม่มีอยู่แล้ว</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ไม่มีเบราว์เซอร์ติดตั้งอยู่ในอุปกรณ์ของคุณ</string>
   <!--ConversationListFragment-->
@@ -560,7 +562,9 @@
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">ค่าเริ่มต้น</string>
   <string name="NotificationChannel_calls">การโทร</string>
+  <string name="NotificationChannel_failures">ล้มเหลว</string>
   <string name="NotificationChannel_backups">การสำรองข้อมูล</string>
+  <string name="NotificationChannel_locked_status">สถานะล๊อค</string>
   <string name="NotificationChannel_app_updates">การอัปเดตแอป</string>
   <string name="NotificationChannel_other">ที่อื่น</string>
   <string name="NotificationChannel_group_messages">ข้อความ</string>
@@ -574,6 +578,7 @@
   <string name="SearchToolbar_search">ค้นหา</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">ค้นหาการสนทนา ผู้ติดต่อและข้อความ</string>
   <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">ชอร์ตคัทใช้ไม่ได้</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ข้อความใหม่</string>
@@ -662,6 +667,7 @@
   <string name="QuoteView_photo">รูปภาพ</string>
   <string name="QuoteView_document">เอกสาร</string>
   <string name="QuoteView_you">คุณ</string>
+  <string name="QuoteView_original_missing">ไม่พบข้อความดั้งเดิม</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงด้านล่างสุด</string>
   <!--country_selection_fragment-->
@@ -730,6 +736,7 @@
   <string name="log_submit_activity__success">สำเร็จ!</string>
   <string name="log_submit_activity__copied_to_clipboard">คัดลอกไปยังคลิปบอร์ดแล้ว</string>
   <string name="log_submit_activity__choose_email_app">เลือกแอปอีเมล</string>
+  <string name="log_submit_activity__network_failure">เครือข่ายล้มเหลว  โปรดลองอีกครั้ง</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">คุณต้องการนำเข้าข้อความตัวอักษรไปเก็บในฐานข้อมูลที่เข้ารหัสของ Signal หรือไม่</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ฐานข้อมูลมาตรฐานของระบบจะไม่ถูกแก้ไขหรือเปลี่ยนแปลงใดๆ</string>

@@ -897,7 +897,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
     <item quantity="other">%d ore</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__sms_mms">SMS e MMS</string>
+  <string name="preferences__sms_mms">SMS ed MMS</string>
   <string name="preferences__pref_all_sms_title">Utilizza per tutti gli SMS</string>
   <string name="preferences__pref_all_mms_title">Utilizza per tutti gli MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Usa Signal per tutti i messaggi in arrivo</string>
@@ -1124,7 +1124,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="registration_activity__restore_backup">Ripristina backup</string>
   <string name="registration_activity__skip">Salta</string>
   <string name="registration_activity__register">Registrati</string>
-  <string name="preferences_chats__chat_backups">Backup dell chat</string>
+  <string name="preferences_chats__chat_backups">Backup delle chat</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Backup delle chat sulla memoria esterna</string>
   <string name="preferences_chats__create_backup">Crea backup</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Inserire passphrase del backup</string>
@@ -1146,7 +1146,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Ultimo backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">In corso</string>
-  <string name="LocalBackupJob_creating_backup">Creando il backup...</string>
+  <string name="LocalBackupJob_creating_backup">Creazione backup...</string>
   <string name="ProgressPreference_d_messages_so_far">Ancora %d messaggi</string>
   <string name="RegistrationActivity_verify_s">Verifica %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Per favore inserire il codice di verifica inviato a %s.</string>
