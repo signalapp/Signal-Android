@@ -2,26 +2,19 @@ package org.thoughtcrime.securesms.camera;
 
 import android.support.annotation.NonNull;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@SuppressWarnings("ConstantConditions")
 public class OrderEnforcer<E> {
 
-  private final E[]                    stages;
-  private final Map<E, Integer>        stageIndices;
-  private final Map<E, List<Runnable>> actions;
-  private final boolean[]              completion;
+  private final Map<E, StageDetails> stages = new LinkedHashMap<>();
 
   public OrderEnforcer(@NonNull E... stages) {
-    this.stages       = stages;
-    this.stageIndices = new HashMap<>();
-    this.actions      = new HashMap<>();
-    this.completion   = new boolean[stages.length];
-
-    for (int i = 0; i < stages.length; i++) {
-      stageIndices.put(stages[i], i);
+    for (E stage : stages) {
+      this.stages.put(stage, new StageDetails());
     }
   }
 
@@ -29,46 +22,59 @@ public class OrderEnforcer<E> {
     if (isCompletedThrough(stage)) {
       r.run();
     } else {
-      List<Runnable> stageActions = actions.containsKey(stage) ? actions.get(stage) : new CopyOnWriteArrayList<>();
-      stageActions.add(r);
-
-      actions.put(stage, stageActions);
+      stages.get(stage).getActions().add(r);
     }
   }
 
   public synchronized void markCompleted(@NonNull E stage) {
-    completion[stageIndices.get(stage)] = true;
+    stages.get(stage).setCompleted(true);
 
-    int i = 0;
-    while (i < completion.length && completion[i]) {
-      List<Runnable> stageActions = actions.get(stages[i]);
-      if (stageActions != null) {
-        for (Runnable r : stageActions) {
+    for (E s : stages.keySet()) {
+      StageDetails details = stages.get(s);
+
+      if (details.isCompleted()) {
+        for (Runnable r : details.getActions()) {
           r.run();
         }
-        stageActions.clear();
+        details.getActions().clear();
+      } else {
+        break;
       }
-      i++;
     }
   }
 
   public synchronized void reset() {
-    for (int i = 0; i < completion.length; i++) {
-      completion[i] = false;
+    for (StageDetails details : stages.values()) {
+      details.setCompleted(false);
+      details.getActions().clear();
     }
-    actions.clear();
   }
 
   private boolean isCompletedThrough(@NonNull E stage) {
-    int index = stageIndices.get(stage);
-    int i     = 0;
-
-    while (i <= index && i < completion.length) {
-      if (!completion[i]) {
+    for (E s : stages.keySet()) {
+      if (s.equals(stage)) {
+        return stages.get(s).isCompleted();
+      } else if (!stages.get(s).isCompleted()) {
         return false;
       }
-      i++;
     }
-    return true;
+    return false;
+  }
+
+  private static class StageDetails {
+    private boolean        completed = false;
+    private List<Runnable> actions   = new CopyOnWriteArrayList<>();
+
+    @NonNull List<Runnable> getActions() {
+      return actions;
+    }
+
+    boolean isCompleted() {
+      return completed;
+    }
+
+    void setCompleted(boolean completed) {
+      this.completed = completed;
+    }
   }
 }
