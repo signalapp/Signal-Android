@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.MessageRetrievalService;
+import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -107,7 +107,7 @@ public class RetrieveProfileJob extends ContextJob implements InjectableType {
   }
 
   private SignalServiceProfile retrieveProfile(@NonNull String number) throws IOException {
-    SignalServiceMessagePipe pipe = MessageRetrievalService.getPipe();
+    SignalServiceMessagePipe pipe = IncomingMessageObserver.getPipe();
 
     if (pipe != null) {
       try {

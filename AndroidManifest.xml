@@ -430,7 +430,7 @@
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>
-    <service android:enabled="true" android:name=".service.MessageRetrievalService"/>
+    <service android:enabled="true" android:name=".service.IncomingMessageObserver$ForegroundService"/>
 
     <service android:name=".service.QuickResponseService"
              android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"

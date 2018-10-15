@@ -4,21 +4,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 
 public class PersistentConnectionBootListener extends BroadcastReceiver {
+
+  private static final String TAG = PersistentConnectionBootListener.class.getSimpleName();
+
   @Override
   public void onReceive(Context context, Intent intent) {
     if (intent != null && Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-      if (TextSecurePreferences.isGcmDisabled(context)) {
-        Intent serviceIntent = new Intent(context, MessageRetrievalService.class);
-        serviceIntent.setAction(MessageRetrievalService.ACTION_INITIALIZE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(serviceIntent);
-        else                                                context.startService(serviceIntent);
-      }
+      Log.i(TAG, "Received boot event. Application should be started, allowing non-GCM devices to start a foreground service.");
     }
   }
 }

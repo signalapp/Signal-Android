@@ -47,6 +47,8 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
@@ -77,10 +79,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
-  private ExpiringMessageManager expiringMessageManager;
-  private JobManager             jobManager;
-  private ObjectGraph            objectGraph;
-  private PersistentLogger       persistentLogger;
+  private ExpiringMessageManager  expiringMessageManager;
+  private JobManager              jobManager;
+  private IncomingMessageObserver incomingMessageObserver;
+  private ObjectGraph             objectGraph;
+  private PersistentLogger        persistentLogger;
 
   private volatile boolean isAppVisible;
 
@@ -97,6 +100,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeCrashHandling();
     initializeDependencyInjection();
     initializeJobManager();
+    initializeMessageRetrieval();
     initializeExpiringMessageManager();
     initializeGcmCheck();
     initializeSignedPreKeyCheck();
@@ -113,12 +117,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     isAppVisible = true;
     Log.i(TAG, "App is now visible.");
     executePendingContactSync();
+    KeyCachingService.onAppForegrounded(this);
   }
 
   @Override
   public void onStop(@NonNull LifecycleOwner owner) {
     isAppVisible = false;
     Log.i(TAG, "App is no longer visible.");
+    KeyCachingService.onAppBackgrounded(this);
   }
 
   @Override
@@ -166,6 +172,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                                                   .build());
 
     this.jobManager = new JobManager(WorkManager.getInstance());
+  }
+
+  public void initializeMessageRetrieval() {
+    this.incomingMessageObserver = new IncomingMessageObserver(this);
   }
 
   private void initializeDependencyInjection() {
