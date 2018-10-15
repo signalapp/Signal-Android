@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -24,6 +25,7 @@ public class GenericForegroundService extends Service {
   private static final int    NOTIFICATION_ID  = 827353982;
   private static final String EXTRA_TITLE      = "extra_title";
   private static final String EXTRA_CHANNEL_ID = "extra_channel_id";
+  private static final String EXTRA_ICON_RES   = "extra_icon_res";
 
   private static final String ACTION_START = "start";
   private static final String ACTION_STOP  = "stop";
@@ -31,6 +33,7 @@ public class GenericForegroundService extends Service {
   private int    foregroundCount;
   private String activeTitle;
   private String activeChannelId;
+  private int    activeIconRes;
 
   @Override
   public void onCreate() {
@@ -52,6 +55,7 @@ public class GenericForegroundService extends Service {
   private void handleStart(@NonNull Intent intent) {
     String title     = Preconditions.checkNotNull(intent.getStringExtra(EXTRA_TITLE));
     String channelId = Preconditions.checkNotNull(intent.getStringExtra(EXTRA_CHANNEL_ID));
+    int    iconRes   = intent.getIntExtra(EXTRA_ICON_RES, R.drawable.ic_signal_grey_24dp);
 
     foregroundCount++;
 
@@ -59,13 +63,14 @@ public class GenericForegroundService extends Service {
       Log.d(TAG, "First request. Title: " + title + "  ChannelId: " + channelId);
       activeTitle     = title;
       activeChannelId = channelId;
+      activeIconRes   = iconRes;
     }
 
-    postObligatoryForegroundNotification(activeTitle, activeChannelId);
+    postObligatoryForegroundNotification(activeTitle, activeChannelId, activeIconRes);
   }
 
   private void handleStop() {
-    postObligatoryForegroundNotification(activeTitle, activeChannelId);
+    postObligatoryForegroundNotification(activeTitle, activeChannelId, activeIconRes);
 
     foregroundCount--;
 
@@ -76,9 +81,9 @@ public class GenericForegroundService extends Service {
     }
   }
 
-  private void postObligatoryForegroundNotification(String title, String channelId) {
+  private void postObligatoryForegroundNotification(String title, String channelId, @DrawableRes int iconRes) {
     startForeground(NOTIFICATION_ID, new NotificationCompat.Builder(this, channelId)
-                                                           .setSmallIcon(R.drawable.ic_signal_grey_24dp)
+                                                           .setSmallIcon(iconRes)
                                                            .setContentTitle(title)
                                                            .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ConversationListActivity.class), 0))
                                                            .build());
@@ -95,10 +100,15 @@ public class GenericForegroundService extends Service {
   }
 
   public static void startForegroundTask(@NonNull Context context, @NonNull String task, @NonNull String channelId) {
+    startForegroundTask(context, task, channelId, R.drawable.ic_signal_grey_24dp);
+  }
+
+  public static void startForegroundTask(@NonNull Context context, @NonNull String task, @NonNull String channelId, @DrawableRes int iconRes) {
     Intent intent = new Intent(context, GenericForegroundService.class);
     intent.setAction(ACTION_START);
     intent.putExtra(EXTRA_TITLE, task);
     intent.putExtra(EXTRA_CHANNEL_ID, channelId);
+    intent.putExtra(EXTRA_ICON_RES, iconRes);
 
     ContextCompat.startForegroundService(context, intent);
   }

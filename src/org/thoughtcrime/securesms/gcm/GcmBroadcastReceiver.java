@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.gcm;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
+import android.support.annotation.NonNull;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.text.TextUtils;
 
@@ -16,6 +17,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -87,7 +89,7 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver implements In
 
     if (doze || !network) {
       Log.i(TAG, "Starting a foreground task because we may be operating in a constrained environment. Doze: " + doze + " Network: " + network);
-      GenericForegroundService.startForegroundTask(context, context.getString(R.string.GcmBroadcastReceiver_retrieving_a_message));
+      showForegroundNotification(context);
       foregroundRunning.set(true);
       callback.finish();
     }
@@ -123,13 +125,20 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver implements In
           synchronized (foregroundLock) {
             if (!taskCompleted.get() && !foregroundRunning.getAndSet(true)) {
               Log.i(TAG, "Starting a foreground task because the job is running long.");
-              GenericForegroundService.startForegroundTask(context, context.getString(R.string.GcmBroadcastReceiver_retrieving_a_message));
+              showForegroundNotification(context);
               callback.finish();
             }
           }
         }
       }.start();
     }
+  }
+
+  private void showForegroundNotification(@NonNull Context context) {
+    GenericForegroundService.startForegroundTask(context,
+                                                 context.getString(R.string.GcmBroadcastReceiver_retrieving_a_message),
+                                                 NotificationChannels.OTHER,
+                                                 R.drawable.ic_signal_downloading);
   }
 
   private static synchronized boolean incrementActiveGcmCount() {
