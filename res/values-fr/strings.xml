@@ -458,7 +458,7 @@ introduit (%s) n’est pas valide.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et ressayer.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour vérifier facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de vérification si vous autorisez Signal à visualiser les textos.</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">Échec d’enregistrement des changements apportés aux images</string>
+  <string name="ScribbleActivity_save_failure">Échec d’enregistrement des modifications apportées aux images</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Aucun résultat n’a été trouvé pour « %s »</string>
   <string name="SearchFragment_header_conversations">Conversations</string>

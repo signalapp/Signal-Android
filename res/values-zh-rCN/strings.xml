@@ -11,7 +11,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">每个会话有 %d 个信息</item>
+    <item quantity="other">每个会话限制 %d 条信息</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">删除所有旧信息？</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -94,6 +94,7 @@
   <string name="ConversationItem_error_not_delivered">发送失败，点击查看详情</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">已收到密钥交换信息，点击以开始处理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已经离开了该群组。</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">发送失败，点击使用不安全的方式发送</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">退回未加密的短信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">退回到未加密的彩信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于对方已经不再是暗号的使用者，当前消息 <b>不会</b> 被发送。\n\n发送不加密的信息？</string>
@@ -171,6 +172,8 @@
   <string name="ConversationFragment_sms">短信</string>
   <string name="ConversationFragment_deleting">删除中</string>
   <string name="ConversationFragment_deleting_messages">正在删除信息…</string>
+  <string name="ConversationFragment_quoted_message_not_found">没有找到原信息</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">原信息已不存在</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的设备上无浏览器</string>
   <!--ConversationListFragment-->
@@ -339,6 +342,10 @@
   <string name="MessageRecord_called_s">已呼叫 %s</string>
   <string name="MessageRecord_missed_call_from">来自 %s 的未接来电</string>
   <string name="MessageRecord_s_joined_signal">%s 在 Signal 上！</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">您关闭了阅后即焚功能</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s关闭了阅后即焚功能</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">您将阅后即焚的时间设置为%1$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s将阅后即焚的时间设置为%2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">您与 %s 的安全代码已经改变</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">您已标记您的安全号码 %s 已验证</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">您已标记您的安全号码 %s 已在另一台设备上验证</string>
@@ -420,7 +427,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">您所指定的号码
 (%s) 无效。</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play 服务缺失</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">此设备缺少 Google Play 服务框架。您仍能使用 Signal，但是 Signal 的功能与稳定性会因此受到很大影响。\n\n如果您不是高级用户，并且运行的是原厂安卓手机操作系统，或者您觉得此错误信息不正确，请使用英文联系 support@whispersystems.org 我们会尝试帮助您解决此问题。</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">此设备缺少 Google Play 服务框架。您仍能使用 Signal，但是 Signal 的功能与稳定性会因此受到影响。\n\n如果您不是高级用户，并且运行的是原厂安卓系统，或者您觉得此错误信息不正确，请使用英文联系 support@signal.org 我们会尝试帮助您解决此问题。</string>
   <string name="RegistrationActivity_i_understand">了解</string>
   <string name="RegistrationActivity_play_services_error">Google Play 服务错误</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服务正在更新或者暂时不可用。请稍后再试。</string>
@@ -440,12 +447,12 @@
   <string name="SearchFragment_header_messages">信息</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">添加到通讯录</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">邀请至暗号</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">邀请至Signal</string>
   <string name="SharedContactDetailsActivity_signal_message">Signal 消息</string>
-  <string name="SharedContactDetailsActivity_signal_call">暗号呼叫</string>
+  <string name="SharedContactDetailsActivity_signal_call">Signal呼叫</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">添加到通讯录</string>
-  <string name="SharedContactView_invite_to_signal">邀请至暗号</string>
+  <string name="SharedContactView_invite_to_signal">邀请至Signal</string>
   <string name="SharedContactView_message">Signal 消息</string>
   <!--Slide-->
   <string name="Slide_image">图片</string>
@@ -469,6 +476,7 @@
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 上！</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">阅后即焚功能已关闭</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
   <string name="ThreadRecord_safety_number_changed">安全代码已改变</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
@@ -547,7 +555,10 @@
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">默认</string>
   <string name="NotificationChannel_calls">通话</string>
+  <string name="NotificationChannel_failures">失败</string>
   <string name="NotificationChannel_backups">备份</string>
+  <string name="NotificationChannel_locked_status">锁定状态</string>
+  <string name="NotificationChannel_app_updates">应用更新</string>
   <string name="NotificationChannel_other">其他</string>
   <string name="NotificationChannel_group_messages">信息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
@@ -560,6 +571,7 @@
   <string name="SearchToolbar_search">搜索</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">搜索对话，联系号码和信息</string>
   <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">无效的快捷方式</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">暗号</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
@@ -648,6 +660,7 @@
   <string name="QuoteView_photo">图片</string>
   <string name="QuoteView_document">文档</string>
   <string name="QuoteView_you">您</string>
+  <string name="QuoteView_original_missing">没有找到原信息</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">滚动到底部</string>
   <!--country_selection_fragment-->
@@ -712,11 +725,18 @@
   <string name="log_submit_activity__button_dont_submit">不要提交</string>
   <string name="log_submit_activity__button_submit">提交</string>
   <string name="log_submit_activity__button_got_it">收到</string>
+  <string name="log_submit_activity__button_compose_email">编写邮件</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">此日志将在网上发布以供贡献者查看。您可在提交之前查看并编辑。</string>
   <string name="log_submit_activity__loading_logs">正在加载日志…</string>
   <string name="log_submit_activity__uploading_logs">正在上传日志…</string>
   <string name="log_submit_activity__success">成功！</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">请复制这个网址并且附加在您提交的问题报告或邮件末尾：
+
+<b>%1$s</b></string>
   <string name="log_submit_activity__copied_to_clipboard">已复制到剪切板</string>
   <string name="log_submit_activity__choose_email_app">选择电子邮件客户端</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">请审阅我应用的日志：%1$s</string>
+  <string name="log_submit_activity__network_failure">网络连接失败。请重试。</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想要导入您已经存在的短信到暗号的加密数据库？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">默认的系统数据库将不会被修改或改变。</string>
@@ -789,6 +809,7 @@
   <string name="unknown_sender_view__add_to_contacts">添加到通讯录</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">不添加，但使我的信息可见</string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[如果您希望验证您和 %s之间加密的安全 ，请将上方数字与对方设备上的对比。您还可以扫描对方手机上的二维码，或让对方扫描你的二维码。<a href="https://signal.org/redirect/safety-numbers">了解更多</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">点击扫码</string>
   <string name="verify_display_fragment__loading">载入中…</string>
   <string name="verify_display_fragment__verified">已验证</string>
@@ -1024,7 +1045,7 @@
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">您的暗号版本已经过期</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">您该版本的 SIgnal 将在 %d 天后过期。请点击以升级到最新版本。</item>
+    <item quantity="other">您该版本的 Signal 将在 %d 天后过期。请点击以升级到最新版本。</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">您的暗号版本将会在今天过期。点击以更新到最新最新版本。</string>
   <string name="reminder_header_expired_build">您目前使用的暗号版本已经过期！</string>
@@ -1039,6 +1060,7 @@
   <string name="reminder_header_invite_text">使用 %1$s 将您的会话提升的下一个等级。</string>
   <string name="reminder_header_share_title">邀请您的好友！</string>
   <string name="reminder_header_share_text">当更多的朋友使用暗号，它将变得更好。</string>
+  <string name="reminder_header_service_outage_text">Signal遇到了一些技术问题。我们会尽快恢复服务。</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">转发</string>
