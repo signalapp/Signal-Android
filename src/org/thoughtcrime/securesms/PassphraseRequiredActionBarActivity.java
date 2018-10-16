@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Locale;
 
@@ -60,10 +61,14 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   protected void onResume() {
     Log.i(TAG, "onResume()");
     super.onResume();
-    KeyCachingService.registerPassphraseActivityStarted(this);
 
-    if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
-    else                                 ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+    // Android P has a bug in foreground timings where starting a service in onResume() can still crash
+    Util.postToMain(() -> {
+      KeyCachingService.registerPassphraseActivityStarted(this);
+
+      if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
+      else                                 ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+    });
 
     isVisible = true;
   }

@@ -384,6 +384,10 @@ public class Util {
     }
   }
 
+  public static void postToMain(final @NonNull Runnable runnable) {
+    handler.post(runnable);
+  }
+
   public static void runOnMain(final @NonNull Runnable runnable) {
     if (isMainThread()) runnable.run();
     else                handler.post(runnable);

@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
@@ -88,7 +89,12 @@ public class WebRtcCallActivity extends Activity {
   public void onResume() {
     Log.i(TAG, "onResume()");
     super.onResume();
-    if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
+
+    // Android P has a bug in foreground timings where starting a service in onResume() can still crash
+    Util.postToMain(() -> {
+      if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
+    });
+
     initializeScreenshotSecurity();
     EventBus.getDefault().register(this);
   }
