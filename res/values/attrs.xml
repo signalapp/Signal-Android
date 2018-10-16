@@ -76,6 +76,7 @@
     <attr name="conversation_item_sent_text_indicator_tab_color" format="reference|color"/>
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
     <attr name="conversation_item_sent_icon_color" format="color" />
+    <attr name="conversation_item_sent_download_icon_color" format="reference|color"/>
     <attr name="conversation_item_update_text_color" format="reference"/>
     <attr name="conversation_item_last_seen_text_color" format="reference"/>
     <attr name="conversation_item_last_seen_line_color" format="reference"/>
@@ -278,6 +279,7 @@
     <declare-styleable name="DocumentView">
         <attr name="doc_titleColor" format="color" />
         <attr name="doc_captionColor" format="color" />
+        <attr name="doc_downloadButtonTint" format="color" />
     </declare-styleable>
 
     <declare-styleable name="ConversationItemFooter">

@@ -67,13 +67,16 @@ public class DocumentView extends FrameLayout {
     this.document         = findViewById(R.id.document);
 
     if (attrs != null) {
-      TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.DocumentView, 0, 0);
+      TypedArray typedArray   = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.DocumentView, 0, 0);
       int        titleColor   = typedArray.getInt(R.styleable.DocumentView_doc_titleColor, Color.BLACK);
       int        captionColor = typedArray.getInt(R.styleable.DocumentView_doc_captionColor, Color.BLACK);
+      int        downloadTint = typedArray.getInt(R.styleable.DocumentView_doc_downloadButtonTint, Color.WHITE);
       typedArray.recycle();
 
       fileName.setTextColor(titleColor);
       fileSize.setTextColor(captionColor);
+      downloadButton.setColorFilter(downloadTint, PorterDuff.Mode.MULTIPLY);
+      downloadProgress.setBarColor(downloadTint);
     }
   }
 
