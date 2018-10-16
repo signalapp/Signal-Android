@@ -50,6 +50,10 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     return toReversePrimitiveArray(recentlyUsed);
   }
 
+  @Override public String[] getDisplayEmoji() {
+    return getEmoji();
+  }
+
   @Override public boolean hasSpriteMap() {
     return false;
   }
