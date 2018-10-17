@@ -61,6 +61,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   protected void onResume() {
     Log.i(TAG, "onResume()");
     super.onResume();
+    isVisible = true;
 
     // Android P has a bug in foreground timings where starting a service in onResume() can still crash
     Util.postToMain(() -> {
@@ -69,19 +70,19 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStarted(this);
       else                                 ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
     });
-
-    isVisible = true;
   }
 
   @Override
   protected void onPause() {
     Log.i(TAG, "onPause()");
     super.onPause();
-    KeyCachingService.registerPassphraseActivityStopped(this);
-
-    if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
-
     isVisible = false;
+
+    // Android P has a bug in foreground timings where starting a service in onPause() can still crash
+    Util.postToMain(() -> {
+      KeyCachingService.registerPassphraseActivityStopped(this);
+      if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
+    });
   }
 
   @Override

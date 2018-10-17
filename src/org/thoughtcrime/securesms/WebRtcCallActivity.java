@@ -115,8 +115,12 @@ public class WebRtcCallActivity extends Activity {
   public void onPause() {
     Log.i(TAG, "onPause");
     super.onPause();
-    if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
     EventBus.getDefault().unregister(this);
+
+    // Android P has a bug in foreground timings where starting a service in onPause() can still crash
+    Util.postToMain(() -> {
+      if (!networkAccess.isCensored(this)) MessageRetrievalService.registerActivityStopped(this);
+    });
   }
 
   @Override
