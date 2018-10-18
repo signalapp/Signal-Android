@@ -32,6 +32,8 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.logging.Log;
 import android.widget.RemoteViews;
 
@@ -220,13 +222,16 @@ public class KeyCachingService extends Service {
   }
 
   private static void startTimeoutIfAppropriate(@NonNull Context context) {
-    boolean timeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(context);
-    long    screenTimeout  = TextSecurePreferences.getScreenLockTimeout(context);
+    boolean appVisible       = ApplicationContext.getInstance(context).isAppVisible();
+    boolean secretSet        = KeyCachingService.masterSecret != null;
 
-    if ((KeyCachingService.masterSecret != null) &&
-        (timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(context)) ||
-        (screenTimeout >= 60 && TextSecurePreferences.isScreenLockEnabled(context)))
-    {
+    boolean timeoutEnabled   = TextSecurePreferences.isPassphraseTimeoutEnabled(context);
+    boolean passLockActive   = timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(context);
+
+    long    screenTimeout    = TextSecurePreferences.getScreenLockTimeout(context);
+    boolean screenLockActive = screenTimeout >= 60 && TextSecurePreferences.isScreenLockEnabled(context);
+
+    if (!appVisible && secretSet && (passLockActive || screenLockActive)) {
       long passphraseTimeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(context);
       long screenLockTimeoutSeconds = TextSecurePreferences.getScreenLockTimeout(context);
 
