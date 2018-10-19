@@ -34,9 +34,20 @@ public class Camera1Controller {
 
     if (Camera.getNumberOfCameras() <= 0) {
       onCameraUnavailable();
+      return;
     }
 
-    camera = Camera.open(cameraId);
+    try {
+      camera = Camera.open(cameraId);
+    } catch (Exception e) {
+      onCameraUnavailable();
+      return;
+    }
+
+    if (camera == null) {
+      onCameraUnavailable();
+      return;
+    }
 
     Camera.Parameters  params     = camera.getParameters();
     Camera.Size        maxSize    = getMaxSupportedPreviewSize(camera);
