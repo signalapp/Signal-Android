@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -113,6 +114,17 @@ public class GroupDatabase extends Database {
   }
 
   public String getOrCreateGroupForMembers(List<Address> members, boolean mms) {
+    boolean hasLocalNumber = false;
+    for (Address member : members) {
+      if (Util.isOwnNumber(context, member)) {
+        hasLocalNumber = true;
+        break;
+      }
+    }
+    if (!hasLocalNumber) {
+      members.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+    }
+
     Collections.sort(members);
 
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {GROUP_ID},
