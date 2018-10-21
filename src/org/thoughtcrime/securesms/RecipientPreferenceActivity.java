@@ -282,7 +282,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               db.setMessageVibrate(recipient, NotificationChannels.getMessageVibrate(context, recipient) ? VibrateState.ENABLED : VibrateState.DISABLED);
               return null;
             }
-          }.execute();
+          }.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }
       } else {
         customNotificationsPref.setVisible(false);
@@ -493,7 +493,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             }
             return null;
           }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, value);
+        }.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, value);
 
         return false;
       }
@@ -562,7 +562,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             }
             return null;
           }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        }.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
 
         return false;
       }
