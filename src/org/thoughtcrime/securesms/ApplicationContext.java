@@ -171,7 +171,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                                                   .setMinimumLoggingLevel(android.util.Log.DEBUG)
                                                   .build());
 
-    this.jobManager = new JobManager(WorkManager.getInstance());
+    this.jobManager = new JobManager(this, WorkManager.getInstance());
   }
 
   public void initializeMessageRetrieval() {

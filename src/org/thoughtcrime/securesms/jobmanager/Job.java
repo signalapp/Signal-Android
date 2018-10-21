@@ -107,8 +107,13 @@ public abstract class Job extends Worker implements Serializable {
     }
   }
 
-  final void onSubmit(UUID id) {
+  final void onSubmit(@NonNull Context context, @NonNull UUID id) {
     Log.i(TAG, buildLog(id, "onSubmit()"));
+
+    if (this instanceof ContextDependent) {
+      ((ContextDependent) this).setContext(context);
+    }
+
     onAdded();
   }
 
