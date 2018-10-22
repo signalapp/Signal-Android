@@ -1,35 +1,43 @@
 package org.thoughtcrime.securesms.camera;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
-import android.media.MediaActionSound;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.concurrent.LifecycleBoundTask;
 
 import java.io.ByteArrayOutputStream;
 
@@ -59,8 +67,14 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
       throw new IllegalStateException("Parent activity must implement the Controller interface.");
     }
 
+    WindowManager windowManager = ServiceUtil.getWindowManager(getActivity());
+    Display       display       = windowManager.getDefaultDisplay();
+    Point         displaySize   = new Point();
+
+    display.getSize(displaySize);
+
     controller    = (Controller) getActivity();
-    camera        = new Camera1Controller(TextSecurePreferences.getDirectCaptureCameraId(getContext()), this);
+    camera        = new Camera1Controller(TextSecurePreferences.getDirectCaptureCameraId(getContext()), displaySize.x, displaySize.y, this);
     orderEnforcer = new OrderEnforcer<>(Stage.SURFACE_AVAILABLE, Stage.CAMERA_PROPERTIES_AVAILABLE);
   }
 
@@ -190,42 +204,40 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
   private void onCaptureClicked() {
     orderEnforcer.reset();
 
-    Stopwatch fastCaptureTimer = new Stopwatch("Fast Capture");
+    Stopwatch fastCaptureTimer = new Stopwatch("Capture");
 
-    Bitmap preview = cameraPreview.getBitmap();
-    fastCaptureTimer.split("captured");
+    camera.capture((jpegData, frontFacing) -> {
+      fastCaptureTimer.split("captured");
 
-    LifecycleBoundTask.run(getLifecycle(), () -> {
-      Bitmap full = preview;
-      if (Build.VERSION.SDK_INT < 28) {
-        PointF scale  = getScaleTransform(cameraPreview.getWidth(), cameraPreview.getHeight(), properties.getPreviewWidth(), properties.getPreviewHeight());
-        Matrix matrix = new Matrix();
+      Transformation<Bitmap> transformation = frontFacing ? new MultiTransformation<>(new CenterCrop(), new FlipTransformation())
+                                                          : new CenterCrop();
 
-        matrix.setScale(scale.x, scale.y);
+      GlideApp.with(this)
+              .asBitmap()
+              .load(jpegData)
+              .transform(transformation)
+              .override(cameraPreview.getWidth(), cameraPreview.getHeight())
+              .into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                  fastCaptureTimer.split("transform");
 
-        int adjWidth  = (int) (cameraPreview.getWidth() / scale.x);
-        int adjHeight = (int) (cameraPreview.getHeight() / scale.y);
+                  ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                  resource.compress(Bitmap.CompressFormat.JPEG, 80, stream);
+                  fastCaptureTimer.split("compressed");
 
-        full = Bitmap.createBitmap(preview, 0, 0, adjWidth, adjHeight, matrix, true);
-      }
+                  byte[] data = stream.toByteArray();
+                  fastCaptureTimer.split("bytes");
+                  fastCaptureTimer.stop(TAG);
 
-      fastCaptureTimer.split("transformed");
+                  controller.onImageCaptured(data);
+                }
 
-      ByteArrayOutputStream stream = new ByteArrayOutputStream();
-      full.compress(Bitmap.CompressFormat.JPEG, 80, stream);
-      fastCaptureTimer.split("compressed");
-
-      byte[] data = stream.toByteArray();
-      fastCaptureTimer.split("bytes");
-      fastCaptureTimer.stop(TAG);
-
-      return data;
-    }, data -> {
-      if (data != null) {
-        controller.onImageCaptured(data);
-      } else {
-        controller.onCameraError();
-      }
+                @Override
+                public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                  controller.onCameraError();
+                }
+              });
     });
   }
 
@@ -260,7 +272,11 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
     PointF scale  = getScaleTransform(cameraPreview.getWidth(), cameraPreview.getHeight(), properties.getPreviewWidth(), properties.getPreviewHeight());
     Matrix matrix = new Matrix();
 
+    float camWidth  = isPortrait() ? Math.min(cameraPreview.getWidth(), cameraPreview.getHeight()) : Math.max(cameraPreview.getWidth(), cameraPreview.getHeight());
+    float camHeight = isPortrait() ? Math.max(cameraPreview.getWidth(), cameraPreview.getHeight()) : Math.min(cameraPreview.getWidth(), cameraPreview.getHeight());
+
     matrix.setScale(scale.x, scale.y);
+    matrix.postTranslate((camWidth - (camWidth * scale.x)) / 2, (camHeight - (camHeight * scale.y)) / 2);
     cameraPreview.setTransform(matrix);
   }
 
