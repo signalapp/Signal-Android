@@ -109,7 +109,7 @@ public class BluetoothStateManager {
   }
 
   private void handleBluetoothStateChange() {
-    if (listener != null) listener.onBluetoothStateChanged(isBluetoothAvailable());
+    if (listener != null && !destroyed.get()) listener.onBluetoothStateChanged(isBluetoothAvailable());
   }
 
   private boolean isBluetoothAvailable() {
