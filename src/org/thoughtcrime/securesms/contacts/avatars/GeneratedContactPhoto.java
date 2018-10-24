@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class GeneratedContactPhoto implements FallbackContactPhoto {
 
-  private static final Pattern  PATTERN  = Pattern.compile("[^\\p{L}\\p{Nd}\\p{P}\\p{S}]+");
+  private static final Pattern  PATTERN  = Pattern.compile("[^\\p{L}\\p{Nd}\\p{S}]+");
   private static final Typeface TYPEFACE = Typeface.create("sans-serif-medium", Typeface.NORMAL);
 
   private final String name;
