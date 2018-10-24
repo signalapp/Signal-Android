@@ -4,20 +4,30 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-public class StaticEmojiPageModel implements EmojiPageModel {
-  @AttrRes  private final int      iconAttr;
-  @NonNull  private final String[] emoji;
-  @NonNull  private final String[] displayEmoji;
-  @Nullable private final String   sprite;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
-  public StaticEmojiPageModel(@AttrRes int iconAttr, @NonNull String[] emoji, @Nullable String sprite) {
-    this(iconAttr, emoji, emoji, sprite);
+public class StaticEmojiPageModel implements EmojiPageModel {
+  @AttrRes  private final int         iconAttr;
+  @NonNull  private final List<Emoji> emoji;
+  @Nullable private final String      sprite;
+
+  public StaticEmojiPageModel(@AttrRes int iconAttr, @NonNull String[] strings, @Nullable String sprite) {
+    List<Emoji> emoji = new ArrayList<>(strings.length);
+    for (String s : strings) {
+      emoji.add(new Emoji(s));
+    }
+
+    this.iconAttr = iconAttr;
+    this.emoji    = emoji;
+    this.sprite   = sprite;
   }
 
-  public StaticEmojiPageModel(@AttrRes int iconAttr, @NonNull String[] emoji, @NonNull String[] displayEmoji, @Nullable String sprite) {
+  public StaticEmojiPageModel(@AttrRes int iconAttr, @NonNull Emoji[] emoji, @Nullable String sprite) {
     this.iconAttr     = iconAttr;
-    this.emoji        = emoji;
-    this.displayEmoji = displayEmoji;
+    this.emoji        = Arrays.asList(emoji);
     this.sprite       = sprite;
   }
 
@@ -26,13 +36,17 @@ public class StaticEmojiPageModel implements EmojiPageModel {
   }
 
   @Override
-  public @NonNull String[] getEmoji() {
-    return emoji;
+  public @NonNull List<String> getEmoji() {
+    List<String> emojis = new LinkedList<>();
+    for (Emoji e : emoji) {
+      emojis.addAll(e.getVariations());
+    }
+    return emojis;
   }
 
   @Override
-  public @NonNull String[] getDisplayEmoji() {
-    return displayEmoji;
+  public @NonNull List<Emoji> getDisplayEmoji() {
+    return emoji;
   }
 
   @Override
