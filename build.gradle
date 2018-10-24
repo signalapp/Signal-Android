@@ -3,12 +3,12 @@ import java.security.MessageDigest
 buildscript {
     repositories {
         maven {
-            url "https://repo1.maven.org/maven2"
-            jcenter()
-        }
-        maven {
             url 'https://maven.google.com/'
             name 'Google'
+        }
+        maven {
+            url "https://repo1.maven.org/maven2"
+            jcenter()
         }
     }
     dependencies {
@@ -48,12 +48,9 @@ repositories {
     maven { // textdrawable
         url 'https://dl.bintray.com/amulyakhare/maven'
     }
+    google()
     jcenter()
     mavenLocal()
-    maven {
-        url 'https://maven.google.com/'
-        name 'Google'
-    }
 }
 
 dependencies {
