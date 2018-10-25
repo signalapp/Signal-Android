@@ -276,8 +276,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 420
-        versionName "4.29.6"
+        versionCode 421
+        versionName "4.29.7"
 
         minSdkVersion 14
         targetSdkVersion 26
