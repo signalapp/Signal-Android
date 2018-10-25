@@ -28,7 +28,6 @@
                        android:layout_height="36dp"
                        android:layout_marginLeft="8dp"
                        android:layout_marginStart="8dp"
-                       android:src="@drawable/icon_transparent"
                        android:layout_alignParentLeft="true"
                        android:layout_alignParentStart="true"
                        android:layout_centerVertical="true"/>
