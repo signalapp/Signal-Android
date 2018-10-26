@@ -1,0 +1,9 @@
+apply plugin: 'java-gradle-plugin'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.android.tools.build', name: 'apksig', version: '2.3.0'
+}

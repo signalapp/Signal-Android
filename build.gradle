@@ -1,3 +1,5 @@
+import org.signal.signing.ApkSignerUtil
+
 import java.security.MessageDigest
 
 buildscript {
@@ -321,10 +323,6 @@ android {
         exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 
-    signingConfigs {
-        release
-    }
-
     buildTypes {
         debug {
             minifyEnabled true
@@ -354,7 +352,6 @@ android {
         release {
             minifyEnabled true
             proguardFiles = buildTypes.debug.proguardFiles
-            signingConfig signingConfigs.release
         }
     }
 
@@ -406,36 +403,53 @@ android {
     }
 }
 
-task assembleWebsiteDescriptor << {
-    android.applicationVariants.all { variant ->
-        if (variant.name.equals("websiteDebug") ||
-            variant.name.equals("websiteRelease"))
-        {
-            File file = new File(variant.outputs[0].outputFile.path)
-
-            if (file.exists()) {
-                MessageDigest md = MessageDigest.getInstance("SHA-256");
-                file.eachByte 4096, {bytes, size ->
-                    md.update(bytes, 0, size);
-                }
-
-                String digest = md.digest().collect {String.format "%02x", it}.join();
-                String url = variant.productFlavors.get(0).ext.websiteUpdateUrl
-                String apkName = variant.outputs[0].outputFile.name
-
-                String descriptor = "{" +
-                        "\"versionCode\" : $project.android.defaultConfig.versionCode," +
-                        "\"versionName\" : \"$project.android.defaultConfig.versionName\"," +
-                        "\"sha256sum\" : \"$digest\"," +
-                        "\"url\" : \"$url/$apkName\"" +
-                        "}"
-
-                File descriptorFile = new File(variant.outputs[0].outputFile.parent, apkName.replace(".apk", ".json"))
-
-                descriptorFile.write(descriptor)
-            }
+def assembleWebsiteDescriptor = { variant, file ->
+    if (file.exists()) {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        file.eachByte 4096, {bytes, size ->
+            md.update(bytes, 0, size);
         }
+
+        String digest  = md.digest().collect {String.format "%02x", it}.join();
+        String url     = variant.productFlavors.get(0).ext.websiteUpdateUrl
+        String apkName = file.getName()
+
+        String descriptor = "{" +
+                "\"versionCode\" : $project.android.defaultConfig.versionCode," +
+                "\"versionName\" : \"$project.android.defaultConfig.versionName\"," +
+                "\"sha256sum\" : \"$digest\"," +
+                "\"url\" : \"$url/$apkName\"" +
+                "}"
+
+        File descriptorFile = new File(file.getParent(), apkName.replace(".apk", ".json"))
+
+        descriptorFile.write(descriptor)
     }
+}
+
+def signProductionRelease = { variant ->
+    String apkName    = variant.outputs[0].outputFile.name
+    File   inputFile  = new File(variant.outputs[0].outputFile.path);
+    File   outputFile = new File(variant.outputs[0].outputFile.parent, apkName.replace("-unsigned", ""));
+
+    new ApkSignerUtil("sun.security.pkcs11.SunPKCS11",
+                      "pkcs11.config",
+                      "PKCS11",
+                      "file:pkcs11.password").calculateSignature(inputFile.getAbsolutePath(),
+                                                                 outputFile.getAbsolutePath());
+
+    inputFile.delete();
+    return outputFile
+}
+
+task signProductionPlayRelease << {
+    signProductionRelease(android.applicationVariants.find({ it.name.equals("playRelease") }))
+}
+
+task signProductionWebsiteRelease << {
+    def  variant       = android.applicationVariants.find({ it.name.equals("websiteRelease") })
+    File signedRelease = signProductionRelease(variant)
+    assembleWebsiteDescriptor(variant, signedRelease);
 }
 
 tasks.whenTaskAdded { task ->
@@ -443,10 +457,12 @@ tasks.whenTaskAdded { task ->
         task.enabled = false
     }
 
-    if (task.name.equals("assembleWebsiteDebug") ||
-        task.name.equals("assembleWebsiteRelease"))
-    {
-         task.finalizedBy assembleWebsiteDescriptor
+    if (task.name.equals("assemblePlayRelease")) {
+        task.finalizedBy signProductionPlayRelease
+    }
+
+    if (task.name.equals("assembleWebsiteRelease")) {
+        task.finalizedBy signProductionWebsiteRelease
     }
 }
 
@@ -460,30 +476,5 @@ def getLastCommitTimestamp() {
 
         return os.toString() + "000"
     }
-}
-
-def Properties props = new Properties()
-def propFile = new File('signing.properties')
-
-if (propFile.canRead()){
-    props.load(new FileInputStream(propFile))
-
-    if (props !=null &&
-        props.containsKey('STORE_FILE')     &&
-        props.containsKey('STORE_PASSWORD') &&
-        props.containsKey('KEY_ALIAS')      &&
-        props.containsKey('KEY_PASSWORD'))
-    {
-        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
-        android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
-        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
-        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
-    } else {
-        println 'signing.properties found but some entries are missing'
-        android.buildTypes.release.signingConfig = null
-    }
-}else {
-    println 'signing.properties not found'
-    android.buildTypes.release.signingConfig = null
 }
 
