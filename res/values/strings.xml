@@ -999,6 +999,7 @@
     <string name="recipient_preferences__notification_sound">Notification sound</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
+    <string name="recipient_preferences__hide_phone_number">Hide phone number</string>
     <string name="recipient_preferences__color">Color</string>
     <string name="recipient_preferences__view_safety_number">View safety number</string>
     <string name="recipient_preferences__chat_settings">Chat settings</string>

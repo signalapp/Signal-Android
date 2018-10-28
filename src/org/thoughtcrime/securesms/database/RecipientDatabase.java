@@ -37,6 +37,7 @@ public class RecipientDatabase extends Database {
   private static final String ID                      = "_id";
           static final String ADDRESS                 = "recipient_ids";
   private static final String BLOCK                   = "block";
+  private static final String HIDE_PHONE_NUMBER       = "hide_phone_number";
   private static final String NOTIFICATION            = "notification";
   private static final String VIBRATE                 = "vibrate";
   private static final String MUTE_UNTIL              = "mute_until";
@@ -58,7 +59,7 @@ public class RecipientDatabase extends Database {
   private static final String NOTIFICATION_CHANNEL    = "notification_channel";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
-      BLOCK, NOTIFICATION, CALL_RINGTONE, VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
+      BLOCK, HIDE_PHONE_NUMBER, NOTIFICATION, CALL_RINGTONE, VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
       PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_CONTACT_URI,
       SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL
   };
@@ -108,6 +109,7 @@ public class RecipientDatabase extends Database {
           " (" + ID + " INTEGER PRIMARY KEY, " +
           ADDRESS + " TEXT UNIQUE, " +
           BLOCK + " INTEGER DEFAULT 0," +
+          HIDE_PHONE_NUMBER + " INTEGER DEFAULT 0," +
           NOTIFICATION + " TEXT DEFAULT NULL, " +
           VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
           MUTE_UNTIL + " INTEGER DEFAULT 0, " +
@@ -170,6 +172,7 @@ public class RecipientDatabase extends Database {
 
   Optional<RecipientSettings> getRecipientSettings(@NonNull Cursor cursor) {
     boolean blocked               = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
+    boolean phoneNumberHidden     = cursor.getInt(cursor.getColumnIndexOrThrow(HIDE_PHONE_NUMBER))    == 1;
     String  messageRingtone       = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
     String  callRingtone          = cursor.getString(cursor.getColumnIndexOrThrow(CALL_RINGTONE));
     int     messageVibrateState   = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
@@ -209,7 +212,7 @@ public class RecipientDatabase extends Database {
       }
     }
 
-    return Optional.of(new RecipientSettings(blocked, muteUntil,
+    return Optional.of(new RecipientSettings(blocked, muteUntil, phoneNumberHidden,
                                              VibrateState.fromId(messageVibrateState),
                                              VibrateState.fromId(callVibrateState),
                                              Util.uri(messageRingtone), Util.uri(callRingtone),
@@ -291,6 +294,13 @@ public class RecipientDatabase extends Database {
     values.put(MUTE_UNTIL, until);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setMuted(until);
+  }
+
+  public void setIsPhoneNumberHidden(@NonNull Recipient recipient, boolean isPhoneNumberHidden) {
+    ContentValues values = new ContentValues();
+    values.put(HIDE_PHONE_NUMBER, isPhoneNumberHidden);
+    updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setIsPhoneNumberHidden(isPhoneNumberHidden);
   }
 
   public void setSeenInviteReminder(@NonNull Recipient recipient, @SuppressWarnings("SameParameterValue") boolean seen) {
@@ -507,6 +517,7 @@ public class RecipientDatabase extends Database {
 
   public static class RecipientSettings {
     private final boolean         blocked;
+    private final boolean         phoneNumberHidden;
     private final long            muteUntil;
     private final VibrateState    messageVibrateState;
     private final VibrateState    callVibrateState;
@@ -528,6 +539,7 @@ public class RecipientDatabase extends Database {
     private final String          notificationChannel;
 
     RecipientSettings(boolean blocked, long muteUntil,
+                      boolean phoneNumberHidden,
                       @NonNull VibrateState messageVibrateState,
                       @NonNull VibrateState callVibrateState,
                       @Nullable Uri messageRingtone,
@@ -549,6 +561,7 @@ public class RecipientDatabase extends Database {
     {
       this.blocked               = blocked;
       this.muteUntil             = muteUntil;
+      this.phoneNumberHidden     = phoneNumberHidden;
       this.messageVibrateState   = messageVibrateState;
       this.callVibrateState      = callVibrateState;
       this.messageRingtone       = messageRingtone;
@@ -579,6 +592,10 @@ public class RecipientDatabase extends Database {
 
     public long getMuteUntil() {
       return muteUntil;
+    }
+
+    public boolean isPhoneNumberHidden() {
+      return phoneNumberHidden;
     }
 
     public @NonNull VibrateState getMessageVibrateState() {

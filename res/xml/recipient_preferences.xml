@@ -75,6 +75,12 @@
                     android:persistent="false"
                     android:enabled="false"/>
 
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                    android:key="pref_key_recipient_hide_phone_number"
+                    android:title="@string/recipient_preferences__hide_phone_number"
+                    android:defaultValue="false"
+                    android:persistent="false"/>
+
         <Preference android:key="pref_key_recipient_block"
                     android:title="@string/recipient_preferences__block"
                     android:persistent="false"/>

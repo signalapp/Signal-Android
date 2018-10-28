@@ -98,6 +98,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private static final String PREFERENCE_IDENTITY              = "pref_key_recipient_identity";
   private static final String PREFERENCE_ABOUT                 = "pref_key_number";
   private static final String PREFERENCE_CUSTOM_NOTIFICATIONS  = "pref_key_recipient_custom_notifications";
+  private static final String PREFERENCE_HIDE_PHONE_NUMBER     = "pref_key_recipient_hide_phone_number";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -306,6 +307,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new BlockClickedListener());
       this.findPreference(PREFERENCE_COLOR)
           .setOnPreferenceChangeListener(new ColorChangeListener());
+      this.findPreference(PREFERENCE_HIDE_PHONE_NUMBER)
+          .setOnPreferenceClickListener(new HidePhoneNumberClickedListener());
       ((ContactPreference)this.findPreference(PREFERENCE_ABOUT))
           .setListener(new AboutNumberClickedListener());
     }
@@ -353,6 +356,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private void setSummaries(Recipient recipient) {
       CheckBoxPreference    mutePreference            = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
+      CheckBoxPreference    hidePhoneNumberPreference = (CheckBoxPreference) this.findPreference(PREFERENCE_HIDE_PHONE_NUMBER);
       Preference            ringtoneMessagePreference = this.findPreference(PREFERENCE_MESSAGE_TONE);
       Preference            ringtoneCallPreference    = this.findPreference(PREFERENCE_CALL_TONE);
       ListPreference        vibrateMessagePreference  = (ListPreference) this.findPreference(PREFERENCE_MESSAGE_VIBRATE);
@@ -367,6 +371,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       PreferenceCategory    divider                   = (PreferenceCategory) this.findPreference("divider");
 
       mutePreference.setChecked(recipient.isMuted());
+      
+      hidePhoneNumberPreference.setChecked(recipient.isPhoneNumberHidden());
 
       ringtoneMessagePreference.setSummary(ringtoneMessagePreference.isEnabled() ? getRingtoneSummary(getContext(), recipient.getMessageRingtone()) : "");
       ringtoneCallPreference.setSummary(getRingtoneSummary(getContext(), recipient.getCallRingtone()));
@@ -598,6 +604,29 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }
         return true;
       }
+    }
+
+    private class HidePhoneNumberClickedListener implements Preference.OnPreferenceClickListener {
+
+      @Override
+      public boolean onPreferenceClick(Preference preference) {
+        setIsPhoneNumberHidden(preference.getContext(), recipient, !recipient.isPhoneNumberHidden());
+        return true;
+      }
+
+      private void setIsPhoneNumberHidden(@NonNull final Context context, final Recipient recipient, final boolean isPhoneNumberHidden) {
+        recipient.setIsPhoneNumberHidden(isPhoneNumberHidden);
+
+        new AsyncTask<Void, Void, Void>() {
+          @Override
+          protected Void doInBackground(Void... params) {
+            DatabaseFactory.getRecipientDatabase(context)
+                    .setIsPhoneNumberHidden(recipient, isPhoneNumberHidden);
+            return null;
+          }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      }
+
     }
 
     private class MuteClickedListener implements Preference.OnPreferenceClickListener {

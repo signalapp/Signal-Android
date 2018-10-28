@@ -68,6 +68,10 @@ public class ConversationTitleView extends RelativeLayout {
       title.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
     }
 
+    if (recipient != null && recipient.isPhoneNumberHidden()) {
+      subtitle.setVisibility(GONE);
+    }
+
     if (recipient != null) {
       this.avatar.setAvatar(glideRequests, recipient, false);
     }

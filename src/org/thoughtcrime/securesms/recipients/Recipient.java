@@ -79,6 +79,7 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable Uri                  callRingtone          = null;
   private           long                 mutedUntil            = 0;
   private           boolean              blocked               = false;
+  private           boolean              isPhoneNumberHidden   = false;
   private           VibrateState         messageVibrate        = VibrateState.DEFAULT;
   private           VibrateState         callVibrate           = VibrateState.DEFAULT;
   private           int                  expireMessages        = 0;
@@ -131,6 +132,7 @@ public class Recipient implements RecipientModifiedListener {
       this.callRingtone          = stale.callRingtone;
       this.mutedUntil            = stale.mutedUntil;
       this.blocked               = stale.blocked;
+      this.isPhoneNumberHidden   = stale.isPhoneNumberHidden;
       this.messageVibrate        = stale.messageVibrate;
       this.callVibrate           = stale.callVibrate;
       this.expireMessages        = stale.expireMessages;
@@ -155,6 +157,7 @@ public class Recipient implements RecipientModifiedListener {
       this.callRingtone          = details.get().callRingtone;
       this.mutedUntil            = details.get().mutedUntil;
       this.blocked               = details.get().blocked;
+      this.isPhoneNumberHidden   = details.get().phoneNumberHidden;
       this.messageVibrate        = details.get().messageVibrateState;
       this.callVibrate           = details.get().callVibrateState;
       this.expireMessages        = details.get().expireMessages;
@@ -185,6 +188,7 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.callRingtone          = result.callRingtone;
             Recipient.this.mutedUntil            = result.mutedUntil;
             Recipient.this.blocked               = result.blocked;
+            Recipient.this.isPhoneNumberHidden   = result.phoneNumberHidden;
             Recipient.this.messageVibrate        = result.messageVibrateState;
             Recipient.this.callVibrate           = result.callVibrateState;
             Recipient.this.expireMessages        = result.expireMessages;
@@ -232,6 +236,7 @@ public class Recipient implements RecipientModifiedListener {
     this.callRingtone          = details.callRingtone;
     this.mutedUntil            = details.mutedUntil;
     this.blocked               = details.blocked;
+    this.isPhoneNumberHidden   = details.phoneNumberHidden;
     this.messageVibrate        = details.messageVibrateState;
     this.callVibrate           = details.callVibrateState;
     this.expireMessages        = details.expireMessages;
@@ -514,6 +519,18 @@ public class Recipient implements RecipientModifiedListener {
   public void setBlocked(boolean blocked) {
     synchronized (this) {
       this.blocked = blocked;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized boolean isPhoneNumberHidden() {
+    return isPhoneNumberHidden;
+  }
+
+  public void setIsPhoneNumberHidden(boolean isPhoneNumberHidden) {
+    synchronized (this) {
+      this.isPhoneNumberHidden = isPhoneNumberHidden;
     }
 
     notifyListeners();
