@@ -36,7 +36,7 @@ public class ColorPickerPreferenceDialogFragmentCompat extends PreferenceDialogF
         .setColumns(pref.getColumns())
         .build();
 
-    ColorPickerDialog dialog = new ColorPickerDialog(getActivity(), this, params);
+    ColorPickerDialog dialog = new ColorPickerDialog(requireActivity(), this, params);
     dialog.setTitle(pref.getDialogTitle());
 
     return dialog;

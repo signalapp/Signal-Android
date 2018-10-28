@@ -206,20 +206,20 @@ public class ConversationFragment extends Fragment
   }
 
   private void initializeResources() {
-    this.recipient         = Recipient.from(getActivity(), getActivity().getIntent().getParcelableExtra(ConversationActivity.ADDRESS_EXTRA), true);
-    this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
-    this.lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
-    this.startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
+    this.recipient         = Recipient.from(requireActivity(), requireActivity().getIntent().getParcelableExtra(ConversationActivity.ADDRESS_EXTRA), true);
+    this.threadId          = this.requireActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
+    this.lastSeen          = this.requireActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
+    this.startingPosition  = this.requireActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
     this.firstLoad         = true;
-    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient, threadId);
+    this.unknownSenderView = new UnknownSenderView(requireActivity(), recipient, threadId);
 
-    OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
+    OnScrollListener scrollListener = new ConversationScrollListener(requireActivity());
     list.addOnScrollListener(scrollListener);
   }
 
   private void initializeListAdapter() {
     if (this.recipient != null && this.threadId != -1) {
-      ConversationAdapter adapter = new ConversationAdapter(getActivity(), GlideApp.with(this), locale, selectionClickListener, null, this.recipient);
+      ConversationAdapter adapter = new ConversationAdapter(requireActivity(), GlideApp.with(this), locale, selectionClickListener, null, this.recipient);
       list.setAdapter(adapter);
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
 
@@ -342,7 +342,7 @@ public class ConversationFragment extends Fragment
     });
 
     StringBuilder    bodyBuilder = new StringBuilder();
-    ClipboardManager clipboard   = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipboardManager clipboard   = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
 
     for (MessageRecord messageRecord : messageList) {
       String body = messageRecord.getDisplayBody().toString();
@@ -362,11 +362,11 @@ public class ConversationFragment extends Fragment
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
     int                 messagesCount = messageRecords.size();
-    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
+    AlertDialog.Builder builder       = new AlertDialog.Builder(requireActivity());
 
     builder.setIconAttribute(R.attr.dialog_alert_icon);
-    builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
-    builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
+    builder.setTitle(requireActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
+    builder.setMessage(requireActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
@@ -428,7 +428,7 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleResendMessage(final MessageRecord message) {
-    final Context context = getActivity().getApplicationContext();
+    final Context context = requireActivity().getApplicationContext();
     new AsyncTask<MessageRecord, Void, Void>() {
       @Override
       protected Void doInBackground(MessageRecord... messageRecords) {
@@ -814,7 +814,7 @@ public class ConversationFragment extends Fragment
       mode.setTitle("1");
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        Window window = getActivity().getWindow();
+        Window window = requireActivity().getWindow();
         statusBarColor = window.getStatusBarColor();
         window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
       }
@@ -834,7 +834,7 @@ public class ConversationFragment extends Fragment
       list.getAdapter().notifyDataSetChanged();
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        getActivity().getWindow().setStatusBarColor(statusBarColor);
+        requireActivity().getWindow().setStatusBarColor(statusBarColor);
       }
 
       actionMode = null;

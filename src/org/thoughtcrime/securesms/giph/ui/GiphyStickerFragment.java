@@ -12,6 +12,6 @@ import java.util.List;
 public class GiphyStickerFragment extends GiphyFragment {
   @Override
   public Loader<List<GiphyImage>> onCreateLoader(int id, Bundle args) {
-    return new GiphyStickerLoader(getActivity(), searchString);
+    return new GiphyStickerLoader(requireActivity(), searchString);
   }
 }

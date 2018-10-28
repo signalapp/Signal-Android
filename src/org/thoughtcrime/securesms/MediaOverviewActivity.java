@@ -233,9 +233,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       this.noMedia      = ViewUtil.findById(view, R.id.no_images);
       this.gridManager  = new StickyHeaderGridLayoutManager(getResources().getInteger(R.integer.media_overview_cols));
 
-      this.recyclerView.setAdapter(new MediaGalleryAdapter(getContext(),
+      this.recyclerView.setAdapter(new MediaGalleryAdapter(requireContext(),
                                                            GlideApp.with(this),
-                                                           new BucketedThreadMedia(getContext()),
+                                                           new BucketedThreadMedia(requireContext()),
                                                            locale,
                                                            this));
       this.recyclerView.setLayoutManager(gridManager);
@@ -255,7 +255,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
     @Override
     public Loader<BucketedThreadMedia> onCreateLoader(int i, Bundle bundle) {
-      return new BucketedThreadMediaLoader(getContext(), recipient.getAddress());
+      return new BucketedThreadMediaLoader(requireContext(), recipient.getAddress());
     }
 
     @Override
@@ -264,12 +264,12 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       ((MediaGalleryAdapter) recyclerView.getAdapter()).notifyAllSectionsDataSetChanged();
 
       noMedia.setVisibility(recyclerView.getAdapter().getItemCount() > 0 ? View.GONE : View.VISIBLE);
-      getActivity().invalidateOptionsMenu();
+      requireActivity().invalidateOptionsMenu();
     }
 
     @Override
     public void onLoaderReset(Loader<BucketedThreadMedia> cursorLoader) {
-      ((MediaGalleryAdapter) recyclerView.getAdapter()).setMedia(new BucketedThreadMedia(getContext()));
+      ((MediaGalleryAdapter) recyclerView.getAdapter()).setMedia(new BucketedThreadMedia(requireContext()));
     }
 
     @Override
@@ -371,7 +371,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     @SuppressLint("StaticFieldLeak")
     private void handleDeleteMedia(@NonNull Collection<MediaDatabase.MediaRecord> mediaRecords) {
       int recordCount       = mediaRecords.size();
-      Resources res         = getContext().getResources();
+      Resources res         = getResources();
       String confirmTitle   = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_delete_confirm_title,
                                                     recordCount,
                                                     recordCount);
@@ -379,7 +379,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
                                                     recordCount,
                                                     recordCount);
 
-      AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+      AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
       builder.setIconAttribute(R.attr.dialog_alert_icon);
       builder.setTitle(confirmTitle);
       builder.setMessage(confirmMessage);
@@ -418,8 +418,8 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     private void enterMultiSelect() {
-      actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(actionModeCallback);
-      ((MediaOverviewActivity) getActivity()).onEnterMultiSelect();
+      actionMode = ((AppCompatActivity) requireActivity()).startSupportActionMode(actionModeCallback);
+      ((MediaOverviewActivity) requireActivity()).onEnterMultiSelect();
     }
 
     private class ActionModeCallback implements ActionMode.Callback {
@@ -432,7 +432,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
         mode.setTitle("1");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          Window window = getActivity().getWindow();
+          Window window = requireActivity().getWindow();
           originalStatusBarColor = window.getStatusBarColor();
           window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
         }
@@ -465,10 +465,10 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       public void onDestroyActionMode(ActionMode mode) {
         actionMode = null;
         getListAdapter().clearSelection();
-        ((MediaOverviewActivity) getActivity()).onExitMultiSelect();
+        ((MediaOverviewActivity) requireActivity()).onExitMultiSelect();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          getActivity().getWindow().setStatusBarColor(originalStatusBarColor);
+          requireActivity().getWindow().setStatusBarColor(originalStatusBarColor);
         }
       }
     }
@@ -487,20 +487,20 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       this.recyclerView.setAdapter(adapter);
       this.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
       this.recyclerView.addItemDecoration(new StickyHeaderDecoration(adapter, false, true));
-      this.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+      this.recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
 
       return view;
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-      return new ThreadMediaLoader(getContext(), recipient.getAddress(), false);
+      return new ThreadMediaLoader(requireContext(), recipient.getAddress(), false);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
       ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(data);
-      getActivity().invalidateOptionsMenu();
+      requireActivity().invalidateOptionsMenu();
 
       this.noMedia.setVisibility(data.getCount() > 0 ? View.GONE : View.VISIBLE);
     }
@@ -508,7 +508,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
       ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(null);
-      getActivity().invalidateOptionsMenu();
+      requireActivity().invalidateOptionsMenu();
     }
   }
 }

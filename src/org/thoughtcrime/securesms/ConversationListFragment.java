@@ -222,7 +222,7 @@ public class ConversationListFragment extends Fragment
   }
 
   private void initializeListAdapter() {
-    list.setAdapter(new ConversationListAdapter(getActivity(), GlideApp.with(this), locale, null, this));
+    list.setAdapter(new ConversationListAdapter(requireActivity(), GlideApp.with(this), locale, null, this));
     getLoaderManager().restartLoader(0, null, this);
   }
 
@@ -276,11 +276,11 @@ public class ConversationListFragment extends Fragment
   @SuppressLint("StaticFieldLeak")
   private void handleDeleteAllSelected() {
     int                 conversationsCount = getListAdapter().getBatchSelections().size();
-    AlertDialog.Builder alert              = new AlertDialog.Builder(getActivity());
+    AlertDialog.Builder alert              = new AlertDialog.Builder(requireActivity());
     alert.setIconAttribute(R.attr.dialog_alert_icon);
-    alert.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
+    alert.setTitle(getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
                                                                   conversationsCount, conversationsCount));
-    alert.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations,
+    alert.setMessage(getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations,
                                                                     conversationsCount, conversationsCount));
     alert.setCancelable(true);
 
@@ -295,15 +295,15 @@ public class ConversationListFragment extends Fragment
           @Override
           protected void onPreExecute() {
             dialog = ProgressDialog.show(getActivity(),
-                                         getActivity().getString(R.string.ConversationListFragment_deleting),
-                                         getActivity().getString(R.string.ConversationListFragment_deleting_selected_conversations),
+                                         getString(R.string.ConversationListFragment_deleting),
+                                         getString(R.string.ConversationListFragment_deleting_selected_conversations),
                                          true, false);
           }
 
           @Override
           protected Void doInBackground(Void... params) {
             DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-            MessageNotifier.updateNotification(getActivity());
+            MessageNotifier.updateNotification(requireActivity());
             return null;
           }
 
@@ -329,7 +329,7 @@ public class ConversationListFragment extends Fragment
   }
 
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
-    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipient, distributionType, lastSeen);
+    ((ConversationSelectedListener)requireActivity()).onCreateConversation(threadId, recipient, distributionType, lastSeen);
   }
 
   @Override
@@ -385,7 +385,7 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onItemLongClick(ConversationListItem item) {
-    actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(ConversationListFragment.this);
+    actionMode = ((AppCompatActivity)requireActivity()).startSupportActionMode(ConversationListFragment.this);
 
     getListAdapter().initializeBatchMode(true);
     getListAdapter().toggleThreadInBatchSet(item.getThreadId());
@@ -394,7 +394,7 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onSwitchToArchive() {
-    ((ConversationSelectedListener)getActivity()).onSwitchToArchive();
+    ((ConversationSelectedListener)requireActivity()).onSwitchToArchive();
   }
 
   public interface ConversationSelectedListener {
@@ -404,7 +404,7 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-    MenuInflater inflater = getActivity().getMenuInflater();
+    MenuInflater inflater = requireActivity().getMenuInflater();
 
     if (archive) inflater.inflate(R.menu.conversation_list_batch_unarchive, menu);
     else         inflater.inflate(R.menu.conversation_list_batch_archive, menu);
@@ -414,7 +414,7 @@ public class ConversationListFragment extends Fragment
     mode.setTitle("1");
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+      requireActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
     }
 
     return true;
@@ -441,8 +441,8 @@ public class ConversationListFragment extends Fragment
     getListAdapter().initializeBatchMode(false);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
-      getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
+      TypedArray color = requireActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
+      requireActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
       color.recycle();
     }
 
@@ -518,8 +518,8 @@ public class ConversationListFragment extends Fragment
 
             if (unreadCount > 0) {
               List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
-              MessageNotifier.updateNotification(getActivity());
-              MarkReadReceiver.process(getActivity(), messageIds);
+              MessageNotifier.updateNotification(requireActivity());
+              MarkReadReceiver.process(requireActivity(), messageIds);
             }
           }
 
@@ -529,7 +529,7 @@ public class ConversationListFragment extends Fragment
 
             if (unreadCount > 0) {
               DatabaseFactory.getThreadDatabase(getActivity()).incrementUnread(threadId, unreadCount);
-              MessageNotifier.updateNotification(getActivity());
+              MessageNotifier.updateNotification(requireActivity());
             }
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);

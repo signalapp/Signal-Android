@@ -31,11 +31,11 @@ public class PlayServicesProblemFragment extends DialogFragment {
 
   @Override
   public @NonNull Dialog onCreateDialog(@NonNull Bundle bundle) {
-    int    code   = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
+    int    code   = GooglePlayServicesUtil.isGooglePlayServicesAvailable(requireActivity());
     Dialog dialog = GooglePlayServicesUtil.getErrorDialog(code, getActivity(), 9111);
 
     if (dialog == null) {
-      return new AlertDialog.Builder(getActivity())
+      return new AlertDialog.Builder(requireActivity())
               .setNegativeButton(android.R.string.ok, null)
               .setMessage(R.string.PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning)
               .create();

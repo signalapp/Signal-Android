@@ -110,9 +110,9 @@ public class ContactSelectionListFragment extends    Fragment
                  }
                })
                .onAnyDenied(() -> {
-                 getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                 requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-                 if (getActivity().getIntent().getBooleanExtra(RECENTS, false)) {
+                 if (requireActivity().getIntent().getBooleanExtra(RECENTS, false)) {
                    getLoaderManager().initLoader(0, null, ContactSelectionListFragment.this);
                  } else {
                    initializeNoContactsPermission();
@@ -135,7 +135,7 @@ public class ContactSelectionListFragment extends    Fragment
     showContactsProgress    = view.findViewById(R.id.progress);
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-    swipeRefresh.setEnabled(getActivity().getIntent().getBooleanExtra(REFRESHABLE, true) &&
+    swipeRefresh.setEnabled(requireActivity().getIntent().getBooleanExtra(REFRESHABLE, true) &&
                             Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
 
     return view;
@@ -156,11 +156,11 @@ public class ContactSelectionListFragment extends    Fragment
   }
 
   private boolean isMulti() {
-    return getActivity().getIntent().getBooleanExtra(MULTI_SELECT, false);
+    return requireActivity().getIntent().getBooleanExtra(MULTI_SELECT, false);
   }
 
   private void initializeCursor() {
-    ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(getActivity(),
+    ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(requireActivity(),
                                                                           GlideApp.with(this),
                                                                           null,
                                                                           new ListClickListener(),
@@ -216,9 +216,9 @@ public class ContactSelectionListFragment extends    Fragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new ContactsCursorLoader(getActivity(),
-                                    getActivity().getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL),
-                                    cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false));
+    return new ContactsCursorLoader(requireActivity(),
+                                    requireActivity().getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL),
+                                    cursorFilter, requireActivity().getIntent().getBooleanExtra(RECENTS, false));
   }
 
   @Override
@@ -258,7 +258,7 @@ public class ContactSelectionListFragment extends    Fragment
       @Override
       protected Boolean doInBackground(Void... voids) {
         try {
-          DirectoryHelper.refreshDirectory(getContext(), false);
+          DirectoryHelper.refreshDirectory(requireContext(), false);
           return true;
         } catch (IOException e) {
           Log.w(TAG, e);

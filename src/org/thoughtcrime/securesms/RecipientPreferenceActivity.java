@@ -260,7 +260,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       initializeRecipients();
 
-      this.canHaveSafetyNumber = getActivity().getIntent()
+      this.canHaveSafetyNumber = requireActivity().getIntent()
                                  .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA, false);
 
       Preference customNotificationsPref  = this.findPreference(PREFERENCE_CUSTOM_NOTIFICATIONS);
@@ -273,7 +273,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         this.findPreference(PREFERENCE_MESSAGE_VIBRATE).setDependency(PREFERENCE_CUSTOM_NOTIFICATIONS);
 
         if (recipient.getNotificationChannel() != null) {
-          final Context context = getContext();
+          final Context context = requireContext();
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -347,7 +347,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     private void initializeRecipients() {
-      this.recipient = Recipient.from(getActivity(), getArguments().getParcelable(ADDRESS_EXTRA), true);
+      this.recipient = Recipient.from(requireActivity(), getArguments().getParcelable(ADDRESS_EXTRA), true);
       this.recipient.addListener(this);
     }
 
@@ -368,11 +368,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       mutePreference.setChecked(recipient.isMuted());
 
-      ringtoneMessagePreference.setSummary(ringtoneMessagePreference.isEnabled() ? getRingtoneSummary(getContext(), recipient.getMessageRingtone()) : "");
-      ringtoneCallPreference.setSummary(getRingtoneSummary(getContext(), recipient.getCallRingtone()));
+      ringtoneMessagePreference.setSummary(ringtoneMessagePreference.isEnabled() ? getRingtoneSummary(requireContext(), recipient.getMessageRingtone()) : "");
+      ringtoneCallPreference.setSummary(getRingtoneSummary(requireContext(), recipient.getCallRingtone()));
 
-      Pair<String, Integer> vibrateMessageSummary = getVibrateSummary(getContext(), recipient.getMessageVibrate());
-      Pair<String, Integer> vibrateCallSummary    = getVibrateSummary(getContext(), recipient.getCallVibrate());
+      Pair<String, Integer> vibrateMessageSummary = getVibrateSummary(requireContext(), recipient.getMessageVibrate());
+      Pair<String, Integer> vibrateCallSummary    = getVibrateSummary(requireContext(), recipient.getCallVibrate());
 
       vibrateMessagePreference.setSummary(vibrateMessagePreference.isEnabled() ? vibrateMessageSummary.first : "");
       vibrateMessagePreference.setValueIndex(vibrateMessageSummary.second);
@@ -386,8 +386,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (aboutCategory      != null) getPreferenceScreen().removePreference(aboutCategory);
         if (aboutDivider       != null) getPreferenceScreen().removePreference(aboutDivider);
       } else {
-        colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
-        colorPreference.setColor(recipient.getColor().toActionBarColor(getActivity()));
+        colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(requireActivity()));
+        colorPreference.setColor(recipient.getColor().toActionBarColor(requireActivity()));
 
         aboutPreference.setTitle(formatAddress(recipient.getAddress()));
         aboutPreference.setSummary(recipient.getCustomLabel());
@@ -753,12 +753,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       @Override
       public void onMessageClicked() {
-        CommunicationActions.startConversation(getContext(), recipient, null);
+        CommunicationActions.startConversation(requireContext(), recipient, null);
       }
 
       @Override
       public void onSecureCallClicked() {
-        CommunicationActions.startVoiceCall(getActivity(), recipient);
+        CommunicationActions.startVoiceCall(requireActivity(), recipient);
       }
 
       @Override

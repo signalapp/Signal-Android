@@ -248,7 +248,7 @@ public class SubmitLogFragment extends Fragment {
 
   private void handleShowChooserForIntent(final Intent intent, String chooserTitle) {
     final AlertDialog.Builder    builder = new AlertDialog.Builder(getActivity());
-    final ShareIntentListAdapter adapter = ShareIntentListAdapter.getAdapterForIntent(getActivity(), intent);
+    final ShareIntentListAdapter adapter = ShareIntentListAdapter.getAdapterForIntent(requireActivity(), intent);
 
     builder.setTitle(chooserTitle)
            .setAdapter(adapter, new DialogInterface.OnClickListener() {
@@ -289,7 +289,7 @@ public class SubmitLogFragment extends Fragment {
       public boolean onLongClick(View v) {
         @SuppressWarnings("deprecation")
         ClipboardManager manager =
-            (ClipboardManager) getActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
+            (ClipboardManager) requireActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
         manager.setText(logUrl);
         Toast.makeText(getActivity(),
                        R.string.log_submit_activity__copied_to_clipboard,

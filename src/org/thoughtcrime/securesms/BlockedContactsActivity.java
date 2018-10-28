@@ -74,7 +74,7 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onCreate(Bundle bundle) {
       super.onCreate(bundle);
-      setListAdapter(new BlockedContactAdapter(getActivity(), GlideApp.with(this), null));
+      setListAdapter(new BlockedContactAdapter(requireActivity(), GlideApp.with(this), null));
       getLoaderManager().initLoader(0, null, this);
     }
 

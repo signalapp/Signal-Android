@@ -123,8 +123,8 @@ public class DeviceListFragment extends ListFragment
     final String deviceName = ((DeviceListItem)view).getDeviceName();
     final long   deviceId   = ((DeviceListItem)view).getDeviceId();
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
+    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+    builder.setTitle(getString(R.string.DeviceListActivity_unlink_s, deviceName));
     builder.setMessage(R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive);
     builder.setNegativeButton(android.R.string.cancel, null);
     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -137,7 +137,7 @@ public class DeviceListFragment extends ListFragment
   }
 
   private void handleLoaderFailed() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
     builder.setMessage(R.string.DeviceListActivity_network_connection_failed);
     builder.setPositiveButton(R.string.DeviceListActivity_try_again,
                               new DialogInterface.OnClickListener() {
@@ -150,13 +150,13 @@ public class DeviceListFragment extends ListFragment
     builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        DeviceListFragment.this.getActivity().onBackPressed();
+        DeviceListFragment.this.requireActivity().onBackPressed();
       }
     });
     builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
       @Override
       public void onCancel(DialogInterface dialog) {
-        DeviceListFragment.this.getActivity().onBackPressed();
+        DeviceListFragment.this.requireActivity().onBackPressed();
       }
     });
 

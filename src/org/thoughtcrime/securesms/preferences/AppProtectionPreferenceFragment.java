@@ -175,7 +175,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
-      ApplicationContext.getInstance(getContext())
+      ApplicationContext.getInstance(requireContext())
                         .getJobManager()
                         .add(new MultiDeviceReadReceiptUpdateJob(getContext(), enabled));
 
@@ -208,7 +208,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      if (MasterSecretUtil.isPassphraseInitialized(getActivity())) {
+      if (MasterSecretUtil.isPassphraseInitialized(requireActivity())) {
         startActivity(new Intent(getActivity(), PassphraseChangeActivity.class));
       } else {
         Toast.makeText(getActivity(),
@@ -224,7 +224,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      new TimeDurationPickerDialog(getContext(), (view, duration) -> {
+      new TimeDurationPickerDialog(requireContext(), (view, duration) -> {
         int timeoutMinutes = Math.max((int)TimeUnit.MILLISECONDS.toMinutes(duration), 1);
 
         TextSecurePreferences.setPassphraseTimeoutInterval(getActivity(), timeoutMinutes);
@@ -242,13 +242,13 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_passphrase);
         builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications);
         builder.setIconAttribute(R.attr.dialog_alert_icon);
         builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, (dialog, which) -> {
           MasterSecretUtil.changeMasterSecretPassphrase(getActivity(),
-                                                        KeyCachingService.getMasterSecret(getContext()),
+                                                        KeyCachingService.getMasterSecret(requireContext()),
                                                         MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
 
           TextSecurePreferences.setPasswordDisabled(getActivity(), true);
@@ -256,7 +256,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
           Intent intent = new Intent(getActivity(), KeyCachingService.class);
           intent.setAction(KeyCachingService.DISABLE_ACTION);
-          getActivity().startService(intent);
+          requireActivity().startService(intent);
 
           initializeVisibility();
         });

@@ -47,7 +47,7 @@ public abstract class CorrectedPreferenceFragment extends PreferenceFragmentComp
 
     if (dialogFragment != null) {
       dialogFragment.setTargetFragment(this, 0);
-      dialogFragment.show(getFragmentManager(), "android.support.v7.preference.PreferenceFragment.DIALOG");
+      dialogFragment.show(requireFragmentManager(), "android.support.v7.preference.PreferenceFragment.DIALOG");
     } else {
       super.onDisplayPreferenceDialog(preference);
     }

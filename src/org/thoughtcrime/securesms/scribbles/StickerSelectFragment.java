@@ -83,7 +83,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
 
   @Override
   public void onLoadFinished(Loader<String[]> loader, String[] data) {
-    recyclerView.setAdapter(new StickersAdapter(getActivity(), glideRequests, data));
+    recyclerView.setAdapter(new StickersAdapter(requireActivity(), glideRequests, data));
   }
 
   @Override
