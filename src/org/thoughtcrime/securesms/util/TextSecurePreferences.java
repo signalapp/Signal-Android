@@ -354,11 +354,11 @@ public class TextSecurePreferences {
   }
 
   public static int getNotificationPriority(Context context) {
-    return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
+    return Integer.parseInt(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
   }
 
   public static int getMessageBodyTextSize(Context context) {
-    return Integer.valueOf(getStringPreference(context, MESSAGE_BODY_TEXT_SIZE_PREF, "16"));
+    return Integer.parseInt(getStringPreference(context, MESSAGE_BODY_TEXT_SIZE_PREF, "16"));
   }
 
   public static boolean isTurnOnly(Context context) {
