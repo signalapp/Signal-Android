@@ -193,7 +193,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
       builder.setContentText(getApplicationContext().getString(R.string.MessageRetrievalService_background_connection_enabled));
       builder.setPriority(NotificationCompat.PRIORITY_MIN);
       builder.setWhen(0);
-      builder.setSmallIcon(R.drawable.ic_signal_grey_24dp);
+      builder.setSmallIcon(R.drawable.ic_signal_background_connection);
       startForeground(FOREGROUND_ID, builder.build());
 
       return Service.START_STICKY;
