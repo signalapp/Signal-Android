@@ -29,9 +29,7 @@ public class OrderEnforcer<E> {
   public synchronized void markCompleted(@NonNull E stage) {
     stages.get(stage).setCompleted(true);
 
-    for (E s : stages.keySet()) {
-      StageDetails details = stages.get(s);
-
+    for (StageDetails details : stages.values()) {
       if (details.isCompleted()) {
         for (Runnable r : details.getActions()) {
           r.run();
