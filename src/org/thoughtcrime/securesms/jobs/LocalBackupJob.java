@@ -63,7 +63,8 @@ public class LocalBackupJob extends ContextJob {
 
     GenericForegroundService.startForegroundTask(context,
                                                  context.getString(R.string.LocalBackupJob_creating_backup),
-                                                 NotificationChannels.BACKUPS);
+                                                 NotificationChannels.BACKUPS,
+                                                 R.drawable.ic_signal_backup);
 
     try {
       String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);
