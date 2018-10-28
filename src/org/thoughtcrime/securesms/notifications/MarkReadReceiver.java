@@ -83,12 +83,12 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                                          .map(MarkedMessageInfo::getSyncMessageId)
                                                          .collect(Collectors.groupingBy(SyncMessageId::getAddress));
 
-    for (Address address : addressMap.keySet()) {
-      List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
+    for (Map.Entry<Address, List<SyncMessageId>> entry : addressMap.entrySet()) {
+      List<Long> timestamps = Stream.of(entry.getValue()).map(SyncMessageId::getTimetamp).toList();
 
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new SendReadReceiptJob(context, address, timestamps));
+                        .add(new SendReadReceiptJob(context, entry.getKey(), timestamps));
     }
   }
 

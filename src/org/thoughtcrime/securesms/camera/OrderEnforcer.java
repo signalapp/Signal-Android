@@ -49,10 +49,10 @@ public class OrderEnforcer<E> {
   }
 
   private boolean isCompletedThrough(@NonNull E stage) {
-    for (E s : stages.keySet()) {
-      if (s.equals(stage)) {
-        return stages.get(s).isCompleted();
-      } else if (!stages.get(s).isCompleted()) {
+    for (Map.Entry<E, StageDetails> entry : stages.entrySet()) {
+      if (entry.getKey().equals(stage)) {
+        return entry.getValue().isCompleted();
+      } else if (!entry.getValue().isCompleted()) {
         return false;
       }
     }
