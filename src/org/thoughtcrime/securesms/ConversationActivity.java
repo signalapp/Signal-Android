@@ -104,6 +104,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
+import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
@@ -253,6 +254,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected Stub<ReminderView>          reminderView;
   private   Stub<UnverifiedBannerView>  unverifiedBannerView;
   private   Stub<GroupShareProfileView> groupShareProfileView;
+  private   TypingStatusTextWatcher     typingTextWatcher;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
@@ -308,8 +310,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         initializeProfiles();
         initializeDraft().addListener(new AssertedSuccessListener<Boolean>() {
           @Override
-          public void onSuccess(Boolean result) {
-            if (result != null && result) {
+          public void onSuccess(Boolean loadedDraft) {
+            if (loadedDraft != null && loadedDraft) {
               Log.i(TAG, "Finished loading draft");
               Util.runOnMain(() -> {
                 if (fragment != null && fragment.isResumed()) {
@@ -318,6 +320,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                   Log.w(TAG, "Wanted to move to the last seen position, but the fragment was in an invalid state");
                 }
               });
+            }
+
+            if (TextSecurePreferences.isTypingIndicatorsEnabled(ConversationActivity.this)) {
+              composeText.addTextChangedListener(typingTextWatcher);
             }
           }
         });
@@ -337,7 +343,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
       saveDraft();
       attachmentManager.clear(glideRequests, false);
-      composeText.setText("");
+      silentlySetComposeText("");
     }
 
     setIntent(intent);
@@ -1132,6 +1138,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       protected void onPostExecute(List<Draft> drafts) {
+        if (drafts.isEmpty()) {
+          future.set(false);
+          updateToggleButtonState();
+          return;
+        }
+
         AtomicInteger                      draftsRemaining = new AtomicInteger(drafts.size());
         AtomicBoolean                      success         = new AtomicBoolean(false);
         ListenableFuture.Listener<Boolean> listener        = new AssertedSuccessListener<Boolean>() {
@@ -1381,6 +1393,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachmentTypeSelector = null;
     attachmentManager      = new AttachmentManager(this, this);
     audioRecorder          = new AudioRecorder(this);
+    typingTextWatcher      = new TypingStatusTextWatcher();
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -1851,6 +1864,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (isSecureText && !forceSms) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessageCandidate);
+      ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
     } else {
       outgoingMessage = outgoingMessageCandidate;
     }
@@ -1862,7 +1876,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                .onAllGranted(() -> {
                  inputPanel.clearQuote();
                  attachmentManager.clear(glideRequests, false);
-                 composeText.setText("");
+                 silentlySetComposeText("");
                  final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
                  new AsyncTask<Void, Void, Long>() {
@@ -1898,6 +1912,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (isSecureText && !forceSms) {
       message = new OutgoingEncryptedMessage(recipient, messageBody, expiresIn);
+      ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
     } else {
       message = new OutgoingTextMessage(recipient, messageBody, expiresIn, subscriptionId);
     }
@@ -1907,7 +1922,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                .ifNecessary(forceSms || !isSecureText)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms))
                .onAllGranted(() -> {
-                 this.composeText.setText("");
+                 silentlySetComposeText("");
                  final long id = fragment.stageOutgoingMessage(message);
 
                  new AsyncTask<OutgoingTextMessage, Void, Long>() {
@@ -2107,6 +2122,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private void silentlySetComposeText(String text) {
+    typingTextWatcher.setEnabled(false);
+    composeText.setText(text);
+    typingTextWatcher.setEnabled(true);
+  }
 
   // Listeners
 
@@ -2215,6 +2235,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {}
+  }
+
+  private class TypingStatusTextWatcher extends SimpleTextWatcher {
+
+    private boolean enabled = true;
+
+    @Override
+    public void onTextChanged(String text) {
+      if (enabled && threadId > 0 && isSecureText && !isSmsForced()) {
+        ApplicationContext.getInstance(ConversationActivity.this).getTypingStatusSender().onTypingStarted(threadId);
+      }
+    }
+
+    public void setEnabled(boolean enabled) {
+      this.enabled = enabled;
+    }
   }
 
   @Override

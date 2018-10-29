@@ -68,6 +68,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -130,6 +131,10 @@ public class Util {
 
   public static boolean isEmpty(ComposeText value) {
     return value == null || value.getText() == null || TextUtils.isEmpty(value.getTextTrimmed());
+  }
+
+  public static <K, V> V getOrDefault(@NonNull Map<K, V> map, K key, V defaultValue) {
+    return map.containsKey(key) ? map.get(key) : defaultValue;
   }
 
   public static CharSequence getBoldedString(String value) {
@@ -395,6 +400,10 @@ public class Util {
 
   public static void runOnMainDelayed(final @NonNull Runnable runnable, long delayMillis) {
     handler.postDelayed(runnable, delayMillis);
+  }
+
+  public static void cancelRunnableOnMain(@NonNull Runnable runnable) {
+    handler.removeCallbacks(runnable);
   }
 
   public static void runOnMainSync(final @NonNull Runnable runnable) {

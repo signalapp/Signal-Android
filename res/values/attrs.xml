@@ -15,6 +15,7 @@
     <attr name="conversation_list_item_unread_background" format="reference"/>
     <attr name="conversation_list_item_divider" format="reference"/>
     <attr name="conversation_list_toolbar_background" format="reference"/>
+    <attr name="conversation_list_typing_tint" format="color"/>
 
     <attr name="conversation_sent_card_background" format="reference|color"/>
     <attr name="conversation_group_member_name" format="reference|color"/>
@@ -293,6 +294,10 @@
         <attr name="conversationThumbnail_maxWidth" format="dimension" />
         <attr name="conversationThumbnail_minHeight" format="dimension" />
         <attr name="conversationThumbnail_maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TypingIndicatorView">
+        <attr name="typingIndicator_tint" format="color" />
     </declare-styleable>
 
 </resources>

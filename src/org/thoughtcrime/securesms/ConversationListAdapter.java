@@ -59,6 +59,7 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
 
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
+  private final Set<Long> typingSet = new HashSet<>();
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationListItem> ViewHolder(final @NonNull V itemView)
@@ -76,6 +77,11 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
     ThreadRecord  record  = getThreadRecord(cursor);
 
     return Conversions.byteArrayToLong(digest.digest(record.getRecipient().getAddress().serialize().getBytes()));
+  }
+
+  @Override
+  protected long getFastAccessItemId(int position) {
+    return super.getFastAccessItemId(position);
   }
 
   ConversationListAdapter(@NonNull Context context,
@@ -135,7 +141,7 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    viewHolder.getItem().bind(getThreadRecord(cursor), glideRequests, locale, batchSet, batchMode);
+    viewHolder.getItem().bind(getThreadRecord(cursor), glideRequests, locale, typingSet, batchSet, batchMode);
   }
 
   @Override
@@ -149,6 +155,12 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
     } else {
       return MESSAGE_TYPE_THREAD;
     }
+  }
+
+  public void setTypingThreads(@NonNull Set<Long> threadsIds) {
+    typingSet.clear();
+    typingSet.addAll(threadsIds);
+    notifyDataSetChanged();
   }
 
   private ThreadRecord getThreadRecord(@NonNull Cursor cursor) {

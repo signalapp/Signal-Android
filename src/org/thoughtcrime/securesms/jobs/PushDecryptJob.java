@@ -83,6 +83,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
@@ -268,6 +269,8 @@ public class PushDecryptJob extends ContextJob {
 
         if      (message.isReadReceipt())     handleReadReceipt(content, message);
         else if (message.isDeliveryReceipt()) handleDeliveryReceipt(content, message);
+      } else if (content.getTypingMessage().isPresent()) {
+        handleTypingMessage(content, content.getTypingMessage().get());
       } else {
         Log.w(TAG, "Got unrecognized message...");
       }
@@ -576,6 +579,7 @@ public class PushDecryptJob extends ContextJob {
                         .getJobManager()
                         .add(new MultiDeviceConfigurationUpdateJob(getContext(),
                                                                    TextSecurePreferences.isReadReceiptsEnabled(getContext()),
+                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
                                                                    TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
     }
   }
@@ -609,6 +613,8 @@ public class PushDecryptJob extends ContextJob {
                                   @NonNull Optional<Long> smsMessageId)
       throws StorageFailedException
   {
+    notifyTypingStoppedFromIncomingMessage(getMessageDestination(content, message), content.getSender(), content.getSenderDevice());
+
     try {
       MmsDatabase             database       = DatabaseFactory.getMmsDatabase(context);
       Optional<QuoteModel>    quote          = getValidatedQuote(message.getQuote());
@@ -735,6 +741,8 @@ public class PushDecryptJob extends ContextJob {
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
       threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second;
     } else {
+      notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
+
       IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromExternal(context, content.getSender()),
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
@@ -938,6 +946,40 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
+  private void handleTypingMessage(@NonNull SignalServiceContent content,
+                                   @NonNull SignalServiceTypingMessage typingMessage)
+  {
+    if (!TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
+      return;
+    }
+
+    Recipient author = Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+
+    long threadId;
+
+    if (typingMessage.getGroupId().isPresent()) {
+      Address   groupAddress   = Address.fromExternal(context, GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
+      Recipient groupRecipient = Recipient.from(context, groupAddress, false);
+
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    } else {
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(author);
+    }
+
+    if (threadId <= 0) {
+      Log.w(TAG, "Couldn't find a matching thread for a typing message.");
+      return;
+    }
+
+    if (typingMessage.isTypingStarted()) {
+      Log.d(TAG, "Typing started on thread " + threadId);
+      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStarted(threadId, author, content.getSenderDevice());
+    } else {
+      Log.d(TAG, "Typing stopped on thread " + threadId);
+      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(threadId, author, content.getSenderDevice(), false);
+    }
+  }
+
   private Optional<QuoteModel> getValidatedQuote(Optional<SignalServiceDataMessage.Quote> quote) {
     if (!quote.isPresent()) return Optional.absent();
 
@@ -1009,6 +1051,16 @@ public class PushDecryptJob extends ContextJob {
       return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
     } else {
       return Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+    }
+  }
+
+  private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient conversationRecipient, @NonNull String sender, int device) {
+    Recipient author   = Recipient.from(context, Address.fromExternal(context, sender), false);
+    long      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(conversationRecipient);
+
+    if (threadId > 0) {
+      Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");
+      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(threadId, author, device, true);
     }
   }
 

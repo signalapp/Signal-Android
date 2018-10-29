@@ -163,7 +163,7 @@ class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.Search
               @NonNull  Locale        locale,
               @Nullable String        query)
     {
-      root.bind(conversationResult, glideRequests, locale, Collections.emptySet(), false, query);
+      root.bind(conversationResult, glideRequests, locale, Collections.emptySet(), Collections.emptySet(), false, query);
       root.setOnClickListener(view -> eventListener.onConversationClicked(conversationResult));
     }
 

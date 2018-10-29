@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
+import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.greenrobot.eventbus.EventBus;
@@ -93,7 +94,8 @@ import dagger.Provides;
                                      SendDeliveryReceiptJob.class,
                                      RotateProfileKeyJob.class,
                                      MultiDeviceConfigurationUpdateJob.class,
-                                     RefreshUnidentifiedDeliveryAbilityJob.class})
+                                     RefreshUnidentifiedDeliveryAbilityJob.class,
+                                     TypingSendJob.class})
 public class SignalCommunicationModule {
 
   private static final String TAG = SignalCommunicationModule.class.getSimpleName();

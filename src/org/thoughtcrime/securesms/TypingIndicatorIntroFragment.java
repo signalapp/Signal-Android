@@ -8,20 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class ReadReceiptsIntroFragment extends Fragment {
+public class TypingIndicatorIntroFragment extends Fragment {
 
-  public static ReadReceiptsIntroFragment newInstance() {
-    ReadReceiptsIntroFragment fragment = new ReadReceiptsIntroFragment();
-    Bundle args = new Bundle();
+  public static TypingIndicatorIntroFragment newInstance() {
+    TypingIndicatorIntroFragment fragment = new TypingIndicatorIntroFragment();
+    Bundle                       args     = new Bundle();
     fragment.setArguments(args);
     return fragment;
   }
 
-  public ReadReceiptsIntroFragment() {}
+  public TypingIndicatorIntroFragment() {}
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -30,17 +31,19 @@ public class ReadReceiptsIntroFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View         v          = inflater.inflate(R.layout.experience_upgrade_preference_fragment, container, false);
+    View         v          = inflater.inflate(R.layout.experience_upgrade_typing_indicators_fragment, container, false);
     SwitchCompat preference = ViewUtil.findById(v, R.id.preference);
 
-    preference.setChecked(TextSecurePreferences.isReadReceiptsEnabled(getContext()));
+    ((TypingIndicatorView) v.findViewById(R.id.typing_indicator)).startAnimation();
+
+    preference.setChecked(TextSecurePreferences.isTypingIndicatorsEnabled(getContext()));
     preference.setOnCheckedChangeListener((buttonView, isChecked) -> {
-      TextSecurePreferences.setReadReceiptsEnabled(getContext(), isChecked);
-      ApplicationContext.getInstance(getContext())
+      TextSecurePreferences.setTypingIndicatorsEnabled(getContext(), isChecked);
+      ApplicationContext.getInstance(requireContext())
                         .getJobManager()
                         .add(new MultiDeviceConfigurationUpdateJob(getContext(),
+                                                                   TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
                                                                    isChecked,
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
                                                                    TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
     });
 
