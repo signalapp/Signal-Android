@@ -104,6 +104,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
+import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
@@ -308,8 +309,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         initializeProfiles();
         initializeDraft().addListener(new AssertedSuccessListener<Boolean>() {
           @Override
-          public void onSuccess(Boolean result) {
-            if (result != null && result) {
+          public void onSuccess(Boolean loadedDraft) {
+            if (loadedDraft != null && loadedDraft) {
               Log.i(TAG, "Finished loading draft");
               Util.runOnMain(() -> {
                 if (fragment != null && fragment.isResumed()) {
@@ -319,6 +320,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 }
               });
             }
+
+            composeText.addTextChangedListener(new TypingStatusTextWatcher());
           }
         });
       }
@@ -1132,6 +1135,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       protected void onPostExecute(List<Draft> drafts) {
+        if (drafts.isEmpty()) {
+          future.set(false);
+          updateToggleButtonState();
+          return;
+        }
+
         AtomicInteger                      draftsRemaining = new AtomicInteger(drafts.size());
         AtomicBoolean                      success         = new AtomicBoolean(false);
         ListenableFuture.Listener<Boolean> listener        = new AssertedSuccessListener<Boolean>() {
@@ -1851,6 +1860,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (isSecureText && !forceSms) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessageCandidate);
+      ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
     } else {
       outgoingMessage = outgoingMessageCandidate;
     }
@@ -1898,6 +1908,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (isSecureText && !forceSms) {
       message = new OutgoingEncryptedMessage(recipient, messageBody, expiresIn);
+      ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
     } else {
       message = new OutgoingTextMessage(recipient, messageBody, expiresIn, subscriptionId);
     }
@@ -2215,6 +2226,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {}
+  }
+
+  private class TypingStatusTextWatcher extends SimpleTextWatcher {
+
+    @Override
+    public void onTextChanged(String text) {
+      if (composeText.getTextTrimmed().length() > 0 && threadId > 0 && isSecureText && !isSmsForced()) {
+        ApplicationContext.getInstance(ConversationActivity.this).getTypingStatusSender().onTypingStarted(threadId);
+      }
+    }
   }
 
   @Override

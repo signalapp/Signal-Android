@@ -30,36 +30,41 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
   private static final String TAG = MultiDeviceConfigurationUpdateJob.class.getSimpleName();
 
   private static final String KEY_READ_RECEIPTS_ENABLED                    = "read_receipts_enabled";
+  private static final String KEY_TYPING_INDICATORS_ENABLED                = "typing_indicators_enabled";
   private static final String KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED = "unidentified_delivery_indicators_enabled";
 
   @Inject transient SignalServiceMessageSender messageSender;
 
   private boolean readReceiptsEnabled;
+  private boolean typingIndicatorsEnabled;
   private boolean unidentifiedDeliveryIndicatorsEnabled;
 
   public MultiDeviceConfigurationUpdateJob() {
     super(null, null);
   }
 
-  public MultiDeviceConfigurationUpdateJob(Context context, boolean readReceiptsEnabled, boolean unidentifiedDeliveryIndicatorsEnabled) {
+  public MultiDeviceConfigurationUpdateJob(Context context, boolean readReceiptsEnabled, boolean typingIndicatorsEnabled, boolean unidentifiedDeliveryIndicatorsEnabled) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId("__MULTI_DEVICE_CONFIGURATION_UPDATE_JOB__")
                                 .withNetworkRequirement()
                                 .create());
 
     this.readReceiptsEnabled                   = readReceiptsEnabled;
+    this.typingIndicatorsEnabled               = typingIndicatorsEnabled;
     this.unidentifiedDeliveryIndicatorsEnabled = unidentifiedDeliveryIndicatorsEnabled;
   }
 
   @Override
   protected void initialize(@NonNull SafeData data) {
     readReceiptsEnabled                   = data.getBoolean(KEY_READ_RECEIPTS_ENABLED);
+    typingIndicatorsEnabled               = data.getBoolean(KEY_TYPING_INDICATORS_ENABLED);
     unidentifiedDeliveryIndicatorsEnabled = data.getBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED);
   }
 
   @Override
   protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
     return dataBuilder.putBoolean(KEY_READ_RECEIPTS_ENABLED, readReceiptsEnabled)
+                      .putBoolean(KEY_TYPING_INDICATORS_ENABLED, typingIndicatorsEnabled)
                       .putBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED, unidentifiedDeliveryIndicatorsEnabled)
                       .build();
   }
@@ -71,7 +76,9 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
       return;
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled), Optional.of(unidentifiedDeliveryIndicatorsEnabled), Optional.absent())),
+    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
+                                                                                                 Optional.of(unidentifiedDeliveryIndicatorsEnabled),
+                                                                                                 Optional.of(typingIndicatorsEnabled))),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

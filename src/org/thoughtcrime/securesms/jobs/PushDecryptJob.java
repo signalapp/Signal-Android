@@ -83,6 +83,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
@@ -268,6 +269,8 @@ public class PushDecryptJob extends ContextJob {
 
         if      (message.isReadReceipt())     handleReadReceipt(content, message);
         else if (message.isDeliveryReceipt()) handleDeliveryReceipt(content, message);
+      } else if (content.getTypingMessage().isPresent()) {
+        handleTypingMessage(content, content.getTypingMessage().get());
       } else {
         Log.w(TAG, "Got unrecognized message...");
       }
@@ -576,6 +579,7 @@ public class PushDecryptJob extends ContextJob {
                         .getJobManager()
                         .add(new MultiDeviceConfigurationUpdateJob(getContext(),
                                                                    TextSecurePreferences.isReadReceiptsEnabled(getContext()),
+                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
                                                                    TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
     }
   }
@@ -639,6 +643,9 @@ public class PushDecryptJob extends ContextJob {
         }
 
         MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+
+        Recipient author = Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+        ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(insertResult.get().getThreadId(), author, content.getSenderDevice());
       }
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
@@ -753,6 +760,9 @@ public class PushDecryptJob extends ContextJob {
 
     if (threadId != null) {
       MessageNotifier.updateNotification(context, threadId);
+
+      Recipient author = Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(threadId, author, content.getSenderDevice());
     }
   }
 
@@ -935,6 +945,38 @@ public class PushDecryptJob extends ContextJob {
         DatabaseFactory.getMmsSmsDatabase(context)
                        .incrementReadReceiptCount(new SyncMessageId(Address.fromExternal(context, content.getSender()), timestamp), content.getTimestamp());
       }
+    }
+  }
+
+  private void handleTypingMessage(@NonNull SignalServiceContent content,
+                                   @NonNull SignalServiceTypingMessage typingMessage)
+  {
+    if (!TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
+      return;
+    }
+
+    Recipient author = Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+
+    long threadId;
+
+    if (typingMessage.getGroupId().isPresent()) {
+      Address   groupAddress   = Address.fromExternal(context, GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
+      Recipient groupRecipient = Recipient.from(context, groupAddress, false);
+
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    } else {
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(author);
+    }
+
+    if (threadId <= 0) {
+      Log.w(TAG, "Couldn't find a matching thread for a typing message.");
+      return;
+    }
+
+    if (typingMessage.isTypingStarted()) {
+      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStarted(threadId, author, content.getSenderDevice());
+    } else {
+      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(threadId, author, content.getSenderDevice());
     }
   }
 

@@ -149,6 +149,7 @@ dependencies {
     }
 }
 
+// TODO: Update dependencies after getting final libsignal
 dependencyVerification {
     verify = [
         'com.android.support:design:7874ad1904eedc74aa41cffffb7f759d8990056f3bbbc9264911651c67c42f5f',

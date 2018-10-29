@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -71,18 +72,20 @@ public class ConversationListItem extends RelativeLayout
   private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif-medium", Typeface.NORMAL);
   private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif", Typeface.NORMAL);
 
-  private Set<Long>          selectedThreads;
-  private Recipient          recipient;
-  private long               threadId;
-  private GlideRequests      glideRequests;
-  private TextView           subjectView;
-  private FromTextView       fromView;
-  private TextView           dateView;
-  private TextView           archivedView;
-  private DeliveryStatusView deliveryStatusIndicator;
-  private AlertView          alertView;
-  private TextView           unreadIndicator;
-  private long               lastSeen;
+  private Set<Long>           selectedThreads;
+  private Recipient           recipient;
+  private long                threadId;
+  private GlideRequests       glideRequests;
+  private View                subjectContainer;
+  private TextView            subjectView;
+  private TypingIndicatorView typingView;
+  private FromTextView        fromView;
+  private TextView            dateView;
+  private TextView            archivedView;
+  private DeliveryStatusView  deliveryStatusIndicator;
+  private AlertView           alertView;
+  private TextView            unreadIndicator;
+  private long                lastSeen;
 
   private int             unreadCount;
   private AvatarImageView contactPhotoImage;
@@ -101,7 +104,9 @@ public class ConversationListItem extends RelativeLayout
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
+    this.subjectContainer        = findViewById(R.id.subject_container);
     this.subjectView             = findViewById(R.id.subject);
+    this.typingView              = findViewById(R.id.typing_indicator);
     this.fromView                = findViewById(R.id.from);
     this.dateView                = findViewById(R.id.date);
     this.deliveryStatusIndicator = findViewById(R.id.delivery_status);
@@ -120,15 +125,17 @@ public class ConversationListItem extends RelativeLayout
   public void bind(@NonNull ThreadRecord thread,
                    @NonNull GlideRequests glideRequests,
                    @NonNull Locale locale,
+                   @NonNull Set<Long> typingThreads,
                    @NonNull Set<Long> selectedThreads,
                    boolean batchMode)
   {
-    bind(thread, glideRequests, locale, selectedThreads, batchMode, null);
+    bind(thread, glideRequests, locale, typingThreads, selectedThreads, batchMode, null);
   }
 
   public void bind(@NonNull ThreadRecord thread,
                    @NonNull GlideRequests glideRequests,
                    @NonNull Locale locale,
+                   @NonNull Set<Long> typingThreads,
                    @NonNull Set<Long> selectedThreads,
                    boolean batchMode,
                    @Nullable String highlightSubstring)
@@ -148,10 +155,21 @@ public class ConversationListItem extends RelativeLayout
       this.fromView.setText(recipient, unreadCount == 0);
     }
 
-    this.subjectView.setText(thread.getDisplayBody());
-    this.subjectView.setTypeface(unreadCount == 0 ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
-    this.subjectView.setTextColor(unreadCount == 0 ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_subject_color)
-                                                   : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
+    if (typingThreads.contains(threadId)) {
+      this.subjectView.setVisibility(INVISIBLE);
+
+      this.typingView.setVisibility(VISIBLE);
+      this.typingView.startAnimation();
+    } else {
+      this.typingView.setVisibility(GONE);
+      this.typingView.stopAnimation();
+
+      this.subjectView.setVisibility(VISIBLE);
+      this.subjectView.setText(thread.getDisplayBody());
+      this.subjectView.setTypeface(unreadCount == 0 ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
+      this.subjectView.setTextColor(unreadCount == 0 ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_subject_color)
+                                                     : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
+    }
 
     if (thread.getDate() > 0) {
       CharSequence date = DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, thread.getDate());
@@ -259,22 +277,22 @@ public class ConversationListItem extends RelativeLayout
       this.thumbnailView.setVisibility(View.VISIBLE);
       this.thumbnailView.setImageResource(glideRequests, thread.getSnippetUri());
 
-      LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
+      LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectContainer .getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.thumbnail);
       if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
         subjectParams.addRule(RelativeLayout.START_OF, R.id.thumbnail);
       }
-      this.subjectView.setLayoutParams(subjectParams);
+      this.subjectContainer.setLayoutParams(subjectParams);
       this.post(new ThumbnailPositioner(thumbnailView, archivedView, deliveryStatusIndicator, dateView));
     } else {
       this.thumbnailView.setVisibility(View.GONE);
 
-      LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectView.getLayoutParams();
+      LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectContainer.getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.status);
       if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
         subjectParams.addRule(RelativeLayout.START_OF, R.id.status);
       }
-      this.subjectView.setLayoutParams(subjectParams);
+      this.subjectContainer.setLayoutParams(subjectParams);
     }
   }
 

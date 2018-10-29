@@ -171,6 +171,8 @@ public class TextSecurePreferences {
   public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
   private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
 
+  public static final String TYPING_INDICATORS = "pref_typing_indicators";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -334,6 +336,14 @@ public class TextSecurePreferences {
 
   public static void setReadReceiptsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, READ_RECEIPTS_PREF, enabled);
+  }
+
+  public static boolean isTypingIndicatorsEnabled(Context context) {
+    return getBooleanPreference(context, TYPING_INDICATORS, false);
+  }
+
+  public static void setTypingIndicatorsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, TYPING_INDICATORS, enabled);
   }
 
   public static @Nullable String getProfileKey(Context context) {

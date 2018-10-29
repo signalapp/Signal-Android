@@ -88,21 +88,36 @@
                 android:visibility="gone"
                 tools:visibility="visible"/>
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/subject"
-                android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/subject_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="1dp"
+            android:layout_below="@id/from"
+            android:layout_toRightOf="@id/indicators_parent"
+            android:layout_toEndOf="@id/indicators_parent"
+            android:layout_toLeftOf="@+id/status"
+            android:layout_toStartOf="@+id/status">
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Signal.Text.Preview"
+                    android:textColor="?attr/conversation_list_item_subject_color"
+                    android:maxLines="1"
+                    tools:text="Wheels arrive at 3pm flat. This is a somewhat longer message."
+                    android:ellipsize="end" />
+
+            <org.thoughtcrime.securesms.components.TypingIndicatorView
+                android:id="@+id/typing_indicator"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/from"
-                android:layout_toRightOf="@id/indicators_parent"
-                android:layout_toEndOf="@id/indicators_parent"
-                android:layout_toLeftOf="@+id/status"
-                android:layout_toStartOf="@+id/status"
-                android:paddingRight="1dp"
-                style="@style/Signal.Text.Preview"
-                android:textColor="?attr/conversation_list_item_subject_color"
-                android:maxLines="1"
-                tools:text="Wheels arrive at 3pm flat. This is a somewhat longer message."
-                android:ellipsize="end" />
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                app:typingIndicator_tint="?conversation_list_typing_tint"/>
+
+        </FrameLayout>
 
         <org.thoughtcrime.securesms.components.ThumbnailView
                 android:id="@+id/thumbnail"

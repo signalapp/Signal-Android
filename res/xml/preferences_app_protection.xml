@@ -63,6 +63,12 @@
                 android:title="@string/preferences__read_receipts"
                 android:summary="@string/preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts"/>
 
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_typing_indicators"
+            android:title="@string/preferences__typing_indicators"
+            android:summary="@string/preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators"/>
+
         <Preference android:key="preference_category_blocked"
                     android:title="@string/preferences_app_protection__blocked_contacts" />
     </PreferenceCategory>
