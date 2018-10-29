@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import androidx.work.Data;
@@ -25,6 +27,8 @@ public abstract class Job extends Worker implements Serializable {
   private static final long serialVersionUID = -4658540468214421276L;
 
   private static final String TAG = Job.class.getSimpleName();
+
+  private static final WorkLockManager WORK_LOCK_MANAGER = new WorkLockManager();
 
   static final String KEY_RETRY_COUNT            = "Job_retry_count";
   static final String KEY_RETRY_UNTIL            = "Job_retry_until";
@@ -46,12 +50,28 @@ public abstract class Job extends Worker implements Serializable {
     this.parameters = parameters;
   }
 
-  @NonNull
   @Override
-  public Result doWork() {
+  public @NonNull Result doWork() {
+    log("doWork()" + logSuffix());
+
+    try (WorkLockManager.WorkLock workLock = WORK_LOCK_MANAGER.acquire(getId())) {
+      Result result = workLock.getResult();
+
+      if (result == null) {
+        result = doWorkInternal();
+        workLock.setResult(result);
+      } else {
+        log("Using result from preempted run (" + result + ")." + logSuffix());
+      }
+
+      return result;
+    }
+  }
+
+  private @NonNull Result doWorkInternal() {
     Data data = getInputData();
 
-    log("doWork()" + logSuffix());
+    log("doWorkInternal()" + logSuffix());
 
     ApplicationContext.getInstance(getApplicationContext()).injectDependencies(this);
 
@@ -104,6 +124,8 @@ public abstract class Job extends Worker implements Serializable {
     if (cancelled) {
       warn("onStopped() with cancellation signal." + logSuffix());
       onCanceled();
+    } else {
+      log("onStopped()" + logSuffix());
     }
   }
 
@@ -242,6 +264,7 @@ public abstract class Job extends Worker implements Serializable {
 
   private String logSuffix() {
     long timeSinceSubmission = System.currentTimeMillis() - getInputData().getLong(KEY_SUBMIT_TIME, 0);
-    return " (Time since submission: " + timeSinceSubmission + " ms, Run attempt: " + getRunAttemptCount() + ")";
+    return " (Time since submission: " + timeSinceSubmission + " ms, Run attempt: " + getRunAttemptCount() + ", isStopped: " + isStopped() + ")";
   }
+
 }
