@@ -81,15 +81,20 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     try {
       Log.i(TAG, "Sending message: " + messageId);
 
+      Recipient              recipient  = record.getRecipient().resolve();
+      byte[]                 profileKey = recipient.getProfileKey();
+      UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
+
       boolean unidentified = deliver(record);
+
       database.markAsSent(messageId, true);
       database.markUnidentified(messageId, unidentified);
 
       if (TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
-        Recipient              recipient  = record.getRecipient().resolve();
-        UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
-
-        if (unidentified && (accessMode == UnidentifiedAccessMode.UNKNOWN || accessMode == UnidentifiedAccessMode.DISABLED)) {
+        if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
+          Log.i(TAG, "Marking recipient as UD-unrestricted following a UD send.");
+          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.UNRESTRICTED);
+        } else if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN) {
           Log.i(TAG, "Marking recipient as UD-enabled following a UD send.");
           DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.ENABLED);
         } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {

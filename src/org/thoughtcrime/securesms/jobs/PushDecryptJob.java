@@ -900,6 +900,7 @@ public class PushDecryptJob extends ContextJob {
 
     if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
       database.setProfileKey(recipient, message.getProfileKey().get());
+      database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN);
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(context, recipient));
     }
   }
