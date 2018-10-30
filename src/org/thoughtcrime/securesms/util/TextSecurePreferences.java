@@ -31,6 +31,7 @@ public class TextSecurePreferences {
 
   private static final String TAG = TextSecurePreferences.class.getSimpleName();
 
+  // JW: added: true = passphrase, false = Android lock or fingerprint
   public  static final String PROTECTION_METHOD_PREF           = "pref_signal_protection_method";
   public  static final String IDENTITY_PREF                    = "pref_choose_identity";
   public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
@@ -85,6 +86,7 @@ public class TextSecurePreferences {
   private static final String UPDATE_APK_DOWNLOAD_ID           = "pref_update_apk_download_id";
   private static final String UPDATE_APK_DIGEST                = "pref_update_apk_digest";
   private static final String SIGNED_PREKEY_ROTATION_TIME_PREF = "pref_signed_pre_key_rotation_time";
+
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
   private static final String SHOW_INVITE_REMINDER_PREF        = "pref_show_invite_reminder";
   public  static final String MESSAGE_BODY_TEXT_SIZE_PREF      = "pref_message_body_text_size";
@@ -163,10 +165,20 @@ public class TextSecurePreferences {
   private static final String NOTIFICATION_CHANNEL_VERSION          = "pref_notification_channel_version";
   private static final String NOTIFICATION_MESSAGES_CHANNEL_VERSION = "pref_notification_messages_channel_version";
 
+  private static final String NEEDS_MESSAGE_PULL = "pref_needs_message_pull";
+
+  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time";
+  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE                    = "pref_unidentified_access_certificate";
+  public  static final String UNIVERSAL_UNIDENTIFIED_ACCESS                      = "pref_universal_unidentified_access";
+  public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
+  private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
+
+  // JW: added for PROTECTION_METHOD_PREF
   public static boolean isProtectionMethodPassphrase(@NonNull Context context) {
     return getBooleanPreference(context, PROTECTION_METHOD_PREF, false);
   }
 
+  // JW added
   public static void setProtectionMethod(@NonNull Context context, boolean value) {
     setBooleanPreference(context, PROTECTION_METHOD_PREF, value);
   }
@@ -511,6 +523,47 @@ public class TextSecurePreferences {
 
   public static boolean isInThreadNotifications(Context context) {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
+  }
+
+  public static long getUnidentifiedAccessCertificateRotationTime(Context context) {
+    return getLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, 0L);
+  }
+
+  public static void setUnidentifiedAccessCertificateRotationTime(Context context, long value) {
+    setLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, value);
+  }
+
+  public static void setUnidentifiedAccessCertificate(Context context, byte[] value) {
+    setStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, Base64.encodeBytes(value));
+  }
+
+  public static byte[] getUnidentifiedAccessCertificate(Context context) {
+    try {
+      String result = getStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, null);
+      if (result != null) {
+        return Base64.decode(result);
+      }
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+
+    return null;
+  }
+
+  public static boolean isUniversalUnidentifiedAccess(Context context) {
+    return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false);
+  }
+
+  public static boolean isShowUnidentifiedDeliveryIndicatorsEnabled(Context context) {
+    return getBooleanPreference(context, SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, false);
+  }
+
+  public static void setIsUnidentifiedDeliveryEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, enabled);
+  }
+
+  public static boolean isUnidentifiedDeliveryEnabled(Context context) {
+    return getBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, true);
   }
 
   public static long getSignedPreKeyRotationTime(Context context) {
@@ -924,8 +977,8 @@ public class TextSecurePreferences {
 
   private static @NonNull Set<String> getMediaDownloadAllowed(Context context, String key, @ArrayRes int defaultValuesRes) {
     return getStringSetPreference(context,
-      key,
-      new HashSet<>(Arrays.asList(context.getResources().getStringArray(defaultValuesRes))));
+                                  key,
+                                  new HashSet<>(Arrays.asList(context.getResources().getStringArray(defaultValuesRes))));
   }
 
   public static void setLastOutageCheckTime(Context context, long timestamp) {
@@ -990,6 +1043,14 @@ public class TextSecurePreferences {
 
   public static void setNotificationMessagesChannelVersion(Context context, int version) {
     setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version);
+  }
+
+  public static boolean getNeedsMessagePull(Context context) {
+    return getBooleanPreference(context, NEEDS_MESSAGE_PULL, false);
+  }
+
+  public static void setNeedsMessagePull(Context context, boolean needsMessagePull) {
+    setBooleanPreference(context, NEEDS_MESSAGE_PULL, needsMessagePull);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

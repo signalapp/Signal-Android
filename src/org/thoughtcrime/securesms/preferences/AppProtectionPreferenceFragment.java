@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.Preference;
+import android.view.View;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -20,9 +21,12 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadReceiptUpdateJob;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
@@ -34,7 +38,8 @@ import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
 
 public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment implements InjectableType {
 
-  private static final String PREFERENCE_CATEGORY_BLOCKED = "preference_category_blocked";
+  private static final String PREFERENCE_CATEGORY_BLOCKED        = "preference_category_blocked";
+  private static final String PREFERENCE_UNIDENTIFIED_LEARN_MORE = "pref_unidentified_learn_more";
 
   private CheckBoxPreference protectionMethod;
   private CheckBoxPreference enableScreenLock;
@@ -54,8 +59,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     super.onCreate(paramBundle);
 
     protectionMethod = (CheckBoxPreference) this.findPreference(TextSecurePreferences.PROTECTION_METHOD_PREF);
-    disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
     enableScreenLock = (CheckBoxPreference) this.findPreference(TextSecurePreferences.SCREEN_LOCK);
+    disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
 
     this.findPreference(TextSecurePreferences.REGISTRATION_LOCK_PREF).setOnPreferenceClickListener(new AccountLockClickListener());
     this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
@@ -65,8 +70,11 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF).setOnPreferenceClickListener(new PassphraseIntervalClickListener());
     this.findPreference(TextSecurePreferences.READ_RECEIPTS_PREF).setOnPreferenceChangeListener(new ReadReceiptToggleListener());
     this.findPreference(PREFERENCE_CATEGORY_BLOCKED).setOnPreferenceClickListener(new BlockedContactsClickListener());
+    this.findPreference(TextSecurePreferences.SHOW_UNIDENTIFIED_DELIVERY_INDICATORS).setOnPreferenceChangeListener(new ShowUnidentifiedDeliveryIndicatorsChangedListener());
+    this.findPreference(TextSecurePreferences.UNIVERSAL_UNIDENTIFIED_ACCESS).setOnPreferenceChangeListener(new UniversalUnidentifiedAccessChangedListener());
+    this.findPreference(PREFERENCE_UNIDENTIFIED_LEARN_MORE).setOnPreferenceClickListener(new UnidentifiedLearnMoreClickListener());
     disablePassphrase.setOnPreferenceChangeListener(new DisablePassphraseClickListener());
-    protectionMethod.setOnPreferenceChangeListener(new ProtectionMethodToggleListener());
+    protectionMethod.setOnPreferenceChangeListener(new ProtectionMethodToggleListener()); // JW
 
     initializeVisibility();
   }
@@ -81,35 +89,34 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__privacy);
 
-    if (!TextSecurePreferences.isPasswordDisabled(getContext()))
-      initializePassphraseTimeoutSummary();
-    else initializeScreenLockTimeoutSummary();
+    if (!TextSecurePreferences.isPasswordDisabled(getContext())) initializePassphraseTimeoutSummary();
+    else                                                         initializeScreenLockTimeoutSummary();
 
-    disablePassphrase.setChecked(!TextSecurePreferences.isPasswordDisabled(getContext()));
+    disablePassphrase.setChecked(!TextSecurePreferences.isPasswordDisabled(getActivity()));
     // Set the choice between passphrase and Android screenlock. Because this preference
-    // may be undefined when this version is first ran we also check if there is a passphrase
+    // may be undefined when this fork is first ran we also check if there is a passphrase
     // defined, if so, we assume passphrase protection:
     boolean selectPassphrase = TextSecurePreferences.isProtectionMethodPassphrase(getContext()) ||
       (TextSecurePreferences.getBooleanPreference(getContext(), "pref_enable_passphrase_temporary", false) &&
        !TextSecurePreferences.isPasswordDisabled(getContext()));
-    protectionMethod.setChecked(selectPassphrase);
+    protectionMethod.setChecked(selectPassphrase); // JW
   }
 
   private void initializePassphraseTimeoutSummary() {
-    int timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(getContext());
+    int timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(getActivity());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF)
-      .setSummary(getResources().getQuantityString(R.plurals.AppProtectionPreferenceFragment_minutes, timeoutMinutes, timeoutMinutes));
+        .setSummary(getResources().getQuantityString(R.plurals.AppProtectionPreferenceFragment_minutes, timeoutMinutes, timeoutMinutes));
   }
 
   private void initializeScreenLockTimeoutSummary() {
     long timeoutSeconds = TextSecurePreferences.getScreenLockTimeout(getContext());
-    long hours = TimeUnit.SECONDS.toHours(timeoutSeconds);
-    long minutes = TimeUnit.SECONDS.toMinutes(timeoutSeconds) - (TimeUnit.SECONDS.toHours(timeoutSeconds) * 60);
-    long seconds = TimeUnit.SECONDS.toSeconds(timeoutSeconds) - (TimeUnit.SECONDS.toMinutes(timeoutSeconds) * 60);
+    long hours          = TimeUnit.SECONDS.toHours(timeoutSeconds);
+    long minutes        = TimeUnit.SECONDS.toMinutes(timeoutSeconds) - (TimeUnit.SECONDS.toHours(timeoutSeconds) * 60  );
+    long seconds        = TimeUnit.SECONDS.toSeconds(timeoutSeconds) - (TimeUnit.SECONDS.toMinutes(timeoutSeconds) * 60);
 
     findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT)
-      .setSummary(timeoutSeconds <= 0 ? getString(R.string.AppProtectionPreferenceFragment_none) :
-        String.format("%02d:%02d:%02d", hours, minutes, seconds));
+        .setSummary(timeoutSeconds <= 0 ? getString(R.string.AppProtectionPreferenceFragment_none) :
+                                          String.format("%02d:%02d:%02d", hours, minutes, seconds));
   }
 
   private void initializeVisibility() {
@@ -145,7 +152,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class ScreenLockListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-      boolean enabled = (Boolean) newValue;
+      boolean enabled = (Boolean)newValue;
       TextSecurePreferences.setScreenLockEnabled(getContext(), enabled);
 
       Intent intent = new Intent(getContext(), KeyCachingService.class);
@@ -177,10 +184,10 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class AccountLockClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      if (((SwitchPreferenceCompat) preference).isChecked()) {
-        RegistrationLockDialog.showRegistrationUnlockPrompt(getContext(), (SwitchPreferenceCompat) preference, accountManager);
+      if (((SwitchPreferenceCompat)preference).isChecked()) {
+        RegistrationLockDialog.showRegistrationUnlockPrompt(getContext(), (SwitchPreferenceCompat)preference, accountManager);
       } else {
-        RegistrationLockDialog.showRegistrationLockPrompt(getContext(), (SwitchPreferenceCompat) preference, accountManager);
+        RegistrationLockDialog.showRegistrationLockPrompt(getContext(), (SwitchPreferenceCompat)preference, accountManager);
       }
 
       return true;
@@ -199,19 +206,21 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class ReadReceiptToggleListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-      boolean enabled = (boolean) newValue;
+      boolean enabled = (boolean)newValue;
       ApplicationContext.getInstance(getContext())
-        .getJobManager()
-        .add(new MultiDeviceReadReceiptUpdateJob(getContext(), enabled));
+                        .getJobManager()
+                        .add(new MultiDeviceConfigurationUpdateJob(getContext(),
+                                                                   enabled,
+                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
 
       return true;
     }
   }
 
   public static CharSequence getSummary(Context context) {
-    final int privacySummaryResId = R.string.ApplicationPreferencesActivity_privacy_summary;
-    final String onRes = context.getString(R.string.ApplicationPreferencesActivity_on);
-    final String offRes = context.getString(R.string.ApplicationPreferencesActivity_off);
+    final int    privacySummaryResId = R.string.ApplicationPreferencesActivity_privacy_summary;
+    final String onRes               = context.getString(R.string.ApplicationPreferencesActivity_on);
+    final String offRes              = context.getString(R.string.ApplicationPreferencesActivity_off);
 
     if (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context)) {
       if (TextSecurePreferences.isRegistrationtLockEnabled(context)) {
@@ -228,8 +237,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     }
   }
 
-  // Derecated
-
+  
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
@@ -237,8 +245,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         startActivity(new Intent(getActivity(), PassphraseChangeActivity.class));
       } else {
         Toast.makeText(getActivity(),
-          R.string.ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet,
-          Toast.LENGTH_LONG).show();
+                       R.string.ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet,
+                       Toast.LENGTH_LONG).show();
       }
 
       return true;
@@ -250,7 +258,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceClick(Preference preference) {
       new TimeDurationPickerDialog(getContext(), (view, duration) -> {
-        int timeoutMinutes = Math.max((int) TimeUnit.MILLISECONDS.toMinutes(duration), 1);
+        int timeoutMinutes = Math.max((int)TimeUnit.MILLISECONDS.toMinutes(duration), 1);
 
         TextSecurePreferences.setPassphraseTimeoutInterval(getActivity(), timeoutMinutes);
 
@@ -266,18 +274,18 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
-      if (((CheckBoxPreference) preference).isChecked()) {
+      if (((CheckBoxPreference)preference).isChecked()) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_passphrase);
         builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications);
         builder.setIconAttribute(R.attr.dialog_alert_icon);
         builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, (dialog, which) -> {
           MasterSecretUtil.changeMasterSecretPassphrase(getActivity(),
-            KeyCachingService.getMasterSecret(getContext()),
-            MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+                                                        KeyCachingService.getMasterSecret(getContext()),
+                                                        MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
 
           TextSecurePreferences.setPasswordDisabled(getActivity(), true);
-          ((CheckBoxPreference) preference).setChecked(false);
+          ((CheckBoxPreference)preference).setChecked(false);
 
           Intent intent = new Intent(getActivity(), KeyCachingService.class);
           intent.setAction(KeyCachingService.DISABLE_ACTION);
@@ -331,4 +339,35 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     }
   }
 
+  private class ShowUnidentifiedDeliveryIndicatorsChangedListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      boolean enabled = (boolean) newValue;
+      ApplicationContext.getInstance(getContext())
+          .getJobManager()
+          .add(new MultiDeviceConfigurationUpdateJob(getContext(),
+                                                     TextSecurePreferences.isReadReceiptsEnabled(getContext()),
+                                                     enabled));
+
+      return true;
+    }
+  }
+
+  private class UniversalUnidentifiedAccessChangedListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object o) {
+      ApplicationContext.getInstance(getContext())
+                        .getJobManager()
+                        .add(new RefreshAttributesJob(getContext()));
+      return true;
+    }
+  }
+
+  private class UnidentifiedLearnMoreClickListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      CommunicationActions.openBrowserLink(preference.getContext(), "https://signal.org/blog/sealed-sender/");
+      return true;
+    }
+  }
 }
