@@ -49,10 +49,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">（回覆）</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">找不到合適的應用程式來選擇媒體檔案。</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要\"儲存空間\"的權限以存取照片、影片或聲音檔。但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"儲存空間\"的權限。</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要\"聯絡人\"的權限以存取聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"聯絡人\"的權限。</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要\"地點\"的權限以存取位置資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"地點\"的權限。</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要\"相機\"的權限用以拍照，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"相機\"的權限。</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要儲存的權限，以存取照片、影片或聲音檔。但是現在被設定為永久拒絕存取。請到應用程式設定中，選擇「權限」及開啟「儲存」。 </string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要聯絡人的權限以存取聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要位置的權限以存取位置資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「位置」的權限。</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要相機的權限用以拍照，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音訊時出現錯誤！</string>
   <!--BlockedContactsActivity-->
@@ -373,8 +373,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，這不是有些的裝置連結 QR 碼。</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">連結 Signal 裝置？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起來您正在嘗試使用第 3 方掃描器連結 Signal 裝置。為了安全著想，請使用 Signal 重新掃描代碼一次。</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要\"相機\"的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"相機\"的權限。</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">因為沒有\"相機\"的使用權限，所以無法掃描 QR code。</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">因為沒有相機的使用權限，所以無法掃描 QR code。</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">自動銷毀訊息</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">您的訊息將不會過期。</string>
@@ -408,7 +408,7 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">正在通話</string>
   <string name="RedPhone_ending_call">掛斷通話</string>
-  <string name="RedPhone_dialing">撥電中</string>
+  <string name="RedPhone_dialing">撥號中</string>
   <string name="RedPhone_ringing">響鈴中</string>
   <string name="RedPhone_busy">忙碌</string>
   <string name="RedPhone_connected">已連線</string>
@@ -428,7 +428,7 @@
         號碼 (%s) 是無效的
     </string>
   <string name="RegistrationActivity_missing_google_play_services">找不到 Google Play 服務</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">此裝置缺少 Google Play 服務。你仍然可以使用 Signal，但是此設定可能會降低可靠性與效能。\n\n如果你不是個進階使用者，不是正在執行售後市場的 Android ROM，或是你認為你看到的可能是一個錯誤，請聯繫 support@signal.org 來獲得協助。</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">此裝置缺少 Google Play 服務。你仍然可以使用 Signal，但是此設定可能會降低可靠性或效能。\n\n如果你不是個進階使用者，不是正在執行原廠的 Android ROM，或是你認為你看到的可能是一個錯誤，請聯絡 support@signal.org 來協助你排除故障。</string>
   <string name="RegistrationActivity_i_understand">我了解</string>
   <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新或暫時無法使用。請再重試。</string>
@@ -436,7 +436,7 @@
   <string name="RegistrationActivity_no_browser">無法開啟此連結。沒有找到網頁瀏覽器。</string>
   <string name="RegistrationActivity_more_information">更多資訊</string>
   <string name="RegistrationActivity_less_information">較少資訊</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要存取的\"聯絡人\"及\"媒體\"以聯絡你的朋友、交換訊息、及撥打私密電話。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要存取的你的聯絡人及媒體，以聯絡你的朋友、交換訊息、及撥打私密電話。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連接服務。請檢查網路連線並再試一次。</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">如果你允許 Signal 讀取 SMS 訊息，你可以簡單的驗證電話號碼，Signal 會自動偵測你的驗證碼。</string>
   <!--ScribbleActivity-->
@@ -447,16 +447,14 @@
   <string name="SearchFragment_header_contacts">聯絡人</string>
   <string name="SearchFragment_header_messages">訊息</string>
   <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_add_to_contacts">新增至連˙絡人</string>
+  <string name="SharedContactDetailsActivity_add_to_contacts">新增至連絡人</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀請至 Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">
-signal 訊息</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal 訊息</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal 通話</string>
   <!--SharedContactView-->
-  <string name="SharedContactView_add_to_contacts">新增至連˙絡人</string>
+  <string name="SharedContactView_add_to_contacts">新增至連絡人</string>
   <string name="SharedContactView_invite_to_signal">邀請至 Signal</string>
-  <string name="SharedContactView_message">
-signal 訊息</string>
+  <string name="SharedContactView_message">Signal 訊息</string>
   <!--Slide-->
   <string name="Slide_image">圖片</string>
   <string name="Slide_audio">音訊</string>
@@ -512,8 +510,8 @@ signal 訊息</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">我方 Signal 安全碼：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">沒有在剪貼簿中發現安全碼，因此無法進行比較</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要\"相機\"的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"相機\"的權限。</string>
-  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">因為沒有\"相機\"的權限，無法掃描 QR code</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">因為沒有「相機」的權限，無法掃描 QR code</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">此加密訊息的對話已不存在</string>
@@ -538,9 +536,9 @@ signal 訊息</string>
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要\"儲存空間\"的權限以儲存外接儲存空間，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"儲存空間\"的權限。</string>
-  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">因為沒有\"儲存空間\"的權限，無法儲存到外部儲存空間</string>
-  <string name="MediaPreviewActivity_media_delete_confirmation_title">刪除訊息?</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存的權限以儲存外接儲存空間，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「儲存空間」的權限。</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">因為沒有儲存的權限，無法儲存到外部儲存空間</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">刪除訊息？</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">這將永久刪除此訊息。</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 則新訊息在 %2$d 的對話中</string>
@@ -564,7 +562,7 @@ signal 訊息</string>
   <string name="NotificationChannel_failures">失敗</string>
   <string name="NotificationChannel_backups">備份</string>
   <string name="NotificationChannel_locked_status">鎖定狀態</string>
-  <string name="NotificationChannel_app_updates">應用程式升級</string>
+  <string name="NotificationChannel_app_updates">應用程式更新</string>
   <string name="NotificationChannel_other">其他</string>
   <string name="NotificationChannel_group_messages">訊息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
@@ -582,8 +580,8 @@ signal 訊息</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
   <!--UnauthorizedReminder-->
-  <string name="UnauthorizedReminder_device_no_longer_registered">此裝置不再註冊於Signal</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">這似乎是你將註冊Signal的電話號碼註冊在其他的裝置上。點擊這裡來重新註冊。</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">此裝置已被取消註冊</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">這似乎是你將 Signal 的電話號碼註冊在其他的裝置上。觸碰這裡來重新註冊。</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">播放影片時發生錯誤</string>
   <!--WebRtcCallActivity-->
@@ -625,7 +623,7 @@ signal 訊息</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">聯絡人相片</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要\"聯絡人\"的權限以顯示聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"聯絡人\"的權限。</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要聯絡人的權限以顯示聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">取回聯絡人名單錯誤，請檢查網路連線</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">無已封鎖的聯絡人</string>
@@ -739,7 +737,7 @@ signal 訊息</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">複製此連結及加入你的錯誤報告或技術支援電子郵件:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">已複製到剪貼簿</string>
   <string name="log_submit_activity__choose_email_app">選擇電子郵件程式</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">請從我的應用程式檢視這個日誌檔:%1$s</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">請從我的應用程式檢視這個日誌檔：%1$s</string>
   <string name="log_submit_activity__network_failure">網路連結錯誤。請再嘗試一次。</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想要把已存在的訊息匯入 Signal 的加密資料庫嗎？</string>
@@ -813,7 +811,7 @@ signal 訊息</string>
   <string name="unknown_sender_view__add_to_contacts">加入聯絡人</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">不要加入，但讓我的個人資訊可以被看見</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[如果你希望用%s來驗證你的加密的安全性，比對上面的號碼與他們裝置上的號碼。或者，你可以掃描在他們手機上的QR code，或讓他們掃描您的QR Code。<a href="https://signal.org/redirect/safety-numbers">學息更多資訊</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[如果你希望用 %s 來驗證你的加密的安全性，比對上面的號碼與他們裝置上的號碼。或者，你可以掃描在他們手機上的 QR code，或讓他們掃描您的 QR Code。<a href="https://signal.org/redirect/safety-numbers">瞭解更多</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
   <string name="verify_display_fragment__loading">載入中...</string>
   <string name="verify_display_fragment__verified">已驗證</string>
@@ -1169,7 +1167,7 @@ signal 訊息</string>
   <string name="RegistrationActivity_continue">繼續</string>
   <string name="preferences_chats__backups">備份</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已被鎖定</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">點擊來解鎖</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">觸碰來解鎖</string>
   <string name="RegistrationLockDialog_reminder">提醒：</string>
   <string name="recipient_preferences__about">關於</string>
   <!--EOF-->

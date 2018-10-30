@@ -713,7 +713,7 @@
   <string name="import_fragment__import_system_sms_database">వ్యవస్థ ఎస్సెమ్మెస్ డేటాబేస్ దిగుమతి</string>
   <string name="import_fragment__import_the_database_from_the_default_system">డిఫాల్ట్ వ్యవస్థ మెసెంజర్ అనువర్తనం నుండి డేటాబేస్ దిగుమతి</string>
   <string name="import_fragment__import_plaintext_backup">సాధారణ అక్షరాల బ్యాకప్ దిగుమతి </string>
-  <string name="import_fragment__import_a_plaintext_backup_file">సాదా బ్యాకప్ ఫైల్ దిగుమతి. \'ఎస్ఎంఎస్ బ్యాకప్ &amp; amp అనుకూలంగా; పునరుద్ధరించు. \'</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">సాదా బ్యాకప్ ఫైల్ దిగుమతి. 'ఎస్ఎంఎస్ బ్యాకప్ &amp; amp అనుకూలంగా; పునరుద్ధరించు. '</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">పూర్తి సంభాషణ చూడండి</string>
   <!--media_overview_activity-->

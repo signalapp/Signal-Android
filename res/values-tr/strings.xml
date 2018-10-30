@@ -52,10 +52,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(yanıtla)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Medya seçebilecek uygulama bulunamıyor.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Resim, görüntü veya ses ekleyebilmek için Signal\'a Depolama izni gerekiyor, fakat bu izin temelli reddedilmiş. Lütfen uygulama ayarlarına girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal, iletişim bilgilerini eklemek için Kişiler iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kişiler\" i etkinleştirin.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, konum bilgisi eklemek için Konum iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Konum\" u etkinleştirin.</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal, fotoğraf çekmek için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal, fotoğraflar, videolar, veya ses ekleyebilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal, iletişim bilgilerini eklemek için Kişiler iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kişiler\"i etkinleştirin.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, konum bilgisi eklemek için Konum iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Konum\"u etkinleştirin.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal, fotoğraf çekmek için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ses oynatılırken hata!</string>
   <!--BlockedContactsActivity-->
@@ -137,11 +137,11 @@
   <string name="ConversationActivity_unable_to_record_audio">Ses kaydedilemedi!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu bağlantıyı işleyebilecek uygulama bulunmamaktadır.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Sesli mesaj göndermek için Signal\'in mikrofonunuza erişmesine izin verin.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal,sesli mesaj göndermek için Mikrofon iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" u etkinleştirin.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s aramak için, Signal\'in mikrofonunuza ve kameranıza erişime ihtiyacı var.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal, %s \'ı aramak için Mikrofon ve Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" ve \"Kamera\" yı etkinleştirin.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal, sesli mesajlar göndermek için Mikrofon iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Mikrofon\"u etkinleştirin.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s ile arama yapmanız için, Signal\'in mikrofonunuza ve kameranıza erişime ihtiyacı var.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal, %s ile arama yapmanız için Mikrofon ve Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, \"Mikrofon\" ve \"Kamera\"yı etkinleştirin.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotoğraf veya video çekmek için, Signal\'in kameraya erişmesine izin verin.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal, fotoğraf ve görüntü çekmek için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal, fotoğraf veya video çekmek için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal fotoğraf veya video çekebilmek için kamera erişimine ihtiyaç duyar</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <!--ConversationAdapter-->
@@ -392,7 +392,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Üzgünüz, bu geçerli bir cihaz bağlama karekodu değil.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Bir Signal cihazı bağlansın mı?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Üçüncül bir tarafın tarayıcısı ile taramaya çalışıyorsunuz gibi gözüküyor. Güvenliğiniz için, lütfen kodu Signal\'in içerisinden tekrar tarayın.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal, bir KK -Kare Kodu- taramak için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal, bir karekod taramak için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kamera izni olmadan karekod taranamıyor.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Kaybolan mesajlar</string>
@@ -458,9 +458,9 @@
   <string name="RegistrationActivity_no_browser">Bu bağlantı açılamıyor. İnternet tarayıcısı bulunamadı.</string>
   <string name="RegistrationActivity_more_information">Daha fazla bilgi</string>
   <string name="RegistrationActivity_less_information">Daha az bilgi</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kişilerle iletişim kurabilmeniz, mesaj alıp, göndermeniz ve güvenli aramalar yapabilmeniz için Signal\'in kişilerinize ve dosyalarınıza erişmesi gerekir</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kişilerinizle iletişim kurabilmeniz ve güvenli aramalar yapabilmeniz için Signal\'in Kişilerinize ve Depolamanıza erişime ihtiyacı var</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Hizmete bağlanılamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin. </string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Telefon numaranızı kolayca doğrulamak için Signal\'in SMS mesajlarınızı görmesine izin verirseniz, Signal doğrulama kodunuzu otomatik olarak algılayabilir.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Eğer Signal\'in SMS mesajlarına erişimine izin verirseniz telefon numaranızı kolayca doğrulamak için doğrulama kodunuzu otomatik olarak tespit edebilir.</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Görüntü değişiklikleri kaydedilemedi</string>
   <!--Search-->
@@ -530,7 +530,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal güvenlik numaramız:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor. </string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Panoda karşılaştırılacak bir güvenlik numarası bulunamadı</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal, bir Kare Kodu (KK) taramak için Kamera iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kamera\" yı etkinleştirin.</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal, bir karekod taramak için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kamera izni olmadan karekod taranamıyor.</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Bozuk şifrelenmiş mesaj</string>
@@ -556,7 +556,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="MediaPreviewActivity_you">Siz</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Desteklenmeyen medya türü</string>
   <string name="MediaPreviewActivity_draft">Taslak</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal, harici depolama birimine kaydedebilmek için Depolama iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Depolama\" yı etkinleştirin.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal, harici depolamaya kaydedebilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">İzinler olmadan harici depolamaya kaydedilemiyor</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Mesajı sil?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu eylem bu mesajı kalıcı olarak silecektir.</string>
@@ -606,7 +606,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="VideoPlayer_error_playing_video">Video oynatılırken hata</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s tarafından gelen aramayı yanıtlamak için, Signal\'in mikrofonunuza erişmesine izin verin.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal, arama yapmak ve aranmak için Mikrofon ve Kamera iznini gerektirir, ancak izinler kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Mikrofon\" ve \"Kamera\" yı etkinleştirin.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal, arama yapmak ve almak için Mikrofon ve Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, \"Mikrofon\" ve \"Kamera\"yı etkinleştirin.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s ile sohbetinizin güvenlik numarası değişti. Bu, birisinin iletişiminizi kesmeye çalıştığı ya da %2$s Signal\'i yeniden yüklemiş olduğu anlamına gelebilir.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu kişi ile güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
@@ -643,7 +643,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kişi Fotoğrafı</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal, kişilerinizi göstermek için Kişiler iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kişiler\" i etkinleştirin.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal, kişileriniz gösterebilmek için Kişiler iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kişiler\"i etkinleştirin.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kişiler alınırken hata oluştu, ağ bağlantınızı kontrol edin</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Hiç engellenmiş kişi yok</string>
@@ -1034,7 +1034,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kişi Fotoğrafı</string>
   <string name="conversation_list_item_view__archived">Arşivlendi</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gelen kutusu sıııfffııır</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gelen kutusu bomboş</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Yok. Bitti. Kalmadı.\nÇok boş hissediyorum be!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni sohbet</string>
@@ -1111,10 +1111,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="ConversationListFragment_loading">Yükleniyor...</string>
   <string name="CallNotificationBuilder_connecting">Bağlanılıyor...</string>
   <string name="Permissions_permission_required">İzin gerekli</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal, SMS göndermek için SMS izni gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"SMS\" i etkinleştirin.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal, SMS göndermek için SMS iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"SMS\"i etkinleştirin.</string>
   <string name="Permissions_continue">Devam Et</string>
   <string name="Permissions_not_now">Şimdi değil</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal, kişilerinizi aramak için Kişiler iznini gerektirir, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Kişiler\" i etkinleştirin.</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal, kişilerinizi aramak için Kişiler iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kişiler\"i etkinleştirin.</string>
   <string name="conversation_activity__enable_signal_messages">SİGNAL MESAJLARINI ETKİNLEŞTİRİN</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal veritabanı taşınıyor</string>
   <string name="PushDecryptJob_new_locked_message">Yeni kilitli mesaj</string>
@@ -1146,7 +1146,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Tüm yerel yedekler devre dışı bırakılıp silinsin mi?</string>
   <string name="BackupDialog_delete_backups_statement">Yedekleri sil</string>
   <string name="BackupDialog_copied_to_clipboard">Panoya kopyalandı</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal, yedekleme yapmak için depolama iznine ihtiyaç duyuyor, ancak izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne geçin, \"İzinler\" i seçin ve \"Depolama\" yı etkinleştirin.</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal, yedek oluşturabilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Son yedek: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Devam etmekte</string>
   <string name="LocalBackupJob_creating_backup">Yedek oluşturuluyor...</string>
@@ -1162,7 +1162,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal erişimini Android kilit ekranı ile veya parmak izi ile kilitleyin</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekran kilidi zaman aşımı</string>
   <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kaydolma Kilidi PIN\'iniz size gönderilen doğrulama koduyla aynı değildir. Lütfen kayıt olurken oluşturduğunuz şifrenizi giriniz.  </string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kaydolma Kilidi PIN\'iniz size gönderilen doğrulama koduyla aynı değildir. Lütfen önceden ayarlamış olduğunuz PIN\'inizi giriniz.  </string>
   <string name="registration_activity__registration_lock_pin">Kaydolma Kilidi PIN\'i</string>
   <string name="registration_activity__forgot_pin">PIN\'inizi mi unuttunuz?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN dört veya daha fazla rakam içerebilir. Eğer PIN\'inizi unutursanız, hesabınıza erişiminizi yedi güne kadar kaybedebilirsiniz.</string>

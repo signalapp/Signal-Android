@@ -27,7 +27,7 @@
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Leregisztrálás a Signal üzenetekről és hívásokról...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Letiltod a Signal üzeneteket és hívásokat?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal üzenetek és hívások letiltása a kiszolgálóról történő leregisztrálással. Ha a jövőben újra szeretnéd használni ezeket a szolgáltatásokat, akkor újra kell regisztrálnod telefonszámoddal.</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba történt a kiszolgálóhoz történő kapcsolódáskor!</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba történt a kiszolgálóhoz történő kapcsolódás során!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS engedélyezve</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Koppints ide az alapértelmezett SMS alkalmazás megváltoztatásához</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS letiltva</string>
@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_off">ki</string>
   <string name="ApplicationPreferencesActivity_Off">Ki</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Képernyőzár %1$s, Regisztrációs zár %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Képernyőzár %1$s, regisztrációs zár %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s téma, %2$s nyelv</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -63,15 +63,15 @@
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Ma</string>
   <string name="BucketedThreadMedia_Yesterday">Tegnap</string>
-  <string name="BucketedThreadMedia_This_week">Ez a hét</string>
-  <string name="BucketedThreadMedia_This_month">Ez a hónap</string>
+  <string name="BucketedThreadMedia_This_week">Ezen a héten</string>
+  <string name="BucketedThreadMedia_This_month">Ebben a hónapban</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Bejövő hívás</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eltávolítás</string>
-  <string name="ClearProfileActivity_remove_profile_photo">Eltávolítod a profilképet?</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Eltávolítod a profilképed?</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">A biztonsági számod a következő kontaktoddal megváltozott: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, de az is lehetséges, hogy %2$s egyszerűen újratelepítette a Signal-t.
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Biztonsági számod a következő kontaktoddal megváltozott: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, de az is lehetséges, hogy %2$s egyszerűen csak újratelepítette a Signal-t.
     </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Érdemes lenne ellenőrizned a biztonsági számodat ezzel a kontakttal.</string>
   <string name="ConfirmIdentityDialog_accept">Elfogadás</string>
@@ -107,13 +107,13 @@
   <string name="ConversationItem_from_s">tőle: %s</string>
   <string name="ConversationItem_to_s">neki: %s</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Újraindítod a biztonságos munkamenetet?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Újraindítod a biztonsági munkamenetet?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ez akkor segíthet, ha titkosítással kapcsolatos problémák léptek fel ebben a beszélgetésben. Az üzeneteid meg lesznek tartva.</string>
   <string name="ConversationActivity_reset">Alaphelyzetbe állítás</string>
-  <string name="ConversationActivity_add_attachment">Melléklet hozzáadása</string>
+  <string name="ConversationActivity_add_attachment">Melléklet csatolása</string>
   <string name="ConversationActivity_select_contact_info">Válassz kontakt infót</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnáljuk, hiba történt a melléklet hozzáadása során.</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos hiba történt a melléklet csatolása során.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A címzett nem egy érvényes SMS vagy email cím!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Üres az üzenet!</string>
   <string name="ConversationActivity_group_members">Csoporttagok</string>
@@ -127,7 +127,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Titkosítatlan MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Váltsunk Signal-ra %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Használd ezt csevegéshez: %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Használjuk ezt csevegéshez: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Hiba történt a csoport elhagyásakor</string>
   <string name="ConversationActivity_specify_recipient">Kérlek válassz egy kontaktot</string>
   <string name="ConversationActivity_unblock_this_contact_question">Feloldod ezt a kontaktot?</string>
@@ -139,7 +139,7 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nem található eszközödön megfelelő alkalmazás a hivatkozás kezeléséhez.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Hangüzenetek küldéséhez engedélyezd, hogy a Signal hozzáférhessen a mikrofonhoz!</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">A Signal-nak szüksége van a Mikrofon engedélyre, hogy hangüzeneteket küldhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd az \"Mikrofon\"-t.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s felhívásához a Signal-nak hozzá kell férnie mikrofonodhoz és kamerádhoz.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s hívásához a Signal-nak hozzá kell férnie mikrofonodhoz és kamerádhoz.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">A Signal-nak szüksége van Mikrofon és Kamera engedélyekre %s felhívásához, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Mikrofon\"-t és a \"Kamera\"-t.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotók és videók készítéséhez engedélyezd a Signal-nak a kamerához való hozzáférést!</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">A Signal-nak szüksége van a Kamera engedélyre, hogy fotót vagy videót készíthessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
@@ -157,7 +157,7 @@
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Ez végelegesen törölni fogja a kiválasztott üzenetet.</item>
-    <item quantity="other">Ez véglegesen törölni fogja a(z) %1$d db kiválasztott üzenetet.</item>
+    <item quantity="other">Ez véglegesen törölni fogja mind a(z) %1$d db kiválasztott üzenetet.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Mentés tárolóra?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -258,7 +258,7 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Üdvözöl a Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">A TextSecure mostantól Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">A TextSecure és a RedPhone már egy alkalmazás: Signal. Koppints a felfedezéséhez!</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Köszönj a biztonságos videóhívásoknak.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Köszöntsd a biztonságos videóhívásokat.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">A Signal mostantól támogatja a biztonságos videóhívásokat. Csak indíts egy Signal hívást mint általában, koppints a videó gombra, és integess!</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">A Signal mostantól támogatja a biztonságos videóhívásokat.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">A Signal monstantól támogatja a biztonságos videóhívásokat. Koppints a felfedezéséhez!</string>
@@ -279,7 +279,7 @@
   <string name="GroupCreateActivity_group_name_hint">Csoport neve</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Új MMS csoport</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Olyan kontaktot is kiválasztottál, aki nem támogatja a Signal csoportokat, így ez a csoport MMS lesz.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nem vagy regisztrálva Signal üzenetekre és hívásokra, így a Signal csoportok le vannak tiltva. Kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó-ban!</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nem vagy regisztrálva Signal üzenetekre és hívásokra, így a Signal csoportok le vannak tiltva. Kérlek próbálj meg újraregisztrálni a Beállítások &gt; Haladó menüpontban!</string>
   <string name="GroupCreateActivity_contacts_no_members">A csoport létrehozásához legalább egy személyre szükség van!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">A csoportod egyik tagjának számát nem lehet megfelelően olvasni. Kérlek javítsd ki, vagy távolítsd el a kontaktot, majd próbáld újra!</string>
   <string name="GroupCreateActivity_avatar_content_description">Csoport avatar</string>
@@ -1166,36 +1166,36 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal-hoz való hozzáférés védelme Android képernyőzárral vagy ujjlenyomattal</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Képernyő lezárása ennyi tétlenséget követően</string>
   <string name="AppProtectionPreferenceFragment_none">Egyik sem</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">A Regisztrációs zár PIN nem ugyanaz mint az SMS ellenőrző kód, amit az előbb kaptál. Kérlek add meg a PIN kódot, amelyet korábban az alkalmazásban állítottál be!</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">A regisztrációs zár PIN nem ugyanaz mint az SMS ellenőrző kód, amit az előbb kaptál. Kérlek add meg a PIN kódot, amelyet korábban az alkalmazásban állítottál be!</string>
   <string name="registration_activity__registration_lock_pin">Regisztrációs zár PIN</string>
   <string name="registration_activity__forgot_pin">Elfelejtetted PIN kódodat?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">A PIN kód négy vagy több számjegyből állhat. Ha elfelejted PIN kódodat, előfordulhat, hogy a rendszer maximum hét napra kizár fiókodból.</string>
   <string name="registration_lock_dialog_view__enter_pin">Add meg a PIN-t</string>
   <string name="registration_lock_dialog_view__confirm_pin">Erősítsd meg a PIN-t</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Add meg a Regisztrációs zár PIN kódot</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Add meg a regisztrációs zár PIN kódot</string>
   <string name="registration_lock_reminder_view__enter_pin">Add meg a PIN-t</string>
   <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Regisztrációs zár PIN kód engedélyezése, amelyre a telefonszám újbóli Signal-regisztrációja esetén van szükség.</string>
   <string name="preferences_app_protection__registration_lock_pin">Regisztrációs zár PIN kód</string>
   <string name="preferences_app_protection__registration_lock">Regisztrációs zár</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Meg kell adnod a Regisztrációs zár PIN kódodat</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">Hibás Regisztrációs zár PIN kód</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Meg kell adnod a regisztrációs zár PIN kódodat</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Hibás regisztrációs zár PIN kód</string>
   <string name="RegistrationActivity_too_many_attempts">Túl sok próbálkozás</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Túl sokszor próbáltad megadni Regisztrációs zár PIN kódodat. Kérlek próbáld újra egy nap múlva!</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Túl sokszor próbáltad megadni regisztrációs zár PIN kódodat. Kérlek próbáld újra egy nap múlva!</string>
   <string name="RegistrationActivity_error_connecting_to_service">Hiba történt a szolgáltatáshoz történő csatlakozás során</string>
   <string name="RegistrationActivity_oh_no">Jaj ne!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ezt a telefonszámot Regisztrációs zár PIN kód nélkül is újra lehet regisztrálni 7 nappal azután, hogy a telefonszám utoljára aktív volt Signal-on. Addig még %d nap van hátra.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ezt a telefonszámot regisztrációs zár PIN kód nélkül is újra lehet regisztrálni 7 nappal azután, hogy a telefonszám utoljára aktív volt Signal-on. Addig még %d nap van hátra.</string>
   <string name="RegistrationActivity_registration_lock_pin">Regisztrációs zár PIN kód</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Ehhez a telefonszámhoz engedélyezték a Regisztrációs zárat. Kérlek add meg a Regisztrációs zár PIN kódot!</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">A Regisztrációs zár engedélyezve van telefonszámodhoz. A Regisztrációs zár PIN kódod könnyebb megjegyzésének érdekében a Signal időközönként megkér annak megerősítésére.</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Ehhez a telefonszámhoz engedélyezték a regisztrációs zárat. Kérlek add meg a regisztrációs zár PIN kódot!</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">A regisztrációs zár engedélyezve van telefonszámodhoz. A regisztrációs zár PIN kódod könnyebb megjegyzésének érdekében a Signal időközönként megkér annak megerősítésére.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Elfelejtettem a PIN-em.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Elfelejtett PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">A Regisztrációs zár segít megvédeni a telefonszámodat a jogosulatlan regisztrációs próbálkozásoktól. Ez a funkció bármikor letiltható a Signal adatvédelmi beállításaiban.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">A regisztrációs zár segít megvédeni a telefonszámodat a jogosulatlan regisztrációs próbálkozásoktól. Ez a funkció bármikor letiltható a Signal adatvédelmi beállításaiban.</string>
   <string name="RegistrationLockDialog_registration_lock">Regisztrációs zár</string>
   <string name="RegistrationLockDialog_enable">Engedélyezés</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">A Regisztrációs zár PIN kódnak legalább 4 számjegyből kell állnia.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">A regisztrációs zár PIN kódnak legalább 4 számjegyből kell állnia.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">A két megadott PIN nem egyezik.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Hiba történt a szolgáltatáshoz történő csatlakozás során</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Letiltod a Regisztrációs zár PIN kódot?</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Letiltod a regisztrációs zár PIN kódot?</string>
   <string name="RegistrationLockDialog_disable">Letiltás</string>
   <string name="RegistrationActivity_continue">Folytatás</string>
   <string name="preferences_chats__backups">Biztonsági mentések</string>
