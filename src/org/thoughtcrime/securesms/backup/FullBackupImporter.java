@@ -293,7 +293,7 @@ public class FullBackupImporter extends FullBackupBase {
           throw new IOException(e);
         }
 
-        if (MessageDigest.isEqual(ourMac, theirMac)) {
+        if (!MessageDigest.isEqual(ByteUtil.trim(ourMac, 10), theirMac)) {
           //destination.delete();
           throw new IOException("Bad MAC");
         }
@@ -316,7 +316,7 @@ public class FullBackupImporter extends FullBackupBase {
         mac.update(frame, 0, frame.length - 10);
         byte[] ourMac = mac.doFinal();
 
-        if (MessageDigest.isEqual(ourMac, theirMac)) {
+        if (!MessageDigest.isEqual(ByteUtil.trim(ourMac, 10), theirMac)) {
           throw new IOException("Bad MAC");
         }
 
