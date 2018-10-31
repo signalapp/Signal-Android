@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Pair;
@@ -1010,7 +1011,12 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
-  private boolean shouldIgnore(@NonNull SignalServiceContent content) {
+  private boolean shouldIgnore(@Nullable SignalServiceContent content) {
+    if (content == null) {
+      Log.w(TAG, "Got a message with null content.");
+      return true;
+    }
+
     Recipient sender = Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
 
     if (content.getDataMessage().isPresent()) {
