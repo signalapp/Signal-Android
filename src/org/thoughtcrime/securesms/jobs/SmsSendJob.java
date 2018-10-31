@@ -89,7 +89,10 @@ public class SmsSendJob extends SendJob {
     Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
     DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
-    MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+
+    if (threadId != -1 && recipient != null) {
+      MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+    }
   }
 
   private void deliver(SmsMessageRecord message)
