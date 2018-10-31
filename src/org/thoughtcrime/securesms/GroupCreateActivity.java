@@ -136,8 +136,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     View pushDisabled = findViewById(R.id.push_disabled);
     pushDisabled.setVisibility(View.VISIBLE);
     ((TextView) findViewById(R.id.push_disabled_reason)).setText(reasonResId);
-    avatar.setEnabled(false);
-    groupName.setEnabled(false);
+    //avatar.setEnabled(false);
+    //groupName.setEnabled(false);
   }
 
   private void enableSignalGroupViews() {
@@ -245,7 +245,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     if (isSignalGroup()) {
       new CreateSignalGroupTask(this, avatarBmp, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else {
-      new CreateMmsGroupTask(this, getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      new CreateMmsGroupTask(this, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
@@ -327,9 +327,11 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   private static class CreateMmsGroupTask extends AsyncTask<Void,Void,GroupActionResult> {
     private final GroupCreateActivity activity;
     private final Set<Recipient>      members;
+    private final String              groupName;
 
-    public CreateMmsGroupTask(GroupCreateActivity activity, Set<Recipient> members) {
+    public CreateMmsGroupTask(GroupCreateActivity activity, String groupName, Set<Recipient> members) {
       this.activity     = activity;
+      this.groupName    = groupName;
       this.members      = members;
     }
 
@@ -341,8 +343,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         memberAddresses.add(recipient.getAddress());
       }
 
-      String    groupId        = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true);
+      String    groupId        = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, groupName, true);
       Recipient groupRecipient = Recipient.from(activity, Address.fromSerialized(groupId), true);
+      groupRecipient.setName(groupName);
       long      threadId       = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.DEFAULT);
 
       return new GroupActionResult(groupRecipient, threadId);
