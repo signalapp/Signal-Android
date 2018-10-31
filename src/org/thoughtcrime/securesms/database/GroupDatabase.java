@@ -132,6 +132,26 @@ public class GroupDatabase extends Database {
     }
   }
 
+  public String getOrCreateGroupForMembers(List<Address> members, String groupName, boolean mms) {
+    Collections.sort(members);
+
+    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {GROUP_ID},
+            MEMBERS + " = ? AND " + MMS + " = ?",
+            new String[] {Address.toSerializedList(members, ','), mms ? "1" : "0"},
+            null, null, null);
+    try {
+      if (cursor != null && cursor.moveToNext()) {
+        return cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
+      } else {
+        String groupId = GroupUtil.getEncodedId(allocateGroupId(), mms);
+        create(groupId, groupName, members, null, null);
+        return groupId;
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+  }
+
   public Reader getGroups() {
     @SuppressLint("Recycle")
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);

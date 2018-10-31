@@ -570,7 +570,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
         }
-      } else if (isActiveGroup()) {
+      }
+
+      if (isActiveGroup()) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
     }
