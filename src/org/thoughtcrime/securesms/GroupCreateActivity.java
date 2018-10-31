@@ -245,7 +245,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     if (isSignalGroup()) {
       new CreateSignalGroupTask(this, avatarBmp, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else {
-      new CreateMmsGroupTask(this, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      new CreateMmsGroupTask(this, avatarBmp, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
   }
 
@@ -328,9 +328,11 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     private final GroupCreateActivity activity;
     private final Set<Recipient>      members;
     private final String              groupName;
+    private final Bitmap              avatar;
 
-    public CreateMmsGroupTask(GroupCreateActivity activity, String groupName, Set<Recipient> members) {
+    public CreateMmsGroupTask(GroupCreateActivity activity, Bitmap avatar, String groupName, Set<Recipient> members) {
       this.activity     = activity;
+      this.avatar       = avatar;
       this.groupName    = groupName;
       this.members      = members;
     }
@@ -344,6 +346,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       }
 
       String    groupId        = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, groupName, true);
+      DatabaseFactory.getGroupDatabase(activity).updateAvatar(groupId, avatar);
       Recipient groupRecipient = Recipient.from(activity, Address.fromSerialized(groupId), true);
       groupRecipient.setName(groupName);
       long      threadId       = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.DEFAULT);
