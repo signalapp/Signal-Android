@@ -41,6 +41,7 @@ public abstract class DisplayRecord {
   private final long       dateSent;
   private final long       dateReceived;
   private final long       threadId;
+  private final String     subject;
   private final String     body;
   private final int        deliveryStatus;
   private final int        deliveryReceiptCount;
@@ -56,10 +57,32 @@ public abstract class DisplayRecord {
     this.dateSent             = dateSent;
     this.dateReceived         = dateReceived;
     this.type                 = type;
+    this.subject              = null;
     this.body                 = body;
     this.deliveryReceiptCount = deliveryReceiptCount;
     this.readReceiptCount     = readReceiptCount;
     this.deliveryStatus       = deliveryStatus;
+  }
+
+  DisplayRecord(Context context, String subject, String body, Recipient recipient, long dateSent,
+                long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
+                long type, int readReceiptCount)
+  {
+    this.context              = context.getApplicationContext();
+    this.threadId             = threadId;
+    this.recipient            = recipient;
+    this.dateSent             = dateSent;
+    this.dateReceived         = dateReceived;
+    this.type                 = type;
+    this.subject              = subject;
+    this.body                 = body;
+    this.deliveryReceiptCount = deliveryReceiptCount;
+    this.readReceiptCount     = readReceiptCount;
+    this.deliveryStatus       = deliveryStatus;
+  }
+
+  public String getSubject() {
+    return subject;
   }
 
   public @NonNull String getBody() {

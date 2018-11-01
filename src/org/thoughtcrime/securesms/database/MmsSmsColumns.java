@@ -8,6 +8,7 @@ public interface MmsSmsColumns {
   public static final String NORMALIZED_DATE_RECEIVED = "date_received";
   public static final String THREAD_ID                = "thread_id";
   public static final String READ                     = "read";
+  public static final String SUBJECT                  = "subject";
   public static final String BODY                     = "body";
   public static final String ADDRESS                  = "address";
   public static final String ADDRESS_DEVICE_ID        = "address_device_id";

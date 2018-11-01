@@ -283,6 +283,14 @@ public class MmsSendJob extends SendJob {
     req.setMessageClass(PduHeaders.MESSAGE_CLASS_PERSONAL_STR.getBytes());
     req.setExpiry(7 * 24 * 60 * 60);
 
+    Log.d(TAG, "subject: " + message.getSubject());
+    if(message.getSubject() != null) {
+      EncodedStringValue[] subject = EncodedStringValue.extract(message.getSubject());
+      if(subject.length > 0) {
+        req.setSubject(subject[0]);
+      }
+    }
+
     try {
       req.setPriority(PduHeaders.PRIORITY_NORMAL);
       req.setDeliveryReport(PduHeaders.VALUE_NO);

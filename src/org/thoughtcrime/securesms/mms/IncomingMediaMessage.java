@@ -17,6 +17,7 @@ public class IncomingMediaMessage {
 
   private final Address       from;
   private final Address       groupId;
+  private final String        subject;
   private final String        body;
   private final boolean       push;
   private final long          sentTimeMillis;
@@ -40,6 +41,31 @@ public class IncomingMediaMessage {
     this.from             = from;
     this.groupId          = groupId.orNull();
     this.sentTimeMillis   = sentTimeMillis;
+    this.subject          = null;
+    this.body             = body;
+    this.push             = false;
+    this.subscriptionId   = subscriptionId;
+    this.expiresIn        = expiresIn;
+    this.expirationUpdate = expirationUpdate;
+    this.quote            = null;
+
+    this.attachments.addAll(attachments);
+  }
+
+  public IncomingMediaMessage(Address from,
+                              Optional<Address> groupId,
+                              String subject,
+                              String body,
+                              long sentTimeMillis,
+                              List<Attachment> attachments,
+                              int subscriptionId,
+                              long expiresIn,
+                              boolean expirationUpdate)
+  {
+    this.from             = from;
+    this.groupId          = groupId.orNull();
+    this.sentTimeMillis   = sentTimeMillis;
+    this.subject          = subject;
     this.body             = body;
     this.push             = false;
     this.subscriptionId   = subscriptionId;
@@ -65,6 +91,37 @@ public class IncomingMediaMessage {
     this.push             = true;
     this.from             = from;
     this.sentTimeMillis   = sentTimeMillis;
+    this.subject          = null;
+    this.body             = body.orNull();
+    this.subscriptionId   = subscriptionId;
+    this.expiresIn        = expiresIn;
+    this.expirationUpdate = expirationUpdate;
+    this.quote            = quote.orNull();
+
+    if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId(), false));
+    else                   this.groupId = null;
+
+    this.attachments.addAll(PointerAttachment.forPointers(attachments));
+    this.sharedContacts.addAll(sharedContacts.or(Collections.emptyList()));
+  }
+
+  public IncomingMediaMessage(Address from,
+                              long sentTimeMillis,
+                              int subscriptionId,
+                              long expiresIn,
+                              boolean expirationUpdate,
+                              Optional<String> relay,
+                              Optional<String> subject,
+                              Optional<String> body,
+                              Optional<SignalServiceGroup> group,
+                              Optional<List<SignalServiceAttachment>> attachments,
+                              Optional<QuoteModel> quote,
+                              Optional<List<Contact>> sharedContacts)
+  {
+    this.push             = true;
+    this.from             = from;
+    this.sentTimeMillis   = sentTimeMillis;
+    this.subject          = subject.orNull();
     this.body             = body.orNull();
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
@@ -80,6 +137,10 @@ public class IncomingMediaMessage {
 
   public int getSubscriptionId() {
     return subscriptionId;
+  }
+
+  public String getSubject() {
+    return subject;
   }
 
   public String getBody() {
