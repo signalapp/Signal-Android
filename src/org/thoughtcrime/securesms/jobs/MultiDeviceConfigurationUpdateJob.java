@@ -71,7 +71,7 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
       return;
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled), Optional.of(unidentifiedDeliveryIndicatorsEnabled))),
+    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled), Optional.of(unidentifiedDeliveryIndicatorsEnabled), Optional.absent())),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

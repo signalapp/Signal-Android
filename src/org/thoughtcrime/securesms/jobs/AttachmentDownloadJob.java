@@ -199,7 +199,8 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
                                                 0, 0,
                                                 Optional.fromNullable(attachment.getDigest()),
                                                 Optional.fromNullable(attachment.getFileName()),
-                                                attachment.isVoiceNote());
+                                                attachment.isVoiceNote(),
+                                                Optional.absent());
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);
