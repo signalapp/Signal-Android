@@ -11,9 +11,9 @@
   <string name="ApplicationPreferencesActivity_currently_s">Сейчас: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы ещё не задали парольную фразу!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">%dсообщение в разговоре</item>
-    <item quantity="few">%dсообщения в разговоре</item>
-    <item quantity="many">%dсообщений в разговоре</item>
+    <item quantity="one">%d сообщение в разговоре</item>
+    <item quantity="few">%d сообщения в разговоре</item>
+    <item quantity="many">%d сообщений в разговоре</item>
     <item quantity="other">%d сообщений в разговоре</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Удалить все старые сообщения?</string>
@@ -45,10 +45,10 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, язык %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
-    <item quantity="one">%dминута</item>
-    <item quantity="few">%dминуты</item>
-    <item quantity="many">%dминут</item>
-    <item quantity="other">%dминут</item>
+    <item quantity="one">%d минута</item>
+    <item quantity="few">%d минуты</item>
+    <item quantity="many">%d минут</item>
+    <item quantity="other">%d минут</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(изображение)</string>
@@ -255,7 +255,7 @@
   <string name="DateUtils_today">Сегодня</string>
   <string name="DateUtils_yesterday">Вчера</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">Отправлем</string>
+  <string name="DeliveryStatus_sending">Отправляем</string>
   <string name="DeliveryStatus_sent">Отправлено</string>
   <string name="DeliveryStatus_delivered">Доставлено</string>
   <string name="DeliveryStatus_read">Прочитано</string>
@@ -396,10 +396,10 @@
   <string name="MessageRecord_called_s">Вы звонили %s</string>
   <string name="MessageRecord_missed_call_from">Пропущен звонок от %s</string>
   <string name="MessageRecord_s_joined_signal">%s теперь в Signal!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Вы отключили исчезающие сообщения</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s отключил исчезающие сообщения</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили таймер для исчезающих сообщений на %1$s</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sустановил таймер для исчезающих сообщений на %2$s</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Вы отключили исчезающие сообщения.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s отключил исчезающие сообщения.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили таймер для исчезающих сообщений на %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(а) таймер для исчезающих сообщений на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш с %s код безопасности изменился.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили код безопасности с %s как подтверждённый</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Вы отметили код безопасности с %s как подтверждённый с другого устройства</string>
@@ -643,7 +643,7 @@
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Новый код безопасности</string>
   <string name="WebRtcCallScreen_accept">Принять</string>
-  <string name="WebRtcCallScreen_end_call">Завершить</string>
+  <string name="WebRtcCallScreen_end_call">Завершить звонок</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Нажмите для активации видео</string>
   <!--attachment_type_selector-->
@@ -702,7 +702,7 @@
   <string name="conversation_item_sent__send_failed_indicator_description">Не удалось отправить</string>
   <string name="conversation_item_sent__pending_approval_description">Ожидается одобрение</string>
   <string name="conversation_item_sent__delivered_description">Доставлено</string>
-  <string name="conversation_item_sent__message_read">Чтение сообщения</string>
+  <string name="conversation_item_sent__message_read">Сообщение прочитано</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Фотография контакта</string>
   <!--audio_view-->
@@ -732,7 +732,7 @@
   <string name="experience_upgrade_activity__continue">продолжить</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Здесь находятся уведомления о прочтении</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">При желании можно просматривать и делиться отчетами о прочтении</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Включить отчеты о прочтении</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Включить уведомления о прочтении</string>
   <!--expiration-->
   <string name="expiration_off">Выключено</string>
   <plurals name="expiration_seconds">
@@ -868,7 +868,7 @@
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Звонок через Signal</string>
   <string name="redphone_call_controls__mute">Откл. звук</string>
-  <string name="redphone_call_controls__flip_camera_rear">Переключить камеры</string>
+  <string name="redphone_call_controls__flip_camera_rear">Переключить камеру</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Чтобы упростить общение, Signal использует ваш номер телефона и адресную книгу. Ваши друзья и контакты, которые звонят вам по телефону, с легкостью смогут связаться с вами и через Signal.\n\nПри регистрации на сервер передаётся некоторая информация о контактах, но не сохраняется там.</string>
@@ -1021,8 +1021,8 @@
   <string name="preferences__support_wifi_calling">Совместимость с Wi-Fi звонками</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включите, если ваше устройство отправляет и принимает SMS и MMS через Wi-Fi (и если Wi-Fi звонки включены)</string>
   <string name="preferences__incognito_keyboard">Инкогнито-клавиатура</string>
-  <string name="preferences__read_receipts">Отчеты о прочтении</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Если отчеты о прочтении отключены, вы не сможете просматривать отчеты о прочтении от других пользователей.</string>
+  <string name="preferences__read_receipts">Уведомления о прочтении</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Если уведомления о прочтении отключены, вы не сможете просматривать уведомления о прочтении от других пользователей.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Запросить отключение персонализированного обучения клавиатуры</string>
   <string name="preferences_app_protection__blocked_contacts">Заблокированные контакты</string>
   <string name="preferences_chats__when_using_mobile_data">Через мобильную сеть</string>
@@ -1160,7 +1160,7 @@
   <string name="ConversationListFragment_loading">Загрузка...</string>
   <string name="CallNotificationBuilder_connecting">Соединяемся...</string>
   <string name="Permissions_permission_required">Требуется разрешение</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Для отправки SMS Signal требуется разрешение на доступ к сообщениям, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Сообщения (SMS).</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Для отправки SMS Signal требуется разрешение на доступ к сообщениям, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите в Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Сообщения (SMS).</string>
   <string name="Permissions_continue">Продолжить</string>
   <string name="Permissions_not_now">Не сейчас</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Для поиска ваших знакомых Signal требуется разрешение на доступ к контактам, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Контакты.</string>
@@ -1170,9 +1170,9 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Разблокировать для просмотра ожидающих сообщений</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Разблокировать для завершения обновления</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Пожалуйста, разблокируйте Signal, чтобы завершить обновление</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">Резервная парольная фраза</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Парольная фраза резервной копии</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервные копии будут сохранены во внешнем хранилище и зашифрованы с помощью парольной фразы. Для восстановления резервной копии у вас должна быть эта фраза.</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записал эту кодовую фразу. Без нее я не смогу восстановить резервную копию.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записал эту парольную фразу. Без нее я не смогу восстановить резервную копию.</string>
   <string name="registration_activity__restore_backup">Восстановление резервной копии</string>
   <string name="registration_activity__skip">Пропустить</string>
   <string name="registration_activity__register">Зарегистрироваться</string>
@@ -1206,9 +1206,9 @@
   <string name="RegistrationActivity_call_me_instead">Позвонить мне вместо этого</string>
   <string name="RegistrationActivity_available_in">Доступно в:\u0020</string>
   <string name="BackupUtil_never">Никогда</string>
-  <string name="BackupUtil_unknown">Неизвестен</string>
+  <string name="BackupUtil_unknown">Неизвестно</string>
   <string name="preferences_app_protection__screen_lock">Блокировка экрана</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Блокировка доступа к Signal при помощи блокировки экрана Android или отпечатка пальца</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Блокировка доступа к Signal при помощи экрана блокировки Android или отпечатка пальца</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Тайм-аут бездействия для блокировки экрана</string>
   <string name="AppProtectionPreferenceFragment_none">Нет</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-код блокировки регистрации не совпадает с кодом подтверждения, который вы только что получили в SMS. Пожалуйста, введите PIN-код, который вы ранее настроили в приложении.</string>

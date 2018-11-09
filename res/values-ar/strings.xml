@@ -128,6 +128,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">الرسالة فارغة</string>
   <string name="ConversationActivity_group_members">أعضاء المجموعة</string>
   <string name="ConversationActivity_invalid_recipient">جهة اتصال غير صحيحة!</string>
+  <string name="ConversationActivity_added_to_home_screen">تمت الإضافة للشاشة الرئيسية</string>
   <string name="ConversationActivity_calls_not_supported">المكالمات غير مدعمة</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">هذا الجهاز لا يدعم خاصية الاتصال.</string>
   <string name="ConversationActivity_leave_group">ترك المجموعة؟</string>
@@ -220,6 +221,8 @@
   <string name="ConversationFragment_sms">رسالة نصية</string>
   <string name="ConversationFragment_deleting">جارٍ الحذف</string>
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
+  <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح بالجهاز.</string>
   <!--ConversationListFragment-->
@@ -420,6 +423,8 @@
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
   <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
   <string name="MessageRecord_s_joined_signal">%sمتواجد على Signal !</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">قمت بتعطيل تخفية الرسائل.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">عطّل %1$s تخفية الرسائل.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم الأمان الخاص بك وبـ %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">لقد قمت بالتحقق من بيان سلامة المحادثة مع %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">لقد قمت بالتحقق من بيان سلامة المحادثة مع %s من جهاز آخر</string>
@@ -724,6 +729,7 @@
   <string name="QuoteView_photo">صورة</string>
   <string name="QuoteView_document">مستند</string>
   <string name="QuoteView_you">أنت</string>
+  <string name="QuoteView_original_missing">لم يتم العثور على الرسالة الأصلية</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">النزول إلى الأسفل</string>
   <!--country_selection_fragment-->
