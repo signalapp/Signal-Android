@@ -341,6 +341,21 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     protected GroupActionResult doInBackground(Void... avoid) {
       List<Address> memberAddresses = new LinkedList<>();
 
+      //Check to see if you are in this group message
+      boolean inGroup = false;
+      for (Recipient recipient : members) {
+        if (TextUtils.equals(TextSecurePreferences.getLocalNumber(activity), recipient.getAddress().serialize())) {
+          inGroup = true;
+          break;
+        }
+      }
+
+      //If you are not add yourself to the members list so it won't make multiple groups (one with you not in it, and another with you in it)
+      if (!inGroup) {
+        Recipient me = Recipient.from(activity, Address.fromSerialized(TextSecurePreferences.getLocalNumber(activity)), true);
+        members.add(me);
+      }
+
       for (Recipient recipient : members) {
         memberAddresses.add(recipient.getAddress());
       }
