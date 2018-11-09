@@ -34,6 +34,7 @@ import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.view.View;
@@ -493,6 +494,7 @@ public class AttachmentManager {
       Intent intent = new Intent(context, MediaPreviewActivity.class);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
+      intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
       intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, true);
       intent.setDataAndType(slide.getUri(), slide.getContentType());
 

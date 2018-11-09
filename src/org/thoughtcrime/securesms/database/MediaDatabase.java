@@ -35,6 +35,7 @@ public class MediaDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
@@ -84,7 +85,9 @@ public class MediaDatabase extends Database {
     private final long               date;
     private final boolean            outgoing;
 
-    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date, boolean outgoing) {
+    // TODO: Make private again
+    public MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date, boolean outgoing) {
+//    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date, boolean outgoing) {
       this.attachment = attachment;
       this.address    = address;
       this.date       = date;

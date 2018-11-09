@@ -92,6 +92,16 @@ public class AttachmentDownloadJob extends ContextJob implements InjectableType 
   @Override
   public void onAdded() {
     Log.i(TAG, "onAdded() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
+
+    final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
+    final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
+    final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
+    final boolean            pending      = attachment != null && attachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+
+    if (pending && (manual || AttachmentUtil.isAutoDownloadPermitted(context, attachment))) {
+      Log.i(TAG, "onAdded() Marking attachment progress as 'started'");
+      database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
+    }
   }
 
   @Override

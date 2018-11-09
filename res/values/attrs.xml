@@ -86,6 +86,7 @@
     <attr name="conversation_item_quote_text_color" format="reference"/>
     <attr name="conversation_item_sticky_date_background" format="reference" />
     <attr name="conversation_item_sticky_date_text_color" format="color" />
+    <attr name="conversation_item_image_outline_color" format="color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -298,6 +299,10 @@
 
     <declare-styleable name="TypingIndicatorView">
         <attr name="typingIndicator_tint" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="scrollView_maxHeight" format="dimension" />
     </declare-styleable>
 
 </resources>

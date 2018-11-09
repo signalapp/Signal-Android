@@ -163,7 +163,8 @@ public class MmsDatabase extends MessagingDatabase {
           "'" + AttachmentDatabase.QUOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", " +
           "'" + AttachmentDatabase.CONTENT_DISPOSITION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", " +
           "'" + AttachmentDatabase.NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", " +
-          "'" + AttachmentDatabase.TRANSFER_STATE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE +
+          "'" + AttachmentDatabase.TRANSFER_STATE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", " +
+          "'" + AttachmentDatabase.CAPTION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION +
           ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
   };
 
@@ -715,7 +716,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.isVoiceNote(),
                                                databaseAttachment.getWidth(),
                                                databaseAttachment.getHeight(),
-                                               databaseAttachment.isQuote()));
+                                               databaseAttachment.isQuote(),
+                                               databaseAttachment.getCaption()));
       }
 
       return insertMediaMessage(request.getBody(),

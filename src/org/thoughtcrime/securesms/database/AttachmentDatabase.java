@@ -98,6 +98,7 @@ public class AttachmentDatabase extends Database {
   private static final String THUMBNAIL_RANDOM       = "thumbnail_random";
           static final String WIDTH                  = "width";
           static final String HEIGHT                 = "height";
+          static final String CAPTION                = "caption";
 
   public  static final String DIRECTORY              = "parts";
 
@@ -113,7 +114,8 @@ public class AttachmentDatabase extends Database {
                                                            CONTENT_LOCATION, DATA, THUMBNAIL, TRANSFER_STATE,
                                                            SIZE, FILE_NAME, THUMBNAIL, THUMBNAIL_ASPECT_RATIO,
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
-                                                           QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT};
+                                                           QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT,
+                                                           CAPTION };
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -125,7 +127,8 @@ public class AttachmentDatabase extends Database {
     FILE_NAME + " TEXT, " + THUMBNAIL + " TEXT, " + THUMBNAIL_ASPECT_RATIO + " REAL, " +
     UNIQUE_ID + " INTEGER NOT NULL, " + DIGEST + " BLOB, " + FAST_PREFLIGHT_ID + " TEXT, " +
     VOICE_NOTE + " INTEGER DEFAULT 0, " + DATA_RANDOM + " BLOB, " + THUMBNAIL_RANDOM + " BLOB, " +
-    QUOTE + " INTEGER DEFAULT 0, " + WIDTH + " INTEGER DEFAULT 0, " + HEIGHT + " INTEGER DEFAULT 0);";
+    QUOTE + " INTEGER DEFAULT 0, " + WIDTH + " INTEGER DEFAULT 0, " + HEIGHT + " INTEGER DEFAULT 0, " +
+    CAPTION + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -416,7 +419,8 @@ public class AttachmentDatabase extends Database {
                                   databaseAttachment.isVoiceNote(),
                                   mediaStream.getWidth(),
                                   mediaStream.getHeight(),
-                                  databaseAttachment.isQuote());
+                                  databaseAttachment.isQuote(),
+                                  databaseAttachment.getCaption());
   }
 
 
@@ -589,7 +593,8 @@ public class AttachmentDatabase extends Database {
                                               object.getInt(VOICE_NOTE) == 1,
                                               object.getInt(WIDTH),
                                               object.getInt(HEIGHT),
-                                              object.getInt(QUOTE) == 1));
+                                              object.getInt(QUOTE) == 1,
+                                              object.getString(CAPTION)));
           }
         }
 
@@ -612,7 +617,8 @@ public class AttachmentDatabase extends Database {
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)),
-                                                                cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1));
+                                                                cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1,
+                                                                cursor.getString(cursor.getColumnIndexOrThrow(CAPTION))));
       }
     } catch (JSONException e) {
       throw new AssertionError(e);
@@ -650,6 +656,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(WIDTH, attachment.getWidth());
     contentValues.put(HEIGHT, attachment.getHeight());
     contentValues.put(QUOTE, quote);
+    contentValues.put(CAPTION, attachment.getCaption());
 
     if (dataInfo != null) {
       contentValues.put(DATA, dataInfo.file.getAbsolutePath());

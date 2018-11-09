@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public abstract class PushSendJob extends SendJob {
@@ -120,6 +121,7 @@ public abstract class PushSendJob extends SendJob {
                                     .withVoiceNote(attachment.isVoiceNote())
                                     .withWidth(attachment.getWidth())
                                     .withHeight(attachment.getHeight())
+                                    .withCaption(attachment.getCaption())
                                     .withListener((total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)))
                                     .build();
     } catch (IOException ioe) {

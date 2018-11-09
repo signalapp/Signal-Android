@@ -241,7 +241,7 @@ public class MmsDownloadJob extends ContextJob {
 
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length, name, false, false));
+                                            part.getData().length, name, false, false, null));
         }
       }
     }

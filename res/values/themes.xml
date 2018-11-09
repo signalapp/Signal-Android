@@ -204,6 +204,7 @@
         <item name="conversation_item_quote_text_color">@color/core_grey_90</item>
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_light</item>
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_60</item>
+        <item name="conversation_item_image_outline_color">@color/transparent_black_30</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_light</item>
         <item name="quick_mic_icon">@drawable/ic_mic_grey600_24dp</item>
@@ -311,6 +312,7 @@
         <item name="conversation_item_quote_text_color">@color/core_grey_05</item>
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_dark</item>
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_25</item>
+        <item name="conversation_item_image_outline_color">@color/transparent_white_30</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>
 

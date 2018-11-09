@@ -42,7 +42,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
@@ -53,7 +52,6 @@ import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.SharedContactView;
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -71,6 +69,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
+import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -83,6 +82,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -132,10 +132,11 @@ public class ConversationItem extends LinearLayout
   private int defaultBubbleColor;
   private int measureCalls;
 
-  private final PassthroughClickListener        passthroughClickListener   = new PassthroughClickListener();
-  private final AttachmentDownloadClickListener downloadClickListener      = new AttachmentDownloadClickListener();
-  private final SharedContactEventListener      sharedContactEventListener = new SharedContactEventListener();
-  private final SharedContactClickListener      sharedContactClickListener = new SharedContactClickListener();
+  private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
+  private final AttachmentDownloadClickListener downloadClickListener       = new AttachmentDownloadClickListener();
+  private final SlideClickPassthroughListener   singleDownloadClickListener = new SlideClickPassthroughListener(downloadClickListener);
+  private final SharedContactEventListener      sharedContactEventListener  = new SharedContactEventListener();
+  private final SharedContactClickListener      sharedContactClickListener  = new SharedContactClickListener();
 
   private final Context context;
 
@@ -427,7 +428,7 @@ public class ConversationItem extends LinearLayout
 
       //noinspection ConstantConditions
       audioViewStub.get().setAudio(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
-      audioViewStub.get().setDownloadClickListener(downloadClickListener);
+      audioViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -442,7 +443,7 @@ public class ConversationItem extends LinearLayout
       //noinspection ConstantConditions
       documentViewStub.get().setDocument(((MediaMmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide(), showControls);
       documentViewStub.get().setDocumentClickListener(new ThumbnailClickListener());
-      documentViewStub.get().setDownloadClickListener(downloadClickListener);
+      documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -455,19 +456,18 @@ public class ConversationItem extends LinearLayout
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
 
       //noinspection ConstantConditions
-      Slide      thumbnailSlide = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlide();
-      Attachment attachment     = thumbnailSlide.asAttachment();
+      List<Slide> thumbnailSlides = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlides();
       mediaThumbnailStub.get().setImageResource(glideRequests,
-                                                thumbnailSlide,
+                                                thumbnailSlides,
                                                 showControls,
-                                                false,
-                                                attachment.getWidth(),
-                                                attachment.getHeight());
+                                                false);
       mediaThumbnailStub.get().setThumbnailClickListener(new ThumbnailClickListener());
       mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
       mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);
       mediaThumbnailStub.get().setOnClickListener(passthroughClickListener);
       mediaThumbnailStub.get().showShade(TextUtils.isEmpty(messageRecord.getDisplayBody()));
+      mediaThumbnailStub.get().setConversationColor(messageRecord.isOutgoing() ? defaultBubbleColor
+                                                                               : messageRecord.getRecipient().getColor().toConversationColor(context));
 
       setThumbnailOutlineCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
 
@@ -847,9 +847,9 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private class AttachmentDownloadClickListener implements SlideClickListener {
+  private class AttachmentDownloadClickListener implements SlidesClickedListener {
     @Override
-    public void onClick(View v, final Slide slide) {
+    public void onClick(View v, final List<Slide> slides) {
       Log.i(TAG, "onClick() for attachment download");
       if (messageRecord.isMmsNotification()) {
         Log.i(TAG, "Scheduling MMS attachment download");
@@ -858,16 +858,29 @@ public class ConversationItem extends LinearLayout
                           .add(new MmsDownloadJob(context, messageRecord.getId(),
                                                   messageRecord.getThreadId(), false));
       } else {
-        Log.i(TAG, "Scheduling push attachment download");
-        DatabaseFactory.getAttachmentDatabase(context).setTransferState(messageRecord.getId(),
-                                                                        slide.asAttachment(),
-                                                                        AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
+        Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
 
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new AttachmentDownloadJob(context, messageRecord.getId(),
-                                                         ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
+        for (Slide slide : slides) {
+          ApplicationContext.getInstance(context)
+                            .getJobManager()
+                            .add(new AttachmentDownloadJob(context, messageRecord.getId(),
+                                                           ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
+        }
       }
+    }
+  }
+
+  private class SlideClickPassthroughListener implements SlideClickListener {
+
+    private final SlidesClickedListener original;
+
+    private SlideClickPassthroughListener(@NonNull SlidesClickedListener original) {
+      this.original = original;
+    }
+
+    @Override
+    public void onClick(View v, Slide slide) {
+      original.onClick(v, Collections.singletonList(slide));
     }
   }
 
@@ -883,6 +896,7 @@ public class ConversationItem extends LinearLayout
         intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, messageRecord.isOutgoing());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getTimestamp());
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
+        intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
         intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, false);
 
         context.startActivity(intent);
