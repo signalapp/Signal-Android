@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.hardware.Camera.CameraInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -623,7 +624,10 @@ public class TextSecurePreferences {
   }
 
   public static boolean isEnterSendsEnabled(Context context) {
-    return getBooleanPreference(context, ENTER_SENDS_PREF, false);
+    return getBooleanPreference(context, ENTER_SENDS_PREF,
+            (context.getResources().getConfiguration().keyboard ==
+                    Configuration.KEYBOARD_QWERTY) ||
+                    (Build.DEVICE != null && Build.DEVICE.matches(".+_cheets|cheets_.+")));
   }
 
   public static boolean isPasswordDisabled(Context context) {

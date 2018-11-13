@@ -24,11 +24,13 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.TooltipCompat;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -120,6 +122,16 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   public void onDestroy() {
     super.onDestroy();
   }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if ((keyCode == KeyEvent.KEYCODE_ESCAPE || keyCode == KeyEvent.KEYCODE_BACK) &&
+            (Build.DEVICE != null && Build.DEVICE.matches(".+_cheets|cheets_.+"))) {
+      return true;
+    } else
+      return (keyCode == KeyEvent.KEYCODE_MENU && BaseActivity.isMenuWorkaroundRequired()) || super.onKeyDown(keyCode, event);
+  }
+
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
