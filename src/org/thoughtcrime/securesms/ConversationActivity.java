@@ -577,7 +577,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Log.i(TAG, "Is SecureText: " + isSecureText);
         Log.i(TAG, "Is MMS Group Recipient: " + getRecipient().isMmsGroupRecipient());
         //If it's a Signal Group Message enable the Leave Group option
-        if(isSecureText && !getRecipient().isMmsGroupRecipient()) {
+        if(isSecureText) {
           inflater.inflate(R.menu.conversation_push_group_leave_option, menu);
         }
       }
