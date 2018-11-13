@@ -25,33 +25,37 @@ public class SmsSentJob extends MasterSecretJob {
   private static final long   serialVersionUID = -2624694558755317560L;
   private static final String TAG              = SmsSentJob.class.getSimpleName();
 
-  private static final String KEY_MESSAGE_ID = "message_id";
-  private static final String KEY_ACTION     = "action";
-  private static final String KEY_RESULT     = "result";
+  private static final String KEY_MESSAGE_ID  = "message_id";
+  private static final String KEY_ACTION      = "action";
+  private static final String KEY_RESULT      = "result";
+  private static final String KEY_RUN_ATTEMPT = "run_attempt";
 
   private long   messageId;
   private String action;
   private int    result;
+  private int    runAttempt;
 
   public SmsSentJob() {
     super(null, null);
   }
 
-  public SmsSentJob(Context context, long messageId, String action, int result) {
+  public SmsSentJob(Context context, long messageId, String action, int result, int runAttempt) {
     super(context, JobParameters.newBuilder()
                                 .withMasterSecretRequirement()
                                 .create());
 
-    this.messageId = messageId;
-    this.action    = action;
-    this.result    = result;
+    this.messageId  = messageId;
+    this.action     = action;
+    this.result     = result;
+    this.runAttempt = runAttempt;
   }
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    messageId = data.getLong(KEY_MESSAGE_ID);
-    action    = data.getString(KEY_ACTION);
-    result    = data.getInt(KEY_RESULT);
+    messageId  = data.getLong(KEY_MESSAGE_ID);
+    action     = data.getString(KEY_ACTION);
+    result     = data.getInt(KEY_RESULT);
+    runAttempt = data.getInt(KEY_RUN_ATTEMPT);
   }
 
   @Override
@@ -59,6 +63,7 @@ public class SmsSentJob extends MasterSecretJob {
     return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
                       .putString(KEY_ACTION, action)
                       .putInt(KEY_RESULT, result)
+                      .putInt(KEY_RUN_ATTEMPT, runAttempt)
                       .build();
   }
 
@@ -104,7 +109,7 @@ public class SmsSentJob extends MasterSecretJob {
           Log.w(TAG, "Service connectivity problem, requeuing...");
           ApplicationContext.getInstance(context)
               .getJobManager()
-              .add(new SmsSendJob(context, messageId, record.getIndividualRecipient().getAddress().serialize()));
+              .add(new SmsSendJob(context, messageId, record.getIndividualRecipient().getAddress().serialize(), runAttempt + 1));
           break;
         default:
           database.markAsSentFailed(messageId);

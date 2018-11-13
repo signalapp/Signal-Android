@@ -10,6 +10,8 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 
 import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobs.requirements.NetworkOrServiceRequirement;
+import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirement;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -20,6 +22,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
+import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -33,27 +36,38 @@ public class SmsSendJob extends SendJob {
 
   private static final long   serialVersionUID = -5118520036244759718L;
   private static final String TAG              = SmsSendJob.class.getSimpleName();
+  private static final int    MAX_ATTEMPTS     = 15;
   private static final String KEY_MESSAGE_ID   = "message_id";
+  private static final String KEY_RUN_ATTEMPT  = "run_attempt";
 
   private long messageId;
+  private int  runAttempt;
 
   public SmsSendJob() {
     super(null, null);
   }
 
   public SmsSendJob(Context context, long messageId, String name) {
+    this(context, messageId, name, 0);
+  }
+
+  public SmsSendJob(Context context, long messageId, String name, int runAttempt) {
     super(context, constructParameters(name));
-    this.messageId = messageId;
+    this.messageId  = messageId;
+    this.runAttempt = runAttempt;
   }
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    messageId = data.getLong(KEY_MESSAGE_ID);
+    messageId  = data.getLong(KEY_MESSAGE_ID);
+    runAttempt = data.getInt(KEY_RUN_ATTEMPT);
   }
 
   @Override
   protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId).build();
+    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
+                      .putInt(KEY_RUN_ATTEMPT, runAttempt)
+                      .build();
   }
 
   @Override
@@ -62,12 +76,22 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public void onSend(MasterSecret masterSecret) throws NoSuchMessageException {
+  public void onSend(MasterSecret masterSecret) throws NoSuchMessageException, RequirementNotMetException, TooManyRetriesException {
+    if (!requirementsMet()) {
+      Log.w(TAG, "No service. Retrying.");
+      throw new RequirementNotMetException();
+    }
+
+    if (runAttempt >= MAX_ATTEMPTS) {
+      Log.w(TAG, "Hit the retry limit. Failing.");
+      throw new TooManyRetriesException();
+    }
+
     SmsDatabase      database = DatabaseFactory.getSmsDatabase(context);
     SmsMessageRecord record   = database.getMessage(messageId);
 
     try {
-      Log.i(TAG, "Sending message: " + messageId);
+      Log.i(TAG, "Sending message: " + messageId + " (attempt " + runAttempt + ")");
       deliver(record);
       Log.i(TAG, "Sent message: " + messageId);
     } catch (UndeliverableMessageException ude) {
@@ -92,6 +116,14 @@ public class SmsSendJob extends SendJob {
 
     if (threadId != -1 && recipient != null) {
       MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+    }
+  }
+
+  private boolean requirementsMet() {
+    if (TextSecurePreferences.isWifiSmsEnabled(context)) {
+      return new NetworkOrServiceRequirement(context).isPresent();
+    } else {
+      return new ServiceRequirement(context).isPresent();
     }
   }
 
@@ -186,6 +218,7 @@ public class SmsSendJob extends SendJob {
 
     pending.putExtra("type", type);
     pending.putExtra("message_id", messageId);
+    pending.putExtra("run_attempt", Math.max(runAttempt, getRunAttemptCount()));
     pending.putExtra("upgraded", upgraded);
     pending.putExtra("push", push);
 
@@ -213,10 +246,11 @@ public class SmsSendJob extends SendJob {
   private static JobParameters constructParameters(String name) {
     JobParameters.Builder builder = JobParameters.newBuilder()
                                                  .withMasterSecretRequirement()
-                                                 .withRetryCount(15)
+                                                 .withRetryCount(MAX_ATTEMPTS)
                                                  .withGroupId(name);
     return builder.create();
   }
 
+  private static class TooManyRetriesException extends Exception { }
 
 }
