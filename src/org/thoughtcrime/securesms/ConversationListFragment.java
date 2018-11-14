@@ -27,8 +27,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,6 +43,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -106,10 +107,14 @@ public class ConversationListFragment extends Fragment
   private ReminderView                reminderView;
   private View                        emptyState;
   private TextView                    emptySearch;
+  private PulsingFloatingActionButton fabGroup;
   private PulsingFloatingActionButton fab;
   private Locale                      locale;
   private String                      queryFilter  = "";
   private boolean                     archive;
+
+  private Boolean isFabOpen = false;
+  private Animation fab_open,fab_close, fab_close_immediate,rotate_forward,rotate_backward;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -124,12 +129,13 @@ public class ConversationListFragment extends Fragment
 
     reminderView = ViewUtil.findById(view, R.id.reminder);
     list         = ViewUtil.findById(view, R.id.list);
+    fabGroup     = ViewUtil.findById(view, R.id.fabGroup);
     fab          = ViewUtil.findById(view, R.id.fab);
     emptyState   = ViewUtil.findById(view, R.id.empty_state);
     emptySearch  = ViewUtil.findById(view, R.id.empty_search);
 
-    if (archive) fab.setVisibility(View.GONE);
-    else         fab.setVisibility(View.VISIBLE);
+    //if (archive) fab.setVisibility(View.GONE);
+    //else         fab.setVisibility(View.VISIBLE);
 
     reminderView.setOnDismissListener(() -> updateReminders(true));
 
@@ -147,9 +153,64 @@ public class ConversationListFragment extends Fragment
     super.onActivityCreated(bundle);
 
     setHasOptionsMenu(true);
-    fab.setOnClickListener(v -> startActivity(new Intent(getActivity(), NewConversationActivity.class)));
+    fab_open = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_open);
+    fab_close = AnimationUtils.loadAnimation(getActivity(),R.anim.fab_close);
+    fab_close_immediate = AnimationUtils.loadAnimation(getActivity(),R.anim.fab_close_immediate);
+    rotate_forward = AnimationUtils.loadAnimation(getActivity(),R.anim.rotate_forward);
+    rotate_backward = AnimationUtils.loadAnimation(getActivity(),R.anim.rotate_backward);
+    fabGroup.setOnClickListener(v -> {
+      startActivity(new Intent(getActivity(), GroupCreateActivity.class));
+      closeFABImmediately();
+    });
+    fab.setOnClickListener(v -> {
+      Log.d(TAG, "fab onClick");
+      startActivity(new Intent(getActivity(), NewConversationActivity.class));
+    });
+    fab.setOnLongClickListener(v -> {
+      Log.d(TAG, "fab onLongClick");
+      toggleFAB();
+      return true;
+    });
     initializeListAdapter();
     initializeTypingObserver();
+  }
+
+  private void toggleFAB(){
+
+    if(isFabOpen){
+      closeFAB();
+    } else {
+      openFAB();
+    }
+  }
+
+  private void closeFAB() {
+    if(isFabOpen) {
+      fab.startAnimation(rotate_backward);
+      fabGroup.startAnimation(fab_close);
+      fabGroup.setClickable(false);
+      isFabOpen = false;
+      Log.d(TAG, "animateFAB() close");
+    }
+  }
+
+  private void closeFABImmediately() {
+    if(isFabOpen) {
+      fabGroup.startAnimation(fab_close_immediate);
+      fabGroup.setClickable(false);
+      isFabOpen = false;
+      Log.d(TAG, "animateFAB() close immediately");
+    }
+  }
+
+  private void openFAB() {
+      if(!isFabOpen) {
+          fab.startAnimation(rotate_forward);
+          fabGroup.startAnimation(fab_open);
+          fabGroup.setClickable(true);
+          isFabOpen = true;
+          Log.d(TAG, "animateFAB() open");
+      }
   }
 
   @Override
@@ -165,7 +226,9 @@ public class ConversationListFragment extends Fragment
   public void onPause() {
     super.onPause();
 
+    fabGroup.stopPulse();
     fab.stopPulse();
+    closeFABImmediately();
     EventBus.getDefault().unregister(this);
   }
 
@@ -357,6 +420,7 @@ public class ConversationListFragment extends Fragment
       list.setVisibility(View.INVISIBLE);
       emptyState.setVisibility(View.VISIBLE);
       emptySearch.setVisibility(View.INVISIBLE);
+      fabGroup.startPulse(3 * 1000);
       fab.startPulse(3 * 1000);
     } else if ((cursor == null || cursor.getCount() <= 0) && !TextUtils.isEmpty(queryFilter)) {
       list.setVisibility(View.INVISIBLE);
@@ -367,6 +431,7 @@ public class ConversationListFragment extends Fragment
       list.setVisibility(View.VISIBLE);
       emptyState.setVisibility(View.GONE);
       emptySearch.setVisibility(View.INVISIBLE);
+      fabGroup.stopPulse();
       fab.stopPulse();
     }
 

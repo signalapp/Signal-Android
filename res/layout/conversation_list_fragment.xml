@@ -65,8 +65,28 @@
 
     </LinearLayout>
 
+    <LinearLayout android:id="@+id/PulsingFloatingActionButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:orientation="vertical"
+        tools:visibility="visible">
 
-    <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+        <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+            android:id="@+id/fabGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="0dp"
+            android:visibility="invisible"
+            android:src="@drawable/ic_create_group_white_24dp"
+            android:focusable="true"
+            android:contentDescription="@string/group_conversation_list_fragment__fab_content_description"/>
+
+        <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,5 +96,6 @@
             android:focusable="true"
             android:contentDescription="@string/conversation_list_fragment__fab_content_description"/>
 
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
