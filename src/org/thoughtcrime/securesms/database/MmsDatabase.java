@@ -1053,6 +1053,17 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
+  public boolean isSent(long messageId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] {  MESSAGE_BOX }, ID + " = ?", new String[] { String.valueOf(messageId)}, null, null, null)) {
+      if (cursor != null && cursor.moveToNext()) {
+        long type = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
+        return Types.isSentType(type);
+      }
+    }
+    return false;
+  }
+
   /*package*/ void deleteThreads(Set<Long> threadIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     String where      = "";

@@ -78,6 +78,11 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     SmsDatabase            database          = DatabaseFactory.getSmsDatabase(context);
     SmsMessageRecord       record            = database.getMessage(messageId);
 
+    if (!record.isPending() && !record.isFailed()) {
+      Log.w(TAG, "Message " + messageId + " was already sent. Ignoring.");
+      return;
+    }
+
     try {
       Log.i(TAG, "Sending message: " + messageId);
 

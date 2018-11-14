@@ -85,6 +85,11 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     MmsDatabase            database          = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage   message           = database.getOutgoingMessage(messageId);
 
+    if (database.isSent(messageId)) {
+      Log.w(TAG, "Message " + messageId + " was already sent. Ignoring.");
+      return;
+    }
+
     try {
       Log.i(TAG, "Sending message: " + messageId);
       

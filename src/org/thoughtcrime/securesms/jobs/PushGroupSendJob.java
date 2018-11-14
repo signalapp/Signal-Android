@@ -114,6 +114,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     List<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
     List<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
 
+    if (database.isSent(messageId)) {
+      Log.w(TAG, "Message " + messageId + " was already sent. Ignoring.");
+      return;
+    }
+
     try {
       Log.i(TAG, "Sending message: " + messageId);
 
