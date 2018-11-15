@@ -23,7 +23,6 @@ import com.google.android.mms.smil.SmilHelper;
 import com.klinker.android.send_message.Utils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -70,7 +69,6 @@ public class MmsSendJob extends SendJob {
     super(context, JobParameters.newBuilder()
                                 .withGroupId("mms-operation")
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withRetryCount(15)
                                 .create());
 
@@ -88,7 +86,7 @@ public class MmsSendJob extends SendJob {
   }
 
   @Override
-  public void onSend(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
+  public void onSend() throws MmsException, NoSuchMessageException, IOException {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
 
@@ -124,7 +122,7 @@ public class MmsSendJob extends SendJob {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 

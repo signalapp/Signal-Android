@@ -22,7 +22,7 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-public class RotateSignedPreKeyJob extends MasterSecretJob implements InjectableType {
+public class RotateSignedPreKeyJob extends ContextJob implements InjectableType {
 
   private static final String TAG = RotateSignedPreKeyJob.class.getName();
 
@@ -35,7 +35,6 @@ public class RotateSignedPreKeyJob extends MasterSecretJob implements Injectable
   public RotateSignedPreKeyJob(Context context) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withRetryCount(5)
                                 .create());
   }
@@ -50,7 +49,7 @@ public class RotateSignedPreKeyJob extends MasterSecretJob implements Injectable
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws Exception {
+  public void onRun() throws Exception {
     Log.i(TAG, "Rotating signed prekey...");
 
     IdentityKeyPair    identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
@@ -68,7 +67,7 @@ public class RotateSignedPreKeyJob extends MasterSecretJob implements Injectable
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return exception instanceof PushNetworkException;
   }
 

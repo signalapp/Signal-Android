@@ -39,7 +39,7 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
+public class AttachmentDownloadJob extends ContextJob implements InjectableType {
   private static final long   serialVersionUID    = 2L;
   private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
   private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
@@ -63,7 +63,6 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   public AttachmentDownloadJob(Context context, long messageId, AttachmentId attachmentId, boolean manual) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(AttachmentDownloadJob.class.getCanonicalName())
-                                .withMasterSecretRequirement()
                                 .withNetworkRequirement()
                                 .create());
 
@@ -96,7 +95,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws IOException {
+  public void onRun() throws IOException {
     Log.i(TAG, "onRun() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
 
     final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
@@ -135,7 +134,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  protected boolean onShouldRetry(Exception exception) {
     return (exception instanceof PushNetworkException);
   }
 

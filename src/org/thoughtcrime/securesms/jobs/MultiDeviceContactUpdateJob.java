@@ -13,7 +13,6 @@ import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
@@ -52,7 +51,7 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-public class MultiDeviceContactUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceContactUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 2L;
 
@@ -88,7 +87,6 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withGroupId(MultiDeviceContactUpdateJob.class.getSimpleName())
                                 .create());
 
@@ -112,7 +110,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret)
+  public void onRun()
       throws IOException, UntrustedIdentityException, NetworkException
   {
     if (!TextSecurePreferences.isMultiDevice(context)) {
@@ -217,7 +215,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

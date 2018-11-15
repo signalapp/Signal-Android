@@ -30,7 +30,7 @@ import androidx.work.Data;
 
 import static org.thoughtcrime.securesms.dependencies.AxolotlStorageModule.SignedPreKeyStoreFactory;
 
-public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
+public class CleanPreKeysJob extends ContextJob implements InjectableType {
 
   private static final String TAG = CleanPreKeysJob.class.getSimpleName();
 
@@ -46,7 +46,6 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
   public CleanPreKeysJob(Context context) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(CleanPreKeysJob.class.getSimpleName())
-                                .withMasterSecretRequirement()
                                 .withRetryCount(5)
                                 .create());
   }
@@ -61,7 +60,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws IOException {
+  public void onRun() throws IOException {
     try {
       Log.i(TAG, "Cleaning prekeys...");
 
@@ -99,7 +98,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception throwable) {
+  public boolean onShouldRetry(Exception throwable) {
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
     if (throwable instanceof PushNetworkException)               return true;
     return false;

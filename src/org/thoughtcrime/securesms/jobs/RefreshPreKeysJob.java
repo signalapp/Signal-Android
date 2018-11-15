@@ -26,7 +26,7 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType {
+public class RefreshPreKeysJob extends ContextJob implements InjectableType {
 
   private static final String TAG = RefreshPreKeysJob.class.getSimpleName();
 
@@ -42,7 +42,6 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
     super(context, JobParameters.newBuilder()
                                 .withGroupId(RefreshPreKeysJob.class.getSimpleName())
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withRetryCount(5)
                                 .create());
   }
@@ -57,7 +56,7 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws IOException {
+  public void onRun() throws IOException {
     if (!TextSecurePreferences.isPushRegistered(context)) return;
 
     int availableKeys = accountManager.getPreKeysCount();
@@ -84,7 +83,7 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof NonSuccessfulResponseCodeException) return false;
     if (exception instanceof PushNetworkException)               return true;
 

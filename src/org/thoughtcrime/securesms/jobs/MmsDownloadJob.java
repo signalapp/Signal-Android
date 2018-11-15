@@ -49,7 +49,7 @@ import java.util.Set;
 
 import androidx.work.Data;
 
-public class MmsDownloadJob extends MasterSecretJob {
+public class MmsDownloadJob extends ContextJob {
 
   private static final long serialVersionUID = 1L;
 
@@ -69,8 +69,6 @@ public class MmsDownloadJob extends MasterSecretJob {
 
   public MmsDownloadJob(Context context, long messageId, long threadId, boolean automatic) {
     super(context, JobParameters.newBuilder()
-                                .withMasterSecretRequirement()
-                                .withMasterSecretRequirement()
                                 .withGroupId("mms-operation")
                                 .create());
 
@@ -103,7 +101,7 @@ public class MmsDownloadJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) {
+  public void onRun() {
     MmsDatabase                               database     = DatabaseFactory.getMmsDatabase(context);
     Optional<MmsDatabase.MmsNotificationInfo> notification = database.getNotification(messageId);
 
@@ -186,7 +184,7 @@ public class MmsDownloadJob extends MasterSecretJob {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 

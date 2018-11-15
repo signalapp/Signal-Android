@@ -32,7 +32,7 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceProfileKeyUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceProfileKeyUpdateJob.class.getSimpleName();
@@ -60,7 +60,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws IOException, UntrustedIdentityException {
+  public void onRun() throws IOException, UntrustedIdentityException {
     if (!TextSecurePreferences.isMultiDevice(getContext())) {
       Log.i(TAG, "Not multi device...");
       return;
@@ -91,7 +91,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

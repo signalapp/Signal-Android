@@ -50,7 +50,6 @@ public abstract class PushSendJob extends SendJob {
   protected static JobParameters constructParameters(Address destination) {
     JobParameters.Builder builder = JobParameters.newBuilder();
     builder.withGroupId(destination.serialize());
-    builder.withMasterSecretRequirement();
     builder.withNetworkRequirement();
     builder.withRetryDuration(TimeUnit.DAYS.toMillis(1));
 
@@ -58,7 +57,7 @@ public abstract class PushSendJob extends SendJob {
   }
 
   @Override
-  protected final void onSend(MasterSecret masterSecret) throws Exception {
+  protected final void onSend() throws Exception {
     if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
       ApplicationContext.getInstance(context)
                         .getJobManager()

@@ -29,7 +29,7 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceBlockedUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
 
@@ -45,7 +45,6 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
   public MultiDeviceBlockedUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withGroupId(MultiDeviceBlockedUpdateJob.class.getSimpleName())
                                 .create());
   }
@@ -60,7 +59,7 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret)
+  public void onRun()
       throws IOException, UntrustedIdentityException
   {
     if (!TextSecurePreferences.isMultiDevice(context)) {
@@ -90,7 +89,7 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

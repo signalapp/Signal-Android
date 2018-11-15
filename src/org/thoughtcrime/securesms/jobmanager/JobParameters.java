@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.jobmanager;
 import org.thoughtcrime.securesms.jobmanager.requirements.NetworkBackoffRequirement;
 import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobmanager.requirements.Requirement;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.NetworkOrServiceRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirement;
 
@@ -36,7 +35,6 @@ public class JobParameters implements Serializable {
 
   private final List<Requirement> requirements;
   private final boolean           requiresNetwork;
-  private final boolean           requiresMasterSecret;
   private final boolean           requiresSqlCipher;
   private final int               retryCount;
   private final long              retryUntil;
@@ -46,19 +44,17 @@ public class JobParameters implements Serializable {
   private JobParameters(String groupId,
                         boolean ignoreDuplicates,
                         boolean requiresNetwork,
-                        boolean requiresMasterSecret,
                         boolean requiresSqlCipher,
                         int retryCount,
                         long retryUntil)
   {
-    this.groupId              = groupId;
-    this.ignoreDuplicates     = ignoreDuplicates;
-    this.requirements         = Collections.emptyList();
-    this.requiresNetwork      = requiresNetwork;
-    this.requiresMasterSecret = requiresMasterSecret;
-    this.requiresSqlCipher    = requiresSqlCipher;
-    this.retryCount           = retryCount;
-    this.retryUntil           = retryUntil;
+    this.groupId           = groupId;
+    this.ignoreDuplicates  = ignoreDuplicates;
+    this.requirements      = Collections.emptyList();
+    this.requiresNetwork   = requiresNetwork;
+    this.requiresSqlCipher = requiresSqlCipher;
+    this.retryCount        = retryCount;
+    this.retryUntil        = retryUntil;
   }
 
   public boolean shouldIgnoreDuplicates() {
@@ -67,10 +63,6 @@ public class JobParameters implements Serializable {
 
   public boolean requiresNetwork() {
     return requiresNetwork || hasNetworkRequirement(requirements);
-  }
-
-  public boolean requiresMasterSecret() {
-    return requiresMasterSecret || hasMasterSecretRequirement(requirements);
   }
 
   public boolean requiresSqlCipher() {
@@ -85,18 +77,6 @@ public class JobParameters implements Serializable {
           requirement instanceof NetworkOrServiceRequirement ||
           requirement instanceof NetworkBackoffRequirement)
       {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  private boolean hasMasterSecretRequirement(List<Requirement> requirements) {
-    if (requirements == null || requirements.size() == 0) return false;
-
-    for (Requirement requirement : requirements) {
-      if (requirement instanceof MasterSecretRequirement) {
         return true;
       }
     }
@@ -142,16 +122,9 @@ public class JobParameters implements Serializable {
     private boolean           ignoreDuplicates     = false;
     private boolean           requiresNetwork      = false;
     private boolean           requiresSqlCipher    = false;
-    private boolean           requiresMasterSecret = false;
 
     public Builder withNetworkRequirement() {
       requiresNetwork = true;
-      return this;
-    }
-
-    @Deprecated
-    public Builder withMasterSecretRequirement() {
-      requiresMasterSecret = true;
       return this;
     }
 
@@ -216,7 +189,7 @@ public class JobParameters implements Serializable {
      * @return the JobParameters instance that describes a Job.
      */
     public JobParameters create() {
-      return new JobParameters(groupId, ignoreDuplicates, requiresNetwork, requiresMasterSecret, requiresSqlCipher, retryCount, System.currentTimeMillis() + retryDuration);
+      return new JobParameters(groupId, ignoreDuplicates, requiresNetwork, requiresSqlCipher, retryCount, System.currentTimeMillis() + retryDuration);
     }
   }
 }

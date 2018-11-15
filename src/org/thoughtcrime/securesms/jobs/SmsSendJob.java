@@ -76,7 +76,7 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public void onSend(MasterSecret masterSecret) throws NoSuchMessageException, RequirementNotMetException, TooManyRetriesException {
+  public void onSend() throws NoSuchMessageException, RequirementNotMetException, TooManyRetriesException {
     if (!requirementsMet()) {
       Log.w(TAG, "No service. Retrying.");
       throw new RequirementNotMetException();
@@ -107,7 +107,7 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception throwable) {
+  public boolean onShouldRetry(Exception throwable) {
     return false;
   }
 
@@ -250,12 +250,13 @@ public class SmsSendJob extends SendJob {
 
   private static JobParameters constructParameters(String name) {
     JobParameters.Builder builder = JobParameters.newBuilder()
-                                                 .withMasterSecretRequirement()
                                                  .withRetryCount(MAX_ATTEMPTS)
                                                  .withGroupId(name);
     return builder.create();
   }
 
   private static class TooManyRetriesException extends Exception { }
+
+  private static class RequirementNotMetException extends Exception { }
 
 }

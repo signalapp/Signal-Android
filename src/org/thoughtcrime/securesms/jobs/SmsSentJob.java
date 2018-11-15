@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 
 import androidx.work.Data;
 
-public class SmsSentJob extends MasterSecretJob {
+public class SmsSentJob extends ContextJob {
 
   private static final long   serialVersionUID = -2624694558755317560L;
   private static final String TAG              = SmsSentJob.class.getSimpleName();
@@ -41,7 +41,6 @@ public class SmsSentJob extends MasterSecretJob {
 
   public SmsSentJob(Context context, long messageId, String action, int result, int runAttempt) {
     super(context, JobParameters.newBuilder()
-                                .withMasterSecretRequirement()
                                 .create());
 
     this.messageId  = messageId;
@@ -68,7 +67,7 @@ public class SmsSentJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) {
+  public void onRun() {
     Log.i(TAG, "Got SMS callback: " + action + " , " + result);
 
     switch (action) {
@@ -82,7 +81,7 @@ public class SmsSentJob extends MasterSecretJob {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception throwable) {
+  public boolean onShouldRetry(Exception throwable) {
     return false;
   }
 

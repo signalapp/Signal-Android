@@ -45,7 +45,6 @@ import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -77,7 +76,6 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   public PushGroupSendJob(Context context, long messageId, @NonNull Address destination, @Nullable Address filterAddress) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId(destination.toGroupString())
-                                .withMasterSecretRequirement()
                                 .withNetworkRequirement()
                                 .withRetryDuration(TimeUnit.DAYS.toMillis(1))
                                 .create());
@@ -190,7 +188,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof IOException)         return true;
     if (exception instanceof RetryLaterException) return true;
     return false;

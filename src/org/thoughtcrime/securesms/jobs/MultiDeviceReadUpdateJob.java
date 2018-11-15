@@ -32,7 +32,7 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-public class MultiDeviceReadUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceReadUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceReadUpdateJob.class.getSimpleName();
@@ -50,7 +50,6 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
   public MultiDeviceReadUpdateJob(Context context, List<SyncMessageId> messageIds) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .create());
 
     this.messageIds = new LinkedList<>();
@@ -90,7 +89,7 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws IOException, UntrustedIdentityException {
+  public void onRun() throws IOException, UntrustedIdentityException {
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device...");
       return;
@@ -106,7 +105,7 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return exception instanceof PushNetworkException;
   }
 

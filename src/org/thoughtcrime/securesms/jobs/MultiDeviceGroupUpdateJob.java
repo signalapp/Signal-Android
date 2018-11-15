@@ -38,7 +38,7 @@ import javax.inject.Inject;
 
 import androidx.work.Data;
 
-public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceGroupUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
@@ -52,7 +52,6 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   public MultiDeviceGroupUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withGroupId(MultiDeviceGroupUpdateJob.class.getSimpleName())
                                 .create());
   }
@@ -67,7 +66,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws Exception {
+  public void onRun() throws Exception {
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
@@ -118,7 +117,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }
