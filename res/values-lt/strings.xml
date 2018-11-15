@@ -75,10 +75,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Gaunamasis skambutis</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Kamera neprieinama.</string>
+  <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Šalinti</string>
   <string name="ClearProfileActivity_remove_profile_photo">Šalinti profilio nuotrauką?</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Nerasta jokios saityno naršyklės.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %1$s pasikeitė. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, kad %2$s, tiesiog, iš naujo įdiegė Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo kontaktu.</string>
@@ -139,6 +142,7 @@
   <string name="ConversationActivity_error_leaving_group">Klaida, išeinant iš grupės</string>
   <string name="ConversationActivity_specify_recipient">Prašome pasirinkti kontaktą</string>
   <string name="ConversationActivity_unblock_this_contact_question">Atblokuoti šį kontaktą?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Atblokuoti šią grupę?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Jūs ir vėl galėsite gauti žinutes ir priimti skambučius nuo šio kontakto.</string>
   <string name="ConversationActivity_unblock">Atblokuoti</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
@@ -296,6 +300,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Dabar, su Signal draugais galite bendrinti profilio nuotrauką ir vardą</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiliai jau čia</string>
   <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Atgaunama žinutė...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Ilgalaikė Signal susisiekimo triktis!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nepavyko prisiregistruoti prie „Google Play“ paslaugų. Signal žinutės ir skambučiai buvo išjungti, prašome pabandyti iš naujo registruotis skyrelyje Nustatymai (angl. Settings) &gt; Išplėstiniai (angl. Advanced).</string>
@@ -449,6 +454,7 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsų turima įdiegta „Google Play“ paslaugų versija nefunkcionuoja tinkamai. Prašome iš naujo įdiegti „Google Play“ paslaugas ir bandyti dar kartą.</string>
   <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Atgaunama žinutė...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeigu jūs mėgaujatės naudodamiesi šia programėle, skirkite minutėlę mums padėti ir įvertinkite ją.</string>
@@ -462,6 +468,7 @@
   <string name="RecipientPreferenceActivity_block">Užblokuoti</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Atblokuoti šį kontaktą?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Jūs ir vėl galėsite gauti žinutes ir priimti skambučius nuo šio kontakto.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Atblokuoti šią grupę?</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Klaida, išeinant iš grupės</string>
   <string name="RecipientPreferenceActivity_unblock">Atblokuoti</string>
   <string name="RecipientPreferenceActivity_enabled">Įjungta</string>

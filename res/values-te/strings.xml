@@ -32,8 +32,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">ఎస్సెమ్మెస్ చేతనం అయింది</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">మీ అప్రమేయ ఎస్సెమ్మెస్ అప్ మార్చడానికి తాకండి</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">ఎస్సెమ్మెస్ అచేతనం అయింది</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">మీ డిఫాల్ట్ 
-ఎస్సెమ్మెస్ అనువర్తనాన్ని మార్చడానికి తాకండి</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">మీ డిఫాల్ట్ SMS అనువర్తనాన్ని మార్చడానికి Signal ఐకాన్ ని తాకండి </string>
   <string name="ApplicationPreferencesActivity_on">ఆన్</string>
   <string name="ApplicationPreferencesActivity_On">ఆన్</string>
   <string name="ApplicationPreferencesActivity_off">ఆఫ్</string>
@@ -70,10 +69,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">కొత్తగా వచ్చిన కాల్</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">కెమెరా అందుబాటులో లేదు.</string>
+  <string name="CameraActivity_image_save_failure">చిత్రాన్ని సేవ్ చేయడంలో విఫలమైంది.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">తొలగించు</string>
   <string name="ClearProfileActivity_remove_profile_photo">ప్రొఫైల్ ఫోటోని తీసివేయాలా?</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">వెబ్ బ్రౌజర్ కనుగొనబడలేదు.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">మీ భద్రత అంకె %1$s మర్చబడింధి.ధీని అర్ధం ఎమిటీ అంటె మీ సంభాషనని ఎవరొ అడ్డూకుంటునారు ,లేదా %2$s కేవలం Signal తిరిగి పునఃస్థాపన జరుగుతుంధి.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ఈ పరిచయంతో మీ భద్రత సంఖ్య ధ్రువీకరించాలనుకోవొచ్చు.</string>
@@ -134,7 +136,9 @@
   <string name="ConversationActivity_error_leaving_group">సమూహం నుండి వైదొలగటంలో లోపం</string>
   <string name="ConversationActivity_specify_recipient">దయచేసి ఒక పరిచయం ఎంచుకోండి</string>
   <string name="ConversationActivity_unblock_this_contact_question">ఈ పరిచయం నిరోధించాలా?</string>
+  <string name="ConversationActivity_unblock_this_group_question">ఈ సమూహాన్ని అన్బ్లాక్ చేయాలా?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">మీరు మరోసారి ఈ పరిచయం నుండి సందేశాలను మరియు కాల్స్ అందుకోగలరు.</string>
+  <string name="ConversationActivity_unblock_this_group_description">ఇప్పటికే ఉన్న సభ్యులు మళ్ళీ గుంపుకు మిమ్మల్ని జోడించగలరు.</string>
   <string name="ConversationActivity_unblock">అనుమతించు</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">జోడింపు మీరు పంపే సందేశం రకం పరిమాణ పరిమితి మించిపోయింది.</string>
   <string name="ConversationActivity_quick_camera_unavailable">కెమెరా అందుబాటులో లేదు </string>
@@ -274,6 +278,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ఇప్పుడు మీరు Signal లో స్నేహితులతో ప్రొఫైల్ ఫోటోను మరియు పేరును పంచుకోవచ్చు</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal ప్రొఫైల్స్ ఇక్కడ ఉన్నాయి</string>
   <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది ...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal లో శాశ్వత సమాచార వైఫల్యం!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">గూగ్లె ప్లే సదుపాయలతొ Signal నమోదు కాలెదు. Signal సందెశాలు మరియు  కాల్స్ నిలిపివేయబడ్డాయి. దయచేసి ఆధునిక అమరికలు లో మళ్ళి నమోదు చెసుకొనగలరు.</string>
@@ -327,6 +332,7 @@
   <string name="InviteActivity_no_app_to_share_to">మీరు పంచుకొనడానికి మీ దగ్గర వేరే యాప్స్ లేనట్టు కనబడుతుంది.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">స్నేహితులారా , ఎన్క్రిప్ట్ చేయకుండా స్నేహితులని సంభాషించనివ్వొద్దు.</string>
   <!--Job-->
+  <string name="Job_working_in_the_background">నేపథ్యంలో పని చేస్తోంది ...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">పంపించడం విఫలమైనది</string>
   <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string>
@@ -419,6 +425,7 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">గూగుల్ ఫ్లే సేవలు ఒక్క వివరణం సరిగ్గ పని చెయ్యటంలేదు. దయచేసి  గూగుల్ ఫ్లే సేవలను మరల నెలకొల్పండి.</string>
   <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది ...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ఈ అప్లికేషన్ ని రేట్ చెయ్యండి</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ఈ కార్యక్షేత్రం నచ్చినచొ,దయచేసి కొంత సమయము వెచ్చించి దినిని విలువ కట్టండి.</string>
@@ -429,9 +436,14 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">ఈ పరిచయం నిరోధించాలా?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">మీరు ఇకపై ఈ వ్యక్తి నుండి ఏటువంతి సందేశాలను మరియు కాల్స్ అందుకోరు.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">ఈ సమూహాన్ని బ్లాక్ చేసి, వదిలివేయాలా?</string>
+  <string name="RecipientPreferenceActivity_block_group">ఈ సమూహాన్ని బ్లాక్ చేయాలా?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">మీరు ఇకపై ఈ గుంపు నుండి సందేశాలు లేదా నవీకరణలను అందుకోరు.</string>
   <string name="RecipientPreferenceActivity_block">నిరోధించు</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">ఈ పరిచయం అన్బ్లాక్ చేయాలా?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">మీరు మరోసారి ఈ పరిచయం నుండి సందేశాలను మరియు కాల్స్ అందుకోగలరు.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">ఈ సమూహాన్ని అన్బ్లాక్ చేయాలా?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">ఇప్పటికే ఉన్న సభ్యులు మళ్ళీ గుంపుకు మిమ్మల్ని జోడించగలరు.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">సమూహం నుండి వైదొలగటంలో లోపం</string>
   <string name="RecipientPreferenceActivity_unblock">అనుమతించు</string>
   <string name="RecipientPreferenceActivity_enabled">చేతనం అయింది</string>
@@ -473,6 +485,10 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">స్నేహితులతో కనెక్ట్ అవ్వడానికి, సందేశాలు మార్పిడి చేసుకోవడానికి మరియు సురక్షితమైన కాల్లను చేయడానికి మీ పరిచయాలకు మరియు మీడియాకు Signal ప్రాప్తి అవసరం</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">కనెక్ట్ చేయడం సాధ్యం కాలేదు. దయచేసి నెట్వర్క్ కనెక్షన్ను తనిఖీ చేసి మళ్ళీ ప్రయత్నించండి.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">మీ ఫోన్ నంబర్ను సులభంగా ధృవీకరించడానికి, SMS సందేశాలను వీక్షించడానికి Signal మీరు అనుమతించినట్లయితే Signal మీ ధృవీకరణ కోడ్ను స్వయంచాలకంగా గుర్తించవచ్చు.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %d దూరంగా ఉన్నారు.</item>
+    <item quantity="other">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %d మళ్లే ఉన్నారు.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">చిత్రం మార్పులను సేవ్ చేయడంలో విఫలమైంది</string>
   <!--Search-->
@@ -481,6 +497,7 @@
   <string name="SearchFragment_header_contacts">కాంటాక్ట్స్</string>
   <string name="SearchFragment_header_messages">సందేశాలు</string>
   <!--SendJob-->
+  <string name="SendJob_sending_a_message">సందేశాన్ని పంపుతోంది ...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">పరిచయాలకు జోడించు</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal కు ఆహ్వానించండి</string>
@@ -562,7 +579,7 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">తెరవడానికి తాకు</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">తెరవడానికి నొక్కండి,  లేదా మూయడానికి తాళంని నొక్కండి.</string>
-  <string name="KeyCachingService_passphrase_cached">సైగ్నల్ తాళం తీయబడినది</string>
+  <string name="KeyCachingService_passphrase_cached">Signal తాళం తీయబడినది</string>
   <string name="KeyCachingService_lock">లాక్ Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">మీరు</string>
@@ -603,6 +620,7 @@
   <string name="QuickResponseService_problem_sending_message">సందేశాన్ని పంపడంలొ సమస్య!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">%s కు సేవ్ చేయబడింది</string>
+  <string name="SaveAttachmentTask_saved">సేవ్</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">వెతకండి</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">సంభాషణలు, పరిచయాలు మరియు సందేశాల కోసం శోధించండి</string>
@@ -1013,6 +1031,12 @@
   <string name="preferences_chats__message_text_size">సందేశం ఫాంట్ పరిమాణం</string>
   <string name="preferences_events__contact_joined_signal">పరిచయం Signal లొ చేరారు</string>
   <string name="preferences_notifications__priority">ప్రాధాన్యత</string>
+  <string name="preferences_communication__category_sealed_sender">సీల్ పంపినవారు</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">ప్రదర్శన సూచికలు</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">మీరు మూసివేసిన పంపేవారిని ఉపయోగించి పంపిణీ చేసిన సందేశాలపై \"సందేశ వివరాలు\" ఎంచుకున్నప్పుడు స్థితి చిహ్నాన్ని చూపించు.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">ఎవరి నుండి అయినా అనుమతించు</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">మీరు మీ ప్రొఫైల్ను భాగస్వామ్యం చేయని పరిచయాలు మరియు వ్యక్తుల నుండి ఇన్కమింగ్ సందేశాల కోసం మూసివేసిన పంపేవారిని ప్రారంభించండి.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">ఇంకా నేర్చుకో</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1144,6 +1168,7 @@
   <string name="preferences_chats__create_backup">బ్యాకప్ను సృష్టించు</string>
   <string name="RegistrationActivity_enter_backup_passphrase">బ్యాకప్ పాస్ఫ్రేజ్ని నమోదు చేయండి</string>
   <string name="RegistrationActivity_restore">పునరుద్ధరించు</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Signal యొక్క నూతన సంస్కరణల నుండి బ్యాకప్లను దిగుమతి చేయలేరు</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">సరికాని బ్యాకప్ పాస్ఫ్రేజ్</string>
   <string name="RegistrationActivity_checking">తనిఖీ చేస్తోంది...</string>
   <string name="RegistrationActivity_d_messages_so_far">ఇప్పటివరకు %d సందేశాలు...</string>

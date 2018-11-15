@@ -75,10 +75,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящий звонок</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Камера недоступна.</string>
+  <string name="CameraActivity_image_save_failure">Не удалось сохранить изображение.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Удалить</string>
   <string name="ClearProfileActivity_remove_profile_photo">Удалить фото профиля?</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Браузер не найден</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш код безопасности с %1$s изменился. Это означает, что либо вашу переписку пытаются перехватить, либо %2$s просто переустановил(-а) Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
@@ -141,6 +144,7 @@
   <string name="ConversationActivity_unblock_this_contact_question">Разблокировать контакт?</string>
   <string name="ConversationActivity_unblock_this_group_question">Разблокировать эту группу?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Вы сможете снова получать сообщения и звонки от этого контакта.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Существующие участники смогут снова добавить вас в группу.</string>
   <string name="ConversationActivity_unblock">Разблокировать</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает допустимый размер для того типа сообщения, которое вы отправляете.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
@@ -297,6 +301,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Теперь вы можете создать свой профиль с именем и фотографией, которые увидят ваши друзья в Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профили Signal находятся здесь</string>
   <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Получение сообщения...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Неустранимая ошибка соединения!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в службах Google Play. Сообщения и звонки через Signal отключены. Пожалуйста, попробуйте зарегистрироваться снова через меню Наcтройки &gt; Расширенные.</string>
@@ -353,6 +358,7 @@
   <string name="InviteActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзья не позволяют друзьям общаться без шифрования.</string>
   <!--Job-->
+  <string name="Job_working_in_the_background">Работа в фоне...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не удалось отправить</string>
   <string name="MessageDetailsRecipient_new_safety_number">Новый код безопасности</string>
@@ -449,6 +455,7 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Установленная версия Сервисов Google Play работает некорректно. Пожалуйста, переустановите Сервисы Google Play и попробуйте снова.</string>
   <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Получение сообщения...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените это приложение</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Если вам понравилось это приложение, вы можете помочь нам, поставив оценку.</string>
@@ -459,10 +466,14 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокировать этот контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Вы больше не будете получать сообщения или звонки от этого контакта.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Заблокировать и покинуть группу?</string>
+  <string name="RecipientPreferenceActivity_block_group">Заблокировать группу?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Вы больше не будете получать сообщения и обновления из этой группы.</string>
   <string name="RecipientPreferenceActivity_block">Заблокировать</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Разблокировать этот контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Вы снова сможете получать сообщения и звонки от этого контакта.</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_question">Разблокировать эту группу?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Существующие участники смогут снова добавить вас в группу.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Ошибка при выходе из группы</string>
   <string name="RecipientPreferenceActivity_unblock">Разблокировать</string>
   <string name="RecipientPreferenceActivity_enabled">Включено</string>
@@ -501,6 +512,12 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам и мультимедиа для того, чтобы общаться с друзьями, обмениваться сообщениями и совершать безопасные вызовы</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Проверьте подключение к сети и повторите попытку.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Чтобы максимально просто проверить ваш телефонный номер, Signal может автоматически вставить код подтверждения. Для этого разрешите Signal доступ к SMS.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Вы в %d шаге от отправки журнала отладки.</item>
+    <item quantity="few">Вы в %d шагах от отправки журнала отладки.</item>
+    <item quantity="many">Вы в %d шагах от отправки журнала отладки.</item>
+    <item quantity="other">Вы в %d шагах от отправки журнала отладки.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не удалось сохранить изменения изображения</string>
   <!--Search-->
@@ -509,6 +526,7 @@
   <string name="SearchFragment_header_contacts">Контакты</string>
   <string name="SearchFragment_header_messages">Сообщения</string>
   <!--SendJob-->
+  <string name="SendJob_sending_a_message">Отправка сообщения...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Пригласить в Signal</string>
@@ -634,6 +652,7 @@
   <string name="QuickResponseService_problem_sending_message">Проблема при отправке сообщения!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Сохранено в %s</string>
+  <string name="SaveAttachmentTask_saved">Сохранено</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Поиск</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Поиск по разговорам, контактам и сообщениям</string>
@@ -1061,6 +1080,10 @@
   <string name="preferences_events__contact_joined_signal">Контакт появился в Signal</string>
   <string name="preferences_notifications__priority">Приоритет</string>
   <string name="preferences_communication__category_sealed_sender">Скрытый отправитель</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Показать индикаторы</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Показывать иконку статуса при выборе \"подробности сообщения\" для сообщений, доставленных скрытым отправителем.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Разрешить от всех</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить скрытого отправителя для входящих сообщений от людей не из контактов и тех, с кем вы ещё не делились профилем.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
   <!--****************************************-->
   <!--menus-->
@@ -1195,6 +1218,7 @@
   <string name="preferences_chats__create_backup">Создать резервную копию</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Введите парольную фразу резервной копии</string>
   <string name="RegistrationActivity_restore">Восстановить</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Не могу импортировать резервную копию из более новых версий Signal.</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Некорректная парольная фраза резервной копии</string>
   <string name="RegistrationActivity_checking">Проверка...</string>
   <string name="RegistrationActivity_d_messages_so_far">еще %d сообщений...</string>
