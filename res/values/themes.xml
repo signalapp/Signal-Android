@@ -185,6 +185,7 @@
         <item name="emoji_category_symbol">@drawable/emoji_category_symbol_light</item>
         <item name="emoji_category_flags">@drawable/emoji_category_flags_light</item>
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_light</item>
+        <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
 
         <item name="conversation_item_bubble_background">@color/core_grey_05</item>
@@ -362,6 +363,7 @@
         <item name="emoji_category_symbol">@drawable/emoji_category_symbol_dark</item>
         <item name="emoji_category_flags">@drawable/emoji_category_flags_dark</item>
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_dark</item>
+        <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_dark</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_dark</item>
         <item name="quick_mic_icon">@drawable/ic_mic_white_24dp</item>
