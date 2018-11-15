@@ -5,6 +5,7 @@
   <string name="no">ទេ</string>
   <string name="delete">លុប</string>
   <string name="please_wait">សូមរង់ចាំ...</string>
+  <string name="save">រក្សាទុក</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">សារថ្មី</string>
   <!--ApplicationPreferencesActivity-->
@@ -64,9 +65,14 @@
   <string name="BucketedThreadMedia_This_month">ខែនេះ</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ការហៅចូល</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">កាមេរ៉ាមិនដំណើរណា</string>
+  <string name="CameraActivity_image_save_failure">រក្សារូបបរាជ័យ</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ដកចេញ</string>
   <string name="ClearProfileActivity_remove_profile_photo">លុបរូបថតប្រវត្តិរូប?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">ទំព័រវែបសាយរកមិនឃើញ.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពរបស់អ្នក%1$s បានផ្លាស់ប្តូរ។ នេះមានន័យថា មាននរណាម្នាក់ព្យាយាមជ្រាតចូលការទំនាក់ទំនងរបស់អ្នក ឬក៏ %2$s ប្រើដំឡើង Signalឡើងវិញ។</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">អ្នកគួតែផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នកជាមួយលេខទំនាក់ទំនងនេះ។</string>
@@ -127,7 +133,9 @@
   <string name="ConversationActivity_error_leaving_group">បញ្ហាចាកចេញពីក្រុម</string>
   <string name="ConversationActivity_specify_recipient">សូមជ្រើសរើសលេខទំនាក់ទំនង១</string>
   <string name="ConversationActivity_unblock_this_contact_question">បើកលេខទំនាក់ទំនងនេះ?</string>
+  <string name="ConversationActivity_unblock_this_group_question">បើកសោរក្រុមនេះ?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">អ្នកនឹងទទួលបានសារ និងការហៅចូលពីលេខទំនាក់ទំនងនេះម្តងទៀត។</string>
+  <string name="ConversationActivity_unblock_this_group_description">សមាជិកដែលមានស្រាប់នឹងអាចបន្ថែមអ្នកទៅក្រុមម្តងទៀត។</string>
   <string name="ConversationActivity_unblock">បើកវិញ</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">ឯកសារភ្ជាប់លើសទំហំកំណត់ សម្រាប់ប្រភេទសារដែលអ្នកកំពុងផ្ញើ។</string>
   <string name="ConversationActivity_quick_camera_unavailable">កាមេរ៉ាមិនមាន</string>
@@ -250,6 +258,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">ត្រៀមខ្លួនសម្រាប់ភាពជិតស្និទ្ធរបស់អ្នក?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ឥឡូវនេះ អ្នកអាចចែករំលែករូបថតប្រវត្តិរូប និងឈ្មោះជាមួយមិត្តភក្តិនៅលើ Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">ទម្រង់ Signal មាននៅទីនេះ</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">សារកំពុងទៅដល់...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ការបរាជ័យក្នុងការទំនាក់ទំនង Signal អចិន្រ្តៃយ៍!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal មិនអាចចុះឈ្មោះជាមួយ Google Play Services។ ការផ្ញើសារ​ និងការហៅចេញSignal ត្រូវបានបិទ សូមព្យាយាមចុះឈ្មោះសារជាថ្មីក្នុង ការកំណត់ &gt; កម្រិតខ្ពស់។</string>
@@ -299,6 +309,8 @@
   <string name="InviteActivity_lets_switch_to_signal">តោះដូរទៅប្រើSignal ៖ %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">វាហាក់ដូចជាមិនមានកម្មវិធីណាមួយដើម្បីចែករំលែក។</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">មិត្តភក្តិមិនអោយមិត្តភក្តិជជែកដោយមិនកាណាល់កូដសម្ងាត់។</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">កំពុងដំណើរការសកម្មភាពខាងក្នុង...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ផ្ញើបរាជ័យ</string>
   <string name="MessageDetailsRecipient_new_safety_number">លេខសុវត្ថិភាពថ្មី</string>
@@ -318,6 +330,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">កំពុងលុប</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">កំពុងលុបសារ...</string>
   <string name="MediaOverviewActivity_Documents">ឯកសារ</string>
+  <string name="MediaOverviewActivity_Select_all">ជ្រើសរើសទាំងអស់</string>
+  <string name="MediaOverviewActivity_collecting_attachments">កំពុងប្រមូលឯកសារភ្ជាប់...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញSignal កំពុងដំណើរការ</string>
   <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមSignal</string>
@@ -386,6 +400,8 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ឃ្លាសម្ងាត់មិនត្រឹមត្រូវ!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">កំណែ Google Play Services ដែលបានដំឡើងមិនត្រឹមត្រូវទេ។ សូមដំឡើង Google Play Services សារជាថ្មី និងព្យាយាមម្តងទៀត។</string>
+  <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">សារកំពុងទៅដល់...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ដាក់ពិន្ទុកម្មវិធីនេះ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">បើអ្នកចូលចិត្តប្រើប្រាស់កម្មវិធីនេះ សូមចំណាយពេលបន្តិច ដើម្បីជួយដាក់ពិន្ទុផង។</string>
@@ -396,9 +412,15 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">បិទលេខទំនាក់ទំនងនេះ?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">អ្នកនឹងលែងទទួលសារ និងការហៅចូលពីលេខទំនាក់ទំនងនេះទៀតហើយ។</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">ប្លក់ហើយចេញពីក្រុម?</string>
+  <string name="RecipientPreferenceActivity_block_group">ប្លក់ក្រុមនេះ?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">អ្នកនឹងលែងទទួលសារឬការព័ត៌មានពីក្រុមនេះ</string>
   <string name="RecipientPreferenceActivity_block">ហាមឃាត់</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">មិនបិទលេខទំនាក់ទំនងនេះទេ?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">អ្នកនឹងទទួលបានសារ និងការហៅចូលពីលេខទំនាក់ទំនងនេះម្តងទៀត។</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">បើកសោរក្រុមនេះ?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">សមាជិកដែលមានស្រាប់នឹងអាចបន្ថែមអ្នកទៅក្រុមម្តងទៀត។</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">បញ្ហាចាកចេញពីក្រុម</string>
   <string name="RecipientPreferenceActivity_unblock">បើកវិញ</string>
   <string name="RecipientPreferenceActivity_enabled">បានបើក</string>
   <string name="RecipientPreferenceActivity_disabled">បានបិទ</string>
@@ -438,6 +460,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ត្រូវការចូលប្រើប្រាស់បញ្ជីទំនាក់ទំនង និងព័ត៌មានរបស់អ្នក ដើម្បីភ្ជាប់ទៅកាន់មិត្តភក្តិ ឆ្លើយឆ្លងសារ និងហៅទូរសព្ទដោយសុវត្ថិភាព</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">មិនអាចតភ្ជាប់សេវាបាន។ សូមពិនិត្យការតភ្ជាប់បណ្តាញ ហើយព្យាយាមម្តងទៀត។</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">ដើម្បីងាយស្រួលការផ្ទៀងផ្ទាត់លេខទូរស័ព្ទរបស់អ្នក Signalអាចកំណត់លេខកូដផ្ទៀងផ្ទាត់ដោយស្វ័យប្រវត្តិប្រសិនបើអ្នកអនុញ្ញាតឲ្យSignalចូលមើលសារ SMS។</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="other">You are now %d steps away from submitting a debug log.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">បានបរាជ័យក្នុងការរក្សាទុកការផ្លាស់ប្តូររូបភាព</string>
   <!--Search-->
@@ -445,6 +470,8 @@
   <string name="SearchFragment_header_conversations">ការសន្ទនា</string>
   <string name="SearchFragment_header_contacts">បញ្ជីទំនាក់ទំនង</string>
   <string name="SearchFragment_header_messages">សារ</string>
+  <!--SendJob-->
+  <string name="SendJob_sending_a_message">កំពុងផ្ញើសារ...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">បន្ថែមចូល បញ្ជីទំនាក់ទំនង</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
@@ -568,6 +595,7 @@
   <string name="QuickResponseService_problem_sending_message">សារដែលបានបញ្ជូនមានបញ្ហា!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">បានរក្សាទុកនៅ %s</string>
+  <string name="SaveAttachmentTask_saved">បានរក្សាទុក</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">ស្វែងរក</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">ការស្វែងរកសម្រាប់ការសន្ទនា បញ្ជីទំនាក់ទំនង និងសារ</string>
@@ -970,6 +998,8 @@
   <string name="preferences_chats__message_text_size">ទំហំអក្សរសារ</string>
   <string name="preferences_events__contact_joined_signal">ចូលរួមទំនាក់ទំនងតាមSignal</string>
   <string name="preferences_notifications__priority">អទិភាព</string>
+  <string name="preferences_communication__category_sealed_sender">សញ្ញាអ្នកផ្ញើ</string>
+  <string name="preferences_communication__sealed_sender_learn_more">សិក្សាបន្ថែម</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

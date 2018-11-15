@@ -5,6 +5,7 @@
   <string name="no">Nie</string>
   <string name="delete">Usuń</string>
   <string name="please_wait">Proszę czekać...</string>
+  <string name="save">Zapisz</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nowa wiadomość</string>
   <!--ApplicationPreferencesActivity-->
@@ -73,9 +74,14 @@
   <string name="BucketedThreadMedia_This_month">W tym miesiącu</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Aparat niedostępny.</string>
+  <string name="CameraActivity_image_save_failure">Błąd przy zapisie obrazu.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Usuń</string>
   <string name="ClearProfileActivity_remove_profile_photo">Usunąć zdjęcie profilowe?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Nie znaleziono przeglądarki internetowej.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po prostu %2$s przeinstalował Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
@@ -136,7 +142,9 @@
   <string name="ConversationActivity_error_leaving_group">Błąd podczas opuszczania grupy</string>
   <string name="ConversationActivity_specify_recipient">Proszę wybierz kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokować ten kontakt?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Odblokować tę grupę? </string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Będziesz mógł znowu odbierać wiadomości i połączenia od tego kontaktu.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Istniejący członkowie będą mogli ponownie dodać Cię do grupy.</string>
   <string name="ConversationActivity_unblock">Odblokuj</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Rozmiar tego załącznika przekracza limit wiadomości.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera jest niedostępna</string>
@@ -292,6 +300,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Gotowy(a) do zdjęcia?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teraz możesz współdzielić zdjęcie profilowe i nazwę ze znajomymi w Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Tu znajdują się profile Signal</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Pobieranie wiadomości...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanentny błąd komunikacji Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nie był w stanie zarejestrować się z Google Play Services. Wiadomości i połączenia Signal zostały wyłączone. Proszę spróbuj ponownie zarejestrować się poprzez pójście do Ustawienia &gt; Zaawansowane.</string>
@@ -347,6 +357,7 @@
   <string name="InviteActivity_lets_switch_to_signal">Zacznij używać Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Nie pozwól znajomym używać nieszyfrowanych połączeń.</string>
+  <!--Job-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nowy numer bezpieczeństwa</string>
@@ -372,6 +383,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Usuwanie</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Usuwanie wiadomości...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenty</string>
+  <string name="MediaOverviewActivity_Select_all">Zaznacz wszystko</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Zbieranie załączników...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal w toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
@@ -440,6 +453,8 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nieprawidłowe hasło!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Wersja Google Play Services którą masz zainstalowaną nie funkcjonuje poprawnie. Proszę przeinstaluj tę aplikację ponownie i spróbuj ponownie.</string>
+  <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Pobieranie wiadomości...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceń tę aplikację</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeśli lubisz używać tę aplikację, to prosimy, pomóż nam i oceń ją.</string>
@@ -450,9 +465,15 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokować ten kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Nie będziesz mógł już odbierać wiadomości i połączeń od tego kontaktu.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Zablokować i opuścić grupę? </string>
+  <string name="RecipientPreferenceActivity_block_group">Zablokować tę grupę? </string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Nie będziesz już otrzymywać wiadomości ani aktualizacji z tej grupy.</string>
   <string name="RecipientPreferenceActivity_block">Blokuj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokować ten kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Będziesz mógł znowu odbierać wiadomości i połączenia od tego kontaktu.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Odblokować tę grupę? </string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Istniejący członkowie będą mogli ponownie dodać Cię do grupy.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Błąd podczas opuszczania grupy</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokuj</string>
   <string name="RecipientPreferenceActivity_enabled">Włączone</string>
   <string name="RecipientPreferenceActivity_disabled">Wyłączone</string>
@@ -497,6 +518,7 @@
   <string name="SearchFragment_header_conversations">Rozmowy</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Wiadomości</string>
+  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj do kontaktów</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Zaproś do używania Signal</string>
@@ -619,6 +641,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Zapisano do %s</string>
+  <string name="SaveAttachmentTask_saved">Zapisano</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Szukaj</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Wyszukaj rozmowy, kontakty i wiadomości</string>
@@ -1045,6 +1068,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_chats__message_text_size">Rozmiar czcionki dla wiadomości</string>
   <string name="preferences_events__contact_joined_signal">Kontakt dołączył do Signal</string>
   <string name="preferences_notifications__priority">Priorytet</string>
+  <string name="preferences_communication__category_sealed_sender">Zapieczętowany Nadawca</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Dowiedz się więcej</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

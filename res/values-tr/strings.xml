@@ -5,6 +5,7 @@
   <string name="no">Hayır</string>
   <string name="delete">Sil</string>
   <string name="please_wait">Lütfen bekleyin...</string>
+  <string name="save">Kaydet</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Yeni mesaj</string>
   <!--ApplicationPreferencesActivity-->
@@ -67,9 +68,14 @@
   <string name="BucketedThreadMedia_This_month">Bu ay</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Gelen arama</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Kamera kullanılamıyor.</string>
+  <string name="CameraActivity_image_save_failure">Resim kaydedilemedi.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Kaldır</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profil fotoğrafı kaldırılsın mı?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Hiçbir web tarayıcısı bulunamadı.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s ile olan güvenlik numaranız değişti. Bu, birisinin iletişiminizi kesmeye çalıştığı ya da %2$s Signal\'i yeniden yüklemiş olduğu anlamına gelebilir.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bu kişiyle güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
@@ -130,7 +136,9 @@
   <string name="ConversationActivity_error_leaving_group">Gruptan ayrılırken hata</string>
   <string name="ConversationActivity_specify_recipient">Lütfen bir kişi seçin</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bu kişinin engellemesini kaldır?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Bu grubun engeli kaldırılsın mı?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bu kişiden gelen mesajları ve aramaları almak bir kez daha mümkün olacak.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Bu grubun üyeleri sizi gruba tekrar ekleyebilecek.</string>
   <string name="ConversationActivity_unblock">Engeli kaldır</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Eklenti gönderdiğiniz mesaj türü için olan boyut limitini aşıyor.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera kullanılamıyor</string>
@@ -264,6 +272,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Yakın çekime hazır mısınız?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Artık Signal\'deki arkadaşlarınızla isminizi ve profil fotoğrafınızı paylaşabilirsiniz</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilleri geldi</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Mesaj alınıyor...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kalıcı Signal haberleşme hatası!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Hizmetleri\'ne kaydolamadı. Signal mesajları ve aramaları devre dışı bırakıldı, lütfen Ayarlar &gt; Gelişmiş kısmından tekrar kaydolmayı deneyin.</string>
@@ -315,6 +325,8 @@
   <string name="InviteActivity_lets_switch_to_signal">Hadi Signal\'e geçelim: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Arkadaşlar, arkadaşlarının şifresiz sohbet etmesine izin vermez.</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">Arka planda çalışıyor...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gönderilemedi</string>
   <string name="MessageDetailsRecipient_new_safety_number">Yeni güvenlik numarası</string>
@@ -336,6 +348,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Siliniyor</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajlar siliniyor...</string>
   <string name="MediaOverviewActivity_Documents">Belgeler</string>
+  <string name="MediaOverviewActivity_Select_all">Hepsini seç</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Ekler toplanıyor...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal araması sürüyor</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal araması kuruluyor</string>
@@ -405,6 +419,8 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Geçersiz parola!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kurulu Google Play Hizmetleri sürümü doğru çalışmıyor. Lütfen Google Play Hizmetleri\'ni tekrar yükleyin ve yeniden deneyin.</string>
+  <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Mesaj alınıyor...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bu uygulamaya puan verin</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Bu uygulamayı kullanmaktan hoşlanıyorsanız, lütfen bir dakikanızı ayırıp puan vererek bize yardımcı olun.</string>
@@ -415,10 +431,16 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bu kişiyi engelle?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Artık bu kişiden gelen mesajları ve aramaları almayacaksınız.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Bu grubu engelle ve gruptan ayrıl?</string>
+  <string name="RecipientPreferenceActivity_block_group">Bu grup engellensin mi?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Bu grubun mesajlarını veya güncellemelerini almayacaksınız.</string>
   <string name="RecipientPreferenceActivity_block">Engelle</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Bu kişinin engellemesini kaldır?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bu kişiden gelen mesajları ve aramaları almak bir kez daha mümkün olacak.
 </string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Bu grubun engeli kaldırılsın mı?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Bu grubun üyeleri sizi gruba tekrar ekleyebilecek.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Gruptan ayrılırken hata</string>
   <string name="RecipientPreferenceActivity_unblock">Engeli kaldır</string>
   <string name="RecipientPreferenceActivity_enabled">Etkin</string>
   <string name="RecipientPreferenceActivity_disabled">Devre dışı</string>
@@ -461,6 +483,10 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kişilerinizle iletişim kurabilmeniz ve güvenli aramalar yapabilmeniz için Signal\'in Kişilerinize ve Depolamanıza erişime ihtiyacı var</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Hizmete bağlanılamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin. </string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Eğer Signal\'in SMS mesajlarına erişimine izin verirseniz telefon numaranızı kolayca doğrulamak için doğrulama kodunuzu otomatik olarak tespit edebilir.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Artık bir hata ayıklama günlüğü göndermekten %d adım uzaktasınız.</item>
+    <item quantity="other">Artık bir hata ayıklama günlüğü göndermekten %d adım uzaktasınız.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Görüntü değişiklikleri kaydedilemedi</string>
   <!--Search-->
@@ -468,6 +494,8 @@
   <string name="SearchFragment_header_conversations">Sohbetler</string>
   <string name="SearchFragment_header_contacts">Kişiler</string>
   <string name="SearchFragment_header_messages">Mesajlar</string>
+  <!--SendJob-->
+  <string name="SendJob_sending_a_message">Mesaj gönderiliyor...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Kişilere Ekle</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal\'e davet et</string>
@@ -591,6 +619,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="QuickResponseService_problem_sending_message">Mesaj gönderilirken hata!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">%s konumuna kaydedildi</string>
+  <string name="SaveAttachmentTask_saved">Kayıtlı</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Ara</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Sohbetleri, kişileri ve mesajları ara</string>
@@ -1001,6 +1030,12 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences_chats__message_text_size">Mesaj yazı tipi boyutu</string>
   <string name="preferences_events__contact_joined_signal">Kişi Signal\'e katıldı</string>
   <string name="preferences_notifications__priority">Öncelik</string>
+  <string name="preferences_communication__category_sealed_sender">Gizli Gönderen</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Ekran göstergeleri</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Mühürlü gönderen kullanılarak iletilen mesajlarda \"Mesaj ayrıntıları\" nı seçtiğinizde durum simgesini göster.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Herkese izin ver</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Kişileriniz arasında bulunmayan ve profilinizi paylaşmadığınız kişilerden göndereninin gizli olduğu mesajların alınmasını etkinleştir.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Daha fazlasını öğrenin</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1132,6 +1167,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences_chats__create_backup">Yedek oluştur</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Yedek parolasını giriniz</string>
   <string name="RegistrationActivity_restore">Geri yükle</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Signal\'in daha yeni sürümlerinden yedek alınamaz</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Yedek parolası yanlış</string>
   <string name="RegistrationActivity_checking">Kontrol ediliyor...</string>
   <string name="RegistrationActivity_d_messages_so_far">Şu ana kadar %d mesaj....</string>

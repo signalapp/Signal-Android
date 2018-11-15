@@ -5,6 +5,7 @@
   <string name="no">Ні</string>
   <string name="delete">Видалити</string>
   <string name="please_wait">Будь ласка, зачекайте...</string>
+  <string name="save">Зберегти</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Нове повідомлення</string>
   <!--ApplicationPreferencesActivity-->
@@ -73,9 +74,11 @@
   <string name="BucketedThreadMedia_This_month">Цього місяця</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Вхідний виклик</string>
+  <!--CameraActivity-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Вилучити</string>
   <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профіля?</string>
+  <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш номер безпеки із %1$s змінився. Це може означати або те, що хтось намагається перехопити вашу розмову, або те, що %2$s просто перевстановив Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
@@ -286,6 +289,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готові до огляду?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Тепер ви можете встановити власне фото, а також ім\'я (чи нікнейм) для свого профілю який будуть бачити друзі.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профілі Signal знаходяться тут</string>
+  <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не зміг зареєструватись у сервісах Google Play. Виклики та повідомлення Signal наразі вимкнено, спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string>
@@ -341,6 +345,7 @@
   <string name="InviteActivity_lets_switch_to_signal">Давай перейдемо на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Схоже, що у вас немає програм, щоб поділитися.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзі не мають дозволяти друзям незашифровано спілкуватися!</string>
+  <!--Job-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не вдалося надіслати</string>
   <string name="MessageDetailsRecipient_new_safety_number">Новий номер безпеки</string>
@@ -366,6 +371,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Видалення</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Видалення повідомлень...</string>
   <string name="MediaOverviewActivity_Documents">Документи</string>
+  <string name="MediaOverviewActivity_Select_all">Обрати все</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Збираю вкладення...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Відбувається виклик Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Встановлення виклику Signal</string>
@@ -431,6 +438,7 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Хибна фраза-пароль!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Встановлена версія сервісів Google Play працює некоректно. Перевстановіть сервіси Google Play та спробуйте знову.</string>
+  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцінити Signal</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Якщо вам сподобався Signal, будь-ласка, оцініть його.</string>
@@ -444,6 +452,7 @@
   <string name="RecipientPreferenceActivity_block">Заблокувати</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Розблокувати контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ви знову зможете одержувати повідомлення та виклики від цього контакту.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Помилка при виході з групи</string>
   <string name="RecipientPreferenceActivity_unblock">Розблокувати</string>
   <string name="RecipientPreferenceActivity_enabled">Увімкнено </string>
   <string name="RecipientPreferenceActivity_disabled">Вимкнено</string>
@@ -493,6 +502,7 @@
   <string name="SearchFragment_header_conversations">Розмови</string>
   <string name="SearchFragment_header_contacts">Контакти</string>
   <string name="SearchFragment_header_messages">Повідомлення</string>
+  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Додати до контактів</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Запросити до Signal</string>

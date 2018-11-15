@@ -5,6 +5,7 @@
   <string name="no">Nej</string>
   <string name="delete">Slet</string>
   <string name="please_wait">Vent venligst...</string>
+  <string name="save">Gem</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ny besked</string>
   <!--ApplicationPreferencesActivity-->
@@ -63,9 +64,11 @@
   <string name="BucketedThreadMedia_This_month">Denne måned</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Indgående opkald</string>
+  <!--CameraActivity-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbillede?</string>
+  <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhedsnøglen for %1$s er blevet ændret. Dette kan enten betyde at nogen forsøger at opsnappe kommunikationen, eller at %2$s bare har geninstalleret Signal og nu har en ny sikkerhedsnøgle.
     </string>
@@ -249,6 +252,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Er du klar til et closeup?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nu kan du dele dit profilbillede og navn med dine venner på Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Nu er der Signal profiler</string>
+  <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl i Signal-kommunikationen!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play Services. Signal beskeder og opkald blev deaktiveret, prøv venligst at registrere igen i Indstillinger &gt; Advanceret.</string>
@@ -292,6 +296,7 @@
   <string name="InviteActivity_lets_switch_to_signal">Lad os bruge Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det lader til at du ikke har nogle apps at dele til.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner lader ikke deres venner chatte ukrypteret.</string>
+  <!--Job-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Kunne ikke sende</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nyt sikkerhedsnummer</string>
@@ -304,6 +309,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter beskeder...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenter</string>
+  <string name="MediaOverviewActivity_Select_all">Markér alle</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Samler vedhæftninger...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signalopkald i gang.</string>
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>
@@ -369,6 +376,7 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Din version af Google Play-tjenester virker ikke korrekt. Geninstallér Google Play-tjenester og prøv igen.</string>
+  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bedøm denne app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge denne app, så hjælp os ved at bedømme den.</string>
@@ -382,6 +390,7 @@
   <string name="RecipientPreferenceActivity_block">Blokér</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Stop blokering af denne kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Nu vil du igen, modtage beskeder og opkald fra denne kontakt</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Der skete en fejl da du forlod gruppen</string>
   <string name="RecipientPreferenceActivity_unblock">Stop blokering</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiveret</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktiveret</string>
@@ -425,6 +434,7 @@ indtastede (%s) er ugyldigt.
   <string name="SearchFragment_header_conversations">Samtaler</string>
   <string name="SearchFragment_header_contacts">Kontakter</string>
   <string name="SearchFragment_header_messages">Beskeder</string>
+  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Føj til kontakter</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitér til Signal</string>

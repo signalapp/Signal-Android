@@ -5,6 +5,7 @@
   <string name="no">Нет</string>
   <string name="delete">Удалить</string>
   <string name="please_wait">Пожалуйста, подождите...</string>
+  <string name="save">Сохранить</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Новое сообщение</string>
   <!--ApplicationPreferencesActivity-->
@@ -73,9 +74,11 @@
   <string name="BucketedThreadMedia_This_month">В этом месяце</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящий звонок</string>
+  <!--CameraActivity-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Удалить</string>
   <string name="ClearProfileActivity_remove_profile_photo">Удалить фото профиля?</string>
+  <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш код безопасности с %1$s изменился. Это означает, что либо вашу переписку пытаются перехватить, либо %2$s просто переустановил(-а) Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
@@ -136,6 +139,7 @@
   <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы</string>
   <string name="ConversationActivity_specify_recipient">Выберите контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Разблокировать контакт?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Разблокировать эту группу?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Вы сможете снова получать сообщения и звонки от этого контакта.</string>
   <string name="ConversationActivity_unblock">Разблокировать</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает допустимый размер для того типа сообщения, которое вы отправляете.</string>
@@ -292,6 +296,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готовы к крупному плану?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Теперь вы можете создать свой профиль с именем и фотографией, которые увидят ваши друзья в Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профили Signal находятся здесь</string>
+  <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Неустранимая ошибка соединения!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в службах Google Play. Сообщения и звонки через Signal отключены. Пожалуйста, попробуйте зарегистрироваться снова через меню Наcтройки &gt; Расширенные.</string>
@@ -347,6 +352,7 @@
   <string name="InviteActivity_lets_switch_to_signal">Давайте перейдём на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзья не позволяют друзьям общаться без шифрования.</string>
+  <!--Job-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не удалось отправить</string>
   <string name="MessageDetailsRecipient_new_safety_number">Новый код безопасности</string>
@@ -372,6 +378,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Удаление</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Удаляем сообщения...</string>
   <string name="MediaOverviewActivity_Documents">Документы</string>
+  <string name="MediaOverviewActivity_Select_all">Выбрать все</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Собираем вложения...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок в Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинаем звонок в Signal</string>
@@ -440,6 +448,7 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неверная парольная фраза!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Установленная версия Сервисов Google Play работает некорректно. Пожалуйста, переустановите Сервисы Google Play и попробуйте снова.</string>
+  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените это приложение</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Если вам понравилось это приложение, вы можете помочь нам, поставив оценку.</string>
@@ -453,6 +462,8 @@
   <string name="RecipientPreferenceActivity_block">Заблокировать</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Разблокировать этот контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Вы снова сможете получать сообщения и звонки от этого контакта.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Разблокировать эту группу?</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Ошибка при выходе из группы</string>
   <string name="RecipientPreferenceActivity_unblock">Разблокировать</string>
   <string name="RecipientPreferenceActivity_enabled">Включено</string>
   <string name="RecipientPreferenceActivity_disabled">Выключено</string>
@@ -497,6 +508,7 @@
   <string name="SearchFragment_header_conversations">Беседы</string>
   <string name="SearchFragment_header_contacts">Контакты</string>
   <string name="SearchFragment_header_messages">Сообщения</string>
+  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Пригласить в Signal</string>
@@ -1048,6 +1060,8 @@
   <string name="preferences_chats__message_text_size">Размер шрифта сообщения</string>
   <string name="preferences_events__contact_joined_signal">Контакт появился в Signal</string>
   <string name="preferences_notifications__priority">Приоритет</string>
+  <string name="preferences_communication__category_sealed_sender">Скрытый отправитель</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

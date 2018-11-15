@@ -5,6 +5,7 @@
   <string name="no">Nein</string>
   <string name="delete">Löschen</string>
   <string name="please_wait">Bitte warten …</string>
+  <string name="save">Speichern</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Neue Nachricht</string>
   <!--ApplicationPreferencesActivity-->
@@ -23,7 +24,7 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passphrase deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies wird Signal und Benachrichtigungen über Nachrichten dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Deregistrieren</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und -Anrufe deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und -Anrufe durch Löschen deiner Registrierung vom Server deaktivieren. Du wirst deine Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
@@ -67,9 +68,14 @@
   <string name="BucketedThreadMedia_This_month">Diesen Monat</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Kamera nicht verfügbar.</string>
+  <string name="CameraActivity_image_save_failure">Speichern des Bildes gescheitert.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Entfernen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profilfoto entfernen?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Kein Webbrowser gefunden.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
@@ -130,7 +136,9 @@
   <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe</string>
   <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
   <string name="ConversationActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Diese Gruppe freigeben?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Vorhandene Mitglieder werden dich wieder zur Gruppe hinzufügen können.</string>
   <string name="ConversationActivity_unblock">Freigeben</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die gesendete Nachtrichtenart.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
@@ -264,6 +272,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Bereit für deine Nahaufnahme?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Jetzt kannst du bei Signal ein Profilfoto und einen Profilnamen mit Freunden teilen</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profile für Signal sind da</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google-Play-Dienste registriert werden. Signal-Nachrichten und -Anrufe wurden daher deaktiviert. Bitte registriere Signal im Menü »Einstellungen« &gt; »Weitere Einstellungen« erneut.</string>
@@ -315,6 +325,8 @@
   <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">Verarbeitung im Hintergrund …</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Versand gescheitert</string>
   <string name="MessageDetailsRecipient_new_safety_number">Neue Sicherheitsnummer</string>
@@ -336,6 +348,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
   <string name="MediaOverviewActivity_Documents">Dokumente</string>
+  <string name="MediaOverviewActivity_Select_all">Alle auswählen</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Anhänge werden gesammelt …</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
@@ -403,6 +417,8 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passphrase ungültig!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google-Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google-Play-Dienste neu und versuche es noch einmal.</string>
+  <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bewerte diese App</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hilf uns durch deine Bewertung, wenn dir die App gefällt.</string>
@@ -413,9 +429,15 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du wirst keine Nachrichten und Anrufe mehr von diesem Kontakt erhalten können.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Diese Gruppe blockieren und verlassen?</string>
+  <string name="RecipientPreferenceActivity_block_group">Diese Gruppe blockieren?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Du wirst von dieser Gruppe keine Nachrichten oder Aktualisierungen mehr erhalten.</string>
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Diese Gruppe freigeben?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Vorhandene Mitglieder werden dich wieder zur Gruppe hinzufügen können.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Fehler beim Verlassen der Gruppe</string>
   <string name="RecipientPreferenceActivity_unblock">Freigeben</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiviert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktiviert</string>
@@ -459,6 +481,8 @@
   <string name="SearchFragment_header_conversations">Unterhaltungen</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
   <string name="SearchFragment_header_messages">Nachrichten</string>
+  <!--SendJob-->
+  <string name="SendJob_sending_a_message">Nachricht wird gesendet …</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Zu Kontakten hinzufügen</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Zu Signal einladen</string>
@@ -581,6 +605,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">In %s gespeichert</string>
+  <string name="SaveAttachmentTask_saved">Gespeichert</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Suchen</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Nach Unterhaltungen, Kontakten und Nachrichten suchen</string>
@@ -991,6 +1016,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__message_text_size">Schriftgröße für Nachrichten</string>
   <string name="preferences_events__contact_joined_signal">Neue Signal-Kontakte</string>
   <string name="preferences_notifications__priority">Priorität</string>
+  <string name="preferences_communication__category_sealed_sender">Versiegelter Absender</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Indikatoren anzeigen</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Von jedem erlauben</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Versiegelter Absender« aktivieren für eingehende Nachrichten von Nichtkontakten und weiterhin Kontakten, mit denen du dein Profil nicht geteilt hast.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Mehr erfahren</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1122,6 +1152,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__create_backup">Sicherung erstellen</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Sicherungspassphrase eingeben</string>
   <string name="RegistrationActivity_restore">Wiederherstellen</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Datensicherungen neuerer Versionen von Signal können nicht importiert werden</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Sicherungspassphrase</string>
   <string name="RegistrationActivity_checking">Wird überprüft …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d Nachrichten bisher …</string>
