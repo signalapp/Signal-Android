@@ -79,11 +79,11 @@ public abstract class Job extends Worker implements Serializable {
       ((ContextDependent)this).setContext(getApplicationContext());
     }
 
-    initialize(new SafeData(data));
-
     boolean foregroundRunning = false;
 
     try {
+      initialize(new SafeData(data));
+
       if (withinRetryLimits(data)) {
         if (requirementsMet(data)) {
           if (needsForegroundService(data)) {
