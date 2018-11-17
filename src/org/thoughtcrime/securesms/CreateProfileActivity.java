@@ -254,7 +254,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
     informationLabel.setOnClickListener(view -> {
       Intent intent = new Intent(Intent.ACTION_VIEW);
-      intent.setData(Uri.parse("https://support.signal.org/hc/en-us/articles/115001434171"));
+      intent.setData(Uri.parse("https://support.signal.org/hc/en-us/articles/360007059952"));
 
       if (getPackageManager().queryIntentActivities(intent, 0).size() > 0) {
         startActivity(intent);
