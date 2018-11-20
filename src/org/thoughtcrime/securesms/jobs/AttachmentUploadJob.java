@@ -29,9 +29,11 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.ConnectException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+import javax.net.ssl.SSLException;
 
 import androidx.work.Data;
 import androidx.work.WorkerParameters;
@@ -94,7 +96,9 @@ public class AttachmentUploadJob extends ContextJob implements InjectableType {
 
   @Override
   protected boolean onShouldRetry(Exception exception) {
-    return exception instanceof PushNetworkException;
+    return exception instanceof PushNetworkException ||
+           exception instanceof SSLException         ||
+           exception instanceof ConnectException;
   }
 
   protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {

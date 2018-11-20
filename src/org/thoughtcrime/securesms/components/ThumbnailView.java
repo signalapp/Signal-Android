@@ -295,11 +295,18 @@ public class ThumbnailView extends FrameLayout {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
-    glideRequests.load(new DecryptableUri(uri))
-                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                 .transforms(new CenterCrop(), new RoundedCorners(radius))
-                 .transition(withCrossFade())
-                 .into(new GlideDrawableListeningTarget(image, future));
+
+    GlideRequest request = glideRequests.load(new DecryptableUri(uri))
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .transition(withCrossFade());
+
+    if (radius > 0) {
+      request = request.transforms(new CenterCrop(), new RoundedCorners(radius));
+    } else {
+      request = request.transforms(new CenterCrop());
+    }
+
+    request.into(new GlideDrawableListeningTarget(image, future));
 
     return future;
   }

@@ -60,7 +60,7 @@ import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedList
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
-import org.thoughtcrime.securesms.mediapreview.AlbumRailAdapter;
+import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewViewModel;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -82,7 +82,7 @@ import java.util.WeakHashMap;
  */
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener,
                                                                                          LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>>,
-                                                                                         AlbumRailAdapter.RailItemClickedListener
+                                                                                         MediaRailAdapter.RailItemListener
 {
 
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
@@ -101,7 +101,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private TextView              caption;
   private View                  captionContainer;
   private RecyclerView          albumRail;
-  private AlbumRailAdapter      albumRailAdapter;
+  private MediaRailAdapter      albumRailAdapter;
   private ViewGroup             playbackControlsContainer;
   private Uri                   initialMediaUri;
   private String                initialMediaType;
@@ -163,6 +163,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     mediaPager.setCurrentItem(mediaPager.getCurrentItem() + distanceFromActive);
   }
 
+  @Override
+  public void onRailItemDeleteClicked(int distanceFromActive) {
+    throw new UnsupportedOperationException("Callback unsupported.");
+  }
+
   @SuppressWarnings("ConstantConditions")
   private void initializeActionBar() {
     MediaItem mediaItem = getCurrentMediaItem();
@@ -211,7 +216,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     mediaPager.addOnPageChangeListener(new ViewPagerListener());
 
     albumRail        = findViewById(R.id.media_preview_album_rail);
-    albumRailAdapter = new AlbumRailAdapter(GlideApp.with(this), this);
+    albumRailAdapter = new MediaRailAdapter(GlideApp.with(this), this, false);
 
     albumRail.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     albumRail.setAdapter(albumRailAdapter);
@@ -254,7 +259,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       }
 
       albumRail.setVisibility(previewData.getAlbumThumbnails().isEmpty() ? View.GONE : View.VISIBLE);
-      albumRailAdapter.setRecords(previewData.getAlbumThumbnails(), previewData.getActivePosition());
+      albumRailAdapter.setMedia(previewData.getAlbumThumbnails(), previewData.getActivePosition());
       albumRail.smoothScrollToPosition(previewData.getActivePosition());
 
       captionContainer.setVisibility(previewData.getCaption() == null ? View.GONE : View.VISIBLE);
@@ -446,7 +451,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
-      viewModel.setCursor(data.first, leftIsRecent);
+      viewModel.setCursor(this, data.first, leftIsRecent);
 
       if (restartItem < 0) mediaPager.setCurrentItem(data.second);
       else                 mediaPager.setCurrentItem(restartItem);

@@ -18,15 +18,14 @@ package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -37,17 +36,16 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.logging.Log;
 
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -74,6 +72,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -83,12 +82,13 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
-import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -507,7 +507,32 @@ public class ConversationFragment extends Fragment
     composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
     if (message.isMms()) {
       MmsMessageRecord mediaMessage = (MmsMessageRecord) message;
-      if (mediaMessage.containsMediaSlide()) {
+      boolean          isAlbum      = mediaMessage.containsMediaSlide()                   &&
+                                      mediaMessage.getSlideDeck().getSlides().size() > 1  &&
+                                      mediaMessage.getSlideDeck().getAudioSlide() == null &&
+                                      mediaMessage.getSlideDeck().getDocumentSlide() == null;
+
+      if (isAlbum) {
+        ArrayList<Media> mediaList = new ArrayList<>(mediaMessage.getSlideDeck().getSlides().size());
+
+        for (Attachment attachment : mediaMessage.getSlideDeck().asAttachments()) {
+          Uri uri = attachment.getDataUri() != null ? attachment.getDataUri() : attachment.getThumbnailUri();
+
+          if (uri != null) {
+            mediaList.add(new Media(uri,
+                                    attachment.getContentType(),
+                                    System.currentTimeMillis(),
+                                    attachment.getWidth(),
+                                    attachment.getHeight(),
+                                    Optional.absent(),
+                                    Optional.fromNullable(attachment.getCaption())));
+          }
+        }
+
+        if (!mediaList.isEmpty()) {
+          composeIntent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaList);
+        }
+      } else if (mediaMessage.containsMediaSlide()) {
         Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
         composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
         composeIntent.setType(slide.getContentType());
@@ -537,7 +562,7 @@ public class ConversationFragment extends Fragment
         for (Slide slide : message.getSlideDeck().getSlides()) {
           if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
             SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
-            saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
+            saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new SaveAttachmentTask.Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
             return;
           }
         }

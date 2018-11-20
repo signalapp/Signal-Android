@@ -85,9 +85,7 @@ public class MediaDatabase extends Database {
     private final long               date;
     private final boolean            outgoing;
 
-    // TODO: Make private again
-    public MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date, boolean outgoing) {
-//    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date, boolean outgoing) {
+    private MediaRecord(DatabaseAttachment attachment, @Nullable Address address, long date, boolean outgoing) {
       this.attachment = attachment;
       this.address    = address;
       this.date       = date;

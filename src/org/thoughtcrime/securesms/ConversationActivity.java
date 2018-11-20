@@ -22,7 +22,6 @@ import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -126,6 +125,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
+import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
@@ -133,6 +134,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -146,6 +148,7 @@ import org.thoughtcrime.securesms.mms.QuoteId;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -220,6 +223,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String THREAD_ID_EXTRA         = "thread_id";
   public static final String IS_ARCHIVED_EXTRA       = "is_archived";
   public static final String TEXT_EXTRA              = "draft_text";
+  public static final String MEDIA_EXTRA             = "media_list";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
   public static final String TIMING_EXTRA            = "timing";
   public static final String LAST_SEEN_EXTRA         = "last_seen";
@@ -237,7 +241,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_GIF            = 10;
   private static final int SMS_DEFAULT         = 11;
   private static final int PICK_CAMERA         = 12;
-  private static final int EDIT_IMAGE          = 13;
+  private static final int MEDIA_SENDER        = 13;
 
   private   GlideRequests               glideRequests;
   protected ComposeText                 composeText;
@@ -443,18 +447,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     switch (reqCode) {
-    case PICK_GALLERY:
-      MediaType mediaType;
-
-      String mimeType = MediaUtil.getMimeType(this, data.getData());
-
-      if      (MediaUtil.isGif(mimeType))   mediaType = MediaType.GIF;
-      else if (MediaUtil.isVideo(mimeType)) mediaType = MediaType.VIDEO;
-      else                                  mediaType = MediaType.IMAGE;
-
-      setMedia(data.getData(), mediaType);
-
-      break;
     case PICK_DOCUMENT:
       setMedia(data.getData(), MediaType.DOCUMENT);
       break;
@@ -525,6 +517,38 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       slideDeck.addSlide(new ImageSlide(this, data.getData(), imageSize, imageWidth, imageHeight));
 
       sendMediaMessage(transport.isSms(), message, slideDeck, Collections.emptyList(), expiresIn, subscriptionId, initiating);
+      break;
+
+    case MEDIA_SENDER:
+      expiresIn      = recipient.getExpireMessages() * 1000L;
+      subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+      initiating     = threadId == -1;
+      transport      = data.getParcelableExtra(MediaSendActivity.EXTRA_TRANSPORT);
+      message        = data.getStringExtra(MediaSendActivity.EXTRA_MESSAGE);
+      slideDeck      = new SlideDeck();
+
+      if (transport == null) {
+        throw new IllegalStateException("Received a null transport from the MediaSendActivity.");
+      }
+
+      sendButton.setTransport(transport);
+
+      List<Media> mediaList = data.getParcelableArrayListExtra(MediaSendActivity.EXTRA_MEDIA);
+
+      for (Media mediaItem : mediaList) {
+        if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
+          slideDeck.addSlide(new VideoSlide(this, mediaItem.getUri(), 0, mediaItem.getCaption().orNull()));
+        } else if (MediaUtil.isGif(mediaItem.getMimeType())) {
+          slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
+        } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
+          slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
+        } else {
+          Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.getMimeType() + "'. Skipping.");
+        }
+      }
+
+      sendMediaMessage(transport.isSms(), message, slideDeck, Collections.emptyList(), expiresIn, subscriptionId, initiating);
+
       break;
     }
   }
@@ -1094,14 +1118,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private ListenableFuture<Boolean> initializeDraft() {
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
-    final String    draftText      = getIntent().getStringExtra(TEXT_EXTRA);
-    final Uri       draftMedia     = getIntent().getData();
-    final MediaType draftMediaType = MediaType.from(getIntent().getType());
+    final String      draftText      = getIntent().getStringExtra(TEXT_EXTRA);
+    final Uri         draftMedia     = getIntent().getData();
+    final MediaType   draftMediaType = MediaType.from(getIntent().getType());
+    final List<Media> mediaList      = getIntent().getParcelableArrayListExtra(MEDIA_EXTRA);
+
+    if (!Util.isEmpty(mediaList)) {
+      Intent sendIntent = MediaSendActivity.getIntent(this, mediaList, recipient, draftText, sendButton.getSelectedTransport());
+      startActivityForResult(sendIntent, MEDIA_SENDER);
+      return new SettableFuture<>(false);
+    }
 
     if (draftText != null) {
       composeText.setText(draftText);
       result.set(true);
     }
+
     if (draftMedia != null && draftMediaType != null) {
       return setMedia(draftMedia, draftMediaType);
     }
@@ -1517,7 +1549,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Log.i(TAG, "Selected: " + type);
     switch (type) {
     case AttachmentTypeSelector.ADD_GALLERY:
-      AttachmentManager.selectGallery(this, PICK_GALLERY); break;
+      AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient, sendButton.getSelectedTransport()); break;
     case AttachmentTypeSelector.ADD_DOCUMENT:
       AttachmentManager.selectDocument(this, PICK_DOCUMENT); break;
     case AttachmentTypeSelector.ADD_SOUND:
@@ -1544,6 +1576,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (MediaType.VCARD.equals(mediaType) && isSecureText) {
       openContactShareEditor(uri);
+      return new SettableFuture<>(false);
+    } else if (MediaType.IMAGE.equals(mediaType) || MediaType.GIF.equals(mediaType) || MediaType.VIDEO.equals(mediaType)) {
+      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, Optional.absent(), Optional.absent());
+      startActivityForResult(MediaSendActivity.getIntent(ConversationActivity.this, Collections.singletonList(media), recipient, composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
       return attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
@@ -1858,9 +1894,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private ListenableFuture<Void> sendMediaMessage(final boolean forceSms, String body, SlideDeck slideDeck, List<Contact> contacts, final long expiresIn, final int subscriptionId, final boolean initiating) {
     if (!isDefaultSms && (!isSecureText || forceSms)) {
       showDefaultSmsPrompt();
-      SettableFuture<Void> future = new SettableFuture<>();
-      future.set(null);
-      return future;
+      return new SettableFuture<>(null);
     }
 
     OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, inputPanel.getQuote().orNull(), contacts);
@@ -2158,11 +2192,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    public void onQuickAttachment(Uri uri) {
-      Intent intent = new Intent();
-      intent.setData(uri);
-
-      onActivityResult(PICK_GALLERY, RESULT_OK, intent);
+    public void onQuickAttachment(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height) {
+      Media media = new Media(uri, mimeType, dateTaken, width, height, Optional.fromNullable(bucketId), Optional.absent());
+      startActivityForResult(MediaSendActivity.getIntent(ConversationActivity.this, Collections.singletonList(media), recipient, composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
     }
   }
 

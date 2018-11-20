@@ -102,6 +102,8 @@
 
     <attr name="device_link_item_card_background" format="reference|color" />
 
+    <attr name="mediapicker_image_outline" format="reference" />
+
     <attr name="import_export_item_background_color" format="reference|color" />
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />

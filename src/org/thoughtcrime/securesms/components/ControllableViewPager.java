@@ -7,10 +7,12 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import org.thoughtcrime.securesms.components.viewpager.HackyViewPager;
+
 /**
  * An implementation of {@link ViewPager} that disables swiping when the view is disabled.
  */
-public class ControllableViewPager extends ViewPager {
+public class ControllableViewPager extends HackyViewPager {
 
   public ControllableViewPager(@NonNull Context context) {
     super(context);

@@ -217,6 +217,8 @@
 
         <item name="device_link_item_card_background">@color/device_link_item_background_light</item>
 
+        <item name="mediapicker_image_outline">@drawable/mediapicker_item_border_light</item>
+
         <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_light</item>
@@ -324,6 +326,8 @@
 
         <item name="device_link_item_card_background">@color/device_link_item_background_dark</item>
 
+        <item name="mediapicker_image_outline">@drawable/mediapicker_item_border_dark</item>
+
         <item name="import_export_item_background_color">@color/import_export_item_background_dark</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_dark</item>
@@ -418,6 +422,10 @@
     </style>
 
     <style name="TextSecure.ScribbleTheme" parent="TextSecure.DarkNoActionBar">
+    </style>
+
+    <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:background">@color/core_grey_95</item>
     </style>
 
 </resources>

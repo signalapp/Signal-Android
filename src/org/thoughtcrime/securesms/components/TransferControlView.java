@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -117,11 +116,11 @@ public class TransferControlView extends FrameLayout {
     if (!isUpdateToExistingSet(slides)) {
       downloadProgress.clear();
       Stream.of(slides).forEach(s -> downloadProgress.put(s.asAttachment(), 0f));
-    } else {
-      for (Slide slide : slides) {
-        if (slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
-          downloadProgress.put(slide.asAttachment(), 1f);
-        }
+    }
+    
+    for (Slide slide : slides) {
+      if (slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+        downloadProgress.put(slide.asAttachment(), 1f);
       }
     }
 
