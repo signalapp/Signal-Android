@@ -57,8 +57,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int QUOTE_MISSING                    = 11;
   private static final int NOTIFICATION_CHANNELS            = 12;
   private static final int SECRET_SENDER                    = 13;
+  private static final int ATTACHMENT_CAPTIONS              = 14;
 
-  private static final int    DATABASE_VERSION = 13;
+  private static final int    DATABASE_VERSION = 14;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -292,6 +293,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL("ALTER TABLE group_receipts ADD COLUMN unidentified INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE mms ADD COLUMN unidentified INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE sms ADD COLUMN unidentified INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < ATTACHMENT_CAPTIONS) {
+        db.execSQL("ALTER TABLE part ADD COLUMN caption TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();
