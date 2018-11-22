@@ -205,6 +205,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, RecipientFormattingException, InvalidNumberException,
              UndeliverableMessageException, UntrustedIdentityException
   {
+    rotateSenderCertificateIfNecessary();
+
     String                        groupId           = message.getRecipient().getAddress().toGroupString();
     Optional<byte[]>              profileKey        = getProfileKey(message.getRecipient());
     MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
+import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -40,8 +42,9 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class PushSendJob extends SendJob {
 
-  private static final long   serialVersionUID = 5906098204770900739L;
-  private static final String TAG              = PushSendJob.class.getSimpleName();
+  private static final long   serialVersionUID              = 5906098204770900739L;
+  private static final String TAG                           = PushSendJob.class.getSimpleName();
+  private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.SECONDS.toMillis(30);
 
   protected PushSendJob(Context context, JobParameters parameters) {
     super(context, parameters);
@@ -196,6 +199,24 @@ public abstract class PushSendJob extends SendJob {
     }
 
     return sharedContacts;
+  }
+
+  protected void rotateSenderCertificateIfNecessary() throws IOException {
+    try {
+      SenderCertificate certificate = new SenderCertificate(TextSecurePreferences.getUnidentifiedAccessCertificate(context));
+
+      if (System.currentTimeMillis() > (certificate.getExpiration() - CERTIFICATE_EXPIRATION_BUFFER)) {
+        throw new InvalidCertificateException("Certificate is expired.");
+      }
+
+      Log.d(TAG, "Certificate is valid.");
+    } catch (InvalidCertificateException e) {
+      Log.w(TAG, "Certificate was invalid at send time. Fetching a new one.", e);
+      RotateCertificateJob certificateJob = new RotateCertificateJob();
+      ApplicationContext.getInstance(context).injectDependencies(certificateJob);
+      certificateJob.setContext(context);
+      certificateJob.onRun();
+    }
   }
 
   protected abstract void onPushSend() throws Exception;

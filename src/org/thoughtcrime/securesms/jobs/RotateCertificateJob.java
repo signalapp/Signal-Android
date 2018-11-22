@@ -55,8 +55,10 @@ public class RotateCertificateJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    byte[] certificate = accountManager.getSenderCertificate();
-    TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
+    synchronized (RotateCertificateJob.class) {
+      byte[] certificate = accountManager.getSenderCertificate();
+      TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
+    }
   }
 
   @Override
