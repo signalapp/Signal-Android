@@ -156,6 +156,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     }
 
     try {
+      rotateSenderCertificateIfNecessary();
+
       SignalServiceAddress                     address           = getPushAddress(message.getRecipient().getAddress());
       MediaConstraints                         mediaConstraints  = MediaConstraints.getPushMediaConstraints();
       List<Attachment>                         scaledAttachments = scaleAndStripExifFromAttachments(mediaConstraints, message.getAttachments());
