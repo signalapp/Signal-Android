@@ -1319,7 +1319,7 @@
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
     <string name="text_secure_normal__invite_friends">Invite friends</string>
-    <string name="text_secure_normal__help">Help</string>
+    <string name="text_secure_normal__Use-guide_and_support">Use-guide_and_support</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copy to clipboard</string>
