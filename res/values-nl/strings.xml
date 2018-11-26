@@ -1105,7 +1105,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendelen</string>
   <string name="text_secure_normal__mark_all_as_read">Alles markeren als gelezen</string>
   <string name="text_secure_normal__invite_friends">Vrienden uitnodigen</string>
-  <string name="text_secure_normal__help">Hulp</string>
+  <string name="text_secure_normal__Use-guide_and_support">Uitleg en ondersteuning</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiëren naar klembord</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vergelijken met klembord</string>
