@@ -1085,7 +1085,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Lukusta</string>
   <string name="text_secure_normal__mark_all_as_read">Märgi kõik loetuks</string>
   <string name="text_secure_normal__invite_friends">Kutsu sõpru</string>
-  <string name="text_secure_normal__help">Abi</string>
+  <string name="text_secure_normal__use-guide_and_support">Abi</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopeeri lõikelauale</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Võrdle lõikelauaga</string>
