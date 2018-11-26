@@ -1103,7 +1103,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="text_secure_normal__menu_clear_passphrase">Verrouiller</string>
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme lu</string>
   <string name="text_secure_normal__invite_friends">Inviter des amis</string>
-  <string name="text_secure_normal__help">Aide</string>
+  <string name="text_secure_normal__use-guide_and_support">Aide</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copier dans le presse-papiers</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparer avec le presse-papiers</string>
