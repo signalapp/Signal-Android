@@ -978,7 +978,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Markér alle som læst</string>
   <string name="text_secure_normal__invite_friends">Invitér venner</string>
-  <string name="text_secure_normal__help">Hjælp</string>
+  <string name="text_secure_normal__use-guide_and_support">Hjælp</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopier til udklipsholder</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med udklipsholder</string>
