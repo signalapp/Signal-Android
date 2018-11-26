@@ -16,7 +16,7 @@
     <item android:title="@string/text_secure_normal__menu_settings"
           android:id="@+id/menu_settings" />
 
-    <item android:title="@string/text_secure_normal__Use-guide_and_support"
+    <item android:title="@string/text_secure_normal__use-guide_and_support"
           android:id="@+id/menu_help"/>
 
 </menu>
