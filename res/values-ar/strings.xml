@@ -1134,7 +1134,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">أقفل</string>
   <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
   <string name="text_secure_normal__invite_friends">دعوة الأصدقاء</string>
-  <string name="text_secure_normal__Use-guide_and_support">مساعدة</string>
+  <string name="text_secure_normal__use-guide_and_support">مساعدة</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">نسخ إلى الحافظة</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارن مع الحافظة</string>
