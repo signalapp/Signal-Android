@@ -121,7 +121,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   public void addAndroidAutoAction(@NonNull PendingIntent androidAutoReplyIntent,
-                                   @NonNull PendingIntent androidAutoHeardIntent, long timestamp)
+                                   @NonNull PendingIntent androidAutoHeardIntent, long timestamp, List<NotificationItem> notificationItems)
   {
 
     if (contentTitle == null || contentText == null)
@@ -133,10 +133,13 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     NotificationCompat.CarExtender.UnreadConversation.Builder unreadConversationBuilder =
             new NotificationCompat.CarExtender.UnreadConversation.Builder(contentTitle.toString())
-                .addMessage(contentText.toString())
                 .setLatestTimestamp(timestamp)
                 .setReadPendingIntent(androidAutoHeardIntent)
                 .setReplyAction(androidAutoReplyIntent, remoteInput);
+    for (int i = notificationItems.size() - 1; i >= 0; i--){
+      String message = notificationItems.get(i).getText().toString();
+      unreadConversationBuilder.addMessage(message);
+    }
 
     extend(new NotificationCompat.CarExtender().setUnreadConversation(unreadConversationBuilder.build()));
   }

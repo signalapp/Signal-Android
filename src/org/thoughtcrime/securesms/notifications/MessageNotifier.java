@@ -317,7 +317,7 @@ public class MessageNotifier {
                        notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient()));
 
     builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
-                                 notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
+                                 notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp(), notifications);
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
