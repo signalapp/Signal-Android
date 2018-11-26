@@ -1107,7 +1107,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="text_secure_normal__menu_clear_passphrase">Blokeatu</string>
   <string name="text_secure_normal__mark_all_as_read">Irakurritako gisa markatu guztiak</string>
   <string name="text_secure_normal__invite_friends">Gonbidatu lagunak</string>
-  <string name="text_secure_normal__help">Laguntza</string>
+  <string name="text_secure_normal__use-guide_and_support">Laguntza</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiatu arbelera</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
