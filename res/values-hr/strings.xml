@@ -1004,7 +1004,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zaključaj</string>
   <string name="text_secure_normal__mark_all_as_read">Označi sve pročitano</string>
   <string name="text_secure_normal__invite_friends">Pozovi prijatelje</string>
-  <string name="text_secure_normal__help">Pomoć</string>
+  <string name="text_secure_normal__use-guide_and_support">Pomoć</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Usporedi s međuspremnikom</string>
