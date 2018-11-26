@@ -1040,7 +1040,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заключи</string>
   <string name="text_secure_normal__mark_all_as_read">Маркиране на всички като прочетени</string>
   <string name="text_secure_normal__invite_friends">Покани приятели</string>
-  <string name="text_secure_normal__Use-guide_and_support">Помощ</string>
+  <string name="text_secure_normal__use-guide_and_support">Помощ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копиране</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравняване с копирани</string>
