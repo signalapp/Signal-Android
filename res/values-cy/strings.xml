@@ -1155,7 +1155,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="text_secure_normal__menu_clear_passphrase">Cloi</string>
   <string name="text_secure_normal__mark_all_as_read">Marcio popeth wedi\'i ddarllen</string>
   <string name="text_secure_normal__invite_friends">Gwahodd ffrindiau</string>
-  <string name="text_secure_normal__help">Cymorth</string>
+  <string name="text_secure_normal__use-guide_and_support">Cymorth</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copïo i\'r clipfwrdd</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Cymharu â\'r clipfwrdd</string>
