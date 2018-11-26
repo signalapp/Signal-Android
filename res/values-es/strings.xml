@@ -1112,7 +1112,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
   <string name="text_secure_normal__invite_friends">Invitar amigos</string>
-  <string name="text_secure_normal__help">Ayuda</string>
+  <string name="text_secure_normal__use-guide_and_support">Ayuda</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar al portapapeles</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar con el portapapeles</string>
