@@ -923,7 +923,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">قفل</string>
   <string name="text_secure_normal__mark_all_as_read">علامت همه به عنوان خوانده شده</string>
   <string name="text_secure_normal__invite_friends">دعوت دوستان</string>
-  <string name="text_secure_normal__help">کمک</string>
+  <string name="text_secure_normal__use-guide_and_support">کمک</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ بورد</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
