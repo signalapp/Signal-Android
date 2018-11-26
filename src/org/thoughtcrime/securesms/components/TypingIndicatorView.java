@@ -1,34 +1,34 @@
 package org.thoughtcrime.securesms.components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 
 public class TypingIndicatorView extends LinearLayout {
 
   private static final long DURATION   = 300;
   private static final long PRE_DELAY  = 500;
   private static final long POST_DELAY = 500;
+  private static final long  CYCLE_DURATION = 1500;
+  private static final long  DOT_DURATION   = 600;
+  private static final float MIN_ALPHA      = 0.4f;
+  private static final float MIN_SCALE      = 0.75f;
+
+  private boolean isActive;
+  private long    startTime;
 
   private View dot1;
   private View dot2;
   private View dot3;
-
-  private AnimatorSet animation1;
-  private AnimatorSet animation2;
-  private AnimatorSet animation3;
 
   public TypingIndicatorView(Context context) {
     super(context);
@@ -43,6 +43,8 @@ public class TypingIndicatorView extends LinearLayout {
   private void initialize(@Nullable AttributeSet attrs) {
     inflate(getContext(), R.layout.typing_indicator_view, this);
 
+    setWillNotDraw(false);
+
     dot1 = findViewById(R.id.typing_dot1);
     dot2 = findViewById(R.id.typing_dot2);
     dot3 = findViewById(R.id.typing_dot3);
@@ -56,60 +58,66 @@ public class TypingIndicatorView extends LinearLayout {
       dot2.getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
       dot3.getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
     }
+  }
 
-    animation1 = getAnimation(dot1, DURATION, 0           );
-    animation2 = getAnimation(dot2, DURATION, DURATION / 2);
-    animation3 = getAnimation(dot3, DURATION, DURATION    );
+  @Override
+  protected void onDraw(Canvas canvas) {
+    if (!isActive) {
+      super.onDraw(canvas);
+      return;
+    }
 
-    animation3.addListener(new AnimatorListenerAdapter() {
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        postDelayed(TypingIndicatorView.this::startAnimation, POST_DELAY);
-      }
-    });
+    long timeInCycle = (System.currentTimeMillis() - startTime) % CYCLE_DURATION;
+
+    render(dot1, timeInCycle, 0);
+    render(dot2, timeInCycle, 150);
+    render(dot3, timeInCycle, 300);
+
+    super.onDraw(canvas);
+    postInvalidate();
+  }
+
+  private void render(View dot, long timeInCycle, long start) {
+    long end  = start + DOT_DURATION;
+    long peak = start + (DOT_DURATION / 2);
+
+    if (timeInCycle < start || timeInCycle > end) {
+      renderDefault(dot);
+    } else if (timeInCycle < peak) {
+      renderFadeIn(dot, timeInCycle, start);
+    } else {
+      renderFadeOut(dot, timeInCycle, peak);
+    }
+  }
+
+  private void renderDefault(View dot) {
+    dot.setAlpha(MIN_ALPHA);
+    dot.setScaleX(MIN_SCALE);
+    dot.setScaleY(MIN_SCALE);
+  }
+
+  private void renderFadeIn(View dot, long timeInCycle, long fadeInStart) {
+    float percent = (float) (timeInCycle - fadeInStart) / 300;
+    dot.setAlpha(MIN_ALPHA + (1 - MIN_ALPHA) * percent);
+    dot.setScaleX(MIN_SCALE + (1 - MIN_SCALE) * percent);
+    dot.setScaleY(MIN_SCALE + (1 - MIN_SCALE) * percent);
+  }
+
+  private void renderFadeOut(View dot, long timeInCycle, long fadeOutStart) {
+    float percent = (float) (timeInCycle - fadeOutStart) / 300;
+    dot.setAlpha(1 - (1 - MIN_ALPHA) * percent);
+    dot.setScaleX(1 - (1 - MIN_SCALE) * percent);
+    dot.setScaleY(1 - (1 - MIN_SCALE) * percent);
   }
 
   public void startAnimation() {
-    stopAnimation();
-    postDelayed(() -> {
-      animation1.start();
-      animation2.start();
-      animation3.start();
-    }, PRE_DELAY);
+    isActive  = true;
+    startTime = System.currentTimeMillis();
+
+    postInvalidate();
   }
 
   public void stopAnimation() {
-    animation1.cancel();
-    animation2.cancel();
-    animation3.cancel();
-
-    reset(dot1);
-    reset(dot2);
-    reset(dot3);
-  }
-
-  private AnimatorSet getAnimation(@NonNull View view, long duration, long startDelay) {
-    AnimatorSet grow = new AnimatorSet();
-    grow.playTogether(ObjectAnimator.ofFloat(view, View.SCALE_X, 0.5f, 1).setDuration(duration),
-                      ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.5f, 1).setDuration(duration),
-                      ObjectAnimator.ofFloat(view, View.ALPHA,   0.5f, 1).setDuration(duration));
-
-    AnimatorSet shrink = new AnimatorSet();
-    shrink.playTogether(ObjectAnimator.ofFloat(view, View.SCALE_X, 1, 0.5f).setDuration(duration),
-                        ObjectAnimator.ofFloat(view, View.SCALE_Y, 1, 0.5f).setDuration(duration),
-                        ObjectAnimator.ofFloat(view, View.ALPHA,   1, 0.5f).setDuration(duration));
-
-    AnimatorSet all = new AnimatorSet();
-    all.playSequentially(grow, shrink);
-    all.setStartDelay(startDelay);
-
-    return all;
-  }
-
-  private void reset(View view) {
-    view.clearAnimation();
-    view.setScaleX(0.5f);
-    view.setScaleY(0.5f);
-    view.setAlpha(0.5f);
+    isActive = false;
   }
 }
