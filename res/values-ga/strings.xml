@@ -956,7 +956,7 @@ a shonrú</string>
   <string name="text_secure_normal__menu_clear_passphrase">Glasáil</string>
   <string name="text_secure_normal__mark_all_as_read">Rianaigh uile mar léite</string>
   <string name="text_secure_normal__invite_friends">Tabhair cuirí do chairde</string>
-  <string name="text_secure_normal__help">Cabhair</string>
+  <string name="text_secure_normal__use-guide_and_support">Cabhair</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Macasamhlaigh chuig an ghearrthaisce</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Cuir i gcomórtas leis an ngearrthaisce</string>
