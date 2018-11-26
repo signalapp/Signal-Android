@@ -1070,7 +1070,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">ताला</string>
   <string name="text_secure_normal__mark_all_as_read">सभी को पढ़ा दिखाएं</string>
   <string name="text_secure_normal__invite_friends">मित्रों को आमंत्रित करें</string>
-  <string name="text_secure_normal__help">मदद</string>
+  <string name="text_secure_normal__use-guide_and_support">मदद</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">क्लिपबोर्ड पर कॉपी करें</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">क्लिपबोर्ड के साथ तुलना करें</string>
