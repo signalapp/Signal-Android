@@ -1151,7 +1151,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Uzamknout</string>
   <string name="text_secure_normal__mark_all_as_read">Označit vše jako přečtené</string>
   <string name="text_secure_normal__invite_friends">Pozvat přátele</string>
-  <string name="text_secure_normal__help">Nápověda</string>
+  <string name="text_secure_normal__use-guide_and_support">Nápověda</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Zkopírovat do schránky</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnat se schránkou</string>
