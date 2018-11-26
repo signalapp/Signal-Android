@@ -1095,7 +1095,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Κλείδωμα</string>
   <string name="text_secure_normal__mark_all_as_read">Σημείωση όλων ως αναγνωσμένα</string>
   <string name="text_secure_normal__invite_friends">Πρόσκληση φίλων</string>
-  <string name="text_secure_normal__help">Βοήθεια</string>
+  <string name="text_secure_normal__use-guide_and_support">Βοήθεια</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Σύγκριση με το πρόχειρο</string>
