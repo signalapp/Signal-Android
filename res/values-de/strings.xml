@@ -8,6 +8,8 @@
   <string name="save">Speichern</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Neue Nachricht</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Derzeit: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du hast noch keine Passphrase festgelegt!</string>
@@ -272,6 +274,10 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Bereit für deine Nahaufnahme?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Jetzt kannst du bei Signal ein Profilfoto und einen Profilnamen mit Freunden teilen</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profile für Signal sind da</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Einführung von Tipp-Indikatoren.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Du kannst jetzt optional sehen und teilen, wann Nachrichten eingetippt werden</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Tipp-Indikatoren sind da</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Tipp-Indikatoren aktivieren</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--GcmRefreshJob-->
@@ -474,6 +480,10 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte und Medien, um dich mit Freunden zu verbinden, Nachrichten auszutauschen und sichere Anrufe zu tätigen.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Keine Verbindung zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Zum einfachen Verifizieren deiner Rufnummer kann Signal deinen Verifikationscode ermitteln, falls du Signal Zugriff auf deine SMS-Nachrichten erlaubst.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Du bist jetzt %d Schritt entfernt um ein Diagnoseprotokoll zu übermitteln.</item>
+    <item quantity="other">Du bist jetzt %d Schritte davon entfernt, ein Diagnoseprotokoll zu übermitteln.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
   <!--Search-->
@@ -614,6 +624,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d Element</item>
+    <item quantity="other">%d Elemente</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Gerät nicht mehr registriert</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Wahrscheinlich hast du deine Rufnummer mit Signal auf einem anderen Gerät registriert. Zum erneuten Registrieren antippen.</string>
@@ -991,6 +1006,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__incognito_keyboard">Inkognito-Tastatur</string>
   <string name="preferences__read_receipts">Lesebestätigungen</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen wirst du auch die Lesebestätigungen anderer nicht sehen können</string>
+  <string name="preferences__typing_indicators">Tipp-Indikatoren</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren wirst du auch die Tipp-Indikatoren anderer nicht sehen können.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tastatur auffordern, personalisiertes Lernen auszuschalten</string>
   <string name="preferences_app_protection__blocked_contacts">Blockierte Kontakte</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
@@ -1016,10 +1033,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__message_text_size">Schriftgröße für Nachrichten</string>
   <string name="preferences_events__contact_joined_signal">Neue Signal-Kontakte</string>
   <string name="preferences_notifications__priority">Priorität</string>
-  <string name="preferences_communication__category_sealed_sender">Versiegelter Absender</string>
+  <string name="preferences_communication__category_sealed_sender">Vertraulicher Absender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Indikatoren anzeigen</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Anzeigen eines Statussymbols unter »Nachrichtendetails« bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Von jedem erlauben</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Versiegelter Absender« aktivieren für eingehende Nachrichten von Nichtkontakten und weiterhin Kontakten, mit denen du dein Profil nicht geteilt hast.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Vertraulicher Absender« aktivieren für eingehende Nachrichten von Nichtkontakten und weiterhin Kontakten, mit denen du dein Profil nicht geteilt hast.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Mehr erfahren</string>
   <!--****************************************-->
   <!--menus-->
@@ -1058,7 +1076,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nix. Nada. Niente.\nAlles erledigt!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Neue Unterhaltung</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Erwecke deinen Posteingang zum Leben. Leg los und schreibe einem Freund.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Erwecke deinen Posteingang zum Leben. Leg los und schreib einem Freund.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Verschlüsselung neu starten</string>
   <!--conversation_muted-->
@@ -1180,7 +1198,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupUtil_never">Nie</string>
   <string name="BackupUtil_unknown">Unbekannt</string>
   <string name="preferences_app_protection__screen_lock">Bildschirmsperre</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zugriff auf Signal mit Androids Bildschirmsperre oder Fingerabdruck sperren</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zugriff auf Signal sperren mit Androids Bildschirmsperre oder Fingerabdruck</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Autom. Sperre bei Inaktivität</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Die PIN für die Registrierungssperre ist unabhängig vom SMS-Verifikationscode, den du gerade erhalten hast. Bitte gib die PIN ein, die du zuvor in der App festgelegt hast.</string>

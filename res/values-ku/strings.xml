@@ -8,6 +8,7 @@
   <string name="save">Tomarkirin</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Peyama nû</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Niha: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Te şifreya xwe çênekîr!</string>
@@ -591,6 +592,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Peyama nû</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz hat qeydnekirî</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ev belkî ye ji ber ku hejmara telefona te ser cihazê din hat qeydkirin. Ji bo dîsa qeydbikin lêxe.</string>

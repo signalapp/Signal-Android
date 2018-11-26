@@ -8,6 +8,8 @@
   <string name="save">Guardar</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
@@ -272,6 +274,10 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pronto para o seu retrato?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Agora pode partilhar a sua foto de perfil e nome com amigos no Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Chegaram os perfis Signal</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introdução aos indicadores de escrever.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Agora pode opcionalmente ver e partilhar quando as mensagens estão a ser escritas.</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Os indicadores de escrever estão aqui.</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ativar indicadores de escrever</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">A obter uma mensagem...</string>
   <!--GcmRefreshJob-->
@@ -625,6 +631,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mensagem nova</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d Item</item>
+    <item quantity="other">%d Itens</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">O dispositivo deixou de estar registado.</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Isto é possivelmente devido a ter registado o seu número de telefone noutro dispositivo. Pressione para re-registar.</string>
@@ -1002,6 +1013,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__incognito_keyboard">Teclado incógnito</string>
   <string name="preferences__read_receipts">Recibos de leitura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura forem desativados, não vai poder ver os recibos enviados por outros.</string>
+  <string name="preferences__typing_indicators">Indicadores de escrever</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escrever estiverem desativados, não poderá ver indicadores de escrever de outros utilizadores.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Pedir ao teclado para desligar a aprendizagem de palavras</string>
   <string name="preferences_app_protection__blocked_contacts">Contactos bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Quando utilizar dados móveis</string>

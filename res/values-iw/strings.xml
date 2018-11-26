@@ -8,6 +8,8 @@
   <string name="save">שמור</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">הודעה חדשה</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">כרגע: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדין לא הגדרת משפט־סיסמה!</string>
@@ -300,6 +302,10 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">מוכן לתקריב שלך?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">עכשיו אתה יכול לשתף תצלום ושם של פרופיל עם חברים ב-Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">פרופילי Signal כאן</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">היכרות עם מחווני הקלדה</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">כעת אתה יכול לראות ולשתף באופן רשותי מתי הודעות מוקלדות</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">מחווני הקלדה כאן</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">אפשר מחווני הקלדה</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">מאחזר הודעה...</string>
   <!--GcmRefreshJob-->
@@ -661,6 +667,13 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">הודעה חדשה</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">פריט %d</item>
+    <item quantity="two">%d פריטים</item>
+    <item quantity="many">%d פריטים</item>
+    <item quantity="other">%d פריטים</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">המכשיר אינו רשום יותר</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">זה קרוב לוודאי מאחר שרשמת את מספר הטלפון שלך עם Signal על מכשיר שונה. הקש כדי להירשם מחדש.</string>
@@ -1054,6 +1067,8 @@
   <string name="preferences__incognito_keyboard">מקלדת סמויה</string>
   <string name="preferences__read_receipts">אישורי קריאה</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
+  <string name="preferences__typing_indicators">מחווני הקלדה</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">בקש מהמקלדת להשבית למידה מותאמת אישית</string>
   <string name="preferences_app_protection__blocked_contacts">אנשי קשר חסומים</string>
   <string name="preferences_chats__when_using_mobile_data">בזמן שימוש בנתונים ניידים</string>

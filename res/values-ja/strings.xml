@@ -8,6 +8,8 @@
   <string name="save">保存</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新着メッセージ</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
@@ -66,10 +68,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">着信</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">カメラは利用できません。</string>
+  <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">削除</string>
   <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を消去しますか？</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">ウェブブラウザが見つかりません。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sとの安全番号が変更されました。通信が傍受されている可能性がありますが，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
@@ -130,6 +135,7 @@
   <string name="ConversationActivity_error_leaving_group">グループ脱退でエラー</string>
   <string name="ConversationActivity_specify_recipient">連絡先を選択してください</string>
   <string name="ConversationActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか？</string>
+  <string name="ConversationActivity_unblock_this_group_question">このグループのブロックを解除しますか？</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや電話を再び受信できるようになります。</string>
   <string name="ConversationActivity_unblock_this_group_description">既存のメンバーは、あなたをグループに再加入させることができるようになります。</string>
   <string name="ConversationActivity_unblock">ブロック解除</string>
@@ -254,7 +260,12 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">写真を撮りますが，準備はいいですか？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signalでプロフィール名と画像が設定できるようになりました。</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal のプロフィールは以下の通りです。</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">入力中アイコンとは</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">入力中であることを表示するアイコンが使えるようになりました。</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">アイコンはこれです。</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">アイコンの有効化</string>
   <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永続的なSignal通信のエラー！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google PlayサービスにSignalを登録できなかったため、Signalのメッセージと通話は無効になっています。設定 &gt; 詳細設定で再登録を試してください。</string>
@@ -305,6 +316,7 @@
   <string name="InviteActivity_no_app_to_share_to">シェアするためのアプリがないようです。</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">友達とのチャットを暗号化しましょう。</string>
   <!--Job-->
+  <string name="Job_working_in_the_background">バックグラウンドで処理しています...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">送信失敗</string>
   <string name="MessageDetailsRecipient_new_safety_number">新しい安全番号</string>
@@ -395,6 +407,7 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再挑戦してみてください。</string>
   <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">メッセージを読み込んでいます...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">このアプリのユーザーの方には評価アンケートへの協力をお願いいたします。</string>
@@ -405,10 +418,13 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">この連絡先をブロックしますか？</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや通話を受信できなくなります。</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">このグループを抜けてブロックしますか？</string>
+  <string name="RecipientPreferenceActivity_block_group">このグループをブロックしますか？</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group_description">このグループからメッセージや通知を受け取ることはなくなります。</string>
   <string name="RecipientPreferenceActivity_block">ブロック</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか？</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや通話を受信できるようになります。</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">このグループのブロックを解除しますか？</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_description">既存のメンバーは、あなたをグループに再加入させることができるようになります。</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">グループ脱退でエラー</string>
   <string name="RecipientPreferenceActivity_unblock">ブロック解除</string>
@@ -447,6 +463,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、安全な通話をするには、Signalに連絡先やメディアへのアクセス許可が必要です。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できませんでした。ネットワークの接続を確認してから、再度試してください。</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">SignalでSMSメッセージを表示できるようにすると、あなたの認証コードが自動的に検出され、電話場号が簡単に認証できます。</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="other">デバッグログの提出まで、あと%dステップです。</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">画像の変更を保存できませんでした</string>
   <!--Search-->
@@ -455,6 +474,7 @@
   <string name="SearchFragment_header_contacts">連絡先</string>
   <string name="SearchFragment_header_messages">メッセージ</string>
   <!--SendJob-->
+  <string name="SendJob_sending_a_message">メッセージを送信しています...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">連絡先に追加</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signalに招待する</string>
@@ -576,6 +596,7 @@
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">%sに保存しました</string>
+  <string name="SaveAttachmentTask_saved">保存済み</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">検索</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">会話やメッセージ、連絡先を検索します。</string>
@@ -584,6 +605,10 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新着メッセージ</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="other">%d個</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">端末が登録されていません。</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">おそらく別の端末でSignalに登録したことが原因です。タップして再登録してください。</string>
@@ -953,6 +978,8 @@
   <string name="preferences__incognito_keyboard">プライバシーキーボード</string>
   <string name="preferences__read_receipts">既読通知</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
+  <string name="preferences__typing_indicators">入力中アイコン</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">有効化されていなければ、相手の入力中アイコンは表示されません。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">キーボード予測入力を無効化</string>
   <string name="preferences_app_protection__blocked_contacts">ブロックした連絡先</string>
   <string name="preferences_chats__when_using_mobile_data">モバイルデータ通信利用時</string>
@@ -978,6 +1005,12 @@
   <string name="preferences_chats__message_text_size">メッセージのフォントサイズ</string>
   <string name="preferences_events__contact_joined_signal">連絡先がSignalに参加しました</string>
   <string name="preferences_notifications__priority">優先度</string>
+  <string name="preferences_communication__category_sealed_sender">送信者の秘匿化</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">アイコンを表示する</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">送信者の秘匿化を用いて届けられたメッセージで「メッセージの詳細」を選択した際に、ステータスアイコンを表示します。</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">全員を許可する</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロファイルを共有しておらず、連絡先にもないユーザからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
+  <string name="preferences_communication__sealed_sender_learn_more">さらに詳しく</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1108,6 +1141,7 @@
   <string name="preferences_chats__create_backup">バックアップを作ります</string>
   <string name="RegistrationActivity_enter_backup_passphrase">バックアップのパスフレーズを入力してください</string>
   <string name="RegistrationActivity_restore">復元</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">より新しいバージョンのSignalからはバックアップをインポートできません</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">バックアップのパスフレーズが間違っています</string>
   <string name="RegistrationActivity_checking">確認中…</string>
   <string name="RegistrationActivity_d_messages_so_far">今、%d個メッセージ…</string>

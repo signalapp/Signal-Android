@@ -8,6 +8,7 @@
   <string name="save">သိမ်းသည် </string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">စာအသစ်</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">လက်ရှိ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">စကားဝှက်မသတ်မှတ်ရသေးပါ</string>
@@ -567,6 +568,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">စာအသစ်</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">ယခုဖုန်းမှာ မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ဤကဲ့သို့ ဖြစ်ရခြင်းမှာ Signal အား မိမိဖုန်းနံပါတ်နှင့် အခြားဖုန်းတစ်ခုတွင် မှတ်ပုံတင်ခဲ့ခြင်းကြောင့်ဖြစ်သည်။ Re-register ကို နှိပ်၍ မှတ်ပုံတင်ခြင်း ပြန်လည်ပြုလုပ်ပါ။ </string>

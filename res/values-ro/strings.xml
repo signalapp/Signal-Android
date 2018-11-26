@@ -8,6 +8,8 @@
   <string name="save">Salvează</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ați setat înca o parolă!</string>
@@ -286,6 +288,10 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Sunteți pregătit pentru poza de aproape?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Acum poți distribui numele și o poză de profil la prietenii de pe Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profilurile Signal sunt aici</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Vă prezentăm indicatorii de tastare.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Acum poți vedea și partaja opțional atunci când mesajele sunt tastate</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Indicatorii de tastare sunt aici</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activează indicatorii de tastare</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Se obține un mesaj...</string>
   <!--GcmRefreshJob-->
@@ -643,6 +649,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d articol</item>
+    <item quantity="few">%d  articole</item>
+    <item quantity="other">%d  articole</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispozitivul nu mai este înregistrat</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Acest fapt este posibil pentru că ai înregistrat numărul tău de telefon la Signal de pe un dispozitiv diferit. Apasă pentru a te înregistra din nou.</string>
@@ -1029,6 +1041,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__incognito_keyboard">Tastatură incognito</string>
   <string name="preferences__read_receipts">Confirmări de citire</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Dacă confirmările de citire sunt dezactivate, nu veți putea vedea confirmările de citire de la ceilalți.</string>
+  <string name="preferences__typing_indicators">Indicatori tastare</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Dacă indicatorii de tastare sunt dezactivați, nu vei putea vedea indicatorii de tastare de la ceilalți.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitați tastaturii dezactivarea învățarii personalizate</string>
   <string name="preferences_app_protection__blocked_contacts">Contacte blocate</string>
   <string name="preferences_chats__when_using_mobile_data">Când se utilizează datele mobile </string>

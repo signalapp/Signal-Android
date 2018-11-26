@@ -8,6 +8,7 @@
   <string name="save">Zapisz</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nowa wiadomość</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Obecnie: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nie masz jeszcze ustawionego hasła!</string>
@@ -358,6 +359,7 @@
   <string name="InviteActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Nie pozwól znajomym używać nieszyfrowanych połączeń.</string>
   <!--Job-->
+  <string name="Job_working_in_the_background">Praca w tle...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nowy numer bezpieczeństwa</string>
@@ -519,6 +521,7 @@
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Wiadomości</string>
   <!--SendJob-->
+  <string name="SendJob_sending_a_message">Wysyłanie wiadomości...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj do kontaktów</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Zaproś do używania Signal</string>
@@ -650,6 +653,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Urządzenie już nie jest zarejestrowane</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Jest tak prawdopodobnie dlatego, że zarejestrowałeś swój numer telefonu w aplikacji Signal na innym urządzeniu. Stuknij, aby ponownie zarejestrować.</string>
@@ -1069,6 +1073,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_events__contact_joined_signal">Kontakt dołączył do Signal</string>
   <string name="preferences_notifications__priority">Priorytet</string>
   <string name="preferences_communication__category_sealed_sender">Zapieczętowany Nadawca</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Zezwól wszystkim</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dowiedz się więcej</string>
   <!--****************************************-->
   <!--menus-->
@@ -1203,6 +1208,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_chats__create_backup">Utwórz kopię zapasową</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Wprowadź hasło do kopii zapasowej</string>
   <string name="RegistrationActivity_restore">Przywróć</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Nie udało się zaimportować kopii zapasowej z nowszej wersji Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Nieprawidłowe hasło do kopii zapasowej</string>
   <string name="RegistrationActivity_checking">Sprawdzam...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d wiadomości...</string>
@@ -1254,7 +1260,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN blokady rejestracji</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Ten numer telefonu ma włączoną blokadę rejestracji. Wprowadź kod PIN blokady rejestracji.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blokada rejestracji jest włączona dla Twojego numeru telefonu. Aby pomóc Ci zapamiętać PIN blokady rejestracji, Signal okresowo poprosi Cię o jego wprowadzenie.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Zapomniałem(am) PIN.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Nie pamiętam PIN-u</string>
   <string name="RegistrationLockDialog_forgotten_pin">Nie pamiętasz PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blokada rejestracji pomaga chronić Twój numer telefonu przed nieautoryzowanymi próbami rejestracji. Ta funkcja może być w dowolnym momencie wyłączona w ustawieniach prywatności Signal</string>
   <string name="RegistrationLockDialog_registration_lock">Blokada rejestracji</string>

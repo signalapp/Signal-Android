@@ -8,6 +8,7 @@
   <string name="save">Αποθήκευση</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Νέο μήνυμα</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Αυτή τη στιγμή: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Δεν έχεις ορίσει συνθηματικό!</string>
@@ -69,10 +70,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Εισερχόμενη κλήση</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Η κάμερα δεν είναι διαθέσιμη.</string>
+  <string name="CameraActivity_image_save_failure">Αποτυχία αποθήκευσης της εικόνας.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Αφαίρεση</string>
   <string name="ClearProfileActivity_remove_profile_photo">Αφαίρεση φωτογραφίας προφίλ?</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε web browser.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %1$s άλλαξε. Είτε κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, είτε ο/η %2$s απλά επανεγκατέστησε το Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Προτείνουμε να επιβεβαιώσεις τον αριθμό ασφαλείας σου με αυτή την επαφή.</string>
@@ -133,6 +137,7 @@
   <string name="ConversationActivity_error_leaving_group">Πρόβλημα κατά την αποχώρηση από την ομάδα</string>
   <string name="ConversationActivity_specify_recipient">Παρακαλώ επιλέξτε μια επαφή</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ξεμπλοκάρισμα αυτής της επαφής;</string>
+  <string name="ConversationActivity_unblock_this_group_question">Ξεμπλοκάρισμα αυτής της ομάδας;</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Θα μπορείς και πάλι να λαμβάνεις μηνύματα και κλήσεις από αυτή την επαφή.</string>
   <string name="ConversationActivity_unblock_this_group_description">Τα υπάρχοντα μέλη θα μπορούν να σας προσθέσουν ξανά στην ομάδα.</string>
   <string name="ConversationActivity_unblock">Ξεμπλοκάρισμα</string>
@@ -344,6 +349,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">Διαγραφή μηνυμάτων...</string>
   <string name="MediaOverviewActivity_Documents">Αρχεία</string>
   <string name="MediaOverviewActivity_Select_all">Επιλογή όλων</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Τα συνημμένα συλλέγονται...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal εν εξελίξει</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
@@ -423,10 +429,13 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Μπλοκάρισμα αυτής της επαφής;</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Δε θα λαμβάνεις πλέον μηνύματα και κλήσεις από αυτή την επαφή.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Μπλοκάρισμα και αποχώρηση από αυτή την ομάδα;</string>
+  <string name="RecipientPreferenceActivity_block_group">Μπλοκάρισμα αυτής της ομάδας;</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group_description">Δεν θα λαμβάνετε πλέον μηνύματα ή ενημερώσεις από αυτήν την ομάδα.</string>
   <string name="RecipientPreferenceActivity_block">Μπλοκάρισμα</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Ξεμπλοκάρισμα αυτής της επαφής;</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Θα μπορείς και πάλι να λάβεις μηνύματα και κλήσεις από αυτή την επαφή.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Ξεμπλοκάρισμα αυτής της ομάδας;</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_description">Τα υπάρχοντα μέλη θα μπορούν να σας προσθέσουν ξανά στην ομάδα.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Πρόβλημα κατά την αποχώρηση από την ομάδα</string>
   <string name="RecipientPreferenceActivity_unblock">Ξεμπλοκάρισμα</string>
@@ -468,6 +477,10 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές και τα πολυμέσα σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να ανταλλάξεις μηνύματα και να κάνεις ασφαλείς κλήσεις.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε την σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Για να επιβεβαιώσεις τον αριθμό τηλεφώνου σου εύκολα, το Signal μπορεί να εντοπίσει αυτόματα τον κωδικό επιβεβαίωσης αν του επιτρέψεις να διαβάσει τα μηνύματα SMS σου.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Είσαι πλέον %d βήμα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
+    <item quantity="other">Είσαι πλέον %d βήματα μακριά από την καταχώρηση ενός αρχείου αποσφαλμάτωσης.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Αποτυχία αποθήκευσης των αλλαγών της εικόνας</string>
   <!--Search-->
@@ -600,6 +613,7 @@
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Αποθηκεύτηκε σε %s</string>
+  <string name="SaveAttachmentTask_saved">Αποθηκεύτηκε</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Αναζήτηση</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Αναζήτησε συνομιλίες, επαφές και μηνύματα</string>
@@ -608,6 +622,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Νέο μήνυμα</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Η συσκευή δεν είναι πλέον εγγεγραμμένη</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Αυτό συνέβη μάλλον επειδή καταχώρησες τον αριθμό τηλεφώνου σου στο Signal σε άλλη συσκευή. Πάτησε για να επανεγγραφτείς.</string>
@@ -1012,6 +1027,7 @@
   <string name="preferences_notifications__priority">Προτεραιότητα</string>
   <string name="preferences_communication__category_sealed_sender">Προστατευμένος Αποστολέας</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ενεργοποιήστε τον προστατευμένο αποστολέα για εισερχόμενα μηνύματα από άτομα που δεν βρίσκονται στις επαφές σας και άτομα με τα οποία δεν έχετε μοιραστεί το προφίλ σας.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Μάθετε περισσότερα</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

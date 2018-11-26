@@ -8,6 +8,8 @@
   <string name="save">Gardar</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensaxe</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Aínda non tes establecida unha frase de acceso!</string>
@@ -69,10 +71,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Chamada recibida</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Cámara non dispoñible.</string>
+  <string name="CameraActivity_image_save_failure">Erro ao gardar a imaxe.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eliminar</string>
   <string name="ClearProfileActivity_remove_profile_photo">Eliminar a foto do perfil?</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Non se atopou ningún navegador web.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O teu número de seguranza con %1$s foi modificado. Isto pode significar que alguén está a tentar interceptar a vosa comunicación ou simplemente que %2$s reinstalou Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Convén verificar o teu número de seguranza con este contacto.</string>
@@ -133,6 +138,7 @@
   <string name="ConversationActivity_error_leaving_group">Erro ao abandonar o grupo</string>
   <string name="ConversationActivity_specify_recipient">Por favor, elixe un contacto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desbloquear este contacto?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Desbloquear este grupo?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Volverá ser posible que recibas mensaxes e chamadas deste contacto.</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede o límite para o tipo de mensaxe que estás a enviar.</string>
@@ -423,9 +429,13 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Non recibirás máis mensaxes nin chamadas deste contacto.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Bloquear e abandonar este grupo?</string>
+  <string name="RecipientPreferenceActivity_block_group">Bloquear este grupo?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Non recibirás máis mensaxes nin actualizacións deste grupo.</string>
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Desbloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Volverá ser posible que recibas mensaxes e chamadas deste contacto.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Desbloquear este grupo?</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Erro ao abandonar o grupo</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
   <string name="RecipientPreferenceActivity_enabled">Activado</string>
@@ -477,6 +487,7 @@
   <string name="SearchFragment_header_contacts">Contactos</string>
   <string name="SearchFragment_header_messages">Mensaxes</string>
   <!--SendJob-->
+  <string name="SendJob_sending_a_message">Enviando a mensaxe...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Engadir a contactos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Convidar a Signal</string>
@@ -610,6 +621,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensaxe</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispositivo xa non rexistrado</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probablemente isto é así porque rexistraches o teu número de teléfono en Signal nun dispositivo diferente. Toca para volver facer o rexistro.</string>
@@ -1012,6 +1024,7 @@
   <string name="preferences_chats__message_text_size">Tamaño da fonte</string>
   <string name="preferences_events__contact_joined_signal">Un contacto únese a Signal</string>
   <string name="preferences_notifications__priority">Prioridade</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Saber máis</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1143,6 +1156,7 @@
   <string name="preferences_chats__create_backup">Crear copia de seguranza</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Inserir frase de acceso para a copia de seguranza</string>
   <string name="RegistrationActivity_restore">Restaurar</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Non se pode importar copias de seguranza a partir de versións de Signal máis recentes</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Frase de acceso de copia de seguranza incorrecta</string>
   <string name="RegistrationActivity_checking">Comprobando</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mensaxes ata agora...</string>

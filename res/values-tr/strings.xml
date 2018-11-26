@@ -8,6 +8,8 @@
   <string name="save">Kaydet</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Yeni mesaj</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Henüz bir parola belirlemediniz!</string>
@@ -272,6 +274,10 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Yakın çekime hazır mısınız?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Artık Signal\'deki arkadaşlarınızla isminizi ve profil fotoğrafınızı paylaşabilirsiniz</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilleri geldi</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">\'Yazıyor\' göstergeleriyle tanışın.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Artık mesajların yazıldığını görme ve paylaşma seçeneğine sahipsiniz</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">\'Yazıyor\' göstergeleri geldi</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">\'Yazıyor\' göstergelerini etkinleştrin.</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mesaj alınıyor...</string>
   <!--GcmRefreshJob-->
@@ -349,7 +355,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajlar siliniyor...</string>
   <string name="MediaOverviewActivity_Documents">Belgeler</string>
   <string name="MediaOverviewActivity_Select_all">Hepsini seç</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Ekler toplanıyor...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Eklentiler toplanıyor...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal araması sürüyor</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal araması kuruluyor</string>
@@ -420,7 +426,7 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kurulu Google Play Hizmetleri sürümü doğru çalışmıyor. Lütfen Google Play Hizmetleri\'ni tekrar yükleyin ve yeniden deneyin.</string>
   <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Mesaj alınıyor...</string>
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Bir mesaj alınıyor...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bu uygulamaya puan verin</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Bu uygulamayı kullanmaktan hoşlanıyorsanız, lütfen bir dakikanızı ayırıp puan vererek bize yardımcı olun.</string>
@@ -495,7 +501,7 @@
   <string name="SearchFragment_header_contacts">Kişiler</string>
   <string name="SearchFragment_header_messages">Mesajlar</string>
   <!--SendJob-->
-  <string name="SendJob_sending_a_message">Mesaj gönderiliyor...</string>
+  <string name="SendJob_sending_a_message">Bir mesaj gönderiliyor...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Kişilere Ekle</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal\'e davet et</string>
@@ -579,7 +585,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Açmak için dokunun.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Açmak için dokunun, veya kapatmak için kilide dokunun.</string>
   <string name="KeyCachingService_passphrase_cached">Signal kilidi açık</string>
-  <string name="KeyCachingService_lock">Signal\'ı Kilitle</string>
+  <string name="KeyCachingService_lock">Signal\'i Kilitle</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Siz</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Desteklenmeyen medya türü</string>
@@ -619,7 +625,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="QuickResponseService_problem_sending_message">Mesaj gönderilirken hata!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">%s konumuna kaydedildi</string>
-  <string name="SaveAttachmentTask_saved">Kayıtlı</string>
+  <string name="SaveAttachmentTask_saved">Kaydedildi</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Ara</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Sohbetleri, kişileri ve mesajları ara</string>
@@ -628,6 +634,11 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni mesaj</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d Öğe</item>
+    <item quantity="other">%d Öğe</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz artık kayıtlı değil</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Bunun nedeni büyük olasılıkla telefon numaranızın farklı bir cihazda Signal\'e kaydedilmiş olmasıdır. Tekrar kaydetmek için dokunun.</string>
@@ -1005,6 +1016,8 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences__incognito_keyboard">Gizli klavye</string>
   <string name="preferences__read_receipts">Okundu bilgisi</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Okundu bilgisi etkin değilse, başkalarının okundu bilgilerini göremeyeceksiniz.</string>
+  <string name="preferences__typing_indicators">\'Yazıyor\' göstergeleri</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">\'Yazıyor\' göstergeleri etkin değilse, başkalarının \'Yazıyor\' göstergelerini göremeyeceksiniz.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Klavyenin kişiselleştirilmiş öğrenmeyi devre dışı bırakmasını iste</string>
   <string name="preferences_app_protection__blocked_contacts">Engellenmiş kişiler</string>
   <string name="preferences_chats__when_using_mobile_data">Mobil veri kullanırken</string>
@@ -1032,10 +1045,10 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="preferences_notifications__priority">Öncelik</string>
   <string name="preferences_communication__category_sealed_sender">Gizli Gönderen</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Ekran göstergeleri</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Mühürlü gönderen kullanılarak iletilen mesajlarda \"Mesaj ayrıntıları\" nı seçtiğinizde durum simgesini göster.</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone">Herkese izin ver</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Göndereninin gizli olduğu mesajlarda \"Mesaj ayrıntıları\" seçildiğinde durum simgesini göster.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Herkesden al</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Kişileriniz arasında bulunmayan ve profilinizi paylaşmadığınız kişilerden göndereninin gizli olduğu mesajların alınmasını etkinleştir.</string>
-  <string name="preferences_communication__sealed_sender_learn_more">Daha fazlasını öğrenin</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Dahasını öğrenin</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

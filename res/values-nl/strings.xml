@@ -8,6 +8,8 @@
   <string name="save">Opslaan</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nieuw bericht</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld!</string>
@@ -139,7 +141,7 @@
   <string name="ConversationActivity_unblock_this_group_question">Deze groep deblokkeren?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Je kan weer berichten en oproepen van dit contact ontvangen.</string>
   <string name="ConversationActivity_unblock_this_group_description">Bestaande leden kunnen je weer aan de groep toevoegen.</string>
-  <string name="ConversationActivity_unblock">Ontblokken</string>
+  <string name="ConversationActivity_unblock">Deblokkeren</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wil verzenden.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Camera niet beschikbaar</string>
   <string name="ConversationActivity_unable_to_record_audio">Fout bij opnemen audio!</string>
@@ -272,6 +274,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klaar voor je close-up?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Je kan nu een profielfoto en naam met je vrienden op Signal delen</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal-profielen zijn nu beschikbaar</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Je kan nu zien wanneer berichten worden getypt (optioneel).</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Zet typ indicatoren aan</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Bericht ophalen...</string>
   <!--GcmRefreshJob-->
@@ -624,6 +628,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet meer geregistreerd</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Signal op een ander apparaat hebt geregistreerd. Tik om opnieuw te registreren.</string>
@@ -1001,6 +1006,8 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="preferences__incognito_keyboard">Incognito toetsenbord</string>
   <string name="preferences__read_receipts">Leesbevestigingen</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als je leesbevestigingen uitgeschakeld zijn, zal je leesbevestigingen van anderen ook niet kunnen zien.</string>
+  <string name="preferences__typing_indicators">Typindicatoren</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld, zal je niet de typindicatoren van anderen zien.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Schakel gepersonaliseerd leren van toetsenbord uit</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contacten</string>
   <string name="preferences_chats__when_using_mobile_data">Wanneer mobiele gegevensoverdracht gebruikt wordt</string>
@@ -1027,8 +1034,10 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="preferences_events__contact_joined_signal">Contact gebruikt nu Signal</string>
   <string name="preferences_notifications__priority">Prioriteit</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Indicator tonen</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je drukt op \"Berichtdetails\" bij berichten die zijn afgeleverd met een verzegelde afzender.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Verzegelde afzender inschakelen voor berichten van niet-contacten en mensen waarmee je je profiel niet hebt gedeeld.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Meer leren</string>
   <!--****************************************-->
   <!--menus-->

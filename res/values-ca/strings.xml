@@ -8,6 +8,8 @@
   <string name="save">Desa</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Missatge nou</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualment: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Encara no heu establert cap contrasenya.</string>
@@ -272,6 +274,10 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">A punt per a un primer pla?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Ara podeu compartir un nom i una foto de perfil amb les amistats del Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Els perfils del Signal són aquí</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">S\'introdueixen els indicadors de tecleig.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ara, opcionalment, podeu veure i compartir quan s\'escriuen els missatges.</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Ja tenim aquí els indicadors de tecleig.</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Habilita els indicadors de tecleig</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">S\'està recuperant un missatge...</string>
   <!--GcmRefreshJob-->
@@ -623,6 +629,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Missatge nou</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d element</item>
+    <item quantity="other">%d elements</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">L\'aparell ja no està registrat</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Possiblement això és perquè vau registrar el vostre número de telèfon al Signal en una aparell diferent. Feu un toc per a tornar a registrar-lo.</string>
@@ -1000,6 +1011,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__incognito_keyboard">Teclat d\'incògnit</string>
   <string name="preferences__read_receipts">Confirmació de lectura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan inhabilitades, no podreu veure les dels altres.</string>
+  <string name="preferences__typing_indicators">Indicadors de tecleig</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan inhabilitats, no podreu veure els indicadors de tecleig dels altres.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Demana el teclat per inhabilitar l\'aprenentatge personalitzat</string>
   <string name="preferences_app_protection__blocked_contacts">Contactes blocats</string>
   <string name="preferences_chats__when_using_mobile_data">En usar dades mòbils</string>

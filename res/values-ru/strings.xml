@@ -8,6 +8,7 @@
   <string name="save">Сохранить</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Новое сообщение</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Сейчас: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы ещё не задали парольную фразу!</string>
@@ -661,6 +662,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Устройство больше не зарегистрировано</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Это может быть вызвано тем, что ваш телефонный номер зарегистрирован в Signal на другом устройстве. Нажмите для повторной регистрации.</string>
@@ -1079,11 +1081,11 @@
   <string name="preferences_chats__message_text_size">Размер шрифта сообщения</string>
   <string name="preferences_events__contact_joined_signal">Контакт появился в Signal</string>
   <string name="preferences_notifications__priority">Приоритет</string>
-  <string name="preferences_communication__category_sealed_sender">Скрытый отправитель</string>
+  <string name="preferences_communication__category_sealed_sender">Запечатанный отправитель</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Показать индикаторы</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Показывать иконку статуса при выборе \"подробности сообщения\" для сообщений, доставленных скрытым отправителем.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Показывать иконку статуса при выборе «подробности сообщения» для сообщений, доставленных с использованием запечатанного отправителя.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Разрешить от всех</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить скрытого отправителя для входящих сообщений от людей не из контактов и тех, с кем вы ещё не делились профилем.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить запечатанного отправителя для входящих сообщений от людей не из контактов и тех, с кем вы ещё не делились профилем.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
   <!--****************************************-->
   <!--menus-->

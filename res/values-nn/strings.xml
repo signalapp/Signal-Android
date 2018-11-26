@@ -8,6 +8,7 @@
   <string name="save">Lagra</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldande: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikkje valt ein passordfrase endå.</string>
@@ -431,6 +432,8 @@
   <string name="RecipientPreferenceActivity_block_this_contact_question">Vil du blokkera denne kontakten?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du kan i så fall ikkje lenger motta meldingar og anrop frå vedkomande.</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group">Blokker og forlat denne gruppa?</string>
+  <string name="RecipientPreferenceActivity_block_group">Blokker denne gruppa?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Du vil ikkje lenger motta meldingar eller oppdateringar frå denne gruppa.</string>
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Vil du fjerna blokkering av denne kontakten?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du opnar i så fall for mottak av meldingar og anrop frå denne kontakten.</string>
@@ -478,6 +481,10 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine og media for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Kan ikkje kopla til tenesta. Sjekk nettverkstilkoplinga og prøv igjen.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal kan automatisk oppdaga stadfestingskoden for å enkelt stadfesta telefonnummeret ditt, viss du gir Signal tilgang til å lesa SMS-meldingar.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
+    <item quantity="other">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikkje lagra biletendringane</string>
   <!--Search-->
@@ -486,6 +493,7 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="SearchFragment_header_contacts">Kontaktar</string>
   <string name="SearchFragment_header_messages">Meldingar</string>
   <!--SendJob-->
+  <string name="SendJob_sending_a_message">Sender ei melding …</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Legg til som kontakt</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Inviter til Signal</string>
@@ -609,6 +617,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="QuickResponseService_problem_sending_message">Det oppstod eit problem under sending av melding.</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Lagra til %s</string>
+  <string name="SaveAttachmentTask_saved">Lagra</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Søk</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Søk etter samtalar, kontaktar og meldingar</string>
@@ -617,6 +626,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Eininga er ikkje lenger registrert</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette er sannsynlegvis fordi du registrerte telefonnummeret ditt med Signal på ei anna eining. Trykk for å omregistrera.</string>
@@ -1021,6 +1031,12 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_chats__message_text_size">Skriftstorleik i meldingar</string>
   <string name="preferences_events__contact_joined_signal">Ein kontakt tok i bruk Signal!</string>
   <string name="preferences_notifications__priority">Prioritet</string>
+  <string name="preferences_communication__category_sealed_sender">Forsegla sendar</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Visingsindikatorar</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis eit statusikon når du vel «Meldingsdetaljar» på meldingar som blei sende med forsegla sendar.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat frå alle</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tillat forsegla sendar på meldingar du får frå folk som ikkje er i kontaktlista di, og folk du ikkje har delt profilen din med.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Lær meir</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1153,6 +1169,7 @@ Du er à jour!</string>
   <string name="preferences_chats__create_backup">Lag reservekopi</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv passordfrasen til reservekopien</string>
   <string name="RegistrationActivity_restore">Rett opp igjen</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Kan ikkje importera reservekopiar frå nyare utgåver av Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Feil passordfrase til reservekopi</string>
   <string name="RegistrationActivity_checking">Sjekkar …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d meldingar så langt …</string>
