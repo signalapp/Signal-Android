@@ -27,6 +27,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class TypingSendJob extends ContextJob implements InjectableType {
 
@@ -40,8 +41,8 @@ public class TypingSendJob extends ContextJob implements InjectableType {
 
   @Inject SignalServiceMessageSender messageSender;
 
-  public TypingSendJob() {
-    super(null, null);
+  public TypingSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public TypingSendJob(Context context, long threadId, boolean typing) {

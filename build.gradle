@@ -70,7 +70,7 @@ dependencies {
     compile 'com.android.support:multidex:1.0.3'
     compile 'android.arch.lifecycle:extensions:1.1.1'
     compile 'android.arch.lifecycle:common-java8:1.1.1'
-    compile 'android.arch.work:work-runtime:1.0.0-alpha09'
+    compile 'android.arch.work:work-runtime:1.0.0-alpha11'
 
     compile 'com.google.android.gms:play-services-gcm:9.6.1'
     compile 'com.google.android.gms:play-services-maps:9.6.1'
@@ -149,7 +149,6 @@ dependencies {
     }
 }
 
-// TODO: Update dependencies after getting final libsignal
 dependencyVerification {
     verify = [
         'com.android.support:design:7874ad1904eedc74aa41cffffb7f759d8990056f3bbbc9264911651c67c42f5f',
@@ -167,7 +166,7 @@ dependencyVerification {
         'com.android.support:gridlayout-v7:5029529f7db66f8773426bf7318645f0840fc50d74f66355cd60c5e58d2da087',
         'com.android.support:exifinterface:bbf44e519edd6333a24a3285aa21fd00181b920b81ca8aa89a8899f03ab4d6b0',
         'com.android.support:multidex:ecf6098572e23b5155bab3b9a82b2fd1530eda6c6c157745e0f5287c66eec60c',
-        'android.arch.work:work-runtime:eda29b2cad202dee05a2e5aafe0a37c93ba9cde8f7cc0d0c8926a9f1a9498a8f',
+        'android.arch.work:work-runtime:e2cff8a2231da07519b65af64e77e5da20b1fc5a016bb49ddade40beb44a63ff',
         'android.arch.lifecycle:extensions:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
         'android.arch.lifecycle:common-java8:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
         'com.google.android.gms:play-services-gcm:312e61253a236f2d9b750b9c04fc92fd190d23b0b2755c99de6ce4a28b259dae',
@@ -240,7 +239,7 @@ dependencyVerification {
         'com.android.support:localbroadcastmanager:d287c823af5fdde72c099fcfc5f630efe9687af7a914343ae6fd92de32c8a806',
         'com.android.support:print:4be8a812d73e4a80e35b91ceae127def3f0bb9726bf3bc439aa0cc81503f5728',
         'com.android.support:support-annotations:5d5b9414f02d3fa0ee7526b8d5ddae0da67c8ecc8c4d63ffa6cf91488a93b927',
-        'androidx.concurrent:futures:1f63078c41efd29d20ee3444fba93c6cdfaeeb862c6d3b6166ff8debd37d471a',
+        'com.google.guava:listenablefuture:e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069',
         'org.signal:signal-metadata-android:d9d798aab7ee7200373ecff8718baf8aaeb632c123604e8a41b7b4c0c97eeee1',
         'org.whispersystems:signal-service-java:a156f4025ce59abb1b48c089719323cd0e82d6ab4bdd345c408a5e44121499b1',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
@@ -250,8 +249,6 @@ dependencyVerification {
         'com.klinkerapps:logger:177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541',
         'com.google.android:flexbox:a9989fd13ae2ee42765dfc515fe362edf4f326e74925d02a10369df8092a4935',
         'org.jsoup:jsoup:abeaf34795a4de70f72aed6de5966d2955ec7eb348eeb813324f23c999575473',
-        'com.google.guava:listenablefuture:e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069',
-        'androidx.annotation:annotation:04f22f257944ce223701d5aa1bdc36fb7f4594e87b539044045cd161d965468e',
         'org.whispersystems:signal-protocol-android:b41b7c3a47b0a4ce35802474ae7c5ddc8f033d80209e98abf7ec669543b2b3ee',
         'org.signal:signal-metadata-java:af1d0dd766b1e301ed1c44e65161084cf03e2587fe97fdd29ecbea58c6aa6930',
         'org.whispersystems:signal-protocol-java:b08207f7e1847228f2a1f0d49e113f93c96c6ed8490be14edddd4be55b2a4a4e',

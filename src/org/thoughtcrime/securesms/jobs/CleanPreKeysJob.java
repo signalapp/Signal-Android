@@ -27,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 import static org.thoughtcrime.securesms.dependencies.AxolotlStorageModule.SignedPreKeyStoreFactory;
 
@@ -39,8 +40,8 @@ public class CleanPreKeysJob extends ContextJob implements InjectableType {
   @Inject transient SignalServiceAccountManager accountManager;
   @Inject transient SignedPreKeyStoreFactory signedPreKeyStoreFactory;
 
-  public CleanPreKeysJob() {
-    super(null, null);
+  public CleanPreKeysJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public CleanPreKeysJob(Context context) {

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobmanager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -45,7 +47,10 @@ public abstract class Job extends Worker implements Serializable {
   /**
    * Invoked when a job is first created in our own codebase.
    */
-  protected Job(@Nullable JobParameters parameters) {
+  @SuppressLint("RestrictedApi")
+  protected Job(@NonNull Context context, @Nullable JobParameters parameters) {
+    //noinspection ConstantConditions
+    super(context, new WorkerParameters(null, null, Collections.emptySet(), null, 0, null, null, null));
     this.parameters = parameters;
   }
 
@@ -119,13 +124,8 @@ public abstract class Job extends Worker implements Serializable {
   }
 
   @Override
-  public void onStopped(boolean cancelled) {
-    if (cancelled) {
-      warn("onStopped() with cancellation signal." + logSuffix());
-      onCanceled();
-    } else {
-      log("onStopped()" + logSuffix());
-    }
+  public void onStopped() {
+    log("onStopped()" + logSuffix());
   }
 
   final void onSubmit(@NonNull Context context, @NonNull UUID id) {

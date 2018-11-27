@@ -24,6 +24,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class RefreshUnidentifiedDeliveryAbilityJob extends ContextJob implements InjectableType {
 
@@ -31,8 +32,8 @@ public class RefreshUnidentifiedDeliveryAbilityJob extends ContextJob implements
 
   @Inject transient SignalServiceMessageReceiver receiver;
 
-  public RefreshUnidentifiedDeliveryAbilityJob() {
-    super(null, null);
+  public RefreshUnidentifiedDeliveryAbilityJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public RefreshUnidentifiedDeliveryAbilityJob(Context context) {

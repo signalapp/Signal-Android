@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import java.io.IOException;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushContentReceiveJob extends PushReceivedJob {
 
@@ -24,8 +25,8 @@ public class PushContentReceiveJob extends PushReceivedJob {
 
   private String data;
 
-  public PushContentReceiveJob() {
-    super(null, null);
+  public PushContentReceiveJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushContentReceiveJob(Context context) {

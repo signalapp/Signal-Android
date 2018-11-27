@@ -28,6 +28,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MultiDeviceBlockedUpdateJob extends ContextJob implements InjectableType {
 
@@ -38,8 +39,8 @@ public class MultiDeviceBlockedUpdateJob extends ContextJob implements Injectabl
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  public MultiDeviceBlockedUpdateJob() {
-    super(null, null);
+  public MultiDeviceBlockedUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceBlockedUpdateJob(Context context) {

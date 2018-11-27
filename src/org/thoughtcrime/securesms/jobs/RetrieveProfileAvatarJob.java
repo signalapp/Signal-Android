@@ -27,6 +27,7 @@ import java.io.InputStream;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class RetrieveProfileAvatarJob extends ContextJob implements InjectableType {
 
@@ -42,8 +43,8 @@ public class RetrieveProfileAvatarJob extends ContextJob implements InjectableTy
   private String    profileAvatar;
   private Recipient recipient;
 
-  public RetrieveProfileAvatarJob() {
-    super(null, null);
+  public RetrieveProfileAvatarJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public RetrieveProfileAvatarJob(Context context, Recipient recipient, String profileAvatar) {

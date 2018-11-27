@@ -17,6 +17,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushNotificationReceiveJob extends PushReceivedJob implements InjectableType {
 
@@ -24,8 +25,8 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
 
   @Inject transient SignalServiceMessageReceiver receiver;
 
-  public PushNotificationReceiveJob() {
-    super(null, null);
+  public PushNotificationReceiveJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushNotificationReceiveJob(Context context) {

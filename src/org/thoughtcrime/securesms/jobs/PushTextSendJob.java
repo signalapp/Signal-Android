@@ -34,6 +34,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushTextSendJob extends PushSendJob implements InjectableType {
 
@@ -47,8 +48,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   private long messageId;
 
-  public PushTextSendJob() {
-    super(null, null);
+  public PushTextSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushTextSendJob(Context context, long messageId, Address destination) {

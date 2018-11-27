@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class SmsReceiveJob extends ContextJob {
 
@@ -38,8 +39,8 @@ public class SmsReceiveJob extends ContextJob {
 
   private int subscriptionId;
 
-  public SmsReceiveJob() {
-    super(null, null);
+  public SmsReceiveJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public SmsReceiveJob(@NonNull Context context, @Nullable Object[] pdus, int subscriptionId) {

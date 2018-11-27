@@ -23,10 +23,16 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import androidx.work.WorkerParameters;
+
 public abstract class SendJob extends ContextJob {
 
   @SuppressWarnings("unused")
   private final static String TAG = SendJob.class.getSimpleName();
+
+  protected SendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
+  }
 
   public SendJob(Context context, JobParameters parameters) {
     super(context, parameters);

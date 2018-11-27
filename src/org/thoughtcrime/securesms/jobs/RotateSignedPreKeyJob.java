@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class RotateSignedPreKeyJob extends ContextJob implements InjectableType {
 
@@ -28,8 +29,8 @@ public class RotateSignedPreKeyJob extends ContextJob implements InjectableType 
 
   @Inject transient SignalServiceAccountManager accountManager;
 
-  public RotateSignedPreKeyJob() {
-    super(null, null);
+  public RotateSignedPreKeyJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public RotateSignedPreKeyJob(Context context) {

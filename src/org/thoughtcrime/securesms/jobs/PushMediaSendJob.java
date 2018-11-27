@@ -39,6 +39,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
@@ -52,8 +53,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   private long messageId;
 
-  public PushMediaSendJob() {
-    super(null, null);
+  public PushMediaSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushMediaSendJob(Context context, long messageId, Address destination) {

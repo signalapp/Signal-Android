@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import java.util.ArrayList;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class SmsSendJob extends SendJob {
 
@@ -43,8 +44,8 @@ public class SmsSendJob extends SendJob {
   private long messageId;
   private int  runAttempt;
 
-  public SmsSendJob() {
-    super(null, null);
+  public SmsSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public SmsSendJob(Context context, long messageId, String name) {

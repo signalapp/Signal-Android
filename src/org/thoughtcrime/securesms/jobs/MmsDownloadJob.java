@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.Set;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MmsDownloadJob extends ContextJob {
 
@@ -63,8 +64,8 @@ public class MmsDownloadJob extends ContextJob {
   private long    threadId;
   private boolean automatic;
 
-  public MmsDownloadJob() {
-    super(null, null);
+  public MmsDownloadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MmsDownloadJob(Context context, long messageId, long threadId, boolean automatic) {

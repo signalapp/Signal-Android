@@ -50,6 +50,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MultiDeviceContactUpdateJob extends ContextJob implements InjectableType {
 
@@ -68,8 +69,8 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
 
   private boolean forceSync;
 
-  public MultiDeviceContactUpdateJob() {
-    super(null, null);
+  public MultiDeviceContactUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceContactUpdateJob(@NonNull Context context) {

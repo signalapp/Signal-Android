@@ -41,11 +41,17 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+import androidx.work.WorkerParameters;
+
 public abstract class PushSendJob extends SendJob {
 
   private static final long   serialVersionUID              = 5906098204770900739L;
   private static final String TAG                           = PushSendJob.class.getSimpleName();
   private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
+
+  protected  PushSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
+  }
 
   protected PushSendJob(Context context, JobParameters parameters) {
     super(context, parameters);
@@ -213,7 +219,7 @@ public abstract class PushSendJob extends SendJob {
       Log.d(TAG, "Certificate is valid.");
     } catch (InvalidCertificateException e) {
       Log.w(TAG, "Certificate was invalid at send time. Fetching a new one.", e);
-      RotateCertificateJob certificateJob = new RotateCertificateJob();
+      RotateCertificateJob certificateJob = new RotateCertificateJob(context);
       ApplicationContext.getInstance(context).injectDependencies(certificateJob);
       certificateJob.setContext(context);
       certificateJob.onRun();

@@ -31,6 +31,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MultiDeviceReadUpdateJob extends ContextJob implements InjectableType {
 
@@ -43,8 +44,8 @@ public class MultiDeviceReadUpdateJob extends ContextJob implements InjectableTy
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  public MultiDeviceReadUpdateJob() {
-    super(null, null);
+  public MultiDeviceReadUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceReadUpdateJob(Context context, List<SyncMessageId> messageIds) {

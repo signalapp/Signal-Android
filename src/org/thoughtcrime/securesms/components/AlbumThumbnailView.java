@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -16,9 +18,6 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class AlbumThumbnailView extends FrameLayout {
 
@@ -38,12 +37,12 @@ public class AlbumThumbnailView extends FrameLayout {
 
   private final OnLongClickListener defaultLongClickListener = v -> this.performLongClick();
 
-  public AlbumThumbnailView(@NonNull @android.support.annotation.NonNull Context context) {
+  public AlbumThumbnailView(@NonNull Context context) {
     super(context);
     initialize();
   }
 
-  public AlbumThumbnailView(@NonNull @android.support.annotation.NonNull Context context, @Nullable @android.support.annotation.Nullable AttributeSet attrs) {
+  public AlbumThumbnailView(@NonNull Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
     initialize();
   }

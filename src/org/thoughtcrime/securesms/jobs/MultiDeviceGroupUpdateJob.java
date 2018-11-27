@@ -37,6 +37,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MultiDeviceGroupUpdateJob extends ContextJob implements InjectableType {
 
@@ -45,8 +46,8 @@ public class MultiDeviceGroupUpdateJob extends ContextJob implements InjectableT
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  public MultiDeviceGroupUpdateJob() {
-    super(null, null);
+  public MultiDeviceGroupUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceGroupUpdateJob(Context context) {

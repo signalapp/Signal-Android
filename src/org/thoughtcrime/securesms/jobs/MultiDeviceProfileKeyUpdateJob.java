@@ -31,6 +31,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MultiDeviceProfileKeyUpdateJob extends ContextJob implements InjectableType {
 
@@ -39,8 +40,8 @@ public class MultiDeviceProfileKeyUpdateJob extends ContextJob implements Inject
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  public MultiDeviceProfileKeyUpdateJob() {
-    super(null, null);
+  public MultiDeviceProfileKeyUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceProfileKeyUpdateJob(Context context) {

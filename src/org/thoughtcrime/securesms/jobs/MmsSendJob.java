@@ -50,6 +50,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MmsSendJob extends SendJob {
 
@@ -61,8 +62,8 @@ public class MmsSendJob extends SendJob {
 
   private long messageId;
 
-  public MmsSendJob() {
-    super(null, null);
+  public MmsSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MmsSendJob(Context context, long messageId) {

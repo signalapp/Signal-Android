@@ -30,6 +30,7 @@ import java.io.InputStream;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class AvatarDownloadJob extends ContextJob implements InjectableType {
 
@@ -44,8 +45,8 @@ public class AvatarDownloadJob extends ContextJob implements InjectableType {
 
   private byte[] groupId;
 
-  public AvatarDownloadJob() {
-    super(null, null);
+  public AvatarDownloadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public AvatarDownloadJob(Context context, @NonNull byte[] groupId) {

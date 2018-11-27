@@ -38,6 +38,7 @@ import java.io.InputStream;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class AttachmentDownloadJob extends ContextJob implements InjectableType {
   private static final long   serialVersionUID    = 2L;
@@ -56,8 +57,8 @@ public class AttachmentDownloadJob extends ContextJob implements InjectableType 
   private long    partUniqueId;
   private boolean manual;
 
-  public AttachmentDownloadJob() {
-    super(null, null);
+  public AttachmentDownloadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public AttachmentDownloadJob(Context context, long messageId, AttachmentId attachmentId, boolean manual) {

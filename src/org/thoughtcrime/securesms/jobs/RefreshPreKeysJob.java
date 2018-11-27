@@ -25,6 +25,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class RefreshPreKeysJob extends ContextJob implements InjectableType {
 
@@ -34,8 +35,8 @@ public class RefreshPreKeysJob extends ContextJob implements InjectableType {
 
   @Inject transient SignalServiceAccountManager accountManager;
 
-  public RefreshPreKeysJob() {
-    super(null, null);
+  public RefreshPreKeysJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public RefreshPreKeysJob(Context context) {

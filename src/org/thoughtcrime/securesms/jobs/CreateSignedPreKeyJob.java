@@ -21,6 +21,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class CreateSignedPreKeyJob extends ContextJob implements InjectableType {
 
@@ -30,8 +31,8 @@ public class CreateSignedPreKeyJob extends ContextJob implements InjectableType 
 
   @Inject transient SignalServiceAccountManager accountManager;
 
-  public CreateSignedPreKeyJob() {
-    super(null, null);
+  public CreateSignedPreKeyJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public CreateSignedPreKeyJob(Context context) {

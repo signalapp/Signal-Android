@@ -105,6 +105,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushDecryptJob extends ContextJob {
 
@@ -118,8 +119,8 @@ public class PushDecryptJob extends ContextJob {
   private long messageId;
   private long smsMessageId;
 
-  public PushDecryptJob() {
-    super(null, null);
+  public PushDecryptJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushDecryptJob(Context context) {

@@ -22,6 +22,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MultiDeviceConfigurationUpdateJob extends ContextJob implements InjectableType {
 
@@ -39,8 +40,8 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
   private boolean typingIndicatorsEnabled;
   private boolean unidentifiedDeliveryIndicatorsEnabled;
 
-  public MultiDeviceConfigurationUpdateJob() {
-    super(null, null);
+  public MultiDeviceConfigurationUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceConfigurationUpdateJob(Context context, boolean readReceiptsEnabled, boolean typingIndicatorsEnabled, boolean unidentifiedDeliveryIndicatorsEnabled) {

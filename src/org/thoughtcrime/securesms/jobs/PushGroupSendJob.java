@@ -53,6 +53,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
@@ -69,8 +70,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   private long   filterRecipientId; // Deprecated
   private String filterAddress;
 
-  public PushGroupSendJob() {
-    super(null, null);
+  public PushGroupSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushGroupSendJob(Context context, long messageId, @NonNull Address destination, @Nullable Address filterAddress) {

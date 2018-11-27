@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class SmsSentJob extends ContextJob {
 
@@ -35,8 +36,8 @@ public class SmsSentJob extends ContextJob {
   private int    result;
   private int    runAttempt;
 
-  public SmsSentJob() {
-    super(null, null);
+  public SmsSentJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public SmsSentJob(Context context, long messageId, String action, int result, int runAttempt) {
