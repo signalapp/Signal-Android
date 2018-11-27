@@ -1049,7 +1049,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">ล็อก</string>
   <string name="text_secure_normal__mark_all_as_read">ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว</string>
   <string name="text_secure_normal__invite_friends">เชิญเพื่อน</string>
-  <string name="text_secure_normal__help">ช่วยเหลือ</string>
+  <string name="text_secure_normal__use-guide_and_support">ช่วยเหลือ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">เปรียบเทียบกับคลิปบอร์ด</string>
