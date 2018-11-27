@@ -241,7 +241,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private void initializeObservers() {
     viewModel.getPreviewData().observe(this, previewData -> {
-      if (previewData == null) {
+      if (previewData == null || mediaPager == null || mediaPager.getAdapter() == null) {
         return;
       }
 
