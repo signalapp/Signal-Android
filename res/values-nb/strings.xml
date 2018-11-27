@@ -1102,7 +1102,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Merk alle som lest</string>
   <string name="text_secure_normal__invite_friends">Inviter venner</string>
-  <string name="text_secure_normal__help">Hjelp</string>
+  <string name="text_secure_normal__use-guide_and_support">Hjelp</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiere til utklippstavle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med utklippstavlen</string>
