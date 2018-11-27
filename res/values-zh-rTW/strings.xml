@@ -1085,7 +1085,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">鎖定</string>
   <string name="text_secure_normal__mark_all_as_read">全部標示為已讀</string>
   <string name="text_secure_normal__invite_friends">邀請好友</string>
-  <string name="text_secure_normal__help">說明</string>
+  <string name="text_secure_normal__use-guide_and_support">說明</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">複製到剪貼簿</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">與剪貼簿中的內容進行比較</string>
