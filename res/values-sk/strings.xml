@@ -1132,7 +1132,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="text_secure_normal__menu_clear_passphrase">Zamknúť</string>
   <string name="text_secure_normal__mark_all_as_read">Označiť všetko ako prečítané</string>
   <string name="text_secure_normal__invite_friends">Pozvať priateľov</string>
-  <string name="text_secure_normal__help">Pomocník</string>
+  <string name="text_secure_normal__use-guide_and_support">Pomocník</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopírovať</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnať</string>
