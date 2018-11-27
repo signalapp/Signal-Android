@@ -1078,7 +1078,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="text_secure_normal__menu_clear_passphrase">Pakana</string>
   <string name="text_secure_normal__mark_all_as_read">Killkakatishkami nishpa tukuyllakunata churay</string>
   <string name="text_secure_normal__invite_friends">Mashikunata kayachina</string>
-  <string name="text_secure_normal__help">Yanapay</string>
+  <string name="text_secure_normal__use-guide_and_support">Yanapay</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Panka allichikman chayshina allichishka</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Panka allichikwan chimpapuray </string>
