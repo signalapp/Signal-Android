@@ -842,7 +842,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Signal 잠금</string>
   <string name="text_secure_normal__mark_all_as_read">모두 읽음으로 표시</string>
   <string name="text_secure_normal__invite_friends">친구 초대</string>
-  <string name="text_secure_normal__help">도움말</string>
+  <string name="text_secure_normal__use-guide_and_support">도움말</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">클립보드에 복사</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">클립보드와 비교</string>
