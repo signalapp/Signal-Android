@@ -1163,7 +1163,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="text_secure_normal__menu_clear_passphrase">Zakleni</string>
   <string name="text_secure_normal__mark_all_as_read">Označi vse kot prebrano</string>
   <string name="text_secure_normal__invite_friends">Povabi prijatelje</string>
-  <string name="text_secure_normal__help">Pomoč</string>
+  <string name="text_secure_normal__use-guide_and_support">Pomoč</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj v odložišče</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Primerjaj preko odložišča</string>
