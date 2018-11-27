@@ -1119,7 +1119,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="text_secure_normal__menu_clear_passphrase">Lezárás</string>
   <string name="text_secure_normal__mark_all_as_read">Összes megjelölése olvasottként</string>
   <string name="text_secure_normal__invite_friends">Barátok meghívása</string>
-  <string name="text_secure_normal__help">Súgó</string>
+  <string name="text_secure_normal__use-guide_and_support">Súgó</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Másolás vágólapra</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Összehasonlítás vágólappal</string>
