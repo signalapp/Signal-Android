@@ -1020,7 +1020,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Закључај</string>
   <string name="text_secure_normal__mark_all_as_read">Означи све прочитаним</string>
   <string name="text_secure_normal__invite_friends">Позовите пријатеље</string>
-  <string name="text_secure_normal__help">Помоћ</string>
+  <string name="text_secure_normal__use-guide_and_support">Помоћ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копирај на клипборд</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Упореди са клипбордом</string>
