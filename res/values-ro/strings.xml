@@ -1140,7 +1140,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="text_secure_normal__menu_clear_passphrase">Blochează</string>
   <string name="text_secure_normal__mark_all_as_read">Marchează tot ca citit</string>
   <string name="text_secure_normal__invite_friends">Invită prieteni</string>
-  <string name="text_secure_normal__help">Ajutor</string>
+  <string name="text_secure_normal__use-guide_and_support">Ajutor</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiază în clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compară cu clipboard-ul</string>
