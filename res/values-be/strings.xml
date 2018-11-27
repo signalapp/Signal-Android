@@ -448,6 +448,7 @@
   <string name="text_secure_normal__menu_settings">Налады</string>
   <string name="text_secure_normal__menu_clear_passphrase">Заблакіраваць</string>
   <string name="text_secure_normal__mark_all_as_read">Пазначыць усе як прачытаныя</string>
+  <!--<string name="text_secure_normal__use-guide_and_support">This translation is missing!</string>-->
   <!--verify_display_fragment-->
   <!--reminder_header-->
   <!--media_preview-->
