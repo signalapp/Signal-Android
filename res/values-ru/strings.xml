@@ -1153,7 +1153,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заблокировать</string>
   <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
   <string name="text_secure_normal__invite_friends">Пригласить друзей в Signal</string>
-  <string name="text_secure_normal__help">Помощь</string>
+  <string name="text_secure_normal__use-guide_and_support">Помощь</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копировать в буфер обмена</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравнить с буфером обмена</string>
