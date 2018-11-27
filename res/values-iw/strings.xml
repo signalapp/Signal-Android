@@ -1166,7 +1166,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">נעל</string>
   <string name="text_secure_normal__mark_all_as_read">סמן הכל כנקרא</string>
   <string name="text_secure_normal__invite_friends">הזמן חברים</string>
-  <string name="text_secure_normal__help">עזרה</string>
+  <string name="text_secure_normal__use-guide_and_support">עזרה</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">העתק ללוח העריכה</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">השווה עם לוח העריכה</string>
