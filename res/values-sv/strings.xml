@@ -1079,7 +1079,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
   <string name="text_secure_normal__mark_all_as_read">Markera alla lästa</string>
   <string name="text_secure_normal__invite_friends">Bjud in vänner</string>
-  <string name="text_secure_normal__help">Hjälp</string>
+  <string name="text_secure_normal__use-guide_and_support">Hjälp</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera till urklipp</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Jämför med urklipp</string>
