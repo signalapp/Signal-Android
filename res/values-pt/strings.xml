@@ -1112,7 +1112,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="text_secure_normal__menu_clear_passphrase">Desbloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <string name="text_secure_normal__invite_friends">Convidar amigos</string>
-  <string name="text_secure_normal__help">Ajuda</string>
+  <string name="text_secure_normal__use-guide_and_support">Ajuda</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar com a área de transferência</string>
