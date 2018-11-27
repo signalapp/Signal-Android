@@ -1115,7 +1115,7 @@ Geçersiz protokol sürümünde anahtar değişim mesajı alındı.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Kilitle</string>
   <string name="text_secure_normal__mark_all_as_read">Tümünü okundu olarak işaretle</string>
   <string name="text_secure_normal__invite_friends">Arkadaşlarını davet et</string>
-  <string name="text_secure_normal__help">Yardım</string>
+  <string name="text_secure_normal__use-guide_and_support">Yardım</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Panoya kopyala</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Pano ile karşılaştır</string>
