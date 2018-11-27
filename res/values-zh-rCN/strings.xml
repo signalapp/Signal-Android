@@ -1074,7 +1074,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">锁定</string>
   <string name="text_secure_normal__mark_all_as_read">全部标记为已读</string>
   <string name="text_secure_normal__invite_friends">邀请好友</string>
-  <string name="text_secure_normal__help">帮助</string>
+  <string name="text_secure_normal__use-guide_and_support">帮助</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">复制到剪切板</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">与剪切板中的内容进行比较</string>
