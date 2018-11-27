@@ -1048,7 +1048,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="text_secure_normal__menu_clear_passphrase">Kunci</string>
   <string name="text_secure_normal__mark_all_as_read">Tandai semua dibaca</string>
   <string name="text_secure_normal__invite_friends">Undang teman</string>
-  <string name="text_secure_normal__help">Bantuan</string>
+  <string name="text_secure_normal__use-guide_and_support">Bantuan</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingkan dengan papan klip</string>
