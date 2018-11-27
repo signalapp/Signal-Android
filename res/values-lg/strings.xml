@@ -748,7 +748,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Siba</string>
   <string name="text_secure_normal__mark_all_as_read">tikinga byona ebisomedwa</string>
   <string name="text_secure_normal__invite_friends">Yita  abemikwano </string>
-  <string name="text_secure_normal__help">obuyambi</string>
+  <string name="text_secure_normal__use-guide_and_support">obuyambi</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">copinga ku clipbodi</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">geraageranya ne kilipuboodi</string>
