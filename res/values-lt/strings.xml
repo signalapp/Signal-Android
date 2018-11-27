@@ -1159,7 +1159,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Užrakinti</string>
   <string name="text_secure_normal__mark_all_as_read">Žymėti visus skaitytais</string>
   <string name="text_secure_normal__invite_friends">Pakviesti draugus</string>
-  <string name="text_secure_normal__help">Pagalba</string>
+  <string name="text_secure_normal__use-guide_and_support">Pagalba</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopijuoti į iškarpinę</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Palyginti su iškarpine</string>
