@@ -1105,7 +1105,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">బందించు</string>
   <string name="text_secure_normal__mark_all_as_read">మార్క్ చేసినవన్నీ చదవండి </string>
   <string name="text_secure_normal__invite_friends">స్నేహితులను ఆహ్వానించండి</string>
-  <string name="text_secure_normal__help">సహాయం</string>
+  <string name="text_secure_normal__use-guide_and_support">సహాయం</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">తాత్కాలికంగా  భద్రపరుచు  ప్రదేశముకు నకలు చెయ్యి</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard"> తాత్కాలికంగా  భద్రపరుచు ప్రదేశముతో పోల్చడం</string>
