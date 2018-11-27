@@ -609,7 +609,7 @@
   <string name="text_secure_normal__menu_settings">அமைப்புகள்</string>
   <string name="text_secure_normal__menu_clear_passphrase">பூட்டு</string>
   <string name="text_secure_normal__mark_all_as_read">அனைத்தையும் படித்தாக குறியிடு</string>
-  <string name="text_secure_normal__help">உதவி</string>
+  <string name="text_secure_normal__use-guide_and_support">உதவி</string>
   <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_invite_title">சமிக்ஞைக்கு அழை</string>
