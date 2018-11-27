@@ -1077,7 +1077,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">ロック</string>
   <string name="text_secure_normal__mark_all_as_read">すべて既読にする</string>
   <string name="text_secure_normal__invite_friends">友達にオススメする</string>
-  <string name="text_secure_normal__help">ヘルプ</string>
+  <string name="text_secure_normal__use-guide_and_support">ヘルプ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">クリップボードにコピーする</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">クリップボードと比較する</string>
