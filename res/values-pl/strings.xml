@@ -1141,7 +1141,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zablokuj</string>
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <string name="text_secure_normal__invite_friends">Zaproś znajomych</string>
-  <string name="text_secure_normal__help">Pomoc</string>
+  <string name="text_secure_normal__use-guide_and_support">Pomoc</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Skopiuj do schowka </string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porównaj ze schowkiem</string>
