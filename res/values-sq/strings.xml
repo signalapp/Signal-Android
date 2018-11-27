@@ -908,7 +908,7 @@ U pranua porosi për shkëmbim çelësash për një version protokolli të pavle
   <string name="text_secure_normal__menu_clear_passphrase">Kyç</string>
   <string name="text_secure_normal__mark_all_as_read">Shëno të gjitha si të lexuara</string>
   <string name="text_secure_normal__invite_friends">Fto shokët</string>
-  <string name="text_secure_normal__help">Ndihmë</string>
+  <string name="text_secure_normal__use-guide_and_support">Ndihmë</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopjo në memorie</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahaso me memorie</string>
