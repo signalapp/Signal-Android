@@ -1015,7 +1015,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">ပိတ်မည်</string>
   <string name="text_secure_normal__mark_all_as_read">အားလုံးကို ဖတ်ပြီးသားအဖြစ် မှတ်ပါ။</string>
   <string name="text_secure_normal__invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
-  <string name="text_secure_normal__help">အကူအညီ</string>
+  <string name="text_secure_normal__use-guide_and_support">အကူအညီ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ကူးယူလိုက်ပါ။</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">clipboard နဲ့ ယှဥ်လိုက်ပါ။</string>
