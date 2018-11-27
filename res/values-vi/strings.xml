@@ -735,7 +735,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="text_secure_normal__menu_clear_passphrase">Khóa</string>
   <string name="text_secure_normal__mark_all_as_read">Đánh dấu tất cả đã đọc</string>
   <string name="text_secure_normal__invite_friends">Mời bạn bè</string>
-  <string name="text_secure_normal__help">Trợ giúp</string>
+  <string name="text_secure_normal__use-guide_and_support">Trợ giúp</string>
   <!--verify_display_fragment-->
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Phiên bản Signal của bạn đã quá cũ</string>
