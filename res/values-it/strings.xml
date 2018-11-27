@@ -1101,7 +1101,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="text_secure_normal__menu_clear_passphrase">Blocca</string>
   <string name="text_secure_normal__mark_all_as_read">Segna tutto come già letto</string>
   <string name="text_secure_normal__invite_friends">Invita amici</string>
-  <string name="text_secure_normal__help">Aiuto</string>
+  <string name="text_secure_normal__use-guide_and_support">Aiuto</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copia negli appunti</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Confronta con gli appunti</string>
