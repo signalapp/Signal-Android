@@ -51,7 +51,6 @@ public class TypingIndicatorIntroFragment extends Fragment {
 
     ((TypingIndicatorView) view.findViewById(R.id.typing_indicator)).startAnimation();
 
-
     yesButton.setOnClickListener(v -> onButtonClicked(true));
     noButton.setOnClickListener(v -> onButtonClicked(false));
 
@@ -61,11 +60,11 @@ public class TypingIndicatorIntroFragment extends Fragment {
   private void onButtonClicked(boolean typingEnabled) {
     TextSecurePreferences.setTypingIndicatorsEnabled(getContext(), typingEnabled);
     ApplicationContext.getInstance(requireContext())
-        .getJobManager()
-        .add(new MultiDeviceConfigurationUpdateJob(getContext(),
-                                                   TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
-                                                   typingEnabled,
-                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
+                      .getJobManager()
+                      .add(new MultiDeviceConfigurationUpdateJob(getContext(),
+                                                                 TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
+                                                                 typingEnabled,
+                                                                 TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
 
     controller.onFinished();
   }

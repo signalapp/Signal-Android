@@ -73,7 +73,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
                   R.string.experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read,
                   null,
                   false),
-    TYPING_INDICATORS(435,
+    TYPING_INDICATORS(432,
                       new IntroPage(0xFF2090EA,
                                     TypingIndicatorIntroFragment.newInstance()),
                       R.string.ExperienceUpgradeActivity_introducing_typing_indicators,
