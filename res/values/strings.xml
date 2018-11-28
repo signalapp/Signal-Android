@@ -318,9 +318,12 @@
     <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiles are here</string>
 
     <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducing typing indicators.</string>
-    <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Now you can optionally see and share when messages are being typed</string>
+    <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Now you can optionally see and share when messages are being typed.</string>
+    <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Would you like to enable them now?</string>
     <string name="ExperienceUpgradeActivity_typing_ui_title">Typing indicators are here</string>
     <string name="ExperienceUpgradeActivity_enable_typing_indicators">Enable typing indicators</string>
+    <string name="ExperienceUpgradeActivity_yes_turn_on_typing_indicators">Yes, turn on typing indicators.</string>
+    <string name="ExperienceUpgradeActivity_no_thanks">No thanks.</string>
 
     <!-- GcmBroadcastReceiver -->
     <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message...</string>
