@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.Collectors;
@@ -10,6 +11,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
@@ -40,7 +42,11 @@ public class TypingStatusRepository {
     this.threadsNotifier = new MutableLiveData<>();
   }
 
-  public synchronized void onTypingStarted(long threadId, Recipient author, int device) {
+  public synchronized void onTypingStarted(@NonNull Context context, long threadId, @NonNull Recipient author, int device) {
+    if (author.getAddress().serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
+      return;
+    }
+
     Set<Typist> typists = Util.getOrDefault(typistMap, threadId, new LinkedHashSet<>());
     Typist      typist  = new Typist(author, device, threadId);
 
@@ -55,12 +61,16 @@ public class TypingStatusRepository {
       Util.cancelRunnableOnMain(timer);
     }
 
-    timer = () -> onTypingStopped(threadId, author, device, false);
+    timer = () -> onTypingStopped(context, threadId, author, device, false);
     Util.runOnMainDelayed(timer, RECIPIENT_TYPING_TIMEOUT);
     timers.put(typist, timer);
   }
 
-  public synchronized void onTypingStopped(long threadId, Recipient author, int device, boolean isReplacedByIncomingMessage) {
+  public synchronized void onTypingStopped(@NonNull Context context, long threadId, @NonNull Recipient author, int device, boolean isReplacedByIncomingMessage) {
+    if (author.getAddress().serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
+      return;
+    }
+
     Set<Typist> typists = Util.getOrDefault(typistMap, threadId, new LinkedHashSet<>());
     Typist      typist  = new Typist(author, device, threadId);
 
