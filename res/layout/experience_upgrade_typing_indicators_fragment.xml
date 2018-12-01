@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="@string/ExperienceUpgradeActivity_yes_turn_on_typing_indicators"
+            android:text="@string/ExperienceUpgradeActivity_turn_on_typing_indicators"
             android:textColor="@color/core_blue"
             app:backgroundTint="@color/core_white" />
 
