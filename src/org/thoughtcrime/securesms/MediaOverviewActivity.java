@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -140,7 +141,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     setSupportActionBar(this.toolbar);
     getSupportActionBar().setTitle(recipient.toShortString());
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    this.recipient.addListener(recipient -> getSupportActionBar().setTitle(recipient.toShortString()));
+    this.recipient.addListener(recipient -> {
+      Util.runOnMain(() -> getSupportActionBar().setTitle(recipient.toShortString()));
+    });
   }
 
   public void onEnterMultiSelect() {
