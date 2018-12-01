@@ -177,12 +177,24 @@ public class ConversationFragment extends Fragment
   }
 
   @Override
+  public void onStart() {
+    super.onStart();
+    initializeTypingObserver();
+  }
+
+  @Override
   public void onResume() {
     super.onResume();
 
     if (list.getAdapter() != null) {
       list.getAdapter().notifyDataSetChanged();
     }
+  }
+
+  @Override
+  public void onStop() {
+    super.onStop();
+    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
   }
 
   public void onNewIntent() {
@@ -227,7 +239,6 @@ public class ConversationFragment extends Fragment
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
-    initializeTypingObserver();
   }
 
   private void initializeListAdapter() {
