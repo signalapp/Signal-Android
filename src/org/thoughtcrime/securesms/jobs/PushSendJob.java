@@ -210,7 +210,13 @@ public abstract class PushSendJob extends SendJob {
 
   protected void rotateSenderCertificateIfNecessary() throws IOException {
     try {
-      SenderCertificate certificate = new SenderCertificate(TextSecurePreferences.getUnidentifiedAccessCertificate(context));
+      byte[] certificateBytes = TextSecurePreferences.getUnidentifiedAccessCertificate(context);
+
+      if (certificateBytes == null) {
+        throw new InvalidCertificateException("No certificate was present.");
+      }
+
+      SenderCertificate certificate = new SenderCertificate(certificateBytes);
 
       if (System.currentTimeMillis() > (certificate.getExpiration() - CERTIFICATE_EXPIRATION_BUFFER)) {
         throw new InvalidCertificateException("Certificate is expired, or close to it. Expires on: " + certificate.getExpiration() + ", currently: " + System.currentTimeMillis());
