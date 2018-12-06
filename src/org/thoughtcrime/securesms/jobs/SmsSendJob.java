@@ -73,18 +73,17 @@ public class SmsSendJob extends SendJob {
 
   @Override
   public void onAdded() {
-    Log.i(TAG, "onAdded() messageId: " + messageId);
   }
 
   @Override
   public void onSend() throws NoSuchMessageException, RequirementNotMetException, TooManyRetriesException {
     if (!requirementsMet()) {
-      Log.w(TAG, "No service. Retrying.");
+      warn(TAG, "No service. Retrying.");
       throw new RequirementNotMetException();
     }
 
     if (runAttempt >= MAX_ATTEMPTS) {
-      Log.w(TAG, "Hit the retry limit. Failing.");
+      warn(TAG, "Hit the retry limit. Failing.");
       throw new TooManyRetriesException();
     }
 
@@ -92,16 +91,16 @@ public class SmsSendJob extends SendJob {
     SmsMessageRecord record   = database.getMessage(messageId);
 
     if (!record.isPending() && !record.isFailed()) {
-      Log.w(TAG, "Message " + messageId + " was already sent. Ignoring.");
+      warn(TAG, "Message " + messageId + " was already sent. Ignoring.");
       return;
     }
 
     try {
-      Log.i(TAG, "Sending message: " + messageId + " (attempt " + runAttempt + ")");
+      log(TAG, "Sending message: " + messageId + " (attempt " + runAttempt + ")");
       deliver(record);
-      Log.i(TAG, "Sent message: " + messageId);
+      log(TAG, "Sent message: " + messageId);
     } catch (UndeliverableMessageException ude) {
-      Log.w(TAG, ude);
+      warn(TAG, ude);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
       MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
     }
@@ -114,7 +113,7 @@ public class SmsSendJob extends SendJob {
 
   @Override
   public void onCanceled() {
-    Log.w(TAG, "onCanceled() messageId: " + messageId);
+    warn(TAG, "onCanceled() messageId: " + messageId);
     long      threadId  = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
     Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
@@ -165,9 +164,9 @@ public class SmsSendJob extends SendJob {
     try {
       getSmsManagerFor(message.getSubscriptionId()).sendMultipartTextMessage(recipient, null, messages, sentIntents, deliveredIntents);
     } catch (NullPointerException | IllegalArgumentException npe) {
-      Log.w(TAG, npe);
-      Log.i(TAG, "Recipient: " + recipient);
-      Log.i(TAG, "Message Parts: " + messages.size());
+      warn(TAG, npe);
+      log(TAG, "Recipient: " + recipient);
+      log(TAG, "Message Parts: " + messages.size());
 
       try {
         for (int i=0;i<messages.size();i++) {
@@ -176,11 +175,11 @@ public class SmsSendJob extends SendJob {
                                                                         deliveredIntents == null ? null : deliveredIntents.get(i));
         }
       } catch (NullPointerException | IllegalArgumentException npe2) {
-        Log.w(TAG, npe);
+        warn(TAG, npe);
         throw new UndeliverableMessageException(npe2);
       }
     } catch (SecurityException se) {
-      Log.w(TAG, se);
+      warn(TAG, se);
       throw new UndeliverableMessageException(se);
     }
   }

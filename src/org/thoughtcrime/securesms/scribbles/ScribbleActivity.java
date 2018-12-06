@@ -20,7 +20,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class ScribbleActivity extends PassphraseRequiredActionBarActivity implements ScribbleFragment.Controller {
 
-  private static final String TAG = ScribbleActivity.class.getName();
+  private static final String TAG = ScribbleActivity.class.getSimpleName();
 
   public static final int SCRIBBLE_REQUEST_CODE = 31424;
 

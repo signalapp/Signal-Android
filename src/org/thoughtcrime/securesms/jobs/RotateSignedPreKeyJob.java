@@ -25,7 +25,7 @@ import androidx.work.WorkerParameters;
 
 public class RotateSignedPreKeyJob extends ContextJob implements InjectableType {
 
-  private static final String TAG = RotateSignedPreKeyJob.class.getName();
+  private static final String TAG = RotateSignedPreKeyJob.class.getSimpleName();
 
   @Inject transient SignalServiceAccountManager accountManager;
 

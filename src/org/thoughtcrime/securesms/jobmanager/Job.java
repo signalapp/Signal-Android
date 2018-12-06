@@ -129,7 +129,7 @@ public abstract class Job extends Worker implements Serializable {
   }
 
   final void onSubmit(@NonNull Context context, @NonNull UUID id) {
-    Log.i(TAG, buildLog(id, "onSubmit()"));
+    Log.i(TAG, buildLog(id, "onSubmit() network: " + (new NetworkRequirement(getApplicationContext()).isPresent())));
 
     if (this instanceof ContextDependent) {
       ((ContextDependent) this).setContext(context);
@@ -257,9 +257,8 @@ public abstract class Job extends Worker implements Serializable {
     return "[" + id + "] " + getClass().getSimpleName() + " :: " + message;
   }
 
-  private String logSuffix() {
+  protected String logSuffix() {
     long timeSinceSubmission = System.currentTimeMillis() - getInputData().getLong(KEY_SUBMIT_TIME, 0);
     return " (Time since submission: " + timeSinceSubmission + " ms, Run attempt: " + getRunAttemptCount() + ", isStopped: " + isStopped() + ")";
   }
-
 }

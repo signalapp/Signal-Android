@@ -1103,7 +1103,6 @@ public class MmsDatabase extends MessagingDatabase {
 
       where += (" ELSE " + DATE_RECEIVED + " < " + date + " END)");
 
-      Log.i("MmsDatabase", "Executing trim query: " + where);
       cursor = db.query(TABLE_NAME, new String[] {ID}, where, new String[] {threadId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {

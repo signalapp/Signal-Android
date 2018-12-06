@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -114,12 +113,12 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     List<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
 
     if (database.isSent(messageId)) {
-      Log.w(TAG, "Message " + messageId + " was already sent. Ignoring.");
+      log(TAG, "Message " + messageId + " was already sent. Ignoring.");
       return;
     }
 
     try {
-      Log.i(TAG, "Sending message: " + messageId);
+      log(TAG, "Sending message: " + messageId);
 
       List<Address> target;
 
@@ -178,11 +177,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       }
 
     } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
-      Log.w(TAG, e);
+      warn(TAG, e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     } catch (UntrustedIdentityException e) {
-      Log.w(TAG, e);
+      warn(TAG, e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     }

@@ -79,7 +79,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   private static class RecentPhotoAdapter extends CursorRecyclerViewAdapter<RecentPhotoAdapter.RecentPhotoViewHolder> {
 
     @SuppressWarnings("unused")
-    private static final String TAG = RecentPhotoAdapter.class.getName();
+    private static final String TAG = RecentPhotoAdapter.class.getSimpleName();
 
     @NonNull  private final Uri baseUri;
     @Nullable private OnItemClickedListener clickedListener;

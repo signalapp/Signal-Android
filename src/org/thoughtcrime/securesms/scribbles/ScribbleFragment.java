@@ -48,7 +48,7 @@ import static android.app.Activity.RESULT_OK;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class ScribbleFragment extends Fragment implements ScribbleHud.EventListener, VerticalSlideColorPicker.OnColorChangeListener {
 
-  private static final String TAG = ScribbleFragment.class.getName();
+  private static final String TAG = ScribbleFragment.class.getSimpleName();
 
   private static final String KEY_IMAGE_URI = "image_uri";
   private static final String KEY_LOCALE    = "locale";

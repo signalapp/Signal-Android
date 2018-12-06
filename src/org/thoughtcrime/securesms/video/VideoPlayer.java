@@ -66,7 +66,7 @@ import java.io.IOException;
 
 public class VideoPlayer extends FrameLayout {
 
-  private static final String TAG = VideoPlayer.class.getName();
+  private static final String TAG = VideoPlayer.class.getSimpleName();
 
   @Nullable private final VideoView           videoView;
   @Nullable private final PlayerView          exoView;

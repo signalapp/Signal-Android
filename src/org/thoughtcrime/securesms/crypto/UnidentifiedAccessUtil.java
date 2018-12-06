@@ -54,9 +54,9 @@ public class UnidentifiedAccessUtil {
         ourUnidentifiedAccessKey = Util.getSecretBytes(16);
       }
 
-      Log.i(TAG, "Their access key present? " + (theirUnidentifiedAccessKey != null));
-      Log.i(TAG, "Our access key present? " + (ourUnidentifiedAccessKey != null));
-      Log.i(TAG, "Our certificate present? " + (ourUnidentifiedAccessCertificate != null));
+      Log.i(TAG, "Their access key present? " + (theirUnidentifiedAccessKey != null) +
+                 " | Our access key present? " + (ourUnidentifiedAccessKey != null) +
+                 " | Our certificate present? " + (ourUnidentifiedAccessCertificate != null));
 
       if (theirUnidentifiedAccessKey != null &&
           ourUnidentifiedAccessKey != null   &&

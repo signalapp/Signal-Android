@@ -24,7 +24,7 @@ import okhttp3.Response;
 
 public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
 
-  private static final String TAG = GiphyLoader.class.getName();
+  private static final String TAG = GiphyLoader.class.getSimpleName();
 
   public static int PAGE_SIZE = 100;
 

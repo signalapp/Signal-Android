@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
@@ -94,5 +95,21 @@ public abstract class SendJob extends ContextJob {
     }
 
     return results;
+  }
+
+  protected void log(@NonNull String tag, @NonNull String message) {
+    Log.i(tag, "[" + getId().toString() + "] " + message + logSuffix());
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String message) {
+    warn(tag, message, null);
+  }
+
+  protected void warn(@NonNull String tag, @Nullable Throwable t) {
+    warn(tag, "", t);
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String message, @Nullable Throwable t) {
+    Log.w(tag, "[" + getId().toString() + "] " + message + logSuffix(), t);
   }
 }

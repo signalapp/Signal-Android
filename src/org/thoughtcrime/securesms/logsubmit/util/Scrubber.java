@@ -17,8 +17,6 @@
 
 package org.thoughtcrime.securesms.logsubmit.util;
 
-import org.thoughtcrime.securesms.logging.Log;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,7 +41,6 @@ public class Scrubber {
   }
 
   public String scrub(final String in) {
-    android.util.Log.d(TAG, "scrubbing input");
     String out = in;
     for (Pattern pattern : patterns) {
       Matcher       matcher       = pattern.matcher(out);
@@ -59,7 +56,6 @@ public class Scrubber {
         builder.append(censored);
 
         lastEndingPos = matcher.end();
-        android.util.Log.i(TAG, "replacing a match on /" + pattern.toString() + "/ => " + censored);
       }
       builder.append(out.substring(lastEndingPos));
       out = builder.toString();

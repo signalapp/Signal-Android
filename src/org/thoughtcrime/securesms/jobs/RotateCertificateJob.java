@@ -24,7 +24,7 @@ public class RotateCertificateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
 
-  private static final String TAG = RotateCertificateJob.class.getName();
+  private static final String TAG = RotateCertificateJob.class.getSimpleName();
 
   @Inject transient SignalServiceAccountManager accountManager;
 

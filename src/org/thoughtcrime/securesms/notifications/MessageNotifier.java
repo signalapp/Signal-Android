@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.notifications;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -288,8 +289,11 @@ public class MessageNotifier {
                                                    @NonNull  NotificationState notificationState,
                                                    boolean signal, boolean bundled)
   {
+    Log.i(TAG, "sendSingleThreadNotification()  signal: " + signal + "  bundled: " + bundled);
+
     if (notificationState.getNotifications().isEmpty()) {
       if (!bundled) cancelActiveNotifications(context);
+      Log.i(TAG, "Empty notification state. Skipping.");
       return;
     }
 
@@ -336,13 +340,17 @@ public class MessageNotifier {
       builder.setGroupSummary(true);
     }
 
-    NotificationManagerCompat.from(context).notify(notificationId, builder.build());
+    Notification notification = builder.build();
+    NotificationManagerCompat.from(context).notify(notificationId, notification);
+    Log.i(TAG, "Posted notification. " + notification.toString());
   }
 
   private static void sendMultipleThreadNotification(@NonNull  Context context,
                                                      @NonNull  NotificationState notificationState,
                                                      boolean signal)
   {
+    Log.i(TAG, "sendSingleThreadNotification()  signal: " + signal);
+
     MultipleRecipientNotificationBuilder builder       = new MultipleRecipientNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
     List<NotificationItem>               notifications = notificationState.getNotifications();
 
@@ -371,7 +379,9 @@ public class MessageNotifier {
                         notifications.get(0).getText());
     }
 
+    Notification notification = builder.build();
     NotificationManagerCompat.from(context).notify(SUMMARY_NOTIFICATION_ID, builder.build());
+    Log.i(TAG, "Posted notification. " + notification.toString());
   }
 
   private static void sendInThreadNotification(Context context, Recipient recipient) {
