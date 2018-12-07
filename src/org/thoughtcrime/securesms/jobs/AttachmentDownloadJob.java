@@ -63,7 +63,7 @@ public class AttachmentDownloadJob extends ContextJob implements InjectableType 
 
   public AttachmentDownloadJob(Context context, long messageId, AttachmentId attachmentId, boolean manual) {
     super(context, JobParameters.newBuilder()
-                                .withGroupId(AttachmentDownloadJob.class.getCanonicalName())
+                                .withGroupId(AttachmentDownloadJob.class.getSimpleName() + attachmentId.getRowId() + "-" + attachmentId.getUniqueId())
                                 .withNetworkRequirement()
                                 .create());
 
