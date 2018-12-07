@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirement;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -33,6 +34,7 @@ public abstract class Job extends Worker implements Serializable {
   static final String KEY_RETRY_COUNT        = "Job_retry_count";
   static final String KEY_RETRY_UNTIL        = "Job_retry_until";
   static final String KEY_SUBMIT_TIME        = "Job_submit_time";
+  static final String KEY_FAILED             = "Job_failed";
   static final String KEY_REQUIRES_NETWORK   = "Job_requires_network";
   static final String KEY_REQUIRES_SQLCIPHER = "Job_requires_sqlcipher";
 
@@ -86,26 +88,31 @@ public abstract class Job extends Worker implements Serializable {
     try {
       initialize(new SafeData(data));
 
-      if (withinRetryLimits(data)) {
-        if (requirementsMet(data)) {
-          if (needsForegroundService(data)) {
-            Log.i(TAG, "Running a foreground service with description '" + getDescription() + "' to aid in job execution." + logSuffix());
-            GenericForegroundService.startForegroundTask(getApplicationContext(), getDescription());
-            foregroundRunning = true;
-          }
+      if (data.getBoolean(KEY_FAILED, false)) {
+        warn("Failing due to a failure earlier in the chain." + logSuffix());
+        return cancel();
+      }
 
-          onRun();
-
-          log("Successfully completed." + logSuffix());
-          return Result.success();
-        } else {
-          log("Retrying due to unmet requirements." + logSuffix());
-          return retry();
-        }
-      } else {
+      if (!withinRetryLimits(data)) {
         warn("Failing after hitting the retry limit." + logSuffix());
         return cancel();
       }
+
+      if (!requirementsMet(data)) {
+        log("Retrying due to unmet requirements." + logSuffix());
+        return retry();
+      }
+
+      if (needsForegroundService(data)) {
+        Log.i(TAG, "Running a foreground service with description '" + getDescription() + "' to aid in job execution." + logSuffix());
+        GenericForegroundService.startForegroundTask(getApplicationContext(), getDescription());
+        foregroundRunning = true;
+      }
+
+      onRun();
+
+      log("Successfully completed." + logSuffix());
+      return success();
     } catch (Exception e) {
       if (onShouldRetry(e)) {
         log("Retrying after a retryable exception." + logSuffix(), e);
@@ -197,6 +204,10 @@ public abstract class Job extends Worker implements Serializable {
     return parameters;
   }
 
+  private Result success() {
+    return Result.success();
+  }
+
   private Result retry() {
     onRetry();
     return Result.retry();
@@ -204,7 +215,7 @@ public abstract class Job extends Worker implements Serializable {
 
   private Result cancel() {
     onCanceled();
-    return Result.success();
+    return Result.success(new Data.Builder().putBoolean(KEY_FAILED, true).build());
   }
 
   private boolean requirementsMet(@NonNull Data data) {
