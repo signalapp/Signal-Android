@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新信息</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
@@ -259,6 +260,12 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">要拍近照了，准备好了吗？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">在Signal上和朋友们分享你的头像和昵称</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 个人档案来了</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">隆重推出“正在输入”提示功能。</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">现在，你可以选择分享你在撰写消息时的打字状态提示了。</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">你想现在启用这个功能吗？</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">“正在输入”提示功能现已推出</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">启用“正在输入”提示</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">不，谢谢。</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->
@@ -605,6 +612,9 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="other">%d项目</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">设备已注销</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">这可能是因为您的号码在另一台设备上注册了 Signal。点击以重试。</string>
@@ -976,6 +986,8 @@
   <string name="preferences__incognito_keyboard">隐身键盘</string>
   <string name="preferences__read_receipts">已读回执</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">如果您的已读回执被禁用，您也将无法看到他人的已读回执。</string>
+  <string name="preferences__typing_indicators">“正在输入”提示</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果“正在输入”提示功能被禁用，您将无法看到别人正在输入的提示。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">关闭键盘自动学习功能</string>
   <string name="preferences_app_protection__blocked_contacts">已屏蔽的联系人</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>

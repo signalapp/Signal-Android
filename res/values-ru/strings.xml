@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Новое сообщение</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Сейчас: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы ещё не задали парольную фразу!</string>
@@ -301,6 +302,13 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готовы к крупному плану?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Теперь вы можете создать свой профиль с именем и фотографией, которые увидят ваши друзья в Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профили Signal находятся здесь</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Представляем индикаторы ввода</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Теперь вы можете видеть и показывать другим, когда сообщения набираются.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Хотели бы вы включить их сейчас?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Индикаторы ввода пришли</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Включить индикаторы ввода</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Включить индикаторы ввода</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Нет, спасибо</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Получение сообщения...</string>
   <!--GcmRefreshJob-->
@@ -663,6 +671,12 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d пункт</item>
+    <item quantity="few">%d пункта</item>
+    <item quantity="many">%d пунктов</item>
+    <item quantity="other">%d пунктов</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Устройство больше не зарегистрировано</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Это может быть вызвано тем, что ваш телефонный номер зарегистрирован в Signal на другом устройстве. Нажмите для повторной регистрации.</string>
@@ -1056,6 +1070,8 @@
   <string name="preferences__incognito_keyboard">Инкогнито-клавиатура</string>
   <string name="preferences__read_receipts">Уведомления о прочтении</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Если уведомления о прочтении отключены, вы не сможете просматривать уведомления о прочтении от других пользователей.</string>
+  <string name="preferences__typing_indicators">Индикаторы ввода</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Если индикаторы ввода отключены, вы не сможете видеть индикаторы ввода других.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Запросить отключение персонализированного обучения клавиатуры</string>
   <string name="preferences_app_protection__blocked_contacts">Заблокированные контакты</string>
   <string name="preferences_chats__when_using_mobile_data">Через мобильную сеть</string>

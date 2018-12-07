@@ -275,9 +275,12 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nyt voit jakaa profiilikuvasi ja nimesi ystäviesi kanssa Signalissa</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signaali-profiilit ovat täällä</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Esittelemme kirjoitustilaindikaattorin.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Voit nyt vaihtoehtoisesti nähdä ja jakaa milloin viestejä kirjoitetaan</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Voit nyt vaihtoehtoisesti nähdä ja jakaa milloin viestejä kirjoitetaan.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Haluatko ottaa sen käyttöön nyt?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Kirjoitustilaindikaattori on täällä</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ota käyttöön kirjoitustilaindikaattori</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ota käyttöön kirjoitustilaindikaattori</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ei kiitos</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Haetaan viestiä...</string>
   <!--GcmRefreshJob-->

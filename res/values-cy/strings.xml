@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Neges newydd</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Yn gyfredol: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nid ydych wedi gosod cyfrinymadrodd eto!</string>
@@ -303,6 +304,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Barod ar gyfer eich llun agos?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nawr gallwch chi rannu llun proffil ac enw gyda ffrindiau ar Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Mae proffiliau Signal yma</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yn cyflwyno dangosyddion teipio</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nawr gallwch chi ddewis gweld a rannu pryd mae negeseuon yn cael eu teipio.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Hoffech chi eu galluogi nawr?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Mae dangosyddion teipio yma</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Galluogi dangosyddion teipio</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Cychwyn y dangosydd teipio</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Dim diolch</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Estyn neges...</string>
   <!--GcmRefreshJob-->
@@ -665,6 +673,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neges newydd</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d Eitem</item>
+    <item quantity="two">%d Eitem</item>
+    <item quantity="many">%d Eitem</item>
+    <item quantity="other">%d Eitem</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Nid yw\'r ddyfais wedi\'i chofrestru bellach</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Mae hyn yn debygol oherwydd eich bod wedi cofrestru\'ch rhif ffôn gyda Signal ar ddyfais wahanol. Tapiwch i ailgofrestru.</string>
@@ -1058,6 +1072,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__incognito_keyboard">Bysellfwrdd dirgel</string>
   <string name="preferences__read_receipts">Derbynebau darllen</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Os yw derbynebau darllen wedi eu hanalluogi, fyddwch chi ddim yn gallu gweld derbynebau darllen gan eraill.</string>
+  <string name="preferences__typing_indicators">Dangosyddion Teipio</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Os yw dangosyddion teipio wedi eu hanalluogi, fyddwch chi ddim yn gweld dangosyddion teipio pobl eraill.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Gofyn am fysellfwrdd i analluogi dysgu personol</string>
   <string name="preferences_app_protection__blocked_contacts">Cysylltiadau wedi\'u rhwystro</string>
   <string name="preferences_chats__when_using_mobile_data">Wrth ddefnyddio data symudol</string>

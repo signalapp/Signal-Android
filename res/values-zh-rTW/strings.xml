@@ -260,10 +260,13 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">準備好你的特寫了嗎？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">現在，你可以分享你的頭像照片及名字給在 Signal 中的朋友</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 個人資訊就在這裡</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">介紹輸入指示器。</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">現在你可以在輸入訊息的時候，選擇被看見及分享正在輸入訊息。</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">輸入指示器在這裡</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">啟動輸入指示器</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">介紹打字狀態。</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">現在你可以選擇性的查看並分享正在輸入的訊息。</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">你是否要現在啟動它們？</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">打字狀態在這裡</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">啟動打字狀態</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">開啟打字狀態</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">不，謝謝。</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">回收一個訊息...</string>
   <!--GcmRefreshJob-->
@@ -986,8 +989,8 @@
   <string name="preferences__incognito_keyboard">隱私鍵盤</string>
   <string name="preferences__read_receipts">已讀標記</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">如果關閉已讀標記，你將無法看到其他人的已讀標記。</string>
-  <string name="preferences__typing_indicators">輸入指示器</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果輸入指示器被關閉，你將無法看見其他人的輸入指示器。</string>
+  <string name="preferences__typing_indicators">打字狀態</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果打字狀態被關閉，你將無法看見其他人的打字狀態。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">要求鍵盤關閉個人化學習</string>
   <string name="preferences_app_protection__blocked_contacts">封鎖聯絡人</string>
   <string name="preferences_chats__when_using_mobile_data">當使用行動數據時</string>
@@ -1014,7 +1017,7 @@
   <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal</string>
   <string name="preferences_notifications__priority">優先順序</string>
   <string name="preferences_communication__category_sealed_sender">密封發件人</string>
-  <string name="preferences_communication__sealed_sender_display_indicators">顯示指示器</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">顯示指標</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">在使用密封發件人傳遞的訊息上選擇“訊息細節”時顯示狀態圖示。</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">允許任何人</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">啟用密封發件人對來自非聯絡人及其他人傳來的訊息，將不會對其分享你的個人資訊。</string>

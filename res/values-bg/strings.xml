@@ -261,6 +261,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готови за снимка?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Вече може да споделяте профилна снимка и името си с приятелите си в Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профилите в Signal пристигнаха</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Не, благодаря</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>

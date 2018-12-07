@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldende: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke valgt en passordfrase enda.</string>
@@ -273,6 +274,13 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klar for nærbilde?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nå kan du dele et profilbilde og et navn med venner på Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal introduserer profiler</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Vi presenterer skriveindikatorer.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nå kan du velge å se og dele når meldinger blir skrevet.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du aktivere dem nå?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Skriveindikatorer er her</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktiver skriveindikatorer</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Slå på skriverindikatorer</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding...</string>
   <!--GcmRefreshJob-->
@@ -626,6 +634,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d Del</item>
+    <item quantity="other">%d Deler</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Enheten er ikke lenger registrert</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette skyldes sannsynligvis at du registrerte telefonnummeret ditt på Signal med en annen enhet. Trykk for å registrere på nytt.</string>
@@ -1004,6 +1016,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__incognito_keyboard">Inkognito-tastatur</string>
   <string name="preferences__read_receipts">Lesebekreftelser</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.</string>
+  <string name="preferences__typing_indicators">Skriverindikatorer</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktivert, vil du ikke kunne se skriveindikatorer fra andre.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Be tastatur om å slå av lærefunksjon</string>
   <string name="preferences_app_protection__blocked_contacts">Blokkerte kontakter</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>

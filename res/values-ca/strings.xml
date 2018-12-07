@@ -276,8 +276,11 @@
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Els perfils del Signal són aquí</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">S\'introdueixen els indicadors de tecleig.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ara, opcionalment, podeu veure i compartir quan s\'escriuen els missatges.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Voleu habilitar-los ara?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Ja tenim aquí els indicadors de tecleig.</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Habilita els indicadors de tecleig</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activa els indicadors de tecleig</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">No, gràcies</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">S\'està recuperant un missatge...</string>
   <!--GcmRefreshJob-->

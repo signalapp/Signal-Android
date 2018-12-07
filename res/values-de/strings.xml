@@ -274,10 +274,13 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Bereit für deine Nahaufnahme?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Jetzt kannst du bei Signal ein Profilfoto und einen Profilnamen mit Freunden teilen</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profile für Signal sind da</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Einführung von Tipp-Indikatoren.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Du kannst jetzt optional sehen und teilen, wann Nachrichten eingetippt werden</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Einführung von Tipp-Indikatoren</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Du kannst jetzt optional sehen und teilen, wann Nachrichten eingetippt werden.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Möchtest du sie jetzt aktivieren?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Tipp-Indikatoren sind da</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Tipp-Indikatoren aktivieren</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Tipp-Indikatoren einschalten</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Nein, danke</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--GcmRefreshJob-->
@@ -481,7 +484,7 @@
   <string name="RegistrationActivity_unable_to_connect_to_service">Keine Verbindung zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Zum einfachen Verifizieren deiner Rufnummer kann Signal deinen Verifikationscode ermitteln, falls du Signal Zugriff auf deine SMS-Nachrichten erlaubst.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
-    <item quantity="one">Du bist jetzt %d Schritt entfernt um ein Diagnoseprotokoll zu übermitteln.</item>
+    <item quantity="one">Du bist jetzt %d Schritt davon entfernt, ein Diagnoseprotokoll zu übermitteln.</item>
     <item quantity="other">Du bist jetzt %d Schritte davon entfernt, ein Diagnoseprotokoll zu übermitteln.</item>
   </plurals>
   <!--ScribbleActivity-->

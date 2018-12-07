@@ -274,6 +274,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prest zaude zure gertuko argazkia hartzeko?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signaleko zure lagunekin profileko argazkia eta izena partekatu ditzakezu</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilak heldu dira</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ez ezkerrik asko</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mezu bat berreskuratzen...</string>
   <!--GcmRefreshJob-->

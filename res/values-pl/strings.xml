@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nowa wiadomość</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Obecnie: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nie masz jeszcze ustawionego hasła!</string>
@@ -301,6 +302,13 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Gotowy(a) do zdjęcia?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teraz możesz współdzielić zdjęcie profilowe i nazwę ze znajomymi w Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Tu znajdują się profile Signal</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Przedstawiamy wskaźniki pisania.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Możesz teraz opcjonalnie wyświetlać i udostępniać informację, gdy wiadomości są wpisywane.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Czy chcesz włączyć je teraz?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Wskaźniki pisania</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Włącz wskaźniki pisania</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Włącz wskaźniki pisania</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Nie dzięki</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pobieranie wiadomości...</string>
   <!--GcmRefreshJob-->
@@ -369,7 +377,7 @@
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Błąd odczytu ustawień MMS operatora</string>
   <!--MediaOverviewActivity-->
-  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Media">Multimedia</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Usunąć wybraną wiadomość?</item>
     <item quantity="few">Usunąć wybrane wiadomości?</item>
@@ -513,6 +521,12 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrzebuje dostęp do Twoich kontaktów i plików multimedialnych w celu połączenia ze znajomymi, wymiany wiadomości oraz wykonywania bezpiecznych połączeń</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nie można połączyć się z serwisem. Proszę sprawdzić połączenie internetowe i spróbować ponownie.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Aby łatwo zweryfikować Twój numer telefonu, Signal może automatycznie wykryć Twój kod weryfikacyjny, jeżeli zezwolisz aplikacji Signal przeglądać Twoje wiadomości SMS.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Jesteś o %d krok od wysłania dziennika debugowania.</item>
+    <item quantity="few">Jesteś o %d kroki od wysłania dziennika debugowania.</item>
+    <item quantity="many">Jesteś o %d kroków od wysłania dziennika debugowania.</item>
+    <item quantity="other">Jesteś o %d kroków od wysłania dziennika debugowania.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
   <!--Search-->
@@ -647,15 +661,21 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SaveAttachmentTask_saved">Zapisano</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Szukaj</string>
-  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Wyszukaj rozmowy, kontakty i wiadomości</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Szukaj rozmów, kontaktów i wiadomości</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Nieprawidłowy skrót</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d element</item>
+    <item quantity="few">%d elementy</item>
+    <item quantity="many">%d elementów</item>
+    <item quantity="other">%d elementów</item>
+  </plurals>
   <!--UnauthorizedReminder-->
-  <string name="UnauthorizedReminder_device_no_longer_registered">Urządzenie już nie jest zarejestrowane</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">Urządzenie nie jest już zarejestrowane</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Jest tak prawdopodobnie dlatego, że zarejestrowałeś swój numer telefonu w aplikacji Signal na innym urządzeniu. Stuknij, aby ponownie zarejestrować.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Błąd przy odtwarzaniu filmu</string>
@@ -667,7 +687,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nowy numer bezpieczeństwa</string>
   <string name="WebRtcCallScreen_accept">Akceptuj</string>
-  <string name="WebRtcCallScreen_end_call">Zakończ</string>
+  <string name="WebRtcCallScreen_end_call">Zakończ rozmowę</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Dotnij, aby włączyć wideo</string>
   <!--attachment_type_selector-->
@@ -875,7 +895,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="profile_create_activity__who_can_see_this_information">Kto może zobaczyć te informacje?</string>
   <string name="profile_create_activity__your_name">Twoje imię</string>
   <!--recipient_preferences_activity-->
-  <string name="recipient_preference_activity__shared_media">Udostępnione media</string>
+  <string name="recipient_preference_activity__shared_media">Udostępnione multimedia</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Wycisz konwersację</string>
   <string name="recipient_preferences__custom_notifications">Niestandardowe powiadomienia</string>
@@ -1028,7 +1048,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Żądaj raportu dostarczenia każdej wysłanej wiadomości SMS</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatycznie usuń starsze wiadomości po przekroczeniu określonej długości konwersacji</string>
   <string name="preferences__delete_old_messages">Usuń stare wiadomości</string>
-  <string name="preferences__chats">Czaty i media</string>
+  <string name="preferences__chats">Rozmowy i multimedia</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
   <string name="preferences__trim_all_conversations_now">Przytnij wszystkie konwersacje teraz</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Przeskanuj wszystkie konwersacje i przytnij to określonej długości</string>
@@ -1047,6 +1067,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__incognito_keyboard">Klawiatura w trybie prywatnym</string>
   <string name="preferences__read_receipts">Potwierdzenia przeczytania</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Gdy potwierdzenia przeczytania są wyłączone, Ty również nie będziesz otrzymywać potwierdzeń od innych użytkowników.</string>
+  <string name="preferences__typing_indicators">Wskaźniki pisania</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Gdy wskaźniki pisania są wyłączone, Ty również nie będziesz widzieć wskaźników pisania innych użytkowników.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Wymuś na klawiaturze blokadę uczenia się słów</string>
   <string name="preferences_app_protection__blocked_contacts">Zablokowane kontakty</string>
   <string name="preferences_chats__when_using_mobile_data">Podczas używania Danych Mobilnych</string>
@@ -1073,7 +1095,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_events__contact_joined_signal">Kontakt dołączył do Signal</string>
   <string name="preferences_notifications__priority">Priorytet</string>
   <string name="preferences_communication__category_sealed_sender">Zapieczętowany Nadawca</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Wyświetl wskaźniki</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Pokaż ikonę stanu po wybraniu \"Szczegóły wiadomości\" w wiadomościach dostarczonych za pomocą zapieczętowanego nadawcy.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Zezwól wszystkim</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Włącz zapieczętowanego nadawcę dla wiadomości przychodzących od osób niebędących w Twoich kontaktach oraz od osób, którym nie udostępniono Twojego profilu.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dowiedz się więcej</string>
   <!--****************************************-->
   <!--menus-->
@@ -1203,13 +1228,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="registration_activity__restore_backup">Przywróć kopię zapasową</string>
   <string name="registration_activity__skip">Pomiń</string>
   <string name="registration_activity__register">Rejestracja</string>
-  <string name="preferences_chats__chat_backups">Kopia zapasowa wiadomości</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Kopia zapasowa wiadomości do pamięci zewnętrznej</string>
+  <string name="preferences_chats__chat_backups">Kopia zapasowa</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Kopia zapasowa do pamięci urządzenia</string>
   <string name="preferences_chats__create_backup">Utwórz kopię zapasową</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Wprowadź hasło do kopii zapasowej</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Wprowadź hasło kopii zapasowej</string>
   <string name="RegistrationActivity_restore">Przywróć</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Nie udało się zaimportować kopii zapasowej z nowszej wersji Signal</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">Nieprawidłowe hasło do kopii zapasowej</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Nieprawidłowe hasło kopii zapasowej</string>
   <string name="RegistrationActivity_checking">Sprawdzam...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d wiadomości...</string>
   <string name="RegistrationActivity_restore_from_backup">Przywrócić kopię zapasową?</string>
@@ -1222,9 +1247,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="BackupDialog_delete_backups">Usunąć kopie zapasowe?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Wyłączyć i usunąć wszystkie lokalne kopie zapasowe?</string>
   <string name="BackupDialog_delete_backups_statement">Usuń kopie zapasowe</string>
-  <string name="BackupDialog_copied_to_clipboard">Skopiowane do schowka </string>
+  <string name="BackupDialog_copied_to_clipboard">Skopiowane do schowka</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal wymaga dostępu do pamięci urządzenia w celu utworzenia kopii zapasowych, ale uprawnienia zostały na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Pamięć\".</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Ostatnia kopia zapasowa %s</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Ostatnia kopia zapasowa: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">W trakcie</string>
   <string name="LocalBackupJob_creating_backup">Tworzenie kopii zapasowej...</string>
   <string name="ProgressPreference_d_messages_so_far">%d wiadomości</string>
@@ -1232,7 +1257,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Wprowadź kod weryfikacyjny przesłany do %s.</string>
   <string name="RegistrationActivity_wrong_number">Błędny numer?</string>
   <string name="RegistrationActivity_call_me_instead">Zadzwoń do mnie</string>
-  <string name="RegistrationActivity_available_in">Dostępne w: \ u0020</string>
+  <string name="RegistrationActivity_available_in">Dostępne za:\u0020</string>
   <string name="BackupUtil_never">Nigdy</string>
   <string name="BackupUtil_unknown">Nieznane</string>
   <string name="preferences_app_protection__screen_lock">Blokada ekranu</string>

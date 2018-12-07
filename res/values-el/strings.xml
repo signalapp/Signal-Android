@@ -273,6 +273,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Είσαι έτοιμος/η για φωτογράφιση;</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Τώρα μπορείς να μοιραστείς μια φωτογραφία προφίλ και ένα όνομα με τους φίλους σου στο Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Ήρθαν τα προφίλ Signal</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Όχι, ευχαριστώ</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Μόνιμη αποτυχία επικοινωνίας του Signal!</string>

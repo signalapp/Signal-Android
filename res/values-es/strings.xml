@@ -274,9 +274,12 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Ahora puede compartir la foto y nombre de un perfil con amigos en Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Los perfiles de Signal están aquí</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introduciendo los indicadores de tecleo.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ahora puedes visualizar y compartir de manera opcional cuando en el chat se está escribiendo un mensaje.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ahora puedes visualizar de manera opcional cuando tus contactos están escribiendo un mensaje y tus contactos pueden saber cuando estás escribiendo en su chat.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">¿Deseas activar la opción ahora?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Los indicadores de tecleo han llegado</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activar indicadores de tecleo</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activar indicador de tecleo</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activar indicador de tecleo</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">No, gracias</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando un mensaje...</string>
   <!--GcmRefreshJob-->
@@ -635,6 +638,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d objeto</item>
+    <item quantity="other">%d objetos</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">El dispositivo ya no está registrado</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probablemente esto es a causa de que registró en Signal su número de teléfono con un dispositivo distinto. Pulse para volver a registrar.</string>

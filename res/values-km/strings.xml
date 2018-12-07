@@ -262,6 +262,7 @@
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">ទម្រង់ Signal មាននៅទីនេះ</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">ការណែនាំរបៀបវាយអក្សរ</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">របៀបរវាយអក្សរនៅទីនេះ</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">ទេ អរគុណ</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">សារកំពុងទៅដល់...</string>
   <!--GcmRefreshJob-->

@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nuovo messaggio</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">In questo momento: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
@@ -273,6 +274,13 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pronto per il tuo primo piano?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Ora puoi condividere una foto profilo e un nome con i tuoi amici su Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">I profili Signal sono arrivati</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Ti presentiamo gli indicatori di scrittura</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ora puoi facoltativamente vedere e condividere quando i messaggi vengono digitati.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vuoi attivarli adesso?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Sono arrivati gli indicatori di scrittura</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Attiva indicatori di scrittura</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Attiva gli indicatori di scrittura</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">No grazie</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Reperimento di un messaggio...</string>
   <!--GcmRefreshJob-->
@@ -627,6 +635,10 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d elemento</item>
+    <item quantity="other">%d elementi</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispositivo non più registrato</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probabilmente perchè hai registrato il numero di telefono con Signal su un altro dispositivo. Tocca per registrare di nuovo.</string>
@@ -1004,6 +1016,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__incognito_keyboard">Tastiera in incognito</string>
   <string name="preferences__read_receipts">Conferme di lettura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se le conferme di lettura sono disabilitate, non sarai in grado di vedere le conferme di lettura da altri.</string>
+  <string name="preferences__typing_indicators">Indicatori di scrittura</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se gli indicatori di scrittura sono disabilitati, non sarai in grado di vedere quando gli altri utenti stanno digitando.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Richiedi alla tastiera di disattivare l\'apprendimento delle parole digitate</string>
   <string name="preferences_app_protection__blocked_contacts">Contatti bloccati</string>
   <string name="preferences_chats__when_using_mobile_data">Su rete cellulare</string>

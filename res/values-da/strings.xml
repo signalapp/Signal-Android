@@ -253,6 +253,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Er du klar til et closeup?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nu kan du dele dit profilbillede og navn med dine venner på Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Nu er der Signal profiler</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Nej tak</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl i Signal-kommunikationen!</string>

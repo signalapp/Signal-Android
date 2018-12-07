@@ -261,9 +261,12 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signalでプロフィール名と画像が設定できるようになりました。</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal のプロフィールは以下の通りです。</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">入力中アイコンとは</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">入力中であることを表示するアイコンが使えるようになりました。</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">メッセージが入力中であることを表示します。</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">いま有効化しますか？</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">アイコンはこれです。</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">アイコンの有効化</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">入力インジケーターを表示する</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">しません</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます...</string>
   <!--GcmRefreshJob-->

@@ -276,8 +276,11 @@
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Chegaram os perfis Signal</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introdução aos indicadores de escrever.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Agora pode opcionalmente ver e partilhar quando as mensagens estão a ser escritas.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Quer ativá-las agora?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Os indicadores de escrever estão aqui.</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ativar indicadores de escrever</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ativar indicadores de escrever</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Não, obrigado</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">A obter uma mensagem...</string>
   <!--GcmRefreshJob-->

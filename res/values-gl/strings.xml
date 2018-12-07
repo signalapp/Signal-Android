@@ -273,6 +273,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Disposto/a a un primeiro plano?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Agora podes compartir un nome e fotografía de perfil coas túas amizades en Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Os perfís de Signal xa están aquí</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Non, grazas</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Erro de comunicación permanente!</string>

@@ -269,6 +269,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Oled valmis oma lähivõtteks?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nüüd sa saad Signalis sõpradega jagada profiilipilti ja -nime</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signali profiilid on kohal</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nüüd on võimalik näha ja näidata, et sõnumeid sisestatakse.</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Tänan, ei</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Püsiv Signali ühendusviga!</string>

@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldande: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikkje valt ein passordfrase endå.</string>
@@ -273,6 +274,10 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klar til å ta nærbilete?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">No kan du dela profilbilete og namnet ditt med vennar på Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signalprofilar er her</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Her kjem tastevisning.</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Tastevisning er her</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Skru på tastevisning</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Hentar ei melding …</string>
   <!--GcmRefreshJob-->
@@ -627,6 +632,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%delement</item>
+    <item quantity="other">%d element</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Eininga er ikkje lenger registrert</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette er sannsynlegvis fordi du registrerte telefonnummeret ditt med Signal på ei anna eining. Trykk for å omregistrera.</string>
@@ -1006,6 +1015,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__incognito_keyboard">Inkognitotastatur</string>
   <string name="preferences__read_receipts">Lesekvitteringar</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Viss du har skrudd av lesekvitteringar, får du heller ikkje sjå andre sine lesekvitteringar.</string>
+  <string name="preferences__typing_indicators">Tastevisning</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Viss tastevisning er av, kan du heller ikkje sjå når andre tastar.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Spør om tastatur for å skru av persontilpassa læring</string>
   <string name="preferences_app_protection__blocked_contacts">Blokkerte kontaktar</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>

@@ -73,6 +73,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Dolazni poziv</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Kamera nije dostupna</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ukloni</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ukloni profilnu sliku?</string>
@@ -135,6 +136,7 @@
   <string name="ConversationActivity_specify_recipient">Odaberite kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ukloni blokadu ovog kontakta?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ponovno ćete moći primati poruke ili pozive ovog korisnika.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Postojeći članovi moći će vas ponovno dodati u grupu.</string>
   <string name="ConversationActivity_unblock">Ukloni blokadu</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Privitak prelazi ograničenje veličine za tip poruke koju šaljete.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nije dostupna</string>
@@ -275,6 +277,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Spremni za snimku izbliza?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sada možete podijeliti profilnu sliku i ime s prijateljima na Signalu</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profili su stigli</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Omogući pokazitelje tipkanja</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ne hvala</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>
@@ -430,9 +434,11 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiraj kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Nećete više primati poruke i pozive ovog korisnika.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Više nećete primati poruke ili ažuriranja iz ove grupe.</string>
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Ukloni blokadu ovog kontakta?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ponovno ćete moći primati poruke ili pozive ovog korisnika.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Postojeći članovi moći će vas ponovno dodati u grupu.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Greška pri napuštanju grupe</string>
   <string name="RecipientPreferenceActivity_unblock">Ukloni blokadu</string>
   <string name="RecipientPreferenceActivity_enabled">Omogućeno</string>
@@ -552,10 +558,12 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="KeyCachingService_signal_passphrase_cached">Pritisnite za otvaranje.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pritisnite za otvaranje ili pritisnite lokot za zatvaranje.</string>
   <string name="KeyCachingService_passphrase_cached">Signal je otključan</string>
+  <string name="KeyCachingService_lock">Zaključaj Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodržani tip medija</string>
   <string name="MediaPreviewActivity_draft">Skica</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Obriši poruku?</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novih poruka u %2$d razgovora</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovije od: %1$s</string>
@@ -574,6 +582,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Zadano</string>
+  <string name="NotificationChannel_calls">Pozivi</string>
   <string name="NotificationChannel_backups">Sigurnosne kopije</string>
   <string name="NotificationChannel_other">Ostalo</string>
   <string name="NotificationChannel_group_messages">Poruke</string>
@@ -919,6 +928,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
   <string name="preferences__read_receipts">Potvrde čitanja</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ukoliko ste onemogućili potvrdu čitanja kod sebe, nećete moći vidjeti potvrde čitanja od drugih.</string>
+  <string name="preferences__typing_indicators">Pokazatelji tipkanja</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Zahtijevaj od tipkovnice da onemogući personalizirano učenje</string>
   <string name="preferences_app_protection__blocked_contacts">Blokirani kontakti</string>
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnih podataka</string>
@@ -937,12 +947,14 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences_notifications__events">Događaji</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuk unutar razgovora</string>
   <string name="preferences_notifications__show">Prikaži</string>
+  <string name="preferences_notifications__calls">Pozivi</string>
   <string name="preferences_notifications__ringtone">Melodija</string>
   <string name="preferences_chats__show_invitation_prompts">Prikaži upite za pozivnice</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikaži upite za pozivnice za kontakte koji ne koriste Signal</string>
   <string name="preferences_chats__message_text_size">Veličina fonta poruke</string>
   <string name="preferences_events__contact_joined_signal">Kontakt se prijavio/la u Signal</string>
   <string name="preferences_notifications__priority">Prioritet</string>
+  <string name="preferences_communication__category_sealed_sender">Zatvoreni pošiljatelj</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

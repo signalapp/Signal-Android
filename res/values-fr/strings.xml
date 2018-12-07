@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nouveau message</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actuellement : %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vous n’avez pas encore défini de phrase de passe !</string>
@@ -70,13 +71,13 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Appel entrant</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Appareil photo indisponible.</string>
-  <string name="CameraActivity_image_save_failure">Échec de l’enregistrement de l’image.</string>
+  <string name="CameraActivity_camera_unavailable">L’appareil photo n’est pas disponible</string>
+  <string name="CameraActivity_image_save_failure">Échec d’enregistrement de l’image.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Supprimer</string>
   <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
   <!--CommunicationActions-->
-  <string name="CommunicationActions_no_browser_found">Aucun navigateur Internet trouvé.</string>
+  <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %1$s a changé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous voudrez peut-être vérifier votre numéro de sécurité avec ce contact.</string>
@@ -137,7 +138,7 @@
   <string name="ConversationActivity_error_leaving_group">Erreur en quittant le groupe</string>
   <string name="ConversationActivity_specify_recipient">Veuillez choisir un contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
-  <string name="ConversationActivity_unblock_this_group_question">Débloquer ce groupe ?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Débloquer ce groupe ?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vous pourrez de nouveau recevoir les messages et appels de ce contact.</string>
   <string name="ConversationActivity_unblock_this_group_description">Les membres actuels pourront vous ajouter au groupe de nouveau.</string>
   <string name="ConversationActivity_unblock">Débloquer</string>
@@ -273,9 +274,13 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prêt pour votre gros plan ?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Vous pouvez maintenant partager une photo de profil et un nom avec des amis sur Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Les profils de Signal sont arrivés</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Vous pouvez maintenant voir et faire savoir que des messages sont en cours de saisie.</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Les indicateurs de saisie sont arrivés</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Vous pouvez maintenant facultativement voir et faire savoir que des messages sont en cours de saisie.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Souhaitez-vous les activer maintenant ?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Les indicateurs de saisie sont arrivés</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activer les indicateurs de saisie</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activer les indicateurs de saisie</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Non merci</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Récupération d’un message…</string>
   <!--GcmRefreshJob-->
@@ -435,13 +440,13 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquer ce contact ?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vous ne recevrez plus de messages ni d’appels de ce contact.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Bloquer et quitter ce groupe ?</string>
-  <string name="RecipientPreferenceActivity_block_group">Bloquer ce groupe ?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Bloquer et quitter ce groupe ?</string>
+  <string name="RecipientPreferenceActivity_block_group">Bloquer ce groupe ?</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group_description">Vous ne recevrez plus ni messages ni mises à jour de ce groupe</string>
   <string name="RecipientPreferenceActivity_block">Bloquer</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vous pourrez de nouveau recevoir les messages et appels de ce contact.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Débloquer ce groupe ?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Débloquer ce groupe ?</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_description">Les membres actuels pourront vous ajouter au groupe de nouveau.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Erreur en quittant le groupe</string>
   <string name="RecipientPreferenceActivity_unblock">Débloquer</string>
@@ -484,8 +489,8 @@ introduit (%s) n’est pas valide.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et ressayer.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour vérifier facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de vérification si vous autorisez Signal à visualiser les textos.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
-    <item quantity="one">Vous êtes maintenant à %d étapes de l’envoi d\'un journal de débogage.</item>
-    <item quantity="other">Vous êtes maintenant à %d étapes de l’envoi d\'un journal de débogage.</item>
+    <item quantity="one">Vous êtes maintenant à %d étape d’envoyer un journal de débogage.</item>
+    <item quantity="other">Vous êtes maintenant à %d étapes d’envoyer un journal de débogage.</item>
   </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Échec d’enregistrement des modifications apportées aux images</string>
@@ -618,7 +623,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="QuickResponseService_problem_sending_message">Erreur lors de l’envoi du message !</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Enregistré dans %s</string>
-  <string name="SaveAttachmentTask_saved">Enregistré</string>
+  <string name="SaveAttachmentTask_saved">Enregistrée</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Recherche</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Chercher des conversations, des contacts ou des messages</string>
@@ -628,6 +633,10 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nouveau message</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%délément</item>
+    <item quantity="other">%déléments</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">L’appareil n’est plus inscrit</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">C’est probablement parce que vous avez inscrit votre numéro de téléphone à Signal sur un autre appareil. Touchez pour vous réinscrire.</string>
@@ -795,7 +804,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="log_submit_activity__please_review_this_log_from_my_app">Veuillez examiner ce journal provenant de mon appli : %1$s</string>
   <string name="log_submit_activity__network_failure">Échec réseau. Veuillez ressayer.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voulez-vous importer vos textos existants dans la base de données chiffrée de Signal ?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Souhaitez-vous importer vos textos existants dans la base de données chiffrée de Signal ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de données par défaut du système ne sera aucunement modifiée ni altérée.</string>
   <string name="database_migration_activity__skip">Ignorer</string>
   <string name="database_migration_activity__import">Importer</string>
@@ -1006,6 +1015,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__read_receipts">Accusés de lecture</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les accusés de lecture sont désactivés, vous ne pourrez pas voir les accusés de lecture d’autrui.</string>
   <string name="preferences__typing_indicators">Indicateurs de saisie</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie des autres.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l’apprentissage personnalisé</string>
   <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string>
   <string name="preferences_chats__when_using_mobile_data">En utilisant les données mobiles</string>
@@ -1032,11 +1042,11 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences_events__contact_joined_signal">Un contact s’est joint à Signal</string>
   <string name="preferences_notifications__priority">Priorité</string>
   <string name="preferences_communication__category_sealed_sender">Expéditeur scellé</string>
-  <string name="preferences_communication__sealed_sender_display_indicators">Afficher les voyants</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Affiche une icône d\'état quand vous sélectionnez « Détails du message » pour les messages envoyés en utilisant l\'option « expéditeur scellé ».</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Afficher les indicateurs</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Afficher une icône d’état quand vous sélectionnez « Détails du message » pour les messages qui ont été distribués avec l’option « expéditeur scellé ».</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Autoriser de n’importe qui</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activez l’option « expéditeur scellé » pour les messages entrants provenant d’expéditeurs qui ne sont pas dans vos contacts et de personnes avec qui vous n’avez pas partagé votre profil.</string>
-  <string name="preferences_communication__sealed_sender_learn_more">En savoir plus</string>
+  <string name="preferences_communication__sealed_sender_learn_more">En apprendre davantage</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1168,7 +1178,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences_chats__create_backup">Créer une sauvegarde</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Saisir la phrase de passe de la sauvegarde</string>
   <string name="RegistrationActivity_restore">Restaurer</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Impossible d’importer des sauvegardes à partir de versions plus récentes de Signal.</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Impossible d’importer des sauvegardes de versions plus récentes de Signal.</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">La phrase de passe de la sauvegarde est erronée</string>
   <string name="RegistrationActivity_checking">Vérification…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d messages pour l’instant…</string>

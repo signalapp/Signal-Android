@@ -301,6 +301,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Připraven na portrét?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teď můžete sdílet vaši profilovou fotografii a jméno s vašimi přáteli na Signalu.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profily jsou tady</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ne díky</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Načítám zprávu...</string>
   <!--GcmRefreshJob-->

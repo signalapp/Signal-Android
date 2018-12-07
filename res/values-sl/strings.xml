@@ -303,9 +303,11 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Odslej lahko delite svoj profil in predstavitveno fotografijo s prijatelji na Signalu</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Novo: profili Signal!</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavljamo vam kazalnike tipkanja.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Odlsej lahko vidite kdaj vaš partner tipka svoje sporočilo, vaše tipkanje pa je vidno njemu.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Odlsej lahko vidite kdaj vaš partner tipka svoje sporočilo, vaše tipkanje pa bo vidno njemu.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Jih želite vklopiti zdaj?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Tu so kazalniki tipkanja!</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Vklop kazalnikov tipkanja</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ne, hvala!</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila ...</string>
   <!--GcmRefreshJob-->

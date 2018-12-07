@@ -301,6 +301,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pasiruošę artimesniam bendravimui?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Dabar, su Signal draugais galite bendrinti profilio nuotrauką ir vardą</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiliai jau čia</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ne, ačiū</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Atgaunama žinutė...</string>
   <!--GcmRefreshJob-->

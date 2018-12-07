@@ -139,6 +139,7 @@
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Розблокувати цей контакт?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ви знову зможете одержувати повідомлення та виклики від цього контакту.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Учасники зможуть додати вас до групи.</string>
   <string name="ConversationActivity_unblock">Розблокувати</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вкладення перевищує обмеження за розміром для типу повідомлення, яке ви надсилаєте.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
@@ -255,6 +256,7 @@
   <string name="DateUtils_today">Сьогодні</string>
   <string name="DateUtils_yesterday">Вчора</string>
   <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sending">Надсилання</string>
   <string name="DeliveryStatus_sent">Надіслано</string>
   <string name="DeliveryStatus_delivered">Доставлено</string>
   <!--DeviceListActivity-->
@@ -290,6 +292,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готові до огляду?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Тепер ви можете встановити власне фото, а також ім\'я (чи нікнейм) для свого профілю який будуть бачити друзі.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профілі Signal знаходяться тут</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ні, дякую</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
@@ -450,9 +453,11 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокувати контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ви більше не одержуватимете повідомлення та виклики від цього контакту.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Ви більше не отримуватимете повідомлень чи оновлень з цієї групи.</string>
   <string name="RecipientPreferenceActivity_block">Заблокувати</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Розблокувати контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ви знову зможете одержувати повідомлення та виклики від цього контакту.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Учасники зможуть додати вас до групи.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Помилка при виході з групи</string>
   <string name="RecipientPreferenceActivity_unblock">Розблокувати</string>
   <string name="RecipientPreferenceActivity_enabled">Увімкнено </string>
