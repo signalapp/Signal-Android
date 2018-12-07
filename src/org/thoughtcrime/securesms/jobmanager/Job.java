@@ -9,18 +9,16 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
 import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirement;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import androidx.work.Data;
+import androidx.work.Result;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -99,7 +97,7 @@ public abstract class Job extends Worker implements Serializable {
           onRun();
 
           log("Successfully completed." + logSuffix());
-          return Result.SUCCESS;
+          return Result.success();
         } else {
           log("Retrying due to unmet requirements." + logSuffix());
           return retry();
@@ -201,12 +199,12 @@ public abstract class Job extends Worker implements Serializable {
 
   private Result retry() {
     onRetry();
-    return Result.RETRY;
+    return Result.retry();
   }
 
   private Result cancel() {
     onCanceled();
-    return Result.SUCCESS;
+    return Result.success();
   }
 
   private boolean requirementsMet(@NonNull Data data) {
