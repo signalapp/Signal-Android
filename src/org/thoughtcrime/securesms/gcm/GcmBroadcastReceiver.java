@@ -56,17 +56,12 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver implements In
         return;
       }
 
-      String receiptData = intent.getStringExtra("receipt");
-
-      if      (!TextUtils.isEmpty(receiptData)) handleReceivedMessage(context, receiptData);
-      else if (intent.hasExtra("notification")) handleReceivedNotification(context);
+      if (intent.hasExtra("notification")) {
+        handleReceivedNotification(context);
+      } else {
+        Log.w(TAG, "Received an unexpected intent.");
+      }
     }
-  }
-
-  private void handleReceivedMessage(Context context, String data) {
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new PushContentReceiveJob(context, data));
   }
 
   private void handleReceivedNotification(Context context) {

@@ -70,7 +70,10 @@ public class JobManager {
       }
 
       List<List<Job>>                jobListChain     = chain.getJobListChain();
-      List<List<OneTimeWorkRequest>> requestListChain = Stream.of(jobListChain).map(jl -> Stream.of(jl).map(this::toWorkRequest).toList()).toList();
+      List<List<OneTimeWorkRequest>> requestListChain = Stream.of(jobListChain)
+                                                              .filter(jobList -> !jobList.isEmpty())
+                                                              .map(jobList -> Stream.of(jobList).map(this::toWorkRequest).toList())
+                                                              .toList();
 
       if (jobListChain.isEmpty()) {
         throw new IllegalStateException("Enqueued an empty chain.");
