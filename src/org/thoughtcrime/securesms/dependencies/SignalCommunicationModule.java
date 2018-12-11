@@ -131,11 +131,10 @@ public class SignalCommunicationModule {
                                                           new SignalProtocolStoreImpl(context),
                                                           BuildConfig.USER_AGENT,
                                                           TextSecurePreferences.isMultiDevice(context),
-                                                          Optional.fromNullable(IncomingMessageObserver.getPipe()),
-                                                          Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
+                                                          IncomingMessageObserver.getPipeReference(),
+                                                          IncomingMessageObserver.getUnidentifiedPipeReference(),
                                                           Optional.of(new SecurityEventListener(context)));
     } else {
-      this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
       this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));
     }
 

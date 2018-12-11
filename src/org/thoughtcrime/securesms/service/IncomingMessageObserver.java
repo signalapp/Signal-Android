@@ -36,6 +36,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -153,6 +154,14 @@ public class IncomingMessageObserver implements InjectableType, ConstraintObserv
     return unidentifiedPipe;
   }
 
+  public static AtomicReference<SignalServiceMessagePipe> getPipeReference() {
+    return pipeReference;
+  }
+
+  public static AtomicReference<SignalServiceMessagePipe> getUnidentifiedPipeReference() {
+    return unidentifiedPipeReference;
+  }
+
   private class MessageRetrievalThread extends Thread implements Thread.UncaughtExceptionHandler {
 
     MessageRetrievalThread() {
@@ -170,8 +179,11 @@ public class IncomingMessageObserver implements InjectableType, ConstraintObserv
         pipe             = receiver.createMessagePipe();
         unidentifiedPipe = receiver.createUnidentifiedMessagePipe();
 
-        SignalServiceMessagePipe localPipe             = pipe;
-        SignalServiceMessagePipe unidentifiedLocalPipe = unidentifiedPipe;
+        pipeReference.set(pipe);
+        unidentifiedPipeReference.set(unidentifiedPipe);
+
+        final SignalServiceMessagePipe localPipe             = pipe;
+        final SignalServiceMessagePipe unidentifiedLocalPipe = unidentifiedPipe;
 
         try {
           while (isConnectionNecessary() && !interrupted()) {
