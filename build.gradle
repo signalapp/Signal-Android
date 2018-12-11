@@ -50,6 +50,9 @@ repositories {
     maven { // textdrawable
         url 'https://dl.bintray.com/amulyakhare/maven'
     }
+    maven {
+        url 'https://dl.bintray.com/google/flexbox-layout/'
+    }
     google()
     jcenter()
     mavenLocal()
