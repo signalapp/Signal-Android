@@ -102,7 +102,7 @@
   <string name="ConversationItem_error_not_delivered">Gagal mengirim, ketuk untuk detil</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima pesan pertukaran kunci, ketuk untuk memproses.</string>
   <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Gagal mengirim, ketuk untuk kembali tidak aman</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Gagal mengirim, ketuk untuk mengirim kembali</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alihkan ke SMS tanpa enkripsi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Alihkan ke MMS tanpa enkripsi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Signal.\n\nTetap kirim pesan tidak aman?</string>

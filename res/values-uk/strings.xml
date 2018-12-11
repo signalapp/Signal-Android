@@ -292,6 +292,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готові до огляду?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Тепер ви можете встановити власне фото, а також ім\'я (чи нікнейм) для свого профілю який будуть бачити друзі.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профілі Signal знаходяться тут</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Тепер ви можете вибірково ділитись самі та бачити у інших, коли вони набирають текст.</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ні, дякую</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
@@ -1053,6 +1054,8 @@
   <string name="preferences_chats__message_text_size">Розмір шрифту повідомлень</string>
   <string name="preferences_events__contact_joined_signal">Контакт приєднався до Signal</string>
   <string name="preferences_notifications__priority">Пріорітет</string>
+  <string name="preferences_communication__category_sealed_sender">Прихований відправник</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Отримувати повідомлення від прихованих відправників, які не з вашого списку контактів, або з якими ви не поділились профілем.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

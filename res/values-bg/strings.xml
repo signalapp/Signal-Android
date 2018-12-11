@@ -455,7 +455,7 @@
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Неуспешнп запазване на промененото изображение</string>
   <!--Search-->
-  <string name="SearchFragment_no_results">Не са открити резултати за \'1%s\'</string>
+  <string name="SearchFragment_no_results">Не са открити резултати за \'%s\'</string>
   <string name="SearchFragment_header_conversations">Чатове</string>
   <string name="SearchFragment_header_contacts">Контакти</string>
   <string name="SearchFragment_header_messages">Съобщения</string>

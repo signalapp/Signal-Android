@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Todavía no ha elegido una clave de acceso!</string>

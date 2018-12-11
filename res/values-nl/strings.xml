@@ -979,7 +979,7 @@ Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocol-versie.</strin
   <string name="preferences__cyan">Cyaan</string>
   <string name="preferences__magenta">Magenta</string>
   <string name="preferences__white">Wit</string>
-  <string name="preferences__none">LED niet gebruiken</string>
+  <string name="preferences__none">Niets</string>
   <string name="preferences__fast">Snel</string>
   <string name="preferences__normal">Normaal</string>
   <string name="preferences__slow">Langzaam</string>

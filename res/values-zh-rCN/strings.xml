@@ -265,6 +265,7 @@
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">你想现在启用这个功能吗？</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">“正在输入”提示功能现已推出</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">启用“正在输入”提示</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">打开“正在输入”提示</string>
   <string name="ExperienceUpgradeActivity_no_thanks">不，谢谢。</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
