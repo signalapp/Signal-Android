@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.util.Pair;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -25,6 +26,7 @@ import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.audio.AudioAttributes;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -109,16 +111,29 @@ public class AudioSlidePlayer implements SensorEventListener {
 
     mediaPlayer.prepare(createMediaSource(audioAttachmentServer.getUri()));
     mediaPlayer.setPlayWhenReady(true);
-    mediaPlayer.setAudioStreamType(earpiece ? AudioManager.STREAM_VOICE_CALL : AudioManager.STREAM_MUSIC);
-    mediaPlayer.addListener(new Player.DefaultEventListener() {
+    mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
+                                                      .setContentType(earpiece ? C.CONTENT_TYPE_SPEECH : C.CONTENT_TYPE_MUSIC)
+                                                      .setUsage(earpiece ? C.USAGE_VOICE_COMMUNICATION : C.USAGE_MEDIA)
+                                                      .build());
+    mediaPlayer.addListener(new Player.EventListener() {
+
+      boolean started = false;
 
       @Override
       public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+        Log.d(TAG, "onPlayerStateChanged(" + playWhenReady + ", " + playbackState + ")");
         switch (playbackState) {
           case Player.STATE_READY:
-            Log.w(TAG, "onPrepared");
+            Log.i(TAG, "onPrepared() " + mediaPlayer.getBufferedPercentage() + "% buffered");
             synchronized (AudioSlidePlayer.this) {
               if (mediaPlayer == null) return;
+
+              if (started) {
+                Log.d(TAG, "Already started. Ignoring.");
+                return;
+              }
+
+              started = true;
 
               if (progress > 0) {
                 mediaPlayer.seekTo((long) (mediaPlayer.getDuration() * progress));
@@ -134,7 +149,7 @@ public class AudioSlidePlayer implements SensorEventListener {
             break;
 
           case Player.STATE_ENDED:
-            Log.w(TAG, "onComplete");
+            Log.i(TAG, "onComplete");
             synchronized (AudioSlidePlayer.this) {
               mediaPlayer = null;
 
@@ -336,9 +351,9 @@ public class AudioSlidePlayer implements SensorEventListener {
   }
 
   public interface Listener {
-    public void onStart();
-    public void onStop();
-    public void onProgress(double progress, long millis);
+    void onStart();
+    void onStop();
+    void onProgress(double progress, long millis);
   }
 
   private static class ProgressEventHandler extends Handler {
@@ -353,13 +368,17 @@ public class AudioSlidePlayer implements SensorEventListener {
     public void handleMessage(Message msg) {
       AudioSlidePlayer player = playerReference.get();
 
-      if (player == null || player.mediaPlayer == null || player.mediaPlayer.getPlaybackState() != ExoPlayer.STATE_READY) {
+      if (player == null || player.mediaPlayer == null || !isPlayerActive(player.mediaPlayer)) {
         return;
       }
 
       Pair<Double, Integer> progress = player.getProgress();
       player.notifyOnProgress(progress.first, progress.second);
       sendEmptyMessageDelayed(0, 50);
+    }
+
+    private boolean isPlayerActive(@NonNull SimpleExoPlayer player) {
+      return player.getPlaybackState() == Player.STATE_READY || player.getPlaybackState() == Player.STATE_BUFFERING;
     }
   }
 }
