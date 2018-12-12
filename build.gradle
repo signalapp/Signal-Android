@@ -75,14 +75,15 @@ dependencies {
     compile 'android.arch.lifecycle:common-java8:1.1.1'
     compile 'android.arch.work:work-runtime:1.0.0-alpha12'
 
-    compile 'com.google.android.gms:play-services-gcm:9.6.1'
-    compile 'com.google.android.gms:play-services-maps:9.6.1'
-    compile 'com.google.android.gms:play-services-places:9.6.1'
+    compile 'com.google.android.gms:play-services-gcm:16.0.0'
+    compile 'com.google.android.gms:play-services-maps:16.0.0'
+    compile 'com.google.android.gms:play-services-places:16.0.0'
+    compile 'com.google.android.gms:play-services-auth:16.0.1'
 
     compile 'com.google.android.exoplayer:exoplayer-core:2.9.1'
     compile 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
 
-    compile 'org.whispersystems:signal-service-android:2.12.3'
+    compile 'org.whispersystems:signal-service-android:2.12.4'
     compile 'org.whispersystems:webrtc-android:M69'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -172,12 +173,13 @@ dependencyVerification {
         'android.arch.work:work-runtime:b78d5a7b71dccf6c2549168ca1890f6848ba2d72782b903555b18099c459e472',
         'android.arch.lifecycle:extensions:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
         'android.arch.lifecycle:common-java8:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
-        'com.google.android.gms:play-services-gcm:312e61253a236f2d9b750b9c04fc92fd190d23b0b2755c99de6ce4a28b259dae',
-        'com.google.android.gms:play-services-places:abf3a4a3b146ec7e6e753be62775e512868cf37d6f88ffe2d81167b33b57132b',
-        'com.google.android.gms:play-services-maps:45e8021e7ddac4a44a82a0e9698991389ded3023d35c58f38dbd86d54211ec0e',
+        'com.google.android.gms:play-services-gcm:921b4651a2f4d108753f8b4c5d3844b5f8c1f3c31b740c80f69765082713d004',
+        'com.google.android.gms:play-services-places:2d5c4e4ac3ee5be21b4ec544411bc51d11457b5ae2fa2a5d4539019f87c233c6',
+        'com.google.android.gms:play-services-maps:07f59c5955b759ce7b80ceaeb8261643c5b79acc9f180df2b7c3987658eed2e8',
+        'com.google.android.gms:play-services-auth:aec9e1c584d442cb9f59481a50b2c66dc191872607c04d97ecb82dd0eb5149ec',
         'com.google.android.exoplayer:exoplayer-ui:7a942afcc402ff01e9bf48e8d3942850986710f06562d50a1408aaf04a683151',
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
-        'org.whispersystems:signal-service-android:b02896703fb826792056ad872b812107ec2e80ea18dbeb43b97327d82faa3947',
+        'org.whispersystems:signal-service-android:ea1b065c4c7d4f14d26a5e954aff6ecdfaf5eb6f02bbb750db1041ed0f22fa32',
         'org.whispersystems:webrtc-android:5493c92141ce884fc5ce8240d783232f4fe14bd17a8d0d7d1bd4944d0bd1682f',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -201,10 +203,14 @@ dependencyVerification {
         'com.github.dmytrodanylyk.circular-progress-button:library:8dc6a29a5a8db7b2ad5a9a7fda1dc9ae0893f4c8f0545732b2c63854ea693e8e',
         'org.signal:android-database-sqlcipher:33d4063336893af00b9d68b418e7b290cace74c20ce8aacffddc0911010d3d73',
         'com.googlecode.ez-vcard:ez-vcard:7e24ad50b222d2f70ac91bdccfa3c0f6200b078d797cb784837f75e77bb4210f',
-        'com.google.android.gms:play-services-iid:54e919f9957b8b7820da7ee9b83471d00d0cac1cf08ddea8b5b41aea80bb1a70',
-        'com.google.android.gms:play-services-base:0ca636a8fc9a5af45e607cdcd61783bf5d561cbbb0f862021ce69606eee5ad49',
-        'com.google.android.gms:play-services-tasks:69ec265168e601d0203d04cd42e34bb019b2f029aa1e16fabd38a5153eea2086',
-        'com.google.android.gms:play-services-basement:95dd882c5ffba15b9a99de3fefb05d3a01946623af67454ca00055d222f85a8d',
+        'com.google.android.gms:play-services-iid:62aa9d8fbfb66ab68d5afdfe78db3d5da1f6adcc19abac142cee25fb23d3391f',
+        'com.google.android.gms:play-services-auth-api-phone:19365818b9ceb048ef48db12b5ffadd5eb86dbeb2c7c7b823bfdd89c665f42e5',
+        'com.google.android.gms:play-services-auth-base:51dc02ad2f8d1d9dff7b5b52c4df2c6c12ef7df55d752e919d5cb4dd6002ecd0',
+        'com.google.android.gms:play-services-base:aca10c780c3219bc50f3db06734f4ab88badd3113c564c0a3156ff8ff674655b',
+        'com.google.android.gms:play-services-stats:5b2d8281adbfd6e74d2295c94bab9ea80fc9a84dfbb397995673f5af4d4c6368',
+        'com.google.android.gms:play-services-places-placereport:04f8baeb1f8f8a734c7d4b1701a3974281b45591affa7e963b59dd019b8abc6e',
+        'com.google.android.gms:play-services-tasks:b31c18d8d1cc8d9814f295ee7435471333f370ba5bd904ca14f8f2bec4f35c35',
+        'com.google.android.gms:play-services-basement:e08bfd1e87c4e50ef76161d7ac76b873aeb975367eeb3afa4abe62ea1887c7c6',
         'com.android.support:support-v4:8b9031381c678d628c9e47b566ae1d161e1c9710f7855c759beeac7596cecf30',
         'com.android.support:support-fragment:3772fc738ada86824ba1a4b3f197c3dbd67b7ddcfe2c9db1de95ef2e3487a915',
         'com.android.support:animated-vector-drawable:271ecbc906cda8dcd9e655ba0473129c3408a4189c806f616c378e6fd18fb3b7',
@@ -244,7 +250,7 @@ dependencyVerification {
         'com.android.support:support-annotations:5d5b9414f02d3fa0ee7526b8d5ddae0da67c8ecc8c4d63ffa6cf91488a93b927',
         'com.google.guava:listenablefuture:e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069',
         'org.signal:signal-metadata-android:d9d798aab7ee7200373ecff8718baf8aaeb632c123604e8a41b7b4c0c97eeee1',
-        'org.whispersystems:signal-service-java:81fcda4be6e0dfc1f3e990b8bf5d2731a2bb6798b67748981e2a0ceba33d5e7a',
+        'org.whispersystems:signal-service-java:988049d77ee565ec32428c18569777bae7fa89909b0c2969ad87c577ec6999df',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
         'com.github.bumptech.glide:annotations:bede99ef9f71517a4274bac18fd3e483e9f2b6108d7d6fe8f4949be4aa4d9512',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
