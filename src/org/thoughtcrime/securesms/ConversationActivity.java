@@ -22,6 +22,7 @@ import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -1855,6 +1856,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private ListenableFuture<Void> sendMediaMessage(final boolean forceSms, String body, SlideDeck slideDeck, List<Contact> contacts, final long expiresIn, final int subscriptionId, final boolean initiating) {
+    if (!isDefaultSms && (!isSecureText || forceSms)) {
+      showDefaultSmsPrompt();
+      SettableFuture<Void> future = new SettableFuture<>();
+      future.set(null);
+      return future;
+    }
+
     OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, inputPanel.getQuote().orNull(), contacts);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
@@ -1905,6 +1913,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendTextMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, final boolean initiatingConversation)
       throws InvalidMessageException
   {
+    if (!isDefaultSms && (!isSecureText || forceSms)) {
+      showDefaultSmsPrompt();
+      return;
+    }
+
     final Context context     = getApplicationContext();
     final String  messageBody = getMessage();
 
@@ -1943,6 +1956,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
                })
                .execute();
+  }
+
+  private void showDefaultSmsPrompt() {
+    new AlertDialog.Builder(this)
+                   .setMessage(R.string.ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app)
+                   .setNegativeButton(R.string.ConversationActivity_no, (dialog, which) -> dialog.dismiss())
+                   .setPositiveButton(R.string.ConversationActivity_yes, (dialog, which) -> handleMakeDefaultSms())
+                   .show();
   }
 
   private void updateToggleButtonState() {
