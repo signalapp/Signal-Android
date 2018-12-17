@@ -10,6 +10,7 @@ public class DynamicIntroTheme extends DynamicTheme {
     String theme = TextSecurePreferences.getTheme(activity);
 
     if (theme.equals("dark")) return R.style.TextSecure_DarkIntroTheme;
+    else if (theme.equals("oled")) return R.style.TextSecure_DarkIntroThemeOled;
 
     return R.style.TextSecure_LightIntroTheme;
   }

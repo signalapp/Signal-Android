@@ -49,6 +49,11 @@
         <item name="media_overview_document_secondary">@color/core_grey_25</item>
     </style>
 
+    <style name="TextSecure.DarkNoActionBarOled" parent="TextSecure.DarkNoActionBar">
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorPrimary">@color/black</item>
+    </style>
+
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">
         <item name="actionBarStyle">@style/TextSecure.FlatLightActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
@@ -92,6 +97,10 @@
 
         <item name="login_top_background">@color/black</item>
         <item name="login_floating_background">@drawable/rounded_rectangle_dark</item>
+    </style>
+
+    <style name="TextSecure.DarkIntroThemeOled" parent="TextSecure.DarkIntroTheme">
+        <item name="android:windowBackground">@color/black</item>
     </style>
 
     <style name="PopupAnimation" parent="@android:style/Animation">
@@ -412,7 +421,16 @@
         <item name="shared_contact_details_titlebar">@color/grey_900</item>
         <item name="shared_contact_item_button_color">@color/core_grey_85</item>
     </style>
-    
+
+    <style name="TextSecure.DarkThemeOled" parent="TextSecure.DarkTheme">
+        <item name="android:windowBackground">@color/black</item>
+        <item name="attachment_type_selector_background">@color/black</item>
+        <item name="dialog_background_color">@color/black</item>
+        <item name="conversation_background">@color/black</item>
+        <item name="conversation_input_background">@drawable/compose_background_oled</item>
+        <item name="emoji_tab_strip_background">@color/black</item>
+    </style>
+
     <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>

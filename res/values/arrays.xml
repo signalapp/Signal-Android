@@ -109,12 +109,14 @@
 
     <string-array name="pref_theme_entries">
       <item>@string/preferences__light_theme</item>
-      <item>@string/preferences__dark_theme</item>
+        <item>@string/preferences__dark_theme</item>
+        <item>@string/preferences__oled_theme</item>
   </string-array>
 
   <string-array name="pref_theme_values" translatable="false">
       <item>light</item>
       <item>dark</item>
+      <item>oled</item>
   </string-array>
 
   <string-array name="pref_led_color_entries">
