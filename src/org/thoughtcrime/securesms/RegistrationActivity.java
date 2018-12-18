@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -52,6 +53,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.components.registration.CallMeCountDownView;
@@ -63,9 +65,13 @@ import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
@@ -370,6 +376,35 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
                                            number.getText().toString());
   }
 
+  private static void trimEntriesForExpiredMessages(@NonNull Context context, @NonNull SQLiteDatabase db) {
+    try {
+      db.beginTransaction();
+
+      String trimmedCondition = " NOT IN (SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME + ")";
+
+      db.delete(GroupReceiptDatabase.TABLE_NAME, GroupReceiptDatabase.MMS_ID + trimmedCondition, null);
+
+      String[] columns = new String[]{AttachmentDatabase.ROW_ID, AttachmentDatabase.UNIQUE_ID};
+      String where = AttachmentDatabase.MMS_ID + trimmedCondition;
+
+      try (Cursor cursor = db.query(AttachmentDatabase.TABLE_NAME, columns, where, null, null, null, null)) {
+        while (cursor != null && cursor.moveToNext()) {
+          DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(new AttachmentId(cursor.getLong(0), cursor.getLong(1)));
+        }
+      }
+
+      try (Cursor cursor = db.query(ThreadDatabase.TABLE_NAME, new String[]{ThreadDatabase.ID}, ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null)) {
+        while (cursor != null && cursor.moveToNext()) {
+          DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false);
+        }
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
   @SuppressLint("StaticFieldLeak")
   private void handleRestore(BackupUtil.BackupInfo backup) {
     View     view   = LayoutInflater.from(this).inflate(R.layout.enter_backup_passphrase_dialog, null);
@@ -398,6 +433,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
                                               database, backup.getFile(), passphrase);
 
                 DatabaseFactory.upgradeRestored(context, database);
+                trimEntriesForExpiredMessages(context, database);
                 NotificationChannels.restoreContactNotificationChannels(context);
 
                 TextSecurePreferences.setBackupEnabled(context, true);
