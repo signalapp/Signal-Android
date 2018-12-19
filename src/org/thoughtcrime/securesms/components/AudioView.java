@@ -133,6 +133,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     if (this.audioSlidePlayer != null && pauseButton.getVisibility() == View.VISIBLE) {
       this.audioSlidePlayer.stop();
     }
+    setKeepScreenOn(false);
   }
 
   public void setDownloadClickListener(@Nullable SlideClickListener listener) {
@@ -144,6 +145,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     if (this.pauseButton.getVisibility() != View.VISIBLE) {
       togglePlayToPause();
     }
+    setKeepScreenOn(true);
   }
 
   @Override
@@ -156,6 +158,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
       backwardsCounter = 4;
       onProgress(0.0, 0);
     }
+    setKeepScreenOn(false);
   }
 
   @Override

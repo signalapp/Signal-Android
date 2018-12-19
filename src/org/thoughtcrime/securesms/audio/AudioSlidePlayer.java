@@ -123,6 +123,9 @@ public class AudioSlidePlayer implements SensorEventListener {
       public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         Log.d(TAG, "onPlayerStateChanged(" + playWhenReady + ", " + playbackState + ")");
         switch (playbackState) {
+          case Player.STATE_IDLE:
+            notifyOnStop();
+            break;
           case Player.STATE_READY:
             Log.i(TAG, "onPrepared() " + mediaPlayer.getBufferedPercentage() + "% buffered");
             synchronized (AudioSlidePlayer.this) {
@@ -167,6 +170,7 @@ public class AudioSlidePlayer implements SensorEventListener {
 
             notifyOnStop();
             progressEventHandler.removeMessages(0);
+            break;
         }
       }
 
