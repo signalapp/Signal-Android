@@ -80,7 +80,7 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
       defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
     } else {
       Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-      intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getActivity().getPackageName());
+      intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, requireActivity().getPackageName());
       defaultPreference.setIntent(intent);
       defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
       defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app));
@@ -92,7 +92,7 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
     @Override
     public boolean onPreferenceClick(Preference preference) {
       Fragment            fragment            = new MmsPreferencesFragment();
-      FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
+      FragmentManager     fragmentManager     = requireActivity().getSupportFragmentManager();
       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
       fragmentTransaction.replace(android.R.id.content, fragment);
       fragmentTransaction.addToBackStack(null);

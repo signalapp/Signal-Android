@@ -178,13 +178,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       ((ProfilePreference)this.findPreference(PREFERENCE_CATEGORY_PROFILE)).refresh();
 
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
-          .setSummary(SmsMmsPreferenceFragment.getSummary(getActivity()));
+          .setSummary(SmsMmsPreferenceFragment.getSummary(requireActivity()));
       this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS)
-          .setSummary(NotificationsPreferenceFragment.getSummary(getActivity()));
+          .setSummary(NotificationsPreferenceFragment.getSummary(requireActivity()));
       this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION)
-          .setSummary(AppProtectionPreferenceFragment.getSummary(getActivity()));
+          .setSummary(AppProtectionPreferenceFragment.getSummary(requireActivity()));
       this.findPreference(PREFERENCE_CATEGORY_APPEARANCE)
-          .setSummary(AppearancePreferenceFragment.getSummary(getActivity()));
+          .setSummary(AppearancePreferenceFragment.getSummary(requireActivity()));
       this.findPreference(PREFERENCE_CATEGORY_CHATS)
           .setSummary(ChatsPreferenceFragment.getSummary(getActivity()));
     }
@@ -270,7 +270,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           Bundle args = new Bundle();
           fragment.setArguments(args);
 
-          FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
+          FragmentManager     fragmentManager     = requireActivity().getSupportFragmentManager();
           FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
           fragmentTransaction.replace(android.R.id.content, fragment);
           fragmentTransaction.addToBackStack(null);
@@ -287,7 +287,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         Intent intent = new Intent(preference.getContext(), CreateProfileActivity.class);
         intent.putExtra(CreateProfileActivity.EXCLUDE_SYSTEM, true);
 
-        getActivity().startActivity(intent);
+        requireActivity().startActivity(intent);
 //        ((BaseActionBarActivity)getActivity()).startActivitySceneTransition(intent, getActivity().findViewById(R.id.avatar), "avatar");
         return true;
       }

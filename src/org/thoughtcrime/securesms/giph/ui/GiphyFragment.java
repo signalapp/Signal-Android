@@ -53,7 +53,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
 
-    this.giphyAdapter = new GiphyAdapter(getActivity(), GlideApp.with(this), new LinkedList<>());
+    this.giphyAdapter = new GiphyAdapter(requireActivity(), GlideApp.with(this), new LinkedList<>());
     this.giphyAdapter.setListener(this);
 
     this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

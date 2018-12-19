@@ -275,7 +275,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       this.localNumber    = getArguments().getString(LOCAL_NUMBER);
       this.localIdentity  = localIdentityParcelable.get();
       this.remoteNumber   = getArguments().getString(REMOTE_NUMBER);
-      this.recipient      = Recipient.from(getActivity(), address, true);
+      this.recipient      = Recipient.from(requireActivity(), address, true);
       this.remoteIdentity = remoteIdentityParcelable.get();
 
       this.recipient.addListener(this);
@@ -291,7 +291,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
         protected void onPostExecute(Fingerprint fingerprint) {
           VerifyDisplayFragment.this.fingerprint = fingerprint;
           setFingerprintViews(fingerprint, true);
-          getActivity().supportInvalidateOptionsMenu();
+          requireActivity().supportInvalidateOptionsMenu();
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
@@ -335,7 +335,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       super.onCreateContextMenu(menu, view, menuInfo);
 
       if (fingerprint != null) {
-        MenuInflater inflater = getActivity().getMenuInflater();
+        MenuInflater inflater = requireActivity().getMenuInflater();
         inflater.inflate(R.menu.verify_display_fragment_context_menu, menu);
       }
     }
@@ -412,11 +412,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     }
 
     private void handleCopyToClipboard(Fingerprint fingerprint, int segmentCount) {
-      Util.writeTextToClipboard(getActivity(), getFormattedSafetyNumbers(fingerprint, segmentCount));
+      Util.writeTextToClipboard(requireActivity(), getFormattedSafetyNumbers(fingerprint, segmentCount));
     }
 
     private void handleCompareWithClipboard(Fingerprint fingerprint) {
-      String clipboardData = Util.readTextFromClipboard(getActivity());
+      String clipboardData = Util.readTextFromClipboard(requireActivity());
 
       if (clipboardData == null) {
         Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard, Toast.LENGTH_LONG).show();
@@ -455,7 +455,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     }
 
     private void setRecipientText(Recipient recipient) {
-      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.toShortString())));
+      description.setText(Html.fromHtml(String.format(getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.toShortString())));
       description.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
@@ -605,7 +605,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
                                           VerifiedStatus.DEFAULT);
             }
 
-            ApplicationContext.getInstance(getActivity())
+            ApplicationContext.getInstance(requireActivity())
                               .getJobManager()
                               .add(new MultiDeviceVerifiedUpdateJob(getActivity(),
                                                                     recipient.getAddress(),

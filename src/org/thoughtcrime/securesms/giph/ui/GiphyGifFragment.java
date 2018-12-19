@@ -13,7 +13,7 @@ public class GiphyGifFragment extends GiphyFragment {
 
   @Override
   public Loader<List<GiphyImage>> onCreateLoader(int id, Bundle args) {
-    return new GiphyGifLoader(getActivity(), searchString);
+    return new GiphyGifLoader(requireActivity(), searchString);
   }
 
 }

@@ -140,9 +140,9 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
                  .ifNecessary()
                  .onAllGranted(() -> {
                    if (!((SwitchPreferenceCompat)preference).isChecked()) {
-                     BackupDialog.showEnableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference);
+                     BackupDialog.showEnableBackupDialog(requireActivity(), (SwitchPreferenceCompat)preference);
                    } else {
-                     BackupDialog.showDisableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference);
+                     BackupDialog.showDisableBackupDialog(requireActivity(), (SwitchPreferenceCompat)preference);
                    }
                  })
                  .withPermanentDenialDialog(getString(R.string.ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
@@ -176,7 +176,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
     @Override
     public boolean onPreferenceClick(Preference preference) {
       final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(getActivity());
-      AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+      AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
       builder.setMessage(getResources().getQuantityString(R.plurals.ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages,
                                                           threadLengthLimit, threadLengthLimit));

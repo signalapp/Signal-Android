@@ -97,7 +97,7 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
 
     scribbleHud.setEventListener(this);
     scribbleHud.setTransport(Optional.fromNullable(getArguments().getParcelable(KEY_TRANSPORT)));
-    scribbleHud.setFullscreen((getActivity().getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) > 0);
+    scribbleHud.setFullscreen((requireActivity().getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) > 0);
 
     scribbleView.setMotionViewCallback(motionViewCallback);
     scribbleView.setDrawingChangedListener(() -> scribbleHud.setColorPalette(scribbleView.getUniqueColors()));
@@ -187,7 +187,7 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
 
       LifecycleBoundTask.run(getLifecycle(), () -> {
         try {
-          return BitmapFactory.decodeStream(getContext().getAssets().open(stickerFile));
+          return BitmapFactory.decodeStream(requireContext().getAssets().open(stickerFile));
         } catch (IOException e) {
           Log.w(TAG, e);
           return null;

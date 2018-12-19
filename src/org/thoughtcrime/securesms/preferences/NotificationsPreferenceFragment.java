@@ -228,7 +228,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... voids) {
-            NotificationChannels.updateMessagesLedColor(getActivity(), (String) value);
+            NotificationChannels.updateMessagesLedColor(requireActivity(), (String) value);
             return null;
           }
         }.execute();
