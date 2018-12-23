@@ -310,6 +310,8 @@ class EmojiPages {
   //
   // See https://unicode.org/reports/tr51/, in particular section 4
   static final Set<String> TEXT_EMOJI = new HashSet<String>() {{
+    add("\u00a9");       // 00A9
+    add("\u00ae");       // 00AE
     add("\u203c");       // 203C
     add("\u2049");       // 2049
     add("\u2122");       // 2122
