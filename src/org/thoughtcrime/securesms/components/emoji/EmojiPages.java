@@ -4,8 +4,10 @@ import org.thoughtcrime.securesms.R;
 import org.whispersystems.libsignal.util.Pair;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 class EmojiPages {
 
@@ -301,5 +303,211 @@ class EmojiPages {
     add(new Pair<>("\ud83d\udc8f", "\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68"));
     add(new Pair<>("\ud83d\udc91", "\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc68"));
     add(new Pair<>("\ud83d\udc6a", "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66"));
+  }};
+
+  // This is a list of emoji that should be displayed as text by default, that is; they have the
+  // unicode "Emoji" attribute set but the "Emoji_Presentation" attribute not set.
+  //
+  // See https://unicode.org/reports/tr51/, in particular section 4
+  static final Set<String> TEXT_EMOJI = new HashSet<String>() {{
+    add("\u203c");       // 203C
+    add("\u2049");       // 2049
+    add("\u2122");       // 2122
+    add("\u2139");       // 2139
+    add("\u2194");       // 2194
+    add("\u2195");       // 2195
+    add("\u2196");       // 2196
+    add("\u2197");       // 2197
+    add("\u2198");       // 2198
+    add("\u2199");       // 2199
+    add("\u21a9");       // 21A9
+    add("\u21aa");       // 21AA
+    add("\u2328");       // 2328
+    add("\u23cf");       // 23CF
+    add("\u23ed");       // 23ED
+    add("\u23ee");       // 23EE
+    add("\u23ef");       // 23EF
+    add("\u23f1");       // 23F1
+    add("\u23f2");       // 23F2
+    add("\u23f8");       // 23F8
+    add("\u23f9");       // 23F9
+    add("\u23fa");       // 23FA
+    add("\u24c2");       // 24C2
+    add("\u25aa");       // 25AA
+    add("\u25ab");       // 25AB
+    add("\u25b6");       // 25B6
+    add("\u25c0");       // 25C0
+    add("\u25fb");       // 25FB
+    add("\u25fc");       // 25FC
+    add("\u2600");       // 2600
+    add("\u2601");       // 2601
+    add("\u2602");       // 2602
+    add("\u2603");       // 2603
+    add("\u2604");       // 2604
+    add("\u260e");       // 260E
+    add("\u2611");       // 2611
+    add("\u2618");       // 2618
+    add("\u261d");       // 261D
+    add("\u2620");       // 2620
+    add("\u2622");       // 2622
+    add("\u2623");       // 2623
+    add("\u2626");       // 2626
+    add("\u262a");       // 262A
+    add("\u262e");       // 262E
+    add("\u262f");       // 262F
+    add("\u2638");       // 2638
+    add("\u2639");       // 2639
+    add("\u263a");       // 263A
+    add("\u2660");       // 2660
+    add("\u2663");       // 2663
+    add("\u2665");       // 2665
+    add("\u2666");       // 2666
+    add("\u2668");       // 2668
+    add("\u267b");       // 267B
+    add("\u2692");       // 2692
+    add("\u2694");       // 2694
+    add("\u2696");       // 2696
+    add("\u2697");       // 2697
+    add("\u2699");       // 2699
+    add("\u269b");       // 269B
+    add("\u269c");       // 269C
+    add("\u26a0");       // 26A0
+    add("\u26b0");       // 26B0
+    add("\u26b1");       // 26B1
+    add("\u26c8");       // 26C8
+    add("\u26cf");       // 26CF
+    add("\u26d1");       // 26D1
+    add("\u26d3");       // 26D3
+    add("\u26e9");       // 26E9
+    add("\u26f0");       // 26F0
+    add("\u26f1");       // 26F1
+    add("\u26f4");       // 26F4
+    add("\u26f7");       // 26F7
+    add("\u26f8");       // 26F8
+    add("\u26f9");       // 26F9
+    add("\u2702");       // 2702
+    add("\u2708");       // 2708
+    add("\u2709");       // 2709
+    add("\u270c");       // 270C
+    add("\u270d");       // 270D
+    add("\u270f");       // 270F
+    add("\u2712");       // 2712
+    add("\u2714");       // 2714
+    add("\u2716");       // 2716
+    add("\u271d");       // 271D
+    add("\u2721");       // 2721
+    add("\u2733");       // 2733
+    add("\u2734");       // 2734
+    add("\u2744");       // 2744
+    add("\u2747");       // 2747
+    add("\u2763");       // 2763
+    add("\u2764");       // 2764
+    add("\u27a1");       // 27A1
+    add("\u2934");       // 2934
+    add("\u2935");       // 2935
+    add("\u2b05");       // 2B05
+    add("\u2b06");       // 2B06
+    add("\u2b07");       // 2B07
+    add("\u3030");       // 3030
+    add("\u303d");       // 303D
+    add("\u3297");       // 3297
+    add("\u3299");       // 3299
+    add("\ud83c\udd70"); // 1F170
+    add("\ud83c\udd71"); // 1F171
+    add("\ud83c\udd7e"); // 1F17E
+    add("\ud83c\udd7f"); // 1F17F
+    add("\ud83c\ude02"); // 1F202
+    add("\ud83c\ude37"); // 1F237
+    add("\ud83c\udf21"); // 1F321
+    add("\ud83c\udf24"); // 1F324
+    add("\ud83c\udf25"); // 1F325
+    add("\ud83c\udf26"); // 1F326
+    add("\ud83c\udf27"); // 1F327
+    add("\ud83c\udf28"); // 1F328
+    add("\ud83c\udf29"); // 1F329
+    add("\ud83c\udf2a"); // 1F32A
+    add("\ud83c\udf2b"); // 1F32B
+    add("\ud83c\udf2c"); // 1F32C
+    add("\ud83c\udf36"); // 1F336
+    add("\ud83c\udf7d"); // 1F37D
+    add("\ud83c\udf96"); // 1F396
+    add("\ud83c\udf97"); // 1F397
+    add("\ud83c\udf99"); // 1F399
+    add("\ud83c\udf9a"); // 1F39A
+    add("\ud83c\udf9b"); // 1F39B
+    add("\ud83c\udf9e"); // 1F39E
+    add("\ud83c\udf9f"); // 1F39F
+    add("\ud83c\udfcb"); // 1F3CB
+    add("\ud83c\udfcc"); // 1F3CC
+    add("\ud83c\udfcd"); // 1F3CD
+    add("\ud83c\udfce"); // 1F3CE
+    add("\ud83c\udfd4"); // 1F3D4
+    add("\ud83c\udfd5"); // 1F3D5
+    add("\ud83c\udfd6"); // 1F3D6
+    add("\ud83c\udfd7"); // 1F3D7
+    add("\ud83c\udfd8"); // 1F3D8
+    add("\ud83c\udfd9"); // 1F3D9
+    add("\ud83c\udfda"); // 1F3DA
+    add("\ud83c\udfdb"); // 1F3DB
+    add("\ud83c\udfdc"); // 1F3DC
+    add("\ud83c\udfdd"); // 1F3DD
+    add("\ud83c\udfde"); // 1F3DE
+    add("\ud83c\udfdf"); // 1F3DF
+    add("\ud83c\udff3"); // 1F3F3
+    add("\ud83c\udff5"); // 1F3F5
+    add("\ud83c\udff7"); // 1F3F7
+    add("\ud83d\udc3f"); // 1F43F
+    add("\ud83d\udc41"); // 1F441
+    add("\ud83d\udcfd"); // 1F4FD
+    add("\ud83d\udd49"); // 1F549
+    add("\ud83d\udd4a"); // 1F54A
+    add("\ud83d\udd6f"); // 1F56F
+    add("\ud83d\udd70"); // 1F570
+    add("\ud83d\udd73"); // 1F573
+    add("\ud83d\udd74"); // 1F574
+    add("\ud83d\udd75"); // 1F575
+    add("\ud83d\udd76"); // 1F576
+    add("\ud83d\udd77"); // 1F577
+    add("\ud83d\udd78"); // 1F578
+    add("\ud83d\udd79"); // 1F579
+    add("\ud83d\udd87"); // 1F587
+    add("\ud83d\udd8a"); // 1F58A
+    add("\ud83d\udd8b"); // 1F58B
+    add("\ud83d\udd8c"); // 1F58C
+    add("\ud83d\udd8d"); // 1F58D
+    add("\ud83d\udd90"); // 1F590
+    add("\ud83d\udda5"); // 1F5A5
+    add("\ud83d\udda8"); // 1F5A8
+    add("\ud83d\uddb1"); // 1F5B1
+    add("\ud83d\uddb2"); // 1F5B2
+    add("\ud83d\uddbc"); // 1F5BC
+    add("\ud83d\uddc2"); // 1F5C2
+    add("\ud83d\uddc3"); // 1F5C3
+    add("\ud83d\uddc4"); // 1F5C4
+    add("\ud83d\uddd1"); // 1F5D1
+    add("\ud83d\uddd2"); // 1F5D2
+    add("\ud83d\uddd3"); // 1F5D3
+    add("\ud83d\udddc"); // 1F5DC
+    add("\ud83d\udddd"); // 1F5DD
+    add("\ud83d\uddde"); // 1F5DE
+    add("\ud83d\udde1"); // 1F5E1
+    add("\ud83d\udde3"); // 1F5E3
+    add("\ud83d\udde8"); // 1F5E8
+    add("\ud83d\uddef"); // 1F5EF
+    add("\ud83d\uddf3"); // 1F5F3
+    add("\ud83d\uddfa"); // 1F5FA
+    add("\ud83d\udecb"); // 1F6CB
+    add("\ud83d\udecd"); // 1F6CD
+    add("\ud83d\udece"); // 1F6CE
+    add("\ud83d\udecf"); // 1F6CF
+    add("\ud83d\udee0"); // 1F6E0
+    add("\ud83d\udee1"); // 1F6E1
+    add("\ud83d\udee2"); // 1F6E2
+    add("\ud83d\udee3"); // 1F6E3
+    add("\ud83d\udee4"); // 1F6E4
+    add("\ud83d\udee5"); // 1F6E5
+    add("\ud83d\udee9"); // 1F6E9
+    add("\ud83d\udef0"); // 1F6F0
+    add("\ud83d\udef3"); // 1F6F3
   }};
 }

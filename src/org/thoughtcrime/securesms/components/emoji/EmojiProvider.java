@@ -43,6 +43,8 @@ class EmojiProvider {
   private static final int EMOJI_VERT_PAD   = 0;
   private static final int EMOJI_PER_ROW    = 32;
 
+  private static final char TERMINATOR = '\ufe0f';
+
   private final float decodeScale;
   private final float verticalPad;
 
@@ -67,13 +69,24 @@ class EmojiProvider {
 
         List<String> emojis = page.getEmoji();
         for (int i = 0; i < emojis.size(); i++) {
-          emojiTree.add(emojis.get(i), new EmojiDrawInfo(pageBitmap, i));
+          String emoji = emojis.get(i);
+          emojiTree.add(emoji, new EmojiDrawInfo(pageBitmap, i));
+
+          // If the emoji should not be rendered as text by default, then also add the emoji without
+          // the \ufe0f codepoint
+          if (emoji.length() > 1 && emoji.charAt(emoji.length() - 1) == TERMINATOR && !EmojiPages.TEXT_EMOJI.contains(emoji.substring(0, emoji.length() - 1))) {
+            emojiTree.add(emoji.substring(0, emoji.length() - 1), emojiTree.getEmoji(emoji, 0, emoji.length()));
+          }
         }
       }
     }
 
     for (Pair<String,String> obsolete : EmojiPages.OBSOLETE) {
-      emojiTree.add(obsolete.first(), emojiTree.getEmoji(obsolete.second(), 0, obsolete.second().length()));
+      String emoji = obsolete.second();
+      emojiTree.add(obsolete.first(), emojiTree.getEmoji(emoji, 0, emoji.length()));
+      if (emoji.length() > 1 && emoji.charAt(emoji.length() - 1) == TERMINATOR && !EmojiPages.TEXT_EMOJI.contains(emoji.substring(0, emoji.length() - 1))) {
+        emojiTree.add(emoji.substring(0, emoji.length() - 1), emojiTree.getEmoji(emoji, 0, emoji.length()));
+      }
     }
   }
 
