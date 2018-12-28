@@ -367,6 +367,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
+  public void onWindowFocusChanged(boolean hasFocus) {
+    super.onWindowFocusChanged(hasFocus);
+    if(hasFocus)
+      markThreadAsRead();
+  }
+
+  @Override
   protected void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
@@ -385,7 +392,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     calculateCharactersRemaining();
 
     MessageNotifier.setVisibleThread(threadId);
-    markThreadAsRead();
 
     Log.i(TAG, "onResume() Finished: " + (System.currentTimeMillis() - getIntent().getLongExtra(TIMING_EXTRA, 0)));
   }
