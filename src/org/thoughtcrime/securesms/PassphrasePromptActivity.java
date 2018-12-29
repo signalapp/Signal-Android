@@ -352,9 +352,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
         @Override
         public void onAnimationEnd(Animator animation) {
           handleAuthenticated();
-
-          fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
-          fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
         }
       }).start();
     }
