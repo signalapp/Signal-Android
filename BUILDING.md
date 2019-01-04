@@ -23,9 +23,9 @@ The following steps should help you (re)build Signal from the command line.
     * SDK Platform (All API levels)
     * Android Support Repository
     * Google Repository
-4. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.  For example:
+4. Create a local.properties file at the root of your source checkout and add an sdk.dir entry to it.  For example (on macOS):
 
-        sdk.dir=/Application/android-sdk-macosx
+        sdk.dir=~/Library/Android/sdk
 
 5. Using Java 8 
 
