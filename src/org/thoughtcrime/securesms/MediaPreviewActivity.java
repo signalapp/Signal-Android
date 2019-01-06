@@ -384,6 +384,37 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     builder.show();
   }
 
+  private void archiveMedia() {
+    MediaItem mediaItem = getCurrentMediaItem();
+    if (mediaItem == null || mediaItem.attachment == null) {
+      return;
+    }
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setIconAttribute(R.attr.dialog_alert_icon);
+    builder.setTitle(R.string.MediaPreviewActivity_media_archive_confirmation_title);
+    builder.setMessage(R.string.MediaPreviewActivity_media_archive_confirmation_message);
+    builder.setCancelable(true);
+
+    builder.setPositiveButton(R.string.archive, (dialogInterface, which) -> {
+      new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... voids) {
+          if (mediaItem.attachment == null) {
+            return null;
+          }
+          AttachmentUtil.archiveAttachment(MediaPreviewActivity.this.getApplicationContext(),
+                  mediaItem.attachment);
+          return null;
+        }
+      }.execute();
+
+      finish();
+    });
+    builder.setNegativeButton(android.R.string.cancel, null);
+    builder.show();
+  }
+
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
     super.onPrepareOptionsMenu(menu);
@@ -409,6 +440,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       case R.id.media_preview__forward:  forward();      return true;
       case R.id.save:                    saveToDisk();   return true;
       case R.id.delete:                  deleteMedia();  return true;
+      case R.id.archive:                 archiveMedia(); return true;
       case android.R.id.home:            finish();       return true;
     }
 

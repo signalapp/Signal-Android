@@ -6,6 +6,7 @@
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
     <string name="save">Save</string>
+    <string name="archive">Archive</string>
 
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">New message</string>
@@ -412,6 +413,16 @@
         <item quantity="one">This will permanently delete the selected message.</item>
         <item quantity="other">This will permanently delete all %1$d selected messages.</item>
     </plurals>
+    <plurals name="MediaOverviewActivity_Media_archive_confirm_title">
+        <item quantity="one">Archive selected message?</item>
+        <item quantity="other">Archive selected messages?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_archive_confirm_message">
+        <item quantity="one">This will permanently lower the resolution of the selected image or replace the video by its thumbnail.</item>
+        <item quantity="other">This will permanently lower the resolution of all %1$d selected images and replace videos by their thumbnails.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_archive_progress_title">Archiving</string>
+    <string name="MediaOverviewActivity_Media_archive_progress_message">Archiving media...</string>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages...</string>
     <string name="MediaOverviewActivity_Documents">Documents</string>
@@ -692,6 +703,8 @@
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
+    <string name="MediaPreviewActivity_media_archive_confirmation_title">Archive message?</string>
+    <string name="MediaPreviewActivity_media_archive_confirmation_message">This will permanently lower the resolution of the selected image or replace the video by its thumbnail.</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>

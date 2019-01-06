@@ -411,6 +411,48 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       builder.show();
     }
 
+
+
+    @SuppressLint("StaticFieldLeak")
+    private void handleArchiveMedia(@NonNull Collection<MediaDatabase.MediaRecord> mediaRecords) {
+      int recordCount       = mediaRecords.size();
+      Resources res         = getContext().getResources();
+      String confirmTitle   = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_archive_confirm_title,
+              recordCount,
+              recordCount);
+      String confirmMessage = res.getQuantityString(R.plurals.MediaOverviewActivity_Media_archive_confirm_message,
+              recordCount,
+              recordCount);
+
+      AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+      builder.setIconAttribute(R.attr.dialog_alert_icon);
+      builder.setTitle(confirmTitle);
+      builder.setMessage(confirmMessage);
+      builder.setCancelable(true);
+
+      builder.setPositiveButton(R.string.archive, (dialogInterface, i) -> {
+        new ProgressDialogAsyncTask<MediaDatabase.MediaRecord, Void, Void>(getContext(),
+                R.string.MediaOverviewActivity_Media_archive_progress_title,
+                R.string.MediaOverviewActivity_Media_archive_progress_message)
+        {
+          @Override
+          protected Void doInBackground(MediaDatabase.MediaRecord... records) {
+            if (records == null || records.length == 0) {
+              return null;
+            }
+
+            for (MediaDatabase.MediaRecord record : records) {
+              AttachmentUtil.archiveAttachment(getContext(), record.getAttachment());
+            }
+            return null;
+          }
+
+        }.execute(mediaRecords.toArray(new MediaDatabase.MediaRecord[mediaRecords.size()]));
+      });
+      builder.setNegativeButton(android.R.string.cancel, null);
+      builder.show();
+    }
+
     private void handleSelectAllMedia() {
       getListAdapter().selectAllMedia();
       actionMode.setTitle(String.valueOf(getListAdapter().getSelectedMediaCount()));
@@ -459,6 +501,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
             return true;
           case R.id.select_all:
             handleSelectAllMedia();
+            return true;
+          case R.id.archive:
+            handleArchiveMedia(getListAdapter().getSelectedMedia());
             return true;
         }
         return false;

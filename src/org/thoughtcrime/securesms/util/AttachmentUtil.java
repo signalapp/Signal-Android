@@ -67,6 +67,19 @@ public class AttachmentUtil {
     }
   }
 
+  /**
+   * Deletes the specified attachment. If its the only attachment for its linked message, the entire
+   * message is deleted.
+   */
+  @WorkerThread
+  public static void archiveAttachment(@NonNull Context context,
+                                      @NonNull DatabaseAttachment attachment)
+  {
+    AttachmentId attachmentId    = attachment.getAttachmentId();
+
+    DatabaseFactory.getAttachmentDatabase(context).archiveAttachment(attachmentId);
+  }
+
   private static boolean isNonDocumentType(String contentType) {
     return
         MediaUtil.isImageType(contentType) ||

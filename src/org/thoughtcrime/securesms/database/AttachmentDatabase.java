@@ -21,7 +21,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -56,6 +60,7 @@ import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
+import org.thoughtcrime.securesms.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -138,6 +143,8 @@ public class AttachmentDatabase extends Database {
   private final ExecutorService thumbnailExecutor = Util.newSingleThreadedLifoExecutor();
 
   private final AttachmentSecret attachmentSecret;
+
+  private static final int ARCHIVED_IMAGE_WIDTH = 64;
 
   public AttachmentDatabase(Context context, SQLCipherOpenHelper databaseHelper, AttachmentSecret attachmentSecret) {
     super(context, databaseHelper);
@@ -291,6 +298,78 @@ public class AttachmentDatabase extends Database {
       deleteAttachmentOnDisk(data, thumbnail, contentType);
       notifyAttachmentListeners();
     }
+  }
+
+  public void archiveAttachment(@NonNull AttachmentId id){
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+    try (Cursor cursor = database.query(TABLE_NAME,
+            new String[]{THUMBNAIL, CONTENT_TYPE},
+            PART_ID_WHERE,
+            id.toStrings(),
+            null,
+            null,
+            null))
+    {
+
+      if (cursor == null || !cursor.moveToNext()) {
+        Log.w(TAG, "Tried to archive an attachment, but it didn't exist.");
+        return;
+      }
+
+      String thumbnail   = cursor.getString(0);
+      String contentType = cursor.getString(1);
+
+      try {
+
+
+        updateAttachmentData(getAttachment(id), generateAttachmentPlaceholder(id, contentType));
+        deleteAttachmentOnDisk(null, thumbnail, contentType);
+        notifyAttachmentListeners();
+      } catch (MmsException e) {
+        Log.w(TAG, "Failed to create thumbnail.", e);
+      }
+
+    }
+  }
+
+  MediaStream generateAttachmentPlaceholder(@NonNull AttachmentId id, String contentType) {
+      Bitmap rawImage;
+      Boolean overlayVideoIcon = false;
+
+      if (MediaUtil.isImageType(contentType)){
+        rawImage = BitmapFactory.decodeStream(getDataStream(id, DATA, 0));
+      } else if(MediaUtil.isVideoType(contentType)){
+        if(getAttachment(id).hasThumbnail()){
+          rawImage = BitmapFactory.decodeStream(getDataStream(id, THUMBNAIL, 0));
+          overlayVideoIcon = true;
+        } else {
+          rawImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_video_light);
+        }
+      } else {
+        Log.w(TAG, "Cannot generate placeholder for" + contentType);
+        return null;
+      }
+
+      int height = (int) ((float) ARCHIVED_IMAGE_WIDTH / rawImage.getWidth()  * rawImage.getHeight());
+      Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(rawImage, ARCHIVED_IMAGE_WIDTH, height);
+
+      if(overlayVideoIcon) {
+        Bitmap movieIcon = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_video_dark);
+        Canvas canvas = new Canvas(ThumbImage);
+        canvas.drawBitmap(movieIcon,
+                null,
+                new Rect(0,
+                        (height - ARCHIVED_IMAGE_WIDTH) / 2,
+                        ARCHIVED_IMAGE_WIDTH,
+                        (height - ARCHIVED_IMAGE_WIDTH) / 2 + ARCHIVED_IMAGE_WIDTH
+                ),
+                null);
+      }
+
+      ThumbnailData thumbnailData = new ThumbnailData(ThumbImage);
+
+      return new MediaStream(thumbnailData.toDataStream(), "image/jpeg", ARCHIVED_IMAGE_WIDTH, height);
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
