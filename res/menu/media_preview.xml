@@ -14,11 +14,11 @@
           android:icon="@drawable/ic_photo_library_white_24dp"
           app:showAsAction="ifRoom"/>
     <item android:id="@+id/delete"
-        android:title="@string/delete"
-        android:icon="@drawable/ic_delete_white_24dp"
-        app:showAsAction="ifRoom"/>
+          android:title="@string/delete"
+          android:icon="@drawable/ic_delete_white_24dp"
+          app:showAsAction="ifRoom"/>
     <item android:id="@+id/archive"
-        android:title="@string/archive"
-        android:icon="@drawable/ic_archive_white_24dp"
-        app:showAsAction="ifRoom"/>
+          android:title="@string/archive"
+          android:icon="@drawable/ic_archive_white_24dp"
+          app:showAsAction="ifRoom"/>
 </menu>
