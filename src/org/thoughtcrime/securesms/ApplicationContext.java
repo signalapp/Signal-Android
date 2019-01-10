@@ -185,7 +185,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeJobManager() {
     WorkManager.initialize(this, new Configuration.Builder()
-                                                  .setMinimumLoggingLevel(android.util.Log.DEBUG)
+                                                  .setMinimumLoggingLevel(android.util.Log.INFO)
                                                   .build());
 
     this.jobManager = new JobManager(this, WorkManager.getInstance());

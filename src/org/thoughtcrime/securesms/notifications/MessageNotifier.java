@@ -349,7 +349,7 @@ public class MessageNotifier {
                                                      @NonNull  NotificationState notificationState,
                                                      boolean signal)
   {
-    Log.i(TAG, "sendSingleThreadNotification()  signal: " + signal);
+    Log.i(TAG, "sendMultiThreadNotification()  signal: " + signal);
 
     MultipleRecipientNotificationBuilder builder       = new MultipleRecipientNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
     List<NotificationItem>               notifications = notificationState.getNotifications();
