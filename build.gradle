@@ -73,7 +73,7 @@ dependencies {
     compile 'com.android.support:multidex:1.0.3'
     compile 'android.arch.lifecycle:extensions:1.1.1'
     compile 'android.arch.lifecycle:common-java8:1.1.1'
-    compile 'android.arch.work:work-runtime:1.0.0-alpha12'
+    compile 'android.arch.work:work-runtime:1.0.0-beta01'
 
     compile 'com.google.android.gms:play-services-gcm:16.0.0'
     compile 'com.google.android.gms:play-services-maps:16.0.0'
@@ -170,7 +170,7 @@ dependencyVerification {
         'com.android.support:gridlayout-v7:5029529f7db66f8773426bf7318645f0840fc50d74f66355cd60c5e58d2da087',
         'com.android.support:exifinterface:bbf44e519edd6333a24a3285aa21fd00181b920b81ca8aa89a8899f03ab4d6b0',
         'com.android.support:multidex:ecf6098572e23b5155bab3b9a82b2fd1530eda6c6c157745e0f5287c66eec60c',
-        'android.arch.work:work-runtime:b78d5a7b71dccf6c2549168ca1890f6848ba2d72782b903555b18099c459e472',
+        'android.arch.work:work-runtime:810fba0ee8fc58560664b58c6dba532eae05e3d196e9ee5ae78c1f22bdb292bb',
         'android.arch.lifecycle:extensions:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
         'android.arch.lifecycle:common-java8:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
         'com.google.android.gms:play-services-gcm:921b4651a2f4d108753f8b4c5d3844b5f8c1f3c31b740c80f69765082713d004',

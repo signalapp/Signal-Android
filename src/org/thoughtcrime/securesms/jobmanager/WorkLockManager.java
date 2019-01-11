@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Semaphore;
 
-import androidx.work.Result;
+import androidx.work.ListenableWorker.Result;
 
 class WorkLockManager {
 

@@ -12,14 +12,13 @@ import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirement;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.UUID;
 
 import androidx.work.Data;
-import androidx.work.Result;
+import androidx.work.ListenableWorker.Result;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
