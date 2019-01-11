@@ -454,7 +454,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
     final String e164number = getConfiguredE164Number();
 
-    if (!PhoneNumberFormatter.isValidNumber(e164number)) {
+    if (!PhoneNumberFormatter.isValidNumber(e164number, countryCode.getText().toString())) {
       Dialogs.showAlertDialog(this,
                               getString(R.string.RegistrationActivity_invalid_number),
                               String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), e164number));
