@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database.loaders;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
@@ -22,7 +23,6 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -64,6 +64,10 @@ public class DeviceListLoader extends AsyncLoader<List<Device>> {
 
   private Device mapToDevice(@NonNull DeviceInfo deviceInfo) {
     try {
+      if (TextUtils.isEmpty(deviceInfo.getName()) || deviceInfo.getName().length() < 4) {
+        throw new IOException("Invalid DeviceInfo name.");
+      }
+
       DeviceName deviceName = DeviceName.parseFrom(Base64.decode(deviceInfo.getName()));
 
       if (!deviceName.hasCiphertext() || !deviceName.hasEphemeralPublic() || !deviceName.hasSyntheticIv()) {
