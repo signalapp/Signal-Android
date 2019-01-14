@@ -43,7 +43,7 @@ public class MmsSmsDatabase extends Database {
   public static final String SMS_TRANSPORT = "sms";
 
   private static final String[] PROJECTION = {MmsSmsColumns.ID, MmsSmsColumns.UNIQUE_ROW_ID,
-                                              MmsSmsColumns.SUBJECT, SmsDatabase.BODY, SmsDatabase.TYPE,
+                                              SmsDatabase.BODY, SmsDatabase.TYPE,
                                               MmsSmsColumns.THREAD_ID,
                                               SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
                                               MmsSmsColumns.NORMALIZED_DATE_SENT,
@@ -227,7 +227,7 @@ public class MmsSmsDatabase extends Database {
                                   "'" + AttachmentDatabase.NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", " +
                                   "'" + AttachmentDatabase.TRANSFER_STATE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE +
                                   ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
-                              MmsSmsColumns.SUBJECT, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
+                              SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
@@ -251,7 +251,7 @@ public class MmsSmsDatabase extends Database {
                                   + " || '::' || " + SmsDatabase.DATE_SENT
                                   + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
                               "NULL AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
-                              MmsSmsColumns.SUBJECT, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
+                              SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
@@ -284,7 +284,6 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsSmsColumns.ID);
     mmsColumnsPresent.add(MmsSmsColumns.READ);
     mmsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
-    mmsColumnsPresent.add(MmsSmsColumns.SUBJECT);
     mmsColumnsPresent.add(MmsSmsColumns.BODY);
     mmsColumnsPresent.add(MmsSmsColumns.ADDRESS);
     mmsColumnsPresent.add(MmsSmsColumns.ADDRESS_DEVICE_ID);
@@ -335,7 +334,6 @@ public class MmsSmsDatabase extends Database {
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);
-    smsColumnsPresent.add(MmsSmsColumns.SUBJECT);
     smsColumnsPresent.add(MmsSmsColumns.BODY);
     smsColumnsPresent.add(MmsSmsColumns.ADDRESS);
     smsColumnsPresent.add(MmsSmsColumns.ADDRESS_DEVICE_ID);

@@ -1851,13 +1851,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private ListenableFuture<Void> sendMediaMessage(final boolean forceSms, String body, SlideDeck slideDeck, List<Contact> contacts, final long expiresIn, final int subscriptionId, final boolean initiating) {
-    String groupName = null;
-    if(isActiveGroup()) {
-        Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(recipient.getAddress().toGroupString());
-        groupName = record.get().getTitle();
-        Log.d(TAG, "groupName: " + groupName);
-    }
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, groupName, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, inputPanel.getQuote().orNull(), contacts);
+    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, inputPanel.getQuote().orNull(), contacts);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = getApplicationContext();

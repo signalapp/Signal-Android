@@ -200,7 +200,6 @@ public class MmsDownloadJob extends MasterSecretJob {
     MemoryBlobProvider    provider    = MemoryBlobProvider.getInstance();
     Optional<Address>     group       = Optional.absent();
     Set<Address>          members     = new HashSet<>();
-    String                subject     = null;
     String                body        = null;
     List<Attachment>      attachments = new LinkedList<>();
 
@@ -249,25 +248,11 @@ public class MmsDownloadJob extends MasterSecretJob {
       }
     }
 
-    if(retrieved.getSubject() != null && !retrieved.getSubject().getString().equals("")) {
-      Log.d(TAG, "subject: " + retrieved.getSubject().getString());
-      subject = retrieved.getSubject().getString();
-    }
-
     if (members.size() > 2) {
-      if(subject != null && !subject.equals("")) {
-        group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), subject, true)));
-      } else {
-        group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true)));
-      }
+      group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true)));
     }
 
-    IncomingMediaMessage message;
-    if(subject != null && !subject.equals("")) {
-      message = new IncomingMediaMessage(from, group, subject, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
-    } else {
-      message = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
-    }
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {

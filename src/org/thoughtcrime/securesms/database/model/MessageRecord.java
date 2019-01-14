@@ -64,27 +64,6 @@ public abstract class MessageRecord extends DisplayRecord {
                 int readReceiptCount)
   {
     super(context, body, conversationRecipient, dateSent, dateReceived,
-            threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
-    this.id                  = id;
-    this.individualRecipient = individualRecipient;
-    this.recipientDeviceId   = recipientDeviceId;
-    this.mismatches          = mismatches;
-    this.networkFailures     = networkFailures;
-    this.subscriptionId      = subscriptionId;
-    this.expiresIn           = expiresIn;
-    this.expireStarted       = expireStarted;
-  }
-
-  MessageRecord(Context context, long id, String subject, String body, Recipient conversationRecipient,
-                Recipient individualRecipient, int recipientDeviceId,
-                long dateSent, long dateReceived, long threadId,
-                int deliveryStatus, int deliveryReceiptCount, long type,
-                List<IdentityKeyMismatch> mismatches,
-                List<NetworkFailure> networkFailures,
-                int subscriptionId, long expiresIn, long expireStarted,
-                int readReceiptCount)
-  {
-    super(context, subject, body, conversationRecipient, dateSent, dateReceived,
           threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
