@@ -49,7 +49,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   public MediaMmsMessageRecord(Context context, long id, Recipient conversationRecipient,
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, int deliveryReceiptCount,
-                               long threadId, String subject, String body,
+                               long threadId, String body,
                                @NonNull SlideDeck slideDeck,
                                int partCount, long mailbox,
                                List<IdentityKeyMismatch> mismatches,
@@ -57,7 +57,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                long expiresIn, long expireStarted, int readReceiptCount,
                                @Nullable Quote quote, @Nullable List<Contact> contacts)
   {
-    super(context, id, subject, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
+    super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
           subscriptionId, expiresIn, expireStarted, slideDeck, readReceiptCount, quote, contacts);
 

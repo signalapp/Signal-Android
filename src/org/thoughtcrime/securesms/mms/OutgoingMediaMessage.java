@@ -14,7 +14,6 @@ import java.util.List;
 public class OutgoingMediaMessage {
 
   private   final Recipient        recipient;
-  private   final String           subject;
   protected final String           body;
   protected final List<Attachment> attachments;
   private   final long             sentTimeMillis;
@@ -31,26 +30,6 @@ public class OutgoingMediaMessage {
                               @NonNull List<Contact> contacts)
   {
     this.recipient        = recipient;
-    this.subject          = null;
-    this.body             = message;
-    this.sentTimeMillis   = sentTimeMillis;
-    this.distributionType = distributionType;
-    this.attachments      = attachments;
-    this.subscriptionId   = subscriptionId;
-    this.expiresIn        = expiresIn;
-    this.outgoingQuote    = outgoingQuote;
-
-    this.contacts.addAll(contacts);
-  }
-
-  public OutgoingMediaMessage(Recipient recipient, String subject, String message,
-                              List<Attachment> attachments, long sentTimeMillis,
-                              int subscriptionId, long expiresIn,
-                              int distributionType, @Nullable QuoteModel outgoingQuote,
-                              @NonNull List<Contact> contacts)
-  {
-    this.recipient        = recipient;
-    this.subject          = subject;
     this.body             = message;
     this.sentTimeMillis   = sentTimeMillis;
     this.distributionType = distributionType;
@@ -71,20 +50,9 @@ public class OutgoingMediaMessage {
          expiresIn, distributionType, outgoingQuote, contacts);
   }
 
-  public OutgoingMediaMessage(Recipient recipient, String subject, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType, @Nullable QuoteModel outgoingQuote, @NonNull List<Contact> contacts)
-  {
-    this(recipient,
-            subject,
-            buildMessage(slideDeck, message),
-            slideDeck.asAttachments(),
-            sentTimeMillis, subscriptionId,
-            expiresIn, distributionType, outgoingQuote, contacts);
-  }
-
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
     this.recipient           = that.getRecipient();
-    this.subject             = that.subject;
     this.body                = that.body;
     this.distributionType    = that.distributionType;
     this.attachments         = that.attachments;
@@ -99,8 +67,6 @@ public class OutgoingMediaMessage {
   public Recipient getRecipient() {
     return recipient;
   }
-
-  public String getSubject() { return subject; }
 
   public String getBody() {
     return body;
