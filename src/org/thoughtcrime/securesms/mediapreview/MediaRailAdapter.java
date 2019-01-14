@@ -10,24 +10,29 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.util.StableIdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.MediaRailViewHolder> {
 
-  private final GlideRequests    glideRequests;
-  private final List<Media>      media;
-  private final RailItemListener listener;
-  private final boolean          deleteEnabled;
+  private final GlideRequests            glideRequests;
+  private final List<Media>              media;
+  private final RailItemListener         listener;
+  private final boolean                  deleteEnabled;
+  private final StableIdGenerator<Media> stableIdGenerator;
 
   private int activePosition;
 
   public MediaRailAdapter(@NonNull GlideRequests glideRequests, @NonNull RailItemListener listener, boolean deleteEnabled) {
-    this.glideRequests = glideRequests;
-    this.media         = new ArrayList<>();
-    this.listener      = listener;
-    this.deleteEnabled = deleteEnabled;
+    this.glideRequests     = glideRequests;
+    this.media             = new ArrayList<>();
+    this.listener          = listener;
+    this.deleteEnabled     = deleteEnabled;
+    this.stableIdGenerator = new StableIdGenerator<>();
+
+    setHasStableIds(true);
   }
 
   @NonNull
@@ -49,6 +54,11 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
   @Override
   public int getItemCount() {
     return media.size();
+  }
+
+  @Override
+  public long getItemId(int position) {
+    return stableIdGenerator.getId(media.get(position));
   }
 
   public void setMedia(@NonNull List<Media> media) {

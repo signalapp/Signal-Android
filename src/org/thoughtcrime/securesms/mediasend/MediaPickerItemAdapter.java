@@ -13,6 +13,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.StableIdGenerator;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,22 +23,25 @@ import java.util.TreeSet;
 
 public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItemAdapter.ItemViewHolder> {
 
-  private final GlideRequests glideRequests;
-  private final EventListener eventListener;
-  private final List<Media>   media;
-  private final Set<Media>    selected;
-  private final int           maxSelection;
+  private final GlideRequests            glideRequests;
+  private final EventListener            eventListener;
+  private final List<Media>              media;
+  private final Set<Media>               selected;
+  private final int                      maxSelection;
+  private final StableIdGenerator<Media> stableIdGenerator;
 
   private boolean forcedMultiSelect;
 
   public MediaPickerItemAdapter(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener, int maxSelection) {
-    this.glideRequests = glideRequests;
-    this.eventListener = eventListener;
-    this.media         = new ArrayList<>();
-    this.maxSelection  = maxSelection;
-    this.selected      = new TreeSet<>((m1, m2) -> {
-      if (m1.equals(m2)) return 0;
-      else               return Long.compare(m2.getDate(), m1.getDate());
+    this.glideRequests     = glideRequests;
+    this.eventListener     = eventListener;
+    this.media             = new ArrayList<>();
+    this.maxSelection      = maxSelection;
+    this.stableIdGenerator = new StableIdGenerator<>();
+    this.selected          = new TreeSet<>((m1, m2) -> {
+      if      (m1.equals(m2))                                 return 0;
+      else if (Long.compare(m2.getDate(), m1.getDate()) == 0) return m2.getUri().compareTo(m1.getUri());
+      else                                                    return Long.compare(m2.getDate(), m1.getDate());
     });
 
     setHasStableIds(true);
@@ -65,7 +69,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
 
   @Override
   public long getItemId(int position) {
-    return media.get(position).getDate();
+    return stableIdGenerator.getId(media.get(position));
   }
 
   void setMedia(@NonNull List<Media> media) {
