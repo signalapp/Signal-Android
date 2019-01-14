@@ -31,7 +31,7 @@ public abstract class SendJob extends ContextJob {
   @SuppressWarnings("unused")
   private final static String TAG = SendJob.class.getSimpleName();
 
-  protected SendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+  public SendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
     super(context, workerParameters);
   }
 

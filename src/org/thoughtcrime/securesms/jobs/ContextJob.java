@@ -13,7 +13,7 @@ public abstract class ContextJob extends Job implements ContextDependent {
 
   protected transient Context context;
 
-  protected ContextJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+  public ContextJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
     super(context, workerParameters);
   }
 

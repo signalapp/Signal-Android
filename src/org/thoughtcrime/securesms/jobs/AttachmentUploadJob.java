@@ -48,7 +48,7 @@ public class AttachmentUploadJob extends ContextJob implements InjectableType {
   private AttachmentId               attachmentId;
   @Inject SignalServiceMessageSender messageSender;
 
-  protected AttachmentUploadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+  public AttachmentUploadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
     super(context, workerParameters);
   }
 
