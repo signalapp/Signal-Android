@@ -696,7 +696,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Audioanhang aufnehmen und senden</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal für SMS aktivieren</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ZUM ABBRECHEN WEGWISCHEN</string>
+  <string name="conversation_input_panel__slide_to_cancel">ZUM ABBRECHEN WISCHEN</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Nachricht mit Medieninhalten</string>
   <string name="conversation_item__secure_message_description">Sichere Nachricht</string>

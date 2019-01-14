@@ -307,6 +307,7 @@
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Jih želite vklopiti zdaj?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Tu so kazalniki tipkanja!</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Vklop kazalnikov tipkanja</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Vklopi kazalnike tipkanja</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne, hvala!</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila ...</string>

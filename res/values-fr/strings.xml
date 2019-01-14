@@ -385,8 +385,8 @@
   <string name="MessageRecord_s_joined_signal">%s est sur Signal !</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Vous avez désactivé les messages éphémères.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a désactivé les messages éphémères.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini le délai de disparition du message à %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini le délai de disparition du message à %2$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini l’expiration des messages éphémères à %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Vous avez marqué votre numéro de sécurité avec %s comme vérifié</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme vérifié à partir d’un autre appareil</string>
@@ -533,7 +533,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="ThreadRecord_media_message">Message multimédia</string>
   <string name="ThreadRecord_s_is_on_signal">%s est sur Signal !</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Les messages éphémères sont désactivés</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Le temps de disparition des messages a été réglé à %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">L’expiration des messages éphémères a été définie à %s</string>
   <string name="ThreadRecord_safety_number_changed">Le numéro de sécurité a changé</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
   <string name="ThreadRecord_you_marked_verified">Vous avez marqué comme vérifié</string>
@@ -837,7 +837,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal exige les paramètres de messages multimédias (MMS) pour transmettre les messages multimédias et de groupe en utilisant votre opérateur sans fil. Votre appareil n’offre pas ces renseignements, ce qui arrive parfois pour les appareils verrouillés ou autres configurations restrictives.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer des messages multimédias ou de groupe, touchez OK et remplissez les champs demandés. Les paramètres de messages multimédias (MMS) pour votre opérateur peuvent habituellement être trouvés en cherchant l’APN (nom du point d’accès) de votre opérateur. Vous n’aurez à le faire qu’une seule fois.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer des messages multimédias ou de groupe, touchez Valider et remplissez les champs demandés. Les paramètres de messages multimédias (MMS) pour votre opérateur peuvent habituellement être trouvés en cherchant l’APN (nom du point d’accès) de votre opérateur. Vous n’aurez à le faire qu’une seule fois.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Définir plus tard</string>
   <string name="profile_create_activity__finish">TERMINER</string>
@@ -982,7 +982,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__fast">Rapide</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lent</string>
-  <string name="preferences__advanced">Avancé</string>
+  <string name="preferences__advanced">Avancés</string>
   <string name="preferences__privacy">Confidentialité</string>
   <string name="preferences__mms_user_agent">Agent utilisateur MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Paramètres manuels de messagerie multimédia</string>
@@ -1031,7 +1031,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences_app_protection__communication">Communication</string>
   <string name="preferences_chats__chats">Conversations</string>
   <string name="preferences_notifications__messages">Messages</string>
-  <string name="preferences_notifications__events">Evénements</string>
+  <string name="preferences_notifications__events">Évènements</string>
   <string name="preferences_notifications__in_chat_sounds">Sons des conversations</string>
   <string name="preferences_notifications__show">Afficher</string>
   <string name="preferences_notifications__calls">Appels</string>

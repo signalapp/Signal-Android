@@ -28,9 +28,9 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Această acțiune va debloca permanent Signal și notificările pentru mesaje.</string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivați</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Anulați înregistrarea</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Se anulează înregistrarea</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal... </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivez mesajele și apelurile Signal? </string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivați mesajele și apelurile Signal? </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apeluri Signal prin dezabonarea de la server. Va trebui să vă re-înregistrezi numărul dvs. de telefon pentru a putea să le folosiți din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
@@ -259,7 +259,7 @@
   <string name="DeviceListActivity_unlink_s">Disociez \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Prin disocierea acestui dispozitiv, nu v-a mai putea trimite și primi mesaje.</string>
   <string name="DeviceListActivity_network_connection_failed">Conexiunea la reţea a eşuat</string>
-  <string name="DeviceListActivity_try_again">Încearcă din nou</string>
+  <string name="DeviceListActivity_try_again">Încercați din nou</string>
   <string name="DeviceListActivity_unlinking_device">Se disociază dispozitivul...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Se disociază dispozitivul</string>
   <string name="DeviceListActivity_network_failed">Eroare de reţea!</string>

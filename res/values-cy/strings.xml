@@ -407,8 +407,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="NotificationBarManager__cancel_call">Diffodd galwad</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Neges amlgyfrwng</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">Llwytho i lawr neges MMS</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gwall wrth lwytho neges MMS i lawr, tapio i geisio eto</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Lawrlwytho neges MMS</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gwall wrth lawrlwytho neges MMS, tapio i geisio eto</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Wedi derbyn neges wedi\'i hamgryptio gan ddefnyddio hen fersiwn o Signal nad yw bellach yn cael ei gefnogi. Gofynnwch i\'r anfonwr ddiweddaru i\'r fersiwn ddiweddaraf ac ail-anfon y neges.</string>
   <string name="MessageRecord_left_group">Rydych wedi gadael y grŵp.</string>
@@ -757,7 +757,7 @@ Send neges heb ei ddiogelu?</string>
   <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Chwarae</string>
   <string name="audio_view__pause_accessibility_description">Oedi</string>
-  <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
+  <string name="audio_view__download_accessibility_description">Lawrlwytho</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Sain</string>
   <string name="QuoteView_video">Fideo</string>
@@ -1079,7 +1079,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_chats__when_using_mobile_data">Wrth ddefnyddio data symudol</string>
   <string name="preferences_chats__when_using_wifi">Wrth ddefnyddio diwifr</string>
   <string name="preferences_chats__when_roaming">Wrth grwydro</string>
-  <string name="preferences_chats__media_auto_download">Awto lwytho cyfryngau</string>
+  <string name="preferences_chats__media_auto_download">Awto lawrlwytho cyfryngau</string>
   <string name="preferences_chats__message_trimming">Tocio sgyrsiau</string>
   <string name="preferences_advanced__use_system_emoji">Defnyddio emoji\'r system</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Analluogi cefnogaeth emoji Signal</string>

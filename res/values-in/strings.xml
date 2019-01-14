@@ -137,6 +137,7 @@
   <string name="ConversationActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
   <string name="ConversationActivity_unblock_this_group_question">Buka blokir grup ini?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Anda kembali dapat menerima pesan dan panggilan dari kontak ini.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Anggota aktif lainnya akan mampu menambahkan kamu ke grup lagi.</string>
   <string name="ConversationActivity_unblock">Buka blokir</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Lampiran melebihi batas ukuran untuk tipe pesan yang Anda kirimkan.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera tidak tersedia</string>
@@ -262,6 +263,9 @@
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Memperkenalkan indikator ketik.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sekarang Anda dapat secara opsional melihat dan berbagi saat pesan sedang diketik.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Apakah Anda ingin mengaktifkannya sekarang?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Indikator penulisan disini</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktifkan indikator penulisan</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktifkan indikator penulisan</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Tidak, terima kasih</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan...</string>
@@ -315,6 +319,7 @@
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Teman tidak membiarkan temannya mengobrol tanpa enkripsi.</string>
   <!--Job-->
+  <string name="Job_working_in_the_background">Bekerja dibelakang layar...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gagal mengirim</string>
   <string name="MessageDetailsRecipient_new_safety_number">Angka keamanan baru</string>
@@ -418,10 +423,13 @@
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokir kontak ini?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Anda tidak akan lagi menerima pesan dan panggilan dari kontak ini.</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group">Blokir dan tinggalkan grup ini?</string>
+  <string name="RecipientPreferenceActivity_block_group">Tolak grup ini?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Kamu tidak akan lagi menerima pesan dan pembaharuan dari grup ini.</string>
   <string name="RecipientPreferenceActivity_block">Blokir</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Anda kembali dapat menerima pesan dan panggilan dari kontak ini.</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_question">Buka blokir grup ini?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Anggota aktif lainnya akan mampu menambahkan kamu ke grup lagi.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Gagal meninggalkan grup</string>
   <string name="RecipientPreferenceActivity_unblock">Buka blokir</string>
   <string name="RecipientPreferenceActivity_enabled">Aktif</string>
@@ -465,6 +473,9 @@ isikan (%s) tidak tepat.
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal memerlukkan akses ke kontak dan media Anda untuk terkoneksi dengan teman, bertukar pesan, dan membuat panggilan aman</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Tidak bisa terhubung ke layanan. Mohon cek koneksi jaringan dan coba lagi.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Untuk memudahkan verifikasi nomor telepon Anda, Signal dapat secara otomatis mendeteksi kode verifikasi Anda jika Anda mengizinkan Signal untuk melihat pesan SMS.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="other">Kamu memiliki %d langkah lagi untuk mengirim log debug.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Gagal menyimpan perubahan gambar.</string>
   <!--Search-->
@@ -473,6 +484,7 @@ isikan (%s) tidak tepat.
   <string name="SearchFragment_header_contacts">Kontak</string>
   <string name="SearchFragment_header_messages">Pesan</string>
   <!--SendJob-->
+  <string name="SendJob_sending_a_message">Mengirim pesan...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Tambahkan ke Kontak</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Undang ke Signal</string>
@@ -587,6 +599,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NotificationChannel_calls">Panggilan</string>
   <string name="NotificationChannel_failures">Gagal</string>
   <string name="NotificationChannel_backups">Cadangan</string>
+  <string name="NotificationChannel_locked_status">Status penguncian</string>
   <string name="NotificationChannel_app_updates">pembaruan aplikasi</string>
   <string name="NotificationChannel_other">Yang lain</string>
   <string name="NotificationChannel_group_messages">Pesan</string>
@@ -596,6 +609,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Disimpan ke %s</string>
+  <string name="SaveAttachmentTask_saved">Tersimpan</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Cari</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Cari untuk percakapan, daftar kontak dan pesan</string>
@@ -605,6 +619,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="other">%d pesan</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Perangkat tidak lagi terdaftar</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hal ini mungkin karena Anda mendaftarkan nomor telpon Anda dengan Signal pada perangkat berbeda. Ketuk untuk mendaftar ulang.</string>
@@ -805,6 +822,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="recipient_preference_activity__shared_media">Bagikan media</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Bisukan percakapan</string>
+  <string name="recipient_preferences__custom_notifications">Pemberitahuan khusus</string>
   <string name="recipient_preferences__custom_notifications_settings">Setelan notifikasi sistem</string>
   <string name="recipient_preferences__notification_sound">Suara pemberitahuan</string>
   <string name="recipient_preferences__vibrate">Bergetar</string>
@@ -970,6 +988,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__incognito_keyboard">Papan ketik tersembunyi</string>
   <string name="preferences__read_receipts">Pesan terbaca</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika tanda telah diterima di non aktifkan . anda tidak dapat melihat jika pesan sudah dibaca oleh orang lain</string>
+  <string name="preferences__typing_indicators">Indikator penulisan</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jika indikator penulisan di non-aktifkan, kamu tidak akan mampu melihat indikator penulisan dari anggota lainnya.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Permintaan papan ketik untuk non-aktif personalisasi</string>
   <string name="preferences_app_protection__blocked_contacts">Kontak yang diblokir</string>
   <string name="preferences_chats__when_using_mobile_data">Ketika menggunakan data seluler</string>
@@ -995,6 +1015,10 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_chats__message_text_size">Ukuran fonta pesan</string>
   <string name="preferences_events__contact_joined_signal">Kontak bergabung dengan Signal</string>
   <string name="preferences_notifications__priority">Prioritas</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Indikator tampilan</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Tampilkan ikon status saat Anda memilih \"Detail pesan\" pada pesan yang dikirimkan menggunakan sealed sender.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Izinkan dari semua orang</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Pelajari lebih lanjut</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1125,6 +1149,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_chats__create_backup">Buat cadangan</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Masukkan cadangan frase</string>
   <string name="RegistrationActivity_restore">Pulihkan</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa mengimpor cadangan dari versi Signal yang lebih baru</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Cadangan frase tidak benar</string>
   <string name="RegistrationActivity_checking">Memeriksa...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d pesan sejauh ini...</string>

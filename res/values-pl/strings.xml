@@ -645,7 +645,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Domyślne</string>
+  <string name="NotificationChannel_messages">Domyślny</string>
   <string name="NotificationChannel_calls">Połączenia</string>
   <string name="NotificationChannel_failures">Awarie</string>
   <string name="NotificationChannel_backups">Kopie zapasowe</string>
@@ -789,9 +789,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
     <item quantity="one">%d minuta</item>
-    <item quantity="few">%d min</item>
-    <item quantity="many">%d min</item>
-    <item quantity="other">%d min</item>
+    <item quantity="few">%d minuty</item>
+    <item quantity="many">%d minut</item>
+    <item quantity="other">%d minut</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
@@ -810,9 +810,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
     <item quantity="one">%d tydzień</item>
-    <item quantity="few">%d tyg.</item>
-    <item quantity="many">%d tyg.</item>
-    <item quantity="other">%d tyg.</item>
+    <item quantity="few">%d tygodnie</item>
+    <item quantity="many">%d tygodni</item>
+    <item quantity="other">%d tygodni</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%dt</string>
   <!--unverified safety numbers-->
@@ -827,7 +827,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Twoje numery bezpieczeństwa z %1$s, %2$s i %3$s zmieniły się.</string>
   <plurals name="identity_others">
     <item quantity="one">%d inny</item>
-    <item quantity="few">%d innych</item>
+    <item quantity="few">%d inne</item>
     <item quantity="many">%d innych</item>
     <item quantity="other">%d innych</item>
   </plurals>
@@ -1185,7 +1185,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="reminder_header_sms_default_title">Ustaw jako domyślną aplikację SMS</string>
   <string name="reminder_header_sms_default_text">Dotknij, aby Signal był Twoją domyślną aplikacją SMS.</string>
   <string name="reminder_header_sms_import_title">Importuj bazę SMS</string>
-  <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS z twojego telefonu do szyfrowanej bazy danych Signal.</string>
+  <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS z telefonu do zaszyfrowanej bazy danych Signal.</string>
   <string name="reminder_header_push_title">Włącz wiadomości i połączenia Signal</string>
   <string name="reminder_header_push_text">Polepsz swoje komunikacje.</string>
   <string name="reminder_header_invite_title">Zaproś do używania Signal</string>
@@ -1268,7 +1268,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kod PIN blokady rejestracji różni się od kodu weryfikacyjnego SMS, który właśnie otrzymałeś(aś). Wprowadź kod PIN skonfigurowany wcześniej w aplikacji.</string>
   <string name="registration_activity__registration_lock_pin">PIN blokady rejestracji</string>
   <string name="registration_activity__forgot_pin">Zapomniałeś(aś) PIN?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Kod PIN może składać się z czterech lub więcej cyfr. Jeśli zapomnisz kodu PIN, Twoje konto może zostać zablokowane na okres siedmiu dni.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Kod PIN może składać się z czterech lub więcej cyfr. Jeśli zapomnisz kodu PIN, Twoje konto może zostać zablokowane na okres do siedmiu dni.</string>
   <string name="registration_lock_dialog_view__enter_pin">Wpisz PIN</string>
   <string name="registration_lock_dialog_view__confirm_pin">Potwierdź PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Wprowadź PIN blokady rejestracji</string>

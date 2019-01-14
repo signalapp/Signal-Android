@@ -31,7 +31,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">إلغاء قفل Signal وإشعارات الرسائل بشكل دائم</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">تفعيل Signal وإشعارات الرسائل بشكل دائم</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جارٍ إلغاء التسجيل من رسائل ومكالمات Signal...</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">الرسائل النصية مفعلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">المس لتغيير التطبيق الافتراضي للرسائل</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">الرسائل النصية معطلة</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">المس لجعل Signal التطبيق الافتراضي للرسائل</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">المس لجعل Signal التطبيق الرئيسي للرسائل</string>
   <string name="ApplicationPreferencesActivity_on">يعمل</string>
   <string name="ApplicationPreferencesActivity_On">يعمل</string>
   <string name="ApplicationPreferencesActivity_off">مغلق</string>

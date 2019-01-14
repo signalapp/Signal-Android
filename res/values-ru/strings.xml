@@ -540,7 +540,7 @@
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Пригласить в Signal</string>
   <string name="SharedContactDetailsActivity_signal_message">Сообщение Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Звонок через Signal</string>
+  <string name="SharedContactDetailsActivity_signal_call">Вызов Signal</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactView_invite_to_signal">Пригласить в Signal</string>

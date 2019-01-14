@@ -260,12 +260,12 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">写真を撮りますが，準備はいいですか？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signalでプロフィール名と画像が設定できるようになりました。</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal のプロフィールは以下の通りです。</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">入力中アイコンとは</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">入力中アイコンのご紹介</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">メッセージが入力中であることを表示します。</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">いま有効化しますか？</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">アイコンはこれです。</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">アイコンの有効化</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">入力インジケーターを表示する</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">入力中アイコンはこちら</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">入力中アイコンを有効にする</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">入力中アイコンを表示する</string>
   <string name="ExperienceUpgradeActivity_no_thanks">しません</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます...</string>
@@ -982,7 +982,7 @@
   <string name="preferences__read_receipts">既読通知</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
   <string name="preferences__typing_indicators">入力中アイコン</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">有効化されていなければ、相手の入力中アイコンは表示されません。</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">キーボード予測入力を無効化</string>
   <string name="preferences_app_protection__blocked_contacts">ブロックした連絡先</string>
   <string name="preferences_chats__when_using_mobile_data">モバイルデータ通信利用時</string>

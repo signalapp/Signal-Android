@@ -261,7 +261,11 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ឥឡូវនេះ អ្នកអាចចែករំលែករូបថតប្រវត្តិរូប និងឈ្មោះជាមួយមិត្តភក្តិនៅលើ Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">ទម្រង់ Signal មាននៅទីនេះ</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">ការណែនាំរបៀបវាយអក្សរ</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">ឥឡូវអ្នកអាចមើល និងចែករំលែក នៅពេលសារត្រូវបានវាយបញ្ចូល។</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">តើអ្នកចង់បើកវាដំណើរឥឡូវនេះទេ?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">របៀបរវាយអក្សរនៅទីនេះ</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">បើកការវាស់នៃការវាយអក្សរ</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">បើកការវាស់នៃការវាយអក្សរ</string>
   <string name="ExperienceUpgradeActivity_no_thanks">ទេ អរគុណ</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">សារកំពុងទៅដល់...</string>
@@ -982,6 +986,8 @@
   <string name="preferences__incognito_keyboard">ក្តារចុចអនាមឹក</string>
   <string name="preferences__read_receipts">ទទួលបានការអាន</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ប្រសិនបើការទទួលត្រូវបានបិទ អ្នកនឹងមិនអាចមើលការទទួលពីអ្នកផ្សេងទេ។</string>
+  <string name="preferences__typing_indicators">វាស់ការវាយអក្សរ</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ប្រសិនបើ ការបង្ហាញការវាយត្រូវបានបិទ អ្នកនឹងមិនអាចមើលឃើញការវាយបញ្ចូលរបស់អ្នកដទៃទេ។</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">ការស្នើសុំក្តារចុច ដើម្បីបិទការសិក្សាផ្ទាល់ខ្លួន</string>
   <string name="preferences_app_protection__blocked_contacts">បិទលេខទំនាក់ទំនង</string>
   <string name="preferences_chats__when_using_mobile_data">នៅពេលប្រើប្រាស់ទិន្នន័យទូរសព្ទ</string>
@@ -1011,6 +1017,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">បង្ហាញសូចនាករ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">បង្ហាញស្ថានភាពរូបដំណាងនៅពេលអ្នកជ្រើសរើស \"ព័ត៌មានលម្អិតសាររបស់អ្នក\" នៅលើសារដែលត្រូវបានបញ្ជូនដោយប្រើឧបករណ៍បញ្ចូន</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">អនុញ្ញាតពីនរណាម្នាក់</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">បើក ត្រាអ្នកផ្ញើសម្រាប់សារទទួលបានពីអ្នកក្រៅបញ្ជីទំនាក់ទំនង និងមនុស្សដែលអ្នកមិនបានចែករំលែកទម្រង់របស់អ្នក។</string>
   <string name="preferences_communication__sealed_sender_learn_more">សិក្សាបន្ថែម</string>
   <!--****************************************-->
   <!--menus-->
@@ -1142,6 +1149,7 @@
   <string name="preferences_chats__create_backup">បង្កើតការបម្រុងទុក</string>
   <string name="RegistrationActivity_enter_backup_passphrase">បញ្ចូលឃ្លាសម្ងាត់បម្រុងទុក</string>
   <string name="RegistrationActivity_restore">ស្តារឡើងវិញ</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">មិនអាចនាំចូលឯកសារបម្រុងទុក ពី Signal ជំនាន់ថ្មី</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">ឃ្លាសម្ងាត់បម្រុងទុកមិនត្រឹមត្រូវ</string>
   <string name="RegistrationActivity_checking">កំពុងត្រួតពិនិត្យ...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d សារ ឥឡូវនេះ...</string>

@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+ %d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
@@ -301,6 +302,12 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Připraven na portrét?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teď můžete sdílet vaši profilovou fotografii a jméno s vašimi přáteli na Signalu.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profily jsou tady</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Představujeme indikátory psaní.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nyní můžete volitelně vidět a sdílet když je psaná zpráva.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Chcete je nyní povolit?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Indikátory psaní jsou zde</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Povolit indikátory psaní.</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Zapnout indikátory psaní</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne díky</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Načítám zprávu...</string>
@@ -662,6 +669,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová zpráva</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d Položka</item>
+    <item quantity="few">%d Položek</item>
+    <item quantity="many">%d Položek</item>
+    <item quantity="other">%d Položek</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Zařízení již není reigstrováno</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je proto, že jste registrovali vaše telefonní číslo u Signálu z jiného zařízení. Klepněte pro přeregistraci.</string>
@@ -1055,6 +1068,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="preferences__incognito_keyboard">Inkognito klávesnice</string>
   <string name="preferences__read_receipts">Info o přečtení</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jestliže zakážete posílání potvrzení o přečtení zprávy, nebudete vidět tyto potvrzení ani od ostatních.</string>
+  <string name="preferences__typing_indicators">Indikátory psaní</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Pokud máte vypnuté indikátory psaní, neuvidíte je ani od ostatních.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Vyžádat klávesnici s vypnutým učením</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
@@ -1081,7 +1096,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="preferences_events__contact_joined_signal">Kontakt se připojil k Signalu</string>
   <string name="preferences_notifications__priority">Priorita</string>
   <string name="preferences_communication__category_sealed_sender">Utajený odesílatel</string>
-  <string name="preferences_communication__sealed_sender_display_indicators">Indikátor na displeji</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Zobrazit indikátory</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Zobrazit ikonu když zvolíte \"Detail zprávy\" u zprávy poslané s použitím funkce utajený odesílatel</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Povolit od kohokoliv</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Povolit utajené odesílatele pro příchozí zprávy od lidíé které nemáte kontaktech nebo se kterými nesdílte váš profil.</string>

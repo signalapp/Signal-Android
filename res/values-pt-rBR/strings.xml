@@ -383,10 +383,10 @@
   <string name="MessageRecord_called_s">Chamou %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
   <string name="MessageRecord_s_joined_signal">%s está no Signal!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Você desabilitou as mensagens temporárias.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desabilitou as mensagens temporárias.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu o tempo de duração das mensagens temporárias como %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de duração das mensagens temporárias como %2$s.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Você desabilitou as mensagens efêmeras.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desabilitou as mensagens efêmeras.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu o tempo de duração das mensagens efêmeras como %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de duração das mensagens efêmeras como %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Você marcou o seu número de segurança com %s como verificado</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Você marcou o seu número de segurança com %scomo verificado a partir de outro dispositivo</string>
@@ -418,7 +418,7 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">O Signal precisa da permissão Câmera para escanear um código QR, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Não é possível escanear um código QR sem a permissão Câmera</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Mensagens temporárias</string>
+  <string name="ExpirationDialog_disappearing_messages">Mensagens efêmeras</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Suas mensagens não irão expirar.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mensagens enviadas e recebidas nesta conversa irão desaparecer %s após terem sido visualizadas.</string>
   <!--PassphrasePromptActivity-->
@@ -538,8 +538,8 @@
   <string name="ThreadRecord_missed_call">Ligação perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">Mensagens temporárias desabilitadas</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem temporária definida para %s</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem efêmera definida para %s</string>
   <string name="ThreadRecord_safety_number_changed">Número de segurança alterado</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <string name="ThreadRecord_you_marked_verified">Você marcou como verificado</string>
@@ -1072,7 +1072,7 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar anexo</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Mensagens temporárias</string>
+  <string name="conversation_expiring_off__disappearing_messages">Mensagens efêmeras</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Mensagens expirando</string>
   <!--conversation_insecure-->
