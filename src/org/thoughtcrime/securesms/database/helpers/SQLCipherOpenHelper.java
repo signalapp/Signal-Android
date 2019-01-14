@@ -61,8 +61,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_CAPTIONS_FIX          = 15;
   private static final int PREVIEWS                         = 16;
   private static final int CONVERSATION_SEARCH              = 17;
+  private static final int SELF_ATTACHMENT_CLEANUP          = 18;
 
-  private static final int    DATABASE_VERSION = 17;
+  private static final int    DATABASE_VERSION = 18;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -381,6 +382,22 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         long mmsFinished = SystemClock.elapsedRealtime();
         Log.i(TAG, "Indexing MMS completed in " + (mmsFinished - smsFinished) + " ms");
         Log.i(TAG, "Indexing finished. Total time: " + (mmsFinished - start) + " ms");
+      }
+
+      if (oldVersion < SELF_ATTACHMENT_CLEANUP) {
+        String localNumber = TextSecurePreferences.getLocalNumber(context);
+
+        try (Cursor threadCursor = db.rawQuery("SELECT _id FROM thread WHERE recipient_ids = ?", new String[]{ localNumber })) {
+          if (threadCursor != null && threadCursor.moveToFirst()) {
+            long          threadId     = threadCursor.getLong(0);
+            ContentValues updateValues = new ContentValues(1);
+
+            updateValues.put("pending_push", 0);
+
+            int count = db.update("part", updateValues, "mid IN (SELECT _id FROM mms WHERE thread_id = ?)", new String[]{ String.valueOf(threadId) });
+            Log.i(TAG, "Updated " + count + " self-sent attachments.");
+          }
+        }
       }
 
       db.setTransactionSuccessful();

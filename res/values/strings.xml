@@ -6,6 +6,7 @@
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
     <string name="save">Save</string>
+    <string name="note_to_self">Note to Self</string>
 
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">New message</string>

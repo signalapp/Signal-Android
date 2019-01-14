@@ -733,6 +733,12 @@ public class PushDecryptJob extends ContextJob {
                                           message.getMessage().getExpiresInSeconds() * 1000L);
     }
 
+    if (recipients.isLocalNumber()) {
+      SyncMessageId id = new SyncMessageId(recipients.getAddress(), message.getTimestamp());
+      DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+      DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
+    }
+
     return threadId;
   }
 
@@ -823,6 +829,12 @@ public class PushDecryptJob extends ContextJob {
       ApplicationContext.getInstance(context)
                         .getExpiringMessageManager()
                         .scheduleDeletion(messageId, isGroup, message.getExpirationStartTimestamp(), expiresInMillis);
+    }
+
+    if (recipient.isLocalNumber()) {
+      SyncMessageId id = new SyncMessageId(recipient.getAddress(), message.getTimestamp());
+      DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+      DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
     }
 
     return threadId;

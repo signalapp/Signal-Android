@@ -18,8 +18,12 @@ package org.thoughtcrime.securesms.sms;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -31,7 +35,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
@@ -44,7 +47,6 @@ import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -75,7 +77,7 @@ public class MessageSender {
 
     long messageId = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
 
-    sendTextMessage(context, recipient, forceSms, keyExchange, messageId, message.getExpiresIn());
+    sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
 
     return allocatedThreadId;
   }
@@ -116,28 +118,23 @@ public class MessageSender {
   }
 
   public static void resend(Context context, MessageRecord messageRecord) {
-    try {
-      long       messageId   = messageRecord.getId();
-      boolean    forceSms    = messageRecord.isForcedSms();
-      boolean    keyExchange = messageRecord.isKeyExchange();
-      long       expiresIn   = messageRecord.getExpiresIn();
-      Recipient  recipient   = messageRecord.getRecipient();
+    long       messageId   = messageRecord.getId();
+    boolean    forceSms    = messageRecord.isForcedSms();
+    boolean    keyExchange = messageRecord.isKeyExchange();
+    long       expiresIn   = messageRecord.getExpiresIn();
+    Recipient  recipient   = messageRecord.getRecipient();
 
-      if (messageRecord.isMms()) {
-        sendMediaMessage(context, recipient, forceSms, messageId, expiresIn);
-      } else {
-        sendTextMessage(context, recipient, forceSms, keyExchange, messageId, expiresIn);
-      }
-    } catch (MmsException e) {
-      Log.w(TAG, e);
+    if (messageRecord.isMms()) {
+      sendMediaMessage(context, recipient, forceSms, messageId, expiresIn);
+    } else {
+      sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     }
   }
 
   private static void sendMediaMessage(Context context, Recipient recipient, boolean forceSms, long messageId, long expiresIn)
-      throws MmsException
   {
-    if (!forceSms && isSelfSend(context, recipient)) {
-      sendMediaSelf(context, messageId, expiresIn);
+    if (isLocalSelfSend(context, recipient, forceSms)) {
+      sendLocalMediaSelf(context, messageId);
     } else if (isGroupPushSend(recipient)) {
       sendGroupPush(context, recipient, messageId, null);
     } else if (!forceSms && isPushMediaSend(context, recipient)) {
@@ -149,46 +146,14 @@ public class MessageSender {
 
   private static void sendTextMessage(Context context, Recipient recipient,
                                       boolean forceSms, boolean keyExchange,
-                                      long messageId, long expiresIn)
+                                      long messageId)
   {
-    if (!forceSms && isSelfSend(context, recipient)) {
-      sendTextSelf(context, messageId, expiresIn);
+    if (isLocalSelfSend(context, recipient, forceSms)) {
+      sendLocalTextSelf(context, messageId);
     } else if (!forceSms && isPushTextSend(context, recipient, keyExchange)) {
       sendTextPush(context, recipient, messageId);
     } else {
       sendSms(context, recipient, messageId);
-    }
-  }
-
-  private static void sendTextSelf(Context context, long messageId, long expiresIn) {
-    SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
-
-    database.markAsSent(messageId, true);
-
-    Pair<Long, Long> messageAndThreadId = database.copyMessageInbox(messageId);
-    database.markAsPush(messageAndThreadId.first);
-
-    if (expiresIn > 0) {
-      ExpiringMessageManager expiringMessageManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
-
-      database.markExpireStarted(messageId);
-      expiringMessageManager.scheduleDeletion(messageId, false, expiresIn);
-    }
-  }
-
-  private static void sendMediaSelf(Context context, long messageId, long expiresIn)
-      throws MmsException
-  {
-    ExpiringMessageManager expiringMessageManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
-    MmsDatabase            database               = DatabaseFactory.getMmsDatabase(context);
-
-    database.markAsSent(messageId, true);
-    database.copyMessageInbox(messageId);
-    markAttachmentsAsUploaded(messageId, database, DatabaseFactory.getAttachmentDatabase(context));
-
-    if (expiresIn > 0) {
-      database.markExpireStarted(messageId);
-      expiringMessageManager.scheduleDeletion(messageId, true, expiresIn);
     }
   }
 
@@ -246,18 +211,6 @@ public class MessageSender {
            !recipient.getAddress().isMmsGroup();
   }
 
-  private static boolean isSelfSend(Context context, Recipient recipient) {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
-      return false;
-    }
-
-    if (recipient.isGroupRecipient()) {
-      return false;
-    }
-
-    return Util.isOwnNumber(context, recipient.getAddress());
-  }
-
   private static boolean isPushDestination(Context context, Recipient destination) {
     if (destination.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
       return true;
@@ -282,15 +235,61 @@ public class MessageSender {
     }
   }
 
-  private static void markAttachmentsAsUploaded(long mmsId, @NonNull MmsDatabase mmsDatabase, @NonNull AttachmentDatabase attachmentDatabase) {
-    try (MmsDatabase.Reader reader = mmsDatabase.readerFor(mmsDatabase.getMessage(mmsId))) {
-      MessageRecord message = reader.getNext();
+  private static boolean isLocalSelfSend(@NonNull Context context, @NonNull Recipient recipient, boolean forceSms) {
+    return recipient.isLocalNumber()                       &&
+           !forceSms                                       &&
+           TextSecurePreferences.isPushRegistered(context) &&
+           !TextSecurePreferences.isMultiDevice(context);
+  }
 
-      if (message != null && message.isMms()) {
-        for (Attachment attachment : ((MmsMessageRecord) message).getSlideDeck().asAttachments()) {
-          attachmentDatabase.markAttachmentUploaded(mmsId, attachment);
-        }
+  private static void sendLocalMediaSelf(Context context, long messageId) {
+    try {
+      ExpiringMessageManager expirationManager  = ApplicationContext.getInstance(context).getExpiringMessageManager();
+      AttachmentDatabase     attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+      MmsDatabase            mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
+      MmsSmsDatabase         mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
+      OutgoingMediaMessage   message            = mmsDatabase.getOutgoingMessage(messageId);
+      SyncMessageId          syncId             = new SyncMessageId(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getSentTimeMillis());
+
+      for (Attachment attachment : message.getAttachments()) {
+        attachmentDatabase.markAttachmentUploaded(messageId, attachment);
       }
+
+      mmsDatabase.markAsSent(messageId, true);
+      mmsDatabase.markUnidentified(messageId, true);
+
+      mmsSmsDatabase.incrementDeliveryReceiptCount(syncId, System.currentTimeMillis());
+      mmsSmsDatabase.incrementReadReceiptCount(syncId, System.currentTimeMillis());
+
+      if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
+        mmsDatabase.markExpireStarted(messageId);
+        expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
+      }
+    } catch (NoSuchMessageException | MmsException e) {
+      Log.w("Failed to update self-sent message.", e);
+    }
+  }
+
+  private static void sendLocalTextSelf(Context context, long messageId) {
+    try {
+      ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
+      SmsDatabase            smsDatabase       = DatabaseFactory.getSmsDatabase(context);
+      MmsSmsDatabase         mmsSmsDatabase    = DatabaseFactory.getMmsSmsDatabase(context);
+      SmsMessageRecord       message           = smsDatabase.getMessage(messageId);
+      SyncMessageId          syncId            = new SyncMessageId(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getDateSent());
+
+      smsDatabase.markAsSent(messageId, true);
+      smsDatabase.markUnidentified(messageId, true);
+
+      mmsSmsDatabase.incrementDeliveryReceiptCount(syncId, System.currentTimeMillis());
+      mmsSmsDatabase.incrementReadReceiptCount(syncId, System.currentTimeMillis());
+
+      if (message.getExpiresIn() > 0) {
+        smsDatabase.markExpireStarted(messageId);
+        expirationManager.scheduleDeletion(message.getId(), message.isMms(), message.getExpiresIn());
+      }
+    } catch (NoSuchMessageException e) {
+      Log.w("Failed to update self-sent message.", e);
     }
   }
 }

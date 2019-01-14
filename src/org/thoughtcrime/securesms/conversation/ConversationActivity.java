@@ -652,6 +652,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
 
+    if (recipient != null && recipient.isLocalNumber()) {
+      if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
+      else              menu.findItem(R.id.menu_call_insecure).setVisible(false);
+
+      menu.findItem(R.id.menu_mute_notifications).setVisible(false);
+    }
+
     searchViewItem = menu.findItem(R.id.menu_search);
 
     SearchView                     searchView    = (SearchView) searchViewItem.getActionView();

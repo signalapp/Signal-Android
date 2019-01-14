@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 
@@ -25,6 +26,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
@@ -93,6 +95,12 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
       database.markAsSent(messageId, true);
       database.markUnidentified(messageId, unidentified);
+
+      if (recipient.isLocalNumber()) {
+        SyncMessageId id = new SyncMessageId(recipient.getAddress(), record.getDateSent());
+        DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+        DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
+      }
 
       if (TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
         if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
@@ -166,7 +174,15 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
                                                                            .asEndSessionMessage(message.isEndSession())
                                                                            .build();
 
-      return messageSender.sendMessage(address, unidentifiedAccess, textSecureMessage).getSuccess().isUnidentified();
+      if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
+        Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
+        SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
+
+        messageSender.sendMessage(syncMessage, syncAccess);
+        return syncAccess.isPresent();
+      } else {
+        return messageSender.sendMessage(address, unidentifiedAccess, textSecureMessage).getSuccess().isUnidentified();
+      }
     } catch (UnregisteredUserException e) {
       warn(TAG, "Failure", e);
       throw new InsecureFallbackApprovalException(e);

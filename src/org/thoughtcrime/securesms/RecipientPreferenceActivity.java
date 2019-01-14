@@ -29,6 +29,10 @@ import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
 
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -202,14 +206,19 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(@NonNull Recipient recipient) {
-    glideRequests.load(recipient.getContactPhoto())
-                 .fallback(recipient.getFallbackContactPhoto().asCallCard(this))
-                 .error(recipient.getFallbackContactPhoto().asCallCard(this))
+    ContactPhoto         contactPhoto  = recipient.isLocalNumber() ? new ProfileContactPhoto(recipient.getAddress(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this)))
+                                                                   : recipient.getContactPhoto();
+    FallbackContactPhoto fallbackPhoto = recipient.isLocalNumber() ? new ResourceContactPhoto(R.drawable.ic_profile_default, R.drawable.ic_person_large)
+                                                                   : recipient.getFallbackContactPhoto();
+
+    glideRequests.load(contactPhoto)
+                 .fallback(fallbackPhoto.asCallCard(this))
+                 .error(fallbackPhoto.asCallCard(this))
                  .diskCacheStrategy(DiskCacheStrategy.ALL)
                  .into(this.avatar);
 
-    if (recipient.getContactPhoto() == null) this.avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-    else                                     this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    if (contactPhoto == null) this.avatar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+    else                      this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
     this.toolbarLayout.setTitle(recipient.toShortString());
@@ -356,6 +365,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private void setSummaries(Recipient recipient) {
       CheckBoxPreference    mutePreference            = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
+      Preference            customPreference          = this.findPreference(PREFERENCE_CUSTOM_NOTIFICATIONS);
       Preference            ringtoneMessagePreference = this.findPreference(PREFERENCE_MESSAGE_TONE);
       Preference            ringtoneCallPreference    = this.findPreference(PREFERENCE_CALL_TONE);
       ListPreference        vibrateMessagePreference  = (ListPreference) this.findPreference(PREFERENCE_MESSAGE_VIBRATE);
@@ -384,7 +394,19 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       vibrateCallPreference.setSummary(vibrateCallSummary.first);
       vibrateCallPreference.setValueIndex(vibrateCallSummary.second);
 
-      if (recipient.isGroupRecipient()) {
+      if (recipient.isLocalNumber()) {
+        mutePreference.setVisible(false);
+        customPreference.setVisible(false);
+        ringtoneMessagePreference.setVisible(false);
+        vibrateMessagePreference.setVisible(false);
+
+        if (identityPreference != null) identityPreference.setVisible(false);
+        if (aboutCategory      != null) aboutCategory.setVisible(false);
+        if (aboutDivider       != null) aboutDivider.setVisible(false);
+        if (privacyCategory    != null) privacyCategory.setVisible(false);
+        if (divider            != null) divider.setVisible(false);
+        if (callCategory       != null) callCategory.setVisible(false);
+      } if (recipient.isGroupRecipient()) {
         if (colorPreference    != null) colorPreference.setVisible(false);
         if (identityPreference != null) identityPreference.setVisible(false);
         if (callCategory       != null) callCategory.setVisible(false);

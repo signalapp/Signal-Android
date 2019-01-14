@@ -24,6 +24,8 @@ import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.CursorWrapper;
+import android.database.MatrixCursor;
+import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.RemoteException;
@@ -38,6 +40,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -222,6 +225,25 @@ public class ContactsDatabase {
                                                   new String[] {CONTACT_MIMETYPE,
                                                                 "%" + filter + "%", "%" + filter + "%"},
                                                   sort);
+
+      if (context.getString(R.string.note_to_self).toLowerCase().contains(filter.toLowerCase())) {
+        Optional<SystemContactInfo> self      = getSystemContactInfo(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+        boolean                     shouldAdd = true;
+
+        if (self.isPresent()) {
+          boolean nameMatch   = self.get().name != null && self.get().name.toLowerCase().contains(filter.toLowerCase());
+          boolean numberMatch = self.get().number != null && self.get().number.contains(filter);
+
+          shouldAdd = !nameMatch && !numberMatch;
+        }
+
+        if (shouldAdd) {
+          MatrixCursor selfCursor = new MatrixCursor(projection);
+          selfCursor.addRow(new Object[]{ context.getString(R.string.note_to_self), TextSecurePreferences.getLocalNumber(context)});
+
+          cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
+        }
+      }
     }
 
     return new ProjectionMappingCursor(cursor, projectionMap,

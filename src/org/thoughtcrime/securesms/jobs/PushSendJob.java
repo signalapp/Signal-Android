@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -34,16 +33,20 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
+import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -279,6 +282,17 @@ public abstract class PushSendJob extends SendJob {
       certificateJob.onRun();
     }
   }
+
+  protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
+    String                localNumber = TextSecurePreferences.getLocalNumber(context);
+    SentTranscriptMessage transcript  = new SentTranscriptMessage(localNumber,
+                                                                  message.getTimestamp(),
+                                                                  message,
+                                                                  message.getExpiresInSeconds(),
+                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()));
+    return SignalServiceSyncMessage.forSentTranscript(transcript);
+  }
+
 
   protected abstract void onPushSend() throws Exception;
 }

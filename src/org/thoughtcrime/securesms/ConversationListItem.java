@@ -24,17 +24,11 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -49,13 +43,11 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SearchUtil;
-import org.thoughtcrime.securesms.util.SearchUtil.StyleFactory;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -147,7 +139,9 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipient.addListener(this);
     if (highlightSubstring != null) {
-      this.fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), recipient.getName(), highlightSubstring));
+      String name = recipient.isLocalNumber() ? getContext().getString(R.string.note_to_self) : recipient.getName();
+
+      this.fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), name, highlightSubstring));
     } else {
       this.fromView.setText(recipient, unreadCount == 0);
     }
@@ -201,7 +195,9 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipient.addListener(this);
 
-    fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), recipient.getName(), highlightSubstring));
+    String name = recipient.isLocalNumber() ? getContext().getString(R.string.note_to_self) : recipient.getName();
+
+    fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), name, highlightSubstring));
     subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), contact.getAddress().toPhoneString(), highlightSubstring));
     dateView.setText("");
     archivedView.setVisibility(GONE);

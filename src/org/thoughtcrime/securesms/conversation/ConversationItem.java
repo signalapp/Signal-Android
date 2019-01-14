@@ -429,7 +429,7 @@ public class ConversationItem extends LinearLayout
                                   @NonNull Recipient               conversationRecipient,
                                            boolean                 isGroupThread)
   {
-    boolean showControls = !messageRecord.isFailed() && !Util.isOwnNumber(context, conversationRecipient.getAddress());
+    boolean showControls = !messageRecord.isFailed();
 
     if (hasSharedContact(messageRecord)) {
       sharedContactStub.get().setVisibility(VISIBLE);

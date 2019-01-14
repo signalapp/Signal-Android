@@ -11,8 +11,8 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.ChainParameters;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -32,10 +31,12 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
@@ -131,7 +132,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
     try {
       log(TAG, "Sending message: " + messageId);
-      
+
       Recipient              recipient  = message.getRecipient().resolve();
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
@@ -141,6 +142,12 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
       database.markUnidentified(messageId, unidentified);
+
+      if (recipient.isLocalNumber()) {
+        SyncMessageId id = new SyncMessageId(recipient.getAddress(), message.getSentTimeMillis());
+        DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+        DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
+      }
 
       if (TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
         if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
@@ -215,7 +222,15 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                                             .asExpirationUpdate(message.isExpirationUpdate())
                                                                                             .build();
 
-      return messageSender.sendMessage(address, UnidentifiedAccessUtil.getAccessFor(context, message.getRecipient()), mediaMessage).getSuccess().isUnidentified();
+      if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
+        Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
+        SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
+
+        messageSender.sendMessage(syncMessage, syncAccess);
+        return syncAccess.isPresent();
+      } else {
+        return messageSender.sendMessage(address, UnidentifiedAccessUtil.getAccessFor(context, message.getRecipient()), mediaMessage).getSuccess().isUnidentified();
+      }
     } catch (UnregisteredUserException e) {
       warn(TAG, e);
       throw new InsecureFallbackApprovalException(e);
