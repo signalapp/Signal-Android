@@ -599,7 +599,7 @@ public class MmsDatabase extends MessagingDatabase {
           return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
         }
 
-        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, body, attachments, timestamp, subscriptionId, expiresIn, distributionType, quote, contacts);
+        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, subject, body, attachments, timestamp, subscriptionId, expiresIn, distributionType, quote, contacts);
 
         if (Types.isSecureType(outboxType)) {
           return new OutgoingSecureMediaMessage(message);
@@ -690,7 +690,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.isQuote()));
       }
 
-      return insertMediaMessage(request.getBody(),
+      return insertMediaMessage(request.getSubject(),
+                                request.getBody(),
                                 attachments,
                                 new LinkedList<>(),
                                 request.getSharedContacts(),
@@ -752,7 +753,7 @@ public class MmsDatabase extends MessagingDatabase {
       return Optional.absent();
     }
 
-    long messageId = insertMediaMessage(retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), contentValues, null);
+    long messageId = insertMediaMessage(retrieved.getSubject(), retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), contentValues, null);
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
@@ -891,7 +892,7 @@ public class MmsDatabase extends MessagingDatabase {
       quoteAttachments.addAll(message.getOutgoingQuote().getAttachments());
     }
 
-    long messageId = insertMediaMessage(message.getBody(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), contentValues, insertListener);
+    long messageId = insertMediaMessage(message.getSubject(), message.getBody(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), contentValues, insertListener);
 
     if (message.getRecipient().getAddress().isGroup()) {
       List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().getAddress().toGroupString(), false);
@@ -911,7 +912,8 @@ public class MmsDatabase extends MessagingDatabase {
     return messageId;
   }
 
-  private long insertMediaMessage(@Nullable String body,
+  private long insertMediaMessage(@Nullable String subject,
+                                  @Nullable String body,
                                   @NonNull List<Attachment> attachments,
                                   @NonNull List<Attachment> quoteAttachments,
                                   @NonNull List<Contact> sharedContacts,
@@ -928,6 +930,7 @@ public class MmsDatabase extends MessagingDatabase {
     allAttachments.addAll(attachments);
     allAttachments.addAll(contactAttachments);
 
+    contentValues.put(SUBJECT, subject);
     contentValues.put(BODY, body);
     contentValues.put(PART_COUNT, allAttachments.size());
 
@@ -1167,7 +1170,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       return new MediaMmsMessageRecord(context, id, message.getRecipient(), message.getRecipient(),
                                        1, System.currentTimeMillis(), System.currentTimeMillis(),
-                                       0, threadId, message.getBody(),
+                                       0, threadId, message.getSubject(), message.getBody(),
                                        slideDeck, slideDeck.getSlides().size(),
                                        message.isSecure() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
                                        new LinkedList<IdentityKeyMismatch>(),
@@ -1287,7 +1290,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       return new MediaMmsMessageRecord(context, id, recipient, recipient,
                                        addressDeviceId, dateSent, dateReceived, deliveryReceiptCount,
-                                       threadId, body, slideDeck, partCount, box, mismatches,
+                                       threadId, subject, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
                                        readReceiptCount, quote, contacts);
     }
