@@ -81,6 +81,13 @@ public class SelectedRecipientsAdapter extends BaseAdapter {
     return false;
   }
 
+  public boolean hasNonRegisteredMembers() {
+    for (RecipientWrapper wrapper : recipients) {
+      if (wrapper.getRecipient().getRegistered().getId() == 2) return true;
+    }
+    return false;
+  }
+
   @Override
   public Object getItem(int position) {
     return recipients.get(position);
