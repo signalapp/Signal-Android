@@ -59,6 +59,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -84,6 +86,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -559,12 +562,14 @@ public class ConversationFragment extends Fragment
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
-        for (Slide slide : message.getSlideDeck().getSlides()) {
-          if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
-            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
-            saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new SaveAttachmentTask.Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
-            return;
-          }
+        List<SaveAttachmentTask.Attachment> attachments = Stream.of(message.getSlideDeck().getSlides())
+                                                                .filter(s -> s.getUri() != null && (s.hasImage() || s.hasVideo() || s.hasAudio() || s.hasDocument()))
+                                                                .map(s -> new SaveAttachmentTask.Attachment(s.getUri(), s.getContentType(), message.getDateReceived(), s.getFileName().orNull()))
+                                                                .toList();
+        if (!Util.isEmpty(attachments)) {
+          SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
+          saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, attachments.toArray(new SaveAttachmentTask.Attachment[0]));
+          return;
         }
 
         Log.w(TAG, "No slide with attachable media found, failing nicely.");
