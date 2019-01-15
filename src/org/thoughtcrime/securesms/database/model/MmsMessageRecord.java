@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -17,9 +18,10 @@ import java.util.List;
 
 public abstract class MmsMessageRecord extends MessageRecord {
 
-  private final @NonNull  SlideDeck     slideDeck;
-  private final @Nullable Quote         quote;
-  private final @NonNull  List<Contact> contacts = new LinkedList<>();
+  private final @NonNull  SlideDeck         slideDeck;
+  private final @Nullable Quote             quote;
+  private final @NonNull  List<Contact>     contacts     = new LinkedList<>();
+  private final @NonNull  List<LinkPreview> linkPreviews = new LinkedList<>();
 
   MmsMessageRecord(Context context, long id, String body, Recipient conversationRecipient,
                    Recipient individualRecipient, int recipientDeviceId, long dateSent,
@@ -27,7 +29,8 @@ public abstract class MmsMessageRecord extends MessageRecord {
                    long type, List<IdentityKeyMismatch> mismatches,
                    List<NetworkFailure> networkFailures, int subscriptionId, long expiresIn,
                    long expireStarted, @NonNull SlideDeck slideDeck, int readReceiptCount,
-                   @Nullable Quote quote, @NonNull List<Contact> contacts, boolean unidentified)
+                   @Nullable Quote quote, @NonNull List<Contact> contacts,
+                   @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
   {
     super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount, unidentified);
 
@@ -35,6 +38,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
     this.quote     = quote;
 
     this.contacts.addAll(contacts);
+    this.linkPreviews.addAll(linkPreviews);
   }
 
   @Override
@@ -68,5 +72,9 @@ public abstract class MmsMessageRecord extends MessageRecord {
 
   public @NonNull List<Contact> getSharedContacts() {
     return contacts;
+  }
+
+  public @NonNull List<LinkPreview> getLinkPreviews() {
+    return linkPreviews;
   }
 }

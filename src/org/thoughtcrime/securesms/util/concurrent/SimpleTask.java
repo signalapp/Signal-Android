@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.util.concurrent.Callable;
 
-public class LifecycleBoundTask {
+public class SimpleTask {
 
   /**
    * Runs a task in the background and passes the result of the computation to a task that is run
@@ -32,6 +32,17 @@ public class LifecycleBoundTask {
           }
         });
       }
+    });
+  }
+
+  /**
+   * Runs a task in the background and passes the result of the computation to a task that is run on
+   * the main thread. Essentially {@link AsyncTask}, but lambda-compatible.
+   */
+  public static <E> void run(@NonNull BackgroundTask<E> backgroundTask, @NonNull ForegroundTask<E> foregroundTask) {
+    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+      final E result = backgroundTask.run();
+      Util.runOnMain(() -> foregroundTask.run(result));
     });
   }
 

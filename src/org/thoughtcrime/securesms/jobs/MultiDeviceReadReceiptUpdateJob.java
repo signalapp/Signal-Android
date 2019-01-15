@@ -70,7 +70,7 @@ public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements Injec
       return;
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled), Optional.absent(), Optional.absent())),
+    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled), Optional.absent(), Optional.absent(), Optional.absent())),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

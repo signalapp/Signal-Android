@@ -188,7 +188,6 @@
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_light</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
-
         <item name="conversation_item_bubble_background">@color/core_grey_05</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
         <item name="conversation_item_sent_text_secondary_color">@color/core_grey_60</item>
@@ -222,6 +221,11 @@
         <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_light</item>
+
+        <item name="linkpreview_background_color">@color/core_white</item>
+        <item name="linkpreview_primary_text_color">@color/core_black</item>
+        <item name="linkpreview_secondary_text_color">@color/core_grey_60</item>
+        <item name="linkpreview_divider_color">@color/core_grey_25</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
@@ -372,6 +376,11 @@
         <item name="emoji_category_flags">@drawable/emoji_category_flags_dark</item>
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_dark</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_dark</item>
+
+        <item name="linkpreview_background_color">@color/core_grey_95</item>
+        <item name="linkpreview_primary_text_color">@color/core_white</item>
+        <item name="linkpreview_secondary_text_color">@color/core_grey_25</item>
+        <item name="linkpreview_divider_color">@color/core_grey_60</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_dark</item>
         <item name="quick_mic_icon">@drawable/ic_mic_white_24dp</item>

@@ -34,6 +34,10 @@ import android.text.TextUtils;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
+
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.components.LinkPreviewView;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -66,6 +70,7 @@ import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
@@ -127,6 +132,7 @@ public class ConversationItem extends LinearLayout
   private @NonNull  Stub<AudioView>                 audioViewStub;
   private @NonNull  Stub<DocumentView>              documentViewStub;
   private @NonNull  Stub<SharedContactView>         sharedContactStub;
+  private @NonNull  Stub<LinkPreviewView>           linkPreviewStub;
   private @Nullable EventListener                   eventListener;
 
   private int defaultBubbleColor;
@@ -137,6 +143,7 @@ public class ConversationItem extends LinearLayout
   private final SlideClickPassthroughListener   singleDownloadClickListener = new SlideClickPassthroughListener(downloadClickListener);
   private final SharedContactEventListener      sharedContactEventListener  = new SharedContactEventListener();
   private final SharedContactClickListener      sharedContactClickListener  = new SharedContactClickListener();
+  private final LinkPreviewClickListener        linkPreviewClickListener    = new LinkPreviewClickListener();
 
   private final Context context;
 
@@ -172,6 +179,7 @@ public class ConversationItem extends LinearLayout
     this.audioViewStub           = new Stub<>(findViewById(R.id.audio_view_stub));
     this.documentViewStub        = new Stub<>(findViewById(R.id.document_view_stub));
     this.sharedContactStub       = new Stub<>(findViewById(R.id.shared_contact_view_stub));
+    this.linkPreviewStub         = new Stub<>(findViewById(R.id.link_preview_stub));
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
     this.quoteView               =            findViewById(R.id.quote_view);
     this.container               =            findViewById(R.id.container);
@@ -383,6 +391,10 @@ public class ConversationItem extends LinearLayout
     return messageRecord.isMms() && !((MmsMessageRecord)messageRecord).getSharedContacts().isEmpty();
   }
 
+  private boolean hasLinkPreview(MessageRecord  messageRecord) {
+    return messageRecord.isMms() && !((MmsMessageRecord)messageRecord).getLinkPreviews().isEmpty();
+  }
+
   private void setBodyText(MessageRecord messageRecord) {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
@@ -409,6 +421,7 @@ public class ConversationItem extends LinearLayout
       if (audioViewStub.resolved())      mediaThumbnailStub.get().setVisibility(View.GONE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
+      if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
 
       sharedContactStub.get().setContact(((MediaMmsMessageRecord) messageRecord).getSharedContacts().get(0), glideRequests, locale);
       sharedContactStub.get().setEventListener(sharedContactEventListener);
@@ -418,13 +431,51 @@ public class ConversationItem extends LinearLayout
       setSharedContactCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       footer.setVisibility(GONE);
+    } else if (hasLinkPreview(messageRecord)) {
+      linkPreviewStub.get().setVisibility(View.VISIBLE);
+      if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
+      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
+      if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
+      if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
+
+      //noinspection ConstantConditions
+      LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
+
+      if (linkPreview.getThumbnail().isPresent() && shouldPromotePreviewImage(linkPreview.getThumbnail().get())) {
+        mediaThumbnailStub.get().setVisibility(VISIBLE);
+        mediaThumbnailStub.get().setImageResource(glideRequests, Collections.singletonList(new ImageSlide(context, linkPreview.getThumbnail().get())), showControls, false);
+        mediaThumbnailStub.get().setThumbnailClickListener(new LinkPreviewThumbnailClickListener());
+        mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
+        mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);
+
+        linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, false);
+
+        setThumbnailCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
+        setLinkPreviewCorners(messageRecord, previousRecord, nextRecord, isGroupThread, true);
+
+        ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      } else {
+        linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, true);
+        linkPreviewStub.get().setDownloadClickedListener(downloadClickListener);
+        setLinkPreviewCorners(messageRecord, previousRecord, nextRecord, isGroupThread, false);
+        ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      }
+
+      linkPreviewStub.get().setOnClickListener(linkPreviewClickListener);
+      linkPreviewStub.get().setOnLongClickListener(passthroughClickListener);
+
+
+      footer.setVisibility(VISIBLE);
     } else if (hasAudio(messageRecord)) {
       audioViewStub.get().setVisibility(View.VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
+      if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
 
       //noinspection ConstantConditions
       audioViewStub.get().setAudio(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
@@ -439,6 +490,7 @@ public class ConversationItem extends LinearLayout
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
+      if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
 
       //noinspection ConstantConditions
       documentViewStub.get().setDocument(((MediaMmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide(), showControls);
@@ -451,9 +503,10 @@ public class ConversationItem extends LinearLayout
       footer.setVisibility(VISIBLE);
     } else if (hasThumbnail(messageRecord)) {
       mediaThumbnailStub.get().setVisibility(View.VISIBLE);
-      if (audioViewStub.resolved())    audioViewStub.get().setVisibility(View.GONE);
-      if (documentViewStub.resolved()) documentViewStub.get().setVisibility(View.GONE);
-      if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
+      if (audioViewStub.resolved())     audioViewStub.get().setVisibility(View.GONE);
+      if (documentViewStub.resolved())  documentViewStub.get().setVisibility(View.GONE);
+      if (sharedContactStub.resolved()) sharedContactStub.get().setVisibility(GONE);
+      if (linkPreviewStub.resolved())   linkPreviewStub.get().setVisibility(GONE);
 
       //noinspection ConstantConditions
       List<Slide> thumbnailSlides = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlides();
@@ -469,7 +522,7 @@ public class ConversationItem extends LinearLayout
       mediaThumbnailStub.get().setConversationColor(messageRecord.isOutgoing() ? defaultBubbleColor
                                                                                : messageRecord.getRecipient().getColor().toConversationColor(context));
 
-      setThumbnailOutlineCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
+      setThumbnailCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -479,6 +532,7 @@ public class ConversationItem extends LinearLayout
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
       if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
+      if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -486,10 +540,10 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private void setThumbnailOutlineCorners(@NonNull MessageRecord           current,
-                                          @NonNull Optional<MessageRecord> previous,
-                                          @NonNull Optional<MessageRecord> next,
-                                                   boolean                 isGroupThread)
+  private void setThumbnailCorners(@NonNull MessageRecord           current,
+                                   @NonNull Optional<MessageRecord> previous,
+                                   @NonNull Optional<MessageRecord> next,
+                                            boolean                 isGroupThread)
   {
     int defaultRadius  = readDimen(R.dimen.message_corner_radius);
     int collapseRadius = readDimen(R.dimen.message_corner_collapse_radius);
@@ -541,24 +595,49 @@ public class ConversationItem extends LinearLayout
       topRight = 0;
     }
 
-    mediaThumbnailStub.get().setOutlineCorners(topLeft, topRight, bottomRight, bottomLeft);
+    if (hasLinkPreview(messageRecord)) {
+      bottomLeft  = 0;
+      bottomRight = 0;
+    }
+
+    mediaThumbnailStub.get().setCorners(topLeft, topRight, bottomRight, bottomLeft);
   }
 
   private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
       sharedContactStub.get().setSingularStyle();
+    } else if (current.isOutgoing()) {
+      sharedContactStub.get().setClusteredOutgoingStyle();
     } else {
-      if (current.isOutgoing()) {
-        sharedContactStub.get().setClusteredOutgoingStyle();
-      } else {
-        sharedContactStub.get().setClusteredIncomingStyle();
-      }
+      sharedContactStub.get().setClusteredIncomingStyle();
+    }
+  }
+
+  private void setLinkPreviewCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, boolean bigImage) {
+    int defaultRadius  = readDimen(R.dimen.message_corner_radius);
+    int collapseRadius = readDimen(R.dimen.message_corner_collapse_radius);
+
+    if (bigImage) {
+      linkPreviewStub.get().setCorners(0, 0);
+    } else if (isStartOfMessageCluster(current, previous, isGroupThread) && !current.isOutgoing() && isGroupThread) {
+      linkPreviewStub.get().setCorners(0, 0);
+    } else if (isSingularMessage(current, previous, next, isGroupThread) || isStartOfMessageCluster(current, previous, isGroupThread)) {
+      linkPreviewStub.get().setCorners(defaultRadius, defaultRadius);
+    } else if (current.isOutgoing()) {
+      linkPreviewStub.get().setCorners(defaultRadius, collapseRadius);
+    } else {
+      linkPreviewStub.get().setCorners(collapseRadius, defaultRadius);
     }
   }
 
   private void setContactPhoto(@NonNull Recipient recipient) {
     if (contactPhoto == null) return;
     contactPhoto.setAvatar(glideRequests, recipient, true);
+  }
+
+  private boolean shouldPromotePreviewImage(@NonNull Attachment attachment) {
+    int minWidth = getResources().getDimensionPixelSize(R.dimen.media_bubble_min_width);
+    return attachment.getWidth() >= minWidth;
   }
 
   private SpannableString linkifyMessageBody(SpannableString messageBody, boolean shouldLinkifyAllLinks) {
@@ -843,6 +922,27 @@ public class ConversationItem extends LinearLayout
         eventListener.onSharedContactDetailsClicked(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), sharedContactStub.get().getAvatarView());
       } else {
         passthroughClickListener.onClick(view);
+      }
+    }
+  }
+
+  private class LinkPreviewClickListener implements View.OnClickListener {
+    @Override
+    public void onClick(View view) {
+      if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
+        eventListener.onLinkPreviewClicked(((MmsMessageRecord) messageRecord).getLinkPreviews().get(0));
+      } else {
+        passthroughClickListener.onClick(view);
+      }
+    }
+  }
+
+  private class LinkPreviewThumbnailClickListener implements SlideClickListener {
+    public void onClick(final View v, final Slide slide) {
+      if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
+        eventListener.onLinkPreviewClicked(((MmsMessageRecord) messageRecord).getLinkPreviews().get(0));
+      } else {
+        performClick();
       }
     }
   }

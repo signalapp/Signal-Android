@@ -101,7 +101,7 @@ public class AttachmentUploadJob extends ContextJob implements InjectableType {
            exception instanceof ConnectException;
   }
 
-  protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {
+  private SignalServiceAttachment getAttachmentFor(Attachment attachment) {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());

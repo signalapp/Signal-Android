@@ -9,7 +9,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.text.TextUtils;
 import android.util.Pair;
+
+import com.annimon.stream.Stream;
 
 import org.signal.libsignal.metadata.InvalidMetadataMessageException;
 import org.signal.libsignal.metadata.InvalidMetadataVersionException;
@@ -53,6 +56,8 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -80,6 +85,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
@@ -227,7 +233,7 @@ public class PushDecryptJob extends ContextJob {
 
       if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
-        boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent();
+        boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent();
 
         if      (message.isEndSession())        handleEndSessionMessage(content, smsMessageId);
         else if (message.isGroupUpdate())       handleGroupMessage(content, message, smsMessageId);
@@ -484,6 +490,7 @@ public class PushDecryptJob extends ContextJob {
                                                                    message.getGroupInfo(),
                                                                    Optional.absent(),
                                                                    Optional.absent(),
+                                                                   Optional.absent(),
                                                                    Optional.absent());
 
         database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
@@ -518,7 +525,7 @@ public class PushDecryptJob extends ContextJob {
         threadId = GroupMessageProcessor.process(context, content, message.getMessage(), true);
       } else if (message.getMessage().isExpirationUpdate()) {
         threadId = handleSynchronizeSentExpirationUpdate(message);
-      } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent()) {
+      } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent()) {
         threadId = handleSynchronizeSentMediaMessage(message);
       } else {
         threadId = handleSynchronizeSentTextMessage(message);
@@ -581,7 +588,8 @@ public class PushDecryptJob extends ContextJob {
                         .add(new MultiDeviceConfigurationUpdateJob(getContext(),
                                                                    TextSecurePreferences.isReadReceiptsEnabled(getContext()),
                                                                    TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
+                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
+                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
     }
   }
 
@@ -617,18 +625,20 @@ public class PushDecryptJob extends ContextJob {
     notifyTypingStoppedFromIncomingMessage(getMessageDestination(content, message), content.getSender(), content.getSenderDevice());
 
     try {
-      MmsDatabase             database       = DatabaseFactory.getMmsDatabase(context);
-      Optional<QuoteModel>    quote          = getValidatedQuote(message.getQuote());
-      Optional<List<Contact>> sharedContacts = getContacts(message.getSharedContacts());
-      IncomingMediaMessage    mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
-                                                                        message.getTimestamp(), -1,
-                                                                        message.getExpiresInSeconds() * 1000L, false,
-                                                                        content.isNeedsReceipt(),
-                                                                        message.getBody(),
-                                                                        message.getGroupInfo(),
-                                                                        message.getAttachments(),
-                                                                        quote,
-                                                                        sharedContacts);
+      MmsDatabase                 database       = DatabaseFactory.getMmsDatabase(context);
+      Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
+      Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
+      Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
+      IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
+                                                                            message.getTimestamp(), -1,
+                                                                            message.getExpiresInSeconds() * 1000L, false,
+                                                                            content.isNeedsReceipt(),
+                                                                            message.getBody(),
+                                                                            message.getGroupInfo(),
+                                                                            message.getAttachments(),
+                                                                            quote,
+                                                                            sharedContacts,
+                                                                            linkPreviews);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -673,17 +683,19 @@ public class PushDecryptJob extends ContextJob {
   private long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message)
       throws MmsException
   {
-    MmsDatabase              database       = DatabaseFactory.getMmsDatabase(context);
-    Recipient                recipients     = getSyncMessageDestination(message);
-    Optional<QuoteModel>     quote          = getValidatedQuote(message.getMessage().getQuote());
-    Optional<List<Contact>>  sharedContacts = getContacts(message.getMessage().getSharedContacts());
-    OutgoingMediaMessage     mediaMessage   = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
-                                                                       PointerAttachment.forPointers(message.getMessage().getAttachments()),
-                                                                       message.getTimestamp(), -1,
-                                                                       message.getMessage().getExpiresInSeconds() * 1000,
-                                                                       ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
-                                                                       sharedContacts.or(Collections.emptyList()),
-                                                                       Collections.emptyList(), Collections.emptyList());
+    MmsDatabase                 database       = DatabaseFactory.getMmsDatabase(context);
+    Recipient                   recipients     = getSyncMessageDestination(message);
+    Optional<QuoteModel>        quote          = getValidatedQuote(message.getMessage().getQuote());
+    Optional<List<Contact>>     sharedContacts = getContacts(message.getMessage().getSharedContacts());
+    Optional<List<LinkPreview>> previews       = getLinkPreviews(message.getMessage().getPreviews(), message.getMessage().getBody().or(""));
+    OutgoingMediaMessage        mediaMessage   = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
+                                                                          PointerAttachment.forPointers(message.getMessage().getAttachments()),
+                                                                          message.getTimestamp(), -1,
+                                                                          message.getMessage().getExpiresInSeconds() * 1000,
+                                                                          ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
+                                                                          sharedContacts.or(Collections.emptyList()),
+                                                                          previews.or(Collections.emptyList()),
+                                                                          Collections.emptyList(), Collections.emptyList());
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
@@ -784,7 +796,7 @@ public class PushDecryptJob extends ContextJob {
     long              messageId;
 
     if (isGroup) {
-      OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient, new SlideDeck(), body, message.getTimestamp(), -1, expiresInMillis, ThreadDatabase.DistributionTypes.DEFAULT, null, Collections.emptyList());
+      OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient, new SlideDeck(), body, message.getTimestamp(), -1, expiresInMillis, ThreadDatabase.DistributionTypes.DEFAULT, null, Collections.emptyList(), Collections.emptyList());
       outgoingMediaMessage = new OutgoingSecureMediaMessage(outgoingMediaMessage);
 
       messageId = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMediaMessage, threadId, false, null);
@@ -1003,7 +1015,14 @@ public class PushDecryptJob extends ContextJob {
       List<Attachment> attachments = new LinkedList<>();
 
       if (message.isMms()) {
-        attachments = ((MmsMessageRecord) message).getSlideDeck().asAttachments();
+        MmsMessageRecord mmsMessage = (MmsMessageRecord) message;
+        attachments = mmsMessage.getSlideDeck().asAttachments();
+        if (attachments.isEmpty()) {
+          attachments.addAll(Stream.of(mmsMessage.getLinkPreviews())
+                                   .filter(lp -> lp.getThumbnail().isPresent())
+                                   .map(lp -> lp.getThumbnail().get())
+                                   .toList());
+        }
       }
 
       return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), false, attachments));
@@ -1027,6 +1046,30 @@ public class PushDecryptJob extends ContextJob {
     }
 
     return Optional.of(contacts);
+  }
+
+  private Optional<List<LinkPreview>> getLinkPreviews(Optional<List<Preview>> previews, @NonNull String message) {
+    if (!previews.isPresent()) return Optional.absent();
+
+    List<LinkPreview> linkPreviews = new ArrayList<>(previews.get().size());
+
+    for (Preview preview : previews.get()) {
+      Optional<Attachment> thumbnail     = PointerAttachment.forPointer(preview.getImage());
+      Optional<String>     url           = Optional.fromNullable(preview.getUrl());
+      Optional<String>     title         = Optional.fromNullable(preview.getTitle());
+      boolean              hasContent    = !TextUtils.isEmpty(title.or("")) || thumbnail.isPresent();
+      boolean              presentInBody = url.isPresent() && LinkPreviewUtil.findWhitelistedUrls(message).contains(url.get());
+      boolean              validDomain   = url.isPresent() && LinkPreviewUtil.isWhitelistedLinkUrl(url.get());
+
+      if (hasContent && presentInBody && validDomain) {
+        LinkPreview linkPreview = new LinkPreview(url.get(), title.or(""), thumbnail);
+        linkPreviews.add(linkPreview);
+      } else {
+        Log.w(TAG, String.format("Discarding an invalid link preview. hasContent: %b presentInBody: %b validDomain: %b", hasContent, presentInBody, validDomain));
+      }
+    }
+
+    return Optional.of(linkPreviews);
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp) {

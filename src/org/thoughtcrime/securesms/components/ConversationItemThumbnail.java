@@ -26,24 +26,12 @@ import java.util.List;
 
 public class ConversationItemThumbnail extends FrameLayout {
 
-  private static final String TAG = ConversationItemThumbnail.class.getSimpleName();
-
-  private final float[] radii      = new float[8];
-  private final RectF   bounds     = new RectF();
-  private final Path    corners    = new Path();
-
   private ThumbnailView          thumbnail;
   private AlbumThumbnailView     album;
   private ImageView              shade;
   private ConversationItemFooter footer;
   private CornerMask             cornerMask;
-
-  private final Paint outlinePaint = new Paint();
-  {
-    outlinePaint.setStyle(Paint.Style.STROKE);
-    outlinePaint.setStrokeWidth(1f);
-    outlinePaint.setAntiAlias(true);
-  }
+  private Outliner               outliner;
 
   public ConversationItemThumbnail(Context context) {
     super(context);
@@ -63,13 +51,14 @@ public class ConversationItemThumbnail extends FrameLayout {
   private void init(@Nullable AttributeSet attrs) {
     inflate(getContext(), R.layout.conversation_item_thumbnail, this);
 
-    outlinePaint.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_image_outline_color));
-
     this.thumbnail  = findViewById(R.id.conversation_thumbnail_image);
     this.album      = findViewById(R.id.conversation_thumbnail_album);
     this.shade      = findViewById(R.id.conversation_thumbnail_shade);
     this.footer     = findViewById(R.id.conversation_thumbnail_footer);
     this.cornerMask = new CornerMask(this);
+    this.outliner   = new Outliner();
+
+    outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_image_outline_color));
 
     if (attrs != null) {
       TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ConversationItemThumbnail, 0, 0);
@@ -95,17 +84,7 @@ public class ConversationItemThumbnail extends FrameLayout {
     }
 
     if (album.getVisibility() != VISIBLE) {
-      final float halfStrokeWidth = outlinePaint.getStrokeWidth() / 2;
-
-      bounds.left   = halfStrokeWidth;
-      bounds.top    = halfStrokeWidth;
-      bounds.right  = canvas.getWidth() - halfStrokeWidth;
-      bounds.bottom = canvas.getHeight() - halfStrokeWidth;
-
-      corners.reset();
-      corners.addRoundRect(bounds, radii, Path.Direction.CW);
-
-      canvas.drawPath(corners, outlinePaint);
+      outliner.draw(canvas);
     }
   }
 
@@ -132,13 +111,9 @@ public class ConversationItemThumbnail extends FrameLayout {
     forceLayout();
   }
 
-  public void setOutlineCorners(int topLeft, int topRight, int bottomRight, int bottomLeft) {
-    radii[0] = radii[1] = topLeft;
-    radii[2] = radii[3] = topRight;
-    radii[4] = radii[5] = bottomRight;
-    radii[6] = radii[7] = bottomLeft;
-
+  public void setCorners(int topLeft, int topRight, int bottomRight, int bottomLeft) {
     cornerMask.setRadii(topLeft, topRight, bottomRight, bottomLeft);
+    outliner.setRadii(topLeft, topRight, bottomRight, bottomLeft);
   }
 
   public ConversationItemFooter getFooter() {

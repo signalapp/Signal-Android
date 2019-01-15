@@ -44,6 +44,7 @@ import android.text.TextUtils;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 
 import android.view.LayoutInflater;
@@ -877,6 +878,13 @@ public class ConversationFragment extends Fragment
           }
         }
       }.execute();
+    }
+
+    @Override
+    public void onLinkPreviewClicked(@NonNull LinkPreview linkPreview) {
+      if (getContext() != null && getActivity() != null) {
+        CommunicationActions.openBrowserLink(getActivity(), linkPreview.getUrl());
+      }
     }
 
     @Override

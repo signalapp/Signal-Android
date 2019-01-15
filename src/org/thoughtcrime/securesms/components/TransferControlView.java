@@ -170,6 +170,7 @@ public class TransferControlView extends FrameLayout {
 
   public void setShowDownloadText(boolean showDownloadText) {
     downloadDetailsText.setVisibility(showDownloadText ? VISIBLE : GONE);
+    forceLayout();
   }
 
   private boolean isUpdateToExistingSet(@NonNull List<Slide> slides) {

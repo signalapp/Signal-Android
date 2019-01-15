@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.LifecycleBoundTask;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -230,7 +230,7 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
     if (resultCode == RESULT_OK && requestCode == SELECT_STICKER_REQUEST_CODE && data != null) {
       final String stickerFile = data.getStringExtra(StickerSelectActivity.EXTRA_STICKER_FILE);
 
-      LifecycleBoundTask.run(getLifecycle(), () -> {
+      SimpleTask.run(getLifecycle(), () -> {
         try {
           return BitmapFactory.decodeStream(getContext().getAssets().open(stickerFile));
         } catch (IOException e) {

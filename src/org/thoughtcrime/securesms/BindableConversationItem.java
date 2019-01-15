@@ -7,6 +7,7 @@ import android.view.View;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -31,6 +32,7 @@ public interface BindableConversationItem extends Unbindable {
 
   interface EventListener {
     void onQuoteClicked(MmsMessageRecord messageRecord);
+    void onLinkPreviewClicked(@NonNull LinkPreview linkPreview);
     void onSharedContactDetailsClicked(@NonNull Contact contact, @NonNull View avatarTransitionView);
     void onAddToContactsClicked(@NonNull Contact contact);
     void onMessageSharedContactClicked(@NonNull List<Recipient> choices);

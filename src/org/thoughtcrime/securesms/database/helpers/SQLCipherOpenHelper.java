@@ -59,8 +59,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int SECRET_SENDER                    = 13;
   private static final int ATTACHMENT_CAPTIONS              = 14;
   private static final int ATTACHMENT_CAPTIONS_FIX          = 15;
+  private static final int PREVIEWS                         = 16;
 
-  private static final int    DATABASE_VERSION = 15;
+  private static final int    DATABASE_VERSION = 16;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -306,6 +307,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         if (!columnExists(db, "part", "caption")) {
           db.execSQL("ALTER TABLE part ADD COLUMN caption TEXT DEFAULT NULL");
         }
+      }
+
+      if (oldVersion < PREVIEWS) {
+        db.execSQL("ALTER TABLE mms ADD COLUMN previews TEXT");
       }
 
       db.setTransactionSuccessful();

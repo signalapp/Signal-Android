@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -36,6 +37,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -54,7 +56,7 @@ public abstract class PushSendJob extends SendJob {
   private static final String TAG                           = PushSendJob.class.getSimpleName();
   private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
 
-  protected  PushSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+  public PushSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
     super(context, workerParameters);
   }
 
@@ -245,6 +247,13 @@ public abstract class PushSendJob extends SendJob {
     }
 
     return sharedContacts;
+  }
+
+  List<Preview> getPreviewsFor(OutgoingMediaMessage mediaMessage) {
+    return Stream.of(mediaMessage.getLinkPreviews()).map(lp -> {
+      SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
+      return new Preview(lp.getUrl(), lp.getTitle(), Optional.fromNullable(attachment));
+    }).toList();
   }
 
   protected void rotateSenderCertificateIfNecessary() throws IOException {

@@ -66,6 +66,12 @@
                 android:layout="@layout/conversation_item_sent_thumbnail" />
 
             <ViewStub
+                android:id="@+id/link_preview_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/conversation_item_sent_link_preview" />
+
+            <ViewStub
                 android:id="@+id/audio_view_stub"
                 android:layout="@layout/conversation_item_sent_audio"
                 android:layout_width="210dp"

@@ -173,6 +173,8 @@ public class TextSecurePreferences {
 
   public static final String TYPING_INDICATORS = "pref_typing_indicators";
 
+  public static final String LINK_PREVIEWS = "pref_link_previews";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -344,6 +346,10 @@ public class TextSecurePreferences {
 
   public static void setTypingIndicatorsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, TYPING_INDICATORS, enabled);
+  }
+
+  public static boolean isLinkPreviewsEnabled(Context context) {
+    return getBooleanPreference(context, LINK_PREVIEWS, true);
   }
 
   public static @Nullable String getProfileKey(Context context) {

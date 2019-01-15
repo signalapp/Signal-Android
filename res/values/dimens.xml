@@ -51,6 +51,8 @@
 
     <dimen name="mediasend_progress_dialog_size">120dp</dimen>
 
+    <dimen name="thumbnail_default_radius">4dp</dimen>
+
     <dimen name="conversation_compose_height">40dp</dimen>
     <dimen name="conversation_individual_right_gutter">16dp</dimen>
     <dimen name="conversation_individual_left_gutter">16dp</dimen>
