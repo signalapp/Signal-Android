@@ -46,7 +46,7 @@
         android:id="@+id/mediapicker_selected"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparent_black_70"
+        android:background="@color/transparent_black_90"
         android:visibility="gone">
 
         <ImageView
