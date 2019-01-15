@@ -123,7 +123,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   @Override
   public void onBackPressed() {
     MediaSendFragment sendFragment = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
-    if (sendFragment == null || !sendFragment.handleBackPress()) {
+    if (sendFragment == null || !sendFragment.isVisible() || !sendFragment.handleBackPress()) {
       super.onBackPressed();
     }
   }
