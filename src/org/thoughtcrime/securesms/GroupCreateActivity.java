@@ -131,15 +131,24 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
 
     private boolean isSignalGroup() {
-        return TextSecurePreferences.isPushRegistered(this) && !getAdapter().hasNonPushMembers();
+        Log.d(TAG, "Is push registered: " + TextSecurePreferences.isPushRegistered(this));
+        Log.d(TAG, "Has non push members: " + !getAdapter().hasNonPushMembers());
+        Log.d(TAG, "Has non registered members: " + !getAdapter().hasNonRegisteredMembers());
+        Log.d(TAG, "isSignalGroup: " + (TextSecurePreferences.isPushRegistered(this) && !getAdapter().hasNonPushMembers() && !getAdapter().hasNonRegisteredMembers()));
+        return TextSecurePreferences.isPushRegistered(this) && !getAdapter().hasNonPushMembers() && !getAdapter().hasNonRegisteredMembers();
     }
 
-    private void disableSignalGroupViews(int reasonResId) {
-        View pushDisabled = findViewById(R.id.push_disabled);
-        pushDisabled.setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.push_disabled_reason)).setText(reasonResId);
+    private void disableSignalGroupViews(Integer reasonResId) {
+        if(reasonResId != null) {
+            View pushDisabled = findViewById(R.id.push_disabled);
+            pushDisabled.setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.push_disabled_reason)).setText(reasonResId);
+        }
         //avatar.setEnabled(false);
         //groupName.setEnabled(false);
+
+        ViewUtil.findById(this, R.id.recipients_text).setVisibility(View.INVISIBLE);
+        ViewUtil.findById(this, R.id.contacts_button).setVisibility(View.INVISIBLE);
     }
 
     private void enableSignalGroupViews() {
@@ -150,12 +159,22 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     @SuppressWarnings("ConstantConditions")
     private void updateViewState() {
+        Log.i(TAG, "groupToUpdate.isPresent(): " + groupToUpdate.isPresent());
         if (!TextSecurePreferences.isPushRegistered(this)) {
             disableSignalGroupViews(R.string.GroupCreateActivity_youre_not_registered_for_signal);
-            getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
+            getSupportActionBar().setTitle(groupToUpdate.isPresent()
+                    ? R.string.GroupCreateActivity_actionbar_edit_title
+                    : R.string.GroupCreateActivity_actionbar_mms_title);
         } else if (getAdapter().hasNonPushMembers()) {
             disableSignalGroupViews(R.string.GroupCreateActivity_contacts_dont_support_push);
-            getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_mms_title);
+            getSupportActionBar().setTitle(groupToUpdate.isPresent()
+                    ? R.string.GroupCreateActivity_actionbar_edit_title
+                    : R.string.GroupCreateActivity_actionbar_mms_title);
+        } else if (getAdapter().hasNonRegisteredMembers()) {
+            disableSignalGroupViews(null);
+            getSupportActionBar().setTitle(groupToUpdate.isPresent()
+                    ? R.string.GroupCreateActivity_actionbar_edit_title
+                    : R.string.GroupCreateActivity_actionbar_mms_title);
         } else {
             enableSignalGroupViews();
             getSupportActionBar().setTitle(groupToUpdate.isPresent()
