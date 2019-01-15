@@ -142,7 +142,7 @@ public abstract class PushSendJob extends SendJob {
     return null;
   }
 
-  protected @Nullable List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {
+  protected @NonNull List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {
     return Stream.of(attachments).map(this::getAttachmentPointerFor).filter(a -> a != null).toList();
   }
 
