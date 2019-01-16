@@ -134,6 +134,8 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
           if (selected.size() < maxSelection) {
             selected.add(media);
             eventListener.onMediaSelectionChanged(new ArrayList<>(selected));
+          } else {
+            eventListener.onMediaSelectionOverflow(maxSelection);
           }
         });
       }
@@ -147,5 +149,6 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
   interface EventListener {
     void onMediaChosen(@NonNull Media media);
     void onMediaSelectionChanged(@NonNull List<Media> media);
+    void onMediaSelectionOverflow(int maxSelection);
   }
 }

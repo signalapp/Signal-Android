@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -165,6 +166,11 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
     }
 
     viewModel.onSelectedMediaChanged(selected);
+  }
+
+  @Override
+  public void onMediaSelectionOverflow(int maxSelection) {
+    Toast.makeText(requireContext(), getResources().getQuantityString(R.plurals.MediaPickerItemFragment_cant_share_more_than_n_items, maxSelection, maxSelection), Toast.LENGTH_SHORT).show();
   }
 
   private void initToolbar(Toolbar toolbar) {
