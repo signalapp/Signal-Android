@@ -146,9 +146,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         }
         //avatar.setEnabled(false);
         //groupName.setEnabled(false);
-
-        ViewUtil.findById(this, R.id.recipients_text).setVisibility(View.INVISIBLE);
-        ViewUtil.findById(this, R.id.contacts_button).setVisibility(View.INVISIBLE);
+        if(groupToUpdate.isPresent()) { //only disable when updating a group
+            ViewUtil.findById(this, R.id.recipients_text).setVisibility(View.INVISIBLE);
+            ViewUtil.findById(this, R.id.contacts_button).setVisibility(View.INVISIBLE);
+        }
     }
 
     private void enableSignalGroupViews() {
@@ -163,17 +164,17 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         if (!TextSecurePreferences.isPushRegistered(this)) {
             disableSignalGroupViews(R.string.GroupCreateActivity_youre_not_registered_for_signal);
             getSupportActionBar().setTitle(groupToUpdate.isPresent()
-                    ? R.string.GroupCreateActivity_actionbar_edit_title
+                    ? R.string.GroupCreateActivity_actionbar_edit_mms_title
                     : R.string.GroupCreateActivity_actionbar_mms_title);
         } else if (getAdapter().hasNonPushMembers()) {
             disableSignalGroupViews(R.string.GroupCreateActivity_contacts_dont_support_push);
             getSupportActionBar().setTitle(groupToUpdate.isPresent()
-                    ? R.string.GroupCreateActivity_actionbar_edit_title
+                    ? R.string.GroupCreateActivity_actionbar_edit_mms_title
                     : R.string.GroupCreateActivity_actionbar_mms_title);
         } else if (getAdapter().hasNonRegisteredMembers()) {
             disableSignalGroupViews(null);
             getSupportActionBar().setTitle(groupToUpdate.isPresent()
-                    ? R.string.GroupCreateActivity_actionbar_edit_title
+                    ? R.string.GroupCreateActivity_actionbar_edit_mms_title
                     : R.string.GroupCreateActivity_actionbar_mms_title);
         } else {
             enableSignalGroupViews();
