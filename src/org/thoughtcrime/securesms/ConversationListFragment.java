@@ -50,7 +50,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -168,11 +170,31 @@ public class ConversationListFragment extends Fragment
       toggleFAB();
       return true;
     });
+    fab.setOnTouchListener(new OnTouchListener() {
+      final float MOVE_THREASHOLD = -100;
+      float initialY = 0;
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
+          initialY = event.getRawY();
+        }
+        if(event.getAction() == MotionEvent.ACTION_UP){
+          float yDiff = event.getRawY() - initialY;
+          if(isFabOpen && (yDiff < MOVE_THREASHOLD)) {
+            Log.d(TAG, "fab swipe up with fabGroup active");
+            startActivity(new Intent(getActivity(), GroupCreateActivity.class));
+            closeFABImmediately();
+          }
+          return true;
+        }
+        return false;
+      }
+    });
+
     initializeListAdapter();
   }
 
   private void toggleFAB(){
-
     if(isFabOpen){
       closeFAB();
     } else {
