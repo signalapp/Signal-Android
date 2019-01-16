@@ -151,6 +151,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセス許可が必要です。</string>
   <string name="ConversationActivity_quoted_contact_message">%2$s%1$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalは現在、デフォルトのショートメッセージアプリになっていないため、メッセージが送信できません。設定を変更しますか？</string>
+  <string name="ConversationActivity_yes">はい</string>
+  <string name="ConversationActivity_no">いいえ</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d通の未読メッセージ</item>
@@ -353,6 +356,14 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">マルチメディアメッセージ</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMSメッセージをダウンロード中</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMSメッセージのダウンロード中にエラーが発生しました。タップして再試行してください。</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">%sに送信</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">タップで選択</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">キャプション追加...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">すべてのメディア</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージは古いSignalで暗号化されているので解読不能です。Signalをアップデートして再送するよう送信者にお願いしてください。</string>
   <string name="MessageRecord_left_group">グループを抜けました</string>

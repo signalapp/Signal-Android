@@ -150,6 +150,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal zahtijeva dozvolu Kameri za fotografiranje ili snimanje videa, ali pristup biva odbijen. Molim nastavite s postavkama aplikacije, odaberite \"Dozvole\" i omogućite \"Kamera\". </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal treba pristup kameri kako bi snimio slike ili video.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_yes">Da</string>
+  <string name="ConversationActivity_no">Ne</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>
@@ -371,6 +373,11 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijalna poruka</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Preuzimanje MMS poruke</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Greška pri preuzimanju MMS poruke, pritisnite za ponovni pokušaj</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Svi mediji</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom inačicom Signal aplikacije koja više nije podržana. Molimo zapitajte pošiljatelja da ažurira na najnoviju inačicu aplikacije i ponovno pošalje poruku.</string>
   <string name="MessageRecord_left_group">Napustili ste grupu.</string>

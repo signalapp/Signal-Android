@@ -126,7 +126,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Beskeden er tom!</string>
   <string name="ConversationActivity_group_members">Gruppemedlemmer</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig modtager!</string>
-  <string name="ConversationActivity_added_to_home_screen">Føjet til hjemmeskærm</string>
+  <string name="ConversationActivity_added_to_home_screen">Føjet til startskærm</string>
   <string name="ConversationActivity_calls_not_supported">Opkald er ikke understøttet</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Din enhed understøtter ikke initieret opkald.</string>
   <string name="ConversationActivity_leave_group">Forlad gruppe?</string>
@@ -155,6 +155,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder eller optage video, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal kræver tilladelse til at tilgå kameraet, for at tage billeder og video</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS beskeder, fordi det ikke er din standard besked app. Vil du ændre dette under Android indstillinger?</string>
+  <string name="ConversationActivity_yes">Ja</string>
+  <string name="ConversationActivity_no">Nej</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>
@@ -372,6 +375,14 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediebesked</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Henter MMS...</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Kunne ikke hente MMS besked, tap for at prøve igen</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Send til %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Tap for at vælge</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Tilføj en billedtekst...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Alle mediefiler</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Signal, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen</string>
   <string name="MessageRecord_left_group">Du har forladt gruppen.</string>
@@ -1104,7 +1115,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="conversation__menu_leave_group">Forlad gruppe</string>
   <string name="conversation__menu_view_all_media">Alle mediefiler</string>
   <string name="conversation__menu_conversation_settings">Samtaleindstillinger</string>
-  <string name="conversation__menu_add_shortcut">Føj til hjemmeskærm</string>
+  <string name="conversation__menu_add_shortcut">Føj til startskærm</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Udvid popup</string>
   <!--conversation_callable_insecure-->

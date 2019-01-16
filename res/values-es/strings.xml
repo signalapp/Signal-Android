@@ -154,6 +154,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita acceso a la cámara para tomar fotos o vídeos. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y habilita «Cámara».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita acceder a la cámara para tomar fotos o vídeo.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal no puede enviar SMS/MMS ya que no es la aplicación configurada por defecto. ¿Deseas cambiar la configuración de Android para que Signal sea la aplicación por defecto para SMS?</string>
+  <string name="ConversationActivity_yes">Sí</string>
+  <string name="ConversationActivity_no">No</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -371,6 +374,14 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensaje multimedia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Descargando mensaje MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fallo al descargar mensaje MMS, toca para reintentar</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Enviar a %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Toca para seleccionar</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Añadir explicación ...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Archivos multimedia</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Se ha recibido un mensaje cifrado usando una versión de Signal antigua que ya no está disponible. Por favor, avisa al quien te lo ha enviado para que actualice a la versión más reciente y reenvíe el mensaje.</string>
   <string name="MessageRecord_left_group">Has abandonado el grupo.</string>

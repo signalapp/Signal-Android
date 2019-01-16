@@ -148,6 +148,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal ari nichun munanmi kikinpa shuyullukchikman yaykunkapak, shuyukunata, shuyukuyurikkunatapash llukchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal ari nichun munanmi shuyullukchikman yaykunkapak, shuyuta shinallata shuyukurikta llukchinkapak.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_yes">Ari</string>
+  <string name="ConversationActivity_no">Mana</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d chaski mana killkakatishka</item>
@@ -356,6 +358,11 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia chaski</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS chaskita uryakuchikun</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS chaski mana uryakurkachu, kutinlla rurapay</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Tukuylla uyayrikuchik</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Shuk pakalla chaski chayamurka ñawpa Signalmanta, mana paskarita usharinchu. Maykan kachamushkaman Signalta mushukyachichun mañapay, chaski chayamuchun.</string>
   <string name="MessageRecord_left_group"> Tantanakuymanta  llukshirka.</string>

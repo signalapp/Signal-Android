@@ -151,6 +151,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相機的權限來拍攝照片或是影片 ，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用相機的權限。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要使用相機的權限來拍攝照片和影片</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 無法傳送 SMS/MMS 訊息，因為Signal 不是你預設 SMS 應用軟體。你要在 Android 設定中改變這個設定嗎？</string>
+  <string name="ConversationActivity_yes">是</string>
+  <string name="ConversationActivity_no">否</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -353,6 +356,14 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">多媒體訊息</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">正在下載MMS訊息</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">下載MMS訊息時發生錯誤，點擊重試</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">傳送給 %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">點取以選擇</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">加入一個標題...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">所有的媒體</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到一則使用舊版本並已經不再支援的 Signal 加密訊息。請尋求傳送人將 Signal 升級到最新的版本並再次傳送該訊息。</string>
   <string name="MessageRecord_left_group">您已經離開了此群組。</string>

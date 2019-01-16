@@ -154,6 +154,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal heeft toegang tot de camera nodig om foto\'s en video\'s te kunnen opnemen, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, selecteer \"Machtigingen\" en schakel \"Camera\" in.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal heeft toegang tot de camera nodig om foto\'s en video\'s te kunnen opnemen</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan geen Sms/Mms bericht verzenden omdat Signal niet je standaard Sms app is. Wil je dit veranderen in je Android instellingen?</string>
+  <string name="ConversationActivity_yes">Ja</string>
+  <string name="ConversationActivity_no">Nee</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -371,6 +374,14 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Mms-bericht aan het downloaden</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fout bij downloaden van mms-bericht, tik om opnieuw te proberen</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Verzenden naar %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Tik om te selecteren</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Voeg een bijschrift toe...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Alle media</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet meer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
@@ -383,10 +394,10 @@
   <string name="MessageRecord_called_s">%s gebeld</string>
   <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
   <string name="MessageRecord_s_joined_signal">%s zit op Signal!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt verdwijnende berichten uitgezet.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft verdwijnende berichten uitgeschakeld.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verdwijnende berichten op %1$s ingesteld.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor verdwijnende berichten op %2$s ingesteld.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt zelf-wissende berichten uitgezet.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft zelf-wissende berichten uitgeschakeld.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor zelf-wissende berichten op %1$s ingesteld.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor zelf-wissende berichten op %2$s ingesteld.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Je hebt je veiligheidsnummer met %s gemarkeerd als \'geverifieerd\'</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Je hebt je veiligheidsnummer met %s gemarkeerd als \'geverifieerd\' vanaf een ander apparaat</string>
@@ -418,9 +429,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, selecteer \"Machtigingen\" en schakel \"Camera\" in.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan geen QR-code scannen zonder toegang tot camera</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Verdwijnende berichten</string>
+  <string name="ExpirationDialog_disappearing_messages">Zelf-wissende berichten</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">De berichten zullen zichzelf niet verwijderen.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Berichten die in dit gesprek verzonden en ontvangen worden zullen %s nadat ze gelezen zijn verdwijnen.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Nieuwe berichten die in dit gesprek verzonden en ontvangen worden zullen %s nadat ze gelezen zijn zich zelf wissen.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-pictogram</string>
@@ -538,8 +549,8 @@
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_s_is_on_signal">%s zit op Signal!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">Verdwijnende berichten uitgeschakeld</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen verdwijnen na %s</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Zelf-wissende berichten uitgeschakeld</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf wissen na %s</string>
   <string name="ThreadRecord_safety_number_changed">Veiligheidsnummer veranderd</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="ThreadRecord_you_marked_verified">Gemarkeerd als geverifieerd</string>
@@ -1072,7 +1083,7 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Bijlage opslaan</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Verdwijnende berichten</string>
+  <string name="conversation_expiring_off__disappearing_messages">Zelf wissende berichten</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Zichzelf vernietigende berichten</string>
   <!--conversation_insecure-->

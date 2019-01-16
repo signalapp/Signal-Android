@@ -148,6 +148,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal को फ़ोटो या वीडियो लेने के लिए कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal को फ़ोटो या वीडियो लेने के लिए कैमरा अनुमतियां चाहिए</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_yes">हाँ </string>
+  <string name="ConversationActivity_no">नहीं</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d अपठित संदेश</item>
@@ -356,6 +358,11 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">मल्टीमीडिया संदेश</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">एमएमएस संदेश डाउनलोड किया जा रहा है</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">एमएमएस संदेश डाउनलोड करने में त्रुटि, पुनः प्रयास करने के लिए टैप करें</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">सभी मीडिया</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal के पुराने संस्करण का उपयोग करके एन्क्रिप्ट किया गया एक संदेश प्राप्त हुआ जो अब समर्थित नहीं है। कृपया प्रेषक से नवीनतम संस्करण में अपडेट करने और संदेश भेजने के लिए कहें।</string>
   <string name="MessageRecord_left_group">आपने समूह छोड़ दिया है</string>
