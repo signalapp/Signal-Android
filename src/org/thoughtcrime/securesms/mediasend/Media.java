@@ -12,6 +12,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
  */
 public class Media implements Parcelable {
 
+  public static final String ALL_MEDIA_BUCKET_ID = "org.thoughtcrime.securesms.ALL_MEDIA";
+
   private final Uri    uri;
   private final String mimeType;
   private final long   date;

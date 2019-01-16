@@ -31,8 +31,6 @@ import java.util.Map;
  */
 class MediaRepository {
 
-  private static final String ALL_MEDIA_BUCKET_ID = "org.thoughtcrime.securesms.ALL_MEDIA";
-
   /**
    * Retrieves a list of folders that contain media.
    */
@@ -80,7 +78,7 @@ class MediaRepository {
         allMediaCount += cameraFolder.getCount();
       }
 
-      mediaFolders.add(0, new MediaFolder(allMediaThumbnail, context.getString(R.string.MediaRepository_all_media), allMediaCount, ALL_MEDIA_BUCKET_ID, MediaFolder.FolderType.NORMAL));
+      mediaFolders.add(0, new MediaFolder(allMediaThumbnail, context.getString(R.string.MediaRepository_all_media), allMediaCount, Media.ALL_MEDIA_BUCKET_ID, MediaFolder.FolderType.NORMAL));
     }
 
     if (cameraFolder != null) {
@@ -150,7 +148,7 @@ class MediaRepository {
     String[]    projection    = Build.VERSION.SDK_INT >= 16 ? new String[] { Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT }
                                                             : new String[] { Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN };
 
-    if (ALL_MEDIA_BUCKET_ID.equals(bucketId)) {
+    if (Media.ALL_MEDIA_BUCKET_ID.equals(bucketId)) {
       selection     = Images.Media.DATA + " NOT NULL";
       selectionArgs = null;
     }

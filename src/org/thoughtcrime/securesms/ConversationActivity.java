@@ -2193,7 +2193,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onQuickAttachment(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height) {
-      Media media = new Media(uri, mimeType, dateTaken, width, height, Optional.fromNullable(bucketId), Optional.absent());
+      Media media = new Media(uri, mimeType, dateTaken, width, height, Optional.of(Media.ALL_MEDIA_BUCKET_ID), Optional.absent());
       startActivityForResult(MediaSendActivity.getIntent(ConversationActivity.this, Collections.singletonList(media), recipient, composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
     }
   }

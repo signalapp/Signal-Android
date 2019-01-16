@@ -113,7 +113,7 @@ class MediaSendViewModel extends ViewModel {
     String candidate = media.get(0).getBucketId().get();
     for (int i = 1; i < media.size(); i++) {
       if (!Util.equals(candidate, media.get(i).getBucketId().orNull())) {
-        return Optional.absent();
+        return Optional.of(Media.ALL_MEDIA_BUCKET_ID);
       }
     }
 
