@@ -11,6 +11,7 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -45,15 +46,18 @@ class MediaSendViewModel extends ViewModel {
   }
 
   void setInitialSelectedMedia(@NonNull List<Media> newMedia) {
-    boolean allBucketsPopulated = Stream.of(newMedia).reduce(true, (populated, m) -> populated && m.getBucketId().isPresent());
+    List<Media> filteredMedia       = getFilteredMedia(newMedia);
+    boolean     allBucketsPopulated = Stream.of(filteredMedia).reduce(true, (populated, m) -> populated && m.getBucketId().isPresent());
 
-    selectedMedia.setValue(newMedia);
-    bucketId.setValue(allBucketsPopulated ? computeBucketId(newMedia) : Optional.absent());
+    selectedMedia.setValue(filteredMedia);
+    bucketId.setValue(allBucketsPopulated ? computeBucketId(filteredMedia) : Optional.absent());
   }
 
   void onSelectedMediaChanged(@NonNull List<Media> newMedia) {
-    selectedMedia.setValue(newMedia);
-    position.setValue(newMedia.isEmpty() ? -1 : 0);
+    List<Media> filteredMedia = getFilteredMedia(newMedia);
+
+    selectedMedia.setValue(filteredMedia);
+    position.setValue(filteredMedia.isEmpty() ? -1 : 0);
   }
 
   void onFolderSelected(@NonNull String bucketId) {
@@ -118,6 +122,13 @@ class MediaSendViewModel extends ViewModel {
     }
 
     return Optional.of(candidate);
+  }
+
+  private @NonNull List<Media> getFilteredMedia(@NonNull List<Media> media) {
+    return Stream.of(media).filter(m -> MediaUtil.isGif(m.getMimeType())       ||
+                                        MediaUtil.isImageType(m.getMimeType()) ||
+                                        MediaUtil.isVideoType(m.getMimeType())).toList();
+
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {
