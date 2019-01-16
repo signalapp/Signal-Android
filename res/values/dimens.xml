@@ -17,7 +17,18 @@
     <dimen name="contact_photo_target_size">64dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
 
-    <!-- TODO: Consolidate these two message corner things -->
+    <dimen name="album_total_width">210dp</dimen>
+    <dimen name="album_2_total_height">105dp</dimen>
+    <dimen name="album_2_cell_width">104dp</dimen>
+    <dimen name="album_3_total_height">140dp</dimen>
+    <dimen name="album_3_cell_width_big">139dp</dimen>
+    <dimen name="album_3_cell_size_small">69dp</dimen>
+    <dimen name="album_4_total_height">210dp</dimen>
+    <dimen name="album_4_cell_size">104dp</dimen>
+    <dimen name="album_5_total_height">175dp</dimen>
+    <dimen name="album_5_cell_size_big">104dp</dimen>
+    <dimen name="album_5_cell_size_small">69dp</dimen>
+
     <dimen name="message_corner_radius">16dp</dimen>
     <dimen name="message_corner_collapse_radius">4dp</dimen>
     <dimen name="message_bubble_corner_radius">2dp</dimen>
