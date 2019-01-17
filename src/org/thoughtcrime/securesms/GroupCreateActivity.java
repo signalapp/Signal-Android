@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter.OnRecipientDeletedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -104,6 +105,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     private TextView creatingText;
     private Bitmap avatarBmp;
 
+    private Bitmap avatarBmpDefault;
+
     @NonNull
     private Optional<GroupData> groupToUpdate = Optional.absent();
 
@@ -131,10 +134,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
 
     private boolean isSignalGroup() {
-        Log.d(TAG, "Is push registered: " + TextSecurePreferences.isPushRegistered(this));
-        Log.d(TAG, "Has non push members: " + !getAdapter().hasNonPushMembers());
-        Log.d(TAG, "Has non registered members: " + !getAdapter().hasNonRegisteredMembers());
-        Log.d(TAG, "isSignalGroup: " + (TextSecurePreferences.isPushRegistered(this) && !getAdapter().hasNonPushMembers() && !getAdapter().hasNonRegisteredMembers()));
+        //Log.d(TAG, "Is push registered: " + TextSecurePreferences.isPushRegistered(this));
+        //Log.d(TAG, "Has non push members: " + !getAdapter().hasNonPushMembers());
+        //Log.d(TAG, "Has non registered members: " + !getAdapter().hasNonRegisteredMembers());
+        //Log.d(TAG, "isSignalGroup: " + (TextSecurePreferences.isPushRegistered(this) && !getAdapter().hasNonPushMembers() && !getAdapter().hasNonRegisteredMembers()));
         return TextSecurePreferences.isPushRegistered(this) && !getAdapter().hasNonPushMembers() && !getAdapter().hasNonRegisteredMembers();
     }
 
@@ -160,7 +163,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     @SuppressWarnings("ConstantConditions")
     private void updateViewState() {
-        Log.i(TAG, "groupToUpdate.isPresent(): " + groupToUpdate.isPresent());
+        //Log.i(TAG, "groupToUpdate.isPresent(): " + groupToUpdate.isPresent());
         if (!TextSecurePreferences.isPushRegistered(this)) {
             disableSignalGroupViews(R.string.GroupCreateActivity_youre_not_registered_for_signal);
             getSupportActionBar().setTitle(groupToUpdate.isPresent()
@@ -181,6 +184,49 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
             getSupportActionBar().setTitle(groupToUpdate.isPresent()
                     ? R.string.GroupCreateActivity_actionbar_edit_title
                     : R.string.GroupCreateActivity_actionbar_title);
+        }
+
+        //When creating a new Group Chat check for existing group chats that have these exact contacts
+        //And update the Group Name and Avatar to match
+        if(!groupToUpdate.isPresent()) {
+            boolean matchingGroupFound = false;
+            Set<Recipient> currentRecipientSet = getAdapter().getRecipients();
+            if (currentRecipientSet.size() > 1) { //Only start looking after
+                GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this.getApplicationContext());
+                GroupDatabase.Reader reader = groupDatabase.getGroups();
+
+                GroupDatabase.GroupRecord groupRecord;
+
+                while ((groupRecord = reader.getNext()) != null) {
+                    String groupId = GroupUtil.getEncodedId(groupRecord.getId(), !isSignalGroup());
+                    List<Recipient> recipients = groupDatabase.getGroupMembers(groupId, false);
+                    final Set<Recipient> existingContacts = new HashSet<>(recipients.size());
+                    existingContacts.addAll(recipients);
+                    if (existingContacts != null && existingContacts.size() == currentRecipientSet.size() && existingContacts.containsAll(currentRecipientSet)) {
+                        Optional<GroupData> group = Optional.of(new GroupData(groupId,
+                                existingContacts,
+                                BitmapUtil.fromByteArray(groupRecord.getAvatar()),
+                                groupRecord.getAvatar(),
+                                groupRecord.getTitle()));
+                        groupName.setText(group.get().name);
+                        if (group.get().avatarBmp != null) {
+                            setAvatar(group.get().avatarBytes, group.get().avatarBmp);
+                        } else {
+                            //Reset the avatar if your making a new Group Chat
+                            setAvatar(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)), avatarBmpDefault);
+                        }
+                        matchingGroupFound = true;
+                        break;
+                    }
+                }
+                reader.close();
+            }
+
+            //Reset the Group Name and Avatar if this group does not exist
+            if (!matchingGroupFound || currentRecipientSet.size() <= 1) {
+                groupName.setText(null);
+                setAvatar(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)), avatarBmpDefault);
+            }
         }
     }
 
@@ -211,6 +257,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
         avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
         avatar.setOnClickListener(view -> Crop.pickImage(GroupCreateActivity.this));
+        avatarBmpDefault = avatarBmp;
     }
 
     private void initializeExistingGroup() {
@@ -291,7 +338,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     private @Nullable
     String getGroupName() {
-        return groupName.getText() != null ? groupName.getText().toString() : null;
+        String gName = null;
+        if(groupName != null && groupName.getText() != null && !groupName.getText().toString().equals(""))
+            gName = groupName.getText().toString();
+        return gName;
     }
 
     @Override
