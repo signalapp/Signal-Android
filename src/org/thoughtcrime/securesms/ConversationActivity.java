@@ -1549,7 +1549,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Log.i(TAG, "Selected: " + type);
     switch (type) {
     case AttachmentTypeSelector.ADD_GALLERY:
-      AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient, sendButton.getSelectedTransport()); break;
+      AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient, composeText.getTextTrimmed(), sendButton.getSelectedTransport()); break;
     case AttachmentTypeSelector.ADD_DOCUMENT:
       AttachmentManager.selectDocument(this, PICK_DOCUMENT); break;
     case AttachmentTypeSelector.ADD_SOUND:

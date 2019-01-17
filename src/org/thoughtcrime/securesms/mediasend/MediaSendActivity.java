@@ -55,16 +55,18 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private Recipient          recipient;
+  private String             body;
   private TransportOption    transport;
   private MediaSendViewModel viewModel;
 
   /**
    * Get an intent to launch the media send flow starting with the picker.
    */
-  public static Intent getIntent(@NonNull Context context, @NonNull Recipient recipient, @NonNull TransportOption transport) {
+  public static Intent getIntent(@NonNull Context context, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
     Intent intent = new Intent(context, MediaSendActivity.class);
     intent.putExtra(KEY_ADDRESS, recipient.getAddress().serialize());
     intent.putExtra(KEY_TRANSPORT, transport);
+    intent.putExtra(KEY_BODY, body);
     return intent;
   }
 
@@ -78,9 +80,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                  @NonNull String body,
                                  @NonNull TransportOption transport)
   {
-    Intent intent = getIntent(context, recipient, transport);
+    Intent intent = getIntent(context, recipient, body, transport);
     intent.putParcelableArrayListExtra(KEY_MEDIA, new ArrayList<>(media));
-    intent.putExtra(KEY_BODY, body);
     return intent;
   }
 
@@ -101,10 +102,10 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
     viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(new MediaRepository())).get(MediaSendViewModel.class);
     recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
+    body      = getIntent().getStringExtra(KEY_BODY);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 
     List<Media> media = getIntent().getParcelableArrayListExtra(KEY_MEDIA);
-    String      body  = getIntent().getStringExtra(KEY_BODY);
 
     if (!Util.isEmpty(media)) {
       navigateToMediaSend(media, body, transport);
@@ -145,7 +146,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   @Override
   public void onMediaSelected(@NonNull String bucketId, @NonNull Collection<Media> media) {
-    MediaSendFragment fragment = MediaSendFragment.newInstance("", transport, dynamicLanguage.getCurrentLocale());
+    MediaSendFragment fragment = MediaSendFragment.newInstance(body, transport, dynamicLanguage.getCurrentLocale());
     getSupportFragmentManager().beginTransaction()
                                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
                                .replace(R.id.mediapicker_fragment_container, fragment, TAG_SEND)
