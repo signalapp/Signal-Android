@@ -279,13 +279,8 @@ android {
     }
 
     defaultConfig {
-<<<<<<< HEAD
-        versionCode 418
-        versionName "4.29.4"
-=======
         versionCode 430
         versionName "4.31.0"
->>>>>>> f9d7cf0e1... Bump version to 4.31.0
 
         minSdkVersion 14
         targetSdkVersion 26
