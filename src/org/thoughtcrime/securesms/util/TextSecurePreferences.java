@@ -620,10 +620,6 @@ public class TextSecurePreferences {
     setStringPreference(context, GCM_PASSWORD_PREF, password);
   }
 
-  public static void setSignalingKey(Context context, String signalingKey) {
-    setStringPreference(context, SIGNALING_KEY_PREF, signalingKey);
-  }
-
   public static String getSignalingKey(Context context) {
     return getStringPreference(context, SIGNALING_KEY_PREF, null);
   }

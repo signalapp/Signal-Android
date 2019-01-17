@@ -713,9 +713,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     TextSecurePreferences.setLocalRegistrationId(RegistrationActivity.this, registrationId);
     SessionUtil.archiveAllSessions(RegistrationActivity.this);
 
-    String signalingKey = Util.getSecret(52);
-
-    accountManager.verifyAccountWithCode(code, signalingKey, registrationId, !registrationState.gcmToken.isPresent(), pin,
+    accountManager.verifyAccountWithCode(code, null, registrationId, !registrationState.gcmToken.isPresent(), pin,
                                          unidentifiedAccessKey, universalUnidentifiedAccess);
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(RegistrationActivity.this);
@@ -741,7 +739,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     TextSecurePreferences.setPushRegistered(RegistrationActivity.this, true);
     TextSecurePreferences.setLocalNumber(RegistrationActivity.this, registrationState.e164number);
     TextSecurePreferences.setPushServerPassword(RegistrationActivity.this, registrationState.password);
-    TextSecurePreferences.setSignalingKey(RegistrationActivity.this, signalingKey);
     TextSecurePreferences.setSignedPreKeyRegistered(RegistrationActivity.this, true);
     TextSecurePreferences.setPromptedPushRegistration(RegistrationActivity.this, true);
     TextSecurePreferences.setUnauthorizedReceived(RegistrationActivity.this, false);
