@@ -15,6 +15,7 @@
     <attr name="conversation_list_item_unread_background" format="reference"/>
     <attr name="conversation_list_item_divider" format="reference"/>
     <attr name="conversation_list_toolbar_background" format="reference"/>
+    <attr name="conversation_list_typing_tint" format="color"/>
 
     <attr name="conversation_sent_card_background" format="reference|color"/>
     <attr name="conversation_group_member_name" format="reference|color"/>
@@ -64,6 +65,7 @@
     <attr name="emoji_category_symbol" format="reference"/>
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
+    <attr name="emoji_variation_selector_background" format="reference|color" />
     <attr name="quick_camera_icon" format="reference"/>
     <attr name="quick_mic_icon" format="reference"/>
 
@@ -84,6 +86,7 @@
     <attr name="conversation_item_quote_text_color" format="reference"/>
     <attr name="conversation_item_sticky_date_background" format="reference" />
     <attr name="conversation_item_sticky_date_text_color" format="color" />
+    <attr name="conversation_item_image_outline_color" format="color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -98,6 +101,8 @@
     <attr name="contact_selection_header_text" format="reference|color" />
 
     <attr name="device_link_item_card_background" format="reference|color" />
+
+    <attr name="mediapicker_image_outline" format="reference" />
 
     <attr name="import_export_item_background_color" format="reference|color" />
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
@@ -292,6 +297,14 @@
         <attr name="conversationThumbnail_maxWidth" format="dimension" />
         <attr name="conversationThumbnail_minHeight" format="dimension" />
         <attr name="conversationThumbnail_maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TypingIndicatorView">
+        <attr name="typingIndicator_tint" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="scrollView_maxHeight" format="dimension" />
     </declare-styleable>
 
 </resources>

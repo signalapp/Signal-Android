@@ -11,10 +11,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 
@@ -57,6 +57,8 @@ public class GenericForegroundService extends Service {
     String channelId = Preconditions.checkNotNull(intent.getStringExtra(EXTRA_CHANNEL_ID));
     int    iconRes   = intent.getIntExtra(EXTRA_ICON_RES, R.drawable.ic_signal_grey_24dp);
 
+    Log.i(TAG, "handleStart() Title: " + title + "  ChannelId: " + channelId);
+
     foregroundCount++;
 
     if (foregroundCount == 1) {
@@ -70,6 +72,8 @@ public class GenericForegroundService extends Service {
   }
 
   private void handleStop() {
+    Log.i(TAG, "handleStop()");
+
     postObligatoryForegroundNotification(activeTitle, activeChannelId, activeIconRes);
 
     foregroundCount--;

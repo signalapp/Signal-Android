@@ -9,11 +9,13 @@ import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
@@ -29,8 +31,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
-public class MultiDeviceReadUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceReadUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceReadUpdateJob.class.getSimpleName();
@@ -41,14 +44,13 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  public MultiDeviceReadUpdateJob() {
-    super(null, null);
+  public MultiDeviceReadUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceReadUpdateJob(Context context, List<SyncMessageId> messageIds) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .create());
 
     this.messageIds = new LinkedList<>();
@@ -88,9 +90,9 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws IOException, UntrustedIdentityException {
+  public void onRun() throws IOException, UntrustedIdentityException {
     if (!TextSecurePreferences.isMultiDevice(context)) {
-      Log.w(TAG, "Not multi device...");
+      Log.i(TAG, "Not multi device...");
       return;
     }
 
@@ -100,11 +102,11 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
       readMessages.add(new ReadMessage(messageId.sender, messageId.timestamp));
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages));
+    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages), UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return exception instanceof PushNetworkException;
   }
 

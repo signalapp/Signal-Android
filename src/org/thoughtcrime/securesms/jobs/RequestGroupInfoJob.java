@@ -3,10 +3,14 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -20,9 +24,11 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class RequestGroupInfoJob extends ContextJob implements InjectableType {
 
+  @SuppressWarnings("unused")
   private static final String TAG = RequestGroupInfoJob.class.getSimpleName();
 
   private static final long serialVersionUID = 0L;
@@ -35,8 +41,8 @@ public class RequestGroupInfoJob extends ContextJob implements InjectableType {
   private String source;
   private byte[] groupId;
 
-  public RequestGroupInfoJob() {
-    super(null, null);
+  public RequestGroupInfoJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public RequestGroupInfoJob(@NonNull Context context, @NonNull String source, @NonNull byte[] groupId) {
@@ -77,7 +83,9 @@ public class RequestGroupInfoJob extends ContextJob implements InjectableType {
                                                                .withTimestamp(System.currentTimeMillis())
                                                                .build();
 
-    messageSender.sendMessage(new SignalServiceAddress(source), message);
+    messageSender.sendMessage(new SignalServiceAddress(source),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromExternal(context, source), false)),
+                              message);
   }
 
   @Override

@@ -37,7 +37,7 @@ import java.util.List;
 public class PreKeyUtil {
 
   @SuppressWarnings("unused")
-  private static final String TAG = PreKeyUtil.class.getName();
+  private static final String TAG = PreKeyUtil.class.getSimpleName();
 
   private static final int BATCH_SIZE = 100;
 

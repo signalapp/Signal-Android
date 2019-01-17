@@ -21,7 +21,8 @@ import okhttp3.TlsVersion;
 
 public class SignalServiceNetworkAccess {
 
-  private static final String TAG = SignalServiceNetworkAccess.class.getName();
+  @SuppressWarnings("unused")
+  private static final String TAG = SignalServiceNetworkAccess.class.getSimpleName();
 
   private static final String COUNTRY_CODE_EGYPT = "+20";
   private static final String COUNTRY_CODE_UAE   = "+971";

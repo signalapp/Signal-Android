@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,7 +40,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.components.ConversationTypingView;
+import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.logging.Log;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -52,6 +58,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
+
+import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
@@ -66,6 +74,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -75,11 +84,14 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
-import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -116,6 +128,7 @@ public class ConversationFragment extends Fragment
   private RecyclerView.ItemDecoration lastSeenDecoration;
   private ViewSwitcher                topLoadMoreView;
   private ViewSwitcher                bottomLoadMoreView;
+  private ConversationTypingView      typingView;
   private UnknownSenderView           unknownSenderView;
   private View                        composeDivider;
   private View                        scrollToBottomButton;
@@ -137,7 +150,7 @@ public class ConversationFragment extends Fragment
 
     scrollToBottomButton.setOnClickListener(v -> scrollToBottom());
 
-    final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true);
+    final LinearLayoutManager layoutManager = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
     list.setItemAnimator(null);
@@ -146,6 +159,8 @@ public class ConversationFragment extends Fragment
     bottomLoadMoreView = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
     initializeLoadMoreView(topLoadMoreView);
     initializeLoadMoreView(bottomLoadMoreView);
+
+    typingView = (ConversationTypingView) inflater.inflate(R.layout.conversation_typing_view, container, false);
 
     return view;
   }
@@ -165,12 +180,24 @@ public class ConversationFragment extends Fragment
   }
 
   @Override
+  public void onStart() {
+    super.onStart();
+    initializeTypingObserver();
+  }
+
+  @Override
   public void onResume() {
     super.onResume();
 
     if (list.getAdapter() != null) {
       list.getAdapter().notifyDataSetChanged();
     }
+  }
+
+  @Override
+  public void onStop() {
+    super.onStop();
+    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
   }
 
   public void onNewIntent() {
@@ -238,6 +265,67 @@ public class ConversationFragment extends Fragment
     });
   }
 
+  private void initializeTypingObserver() {
+    if (!TextSecurePreferences.isTypingIndicatorsEnabled(requireContext())) {
+      return;
+    }
+
+    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).observe(this, typingState ->  {
+      List<Recipient> recipients;
+      boolean         replacedByIncomingMessage;
+
+      if (typingState != null) {
+        recipients                = typingState.getTypists();
+        replacedByIncomingMessage = typingState.isReplacedByIncomingMessage();
+      } else {
+        recipients                = Collections.emptyList();
+        replacedByIncomingMessage = false;
+      }
+
+      typingView.setTypists(GlideApp.with(ConversationFragment.this), recipients, recipient.isGroupRecipient());
+
+      ConversationAdapter adapter = getListAdapter();
+
+      if (adapter.getHeaderView() != null && adapter.getHeaderView() != typingView) {
+        Log.i(TAG, "Skipping typing indicator -- the header slot is occupied.");
+        return;
+      }
+
+      if (recipients.size() > 0) {
+        if (adapter.getHeaderView() == null && getListLayoutManager().findFirstCompletelyVisibleItemPosition() == 0) {
+          list.setVerticalScrollBarEnabled(false);
+          list.post(() -> getListLayoutManager().smoothScrollToPosition(requireContext(), 0, 250));
+          list.postDelayed(() -> list.setVerticalScrollBarEnabled(true), 300);
+          adapter.setHeaderView(typingView);
+          adapter.notifyItemInserted(0);
+        } else {
+          if (adapter.getHeaderView() == null) {
+            adapter.setHeaderView(typingView);
+            adapter.notifyItemInserted(0);
+          } else  {
+            adapter.setHeaderView(typingView);
+            adapter.notifyItemChanged(0);
+          }
+        }
+      } else {
+        if (getListLayoutManager().findFirstCompletelyVisibleItemPosition() == 0 && getListLayoutManager().getItemCount() > 1 && !replacedByIncomingMessage) {
+          getListLayoutManager().smoothScrollToPosition(requireContext(), 1, 250);
+          list.setVerticalScrollBarEnabled(false);
+          list.postDelayed(() -> {
+            adapter.setHeaderView(null);
+            adapter.notifyItemRemoved(0);
+            list.post(() -> list.setVerticalScrollBarEnabled(true));
+          }, 200);
+        } else if (!replacedByIncomingMessage) {
+          adapter.setHeaderView(null);
+          adapter.notifyItemRemoved(0);
+        } else {
+          adapter.setHeaderView(null);
+        }
+      }
+    });
+  }
+
   private void setCorrectMenuVisibility(Menu menu) {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
     boolean            actionMessage  = false;
@@ -294,6 +382,10 @@ public class ConversationFragment extends Fragment
 
   private ConversationAdapter getListAdapter() {
     return (ConversationAdapter) list.getAdapter();
+  }
+
+  private SmoothScrollingLinearLayoutManager getListLayoutManager() {
+    return (SmoothScrollingLinearLayoutManager) list.getLayoutManager();
   }
 
   private MessageRecord getSelectedMessageRecord() {
@@ -418,7 +510,32 @@ public class ConversationFragment extends Fragment
     composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
     if (message.isMms()) {
       MmsMessageRecord mediaMessage = (MmsMessageRecord) message;
-      if (mediaMessage.containsMediaSlide()) {
+      boolean          isAlbum      = mediaMessage.containsMediaSlide()                   &&
+                                      mediaMessage.getSlideDeck().getSlides().size() > 1  &&
+                                      mediaMessage.getSlideDeck().getAudioSlide() == null &&
+                                      mediaMessage.getSlideDeck().getDocumentSlide() == null;
+
+      if (isAlbum) {
+        ArrayList<Media> mediaList = new ArrayList<>(mediaMessage.getSlideDeck().getSlides().size());
+
+        for (Attachment attachment : mediaMessage.getSlideDeck().asAttachments()) {
+          Uri uri = attachment.getDataUri() != null ? attachment.getDataUri() : attachment.getThumbnailUri();
+
+          if (uri != null) {
+            mediaList.add(new Media(uri,
+                                    attachment.getContentType(),
+                                    System.currentTimeMillis(),
+                                    attachment.getWidth(),
+                                    attachment.getHeight(),
+                                    Optional.absent(),
+                                    Optional.fromNullable(attachment.getCaption())));
+          }
+        }
+
+        if (!mediaList.isEmpty()) {
+          composeIntent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaList);
+        }
+      } else if (mediaMessage.containsMediaSlide()) {
         Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
         composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
         composeIntent.setType(slide.getContentType());
@@ -445,12 +562,14 @@ public class ConversationFragment extends Fragment
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
-        for (Slide slide : message.getSlideDeck().getSlides()) {
-          if ((slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) && slide.getUri() != null) {
-            SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
-            saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(slide.getUri(), slide.getContentType(), message.getDateReceived(), slide.getFileName().orNull()));
-            return;
-          }
+        List<SaveAttachmentTask.Attachment> attachments = Stream.of(message.getSlideDeck().getSlides())
+                                                                .filter(s -> s.getUri() != null && (s.hasImage() || s.hasVideo() || s.hasAudio() || s.hasDocument()))
+                                                                .map(s -> new SaveAttachmentTask.Attachment(s.getUri(), s.getContentType(), message.getDateReceived(), s.getFileName().orNull()))
+                                                                .toList();
+        if (!Util.isEmpty(attachments)) {
+          SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
+          saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, attachments.toArray(new SaveAttachmentTask.Attachment[0]));
+          return;
         }
 
         Log.w(TAG, "No slide with attachable media found, failing nicely.");
@@ -501,7 +620,7 @@ public class ConversationFragment extends Fragment
     if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
       adapter.setHeaderView(unknownSenderView);
     } else {
-      adapter.setHeaderView(null);
+      clearHeaderIfNotTyping(adapter);
     }
 
     if (loader.hasOffset()) {
@@ -512,6 +631,10 @@ public class ConversationFragment extends Fragment
     adapter.changeCursor(cursor);
 
     int lastSeenPosition = adapter.findLastSeenPosition(lastSeen);
+
+    if (adapter.getHeaderView() == typingView) {
+      lastSeenPosition = Math.max(lastSeenPosition - 1, 0);
+    }
 
     if (firstLoad) {
       if (startingPosition >= 0) {
@@ -536,6 +659,12 @@ public class ConversationFragment extends Fragment
     }
   }
 
+  private void clearHeaderIfNotTyping(ConversationAdapter adapter) {
+    if (adapter.getHeaderView() != typingView) {
+      adapter.setHeaderView(null);
+    }
+  }
+
   @Override
   public void onLoaderReset(Loader<Cursor> arg0) {
     if (list.getAdapter() != null) {
@@ -547,7 +676,7 @@ public class ConversationFragment extends Fragment
     MessageRecord messageRecord = DatabaseFactory.getMmsDatabase(getContext()).readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
-      getListAdapter().setHeaderView(null);
+      clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
       getListAdapter().addFastRecord(messageRecord);
     }
@@ -559,7 +688,7 @@ public class ConversationFragment extends Fragment
     MessageRecord messageRecord = DatabaseFactory.getSmsDatabase(getContext()).readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
-      getListAdapter().setHeaderView(null);
+      clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
       getListAdapter().addFastRecord(messageRecord);
     }
@@ -648,11 +777,12 @@ public class ConversationFragment extends Fragment
     private boolean isAtBottom() {
       if (list.getChildCount() == 0) return true;
 
-      View    bottomView       = list.getChildAt(0);
-      int     firstVisibleItem = ((LinearLayoutManager) list.getLayoutManager()).findFirstVisibleItemPosition();
-      boolean isAtBottom       = (firstVisibleItem == 0);
+      int firstCompletelyVisiblePosition = ((LinearLayoutManager) list.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
 
-      return isAtBottom && bottomView.getBottom() <= list.getHeight();
+      if (getListAdapter().getHeaderView() == typingView) {
+        return firstCompletelyVisiblePosition <= 1;
+      }
+      return firstCompletelyVisiblePosition == 0;
     }
 
     private boolean isAtZoomScrollHeight() {

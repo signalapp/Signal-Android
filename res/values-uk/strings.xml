@@ -5,8 +5,10 @@
   <string name="no">Ні</string>
   <string name="delete">Видалити</string>
   <string name="please_wait">Будь ласка, зачекайте...</string>
+  <string name="save">Зберегти</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Нове повідомлення</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Поточний: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ви ще не встановили фразу-пароль!</string>
@@ -73,9 +75,11 @@
   <string name="BucketedThreadMedia_This_month">Цього місяця</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Вхідний виклик</string>
+  <!--CameraActivity-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Вилучити</string>
   <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профіля?</string>
+  <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш номер безпеки із %1$s змінився. Це може означати або те, що хтось намагається перехопити вашу розмову, або те, що %2$s просто перевстановив Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
@@ -121,6 +125,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Повідомлення порожнє!</string>
   <string name="ConversationActivity_group_members">Учасники групи</string>
   <string name="ConversationActivity_invalid_recipient">Неприпустимий отримувач!</string>
+  <string name="ConversationActivity_added_to_home_screen">Додано до домашнього екрану</string>
   <string name="ConversationActivity_calls_not_supported">Дзвінки не підтримуються</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Здається, цей пристрій не підтримує виклики.</string>
   <string name="ConversationActivity_leave_group">Покинути групу?</string>
@@ -134,6 +139,7 @@
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Розблокувати цей контакт?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ви знову зможете одержувати повідомлення та виклики від цього контакту.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Учасники зможуть додати вас до групи.</string>
   <string name="ConversationActivity_unblock">Розблокувати</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вкладення перевищує обмеження за розміром для типу повідомлення, яке ви надсилаєте.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
@@ -147,6 +153,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal потребує дозволу \"Камера\", щоб фотографувати або знімати відео,  але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal потребує дозволу \"Камера\", щоб фотографувати або фільмувати.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_yes">Так</string>
+  <string name="ConversationActivity_no">Ні</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитане повідомлення</item>
@@ -250,6 +258,7 @@
   <string name="DateUtils_today">Сьогодні</string>
   <string name="DateUtils_yesterday">Вчора</string>
   <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sending">Надсилання</string>
   <string name="DeliveryStatus_sent">Надіслано</string>
   <string name="DeliveryStatus_delivered">Доставлено</string>
   <!--DeviceListActivity-->
@@ -285,6 +294,9 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готові до огляду?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Тепер ви можете встановити власне фото, а також ім\'я (чи нікнейм) для свого профілю який будуть бачити друзі.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профілі Signal знаходяться тут</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Тепер ви можете вибірково ділитись самі та бачити у інших, коли вони набирають текст.</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ні, дякую</string>
+  <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не зміг зареєструватись у сервісах Google Play. Виклики та повідомлення Signal наразі вимкнено, спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string>
@@ -340,6 +352,7 @@
   <string name="InviteActivity_lets_switch_to_signal">Давай перейдемо на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Схоже, що у вас немає програм, щоб поділитися.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзі не мають дозволяти друзям незашифровано спілкуватися!</string>
+  <!--Job-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не вдалося надіслати</string>
   <string name="MessageDetailsRecipient_new_safety_number">Новий номер безпеки</string>
@@ -365,6 +378,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Видалення</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Видалення повідомлень...</string>
   <string name="MediaOverviewActivity_Documents">Документи</string>
+  <string name="MediaOverviewActivity_Select_all">Обрати все</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Збираю вкладення...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Відбувається виклик Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Встановлення виклику Signal</string>
@@ -377,6 +392,12 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Мультимедійне повідомлення</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Завантаження MMS...</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Виникла помилка при завантаженні MMS, натисніть щоб повторити</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Всі медіа-файли
+Всі зображення</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Отримано повідомлення, яке зашифроване старою версією Signal, яка вже не підтримується. Попросіть друга оновитися до останньої версії та надіслати повідомлення знову.</string>
   <string name="MessageRecord_left_group">Ви покинули групу.</string>
@@ -388,6 +409,7 @@
   <string name="MessageRecord_called_s">Телефонували %s</string>
   <string name="MessageRecord_missed_call_from">Пропущено виклик від %s</string>
   <string name="MessageRecord_s_joined_signal">%s приєднався до Signal!</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Ви заборонили зникаючі повідомлення</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш номер безпеки із %s змінився.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ви підтвердили ваш номер безпеки із %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ви підтвердили ваш номер безпеки із %sз іншого пристрою</string>
@@ -429,6 +451,7 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Хибна фраза-пароль!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Встановлена версія сервісів Google Play працює некоректно. Перевстановіть сервіси Google Play та спробуйте знову.</string>
+  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцінити Signal</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Якщо вам сподобався Signal, будь-ласка, оцініть його.</string>
@@ -439,9 +462,12 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокувати контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ви більше не одержуватимете повідомлення та виклики від цього контакту.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Ви більше не отримуватимете повідомлень чи оновлень з цієї групи.</string>
   <string name="RecipientPreferenceActivity_block">Заблокувати</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Розблокувати контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ви знову зможете одержувати повідомлення та виклики від цього контакту.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Учасники зможуть додати вас до групи.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Помилка при виході з групи</string>
   <string name="RecipientPreferenceActivity_unblock">Розблокувати</string>
   <string name="RecipientPreferenceActivity_enabled">Увімкнено </string>
   <string name="RecipientPreferenceActivity_disabled">Вимкнено</string>
@@ -491,6 +517,7 @@
   <string name="SearchFragment_header_conversations">Розмови</string>
   <string name="SearchFragment_header_contacts">Контакти</string>
   <string name="SearchFragment_header_messages">Повідомлення</string>
+  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Додати до контактів</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Запросити до Signal</string>
@@ -524,6 +551,7 @@
   <string name="ThreadRecord_missed_call">Пропущений виклик</string>
   <string name="ThreadRecord_media_message">Медіа повідомлення</string>
   <string name="ThreadRecord_s_is_on_signal">%s приєднався до Signal!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Зникаючі повідомлення заборонені</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Час зникнення повідомлень встановлено на %s</string>
   <string name="ThreadRecord_safety_number_changed">Номер безпеки змінено</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш номер безпеки із %s змінився.</string>
@@ -602,7 +630,10 @@
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Типово</string>
   <string name="NotificationChannel_calls">Виклики</string>
+  <string name="NotificationChannel_failures">Відмови</string>
   <string name="NotificationChannel_backups">Резервні копії</string>
+  <string name="NotificationChannel_locked_status">Статус блокування</string>
+  <string name="NotificationChannel_app_updates">Оновлення додатку</string>
   <string name="NotificationChannel_other">Інший</string>
   <string name="NotificationChannel_group_messages">Повідомлення</string>
   <string name="NotificationChannel_missing_display_name">Невідомо</string>
@@ -617,6 +648,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нове повідомлення</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Цей пристрій більше не зареєстровано</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Скоріше за все це через те, що ви зареєстрували свій телефонний номер на іншому пристрої. Торкніться щоб перереєструвати.</string>
@@ -784,8 +816,13 @@
   <string name="log_submit_activity__button_dont_submit">Не відсилати</string>
   <string name="log_submit_activity__button_submit">Відіслати</string>
   <string name="log_submit_activity__button_got_it">Ясно</string>
+  <string name="log_submit_activity__button_compose_email">Написати електронного листа</string>
+  <string name="log_submit_activity__loading_logs">Завантаження журналу...</string>
+  <string name="log_submit_activity__uploading_logs">Вивантаження журналу...</string>
   <string name="log_submit_activity__success">Успішно!</string>
   <string name="log_submit_activity__copied_to_clipboard">Скопійовано до буфера обміну</string>
+  <string name="log_submit_activity__choose_email_app">Обрати додаток електронної пошти</string>
+  <string name="log_submit_activity__network_failure">Помилка мережі. Будь ласка спробуйте ще раз.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Імпорутвати ваші SMS повідомлення у зашифровану базу даних Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системна база даних не буде порушена.</string>
@@ -832,6 +869,7 @@
   <string name="recipient_preference_activity__shared_media">Спільні медіа</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Вимкнути звук для розмови</string>
+  <string name="recipient_preferences__custom_notifications_settings">Налаштування системних сповіщень</string>
   <string name="recipient_preferences__notification_sound">Звук сповіщення</string>
   <string name="recipient_preferences__vibrate">Вібрація</string>
   <string name="recipient_preferences__block">Заблокувати</string>
@@ -942,6 +980,7 @@
   <string name="preferences__inactivity_timeout_passphrase">Фраза-пароль після спливання часу неактивності</string>
   <string name="preferences__inactivity_timeout_interval">Інтервал часу неактивності</string>
   <string name="preferences__notifications">Сповіщення</string>
+  <string name="preferences__system_notification_settings">Налаштування системних сповіщень</string>
   <string name="preferences__led_color">Колір LED</string>
   <string name="preferences__led_color_unknown">Невідомо</string>
   <string name="preferences__pref_led_blink_title">Шаблон мерехтіння LED</string>
@@ -1023,6 +1062,8 @@
   <string name="preferences_chats__message_text_size">Розмір шрифту повідомлень</string>
   <string name="preferences_events__contact_joined_signal">Контакт приєднався до Signal</string>
   <string name="preferences_notifications__priority">Пріорітет</string>
+  <string name="preferences_communication__category_sealed_sender">Прихований відправник</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Отримувати повідомлення від прихованих відправників, які не з вашого списку контактів, або з якими ви не поділились профілем.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1074,6 +1115,7 @@
   <string name="conversation__menu_view_all_media">Всі медіа-файли
 Всі зображення</string>
   <string name="conversation__menu_conversation_settings">Налаштування розмови</string>
+  <string name="conversation__menu_add_shortcut">Додати до домашнього екрану</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Розгорнути спливаюче вікно</string>
   <!--conversation_callable_insecure-->

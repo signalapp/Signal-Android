@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
+import com.annimon.stream.Stream;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
@@ -14,8 +15,11 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 public class RecentEmojiPageModel implements EmojiPageModel {
   private static final String TAG                  = RecentEmojiPageModel.class.getSimpleName();
@@ -46,8 +50,14 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     return R.attr.emoji_category_recent;
   }
 
-  @Override public String[] getEmoji() {
-    return toReversePrimitiveArray(recentlyUsed);
+  @Override public List<String> getEmoji() {
+    List<String> emoji = new ArrayList<>(recentlyUsed);
+    Collections.reverse(emoji);
+    return emoji;
+  }
+
+  @Override public List<Emoji> getDisplayEmoji() {
+    return Stream.of(getEmoji()).map(Emoji::new).toList();
   }
 
   @Override public boolean hasSpriteMap() {

@@ -106,7 +106,7 @@ public class SendButton extends ImageButton
 
   @Override
   public boolean onLongClick(View v) {
-    if (transportOptions.getEnabledTransports().size() > 1) {
+    if (isEnabled() && transportOptions.getEnabledTransports().size() > 1) {
       getTransportOptionsPopup().display(transportOptions.getEnabledTransports());
       return true;
     }

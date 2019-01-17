@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    android:background="?selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/emoji_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="6dp"
+        android:paddingRight="6dp"
+        android:paddingLeft="6dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <org.thoughtcrime.securesms.components.emoji.AsciiEmojiView
+        android:id="@+id/emoji_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingRight="6dp"
+        android:paddingLeft="6dp"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/emoji_variation_hint"
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        android:layout_gravity="bottom|right|end"
+        app:srcCompat="@drawable/triangle_bottom_right_corner"
+        android:tint="@color/core_grey_25"/>
+
+</FrameLayout>

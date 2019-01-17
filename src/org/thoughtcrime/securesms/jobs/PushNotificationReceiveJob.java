@@ -4,15 +4,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -20,6 +17,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushNotificationReceiveJob extends PushReceivedJob implements InjectableType {
 
@@ -27,8 +25,8 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
 
   @Inject transient SignalServiceMessageReceiver receiver;
 
-  public PushNotificationReceiveJob() {
-    super(null, null);
+  public PushNotificationReceiveJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushNotificationReceiveJob(Context context) {

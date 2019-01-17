@@ -6,6 +6,8 @@ import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.LinkedList;
@@ -13,32 +15,40 @@ import java.util.List;
 
 public class OutgoingMediaMessage {
 
-  private   final Recipient        recipient;
-  protected final String           body;
-  protected final List<Attachment> attachments;
-  private   final long             sentTimeMillis;
-  private   final int              distributionType;
-  private   final int              subscriptionId;
-  private   final long             expiresIn;
-  private   final QuoteModel       outgoingQuote;
-  private   final List<Contact>    contacts = new LinkedList<>();
+  private   final Recipient                 recipient;
+  protected final String                    body;
+  protected final List<Attachment>          attachments;
+  private   final long                      sentTimeMillis;
+  private   final int                       distributionType;
+  private   final int                       subscriptionId;
+  private   final long                      expiresIn;
+  private   final QuoteModel                outgoingQuote;
+
+  private   final List<NetworkFailure>      networkFailures       = new LinkedList<>();
+  private   final List<IdentityKeyMismatch> identityKeyMismatches = new LinkedList<>();
+  private   final List<Contact>             contacts              = new LinkedList<>();
 
   public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
                               int subscriptionId, long expiresIn,
-                              int distributionType, @Nullable QuoteModel outgoingQuote,
-                              @NonNull List<Contact> contacts)
+                              int distributionType,
+                              @Nullable QuoteModel outgoingQuote,
+                              @NonNull List<Contact> contacts,
+                              @NonNull List<NetworkFailure> networkFailures,
+                              @NonNull List<IdentityKeyMismatch> identityKeyMismatches)
   {
-    this.recipient        = recipient;
-    this.body             = message;
-    this.sentTimeMillis   = sentTimeMillis;
-    this.distributionType = distributionType;
-    this.attachments      = attachments;
-    this.subscriptionId   = subscriptionId;
-    this.expiresIn        = expiresIn;
-    this.outgoingQuote    = outgoingQuote;
+    this.recipient             = recipient;
+    this.body                  = message;
+    this.sentTimeMillis        = sentTimeMillis;
+    this.distributionType      = distributionType;
+    this.attachments           = attachments;
+    this.subscriptionId        = subscriptionId;
+    this.expiresIn             = expiresIn;
+    this.outgoingQuote         = outgoingQuote;
 
     this.contacts.addAll(contacts);
+    this.networkFailures.addAll(networkFailures);
+    this.identityKeyMismatches.addAll(identityKeyMismatches);
   }
 
   public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message, long sentTimeMillis, int subscriptionId, long expiresIn, int distributionType, @Nullable QuoteModel outgoingQuote, @NonNull List<Contact> contacts)
@@ -47,7 +57,8 @@ public class OutgoingMediaMessage {
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
-         expiresIn, distributionType, outgoingQuote, contacts);
+         expiresIn, distributionType, outgoingQuote,
+         contacts, new LinkedList<>(), new LinkedList<>());
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
@@ -60,6 +71,8 @@ public class OutgoingMediaMessage {
     this.expiresIn           = that.expiresIn;
     this.outgoingQuote       = that.outgoingQuote;
 
+    this.identityKeyMismatches.addAll(that.identityKeyMismatches);
+    this.networkFailures.addAll(that.networkFailures);
     this.contacts.addAll(that.contacts);
   }
 
@@ -109,6 +122,14 @@ public class OutgoingMediaMessage {
 
   public @NonNull List<Contact> getSharedContacts() {
     return contacts;
+  }
+
+  public @NonNull List<NetworkFailure> getNetworkFailures() {
+    return networkFailures;
+  }
+
+  public @NonNull List<IdentityKeyMismatch> getIdentityKeyMismatches() {
+    return identityKeyMismatches;
   }
 
   private static String buildMessage(SlideDeck slideDeck, String message) {

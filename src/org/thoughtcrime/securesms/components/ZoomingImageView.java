@@ -35,7 +35,7 @@ import java.io.InputStream;
 
 public class ZoomingImageView extends FrameLayout {
 
-  private static final String TAG = ZoomingImageView.class.getName();
+  private static final String TAG = ZoomingImageView.class.getSimpleName();
 
   private final PhotoView                 photoView;
   private final SubsamplingScaleImageView subsamplingImageView;

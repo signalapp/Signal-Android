@@ -38,8 +38,9 @@ import java.io.InputStream;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
-public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
+public class AttachmentDownloadJob extends ContextJob implements InjectableType {
   private static final long   serialVersionUID    = 2L;
   private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
   private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
@@ -56,14 +57,13 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   private long    partUniqueId;
   private boolean manual;
 
-  public AttachmentDownloadJob() {
-    super(null, null);
+  public AttachmentDownloadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public AttachmentDownloadJob(Context context, long messageId, AttachmentId attachmentId, boolean manual) {
     super(context, JobParameters.newBuilder()
-                                .withGroupId(AttachmentDownloadJob.class.getCanonicalName())
-                                .withMasterSecretRequirement()
+                                .withGroupId(AttachmentDownloadJob.class.getSimpleName() + attachmentId.getRowId() + "-" + attachmentId.getUniqueId())
                                 .withNetworkRequirement()
                                 .create());
 
@@ -93,10 +93,20 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   @Override
   public void onAdded() {
     Log.i(TAG, "onAdded() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
+
+    final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
+    final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
+    final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
+    final boolean            pending      = attachment != null && attachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+
+    if (pending && (manual || AttachmentUtil.isAutoDownloadPermitted(context, attachment))) {
+      Log.i(TAG, "onAdded() Marking attachment progress as 'started'");
+      database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
+    }
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws IOException {
+  public void onRun() throws IOException {
     Log.i(TAG, "onRun() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
 
     final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
@@ -135,7 +145,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  protected boolean onShouldRetry(Exception exception) {
     return (exception instanceof PushNetworkException);
   }
 
@@ -193,13 +203,14 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         Log.i(TAG, "Downloading attachment with no digest...");
       }
 
-      return new SignalServiceAttachmentPointer(id, null, key, relay,
+      return new SignalServiceAttachmentPointer(id, null, key,
                                                 Optional.of(Util.toIntExact(attachment.getSize())),
                                                 Optional.absent(),
                                                 0, 0,
                                                 Optional.fromNullable(attachment.getDigest()),
                                                 Optional.fromNullable(attachment.getFileName()),
-                                                attachment.isVoiceNote());
+                                                attachment.isVoiceNote(),
+                                                Optional.absent());
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);

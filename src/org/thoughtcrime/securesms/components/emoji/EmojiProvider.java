@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 class EmojiProvider {
@@ -60,12 +61,13 @@ class EmojiProvider {
     this.decodeScale = Math.min(1f, context.getResources().getDimension(R.dimen.emoji_drawer_size) / EMOJI_RAW_HEIGHT);
     this.verticalPad = EMOJI_VERT_PAD * this.decodeScale;
 
-    for (EmojiPageModel page : EmojiPages.PAGES) {
+    for (EmojiPageModel page : EmojiPages.DATA_PAGES) {
       if (page.hasSpriteMap()) {
         EmojiPageBitmap pageBitmap = new EmojiPageBitmap(context, page, decodeScale);
 
-        for (int i=0;i<page.getEmoji().length;i++) {
-          emojiTree.add(page.getEmoji()[i], new EmojiDrawInfo(pageBitmap, i));
+        List<String> emojis = page.getEmoji();
+        for (int i = 0; i < emojis.size(); i++) {
+          emojiTree.add(emojis.get(i), new EmojiDrawInfo(pageBitmap, i));
         }
       }
     }

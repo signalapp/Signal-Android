@@ -29,7 +29,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -93,8 +92,15 @@ public class ScribbleView extends FrameLayout {
   }
 
   public @NonNull ListenableFuture<Bitmap> getRenderedImage(@NonNull GlideRequests glideRequests) {
+    return renderImage(getContext(), imageUri, saveState(), glideRequests);
+  }
+
+  public static @NonNull ListenableFuture<Bitmap> renderImage(@NonNull  Context context,
+                                                              @Nullable Uri imageUri,
+                                                              @NonNull  SavedState savedState,
+                                                              @NonNull  GlideRequests glideRequests)
+  {
     final SettableFuture<Bitmap> future      = new SettableFuture<>();
-    final Context                context     = getContext();
     final boolean                isLowMemory = Util.isLowMemory(context);
 
     if (imageUri == null) {
@@ -119,8 +125,15 @@ public class ScribbleView extends FrameLayout {
                    @Override
                    public void onResourceReady(@NonNull Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
                      Canvas canvas = new Canvas(bitmap);
-                     motionView.render(canvas);
-                     canvasView.render(canvas);
+                     MotionView.render(canvas, savedState.getMotionState().getEntities());
+                     CanvasView.render(canvas,
+                                       savedState.getCanvasState().getInitialWidth(),
+                                       savedState.getCanvasState().getInitialHeight(),
+                                       savedState.getCanvasState().getCanvasWidth(),
+                                       savedState.getCanvasState().getCanvasHeight(),
+                                       savedState.getCanvasState().getPaths(),
+                                       savedState.getCanvasState().getPaints(),
+                                       savedState.getCanvasState().getHistoryPointer());
                      future.set(bitmap);
                    }
 
@@ -128,9 +141,18 @@ public class ScribbleView extends FrameLayout {
                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
                      future.setException(new Throwable("Failed to load image."));
                    }
-               });
+                 });
 
     return future;
+  }
+
+  public SavedState saveState() {
+    return new SavedState(canvasView.saveState(), motionView.saveState());
+  }
+
+  public void restoreState(@NonNull SavedState state) {
+    canvasView.restoreState(state.getCanvasState());
+    motionView.restoreState(state.getMotionState());
   }
 
   private void initialize(@NonNull Context context) {
@@ -220,5 +242,27 @@ public class ScribbleView extends FrameLayout {
 
   public interface DrawingChangedListener {
     void onDrawingChanged();
+  }
+
+  public static class SavedState {
+    private final CanvasView.SavedState canvasState;
+    private final MotionView.SavedState motionState;
+
+    SavedState(@NonNull CanvasView.SavedState canvasState, @NonNull MotionView.SavedState motionState) {
+      this.canvasState = canvasState;
+      this.motionState = motionState;
+    }
+
+    CanvasView.SavedState getCanvasState() {
+      return canvasState;
+    }
+
+    MotionView.SavedState getMotionState() {
+      return motionState;
+    }
+
+    public boolean isEmpty() {
+      return canvasState.isEmpty() && motionState.isEmpty();
+    }
   }
 }

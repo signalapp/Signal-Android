@@ -4,15 +4,15 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
-import org.thoughtcrime.securesms.logging.Log;
-
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -35,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushGroupUpdateJob extends ContextJob implements InjectableType {
 
@@ -50,8 +51,8 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
   private String source;
   private byte[] groupId;
 
-  public PushGroupUpdateJob() {
-    super(null, null);
+  public PushGroupUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushGroupUpdateJob(Context context, String source, byte[] groupId) {
@@ -122,7 +123,9 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
                                                                .withExpiration(groupRecipient.getExpireMessages())
                                                                .build();
 
-    messageSender.sendMessage(new SignalServiceAddress(source), message);
+    messageSender.sendMessage(new SignalServiceAddress(source),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(source), false)),
+                              message);
   }
 
   @Override

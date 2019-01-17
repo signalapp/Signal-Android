@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -36,15 +37,21 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import org.thoughtcrime.securesms.logging.Log;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -53,6 +60,8 @@ import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedList
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
+import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewViewModel;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -71,32 +80,48 @@ import java.util.WeakHashMap;
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener, LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>> {
+public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener,
+                                                                                         LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>>,
+                                                                                         MediaRailAdapter.RailItemListener
+{
 
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public static final String ADDRESS_EXTRA        = "address";
   public static final String DATE_EXTRA           = "date";
   public static final String SIZE_EXTRA           = "size";
+  public static final String CAPTION_EXTRA        = "caption";
   public static final String OUTGOING_EXTRA       = "outgoing";
   public static final String LEFT_IS_RECENT_EXTRA = "left_is_recent";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private ViewPager mediaPager;
-  private Uri       initialMediaUri;
-  private String    initialMediaType;
-  private long      initialMediaSize;
-  private Recipient conversationRecipient;
-  private boolean   leftIsRecent;
+  private ViewPager             mediaPager;
+  private View                  detailsContainer;
+  private TextView              caption;
+  private View                  captionContainer;
+  private RecyclerView          albumRail;
+  private MediaRailAdapter      albumRailAdapter;
+  private ViewGroup             playbackControlsContainer;
+  private Uri                   initialMediaUri;
+  private String                initialMediaType;
+  private long                  initialMediaSize;
+  private String                initialCaption;
+  private Recipient             conversationRecipient;
+  private boolean               leftIsRecent;
+  private GestureDetector       clickDetector;
+  private MediaPreviewViewModel viewModel;
 
   private int restartItem = -1;
+
 
   @SuppressWarnings("ConstantConditions")
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
     this.setTheme(R.style.TextSecure_DarkTheme);
     dynamicLanguage.onCreate(this);
+
+    viewModel = ViewModelProviders.of(this).get(MediaPreviewViewModel.class);
 
     setFullscreenIfPossible();
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -107,6 +132,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
     initializeViews();
     initializeResources();
+    initializeObservers();
+  }
+
+  @Override
+  public boolean dispatchTouchEvent(MotionEvent ev) {
+    clickDetector.onTouchEvent(ev);
+    return super.dispatchTouchEvent(ev);
   }
 
   @Override
@@ -124,6 +156,16 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @Override
   public void onModified(Recipient recipient) {
     Util.runOnMain(this::initializeActionBar);
+  }
+
+  @Override
+  public void onRailItemClicked(int distanceFromActive) {
+    mediaPager.setCurrentItem(mediaPager.getCurrentItem() + distanceFromActive);
+  }
+
+  @Override
+  public void onRailItemDeleteClicked(int distanceFromActive) {
+    throw new UnsupportedOperationException("Callback unsupported.");
   }
 
   @SuppressWarnings("ConstantConditions")
@@ -172,6 +214,17 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     mediaPager = findViewById(R.id.media_pager);
     mediaPager.setOffscreenPageLimit(1);
     mediaPager.addOnPageChangeListener(new ViewPagerListener());
+
+    albumRail        = findViewById(R.id.media_preview_album_rail);
+    albumRailAdapter = new MediaRailAdapter(GlideApp.with(this), this, false);
+
+    albumRail.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    albumRail.setAdapter(albumRailAdapter);
+
+    detailsContainer          = findViewById(R.id.media_preview_details_container);
+    caption                   = findViewById(R.id.media_preview_caption);
+    captionContainer          = findViewById(R.id.media_preview_caption_container);
+    playbackControlsContainer = findViewById(R.id.media_preview_playback_controls_container);
   }
 
   private void initializeResources() {
@@ -180,6 +233,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     initialMediaUri  = getIntent().getData();
     initialMediaType = getIntent().getType();
     initialMediaSize = getIntent().getLongExtra(SIZE_EXTRA, 0);
+    initialCaption   = getIntent().getStringExtra(CAPTION_EXTRA);
     leftIsRecent     = getIntent().getBooleanExtra(LEFT_IS_RECENT_EXTRA, false);
     restartItem      = -1;
 
@@ -188,6 +242,49 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     } else {
       conversationRecipient = null;
     }
+  }
+
+  private void initializeObservers() {
+    viewModel.getPreviewData().observe(this, previewData -> {
+      if (previewData == null || mediaPager == null || mediaPager.getAdapter() == null) {
+        return;
+      }
+
+      View playbackControls = ((MediaItemAdapter) mediaPager.getAdapter()).getPlaybackControls(mediaPager.getCurrentItem());
+
+      if (previewData.getAlbumThumbnails().isEmpty() && previewData.getCaption() == null && playbackControls == null) {
+        detailsContainer.setVisibility(View.GONE);
+      } else {
+        detailsContainer.setVisibility(View.VISIBLE);
+      }
+
+      albumRail.setVisibility(previewData.getAlbumThumbnails().isEmpty() ? View.GONE : View.VISIBLE);
+      albumRailAdapter.setMedia(previewData.getAlbumThumbnails(), previewData.getActivePosition());
+      albumRail.smoothScrollToPosition(previewData.getActivePosition());
+
+      captionContainer.setVisibility(previewData.getCaption() == null ? View.GONE : View.VISIBLE);
+      caption.setText(previewData.getCaption());
+
+      if (playbackControls != null) {
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        playbackControls.setLayoutParams(params);
+
+        playbackControlsContainer.removeAllViews();
+        playbackControlsContainer.addView(playbackControls);
+      } else {
+        playbackControlsContainer.removeAllViews();
+      }
+    });
+
+    clickDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
+      @Override
+      public boolean onSingleTapUp(MotionEvent e) {
+        if (e.getY() < detailsContainer.getTop()) {
+          detailsContainer.setVisibility(detailsContainer.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+        }
+        return super.onSingleTapUp(e);
+      }
+    });
   }
 
   private void initializeMedia() {
@@ -203,6 +300,12 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       getSupportLoaderManager().restartLoader(0, null, this);
     } else {
       mediaPager.setAdapter(new SingleItemPagerAdapter(this, GlideApp.with(this), getWindow(), initialMediaUri, initialMediaType, initialMediaSize));
+
+      if (initialCaption != null) {
+        detailsContainer.setVisibility(View.VISIBLE);
+        captionContainer.setVisibility(View.VISIBLE);
+        caption.setText(initialCaption);
+      }
     }
   }
 
@@ -348,6 +451,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
+      viewModel.setCursor(this, data.first, leftIsRecent);
+
       if (restartItem < 0) mediaPager.setCurrentItem(data.second);
       else                 mediaPager.setCurrentItem(restartItem);
     }
@@ -369,7 +474,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       if (adapter != null) {
         MediaItem item = adapter.getMediaItemFor(position);
         if (item.recipient != null) item.recipient.addListener(MediaPreviewActivity.this);
-
+        viewModel.setActiveAlbumRailItem(MediaPreviewActivity.this, position);
         initializeActionBar();
       }
     }
@@ -453,6 +558,11 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     public void pause(int position) {
 
     }
+
+    @Override
+    public @Nullable View getPlaybackControls(int position) {
+      return null;
+    }
   }
 
   private static class CursorPagerAdapter extends PagerAdapter implements MediaItemAdapter {
@@ -511,7 +621,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
       try {
         //noinspection ConstantConditions
-        mediaView.set(glideRequests, window, mediaRecord.getAttachment().getDataUri(), mediaRecord.getAttachment().getContentType(), mediaRecord.getAttachment().getSize(), autoplay);
+        mediaView.set(glideRequests, window, mediaRecord.getAttachment().getDataUri(),
+                      mediaRecord.getAttachment().getContentType(), mediaRecord.getAttachment().getSize(), autoplay);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -552,6 +663,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       if (mediaView != null) mediaView.pause();
     }
 
+    @Override
+    public @Nullable View getPlaybackControls(int position) {
+      MediaView mediaView = mediaViews.get(position);
+      if (mediaView != null) return mediaView.getPlaybackControls();
+      return null;
+    }
+
     private int getCursorPosition(int position) {
       if (leftIsRecent) return position;
       else              return cursor.getCount() - 1 - position;
@@ -585,5 +703,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   interface MediaItemAdapter {
     MediaItem getMediaItemFor(int position);
     void pause(int position);
+    @Nullable View getPlaybackControls(int position);
   }
 }

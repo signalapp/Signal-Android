@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
 
-  private static final String TAG = StickyHeaderDecoration.class.getName();
+  private static final String TAG = StickyHeaderDecoration.class.getSimpleName();
 
   private static final long NO_HEADER_ID = -1L;
 

@@ -13,14 +13,12 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class ScribbleActivity extends PassphraseRequiredActionBarActivity implements ScribbleFragment.Controller {
 
-  private static final String TAG = ScribbleActivity.class.getName();
+  private static final String TAG = ScribbleActivity.class.getSimpleName();
 
   public static final int SCRIBBLE_REQUEST_CODE = 31424;
 
@@ -36,7 +34,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
     setContentView(R.layout.scribble_activity);
 
     if (savedInstanceState == null) {
-      ScribbleFragment fragment = ScribbleFragment.newInstance(getIntent().getData(), dynamicLanguage.getCurrentLocale(), Optional.absent());
+      ScribbleFragment fragment = ScribbleFragment.newInstance(getIntent().getData(), dynamicLanguage.getCurrentLocale(), Optional.absent(), false);
       getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
     }
 
@@ -66,4 +64,7 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
     Toast.makeText(ScribbleActivity.this, R.string.ScribbleActivity_save_failure, Toast.LENGTH_SHORT).show();
     finish();
   }
+
+  @Override
+  public void onTouchEventsNeeded(boolean needed) { }
 }

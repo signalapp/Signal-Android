@@ -9,6 +9,9 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
+
+import org.thoughtcrime.securesms.devicelist.Device;
+import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +30,6 @@ import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +38,7 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 public class DeviceListFragment extends ListFragment
-    implements LoaderManager.LoaderCallbacks<List<DeviceInfo>>,
+    implements LoaderManager.LoaderCallbacks<List<Device>>,
                ListView.OnItemClickListener, InjectableType, Button.OnClickListener
 {
 
@@ -87,7 +89,7 @@ public class DeviceListFragment extends ListFragment
   }
 
   @Override
-  public Loader<List<DeviceInfo>> onCreateLoader(int id, Bundle args) {
+  public Loader<List<Device>> onCreateLoader(int id, Bundle args) {
     empty.setVisibility(View.GONE);
     progressContainer.setVisibility(View.VISIBLE);
 
@@ -95,7 +97,7 @@ public class DeviceListFragment extends ListFragment
   }
 
   @Override
-  public void onLoadFinished(Loader<List<DeviceInfo>> loader, List<DeviceInfo> data) {
+  public void onLoadFinished(Loader<List<Device>> loader, List<Device> data) {
     progressContainer.setVisibility(View.GONE);
 
     if (data == null) {
@@ -114,7 +116,7 @@ public class DeviceListFragment extends ListFragment
   }
 
   @Override
-  public void onLoaderReset(Loader<List<DeviceInfo>> loader) {
+  public void onLoaderReset(Loader<List<Device>> loader) {
     setListAdapter(null);
   }
 
@@ -172,6 +174,10 @@ public class DeviceListFragment extends ListFragment
       protected Void doInBackground(Void... params) {
         try {
           accountManager.removeDevice(deviceId);
+
+          ApplicationContext.getInstance(getContext())
+                            .getJobManager()
+                            .add(new RefreshUnidentifiedDeliveryAbilityJob(getContext()));
         } catch (IOException e) {
           Log.w(TAG, e);
           Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();
@@ -192,12 +198,12 @@ public class DeviceListFragment extends ListFragment
     if (addDeviceButtonListener != null) addDeviceButtonListener.onClick(v);
   }
 
-  private static class DeviceListAdapter extends ArrayAdapter<DeviceInfo> {
+  private static class DeviceListAdapter extends ArrayAdapter<Device> {
 
     private final int    resource;
     private final Locale locale;
 
-    public DeviceListAdapter(Context context, int resource, List<DeviceInfo> objects, Locale locale) {
+    public DeviceListAdapter(Context context, int resource, List<Device> objects, Locale locale) {
       super(context, resource, objects);
       this.resource = resource;
       this.locale = locale;

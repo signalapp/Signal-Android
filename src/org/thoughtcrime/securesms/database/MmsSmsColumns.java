@@ -19,6 +19,7 @@ public interface MmsSmsColumns {
   public static final String EXPIRES_IN               = "expires_in";
   public static final String EXPIRE_STARTED           = "expire_started";
   public static final String NOTIFIED                 = "notified";
+  public static final String UNIDENTIFIED             = "unidentified";
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;
@@ -114,6 +115,10 @@ public interface MmsSmsColumns {
       return
           (type & BASE_TYPE_MASK) == BASE_OUTBOX_TYPE ||
           (type & BASE_TYPE_MASK) == BASE_SENDING_TYPE;
+    }
+
+    public static boolean isSentType(long type) {
+      return (type & BASE_TYPE_MASK) == BASE_SENT_TYPE;
     }
 
     public static boolean isPendingSmsFallbackType(long type) {

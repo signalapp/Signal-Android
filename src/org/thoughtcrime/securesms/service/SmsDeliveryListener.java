@@ -22,12 +22,13 @@ public class SmsDeliveryListener extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     long       messageId  = intent.getLongExtra("message_id", -1);
+    int        runAttempt = intent.getIntExtra("run_attempt", 0);
 
     switch (intent.getAction()) {
       case SENT_SMS_ACTION:
         int result = getResultCode();
 
-        jobManager.add(new SmsSentJob(context, messageId, SENT_SMS_ACTION, result));
+        jobManager.add(new SmsSentJob(context, messageId, SENT_SMS_ACTION, result, runAttempt));
         break;
       case DELIVERED_SMS_ACTION:
         byte[] pdu = intent.getByteArrayExtra("pdu");
@@ -58,7 +59,7 @@ public class SmsDeliveryListener extends BroadcastReceiver {
           else if (status >> 24 == 3) status = SmsDatabase.Status.STATUS_FAILED;
         }
 
-        jobManager.add(new SmsSentJob(context, messageId, DELIVERED_SMS_ACTION, status));
+        jobManager.add(new SmsSentJob(context, messageId, DELIVERED_SMS_ACTION, status, runAttempt));
         break;
       default:
         Log.w(TAG, "Unknown action: " + intent.getAction());

@@ -5,8 +5,10 @@
   <string name="no">မလုပ်ပါ</string>
   <string name="delete">ဖျက်ပါ</string>
   <string name="please_wait">ခဏစောင့်ပါ</string>
+  <string name="save">သိမ်းသည် </string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">စာအသစ်</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">လက်ရှိ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">စကားဝှက်မသတ်မှတ်ရသေးပါ</string>
@@ -64,9 +66,11 @@
   <string name="BucketedThreadMedia_This_month">ဒီလ </string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">အဝင်ဖုန်း​</string>
+  <!--CameraActivity-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ဖယ်ရှားသည် </string>
   <string name="ClearProfileActivity_remove_profile_photo">ဓါတ်ပုံ ဖယ်ရှားမှာလား ?</string>
+  <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sဖြင့် စိတ်ချရသော ဖုန်းနံပတ်ပြောင်းလဲသွားသည်။ တစ်စုံတစ်ယောက်က သင့်ဆက်သွယ်မှုကို ကြားဖြတ်ခြင်းကြောင့် သို့မဟုတ် %2$s Signal ကို ဖြုတ်လိုက်ခြင်းကြောင့် ဖြစ်နိုင်သည်။</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ဤလူနှင့် ဆက်သွယ်ရန် စိတ်ချရသောနံပါတ်ကို အတည်ပြုပါမည်လား။ </string>
@@ -138,6 +142,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ဓါတ်ပုံနှင့် ဗီဒီယိုရိုက်နိုင်ရန် Signal မှ မိမိကင်မရာကို အသုံးပြုခွင့်ပေးထားရန်လိုသည်။  သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ဓါတ်ပုံနှင့် ဗီဒီယိုရိုက်နိုင်ရန် Signal မှ မိမိကင်မရာကို အသုံးပြုခွင့်ပေးထားရန်လိုသည်</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_yes">ဟုတ်ကဲ့</string>
+  <string name="ConversationActivity_no">မလုပ်ပါ</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">မဖတ်ရသေးသည့် စာတို %d </item>
@@ -242,6 +248,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">closeup အတွက်အသင့် ဖြစ်ပြီလား?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">သင့် ဓါတ်ပုံနှင့် အမည်ကို Signal သုံး၍ သူငယ်ချင်းများနှင့် ဝေမျှနိုင်ပါပြီ။ </string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal လိပ်စာများ ဒီနေရာတွင်ရှိသည် </string>
+  <string name="ExperienceUpgradeActivity_no_thanks">မလုပ်လိုပါ</string>
+  <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal ဆက်သွယ်မှု လုံးဝမလုပ်နိုင်ပါ။</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ကို Google Play Services ဖြင့် မှတ်ပုံတင်၍မရနိုင်ပါ။ Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုမှု ကိုပိတ်လိုက်သည်။ ပြင်ဆင်ခြင်း &gt; အဆင့်မြင့်တွင် ပြန်လည်မှတ်ပုံတင်ကြည့်ပါ။ </string>
@@ -291,6 +299,7 @@
   <string name="InviteActivity_lets_switch_to_signal">Signal ကိုပြောင်းသုံးကြစို့ : %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">သူငယ်ချင်းမှန်ရင် ကိုယ့်သူငယ်ချင်းကို encrypt လုပ်မထားဘဲ မ chat စေရ။ </string>
+  <!--Job-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ပို့လွှတ်၍ မရပါ</string>
   <string name="MessageDetailsRecipient_new_safety_number">လုံခြုံရေးနံပါတ် အသစ်</string>
@@ -310,6 +319,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">ဖျက်နေဆဲ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">စာများဖျက်နေသည်</string>
   <string name="MediaOverviewActivity_Documents">စာရွက်စာတမ်းများ</string>
+  <string name="MediaOverviewActivity_Select_all">အားလုံးကို ရွေးပါ</string>
+  <string name="MediaOverviewActivity_collecting_attachments">ပူးတွဲဖိုင်များကို စုစည်းနေသည် </string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal ဖုန်းခေါ်နေသည်</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal ဖုန်းခေါ်ဆိုမှုစတင်နေသည်</string>
@@ -322,6 +333,11 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">ရုပ်၊သံပါ အချက်အလက်များ</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS များအား ဒေါင်းလုပ်ဆွဲမည်</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS များအားဒေါင်းလုပ်ဆွဲနေစဉ် ရပ်တန့်သွားသည်၊ ပြန်စရန် နှိပ်ပါ</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ထပ်မံပံ့ပိုးမှုမရှိတော့သော Signal ဗားရှင်းအဟောင်းဖြင့် encrypt လုပ်ထားသော စာကိုလက်ခံရရှိသည်။ စာပို့သူအား signal နောက်ဆုံးဗားရှင်းကိုမြှင့်ပြီး စာအားပြန်ပို့ခုိင်းပါ။</string>
   <string name="MessageRecord_left_group">အဖွဲ့မှ သင်ထွက်လိုက်သည်။</string>
@@ -373,6 +389,7 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">စကားဝှက် မှားနေသည်</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">သင်သွင်းထားသော Google Play ဗားရှင်းသည် ကောင်းကောင်းအလုပ်မလုပ်ပါသဖြင့် အသစ်ပြန်သွင်းပြီး ထပ်မံစမ်းသပ်ကြည့်ပါ။</string>
+  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ဒီ app ကို အမှတ်ပေးပါ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ဒီ app ကိုကြိုက်လျှင် အချိန်အနည်းငယ်မျှ ပေးပြီး အမှတ်ပေးပေးပါ။</string>
@@ -386,6 +403,7 @@
   <string name="RecipientPreferenceActivity_block">ဘလော့ လုပ်မည်</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">ဤသူကို ဘလော့ဖြည်မလား? </string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">ယင်းသူထံမှ စာတိုများ ၊ ဖုန်းခေါ်ဆိုမှုများ ပြန်လည်လက်ခံနိုင်လိမ့်မည်။ </string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">အုပ်စုမှထွက်ခွာရန် အခက်အခဲ ရှိသည် </string>
   <string name="RecipientPreferenceActivity_unblock">ဘလော့ဖြည်ပါ </string>
   <string name="RecipientPreferenceActivity_enabled">လုပ်ဆောင်နိုင်သည်</string>
   <string name="RecipientPreferenceActivity_disabled">မလုပ်ဆောင်နိုင်ပါ။</string>
@@ -433,6 +451,7 @@
   <string name="SearchFragment_header_conversations">စကားဝိုင်းများ</string>
   <string name="SearchFragment_header_contacts">အဆက်အသွယ်များ</string>
   <string name="SearchFragment_header_messages">စာများ</string>
+  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">အဆက်အသွယ်များထဲသို့ ထည့်မည်</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
@@ -557,6 +576,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">စာအသစ်</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">ယခုဖုန်းမှာ မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ဤကဲ့သို့ ဖြစ်ရခြင်းမှာ Signal အား မိမိဖုန်းနံပါတ်နှင့် အခြားဖုန်းတစ်ခုတွင် မှတ်ပုံတင်ခဲ့ခြင်းကြောင့်ဖြစ်သည်။ Re-register ကို နှိပ်၍ မှတ်ပုံတင်ခြင်း ပြန်လည်ပြုလုပ်ပါ။ </string>

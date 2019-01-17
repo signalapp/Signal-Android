@@ -16,6 +16,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class ServiceOutageDetectionJob extends ContextJob {
 
@@ -25,8 +26,8 @@ public class ServiceOutageDetectionJob extends ContextJob {
   private static final String IP_FAILURE = "127.0.0.2";
   private static final long   CHECK_TIME = 1000 * 60;
 
-  public ServiceOutageDetectionJob() {
-    super(null, null);
+  public ServiceOutageDetectionJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public ServiceOutageDetectionJob(Context context) {

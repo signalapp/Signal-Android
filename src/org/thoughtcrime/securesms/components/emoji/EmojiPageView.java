@@ -1,106 +1,101 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
-import android.util.AttributeSet;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
 
-public class EmojiPageView extends FrameLayout {
+public class EmojiPageView extends FrameLayout implements VariationSelectorListener {
   private static final String TAG = EmojiPageView.class.getSimpleName();
 
-  private EmojiPageModel         model;
-  private EmojiSelectionListener listener;
-  private GridView               grid;
+  private EmojiPageModel                   model;
+  private EmojiPageViewGridAdapter         adapter;
+  private RecyclerView                     recyclerView;
+  private GridLayoutManager                layoutManager;
+  private RecyclerView.OnItemTouchListener scrollDisabler;
+  private VariationSelectorListener        variationSelectorListener;
+  private EmojiVariationSelectorPopup      popup;
 
-  public EmojiPageView(Context context) {
-    this(context, null);
-  }
-
-  public EmojiPageView(Context context, AttributeSet attrs) {
-    this(context, attrs, 0);
-  }
-
-  public EmojiPageView(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
+  public EmojiPageView(@NonNull Context context,
+                       @NonNull EmojiSelectionListener emojiSelectionListener,
+                       @NonNull VariationSelectorListener variationSelectorListener)
+  {
+    super(context);
     final View view = LayoutInflater.from(getContext()).inflate(R.layout.emoji_grid_layout, this, true);
-    grid = (GridView) view.findViewById(R.id.emoji);
-    grid.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2 * getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
-    grid.setOnItemClickListener(new OnItemClickListener() {
-      @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (listener != null) listener.onEmojiSelected(((EmojiView)view).getEmoji());
-      }
-    });
+
+    this.variationSelectorListener = variationSelectorListener;
+
+    recyclerView   = view.findViewById(R.id.emoji);
+    layoutManager  = new GridLayoutManager(context, 8);
+    scrollDisabler = new ScrollDisabler();
+    popup          = new EmojiVariationSelectorPopup(context, emojiSelectionListener);
+    adapter        = new EmojiPageViewGridAdapter(EmojiProvider.getInstance(context),
+                                              popup,
+                                              emojiSelectionListener,
+                                              this);
+
+    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setAdapter(adapter);
   }
 
   public void onSelected() {
-    if (model.isDynamic() && grid != null && grid.getAdapter() != null) {
-      ((EmojiGridAdapter)grid.getAdapter()).notifyDataSetChanged();
+    if (model.isDynamic() && adapter != null) {
+      adapter.notifyDataSetChanged();
     }
   }
 
   public void setModel(EmojiPageModel model) {
     this.model = model;
-    grid.setAdapter(new EmojiGridAdapter(getContext(), model));
+    adapter.setEmoji(model.getDisplayEmoji());
   }
 
-  public void setEmojiSelectedListener(EmojiSelectionListener listener) {
-    this.listener = listener;
+  @Override
+  protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
+    if (visibility != VISIBLE) {
+      popup.dismiss();
+    }
   }
 
-  private static class EmojiGridAdapter extends BaseAdapter {
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    int idealWidth = getContext().getResources().getDimensionPixelOffset(R.dimen.emoji_drawer_item_width);
+    layoutManager.setSpanCount(Math.max(w / idealWidth, 1));
+  }
 
-    protected final Context                context;
-    private   final int                    emojiSize;
-    private   final EmojiPageModel         model;
-
-    public EmojiGridAdapter(Context context, EmojiPageModel model) {
-      this.context   = context;
-      this.emojiSize = (int) context.getResources().getDimension(R.dimen.emoji_drawer_size);
-      this.model     = model;
+  @Override
+  public void onVariationSelectorStateChanged(boolean open) {
+    if (open) {
+      recyclerView.addOnItemTouchListener(scrollDisabler);
+    } else {
+      post(() -> recyclerView.removeOnItemTouchListener(scrollDisabler));
     }
 
-    @Override public int getCount() {
-      return model.getEmoji().length;
-    }
-
-    @Override
-    public Object getItem(int position) {
-      return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-      return position;
-    }
-
-    @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
-      final EmojiView view;
-      final int pad = context.getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding);
-      if (convertView != null && convertView instanceof EmojiView) {
-        view = (EmojiView)convertView;
-      } else {
-        final EmojiView emojiView = new EmojiView(context);
-        emojiView.setPadding(pad, pad, pad, pad);
-        emojiView.setLayoutParams(new AbsListView.LayoutParams(emojiSize + 2 * pad, emojiSize + 2 * pad));
-        view = emojiView;
-      }
-
-      view.setEmoji(model.getEmoji()[position]);
-      return view;
+    if (variationSelectorListener != null) {
+      variationSelectorListener.onVariationSelectorStateChanged(open);
     }
   }
 
   public interface EmojiSelectionListener {
     void onEmojiSelected(String emoji);
+  }
+
+  private static class ScrollDisabler implements RecyclerView.OnItemTouchListener {
+    @Override
+    public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+      return true;
+    }
+
+    @Override
+    public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) { }
+
+    @Override
+    public void onRequestDisallowInterceptTouchEvent(boolean b) { }
   }
 }

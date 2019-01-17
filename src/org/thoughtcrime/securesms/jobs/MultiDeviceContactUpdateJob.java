@@ -13,8 +13,8 @@ import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -50,8 +50,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
-public class MultiDeviceContactUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceContactUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 2L;
 
@@ -68,8 +69,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   private boolean forceSync;
 
-  public MultiDeviceContactUpdateJob() {
-    super(null, null);
+  public MultiDeviceContactUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceContactUpdateJob(@NonNull Context context) {
@@ -87,7 +88,6 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withGroupId(MultiDeviceContactUpdateJob.class.getSimpleName())
                                 .create());
 
@@ -111,11 +111,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret)
+  public void onRun()
       throws IOException, UntrustedIdentityException, NetworkException
   {
     if (!TextSecurePreferences.isMultiDevice(context)) {
-      Log.w(TAG, "Not multi device, aborting...");
+      Log.i(TAG, "Not multi device, aborting...");
       return;
     }
 
@@ -216,7 +216,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }
@@ -238,7 +238,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                                                                 .build();
 
       try {
-        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)));
+        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
       }

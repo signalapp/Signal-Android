@@ -5,8 +5,11 @@
   <string name="no">No</string>
   <string name="delete">Cancella</string>
   <string name="please_wait">Attendere...</string>
+  <string name="save">Salva</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nuovo messaggio</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">In questo momento: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
@@ -67,9 +70,14 @@
   <string name="BucketedThreadMedia_This_month">Questo mese</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Fotocamera non disponibile.</string>
+  <string name="CameraActivity_image_save_failure">Salvataggio immagine fallito.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Elimina</string>
   <string name="ClearProfileActivity_remove_profile_photo">Rimuovere foto profilo?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Nessun browser web trovato.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Il codice di sicurezza con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Dovresti verificare il tuo codice di sicurezza con questo contatto.</string>
@@ -130,7 +138,9 @@
   <string name="ConversationActivity_error_leaving_group">Errore nell\'uscita dal gruppo</string>
   <string name="ConversationActivity_specify_recipient">Scegli un contatto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Sbloccare questo contatto?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Sbloccare questo gruppo?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Sarai di nuovo in grado di ricevere messaggi e chiamate da questo contatto.</string>
+  <string name="ConversationActivity_unblock_this_group_description">I membri esistenti potranno aggiungerti nel gruppo nuovamente.</string>
   <string name="ConversationActivity_unblock">Sblocca</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">L\'allegato che stai cercando di inviare supera le dimensioni consentite</string>
   <string name="ConversationActivity_quick_camera_unavailable">Fotocamera non disponibile</string>
@@ -144,6 +154,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_yes">Sì</string>
+  <string name="ConversationActivity_no">No</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>
@@ -264,6 +276,15 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pronto per il tuo primo piano?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Ora puoi condividere una foto profilo e un nome con i tuoi amici su Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">I profili Signal sono arrivati</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Ti presentiamo gli indicatori di scrittura</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ora puoi facoltativamente vedere e condividere quando i messaggi vengono digitati.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vuoi attivarli adesso?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Sono arrivati gli indicatori di scrittura</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Attiva indicatori di scrittura</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Attiva gli indicatori di scrittura</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">No grazie</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Reperimento di un messaggio...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal è stato impossibilitato a registrarsi con i sevizi di Google Play.
@@ -316,6 +337,8 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="InviteActivity_lets_switch_to_signal">Passiamo a Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sembra che tu non abbia alcune applicazioni per condividere.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Gli amici non lasciano che gli amici chattino senza crittografia.</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">Funzionamento in secondo piano...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Invio fallito</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nuovo codice di sicurezza</string>
@@ -337,6 +360,8 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MediaOverviewActivity_Media_delete_progress_title">Cancellazione</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Cancellazione messaggi...</string>
   <string name="MediaOverviewActivity_Documents">Documenti</string>
+  <string name="MediaOverviewActivity_Select_all">Seleziona tutto</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Recupero allegati...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
@@ -349,6 +374,12 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio multimediale</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Scarico MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Errore nello scaricare MMS, premi per riprovare</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Aggiungi una didascalia...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Tutti i file multimediali</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di Signal che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
   <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
@@ -405,6 +436,8 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versione di Google Play Services installata non funziona correttamente. Reinstallalo e riprova.</string>
+  <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Reperimento di un messaggio...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vota questa app!</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se quest\'applicazione ti piace, ti preghiamo di aiutarci votandola.</string>
@@ -415,9 +448,15 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloccare questo contatto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Non riceverai più messaggi e chiamate da questo contatto.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Bloccare e abbandonare questo gruppo?</string>
+  <string name="RecipientPreferenceActivity_block_group">Bloccare questo gruppo?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Non riceverai più messaggi o aggiornamenti da questo gruppo.</string>
   <string name="RecipientPreferenceActivity_block">Blocca</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Sbloccare questo contatto?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Sarai di nuovo in grado di ricevere messaggi e chiamate da questo contatto.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Sbloccare questo gruppo?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">I membri esistenti potranno aggiungerti nel gruppo nuovamente.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Errore nell\'uscita dal gruppo</string>
   <string name="RecipientPreferenceActivity_unblock">Sblocca</string>
   <string name="RecipientPreferenceActivity_enabled">Attivato</string>
   <string name="RecipientPreferenceActivity_disabled">Disattivato</string>
@@ -457,6 +496,10 @@ proprio numero di telefono</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal richiede l\'accesso ai tuoi contatti e ai tuoi contenuti multimediali per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossibile connettersi al servizio. Per favore controlla la connessione a internet e riprova</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Per verificare facilmente il tuo numero di telefono, Signal può rilevare automaticamente il codice di verifica se consenti a Signal di visualizzare i messaggi SMS.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Ti manca solo %d passo per inviare un log di debug.</item>
+    <item quantity="other">Ti mancano solo %d passi per inviare un log di debug.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvataggio modifiche all\'immagine fallito</string>
   <!--Search-->
@@ -464,6 +507,8 @@ proprio numero di telefono</string>
   <string name="SearchFragment_header_conversations">Conversazioni</string>
   <string name="SearchFragment_header_contacts">Contatti</string>
   <string name="SearchFragment_header_messages">Messaggi</string>
+  <!--SendJob-->
+  <string name="SendJob_sending_a_message">Invio di un messaggio...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Aggiungi ai contatti</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invita su Signal</string>
@@ -588,6 +633,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Salvato in %s</string>
+  <string name="SaveAttachmentTask_saved">Salvato</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Cerca</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Cerca conversazioni, contatti e messaggi</string>
@@ -596,6 +642,11 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d elemento</item>
+    <item quantity="other">%d elementi</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispositivo non più registrato</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probabilmente perchè hai registrato il numero di telefono con Signal su un altro dispositivo. Tocca per registrare di nuovo.</string>
@@ -973,6 +1024,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__incognito_keyboard">Tastiera in incognito</string>
   <string name="preferences__read_receipts">Conferme di lettura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se le conferme di lettura sono disabilitate, non sarai in grado di vedere le conferme di lettura da altri.</string>
+  <string name="preferences__typing_indicators">Indicatori di scrittura</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se gli indicatori di scrittura sono disabilitati, non sarai in grado di vedere quando gli altri utenti stanno digitando.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Richiedi alla tastiera di disattivare l\'apprendimento delle parole digitate</string>
   <string name="preferences_app_protection__blocked_contacts">Contatti bloccati</string>
   <string name="preferences_chats__when_using_mobile_data">Su rete cellulare</string>
@@ -998,6 +1051,12 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences_chats__message_text_size">Dimensione carattere messaggio</string>
   <string name="preferences_events__contact_joined_signal">Quando un nuovo contatto si unisce a Signal</string>
   <string name="preferences_notifications__priority">Priorità</string>
+  <string name="preferences_communication__category_sealed_sender">Mittente sigillato</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Mostra indicatori</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Mostra un\'icona di stato quando selezioni \"Dettagli messaggio\" nei messaggi inviati usando il mittente sigillato.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Permetti da chiunque</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Abilita il mittente sigillato per i messaggi in arrivo da non-contatti e persone con cui non hai condiviso il tuo profilo.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Scopri di più</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1129,6 +1188,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences_chats__create_backup">Crea backup</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Inserire passphrase del backup</string>
   <string name="RegistrationActivity_restore">Ripristina</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Impossibile importare backup da versioni più recenti di Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Passphrase del backup errata</string>
   <string name="RegistrationActivity_checking">Controllo...</string>
   <string name="RegistrationActivity_d_messages_so_far">Ancora %d messaggi ...</string>

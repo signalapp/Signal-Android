@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.IOException;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MmsReceiveJob extends ContextJob {
 
@@ -38,8 +39,8 @@ public class MmsReceiveJob extends ContextJob {
   private byte[] data;
   private int    subscriptionId;
 
-  public MmsReceiveJob() {
-    super(null, null);
+  public MmsReceiveJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MmsReceiveJob(Context context, byte[] data, int subscriptionId) {

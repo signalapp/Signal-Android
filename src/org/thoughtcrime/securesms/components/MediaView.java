@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -79,6 +80,19 @@ public class MediaView extends FrameLayout {
     if (this.videoView.resolved()){
       this.videoView.get().pause();
     }
+  }
+
+  public void hideControls() {
+    if (this.videoView.resolved()){
+      this.videoView.get().hideControls();
+    }
+  }
+
+  public @Nullable View getPlaybackControls() {
+    if (this.videoView.resolved()){
+      return this.videoView.get().getControlView();
+    }
+    return null;
   }
 
   public void cleanup() {

@@ -56,17 +56,12 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver implements In
         return;
       }
 
-      String receiptData = intent.getStringExtra("receipt");
-
-      if      (!TextUtils.isEmpty(receiptData)) handleReceivedMessage(context, receiptData);
-      else if (intent.hasExtra("notification")) handleReceivedNotification(context);
+      if (intent.hasExtra("notification")) {
+        handleReceivedNotification(context);
+      } else {
+        Log.w(TAG, "Received an unexpected intent.");
+      }
     }
-  }
-
-  private void handleReceivedMessage(Context context, String data) {
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new PushContentReceiveJob(context, data));
   }
 
   private void handleReceivedNotification(Context context) {
@@ -121,7 +116,7 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver implements In
       new Thread("GcmForegroundServiceTimer") {
         @Override
         public void run() {
-          Util.sleep(5000);
+          Util.sleep(4500);
           synchronized (foregroundLock) {
             if (!taskCompleted.get() && !foregroundRunning.getAndSet(true)) {
               Log.i(TAG, "Starting a foreground task because the job is running long.");
