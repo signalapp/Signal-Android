@@ -69,7 +69,7 @@ public class EmojiPageView extends FrameLayout {
     }
 
     @Override public int getCount() {
-      return model.getEmoji().length;
+      return model.getDisplayEmoji().length;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class EmojiPageView extends FrameLayout {
         view = emojiView;
       }
 
-      view.setEmoji(model.getEmoji()[position]);
+      view.setEmoji(model.getDisplayEmoji()[position]);
       return view;
     }
   }
