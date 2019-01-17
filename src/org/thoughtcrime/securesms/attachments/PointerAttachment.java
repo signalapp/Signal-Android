@@ -19,9 +19,9 @@ public class PointerAttachment extends Attachment {
                             @Nullable String fileName,  @NonNull String location,
                             @Nullable String key, @Nullable String relay,
                             @Nullable byte[] digest, boolean voiceNote,
-                            int width, int height, @Nullable String caption)
+                            int width, int height)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote, width, height, false, caption);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote, width, height, false);
   }
 
   @Nullable
@@ -83,12 +83,11 @@ public class PointerAttachment extends Attachment {
                                       pointer.get().asPointer().getSize().or(0),
                                       pointer.get().asPointer().getFileName().orNull(),
                                       String.valueOf(pointer.get().asPointer().getId()),
-                                      encodedKey, null,
+                                      encodedKey, pointer.get().asPointer().getRelay().orNull(),
                                       pointer.get().asPointer().getDigest().orNull(),
                                       pointer.get().asPointer().getVoiceNote(),
                                       pointer.get().asPointer().getWidth(),
-                                      pointer.get().asPointer().getHeight(),
-                                      pointer.get().asPointer().getCaption().orNull()));
+                                      pointer.get().asPointer().getHeight()));
 
   }
 
@@ -105,7 +104,6 @@ public class PointerAttachment extends Attachment {
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orNull() : null,
                                              false,
                                              thumbnail != null ? thumbnail.asPointer().getWidth() : 0,
-                                             thumbnail != null ? thumbnail.asPointer().getHeight() : 0,
-                                             thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null));
+                                             thumbnail != null ? thumbnail.asPointer().getHeight() : 0));
   }
 }

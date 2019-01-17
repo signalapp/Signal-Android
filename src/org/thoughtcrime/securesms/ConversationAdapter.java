@@ -191,9 +191,10 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
 
   @Override
   protected void onBindItemViewHolder(ViewHolder viewHolder, @NonNull MessageRecord messageRecord) {
-    int           adapterPosition = viewHolder.getAdapterPosition();
-    MessageRecord previousRecord  = adapterPosition < getItemCount() - 1 && !isFooterPosition(adapterPosition + 1) ? getRecordForPositionOrThrow(adapterPosition + 1) : null;
-    MessageRecord nextRecord      = adapterPosition > 0 && !isHeaderPosition(adapterPosition - 1) ? getRecordForPositionOrThrow(adapterPosition - 1) : null;
+    long          start            = System.currentTimeMillis();
+    int           adapterPosition  = viewHolder.getAdapterPosition();
+    MessageRecord previousRecord   = adapterPosition < getItemCount() - 1 && !isFooterPosition(adapterPosition + 1) ? getRecordForPositionOrThrow(adapterPosition + 1) : null;
+    MessageRecord nextRecord       = adapterPosition > 0 && !isHeaderPosition(adapterPosition - 1) ? getRecordForPositionOrThrow(adapterPosition - 1) : null;
 
     viewHolder.getView().bind(messageRecord,
                               Optional.fromNullable(previousRecord),
@@ -207,6 +208,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     if (messageRecord == recordToPulseHighlight) {
       recordToPulseHighlight = null;
     }
+
+    Log.d(TAG, "Bind time: " + (System.currentTimeMillis() - start));
   }
 
   @Override

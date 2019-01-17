@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  */
 public class IncomingPstnCallReceiver extends BroadcastReceiver {
 
-  private static final String TAG = IncomingPstnCallReceiver.class.getSimpleName();
+  private static final String TAG = IncomingPstnCallReceiver.class.getName();
 
   @Override
   public void onReceive(Context context, Intent intent) {

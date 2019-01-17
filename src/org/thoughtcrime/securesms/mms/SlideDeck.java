@@ -20,8 +20,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -103,10 +101,6 @@ public class SlideDeck {
     }
 
     return null;
-  }
-
-  public @NonNull List<Slide> getThumbnailSlides() {
-    return Stream.of(slides).filter(Slide::hasImage).toList();
   }
 
   public @Nullable AudioSlide getAudioSlide() {

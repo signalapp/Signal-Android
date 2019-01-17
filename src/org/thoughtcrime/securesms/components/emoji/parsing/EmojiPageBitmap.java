@@ -1,10 +1,7 @@
 package org.thoughtcrime.securesms.components.emoji.parsing;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
@@ -14,18 +11,16 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 public class EmojiPageBitmap {
 
-  private static final String TAG = EmojiPageBitmap.class.getSimpleName();
+  private static final String TAG = EmojiPageBitmap.class.getName();
 
   private final Context        context;
   private final EmojiPageModel model;
@@ -40,7 +35,6 @@ public class EmojiPageBitmap {
     this.decodeScale = decodeScale;
   }
 
-  @SuppressLint("StaticFieldLeak")
   public ListenableFutureTask<Bitmap> get() {
     Util.assertMainThread();
 
@@ -76,31 +70,27 @@ public class EmojiPageBitmap {
   private Bitmap loadPage() throws IOException {
     if (bitmapReference != null && bitmapReference.get() != null) return bitmapReference.get();
 
+    try {
+      Bitmap originalBitmap = GlideApp.with(context.getApplicationContext())
+                                      .asBitmap()
+                                      .load("file:///android_asset/" + model.getSprite())
+                                      .skipMemoryCache(true)
+                                      .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                      .submit()
+                                      .get();
 
-    float                 scale        = decodeScale;
-    AssetManager          assetManager = context.getAssets();
-    InputStream           assetStream  = assetManager.open(model.getSprite());
-    BitmapFactory.Options options      = new BitmapFactory.Options();
+      Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, (int)(originalBitmap.getWidth() * decodeScale), (int)(originalBitmap.getHeight() * decodeScale), false);
 
-    if (Util.isLowMemory(context)) {
-      Log.i(TAG, "Low memory detected. Changing sample size.");
-      options.inSampleSize = 2;
-      scale = decodeScale * 2;
+      bitmapReference = new SoftReference<>(scaledBitmap);
+      Log.i(TAG, "onPageLoaded(" + model.getSprite() + ")");
+      return scaledBitmap;
+    } catch (InterruptedException e) {
+      Log.w(TAG, e);
+      throw new IOException(e);
+    } catch (ExecutionException e) {
+      Log.w(TAG, e);
+      throw new IOException(e);
     }
-
-    Stopwatch stopwatch = new Stopwatch(model.getSprite());
-    Bitmap    bitmap    = BitmapFactory.decodeStream(assetStream, null, options);
-    stopwatch.split("decode");
-
-    Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth() * scale), (int)(bitmap.getHeight() * scale), true);
-    stopwatch.split("scale");
-    stopwatch.stop(TAG);
-
-    bitmapReference = new SoftReference<>(scaledBitmap);
-    Log.i(TAG, "onPageLoaded(" + model.getSprite() + ")  originalByteCount: " + bitmap.getByteCount()
-                                                    + "  scaledByteCount: "   + scaledBitmap.getByteCount()
-                                                    + "  scaledSize: "        + scaledBitmap.getWidth() + "x" + scaledBitmap.getHeight());
-    return scaledBitmap;
   }
 
   @Override

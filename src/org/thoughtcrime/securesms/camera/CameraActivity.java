@@ -17,9 +17,12 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
+import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.scribbles.ScribbleFragment;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
+import org.thoughtcrime.securesms.util.concurrent.LifecycleBoundTask;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -122,7 +125,7 @@ public class CameraActivity extends PassphraseRequiredActionBarActivity implemen
     result.addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
-        ScribbleFragment fragment = ScribbleFragment.newInstance(captureUri, dynamicLanguage.getCurrentLocale(), Optional.of(transport), true);
+        ScribbleFragment fragment = ScribbleFragment.newInstance(captureUri, dynamicLanguage.getCurrentLocale(), Optional.of(transport));
         getSupportFragmentManager().beginTransaction()
                                    .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
                                    .replace(R.id.fragment_container, fragment, TAG_EDITOR)
@@ -160,7 +163,4 @@ public class CameraActivity extends PassphraseRequiredActionBarActivity implemen
     Toast.makeText(this, R.string.CameraActivity_image_save_failure, Toast.LENGTH_SHORT).show();
     finish();
   }
-
-  @Override
-  public void onTouchEventsNeeded(boolean needed) { }
 }

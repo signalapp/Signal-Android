@@ -3,11 +3,6 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
-import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
-import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
-import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.greenrobot.eventbus.EventBus;
@@ -38,9 +33,7 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
-import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.jobs.RotateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
@@ -90,14 +83,7 @@ import dagger.Provides;
                                      SendReadReceiptJob.class,
                                      MultiDeviceReadReceiptUpdateJob.class,
                                      AppProtectionPreferenceFragment.class,
-                                     GcmBroadcastReceiver.class,
-                                     RotateCertificateJob.class,
-                                     SendDeliveryReceiptJob.class,
-                                     RotateProfileKeyJob.class,
-                                     MultiDeviceConfigurationUpdateJob.class,
-                                     RefreshUnidentifiedDeliveryAbilityJob.class,
-                                     TypingSendJob.class,
-                                     AttachmentUploadJob.class})
+                                     GcmBroadcastReceiver.class})
 public class SignalCommunicationModule {
 
   private static final String TAG = SignalCommunicationModule.class.getSimpleName();
@@ -132,13 +118,10 @@ public class SignalCommunicationModule {
                                                           new DynamicCredentialsProvider(context),
                                                           new SignalProtocolStoreImpl(context),
                                                           BuildConfig.USER_AGENT,
-                                                          TextSecurePreferences.isMultiDevice(context),
                                                           Optional.fromNullable(IncomingMessageObserver.getPipe()),
-                                                          Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                                           Optional.of(new SecurityEventListener(context)));
     } else {
-      this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
-      this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));
+      this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe());
     }
 
     return this.messageSender;

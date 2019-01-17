@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -31,17 +30,16 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
-public class MultiDeviceProfileKeyUpdateJob extends ContextJob implements InjectableType {
+public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceProfileKeyUpdateJob.class.getSimpleName();
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  public MultiDeviceProfileKeyUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public MultiDeviceProfileKeyUpdateJob() {
+    super(null, null);
   }
 
   public MultiDeviceProfileKeyUpdateJob(Context context) {
@@ -61,9 +59,9 @@ public class MultiDeviceProfileKeyUpdateJob extends ContextJob implements Inject
   }
 
   @Override
-  public void onRun() throws IOException, UntrustedIdentityException {
+  public void onRun(MasterSecret masterSecret) throws IOException, UntrustedIdentityException {
     if (!TextSecurePreferences.isMultiDevice(getContext())) {
-      Log.i(TAG, "Not multi device...");
+      Log.w(TAG, "Not multi device...");
       return;
     }
 
@@ -88,11 +86,11 @@ public class MultiDeviceProfileKeyUpdateJob extends ContextJob implements Inject
 
     SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
-    messageSender.sendMessage(syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendMessage(syncMessage);
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetryThrowable(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

@@ -48,9 +48,8 @@ import java.util.List;
 import java.util.Set;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
-public class MmsDownloadJob extends ContextJob {
+public class MmsDownloadJob extends MasterSecretJob {
 
   private static final long serialVersionUID = 1L;
 
@@ -64,12 +63,14 @@ public class MmsDownloadJob extends ContextJob {
   private long    threadId;
   private boolean automatic;
 
-  public MmsDownloadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public MmsDownloadJob() {
+    super(null, null);
   }
 
   public MmsDownloadJob(Context context, long messageId, long threadId, boolean automatic) {
     super(context, JobParameters.newBuilder()
+                                .withMasterSecretRequirement()
+                                .withMasterSecretRequirement()
                                 .withGroupId("mms-operation")
                                 .create());
 
@@ -102,7 +103,7 @@ public class MmsDownloadJob extends ContextJob {
   }
 
   @Override
-  public void onRun() {
+  public void onRun(MasterSecret masterSecret) {
     MmsDatabase                               database     = DatabaseFactory.getMmsDatabase(context);
     Optional<MmsDatabase.MmsNotificationInfo> notification = database.getNotification(messageId);
 
@@ -185,7 +186,7 @@ public class MmsDownloadJob extends ContextJob {
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetryThrowable(Exception exception) {
     return false;
   }
 
@@ -242,7 +243,7 @@ public class MmsDownloadJob extends ContextJob {
 
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length, name, false, false, null));
+                                            part.getData().length, name, false, false));
         }
       }
     }
@@ -251,7 +252,7 @@ public class MmsDownloadJob extends ContextJob {
       group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true)));
     }
 
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false);
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false);
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {

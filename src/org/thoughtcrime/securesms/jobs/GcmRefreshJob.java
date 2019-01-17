@@ -44,7 +44,6 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import javax.inject.Inject;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
 public class GcmRefreshJob extends ContextJob implements InjectableType {
 
@@ -54,8 +53,8 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
 
   @Inject transient SignalServiceAccountManager textSecureAccountManager;
 
-  public GcmRefreshJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public GcmRefreshJob() {
+    super(null, null);
   }
 
   public GcmRefreshJob(Context context) {

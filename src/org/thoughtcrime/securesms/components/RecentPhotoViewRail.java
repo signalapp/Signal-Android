@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -80,7 +79,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   private static class RecentPhotoAdapter extends CursorRecyclerViewAdapter<RecentPhotoAdapter.RecentPhotoViewHolder> {
 
     @SuppressWarnings("unused")
-    private static final String TAG = RecentPhotoAdapter.class.getSimpleName();
+    private static final String TAG = RecentPhotoAdapter.class.getName();
 
     @NonNull  private final Uri baseUri;
     @Nullable private OnItemClickedListener clickedListener;
@@ -107,10 +106,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
       long   dateTaken    = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATE_TAKEN));
       long   dateModified = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATE_MODIFIED));
       String mimeType     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.MIME_TYPE));
-      String bucketId     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_ID));
       int    orientation  = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
-      int    width        = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.WIDTH)) : 0;
-      int    height       = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.HEIGHT)) : 0;
 
       final Uri uri = Uri.withAppendedPath(baseUri, Long.toString(id));
 
@@ -123,7 +119,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
               .into(viewHolder.imageView);
 
       viewHolder.imageView.setOnClickListener(v -> {
-        if (clickedListener != null) clickedListener.onItemClicked(uri, mimeType, bucketId, dateTaken, width, height);
+        if (clickedListener != null) clickedListener.onItemClicked(uri);
       });
 
     }
@@ -145,6 +141,6 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   }
 
   public interface OnItemClickedListener {
-    void onItemClicked(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height);
+    void onItemClicked(Uri uri);
   }
 }

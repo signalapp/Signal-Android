@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,7 +28,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Address implements Parcelable, Comparable<Address> {
@@ -188,30 +186,26 @@ public class Address implements Parcelable, Comparable<Address> {
       add("AC");
     }};
 
-    private static final Pattern US_NO_AREACODE = Pattern.compile("^(\\d{7})$");
-    private static final Pattern BR_NO_AREACODE = Pattern.compile("^(9?\\d{8})$");
-
-    private final Optional<PhoneNumber> localNumber;
-    private final String                localCountryCode;
+    private final String localNumberString;
+    private final String localCountryCode;
 
     private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
     private final Pattern         ALPHA_PATTERN   = Pattern.compile("[a-zA-Z]");
 
     ExternalAddressFormatter(@NonNull String localNumberString) {
       try {
-        Phonenumber.PhoneNumber libNumber   = phoneNumberUtil.parse(localNumberString, null);
-        int                     countryCode = libNumber.getCountryCode();
+        Phonenumber.PhoneNumber localNumber = phoneNumberUtil.parse(localNumberString, null);
 
-        this.localNumber       = Optional.of(new PhoneNumber(localNumberString, countryCode, parseAreaCode(localNumberString, countryCode)));
-        this.localCountryCode  = phoneNumberUtil.getRegionCodeForNumber(libNumber);
+        this.localNumberString = localNumberString;
+        this.localCountryCode  = phoneNumberUtil.getRegionCodeForNumber(localNumber);
       } catch (NumberParseException e) {
         throw new AssertionError(e);
       }
     }
 
     ExternalAddressFormatter(@NonNull String localCountryCode, boolean countryCode) {
-      this.localNumber      = Optional.absent();
-      this.localCountryCode = localCountryCode;
+      this.localNumberString = "";
+      this.localCountryCode  = localCountryCode;
     }
 
     public String format(@Nullable String number) {
@@ -236,21 +230,20 @@ public class Address implements Parcelable, Comparable<Address> {
         return bareNumber;
       }
 
-      if (isShortCode(bareNumber, localCountryCode)) {
-        return bareNumber;
-      }
-
-      String processedNumber = applyAreaCodeRules(localNumber, bareNumber);
-
       try {
-        Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(processedNumber, localCountryCode);
+        Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(bareNumber, localCountryCode);
+
+        if (ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(parsedNumber, localCountryCode)) {
+          return bareNumber;
+        }
+
         return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
       } catch (NumberParseException e) {
         Log.w(TAG, e);
         if (bareNumber.charAt(0) == '+')
           return bareNumber;
 
-        String localNumberImprecise = localNumber.isPresent() ? localNumber.get().getE164Number() : "";
+        String localNumberImprecise = localNumberString;
 
         if (localNumberImprecise.charAt(0) == '+')
           localNumberImprecise = localNumberImprecise.substring(1);
@@ -263,72 +256,6 @@ public class Address implements Parcelable, Comparable<Address> {
         return "+" + localNumberImprecise.substring(0, difference) + bareNumber;
       }
     }
-
-    private boolean isShortCode(@NonNull String bareNumber, String localCountryCode) {
-      try {
-        Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(bareNumber, localCountryCode);
-        return ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(parsedNumber, localCountryCode);
-      } catch (NumberParseException e) {
-        return false;
-      }
-    }
-
-    private @Nullable String parseAreaCode(@NonNull String e164Number, int countryCode) {
-      switch (countryCode) {
-        case 1:
-          return e164Number.substring(2, 5);
-        case 55:
-          return e164Number.substring(3, 5);
-      }
-      return null;
-    }
-
-
-    private @NonNull String applyAreaCodeRules(@NonNull Optional<PhoneNumber> localNumber, @NonNull String testNumber) {
-      if (!localNumber.isPresent() || !localNumber.get().getAreaCode().isPresent()) {
-        return testNumber;
-      }
-
-      Matcher matcher;
-      switch (localNumber.get().getCountryCode()) {
-        case 1:
-          matcher = US_NO_AREACODE.matcher(testNumber);
-          if (matcher.matches()) {
-            return localNumber.get().getAreaCode() + matcher.group();
-          }
-          break;
-
-        case 55:
-          matcher = BR_NO_AREACODE.matcher(testNumber);
-          if (matcher.matches()) {
-            return localNumber.get().getAreaCode() + matcher.group();
-          }
-      }
-      return testNumber;
-    }
-
-    private static class PhoneNumber {
-      private final String           e164Number;
-      private final int              countryCode;
-      private final Optional<String> areaCode;
-
-      PhoneNumber(String e164Number, int countryCode, @Nullable String areaCode) {
-        this.e164Number  = e164Number;
-        this.countryCode = countryCode;
-        this.areaCode    = Optional.fromNullable(areaCode);
-      }
-
-      String getE164Number() {
-        return e164Number;
-      }
-
-      int getCountryCode() {
-        return countryCode;
-      }
-
-      Optional<String> getAreaCode() {
-        return areaCode;
-      }
-    }
   }
+
 }

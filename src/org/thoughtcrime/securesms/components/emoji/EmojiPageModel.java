@@ -1,11 +1,8 @@
 package org.thoughtcrime.securesms.components.emoji;
 
-import java.util.List;
-
 public interface EmojiPageModel {
   int getIconAttr();
-  List<String> getEmoji();
-  List<Emoji> getDisplayEmoji();
+  String[] getEmoji();
   boolean hasSpriteMap();
   String getSprite();
   boolean isDynamic();

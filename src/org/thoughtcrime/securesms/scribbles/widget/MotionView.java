@@ -49,8 +49,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
-import com.annimon.stream.Stream;
-
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.scribbles.multitouch.MoveGestureDetector;
@@ -148,17 +146,6 @@ public class MotionView  extends FrameLayout implements TextWatcher {
     updateUI();
   }
 
-  public SavedState saveState() {
-    return new SavedState(entities);
-  }
-
-  public void restoreState(@NonNull SavedState savedState) {
-    this.entities.clear();
-    this.entities.addAll(savedState.getEntities());
-
-    postInvalidate();
-  }
-
   public void startEditing(TextEntity entity) {
     editText.setFocusableInTouchMode(true);
     editText.setFocusable(true);
@@ -237,7 +224,7 @@ public class MotionView  extends FrameLayout implements TextWatcher {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    render(canvas, entities);
+    drawAllEntities(canvas);
   }
 
   public void render(Canvas canvas) {
@@ -245,7 +232,11 @@ public class MotionView  extends FrameLayout implements TextWatcher {
     draw(canvas);
   }
 
-  public static void render(Canvas canvas, List<MotionEntity> entities) {
+  /**
+   * draws all entities on the canvas
+   * @param canvas Canvas where to draw all entities
+   */
+  private void drawAllEntities(Canvas canvas) {
     for (int i = 0; i < entities.size(); i++) {
       entities.get(i).draw(canvas, null);
     }
@@ -263,7 +254,7 @@ public class MotionView  extends FrameLayout implements TextWatcher {
     // which doesn't have transparent pixels, the background will be black
     bmp.eraseColor(Color.WHITE);
     Canvas canvas = new Canvas(bmp);
-    render(canvas, entities);
+    drawAllEntities(canvas);
 
     return bmp;
   }
@@ -503,21 +494,4 @@ public class MotionView  extends FrameLayout implements TextWatcher {
     }
   }
 
-  static class SavedState {
-
-    private final List<MotionEntity> entities;
-
-    SavedState(List<MotionEntity> entities) {
-      this.entities = new ArrayList<>(entities);
-      Stream.of(entities).forEach(e -> e.setIsSelected(false));
-    }
-
-    List<MotionEntity> getEntities() {
-      return entities;
-    }
-
-    boolean isEmpty() {
-      return entities.isEmpty();
-    }
-  }
 }

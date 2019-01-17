@@ -257,10 +257,10 @@ public class AttachmentTypeSelector extends PopupWindow {
 
   private class RecentPhotoSelectedListener implements RecentPhotoViewRail.OnItemClickedListener {
     @Override
-    public void onItemClicked(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height) {
+    public void onItemClicked(Uri uri) {
       animateWindowOutTranslate(getContentView());
 
-      if (listener != null) listener.onQuickAttachment(uri, mimeType, bucketId, dateTaken, width, height);
+      if (listener != null) listener.onQuickAttachment(uri);
     }
   }
 
@@ -289,8 +289,8 @@ public class AttachmentTypeSelector extends PopupWindow {
   }
 
   public interface AttachmentClickedListener {
-    void onClick(int type);
-    void onQuickAttachment(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height);
+    public void onClick(int type);
+    public void onQuickAttachment(Uri uri);
   }
 
 }

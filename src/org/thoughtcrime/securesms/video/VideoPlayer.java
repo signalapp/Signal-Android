@@ -21,7 +21,6 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -47,8 +46,6 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.ui.PlayerControlView;
-import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
@@ -66,13 +63,12 @@ import java.io.IOException;
 
 public class VideoPlayer extends FrameLayout {
 
-  private static final String TAG = VideoPlayer.class.getSimpleName();
+  private static final String TAG = VideoPlayer.class.getName();
 
   @Nullable private final VideoView           videoView;
-  @Nullable private final PlayerView          exoView;
+  @Nullable private final SimpleExoPlayerView exoView;
 
   @Nullable private       SimpleExoPlayer     exoPlayer;
-  @Nullable private       PlayerControlView   exoControls;
   @Nullable private       AttachmentServer    attachmentServer;
   @Nullable private       Window              window;
 
@@ -92,8 +88,6 @@ public class VideoPlayer extends FrameLayout {
     if (Build.VERSION.SDK_INT >= 16) {
       this.exoView   = ViewUtil.findById(this, R.id.video_view);
       this.videoView = null;
-      this.exoControls = new PlayerControlView(getContext());
-      this.exoControls.setShowTimeoutMs(-1);
     } else {
       this.videoView = ViewUtil.findById(this, R.id.video_view);
       this.exoView   = null;
@@ -114,19 +108,6 @@ public class VideoPlayer extends FrameLayout {
     } else if (this.exoPlayer != null) {
       this.exoPlayer.setPlayWhenReady(false);
     }
-  }
-
-  public void hideControls() {
-    if (this.exoView != null) {
-      this.exoView.hideController();
-    }
-  }
-
-  public @Nullable View getControlView() {
-    if (this.exoControls != null) {
-      return this.exoControls;
-    }
-    return null;
   }
 
   public void cleanup() {
@@ -155,8 +136,6 @@ public class VideoPlayer extends FrameLayout {
     exoPlayer.addListener(new ExoPlayerListener(window));
     //noinspection ConstantConditions
     exoView.setPlayer(exoPlayer);
-    //noinspection ConstantConditions
-    exoControls.setPlayer(exoPlayer);
 
     DefaultDataSourceFactory    defaultDataSourceFactory    = new DefaultDataSourceFactory(getContext(), "GenericUserAgent", null);
     AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(getContext(), defaultDataSourceFactory, null);

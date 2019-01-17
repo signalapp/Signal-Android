@@ -42,7 +42,6 @@ public class IncomingTextMessage implements Parcelable {
   private final boolean push;
   private final int     subscriptionId;
   private final long    expiresInMillis;
-  private final boolean unidentified;
 
   public IncomingTextMessage(@NonNull Context context, @NonNull SmsMessage message, int subscriptionId) {
     this.message              = message.getDisplayMessageBody();
@@ -57,12 +56,11 @@ public class IncomingTextMessage implements Parcelable {
     this.expiresInMillis      = 0;
     this.groupId              = null;
     this.push                 = false;
-    this.unidentified         = false;
   }
 
   public IncomingTextMessage(Address sender, int senderDeviceId, long sentTimestampMillis,
                              String encodedBody, Optional<SignalServiceGroup> group,
-                             long expiresInMillis, boolean unidentified)
+                             long expiresInMillis)
   {
     this.message              = encodedBody;
     this.sender               = sender;
@@ -75,7 +73,6 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = true;
     this.subscriptionId       = -1;
     this.expiresInMillis      = expiresInMillis;
-    this.unidentified         = unidentified;
 
     if (group.isPresent()) {
       this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId(), false));
@@ -97,7 +94,6 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = (in.readInt() == 1);
     this.subscriptionId       = in.readInt();
     this.expiresInMillis      = in.readLong();
-    this.unidentified         = in.readInt() == 1;
   }
 
   public IncomingTextMessage(IncomingTextMessage base, String newBody) {
@@ -113,7 +109,6 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = base.isPush();
     this.subscriptionId       = base.getSubscriptionId();
     this.expiresInMillis      = base.getExpiresIn();
-    this.unidentified         = base.isUnidentified();
   }
 
   public IncomingTextMessage(List<IncomingTextMessage> fragments) {
@@ -135,7 +130,6 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = fragments.get(0).isPush();
     this.subscriptionId       = fragments.get(0).getSubscriptionId();
     this.expiresInMillis      = fragments.get(0).getExpiresIn();
-    this.unidentified         = fragments.get(0).isUnidentified();
   }
 
   protected IncomingTextMessage(@NonNull Address sender, @Nullable Address groupId)
@@ -152,7 +146,6 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = true;
     this.subscriptionId       = -1;
     this.expiresInMillis      = 0;
-    this.unidentified         = false;
   }
 
   public int getSubscriptionId() {
@@ -247,10 +240,6 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
-  public boolean isUnidentified() {
-    return unidentified;
-  }
-
   @Override
   public int describeContents() {
     return 0;
@@ -269,6 +258,5 @@ public class IncomingTextMessage implements Parcelable {
     out.writeParcelable(groupId, flags);
     out.writeInt(push ? 1 : 0);
     out.writeInt(subscriptionId);
-    out.writeInt(unidentified ? 1 : 0);
   }
 }

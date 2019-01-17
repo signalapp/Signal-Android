@@ -17,12 +17,11 @@ public class GroupReceiptDatabase extends Database {
 
   public  static final String TABLE_NAME = "group_receipts";
 
-  private static final String ID           = "_id";
-  public  static final String MMS_ID       = "mms_id";
-  private static final String ADDRESS      = "address";
-  private static final String STATUS       = "status";
-  private static final String TIMESTAMP    = "timestamp";
-  private static final String UNIDENTIFIED = "unidentified";
+  private static final String ID        = "_id";
+  public  static final String MMS_ID    = "mms_id";
+  private static final String ADDRESS   = "address";
+  private static final String STATUS    = "status";
+  private static final String TIMESTAMP = "timestamp";
 
   public static final int STATUS_UNKNOWN     = -1;
   public static final int STATUS_UNDELIVERED = 0;
@@ -30,7 +29,7 @@ public class GroupReceiptDatabase extends Database {
   public static final int STATUS_READ        = 2;
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
-      MMS_ID + " INTEGER, " + ADDRESS + " TEXT, " + STATUS + " INTEGER, " + TIMESTAMP + " INTEGER, " + UNIDENTIFIED + " INTEGER DEFAULT 0);";
+      MMS_ID + " INTEGER, " + ADDRESS + " TEXT, " + STATUS + " INTEGER, " + TIMESTAMP + " INTEGER);";
 
   public static final String[] CREATE_INDEXES = {
       "CREATE INDEX IF NOT EXISTS group_receipt_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -64,16 +63,6 @@ public class GroupReceiptDatabase extends Database {
               new String[] {String.valueOf(mmsId), address.serialize(), String.valueOf(status)});
   }
 
-  public void setUnidentified(Address address, long mmsId, boolean unidentified) {
-    SQLiteDatabase db     = databaseHelper.getWritableDatabase();
-    ContentValues  values = new ContentValues(1);
-    values.put(UNIDENTIFIED, unidentified ? 1 : 0);
-
-    db.update(TABLE_NAME, values, MMS_ID + " = ? AND " + ADDRESS + " = ?",
-              new String[] {String.valueOf(mmsId), address.serialize()});
-
-  }
-
   public @NonNull List<GroupReceiptInfo> getGroupReceiptInfo(long mmsId) {
     SQLiteDatabase         db      = databaseHelper.getReadableDatabase();
     List<GroupReceiptInfo> results = new LinkedList<>();
@@ -82,8 +71,7 @@ public class GroupReceiptDatabase extends Database {
       while (cursor != null && cursor.moveToNext()) {
         results.add(new GroupReceiptInfo(Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))),
                                          cursor.getInt(cursor.getColumnIndexOrThrow(STATUS)),
-                                         cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
-                                         cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED)) == 1));
+                                         cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP))));
       }
     }
 
@@ -104,13 +92,11 @@ public class GroupReceiptDatabase extends Database {
     private final Address address;
     private final int     status;
     private final long    timestamp;
-    private final boolean unidentified;
 
-    GroupReceiptInfo(Address address, int status, long timestamp, boolean unidentified) {
-      this.address      = address;
-      this.status       = status;
-      this.timestamp    = timestamp;
-      this.unidentified = unidentified;
+    public GroupReceiptInfo(Address address, int status, long timestamp) {
+      this.address = address;
+      this.status = status;
+      this.timestamp = timestamp;
     }
 
     public Address getAddress() {
@@ -123,10 +109,6 @@ public class GroupReceiptDatabase extends Database {
 
     public long getTimestamp() {
       return timestamp;
-    }
-
-    public boolean isUnidentified() {
-      return unidentified;
     }
   }
 }

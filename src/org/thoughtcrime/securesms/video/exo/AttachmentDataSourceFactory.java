@@ -13,12 +13,12 @@ public class AttachmentDataSourceFactory implements DataSource.Factory {
 
   private final Context context;
 
-  private final DefaultDataSourceFactory defaultDataSourceFactory;
-  private final TransferListener         listener;
+  private final DefaultDataSourceFactory             defaultDataSourceFactory;
+  private final TransferListener<? super DataSource> listener;
 
   public AttachmentDataSourceFactory(@NonNull Context context,
                                      @NonNull DefaultDataSourceFactory defaultDataSourceFactory,
-                                     @Nullable TransferListener listener)
+                                     @Nullable TransferListener<? super DataSource> listener)
   {
     this.context                  = context;
     this.defaultDataSourceFactory = defaultDataSourceFactory;

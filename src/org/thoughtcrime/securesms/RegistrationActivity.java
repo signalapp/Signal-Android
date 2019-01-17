@@ -25,6 +25,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -39,14 +40,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
-import com.google.android.gms.auth.api.phone.SmsRetriever;
-import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.android.gms.tasks.Task;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -66,22 +62,18 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
-import org.thoughtcrime.securesms.service.VerificationCodeParser;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
@@ -102,8 +94,6 @@ import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.push.LockedException;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -121,6 +111,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private static final int    SCENE_TRANSITION_DURATION = 250;
   private static final int    DEBUG_TAP_TARGET          = 8;
   private static final int    DEBUG_TAP_ANNOUNCE        = 4;
+  public static final  String CHALLENGE_EVENT           = "org.thoughtcrime.securesms.CHALLENGE_EVENT";
+  public static final  String CHALLENGE_EXTRA           = "CAAChallenge";
   public static final  String RE_REGISTRATION_EXTRA     = "re_registration";
 
   private static final String TAG = RegistrationActivity.class.getSimpleName();
@@ -131,6 +123,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private TextView               countryCode;
   private TextView               number;
   private CircularProgressButton createButton;
+  private TextView               termsLinkView;
   private TextView               informationView;
   private TextView               informationToggleText;
   private TextView               title;
@@ -155,7 +148,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private VerificationPinKeyboard     keyboard;
   private VerificationCodeView        verificationCodeView;
   private RegistrationState           registrationState;
-  private SmsRetrieverReceiver        smsRetrieverReceiver;
+  private ChallengeReceiver           challengeReceiver;
   private SignalServiceAccountManager accountManager;
   private int                         debugTapCounter;
 
@@ -318,7 +311,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     Permissions.with(RegistrationActivity.this)
                .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_PHONE_STATE)
+                        Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CALL_LOG,
+                        Manifest.permission.PROCESS_OUTGOING_CALLS)
                .ifNecessary()
                .withRationaleDialog(getString(R.string.RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends),
                                     R.drawable.ic_contacts_white_48dp, R.drawable.ic_folder_white_48dp)
@@ -452,12 +446,31 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       return;
     }
 
+    Permissions.with(this)
+               .request(Manifest.permission.READ_SMS)
+               .ifNecessary()
+               .withRationaleDialog(getString(R.string.RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code), R.drawable.ic_textsms_white_48dp)
+               .onAnyResult(this::handleRegisterWithPermissions)
+               .execute();
+  }
+
+  private void handleRegisterWithPermissions() {
+    if (TextUtils.isEmpty(countryCode.getText())) {
+      Toast.makeText(this, getString(R.string.RegistrationActivity_you_must_specify_your_country_code), Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    if (TextUtils.isEmpty(number.getText())) {
+      Toast.makeText(this, getString(R.string.RegistrationActivity_you_must_specify_your_phone_number), Toast.LENGTH_LONG).show();
+      return;
+    }
+
     final String e164number = getConfiguredE164Number();
 
-    if (!PhoneNumberFormatter.isValidNumber(e164number, countryCode.getText().toString())) {
-      Dialogs.showAlertDialog(this,
-                              getString(R.string.RegistrationActivity_invalid_number),
-                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), e164number));
+    if (!PhoneNumberFormatter.isValidNumber(e164number)) {
+      Dialogs.showAlertDialog(this, getString(R.string.RegistrationActivity_invalid_number),
+                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid),
+                                            e164number));
       return;
     }
 
@@ -475,30 +488,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     }
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void handleRequestVerification(@NonNull String e164number, boolean gcmSupported) {
     createButton.setIndeterminateProgressMode(true);
     createButton.setProgress(50);
 
-    if (gcmSupported) {
-      SmsRetrieverClient client = SmsRetriever.getClient(this);
-      Task<Void>         task   = client.startSmsRetriever();
-
-      task.addOnSuccessListener(none -> {
-        Log.i(TAG, "Successfully registered SMS listener.");
-        requestVerificationCode(e164number, true, true);
-      });
-
-      task.addOnFailureListener(e -> {
-        Log.w(TAG, "Failed to register SMS listener.", e);
-        requestVerificationCode(e164number, true, false);
-      });
-    } else {
-      requestVerificationCode(e164number, false, false);
-    }
-  }
-
-  @SuppressLint("StaticFieldLeak")
-  private void requestVerificationCode(@NonNull String e164number, boolean gcmSupported, boolean smsRetrieverSupported) {
     new AsyncTask<Void, Void, Pair<String, Optional<String>>> () {
       @Override
       protected @Nullable Pair<String, Optional<String>> doInBackground(Void... voids) {
@@ -516,7 +510,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           }
 
           accountManager = AccountManagerFactory.createManager(RegistrationActivity.this, e164number, password);
-          accountManager.requestSmsVerificationCode(smsRetrieverSupported);
+          accountManager.requestSmsVerificationCode();
 
           return new Pair<>(password, gcmToken);
         } catch (IOException e) {
@@ -539,32 +533,20 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
-  private void handleVerificationCodeReceived(@Nullable String code) {
-    List<Integer> parsedCode = convertVerificationCodeToDigits(code);
+  private void handleChallengeReceived(@Nullable String challenge) {
+    if (challenge != null && challenge.length() == 6 && registrationState.state == RegistrationState.State.VERIFYING) {
+      verificationCodeView.clear();
 
-    for (int i = 0; i < parsedCode.size(); i++) {
-      int index = i;
-      verificationCodeView.postDelayed(() -> verificationCodeView.append(parsedCode.get(index)), i * 200);
-    }
-  }
-
-  private List<Integer> convertVerificationCodeToDigits(@Nullable String code) {
-    if (code == null || code.length() != 6 || registrationState.state != RegistrationState.State.VERIFYING) {
-      return Collections.emptyList();
-    }
-
-    List<Integer> result = new LinkedList<>();
-
-    try {
-      for (int i = 0; i < code.length(); i++) {
-        result.add(Integer.parseInt(Character.toString(code.charAt(i))));
+      try {
+        for (int i=0;i<challenge.length();i++) {
+          final int index = i;
+          verificationCodeView.postDelayed(() -> verificationCodeView.append(Integer.parseInt(Character.toString(challenge.charAt(index)))), i * 200);
+        }
+      } catch (NumberFormatException e) {
+        Log.w(TAG, e);
+        verificationCodeView.clear();
       }
-    } catch (NumberFormatException e) {
-      Log.w(TAG, "Failed to convert code into digits.",e );
-      return Collections.emptyList();
     }
-
-    return result;
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -694,7 +676,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         @Override
         protected Void doInBackground(Void... voids) {
           try {
-            accountManager.requestVoiceVerificationCode(Locale.getDefault());
+            accountManager.requestVoiceVerificationCode();
           } catch (IOException e) {
             Log.w(TAG, e);
           }
@@ -706,17 +688,13 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private void verifyAccount(@NonNull String code, @Nullable String pin) throws IOException {
-    int     registrationId              = KeyHelper.generateRegistrationId(false);
-    byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(RegistrationActivity.this);
-    boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(RegistrationActivity.this);
-
+    int registrationId = KeyHelper.generateRegistrationId(false);
     TextSecurePreferences.setLocalRegistrationId(RegistrationActivity.this, registrationId);
     SessionUtil.archiveAllSessions(RegistrationActivity.this);
 
     String signalingKey = Util.getSecret(52);
 
-    accountManager.verifyAccountWithCode(code, signalingKey, registrationId, !registrationState.gcmToken.isPresent(), pin,
-                                         unidentifiedAccessKey, universalUnidentifiedAccess);
+    accountManager.verifyAccountWithCode(code, signalingKey, registrationId, !registrationState.gcmToken.isPresent(), pin);
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(RegistrationActivity.this);
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(RegistrationActivity.this);
@@ -749,7 +727,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   private void handleSuccessfulRegistration() {
     ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(RegistrationActivity.this, false));
-    ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new RotateCertificateJob(RegistrationActivity.this));
 
     DirectoryRefreshListener.schedule(RegistrationActivity.this);
     RotateSignedPreKeyListener.schedule(RegistrationActivity.this);
@@ -1021,15 +998,15 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private void initializeChallengeListener() {
-    smsRetrieverReceiver = new SmsRetrieverReceiver();
-    IntentFilter filter = new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION);
-    registerReceiver(smsRetrieverReceiver, filter);
+    challengeReceiver = new ChallengeReceiver();
+    IntentFilter filter = new IntentFilter(CHALLENGE_EVENT);
+    registerReceiver(challengeReceiver, filter);
   }
 
   private void shutdownChallengeListener() {
-    if (smsRetrieverReceiver != null) {
-      unregisterReceiver(smsRetrieverReceiver);
-      smsRetrieverReceiver = null;
+    if (challengeReceiver != null) {
+      unregisterReceiver(challengeReceiver);
+      challengeReceiver = null;
     }
   }
 
@@ -1056,32 +1033,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     else                       restoreBackupProgress.setText(getString(R.string.RegistrationActivity_d_messages_so_far, event.getCount()));
   }
 
-  private class SmsRetrieverReceiver extends BroadcastReceiver {
+  private class ChallengeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-      Log.i(TAG, "SmsRetrieverReceiver received a broadcast...");
-
-      if (SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())) {
-        Bundle extras = intent.getExtras();
-        Status status = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
-
-        switch (status.getStatusCode()) {
-          case CommonStatusCodes.SUCCESS:
-            Optional<String> code = VerificationCodeParser.parse(context, (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE));
-            if (code.isPresent()) {
-              Log.i(TAG, "Received verification code.");
-              handleVerificationCodeReceived(code.get());
-            } else {
-              Log.w(TAG, "Could not parse verification code.");
-            }
-            break;
-          case CommonStatusCodes.TIMEOUT:
-            Log.w(TAG, "Hit a timeout waiting for the SMS to arrive.");
-            break;
-        }
-      } else {
-        Log.w(TAG, "SmsRetrieverReceiver received the wrong action?");
-      }
+      Log.i(TAG, "Got a challenge broadcast...");
+      handleChallengeReceived(intent.getStringExtra(CHALLENGE_EXTRA));
     }
   }
 

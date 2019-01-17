@@ -21,9 +21,8 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
-public class CreateSignedPreKeyJob extends ContextJob implements InjectableType {
+public class CreateSignedPreKeyJob extends MasterSecretJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
 
@@ -31,13 +30,14 @@ public class CreateSignedPreKeyJob extends ContextJob implements InjectableType 
 
   @Inject transient SignalServiceAccountManager accountManager;
 
-  public CreateSignedPreKeyJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public CreateSignedPreKeyJob() {
+    super(null, null);
   }
 
   public CreateSignedPreKeyJob(Context context) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
+                                .withMasterSecretRequirement()
                                 .withGroupId(CreateSignedPreKeyJob.class.getSimpleName())
                                 .create());
   }
@@ -52,7 +52,7 @@ public class CreateSignedPreKeyJob extends ContextJob implements InjectableType 
   }
 
   @Override
-  public void onRun() throws IOException {
+  public void onRun(MasterSecret masterSecret) throws IOException {
     if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
       Log.w(TAG, "Signed prekey already registered...");
       return;
@@ -74,7 +74,7 @@ public class CreateSignedPreKeyJob extends ContextJob implements InjectableType 
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetryThrowable(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

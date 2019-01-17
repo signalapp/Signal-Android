@@ -19,43 +19,39 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
-public class SmsSentJob extends ContextJob {
+public class SmsSentJob extends MasterSecretJob {
 
   private static final long   serialVersionUID = -2624694558755317560L;
   private static final String TAG              = SmsSentJob.class.getSimpleName();
 
-  private static final String KEY_MESSAGE_ID  = "message_id";
-  private static final String KEY_ACTION      = "action";
-  private static final String KEY_RESULT      = "result";
-  private static final String KEY_RUN_ATTEMPT = "run_attempt";
+  private static final String KEY_MESSAGE_ID = "message_id";
+  private static final String KEY_ACTION     = "action";
+  private static final String KEY_RESULT     = "result";
 
   private long   messageId;
   private String action;
   private int    result;
-  private int    runAttempt;
 
-  public SmsSentJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public SmsSentJob() {
+    super(null, null);
   }
 
-  public SmsSentJob(Context context, long messageId, String action, int result, int runAttempt) {
+  public SmsSentJob(Context context, long messageId, String action, int result) {
     super(context, JobParameters.newBuilder()
+                                .withMasterSecretRequirement()
                                 .create());
 
-    this.messageId  = messageId;
-    this.action     = action;
-    this.result     = result;
-    this.runAttempt = runAttempt;
+    this.messageId = messageId;
+    this.action    = action;
+    this.result    = result;
   }
 
   @Override
   protected void initialize(@NonNull SafeData data) {
-    messageId  = data.getLong(KEY_MESSAGE_ID);
-    action     = data.getString(KEY_ACTION);
-    result     = data.getInt(KEY_RESULT);
-    runAttempt = data.getInt(KEY_RUN_ATTEMPT);
+    messageId = data.getLong(KEY_MESSAGE_ID);
+    action    = data.getString(KEY_ACTION);
+    result    = data.getInt(KEY_RESULT);
   }
 
   @Override
@@ -63,12 +59,11 @@ public class SmsSentJob extends ContextJob {
     return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
                       .putString(KEY_ACTION, action)
                       .putInt(KEY_RESULT, result)
-                      .putInt(KEY_RUN_ATTEMPT, runAttempt)
                       .build();
   }
 
   @Override
-  public void onRun() {
+  public void onRun(MasterSecret masterSecret) {
     Log.i(TAG, "Got SMS callback: " + action + " , " + result);
 
     switch (action) {
@@ -82,7 +77,7 @@ public class SmsSentJob extends ContextJob {
   }
 
   @Override
-  public boolean onShouldRetry(Exception throwable) {
+  public boolean onShouldRetryThrowable(Exception throwable) {
     return false;
   }
 
@@ -109,7 +104,7 @@ public class SmsSentJob extends ContextJob {
           Log.w(TAG, "Service connectivity problem, requeuing...");
           ApplicationContext.getInstance(context)
               .getJobManager()
-              .add(new SmsSendJob(context, messageId, record.getIndividualRecipient().getAddress().serialize(), runAttempt + 1));
+              .add(new SmsSendJob(context, messageId, record.getIndividualRecipient().getAddress().serialize()));
           break;
         default:
           database.markAsSentFailed(messageId);

@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
 public class TrimThreadJob extends ContextJob {
 
@@ -36,8 +35,8 @@ public class TrimThreadJob extends ContextJob {
 
   private long threadId;
 
-  public TrimThreadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public TrimThreadJob() {
+    super(null, null);
   }
 
   public TrimThreadJob(Context context, long threadId) {

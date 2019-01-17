@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BluetoothStateManager {
 
@@ -38,7 +37,6 @@ public class BluetoothStateManager {
   private       BluetoothScoReceiver        bluetoothScoReceiver;
   private       BluetoothConnectionReceiver bluetoothConnectionReceiver;
   private final BluetoothStateListener      listener;
-  private final AtomicBoolean               destroyed;
 
   private BluetoothHeadset bluetoothHeadset = null;
   private ScoConnection    scoConnection    = ScoConnection.DISCONNECTED;
@@ -50,7 +48,6 @@ public class BluetoothStateManager {
     this.bluetoothScoReceiver        = new BluetoothScoReceiver();
     this.bluetoothConnectionReceiver = new BluetoothConnectionReceiver();
     this.listener                    = listener;
-    this.destroyed                   = new AtomicBoolean(false);
 
     if (this.bluetoothAdapter == null)
       return;
@@ -69,8 +66,6 @@ public class BluetoothStateManager {
   }
 
   public void onDestroy() {
-    destroyed.set(true);
-
     if (bluetoothHeadset != null && bluetoothAdapter != null) {
       this.bluetoothAdapter.closeProfileProxy(BluetoothProfile.HEADSET, bluetoothHeadset);
     }
@@ -109,7 +104,7 @@ public class BluetoothStateManager {
   }
 
   private void handleBluetoothStateChange() {
-    if (listener != null && !destroyed.get()) listener.onBluetoothStateChanged(isBluetoothAvailable());
+    if (listener != null) listener.onBluetoothStateChanged(isBluetoothAvailable());
   }
 
   private boolean isBluetoothAvailable() {
@@ -142,11 +137,6 @@ public class BluetoothStateManager {
       @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
       @Override
       public void onServiceConnected(int profile, BluetoothProfile proxy) {
-        if (destroyed.get()) {
-          Log.w(TAG, "Got bluetooth profile event after the service was destroyed. Ignoring.");
-          return;
-        }
-
         if (profile == BluetoothProfile.HEADSET) {
           synchronized (LOCK) {
             bluetoothHeadset = (BluetoothHeadset) proxy;

@@ -12,7 +12,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
 public class AccountManagerFactory {
 
-  private static final String TAG = AccountManagerFactory.class.getSimpleName();
+  private static final String TAG = AccountManagerFactory.class.getName();
 
   public static SignalServiceAccountManager createManager(Context context) {
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(context),

@@ -61,7 +61,7 @@ public class ThreadPhotoRailView extends FrameLayout {
   private static class ThreadPhotoRailAdapter extends CursorRecyclerViewAdapter<ThreadPhotoRailAdapter.ThreadPhotoViewHolder> {
 
     @SuppressWarnings("unused")
-    private static final String TAG = ThreadPhotoRailAdapter.class.getSimpleName();
+    private static final String TAG = ThreadPhotoRailAdapter.class.getName();
 
     @NonNull  private final GlideRequests glideRequests;
 

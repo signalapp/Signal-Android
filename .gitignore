@@ -24,4 +24,3 @@ test/androidTestEspresso/res/values/arrays.xml
 obj/
 jni/libspeex/.deps/
 *.sh
-pkcs11.password

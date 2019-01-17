@@ -5,11 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.StyleRes;
-import android.support.v7.view.ContextThemeWrapper;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import org.thoughtcrime.securesms.R;
 
@@ -27,11 +23,6 @@ public class ThemeUtil {
       return typedValue.data;
     }
     return Color.RED;
-  }
-
-  public static LayoutInflater getThemedInflater(@NonNull Context context, @NonNull LayoutInflater inflater, @StyleRes int theme) {
-    Context contextThemeWrapper = new ContextThemeWrapper(context, theme);
-    return inflater.cloneInContext(contextThemeWrapper);
   }
 
   private static String getAttribute(Context context, int attribute, String defaultValue) {

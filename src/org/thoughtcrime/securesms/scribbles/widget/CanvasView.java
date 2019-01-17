@@ -58,11 +58,9 @@ public class CanvasView extends View {
     QUBIC_BEZIER;
   }
 
-  private int    initialWidth  = 0;
-  private int    initialHeight = 0;
-  private int    canvasWidth   = 1;
-  private int    canvasHeight  = 1;
-  private Bitmap bitmap        = null;
+  private int    canvasWidth  = 1;
+  private int    canvasHeight = 1;
+  private Bitmap bitmap       = null;
 
   private List<Path> pathLists  = new ArrayList<Path>();
   private List<Paint> paintLists = new ArrayList<Paint>();
@@ -179,8 +177,8 @@ public class CanvasView extends View {
     Path path = new Path();
 
     // Save for ACTION_MOVE
-    this.startX = scaleX(event.getX());
-    this.startY = scaleY(event.getY());
+    this.startX = event.getX();
+    this.startY = event.getY();
 
     path.moveTo(this.startX, this.startY);
 
@@ -281,7 +279,7 @@ public class CanvasView extends View {
           switch (this.drawer) {
             case PEN :
               for (int i = 0; i < event.getHistorySize(); i++) {
-                path.lineTo(scaleX(event.getHistoricalX(i)), scaleY(event.getHistoricalY(i)));
+                path.lineTo(event.getHistoricalX(i), event.getHistoricalY(i));
               }
               break;
             case LINE :
@@ -318,7 +316,7 @@ public class CanvasView extends View {
           Path path = this.getCurrentPath();
 
           path.reset();
-          path.moveTo(scaleX(this.startX), scaleY(this.startY));
+          path.moveTo(this.startX, this.startY);
           path.quadTo(this.controlX, this.controlY, x, y);
         }
 
@@ -346,25 +344,6 @@ public class CanvasView extends View {
     }
   }
 
-  public SavedState saveState() {
-    return new SavedState(pathLists, paintLists, historyPointer, initialWidth, initialHeight, canvasWidth, canvasHeight);
-  }
-
-  public void restoreState(@NonNull SavedState state) {
-    this.pathLists.clear();
-    this.pathLists.addAll(state.getPaths());
-
-    this.paintLists.clear();
-    this.paintLists.addAll(state.getPaints());
-
-    this.historyPointer = state.getHistoryPointer();
-
-    this.initialWidth  = state.getInitialWidth();
-    this.initialHeight = state.getInitialHeight();
-
-    postInvalidate();
-  }
-
   public void setActive(boolean active) {
     this.active = active;
   }
@@ -378,8 +357,19 @@ public class CanvasView extends View {
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
 
+    // Before "drawPath"
     canvas.drawColor(this.baseColor);
-    render(canvas);
+
+    if (this.bitmap != null) {
+      canvas.drawBitmap(this.bitmap, 0F, 0F, new Paint());
+    }
+
+    for (int i = 0; i < this.historyPointer; i++) {
+      Path path   = this.pathLists.get(i);
+      Paint paint = this.paintLists.get(i);
+
+      canvas.drawPath(path, paint);
+    }
   }
 
   @Override
@@ -387,41 +377,18 @@ public class CanvasView extends View {
     super.onSizeChanged(w, h, oldw, oldh);
     this.canvasWidth = w;
     this.canvasHeight = h;
-
-    if (initialWidth == 0) {
-      initialWidth = canvasWidth;
-    }
-
-    if (initialHeight == 0) {
-      initialHeight = canvasHeight;
-    }
   }
 
   public void render(Canvas canvas) {
-    render(canvas, initialWidth, initialHeight, canvasWidth, canvasHeight, pathLists, paintLists, historyPointer);
-  }
-
-  public static void render(Canvas canvas, int initialWidth, int initialHeight, int canvasWidth, int canvasHeight, List<Path> pathLists, List<Paint> paintLists, int historyPointer) {
-    float scaleX = 1f;
-    float scaleY = 1f;
-
-    if (initialWidth > 0) {
-      scaleX *= (float) canvasWidth / initialWidth;
-    }
-
-    if (initialHeight > 0) {
-      scaleY *= (float) canvasHeight / initialHeight;
-    }
-
-    scaleX *= (float) canvas.getWidth() / canvasWidth;
-    scaleY *= (float) canvas.getHeight() / canvasHeight;
+    float scaleX = 1.0F * canvas.getWidth() / canvasWidth;
+    float scaleY = 1.0F * canvas.getHeight() / canvasHeight;
 
     Matrix matrix = new Matrix();
     matrix.setScale(scaleX, scaleY);
 
-    for (int i = 0; i < historyPointer; i++) {
-      Path path   = pathLists.get(i);
-      Paint paint = paintLists.get(i);
+    for (int i = 0; i < this.historyPointer; i++) {
+      Path path   = this.pathLists.get(i);
+      Paint paint = this.paintLists.get(i);
 
       Path scaledPath = new Path();
       path.transform(matrix, scaledPath);
@@ -817,65 +784,5 @@ public class CanvasView extends View {
     }
 
     return colors;
-  }
-
-  private float scaleX(float x) {
-    return ((float) initialWidth / canvasWidth) * x;
-  }
-
-  private float scaleY(float y) {
-    return ((float) initialWidth / canvasWidth) * y;
-  }
-
-  static class SavedState {
-    private final List<Path>  paths;
-    private final List<Paint> paints;
-    private final int         historyPointer;
-    private final int         initialWidth;
-    private final int         initialHeight;
-    private final int         canvasWidth;
-    private final int         canvasHeight;
-
-    SavedState(List<Path> paths, List<Paint> paints, int historyPointer, int initialWidth, int initialHeight, int canvasWidth, int canvasHeight) {
-      this.paths          = new ArrayList<>(paths);
-      this.paints         = new ArrayList<>(paints);
-      this.historyPointer = historyPointer;
-      this.initialWidth   = initialWidth;
-      this.initialHeight  = initialHeight;
-      this.canvasWidth    = canvasWidth;
-      this.canvasHeight   = canvasHeight;
-    }
-
-    List<Path> getPaths() {
-      return paths;
-    }
-
-    List<Paint> getPaints() {
-      return paints;
-    }
-
-    int getHistoryPointer() {
-      return historyPointer;
-    }
-
-    int getInitialWidth() {
-      return initialWidth;
-    }
-
-    int getInitialHeight() {
-      return initialHeight;
-    }
-
-    int getCanvasWidth() {
-      return canvasWidth;
-    }
-
-    int getCanvasHeight() {
-      return canvasHeight;
-    }
-
-    boolean isEmpty() {
-      return paths.size() <= 1;
-    }
   }
 }

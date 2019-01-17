@@ -4,12 +4,10 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -22,12 +20,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
-/**
- * Use {@link MultiDeviceConfigurationUpdateJob}.
- */
-@Deprecated
 public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
@@ -40,8 +33,8 @@ public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements Injec
 
   private boolean enabled;
 
-  public MultiDeviceReadReceiptUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public MultiDeviceReadReceiptUpdateJob() {
+    super(null, null);
   }
 
   public MultiDeviceReadReceiptUpdateJob(Context context, boolean enabled) {
@@ -65,13 +58,7 @@ public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements Injec
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
-    if (!TextSecurePreferences.isMultiDevice(context)) {
-      Log.i(TAG, "Not multi device, aborting...");
-      return;
-    }
-
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled), Optional.absent(), Optional.absent())),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled))));
   }
 
   @Override

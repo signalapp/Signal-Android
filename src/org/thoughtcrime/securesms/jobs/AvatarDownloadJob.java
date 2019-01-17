@@ -30,9 +30,8 @@ import java.io.InputStream;
 import javax.inject.Inject;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
-public class AvatarDownloadJob extends ContextJob implements InjectableType {
+public class AvatarDownloadJob extends MasterSecretJob implements InjectableType {
 
   private static final int MAX_AVATAR_SIZE = 20 * 1024 * 1024;
   private static final long serialVersionUID = 1L;
@@ -45,12 +44,13 @@ public class AvatarDownloadJob extends ContextJob implements InjectableType {
 
   private byte[] groupId;
 
-  public AvatarDownloadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public AvatarDownloadJob() {
+    super(null, null);
   }
 
   public AvatarDownloadJob(Context context, @NonNull byte[] groupId) {
     super(context, JobParameters.newBuilder()
+                                .withMasterSecretRequirement()
                                 .withNetworkRequirement()
                                 .create());
 
@@ -72,7 +72,7 @@ public class AvatarDownloadJob extends ContextJob implements InjectableType {
   }
 
   @Override
-  public void onRun() throws IOException {
+  public void onRun(MasterSecret masterSecret) throws IOException {
     String                encodeId   = GroupUtil.getEncodedId(groupId, false);
     GroupDatabase         database   = DatabaseFactory.getGroupDatabase(context);
     Optional<GroupRecord> record     = database.getGroup(encodeId);
@@ -98,7 +98,7 @@ public class AvatarDownloadJob extends ContextJob implements InjectableType {
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());
         attachment.deleteOnExit();
 
-        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent());
+        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, relay, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false);
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
         Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
 
@@ -117,7 +117,7 @@ public class AvatarDownloadJob extends ContextJob implements InjectableType {
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetryThrowable(Exception exception) {
     if (exception instanceof IOException) return true;
     return false;
   }

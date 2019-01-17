@@ -2,11 +2,10 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-
-import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -28,7 +27,7 @@ import org.thoughtcrime.securesms.util.ResUtil;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EmojiDrawer extends LinearLayout implements InputView, EmojiSelectionListener, VariationSelectorListener {
+public class EmojiDrawer extends LinearLayout implements InputView {
 
   private static final String TAG = EmojiDrawer.class.getSimpleName();
 
@@ -102,23 +101,19 @@ public class EmojiDrawer extends LinearLayout implements InputView, EmojiSelecti
     Log.i(TAG, "hide()");
   }
 
-  @Override
-  public void onEmojiSelected(String emoji) {
-    recentModel.onCodePointSelected(emoji);
-    if (listener != null) {
-      listener.onEmojiSelected(emoji);
-    }
-  }
-
-  @Override
-  public void onVariationSelectorStateChanged(boolean open) {
-    pager.setEnabled(!open);
-  }
-
   private void initializeEmojiGrid() {
-    pager.setAdapter(new EmojiPagerAdapter(getContext(), models, this, this));
+    pager.setAdapter(new EmojiPagerAdapter(getContext(),
+                                           models,
+                                           new EmojiSelectionListener() {
+                                             @Override
+                                             public void onEmojiSelected(String emoji) {
+                                               Log.i(TAG, "onEmojiSelected()");
+                                               recentModel.onCodePointSelected(emoji);
+                                               if (listener != null) listener.onEmojiSelected(emoji);
+                                             }
+                                           }));
 
-    if (recentModel.getDisplayEmoji().size() == 0) {
+    if (recentModel.getEmoji().length == 0) {
       pager.setCurrentItem(1);
     }
     strip.setViewPager(pager);
@@ -128,27 +123,24 @@ public class EmojiDrawer extends LinearLayout implements InputView, EmojiSelecti
     this.models = new LinkedList<>();
     this.recentModel = new RecentEmojiPageModel(getContext());
     this.models.add(recentModel);
-    this.models.addAll(EmojiPages.DISPLAY_PAGES);
+    this.models.addAll(EmojiPages.PAGES);
   }
 
   public static class EmojiPagerAdapter extends PagerAdapter
       implements PagerSlidingTabStrip.CustomTabProvider
   {
-    private Context                   context;
-    private List<EmojiPageModel>      pages;
-    private EmojiSelectionListener    emojiSelectionListener;
-    private VariationSelectorListener variationSelectorListener;
+    private Context                context;
+    private List<EmojiPageModel>   pages;
+    private EmojiSelectionListener listener;
 
     public EmojiPagerAdapter(@NonNull Context context,
                              @NonNull List<EmojiPageModel> pages,
-                             @NonNull EmojiSelectionListener emojiSelectionListener,
-                             @NonNull VariationSelectorListener variationSelectorListener)
+                             @Nullable EmojiSelectionListener listener)
     {
       super();
-      this.context                   = context;
-      this.pages                     = pages;
-      this.emojiSelectionListener    = emojiSelectionListener;
-      this.variationSelectorListener = variationSelectorListener;
+      this.context  = context;
+      this.pages    = pages;
+      this.listener = listener;
     }
 
     @Override
@@ -157,9 +149,10 @@ public class EmojiDrawer extends LinearLayout implements InputView, EmojiSelecti
     }
 
     @Override
-    public @NonNull Object instantiateItem(@NonNull ViewGroup container, int position) {
-      EmojiPageView page = new EmojiPageView(context, emojiSelectionListener, variationSelectorListener);
+    public Object instantiateItem(ViewGroup container, int position) {
+      EmojiPageView page = new EmojiPageView(context);
       page.setModel(pages.get(position));
+      page.setEmojiSelectedListener(listener);
       container.addView(page);
       return page;
     }

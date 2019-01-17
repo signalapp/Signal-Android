@@ -31,8 +31,4 @@ public class ProfileKeyUtil {
     }
   }
 
-  public static synchronized @NonNull byte[] rotateProfileKey(@NonNull Context context) {
-    TextSecurePreferences.setProfileKey(context, null);
-    return getProfileKey(context);
-  }
 }

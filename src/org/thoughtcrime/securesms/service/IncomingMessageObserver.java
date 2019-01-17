@@ -40,8 +40,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
   public  static final  int FOREGROUND_ID            = 313399;
   private static final long REQUEST_TIMEOUT_MINUTES  = 1;
 
-  private static SignalServiceMessagePipe pipe             = null;
-  private static SignalServiceMessagePipe unidentifiedPipe = null;
+  private static SignalServiceMessagePipe pipe = null;
 
   private final Context            context;
   private final NetworkRequirement networkRequirement;
@@ -115,10 +114,9 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
     }
   }
 
-  private void shutdown(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe) {
+  private void shutdown(SignalServiceMessagePipe pipe) {
     try {
       pipe.shutdown();
-      unidentifiedPipe.shutdown();
     } catch (Throwable t) {
       Log.w(TAG, t);
     }
@@ -126,10 +124,6 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
 
   public static @Nullable SignalServiceMessagePipe getPipe() {
     return pipe;
-  }
-
-  public static @Nullable SignalServiceMessagePipe getUnidentifiedPipe() {
-    return unidentifiedPipe;
   }
 
   private class MessageRetrievalThread extends Thread implements Thread.UncaughtExceptionHandler {
@@ -146,11 +140,9 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
         waitForConnectionNecessary();
 
         Log.i(TAG, "Making websocket connection....");
-        pipe             = receiver.createMessagePipe();
-        unidentifiedPipe = receiver.createUnidentifiedMessagePipe();
+        pipe = receiver.createMessagePipe();
 
-        SignalServiceMessagePipe localPipe             = pipe;
-        SignalServiceMessagePipe unidentifiedLocalPipe = unidentifiedPipe;
+        SignalServiceMessagePipe localPipe = pipe;
 
         try {
           while (isConnectionNecessary()) {
@@ -158,7 +150,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
               Log.i(TAG, "Reading message...");
               localPipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
                              envelope -> {
-                               Log.i(TAG, "Retrieved envelope! " + String.valueOf(envelope.getSource()));
+                               Log.i(TAG, "Retrieved envelope! " + envelope.getSource());
                                new PushContentReceiveJob(context).processEnvelope(envelope);
                              });
             } catch (TimeoutException e) {
@@ -171,7 +163,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
           Log.w(TAG, e);
         } finally {
           Log.w(TAG, "Shutting down pipe...");
-          shutdown(localPipe, unidentifiedLocalPipe);
+          shutdown(localPipe);
         }
 
         Log.i(TAG, "Looping...");
@@ -201,7 +193,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
       builder.setContentText(getApplicationContext().getString(R.string.MessageRetrievalService_background_connection_enabled));
       builder.setPriority(NotificationCompat.PRIORITY_MIN);
       builder.setWhen(0);
-      builder.setSmallIcon(R.drawable.ic_signal_background_connection);
+      builder.setSmallIcon(R.drawable.ic_signal_grey_24dp);
       startForeground(FOREGROUND_ID, builder.build());
 
       return Service.START_STICKY;

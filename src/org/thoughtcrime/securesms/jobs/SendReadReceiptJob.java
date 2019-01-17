@@ -4,13 +4,11 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -25,7 +23,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
 public class SendReadReceiptJob extends ContextJob implements InjectableType {
 
@@ -43,8 +40,8 @@ public class SendReadReceiptJob extends ContextJob implements InjectableType {
   private List<Long> messageIds;
   private long       timestamp;
 
-  public SendReadReceiptJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public SendReadReceiptJob() {
+    super(null, null);
   }
 
   public SendReadReceiptJob(Context context, Address address, List<Long> messageIds) {
@@ -89,9 +86,7 @@ public class SendReadReceiptJob extends ContextJob implements InjectableType {
     SignalServiceAddress        remoteAddress  = new SignalServiceAddress(address);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.READ, messageIds, timestamp);
 
-    messageSender.sendReceipt(remoteAddress,
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(address), false)),
-                              receiptMessage);
+    messageSender.sendReceipt(remoteAddress, receiptMessage);
   }
 
   @Override

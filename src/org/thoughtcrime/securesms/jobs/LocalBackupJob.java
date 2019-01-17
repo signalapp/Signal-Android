@@ -28,14 +28,13 @@ import java.util.Date;
 import java.util.Locale;
 
 import androidx.work.Data;
-import androidx.work.WorkerParameters;
 
 public class LocalBackupJob extends ContextJob {
 
   private static final String TAG = LocalBackupJob.class.getSimpleName();
 
-  public LocalBackupJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public LocalBackupJob() {
+    super(null, null);
   }
 
   public LocalBackupJob(@NonNull Context context) {
@@ -64,8 +63,7 @@ public class LocalBackupJob extends ContextJob {
 
     GenericForegroundService.startForegroundTask(context,
                                                  context.getString(R.string.LocalBackupJob_creating_backup),
-                                                 NotificationChannels.BACKUPS,
-                                                 R.drawable.ic_signal_backup);
+                                                 NotificationChannels.BACKUPS);
 
     try {
       String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);
