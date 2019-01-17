@@ -154,6 +154,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS-meldinger fordi det ikke er standard SMS-appen din. Vil du endre dette i Android-innstillingene dine?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nei</string>
   <!--ConversationAdapter-->
@@ -374,6 +375,7 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Laster ned MMS-melding</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Feil under nedlasting av MMS-melding. Trykk for å prøve igjen</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Send til %s</string>
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
   <!--MediaRepository-->

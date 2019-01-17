@@ -414,6 +414,12 @@
   <string name="MediaPickerActivity_send_to">Siųsti kontaktui %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Bakstelėkite, norėdami pasirinkti</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Jūs negalite dalintis daugiau nei %d elementu.</item>
+    <item quantity="few">Jūs negalite dalintis daugiau nei %d elementais.</item>
+    <item quantity="many">Jūs negalite dalintis daugiau nei %d elementų.</item>
+    <item quantity="other">Jūs negalite dalintis daugiau nei %d elementu.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Pridėti paaiškinimą...</string>
   <!--MediaRepository-->

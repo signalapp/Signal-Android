@@ -27,9 +27,9 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette vil permanent låse op for Signal og besked notifikationer</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivér</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afregistrerer</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Afmeld Signal beskeder og - opkald...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktivér Signal beskeder og - opkald?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktivér Signal beskeder og - opkald ved at afregistrere serveren. Du er nødt til at genregistrere dit telefonnummer for at bruge det igen i fremtiden</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Afmeld Signal beskeder og opkald...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktivér Signal beskeder og opkald?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktivér Signal beskeder og opkald ved at afregistrere på serveren. Du er nødt til igen at registrere dit telefonnummer, for at bruge det igen i fremtiden</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kan ikke oprette forbindelse til serveren</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS slået til</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Brug som standard SMS-program</string>
@@ -170,7 +170,7 @@
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Dette vil slette den valgte besked permanent.</item>
-    <item quantity="other">Dette vil slette alle %1$d valgte beskeder permanent.</item>
+    <item quantity="other">Dette sletter de %1$d valgte beskeder permanent</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Gem på lager?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -208,7 +208,7 @@
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Dette vil slette den valgte samtale permanent.</item>
-    <item quantity="other">Dette vil slette alle %1$d valgte samtaler permanent</item>
+    <item quantity="other">Dette sletter de %1$d valgte samtaler permanent</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Sletter</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte samtaler...</string>
@@ -278,18 +278,18 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Er du klar til et nærbilled?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nu kan du dele dit profilbillede og navn med dine venner på Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Nu er der Signal profiler</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducerer skriveindikatorer</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducerer skrive indikatorer</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nu kan du vælge at se og vise, når beskeder skrives</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du aktivere det nu?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Skriveindikatorer er her</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktiver skriveindikatorer</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktiver skriveindikatorer</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Skrive indikatorer er her</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktivér skrive indikatorer</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktivér skrive indikatorer</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nej tak</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Modtager en meddelelse...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl i Signal-kommunikationen!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play Services. Signal beskeder og opkald blev deaktiveret, prøv venligst at registrere igen i Indstillinger &gt; Advanceret</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play Services. Signal beskeder og opkald blev deaktiverét, prøv venligst at registrere igen i Indstillinger &gt; Advanceret</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Der opstod en fejl ved hentning af GIF i fuld opløsning</string>
   <!--GiphyFragmentPageAdapter-->
@@ -356,7 +356,7 @@
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">d</item>
-    <item quantity="other">Dette vil slette alle %1$d beskeder permanent</item>
+    <item quantity="other">Dette sletter de %1$d beskeder permanent</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter beskeder...</string>
@@ -379,6 +379,10 @@
   <string name="MediaPickerActivity_send_to">Send til %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tap for at vælge</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Du kan ikke dele flere end %d filer</item>
+    <item quantity="other">Du kan ikke dele flere end %d filer</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Tilføj en billedtekst...</string>
   <!--MediaRepository-->
@@ -463,7 +467,7 @@
   <string name="RecipientPreferenceActivity_error_leaving_group">Der skete en fejl da du forlod gruppen</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokering</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiveret</string>
-  <string name="RecipientPreferenceActivity_disabled">Deaktiveret</string>
+  <string name="RecipientPreferenceActivity_disabled">Deaktiverét</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Tilgengængelig når en besked er sendt eller modtaget</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Unavngivet gruppe</string>
@@ -550,7 +554,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">Beskeder med tidsudløb deaktiveret</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Beskeder med tidsudløb deaktiverét</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Beskeder sat til at udløbe efter %s</string>
   <string name="ThreadRecord_safety_number_changed">Sikkerhedsnummer ændret</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Dit identitestsnøgle med %s er ændret</string>
@@ -609,7 +613,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå din hukommelse, for at kunne gemme til ekstern placering, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ikke muligt at gemme til ekstern placering, uden tilladelse</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Slet besked?</string>
-  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette vil slette beskeden permanent</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette sletter beskeden permanent</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye beskeder i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Seneste fra: %1$s</string>
@@ -692,7 +696,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="change_passphrase_activity__new_passphrase">Nyt kodeord</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Gentag nyt kodeord</string>
   <!--contact_selection_activity-->
-  <string name="contact_selection_activity__enter_name_or_number">Indtast navn eller nummer</string>
+  <string name="contact_selection_activity__enter_name_or_number">Søg navn eller nummer</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Indlæser kontakter...</string>
@@ -838,7 +842,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="load_more_header__see_full_conversation">Se fuld samtale</string>
   <string name="load_more_header__loading">Henter</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">Ingen mediefiler</string>
+  <string name="media_overview_activity__no_media">Ingen medie</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VIS</string>
   <string name="message_recipients_list_item__resend">SEND IGEN</string>
@@ -935,7 +939,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="arrays__mute_for_one_year">Dæmp 1 år</string>
   <string name="arrays__settings_default">Standardindstillinger</string>
   <string name="arrays__enabled">Aktiveret</string>
-  <string name="arrays__disabled">Deaktiveret</string>
+  <string name="arrays__disabled">Deaktiverét</string>
   <string name="arrays__name_and_message">Navn og besked</string>
   <string name="arrays__name_only">Kun navn</string>
   <string name="arrays__no_name_or_message">Hverken navn eller besked</string>
@@ -1010,7 +1014,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="preferences__mmsc_username">MMSC-brugernavn</string>
   <string name="preferences__mmsc_password">MMSC-kodeord</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapport for SMS</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bed om en leveringsrapport for hver SMS-besked, du sender</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Modtag leveringsrapporter for SMS beskeder du sender</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Slet automatisk ældre beskeder når samtalen overstiger en specificeret længde</string>
   <string name="preferences__delete_old_messages">Slet gamle beskeder</string>
   <string name="preferences__chats">Chat og medier</string>
@@ -1031,10 +1035,10 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivér hvis din enhed sender SMS/MMS via WiFI (aktivér kun, hvis WiFI-opkald er aktiveret på din enhed)</string>
   <string name="preferences__incognito_keyboard">Inkognito tastatur</string>
   <string name="preferences__read_receipts">Læst af modtager</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiveret, vil du ikke kunne se status for nogen overhovedet</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, vil du ikke kunne se status for andre</string>
   <string name="preferences__typing_indicators">Skrive indikator</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiveret, vil du ikke kunne se skrive indikator for andre</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Bed tastatur om at slå personaliseret læring fra</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, vil du heller ikke kunne se når andre skriver</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Deaktivér personaliseret læring fra tastaturet</string>
   <string name="preferences_app_protection__blocked_contacts">Blokerede kontakter</string>
   <string name="preferences_chats__when_using_mobile_data">Når der anvendes mobildata</string>
   <string name="preferences_chats__when_using_wifi">Når der anvendes WiFi</string>
@@ -1208,7 +1212,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="BackupDialog_enable_backups">Aktiver backups</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Tilkendegiv venligst din forståelse, ved at sætte et flueben i feltet</string>
   <string name="BackupDialog_delete_backups">Slet backups?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktiver og slet alle lokale backups?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivér og slet alle lokale backups?</string>
   <string name="BackupDialog_delete_backups_statement">Slet backups</string>
   <string name="BackupDialog_copied_to_clipboard">Kopieret til udklipsholder</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal kræver tilladelse til at tilgå ekstern placering for at oprette backup´s, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
@@ -1225,7 +1229,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="BackupUtil_unknown">Ukendt</string>
   <string name="preferences_app_protection__screen_lock">Skærmlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås adgang til Signal med Android skærmlås eller fingeraftryk</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Skærmlås inaktivitets-timeout</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout for inaktiv skærmlås</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreringskoden er ikke den samme som den kode du netop har modtaget på SMS. Indtast venligst den kode du tidligere har indtastet i applikationen</string>
   <string name="registration_activity__registration_lock_pin">Registreringslås-pinkode</string>

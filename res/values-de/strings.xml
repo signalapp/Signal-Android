@@ -154,7 +154,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos oder Videos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera«, um Fotos oder Videos aufzunehmen.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kann keine SMS/MMS versenden, da es nicht deine Standard-SMS-App ist. Möchtest du dies in Androids Einstellungen ändern?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kann keine SMS/MMS versenden, da es nicht als Standard-App für SMS festgelegt ist. Möchtest du dies in Androids Einstellungen ändern?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nein</string>
   <!--ConversationAdapter-->
@@ -378,6 +378,10 @@
   <string name="MediaPickerActivity_send_to">An %s senden</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Zum Auswählen antippen</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
+    <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Beschriftung hinzufügen …</string>
   <!--MediaRepository-->
@@ -441,7 +445,7 @@
   <string name="PushNotificationReceiveJob_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bewerte diese App</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hilf uns durch deine Bewertung, wenn dir die App gefällt.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hilf uns durch deine Bewertung, falls dir die App gefällt.</string>
   <string name="RatingManager_rate_now">Jetzt bewerten!</string>
   <string name="RatingManager_no_thanks">Nein danke</string>
   <string name="RatingManager_later">Später</string>

@@ -414,6 +414,12 @@
   <string name="MediaPickerActivity_send_to">Pošlji %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tapnite za izbor</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Ne morete deliti več kot %d priponko.</item>
+    <item quantity="two">Ne morete deliti več kot %d priponki.</item>
+    <item quantity="few">Ne morete deliti več kot %d priponke.</item>
+    <item quantity="other">Ne morete deliti več kot %d priponk.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Dodaj besedilo ...</string>
   <!--MediaRepository-->

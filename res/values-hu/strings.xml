@@ -155,7 +155,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">A Signal-nak szüksége van a Kamera engedélyre, hogy fotót vagy videót készíthessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">A Signal-nak szüksége van Kamera engedélyekre fotók és videók készítéséhez</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">A Signal nem tud SMS/MMS üzeneteket küldeni, mert nem az alapértelmezett SMS alkalmazásod. Meg szeretnéd ezt változtatni az Android beállításaidban?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">A Signal nem tud SMS/MMS üzeneteket küldeni, mert nem az alapértelmezett SMS alkalmazásod. Szeretnél változtatni ezen az Android beállításaidban?</string>
   <string name="ConversationActivity_yes">Igen</string>
   <string name="ConversationActivity_no">Nem</string>
   <!--ConversationAdapter-->
@@ -279,9 +279,9 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Mostantól megoszthatod barátaiddal profilképedet és egyéni nevedet Signal-on</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">A Signal profilok megérkeztek</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Bemutatjuk a gépelés-indikátorokat.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Mostantól lehetőséged van megtekinteni és megosztani azt, hogy éppen gépelsz.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Mostantól lehetőséged van megtekinteni és megosztani azt, hogy éppen gépel-e valaki.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Szeretnéd most bekapcsolni?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">A gépelésindikátor megérkezett</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">A gépelésindikátorok megérkeztek</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Gépelésindikátor engedélyezése</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Gépelésindikátor bekapcsolása</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nem, köszönöm</string>
@@ -378,7 +378,11 @@
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Küldés neki: %s</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">Érints a kiválasztáshoz</string>
+  <string name="MediaPickerItemFragment_tap_to_select">Koppints a kiválasztáshoz</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Nem oszthatsz meg többet, mint %d db elem.</item>
+    <item quantity="other">Nem oszthatsz meg többet, mint %d db elem.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Felirat hozzáadása...</string>
   <!--MediaRepository-->
@@ -653,8 +657,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
-    <item quantity="one">1%d Elem</item>
-    <item quantity="other">%d elem</item>
+    <item quantity="one">%d db elem</item>
+    <item quantity="other">%d db elem</item>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Az eszköz már nincs regisztrálva</string>
@@ -1034,7 +1038,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__incognito_keyboard">Inkognitó billentyűzet</string>
   <string name="preferences__read_receipts">Olvasási nyugták</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ha az olvasási nyugták le vannak tiltva, te sem fogod látni mások olvasási nyugtáit.</string>
-  <string name="preferences__typing_indicators">Gépelésindikátor</string>
+  <string name="preferences__typing_indicators">Gépelésindikátorok</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ha a gépelés-indikátorod ki van kapcsolva, nem fogod látni mások gépelés-indikátorát sem.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokkolt kontaktok</string>
@@ -1229,7 +1233,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal-hoz való hozzáférés védelme Android képernyőzárral vagy ujjlenyomattal</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Képernyő lezárása ennyi tétlenséget követően</string>
   <string name="AppProtectionPreferenceFragment_none">Egyik sem</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">A regisztrációs zár PIN nem ugyanaz mint az SMS ellenőrző kód, amit az imént kaptál. Kérlek add meg a PIN kódot, amelyet korábban az alkalmazásban állítottál be!</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">A regisztrációs zár PIN nem ugyanaz, mint az SMS ellenőrző kód, amit az imént kaptál. Kérlek add meg a PIN kódot, amelyet korábban az alkalmazásban állítottál be!</string>
   <string name="registration_activity__registration_lock_pin">Regisztrációs zár PIN</string>
   <string name="registration_activity__forgot_pin">Elfelejtetted PIN kódodat?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">A PIN kód négy vagy több számjegyből állhat. Ha elfelejted PIN kódodat, előfordulhat, hogy a rendszer maximum hét napra kizár fiókodból.</string>

@@ -360,6 +360,9 @@
   <string name="MediaPickerActivity_send_to">傳送給 %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">點取以選擇</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="other">你無法分享超過 %d 個的項目。</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">加入一個標題...</string>
   <!--MediaRepository-->

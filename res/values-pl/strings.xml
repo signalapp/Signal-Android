@@ -414,6 +414,12 @@
   <string name="MediaPickerActivity_send_to">Wyślij do %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Dotknij, aby zaznaczyć</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Nie można udostępnić więcej niż %d element multimediów.</item>
+    <item quantity="few">Nie można udostępnić więcej niż %d multimediów.</item>
+    <item quantity="many">Nie można udostępnić więcej niż %d multimediów.</item>
+    <item quantity="other">Nie można udostępnić więcej niż %d multimediów.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Dodaj podpis...</string>
   <!--MediaRepository-->
@@ -426,7 +432,7 @@
   <string name="MessageRecord_called_you">Dzwonił(a)</string>
   <string name="MessageRecord_missed_call">Nieodebrane połączenie</string>
   <string name="MessageRecord_s_updated_group">%s zaktualizował(a) grupę.</string>
-  <string name="MessageRecord_s_called_you">%s dzwonił do Ciebie</string>
+  <string name="MessageRecord_s_called_you">%s dzwonił(a) do Ciebie</string>
   <string name="MessageRecord_called_s">Zadzwoniono do %s</string>
   <string name="MessageRecord_missed_call_from">Nieodebrane połączenie od %s</string>
   <string name="MessageRecord_s_joined_signal">%s jest w Signal!</string>
