@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components;
 
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -109,8 +110,8 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
       String mimeType     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.MIME_TYPE));
       String bucketId     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_ID));
       int    orientation  = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
-      int    width        = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.WIDTH)) : 0;
-      int    height       = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.HEIGHT)) : 0;
+      int    width        = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation))) : 0;
+      int    height       = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation))) : 0;
 
       final Uri uri = Uri.withAppendedPath(baseUri, Long.toString(id));
 
@@ -126,6 +127,20 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
         if (clickedListener != null) clickedListener.onItemClicked(uri, mimeType, bucketId, dateTaken, width, height);
       });
 
+    }
+
+    @TargetApi(16)
+    @SuppressWarnings("SuspiciousNameCombination")
+    private String getWidthColumn(int orientation) {
+      if (orientation == 0 || orientation == 180) return MediaStore.Images.ImageColumns.WIDTH;
+      else                                        return MediaStore.Images.ImageColumns.HEIGHT;
+    }
+
+    @TargetApi(16)
+    @SuppressWarnings("SuspiciousNameCombination")
+    private String getHeightColumn(int orientation) {
+      if (orientation == 0 || orientation == 180) return MediaStore.Images.ImageColumns.HEIGHT;
+      else                                        return MediaStore.Images.ImageColumns.WIDTH;
     }
 
     public void setListener(@Nullable OnItemClickedListener listener) {
