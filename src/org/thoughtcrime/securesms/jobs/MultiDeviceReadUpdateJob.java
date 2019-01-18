@@ -9,11 +9,13 @@ import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
@@ -90,7 +92,7 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException, UntrustedIdentityException {
     if (!TextSecurePreferences.isMultiDevice(context)) {
-      Log.w(TAG, "Not multi device...");
+      Log.i(TAG, "Not multi device...");
       return;
     }
 
@@ -100,7 +102,7 @@ public class MultiDeviceReadUpdateJob extends MasterSecretJob implements Injecta
       readMessages.add(new ReadMessage(messageId.sender, messageId.timestamp));
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages));
+    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages), UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

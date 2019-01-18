@@ -24,6 +24,7 @@ public class IncomingMediaMessage {
   private final long          expiresIn;
   private final boolean       expirationUpdate;
   private final QuoteModel    quote;
+  private final boolean       unidentified;
 
   private final List<Attachment> attachments    = new LinkedList<>();
   private final List<Contact>    sharedContacts = new LinkedList<>();
@@ -35,7 +36,8 @@ public class IncomingMediaMessage {
                               List<Attachment> attachments,
                               int subscriptionId,
                               long expiresIn,
-                              boolean expirationUpdate)
+                              boolean expirationUpdate,
+                              boolean unidentified)
   {
     this.from             = from;
     this.groupId          = groupId.orNull();
@@ -46,6 +48,7 @@ public class IncomingMediaMessage {
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
     this.quote            = null;
+    this.unidentified     = unidentified;
 
     this.attachments.addAll(attachments);
   }
@@ -55,7 +58,7 @@ public class IncomingMediaMessage {
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
-                              Optional<String> relay,
+                              boolean unidentified,
                               Optional<String> body,
                               Optional<SignalServiceGroup> group,
                               Optional<List<SignalServiceAttachment>> attachments,
@@ -70,6 +73,7 @@ public class IncomingMediaMessage {
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
     this.quote            = quote.orNull();
+    this.unidentified     = unidentified;
 
     if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId(), false));
     else                   this.groupId = null;
@@ -124,5 +128,9 @@ public class IncomingMediaMessage {
 
   public List<Contact> getSharedContacts() {
     return sharedContacts;
+  }
+
+  public boolean isUnidentified() {
+    return unidentified;
   }
 }

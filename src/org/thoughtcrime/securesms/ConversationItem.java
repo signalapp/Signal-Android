@@ -558,13 +558,7 @@ public class ConversationItem extends LinearLayout
 
   private void setContactPhoto(@NonNull Recipient recipient) {
     if (contactPhoto == null) return;
-
-    if (messageRecord.isOutgoing() || !groupThread) {
-      contactPhoto.setVisibility(View.GONE);
-    } else {
-      contactPhoto.setAvatar(glideRequests, recipient, true);
-      contactPhoto.setVisibility(View.VISIBLE);
-    }
+    contactPhoto.setAvatar(glideRequests, recipient, true);
   }
 
   private SpannableString linkifyMessageBody(SpannableString messageBody, boolean shouldLinkifyAllLinks) {

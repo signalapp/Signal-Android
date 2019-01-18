@@ -167,10 +167,11 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
             SignalServiceEnvelope envelope = new SignalServiceEnvelope(SignalServiceProtos.Envelope.Type.PREKEY_BUNDLE_VALUE,
                                                                        messageRecord.getIndividualRecipient().getAddress().toPhoneString(),
-                                                                       messageRecord.getRecipientDeviceId(), "",
+                                                                       messageRecord.getRecipientDeviceId(),
                                                                        messageRecord.getDateSent(),
                                                                        legacy ? Base64.decode(messageRecord.getBody()) : null,
-                                                                       !legacy ? Base64.decode(messageRecord.getBody()) : null);
+                                                                       !legacy ? Base64.decode(messageRecord.getBody()) : null,
+                                                                       0, null);
 
             long pushId = pushDatabase.insert(envelope);
 

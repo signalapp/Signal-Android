@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -115,7 +116,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       throws IOException, UntrustedIdentityException, NetworkException
   {
     if (!TextSecurePreferences.isMultiDevice(context)) {
-      Log.w(TAG, "Not multi device, aborting...");
+      Log.i(TAG, "Not multi device, aborting...");
       return;
     }
 
@@ -238,7 +239,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                                                                 .build();
 
       try {
-        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)));
+        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
       }

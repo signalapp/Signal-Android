@@ -25,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.TooltipCompat;
 import android.text.TextUtils;
@@ -58,6 +59,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.LifecycleBoundTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
@@ -109,7 +111,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
-    initializeProfileIcon();
+    LifecycleBoundTask.run(getLifecycle(), () -> {
+      return Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), false);
+    }, this::initializeProfileIcon);
   }
 
   @Override
@@ -174,10 +178,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     });
   }
 
-  private void initializeProfileIcon() {
+  private void initializeProfileIcon(@NonNull Recipient recipient) {
     ImageView     icon          = findViewById(R.id.toolbar_icon);
-    Address       localAddress  = Address.fromSerialized(TextSecurePreferences.getLocalNumber(this));
-    Recipient     recipient     = Recipient.from(this, localAddress, true);
     String        name          = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(this))).or("");
     MaterialColor fallbackColor = recipient.getColor();
 
@@ -188,7 +190,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     Drawable fallback = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(this, fallbackColor.toAvatarColor(this));
 
     GlideApp.with(this)
-            .load(new ProfileContactPhoto(localAddress, String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
+            .load(new ProfileContactPhoto(recipient.getAddress(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
             .error(fallback)
             .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)

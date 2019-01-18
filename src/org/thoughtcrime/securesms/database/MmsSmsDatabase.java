@@ -49,7 +49,9 @@ public class MmsSmsDatabase extends Database {
                                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
-                                              SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
+                                              SmsDatabase.STATUS,
+                                              MmsSmsColumns.UNIDENTIFIED,
+                                              MmsDatabase.PART_COUNT,
                                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
                                               MmsDatabase.STATUS,
@@ -232,6 +234,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
+                              MmsDatabase.UNIDENTIFIED,
                               MmsSmsColumns.DELIVERY_RECEIPT_COUNT, MmsSmsColumns.READ_RECEIPT_COUNT,
                               MmsSmsColumns.MISMATCHED_IDENTITIES,
                               MmsSmsColumns.SUBSCRIPTION_ID, MmsSmsColumns.EXPIRES_IN, MmsSmsColumns.EXPIRE_STARTED,
@@ -256,6 +259,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
+                              MmsDatabase.UNIDENTIFIED,
                               MmsSmsColumns.DELIVERY_RECEIPT_COUNT, MmsSmsColumns.READ_RECEIPT_COUNT,
                               MmsSmsColumns.MISMATCHED_IDENTITIES,
                               MmsSmsColumns.SUBSCRIPTION_ID, MmsSmsColumns.EXPIRES_IN, MmsSmsColumns.EXPIRE_STARTED,
@@ -304,6 +308,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.EXPIRY);
     mmsColumnsPresent.add(MmsDatabase.NOTIFIED);
     mmsColumnsPresent.add(MmsDatabase.STATUS);
+    mmsColumnsPresent.add(MmsDatabase.UNIDENTIFIED);
     mmsColumnsPresent.add(MmsDatabase.NETWORK_FAILURE);
 
     mmsColumnsPresent.add(AttachmentDatabase.ROW_ID);
@@ -351,6 +356,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.DATE_SENT);
     smsColumnsPresent.add(SmsDatabase.DATE_RECEIVED);
     smsColumnsPresent.add(SmsDatabase.STATUS);
+    smsColumnsPresent.add(SmsDatabase.UNIDENTIFIED);
 
     @SuppressWarnings("deprecation")
     String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, null);

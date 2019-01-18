@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.util.Collections;
 import java.util.List;
 
 public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
@@ -19,7 +20,7 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts)
   {
-    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, distributionType, quote, contacts);
+    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, distributionType, quote, contacts, Collections.emptyList(), Collections.emptyList());
   }
 
   public OutgoingSecureMediaMessage(OutgoingMediaMessage base) {

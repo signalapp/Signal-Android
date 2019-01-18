@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -61,7 +62,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException, UntrustedIdentityException {
     if (!TextSecurePreferences.isMultiDevice(getContext())) {
-      Log.w(TAG, "Not multi device...");
+      Log.i(TAG, "Not multi device...");
       return;
     }
 
@@ -86,7 +87,7 @@ public class MultiDeviceProfileKeyUpdateJob extends MasterSecretJob implements I
 
     SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
-    messageSender.sendMessage(syncMessage);
+    messageSender.sendMessage(syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

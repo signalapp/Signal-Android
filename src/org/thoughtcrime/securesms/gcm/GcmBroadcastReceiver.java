@@ -121,7 +121,7 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver implements In
       new Thread("GcmForegroundServiceTimer") {
         @Override
         public void run() {
-          Util.sleep(5000);
+          Util.sleep(4500);
           synchronized (foregroundLock) {
             if (!taskCompleted.get() && !foregroundRunning.getAndSet(true)) {
               Log.i(TAG, "Starting a foreground task because the job is running long.");

@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -95,6 +94,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int IMAGE_CACHE_CLEANUP                  = 406;
   public static final int WORKMANAGER_MIGRATION                = 408;
   public static final int COLOR_MIGRATION                      = 412;
+  public static final int UNIDENTIFIED_DELIVERY                = 422;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -120,6 +120,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(IMAGE_CACHE_CLEANUP);
     add(WORKMANAGER_MIGRATION);
     add(COLOR_MIGRATION);
+    add(UNIDENTIFIED_DELIVERY);
   }};
 
   private MasterSecret masterSecret;
@@ -356,6 +357,18 @@ public class DatabaseUpgradeActivity extends BaseActivity {
           return ContactColorsLegacy.generateFor(name);
         });
         Log.i(TAG, "Color migration took " + (System.currentTimeMillis() - startTime) + " ms");
+      }
+
+      if (params[0] < UNIDENTIFIED_DELIVERY) {
+        if (TextSecurePreferences.isMultiDevice(context)) {
+          Log.i(TAG, "MultiDevice: Disabling UD (will be re-enabled if possible after pending refresh).");
+          TextSecurePreferences.setIsUnidentifiedDeliveryEnabled(context, false);
+        }
+
+        Log.i(TAG, "Scheduling UD attributes refresh.");
+        ApplicationContext.getInstance(context)
+                          .getJobManager()
+                          .add(new RefreshAttributesJob(context));
       }
 
       return null;

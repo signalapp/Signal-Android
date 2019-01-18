@@ -83,7 +83,7 @@ public class PointerAttachment extends Attachment {
                                       pointer.get().asPointer().getSize().or(0),
                                       pointer.get().asPointer().getFileName().orNull(),
                                       String.valueOf(pointer.get().asPointer().getId()),
-                                      encodedKey, pointer.get().asPointer().getRelay().orNull(),
+                                      encodedKey, null,
                                       pointer.get().asPointer().getDigest().orNull(),
                                       pointer.get().asPointer().getVoiceNote(),
                                       pointer.get().asPointer().getWidth(),

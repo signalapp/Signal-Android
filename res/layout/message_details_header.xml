@@ -20,17 +20,39 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
-        <TextView android:id="@+id/error_text"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:visibility="gone"
-                  android:textSize="16sp"
-                  android:padding="5dp"
-                  tools:visibility="visible"
-                  android:text="@string/message_details_header__issues_need_your_attention"
-                  android:drawableLeft="@drawable/ic_info_outline_light"
-                  android:drawableStart="@drawable/ic_info_outline_light"
-                  android:gravity="center_vertical" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/error_text"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:visibility="gone"
+                      android:textSize="16sp"
+                      android:padding="5dp"
+                      tools:visibility="visible"
+                      android:text="@string/message_details_header__issues_need_your_attention"
+                      android:drawableLeft="@drawable/ic_info_outline_light"
+                      android:drawableStart="@drawable/ic_info_outline_light"
+                      android:gravity="center_vertical" />
+
+            <Button
+                android:id="@+id/resend_button"
+                android:layout_width="wrap_content"
+                android:layout_height="38sp"
+                style="@style/InfoButton"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/ic_refresh_white_18dp"
+                android:text="@string/message_recipients_list_item__resend"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
 
         <TableLayout android:id="@+id/metadata_container"
                      android:layout_width="match_parent"

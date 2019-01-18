@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.groups;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.protobuf.ByteString;
 
@@ -17,6 +16,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -27,8 +27,8 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
 
@@ -47,7 +47,7 @@ public class GroupMessageProcessor {
   private static final String TAG = GroupMessageProcessor.class.getSimpleName();
 
   public static @Nullable Long process(@NonNull Context context,
-                                       @NonNull SignalServiceEnvelope envelope,
+                                       @NonNull SignalServiceContent content,
                                        @NonNull SignalServiceDataMessage message,
                                        boolean outgoing)
   {
@@ -62,13 +62,13 @@ public class GroupMessageProcessor {
     Optional<GroupRecord> record   = database.getGroup(id);
 
     if (record.isPresent() && group.getType() == Type.UPDATE) {
-      return handleGroupUpdate(context, envelope, group, record.get(), outgoing);
+      return handleGroupUpdate(context, content, group, record.get(), outgoing);
     } else if (!record.isPresent() && group.getType() == Type.UPDATE) {
-      return handleGroupCreate(context, envelope, group, outgoing);
+      return handleGroupCreate(context, content, group, outgoing);
     } else if (record.isPresent() && group.getType() == Type.QUIT) {
-      return handleGroupLeave(context, envelope, group, record.get(), outgoing);
+      return handleGroupLeave(context, content, group, record.get(), outgoing);
     } else if (record.isPresent() && group.getType() == Type.REQUEST_INFO) {
-      return handleGroupInfoRequest(context, envelope, group, record.get());
+      return handleGroupInfoRequest(context, content, group, record.get());
     } else {
       Log.w(TAG, "Received unknown type, ignoring...");
       return null;
@@ -76,7 +76,7 @@ public class GroupMessageProcessor {
   }
 
   private static @Nullable Long handleGroupCreate(@NonNull Context context,
-                                                  @NonNull SignalServiceEnvelope envelope,
+                                                  @NonNull SignalServiceContent content,
                                                   @NonNull SignalServiceGroup group,
                                                   boolean outgoing)
   {
@@ -95,14 +95,13 @@ public class GroupMessageProcessor {
     }
 
     database.create(id, group.getName().orNull(), members,
-                    avatar != null && avatar.isPointer() ? avatar.asPointer() : null,
-                    envelope.getRelay());
+                    avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null);
 
-    return storeMessage(context, envelope, group, builder.build(), outgoing);
+    return storeMessage(context, content, group, builder.build(), outgoing);
   }
 
   private static @Nullable Long handleGroupUpdate(@NonNull Context context,
-                                                  @NonNull SignalServiceEnvelope envelope,
+                                                  @NonNull SignalServiceContent content,
                                                   @NonNull SignalServiceGroup group,
                                                   @NonNull GroupRecord groupRecord,
                                                   boolean outgoing)
@@ -156,25 +155,25 @@ public class GroupMessageProcessor {
 
     if (!groupRecord.isActive()) database.setActive(id, true);
 
-    return storeMessage(context, envelope, group, builder.build(), outgoing);
+    return storeMessage(context, content, group, builder.build(), outgoing);
   }
 
   private static Long handleGroupInfoRequest(@NonNull Context context,
-                                             @NonNull SignalServiceEnvelope envelope,
+                                             @NonNull SignalServiceContent content,
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupRecord record)
   {
-    if (record.getMembers().contains(Address.fromExternal(context, envelope.getSource()))) {
+    if (record.getMembers().contains(Address.fromExternal(context, content.getSender()))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new PushGroupUpdateJob(context, envelope.getSource(), group.getGroupId()));
+                        .add(new PushGroupUpdateJob(context, content.getSender(), group.getGroupId()));
     }
 
     return null;
   }
 
   private static Long handleGroupLeave(@NonNull Context               context,
-                                       @NonNull SignalServiceEnvelope envelope,
+                                       @NonNull SignalServiceContent  content,
                                        @NonNull SignalServiceGroup    group,
                                        @NonNull GroupRecord           record,
                                        boolean  outgoing)
@@ -186,11 +185,11 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    if (members.contains(Address.fromExternal(context, envelope.getSource()))) {
-      database.remove(id, Address.fromExternal(context, envelope.getSource()));
+    if (members.contains(Address.fromExternal(context, content.getSender()))) {
+      database.remove(id, Address.fromExternal(context, content.getSender()));
       if (outgoing) database.setActive(id, false);
 
-      return storeMessage(context, envelope, group, builder.build(), outgoing);
+      return storeMessage(context, content, group, builder.build(), outgoing);
     }
 
     return null;
@@ -198,7 +197,7 @@ public class GroupMessageProcessor {
 
 
   private static @Nullable Long storeMessage(@NonNull Context context,
-                                             @NonNull SignalServiceEnvelope envelope,
+                                             @NonNull SignalServiceContent content,
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupContext storage,
                                              boolean  outgoing)
@@ -213,7 +212,7 @@ public class GroupMessageProcessor {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
         Address                   addres          = Address.fromExternal(context, GroupUtil.getEncodedId(group.getGroupId(), false));
         Recipient                 recipient       = Recipient.from(context, addres, false);
-        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, envelope.getTimestamp(), 0, null, Collections.emptyList());
+        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, null, Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
         long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
@@ -223,7 +222,7 @@ public class GroupMessageProcessor {
       } else {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage  incoming     = new IncomingTextMessage(Address.fromExternal(context, envelope.getSource()), envelope.getSourceDevice(), envelope.getTimestamp(), body, Optional.of(group), 0);
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Address.fromExternal(context, content.getSender()), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(group), 0, content.isNeedsReceipt());
         IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

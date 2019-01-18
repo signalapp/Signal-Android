@@ -94,10 +94,10 @@
   <string name="ContactShareEditActivity_type_missing">Outro</string>
   <string name="ContactShareEditActivity_invalid_contact">O contacto selecionado é inválido</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Envio falhado, toque para mais detalhes</string>
+  <string name="ConversationItem_error_not_delivered">Envio falhado, pressione para mais detalhes</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem para intercâmbio de chaves, toque para processar.</string>
   <string name="ConversationItem_group_action_left">%1$s deixou o grupo.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Envio falhado, tocar para enviar no modo inseguro</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Envio falhado, pressione para enviar no modo inseguro</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não encriptado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Recorrer a MMS não encriptado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será encriptada porque o destinatário já não é um utilizador do Signal.\n\nEnviar mensagem de modo não seguro?</string>
@@ -360,10 +360,10 @@
   <string name="MessageRecord_called_s">Ligou para %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
   <string name="MessageRecord_s_joined_signal">%s está no Signal!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Desativou as mensagens desaparecidas</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desativou mensagens desaparecidas.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Definiu o tempo de mensagens a desaparecer em %1$s</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de mensagem a desaparecer em %2$s</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Desactivou as mensagens efémeras</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desactivou mensagens efémeras.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Definiu o tempo de mensagens efémeras para %1$s</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de mensagem efémeras para %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Marcou como verificado o seu número de segurança com %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Marcou como verificado o seu número de segurança com %s a partir de outro dispositivo</string>
@@ -497,7 +497,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensagem multimédia</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">Mensagens desaparecidas desativada</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efémeras desactivadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo das mensagens que desaparecem definido como %s</string>
   <string name="ThreadRecord_safety_number_changed">Número de segurança alterado</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">O seu número de segurança com %s mudou.</string>
@@ -760,7 +760,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório ou email de apoio:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="log_submit_activity__choose_email_app">Escolher app de email</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">Por favor revê este registo da minha app: %1$s</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Por favor reveja este registo da minha app: %1$s</string>
   <string name="log_submit_activity__network_failure">Erro de rede. Por favor tente de novo.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar as suas mensagens de texto existentes para a base de dados encriptada do Signal?</string>
@@ -1072,7 +1072,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="reminder_header_outdated_build">A sua versão do Signal está desactualizada</string>
   <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">A sua versão do Signal irá expirar dentro de %d dias. Tocar para atualizar para a versão mais recente.</item>
-    <item quantity="other">A sua versão do Signal irá expirar dentro de %d dias. Tocar para atualizar para a versão mais recente.</item>
+    <item quantity="other">A sua versão do Signal irá expirar dentro de %d dias. Pressione para atualizar para a versão mais recente.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">A sua versão de Signal vai expirar hoje. Toque para actualizar para a versão mais recente.</string>
   <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>

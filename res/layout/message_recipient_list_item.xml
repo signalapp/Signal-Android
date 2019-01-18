@@ -80,19 +80,13 @@
                 android:visibility="gone"
                 tools:visibility="gone" />
 
-        <Button android:id="@+id/resend_button"
-                android:layout_width="wrap_content"
-                android:layout_height="38sp"
-                style="@style/InfoButton"
-                android:paddingLeft="10dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:layout_gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_refresh_white_18dp"
-                android:text="@string/message_recipients_list_item__resend"
-                android:visibility="gone"
-                tools:visibility="gone" />
+        <ImageView android:id="@+id/ud_indicator"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="4dp"
+                   android:layout_marginRight="4dp"
+                   android:src="@drawable/ic_unidentified_delivery"
+                   android:tint="?attr/conversation_item_sent_text_secondary_color"/>
 
         <org.thoughtcrime.securesms.components.DeliveryStatusView
                 android:id="@+id/delivery_status"

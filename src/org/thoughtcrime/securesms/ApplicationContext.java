@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
@@ -50,6 +51,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
+import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -108,6 +110,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeCircumvention();
     initializeWebRtc();
     initializePendingMessages();
+    initializeUnidentifiedDeliveryAbilityRefresh();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
   }
@@ -171,7 +174,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                                                   .setMinimumLoggingLevel(android.util.Log.DEBUG)
                                                   .build());
 
-    this.jobManager = new JobManager(WorkManager.getInstance());
+    this.jobManager = new JobManager(this, WorkManager.getInstance());
   }
 
   public void initializeMessageRetrieval() {
@@ -207,6 +210,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     RotateSignedPreKeyListener.schedule(this);
     DirectoryRefreshListener.schedule(this);
     LocalBackupListener.schedule(this);
+    RotateSenderCertificateListener.schedule(this);
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);
@@ -277,6 +281,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       Log.i(TAG, "Scheduling a message fetch.");
       ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
       TextSecurePreferences.setNeedsMessagePull(this, false);
+    }
+  }
+
+  private void initializeUnidentifiedDeliveryAbilityRefresh() {
+    if (TextSecurePreferences.isMultiDevice(this) && !TextSecurePreferences.isUnidentifiedDeliveryEnabled(this)) {
+      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob(this));
     }
   }
 }

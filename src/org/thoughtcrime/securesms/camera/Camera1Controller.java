@@ -7,7 +7,6 @@ import android.view.Surface;
 
 import org.thoughtcrime.securesms.logging.Log;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -16,6 +15,9 @@ public class Camera1Controller {
 
   private static final String TAG = Camera1Controller.class.getSimpleName();
 
+  private final int screenWidth;
+  private final int screenHeight;
+
   private Camera               camera;
   private int                  cameraId;
   private OrderEnforcer<Stage> enforcer;
@@ -23,10 +25,12 @@ public class Camera1Controller {
   private SurfaceTexture       previewSurface;
   private int                  screenRotation;
 
-  public Camera1Controller(int preferredDirection, @NonNull EventListener eventListener) {
+  public Camera1Controller(int preferredDirection, int screenWidth, int screenHeight, @NonNull EventListener eventListener) {
     this.eventListener = eventListener;
     this.enforcer      = new OrderEnforcer<>(Stage.INITIALIZED, Stage.PREVIEW_STARTED);
     this.cameraId      = Camera.getNumberOfCameras() > 1  ? preferredDirection : Camera.CameraInfo.CAMERA_FACING_BACK;
+    this.screenWidth   = screenWidth;
+    this.screenHeight  = screenHeight;
   }
 
   public void initialize() {
@@ -34,21 +38,40 @@ public class Camera1Controller {
 
     if (Camera.getNumberOfCameras() <= 0) {
       onCameraUnavailable();
+      return;
     }
 
-    camera = Camera.open(cameraId);
+    try {
+      camera = Camera.open(cameraId);
+    } catch (Exception e) {
+      onCameraUnavailable();
+      return;
+    }
 
-    Camera.Parameters  params     = camera.getParameters();
-    Camera.Size        maxSize    = getMaxSupportedPreviewSize(camera);
-    final List<String> focusModes = params.getSupportedFocusModes();
+    if (camera == null) {
+      onCameraUnavailable();
+      return;
+    }
 
-    params.setPreviewSize(maxSize.width, maxSize.height);
+    Camera.Parameters  params      = camera.getParameters();
+    Camera.Size        previewSize = getClosestSize(camera.getParameters().getSupportedPreviewSizes(), screenWidth, screenHeight);
+    Camera.Size        pictureSize = getClosestSize(camera.getParameters().getSupportedPictureSizes(), screenWidth, screenHeight);
+    final List<String> focusModes  = params.getSupportedFocusModes();
+
+    Log.d(TAG, "Preview size: " + previewSize.width + "x" + previewSize.height + "  Picture size: " + pictureSize.width + "x" + pictureSize.height);
+
+    params.setPreviewSize(previewSize.width, previewSize.height);
+    params.setPictureSize(pictureSize.width, pictureSize.height);
+    params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+    params.setColorEffect(Camera.Parameters.EFFECT_NONE);
+    params.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
 
     if (focusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
       params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
     } else if (focusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {
       params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
     }
+
 
     camera.setParameters(params);
 
@@ -85,6 +108,14 @@ public class Camera1Controller {
     });
   }
 
+  public void capture(@NonNull CaptureCallback callback) {
+    enforcer.run(Stage.PREVIEW_STARTED, () -> {
+      camera.takePicture(null, null, null, (data, camera) -> {
+        callback.onCaptureAvailable(data, cameraId == Camera.CameraInfo.CAMERA_FACING_FRONT);
+      });
+    });
+  }
+
   public int flip() {
     Log.d(TAG, "flip()");
     SurfaceTexture surfaceTexture = previewSurface;
@@ -104,13 +135,15 @@ public class Camera1Controller {
       Log.d(TAG, "setScreenRotation(" + screenRotation + ") executing");
       this.screenRotation = screenRotation;
 
-      int rotation = getCameraRotationForScreen(screenRotation);
-      camera.setDisplayOrientation(rotation);
+      int previewRotation = getPreviewRotation(screenRotation);
+      int outputRotation  = getOutputRotation(screenRotation);
 
-      Log.d(TAG, "Set camera rotation to: " + rotation);
+      Log.d(TAG, "Preview rotation: " + previewRotation + "  Output rotation: " + outputRotation);
+
+      camera.setDisplayOrientation(previewRotation);
 
       Camera.Parameters params = camera.getParameters();
-      params.setRotation(rotation);
+      params.setRotation(outputRotation);
       camera.setParameters(params);
     });
   }
@@ -125,33 +158,58 @@ public class Camera1Controller {
     return new Properties(Camera.getNumberOfCameras(), previewSize.width, previewSize.height);
   }
 
-  private Camera.Size getMaxSupportedPreviewSize(Camera camera) {
-    List<Camera.Size> cameraSizes = camera.getParameters().getSupportedPreviewSizes();
-    Collections.sort(cameraSizes, DESC_SIZE_COMPARATOR);
-    return cameraSizes.get(0);
+  private Camera.Size getClosestSize(List<Camera.Size> sizes, int width, int height) {
+    Collections.sort(sizes, ASC_SIZE_COMPARATOR);
+
+    int i = 0;
+    while (i < sizes.size() && (sizes.get(i).width * sizes.get(i).height) < (width * height)) {
+      i++;
+    }
+
+    return sizes.get(Math.min(i, sizes.size() - 1));
   }
 
-  private int getCameraRotationForScreen(int screenRotation) {
-    int degrees = 0;
-
-    switch (screenRotation) {
-      case Surface.ROTATION_0:   degrees = 0;   break;
-      case Surface.ROTATION_90:  degrees = 90;  break;
-      case Surface.ROTATION_180: degrees = 180; break;
-      case Surface.ROTATION_270: degrees = 270; break;
-    }
+  private int getOutputRotation(int displayRotationCode) {
+    int degrees = convertRotationToDegrees(displayRotationCode);
 
     Camera.CameraInfo info = new Camera.CameraInfo();
     Camera.getCameraInfo(cameraId, info);
 
     if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-      return (360 - ((info.orientation + degrees) % 360)) % 360;
+      return (info.orientation + degrees) % 360;
     } else {
       return (info.orientation - degrees + 360) % 360;
     }
   }
 
-  private final Comparator<Camera.Size> DESC_SIZE_COMPARATOR = (o1, o2) -> Integer.compare(o2.width * o2.height, o1.width * o1.height);
+  private int getPreviewRotation(int displayRotationCode) {
+    int degrees = convertRotationToDegrees(displayRotationCode);
+
+    Camera.CameraInfo info = new Camera.CameraInfo();
+    Camera.getCameraInfo(cameraId, info);
+
+    int result;
+    if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+      result = (info.orientation + degrees) % 360;
+      result = (360 - result) % 360;
+    } else {
+      result = (info.orientation - degrees + 360) % 360;
+    }
+
+    return result;
+  }
+
+  private int convertRotationToDegrees(int screenRotation) {
+    switch (screenRotation) {
+      case Surface.ROTATION_0:   return 0;
+      case Surface.ROTATION_90:  return 90;
+      case Surface.ROTATION_180: return 180;
+      case Surface.ROTATION_270: return 270;
+    }
+    return 0;
+  }
+
+  private final Comparator<Camera.Size> ASC_SIZE_COMPARATOR = (o1, o2) -> Integer.compare(o1.width * o1.height, o2.width * o2.height);
 
   private enum Stage {
     INITIALIZED, PREVIEW_STARTED
@@ -183,12 +241,16 @@ public class Camera1Controller {
 
     @Override
     public String toString() {
-      return "cameraCount: " + camera + "  previewWidth: " + previewWidth + "  previewHeight: " + previewHeight;
+      return "cameraCount: " + cameraCount + "  previewWidth: " + previewWidth + "  previewHeight: " + previewHeight;
     }
   }
 
   interface EventListener {
     void onPropertiesAvailable(@NonNull Properties properties);
     void onCameraUnavailable();
+  }
+
+  interface CaptureCallback {
+    void onCaptureAvailable(@NonNull byte[] jpegData, boolean frontFacing);
   }
 }

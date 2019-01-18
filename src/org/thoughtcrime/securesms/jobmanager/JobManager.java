@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobmanager;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import java.util.concurrent.Executor;
@@ -22,10 +23,12 @@ public class JobManager {
 
   private final Executor executor = Executors.newSingleThreadExecutor();
 
+  private final Context     context;
   private final WorkManager workManager;
 
-  public JobManager(@NonNull WorkManager workManager) {
-    this.workManager  = workManager;
+  public JobManager(@NonNull Context context, @NonNull WorkManager workManager) {
+    this.context     = context;
+    this.workManager = workManager;
   }
 
   public void add(Job job) {
@@ -56,7 +59,7 @@ public class JobManager {
 
       OneTimeWorkRequest request = requestBuilder.build();
 
-      job.onSubmit(request.getId());
+      job.onSubmit(context, request.getId());
 
       String groupId = jobParameters.getGroupId();
       if (groupId != null) {

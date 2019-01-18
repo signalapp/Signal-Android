@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientReader;
@@ -12,6 +14,8 @@ import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
@@ -30,6 +34,7 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
 
   private static final long serialVersionUID = 1L;
 
+  @SuppressWarnings("unused")
   private static final String TAG = MultiDeviceBlockedUpdateJob.class.getSimpleName();
 
   @Inject transient SignalServiceMessageSender messageSender;
@@ -59,6 +64,11 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
   public void onRun(MasterSecret masterSecret)
       throws IOException, UntrustedIdentityException
   {
+    if (!TextSecurePreferences.isMultiDevice(context)) {
+      Log.i(TAG, "Not multi device, aborting...");
+      return;
+    }
+
     RecipientDatabase database = DatabaseFactory.getRecipientDatabase(context);
 
     try (RecipientReader reader = database.readerForBlocked(database.getBlocked())) {
@@ -75,7 +85,8 @@ public class MultiDeviceBlockedUpdateJob extends MasterSecretJob implements Inje
         }
       }
 
-      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)));
+      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
+                                UnidentifiedAccessUtil.getAccessForSync(context));
     }
   }
 

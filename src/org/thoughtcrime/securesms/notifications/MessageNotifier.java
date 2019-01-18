@@ -531,8 +531,6 @@ public class MessageNotifier {
 
     @Override
     public void run() {
-      MessageNotifier.updateNotification(context);
-
       long delayMillis = delayUntil - System.currentTimeMillis();
       Log.i(TAG, "Waiting to notify: " + delayMillis);
 

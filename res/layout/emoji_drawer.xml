@@ -36,7 +36,7 @@
 
     </LinearLayout>
 
-    <android.support.v4.view.ViewPager
+    <org.thoughtcrime.securesms.components.ControllableViewPager
             android:id="@+id/emoji_pager"
             android:visibility="visible"
             android:layout_width="match_parent"
