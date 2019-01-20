@@ -13,7 +13,7 @@
     <item android:title="@string/conversation_context__menu_copy_text"
           android:id="@+id/menu_context_copy"
           android:icon="?menu_copy_icon"
-          app:showAsAction="always" />
+          app:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation_context__menu_forward_message"
           android:id="@+id/menu_context_forward"
@@ -29,7 +29,7 @@
           android:id="@+id/menu_context_save_attachment"
           android:visible="false"
           android:icon="?menu_save_icon"
-          app:showAsAction="always" />
+          app:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation_context__menu_reply_to_message"
           android:id="@+id/menu_context_reply"
