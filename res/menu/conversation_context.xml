@@ -3,12 +3,12 @@
     <item android:title="@string/conversation_context__menu_message_details"
           android:id="@+id/menu_context_details"
           android:icon="?menu_info_icon"
-          app:showAsAction="always" />
+          app:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation_context__menu_delete_message"
         android:id="@+id/menu_context_delete_message"
         android:icon="?menu_trash_icon"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation_context__menu_copy_text"
           android:id="@+id/menu_context_copy"
