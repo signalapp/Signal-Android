@@ -93,8 +93,15 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Address destination, @Nullable Address filterAddress) {
     try {
-      MmsDatabase               database       = DatabaseFactory.getMmsDatabase(context);
-      OutgoingMediaMessage      message        = database.getOutgoingMessage(messageId);
+      MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
+      OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
+
+      if (message.isGroup()) {
+        Log.i(TAG, "Group update message. Using legacy attachment upload path.");
+        jobManager.add(new PushGroupSendJob(context, messageId, destination, filterAddress));
+        return;
+      }
+
       List<AttachmentUploadJob> attachmentJobs = Stream.of(message.getAttachments()).map(a -> new AttachmentUploadJob(context, ((DatabaseAttachment) a).getAttachmentId())).toList();
       ChainParameters           chainParams    = new ChainParameters.Builder().setGroupId(destination.serialize()).build();
 
@@ -203,7 +210,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
         database.markAsSentFailed(messageId);
         notifyMediaMessageDeliveryFailed(context, messageId);
       }
-    } catch (UntrustedIdentityException e) {
+    } catch (UntrustedIdentityException | UndeliverableMessageException e) {
       warn(TAG, e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
@@ -223,13 +230,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull List<Address> destinations)
-      throws IOException, UntrustedIdentityException
-  {
+      throws IOException, UntrustedIdentityException, UndeliverableMessageException {
     rotateSenderCertificateIfNecessary();
 
     String                        groupId            = message.getRecipient().getAddress().toGroupString();
     Optional<byte[]>              profileKey         = getProfileKey(message.getRecipient());
-    List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(message.getAttachments());
     Optional<Quote>               quote              = getQuoteFor(message);
     List<SharedContact>           sharedContacts     = getSharedContactsFor(message);
     List<SignalServiceAddress>    addresses          = Stream.of(destinations).map(this::getPushAddress).toList();
@@ -241,9 +246,13 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                       .toList();
 
     if (message.isGroup()) {
+      MediaConstraints              mediaConstraints  = MediaConstraints.getPushMediaConstraints();
+      List<Attachment>              scaledAttachments = scaleAndStripExifFromAttachments(mediaConstraints, message.getAttachments());
+      List<SignalServiceAttachment> attachmentStreams = getAttachmentsFor(scaledAttachments);
+
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
       GroupContext              groupContext     = groupMessage.getGroupContext();
-      SignalServiceAttachment   avatar           = attachmentPointers.isEmpty() ? null : attachmentPointers.get(0);
+      SignalServiceAttachment   avatar           = attachmentStreams.isEmpty() ? null : attachmentStreams.get(0);
       SignalServiceGroup.Type   type             = groupMessage.isGroupQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
       SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupContext.getName(), groupContext.getMembersList(), avatar);
       SignalServiceDataMessage  groupDataMessage = SignalServiceDataMessage.newBuilder()
@@ -254,6 +263,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       return messageSender.sendMessage(addresses, unidentifiedAccess, groupDataMessage);
     } else {
+      List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(message.getAttachments());
+
       SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedId(groupId));
       SignalServiceDataMessage groupMessage = SignalServiceDataMessage.newBuilder()
                                                                       .withTimestamp(message.getSentTimeMillis())
