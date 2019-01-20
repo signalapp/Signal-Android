@@ -73,7 +73,7 @@ dependencies {
     compile 'com.android.support:multidex:1.0.3'
     compile 'android.arch.lifecycle:extensions:1.1.1'
     compile 'android.arch.lifecycle:common-java8:1.1.1'
-    compile 'android.arch.work:work-runtime:1.0.0-beta02'
+    compile 'android.arch.work:work-runtime:1.0.0-beta01'
 
     compile 'com.google.android.gms:play-services-gcm:16.0.0'
     compile 'com.google.android.gms:play-services-maps:16.0.0'
@@ -170,7 +170,7 @@ dependencyVerification {
         'com.android.support:gridlayout-v7:5029529f7db66f8773426bf7318645f0840fc50d74f66355cd60c5e58d2da087',
         'com.android.support:exifinterface:bbf44e519edd6333a24a3285aa21fd00181b920b81ca8aa89a8899f03ab4d6b0',
         'com.android.support:multidex:ecf6098572e23b5155bab3b9a82b2fd1530eda6c6c157745e0f5287c66eec60c',
-        'android.arch.work:work-runtime:a865eaf55179bb800f04b04f2fa35c3c4d1108c550bc6b447bca168dac16b56e',
+        'android.arch.work:work-runtime:810fba0ee8fc58560664b58c6dba532eae05e3d196e9ee5ae78c1f22bdb292bb',
         'android.arch.lifecycle:extensions:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
         'android.arch.lifecycle:common-java8:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
         'com.google.android.gms:play-services-gcm:921b4651a2f4d108753f8b4c5d3844b5f8c1f3c31b740c80f69765082713d004',
@@ -223,7 +223,7 @@ dependencyVerification {
         'com.android.support:customview:98db03845f994e08248bf701c1ff0ccaa12e70f94251ec9272900f0f694e072b',
         'com.android.support:swiperefreshlayout:a3b41f7f6730866b49865e86e49f988d4858699765f534300fb2ff5f9325e712',
         'com.android.support:asynclayoutinflater:115bde87721f7334579b0c735f60dd7c98af1bb7f34010c5b0553b95dc351aa2',
-        'android.arch.persistence.room:runtime:d05c78d494dc700fd6dbc0e873451aebb2510ffbb070c82179055cb10bdd8822',
+        'android.arch.persistence.room:runtime:c21810eaafce370f1c9df1365393f55f962370a0d8b0b38b4771052c7021b737',
         'com.android.support:support-core-utils:c81e1e98ca3cb2edae002c69cf35b22aec364b8cb2f1042c97e206eb5790ac41',
         'com.android.support:loader:920b85efd72dc33e915b0f88a883fe73b88483c6df8751a741e17611f2460341',
         'com.android.support:support-vector-drawable:f658986d968172bccfed28578471c96050780fe5e133861e4d331069cc373f4d',
@@ -238,9 +238,9 @@ dependencyVerification {
         'com.github.bumptech.glide:gifdecoder:59ccf3bb0cec11dab4b857382cbe0b171111b6fc62bf141adce4e1180889af15',
         'com.android.support:interpolator:7bc7ee86a0db39a4b51956f3e89842d2bd962118d57d779eb6ed6b34ba0677ea',
         'com.android.support:cursoradapter:87feffe742b8d62ca8a9833abe564838bf6a672e31c7ad1306ec4006adf90d21',
-        'android.arch.persistence.room:common:fa506873be8a7de9685389b6539ad5849b39731328454b6db151bcab8a9577c3',
-        'android.arch.persistence:db-framework:f9d1629574008e815a494390857f2125cb3e2cfc291aef8b63625bb3fdc5f360',
-        'android.arch.persistence:db:4ed3c473a2da0944203a66a9e84f4c2fb3bca9854c5d4a263a56b1aec4a52e74',
+        'android.arch.persistence.room:common:7cf36bcd5f59ddc4876f887e36511bfd7b111f1eb717c0e9b6e2bcc710305ae6',
+        'android.arch.persistence:db-framework:bd665448330acb90a6f551a87b0ba69169da2b8ec168b92f387997339cc14311',
+        'android.arch.persistence:db:504e8c4307bfd53084924776ba3d49fed11b6f76d82dd80d5121c2d907fdfef6',
         'android.arch.core:runtime:c3215aa5873311b3f88a6f4e4a3c25ad89971bc127de8c3e1291c57f93a05c39',
         'android.arch.core:common:3a616a32f433e9e23f556b38575c31b013613d3ae85206263b7625fe1f4c151a',
         'android.arch.lifecycle:viewmodel:7de29cfaba77d6b5d5be234c57f6812d0150d087e63941af22ba1d1f8e2bc96a',
