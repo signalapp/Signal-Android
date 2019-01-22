@@ -45,6 +45,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -114,6 +116,7 @@ public class ConversationListFragment extends Fragment
 
   private Boolean isFabOpen = false;
   private Animation fab_open,fab_close, fab_close_immediate,rotate_forward,rotate_backward;
+  private GestureDetector gestureDetector;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -157,13 +160,17 @@ public class ConversationListFragment extends Fragment
     fab_close_immediate = AnimationUtils.loadAnimation(getActivity(),R.anim.fab_close_immediate);
     rotate_forward = AnimationUtils.loadAnimation(getActivity(),R.anim.rotate_forward);
     rotate_backward = AnimationUtils.loadAnimation(getActivity(),R.anim.rotate_backward);
-    fabGroup.setOnClickListener(v -> {
-      startActivity(new Intent(getActivity(), GroupCreateActivity.class));
-      closeFABImmediately();
-    });
-    fab.setOnClickListener(v -> {
-      Log.d(TAG, "fab onClick");
-      startActivity(new Intent(getActivity(), NewConversationActivity.class));
+    gestureDetector = new GestureDetector(new SingleTapConfirm());
+    fabGroup.setOnTouchListener(new OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        if (gestureDetector.onTouchEvent(event)) {
+          Log.d(TAG, "fabGroup SingleTapConfirm");
+          startActivity(new Intent(getActivity(), GroupCreateActivity.class));
+          closeFABImmediately();
+        }
+        return true;
+      }
     });
     fab.setOnLongClickListener(v -> {
       Log.d(TAG, "fab onLongClick");
@@ -171,16 +178,21 @@ public class ConversationListFragment extends Fragment
       return true;
     });
     fab.setOnTouchListener(new OnTouchListener() {
-      final float MOVE_THREASHOLD = -100;
+      final float MOVE_THRESHOLD = -100;
       float initialY = 0;
       @Override
       public boolean onTouch(View v, MotionEvent event) {
+        if (gestureDetector.onTouchEvent(event)) {
+          Log.d(TAG, "fab SingleTapConfirm");
+          startActivity(new Intent(getActivity(), NewConversationActivity.class));
+          return true;
+        }
         if(event.getAction() == MotionEvent.ACTION_DOWN){
           initialY = event.getRawY();
         }
         if(event.getAction() == MotionEvent.ACTION_UP){
           float yDiff = event.getRawY() - initialY;
-          if(isFabOpen && (yDiff < MOVE_THREASHOLD)) {
+          if(isFabOpen && (yDiff < MOVE_THRESHOLD)) {
             Log.d(TAG, "fab swipe up with fabGroup active");
             startActivity(new Intent(getActivity(), GroupCreateActivity.class));
             closeFABImmediately();
@@ -192,6 +204,14 @@ public class ConversationListFragment extends Fragment
     });
 
     initializeListAdapter();
+  }
+
+  private class SingleTapConfirm extends SimpleOnGestureListener {
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent event) {
+      return true;
+    }
   }
 
   private void toggleFAB(){

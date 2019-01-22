@@ -52,4 +52,9 @@ public class PulsingFloatingActionButton extends FloatingActionButton {
     }).start();
   }
 
+  @Override
+  public boolean performClick() {
+    return true;
+  }
+
 }
