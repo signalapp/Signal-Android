@@ -18,6 +18,10 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -31,6 +35,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -69,7 +74,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
   private TextView             name;
   private TextView             phoneNumber;
   private TextView             label;
-  private TextView             elapsedTime;
+  private Chronometer          elapsedTime;
   private View                 untrustedIdentityContainer;
   private TextView             untrustedIdentityExplanation;
   private Button               acceptIdentityButton;
@@ -101,12 +106,32 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     initialize();
   }
 
+  private class CallDetailsListener extends ResultReceiver {
+    CallDetailsListener(Context context, Handler handler) {
+      super(handler);
+    }
+
+    protected void onReceiveResult(int resultCode, Bundle resultData) {
+      elapsedTime.stop();
+
+      if (resultCode == 1) {
+        if (resultData.getInt(WebRtcCallService.CALL_DETAILS_IS_ACTIVE) == 1) {
+          elapsedTime.setBase(resultData.getLong(WebRtcCallService.CALL_DETAILS_CONNECTED_SINCE));
+          elapsedTime.start();
+          elapsedTime.setVisibility(View.VISIBLE);
+		}
+      }
+    }
+  }
+
   public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message, @Nullable String sas) {
     setCard(personInfo, message);
     setConnected(WebRtcCallService.localRenderer, WebRtcCallService.remoteRenderer);
     incomingCallButton.stopRingingAnimation();
     incomingCallButton.setVisibility(View.GONE);
     endCallButton.show();
+
+    updateCallDetails();
   }
 
   public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message) {
@@ -114,6 +139,13 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     incomingCallButton.stopRingingAnimation();
     incomingCallButton.setVisibility(View.GONE);
     endCallButton.show();
+
+    updateCallDetails();
+  }
+
+  protected void updateCallDetails() {
+    CallDetailsListener callDetailsListener = new CallDetailsListener(getContext(), new Handler());
+    WebRtcCallService.getCallDetails(getContext(), callDetailsListener);
   }
 
   public void setIncomingCall(Recipient personInfo) {
