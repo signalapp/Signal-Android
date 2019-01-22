@@ -45,11 +45,15 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -80,13 +84,11 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -114,6 +116,7 @@ public class ConversationListFragment extends Fragment
 
   private Boolean isFabOpen = false;
   private Animation fab_open,fab_close, fab_close_immediate,rotate_forward,rotate_backward;
+  private GestureDetector gestureDetector;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -157,25 +160,61 @@ public class ConversationListFragment extends Fragment
     fab_close_immediate = AnimationUtils.loadAnimation(getActivity(),R.anim.fab_close_immediate);
     rotate_forward = AnimationUtils.loadAnimation(getActivity(),R.anim.rotate_forward);
     rotate_backward = AnimationUtils.loadAnimation(getActivity(),R.anim.rotate_backward);
-    fabGroup.setOnClickListener(v -> {
-      startActivity(new Intent(getActivity(), GroupCreateActivity.class));
-      closeFABImmediately();
-    });
-    fab.setOnClickListener(v -> {
-      Log.d(TAG, "fab onClick");
-      startActivity(new Intent(getActivity(), NewConversationActivity.class));
+    gestureDetector = new GestureDetector(new SingleTapConfirm());
+    fabGroup.setOnTouchListener(new OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        if (gestureDetector.onTouchEvent(event)) {
+          Log.d(TAG, "fabGroup SingleTapConfirm");
+          startActivity(new Intent(getActivity(), GroupCreateActivity.class));
+          closeFABImmediately();
+        }
+        return true;
+      }
     });
     fab.setOnLongClickListener(v -> {
       Log.d(TAG, "fab onLongClick");
       toggleFAB();
       return true;
     });
+    fab.setOnTouchListener(new OnTouchListener() {
+      final float MOVE_THRESHOLD = -100;
+      float initialY = 0;
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        if (gestureDetector.onTouchEvent(event)) {
+          Log.d(TAG, "fab SingleTapConfirm");
+          startActivity(new Intent(getActivity(), NewConversationActivity.class));
+          return true;
+        }
+        if(event.getAction() == MotionEvent.ACTION_DOWN){
+          initialY = event.getRawY();
+        }
+        if(event.getAction() == MotionEvent.ACTION_UP){
+          float yDiff = event.getRawY() - initialY;
+          if(isFabOpen && (yDiff < MOVE_THRESHOLD)) {
+            Log.d(TAG, "fab swipe up with fabGroup active");
+            startActivity(new Intent(getActivity(), GroupCreateActivity.class));
+            closeFABImmediately();
+          }
+          return true;
+        }
+        return false;
+      }
+    });
+
     initializeListAdapter();
-    initializeTypingObserver();
+  }
+
+  private class SingleTapConfirm extends SimpleOnGestureListener {
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent event) {
+      return true;
+    }
   }
 
   private void toggleFAB(){
-
     if(isFabOpen){
       closeFAB();
     } else {
@@ -290,16 +329,6 @@ public class ConversationListFragment extends Fragment
   private void initializeListAdapter() {
     list.setAdapter(new ConversationListAdapter(getActivity(), GlideApp.with(this), locale, null, this));
     getLoaderManager().restartLoader(0, null, this);
-  }
-
-  private void initializeTypingObserver() {
-    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypingThreads().observe(this, threadIds -> {
-      if (threadIds == null) {
-        threadIds = Collections.emptySet();
-      }
-
-      getListAdapter().setTypingThreads(threadIds);
-    });
   }
 
   @SuppressLint("StaticFieldLeak")
