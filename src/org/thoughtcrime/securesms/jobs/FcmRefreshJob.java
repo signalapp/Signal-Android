@@ -24,43 +24,44 @@ import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
+import org.thoughtcrime.securesms.gcm.FcmUtil;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.PlayServicesProblemActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+
+import java.io.IOException;
 
 import javax.inject.Inject;
 
 import androidx.work.Data;
 import androidx.work.WorkerParameters;
 
-public class GcmRefreshJob extends ContextJob implements InjectableType {
+public class FcmRefreshJob extends ContextJob implements InjectableType {
 
-  private static final String TAG = GcmRefreshJob.class.getSimpleName();
-
-  public static final String REGISTRATION_ID = "312334754206";
+  private static final String TAG = FcmRefreshJob.class.getSimpleName();
 
   @Inject transient SignalServiceAccountManager textSecureAccountManager;
 
-  public GcmRefreshJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+  public FcmRefreshJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
     super(context, workerParameters);
   }
 
-  public GcmRefreshJob(Context context) {
+  public FcmRefreshJob(Context context) {
     super(context, JobParameters.newBuilder()
-                                .withGroupId(GcmRefreshJob.class.getSimpleName())
+                                .withGroupId(FcmRefreshJob.class.getSimpleName())
                                 .withDuplicatesIgnored(true)
                                 .withNetworkRequirement()
                                 .withRetryCount(1)
@@ -78,20 +79,25 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws Exception {
-    if (TextSecurePreferences.isGcmDisabled(context)) return;
+    if (TextSecurePreferences.isFcmDisabled(context)) return;
 
-    Log.i(TAG, "Reregistering GCM...");
-    int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
+    Log.i(TAG, "Reregistering FCM...");
+
+    int result = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
 
     if (result != ConnectionResult.SUCCESS) {
-      notifyGcmFailure();
+      notifyFcmFailure();
     } else {
-      String gcmId = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
-      textSecureAccountManager.setGcmId(Optional.of(gcmId));
+      Optional<String> token = FcmUtil.getToken();
 
-      TextSecurePreferences.setGcmRegistrationId(context, gcmId);
-      TextSecurePreferences.setGcmRegistrationIdLastSetTime(context, System.currentTimeMillis());
-      TextSecurePreferences.setWebsocketRegistered(context, true);
+      if (token.isPresent()) {
+        textSecureAccountManager.setGcmId(token);
+        TextSecurePreferences.setFcmToken(context, token.get());
+        TextSecurePreferences.setFcmTokenLastSetTime(context, System.currentTimeMillis());
+        TextSecurePreferences.setWebsocketRegistered(context, true);
+      } else {
+        throw new RetryLaterException(new IOException("Failed to retrieve a token."));
+      }
     }
   }
 
@@ -106,7 +112,7 @@ public class GcmRefreshJob extends ContextJob implements InjectableType {
     return true;
   }
 
-  private void notifyGcmFailure() {
+  private void notifyFcmFailure() {
     Intent                     intent        = new Intent(context, PlayServicesProblemActivity.class);
     PendingIntent              pendingIntent = PendingIntent.getActivity(context, 1122, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     NotificationCompat.Builder builder       = new NotificationCompat.Builder(context, NotificationChannels.FAILURES);

@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.dependencies.DependencyInjector;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
@@ -204,10 +204,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeGcmCheck() {
     if (TextSecurePreferences.isPushRegistered(this)) {
-      long nextSetTime = TextSecurePreferences.getGcmRegistrationIdLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
+      long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
 
-      if (TextSecurePreferences.getGcmRegistrationId(this) == null || nextSetTime <= System.currentTimeMillis()) {
-        this.jobManager.add(new GcmRefreshJob(this));
+      if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
+        this.jobManager.add(new FcmRefreshJob(this));
       }
     }
   }

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "312334754206",
+    "firebase_url": "https://api-project-312334754206.firebaseio.com",
+    "project_id": "api-project-312334754206",
+    "storage_bucket": "api-project-312334754206.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312334754206:android:a9297b152879f266",
+        "android_client_info": {
+          "package_name": "org.thoughtcrime.securesms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312334754206-dg1p1mtekis8ivja3ica50vonmrlunh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrfzNAPBPzX6key51hqo3p5LZXF5Y-yxU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

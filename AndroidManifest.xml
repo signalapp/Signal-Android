@@ -87,10 +87,6 @@
     <uses-permission android:name="android.permission.RAISED_THREAD_PRIORITY" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
-    <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
-                android:protectionLevel="signature" />
-    <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
-
     <application android:name=".ApplicationContext"
                  android:icon="@mipmap/ic_launcher"
                  android:label="@string/app_name"
@@ -109,6 +105,11 @@
 
     <meta-data android:name="com.google.android.gms.car.application"
                android:resource="@xml/automotive_app_desc" />
+
+    <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />
+    <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
+    <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
+    <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
 
     <activity android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
               android:excludeFromRecents="true"
@@ -472,12 +473,11 @@
 
     <service android:name=".service.GenericForegroundService"/>
 
-    <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+    <service android:name=".gcm.FcmService">
         <intent-filter>
-            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            <category android:name="org.thoughtcrime.securesms" />
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
         </intent-filter>
-    </receiver>
+    </service>
 
     <receiver android:name=".service.SmsListener"
               android:permission="android.permission.BROADCAST_SMS"

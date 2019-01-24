@@ -25,14 +25,15 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 public class PlayServicesProblemFragment extends DialogFragment {
 
   @Override
   public @NonNull Dialog onCreateDialog(@NonNull Bundle bundle) {
-    int    code   = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-    Dialog dialog = GooglePlayServicesUtil.getErrorDialog(code, getActivity(), 9111);
+    int    code   = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(getActivity());
+    Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), code, 9111);
 
     if (dialog == null) {
       return new AlertDialog.Builder(getActivity())

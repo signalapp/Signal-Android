@@ -53,7 +53,7 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
   @Override
   public void onRun() throws IOException {
     int     registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
-    boolean fetchesMessages             = TextSecurePreferences.isGcmDisabled(context);
+    boolean fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
     String  pin                         = TextSecurePreferences.getRegistrationLockPin(context);
     byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
     boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);

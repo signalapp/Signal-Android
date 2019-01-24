@@ -45,7 +45,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.tasks.Task;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -71,8 +70,8 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.gcm.FcmUtil;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
@@ -507,18 +506,18 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
           String password = Util.getSecret(18);
 
-          Optional<String> gcmToken;
+          Optional<String> fcmToken;
 
           if (gcmSupported) {
-            gcmToken = Optional.of(GoogleCloudMessaging.getInstance(RegistrationActivity.this).register(GcmRefreshJob.REGISTRATION_ID));
+            fcmToken = FcmUtil.getToken();
           } else {
-            gcmToken = Optional.absent();
+            fcmToken = Optional.absent();
           }
 
           accountManager = AccountManagerFactory.createManager(RegistrationActivity.this, e164number, password);
           accountManager.requestSmsVerificationCode(smsRetrieverSupported);
 
-          return new Pair<>(password, gcmToken);
+          return new Pair<>(password, fcmToken);
         } catch (IOException e) {
           Log.w(TAG, "Error during account registration", e);
           return null;
@@ -726,8 +725,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       accountManager.setGcmId(registrationState.gcmToken);
     }
 
-    TextSecurePreferences.setGcmRegistrationId(RegistrationActivity.this, registrationState.gcmToken.orNull());
-    TextSecurePreferences.setGcmDisabled(RegistrationActivity.this, !registrationState.gcmToken.isPresent());
+    TextSecurePreferences.setFcmToken(RegistrationActivity.this, registrationState.gcmToken.orNull());
+    TextSecurePreferences.setFcmDisabled(RegistrationActivity.this, !registrationState.gcmToken.isPresent());
     TextSecurePreferences.setWebsocketRegistered(RegistrationActivity.this, true);
 
     DatabaseFactory.getIdentityDatabase(RegistrationActivity.this)

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
+import org.thoughtcrime.securesms.gcm.FcmService;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
@@ -76,7 +76,7 @@ import dagger.Provides;
                                      MultiDeviceBlockedUpdateJob.class,
                                      DeviceListFragment.class,
                                      RefreshAttributesJob.class,
-                                     GcmRefreshJob.class,
+                                     FcmRefreshJob.class,
                                      RequestGroupInfoJob.class,
                                      PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
@@ -90,7 +90,7 @@ import dagger.Provides;
                                      SendReadReceiptJob.class,
                                      MultiDeviceReadReceiptUpdateJob.class,
                                      AppProtectionPreferenceFragment.class,
-                                     GcmBroadcastReceiver.class,
+                                     FcmService.class,
                                      RotateCertificateJob.class,
                                      SendDeliveryReceiptJob.class,
                                      RotateProfileKeyJob.class,
@@ -147,7 +147,7 @@ public class SignalCommunicationModule {
   @Provides
   synchronized SignalServiceMessageReceiver provideSignalMessageReceiver() {
     if (this.messageReceiver == null) {
-      SleepTimer sleepTimer =  TextSecurePreferences.isGcmDisabled(context) ? new RealtimeSleepTimer(context) : new UptimeSleepTimer();
+      SleepTimer sleepTimer =  TextSecurePreferences.isFcmDisabled(context) ? new RealtimeSleepTimer(context) : new UptimeSleepTimer();
 
       this.messageReceiver = new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
                                                               new DynamicCredentialsProvider(context),
