@@ -292,7 +292,7 @@ public class ConversationFragment extends Fragment
       }
 
       if (recipients.size() > 0) {
-        if (adapter.getHeaderView() == null && getListLayoutManager().findFirstCompletelyVisibleItemPosition() == 0) {
+        if (adapter.getHeaderView() == null && isAtBottom()) {
           list.setVerticalScrollBarEnabled(false);
           list.post(() -> getListLayoutManager().smoothScrollToPosition(requireContext(), 0, 250));
           list.postDelayed(() -> list.setVerticalScrollBarEnabled(true), 300);
@@ -405,7 +405,7 @@ public class ConversationFragment extends Fragment
   }
 
   public void scrollToBottom() {
-    if (((LinearLayoutManager) list.getLayoutManager()).findFirstVisibleItemPosition() < SCROLL_ANIMATION_THRESHOLD) {
+    if (getListLayoutManager().findFirstVisibleItemPosition() < SCROLL_ANIMATION_THRESHOLD) {
       list.smoothScrollToPosition(0);
     } else {
       list.scrollToPosition(0);
@@ -644,13 +644,13 @@ public class ConversationFragment extends Fragment
       }
       firstLoad = false;
     } else if (previousOffset > 0) {
-      int scrollPosition = previousOffset + ((LinearLayoutManager) list.getLayoutManager()).findFirstVisibleItemPosition();
+      int scrollPosition = previousOffset + getListLayoutManager().findFirstVisibleItemPosition();
       scrollPosition = Math.min(scrollPosition, count - 1);
 
       View firstView = list.getLayoutManager().getChildAt(scrollPosition);
       int pixelOffset = (firstView == null) ? 0 : (firstView.getBottom() - list.getPaddingBottom());
 
-      ((LinearLayoutManager) list.getLayoutManager()).scrollToPositionWithOffset(scrollPosition, pixelOffset);
+      getListLayoutManager().scrollToPositionWithOffset(scrollPosition, pixelOffset);
       previousOffset = 0;
     }
 
@@ -711,8 +711,21 @@ public class ConversationFragment extends Fragment
 
   private void scrollToLastSeenPosition(final int lastSeenPosition) {
     if (lastSeenPosition > 0) {
-      list.post(() -> ((LinearLayoutManager)list.getLayoutManager()).scrollToPositionWithOffset(lastSeenPosition, list.getHeight()));
+      list.post(() -> getListLayoutManager().scrollToPositionWithOffset(lastSeenPosition, list.getHeight()));
     }
+  }
+
+  private boolean isAtBottom() {
+    if (list.getChildCount() == 0) return true;
+
+    int firstVisiblePosition = getListLayoutManager().findFirstVisibleItemPosition();
+
+    if (getListAdapter().getHeaderView() == typingView) {
+      RecyclerView.ViewHolder item1 = list.findViewHolderForAdapterPosition(1);
+      return firstVisiblePosition <= 1 && item1 != null && item1.itemView.getBottom() <= list.getHeight();
+    }
+
+    return firstVisiblePosition == 0 && list.getChildAt(0).getBottom() <= list.getHeight();
   }
 
   public interface ConversationFragmentListener {
@@ -774,23 +787,12 @@ public class ConversationFragment extends Fragment
       }
     }
 
-    private boolean isAtBottom() {
-      if (list.getChildCount() == 0) return true;
-
-      int firstCompletelyVisiblePosition = ((LinearLayoutManager) list.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
-
-      if (getListAdapter().getHeaderView() == typingView) {
-        return firstCompletelyVisiblePosition <= 1;
-      }
-      return firstCompletelyVisiblePosition == 0;
-    }
-
     private boolean isAtZoomScrollHeight() {
-      return ((LinearLayoutManager) list.getLayoutManager()).findFirstCompletelyVisibleItemPosition() > 4;
+      return getListLayoutManager().findFirstCompletelyVisibleItemPosition() > 4;
     }
 
     private int getHeaderPositionId() {
-      return ((LinearLayoutManager)list.getLayoutManager()).findLastVisibleItemPosition();
+      return getListLayoutManager().findLastVisibleItemPosition();
     }
 
     private void bindScrollHeader(HeaderViewHolder headerViewHolder, int positionId) {
