@@ -14,7 +14,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.3.0'
         classpath files('libs/gradle-witness.jar')
     }
 }
@@ -24,34 +24,37 @@ apply plugin: 'witness'
 
 repositories {
     maven {
-        url "https://repo1.maven.org/maven2/"
-    }
-    maven {
-        url "https://raw.github.com/signalapp/maven/master/preferencefragment/releases/"
-    }
-    maven {
-        url "https://raw.github.com/signalapp/maven/master/smil/releases/"
-    }
-    maven {
         url "https://raw.github.com/signalapp/maven/master/photoview/releases/"
+        content {
+            includeGroupByRegex "com\\.github\\.chrisbanes.*"
+        }
     }
     maven {
         url "https://raw.github.com/signalapp/maven/master/shortcutbadger/releases/"
+        content {
+            includeGroupByRegex "me\\.leolin.*"
+        }
     }
     maven {
         url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
+        content {
+            includeGroupByRegex "com\\.github\\.dmytrodanylyk\\.circular-progress-button\\.*"
+        }
     }
     maven {
         url "https://raw.github.com/signalapp/maven/master/sqlcipher/release/"
-    }
-    maven {
-        url "https://maven.google.com"
+        content {
+            includeGroupByRegex "org\\.signal.*"
+        }
     }
     maven { // textdrawable
         url 'https://dl.bintray.com/amulyakhare/maven'
+        content {
+            includeGroupByRegex "com\\.amulyakhare.*"
+        }
     }
     maven {
-        url 'https://dl.bintray.com/google/flexbox-layout/'
+        url "https://maven.google.com"
     }
     google()
     jcenter()
@@ -103,7 +106,7 @@ dependencies {
     compile 'com.squareup.dagger:dagger:1.2.2'
     annotationProcessor 'com.squareup.dagger:dagger-compiler:1.2.2'
     compile 'mobi.upod:time-duration-picker:1.1.3'
-    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+    compileOnly 'com.squareup.dagger:dagger-compiler:1.2.2'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.google.zxing:core:3.2.1'
     compile ('com.davemorrissey.labs:subsampling-scale-image-view:3.6.0') {
@@ -132,22 +135,22 @@ dependencies {
         exclude group: 'org.freemarker'
     }
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.assertj:assertj-core:1.7.1'
-    testCompile 'org.mockito:mockito-core:1.9.5'
-    testCompile 'org.powermock:powermock-api-mockito:1.6.1'
-    testCompile 'org.powermock:powermock-module-junit4:1.6.1'
-    testCompile 'org.powermock:powermock-module-junit4-rule:1.6.1'
-    testCompile 'org.powermock:powermock-classloading-xstream:1.6.1'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:1.7.1'
+    testImplementation 'org.mockito:mockito-core:1.9.5'
+    testImplementation 'org.powermock:powermock-api-mockito:1.6.1'
+    testImplementation 'org.powermock:powermock-module-junit4:1.6.1'
+    testImplementation 'org.powermock:powermock-module-junit4-rule:1.6.1'
+    testImplementation 'org.powermock:powermock-classloading-xstream:1.6.1'
 
-    androidTestCompile 'com.android.support:multidex:1.0.3'
-    androidTestCompile 'com.android.support:multidex-instrumentation:1.0.3'
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
-    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
-    androidTestCompile ('org.assertj:assertj-core:1.7.1') {
+    androidTestImplementation 'com.android.support:multidex:1.0.3'
+    androidTestImplementation 'com.android.support:multidex-instrumentation:1.0.3'
+    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
+    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
+    androidTestImplementation ('org.assertj:assertj-core:1.7.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
-    androidTestCompile ('com.squareup.assertj:assertj-android:1.1.1') {
+    androidTestImplementation ('com.squareup.assertj:assertj-android:1.1.1') {
         exclude group: 'org.hamcrest',        module: 'hamcrest-core'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
@@ -215,7 +218,11 @@ dependencyVerification {
         'com.android.support:support-fragment:3772fc738ada86824ba1a4b3f197c3dbd67b7ddcfe2c9db1de95ef2e3487a915',
         'com.android.support:animated-vector-drawable:271ecbc906cda8dcd9e655ba0473129c3408a4189c806f616c378e6fd18fb3b7',
         'com.android.support:support-core-ui:bbc7f65fc95649464733af373361532ab5f9f3b749c3badaa2bbf27e574b6c6f',
+        'android.arch.persistence.room:runtime:c21810eaafce370f1c9df1365393f55f962370a0d8b0b38b4771052c7021b737',
+        'com.android.support:support-core-utils:c81e1e98ca3cb2edae002c69cf35b22aec364b8cb2f1042c97e206eb5790ac41',
+        'com.android.support:support-vector-drawable:f658986d968172bccfed28578471c96050780fe5e133861e4d331069cc373f4d',
         'com.android.support:transition:45d09fc51284c17bbab300f5122512ac7d7348a6d23bda2051648bbe76cc9aa5',
+        'com.android.support:loader:920b85efd72dc33e915b0f88a883fe73b88483c6df8751a741e17611f2460341',
         'com.android.support:viewpager:013c4c53058758ec104dbae970be58159f75dfe342ba8b937d15ff5282e35ffc',
         'com.android.support:coordinatorlayout:9dfacd80423dc979048fbaed83c0ee543c46259feb2417377e79a656888d3892',
         'com.android.support:drawerlayout:8f6809afae4793550c37461c9810e954ae6a23dbb4d23e5333bf18148df1150a',
@@ -223,30 +230,26 @@ dependencyVerification {
         'com.android.support:customview:98db03845f994e08248bf701c1ff0ccaa12e70f94251ec9272900f0f694e072b',
         'com.android.support:swiperefreshlayout:a3b41f7f6730866b49865e86e49f988d4858699765f534300fb2ff5f9325e712',
         'com.android.support:asynclayoutinflater:115bde87721f7334579b0c735f60dd7c98af1bb7f34010c5b0553b95dc351aa2',
-        'android.arch.persistence.room:runtime:c21810eaafce370f1c9df1365393f55f962370a0d8b0b38b4771052c7021b737',
-        'com.android.support:support-core-utils:c81e1e98ca3cb2edae002c69cf35b22aec364b8cb2f1042c97e206eb5790ac41',
-        'com.android.support:loader:920b85efd72dc33e915b0f88a883fe73b88483c6df8751a741e17611f2460341',
-        'com.android.support:support-vector-drawable:f658986d968172bccfed28578471c96050780fe5e133861e4d331069cc373f4d',
         'com.android.support:support-media-compat:266eff9605f515013eee1ebdbd8818a9270696dc807f34bbcc5fc11fb61a22c7',
         'com.android.support:support-compat:e17e3b01dbea3f9ea1c86943292f903ca93d2231c6242e456e0b6a9c5817118a',
         'com.android.support:versionedparcelable:60eb1cb08f71b65c3f6123135e03ebeb5930b5e126e1e5b2ac91b386908c9d02',
         'com.android.support:collections:93c258c8a09f531a267653829742c0f8f6da0e348b11cb8655b0855628f2d4f0',
+        'com.android.support:cursoradapter:87feffe742b8d62ca8a9833abe564838bf6a672e31c7ad1306ec4006adf90d21',
+        'android.arch.lifecycle:runtime:c4e4be66c1b2f0abec593571454e1de14013f7e0f96bf2a9f212931a48cae550',
         'android.arch.lifecycle:livedata:50ab0490c1ff1a7cfb4e554032998b080888946d0dd424f39900efc4a1bcd750',
         'android.arch.lifecycle:livedata-core:d6fdd8b985d6178d7ea2f16986a24e83f1bee936b74d43167c69e08d3cc12c50',
-        'android.arch.lifecycle:runtime:c4e4be66c1b2f0abec593571454e1de14013f7e0f96bf2a9f212931a48cae550',
-        'android.arch.lifecycle:common:8d378e88ebd5189e09eef623414812c868fd90aa519d6160e2311fb8b81cff56',
-        'com.github.bumptech.glide:gifdecoder:59ccf3bb0cec11dab4b857382cbe0b171111b6fc62bf141adce4e1180889af15',
-        'com.android.support:interpolator:7bc7ee86a0db39a4b51956f3e89842d2bd962118d57d779eb6ed6b34ba0677ea',
-        'com.android.support:cursoradapter:87feffe742b8d62ca8a9833abe564838bf6a672e31c7ad1306ec4006adf90d21',
-        'android.arch.persistence.room:common:7cf36bcd5f59ddc4876f887e36511bfd7b111f1eb717c0e9b6e2bcc710305ae6',
-        'android.arch.persistence:db-framework:bd665448330acb90a6f551a87b0ba69169da2b8ec168b92f387997339cc14311',
-        'android.arch.persistence:db:504e8c4307bfd53084924776ba3d49fed11b6f76d82dd80d5121c2d907fdfef6',
         'android.arch.core:runtime:c3215aa5873311b3f88a6f4e4a3c25ad89971bc127de8c3e1291c57f93a05c39',
         'android.arch.core:common:3a616a32f433e9e23f556b38575c31b013613d3ae85206263b7625fe1f4c151a',
+        'android.arch.lifecycle:common:8d378e88ebd5189e09eef623414812c868fd90aa519d6160e2311fb8b81cff56',
         'android.arch.lifecycle:viewmodel:7de29cfaba77d6b5d5be234c57f6812d0150d087e63941af22ba1d1f8e2bc96a',
+        'com.github.bumptech.glide:gifdecoder:59ccf3bb0cec11dab4b857382cbe0b171111b6fc62bf141adce4e1180889af15',
         'com.android.support:documentfile:47cdcd3e9302b7b064923f05487a5c03babbd9bbda4726b71e97791fab5d4779',
         'com.android.support:localbroadcastmanager:d287c823af5fdde72c099fcfc5f630efe9687af7a914343ae6fd92de32c8a806',
         'com.android.support:print:4be8a812d73e4a80e35b91ceae127def3f0bb9726bf3bc439aa0cc81503f5728',
+        'com.android.support:interpolator:7bc7ee86a0db39a4b51956f3e89842d2bd962118d57d779eb6ed6b34ba0677ea',
+        'android.arch.persistence.room:common:7cf36bcd5f59ddc4876f887e36511bfd7b111f1eb717c0e9b6e2bcc710305ae6',
+        'android.arch.persistence:db-framework:bd665448330acb90a6f551a87b0ba69169da2b8ec168b92f387997339cc14311',
+        'android.arch.persistence:db:504e8c4307bfd53084924776ba3d49fed11b6f76d82dd80d5121c2d907fdfef6',
         'com.android.support:support-annotations:5d5b9414f02d3fa0ee7526b8d5ddae0da67c8ecc8c4d63ffa6cf91488a93b927',
         'com.google.guava:listenablefuture:e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069',
         'org.signal:signal-metadata-android:d9d798aab7ee7200373ecff8718baf8aaeb632c123604e8a41b7b4c0c97eeee1',
@@ -280,7 +283,7 @@ dependencyVerification {
 android {
     flavorDimensions "none"
     compileSdkVersion 28
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
@@ -449,14 +452,18 @@ def signProductionRelease = { variant ->
     return outputFile
 }
 
-task signProductionPlayRelease << {
-    signProductionRelease(android.applicationVariants.find({ it.name.equals("playRelease") }))
+task signProductionPlayRelease {
+    doLast {
+        signProductionRelease(android.applicationVariants.find({ it.name.equals("playRelease") }))
+    }
 }
 
-task signProductionWebsiteRelease << {
-    def  variant       = android.applicationVariants.find({ it.name.equals("websiteRelease") })
-    File signedRelease = signProductionRelease(variant)
-    assembleWebsiteDescriptor(variant, signedRelease);
+task signProductionWebsiteRelease {
+    doLast {
+        def  variant       = android.applicationVariants.find({ it.name.equals("websiteRelease") })
+        File signedRelease = signProductionRelease(variant)
+        assembleWebsiteDescriptor(variant, signedRelease);
+    }
 }
 
 tasks.whenTaskAdded { task ->
