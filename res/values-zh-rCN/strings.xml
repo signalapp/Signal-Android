@@ -151,6 +151,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相机权限来拍摄照片或录制视频。但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要相机权限以拍摄照片或视频</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal不能发送短信/彩信，因为它不是您默认的短信应用。您是否想在安卓设置里修改？</string>
   <string name="ConversationActivity_yes">是</string>
   <string name="ConversationActivity_no">否</string>
   <!--ConversationAdapter-->
@@ -356,7 +357,12 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">正在下载彩信</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">下载彩信时错误，点击重试</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">发送给%s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">点击以选择</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="other">您最多分享%d项。</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">添加注释...</string>
   <!--MediaRepository-->

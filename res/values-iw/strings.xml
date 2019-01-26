@@ -160,6 +160,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal צריך את הרשאת המצלמה כדי לצלם תצלומים או וידיאו, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal צריך הרשאות מצלמה כדי לצלם תצלומים או להקליט וידיאו</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal לא יכול לשלוח הודעות SMS/MMS מאחר שהוא לא יישום המסרונים ברירת המחדל שלך. האם אתה רוצה לשנות זאת בהגדרות Android שלך?</string>
   <string name="ConversationActivity_yes">כן</string>
   <string name="ConversationActivity_no">לא</string>
   <!--ConversationAdapter-->
@@ -410,7 +411,15 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">מוריד הודעת MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">שגיאה בהורדת הודעת MMS, הקש כדי לנסות שוב</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">שלח אל %s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">הקש כדי לבחור</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">אתה לא יכול לשתף יותר מפריט %d.</item>
+    <item quantity="two">אתה לא יכול לשתף יותר מן %d פריטים.</item>
+    <item quantity="many">אתה לא יכול לשתף יותר מן %d פריטים.</item>
+    <item quantity="other">אתה לא יכול לשתף יותר מן %d פריטים.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">הוסף כיתוב...</string>
   <!--MediaRepository-->

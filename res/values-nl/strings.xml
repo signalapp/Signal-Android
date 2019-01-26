@@ -604,7 +604,7 @@
   <string name="KeyCachingService_signal_passphrase_cached">Tik om te openen.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tik om te openen of tik op het slot om te sluiten.</string>
   <string name="KeyCachingService_passphrase_cached">Signal is ontgrendeld</string>
-  <string name="KeyCachingService_lock">Signal vergrendelen</string>
+  <string name="KeyCachingService_lock">Vergrendel Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jij</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>

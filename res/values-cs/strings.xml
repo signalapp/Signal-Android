@@ -160,6 +160,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signál potřebuje oprávnění pro přístup k fotoaparátu aby mohl pořizovat fotografie nebo video, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signál potřebuje přístup k fotoaparátu aby mohl pořizovat fotografie nebo videa.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nemůže posílat SMS/MMS zprávy, protože není výchozí SMS aplikací. Chcete to změnit v nastavení Android?</string>
   <string name="ConversationActivity_yes">Ano</string>
   <string name="ConversationActivity_no">Ne</string>
   <!--ConversationAdapter-->
@@ -410,8 +411,17 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Stahuji MMS zprávu</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Chyba při stahování MMS zprávy, ťukněte pro opakování</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Poslat %s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Klepněte pro výběr</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Nemůžete sdílet více než %d položku.</item>
+    <item quantity="few">Nemůžete sdílet více než %d položek.</item>
+    <item quantity="many">Nemůžete sdílet více než %d položek.</item>
+    <item quantity="other">Nemůžete sdílet více než  %d položek.</item>
+  </plurals>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Přidat titulek...</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všechna media</string>
   <!--MessageRecord-->

@@ -749,7 +749,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Facultativement, voir et partager lorsque les messages ont été lus</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Activer les accusés de lecture</string>
   <!--expiration-->
-  <string name="expiration_off">Désactivé</string>
+  <string name="expiration_off">Désactivés</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d seconde</item>
     <item quantity="other">%d secondes</item>

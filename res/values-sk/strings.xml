@@ -160,6 +160,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie a video, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal potrebuje prístup k Fotoaparátu, aby mohol vytvárať fotografie a videá</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nemôže odosielať SMS/MMS, pretože nie je prednastavenou SMS aplikáciou. Chcete to zmeniť v nastaveniach Androidu?</string>
   <string name="ConversationActivity_yes">Áno</string>
   <string name="ConversationActivity_no">Nie</string>
   <!--ConversationAdapter-->
@@ -305,6 +306,8 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teraz môžete s vašimi priateľmi na Signalu zdieľať vašu profilovú fotku a meno</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profily sú tu</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavujeme indikátory písania.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Želáte si ich zapnúť?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Indikátory písania sú tu</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Povoliť indikátory písania</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Zapnúť indikátory písania</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nie, ďakujem</string>
@@ -1104,7 +1107,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__message_text_size">Veľkosť písma správy</string>
   <string name="preferences_events__contact_joined_signal">Váš kontakt začal používať Signal</string>
   <string name="preferences_notifications__priority">Priorita</string>
-  <string name="preferences_communication__category_sealed_sender">Šifrovaný odosielateľ</string>
+  <string name="preferences_communication__category_sealed_sender">Zapečatený odosielateľ</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Zobraziť indikátory</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Zobraziť stavovú ikonu v detailoch správ, ktoré boli doručené s použitím zapečateného odosielateľa.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Povoliť od každého</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Zapnúť zapečateného odosielateľa pre prichádzajúce správy od ľudí, ktorých nemáte v kontaktoch a s ktorými ste nezdieľali svoj profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dozvedieť sa viac</string>
   <!--****************************************-->
   <!--menus-->

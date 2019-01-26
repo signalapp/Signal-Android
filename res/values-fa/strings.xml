@@ -349,6 +349,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">یک عنوان اضافه کنید...</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">تمام رسانه ها</string>
   <!--MessageRecord-->

@@ -378,6 +378,10 @@
   <string name="MediaPickerActivity_send_to">Envia-ho a %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Feu un toc per seleccionar-ho</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">No podeu compartir més d\'%d element.</item>
+    <item quantity="other">No podeu compartir més de %d elements.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Afegiu-hi un títol...</string>
   <!--MediaRepository-->

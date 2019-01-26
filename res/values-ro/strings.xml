@@ -157,6 +157,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nu poate trimite mesaje SMS/MMS pentru că nu este aplicația implicită de SMS. Doriți să schimbați asta în setările dvs. Android?</string>
   <string name="ConversationActivity_yes">Da</string>
   <string name="ConversationActivity_no">Nu</string>
   <!--ConversationAdapter-->
@@ -392,8 +393,16 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Se descarcă mesajul MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Eroare la descărcarea mesajului MMS, apasă pentru reîncercare</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Trimiteți la %s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Apăsați pentru a selecta</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Nu puteți partaja mai mult de %d element.</item>
+    <item quantity="few">Nu puteți partaja mai mult de %d element.</item>
+    <item quantity="other">Nu puteți partaja mai mult de %d elemente.</item>
+  </plurals>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Adăugați un titlu...</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Toate fișierele media</string>
   <!--MessageRecord-->
@@ -1247,10 +1256,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ai primit prin SMS. Te rog să introduci PIN-ul configurat anterior în aplicație.</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ați primit prin SMS. Vă rugăm să introduceți PIN-ul configurat anterior în aplicație.</string>
   <string name="registration_activity__registration_lock_pin">PIN de blocare a înregistrării</string>
   <string name="registration_activity__forgot_pin">Ați uitat PIN-ul?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-ul poate fi din patru sau mai multe cifre. Dacă ai uitat PIN-ul ai putea fi blocat sa-ți accesezi contul până la șapte zile.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-ul poate conține patru sau mai multe cifre. Dacă ați uitat PIN-ul ați putea fi blocat să vă accesați contul până la șapte zile.</string>
   <string name="registration_lock_dialog_view__enter_pin">Introduceți PIN-ul</string>
   <string name="registration_lock_dialog_view__confirm_pin">Confirmați PIN-ul</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Introduceți PIN-ul dvs. de blocare a înregistrării</string>
@@ -1267,7 +1276,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Înregistrarea acestui număr de telefon va fi posibilă fără un Cod PIN de Blocare a Înregistrării după 7 zile de când acest număr de telefon a fost activ ultima oară în Signal. Mai ai %d zile rămase.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de blocare a înregistrării</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Acest număr de telefon are Blocarea Înregistrării activă. Vă rugăm să introduceți Codul PIN de Blocare a Înregistrării.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea înregistrării e activă pentru numărul tău de telefon. Pentru a te ajuta să îți memorezi Codul PIN de Blocare a înregistrării, Signal îți va cere să îl confirmi periodic.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea înregistrării este activă pentru numărul dvs. de telefon. Pentru a vă putea ajuta să memorați Codul PIN de Blocare a înregistrării, Signal vă va cere să îl confirmați periodic.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Mi-am uitat PIN-ul.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN uitat ?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blocarea înregistrării ajută la protejarea numărului tău de telefon împotriva încercărilor neautorizate de înregistrare. Această facilitate poate fi dezactivată oricând în setările de confidențialitate ale Signal</string>
