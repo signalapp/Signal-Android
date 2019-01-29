@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -65,6 +66,10 @@ public class ConversationUpdateItem extends LinearLayout
     this.body  = findViewById(R.id.conversation_update_body);
     this.date  = findViewById(R.id.conversation_update_date);
 
+    PassthroughClickListener passthroughClickListener = new PassthroughClickListener();
+    body.setOnLongClickListener(passthroughClickListener);
+    body.setOnClickListener(passthroughClickListener);
+
     this.setOnClickListener(new InternalClickListener(null));
   }
 
@@ -99,6 +104,7 @@ public class ConversationUpdateItem extends LinearLayout
     this.locale        = locale;
 
     this.sender.addListener(this);
+    body.setAutoLinkMask(batchSelected.isEmpty() ? Linkify.ALL : 0);
 
     if      (messageRecord.isGroupAction())           setGroupRecord(messageRecord);
     else if (messageRecord.isCallLog())               setCallRecord(messageRecord);
@@ -257,4 +263,17 @@ public class ConversationUpdateItem extends LinearLayout
     }
   }
 
+  private class PassthroughClickListener implements View.OnLongClickListener, View.OnClickListener {
+
+    @Override
+    public boolean onLongClick(View v) {
+      performLongClick();
+      return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+      performClick();
+    }
+  }
 }
