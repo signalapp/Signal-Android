@@ -267,9 +267,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
       }
 
-      PeerConnectionFactory.initialize(InitializationOptions.builder(this)
-                                                            .setEnableVideoHwAcceleration(true)
-                                                            .createInitializationOptions());
+      PeerConnectionFactory.initialize(InitializationOptions.builder(this).createInitializationOptions());
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }

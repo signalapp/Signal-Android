@@ -101,9 +101,9 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     initialize();
   }
 
-  public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message, @Nullable String sas) {
+  public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message, @Nullable String sas, SurfaceViewRenderer localRenderer, SurfaceViewRenderer remoteRenderer) {
     setCard(personInfo, message);
-    setConnected(WebRtcCallService.localRenderer, WebRtcCallService.remoteRenderer);
+    setConnected(localRenderer, remoteRenderer);
     incomingCallButton.stopRingingAnimation();
     incomingCallButton.setVisibility(View.GONE);
     endCallButton.show();
