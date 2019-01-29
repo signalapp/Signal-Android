@@ -384,8 +384,6 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setBodyText(MessageRecord messageRecord) {
-    bodyText.setClickable(false);
-    bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
 
     if (isCaptionlessMms(messageRecord)) {
