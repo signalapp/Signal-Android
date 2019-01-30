@@ -282,6 +282,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               RecipientDatabase db = DatabaseFactory.getRecipientDatabase(getContext());
               db.setMessageRingtone(recipient, NotificationChannels.getMessageRingtone(context, recipient));
               db.setMessageVibrate(recipient, NotificationChannels.getMessageVibrate(context, recipient) ? VibrateState.ENABLED : VibrateState.DISABLED);
+              NotificationChannels.ensureCustomChannelConsistency(context);
               return null;
             }
           }.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
