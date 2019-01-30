@@ -517,7 +517,7 @@ public class NotificationChannels {
 
   @TargetApi(26)
   private static boolean channelExists(@Nullable NotificationChannel channel) {
-    return channel != null && !NotificationChannel.DEFAULT_CHANNEL_ID.equals(channel);
+    return channel != null && !NotificationChannel.DEFAULT_CHANNEL_ID.equals(channel.getId());
   }
 
   private interface ChannelUpdater {
