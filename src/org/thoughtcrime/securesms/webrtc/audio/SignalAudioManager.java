@@ -60,10 +60,6 @@ public class SignalAudioManager {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
     audioManager.setMicrophoneMute(false);
 
-    if (type == OutgoingRinger.Type.SONAR) {
-      audioManager.setSpeakerphoneOn(false);
-    }
-
     audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
 
     outgoingRinger.start(type);
