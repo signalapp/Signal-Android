@@ -5,8 +5,11 @@
   <string name="no">Ne</string>
   <string name="delete">Izbriši</string>
   <string name="please_wait">Počakajte ...</string>
+  <string name="save">Shrani</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Novo sporočilo</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
@@ -73,9 +76,14 @@
   <string name="BucketedThreadMedia_This_month">Ta mesec</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Dohodni klic</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Kamera ni dostopna.</string>
+  <string name="CameraActivity_image_save_failure">Slike ni bilo možno shraniti.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odstrani</string>
   <string name="ClearProfileActivity_remove_profile_photo">Želite odstraniti predstavitveno fotografijo?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Spletnega brskalnika ni bilo mogoče najti.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil aplikacijo Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
@@ -136,7 +144,9 @@
   <string name="ConversationActivity_error_leaving_group">Napaka ob zapuščanju skupine</string>
   <string name="ConversationActivity_specify_recipient">Prosimo, izberite stik</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokiram tega uporabnika?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Odblokiram skupino?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice tega uporabnika.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Obstoječi člani vas bodo lahko ponovno dodali v skupino.</string>
   <string name="ConversationActivity_unblock">Odblokiraj</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera ni na voljo</string>
@@ -150,6 +160,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere za zajemanje videa in fotografij. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Za zajemanje videa in fotografij potrebuje aplikacija Signal dostop do kamere.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne more pošiljati sporočil SMS/MMS, ker ni nastavljen kot privzeta aplikacija SMS. Bi želeli to spremeniti v nastavitvah Android?</string>
+  <string name="ConversationActivity_yes">Da</string>
+  <string name="ConversationActivity_no">Ne</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprebrano sporočilo</item>
@@ -292,6 +305,15 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ste pripravljeni na bližnji posnetek?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Odslej lahko delite svoj profil in predstavitveno fotografijo s prijatelji na Signalu</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Novo: profili Signal!</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavljamo vam kazalnike tipkanja.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Odlsej lahko vidite kdaj vaš partner tipka svoje sporočilo, vaše tipkanje pa bo vidno njemu.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Jih želite vklopiti zdaj?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Tu so kazalniki tipkanja!</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Vklop kazalnikov tipkanja</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Vklopi kazalnike tipkanja</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ne, hvala!</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila ...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo, poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
@@ -347,6 +369,8 @@
   <string name="InviteActivity_lets_switch_to_signal">Preklopi na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Pametni ljudje uporabljajo šifrirano komunikacijo!</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">Delovanje v ozadju ...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Pošiljanje ni uspelo</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo varnostno število</string>
@@ -372,6 +396,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brišem</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Brišem sporočila ...</string>
   <string name="MediaOverviewActivity_Documents">Dokumenti</string>
+  <string name="MediaOverviewActivity_Select_all">Označi vse</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Zbiram priponke ...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
@@ -384,6 +410,20 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Večpredstavno sporočilo</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Nalagam sporočilo MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Napaka pri prenosu sporočila MMS. Tapni za ponovitev.</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Pošlji %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Tapnite za izbor</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Ne morete deliti več kot %d priponko.</item>
+    <item quantity="two">Ne morete deliti več kot %d priponki.</item>
+    <item quantity="few">Ne morete deliti več kot %d priponke.</item>
+    <item quantity="other">Ne morete deliti več kot %d priponk.</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Dodaj besedilo ...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Vsa večpredstavnostna sporočila</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prejeli ste sporočilo, šifrirano z različico aplikacije Signal, ki ni več podprta. Prosite pošiljatelja, naj posodobi Signal na najnovejšo različico.</string>
   <string name="MessageRecord_left_group">Zapustili ste skupino.</string>
@@ -440,6 +480,8 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Napačno geslo!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Različica programa Google Play Services, ki jo imate nameščeno, ne deluje, kot bi morala. Prosimo, ponovno namestite Google Play Services in poskusite znova.</string>
+  <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Pridobivanje sporočila ...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceni to aplikacijo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Če se vam zdi aplikacija Signal koristna in uporabna, vas prosimo, da si vzamete nekaj trenutkov in jo ocenite.</string>
@@ -450,9 +492,15 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiram tega uporabnika?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sporočil in klicev tega uporabnika ne boste več prejemali.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Blokiram in zapustim skupino?</string>
+  <string name="RecipientPreferenceActivity_block_group">Blokiram skupino?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Od te skupine ne boste več prejemali sporočil in posodobitev.</string>
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokiram tega uporabnika?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice tega uporabnika.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Odblokiram skupino?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Obstoječi člani vas bodo lahko ponovno dodali v skupino.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Napaka ob zapuščanju skupine</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokiraj</string>
   <string name="RecipientPreferenceActivity_enabled">Vklopljeno</string>
   <string name="RecipientPreferenceActivity_disabled">Izklopljeno</string>
@@ -489,6 +537,12 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Aplikacija Signal potrebuje dovoljenje za dostop do vaših stikov in medijskih vsebin za povezavo s prijatelji, izmenjavo sporočil in opravljanje varnih klicev.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezava s storitvijo ni mogoča. Preverite omrežje in poskusite znova.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Aplikacija Signal lahko avtomatsko zazna prejeto kodo za verifikacijo vaše telefonske številke. Za to potrebuje vaše dovoljenje za branje sporočil SMS.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Ste %d korak pred oddajo sistemske zabeležbe.</item>
+    <item quantity="two">Ste %d koraka pred oddajo sistemske zabeležbe.</item>
+    <item quantity="few">Ste %d korake pred oddajo sistemske zabeležbe.</item>
+    <item quantity="other">Ste %d korakov pred oddajo sistemske zabeležbe.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
   <!--Search-->
@@ -496,6 +550,8 @@
   <string name="SearchFragment_header_conversations">Pogovori</string>
   <string name="SearchFragment_header_contacts">Stiki</string>
   <string name="SearchFragment_header_messages">Sporočila</string>
+  <!--SendJob-->
+  <string name="SendJob_sending_a_message">Pošiljanje sporočila ...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj med stike</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Povabi na Signal</string>
@@ -619,6 +675,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuickResponseService_problem_sending_message">Težava pri pošiljanju sporočila</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Shranjeno na %s</string>
+  <string name="SaveAttachmentTask_saved">Shranjeno</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Poišči</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Iskanje po pogovorih, stikih in sporočilih</string>
@@ -627,6 +684,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Novo sporočilo</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d predmet</item>
+    <item quantity="two">%d predmeta</item>
+    <item quantity="few">%d predmeti</item>
+    <item quantity="other">%d predmetov</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Naprava ni več registrirana</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Najbrž ste registrirali vašo telefonsko številko na drugi napravi. Tapnite za ponovno registracijo.</string>
@@ -1015,11 +1079,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__signal_messages_and_calls">Sporočila in klici Signal</string>
   <string name="preferences__free_private_messages_and_calls">Brezplačna zasebna sporočila in klici uporabnikom aplikacije Signal</string>
   <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
-  <string name="preferences__support_wifi_calling">Klicanje WiFi/WiFi calling</string>
+  <string name="preferences__support_wifi_calling">\'WiFi calling\' združljivostni način</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno WiFi klicanje/WiFi Calling)</string>
   <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
   <string name="preferences__read_receipts">Potrdila o ogledu</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Če izklopite poročila o ogledu, tudi sami ne boste obveščeni, ko bo prejemnik prebral vaše sporočilo.</string>
+  <string name="preferences__typing_indicators">Kazalniki tipkanja</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Če nimate vklopljenih kazalnikov tipkanja zase, tudi ne morete videti kdaj vaš partner tipka svoje sporočilo.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Zahteva tipkovnici za izklop personaliziranega učenja</string>
   <string name="preferences_app_protection__blocked_contacts">Blokirani uporabniki</string>
   <string name="preferences_chats__when_using_mobile_data">Ob uporabi mobilnega omrežja</string>
@@ -1045,6 +1111,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_chats__message_text_size">Velikost črk v sporočilu</string>
   <string name="preferences_events__contact_joined_signal">Oseba iz imenika se je pridružila Signalu</string>
   <string name="preferences_notifications__priority">Pomembnost</string>
+  <string name="preferences_communication__category_sealed_sender">Zakriti pošiljatelj</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Prikaz indikatorjev</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Prikaz ikone v statusni vrstici, kadar izberete \"Podrobnosti sporočila\" za sporočila, ki so bila dostavljana z uporabo zakritega pošiljatelja.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Dovoli za vse pošiljatelje</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Vklop zakritega pošiljatelja za dohodna sporočila uporabnikov, ki niso v imeniku in tistih, s katerimi ne delite svojega profila.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Več o funkciji zakriti pošiljatelj</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1178,6 +1250,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_chats__create_backup">Ustvari varnostno kopijo</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Vnesite geslo varnostne kopije</string>
   <string name="RegistrationActivity_restore">Obnovi</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Uvoz varnostnih kopij iz novejših različic aplikacije Signal ni mogoč</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Napačno geslo varnostne kopije</string>
   <string name="RegistrationActivity_checking">Preverjam ...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d sporočil zaenkrat ...</string>

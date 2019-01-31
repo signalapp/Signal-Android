@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="album_total_width">300dp</dimen>
+    <dimen name="album_2_total_height">150dp</dimen>
+    <dimen name="album_2_cell_width">149dp</dimen>
+    <dimen name="album_3_total_height">200dp</dimen>
+    <dimen name="album_3_cell_width_big">199dp</dimen>
+    <dimen name="album_3_cell_size_small">99dp</dimen>
+    <dimen name="album_4_total_height">300dp</dimen>
+    <dimen name="album_4_cell_size">149dp</dimen>
+    <dimen name="album_5_total_height">250dp</dimen>
+    <dimen name="album_5_cell_size_big">149dp</dimen>
+    <dimen name="album_5_cell_size_small">99dp</dimen>
+</resources>

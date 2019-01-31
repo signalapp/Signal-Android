@@ -19,9 +19,9 @@ public class PointerAttachment extends Attachment {
                             @Nullable String fileName,  @NonNull String location,
                             @Nullable String key, @Nullable String relay,
                             @Nullable byte[] digest, boolean voiceNote,
-                            int width, int height)
+                            int width, int height, @Nullable String caption)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote, width, height, false);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote, width, height, false, caption);
   }
 
   @Nullable
@@ -87,7 +87,8 @@ public class PointerAttachment extends Attachment {
                                       pointer.get().asPointer().getDigest().orNull(),
                                       pointer.get().asPointer().getVoiceNote(),
                                       pointer.get().asPointer().getWidth(),
-                                      pointer.get().asPointer().getHeight()));
+                                      pointer.get().asPointer().getHeight(),
+                                      pointer.get().asPointer().getCaption().orNull()));
 
   }
 
@@ -104,6 +105,7 @@ public class PointerAttachment extends Attachment {
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orNull() : null,
                                              false,
                                              thumbnail != null ? thumbnail.asPointer().getWidth() : 0,
-                                             thumbnail != null ? thumbnail.asPointer().getHeight() : 0));
+                                             thumbnail != null ? thumbnail.asPointer().getHeight() : 0,
+                                             thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null));
   }
 }

@@ -201,6 +201,12 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     }
   }
 
+  public void hideSaveButton(boolean hide) {
+    if (hide) {
+      saveButton.setVisibility(GONE);
+    }
+  }
+
   public void dismissEmojiKeyboard() {
     hideCurrentInput(composeText);
   }

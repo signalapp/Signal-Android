@@ -23,13 +23,14 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class RotateProfileKeyJob extends ContextJob implements InjectableType {
 
   @Inject SignalServiceAccountManager accountManager;
 
-  public RotateProfileKeyJob() {
-    super(null, null);
+  public RotateProfileKeyJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public RotateProfileKeyJob(Context context) {

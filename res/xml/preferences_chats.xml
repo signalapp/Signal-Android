@@ -56,6 +56,7 @@
                 android:key="pref_enter_sends"
                 android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
                 android:title="@string/preferences__pref_enter_sends_title"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>

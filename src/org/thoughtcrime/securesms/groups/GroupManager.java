@@ -112,10 +112,10 @@ public class GroupManager {
 
       if (avatar != null) {
         Uri avatarUri = MemoryBlobProvider.getInstance().createSingleUseUri(avatar);
-        avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false);
+        avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, null);
       }
 
-      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, null, Collections.emptyList());
+      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, null, Collections.emptyList(), Collections.emptyList());
       long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null);
 
       return new GroupActionResult(groupRecipient, threadId);

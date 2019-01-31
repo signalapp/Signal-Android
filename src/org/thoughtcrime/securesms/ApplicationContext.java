@@ -28,14 +28,18 @@ import android.support.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
 
+import org.thoughtcrime.securesms.components.TypingStatusRepository;
+import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.dependencies.DependencyInjector;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
@@ -82,6 +86,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
   private ExpiringMessageManager  expiringMessageManager;
+  private TypingStatusRepository  typingStatusRepository;
+  private TypingStatusSender      typingStatusSender;
   private JobManager              jobManager;
   private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
@@ -104,6 +110,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeJobManager();
     initializeMessageRetrieval();
     initializeExpiringMessageManager();
+    initializeTypingStatusRepository();
+    initializeTypingStatusSender();
     initializeGcmCheck();
     initializeSignedPreKeyCheck();
     initializePeriodicTasks();
@@ -145,6 +153,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return expiringMessageManager;
   }
 
+  public TypingStatusRepository getTypingStatusRepository() {
+    return typingStatusRepository;
+  }
+
+  public TypingStatusSender getTypingStatusSender() {
+    return typingStatusSender;
+  }
+
   public boolean isAppVisible() {
     return isAppVisible;
   }
@@ -171,7 +187,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeJobManager() {
     WorkManager.initialize(this, new Configuration.Builder()
-                                                  .setMinimumLoggingLevel(android.util.Log.DEBUG)
+                                                  .setMinimumLoggingLevel(android.util.Log.INFO)
                                                   .build());
 
     this.jobManager = new JobManager(this, WorkManager.getInstance());
@@ -188,10 +204,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeGcmCheck() {
     if (TextSecurePreferences.isPushRegistered(this)) {
-      long nextSetTime = TextSecurePreferences.getGcmRegistrationIdLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
+      long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
 
-      if (TextSecurePreferences.getGcmRegistrationId(this) == null || nextSetTime <= System.currentTimeMillis()) {
-        this.jobManager.add(new GcmRefreshJob(this));
+      if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
+        this.jobManager.add(new FcmRefreshJob(this));
       }
     }
   }
@@ -204,6 +220,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeExpiringMessageManager() {
     this.expiringMessageManager = new ExpiringMessageManager(this);
+  }
+
+  private void initializeTypingStatusRepository() {
+    this.typingStatusRepository = new TypingStatusRepository();
+  }
+
+  private void initializeTypingStatusSender() {
+    this.typingStatusSender = new TypingStatusSender(this);
   }
 
   private void initializePeriodicTasks() {
@@ -243,9 +267,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
       }
 
-      PeerConnectionFactory.initialize(InitializationOptions.builder(this)
-                                                            .setEnableVideoHwAcceleration(true)
-                                                            .createInitializationOptions());
+      PeerConnectionFactory.initialize(InitializationOptions.builder(this).createInitializationOptions());
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }

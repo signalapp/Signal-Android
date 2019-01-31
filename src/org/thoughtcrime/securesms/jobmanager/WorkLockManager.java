@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Semaphore;
 
-import androidx.work.Worker;
+import androidx.work.ListenableWorker.Result;
 
 class WorkLockManager {
 
@@ -57,8 +57,8 @@ class WorkLockManager {
     private final Semaphore lock;
     private final UUID      uuid;
 
-    private Worker.Result result;
-    private int           count;
+    private Result result;
+    private int    count;
 
     private WorkLock(@NonNull UUID uuid) {
       this.uuid = uuid;
@@ -78,11 +78,11 @@ class WorkLockManager {
       return lock;
     }
 
-    void setResult(@NonNull Worker.Result result) {
+    void setResult(@NonNull Result result) {
       this.result = result;
     }
 
-    @Nullable Worker.Result getResult() {
+    @Nullable Result getResult() {
       return result;
     }
 

@@ -5,8 +5,10 @@
   <string name="no">Mana</string>
   <string name="delete">Pichana</string>
   <string name="please_wait">Ashata shuyapay...</string>
+  <string name="save">Allichina</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mushuk chaski</string>
+  <!--AlbumThumbnailView-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Kunanpi: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Manara paskachikta akllashkankichu!</string>
@@ -67,9 +69,11 @@
   <string name="BucketedThreadMedia_This_month">Kay killa</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Kayachiy yaykumukun</string>
+  <!--CameraActivity-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Anchuchina</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ñawi shuyuta anchuchinayanchu</string>
+  <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Kikinpa yupay wakaychik %1$s mushukyarishkami. Kayka willakunmi shukkuna yaykunkapak munakukta %2$s, mana kashpaka Signal aplicaciontami kutin churashkanki.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Kikinpa yupay wakaychikta kay yupaymashiwan kutin rikunayanchu.</string>
@@ -144,6 +148,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal ari nichun munanmi kikinpa shuyullukchikman yaykunkapak, shuyukunata, shuyukuyurikkunatapash llukchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal ari nichun munanmi shuyullukchikman yaykunkapak, shuyuta shinallata shuyukurikta llukchinkapak.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_yes">Ari</string>
+  <string name="ConversationActivity_no">Mana</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d chaski mana killkakatishka</item>
@@ -264,6 +270,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Shuyurinkapak ñachu kanki</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Kunanka kikinpa shuyuta, kallarik shuti willaywan riksichita ushankimi Signal ukupi mashikunaman</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signalpa kallariwillaykunaka kaypimi kan</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Manara, yupaychani</string>
+  <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Manapacha Signal ukuman yaykuyta usharinchu!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal mana Google Play Services ukuwan killkarita usharkachu. Chaskita shinallata kayachitapash Signal ukupi anchuchishkami, kutinlla killkaripay Configuración &gt; Avanzado ukuman yaykushpa.</string>
@@ -315,6 +323,7 @@
   <string name="InviteActivity_lets_switch_to_signal">Signalman yallipashun: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaykunata yallichirinkapakka nima aplicación illanmi yarin.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kikinpa alli mashikunaka, mana shinalla rimarichun sakinchu </string>
+  <!--Job-->
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Mana kacharirkachu</string>
   <string name="MessageDetailsRecipient_new_safety_number">Mushuk wakaychik yupay</string>
@@ -336,6 +345,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Pichakun</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Chaskikunata pichakun...</string>
   <string name="MediaOverviewActivity_Documents">Pankakuna</string>
+  <string name="MediaOverviewActivity_Select_all">Tukuyta akllana</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Kay pachapi Signal kayachikun</string>
   <string name="NotificationBarManager__establishing_signal_call">Signalpi kayachita rurarikun</string>
@@ -348,6 +358,11 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia chaski</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS chaskita uryakuchikun</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS chaski mana uryakurkachu, kutinlla rurapay</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Tukuylla uyayrikuchik</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Shuk pakalla chaski chayamurka ñawpa Signalmanta, mana paskarita usharinchu. Maykan kachamushkaman Signalta mushukyachichun mañapay, chaski chayamuchun.</string>
   <string name="MessageRecord_left_group"> Tantanakuymanta  llukshirka.</string>
@@ -404,6 +419,7 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Pakalla killkayka mana chay kanchu!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kunan Google Play Services tiyakuka mana alli katikunchu. Google Play Servicesta kutinlla churamupay.</string>
+  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Kay aplicacionka imashinatak kan</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kay aplicacionta allikachishpaka, kay pachapi imashina kakta willachishpa yanapapay.</string>
@@ -417,6 +433,7 @@
   <string name="RecipientPreferenceActivity_block">Pakana</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Kay yupaymashita pakashkamanta llukchinayanchu.</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Kutinllami kay yupaymashipa killkashkata, kayachikunatapash chaskita ushakrinki.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Tantanakuymanta mana llukshita usharirkachu</string>
   <string name="RecipientPreferenceActivity_unblock">Pakashkamanta llukchi</string>
   <string name="RecipientPreferenceActivity_enabled">Paskashka</string>
   <string name="RecipientPreferenceActivity_disabled">Mana paskashka</string>
@@ -466,6 +483,7 @@ riksichinami kanki
   <string name="SearchFragment_header_conversations">Rimarikuna</string>
   <string name="SearchFragment_header_contacts">Yupay mashi</string>
   <string name="SearchFragment_header_messages">Chaskikuna</string>
+  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Yupaymashiman churay</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal ukuman kayachiy</string>
@@ -598,6 +616,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mushuk chaski</string>
+  <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Antahillayka ña mana allichishkachu kan</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Kay llakika, kikinpa williwilli yupayta, shuk mushuk antahillaywan Signal ukupi allichishkamantami kanka. Kutin killkarinkapak llapipay.</string>

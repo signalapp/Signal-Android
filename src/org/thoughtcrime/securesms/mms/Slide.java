@@ -41,7 +41,6 @@ public abstract class Slide {
   public Slide(@NonNull Context context, @NonNull Attachment attachment) {
     this.context    = context;
     this.attachment = attachment;
-
   }
 
   public String getContentType() {
@@ -61,6 +60,11 @@ public abstract class Slide {
   @NonNull
   public Optional<String> getBody() {
     return Optional.absent();
+  }
+
+  @NonNull
+  public Optional<String> getCaption() {
+    return Optional.fromNullable(attachment.getCaption());
   }
 
   @NonNull
@@ -112,7 +116,7 @@ public abstract class Slide {
            getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_PENDING;
   }
 
-  public long getTransferState() {
+  public int getTransferState() {
     return attachment.getTransferState();
   }
 
@@ -131,12 +135,13 @@ public abstract class Slide {
   protected static Attachment constructAttachmentFromUri(@NonNull  Context context,
                                                          @NonNull  Uri     uri,
                                                          @NonNull  String  defaultMime,
-                                                                   long     size,
-                                                                   int      width,
-                                                                   int      height,
-                                                                   boolean  hasThumbnail,
-                                                         @Nullable String   fileName,
-                                                                   boolean  voiceNote,
+                                                                   long    size,
+                                                                   int     width,
+                                                                   int     height,
+                                                                   boolean hasThumbnail,
+                                                         @Nullable String  fileName,
+                                                         @Nullable String  caption,
+                                                                   boolean voiceNote,
                                                                    boolean quote)
   {
     try {
@@ -152,7 +157,8 @@ public abstract class Slide {
                                fileName,
                                fastPreflightId,
                                voiceNote,
-                               quote);
+                               quote,
+                               caption);
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }

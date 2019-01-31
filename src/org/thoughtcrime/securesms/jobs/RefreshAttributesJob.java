@@ -20,6 +20,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
@@ -29,8 +30,8 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
   @Inject transient SignalServiceAccountManager signalAccountManager;
 
-  public RefreshAttributesJob() {
-    super(null, null);
+  public RefreshAttributesJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public RefreshAttributesJob(Context context) {
@@ -51,14 +52,13 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    String  signalingKey                = TextSecurePreferences.getSignalingKey(context);
     int     registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
-    boolean fetchesMessages             = TextSecurePreferences.isGcmDisabled(context);
+    boolean fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
     String  pin                         = TextSecurePreferences.getRegistrationLockPin(context);
     byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
     boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
 
-    signalAccountManager.setAccountAttributes(signalingKey, registrationId, fetchesMessages, pin,
+    signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages, pin,
                                               unidentifiedAccessKey, universalUnidentifiedAccess);
 
     ApplicationContext.getInstance(context)

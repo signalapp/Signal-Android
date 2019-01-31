@@ -172,6 +172,10 @@ public class TextSecurePreferences {
   public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
   private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
 
+  public static final String TYPING_INDICATORS = "pref_typing_indicators";
+
+  public static final String LINK_PREVIEWS = "pref_link_previews";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -337,6 +341,18 @@ public class TextSecurePreferences {
     setBooleanPreference(context, READ_RECEIPTS_PREF, enabled);
   }
 
+  public static boolean isTypingIndicatorsEnabled(Context context) {
+    return getBooleanPreference(context, TYPING_INDICATORS, false);
+  }
+
+  public static void setTypingIndicatorsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, TYPING_INDICATORS, enabled);
+  }
+
+  public static boolean isLinkPreviewsEnabled(Context context) {
+    return getBooleanPreference(context, LINK_PREVIEWS, true);
+  }
+
   public static @Nullable String getProfileKey(Context context) {
     return getStringPreference(context, PROFILE_KEY_PREF, null);
   }
@@ -373,11 +389,11 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
   }
 
-  public static boolean isGcmDisabled(Context context) {
+  public static boolean isFcmDisabled(Context context) {
     return getBooleanPreference(context, GCM_DISABLED_PREF, false);
   }
 
-  public static void setGcmDisabled(Context context, boolean disabled) {
+  public static void setFcmDisabled(Context context, boolean disabled) {
     setBooleanPreference(context, GCM_DISABLED_PREF, disabled);
   }
 
@@ -471,12 +487,12 @@ public class TextSecurePreferences {
     setBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, value);
   }
 
-  public static void setGcmRegistrationId(Context context, String registrationId) {
+  public static void setFcmToken(Context context, String registrationId) {
     setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);
     setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCurrentApkReleaseVersion(context));
   }
 
-  public static String getGcmRegistrationId(Context context) {
+  public static String getFcmToken(Context context) {
     int storedRegistrationIdVersion = getIntegerPreference(context, GCM_REGISTRATION_ID_VERSION_PREF, 0);
 
     if (storedRegistrationIdVersion != Util.getCurrentApkReleaseVersion(context)) {
@@ -486,11 +502,11 @@ public class TextSecurePreferences {
     }
   }
 
-  public static long getGcmRegistrationIdLastSetTime(Context context) {
+  public static long getFcmTokenLastSetTime(Context context) {
     return getLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, 0);
   }
 
-  public static void setGcmRegistrationIdLastSetTime(Context context, long timestamp) {
+  public static void setFcmTokenLastSetTime(Context context, long timestamp) {
     setLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, timestamp);
   }
 
@@ -609,10 +625,6 @@ public class TextSecurePreferences {
 
   public static void setPushServerPassword(Context context, String password) {
     setStringPreference(context, GCM_PASSWORD_PREF, password);
-  }
-
-  public static void setSignalingKey(Context context, String signalingKey) {
-    setStringPreference(context, SIGNALING_KEY_PREF, signalingKey);
   }
 
   public static String getSignalingKey(Context context) {

@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -38,8 +39,8 @@ public class UpdateApkJob extends ContextJob {
 
   private static final String TAG = UpdateApkJob.class.getSimpleName();
 
-  public UpdateApkJob() {
-    super(null, null);
+  public UpdateApkJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public UpdateApkJob(Context context) {

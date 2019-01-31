@@ -1,0 +1,15 @@
+/**
+ * Copyright (C) 2014-2016 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+package signalservice;
+
+option java_package = "org.thoughtcrime.securesms.devicelist";
+option java_outer_classname = "DeviceNameProtos";
+
+message DeviceName {
+  optional bytes ephemeralPublic = 1;
+  optional bytes syntheticIv     = 2;
+  optional bytes ciphertext      = 3;
+}

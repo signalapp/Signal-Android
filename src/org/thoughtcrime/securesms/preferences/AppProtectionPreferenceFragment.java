@@ -65,6 +65,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF).setOnPreferenceClickListener(new ChangePassphraseClickListener());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF).setOnPreferenceClickListener(new PassphraseIntervalClickListener());
     this.findPreference(TextSecurePreferences.READ_RECEIPTS_PREF).setOnPreferenceChangeListener(new ReadReceiptToggleListener());
+    this.findPreference(TextSecurePreferences.TYPING_INDICATORS).setOnPreferenceChangeListener(new TypingIndicatorsToggleListener());
+    this.findPreference(TextSecurePreferences.LINK_PREVIEWS).setOnPreferenceChangeListener(new LinkPreviewToggleListener());
     this.findPreference(PREFERENCE_CATEGORY_BLOCKED).setOnPreferenceClickListener(new BlockedContactsClickListener());
     this.findPreference(TextSecurePreferences.SHOW_UNIDENTIFIED_DELIVERY_INDICATORS).setOnPreferenceChangeListener(new ShowUnidentifiedDeliveryIndicatorsChangedListener());
     this.findPreference(TextSecurePreferences.UNIVERSAL_UNIDENTIFIED_ACCESS).setOnPreferenceChangeListener(new UniversalUnidentifiedAccessChangedListener());
@@ -187,7 +189,45 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
                         .getJobManager()
                         .add(new MultiDeviceConfigurationUpdateJob(getContext(),
                                                                    enabled,
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
+                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
+                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
+                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+
+      return true;
+    }
+  }
+
+  private class TypingIndicatorsToggleListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      boolean enabled = (boolean)newValue;
+      ApplicationContext.getInstance(getContext())
+                        .getJobManager()
+                        .add(new MultiDeviceConfigurationUpdateJob(getContext(),
+                                                                   TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
+                                                                   enabled,
+                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
+                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+
+      if (!enabled) {
+        ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().clear();
+      }
+
+      return true;
+    }
+  }
+
+  private class LinkPreviewToggleListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      boolean enabled = (boolean)newValue;
+      ApplicationContext.getInstance(requireContext())
+                        .getJobManager()
+                        .add(new MultiDeviceConfigurationUpdateJob(requireContext(),
+                                                                   TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
+                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
+                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(requireContext()),
+                                                                   enabled));
 
       return true;
     }
@@ -286,10 +326,12 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean) newValue;
       ApplicationContext.getInstance(getContext())
-          .getJobManager()
-          .add(new MultiDeviceConfigurationUpdateJob(getContext(),
-                                                     TextSecurePreferences.isReadReceiptsEnabled(getContext()),
-                                                     enabled));
+                        .getJobManager()
+                        .add(new MultiDeviceConfigurationUpdateJob(getContext(),
+                                                                   TextSecurePreferences.isReadReceiptsEnabled(getContext()),
+                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
+                                                                   enabled,
+                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
 
       return true;
     }

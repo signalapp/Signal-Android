@@ -37,22 +37,22 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
-public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements InjectableType {
+public class MultiDeviceGroupUpdateJob extends ContextJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
 
   @Inject transient SignalServiceMessageSender messageSender;
 
-  public MultiDeviceGroupUpdateJob() {
-    super(null, null);
+  public MultiDeviceGroupUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceGroupUpdateJob(Context context) {
     super(context, JobParameters.newBuilder()
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withGroupId(MultiDeviceGroupUpdateJob.class.getSimpleName())
                                 .create());
   }
@@ -67,7 +67,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws Exception {
+  public void onRun() throws Exception {
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
@@ -118,7 +118,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

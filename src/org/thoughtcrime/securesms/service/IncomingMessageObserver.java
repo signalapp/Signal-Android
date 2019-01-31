@@ -60,7 +60,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
     new NetworkRequirementProvider(context).setListener(this);
     new MessageRetrievalThread().start();
 
-    if (TextSecurePreferences.isGcmDisabled(context)) {
+    if (TextSecurePreferences.isFcmDisabled(context)) {
       ContextCompat.startForegroundService(context, new Intent(context, ForegroundService.class));
     }
 
@@ -95,7 +95,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
   }
 
   private synchronized boolean isConnectionNecessary() {
-    boolean isGcmDisabled = TextSecurePreferences.isGcmDisabled(context);
+    boolean isGcmDisabled = TextSecurePreferences.isFcmDisabled(context);
 
     Log.d(TAG, String.format("Network requirement: %s, app visible: %s, gcm disabled: %b",
                              networkRequirement.isPresent(), appVisible, isGcmDisabled));

@@ -36,8 +36,8 @@
             <org.thoughtcrime.securesms.components.AvatarImageView
                 android:id="@+id/contact_photo"
                 android:foreground="@drawable/contact_photo_background"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/conversation_item_avatar_size"
+                android:layout_height="@dimen/conversation_item_avatar_size"
                 android:cropToPadding="true"
                 android:contentDescription="@string/conversation_item_received__contact_photo_description" />
 
@@ -127,6 +127,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout="@layout/conversation_item_received_thumbnail" />
+
+            <ViewStub
+                android:id="@+id/link_preview_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/conversation_item_received_link_preview" />
 
             <ViewStub
                 android:id="@+id/audio_view_stub"

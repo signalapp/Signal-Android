@@ -16,6 +16,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.IOException;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class DirectoryRefreshJob extends ContextJob {
 
@@ -27,8 +28,8 @@ public class DirectoryRefreshJob extends ContextJob {
   @Nullable private transient Recipient    recipient;
             private transient boolean      notifyOfNewUsers;
 
-  public DirectoryRefreshJob() {
-    super(null, null);
+  public DirectoryRefreshJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public DirectoryRefreshJob(@NonNull Context context, boolean notifyOfNewUsers) {

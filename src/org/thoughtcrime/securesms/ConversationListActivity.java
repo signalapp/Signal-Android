@@ -61,7 +61,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.concurrent.LifecycleBoundTask;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
@@ -113,7 +113,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
-    LifecycleBoundTask.run(getLifecycle(), () -> {
+    SimpleTask.run(getLifecycle(), () -> {
       return Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), false);
     }, this::initializeProfileIcon);
   }

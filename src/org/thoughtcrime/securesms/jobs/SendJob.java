@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
@@ -23,10 +24,16 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class SendJob extends MasterSecretJob {
+import androidx.work.WorkerParameters;
+
+public abstract class SendJob extends ContextJob {
 
   @SuppressWarnings("unused")
   private final static String TAG = SendJob.class.getSimpleName();
+
+  public SendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
+  }
 
   public SendJob(Context context, JobParameters parameters) {
     super(context, parameters);
@@ -38,7 +45,7 @@ public abstract class SendJob extends MasterSecretJob {
   }
 
   @Override
-  public final void onRun(MasterSecret masterSecret) throws Exception {
+  public final void onRun() throws Exception {
     if (Util.getDaysTillBuildExpiry() <= 0) {
       throw new TextSecureExpiredException(String.format("TextSecure expired (build %d, now %d)",
                                                          BuildConfig.BUILD_TIMESTAMP,
@@ -46,11 +53,11 @@ public abstract class SendJob extends MasterSecretJob {
     }
 
     Log.i(TAG, "Starting message send attempt");
-    onSend(masterSecret);
+    onSend();
     Log.i(TAG, "Message send completed");
   }
 
-  protected abstract void onSend(MasterSecret masterSecret) throws Exception;
+  protected abstract void onSend() throws Exception;
 
   protected void markAttachmentsUploaded(long messageId, @NonNull List<Attachment> attachments) {
     AttachmentDatabase database = DatabaseFactory.getAttachmentDatabase(context);
@@ -88,5 +95,21 @@ public abstract class SendJob extends MasterSecretJob {
     }
 
     return results;
+  }
+
+  protected void log(@NonNull String tag, @NonNull String message) {
+    Log.i(tag, "[" + getId().toString() + "] " + message + logSuffix());
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String message) {
+    warn(tag, message, null);
+  }
+
+  protected void warn(@NonNull String tag, @Nullable Throwable t) {
+    warn(tag, "", t);
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String message, @Nullable Throwable t) {
+    Log.w(tag, "[" + getId().toString() + "] " + message + logSuffix(), t);
   }
 }

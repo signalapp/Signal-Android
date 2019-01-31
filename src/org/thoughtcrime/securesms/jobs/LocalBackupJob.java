@@ -28,13 +28,14 @@ import java.util.Date;
 import java.util.Locale;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class LocalBackupJob extends ContextJob {
 
   private static final String TAG = LocalBackupJob.class.getSimpleName();
 
-  public LocalBackupJob() {
-    super(null, null);
+  public LocalBackupJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public LocalBackupJob(@NonNull Context context) {

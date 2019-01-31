@@ -29,6 +29,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MultiDeviceVerifiedUpdateJob extends ContextJob implements InjectableType {
 
@@ -49,8 +50,8 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
   private VerifiedStatus verifiedStatus;
   private long           timestamp;
 
-  public MultiDeviceVerifiedUpdateJob() {
-    super(null, null);
+  public MultiDeviceVerifiedUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceVerifiedUpdateJob(Context context, Address destination, IdentityKey identityKey, VerifiedStatus verifiedStatus) {

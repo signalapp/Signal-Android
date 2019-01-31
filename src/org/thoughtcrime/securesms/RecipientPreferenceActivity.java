@@ -178,6 +178,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
       intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
+      intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, mediaRecord.getAttachment().getCaption());
       intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, ViewCompat.getLayoutDirection(threadPhotoRailView) == ViewCompat.LAYOUT_DIRECTION_LTR);
       intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
       startActivity(intent);
@@ -281,6 +282,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               RecipientDatabase db = DatabaseFactory.getRecipientDatabase(getContext());
               db.setMessageRingtone(recipient, NotificationChannels.getMessageRingtone(context, recipient));
               db.setMessageVibrate(recipient, NotificationChannels.getMessageVibrate(context, recipient) ? VibrateState.ENABLED : VibrateState.DISABLED);
+              NotificationChannels.ensureCustomChannelConsistency(context);
               return null;
             }
           }.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
@@ -361,6 +363,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       ColorPickerPreference colorPreference           = (ColorPickerPreference) this.findPreference(PREFERENCE_COLOR);
       Preference            blockPreference           = this.findPreference(PREFERENCE_BLOCK);
       Preference            identityPreference        = this.findPreference(PREFERENCE_IDENTITY);
+      PreferenceCategory    callCategory              = (PreferenceCategory)this.findPreference("call_settings");
       PreferenceCategory    aboutCategory             = (PreferenceCategory)this.findPreference("about");
       PreferenceCategory    aboutDivider              = (PreferenceCategory)this.findPreference("about_divider");
       ContactPreference     aboutPreference           = (ContactPreference)this.findPreference(PREFERENCE_ABOUT);
@@ -384,8 +387,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       if (recipient.isGroupRecipient()) {
         if (colorPreference    != null) colorPreference.setVisible(false);
         if (identityPreference != null) identityPreference.setVisible(false);
-        if (aboutCategory      != null) getPreferenceScreen().removePreference(aboutCategory);
-        if (aboutDivider       != null) getPreferenceScreen().removePreference(aboutDivider);
+        if (callCategory       != null) callCategory.setVisible(false);
+        if (aboutCategory      != null) aboutCategory.setVisible(false);
+        if (aboutDivider       != null) aboutDivider.setVisible(false);
+        if (divider            != null) divider.setVisible(false);
       } else {
         colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
         colorPreference.setColor(recipient.getColor().toActionBarColor(getActivity()));

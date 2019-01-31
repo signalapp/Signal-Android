@@ -30,8 +30,9 @@ import java.io.InputStream;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
-public class AvatarDownloadJob extends MasterSecretJob implements InjectableType {
+public class AvatarDownloadJob extends ContextJob implements InjectableType {
 
   private static final int MAX_AVATAR_SIZE = 20 * 1024 * 1024;
   private static final long serialVersionUID = 1L;
@@ -44,13 +45,12 @@ public class AvatarDownloadJob extends MasterSecretJob implements InjectableType
 
   private byte[] groupId;
 
-  public AvatarDownloadJob() {
-    super(null, null);
+  public AvatarDownloadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public AvatarDownloadJob(Context context, @NonNull byte[] groupId) {
     super(context, JobParameters.newBuilder()
-                                .withMasterSecretRequirement()
                                 .withNetworkRequirement()
                                 .create());
 
@@ -72,7 +72,7 @@ public class AvatarDownloadJob extends MasterSecretJob implements InjectableType
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws IOException {
+  public void onRun() throws IOException {
     String                encodeId   = GroupUtil.getEncodedId(groupId, false);
     GroupDatabase         database   = DatabaseFactory.getGroupDatabase(context);
     Optional<GroupRecord> record     = database.getGroup(encodeId);
@@ -117,7 +117,7 @@ public class AvatarDownloadJob extends MasterSecretJob implements InjectableType
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof IOException) return true;
     return false;
   }

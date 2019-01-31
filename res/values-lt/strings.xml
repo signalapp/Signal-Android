@@ -5,8 +5,11 @@
   <string name="no">Ne</string>
   <string name="delete">Ištrinti</string>
   <string name="please_wait">Prašome palaukti...</string>
+  <string name="save">Įrašyti</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nauja žinutė</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Šiuo metu: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Jūs dar nesate nustatę slaptafrazės!</string>
@@ -73,9 +76,14 @@
   <string name="BucketedThreadMedia_This_month">Šis mėnuo</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Gaunamasis skambutis</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">Kamera neprieinama.</string>
+  <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Šalinti</string>
   <string name="ClearProfileActivity_remove_profile_photo">Šalinti profilio nuotrauką?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Nerasta jokios saityno naršyklės.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %1$s pasikeitė. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, kad %2$s, tiesiog, iš naujo įdiegė Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo kontaktu.</string>
@@ -136,7 +144,9 @@
   <string name="ConversationActivity_error_leaving_group">Klaida, išeinant iš grupės</string>
   <string name="ConversationActivity_specify_recipient">Prašome pasirinkti kontaktą</string>
   <string name="ConversationActivity_unblock_this_contact_question">Atblokuoti šį kontaktą?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Atblokuoti šią grupę?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Jūs ir vėl galėsite gauti žinutes ir priimti skambučius nuo šio kontakto.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Esami dalyviai ir vėl galės pridėti jus į grupę.</string>
   <string name="ConversationActivity_unblock">Atblokuoti</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera neprieinama</string>
@@ -150,6 +160,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Norint fotografuoti ar filmuoti, Signal reikalinga prieiga prie kameros</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal negali siųsti SMS/MMS žinučių, nes ji nėra jūsų numatytoji SMS programėlė. Ar norėtumėte tai pakeisti savo Android nustatymuose?</string>
+  <string name="ConversationActivity_yes">Taip</string>
+  <string name="ConversationActivity_no">Ne</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
@@ -292,6 +305,15 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pasiruošę artimesniam bendravimui?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Dabar, su Signal draugais galite bendrinti profilio nuotrauką ir vardą</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiliai jau čia</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Pristatome rašymo indikatorius.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Dabar, galite pasirinktinai matyti kada yra rašomos žinutės ir rodyti kitiems, kai rašote žinutes.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Ar norėtumėte įjungti juos dabar?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Rašymo indikatoriai jau čia</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Įjungti rašymo indikatorius</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Įjungti rašymo indikatorius</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ne, ačiū</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Atgaunama žinutė...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Ilgalaikė Signal susisiekimo triktis!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nepavyko prisiregistruoti prie „Google Play“ paslaugų. Signal žinutės ir skambučiai buvo išjungti, prašome pabandyti iš naujo registruotis skyrelyje Nustatymai (angl. Settings) &gt; Išplėstiniai (angl. Advanced).</string>
@@ -347,6 +369,8 @@
   <string name="InviteActivity_lets_switch_to_signal">Persijunkime į Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis dalintis.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugai neleidžia draugams kalbėtis nešifruotai.</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">Dirbama fone...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepavyko išsiųsti</string>
   <string name="MessageDetailsRecipient_new_safety_number">Naujas saugumo numeris</string>
@@ -372,6 +396,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Ištrinama</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Ištrinamos žinutės...</string>
   <string name="MediaOverviewActivity_Documents">Dokumentai</string>
+  <string name="MediaOverviewActivity_Select_all">Žymėti visus</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Renkami priedai...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -384,6 +410,20 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijos žinutė</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Atsiunčiama MMS žinutė</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Klaida, atsiunčiant MMS žinutę, bakstelėkite, norėdami bandyti dar kartą</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Siųsti kontaktui %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Bakstelėkite, norėdami pasirinkti</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Jūs negalite dalintis daugiau nei %d elementu.</item>
+    <item quantity="few">Jūs negalite dalintis daugiau nei %d elementais.</item>
+    <item quantity="many">Jūs negalite dalintis daugiau nei %d elementų.</item>
+    <item quantity="other">Jūs negalite dalintis daugiau nei %d elementu.</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Pridėti paaiškinimą...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Visa medija</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Gauta žinutė buvo užšifruota, naudojant seną Signal versiją, kuri daugiau nebepalaikoma. Paprašykite siuntėjo atnaujinti savo programėlę į naujausią versiją ir iš naujo išsiųsti žinutę.</string>
   <string name="MessageRecord_left_group">Jūs išėjote iš grupės.</string>
@@ -441,6 +481,8 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neteisinga slaptafrazė!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsų turima įdiegta „Google Play“ paslaugų versija nefunkcionuoja tinkamai. Prašome iš naujo įdiegti „Google Play“ paslaugas ir bandyti dar kartą.</string>
+  <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">Atgaunama žinutė...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeigu jūs mėgaujatės naudodamiesi šia programėle, skirkite minutėlę mums padėti ir įvertinkite ją.</string>
@@ -451,9 +493,15 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Užblokuoti šį kontaktą?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Jūs daugiau nebegausite žinučių ir skambučių nuo šio kontakto.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Užblokuoti ir išeiti iš šios grupės?</string>
+  <string name="RecipientPreferenceActivity_block_group">Užblokuoti šią grupę?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Jūs daugiau nebegausite žinučių ar atnaujinimų iš šios grupės.</string>
   <string name="RecipientPreferenceActivity_block">Užblokuoti</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Atblokuoti šį kontaktą?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Jūs ir vėl galėsite gauti žinutes ir priimti skambučius nuo šio kontakto.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Atblokuoti šią grupę?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Esami dalyviai ir vėl galės pridėti jus į grupę.</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Klaida, išeinant iš grupės</string>
   <string name="RecipientPreferenceActivity_unblock">Atblokuoti</string>
   <string name="RecipientPreferenceActivity_enabled">Įjungta</string>
   <string name="RecipientPreferenceActivity_disabled">Išjungta</string>
@@ -496,6 +544,12 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų kontaktų ir medijos</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepavyksta prisijungti prie paslaugos. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Norint lengvai patvirtinti jūsų telefono numerį, Signal gali automatiškai aptikti patvirtinimo kodą, jei leisite programai Signal peržiūrėti SMS žinutes.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Dabar jums liko %d žingsnis iki derinimo žurnalo pateikimo.</item>
+    <item quantity="few">Dabar jums liko %d žingsniai iki derinimo žurnalo pateikimo.</item>
+    <item quantity="many">Dabar jums liko %d žingsnių iki derinimo žurnalo pateikimo.</item>
+    <item quantity="other">Dabar jums liko %d žingsnis iki derinimo žurnalo pateikimo.</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
   <!--Search-->
@@ -503,6 +557,8 @@
   <string name="SearchFragment_header_conversations">Pokalbiai</string>
   <string name="SearchFragment_header_contacts">Kontaktai</string>
   <string name="SearchFragment_header_messages">Žinutės</string>
+  <!--SendJob-->
+  <string name="SendJob_sending_a_message">Siunčiama žinutė...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Pridėti į kontaktus</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pakviesti į Signal</string>
@@ -628,6 +684,7 @@
   <string name="QuickResponseService_problem_sending_message">Problemos siunčiant žinutę!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Įrašyta į %s</string>
+  <string name="SaveAttachmentTask_saved">Įrašyta</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Ieškoti</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Ieškoti pokalbių, kontaktų ir žinučių</string>
@@ -636,6 +693,13 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d elementas</item>
+    <item quantity="few">%d elementai</item>
+    <item quantity="many">%d elementų</item>
+    <item quantity="other">%d elementas</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Įrenginys daugiau nebėra registruotas</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Tai yra tikėtina, nes registravote savo telefono numerį su Signal kitame įrenginyje. Bakstelėkite, norėdami registruoti iš naujo.</string>
@@ -1029,6 +1093,8 @@
   <string name="preferences__incognito_keyboard">Incognito klaviatūra</string>
   <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>
+  <string name="preferences__typing_indicators">Rašymo indikatoriai</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Išjungę rašymo indikatorius, nebegalėsite matyti kitų žmonių rašymo indikatorių.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Užklausti klaviatūrą, kad būtų išjungtas suasmenintas mokymasis</string>
   <string name="preferences_app_protection__blocked_contacts">Užblokuoti kontaktai</string>
   <string name="preferences_chats__when_using_mobile_data">Naudojant mobiliuosius duomenis</string>
@@ -1054,6 +1120,12 @@
   <string name="preferences_chats__message_text_size">Žinučių šrifto dydis</string>
   <string name="preferences_events__contact_joined_signal">Kontaktas prisijungė prie Signal</string>
   <string name="preferences_notifications__priority">Pirmenybė</string>
+  <string name="preferences_communication__category_sealed_sender">Užantspauduotas siuntėjas</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Rodyti indikatorius</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Rodyti būsenos piktogramą, kai pasirenkate \"Išsamesnė žinutės informacija\" žinutėse, kurios buvo pristatytos, naudojant užantspauduotą siuntėją.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Leisti nuo bet ko</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Įjungti užantspauduotą siuntėją gaunamosioms žinutėms nuo asmenų, kurių nėra kontaktų sąraše ir žmonių su kuriais nebendrinote savo profilį.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Sužinoti daugiau</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1187,6 +1259,7 @@
   <string name="preferences_chats__create_backup">Daryti atsarginę kopiją</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Įveskite atsarginės kopijos slaptafrazę</string>
   <string name="RegistrationActivity_restore">Atkurti</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Nepavyksta importuoti atsarginių kopijų iš naujesnių Signal versijų</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Neteisinga atsarginės kopijos slaptafrazė</string>
   <string name="RegistrationActivity_checking">Tikrinama...</string>
   <string name="RegistrationActivity_d_messages_so_far">Jau %d žinučių...</string>

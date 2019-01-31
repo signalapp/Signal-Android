@@ -23,6 +23,7 @@ import java.util.Collections;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class SendDeliveryReceiptJob extends ContextJob implements InjectableType {
 
@@ -41,8 +42,8 @@ public class SendDeliveryReceiptJob extends ContextJob implements InjectableType
   private long   messageId;
   private long   timestamp;
 
-  public SendDeliveryReceiptJob() {
-    super(null, null);
+  public SendDeliveryReceiptJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public SendDeliveryReceiptJob(Context context, Address address, long messageId) {

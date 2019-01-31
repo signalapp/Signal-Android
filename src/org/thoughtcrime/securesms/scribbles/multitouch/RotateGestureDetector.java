@@ -25,7 +25,7 @@ import android.view.MotionEvent;
  */
 public class RotateGestureDetector extends TwoFingerGestureDetector {
 
-    private static final String TAG = RotateGestureDetector.class.getName();
+    private static final String TAG = RotateGestureDetector.class.getSimpleName();
     private final OnRotateGestureListener mListener;
     private boolean mSloppyGesture;
 

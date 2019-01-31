@@ -22,6 +22,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 /**
  * Use {@link MultiDeviceConfigurationUpdateJob}.
@@ -39,8 +40,8 @@ public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements Injec
 
   private boolean enabled;
 
-  public MultiDeviceReadReceiptUpdateJob() {
-    super(null, null);
+  public MultiDeviceReadReceiptUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MultiDeviceReadReceiptUpdateJob(Context context, boolean enabled) {
@@ -69,7 +70,7 @@ public class MultiDeviceReadReceiptUpdateJob extends ContextJob implements Injec
       return;
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled), Optional.absent(), Optional.absent())),
+    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(enabled), Optional.absent(), Optional.absent(), Optional.absent())),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

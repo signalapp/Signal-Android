@@ -34,6 +34,9 @@ import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.view.View;
@@ -55,6 +58,7 @@ import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -369,12 +373,13 @@ public class AttachmentManager {
                .execute();
   }
 
-  public static void selectGallery(Activity activity, int requestCode) {
+  public static void selectGallery(Activity activity, int requestCode, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
     Permissions.with(activity)
                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                .ifNecessary()
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
                .onAllGranted(() -> selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode))
+               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.getIntent(activity, recipient, body, transport), requestCode))
                .execute();
   }
 
@@ -493,6 +498,7 @@ public class AttachmentManager {
       Intent intent = new Intent(context, MediaPreviewActivity.class);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
+      intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
       intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, true);
       intent.setDataAndType(slide.getUri(), slide.getContentType());
 

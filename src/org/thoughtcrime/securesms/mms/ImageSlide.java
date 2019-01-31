@@ -37,7 +37,11 @@ public class ImageSlide extends Slide {
   }
 
   public ImageSlide(Context context, Uri uri, long size, int width, int height) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, false, false));
+    this(context, uri, size, width, height, null);
+  }
+
+  public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption) {
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, false, false));
   }
 
   @Override

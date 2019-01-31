@@ -21,6 +21,7 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
   private GridLayoutManager                layoutManager;
   private RecyclerView.OnItemTouchListener scrollDisabler;
   private VariationSelectorListener        variationSelectorListener;
+  private EmojiVariationSelectorPopup      popup;
 
   public EmojiPageView(@NonNull Context context,
                        @NonNull EmojiSelectionListener emojiSelectionListener,
@@ -34,8 +35,9 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
     recyclerView   = view.findViewById(R.id.emoji);
     layoutManager  = new GridLayoutManager(context, 8);
     scrollDisabler = new ScrollDisabler();
+    popup          = new EmojiVariationSelectorPopup(context, emojiSelectionListener);
     adapter        = new EmojiPageViewGridAdapter(EmojiProvider.getInstance(context),
-                                              new EmojiVariationSelectorPopup(context, emojiSelectionListener),
+                                              popup,
                                               emojiSelectionListener,
                                               this);
 
@@ -52,6 +54,13 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
   public void setModel(EmojiPageModel model) {
     this.model = model;
     adapter.setEmoji(model.getDisplayEmoji());
+  }
+
+  @Override
+  protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
+    if (visibility != VISIBLE) {
+      popup.dismiss();
+    }
   }
 
   @Override

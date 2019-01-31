@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
@@ -34,7 +35,7 @@ import org.thoughtcrime.securesms.scribbles.widget.entity.MotionEntity;
 import org.thoughtcrime.securesms.scribbles.widget.entity.TextEntity;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.LifecycleBoundTask;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -46,13 +47,17 @@ import java.util.concurrent.ExecutionException;
 import static android.app.Activity.RESULT_OK;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class ScribbleFragment extends Fragment implements ScribbleHud.EventListener, VerticalSlideColorPicker.OnColorChangeListener {
+public class ScribbleFragment extends Fragment implements ScribbleHud.EventListener,
+                                                          VerticalSlideColorPicker.OnColorChangeListener,
+                                                          MediaSendPageFragment
+{
 
-  private static final String TAG = ScribbleFragment.class.getName();
+  private static final String TAG = ScribbleFragment.class.getSimpleName();
 
   private static final String KEY_IMAGE_URI = "image_uri";
   private static final String KEY_LOCALE    = "locale";
   private static final String KEY_TRANSPORT = "compose_mode";
+  private static final String KEY_HIDE_SAVE = "hide_save";
 
   public static final int SELECT_STICKER_REQUEST_CODE = 123;
 
@@ -60,15 +65,20 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
   private ScribbleHud   scribbleHud;
   private ScribbleView  scribbleView;
   private GlideRequests glideRequests;
+  private Uri           imageUri;
 
-  public static ScribbleFragment newInstance(@NonNull Uri imageUri, @NonNull Locale locale, Optional<TransportOption> transport) {
+  private ScribbleView.SavedState savedState;
+
+  public static ScribbleFragment newInstance(@NonNull Uri imageUri, @NonNull Locale locale, Optional<TransportOption> transport, boolean hideSave) {
     Bundle args = new Bundle();
     args.putParcelable(KEY_IMAGE_URI, imageUri);
     args.putSerializable(KEY_LOCALE, locale);
     args.putParcelable(KEY_TRANSPORT, transport.orNull());
+    args.putBoolean(KEY_HIDE_SAVE, hideSave);
 
     ScribbleFragment fragment = new ScribbleFragment();
     fragment.setArguments(args);
+    fragment.setUri(imageUri);
     return fragment;
   }
 
@@ -79,6 +89,7 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
       throw new IllegalStateException("Parent activity must implement Controller interface.");
     }
     controller = (Controller) getActivity();
+    imageUri   = getArguments().getParcelable(KEY_IMAGE_URI);
   }
 
   @Nullable
@@ -97,12 +108,46 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
 
     scribbleHud.setEventListener(this);
     scribbleHud.setTransport(Optional.fromNullable(getArguments().getParcelable(KEY_TRANSPORT)));
+    scribbleHud.hideSaveButton(getArguments().getBoolean(KEY_HIDE_SAVE));
     scribbleHud.setFullscreen((getActivity().getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) > 0);
 
     scribbleView.setMotionViewCallback(motionViewCallback);
     scribbleView.setDrawingChangedListener(() -> scribbleHud.setColorPalette(scribbleView.getUniqueColors()));
     scribbleView.setDrawingMode(false);
-    scribbleView.setImage(glideRequests, getArguments().getParcelable(KEY_IMAGE_URI));
+    scribbleView.setImage(glideRequests, imageUri);
+
+    if (savedState != null) {
+      scribbleView.restoreState(savedState);
+    }
+  }
+
+  @Override
+  public void setUri(@NonNull Uri uri) {
+    this.imageUri = uri;
+  }
+
+  @Override
+  public @NonNull Uri getUri() {
+    return imageUri;
+  }
+
+  @Override
+  public @Nullable View getPlaybackControls() {
+    return null;
+  }
+
+  @Override
+  public @Nullable Object saveState() {
+    return scribbleView.saveState();
+  }
+
+  @Override
+  public void restoreState(@NonNull Object state) {
+    if (state instanceof ScribbleView.SavedState) {
+      savedState = (ScribbleView.SavedState) state;
+    } else {
+      Log.w(TAG, "Received a bad saved state. Received class: " + state.getClass().getName());
+    }
   }
 
   public boolean isEmojiKeyboardVisible() {
@@ -185,7 +230,7 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
     if (resultCode == RESULT_OK && requestCode == SELECT_STICKER_REQUEST_CODE && data != null) {
       final String stickerFile = data.getStringExtra(StickerSelectActivity.EXTRA_STICKER_FILE);
 
-      LifecycleBoundTask.run(getLifecycle(), () -> {
+      SimpleTask.run(getLifecycle(), () -> {
         try {
           return BitmapFactory.decodeStream(getContext().getAssets().open(stickerFile));
         } catch (IOException e) {
@@ -204,27 +249,32 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
   public void onModeStarted(@NonNull ScribbleHud.Mode mode) {
     switch (mode) {
       case DRAW:
+        controller.onTouchEventsNeeded(true);
         scribbleView.setDrawingMode(true);
         scribbleView.setDrawingBrushWidth(ScribbleView.DEFAULT_BRUSH_WIDTH);
         break;
 
       case HIGHLIGHT:
+        controller.onTouchEventsNeeded(true);
         scribbleView.setDrawingMode(true);
         scribbleView.setDrawingBrushWidth(ScribbleView.DEFAULT_BRUSH_WIDTH * 3);
         break;
 
       case TEXT:
+        controller.onTouchEventsNeeded(true);
         scribbleView.setDrawingMode(false);
         addTextSticker();
         break;
 
       case STICKER:
+        controller.onTouchEventsNeeded(true);
         scribbleView.setDrawingMode(false);
         Intent intent = new Intent(getContext(), StickerSelectActivity.class);
         startActivityForResult(intent, SELECT_STICKER_REQUEST_CODE);
         break;
 
       case NONE:
+        controller.onTouchEventsNeeded(false);
         scribbleView.clearSelection();
         scribbleView.setDrawingMode(false);
         break;
@@ -283,13 +333,16 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
     public void onEntitySelected(@Nullable MotionEntity entity) {
       if (entity == null) {
         scribbleHud.enterMode(ScribbleHud.Mode.NONE);
+        controller.onTouchEventsNeeded(false);
       } else if (entity instanceof TextEntity) {
         int textColor = ((TextEntity) entity).getLayer().getFont().getColor();
 
         scribbleHud.enterMode(ScribbleHud.Mode.TEXT);
         scribbleHud.setActiveColor(textColor);
+        controller.onTouchEventsNeeded(true);
       } else {
         scribbleHud.enterMode(ScribbleHud.Mode.STICKER);
+        controller.onTouchEventsNeeded(true);
       }
     }
 
@@ -302,5 +355,6 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
   public interface Controller {
     void onImageEditComplete(@NonNull Uri uri, int width, int height, long size, @NonNull Optional<String> message, @NonNull Optional<TransportOption> transport);
     void onImageEditFailure();
+    void onTouchEventsNeeded(boolean needed);
   }
 }

@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.R;
 
 public class StickerSelectActivity extends FragmentActivity implements StickerSelectFragment.StickerSelectionListener {
 
-  private static final String TAG = StickerSelectActivity.class.getName();
+  private static final String TAG = StickerSelectActivity.class.getSimpleName();
 
   public static final String EXTRA_STICKER_FILE = "extra_sticker_file";
 

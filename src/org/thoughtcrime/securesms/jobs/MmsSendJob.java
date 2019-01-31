@@ -23,7 +23,6 @@ import com.google.android.mms.smil.SmilHelper;
 import com.klinker.android.send_message.Utils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -51,6 +50,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class MmsSendJob extends SendJob {
 
@@ -62,15 +62,14 @@ public class MmsSendJob extends SendJob {
 
   private long messageId;
 
-  public MmsSendJob() {
-    super(null, null);
+  public MmsSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public MmsSendJob(Context context, long messageId) {
     super(context, JobParameters.newBuilder()
                                 .withGroupId("mms-operation")
                                 .withNetworkRequirement()
-                                .withMasterSecretRequirement()
                                 .withRetryCount(15)
                                 .create());
 
@@ -88,9 +87,14 @@ public class MmsSendJob extends SendJob {
   }
 
   @Override
-  public void onSend(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
+  public void onSend() throws MmsException, NoSuchMessageException, IOException {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
+
+    if (database.isSent(messageId)) {
+      Log.w(TAG, "Message " + messageId + " was already sent. Ignoring.");
+      return;
+    }
 
     try {
       Log.i(TAG, "Sending message: " + messageId);
@@ -119,7 +123,7 @@ public class MmsSendJob extends SendJob {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 

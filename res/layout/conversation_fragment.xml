@@ -9,7 +9,7 @@
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="16dp"
+            android:paddingBottom="2dp"
             android:scrollbars="vertical"
             android:cacheColorHint="?conversation_background"
             android:clipChildren="false"

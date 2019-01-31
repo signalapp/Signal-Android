@@ -17,9 +17,9 @@ public class DatabaseAttachment extends Attachment {
                             String contentType, int transferProgress, long size,
                             String fileName, String location, String key, String relay,
                             byte[] digest, String fastPreflightId, boolean voiceNote,
-                            int width, int height, boolean quote)
+                            int width, int height, boolean quote, @Nullable String caption)
   {
-    super(contentType, transferProgress, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, quote);
+    super(contentType, transferProgress, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, quote, caption);
     this.attachmentId = attachmentId;
     this.hasData      = hasData;
     this.hasThumbnail = hasThumbnail;

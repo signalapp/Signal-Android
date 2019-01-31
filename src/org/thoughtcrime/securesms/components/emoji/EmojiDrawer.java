@@ -128,7 +128,7 @@ public class EmojiDrawer extends LinearLayout implements InputView, EmojiSelecti
     this.models = new LinkedList<>();
     this.recentModel = new RecentEmojiPageModel(getContext());
     this.models.add(recentModel);
-    this.models.addAll(EmojiPages.PAGES);
+    this.models.addAll(EmojiPages.DISPLAY_PAGES);
   }
 
   public static class EmojiPagerAdapter extends PagerAdapter

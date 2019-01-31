@@ -159,7 +159,7 @@ public class ComposeText extends EmojiEditText {
   @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB_MR2)
   private static class CommitContentListener implements InputConnectionCompat.OnCommitContentListener {
 
-    private static final String TAG = CommitContentListener.class.getName();
+    private static final String TAG = CommitContentListener.class.getSimpleName();
 
     private final InputPanel.MediaListener mediaListener;
 

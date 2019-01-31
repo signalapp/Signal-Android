@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -56,6 +57,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * An activity to quickly share content with contacts
@@ -200,22 +202,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    super.onOptionsItemSelected(item);
-    switch (item.getItemId()) {
-    case R.id.menu_new_message: handleNewConversation(); return true;
-    case android.R.id.home:     finish();                return true;
-    }
-    return false;
-  }
-
-  private void handleNewConversation() {
-    Intent intent = getBaseShareIntent(NewConversationActivity.class);
-    isPassingAlongMedia = true;
-    startActivity(intent);
-  }
-
   private void handleResolvedMedia(Intent intent, boolean animate) {
     long      threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
     int       distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
@@ -254,9 +240,13 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
-    final Intent intent      = new Intent(this, target);
-    final String textExtra   = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    final Intent           intent     = new Intent(this, target);
+    final String           textExtra  = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    final ArrayList<Media> mediaExtra = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
+
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
+    intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
+
     if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 
     return intent;

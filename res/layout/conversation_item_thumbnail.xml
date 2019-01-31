@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <org.thoughtcrime.securesms.components.ThumbnailView
         android:id="@+id/conversation_thumbnail_image"
@@ -12,7 +13,18 @@
         android:longClickable="false"
         android:scaleType="fitCenter"
         android:contentDescription="@string/conversation_item__mms_image_description"
+        android:visibility="gone"
+        tools:visibility="visible"
         app:thumbnail_radius="1dp"/>
+
+    <org.thoughtcrime.securesms.components.AlbumThumbnailView
+        android:id="@+id/conversation_thumbnail_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:longClickable="false"
+        android:contentDescription="@string/conversation_item__mms_image_description"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/conversation_thumbnail_shade"

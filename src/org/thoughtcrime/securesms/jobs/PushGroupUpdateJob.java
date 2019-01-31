@@ -35,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import androidx.work.Data;
+import androidx.work.WorkerParameters;
 
 public class PushGroupUpdateJob extends ContextJob implements InjectableType {
 
@@ -50,8 +51,8 @@ public class PushGroupUpdateJob extends ContextJob implements InjectableType {
   private String source;
   private byte[] groupId;
 
-  public PushGroupUpdateJob() {
-    super(null, null);
+  public PushGroupUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
   }
 
   public PushGroupUpdateJob(Context context, String source, byte[] groupId) {

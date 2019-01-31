@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.ConversationTypingView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="2dp"
+    android:gravity="center_vertical">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/typing_avatar"
+        android:foreground="@drawable/contact_photo_background"
+        android:layout_width="@dimen/conversation_item_avatar_size"
+        android:layout_height="@dimen/conversation_item_avatar_size"
+        android:cropToPadding="true"
+        android:contentDescription="@string/conversation_item_received__contact_photo_description" />
+
+    <FrameLayout
+        android:id="@+id/typing_bubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:padding="12dp"
+        android:background="@drawable/message_bubble_background">
+
+        <org.thoughtcrime.securesms.components.TypingIndicatorView
+            android:id="@+id/typing_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+</org.thoughtcrime.securesms.components.ConversationTypingView>

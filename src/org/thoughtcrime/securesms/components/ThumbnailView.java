@@ -27,12 +27,14 @@ import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
+import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collections;
 import java.util.Locale;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -49,6 +51,7 @@ public class ThumbnailView extends FrameLayout {
 
   private ImageView       image;
   private View            playOverlay;
+  private View            captionIcon;
   private OnClickListener parentClickListener;
 
   private final int[] dimens        = new int[2];
@@ -57,7 +60,7 @@ public class ThumbnailView extends FrameLayout {
 
   private Optional<TransferControlView> transferControls       = Optional.absent();
   private SlideClickListener            thumbnailClickListener = null;
-  private SlideClickListener            downloadClickListener  = null;
+  private SlidesClickedListener         downloadClickListener  = null;
   private Slide                         slide                  = null;
 
   private int radius;
@@ -77,6 +80,7 @@ public class ThumbnailView extends FrameLayout {
 
     this.image       = findViewById(R.id.thumbnail_image);
     this.playOverlay = findViewById(R.id.play_overlay);
+    this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {
@@ -85,12 +89,11 @@ public class ThumbnailView extends FrameLayout {
       bounds[MAX_WIDTH]  = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxWidth, 0);
       bounds[MIN_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minHeight, 0);
       bounds[MAX_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0);
-      radius             = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius));
+      radius             = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
       typedArray.recycle();
     } else {
       radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
     }
-
   }
 
   @Override
@@ -230,8 +233,8 @@ public class ThumbnailView extends FrameLayout {
 
   @UiThread
   public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Slide slide,
-                                                    boolean showControls, boolean isPreview, int naturalWidth,
-                                                    int naturalHeight)
+                                                    boolean showControls, boolean isPreview,
+                                                    int naturalWidth, int naturalHeight)
   {
     if (showControls) {
       getTransferControls().setSlide(slide);
@@ -267,6 +270,8 @@ public class ThumbnailView extends FrameLayout {
 
     this.slide = slide;
 
+    this.captionIcon.setVisibility(slide.getCaption().isPresent() ? VISIBLE : GONE);
+
     dimens[WIDTH]  = naturalWidth;
     dimens[HEIGHT] = naturalHeight;
     invalidate();
@@ -289,11 +294,18 @@ public class ThumbnailView extends FrameLayout {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
-    glideRequests.load(new DecryptableUri(uri))
-                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                 .transforms(new CenterCrop(), new RoundedCorners(radius))
-                 .transition(withCrossFade())
-                 .into(new GlideDrawableListeningTarget(image, future));
+
+    GlideRequest request = glideRequests.load(new DecryptableUri(uri))
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .transition(withCrossFade());
+
+    if (radius > 0) {
+      request = request.transforms(new CenterCrop(), new RoundedCorners(radius));
+    } else {
+      request = request.transforms(new CenterCrop());
+    }
+
+    request.into(new GlideDrawableListeningTarget(image, future));
 
     return future;
   }
@@ -302,7 +314,7 @@ public class ThumbnailView extends FrameLayout {
     this.thumbnailClickListener = listener;
   }
 
-  public void setDownloadClickListener(SlideClickListener listener) {
+  public void setDownloadClickListener(SlidesClickedListener listener) {
     this.downloadClickListener = listener;
   }
 
@@ -316,8 +328,16 @@ public class ThumbnailView extends FrameLayout {
     slide = null;
   }
 
+  public void showDownloadText(boolean showDownloadText) {
+    getTransferControls().setShowDownloadText(showDownloadText);
+  }
+
   public void showProgressSpinner() {
     getTransferControls().showProgressSpinner();
+  }
+
+  protected void setRadius(int radius) {
+    this.radius = radius;
   }
 
   private GlideRequest buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
@@ -342,8 +362,14 @@ public class ThumbnailView extends FrameLayout {
       size[WIDTH]  = getDefaultWidth();
       size[HEIGHT] = getDefaultHeight();
     }
-    return request.override(size[WIDTH], size[HEIGHT])
-                  .transforms(fitting, new RoundedCorners(radius));
+
+    request = request.override(size[WIDTH], size[HEIGHT]);
+    
+    if (radius > 0) {
+      return request.transforms(fitting, new RoundedCorners(radius));
+    } else {
+      return request.transforms(fitting);
+    }
   }
 
   private int getDefaultWidth() {
@@ -382,7 +408,7 @@ public class ThumbnailView extends FrameLayout {
     public void onClick(View view) {
       Log.i(TAG, "onClick() for download button");
       if (downloadClickListener != null && slide != null) {
-        downloadClickListener.onClick(view, slide);
+        downloadClickListener.onClick(view, Collections.singletonList(slide));
       } else {
         Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + String.valueOf(slide) + "  downloadClickListener: " + String.valueOf(downloadClickListener));
       }

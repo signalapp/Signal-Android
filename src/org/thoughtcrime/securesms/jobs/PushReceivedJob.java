@@ -14,11 +14,17 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
+import androidx.work.WorkerParameters;
+
 public abstract class PushReceivedJob extends ContextJob {
 
   private static final String TAG = PushReceivedJob.class.getSimpleName();
 
   public static final Object RECEIVE_LOCK = new Object();
+
+  protected PushReceivedJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+    super(context, workerParameters);
+  }
 
   protected PushReceivedJob(Context context, JobParameters parameters) {
     super(context, parameters);

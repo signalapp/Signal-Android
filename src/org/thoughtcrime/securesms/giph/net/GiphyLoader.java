@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.GiphyResponse;
+import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
@@ -24,7 +25,7 @@ import okhttp3.Response;
 
 public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
 
-  private static final String TAG = GiphyLoader.class.getName();
+  private static final String TAG = GiphyLoader.class.getSimpleName();
 
   public static int PAGE_SIZE = 100;
 
@@ -35,7 +36,7 @@ public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
   protected GiphyLoader(@NonNull Context context, @Nullable String searchString) {
     super(context);
     this.searchString = searchString;
-    this.client       = new OkHttpClient.Builder().proxySelector(new GiphyProxySelector()).build();
+    this.client       = new OkHttpClient.Builder().proxySelector(new ContentProxySelector()).build();
   }
 
   @Override

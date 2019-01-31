@@ -71,6 +71,10 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
     this.header = header;
   }
 
+  public View getHeaderView() {
+    return this.header;
+  }
+
   public void setFooterView(@Nullable View footer) {
     this.footer = footer;
   }

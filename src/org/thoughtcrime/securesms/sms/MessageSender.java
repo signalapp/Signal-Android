@@ -199,12 +199,12 @@ public class MessageSender {
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new PushMediaSendJob(context, messageId, recipient.getAddress()));
+    PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
   }
 
   private static void sendGroupPush(Context context, Recipient recipient, long messageId, Address filterAddress) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new PushGroupSendJob(context, messageId, recipient.getAddress(), filterAddress));
+    PushGroupSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), filterAddress);
   }
 
   private static void sendSms(Context context, Recipient recipient, long messageId) {

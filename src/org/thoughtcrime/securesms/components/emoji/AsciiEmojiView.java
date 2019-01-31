@@ -3,14 +3,13 @@ package org.thoughtcrime.securesms.components.emoji;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ResUtil;
-
-import androidx.annotation.Nullable;
 
 public class AsciiEmojiView extends View {
 
@@ -22,7 +21,7 @@ public class AsciiEmojiView extends View {
     super(context);
   }
 
-  public AsciiEmojiView(Context context, @Nullable @android.support.annotation.Nullable AttributeSet attrs) {
+  public AsciiEmojiView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
   }
 

@@ -61,7 +61,7 @@ class EmojiProvider {
     this.decodeScale = Math.min(1f, context.getResources().getDimension(R.dimen.emoji_drawer_size) / EMOJI_RAW_HEIGHT);
     this.verticalPad = EMOJI_VERT_PAD * this.decodeScale;
 
-    for (EmojiPageModel page : EmojiPages.PAGES) {
+    for (EmojiPageModel page : EmojiPages.DATA_PAGES) {
       if (page.hasSpriteMap()) {
         EmojiPageBitmap pageBitmap = new EmojiPageBitmap(context, page, decodeScale);
 

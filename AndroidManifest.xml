@@ -37,7 +37,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -46,7 +45,6 @@
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.READ_CALL_STATE"/>
 
     <!-- For sending/receiving events -->
@@ -90,10 +88,6 @@
     <uses-permission android:name="android.permission.RAISED_THREAD_PRIORITY" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
-    <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
-                android:protectionLevel="signature" />
-    <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
-
     <supports-screens
             android:anyDensity="true"
             android:largeScreens="true"
@@ -124,6 +118,11 @@
 
     <meta-data android:name="com.google.android.gms.car.application"
                android:resource="@xml/automotive_app_desc" />
+
+    <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />
+    <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
+    <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
+    <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />
 
     <activity android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
               android:excludeFromRecents="true"
@@ -296,6 +295,11 @@
               android:theme="@style/TextSecure.LightNoActionBar"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+        <activity android:name=".mediasend.MediaSendActivity"
+                  android:theme="@style/TextSecure.LightNoActionBar"
+                  android:windowSoftInputMode="stateHidden"
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphraseChangeActivity"
               android:label="@string/AndroidManifest__change_passphrase"
@@ -487,12 +491,11 @@
 
     <service android:name=".service.GenericForegroundService"/>
 
-    <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+    <service android:name=".gcm.FcmService">
         <intent-filter>
-            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            <category android:name="org.thoughtcrime.securesms" />
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
         </intent-filter>
-    </receiver>
+    </service>
 
     <receiver android:name=".service.SmsListener"
               android:permission="android.permission.BROADCAST_SMS"

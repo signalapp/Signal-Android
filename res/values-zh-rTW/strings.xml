@@ -5,8 +5,11 @@
   <string name="no">否</string>
   <string name="delete">刪除</string>
   <string name="please_wait">請稍候...</string>
+  <string name="save">儲存</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新訊息</string>
+  <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">目前: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您還沒有建立密碼！</string>
@@ -64,9 +67,14 @@
   <string name="BucketedThreadMedia_This_month">本月</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">來電</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_camera_unavailable">相機無法使用。</string>
+  <string name="CameraActivity_image_save_failure">儲存照片失敗。</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">移除</string>
   <string name="ClearProfileActivity_remove_profile_photo">移除頭像照片？</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">找不到網路瀏覽器。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
@@ -127,7 +135,9 @@
   <string name="ConversationActivity_error_leaving_group">離開群組時發生錯誤</string>
   <string name="ConversationActivity_specify_recipient">請選擇聯絡人</string>
   <string name="ConversationActivity_unblock_this_contact_question">解除封鎖此聯絡人？</string>
+  <string name="ConversationActivity_unblock_this_group_question">解除封鎖這個群組？</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您將可以再次收到來自此聯絡人的訊息與通話。</string>
+  <string name="ConversationActivity_unblock_this_group_description">現存的組員將可以再次將你加入群組。</string>
   <string name="ConversationActivity_unblock">解除封鎖</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">當前訊息的附件類型已經超越大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">無法使用相機</string>
@@ -141,6 +151,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相機的權限來拍攝照片或是影片 ，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用相機的權限。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要使用相機的權限來拍攝照片和影片</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 無法傳送 SMS/MMS 訊息，因為Signal 不是你預設 SMS 應用軟體。你要在 Android 設定中改變這個設定嗎？</string>
+  <string name="ConversationActivity_yes">是</string>
+  <string name="ConversationActivity_no">否</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -250,6 +263,15 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">準備好你的特寫了嗎？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">現在，你可以分享你的頭像照片及名字給在 Signal 中的朋友</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 個人資訊就在這裡</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">介紹打字狀態。</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">現在你可以選擇性的查看並分享正在輸入的訊息。</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">你是否要現在啟動它們？</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">打字狀態在這裡</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">啟動打字狀態</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">開啟打字狀態</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">不，謝謝。</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">回收一個訊息...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持續發生傳輸異常！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法順利與 Google Play Services 註冊，Signal 訊息與通話已經停用，請嘗試在設定 &gt; 進階中重新註冊。</string>
@@ -299,6 +321,8 @@
   <string name="InviteActivity_lets_switch_to_signal">讓我們切換到 Signal：%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">朋友不該讓朋友之間的聊天未經加密。</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">在背景作業...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">傳送失敗</string>
   <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
@@ -318,6 +342,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">正在刪除訊息...</string>
   <string name="MediaOverviewActivity_Documents">文件</string>
+  <string name="MediaOverviewActivity_Select_all">全選</string>
+  <string name="MediaOverviewActivity_collecting_attachments">正在收集附件...</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
@@ -330,6 +356,17 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">多媒體訊息</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">正在下載MMS訊息</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">下載MMS訊息時發生錯誤，點擊重試</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">傳送給 %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">點取以選擇</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="other">你無法分享超過 %d 個的項目。</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">加入一個標題...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">所有的媒體</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到一則使用舊版本並已經不再支援的 Signal 加密訊息。請尋求傳送人將 Signal 升級到最新的版本並再次傳送該訊息。</string>
   <string name="MessageRecord_left_group">您已經離開了此群組。</string>
@@ -386,6 +423,8 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無效的密碼！</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您目前安裝的 Google Play 服務版本無法正常運作。請重新安裝 Google Play 服務然後重試。</string>
+  <!--PushNotificationReceiveJob-->
+  <string name="PushNotificationReceiveJob_retrieving_a_message">回收一個訊息...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">評分這個應用程式</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜歡使用此應用程式，請使用片刻時間幫我們對其進行評分。</string>
@@ -396,9 +435,15 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">封鎖此聯絡人？</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">您將不會再次收到來自此聯絡人的訊息與通話。</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">要封鎖及離開這個群組？</string>
+  <string name="RecipientPreferenceActivity_block_group">封鎖這個群組？</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">你將無法從此群組收到訊息或更新。</string>
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">解除封鎖此聯絡人？</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您將可以再次收到來自此聯絡人的訊息與通話。</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">解除封鎖這個群組？</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">現存的組員將可以再次將你加入群組。</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">離開群組時發生錯誤</string>
   <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
   <string name="RecipientPreferenceActivity_enabled">啟用</string>
   <string name="RecipientPreferenceActivity_disabled">停用</string>
@@ -439,6 +484,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要存取的你的聯絡人及媒體，以聯絡你的朋友、交換訊息、及撥打私密電話。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連接服務。請檢查網路連線並再試一次。</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">如果你允許 Signal 讀取 SMS 訊息，你可以簡單的驗證電話號碼，Signal 會自動偵測你的驗證碼。</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="other">你現在距離提交偵錯日誌只有%d步之遙。</item>
+  </plurals>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">無法儲存圖片的變更</string>
   <!--Search-->
@@ -446,6 +494,8 @@
   <string name="SearchFragment_header_conversations">對話</string>
   <string name="SearchFragment_header_contacts">聯絡人</string>
   <string name="SearchFragment_header_messages">訊息</string>
+  <!--SendJob-->
+  <string name="SendJob_sending_a_message">正在傳送一個訊息...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">新增至連絡人</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀請至 Signal</string>
@@ -571,6 +621,7 @@
   <string name="QuickResponseService_problem_sending_message">傳送訊息出現問題！</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">儲存到 %s</string>
+  <string name="SaveAttachmentTask_saved">已儲存</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">搜尋</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">搜尋對話、聯絡人與訊息</string>
@@ -579,6 +630,10 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="other">%d 項目</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">此裝置已被取消註冊</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">這似乎是你將 Signal 的電話號碼註冊在其他的裝置上。觸碰這裡來重新註冊。</string>
@@ -948,6 +1003,8 @@
   <string name="preferences__incognito_keyboard">隱私鍵盤</string>
   <string name="preferences__read_receipts">已讀標記</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">如果關閉已讀標記，你將無法看到其他人的已讀標記。</string>
+  <string name="preferences__typing_indicators">打字狀態</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果打字狀態被關閉，你將無法看見其他人的打字狀態。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">要求鍵盤關閉個人化學習</string>
   <string name="preferences_app_protection__blocked_contacts">封鎖聯絡人</string>
   <string name="preferences_chats__when_using_mobile_data">當使用行動數據時</string>
@@ -973,6 +1030,12 @@
   <string name="preferences_chats__message_text_size">訊息字體大小</string>
   <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal</string>
   <string name="preferences_notifications__priority">優先順序</string>
+  <string name="preferences_communication__category_sealed_sender">密封發件人</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">顯示指標</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">在使用密封發件人傳遞的訊息上選擇“訊息細節”時顯示狀態圖示。</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">允許任何人</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">啟用密封發件人對來自非聯絡人及其他人傳來的訊息，將不會對其分享你的個人資訊。</string>
+  <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1084,7 +1147,7 @@
   <string name="Permissions_permission_required">需要權限</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需要\"簡訊\"的權限以傳送訊息，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"簡訊\"的權限。</string>
   <string name="Permissions_continue">繼續</string>
-  <string name="Permissions_not_now">不是現在</string>
+  <string name="Permissions_not_now">稍後</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人的權限來搜尋聯絡人，但是現在設定為永久拒絕存取。請繼續到\"應用程式\"ˇ的設定中，選擇\"權限\"，接著啟動\"聯絡人\"。</string>
   <string name="conversation_activity__enable_signal_messages">啟用 Signal 訊息</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">遷移 Signal 資料庫</string>
@@ -1103,6 +1166,7 @@
   <string name="preferences_chats__create_backup">建立備份</string>
   <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
   <string name="RegistrationActivity_restore">還原</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">無法從較新版本的 Signal 匯入備份檔</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">不正確的備份密碼</string>
   <string name="RegistrationActivity_checking">檢查中... </string>
   <string name="RegistrationActivity_d_messages_so_far">目前為止有 %d 則訊息.. </string>

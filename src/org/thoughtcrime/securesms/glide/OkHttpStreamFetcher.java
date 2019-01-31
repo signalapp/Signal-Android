@@ -22,7 +22,7 @@ import okhttp3.ResponseBody;
  */
 class OkHttpStreamFetcher implements DataFetcher<InputStream> {
 
-  private static final String TAG = OkHttpStreamFetcher.class.getName();
+  private static final String TAG = OkHttpStreamFetcher.class.getSimpleName();
 
   private final OkHttpClient client;
   private final GlideUrl     url;

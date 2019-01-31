@@ -75,15 +75,18 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -146,6 +149,7 @@ public class ConversationListFragment extends Fragment
     setHasOptionsMenu(true);
     fab.setOnClickListener(v -> startActivity(new Intent(getActivity(), NewConversationActivity.class)));
     initializeListAdapter();
+    initializeTypingObserver();
   }
 
   @Override
@@ -224,6 +228,16 @@ public class ConversationListFragment extends Fragment
   private void initializeListAdapter() {
     list.setAdapter(new ConversationListAdapter(getActivity(), GlideApp.with(this), locale, null, this));
     getLoaderManager().restartLoader(0, null, this);
+  }
+
+  private void initializeTypingObserver() {
+    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypingThreads().observe(this, threadIds -> {
+      if (threadIds == null) {
+        threadIds = Collections.emptySet();
+      }
+
+      getListAdapter().setTypingThreads(threadIds);
+    });
   }
 
   @SuppressLint("StaticFieldLeak")
