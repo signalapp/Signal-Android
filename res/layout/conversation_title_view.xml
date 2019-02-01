@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.ConversationTitleView
+<org.thoughtcrime.securesms.conversation.ConversationTitleView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -94,4 +94,4 @@
 
     </RelativeLayout>
 
-</org.thoughtcrime.securesms.ConversationTitleView>
+</org.thoughtcrime.securesms.conversation.ConversationTitleView>

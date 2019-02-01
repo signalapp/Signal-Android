@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversation;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -74,6 +74,22 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.ConversationListArchiveActivity;
+import org.thoughtcrime.securesms.ExpirationDialog;
+import org.thoughtcrime.securesms.GroupCreateActivity;
+import org.thoughtcrime.securesms.GroupMembersDialog;
+import org.thoughtcrime.securesms.MediaOverviewActivity;
+import org.thoughtcrime.securesms.MuteDialog;
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PromptMmsActivity;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.RecipientPreferenceActivity;
+import org.thoughtcrime.securesms.RegistrationActivity;
+import org.thoughtcrime.securesms.ShortcutLauncherActivity;
+import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.camera.CameraActivity;
@@ -247,21 +263,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_CAMERA         = 12;
   private static final int MEDIA_SENDER        = 13;
 
-  private   GlideRequests               glideRequests;
-  protected ComposeText                 composeText;
-  private   AnimatingToggle             buttonToggle;
-  private   SendButton                  sendButton;
-  private   ImageButton                 attachButton;
-  protected ConversationTitleView       titleView;
-  private   TextView                    charactersLeft;
-  private   ConversationFragment        fragment;
-  private   Button                      unblockButton;
-  private   Button                      makeDefaultSmsButton;
-  private   Button                      registerButton;
-  private   InputAwareLayout            container;
-  private   View                        composePanel;
-  protected Stub<ReminderView>          reminderView;
-  private   Stub<UnverifiedBannerView>  unverifiedBannerView;
+  private   GlideRequests              glideRequests;
+  protected ComposeText                composeText;
+  private   AnimatingToggle            buttonToggle;
+  private   SendButton                 sendButton;
+  private   ImageButton                attachButton;
+  protected ConversationTitleView      titleView;
+  private   TextView                   charactersLeft;
+  private   ConversationFragment       fragment;
+  private   Button                     unblockButton;
+  private   Button                     makeDefaultSmsButton;
+  private   Button                     registerButton;
+  private   InputAwareLayout           container;
+  private   View                       composePanel;
+  protected Stub<ReminderView>         reminderView;
+  private   Stub<UnverifiedBannerView> unverifiedBannerView;
   private   Stub<GroupShareProfileView> groupShareProfileView;
   private   TypingStatusTextWatcher     typingTextWatcher;
 

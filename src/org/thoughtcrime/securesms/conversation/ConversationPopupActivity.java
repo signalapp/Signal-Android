@@ -1,10 +1,12 @@
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversation;
 
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
+
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.Display;
 import android.view.Gravity;

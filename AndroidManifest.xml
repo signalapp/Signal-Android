@@ -209,7 +209,7 @@
                 android:value="org.thoughtcrime.securesms.ConversationListActivity" />
     </activity>
 
-    <activity android:name=".ConversationActivity"
+    <activity android:name=".conversation.ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -219,7 +219,7 @@
                 android:value="org.thoughtcrime.securesms.ConversationListActivity" />
     </activity>
 
-    <activity android:name=".ConversationPopupActivity"
+    <activity android:name=".conversation.ConversationPopupActivity"
               android:windowSoftInputMode="stateVisible"
               android:launchMode="singleTask"
               android:taskAffinity=""

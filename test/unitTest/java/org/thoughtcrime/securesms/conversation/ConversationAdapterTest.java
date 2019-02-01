@@ -1,9 +1,11 @@
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversation;
 
 import android.database.Cursor;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.thoughtcrime.securesms.BaseUnitTest;
+import org.thoughtcrime.securesms.conversation.ConversationAdapter;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyInt;
@@ -12,7 +14,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 public class ConversationAdapterTest extends BaseUnitTest {
-  private Cursor cursor = mock(Cursor.class);
+  private Cursor              cursor = mock(Cursor.class);
   private ConversationAdapter adapter;
 
   @Override

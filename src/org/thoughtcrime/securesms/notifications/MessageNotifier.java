@@ -39,7 +39,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.text.TextUtils;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.Contact;
