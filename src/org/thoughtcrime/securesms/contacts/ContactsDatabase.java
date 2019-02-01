@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.contacts;
 import android.accounts.Account;
 import android.annotation.SuppressLint;
 import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
@@ -137,7 +138,7 @@ public class ContactsDatabase {
     }
 
     if (!operations.isEmpty()) {
-      context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
+      applyOperationsInBatches(context.getContentResolver(), ContactsContract.AUTHORITY, operations, 50);
     }
   }
 
@@ -529,6 +530,18 @@ public class ContactsDatabase {
       }
     } finally {
       if (cursor != null) cursor.close();
+    }
+  }
+
+  private void applyOperationsInBatches(@NonNull ContentResolver contentResolver,
+                                        @NonNull String authority,
+                                        @NonNull List<ContentProviderOperation> operations,
+                                        int batchSize)
+      throws OperationApplicationException, RemoteException
+  {
+    List<List<ContentProviderOperation>> batches = Util.chunk(operations, batchSize);
+    for (List<ContentProviderOperation> batch : batches) {
+      contentResolver.applyBatch(authority, new ArrayList<>(batch));
     }
   }
 
