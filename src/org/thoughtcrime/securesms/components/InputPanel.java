@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
@@ -118,6 +119,21 @@ public class InputPanel extends LinearLayout
         listener.onLinkPreviewCanceled();
       }
     });
+
+    this.quoteView.setOnClickListener(this::onQuoteViewClick);
+  }
+
+  protected void onQuoteViewClick(View v) {
+    if (quoteView.getOriginalMissing()) {
+      return;
+    }
+
+    long id = quoteView.getOriginalMessageId();
+    Context c = getContext();
+    ConversationActivity parent = (c instanceof ConversationActivity ? (ConversationActivity)c : null);
+    if (parent != null) {
+      parent.handleQuoteViewClick(id);
+    }
   }
 
   public void setListener(final @NonNull Listener listener) {
@@ -130,8 +146,8 @@ public class InputPanel extends LinearLayout
     composeText.setMediaListener(listener);
   }
 
-  public void setQuote(@NonNull GlideRequests glideRequests, long id, @NonNull Recipient author, @NonNull String body, @NonNull SlideDeck attachments) {
-    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments);
+  public void setQuote(@NonNull GlideRequests glideRequests, long id, long msgId, @NonNull Recipient author, @NonNull String body, @NonNull SlideDeck attachments) {
+    this.quoteView.setQuote(glideRequests, id, msgId, author, body, false, attachments);
     this.quoteView.setVisibility(View.VISIBLE);
 
     if (this.linkPreview.getVisibility() == View.VISIBLE) {

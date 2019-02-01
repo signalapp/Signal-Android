@@ -63,6 +63,8 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   private int        smallCornerRadius;
   private CornerMask cornerMask;
 
+  private boolean    originalMissing;
+  private long       originalMessageId;
 
   public QuoteView(Context context) {
     super(context);
@@ -153,10 +155,12 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
   public void setQuote(GlideRequests glideRequests,
                        long id,
+                       long originalMessageId,
                        @NonNull Recipient author,
                        @Nullable String body,
                        boolean originalMissing,
-                       @NonNull SlideDeck attachments)
+                       @NonNull SlideDeck attachments
+                       )
   {
     if (this.author != null) this.author.removeListener(this);
 
@@ -164,6 +168,8 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     this.author      = author;
     this.body        = body;
     this.attachments = attachments;
+    this.originalMissing = originalMissing;
+    this.originalMessageId = originalMessageId;
 
     author.addListener(this);
     setQuoteAuthor(author);
@@ -276,6 +282,12 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   public long getQuoteId() {
     return id;
   }
+
+  public boolean getOriginalMissing() {
+    return originalMissing;
+  }
+
+  public long getOriginalMessageId() { return originalMessageId; }
 
   public Recipient getAuthor() {
     return author;

@@ -413,6 +413,19 @@ public class ConversationFragment extends Fragment
     }
   }
 
+  public void smoothScrollToMessageId(long msgId) {
+    list.post(() -> {
+      ConversationAdapter ca = getListAdapter();
+      int position = ca.getMessagePositionByMessageId(msgId);
+      if (position < SCROLL_ANIMATION_THRESHOLD) {
+        list.smoothScrollToPosition(position);
+      } else {
+        list.scrollToPosition(position);
+      }
+      ca.pulseHighlightItem(position);
+    });
+  }
+
   public void setLastSeen(long lastSeen) {
     this.lastSeen = lastSeen;
     if (lastSeenDecoration != null) {

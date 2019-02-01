@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -54,6 +55,7 @@ import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -358,6 +360,21 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       recordToPulseHighlight = getRecordForPositionOrThrow(position);
       notifyItemChanged(position);
     }
+  }
+
+  // find a message position by its timestamp
+  public int getMessagePositionByMessageId(long msgId) {
+    Collection<SoftReference<MessageRecord>> messages = messageRecordCache.values();
+    int counter = 0;
+    for (SoftReference<MessageRecord> m : messages) {
+      MessageRecord msg = m.get();
+      if (msg.getId() == msgId) {
+        //return messages.size() - counter;
+        return counter;
+      }
+      counter++;
+    }
+    throw new Resources.NotFoundException("No message with this timestamp.");
   }
 
   private boolean hasAudio(MessageRecord messageRecord) {

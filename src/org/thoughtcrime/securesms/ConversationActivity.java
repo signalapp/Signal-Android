@@ -689,6 +689,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     finish();
   }
 
+  public void handleQuoteViewClick(long originalMessageId) {
+    fragment.smoothScrollToMessageId(originalMessageId);
+  }
+
   private void handleSelectMessageExpiration() {
     if (isPushGroupConversation() && !isActiveGroup()) {
       return;
@@ -2402,9 +2406,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       inputPanel.setQuote(GlideApp.with(this),
                           messageRecord.getDateSent(),
+                          messageRecord.getId(),
                           author,
                           body,
-                          slideDeck);
+                          slideDeck
+                          );
 
     } else if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -2416,6 +2422,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       inputPanel.setQuote(GlideApp.with(this),
                           messageRecord.getDateSent(),
+                          messageRecord.getId(),
                           author,
                           messageRecord.getBody(),
                           slideDeck);
@@ -2423,6 +2430,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       inputPanel.setQuote(GlideApp.with(this),
                           messageRecord.getDateSent(),
+                          messageRecord.getId(),
                           author,
                           messageRecord.getBody(),
                           messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck());
