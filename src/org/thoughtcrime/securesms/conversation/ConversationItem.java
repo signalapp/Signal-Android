@@ -28,9 +28,12 @@ import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
@@ -87,6 +90,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
+import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -206,6 +210,7 @@ public class ConversationItem extends LinearLayout
                    @NonNull Locale                  locale,
                    @NonNull Set<MessageRecord>      batchSelected,
                    @NonNull Recipient               conversationRecipient,
+                   @Nullable String                 searchQuery,
                             boolean                 pulseHighlight)
   {
     this.messageRecord          = messageRecord;
@@ -223,7 +228,7 @@ public class ConversationItem extends LinearLayout
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, conversationRecipient, groupThread);
     setInteractionState(messageRecord, pulseHighlight);
-    setBodyText(messageRecord);
+    setBodyText(messageRecord, searchQuery);
     setBubbleState(messageRecord);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient);
@@ -401,7 +406,7 @@ public class ConversationItem extends LinearLayout
     return messageRecord.isMms() && !((MmsMessageRecord)messageRecord).getLinkPreviews().isEmpty();
   }
 
-  private void setBodyText(MessageRecord messageRecord) {
+  private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery) {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
@@ -409,7 +414,11 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      bodyText.setText(linkifyMessageBody(messageRecord.getDisplayBody(), batchSelected.isEmpty()));
+      Spannable styledText = linkifyMessageBody(messageRecord.getDisplayBody(), batchSelected.isEmpty());
+      styledText = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), styledText, searchQuery);
+      styledText = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), styledText, searchQuery);
+
+      bodyText.setText(styledText);
       bodyText.setVisibility(View.VISIBLE);
     }
   }

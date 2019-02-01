@@ -79,6 +79,7 @@ public class ConversationUpdateItem extends LinearLayout
                    @NonNull Locale                  locale,
                    @NonNull Set<MessageRecord>      batchSelected,
                    @NonNull Recipient               conversationRecipient,
+                   @Nullable String                 searchQuery,
                             boolean                 pulseUpdate)
   {
     this.batchSelected = batchSelected;

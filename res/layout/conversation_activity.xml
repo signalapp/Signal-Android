@@ -54,7 +54,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        <include layout="@layout/conversation_input_panel"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/conversation_input_panel"/>
+
+            <include layout="@layout/conversation_search_nav" />
+
+        </FrameLayout>
 
         <Button android:id="@+id/register_button"
                 android:layout_width="fill_parent"

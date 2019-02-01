@@ -172,7 +172,7 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
         ConversationListActivity conversationList = (ConversationListActivity) getActivity();
         if (conversationList != null) {
           conversationList.openConversation(message.threadId,
-                                            message.recipient,
+                                            message.conversationRecipient,
                                             ThreadDatabase.DistributionTypes.DEFAULT,
                                             -1,
                                             startingPosition);

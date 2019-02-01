@@ -105,6 +105,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final @NonNull  MessageDigest     digest;
 
   private MessageRecord recordToPulseHighlight;
+  private String        searchQuery;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -205,6 +206,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
                               locale,
                               batchSelected,
                               recipient,
+                              searchQuery,
                               messageRecord == recordToPulseHighlight);
 
     if (messageRecord == recordToPulseHighlight) {
@@ -361,6 +363,11 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       recordToPulseHighlight = getRecordForPositionOrThrow(position);
       notifyItemChanged(position);
     }
+  }
+
+  public void onSearchQueryUpdated(@Nullable String query) {
+    this.searchQuery = query;
+    notifyDataSetChanged();
   }
 
   private boolean hasAudio(MessageRecord messageRecord) {

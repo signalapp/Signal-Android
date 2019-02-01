@@ -49,6 +49,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.WindowCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -97,6 +98,7 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.AttachmentTypeSelector;
 import org.thoughtcrime.securesms.components.ComposeText;
+import org.thoughtcrime.securesms.components.ConversationSearchBottomBar;
 import org.thoughtcrime.securesms.components.HidingLinearLayout;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.InputPanel;
@@ -179,6 +181,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
+import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
@@ -235,7 +238,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                OnKeyboardShownListener,
                AttachmentDrawerListener,
                InputPanel.Listener,
-               InputPanel.MediaListener
+               InputPanel.MediaListener,
+               ConversationSearchBottomBar.EventListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -280,6 +284,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Stub<UnverifiedBannerView> unverifiedBannerView;
   private   Stub<GroupShareProfileView> groupShareProfileView;
   private   TypingStatusTextWatcher     typingTextWatcher;
+  private   ConversationSearchBottomBar searchNav;
+  private   MenuItem                    searchViewItem;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
@@ -290,7 +296,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected HidingLinearLayout     inlineAttachmentToggle;
   private   QuickAttachmentDrawer  quickAttachmentDrawer;
   private   InputPanel             inputPanel;
-  private   LinkPreviewViewModel   linkPreviewViewModel;
+
+  private LinkPreviewViewModel        linkPreviewViewModel;
+  private ConversationSearchViewModel searchViewModel;
 
   private Recipient  recipient;
   private long       threadId;
@@ -331,6 +339,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeViews();
     initializeResources();
     initializeLinkPreviewObserver();
+    initializeSearchObserver();
     initializeSecurity(false, isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
@@ -643,6 +652,56 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
 
+    searchViewItem = menu.findItem(R.id.menu_search);
+
+    SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
+    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String query) {
+        searchViewModel.onQueryUpdated(query, threadId);
+        searchNav.showLoading();
+        fragment.onSearchQueryUpdated(query);
+        return true;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String query) {
+        searchViewModel.onQueryUpdated(query, threadId);
+        searchNav.showLoading();
+        fragment.onSearchQueryUpdated(query);
+        return true;
+      }
+    };
+
+    searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+      @Override
+      public boolean onMenuItemActionExpand(MenuItem item) {
+        searchView.setOnQueryTextListener(queryListener);
+        searchViewModel.onSearchOpened();
+        searchNav.setVisibility(View.VISIBLE);
+        searchNav.setData(0, 0);
+        inputPanel.setVisibility(View.GONE);
+
+        for (int i = 0; i < menu.size(); i++) {
+          if (!menu.getItem(i).equals(searchViewItem)) {
+            menu.getItem(i).setVisible(false);
+          }
+        }
+        return true;
+      }
+
+      @Override
+      public boolean onMenuItemActionCollapse(MenuItem item) {
+        searchView.setOnQueryTextListener(null);
+        searchViewModel.onSearchClosed();
+        searchNav.setVisibility(View.GONE);
+        inputPanel.setVisibility(View.VISIBLE);
+        fragment.onSearchQueryUpdated(null);
+        invalidateOptionsMenu();
+        return true;
+      }
+    });
+
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -655,6 +714,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_call_insecure:             handleDial(getRecipient(), false);                 return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
+    case R.id.menu_search:                    handleSearch();                                    return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
@@ -918,6 +978,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
       }
     }.execute();
+  }
+
+  private void handleSearch() {
+    searchViewModel.onSearchOpened();
   }
 
   private void handleLeavePushGroup() {
@@ -1438,6 +1502,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     quickAttachmentToggle  = ViewUtil.findById(this, R.id.quick_attachment_toggle);
     inlineAttachmentToggle = ViewUtil.findById(this, R.id.inline_attachment_container);
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
+    searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -1488,6 +1553,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       quickCameraToggle.setVisibility(View.GONE);
       quickCameraToggle.setEnabled(false);
     }
+
+    searchNav.setEventListener(this);
 
     inlineAttachmentButton.setOnClickListener(v -> handleAddAttachment());
   }
@@ -1544,6 +1611,30 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
   }
 
+  private void initializeSearchObserver() {
+    searchViewModel = ViewModelProviders.of(this).get(ConversationSearchViewModel.class);
+
+    searchViewModel.getSearchResults().observe(this, result -> {
+      if (result == null) return;
+
+      if (!result.getResults().isEmpty()) {
+        MessageResult messageResult = result.getResults().get(result.getPosition());
+        fragment.jumpToMessage(messageResult.messageRecipient.getAddress(), messageResult.receivedTimestampMs, searchViewModel::onMissingResult);
+      }
+
+      searchNav.setData(result.getPosition(), result.getResults().size());
+    });
+  }
+
+  @Override
+  public void onSearchMoveUpPressed() {
+    searchViewModel.onMoveUp();
+  }
+
+  @Override
+  public void onSearchMoveDownPressed() {
+    searchViewModel.onMoveDown();
+  }
 
   private void initializeProfiles() {
     if (!isSecureText) {
@@ -1569,7 +1660,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       updateReminders(recipient.hasSeenInviteReminder());
       updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
       initializeSecurity(isSecureText, isDefaultSms);
-      invalidateOptionsMenu();
+
+      if (!searchViewItem.isActionViewExpanded()) {
+        invalidateOptionsMenu();
+      }
     });
   }
 
@@ -2443,6 +2537,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                           messageRecord.getBody(),
                           messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck());
     }
+  }
+
+  @Override
+  public void onMessageActionToolbarOpened() {
+    searchViewItem.collapseActionView();
   }
 
   @Override

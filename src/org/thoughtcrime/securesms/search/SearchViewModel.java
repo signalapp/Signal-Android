@@ -11,6 +11,7 @@ import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.search.model.SearchResult;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.Util;
 
 /**
  * A {@link ViewModel} for handling all the business logic and interactions that take place inside
@@ -28,7 +29,7 @@ class SearchViewModel extends ViewModel {
 
   private String lastQuery;
 
-  SearchViewModel(@NonNull SearchRepository searchRepository) {
+  private SearchViewModel(@NonNull SearchRepository searchRepository) {
     this.searchResult     = new ObservingLiveData();
     this.searchRepository = searchRepository;
     this.debouncer        = new Debouncer(500);
@@ -49,7 +50,15 @@ class SearchViewModel extends ViewModel {
 
   void updateQuery(String query) {
     lastQuery = query;
-    debouncer.publish(() -> searchRepository.query(query, searchResult::postValue));
+    debouncer.publish(() -> searchRepository.query(query, result -> {
+      Util.runOnMain(() -> {
+        if (query.equals(lastQuery)) {
+          searchResult.setValue(result);
+        } else {
+          result.close();
+        }
+      });
+    }));
   }
 
   @NonNull

@@ -27,6 +27,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,7 @@ import org.thoughtcrime.securesms.ShareActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -94,6 +96,7 @@ import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -126,6 +129,7 @@ public class ConversationFragment extends Fragment
   private long                        lastSeen;
   private int                         startingPosition;
   private int                         previousOffset;
+  private int                         activeOffset;
   private boolean                     firstLoad;
   private long                        loaderStartTime;
   private ActionMode                  actionMode;
@@ -631,8 +635,13 @@ public class ConversationFragment extends Fragment
 
     if (loader.hasOffset()) {
       adapter.setHeaderView(bottomLoadMoreView);
+    }
+
+    if (firstLoad || loader.hasOffset()) {
       previousOffset = loader.getOffset();
     }
+
+    activeOffset = loader.getOffset();
 
     adapter.changeCursor(cursor);
 
@@ -734,9 +743,42 @@ public class ConversationFragment extends Fragment
     return firstVisiblePosition == 0 && list.getChildAt(0).getBottom() <= list.getHeight();
   }
 
+  public void onSearchQueryUpdated(@Nullable String query) {
+    getListAdapter().onSearchQueryUpdated(query);
+  }
+
+  public void jumpToMessage(@NonNull Address author, long timestamp, @Nullable Runnable onMessageNotFound) {
+    SimpleTask.run(getLifecycle(), () -> {
+      return DatabaseFactory.getMmsSmsDatabase(getContext())
+                            .getMessagePositionInConversation(threadId, timestamp, author);
+    }, p -> moveToMessagePosition(p, onMessageNotFound));
+  }
+
+  private void moveToMessagePosition(int position, @Nullable Runnable onMessageNotFound) {
+    Log.d(TAG, "Moving to message position: " + position + "  activeOffset: " + activeOffset + "  cursorCount: " + getListAdapter().getCursorCount());
+
+    if (position >= activeOffset && position >= 0 && position < getListAdapter().getCursorCount()) {
+      int offset = activeOffset > 0 ? activeOffset - 1 : 0;
+      list.scrollToPosition(position - offset);
+      getListAdapter().pulseHighlightItem(position - offset);
+    } else if (position < 0) {
+      Log.w(TAG, "Tried to navigate to message, but it wasn't found.");
+      if (onMessageNotFound != null) {
+        onMessageNotFound.run();
+      }
+    } else {
+      Log.i(TAG, "Message was outside of the loaded range. Need to restart the loader.");
+
+      firstLoad        = true;
+      startingPosition = position;
+      getLoaderManager().restartLoader(0, Bundle.EMPTY, ConversationFragment.this);
+    }
+  }
+
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
     void handleReplyMessage(MessageRecord messageRecord);
+    void onMessageActionToolbarOpened();
   }
 
   private class ConversationScrollListener extends OnScrollListener {
@@ -848,41 +890,14 @@ public class ConversationFragment extends Fragment
         return;
       }
 
-      new AsyncTask<Void, Void, Integer>() {
-        @Override
-        protected Integer doInBackground(Void... voids) {
-          if (getActivity() == null || getActivity().isFinishing()) {
-            Log.w(TAG, "Task to retrieve quote position started after the fragment was detached.");
-            return 0;
-          }
-          return DatabaseFactory.getMmsSmsDatabase(getContext())
-                                .getQuotedMessagePosition(threadId,
-                                                          messageRecord.getQuote().getId(),
-                                                          messageRecord.getQuote().getAuthor());
-        }
-
-        @Override
-        protected void onPostExecute(Integer position) {
-          if (getActivity() == null || getActivity().isFinishing()) {
-            Log.w(TAG, "Task to retrieve quote position finished after the fragment was detached.");
-            return;
-          }
-
-          if (position >= 0 && position < getListAdapter().getItemCount()) {
-            list.scrollToPosition(position);
-            getListAdapter().pulseHighlightItem(position);
-          } else if (position < 0) {
-            Log.w(TAG, "Tried to navigate to quoted message, but it was deleted.");
-            Toast.makeText(getContext(), R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT).show();
-          } else {
-            Log.i(TAG, "Quoted message was outside of the loaded range. Need to restart the loader.");
-
-            firstLoad        = true;
-            startingPosition = position;
-            getLoaderManager().restartLoader(0, Bundle.EMPTY, ConversationFragment.this);
-          }
-        }
-      }.execute();
+      SimpleTask.run(getLifecycle(), () -> {
+        return DatabaseFactory.getMmsSmsDatabase(getContext())
+                              .getQuotedMessagePosition(threadId,
+                                                        messageRecord.getQuote().getId(),
+                                                        messageRecord.getQuote().getAuthor());
+      }, p -> moveToMessagePosition(p, () -> {
+        Toast.makeText(getContext(), R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT).show();
+      }));
     }
 
     @Override
@@ -965,6 +980,7 @@ public class ConversationFragment extends Fragment
       }
 
       setCorrectMenuVisibility(menu);
+      listener.onMessageActionToolbarOpened();
       return true;
     }
 

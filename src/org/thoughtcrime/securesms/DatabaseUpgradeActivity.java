@@ -96,6 +96,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int COLOR_MIGRATION                      = 412;
   public static final int UNIDENTIFIED_DELIVERY                = 422;
   public static final int SIGNALING_KEY_DEPRECATION            = 447;
+  public static final int CONVERSATION_SEARCH                  = 455;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -123,6 +124,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(COLOR_MIGRATION);
     add(UNIDENTIFIED_DELIVERY);
     add(SIGNALING_KEY_DEPRECATION);
+    add(CONVERSATION_SEARCH);
   }};
 
   private MasterSecret masterSecret;

@@ -30,6 +30,8 @@ public class CursorList<T> implements List<T>, Closeable {
   public CursorList(@NonNull Cursor cursor, @NonNull ModelBuilder<T> modelBuilder) {
     this.cursor       = cursor;
     this.modelBuilder = modelBuilder;
+
+    forceQueryLoad();
   }
 
   public static <T> CursorList<T> emptyList() {
@@ -193,6 +195,10 @@ public class CursorList<T> implements List<T>, Closeable {
 
   public void unregisterContentObserver(@NonNull ContentObserver observer) {
     cursor.unregisterContentObserver(observer);
+  }
+
+  private void forceQueryLoad() {
+    cursor.getCount();
   }
 
   public interface ModelBuilder<T> {

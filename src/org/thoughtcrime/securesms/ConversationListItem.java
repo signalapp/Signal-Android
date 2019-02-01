@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build.VERSION;
@@ -32,11 +31,9 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.AlertView;
@@ -51,6 +48,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.SearchUtil;
+import org.thoughtcrime.securesms.util.SearchUtil.StyleFactory;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -59,8 +58,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-
-import static org.thoughtcrime.securesms.util.SpanUtil.color;
 
 public class ConversationListItem extends RelativeLayout
                                   implements RecipientModifiedListener,
@@ -150,7 +147,7 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipient.addListener(this);
     if (highlightSubstring != null) {
-      this.fromView.setText(getHighlightedSpan(locale, recipient.getName(), highlightSubstring));
+      this.fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), recipient.getName(), highlightSubstring));
     } else {
       this.fromView.setText(recipient, unreadCount == 0);
     }
@@ -204,8 +201,8 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipient.addListener(this);
 
-    fromView.setText(getHighlightedSpan(locale, recipient.getName(), highlightSubstring));
-    subjectView.setText(getHighlightedSpan(locale, contact.getAddress().toPhoneString(), highlightSubstring));
+    fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), recipient.getName(), highlightSubstring));
+    subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), contact.getAddress().toPhoneString(), highlightSubstring));
     dateView.setText("");
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
@@ -224,13 +221,13 @@ public class ConversationListItem extends RelativeLayout
                    @Nullable String        highlightSubstring)
   {
     this.selectedThreads = Collections.emptySet();
-    this.recipient       = messageResult.recipient;
+    this.recipient       = messageResult.conversationRecipient;
     this.glideRequests   = glideRequests;
 
     this.recipient.addListener(this);
 
     fromView.setText(recipient, true);
-    subjectView.setText(getHighlightedSpan(locale, messageResult.bodySnippet, highlightSubstring));
+    subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), messageResult.bodySnippet, highlightSubstring));
     dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.receivedTimestampMs));
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
@@ -331,44 +328,6 @@ public class ConversationListItem extends RelativeLayout
 
     unreadIndicator.setText(String.valueOf(unreadCount));
     unreadIndicator.setVisibility(View.VISIBLE);
-  }
-
-  private Spanned getHighlightedSpan(@NonNull  Locale locale,
-                                     @Nullable String value,
-                                     @Nullable String highlight)
-  {
-    if (TextUtils.isEmpty(value)) {
-      return new SpannableString("");
-    }
-
-    value = value.replaceAll("\n", " ");
-
-    if (TextUtils.isEmpty(highlight)) {
-      return new SpannableString(value);
-    }
-
-    String       normalizedValue  = value.toLowerCase(locale);
-    String       normalizedTest   = highlight.toLowerCase(locale);
-    List<String> testTokens       = Stream.of(normalizedTest.split(" ")).filter(s -> s.trim().length() > 0).toList();
-
-    Spannable spanned          = new SpannableString(value);
-    int       searchStartIndex = 0;
-
-    for (String token : testTokens) {
-      if (searchStartIndex >= spanned.length()) {
-        break;
-      }
-
-      int start = normalizedValue.indexOf(token, searchStartIndex);
-
-      if (start >= 0) {
-        int end = Math.min(start + token.length(), spanned.length());
-        spanned.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-        searchStartIndex = end;
-      }
-    }
-
-    return spanned;
   }
 
   @Override
