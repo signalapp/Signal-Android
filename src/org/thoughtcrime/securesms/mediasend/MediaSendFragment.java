@@ -180,8 +180,6 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     captionText.clearFocus();
     composeText.requestFocus();
 
-    emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
-
     fragmentPagerAdapter = new MediaSendFragmentPagerAdapter(requireActivity().getSupportFragmentManager(), locale);
     fragmentPager.setAdapter(fragmentPagerAdapter);
 
@@ -210,6 +208,13 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     sendButton.disableTransport(transportOption.getType() == TransportOption.Type.SMS ? TransportOption.Type.TEXTSECURE : TransportOption.Type.SMS);
 
     composeText.append(getArguments().getString(KEY_BODY));
+
+
+    if (TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
+      emojiToggle.setVisibility(View.GONE);
+    } else {
+      emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
+    }
   }
 
   @Override
