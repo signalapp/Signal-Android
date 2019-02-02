@@ -26,6 +26,8 @@ public class CallRequestController implements RequestController {
   public void cancel() {
     AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
       synchronized (CallRequestController.this) {
+        if (canceled) return;
+        
         call.cancel();
 
         if (stream != null) {
