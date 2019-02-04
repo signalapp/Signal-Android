@@ -312,6 +312,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Įjungti rašymo indikatorius</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Įjungti rašymo indikatorius</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne, ačiū</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Pristatome nuorodų peržiūras.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Dabar yra palaikomos pasirinktinos populiariausių svetainių internete nuorodų peržiūros.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Šią ypatybę galite bet kuriuo metu įjungti ar išjungti savo Signal nustatymuose (Privatumas &gt; Siųsti nuorodų peržiūras).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Atgaunama žinutė...</string>
   <!--GcmRefreshJob-->
@@ -1024,6 +1027,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Naudoti Signal visoms gaunamosioms multimedijos žinutėms</string>
   <string name="preferences__pref_enter_sends_title">Enter (Įvedimo) klavišas išsiunčia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
+  <string name="preferences__send_link_previews">Siųsti nuorodų peržiūras</string>
+  <string name="preferences__previews_are_supported_for">Peržiūros yra palaikomos Imgur, Instagram, Reddit, ir YouTube nuorodoms</string>
   <string name="preferences__choose_identity">Pasirinkti tapatybę</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pasirinkite kontaktą iš kontaktų sąrašo.</string>
   <string name="preferences__change_passphrase">Pakeisti slaptafrazę</string>

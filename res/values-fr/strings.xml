@@ -154,6 +154,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal a besoin de l’autorisation Appareil photo afin de prendre des photos ou des vidéos, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner Autorisations et activer Appareil photo.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal a besoin de l’autorisation Appareil photo pour prendre des photos ou des vidéos</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne peut ni envoyer de textos ni de messages multimédias, car ce n’est pas votre appli de textos par défaut. Souhaitez-vous changer cela dans vos paramètres Android ?</string>
   <string name="ConversationActivity_yes">Oui</string>
   <string name="ConversationActivity_no">Non</string>
   <!--ConversationAdapter-->
@@ -283,6 +284,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activer les indicateurs de saisie</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activer les indicateurs de saisie</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Non merci</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Les aperçus de liens sont arrivés.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Les aperçus facultatifs de liens sont maintenant pris en charge pour certains des sites les plus populaires d’Internet.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vous pouvez désactiver ou activer cette fonction en tout temps dans vos paramètres de Signal (Confidentialité &gt; Envoyer des aperçus de liens).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Récupération d’un message…</string>
   <!--GcmRefreshJob-->
@@ -374,7 +378,13 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Téléchargement du message multimédia</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erreur de téléchargement du message multimédia. Touchez pour ressayer</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Envoyer à %s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Touchez pour sélectionner</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Vous ne pouvez pas partager plus d’%d élément.</item>
+    <item quantity="other">Vous ne pouvez pas partager plus de %d éléments.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Ajouter un légende…</string>
   <!--MediaRepository-->
@@ -953,6 +963,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utiliser Signal pour tous les messages multimédias entrants</string>
   <string name="preferences__pref_enter_sends_title">La touche Entrée envoie</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Appuyer sur la touche Entrée enverra les textos</string>
+  <string name="preferences__send_link_previews">Envoyer des aperçus de liens</string>
+  <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Reddit et YouTube.</string>
   <string name="preferences__choose_identity">Choisir une identité</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans la liste des contacts.</string>
   <string name="preferences__change_passphrase">Changer la phrase de passe</string>

@@ -285,6 +285,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Gépelésindikátor engedélyezése</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Gépelésindikátor bekapcsolása</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nem, köszönöm</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Bemutatjuk a hivatkozások előnézeti képe szolgáltatást.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">A hivatkozásokhoz opcionálisan választható előnézeti képeket az internet legnépszerűbb oldalaira vezető linkekhez veheted igénybe.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">A funkció letiltását vagy engedélyezését a Signal beállításaidban teheted meg (Adatvédelem &gt; Hivatkozások előnézeti képének küldése)</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Üzenet letöltése...</string>
   <!--GcmRefreshJob-->
@@ -969,6 +972,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal használata minden bejövő multimédia üzenethez</string>
   <string name="preferences__pref_enter_sends_title">Küldés az Enter lenyomásával</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Az Enter billentyű megnyomása elküldi a szöveges üzeneteket</string>
+  <string name="preferences__send_link_previews">Hivatkozások előnézeti képének küldése</string>
+  <string name="preferences__previews_are_supported_for">Az előnézeti képek az Imgur, Instagram, Reddit és YouTube szolgáltatásokhoz érhetőek el.</string>
   <string name="preferences__choose_identity">Azonosító választása</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Válaszd ki saját névjegyed a névjegyzékből.</string>
   <string name="preferences__change_passphrase">Jelmondat megváltoztatása</string>

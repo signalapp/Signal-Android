@@ -284,6 +284,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktivizoni indikatorë shtypjeje</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Vërini në punë indikatorët e shtypjes</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Jo, faleminderit</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Paraqitje e paraparjeve të lidhjeve.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tanimë mbulohet paraparja opsionale e lidhjeve për disa nga sajtet më popullorë në Internet.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Këtë veçori mund ta aktivizoni ose çaktivizoni në çfarëdo kohe, te rregullimet tuaja të Signal-it (Privatësi &gt; Dërgo paraparje lidhjesh).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Po merret një mesazh…</string>
   <!--GcmRefreshJob-->
@@ -962,6 +965,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Përdore Signal për krejt mesazhet multimedia ardhëse</string>
   <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
+  <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string>
+  <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Reddit, dhe YouTube</string>
   <string name="preferences__choose_identity">Zgjidhni identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zgjidhni kontaktin tuaj nga lista e kontakteve.</string>
   <string name="preferences__change_passphrase">Ndryshoje frazëkalimin</string>

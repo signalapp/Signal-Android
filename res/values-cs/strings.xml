@@ -85,7 +85,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nebyl nalezen žádný webový prohlížeč.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostní kódy pro %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si %2$s přeinstaloval Signal a má teď nový identifikační klíč.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Váš bezpečnostní kód pro %1$s se změnil. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si %2$s přeinstaloval Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Přijmout</string>
   <!--ContactsCursorLoader-->
@@ -312,6 +312,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Povolit indikátory psaní.</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Zapnout indikátory psaní</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne díky</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Představujeme náhledy odkazu.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Volitelné náhledy odkazu jsou nyní podporovány na některých populárních internetových stránkách.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Tuto funkcionalitu můžete zakázat či povolit v Nastavení (Soukromí &gt; Odesílat náhledy odkazu)</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Načítám zprávu...</string>
   <!--GcmRefreshJob-->
@@ -536,7 +539,7 @@ telefonní číslo</string>
   <string name="RegistrationActivity_no_browser">Nelze otevřít tentp odkaz. Nebyl nalezen žádný prohlížeč.</string>
   <string name="RegistrationActivity_more_information">Více informací</string>
   <string name="RegistrationActivity_less_information">Méně informací</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signál potřebuje přístup ke kontaktům, abyste s emohli spojit s vašimi přáteli, vyměnovat si zprávy a bezpečně telefonovat.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signál potřebuje přístup ke kontaktům, abyste se mohli spojit s vašimi přáteli, vyměňovat si zprávy a bezpečně telefonovat.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nelze se připojit k službě. Prosím zkontrolujte připojení k internetu a poté to zkuste znovu.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Po snadné ověření vašeho telefonního čísla může Signál automaticky zkontrolovat ověřovací kód pokud mu povolíte přístup k čtení SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -612,7 +615,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi Signal s nekompatibilním formátem QR kódu. Prosím, aktualizujte svou verzi, abyste mohli QR kódy porovnat.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Naskenovaný QR kód nemá správný formát bezpečnostního kódu. Prosím naskenujte QR kód znovu.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Sdílet bezpečnostní kód prostřednictvím ...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Vaš Signal bezpečnostní kód:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Náš bezpečnostní kód Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ve schránce nebyl nalezen žádný bezpečnostní kód pro porovnání.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k fotoaparátu aby skenovat QR kódy, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
@@ -940,7 +943,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="recipients_panel__to"><small>Zadejte jméno nebo číslo</small></string>
   <string name="recipients_panel__add_members">Přidat členy</string>
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Odesílatel není v seznamu vašich konktů</string>
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Odesílatel není v seznamu vašich kontaktů</string>
   <string name="unknown_sender_view__block">BLOKOVAT</string>
   <string name="unknown_sender_view__add_to_contacts">PŘIDAT DO KONTAKTŮ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEPŘIDÁVAT, ALE PONECHAT MŮJ PROFIL VIDITELNÝ</string>
@@ -1016,6 +1019,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použít Signal pro všechny příchozí multimediální zprávy</string>
   <string name="preferences__pref_enter_sends_title">Klávesa Enter odesílá</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka \'enter\' na klávesnici odešle zprávu</string>
+  <string name="preferences__send_link_previews">Odesílat náhledy odkazu</string>
+  <string name="preferences__previews_are_supported_for">Náhledy jsou podporovaný pro odkazy na Imgur, Instagram, Reddit a YouTube</string>
   <string name="preferences__choose_identity">Zvolit identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zvolte osobu ze svého adresáře</string>
   <string name="preferences__change_passphrase">Změnit heslo</string>

@@ -284,6 +284,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Habilita els indicadors de tecleig</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activa els indicadors de tecleig</string>
   <string name="ExperienceUpgradeActivity_no_thanks">No, gràcies</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Introduïnt previsualitzacions d\'enllaços.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Previsualitzacions d\'enllaços opcionals estan disponibles per algunes de les pàgines més populars d\'internet.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Pots habilitar o deshabilitar aquesta opció quan vulguis a la configuració del teu Signal (Privadesa &gt; Envia previsualitzacions d\'enllaços).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">S\'està recuperant un missatge...</string>
   <!--GcmRefreshJob-->
@@ -960,6 +963,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Fes servir el Signal per a tots els missatges multimèdia d\'entrada</string>
   <string name="preferences__pref_enter_sends_title">Envia amb la tecla Retorn</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">En prémer Retorn s\'envia el missatge de text</string>
+  <string name="preferences__send_link_previews">Envia previsualitzacions d\'enllaços</string>
+  <string name="preferences__previews_are_supported_for">Les previsualitzacions estan disponibles per enllaços d\'Imgur, Instagram, Reddit i Youtube</string>
   <string name="preferences__choose_identity">Trieu la identitat a usar</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Trieu els contactes de la llista de contactes.</string>
   <string name="preferences__change_passphrase">Canvia la contrasenya</string>

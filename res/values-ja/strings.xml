@@ -270,6 +270,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">入力中アイコンを有効にする</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">入力中アイコンを表示する</string>
   <string name="ExperienceUpgradeActivity_no_thanks">しません</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">リンクプレビューについて</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">リンクのプレビューは、主要なネットサービスに対応しています。</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">この機能は、Signalの設定（プライバシー &gt; リンクプレビューを送る）で有効化できます。</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます...</string>
   <!--GcmRefreshJob-->
@@ -926,6 +929,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">マルチメディア・メッセージの受信はすべてSignalで行う</string>
   <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
+  <string name="preferences__send_link_previews">リンクプレビューを送る</string>
+  <string name="preferences__previews_are_supported_for">リンクプレビューは、次のサービスに対応しています: Imgur, Instagram, Reddit, YouTube</string>
   <string name="preferences__choose_identity">認証を選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>

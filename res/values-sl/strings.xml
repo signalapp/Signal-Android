@@ -312,6 +312,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Vklop kazalnikov tipkanja</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Vklopi kazalnike tipkanja</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne, hvala!</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Novo: predogled povezav.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Nekatere najbolj priljubljene spletne strani si lahko odslej izbirno ogledate v predogledu.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Storitev lahko kadarkoli izklopite ali vklopite v nastavitvah aplikacije Signal (Zasebnost &gt; Pošiljanje povezav s predogledom).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila ...</string>
   <!--GcmRefreshJob-->
@@ -1015,6 +1018,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj Signal za vsa dohodna večpredstavnostna sporočila</string>
   <string name="preferences__pref_enter_sends_title">Tipka \'Naprej\' pošlje</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritisk na tipko \'Naprej\' pošlje sporočilo</string>
+  <string name="preferences__send_link_previews">Pošiljanje povezav s predogledom</string>
+  <string name="preferences__previews_are_supported_for">Predogled je na voljo za povezave na Imgur, Instagram, Reddit in YouTube</string>
   <string name="preferences__choose_identity">Izberi identiteto</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>

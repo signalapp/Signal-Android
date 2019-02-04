@@ -110,7 +110,7 @@
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Wysyłanie nie powiodło się, dotknij, aby wyświetlić szczegóły</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Otrzymano wiadomość wymiany kluczy, dotknij aby kontynuować.</string>
-  <string name="ConversationItem_group_action_left">%1$s opuścił grupę.</string>
+  <string name="ConversationItem_group_action_left">%1$s opuścił(a) grupę.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Wysyłanie nie powiodło się, dotknij w celu użycia niezabezpieczonej alternatywy</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback do nieszyfrowanej wiadomości SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
@@ -129,7 +129,7 @@
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Przepraszamy, wystąpił błąd podczas dodawania załącznika.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Podany numer lub adres e-mail jest niepoprawny!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Wiadomość jest pusta!</string>
-  <string name="ConversationActivity_group_members">Użytkownicy grupy</string>
+  <string name="ConversationActivity_group_members">Członkowie grupy</string>
   <string name="ConversationActivity_invalid_recipient">Nieprawidłowy adresat!</string>
   <string name="ConversationActivity_added_to_home_screen">Dodano do ekranu głównego</string>
   <string name="ConversationActivity_calls_not_supported">Połączenia nie są obsługiwane</string>
@@ -312,6 +312,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Włącz wskaźniki pisania</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Włącz wskaźniki pisania</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nie dzięki</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Przedstawiamy podgląd linków.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Opcjonalne podglądy linków są teraz obsługiwane dla niektórych najpopularniejszych witryn w Internecie.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">W dowolnej chwili możesz wyłączyć lub włączyć tę funkcję w ustawieniach Signal (Prywatność &amp;gt Podgląd linków).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pobieranie wiadomości...</string>
   <!--GcmRefreshJob-->
@@ -580,7 +583,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_left_the_group">Opuścił(a) grupę</string>
   <string name="ThreadRecord_secure_session_reset">Reset bezpiecznej sesji.</string>
   <string name="ThreadRecord_draft">Szkic:</string>
-  <string name="ThreadRecord_called">Ty dzwoniłeś(aś)</string>
+  <string name="ThreadRecord_called">Dzwoniłeś(aś)</string>
   <string name="ThreadRecord_called_you">Dzwonił(a)</string>
   <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
@@ -707,7 +710,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WebRtcCallScreen_accept">Akceptuj</string>
   <string name="WebRtcCallScreen_end_call">Zakończ rozmowę</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">Dotnij, aby włączyć wideo</string>
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Dotknij, aby włączyć wideo</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Dźwięk</string>
@@ -894,10 +897,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="message_recipients_list_item__resending">Ponowne wysyłanie...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
-    <item quantity="one">%1$s dołączył do grupy.</item>
+    <item quantity="one">%1$s dołączył(a) do grupy.</item>
     <item quantity="few">%1$s dołączyli do grupy.</item>
-    <item quantity="many">%1$s dołączył do grupy.</item>
-    <item quantity="other">%1$s dołączył do grupy.</item>
+    <item quantity="many">%1$s dołączyli do grupy.</item>
+    <item quantity="other">%1$s dołączyli do grupy.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Aktualna nazwa grupy to \'%1$s\'.</string>
   <!--profile_group_share_view-->
@@ -1016,6 +1019,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Używaj Signal dla wszystkich wiadomości multimedialnych</string>
   <string name="preferences__pref_enter_sends_title">Enter wysyła</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Wciśnięcie przycisku Enter spowoduje wysłanie wiadomości</string>
+  <string name="preferences__send_link_previews">Podgląd linków</string>
+  <string name="preferences__previews_are_supported_for">Podglądy linków są obsługiwane dla Imgur, Instagram, Reddit i YouTube.</string>
   <string name="preferences__choose_identity">Wybierz tożsamość</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wybierz swój kontakt z listy kontaktów.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>

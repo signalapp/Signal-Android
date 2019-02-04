@@ -255,7 +255,7 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Unbenanntes Gerät</string>
   <string name="DeviceListItem_linked_s">%s gekoppelt</string>
-  <string name="DeviceListItem_last_active_s">Zuletzt aktiv %s</string>
+  <string name="DeviceListItem_last_active_s">Zuletzt aktiv: %s</string>
   <string name="DeviceListItem_today">Heute</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Unbekannte Datei</string>
@@ -284,6 +284,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Tipp-Indikatoren aktivieren</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Tipp-Indikatoren einschalten</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nein, danke</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Einführung von Link-Vorschauen</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optionale Link-Vorschauen werden nun für einige der beliebtesten Internetsites unterstützt.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kannst diese Funktion jederzeit in Signals Einstellungen aus- oder einschalten (»Datenschutz« → »Link-Vorschauen senden«).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--GcmRefreshJob-->
@@ -955,6 +958,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal für alle eingehenden MMS verwenden</string>
   <string name="preferences__pref_enter_sends_title">Eingabetaste sendet</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Antippen der Eingabetaste versendet Nachrichten sofort</string>
+  <string name="preferences__send_link_previews">Link-Vorschauen senden</string>
+  <string name="preferences__previews_are_supported_for">Vorschauen werden unterstützt für Links von Imgur, Instagram, Reddit und YouTube</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wähle deinen Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passphrase ändern</string>
@@ -1025,7 +1030,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__read_receipts">Lesebestätigungen</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen wirst du auch die Lesebestätigungen anderer nicht sehen können</string>
   <string name="preferences__typing_indicators">Tipp-Indikatoren</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren wirst du auch die Tipp-Indikatoren anderer nicht sehen können.</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren wirst du auch die Tipp-Indikatoren anderer nicht sehen können</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tastatur auffordern, personalisiertes Lernen auszuschalten</string>
   <string name="preferences_app_protection__blocked_contacts">Blockierte Kontakte</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
@@ -1053,9 +1058,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_notifications__priority">Priorität</string>
   <string name="preferences_communication__category_sealed_sender">Vertraulicher Absender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Indikatoren anzeigen</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Anzeigen eines Statussymbols unter »Nachrichtendetails« bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Anzeigen eines Statussymbols unter »Nachrichtendetails« bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Von jedem erlauben</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Vertraulicher Absender« aktivieren für eingehende Nachrichten von Nichtkontakten und weiterhin Kontakten, mit denen du dein Profil nicht geteilt hast.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">»Vertraulicher Absender« aktivieren für eingehende Nachrichten von Nichtkontakten und weiterhin Kontakten, mit denen du dein Profil nicht geteilt hast</string>
   <string name="preferences_communication__sealed_sender_learn_more">Mehr erfahren</string>
   <!--****************************************-->
   <!--menus-->
@@ -1238,7 +1243,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_oh_no">Oh nein!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ohne deine PIN für die Registrierungssperre wird die Registrierung dieser Rufnummer erst nach Ablauf von 7 Tagen seit ihrer letzten Aktivität auf Signal möglich sein. Es verbleiben noch %d Tage.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN für Registrierungssperre</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Für diese Rufnummer ist die Registrierungssperre aktiviert. Bitte gib die PIN für die Registrierungssperre ein.</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Für diese Rufnummer ist eine Registrierungssperre aktiviert. Bitte gib die PIN für die Registrierungssperre ein.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Für deine Rufnummer ist die Registrierungssperre aktiviert. Damit du sie nicht vergisst, wird dich Signal regelmäßig nach der PIN für die Registrierungssperre fragen.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ich habe meine PIN vergessen.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN vergessen?</string>

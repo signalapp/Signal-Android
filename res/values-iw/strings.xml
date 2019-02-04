@@ -312,6 +312,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">אפשר מחווני הקלדה</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">הפעל מחווני הקלדה</string>
   <string name="ExperienceUpgradeActivity_no_thanks">לא תודה</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">היכרות עם קדם־תצוגות של קישורים.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">קדם־תצוגות רשותיות של קישורים נתמכות כעת עבור כמה מהאתרים הפופולריים ביותר באינטרנט.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">אתה יכול להשבית או לאפשר מאפיין זה בכל זמן בהגדרות Signal שלך (פרטיות &gt; שלח קדם־תצוגות של קישורים).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">מאחזר הודעה...</string>
   <!--GcmRefreshJob-->
@@ -971,7 +974,7 @@
   <string name="AndroidManifest__change_passphrase">שנה משפט סיסמה</string>
   <string name="AndroidManifest__verify_safety_number">וודא מספר ביטחון</string>
   <string name="AndroidManifest__log_submit">הגש יומן תקלים</string>
-  <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
+  <string name="AndroidManifest__media_preview">קדם־תצוגה של מדיה</string>
   <string name="AndroidManifest__message_details">פרטי הודעה</string>
   <string name="AndroidManifest__linked_devices">מכשירים מקושרים</string>
   <string name="AndroidManifest__invite_friends">הזמן חברים</string>
@@ -1018,6 +1021,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב-Signal עבור כל הודעות המולטימדיה הנכנסות</string>
   <string name="preferences__pref_enter_sends_title">מקש Enter שולח</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על מקש Enter תישלח הודעות טקסט</string>
+  <string name="preferences__send_link_previews">שלח קדם־תצוגות של קישורים</string>
+  <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Reddit ו־YouTube</string>
   <string name="preferences__choose_identity">בחר זהות</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר את כניסת איש הקשר שלך מתוך רשימת אנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה משפט סיסמה</string>
@@ -1219,7 +1224,7 @@
   <!--media_overview-->
   <string name="media_overview_documents_fragment__no_documents_found">אין מסמכים</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">תצוגה מקדימה של מדיה</string>
+  <string name="media_preview_activity__media_content_description">קדם־תצוגה של מדיה</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">רענן</string>
   <!--redphone_audio_popup_menu-->

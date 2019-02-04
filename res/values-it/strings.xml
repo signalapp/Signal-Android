@@ -284,6 +284,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Attiva indicatori di scrittura</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Attiva gli indicatori di scrittura</string>
   <string name="ExperienceUpgradeActivity_no_thanks">No grazie</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Ti presentiamo le anteprime dei link.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Le anteprime facoltative dei link sono ora supportate per alcuni dei siti internet più famosi.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puoi disattivare o attivare questa funzione in qualsiasi momento nelle impostazioni di Signal (Privacy &gt; Invia anteprime dei link).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Reperimento di un messaggio...</string>
   <!--GcmRefreshJob-->
@@ -962,6 +965,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usa Signal per tutti i messaggi multimediali in arrivo</string>
   <string name="preferences__pref_enter_sends_title">Spedisci premendo Invio</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Il tasto Invio manderà il messaggio</string>
+  <string name="preferences__send_link_previews">Invia anteprime dei link</string>
+  <string name="preferences__previews_are_supported_for">Le anteprime sono supportate per i link di Imgur, Instagram, Reddit e YouTube</string>
   <string name="preferences__choose_identity">Scegli identità</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
   <string name="preferences__change_passphrase">Cambia password</string>

@@ -312,6 +312,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Включить индикаторы ввода</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Включить индикаторы ввода</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Нет, спасибо</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Введение в предварительный просмотр ссылок</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Для некоторых из самых популярных сайтов в интернете появилась опциональная возможность предварительного просмотра ссылок.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Вы можете отключить или включить эту функцию в любое время в настройках Signal (Конфиденциальность &gt; Отправлять предварительный просмотр ссылок).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Получение сообщения...</string>
   <!--GcmRefreshJob-->
@@ -1018,6 +1021,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать Signal для всех входящих мультимедиа-сообщений</string>
   <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
+  <string name="preferences__send_link_previews">Отправлять предпросмотр ссылки</string>
+  <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок Imgur, Instagram, Reddit и YouTube</string>
   <string name="preferences__choose_identity">Выберите личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>

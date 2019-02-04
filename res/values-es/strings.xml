@@ -284,6 +284,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activar indicador de tecleo</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activar indicador de tecleo</string>
   <string name="ExperienceUpgradeActivity_no_thanks">No, gracias</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">¡Por fin previsualizaciones de enlaces!</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Ahora están disponibles las previsualizaciones de enlaces hacia los sitios más populares de Internet.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puedes desactivar o activar esta opción en cualquier momento desde el menú de configuración de Signal (Privacidad &gt; Enviar previsualizaciones).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando un mensaje...</string>
   <!--GcmRefreshJob-->
@@ -966,6 +969,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usar Signal para todos los mensajes multimedia entrantes</string>
   <string name="preferences__pref_enter_sends_title">Enviar al tocar «Intro»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Los mensajes se enviarán al pulsar la tecla Intro.</string>
+  <string name="preferences__send_link_previews">Enviar previsualizaciones</string>
+  <string name="preferences__previews_are_supported_for">Las previsualizaciones funcionan con enlaces de Imgur, Instagram, Reddit y YouTube.</string>
   <string name="preferences__choose_identity">Seleccionar identidad</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selecciona tu propio contacto de la lista de contactos.</string>
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>

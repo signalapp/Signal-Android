@@ -284,6 +284,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ota käyttöön kirjoitustilaindikaattori</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ota käyttöön kirjoitustilaindikaattori</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ei kiitos</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Esittelemme linkkien esikatselukuvat.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Linkkien esikatselukuvat ovat valinnaisia ja niitä tuetaan nyt joillakin Internetin suosituimmista sivustoista.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Voit poistaa tämän ominaisuuden käytöstä tai ottaa sen käyttöön milloin tahansa Signalin asetuksissa (Yksityisyys &gt; Lähetä esikatselukuva linkeistä).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Haetaan viestiä...</string>
   <!--GcmRefreshJob-->
@@ -960,6 +963,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Käytä Signalia kaikkiin saapuviin multimediaviesteihin</string>
   <string name="preferences__pref_enter_sends_title">Rivinvaihto lähettää</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Rivinvaihdon painallus lähettää viestin</string>
+  <string name="preferences__send_link_previews">Lähetä esikatselukuva linkeistä</string>
+  <string name="preferences__previews_are_supported_for">Esikatselu tukee sivustoja Imgur, Instagram, Reddit ja YouTube.</string>
   <string name="preferences__choose_identity">Valitse identiteetti</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Valitse yhteystieto osoitekirjasta.</string>
   <string name="preferences__change_passphrase">Salalauseen vaihto</string>

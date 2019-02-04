@@ -284,6 +284,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ativar indicadores de escrever</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ativar indicadores de escrever</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Não, obrigado</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Introdução à pré-visualização de hiperligações.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Agora  são suportadas pré-visualizações de hiperligações para os sites mais populares da Internet.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Pode desativar ou desativar esta funcionalidade a qualquer altura nas configurações do Signal (Privacidade &gt; Enviar pré-visualização de hiperligações).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">A obter uma mensagem...</string>
   <!--GcmRefreshJob-->
@@ -962,6 +965,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar o Signal para receber todas as mensagens multimédia </string>
   <string name="preferences__pref_enter_sends_title">Tecla de enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter envia mensagem de texto</string>
+  <string name="preferences__send_link_previews">Enviar pré-visualização de hiperligações</string>
+  <string name="preferences__previews_are_supported_for">As pré-visualizações são suportadas em hiperligações do Imgur, Instagram, Reddit, e YouTube.</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contacto da lista de contactos.</string>
   <string name="preferences__change_passphrase">Alterar frase-chave</string>

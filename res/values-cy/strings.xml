@@ -314,6 +314,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Galluogi dangosyddion teipio</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Cychwyn y dangosydd teipio</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Dim diolch</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Yn cyflwyno rhagolygon dolenni.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mae rhagolygon dolenni dewisol nawr yn cael eu cynnal ar gyfer rhai o\'r gwefannau mwyaf poblogaidd ar y rhyngrwyd.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Gallwch alluogi neu analluogi\'r nodwedd yng ngosodiadau Signal. (Preifatrwydd &gt; Anfon dolen rhagolwg).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Estyn neges...</string>
   <!--GcmRefreshJob-->
@@ -1020,6 +1023,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Defnyddio Signal ar gyfer yr holl negeseuon amlgyfrwng sy\'n cael eu derbyn</string>
   <string name="preferences__pref_enter_sends_title">Pwyso Enter i anfon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pwyso Enter i anfon negeseuon testun</string>
+  <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string>
+  <string name="preferences__previews_are_supported_for">Mae rhagolygon dolenni Imgur, Instagram, Reddit, a YouTube yn cael eu cynnal</string>
   <string name="preferences__choose_identity">Dewis hunaniaeth</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Dewiswch eich cofnod cyswllt o\'r rhestr cysylltiadau.</string>
   <string name="preferences__change_passphrase">Newid cyfrinair</string>
