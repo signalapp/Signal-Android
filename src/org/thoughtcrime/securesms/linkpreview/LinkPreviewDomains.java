@@ -24,6 +24,7 @@ public class LinkPreviewDomains {
   public static final Set<String> IMAGES = new HashSet<>(Arrays.asList(
       "ytimg.com",
       "cdninstagram.com",
+      "fbcdn.net",
       "redd.it",
       "imgur.com"
   ));
