@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
@@ -82,6 +83,10 @@ public class LinkPreviewViewModel extends ViewModel {
 
   public void onTextChanged(@NonNull Context context, @NonNull String text) {
     debouncer.publish(() -> {
+      if (TextUtils.isEmpty(text)) {
+        userCanceled = false;
+      }
+
       if (userCanceled) {
         return;
       }
