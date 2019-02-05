@@ -90,7 +90,7 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
 
     compile 'org.whispersystems:signal-service-android:2.12.7'
-    compile 'org.whispersystems:webrtc-android:M71'
+    compile 'org.whispersystems:webrtc-android:M72-S2'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -188,7 +188,7 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer-ui:7a942afcc402ff01e9bf48e8d3942850986710f06562d50a1408aaf04a683151',
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
         'org.whispersystems:signal-service-android:0afd2cb17ed920611dacc54385f3ed375847c10ecd7839a025d9c61c387f7678',
-        'org.whispersystems:webrtc-android:0620880760976d78ef429dc8b383136981b9a72178e5d70f5affa681deffed69',
+        'org.whispersystems:webrtc-android:6b0a7e11c8d63e9a7ea523cd219247cf23e2919ce3411e7cd51e0f4446031597',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
