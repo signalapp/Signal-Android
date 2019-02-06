@@ -371,12 +371,12 @@
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>
   <string name="NotificationBarManager__incoming_signal_call">Indgående Signal opkald</string>
   <string name="NotificationBarManager__deny_call">Afvis opkald</string>
-  <string name="NotificationBarManager__answer_call">Tag telefonen</string>
-  <string name="NotificationBarManager__end_call">Læg på</string>
+  <string name="NotificationBarManager__answer_call">Svar opkald</string>
+  <string name="NotificationBarManager__end_call">Afslut opkald</string>
   <string name="NotificationBarManager__cancel_call">Afbryd opkald</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">Multimediebesked</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">Henter MMS...</string>
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimedie besked</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloader MMS...</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS besked kunne ikke downloades, tap for at prøve igen</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Send til %s</string>
@@ -392,14 +392,14 @@
   <string name="MediaRepository_all_media">Alle mediefiler</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Signal, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen</string>
-  <string name="MessageRecord_left_group">Du har forladt gruppen.</string>
-  <string name="MessageRecord_you_updated_group">Du opdaterede gruppen.</string>
+  <string name="MessageRecord_left_group">Du har forladt gruppen</string>
+  <string name="MessageRecord_you_updated_group">Du opdaterede gruppen</string>
   <string name="MessageRecord_you_called">Du ringede</string>
   <string name="MessageRecord_called_you">Opkald fra kontakt</string>
-  <string name="MessageRecord_missed_call">Mistet opkald</string>
+  <string name="MessageRecord_missed_call">Mistede opkald</string>
   <string name="MessageRecord_s_updated_group">%s opdaterede gruppen</string>
-  <string name="MessageRecord_s_called_you">%s har ringet til dig</string>
-  <string name="MessageRecord_called_s">Ringede til %s</string>
+  <string name="MessageRecord_s_called_you">%s ringede til dig</string>
+  <string name="MessageRecord_called_s">Ringet til %s</string>
   <string name="MessageRecord_missed_call_from">Mistet opkald fra %s</string>
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du slog beskeder med tidsudløb fra</string>
@@ -407,16 +407,16 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Besked sat til at udløbe efter %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s har sat beskeden til at udløbe efter %2$s</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du har markeret dit sikkerhedsnummer med %s verificeret</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du har markeret dit sikkerhedsnummer med %s verificeret fra en anden enhed</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du har markeret dit sikkerhedsnummer med %s ubekræftet</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du har markeret dit sikkerhedsnummer med %s ubekræftet fra en anden enhed</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du har markeret dit sikkerhedsnummer med %s som verificeret</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som verificeret fra en anden enhed</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du har markeret dit sikkerhedsnummer med %s som ubekræftet</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som ubekræftet fra en anden enhed</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Kodeord matcher ikke!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ugyldigt nuværende kodeord!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt ugyldigt kodeord!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Indtast nyt kodeord!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Tilkobl denne enhed?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Tilføj denne enhed?</string>
   <string name="DeviceProvisioningActivity_cancel">AFBRYD</string>
   <string name="DeviceProvisioningActivity_continue">FORTSÆT</string>
   <string name="DeviceProvisioningActivity_content_intro">Den vil være i stand til at</string>
@@ -424,18 +424,18 @@
         • Læs alle dine beskeder
         \n• Send beskeder i dit navn
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Tilkobler enhed</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Tilkobler ny enhed...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Enhed tilkoblet!</string>
-  <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhed fundet.</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Tilføjer enhed</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Tilføjer ny enhed...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Enhed tilføjet!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhed fundet</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netværksfejl</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ups. Du har allerede for mange enheder tilsluttet, prøv at fjerne én</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager. Dette er ikke en gyldig QR-kode til at forbinde enheder</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Forbind en Signal enhed?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at forbinde en Signal-enhed vha. en tredjeparts-skanner. Af hensyn til sikkerhed, bør du skanne koden igen fra selve Signal-appen</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Tilføj en Signal enhed?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at tilføje en Signal enhed via en 3 parts skanner. Af sikkerhedshensyn bør du skanne koden igen som findes i Signal app\'en</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan ikke scanne QR kode uden kamera-tilladelsen</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan ikke scanne en QR kode uden tilladelse til at tilgå kameraet</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Beskeder med tidsudløb</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Din besked udløber ikke </string>
@@ -446,19 +446,19 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Tilføj kodeord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Din version af Google Play-tjenester virker ikke korrekt. Geninstallér Google Play-tjenester og prøv igen</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Din installerede version af Google Play tjenester virker ikke korrekt. Geninstallér venligst Google Play tjenester og prøv igen</string>
   <!--PushNotificationReceiveJob-->
   <string name="PushNotificationReceiveJob_retrieving_a_message">Modtager en meddelelse...</string>
   <!--RatingManager-->
-  <string name="RatingManager_rate_this_app">Bedøm denne app</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge denne app, så hjælp os ved at bedømme den</string>
+  <string name="RatingManager_rate_this_app">Bedøm app\'en</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge app\'en, så hjælp os venligst ved at bedømme den</string>
   <string name="RatingManager_rate_now">Bedøm nu!</string>
   <string name="RatingManager_no_thanks">Nej tak</string>
   <string name="RatingManager_later">Senere</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, det ser ud til at Play Butik ikke er installeret på din enhed</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Blokér denne kontakt?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du vil ikke længere modtage beskeder eller opkald fra denne kontakt</string>
+  <string name="RecipientPreferenceActivity_block_this_contact_question">Blokér kontakten?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du vil ikke længere modtage beskeder eller opkald fra kontakten</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group">Blokér og forlad gruppen?</string>
   <string name="RecipientPreferenceActivity_block_group">Blokér gruppen?</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group_description">Du vil ikke længere modtage beskeder eller opdateringer fra gruppen</string>
@@ -1052,7 +1052,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="preferences_chats__message_trimming">Trimning af beskeder</string>
   <string name="preferences_advanced__use_system_emoji">Anvend systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktivér Signals indbyggede emoji-understøttelse</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal-serveren for at undgå at afsløre din IP-adresse for din kontakt. Dette vil give en dårligere Signalkvalitet</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal serveren, for at undgå at afsløre din IP-adresse for din kontakt. Dette vil give en dårligere opkaldskvalitet</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
   <string name="preferences_app_protection__app_access">App tilgang</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
@@ -1166,7 +1166,7 @@ Modtog en nøgle-besked for en ugyldig protokol-version.
   <string name="reminder_header_service_outage_text">Signal oplever tekniske problemer. Vi arbejder hårdt på at genoprette servicen, så hurtigt som muligt</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
-  <string name="media_preview__forward_title">Videresend besked</string>
+  <string name="media_preview__forward_title">Videresend</string>
   <string name="media_preview__all_media_title">Delte mediefiler</string>
   <!--media_overview-->
   <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string>

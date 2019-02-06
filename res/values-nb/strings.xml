@@ -285,6 +285,8 @@
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Slå på skriverindikatorer</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Vi presenterer linkforhåndsvisninger.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valgfrie linkforhåndsvisninger støttes nå for noen av de mest populære nettstedene på Internett.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan deaktivere eller aktivere denne funksjonen når som helst i innstillingene for Signal (Personvern &gt; Send linkforhåndsvisninger).</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding...</string>
   <!--GcmRefreshJob-->
@@ -963,6 +965,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle inngående multimediemeldinger </string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk enter-tast for å sende tekstmeldinger</string>
+  <string name="preferences__send_link_previews">Send linkforhåndsvisninger</string>
   <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Reddit og YouTube-koblinger</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>

@@ -373,6 +373,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Legg til bildetekst …</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">All media</string>
   <!--MessageRecord-->

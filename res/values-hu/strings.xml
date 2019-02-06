@@ -286,8 +286,8 @@
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Gépelésindikátor bekapcsolása</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nem, köszönöm</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Bemutatjuk a hivatkozások előnézeti képe szolgáltatást.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">A hivatkozásokhoz opcionálisan választható előnézeti képeket az internet legnépszerűbb oldalaira vezető linkekhez veheted igénybe.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">A funkció letiltását vagy engedélyezését a Signal beállításaidban teheted meg (Adatvédelem &gt; Hivatkozások előnézeti képének küldése)</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">A hivatkozásokhoz opcionálisan engedélyezhető előnézeti képeket az internet legnépszerűbb oldalaira mutató linkekhez veheted igénybe.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">A funkció engedélyezését vagy letiltását a Signal beállításaiban teheted meg (Adatvédelem &gt; Hivatkozások előnézeti képének küldése)</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Üzenet letöltése...</string>
   <!--GcmRefreshJob-->

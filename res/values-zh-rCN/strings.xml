@@ -270,6 +270,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">启用“正在输入”提示</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">打开“正在输入”提示</string>
   <string name="ExperienceUpgradeActivity_no_thanks">不，谢谢。</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">隆重推出“链接预览”功能。</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">可选的链接预览功能现支持互联网上一些最热门的站点。</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">您可以随时在Signal设置中启用或禁用此功能（隐私 &gt; 发送链接预览）。</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->
@@ -932,6 +935,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 来接收所有的彩信。</string>
   <string name="preferences__pref_enter_sends_title">按下回车键发送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下回车键将会发送短信息</string>
+  <string name="preferences__send_link_previews">发送链接预览</string>
+  <string name="preferences__previews_are_supported_for">预览现支持Imgur, Instagram, Reddit, 以及YouTube链接</string>
   <string name="preferences__choose_identity">选择身份</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择您的联系人条目。</string>
   <string name="preferences__change_passphrase"> 修改密码</string>

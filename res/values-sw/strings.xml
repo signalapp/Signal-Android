@@ -85,7 +85,12 @@
   <string name="ContactShareEditActivity_invalid_contact">Mawasilianao yaliyochaguliwa sio sahihi</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">imefeli kutuma, gusa kwa taarifa</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">umepokea ujumbe uliobadilishwa, gusa  kuendelea na mchakato</string>
   <string name="ConversationItem_group_action_left">%1$s ameondoka kwenye kundi</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">imefeli kutuma, gusa kwa isiyo salama ili kuanguka nyuma</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">kuanguka nyuma kwa kutoa nywila</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">kuanguka nyuma kwa kutoa nywila MMS</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">huu ujumbe uta 1 sio 1 kuwa na nywila kwasababu mpokeaji hatumii tena Signal./n/n tuma ujumbe usio salama</string>
   <string name="ConversationItem_unable_to_open_media">Haiwezi kupata programu inayoweza kufungua media hii.</string>
   <string name="ConversationItem_from_s">kutoka %s</string>
   <string name="ConversationItem_to_s">kwenda %s</string>
@@ -143,6 +148,7 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Hakuna matokeo yamepatikana kwa \'1%s\'</string>
   <string name="ConversationListFragment_deleting">Inafutwa</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">futa maongezi yaliyochaguliwa</string>
   <string name="ConversationListFragment_undo">FUTA</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Ujumbe wa kubadilishana muhimu</string>
