@@ -50,6 +50,8 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
 
   @Override
   public void onNewToken(String token) {
+    Log.i(TAG, "onNewToken()");
+
     if (!TextSecurePreferences.isPushRegistered(getApplicationContext())) {
       Log.i(TAG, "Got a new FCM token, but the user isn't registered.");
       return;

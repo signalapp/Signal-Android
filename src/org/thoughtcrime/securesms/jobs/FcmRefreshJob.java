@@ -91,6 +91,10 @@ public class FcmRefreshJob extends ContextJob implements InjectableType {
       Optional<String> token = FcmUtil.getToken();
 
       if (token.isPresent()) {
+        if (!token.get().equals(TextSecurePreferences.getFcmToken(context))) {
+          Log.i(TAG, "New token differs from the old token.");
+        }
+
         textSecureAccountManager.setGcmId(token);
         TextSecurePreferences.setFcmToken(context, token.get());
         TextSecurePreferences.setFcmTokenLastSetTime(context, System.currentTimeMillis());
