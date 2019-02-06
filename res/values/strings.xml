@@ -331,6 +331,7 @@
     <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducing link previews.</string>
     <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optional link previews are now supported for some of the most popular sites on the Internet.</string>
     <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">You can disable or enable this feature anytime in your Signal settings (Privacy &gt; Send link previews).</string>
+    <string name="ExperienceUpgradeActivity_got_it">Got it</string>
 
     <!-- GcmBroadcastReceiver -->
     <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message...</string>
