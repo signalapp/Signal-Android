@@ -218,7 +218,7 @@ public class DirectoryHelper {
           }
         }
       } catch (RemoteException | OperationApplicationException e) {
-        Log.w(TAG, "Failed to update contacts.", e);
+        Log.w(TAG, e);
       }
     }
   }
