@@ -47,7 +47,6 @@ class ApkDiff:
                 if destinationEntryInfo.filename == ignoreFile:
                     destinationInfoList.remove(destinationEntryInfo)
 
-        print(len(sourceInfoList))
         if len(sourceInfoList) != len(destinationInfoList):
             print("APK info lists of different length!")
             return False
