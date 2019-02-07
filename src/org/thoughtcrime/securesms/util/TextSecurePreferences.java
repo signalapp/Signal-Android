@@ -138,10 +138,11 @@ public class TextSecurePreferences {
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
   private static final String NEXT_SIGNED_PRE_KEY_ID   = "pref_next_signed_pre_key_id";
 
-  public  static final String BACKUP_ENABLED    = "pref_backup_enabled";
-  private static final String BACKUP_PASSPHRASE = "pref_backup_passphrase";
-  private static final String BACKUP_TIME       = "pref_backup_next_time";
-  public  static final String BACKUP_NOW        = "pref_backup_create";
+  public  static final String BACKUP_ENABLED              = "pref_backup_enabled";
+  private static final String BACKUP_PASSPHRASE           = "pref_backup_passphrase";
+  private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
+  private static final String BACKUP_TIME                 = "pref_backup_next_time";
+  public  static final String BACKUP_NOW                  = "pref_backup_create";
 
   public static final String SCREEN_LOCK         = "pref_android_screen_lock";
   public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
@@ -229,6 +230,14 @@ public class TextSecurePreferences {
 
   public static @Nullable String getBackupPassphrase(@NonNull Context context) {
     return getStringPreference(context, BACKUP_PASSPHRASE, null);
+  }
+
+  public static void setEncryptedBackupPassphrase(@NonNull Context context, @Nullable String encryptedPassphrase) {
+    setStringPreference(context, ENCRYPTED_BACKUP_PASSPHRASE, encryptedPassphrase);
+  }
+
+  public static @Nullable String getEncryptedBackupPassphrase(@NonNull Context context) {
+    return getStringPreference(context, ENCRYPTED_BACKUP_PASSPHRASE, null);
   }
 
   public static void setBackupEnabled(@NonNull Context context, boolean value) {
