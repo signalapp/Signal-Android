@@ -89,7 +89,7 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer-core:2.9.1'
     compile 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
 
-    compile 'org.whispersystems:signal-service-android:2.12.7'
+    compile 'org.whispersystems:signal-service-android:2.12.8'
     compile 'org.whispersystems:webrtc-android:M72-S2'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
@@ -187,7 +187,7 @@ dependencyVerification {
         'com.google.android.gms:play-services-auth:aec9e1c584d442cb9f59481a50b2c66dc191872607c04d97ecb82dd0eb5149ec',
         'com.google.android.exoplayer:exoplayer-ui:7a942afcc402ff01e9bf48e8d3942850986710f06562d50a1408aaf04a683151',
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
-        'org.whispersystems:signal-service-android:0afd2cb17ed920611dacc54385f3ed375847c10ecd7839a025d9c61c387f7678',
+        'org.whispersystems:signal-service-android:68a349a9e05089f33ab5a9b9fc330526f59d31e8385ff9f5b70bc4a88bd0e297',
         'org.whispersystems:webrtc-android:6b0a7e11c8d63e9a7ea523cd219247cf23e2919ce3411e7cd51e0f4446031597',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -268,7 +268,7 @@ dependencyVerification {
         'com.android.support.constraint:constraint-layout-solver:2cafbe356f71c208013d021f32943904798cd6459e5107f9fe27000eb5bc2aef',
         'com.google.guava:listenablefuture:e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069',
         'org.signal:signal-metadata-android:d9d798aab7ee7200373ecff8718baf8aaeb632c123604e8a41b7b4c0c97eeee1',
-        'org.whispersystems:signal-service-java:9573395fe0b514cff10b8166f44de00a98682e0822a2b8204e9b9e696d53cb90',
+        'org.whispersystems:signal-service-java:fde1a008fe42ebbf1cd35018b363135cd8fec9e690304f8917b5ffb7080fa2a5',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
         'com.github.bumptech.glide:annotations:bede99ef9f71517a4274bac18fd3e483e9f2b6108d7d6fe8f4949be4aa4d9512',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
