@@ -5,7 +5,8 @@ from zipfile import ZipFile
 
 class ApkDiff:
 
-    IGNORE_FILES = ["META-INF/MANIFEST.MF", "META-INF/SIGNAL_S.RSA", "META-INF/SIGNAL_S.SF"]
+    # "resources.arsc" is on the list due to a bug. https://issuetracker.google.com/issues/110237303
+    IGNORE_FILES = ["resources.arsc", "META-INF/MANIFEST.MF", "META-INF/SIGNAL_S.RSA", "META-INF/SIGNAL_S.SF"]
 
     def compare(self, sourceApk, destinationApk):
         sourceZip      = ZipFile(sourceApk, 'r')
@@ -35,10 +36,19 @@ class ApkDiff:
         return True
 
     def compareEntries(self, sourceZip, destinationZip):
-        sourceInfoList      = filter(lambda sourceInfo: sourceInfo.filename not in self.IGNORE_FILES, sourceZip.infolist())
-        destinationInfoList = filter(lambda destinationInfo: destinationInfo.filename not in self.IGNORE_FILES, destinationZip.infolist())
+        sourceInfoList = sourceZip.infolist()
+        destinationInfoList = destinationZip.infolist()
 
-        if len(list(sourceInfoList)) != len(list(destinationInfoList)):
+        for ignoreFile in self.IGNORE_FILES:
+            for sourceEntryInfo in sourceInfoList:
+                if sourceEntryInfo.filename == ignoreFile:
+                    sourceInfoList.remove(sourceEntryInfo)
+            for destinationEntryInfo in destinationInfoList:
+                if destinationEntryInfo.filename == ignoreFile:
+                    destinationInfoList.remove(destinationEntryInfo)
+
+        print(len(sourceInfoList))
+        if len(sourceInfoList) != len(destinationInfoList):
             print("APK info lists of different length!")
             return False
 
@@ -61,7 +71,7 @@ class ApkDiff:
         sourceChunk      = sourceFile.read(1024)
         destinationChunk = destinationFile.read(1024)
 
-        while sourceChunk != "" or destinationChunk != "":
+        while len(sourceChunk) != 0 or len(destinationChunk) != 0:
             if sourceChunk != destinationChunk:
                 return False
 
