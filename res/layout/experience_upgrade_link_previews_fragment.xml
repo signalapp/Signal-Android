@@ -99,7 +99,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/ok"
+        android:text="@string/ExperienceUpgradeActivity_got_it"
         android:textColor="@color/core_blue"
         app:backgroundTint="@color/core_white"
         app:layout_constraintBottom_toBottomOf="parent"
