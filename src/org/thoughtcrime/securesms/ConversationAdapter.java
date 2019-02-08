@@ -280,7 +280,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     List<DatabaseAttachment> messageAttachments = Stream.of(attachments).filterNot(DatabaseAttachment::isQuote).toList();
 
     if (messageAttachments.size() > 0 && messageAttachments.get(0).getFastPreflightId() != null) {
-      return Long.valueOf(messageAttachments.get(0).getFastPreflightId());
+      return Long.parseLong(messageAttachments.get(0).getFastPreflightId());
     }
 
     final String unique = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIQUE_ROW_ID));
@@ -294,7 +294,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       SlideDeck slideDeck = ((MmsMessageRecord)record).getSlideDeck();
 
       if (slideDeck.getThumbnailSlide() != null && slideDeck.getThumbnailSlide().getFastPreflightId() != null) {
-        return Long.valueOf(slideDeck.getThumbnailSlide().getFastPreflightId());
+        return Long.parseLong(slideDeck.getThumbnailSlide().getFastPreflightId());
       }
     }
 
