@@ -311,6 +311,7 @@ public class MessageNotifier {
     builder.setGroup(NOTIFICATION_GROUP);
     builder.setDeleteIntent(notificationState.getDeleteIntent(context));
     builder.setOnlyAlertOnce(!signal);
+    builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
 
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
@@ -335,8 +336,8 @@ public class MessageNotifier {
                         notifications.get(0).getText());
     }
 
-    if (bundled) {
-      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
+    if (!bundled) {
+      builder.setGroupSummary(true);
     }
 
     Notification notification = builder.build();
