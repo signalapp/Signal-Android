@@ -315,6 +315,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Pristatome nuorodų peržiūras.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Dabar yra palaikomos pasirinktinos populiariausių svetainių internete nuorodų peržiūros.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Šią ypatybę galite bet kuriuo metu įjungti ar išjungti savo Signal nustatymuose (Privatumas &gt; Siųsti nuorodų peržiūras).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Supratau</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Atgaunama žinutė...</string>
   <!--GcmRefreshJob-->

@@ -283,6 +283,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Habilitar indicadores de digitação</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ativar indicadores de digitação</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Não, obrigado</string>
+  <string name="ExperienceUpgradeActivity_got_it">Entendi</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando uma mensagem...</string>
   <!--GcmRefreshJob-->
@@ -376,6 +377,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Adicionar legenda...</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Todas as mídias</string>
   <!--MessageRecord-->

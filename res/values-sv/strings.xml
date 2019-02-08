@@ -287,6 +287,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducerar länkförhandsvisning.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valfria länkförhandsvisningar stöds nu för några av de mest populära platserna på Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan inaktivera eller aktivera den här funktionen när som helst i dina Signal-inställningar (Sekretess &gt; Skicka länkförhandsvisningar).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Uppfattat</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Hämtar ett meddelande...</string>
   <!--GcmRefreshJob-->

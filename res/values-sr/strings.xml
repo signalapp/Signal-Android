@@ -275,6 +275,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Сада можете да поделите профилну слику и име пријатељима на Signalу</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal сада има профиле</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Не, хвала</string>
+  <string name="ExperienceUpgradeActivity_got_it">Важи</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајни неуспех комуникације Signal-a!</string>

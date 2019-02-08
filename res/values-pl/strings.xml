@@ -315,6 +315,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Przedstawiamy podgląd linków.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Opcjonalne podglądy linków są teraz obsługiwane dla niektórych najpopularniejszych witryn w Internecie.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">W dowolnej chwili możesz wyłączyć lub włączyć tę funkcję w ustawieniach Signal (Prywatność &amp;gt Podgląd linków).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Rozumiem</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pobieranie wiadomości...</string>
   <!--GcmRefreshJob-->

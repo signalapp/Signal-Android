@@ -284,6 +284,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Luba kirjutamisindikaatorid</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Lülita kirjutamisindikaatorid sisse</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Tänan, ei</string>
+  <string name="ExperienceUpgradeActivity_got_it">Sain aru</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Sõnumi vastuvõtmine...</string>
   <!--GcmRefreshJob-->

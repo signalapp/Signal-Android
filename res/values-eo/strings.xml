@@ -283,6 +283,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ŝalti tajp-indikilojn</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ŝalti tajp-indikilojn</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne, dankon</string>
+  <string name="ExperienceUpgradeActivity_got_it">Bone</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Ricevo de mesaĝo...</string>
   <!--GcmRefreshJob-->

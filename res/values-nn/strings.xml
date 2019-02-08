@@ -280,6 +280,7 @@
   <string name="ExperienceUpgradeActivity_typing_ui_title">Tastevisning er her</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Skru på tastevisning</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string>
+  <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Hentar ei melding …</string>
   <!--GcmRefreshJob-->

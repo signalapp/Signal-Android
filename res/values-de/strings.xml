@@ -287,6 +287,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Einführung von Link-Vorschauen</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optionale Link-Vorschauen werden nun für einige der beliebtesten Internetsites unterstützt.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kannst diese Funktion jederzeit in Signals Einstellungen aus- oder einschalten (»Datenschutz« → »Link-Vorschauen senden«).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Verstanden</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--GcmRefreshJob-->
@@ -482,7 +483,7 @@
   <string name="RedPhone_network_failed">Netzwerkfehler!</string>
   <string name="RedPhone_number_not_registered">Rufnummer nicht registriert!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die gewählte Rufnummer unterstützt keine sicheren Anrufe!</string>
-  <string name="RedPhone_got_it">OK</string>
+  <string name="RedPhone_got_it">Verstanden</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Wähle dein Land aus</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Landesvorwahl muss angegeben werden</string>

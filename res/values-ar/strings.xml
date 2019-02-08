@@ -326,6 +326,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">بإمكانكم الآن مشاركة صورة ملفكم الشخصي و اسمكم مع أصدقائكم على Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">هنا صفحات Signal الشخصية</string>
   <string name="ExperienceUpgradeActivity_no_thanks">لا، شكرا</string>
+  <string name="ExperienceUpgradeActivity_got_it">عُلم</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال Signal!</string>

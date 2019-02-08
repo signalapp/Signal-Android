@@ -253,6 +253,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Is féidir do ghrianghraf próifíle agus do aimn a chomhroinn le cairde anois le Signal.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Tá próifíl Signal anseo</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ní raibh maith agaibh</string>
+  <string name="ExperienceUpgradeActivity_got_it">Tuigim sin</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Fadhb cumarsáid Signal buan!</string>

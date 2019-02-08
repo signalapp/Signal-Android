@@ -317,6 +317,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Yn cyflwyno rhagolygon dolenni.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mae rhagolygon dolenni dewisol nawr yn cael eu cynnal ar gyfer rhai o\'r gwefannau mwyaf poblogaidd ar y rhyngrwyd.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Gallwch alluogi neu analluogi\'r nodwedd yng ngosodiadau Signal. (Preifatrwydd &gt; Anfon dolen rhagolwg).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Iawn, rwy\'n deall</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Estyn neges...</string>
   <!--GcmRefreshJob-->

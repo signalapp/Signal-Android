@@ -315,6 +315,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">היכרות עם קדם־תצוגות של קישורים.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">קדם־תצוגות רשותיות של קישורים נתמכות כעת עבור כמה מהאתרים הפופולריים ביותר באינטרנט.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">אתה יכול להשבית או לאפשר מאפיין זה בכל זמן בהגדרות Signal שלך (פרטיות &gt; שלח קדם־תצוגות של קישורים).</string>
+  <string name="ExperienceUpgradeActivity_got_it">הבנתי</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">מאחזר הודעה...</string>
   <!--GcmRefreshJob-->

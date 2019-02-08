@@ -287,6 +287,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Ti presentiamo le anteprime dei link.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Le anteprime facoltative dei link sono ora supportate per alcuni dei siti internet più famosi.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puoi disattivare o attivare questa funzione in qualsiasi momento nelle impostazioni di Signal (Privacy &gt; Invia anteprime dei link).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Capito</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Reperimento di un messaggio...</string>
   <!--GcmRefreshJob-->

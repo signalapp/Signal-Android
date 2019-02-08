@@ -287,6 +287,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Introdução à pré-visualização de hiperligações.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Agora  são suportadas pré-visualizações de hiperligações para os sites mais populares da Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Pode desativar ou desativar esta funcionalidade a qualquer altura nas configurações do Signal (Privacidade &gt; Enviar pré-visualização de hiperligações).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Recebido</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">A obter uma mensagem...</string>
   <!--GcmRefreshJob-->

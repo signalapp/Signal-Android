@@ -264,7 +264,7 @@
   <string name="CustomDefaultPreference_none">Nic</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teď</string>
-  <string name="DateUtils_minutes_ago">%d minuta</string>
+  <string name="DateUtils_minutes_ago">%d min.</string>
   <string name="DateUtils_today">Dnes</string>
   <string name="DateUtils_yesterday">Včera</string>
   <!--DeliveryStatus-->
@@ -315,6 +315,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Představujeme náhledy odkazu.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Volitelné náhledy odkazu jsou nyní podporovány na některých populárních internetových stránkách.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Tuto funkcionalitu můžete zakázat či povolit v Nastavení (Soukromí &gt; Odesílat náhledy odkazu)</string>
+  <string name="ExperienceUpgradeActivity_got_it">Mám to.</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Načítám zprávu...</string>
   <!--GcmRefreshJob-->

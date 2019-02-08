@@ -283,6 +283,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Активиране на индикатори за писане</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Активиране на индикатори за писане</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Не, благодаря</string>
+  <string name="ExperienceUpgradeActivity_got_it">Ясно</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Изтегляне на съобщение...</string>
   <!--GcmRefreshJob-->

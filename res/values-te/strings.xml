@@ -281,6 +281,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ఇప్పుడు మీరు Signal లో స్నేహితులతో ప్రొఫైల్ ఫోటోను మరియు పేరును పంచుకోవచ్చు</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal ప్రొఫైల్స్ ఇక్కడ ఉన్నాయి</string>
   <string name="ExperienceUpgradeActivity_no_thanks">వద్దు ధన్యవాదాలు</string>
+  <string name="ExperienceUpgradeActivity_got_it">దొరికింది</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది ...</string>
   <!--GcmRefreshJob-->

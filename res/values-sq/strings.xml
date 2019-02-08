@@ -287,6 +287,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Paraqitje e paraparjeve të lidhjeve.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tanimë mbulohet paraparja opsionale e lidhjeve për disa nga sajtet më popullorë në Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Këtë veçori mund ta aktivizoni ose çaktivizoni në çfarëdo kohe, te rregullimet tuaja të Signal-it (Privatësi &gt; Dërgo paraparje lidhjesh).</string>
+  <string name="ExperienceUpgradeActivity_got_it">U mor</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Po merret një mesazh…</string>
   <!--GcmRefreshJob-->

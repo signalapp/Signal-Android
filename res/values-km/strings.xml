@@ -269,6 +269,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">បើកការវាស់នៃការវាយអក្សរ</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">បើកការវាស់នៃការវាយអក្សរ</string>
   <string name="ExperienceUpgradeActivity_no_thanks">ទេ អរគុណ</string>
+  <string name="ExperienceUpgradeActivity_got_it">ទទួលបាន</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">សារកំពុងទៅដល់...</string>
   <!--GcmRefreshJob-->

@@ -269,6 +269,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktifkan indikator penulisan</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktifkan indikator penulisan</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Tidak, terima kasih</string>
+  <string name="ExperienceUpgradeActivity_got_it">Paham</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan...</string>
   <!--GcmRefreshJob-->

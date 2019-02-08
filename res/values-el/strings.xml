@@ -283,6 +283,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ενεργοποίηση δεικτών πληκτρολόγησης</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ενεργοποίηση δεικτών πληκτρολόγησης</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Όχι, ευχαριστώ</string>
+  <string name="ExperienceUpgradeActivity_got_it">Εντάξει</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Λαμβάνουμε ένα μήνυμα...</string>
   <!--GcmRefreshJob-->

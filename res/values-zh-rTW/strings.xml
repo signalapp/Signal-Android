@@ -273,6 +273,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">連結預覽功能介紹。</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">連結預覽選項現在支援網路上一些最受歡迎的網站。</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">任何時候你可以在 Signal 設定中關閉或開啟這個功能 (隱私 &gt; 傳送連結預覽)。</string>
+  <string name="ExperienceUpgradeActivity_got_it">收到</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">回收一個訊息...</string>
   <!--GcmRefreshJob-->

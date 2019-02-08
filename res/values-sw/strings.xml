@@ -200,6 +200,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sasa inasaidia wito wa video salama. Anza tu simu ya Signal kama ya kawaida, gonga kifungo cha video, na salimia habari.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Wasifu wa Signal ni hapa</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nashukuru hapana</string>
+  <string name="ExperienceUpgradeActivity_got_it">imeelewa</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Muda wote mawasiliano ya Signal hayapo</string>

@@ -287,6 +287,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Les aperçus de liens sont arrivés.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Les aperçus facultatifs de liens sont maintenant pris en charge pour certains des sites les plus populaires d’Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vous pouvez désactiver ou activer cette fonction en tout temps dans vos paramètres de Signal (Confidentialité &gt; Envoyer des aperçus de liens).</string>
+  <string name="ExperienceUpgradeActivity_got_it">D’accord</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Récupération d’un message…</string>
   <!--GcmRefreshJob-->

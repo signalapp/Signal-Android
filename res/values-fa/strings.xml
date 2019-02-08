@@ -274,6 +274,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">اکنون در Signal می‌توانید تصویر پروفایل و نام‌تان را با دوستان‌تان به اشتراک بگذارید</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">پروفایل های Signal اینجا هستند</string>
   <string name="ExperienceUpgradeActivity_no_thanks">نه ممنون</string>
+  <string name="ExperienceUpgradeActivity_got_it">فهمیدم</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ارتباط Signal بطور کل قطع شده است</string>

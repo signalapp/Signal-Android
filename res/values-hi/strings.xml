@@ -271,6 +271,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">अब आप Signal पर दोस्तों के साथ प्रोफाइल फोटो और नाम साझा कर सकते हैं।</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal प्रोफाइल यहाँ हैं</string>
   <string name="ExperienceUpgradeActivity_no_thanks">नहीं धन्यवाद </string>
+  <string name="ExperienceUpgradeActivity_got_it">समझ गया </string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">स्थायी Signal संचार विफलता</string>

@@ -273,6 +273,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">隆重推出“链接预览”功能。</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">可选的链接预览功能现支持互联网上一些最热门的站点。</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">您可以随时在Signal设置中启用或禁用此功能（隐私 &gt; 发送链接预览）。</string>
+  <string name="ExperienceUpgradeActivity_got_it">收到</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->

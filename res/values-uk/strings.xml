@@ -296,6 +296,7 @@
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профілі Signal знаходяться тут</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Тепер ви можете вибірково ділитись самі та бачити у інших, коли вони набирають текст.</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ні, дякую</string>
+  <string name="ExperienceUpgradeActivity_got_it">Ясно</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>

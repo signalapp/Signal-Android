@@ -267,6 +267,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Niha tu dikarî bi hevalên xwe re bi Signalê wêneyek û navekî profîl parve bikî</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê viderê ne</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne sipas</string>
+  <string name="ExperienceUpgradeActivity_got_it">Temam</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Ragihandina Signalê çênabe!</string>

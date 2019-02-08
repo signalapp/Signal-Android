@@ -287,6 +287,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Introduïnt previsualitzacions d\'enllaços.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Previsualitzacions d\'enllaços opcionals estan disponibles per algunes de les pàgines més populars d\'internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Pots habilitar o deshabilitar aquesta opció quan vulguis a la configuració del teu Signal (Privadesa &gt; Envia previsualitzacions d\'enllaços).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Entès!</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">S\'està recuperant un missatge...</string>
   <!--GcmRefreshJob-->

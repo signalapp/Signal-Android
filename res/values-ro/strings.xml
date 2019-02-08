@@ -301,6 +301,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Vă prezentăm previzualizarea link-urilor</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Previzualizarea opțională de link-uri este acum suportată pentru unele dintre cele mai populare site-uri de pe Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puteți activa sau dezactiva această functionalitate oricând din setările Signal ( Confidențialitate &gt; Trimite previzualizarea link-urilor).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Am înțeles</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Se obține un mesaj...</string>
   <!--GcmRefreshJob-->

@@ -287,6 +287,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Vi presenterer linkforhåndsvisninger.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valgfrie linkforhåndsvisninger støttes nå for noen av de mest populære nettstedene på Internett.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan deaktivere eller aktivere denne funksjonen når som helst i innstillingene for Signal (Personvern &gt; Send linkforhåndsvisninger).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding...</string>
   <!--GcmRefreshJob-->

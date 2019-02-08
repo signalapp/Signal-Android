@@ -249,6 +249,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">သင့် ဓါတ်ပုံနှင့် အမည်ကို Signal သုံး၍ သူငယ်ချင်းများနှင့် ဝေမျှနိုင်ပါပြီ။ </string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal လိပ်စာများ ဒီနေရာတွင်ရှိသည် </string>
   <string name="ExperienceUpgradeActivity_no_thanks">မလုပ်လိုပါ</string>
+  <string name="ExperienceUpgradeActivity_got_it">ရပြီ</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal ဆက်သွယ်မှု လုံးဝမလုပ်နိုင်ပါ။</string>

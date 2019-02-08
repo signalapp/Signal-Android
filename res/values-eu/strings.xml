@@ -154,6 +154,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalek ezin ditu SMS/MMSak bidali ez delako zure defektuzko SMS aplikazioa. Androiden ezarpenetara joan eta hau aldatu nahi duzu?</string>
   <string name="ConversationActivity_yes">Bai</string>
   <string name="ConversationActivity_no">Ez</string>
   <!--ConversationAdapter-->
@@ -279,11 +280,15 @@
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilak heldu dira</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Idazketa jakinarazleak aurkezten.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Orain aukeran mezuak idazten ari direla erakutsi eta ikusi dezakezu.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Aktibatu nahi ahal duzu?</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Aktibatu nahi al duzu?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Idazketa jakinarazleak heldu dira</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Gaitu idazketa jakinarazleak</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktibatu idazketa jakinarazleak</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Ez ezkerrik asko</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ez eskerrik asko</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Loturen aurrebistak aurkezten.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Loturen aurrebistak hautazkoak dira eta Interneteko hainbat zerbitzurekin funtzionatzen dute.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Aukera hau nahi duzunean aktibatu eta desaktibatu dezakezu Signalen ezarpenetan (Pribatutasuna &gt; Loturen aurrebistak bidali).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Jasota</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mezu bat berreskuratzen...</string>
   <!--GcmRefreshJob-->
@@ -375,8 +380,15 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS mezu berria deskargatzen</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Errorea MMS mezua jaisterakoan, ukitu berriro saiatzeko</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">%si bidali</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Tap egin aukeratzeko</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Ezin duzu elementu %d baino gehiago partekatu.</item>
+    <item quantity="other">Ezin duzu %d baino elementu gehiago partekatu.</item>
+  </plurals>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Irudi-oina gehitu</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Euskarri guztiak</string>
   <!--MessageRecord-->
@@ -960,6 +972,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Erabili Signal etorriko diren multimedia mezu guztiak jasotzeko</string>
   <string name="preferences__pref_enter_sends_title">Enter teklak bidaltzen duena</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tekla sakatzeak testu mezuak bidaliko ditu</string>
+  <string name="preferences__send_link_previews">Loturen aurrebistak bidali</string>
+  <string name="preferences__previews_are_supported_for">Aurrebistak honako zerbitzuekin funtzionatzen du: Imgur, Instagram, Reddit eta YouTube</string>
   <string name="preferences__choose_identity">Aukeratu nortasuna</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
   <string name="preferences__change_passphrase">Pasahitza aldatu</string>

@@ -281,6 +281,7 @@
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profili su stigli</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Omogući pokazitelje tipkanja</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne hvala</string>
+  <string name="ExperienceUpgradeActivity_got_it">Dohvaćeno</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Signal komunikaciji!</string>

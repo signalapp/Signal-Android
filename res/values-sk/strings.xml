@@ -315,6 +315,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Uvádzame náhľady stránok.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Náhľady sú teraz voliteľne podporované pre niektoré z najpopulárnejších webových stránok na internete.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Túto funkciu môžete kedykoľvek vypnúť alebo zapnúť v nastaveniach Signal-u (Súkromie &gt; Posielať náhľady stránok).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Chápem</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Preberanie správy…</string>
   <!--GcmRefreshJob-->

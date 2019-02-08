@@ -271,6 +271,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Kunanka kikinpa shuyuta, kallarik shuti willaywan riksichita ushankimi Signal ukupi mashikunaman</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signalpa kallariwillaykunaka kaypimi kan</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Manara, yupaychani</string>
+  <string name="ExperienceUpgradeActivity_got_it">Chaskishka</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Manapacha Signal ukuman yaykuyta usharinchu!</string>

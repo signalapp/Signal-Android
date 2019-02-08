@@ -315,6 +315,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Novo: predogled povezav.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Nekatere najbolj priljubljene spletne strani si lahko odslej izbirno ogledate v predogledu.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Storitev lahko kadarkoli izklopite ali vklopite v nastavitvah aplikacije Signal (Zasebnost &gt; Pošiljanje povezav s predogledom).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Razumem</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila ...</string>
   <!--GcmRefreshJob-->
