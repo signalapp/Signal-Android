@@ -107,6 +107,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     private Bitmap avatarBmpDefault;
 
+    private String groupNameTemp;
+    private Boolean isPreviousGroupFound = false;
+
     @NonNull
     private Optional<GroupData> groupToUpdate = Optional.absent();
 
@@ -208,11 +211,23 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
                                 BitmapUtil.fromByteArray(groupRecord.getAvatar()),
                                 groupRecord.getAvatar(),
                                 groupRecord.getTitle()));
-                        groupName.setText(group.get().name);
+                        //Save the group name you're overwriting in case the user has already written a group name
+                        //Don't save it if it's already a pre-populated group name last time
+                        if(!isPreviousGroupFound) {
+                            groupNameTemp = groupName.getText().toString();
+                        }
+                        //If you found a pre-made group, but it has no group name and the user has typed one in, set the new group name
+                        //Else update the group with the existing group name
+                        if(group.get().name == null) {
+                            groupName.setText(groupNameTemp);
+                        } else {
+                            groupName.setText(group.get().name);
+                        }
+                        //Update the avatar if possible
+                        //Else reset the avatar if none was found
                         if (group.get().avatarBmp != null) {
                             setAvatar(group.get().avatarBytes, group.get().avatarBmp);
                         } else {
-                            //Reset the avatar if your making a new Group Chat
                             setAvatar(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)), avatarBmpDefault);
                         }
                         matchingGroupFound = true;
@@ -223,10 +238,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
             }
 
             //Reset the Group Name and Avatar if this group does not exist
-            if (!matchingGroupFound || currentRecipientSet.size() <= 1) {
-                groupName.setText(null);
+            if (!matchingGroupFound && groupNameTemp != null) {
+                groupName.setText(groupNameTemp);
                 setAvatar(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)), avatarBmpDefault);
             }
+
+            isPreviousGroupFound = matchingGroupFound;
         }
     }
 
