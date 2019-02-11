@@ -1156,6 +1156,8 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the Enter key will send text messages</string>
     <string name="preferences__send_link_previews">Send link previews</string>
     <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Reddit, and YouTube links</string>
+    <string name="preferences__show_phone_number">Show phone number</string>
+    <string name="preferences__show_phone_number_of_recipient_in_conversation">Phone number of recipient will be shown in conversation</string>
     <string name="preferences__choose_identity">Choose identity</string>
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>

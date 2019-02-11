@@ -173,6 +173,8 @@ public class TextSecurePreferences {
 
   public static final String TYPING_INDICATORS = "pref_typing_indicators";
 
+  public static final String SHOW_PHONE_NUMBER = "pref_show_phone_number";
+
   public static final String LINK_PREVIEWS = "pref_link_previews";
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
@@ -346,6 +348,14 @@ public class TextSecurePreferences {
 
   public static void setTypingIndicatorsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, TYPING_INDICATORS, enabled);
+  }
+
+  public static boolean isShowPhoneNumberEnabled(Context context) {
+    return getBooleanPreference(context, SHOW_PHONE_NUMBER, true);
+  }
+
+  public static void setShowPhoneNumberEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, SHOW_PHONE_NUMBER, enabled);
   }
 
   public static boolean isLinkPreviewsEnabled(Context context) {

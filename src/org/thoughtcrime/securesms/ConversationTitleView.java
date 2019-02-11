@@ -133,9 +133,14 @@ public class ConversationTitleView extends RelativeLayout {
   private void setContactRecipientTitle(Recipient recipient) {
     this.title.setText(recipient.getName());
 
-    if (recipient.getCustomLabel() != null) this.subtitle.setText(recipient.getCustomLabel());
-    else                                    this.subtitle.setText(recipient.getAddress().serialize());
+    if(TextSecurePreferences.isShowPhoneNumberEnabled(this.getContext())) {
+      if (recipient.getCustomLabel() != null) this.subtitle.setText(recipient.getCustomLabel());
+      else                                    this.subtitle.setText(recipient.getAddress().serialize());
 
-    this.subtitle.setVisibility(View.VISIBLE);
+      this.subtitle.setVisibility(View.VISIBLE);
+    } else
+      this.subtitle.setVisibility(View.GONE);
+
+
   }
 }
