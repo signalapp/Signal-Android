@@ -1723,7 +1723,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       openContactShareEditor(uri);
       return new SettableFuture<>(false);
     } else if (MediaType.IMAGE.equals(mediaType) || MediaType.GIF.equals(mediaType) || MediaType.VIDEO.equals(mediaType)) {
-      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, Optional.absent(), Optional.absent());
+      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, 0, Optional.absent(), Optional.absent());
       startActivityForResult(MediaSendActivity.getIntent(ConversationActivity.this, Collections.singletonList(media), recipient, composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
@@ -2368,7 +2368,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onQuickAttachment(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height) {
       linkPreviewViewModel.onUserCancel();
-      Media media = new Media(uri, mimeType, dateTaken, width, height, Optional.of(Media.ALL_MEDIA_BUCKET_ID), Optional.absent());
+      // TODO: Carry over size?
+      Media media = new Media(uri, mimeType, dateTaken, width, height, 0, Optional.of(Media.ALL_MEDIA_BUCKET_ID), Optional.absent());
       startActivityForResult(MediaSendActivity.getIntent(ConversationActivity.this, Collections.singletonList(media), recipient, composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
     }
   }

@@ -537,6 +537,7 @@ public class ConversationFragment extends Fragment
                                     System.currentTimeMillis(),
                                     attachment.getWidth(),
                                     attachment.getHeight(),
+                                    attachment.getSize(),
                                     Optional.absent(),
                                     Optional.fromNullable(attachment.getCaption())));
           }

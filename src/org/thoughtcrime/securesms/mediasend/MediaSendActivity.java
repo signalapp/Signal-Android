@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ScribbleFragment;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -104,6 +105,9 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
     body      = getIntent().getStringExtra(KEY_BODY);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
+
+    viewModel.setMediaConstraints(transport.isSms() ? MediaConstraints.getMmsMediaConstraints(transport.getSimSubscriptionId().or(-1))
+                                                    : MediaConstraints.getPushMediaConstraints());
 
     List<Media> media = getIntent().getParcelableArrayListExtra(KEY_MEDIA);
 
@@ -211,7 +215,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   private void navigateToMediaSend(List<Media> media, String body, TransportOption transport) {
-    viewModel.setInitialSelectedMedia(media);
+    viewModel.setInitialSelectedMedia(this, media);
 
     MediaSendFragment sendFragment = MediaSendFragment.newInstance(body, transport, dynamicLanguage.getCurrentLocale());
     getSupportFragmentManager().beginTransaction()

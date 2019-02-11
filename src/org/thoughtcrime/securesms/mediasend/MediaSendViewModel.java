@@ -11,7 +11,9 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -31,7 +33,10 @@ class MediaSendViewModel extends ViewModel {
   private final MutableLiveData<Integer>           position;
   private final MutableLiveData<Optional<String>>  bucketId;
   private final MutableLiveData<List<MediaFolder>> folders;
+  private final SingleLiveEvent<Error>             error;
   private final Map<Uri, Object>                   savedDrawState;
+
+  private MediaConstraints mediaConstraints;
 
   private MediaSendViewModel(@NonNull MediaRepository repository) {
     this.repository     = repository;
@@ -40,21 +45,37 @@ class MediaSendViewModel extends ViewModel {
     this.position       = new MutableLiveData<>();
     this.bucketId       = new MutableLiveData<>();
     this.folders        = new MutableLiveData<>();
+    this.error          = new SingleLiveEvent<>();
     this.savedDrawState = new HashMap<>();
 
     position.setValue(-1);
   }
 
-  void setInitialSelectedMedia(@NonNull List<Media> newMedia) {
-    List<Media> filteredMedia       = getFilteredMedia(newMedia);
-    boolean     allBucketsPopulated = Stream.of(filteredMedia).reduce(true, (populated, m) -> populated && m.getBucketId().isPresent());
-
-    selectedMedia.setValue(filteredMedia);
-    bucketId.setValue(allBucketsPopulated ? computeBucketId(filteredMedia) : Optional.absent());
+  void setMediaConstraints(@NonNull MediaConstraints mediaConstraints) {
+    this.mediaConstraints = mediaConstraints;
   }
 
-  void onSelectedMediaChanged(@NonNull List<Media> newMedia) {
-    List<Media> filteredMedia = getFilteredMedia(newMedia);
+  void setInitialSelectedMedia(@NonNull Context context, @NonNull List<Media> newMedia) {
+    repository.getPopulatedMedia(context, newMedia, populatedMedia -> {
+      List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
+
+      if (filteredMedia.size() != newMedia.size()) {
+        error.postValue(Error.ITEM_TOO_LARGE);
+      }
+
+      boolean allBucketsPopulated = Stream.of(filteredMedia).reduce(true, (populated, m) -> populated && m.getBucketId().isPresent());
+
+      selectedMedia.postValue(filteredMedia);
+      bucketId.postValue(allBucketsPopulated ? computeBucketId(filteredMedia) : Optional.absent());
+    });
+  }
+
+  void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
+    List<Media> filteredMedia = getFilteredMedia(context, newMedia, mediaConstraints);
+
+    if (filteredMedia.size() != newMedia.size()) {
+      error.setValue(Error.ITEM_TOO_LARGE);
+    }
 
     selectedMedia.setValue(filteredMedia);
     position.setValue(filteredMedia.isEmpty() ? -1 : 0);
@@ -111,6 +132,10 @@ class MediaSendViewModel extends ViewModel {
     return bucketId;
   }
 
+  LiveData<Error> getError() {
+    return error;
+  }
+
   private Optional<String> computeBucketId(@NonNull List<Media> media) {
     if (media.isEmpty() || !media.get(0).getBucketId().isPresent()) return Optional.absent();
 
@@ -124,11 +149,20 @@ class MediaSendViewModel extends ViewModel {
     return Optional.of(candidate);
   }
 
-  private @NonNull List<Media> getFilteredMedia(@NonNull List<Media> media) {
+  private @NonNull List<Media> getFilteredMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull MediaConstraints mediaConstraints) {
     return Stream.of(media).filter(m -> MediaUtil.isGif(m.getMimeType())       ||
                                         MediaUtil.isImageType(m.getMimeType()) ||
-                                        MediaUtil.isVideoType(m.getMimeType())).toList();
+                                        MediaUtil.isVideoType(m.getMimeType()))
+                           .filter(m -> {
+                             return (MediaUtil.isImageType(m.getMimeType()) && !MediaUtil.isGif(m.getMimeType()))               ||
+                                    (MediaUtil.isGif(m.getMimeType()) && m.getSize() < mediaConstraints.getGifMaxSize(context)) ||
+                                    (MediaUtil.isVideoType(m.getMimeType()) && m.getSize() < mediaConstraints.getVideoMaxSize(context));
+                           }).toList();
 
+  }
+
+  enum Error {
+    ITEM_TOO_LARGE
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {

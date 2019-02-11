@@ -149,7 +149,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   @Override
   public void onMediaChosen(@NonNull Media media) {
     controller.onMediaSelected(bucketId, Collections.singleton(media));
-    viewModel.onSelectedMediaChanged(Collections.singletonList(media));
+    viewModel.onSelectedMediaChanged(requireContext(), Collections.singletonList(media));
   }
 
   @Override
@@ -165,7 +165,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
       actionMode.setTitle(String.valueOf(selected.size()));
     }
 
-    viewModel.onSelectedMediaChanged(selected);
+    viewModel.onSelectedMediaChanged(requireContext(), selected);
   }
 
   @Override
@@ -221,7 +221,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
       if (menuItem.getItemId() == R.id.mediapicker_menu_confirm) {
         List<Media> selected = new ArrayList<>(adapter.getSelected());
         actionMode.finish();
-        viewModel.onSelectedMediaChanged(selected);
+        viewModel.onSelectedMediaChanged(requireContext(), selected);
         controller.onMediaSelected(bucketId, selected);
         return true;
       }
@@ -232,7 +232,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
     public void onDestroyActionMode(ActionMode mode) {
       actionMode = null;
       adapter.setSelected(Collections.emptySet());
-      viewModel.onSelectedMediaChanged(Collections.emptyList());
+      viewModel.onSelectedMediaChanged(requireContext(), Collections.emptyList());
 
       if (Build.VERSION.SDK_INT >= 21) {
         requireActivity().getWindow().setStatusBarColor(statusBarColor);

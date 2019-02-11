@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
@@ -334,6 +335,12 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
         addButton.setOnClickListener(v -> controller.onAddMediaClicked(bucketId.get()));
       }
     });
+
+    viewModel.getError().observe(this, error -> {
+      if (error == MediaSendViewModel.Error.ITEM_TOO_LARGE) {
+        Toast.makeText(requireContext(), R.string.MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit, Toast.LENGTH_LONG).show();
+      }
+    });
   }
 
   private EmojiEditText getActiveInputField() {
@@ -428,7 +435,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
               bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
 
               Uri   uri     = PersistentBlobProvider.getInstance(context).create(context, baos.toByteArray(), MediaUtil.IMAGE_JPEG, null);
-              Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), media.getBucketId(), media.getCaption());
+              Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), baos.size(), media.getBucketId(), media.getCaption());
 
               updatedMedia.add(updated);
               renderTimer.split("item");

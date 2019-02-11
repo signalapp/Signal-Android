@@ -7,20 +7,24 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
+import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
+import android.util.Pair;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,6 +49,19 @@ class MediaRepository {
    */
   void getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Callback<List<Media>> callback) {
     AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> callback.onComplete(getMediaInBucket(context, bucketId)));
+  }
+
+  /**
+   * Given an existing list of {@link Media}, this will ensure that the media is populate with as
+   * much data as we have, like width/height.
+   */
+  void getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull Callback<List<Media>> callback) {
+    if (Stream.of(media).allMatch(this::isPopulated)) {
+      callback.onComplete(media);
+      return;
+    }
+
+    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> callback.onComplete(getPopulatedMedia(context, media)));
   }
 
   @WorkerThread
@@ -151,11 +168,11 @@ class MediaRepository {
     String[] projection;
 
     if (hasOrienation) {
-      projection = Build.VERSION.SDK_INT >= 16 ? new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT}
-                                               : new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION};
+      projection = Build.VERSION.SDK_INT >= 16 ? new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE}
+                                               : new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.SIZE};
     } else {
-      projection = Build.VERSION.SDK_INT >= 16 ? new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT}
-                                               : new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN };
+      projection = Build.VERSION.SDK_INT >= 16 ? new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE}
+                                               : new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.SIZE};
     }
 
     if (Media.ALL_MEDIA_BUCKET_ID.equals(bucketId)) {
@@ -171,19 +188,36 @@ class MediaRepository {
         int    orientation = hasOrienation ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
         int    width       = 0;
         int    height      = 0;
+        long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
 
         if (Build.VERSION.SDK_INT >= 16) {
           width  = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
           height = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
         }
 
-        media.add(new Media(uri, mimetype, dateTaken, width, height, Optional.of(bucketId), Optional.absent()));
+        media.add(new Media(uri, mimetype, dateTaken, width, height, size, Optional.of(bucketId), Optional.absent()));
       }
     }
 
     return media;
   }
 
+  @WorkerThread
+  private List<Media> getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media) {
+    return Stream.of(media).map(m -> {
+      try {
+        if (isPopulated(m)) {
+          return m;
+        } else if (PartAuthority.isLocalUri(m.getUri())) {
+          return getLocallyPopulatedMedia(context, m);
+        } else {
+          return getContentResolverPopulatedMedia(context, m);
+        }
+      } catch (IOException e) {
+        return m;
+      }
+    }).toList();
+  }
 
   @TargetApi(16)
   @SuppressWarnings("SuspiciousNameCombination")
@@ -197,6 +231,59 @@ class MediaRepository {
   private String getHeightColumn(int orientation) {
     if (orientation == 0 || orientation == 180) return Images.Media.HEIGHT;
     else                                        return Images.Media.WIDTH;
+  }
+
+  private boolean isPopulated(@NonNull Media media) {
+    return media.getWidth() > 0 && media.getHeight() > 0 && media.getSize() > 0;
+  }
+
+  private Media getLocallyPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
+    int  width  = media.getWidth();
+    int  height = media.getHeight();
+    long size   = media.getSize();
+
+    if (size <= 0) {
+      Optional<Long> optionalSize = Optional.fromNullable(PartAuthority.getAttachmentSize(context, media.getUri()));
+      size = optionalSize.isPresent() ? optionalSize.get() : 0;
+    }
+
+    if (size <= 0) {
+      size = MediaUtil.getMediaSize(context, media.getUri());
+    }
+
+    if (width == 0 || height == 0) {
+      Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getMimeType(), media.getUri());
+      width  = dimens.first;
+      height = dimens.second;
+    }
+
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, media.getBucketId(), media.getCaption());
+  }
+
+  private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
+    int  width  = media.getWidth();
+    int  height = media.getHeight();
+    long size   = media.getSize();
+
+    if (size <= 0) {
+      try (Cursor cursor = context.getContentResolver().query(media.getUri(), null, null, null, null)) {
+        if (cursor != null && cursor.moveToFirst()) {
+          size = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
+        }
+      }
+    }
+
+    if (size <= 0) {
+      size = MediaUtil.getMediaSize(context, media.getUri());
+    }
+
+    if (width == 0 || height == 0) {
+      Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, media.getMimeType(), media.getUri());
+      width  = dimens.first;
+      height = dimens.second;
+    }
+
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, media.getBucketId(), media.getCaption());
   }
 
   private static class FolderResult {
