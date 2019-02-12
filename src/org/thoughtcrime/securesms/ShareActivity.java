@@ -133,9 +133,10 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     super.onPause();
     if (!isPassingAlongMedia && resolvedExtra != null) {
       PersistentBlobProvider.getInstance(this).delete(this, resolvedExtra);
-    }
-    if (!isFinishing()) {
-      finish();
+
+      if (!isFinishing()) {
+        finish();
+      }
     }
   }
 
