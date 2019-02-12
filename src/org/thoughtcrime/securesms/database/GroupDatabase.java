@@ -248,6 +248,10 @@ public class GroupDatabase extends Database {
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId});
+
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+      recipient.setParticipants(Stream.of(members).map(a -> Recipient.from(context, a, false)).toList());
+    });
   }
 
   public void remove(String groupId, Address source) {
@@ -259,6 +263,14 @@ public class GroupDatabase extends Database {
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId});
+
+    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+      List<Recipient> current = recipient.getParticipants();
+      Recipient       removal = Recipient.from(context, source, false);
+
+      current.remove(removal);
+      recipient.setParticipants(current);
+    });
   }
 
   private List<Address> getCurrentMembers(String groupId) {
