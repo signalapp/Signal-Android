@@ -3,28 +3,18 @@ package org.thoughtcrime.securesms;
 import android.Manifest;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -47,6 +37,7 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
+import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
@@ -58,6 +49,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
+import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.components.registration.CallMeCountDownView;
 import org.thoughtcrime.securesms.components.registration.VerificationCodeView;
 import org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard;
@@ -99,6 +91,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.push.LockedException;
 
@@ -130,16 +123,13 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private AsYouTypeFormatter     countryFormatter;
   private ArrayAdapter<String>   countrySpinnerAdapter;
   private Spinner                countrySpinner;
-  private TextView               countryCode;
-  private TextView               number;
+  private LabeledEditText        countryCode;
+  private LabeledEditText        number;
   private CircularProgressButton createButton;
-  private TextView               informationView;
-  private TextView               informationToggleText;
   private TextView               title;
   private TextView               subtitle;
   private View                   registrationContainer;
   private View                   verificationContainer;
-  private FloatingActionButton   fab;
 
   private View                   restoreContainer;
   private TextView               restoreBackupTime;
@@ -154,6 +144,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private View                   pinClarificationContainer;
 
   private CallMeCountDownView         callMeCountDownView;
+  private View                        wrongNumberButton;
   private VerificationPinKeyboard     keyboard;
   private VerificationCodeView        verificationCodeView;
   private RegistrationState           registrationState;
@@ -169,8 +160,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
     initializeResources();
     initializeSpinner();
-    initializePermissions();
     initializeNumber();
+    initializeBackupDetection();
     initializeChallengeListener();
   }
 
@@ -203,31 +194,23 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     }
   }
 
-  @Override
-  public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-  }
-
   private void initializeResources() {
     TextView skipButton        = findViewById(R.id.skip_button);
     TextView restoreSkipButton = findViewById(R.id.skip_restore_button);
-    View     termsLinkView     = findViewById(R.id.terms_label);
 
     this.countrySpinner        = findViewById(R.id.country_spinner);
     this.countryCode           = findViewById(R.id.country_code);
     this.number                = findViewById(R.id.number);
     this.createButton          = findViewById(R.id.registerButton);
-    this.informationView       = findViewById(R.id.registration_information);
-    this.informationToggleText = findViewById(R.id.information_label);
     this.title                 = findViewById(R.id.verify_header);
     this.subtitle              = findViewById(R.id.verify_subheader);
     this.registrationContainer = findViewById(R.id.registration_container);
     this.verificationContainer = findViewById(R.id.verification_container);
-    this.fab                   = findViewById(R.id.fab);
 
     this.verificationCodeView = findViewById(R.id.code);
     this.keyboard             = findViewById(R.id.keyboard);
     this.callMeCountDownView  = findViewById(R.id.call_me_count_down);
+    this.wrongNumberButton    = findViewById(R.id.wrong_number);
 
     this.restoreContainer      = findViewById(R.id.restore_container);
     this.restoreBackupSize     = findViewById(R.id.backup_size_text);
@@ -243,14 +226,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
     this.registrationState    = new RegistrationState(RegistrationState.State.INITIAL, null, null, Optional.absent(), Optional.absent());
 
-    this.countryCode.addTextChangedListener(new CountryCodeChangedListener());
-    this.number.addTextChangedListener(new NumberChangedListener());
+    this.countryCode.getInput().addTextChangedListener(new CountryCodeChangedListener());
+    this.number.getInput().addTextChangedListener(new NumberChangedListener());
     this.createButton.setOnClickListener(v -> handleRegister());
     this.callMeCountDownView.setOnClickListener(v -> handlePhoneCallRequest());
 
     skipButton.setOnClickListener(v -> handleCancel());
-    informationToggleText.setOnClickListener(new InformationToggleListener());
-    termsLinkView.setOnClickListener(this::onTermsLinkClicked);
     restoreSkipButton.setOnClickListener(v -> displayInitialView(true));
 
     if (getIntent().getBooleanExtra(RE_REGISTRATION_EXTRA, false)) {
@@ -263,9 +244,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       if (key >= 0) verificationCodeView.append(key);
       else          verificationCodeView.delete();
     });
-
-    fab.setOnClickListener(this::onDebugClick);
-    fab.setRippleColor(Color.TRANSPARENT);
 
     this.verificationCodeView.setOnCompleteListener(this);
     EventBus.getDefault().register(this);
@@ -327,29 +305,13 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     }
   }
 
-  @SuppressLint("InlinedApi")
-  private void initializePermissions() {
-    Permissions.with(RegistrationActivity.this)
-               .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_PHONE_STATE)
-               .ifNecessary()
-               .withRationaleDialog(getString(R.string.RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends),
-                                    R.drawable.ic_contacts_white_48dp, R.drawable.ic_folder_white_48dp)
-               .onSomeGranted(permissions -> {
-                 if (permissions.contains(Manifest.permission.READ_PHONE_STATE)) {
-                   initializeNumber();
-                 }
-
-                 if (permissions.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                   initializeBackupDetection();
-                 }
-               })
-               .execute();
-  }
-
   @SuppressLint("StaticFieldLeak")
   private void initializeBackupDetection() {
+    if (!Permissions.hasAll(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+      Log.i(TAG, "Skipping backup detection. We don't have the permission.");
+      return;
+    }
+
     if (getIntent().getBooleanExtra(RE_REGISTRATION_EXTRA, false)) return;
 
     new AsyncTask<Void, Void, BackupUtil.BackupInfo>() {
@@ -822,16 +784,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         restoreContainer.animate().translationX(0).setDuration(SCENE_TRANSITION_DURATION).setListener(null).setInterpolator(new OvershootInterpolator()).start();
       }
     }).start();
-
-    fab.animate().rotationBy(375f).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        fab.clearAnimation();
-        fab.setImageResource(R.drawable.ic_restore_white_24dp);
-        fab.animate().rotationBy(360f).setDuration(SCENE_TRANSITION_DURATION).setListener(null).start();
-      }
-    }).start();
-
   }
 
   private void displayInitialView(boolean forwards) {
@@ -877,15 +829,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         registrationContainer.animate().translationX(0).setDuration(SCENE_TRANSITION_DURATION).setListener(null).setInterpolator(new OvershootInterpolator()).start();
       }
     }).start();
-
-    fab.animate().rotationBy(startDirectionMultiplier * 360f).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        fab.clearAnimation();
-        fab.setImageResource(R.drawable.ic_action_name);
-        fab.animate().rotationBy(startDirectionMultiplier * 375f).setDuration(SCENE_TRANSITION_DURATION).setListener(null).start();
-      }
-    }).start();
   }
 
   private void displayVerificationView(@NonNull String e164number, int callCountdown) {
@@ -898,42 +841,14 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     title.animate().translationX(-1 * title.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
-        title.setText(getString(R.string.RegistrationActivity_verify_s, e164number));
+        title.setText(getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, formatNumber(e164number)));
         title.clearAnimation();
         title.setTranslationX(title.getWidth());
         title.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
       }
     }).start();
 
-    subtitle.animate().translationX(-1 * subtitle.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        SpannableString subtitleDescription = new SpannableString(getString(R.string.RegistrationActivity_please_enter_the_verification_code_sent_to_s, e164number));
-        SpannableString wrongNumber         = new SpannableString(getString(R.string.RegistrationActivity_wrong_number));
-
-        ClickableSpan clickableSpan = new ClickableSpan() {
-          @Override
-          public void onClick(View widget) {
-            displayInitialView(false);
-            registrationState = new RegistrationState(RegistrationState.State.INITIAL, null, null, Optional.absent(), Optional.absent());
-          }
-
-          @Override
-          public void updateDrawState(TextPaint paint) {
-            paint.setColor(Color.WHITE);
-            paint.setUnderlineText(true);
-          }
-        };
-
-        wrongNumber.setSpan(clickableSpan, 0, wrongNumber.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        subtitle.setText(new SpannableStringBuilder(subtitleDescription).append(" ").append(wrongNumber));
-        subtitle.setMovementMethod(LinkMovementMethod.getInstance());
-        subtitle.clearAnimation();
-        subtitle.setTranslationX(subtitle.getWidth());
-        subtitle.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
-      }
-    }).start();
+    subtitle.setText("");
 
     registrationContainer.animate().translationX(-1 * registrationContainer.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
@@ -948,16 +863,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       }
     }).start();
 
-    fab.animate().rotationBy(-360f).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        fab.clearAnimation();
-        fab.setImageResource(R.drawable.ic_textsms_24dp);
-        fab.animate().rotationBy(-375f).setDuration(SCENE_TRANSITION_DURATION).setListener(null).start();
-      }
-    }).start();
-
     this.callMeCountDownView.startCountDown(callCountdown);
+
+    this.wrongNumberButton.setOnClickListener(v -> onWrongNumberClicked());
   }
 
   private void displayPinView(String code, long lockedUntil) {
@@ -991,15 +899,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         pinContainer.setTranslationX(pinContainer.getWidth());
         pinContainer.setVisibility(View.VISIBLE);
         pinContainer.animate().translationX(0).setListener(null).setInterpolator(new OvershootInterpolator()).setDuration(SCENE_TRANSITION_DURATION).start();
-      }
-    }).start();
-
-    fab.animate().rotationBy(-360f).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        fab.clearAnimation();
-        fab.setImageResource(R.drawable.ic_lock_white_24dp);
-        fab.animate().rotationBy(-360f).setDuration(SCENE_TRANSITION_DURATION).setListener(null).start();
       }
     }).start();
 
@@ -1060,13 +959,18 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     }
   }
 
-  private void onTermsLinkClicked(View v) {
+  private String formatNumber(@NonNull String e164Number) {
     try {
-      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://signal.org/legal"));
-      startActivity(intent);
-    } catch (ActivityNotFoundException e) {
-      Toast.makeText(this, R.string.RegistrationActivity_no_browser, Toast.LENGTH_SHORT).show();
+      Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(e164Number, null);
+      return PhoneNumberUtil.getInstance().format(number, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+    } catch (NumberParseException e) {
+      return e164Number;
     }
+  }
+
+  private void onWrongNumberClicked() {
+    displayInitialView(false);
+    registrationState = new RegistrationState(RegistrationState.State.INITIAL, null, null, Optional.absent(), Optional.absent());
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
@@ -1164,19 +1068,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-    }
-  }
-
-  private class InformationToggleListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      if (informationView.getVisibility() == View.VISIBLE) {
-        informationView.setVisibility(View.GONE);
-        informationToggleText.setText(R.string.RegistrationActivity_more_information);
-      } else {
-        informationView.setVisibility(View.VISIBLE);
-        informationToggleText.setText(R.string.RegistrationActivity_less_information);
-      }
     }
   }
 

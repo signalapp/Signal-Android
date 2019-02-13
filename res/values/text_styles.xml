@@ -5,7 +5,10 @@
         <item name="android:lineSpacingExtra">3sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:letterSpacing">0</item>
-        <!-- TODO: Get proper letterSpacing -->
+    </style>
+
+    <style name="Signal.Text.Headline.Registration" parent="Signal.Text.Headline">
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="Signal.Text.Body" parent="Base.TextAppearance.AppCompat.Body1">

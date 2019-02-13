@@ -298,9 +298,15 @@
         </intent-filter>
     </activity>
 
+    <activity android:name=".registration.WelcomeActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:windowSoftInputMode="stateUnchanged"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".RegistrationActivity"
               android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightNoActionBar"
+              android:theme="@style/TextSecure.LightRegistrationTheme"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -398,7 +404,7 @@
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
     <activity android:name=".CreateProfileActivity"
-              android:theme="@style/TextSecure.LightTheme"
+              android:theme="@style/TextSecure.LightRegistrationTheme"
               android:windowSoftInputMode="stateVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

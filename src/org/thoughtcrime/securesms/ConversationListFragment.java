@@ -51,6 +51,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -101,10 +102,17 @@ public class ConversationListFragment extends Fragment
   @SuppressWarnings("unused")
   private static final String TAG = ConversationListFragment.class.getSimpleName();
 
+  private static final int[] EMPTY_IMAGES = new int[] { R.drawable.empty_inbox_1,
+                                                        R.drawable.empty_inbox_2,
+                                                        R.drawable.empty_inbox_3,
+                                                        R.drawable.empty_inbox_4,
+                                                        R.drawable.empty_inbox_5 };
+
   private ActionMode                  actionMode;
   private RecyclerView                list;
   private ReminderView                reminderView;
   private View                        emptyState;
+  private ImageView                   emptyImage;
   private TextView                    emptySearch;
   private PulsingFloatingActionButton fab;
   private Locale                      locale;
@@ -126,6 +134,7 @@ public class ConversationListFragment extends Fragment
     list         = ViewUtil.findById(view, R.id.list);
     fab          = ViewUtil.findById(view, R.id.fab);
     emptyState   = ViewUtil.findById(view, R.id.empty_state);
+    emptyImage   = ViewUtil.findById(view, R.id.empty);
     emptySearch  = ViewUtil.findById(view, R.id.empty_search);
 
     if (archive) fab.setVisibility(View.GONE);
@@ -357,6 +366,7 @@ public class ConversationListFragment extends Fragment
       list.setVisibility(View.INVISIBLE);
       emptyState.setVisibility(View.VISIBLE);
       emptySearch.setVisibility(View.INVISIBLE);
+      emptyImage.setImageResource(EMPTY_IMAGES[(int) (Math.random() * EMPTY_IMAGES.length)]);
       fab.startPulse(3 * 1000);
     } else if ((cursor == null || cursor.getCount() <= 0) && !TextUtils.isEmpty(queryFilter)) {
       list.setVisibility(View.INVISIBLE);

@@ -74,6 +74,7 @@ public class TextSecurePreferences {
   private static final String VERIFYING_STATE_PREF             = "pref_verifying";
   public  static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
+  private static final String SEEN_WELCOME_SCREEN_PREF         = "pref_seen_welcome_screen";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_DEFAULT_SMS_PREF        = "pref_prompted_default_sms";
   private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
@@ -840,6 +841,14 @@ public class TextSecurePreferences {
 
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
     return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
+  }
+
+  public static boolean hasSeenWelcomeScreen(Context context) {
+    return getBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, true);
+  }
+
+  public static void setHasSeenWelcomeScreen(Context context, boolean value) {
+    setBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, value);
   }
 
   public static boolean hasPromptedPushRegistration(Context context) {

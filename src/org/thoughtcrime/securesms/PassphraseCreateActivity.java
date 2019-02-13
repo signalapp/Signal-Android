@@ -70,6 +70,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
       TextSecurePreferences.setPasswordDisabled(PassphraseCreateActivity.this, true);
       TextSecurePreferences.setReadReceiptsEnabled(PassphraseCreateActivity.this, true);
       TextSecurePreferences.setTypingIndicatorsEnabled(PassphraseCreateActivity.this, true);
+      TextSecurePreferences.setHasSeenWelcomeScreen(PassphraseCreateActivity.this, false);
 
       return null;
     }

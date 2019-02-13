@@ -437,4 +437,10 @@
         <item name="android:background">@color/core_grey_95</item>
     </style>
 
+    <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
+    </style>
+
+    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
+    </style>
+
 </resources>

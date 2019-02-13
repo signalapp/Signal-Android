@@ -264,6 +264,9 @@
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
     <string name="CreateProfileActivity_too_long">Too long</string>
+    <string name="CreateProfileActivity_profile_name">Profile Name</string>
+    <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, and the Signal service never has access to this information.</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
@@ -599,6 +602,13 @@
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">We need to verify that you\'re human.</string>
     <string name="RegistrationActivity_failed_to_verify_the_captcha">Failed to verify the CAPTCHA</string>
+    <string name="RegistrationActivity_next">Next</string>
+    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code. Carrier rates may apply.</string>
+    <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Enter the code we sent to %s</string>
+    <string name="RegistrationActivity_call">Call</string>
 
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
@@ -1447,11 +1457,9 @@
     <string name="ChatsPreferenceFragment_in_progress">In progress</string>
     <string name="LocalBackupJob_creating_backup">Creating backup...</string>
     <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
-    <string name="RegistrationActivity_verify_s">Verify %s</string>
     <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
-    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
-    <string name="RegistrationActivity_call_me_instead">Call me instead</string>
-    <string name="RegistrationActivity_available_in">Available in:\u0020</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %02d:%02d)</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
     <string name="preferences_app_protection__screen_lock">Screen lock</string>
@@ -1489,7 +1497,6 @@
     <string name="RegistrationLockDialog_error_connecting_to_the_service">Error connecting to the service</string>
     <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
     <string name="RegistrationLockDialog_disable">Disable</string>
-    <string name="RegistrationActivity_continue">Continue</string>
     <string name="preferences_chats__backups">Backups</string>
     <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>

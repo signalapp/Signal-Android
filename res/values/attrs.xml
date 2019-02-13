@@ -319,4 +319,9 @@
         <attr name="scrollView_maxHeight" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="LabeledEditText">
+        <attr name="labeledEditText_label" format="string" />
+        <attr name="labeledEditText_background" format="color" />
+        <attr name="labeledEditText_textLayout" format="reference" />
+    </declare-styleable>
 </resources>

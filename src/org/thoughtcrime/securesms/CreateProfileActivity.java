@@ -19,6 +19,8 @@ import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+
+import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -49,6 +51,7 @@ import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.IntentUtils;
@@ -82,7 +85,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
   private static final int REQUEST_CODE_AVATAR = 1;
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicRegistrationTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Inject SignalServiceAccountManager accountManager;
@@ -90,7 +93,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
   private InputAwareLayout       container;
   private ImageView              avatar;
   private CircularProgressButton finishButton;
-  private EditText               name;
+  private LabeledEditText        name;
   private EmojiToggle            emojiToggle;
   private EmojiDrawer            emojiDrawer;
   private View                   reveal;
@@ -109,7 +112,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     setContentView(R.layout.profile_create_activity);
 
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-    getSupportActionBar().setTitle(R.string.CreateProfileActivity_your_profile_info);
 
     initializeResources();
     initializeEmojiInput();
@@ -128,7 +130,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
   @Override
   public void onBackPressed() {
-    if (container.isInputOpen()) container.hideCurrentInput(name);
+    if (container.isInputOpen()) container.hideCurrentInput(name.getInput());
     else                         super.onBackPressed();
   }
 
@@ -205,7 +207,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
   private void initializeResources() {
     TextView skipButton       = ViewUtil.findById(this, R.id.skip_button);
-    TextView informationLabel = ViewUtil.findById(this, R.id.information_label);
 
     this.avatar       = ViewUtil.findById(this, R.id.avatar);
     this.name         = ViewUtil.findById(this, R.id.name);
@@ -216,15 +217,13 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     this.reveal       = ViewUtil.findById(this, R.id.reveal);
     this.nextIntent   = getIntent().getParcelableExtra(NEXT_INTENT);
 
-    this.avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp).asDrawable(this, getResources().getColor(R.color.grey_400)));
-
     this.avatar.setOnClickListener(view -> Permissions.with(this)
                                                       .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                                                       .ifNecessary()
                                                       .onAnyResult(this::handleAvatarSelectionWithPermissions)
                                                       .execute());
 
-    this.name.addTextChangedListener(new TextWatcher() {
+    this.name.getInput().addTextChangedListener(new TextWatcher() {
       @Override
       public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
       @Override
@@ -232,10 +231,10 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
       @Override
       public void afterTextChanged(Editable s) {
         if (s.toString().getBytes().length > ProfileCipher.NAME_PADDED_LENGTH) {
-          name.setError(getString(R.string.CreateProfileActivity_too_long));
+          name.getInput().setError(getString(R.string.CreateProfileActivity_too_long));
           finishButton.setEnabled(false);
-        } else if (name.getError() != null || !finishButton.isEnabled()) {
-          name.setError(null);
+        } else if (name.getInput().getError() != null || !finishButton.isEnabled()) {
+          name.getInput().setError(null);
           finishButton.setEnabled(true);
         }
       }
@@ -251,15 +250,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
       if (nextIntent != null) startActivity(nextIntent);
       finish();
     });
-
-    informationLabel.setOnClickListener(view -> {
-      Intent intent = new Intent(Intent.ACTION_VIEW);
-      intent.setData(Uri.parse("https://support.signal.org/hc/en-us/articles/115001434171"));
-
-      if (getPackageManager().queryIntentActivities(intent, 0).size() > 0) {
-        startActivity(intent);
-      }
-    });
   }
 
   private void initializeProfileName(boolean excludeSystem) {
@@ -267,14 +257,14 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
       String profileName = TextSecurePreferences.getProfileName(this);
 
       name.setText(profileName);
-      name.setSelection(profileName.length(), profileName.length());
+      name.getInput().setSelection(profileName.length(), profileName.length());
     } else if (!excludeSystem) {
       SystemProfileUtil.getSystemProfileName(this).addListener(new ListenableFuture.Listener<String>() {
         @Override
         public void onSuccess(String result) {
           if (!TextUtils.isEmpty(result)) {
             name.setText(result);
-            name.setSelection(result.length(), result.length());
+            name.getInput().setSelection(result.length(), result.length());
           }
         }
 
@@ -338,9 +328,9 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
     this.emojiToggle.setOnClickListener(v -> {
       if (container.getCurrentInput() == emojiDrawer) {
-        container.showSoftkey(name);
+        container.showSoftkey(name.getInput());
       } else {
-        container.show(name, emojiDrawer);
+        container.show(name.getInput(), emojiDrawer);
       }
     });
 
@@ -352,16 +342,16 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
       @Override
       public void onEmojiSelected(String emoji) {
-        final int start = name.getSelectionStart();
-        final int end   = name.getSelectionEnd();
+        final int start = name.getInput().getSelectionStart();
+        final int end   = name.getInput().getSelectionEnd();
 
         name.getText().replace(Math.min(start, end), Math.max(start, end), emoji);
-        name.setSelection(start + emoji.length());
+        name.getInput().setSelection(start + emoji.length());
       }
     });
 
     this.container.addOnKeyboardShownListener(() -> emojiToggle.setToEmoji());
-    this.name.setOnClickListener(v -> container.showSoftkey(name));
+    this.name.setOnClickListener(v -> container.showSoftkey(name.getInput()));
   }
 
   private Intent createAvatarSelectionIntent(@Nullable File captureFile, boolean includeClear, boolean includeCamera) {
