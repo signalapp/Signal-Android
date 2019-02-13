@@ -78,6 +78,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
+import org.thoughtcrime.securesms.registration.CaptchaActivity;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.VerificationCodeParser;
@@ -96,6 +97,7 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.KeyHelper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.push.LockedException;
@@ -117,6 +119,7 @@ import java.util.concurrent.TimeUnit;
 public class RegistrationActivity extends BaseActionBarActivity implements VerificationCodeView.OnCodeEnteredListener {
 
   private static final int    PICK_COUNTRY              = 1;
+  private static final int    CAPTCHA                   = 24601;
   private static final int    SCENE_TRANSITION_DURATION = 250;
   private static final int    DEBUG_TAP_TARGET          = 8;
   private static final int    DEBUG_TAP_ANNOUNCE        = 4;
@@ -185,6 +188,16 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       this.countryCode.setText(String.valueOf(data.getIntExtra("country_code", 1)));
       setCountryDisplay(data.getStringExtra("country_name"));
       setCountryFormatter(data.getIntExtra("country_code", 1));
+    } else if (requestCode == CAPTCHA && resultCode == RESULT_OK && data != null) {
+      registrationState = new RegistrationState(Optional.fromNullable(data.getStringExtra(CaptchaActivity.KEY_TOKEN)), registrationState);
+
+      if (data.getBooleanExtra(CaptchaActivity.KEY_IS_SMS, true)) {
+        handleRegister();
+      } else {
+        handlePhoneCallRequest();
+      }
+    } else if (requestCode == CAPTCHA) {
+      Toast.makeText(this, R.string.RegistrationActivity_failed_to_verify_the_captcha, Toast.LENGTH_LONG).show();
     }
   }
 
@@ -226,7 +239,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     this.pinForgotButton           = findViewById(R.id.forgot_button);
     this.pinClarificationContainer = findViewById(R.id.pin_clarification_container);
 
-    this.registrationState    = new RegistrationState(RegistrationState.State.INITIAL, null, null, null);
+    this.registrationState    = new RegistrationState(RegistrationState.State.INITIAL, null, null, Optional.absent(), Optional.absent());
 
     this.countryCode.addTextChangedListener(new CountryCodeChangedListener());
     this.number.addTextChangedListener(new NumberChangedListener());
@@ -388,13 +401,14 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           restoreButton.setIndeterminateProgressMode(true);
           restoreButton.setProgress(50);
 
+          final String passphrase = prompt.getText().toString();
+
           new AsyncTask<Void, Void, BackupImportResult>() {
             @Override
             protected BackupImportResult doInBackground(Void... voids) {
               try {
-                Context        context    = RegistrationActivity.this;
-                String         passphrase = prompt.getText().toString();
-                SQLiteDatabase database   = DatabaseFactory.getBackupDatabase(context);
+                Context        context  = RegistrationActivity.this;
+                SQLiteDatabase database = DatabaseFactory.getBackupDatabase(context);
 
                 FullBackupImporter.importFile(context,
                                               AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
@@ -498,9 +512,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   @SuppressLint("StaticFieldLeak")
   private void requestVerificationCode(@NonNull String e164number, boolean gcmSupported, boolean smsRetrieverSupported) {
-    new AsyncTask<Void, Void, Pair<String, Optional<String>>> () {
+    new AsyncTask<Void, Void, VerificationRequestResult> () {
       @Override
-      protected @Nullable Pair<String, Optional<String>> doInBackground(Void... voids) {
+      protected @NonNull VerificationRequestResult doInBackground(Void... voids) {
         try {
           markAsVerifying(true);
 
@@ -515,27 +529,32 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           }
 
           accountManager = AccountManagerFactory.createManager(RegistrationActivity.this, e164number, password);
-          accountManager.requestSmsVerificationCode(smsRetrieverSupported);
+          accountManager.requestSmsVerificationCode(smsRetrieverSupported, registrationState.captchaToken);
 
-          return new Pair<>(password, fcmToken);
+          return new VerificationRequestResult(password, fcmToken, Optional.absent());
         } catch (IOException e) {
           Log.w(TAG, "Error during account registration", e);
-          return null;
+          return new VerificationRequestResult(null, Optional.absent(), Optional.of(e));
         }
       }
 
-      protected void onPostExecute(@Nullable Pair<String, Optional<String>> result) {
-        if (result == null) {
+      protected void onPostExecute(@NonNull VerificationRequestResult result) {
+        if (result.exception.isPresent() && result.exception.get() instanceof CaptchaRequiredException) {
+          requestCaptcha(true);
+        } else if (result.exception.isPresent()) {
           Toast.makeText(RegistrationActivity.this, R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
           createButton.setIndeterminateProgressMode(false);
           createButton.setProgress(0);
-          return;
+        } else {
+          registrationState = new RegistrationState(RegistrationState.State.VERIFYING, e164number, result.password, result.fcmToken, Optional.absent());
+          displayVerificationView(e164number, 64);
         }
-
-        registrationState = new RegistrationState(RegistrationState.State.VERIFYING, e164number, result.first, result.second);
-        displayVerificationView(e164number, 64);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  private void requestCaptcha(boolean isSms) {
+    startActivityForResult(CaptchaActivity.getIntent(this, isSms), CAPTCHA);
   }
 
   private void handleVerificationCodeReceived(@Nullable String code) {
@@ -693,7 +712,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         @Override
         protected Void doInBackground(Void... voids) {
           try {
-            accountManager.requestVoiceVerificationCode(Locale.getDefault());
+            accountManager.requestVoiceVerificationCode(Locale.getDefault(), registrationState.captchaToken);
+          } catch (CaptchaRequiredException e) {
+            requestCaptcha(false);
           } catch (IOException e) {
             Log.w(TAG, e);
           }
@@ -892,7 +913,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           @Override
           public void onClick(View widget) {
             displayInitialView(false);
-            registrationState = new RegistrationState(RegistrationState.State.INITIAL, null, null, null);
+            registrationState = new RegistrationState(RegistrationState.State.INITIAL, null, null, Optional.absent(), Optional.absent());
           }
 
           @Override
@@ -1157,28 +1178,51 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     }
   }
 
+  private static class VerificationRequestResult {
+    private final String                password;
+    private final Optional<String>      fcmToken;
+    private final Optional<IOException> exception;
+
+    private VerificationRequestResult(String password, Optional<String> fcmToken, Optional<IOException> exception) {
+      this.password  = password;
+      this.fcmToken  = fcmToken;
+      this.exception = exception;
+    }
+  }
+
   private static class RegistrationState {
     private enum State {
       INITIAL, VERIFYING, CHECKING, PIN
     }
 
-    private final State   state;
-    private final String  e164number;
-    private final String  password;
+    private final State            state;
+    private final String           e164number;
+    private final String           password;
     private final Optional<String> gcmToken;
+    private final Optional<String> captchaToken;
 
-    RegistrationState(State state, String e164number, String password, Optional<String> gcmToken) {
-      this.state      = state;
-      this.e164number = e164number;
-      this.password   = password;
-      this.gcmToken   = gcmToken;
+    RegistrationState(State state, String e164number, String password, Optional<String> gcmToken, Optional<String> captchaToken) {
+      this.state        = state;
+      this.e164number   = e164number;
+      this.password     = password;
+      this.gcmToken     = gcmToken;
+      this.captchaToken = captchaToken;
     }
 
     RegistrationState(State state, RegistrationState previous) {
-      this.state      = state;
-      this.e164number = previous.e164number;
-      this.password   = previous.password;
-      this.gcmToken   = previous.gcmToken;
+      this.state        = state;
+      this.e164number   = previous.e164number;
+      this.password     = previous.password;
+      this.gcmToken     = previous.gcmToken;
+      this.captchaToken = previous.captchaToken;
+    }
+
+    RegistrationState(Optional<String> captchaToken, RegistrationState previous) {
+      this.state        = previous.state;
+      this.e164number   = previous.e164number;
+      this.password     = previous.password;
+      this.gcmToken     = previous.gcmToken;
+      this.captchaToken = captchaToken;
     }
   }
 

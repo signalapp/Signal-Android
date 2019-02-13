@@ -597,6 +597,8 @@
         <item quantity="one">You are now %d step away from submitting a debug log.</item>
         <item quantity="other">You are now %d steps away from submitting a debug log.</item>
     </plurals>
+    <string name="RegistrationActivity_we_need_to_verify_that_youre_human">We need to verify that you\'re human.</string>
+    <string name="RegistrationActivity_failed_to_verify_the_captcha">Failed to verify the CAPTCHA</string>
 
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
