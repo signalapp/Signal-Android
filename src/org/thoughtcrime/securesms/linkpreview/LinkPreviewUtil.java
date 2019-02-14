@@ -18,7 +18,7 @@ public final class LinkPreviewUtil {
   /**
    * @return All whitelisted URLs in the source text.
    */
-  public static @NonNull List<String> findWhitelistedUrls(@NonNull String text) {
+  public static @NonNull List<Link> findWhitelistedUrls(@NonNull String text) {
     SpannableString spannable = new SpannableString(text);
     boolean         found     = Linkify.addLinks(spannable, Linkify.WEB_URLS);
 
@@ -27,8 +27,8 @@ public final class LinkPreviewUtil {
     }
 
     return Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
-                 .map(URLSpan::getURL)
-                 .filter(LinkPreviewUtil::isWhitelistedLinkUrl)
+                 .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
+                 .filter(link -> isWhitelistedLinkUrl(link.getUrl()))
                  .toList();
   }
 

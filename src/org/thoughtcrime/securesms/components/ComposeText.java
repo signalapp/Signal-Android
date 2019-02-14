@@ -11,6 +11,7 @@ import android.support.v13.view.inputmethod.EditorInfoCompat;
 import android.support.v13.view.inputmethod.InputConnectionCompat;
 import android.support.v13.view.inputmethod.InputContentInfoCompat;
 import android.support.v4.os.BuildCompat;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -33,7 +34,8 @@ public class ComposeText extends EmojiEditText {
   private CharSequence    hint;
   private SpannableString subHint;
 
-  @Nullable private InputPanel.MediaListener mediaListener;
+  @Nullable private InputPanel.MediaListener      mediaListener;
+  @Nullable private CursorPositionChangedListener cursorPositionChangedListener;
 
   public ComposeText(Context context) {
     super(context);
@@ -66,6 +68,15 @@ public class ComposeText extends EmojiEditText {
       } else {
         setHint(ellipsizeToWidth(hint));
       }
+    }
+  }
+
+  @Override
+  protected void onSelectionChanged(int selStart, int selEnd) {
+    super.onSelectionChanged(selStart, selEnd);
+
+    if (cursorPositionChangedListener != null) {
+      cursorPositionChangedListener.onCursorPositionChanged(selStart, selEnd);
     }
   }
 
@@ -102,6 +113,10 @@ public class ComposeText extends EmojiEditText {
 
     append(invite);
     setSelection(getText().length());
+  }
+
+  public void setCursorPositionChangedListener(@Nullable CursorPositionChangedListener listener) {
+    this.cursorPositionChangedListener = listener;
   }
 
   private boolean isLandscape() {
@@ -189,4 +204,7 @@ public class ComposeText extends EmojiEditText {
     }
   }
 
+  public interface CursorPositionChangedListener {
+    void onCursorPositionChanged(int start, int end);
+  }
 }

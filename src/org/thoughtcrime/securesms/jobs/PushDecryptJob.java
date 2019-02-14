@@ -12,6 +12,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.text.TextUtils;
 import android.util.Pair;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.libsignal.metadata.InvalidMetadataMessageException;
@@ -56,6 +57,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
@@ -1070,7 +1072,7 @@ public class PushDecryptJob extends ContextJob {
       Optional<String>     url           = Optional.fromNullable(preview.getUrl());
       Optional<String>     title         = Optional.fromNullable(preview.getTitle());
       boolean              hasContent    = !TextUtils.isEmpty(title.or("")) || thumbnail.isPresent();
-      boolean              presentInBody = url.isPresent() && LinkPreviewUtil.findWhitelistedUrls(message).contains(url.get());
+      boolean              presentInBody = url.isPresent() && Stream.of(LinkPreviewUtil.findWhitelistedUrls(message)).map(Link::getUrl).collect(Collectors.toSet()).contains(url.get());
       boolean              validDomain   = url.isPresent() && LinkPreviewUtil.isWhitelistedLinkUrl(url.get());
 
       if (hasContent && presentInBody && validDomain) {

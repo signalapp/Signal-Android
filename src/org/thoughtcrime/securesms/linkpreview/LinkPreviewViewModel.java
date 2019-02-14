@@ -7,6 +7,9 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -81,7 +84,7 @@ public class LinkPreviewViewModel extends ViewModel {
     return Collections.singletonList(new LinkPreview(originalPreview.getUrl(), originalPreview.getTitle(), Optional.of(newAttachment)));
   }
 
-  public void onTextChanged(@NonNull Context context, @NonNull String text) {
+  public void onTextChanged(@NonNull Context context, @NonNull String text, int cursorStart, int cursorEnd) {
     debouncer.publish(() -> {
       if (TextUtils.isEmpty(text)) {
         userCanceled = false;
@@ -91,10 +94,10 @@ public class LinkPreviewViewModel extends ViewModel {
         return;
       }
 
-      List<String>     urls = LinkPreviewUtil.findWhitelistedUrls(text);
-      Optional<String> url  = urls.isEmpty() ? Optional.absent() : Optional.of(urls.get(0));
+      List<Link>     links = LinkPreviewUtil.findWhitelistedUrls(text);
+      Optional<Link> link  = links.isEmpty() ? Optional.absent() : Optional.of(links.get(0));
 
-      if (url.isPresent() && url.get().equals(activeUrl)) {
+      if (link.isPresent() && link.get().getUrl().equals(activeUrl)) {
         return;
       }
 
@@ -103,7 +106,7 @@ public class LinkPreviewViewModel extends ViewModel {
         activeRequest = null;
       }
 
-      if (!url.isPresent()) {
+      if (!link.isPresent() || !isCursorPositionValid(text, link.get(), cursorStart, cursorEnd)) {
         activeUrl = null;
         linkPreviewState.setValue(LinkPreviewState.forEmpty());
         return;
@@ -111,8 +114,8 @@ public class LinkPreviewViewModel extends ViewModel {
 
       linkPreviewState.setValue(LinkPreviewState.forLoading());
 
-      activeUrl     = url.get();
-      activeRequest = repository.getLinkPreview(context, url.get(), lp -> {
+      activeUrl     = link.get().getUrl();
+      activeRequest = repository.getLinkPreview(context, link.get().getUrl(), lp -> {
         Util.runOnMain(() -> {
           if (!userCanceled) {
             linkPreviewState.setValue(LinkPreviewState.forPreview(lp));
@@ -122,7 +125,6 @@ public class LinkPreviewViewModel extends ViewModel {
       });
     });
   }
-
 
   public void onUserCancel() {
     if (activeRequest != null) {
@@ -148,6 +150,18 @@ public class LinkPreviewViewModel extends ViewModel {
     }
 
     debouncer.clear();
+  }
+
+  private boolean isCursorPositionValid(@NonNull String text, @NonNull Link link, int cursorStart, int cursorEnd) {
+    if (cursorStart != cursorEnd) {
+      return true;
+    }
+
+    if (text.endsWith(link.getUrl()) && cursorStart == link.getPosition() + link.getUrl().length()) {
+      return true;
+    }
+
+    return cursorStart < link.getPosition() || cursorStart > link.getPosition() + link.getUrl().length();
   }
 
   public static class LinkPreviewState {

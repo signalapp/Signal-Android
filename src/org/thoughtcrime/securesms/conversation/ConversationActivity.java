@@ -239,6 +239,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                AttachmentDrawerListener,
                InputPanel.Listener,
                InputPanel.MediaListener,
+    ComposeText.CursorPositionChangedListener,
                ConversationSearchBottomBar.EventListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
@@ -361,6 +362,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             if (TextSecurePreferences.isTypingIndicatorsEnabled(ConversationActivity.this)) {
               composeText.addTextChangedListener(typingTextWatcher);
             }
+            composeText.setSelection(composeText.length(), composeText.length());
           }
         });
       }
@@ -1527,6 +1529,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
     composeText.setOnEditorActionListener(sendButtonListener);
+    composeText.setCursorPositionChangedListener(this);
     attachButton.setOnClickListener(new AttachButtonListener());
     attachButton.setOnLongClickListener(new AttachButtonLongClickListener());
     sendButton.setOnClickListener(sendButtonListener);
@@ -2187,7 +2190,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void updateLinkPreviewState() {
     if (TextSecurePreferences.isLinkPreviewsEnabled(this) && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent()) {
       linkPreviewViewModel.onEnabled();
-      linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed());
+      linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
       linkPreviewViewModel.onUserCancel();
     }
@@ -2358,6 +2361,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  @Override
+  public void onCursorPositionChanged(int start, int end) {
+    linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed(), start, end);
+  }
+
   private void silentlySetComposeText(String text) {
     typingTextWatcher.setEnabled(false);
     composeText.setText(text);
@@ -2461,11 +2469,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
 
-      String trimmed = composeText.getTextTrimmed();
-
-      linkPreviewViewModel.onTextChanged(ConversationActivity.this, trimmed);
-
-      if (trimmed.length() == 0 || beforeLength == 0) {
+      if (composeText.getTextTrimmed().length() == 0 || beforeLength == 0) {
         composeText.postDelayed(ConversationActivity.this::updateToggleButtonState, 50);
       }
     }
