@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.WakeLockUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -36,6 +37,7 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
   private static final String TAG = FcmService.class.getSimpleName();
 
   private static final Executor MESSAGE_EXECUTOR = SignalExecutors.newCachedSingleThreadExecutor("FcmMessageProcessing");
+  private static final String   WAKE_LOCK_TAG    = "FcmMessageProcessing";
 
   @Inject SignalServiceMessageReceiver messageReceiver;
 
@@ -45,7 +47,10 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
   public void onMessageReceived(RemoteMessage remoteMessage) {
     Log.i(TAG, "FCM message... Original Priority: " + remoteMessage.getOriginalPriority() + ", Actual Priority: " + remoteMessage.getPriority());
     ApplicationContext.getInstance(getApplicationContext()).injectDependencies(this);
-    handleReceivedNotification(getApplicationContext());
+
+    WakeLockUtil.runWithLock(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK, 60000, WAKE_LOCK_TAG, () -> {
+      handleReceivedNotification(getApplicationContext());
+    });
   }
 
   @Override

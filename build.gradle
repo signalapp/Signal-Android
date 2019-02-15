@@ -15,7 +15,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0'
-        classpath 'com.google.gms:google-services:4.0.2'
         classpath files('libs/gradle-witness.jar')
     }
 }
@@ -80,8 +79,12 @@ dependencies {
     compile 'android.arch.lifecycle:common-java8:1.1.1'
     compile 'android.arch.work:work-runtime:1.0.0-beta05'
 
-    compile 'com.google.firebase:firebase-messaging:17.3.4'
-    compile 'com.google.firebase:firebase-core:16.0.6'
+    compile('com.google.firebase:firebase-messaging:17.3.4') {
+        exclude group: 'com.google.firebase', module: 'firebase-core'
+        exclude group: 'com.google.firebase', module: 'firebase-analytics'
+        exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
+    }
+
     compile 'com.google.android.gms:play-services-maps:16.0.0'
     compile 'com.google.android.gms:play-services-places:16.0.0'
     compile 'com.google.android.gms:play-services-auth:16.0.1'
@@ -181,7 +184,6 @@ dependencyVerification {
         'android.arch.lifecycle:extensions:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
         'android.arch.lifecycle:common-java8:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
         'com.google.firebase:firebase-messaging:e42288e7950d7d3b033d3395a5ac9365d230da3e439a2794ec13e2ef0fbaf078',
-        'com.google.firebase:firebase-core:07d1544aeed9690843858982ea5a69506038f94e93b5d031b741ba9164f6258a',
         'com.google.android.gms:play-services-places:2d5c4e4ac3ee5be21b4ec544411bc51d11457b5ae2fa2a5d4539019f87c233c6',
         'com.google.android.gms:play-services-maps:07f59c5955b759ce7b80ceaeb8261643c5b79acc9f180df2b7c3987658eed2e8',
         'com.google.android.gms:play-services-auth:aec9e1c584d442cb9f59481a50b2c66dc191872607c04d97ecb82dd0eb5149ec',
@@ -211,10 +213,6 @@ dependencyVerification {
         'com.github.dmytrodanylyk.circular-progress-button:library:8dc6a29a5a8db7b2ad5a9a7fda1dc9ae0893f4c8f0545732b2c63854ea693e8e',
         'org.signal:android-database-sqlcipher:33d4063336893af00b9d68b418e7b290cace74c20ce8aacffddc0911010d3d73',
         'com.googlecode.ez-vcard:ez-vcard:7e24ad50b222d2f70ac91bdccfa3c0f6200b078d797cb784837f75e77bb4210f',
-        'com.google.firebase:firebase-measurement-connector-impl:eacaa68ed2c5c390b517267d7dae34268084d43b006db12682db88d17bbdc0ee',
-        'com.google.firebase:firebase-analytics:91a6b814b556779c223c80f52d0ca8ed48edbd4645b0d9104ac7b22639d5acf1',
-        'com.google.android.gms:play-services-measurement-api:a026fc70e777bcda3f7e51e68e331a03ed7a1143a7b3e3f67b99c21177a5b4d5',
-        'com.google.firebase:firebase-analytics-impl:dff7c79fe2dc3bef441057ae36678b51e27301f9b03377657170820bbe3c7441',
         'com.google.firebase:firebase-iid:bb42774e309d5eac1aa493d19711032bee4f677a409639b6a5cfa93089af93eb',
         'com.google.firebase:firebase-common:3db6bfd4c6f758551e5f9acdeada2050577277e6da1aefb2412de23829759bcf',
         'com.google.android.gms:play-services-auth-api-phone:19365818b9ceb048ef48db12b5ffadd5eb86dbeb2c7c7b823bfdd89c665f42e5',
@@ -222,11 +220,8 @@ dependencyVerification {
         'com.google.firebase:firebase-iid-interop:2a86322b9346fd4836219206d249e85803311655e96036a8e4b714ce7e79693b',
         'com.google.android.gms:play-services-base:aca10c780c3219bc50f3db06734f4ab88badd3113c564c0a3156ff8ff674655b',
         'com.google.android.gms:play-services-tasks:b31c18d8d1cc8d9814f295ee7435471333f370ba5bd904ca14f8f2bec4f35c35',
-        'com.google.firebase:firebase-measurement-connector:bc318110486ed738e1cc84d4b280e156b35a9a3964d678ee64930d846150d0c3',
         'com.google.android.gms:play-services-places-placereport:04f8baeb1f8f8a734c7d4b1701a3974281b45591affa7e963b59dd019b8abc6e',
         'com.google.android.gms:play-services-stats:5b2d8281adbfd6e74d2295c94bab9ea80fc9a84dfbb397995673f5af4d4c6368',
-        'com.google.android.gms:play-services-measurement-base:887ddc8b384108a35ff7a41c8bc5c653dcedb44d9d6e46110569f586898d3c1d',
-        'com.google.android.gms:play-services-ads-identifier:380b09bfc5389fff93b5719c04e57c99678c9c3af0402a91e26d89734babcc49',
         'com.google.android.gms:play-services-basement:e08bfd1e87c4e50ef76161d7ac76b873aeb975367eeb3afa4abe62ea1887c7c6',
         'com.android.support:support-v4:8b9031381c678d628c9e47b566ae1d161e1c9710f7855c759beeac7596cecf30',
         'com.android.support:support-fragment:3772fc738ada86824ba1a4b3f197c3dbd67b7ddcfe2c9db1de95ef2e3487a915',
@@ -352,6 +347,7 @@ android {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                          'proguard-firebase-messaging.pro',
                           'proguard-google-play-services.pro',
                           'proguard-dagger.pro',
                           'proguard-jackson.pro',
@@ -506,4 +502,3 @@ def getLastCommitTimestamp() {
         return os.toString() + "000"
     }
 }
-apply plugin: 'com.google.gms.google-services'

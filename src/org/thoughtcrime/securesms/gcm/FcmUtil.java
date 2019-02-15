@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.gcm;
 
 import android.support.annotation.WorkerThread;
+import android.text.TextUtils;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -23,7 +24,7 @@ public final class FcmUtil {
     AtomicReference<String> token = new AtomicReference<>(null);
 
     FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
-      if (task.isSuccessful() && task.getResult() != null) {
+      if (task.isSuccessful() && task.getResult() != null && !TextUtils.isEmpty(task.getResult().getToken())) {
         token.set(task.getResult().getToken());
       } else {
         Log.w(TAG, "Failed to get the token.", task.getException());
