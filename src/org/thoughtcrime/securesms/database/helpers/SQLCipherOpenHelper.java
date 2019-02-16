@@ -387,15 +387,17 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < SELF_ATTACHMENT_CLEANUP) {
         String localNumber = TextSecurePreferences.getLocalNumber(context);
 
-        try (Cursor threadCursor = db.rawQuery("SELECT _id FROM thread WHERE recipient_ids = ?", new String[]{ localNumber })) {
-          if (threadCursor != null && threadCursor.moveToFirst()) {
-            long          threadId     = threadCursor.getLong(0);
-            ContentValues updateValues = new ContentValues(1);
+        if (!TextUtils.isEmpty(localNumber)) {
+          try (Cursor threadCursor = db.rawQuery("SELECT _id FROM thread WHERE recipient_ids = ?", new String[]{ localNumber })) {
+            if (threadCursor != null && threadCursor.moveToFirst()) {
+              long          threadId     = threadCursor.getLong(0);
+              ContentValues updateValues = new ContentValues(1);
 
-            updateValues.put("pending_push", 0);
+              updateValues.put("pending_push", 0);
 
-            int count = db.update("part", updateValues, "mid IN (SELECT _id FROM mms WHERE thread_id = ?)", new String[]{ String.valueOf(threadId) });
-            Log.i(TAG, "Updated " + count + " self-sent attachments.");
+              int count = db.update("part", updateValues, "mid IN (SELECT _id FROM mms WHERE thread_id = ?)", new String[]{ String.valueOf(threadId) });
+              Log.i(TAG, "Updated " + count + " self-sent attachments.");
+            }
           }
         }
       }
