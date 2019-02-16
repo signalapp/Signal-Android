@@ -658,7 +658,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
       else              menu.findItem(R.id.menu_call_insecure).setVisible(false);
 
-      menu.findItem(R.id.menu_mute_notifications).setVisible(false);
+      MenuItem muteItem = menu.findItem(R.id.menu_mute_notifications);
+
+      if (muteItem != null) {
+        muteItem.setVisible(false);
+      }
     }
 
     searchViewItem = menu.findItem(R.id.menu_search);
