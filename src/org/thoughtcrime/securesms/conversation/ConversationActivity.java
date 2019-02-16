@@ -1671,7 +1671,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
       initializeSecurity(isSecureText, isDefaultSms);
 
-      if (!searchViewItem.isActionViewExpanded()) {
+      if (searchViewItem == null || !searchViewItem.isActionViewExpanded()) {
         invalidateOptionsMenu();
       }
     });
