@@ -267,7 +267,7 @@ class MediaRepository {
 
     if (size <= 0) {
       try (Cursor cursor = context.getContentResolver().query(media.getUri(), null, null, null, null)) {
-        if (cursor != null && cursor.moveToFirst()) {
+        if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.SIZE) >= 0) {
           size = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
         }
       }
