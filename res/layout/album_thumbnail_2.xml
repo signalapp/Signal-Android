@@ -4,19 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/album_thumbnail_root"
     android:orientation="horizontal"
-    android:layout_width="300dp"
-    android:layout_height="150dp">
+    android:layout_width="@dimen/album_total_width"
+    android:layout_height="@dimen/album_2_total_height">
 
     <org.thoughtcrime.securesms.components.ThumbnailView
         android:id="@+id/album_cell_1"
-        android:layout_height="150dp"
-        android:layout_width="149dp"
+        android:layout_width="@dimen/album_2_cell_width"
+        android:layout_height="@dimen/album_2_total_height"
         app:thumbnail_radius="0dp"/>
 
     <org.thoughtcrime.securesms.components.ThumbnailView
         android:id="@+id/album_cell_2"
-        android:layout_height="150dp"
-        android:layout_width="149dp"
+        android:layout_width="@dimen/album_2_cell_width"
+        android:layout_height="@dimen/album_2_total_height"
         android:layout_gravity="right|end"
         app:thumbnail_radius="0dp"/>
 

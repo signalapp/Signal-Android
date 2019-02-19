@@ -75,6 +75,10 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
     this.numberView.setTextColor(color);
     this.contactPhotoImage.setAvatar(glideRequests, recipient, false);
 
+    if (!multiSelect && recipient != null && recipient.isLocalNumber()) {
+      name = getContext().getString(R.string.note_to_self);
+    }
+
     setText(type, name, number, label);
 
     if (multiSelect) this.checkBox.setVisibility(View.VISIBLE);

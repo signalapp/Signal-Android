@@ -148,12 +148,15 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Du må gi Signal tilgang til mikrofonen for å kunne sende lydmeldinger.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal krever tillatelse fra systemet for å kunne bruke mikrofonen, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Mikrofon».</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal må ha tilgang til mikrofon og kamera for å kunne ringe «1%s».</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal må ha tilgang til mikrofon og kamera for å kunne ringe «%s».</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal krever tillatelser fra systemet for å kunne ringe 1%s, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS-meldinger fordi det ikke er standard SMS-appen din. Vil du endre dette i Android-innstillingene dine?</string>
+  <string name="ConversationActivity_yes">Ja</string>
+  <string name="ConversationActivity_no">Nei</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulest melding</item>
@@ -197,7 +200,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne enheten har ingen nettleser installert.</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">Søket «1%s» ga ingen treff.</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">Ingen resultater funnet for \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Vil du slette valgt samtale?</item>
     <item quantity="other">Vil du slette valgte samtaler?</item>
@@ -281,6 +284,10 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktiver skriveindikatorer</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Slå på skriverindikatorer</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Vi presenterer linkforhåndsvisninger.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valgfrie linkforhåndsvisninger støttes nå for noen av de mest populære nettstedene på Internett.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan deaktivere eller aktivere denne funksjonen når som helst i innstillingene for Signal (Personvern &gt; Send linkforhåndsvisninger).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding...</string>
   <!--GcmRefreshJob-->
@@ -297,7 +304,7 @@
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontakt som ikke støtter Signal-grupper. Denne gruppa blir derfor en MMS-gruppe.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du er ikke registrert for Signal-meldinger og -samtaler. Signal-grupper er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du er ikke registrert for Signal-meldinger og samtaler. Signal-grupper er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
   <string name="GroupCreateActivity_contacts_no_members">Du må ta med minst én person i gruppa.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Et av gruppemedlemmene har et nummer som ikke ble tolket skikkelig. Rett opp eller fjern aktuell kontakt, og prøv igjen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppe-avatar</string>
@@ -371,6 +378,18 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediemelding</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Laster ned MMS-melding</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Feil under nedlasting av MMS-melding. Trykk for å prøve igjen</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Send til %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Trykk for å velge</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Du kan ikke dele mer enn %d gjenstand.</item>
+    <item quantity="other">Du kan ikke dele mer enn %d gjenstander.</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Legg til bildetekst…</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Alle medier</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen om å oppdatere til nyeste versjon og sende meldinga på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
@@ -418,7 +437,7 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Signal å bruke kameraet</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Utløptstid for meldinger</string>
+  <string name="ExpirationDialog_disappearing_messages">Utløpstid for meldinger</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Meldinger går ikke ut på tid.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meldinger du sender og mottar i denne samtalen forsvinner %s etter at de er blitt sett.</string>
   <!--PassphrasePromptActivity-->
@@ -495,7 +514,7 @@ skrev inn (%s) er ugyldig.</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikke å lagre bildeendringer</string>
   <!--Search-->
-  <string name="SearchFragment_no_results">Søket «1%s» ga ingen treff.</string>
+  <string name="SearchFragment_no_results">Ingen resultater funnet for \'%s\'</string>
   <string name="SearchFragment_header_conversations">Samtaler</string>
   <string name="SearchFragment_header_contacts">Kontakter</string>
   <string name="SearchFragment_header_messages">Meldinger</string>
@@ -947,6 +966,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle inngående multimediemeldinger </string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk enter-tast for å sende tekstmeldinger</string>
+  <string name="preferences__send_link_previews">Send linkforhåndsvisninger</string>
+  <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Reddit og YouTube-koblinger</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passord</string>
@@ -1068,8 +1089,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagre vedlegg</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Utløptstid for meldinger
-</string>
+  <string name="conversation_expiring_off__disappearing_messages">Utløpstid for meldinger</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Utløpende meldinger</string>
   <!--conversation_insecure-->

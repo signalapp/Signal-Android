@@ -153,6 +153,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ఫోటోలను లేదా వీడియోను తీసుకోవడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ఛాయాచిత్రాలను లేదా వీడియోను తీసుకోవడానికి కెమెరా అనుమతులను Signalకి అవసరం</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_yes">అవును</string>
+  <string name="ConversationActivity_no">కాదు</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d చదవని సందేశం </item>
@@ -279,6 +281,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ఇప్పుడు మీరు Signal లో స్నేహితులతో ప్రొఫైల్ ఫోటోను మరియు పేరును పంచుకోవచ్చు</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal ప్రొఫైల్స్ ఇక్కడ ఉన్నాయి</string>
   <string name="ExperienceUpgradeActivity_no_thanks">వద్దు ధన్యవాదాలు</string>
+  <string name="ExperienceUpgradeActivity_got_it">దొరికింది</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది ...</string>
   <!--GcmRefreshJob-->
@@ -370,6 +373,11 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">మల్టీమీడియా సందేశం</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">ఎమ్మెమ్మెస్ సందేశం దిగుమతి </string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">ఎమ్మెమ్మెస్ సందేశం దిగుమతిలో లోపం, తట్టి మళ్ళీ ప్రయత్నించండి</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">అన్ని మీడియా</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ఇకపై మద్దతు అని Signal యొక్క పాత సంస్కరణను ఉపయోగించి ఎన్క్రిప్ట్ ఒక సందేశాన్ని పొందింది. దయచేసి ఇటీవల సంస్కరణకు అప్డేట్ మరియు సందేశాన్ని మళ్లీ పంపినవారు అడగండి</string>
   <string name="MessageRecord_left_group">మీరు సమూహం నుండి వైదొలిగారు</string>
@@ -810,7 +818,7 @@
   <string name="import_fragment__import_system_sms_database">వ్యవస్థ ఎస్సెమ్మెస్ డేటాబేస్ దిగుమతి</string>
   <string name="import_fragment__import_the_database_from_the_default_system">డిఫాల్ట్ వ్యవస్థ మెసెంజర్ అనువర్తనం నుండి డేటాబేస్ దిగుమతి</string>
   <string name="import_fragment__import_plaintext_backup">సాధారణ అక్షరాల బ్యాకప్ దిగుమతి </string>
-  <string name="import_fragment__import_a_plaintext_backup_file">సాదా బ్యాకప్ ఫైల్ దిగుమతి. 'ఎస్ఎంఎస్ బ్యాకప్ &amp; amp అనుకూలంగా; పునరుద్ధరించు. '</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">సాదా బ్యాకప్ ఫైల్ దిగుమతి. \'ఎస్ఎంఎస్ బ్యాకప్ &amp; అనుకూలంగా; పునరుద్ధరించు. \'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">పూర్తి సంభాషణ చూడండి</string>
   <string name="load_more_header__loading">లోడ్</string>

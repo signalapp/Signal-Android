@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -53,6 +54,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 import java.security.cert.CertificateException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashSet;
@@ -218,7 +220,7 @@ public class DirectoryHelper {
           }
         }
       } catch (RemoteException | OperationApplicationException e) {
-        Log.w(TAG, e);
+        Log.w(TAG, "Failed to update contacts.", e);
       }
     }
   }
@@ -402,19 +404,19 @@ public class DirectoryHelper {
       }
     } catch (InterruptedException e) {
       Log.w(TAG, "Contact discovery batch was interrupted.", e);
-      accountManager.reportContactDiscoveryServiceUnexpectedError();
+      accountManager.reportContactDiscoveryServiceUnexpectedError(buildErrorReason(e));
       return Optional.absent();
     } catch (ExecutionException e) {
       if (isAttestationError(e.getCause())) {
         Log.w(TAG, "Failed during attestation.", e);
-        accountManager.reportContactDiscoveryServiceAttestationError();
+        accountManager.reportContactDiscoveryServiceAttestationError(buildErrorReason(e.getCause()));
         return Optional.absent();
       } else if (e.getCause() instanceof PushNetworkException) {
         Log.w(TAG, "Failed due to poor network.", e);
         return Optional.absent();
       } else {
         Log.w(TAG, "Failed for an unknown reason.", e);
-        accountManager.reportContactDiscoveryServiceUnexpectedError();
+        accountManager.reportContactDiscoveryServiceUnexpectedError(buildErrorReason(e.getCause()));
         return Optional.absent();
       }
     }
@@ -439,6 +441,29 @@ public class DirectoryHelper {
     keyStore.load(contactTrustStore.getKeyStoreInputStream(), contactTrustStore.getKeyStorePassword().toCharArray());
 
     return keyStore;
+  }
+
+  private static String buildErrorReason(@Nullable Throwable t) {
+    if (t == null) {
+      return "null";
+    }
+
+    String       rawString = android.util.Log.getStackTraceString(t);
+    List<String> lines     = Arrays.asList(rawString.split("\\n"));
+
+    String errorString;
+
+    if (lines.size() > 1) {
+      errorString = t.getClass().getName() + "\n" + Util.join(lines.subList(1, lines.size()), "\n");
+    } else {
+      errorString = t.getClass().getName();
+    }
+
+    if (errorString.length() > 1000) {
+      return errorString.substring(0, 1000);
+    } else {
+      return errorString;
+    }
   }
 
   private static class DirectoryResult {

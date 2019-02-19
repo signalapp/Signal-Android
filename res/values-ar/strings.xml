@@ -31,7 +31,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">إلغاء قفل Signal وإشعارات الرسائل بشكل دائم</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">تفعيل Signal وإشعارات الرسائل بشكل دائم</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جارٍ إلغاء التسجيل من رسائل ومكالمات Signal...</string>
@@ -41,7 +41,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">الرسائل النصية مفعلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">المس لتغيير التطبيق الافتراضي للرسائل</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">الرسائل النصية معطلة</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">المس لجعل Signal التطبيق الافتراضي للرسائل</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">المس لجعل Signal التطبيق الرئيسي للرسائل</string>
   <string name="ApplicationPreferencesActivity_on">يعمل</string>
   <string name="ApplicationPreferencesActivity_On">يعمل</string>
   <string name="ApplicationPreferencesActivity_off">مغلق</string>
@@ -159,6 +159,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج Signal إلى إذن الكاميرا من أجل التقاط صور وفيديو  ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج Signal إلي إذن الكاميرا لالتقاط صور أو فيديو</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_yes">نعم</string>
+  <string name="ConversationActivity_no">لا</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">رسالة %d غير مقرؤة</item>
@@ -324,6 +326,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">بإمكانكم الآن مشاركة صورة ملفكم الشخصي و اسمكم مع أصدقائكم على Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">هنا صفحات Signal الشخصية</string>
   <string name="ExperienceUpgradeActivity_no_thanks">لا، شكرا</string>
+  <string name="ExperienceUpgradeActivity_got_it">عُلم</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال Signal!</string>
@@ -420,6 +423,11 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط متعددة</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">تنزيل رسالة الوسائط المتعددة</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطأ في تنزيل رسالة الوسائط المتعددة، انقر لاعادة المحاولة</string>
+  <!--MediaPickerActivity-->
+  <!--MediaPickerItemFragment-->
+  <!--MediaSendActivity-->
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">جميع الوسائط</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مشفرة من إصدارة Signal قديمة وتوقف دعمها. من فضلك اطلب من الراسل الترقية إلي أحدث إصدار وإعادة إرسال الرسالة.</string>
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>

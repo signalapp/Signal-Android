@@ -95,6 +95,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int WORKMANAGER_MIGRATION                = 408;
   public static final int COLOR_MIGRATION                      = 412;
   public static final int UNIDENTIFIED_DELIVERY                = 422;
+  public static final int SIGNALING_KEY_DEPRECATION            = 447;
+  public static final int CONVERSATION_SEARCH                  = 455;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -121,6 +123,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(WORKMANAGER_MIGRATION);
     add(COLOR_MIGRATION);
     add(UNIDENTIFIED_DELIVERY);
+    add(SIGNALING_KEY_DEPRECATION);
+    add(CONVERSATION_SEARCH);
   }};
 
   private MasterSecret masterSecret;
@@ -366,6 +370,13 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         }
 
         Log.i(TAG, "Scheduling UD attributes refresh.");
+        ApplicationContext.getInstance(context)
+                          .getJobManager()
+                          .add(new RefreshAttributesJob(context));
+      }
+
+      if (params[0] < SIGNALING_KEY_DEPRECATION) {
+        Log.i(TAG, "Scheduling a RefreshAttributesJob to remove the signaling key remotely.");
         ApplicationContext.getInstance(context)
                           .getJobManager()
                           .add(new RefreshAttributesJob(context));

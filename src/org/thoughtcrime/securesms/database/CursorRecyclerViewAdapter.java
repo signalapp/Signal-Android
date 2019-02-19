@@ -124,6 +124,10 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
            + (hasFooterView() ? 1 : 0);
   }
 
+  public int getCursorCount() {
+    return cursor.getCount();
+  }
+
   @SuppressWarnings("unchecked")
   @Override
   public final void onViewRecycled(ViewHolder holder) {
@@ -190,7 +194,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
       throw new IllegalStateException("this should only be called when the cursor is valid");
     }
     if (!cursor.moveToPosition(getCursorPosition(position))) {
-      throw new IllegalStateException("couldn't move cursor to position " + position);
+      throw new IllegalStateException("couldn't move cursor to position " + position + " (actual cursor position " + getCursorPosition(position) + ")");
     }
     return cursor;
   }

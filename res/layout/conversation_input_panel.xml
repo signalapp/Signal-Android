@@ -45,6 +45,16 @@
                 app:quote_colorSecondary="?attr/conversation_item_sent_text_primary_color"
                 tools:visibility="visible"/>
 
+            <org.thoughtcrime.securesms.components.LinkPreviewView
+                android:id="@+id/link_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="6dp"
+                android:visibility="gone"
+                app:linkpreview_type="compose" />
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

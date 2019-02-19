@@ -69,6 +69,12 @@
             android:title="@string/preferences__typing_indicators"
             android:summary="@string/preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators"/>
 
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_link_previews"
+            android:summary="@string/preferences__previews_are_supported_for"
+            android:title="@string/preferences__send_link_previews"/>
+
         <Preference android:key="preference_category_blocked"
                     android:title="@string/preferences_app_protection__blocked_contacts" />
     </PreferenceCategory>

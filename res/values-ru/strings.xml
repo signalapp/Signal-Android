@@ -160,6 +160,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Чтобы сделать фото или видео требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Камеру.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Для съемки фото или видео предоставьте Signal доступ к камере</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не может отправлять SMS/MMS-сообщения, так как не является приложением SMS по умолчанию. Хотите изменить это в настройках Android?</string>
+  <string name="ConversationActivity_yes">Да</string>
+  <string name="ConversationActivity_no">Нет</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитанное сообщение</item>
@@ -309,6 +312,10 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Включить индикаторы ввода</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Включить индикаторы ввода</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Нет, спасибо</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Введение в предварительный просмотр ссылок</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Для некоторых из самых популярных сайтов в интернете появилась опциональная возможность предварительного просмотра ссылок.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Вы можете отключить или включить эту функцию в любое время в настройках Signal (Конфиденциальность &gt; Отправлять предварительный просмотр ссылок).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Понятно</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Получение сообщения...</string>
   <!--GcmRefreshJob-->
@@ -407,6 +414,20 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Скачиваем MMS-сообщение</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Ошибка при скачивании MMS-сообщения; нажмите, чтобы повторить</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Отправить %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Нажмите для выбора</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Вы не можете поделиться больше, чем %d элементом.</item>
+    <item quantity="few">Вы не можете поделиться больше, чем %dэлементами.</item>
+    <item quantity="many">Вы не можете поделиться больше, чем %d элементами.</item>
+    <item quantity="other">Вы не можете поделиться больше, чем %dэлементами.</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Добавить субтитры...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Все медиа-файлы</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано в старой версии Signal, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново отправить сообщение.</string>
   <string name="MessageRecord_left_group">Вы покинули группу.</string>
@@ -540,7 +561,7 @@
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Пригласить в Signal</string>
   <string name="SharedContactDetailsActivity_signal_message">Сообщение Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Звонок через Signal</string>
+  <string name="SharedContactDetailsActivity_signal_call">Вызов Signal</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactView_invite_to_signal">Пригласить в Signal</string>
@@ -1001,6 +1022,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать Signal для всех входящих мультимедиа-сообщений</string>
   <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
+  <string name="preferences__send_link_previews">Отправлять предпросмотр ссылки</string>
+  <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок Imgur, Instagram, Reddit и YouTube</string>
   <string name="preferences__choose_identity">Выберите личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>

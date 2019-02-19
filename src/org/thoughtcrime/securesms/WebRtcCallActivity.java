@@ -232,7 +232,7 @@ public class WebRtcCallActivity extends Activity {
 
   private void handleCallConnected(@NonNull WebRtcViewModel event) {
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES);
-    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_connected), "");
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_connected), "", event.getLocalRenderer(), event.getRemoteRenderer());
   }
 
   private void handleRecipientUnavailable(@NonNull WebRtcViewModel event) {

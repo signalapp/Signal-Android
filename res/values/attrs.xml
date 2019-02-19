@@ -102,11 +102,18 @@
 
     <attr name="device_link_item_card_background" format="reference|color" />
 
+    <attr name="mediapicker_image_outline" format="reference" />
+
     <attr name="import_export_item_background_color" format="reference|color" />
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
 
     <attr name="invite_background" format="color"/>
+
+    <attr name="linkpreview_background_color" format="color" />
+    <attr name="linkpreview_primary_text_color" format="color" />
+    <attr name="linkpreview_secondary_text_color" format="color" />
+    <attr name="linkpreview_divider_color" format="color" />
 
     <attr name="reminder_header_background" format="color"/>
 
@@ -277,6 +284,13 @@
         <attr name="contact_captionColor" format="color" />
         <attr name="contact_footerIconColor" format="color" />
         <attr name="contact_footerAlpha" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="LinkPreviewView">
+        <attr name="linkpreview_type" format="enum">
+            <enum name="conversation" value="0" />
+            <enum name="compose" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="DocumentView">

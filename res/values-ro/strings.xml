@@ -28,9 +28,9 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Această acțiune va debloca permanent Signal și notificările pentru mesaje.</string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivați</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Anulați înregistrarea</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Se anulează înregistrarea</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal... </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivez mesajele și apelurile Signal? </string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivați mesajele și apelurile Signal? </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apeluri Signal prin dezabonarea de la server. Va trebui să vă re-înregistrezi numărul dvs. de telefon pentru a putea să le folosiți din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
@@ -157,6 +157,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nu poate trimite mesaje SMS/MMS pentru că nu este aplicația implicită de SMS. Doriți să schimbați asta în setările dvs. Android?</string>
+  <string name="ConversationActivity_yes">Da</string>
+  <string name="ConversationActivity_no">Nu</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesaj necitit</item>
@@ -259,7 +262,7 @@
   <string name="DeviceListActivity_unlink_s">Disociez \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Prin disocierea acestui dispozitiv, nu v-a mai putea trimite și primi mesaje.</string>
   <string name="DeviceListActivity_network_connection_failed">Conexiunea la reţea a eşuat</string>
-  <string name="DeviceListActivity_try_again">Încearcă din nou</string>
+  <string name="DeviceListActivity_try_again">Încercați din nou</string>
   <string name="DeviceListActivity_unlinking_device">Se disociază dispozitivul...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Se disociază dispozitivul</string>
   <string name="DeviceListActivity_network_failed">Eroare de reţea!</string>
@@ -295,6 +298,10 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activează indicatorii de tastare</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activează indicatorii de tastare</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nu, mulţumesc</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Vă prezentăm previzualizarea link-urilor</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Previzualizarea opțională de link-uri este acum suportată pentru unele dintre cele mai populare site-uri de pe Internet.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puteți activa sau dezactiva această functionalitate oricând din setările Signal ( Confidențialitate &gt; Trimite previzualizarea link-urilor).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Am înțeles</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Se obține un mesaj...</string>
   <!--GcmRefreshJob-->
@@ -389,6 +396,19 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Mesaj multimedia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Se descarcă mesajul MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Eroare la descărcarea mesajului MMS, apasă pentru reîncercare</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Trimiteți la %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Apăsați pentru a selecta</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Nu puteți partaja mai mult de %d element.</item>
+    <item quantity="few">Nu puteți partaja mai mult de %d element.</item>
+    <item quantity="other">Nu puteți partaja mai mult de %d elemente.</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Adăugați un titlu...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Toate fișierele media</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ai primit un mesaj care a fost criptat cu o versiune mai veche de Signal care nu mai este suportată. Roagă-l pe expeditor să-și actualizeze aplicația la ultima versiune și să retrimită mesajul.</string>
   <string name="MessageRecord_left_group">Ați parăsit grupul.</string>
@@ -974,6 +994,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizează Signal pentru toate mesajele multimedia de intrare</string>
   <string name="preferences__pref_enter_sends_title">Trimiteți cu Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apăsarea tastei Enter va trimite mesajele text</string>
+  <string name="preferences__send_link_previews">Trimite previzualizarea link-urilor</string>
+  <string name="preferences__previews_are_supported_for">Previzualizarea este suportată pentru link-uri Imgur, Instagram, Reddit și YouTube</string>
   <string name="preferences__choose_identity">Selectează identitatea</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selectează persoana din lista de contacte.</string>
   <string name="preferences__change_passphrase">Schimbă parola</string>
@@ -1111,7 +1133,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_list_item_view__contact_photo_image">Poză contact</string>
   <string name="conversation_list_item_view__archived">Arhivat</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox zeeerrro</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Gol. Zero. Nimic.\n Ești la curent cu toate!</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Gol. Zero. Nimic.\n Sunteți la curent cu toate!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversație nouă</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dă-i inbox-ului ceva de scris. Începeți prin a trimite unui prieten un mesaj.</string>
@@ -1240,10 +1262,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ai primit prin SMS. Te rog să introduci PIN-ul configurat anterior în aplicație.</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ați primit prin SMS. Vă rugăm să introduceți PIN-ul configurat anterior în aplicație.</string>
   <string name="registration_activity__registration_lock_pin">PIN de blocare a înregistrării</string>
   <string name="registration_activity__forgot_pin">Ați uitat PIN-ul?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-ul poate fi din patru sau mai multe cifre. Dacă ai uitat PIN-ul ai putea fi blocat sa-ți accesezi contul până la șapte zile.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-ul poate conține patru sau mai multe cifre. Dacă ați uitat PIN-ul ați putea fi blocat să vă accesați contul până la șapte zile.</string>
   <string name="registration_lock_dialog_view__enter_pin">Introduceți PIN-ul</string>
   <string name="registration_lock_dialog_view__confirm_pin">Confirmați PIN-ul</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Introduceți PIN-ul dvs. de blocare a înregistrării</string>
@@ -1260,7 +1282,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Înregistrarea acestui număr de telefon va fi posibilă fără un Cod PIN de Blocare a Înregistrării după 7 zile de când acest număr de telefon a fost activ ultima oară în Signal. Mai ai %d zile rămase.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de blocare a înregistrării</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Acest număr de telefon are Blocarea Înregistrării activă. Vă rugăm să introduceți Codul PIN de Blocare a Înregistrării.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea înregistrării e activă pentru numărul tău de telefon. Pentru a te ajuta să îți memorezi Codul PIN de Blocare a înregistrării, Signal îți va cere să îl confirmi periodic.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea înregistrării este activă pentru numărul dvs. de telefon. Pentru a vă putea ajuta să memorați Codul PIN de Blocare a înregistrării, Signal vă va cere să îl confirmați periodic.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Mi-am uitat PIN-ul.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN uitat ?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blocarea înregistrării ajută la protejarea numărului tău de telefon împotriva încercărilor neautorizate de înregistrare. Această facilitate poate fi dezactivată oricând în setările de confidențialitate ale Signal</string>

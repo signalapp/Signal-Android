@@ -199,11 +199,12 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
       }
 
       if (ProfileKeyUtil.hasProfileKey(context)) {
+        Recipient self = Recipient.from(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), false);
         out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(context),
                                     Optional.absent(), Optional.absent(),
-                                    Optional.absent(), Optional.absent(),
+                                    Optional.of(self.getColor().serialize()), Optional.absent(),
                                     Optional.of(ProfileKeyUtil.getProfileKey(context)),
-                                    false, Optional.absent()));
+                                    false, self.getExpireMessages() > 0 ? Optional.of(self.getExpireMessages()) : Optional.absent()));
       }
 
       out.close();

@@ -31,13 +31,15 @@ import com.google.android.gms.security.ProviderInstaller;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.dependencies.DependencyInjector;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
@@ -185,7 +187,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeJobManager() {
     WorkManager.initialize(this, new Configuration.Builder()
-                                                  .setMinimumLoggingLevel(android.util.Log.DEBUG)
+                                                  .setMinimumLoggingLevel(android.util.Log.INFO)
                                                   .build());
 
     this.jobManager = new JobManager(this, WorkManager.getInstance());
@@ -202,10 +204,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeGcmCheck() {
     if (TextSecurePreferences.isPushRegistered(this)) {
-      long nextSetTime = TextSecurePreferences.getGcmRegistrationIdLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
+      long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
 
-      if (TextSecurePreferences.getGcmRegistrationId(this) == null || nextSetTime <= System.currentTimeMillis()) {
-        this.jobManager.add(new GcmRefreshJob(this));
+      if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
+        this.jobManager.add(new FcmRefreshJob(this));
       }
     }
   }
@@ -250,6 +252,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         add("TA-1053");
         add("Mi A1");
         add("E5823"); // Sony z5 compact
+        add("Redmi Note 5");
       }};
 
       Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
@@ -265,9 +268,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
       }
 
-      PeerConnectionFactory.initialize(InitializationOptions.builder(this)
-                                                            .setEnableVideoHwAcceleration(true)
-                                                            .createInitializationOptions());
+      PeerConnectionFactory.initialize(InitializationOptions.builder(this).createInitializationOptions());
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }

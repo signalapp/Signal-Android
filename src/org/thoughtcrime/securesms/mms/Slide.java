@@ -135,12 +135,13 @@ public abstract class Slide {
   protected static Attachment constructAttachmentFromUri(@NonNull  Context context,
                                                          @NonNull  Uri     uri,
                                                          @NonNull  String  defaultMime,
-                                                                   long     size,
-                                                                   int      width,
-                                                                   int      height,
-                                                                   boolean  hasThumbnail,
-                                                         @Nullable String   fileName,
-                                                                   boolean  voiceNote,
+                                                                   long    size,
+                                                                   int     width,
+                                                                   int     height,
+                                                                   boolean hasThumbnail,
+                                                         @Nullable String  fileName,
+                                                         @Nullable String  caption,
+                                                                   boolean voiceNote,
                                                                    boolean quote)
   {
     try {
@@ -157,7 +158,7 @@ public abstract class Slide {
                                fastPreflightId,
                                voiceNote,
                                quote,
-                               null);
+                               caption);
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }

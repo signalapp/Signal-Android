@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class TypingIndicatorIntroFragment extends Fragment {
 
@@ -64,12 +62,13 @@ public class TypingIndicatorIntroFragment extends Fragment {
                       .add(new MultiDeviceConfigurationUpdateJob(getContext(),
                                                                  TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
                                                                  typingEnabled,
-                                                                 TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext())));
+                                                                 TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
+                                                                 TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
 
-    controller.onFinished();
+    controller.onTypingIndicatorsFinished();
   }
 
   public interface Controller {
-    void onFinished();
+    void onTypingIndicatorsFinished();
   }
 }
