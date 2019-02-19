@@ -47,7 +47,7 @@ public class CaptchaActivity extends BaseActionBarActivity {
       }
     });
 
-    webView.loadUrl("https://signalcaptchas.org/registration/generate.html\n");
+    webView.loadUrl("https://signalcaptchas.org/registration/generate.html");
   }
 
   public void handleToken(String token) {

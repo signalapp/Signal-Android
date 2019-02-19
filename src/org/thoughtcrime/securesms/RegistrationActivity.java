@@ -198,6 +198,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       }
     } else if (requestCode == CAPTCHA) {
       Toast.makeText(this, R.string.RegistrationActivity_failed_to_verify_the_captcha, Toast.LENGTH_LONG).show();
+      createButton.setIndeterminateProgressMode(false);
+      createButton.setProgress(0);
     }
   }
 
