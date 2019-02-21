@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.LinkPreviewView;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -54,6 +55,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
@@ -660,7 +663,12 @@ public class ConversationItem extends LinearLayout
     boolean hasLinks    = Linkify.addLinks(messageBody, shouldLinkifyAllLinks ? linkPattern : 0);
 
     if (hasLinks) {
+      Stream.of(messageBody.getSpans(0, messageBody.length(), URLSpan.class))
+            .filterNot(url -> LinkPreviewUtil.isLegalUrl(url.getURL()))
+            .forEach(messageBody::removeSpan);
+
       URLSpan[] urlSpans = messageBody.getSpans(0, messageBody.length(), URLSpan.class);
+
       for (URLSpan urlSpan : urlSpans) {
         int start = messageBody.getSpanStart(urlSpan);
         int end = messageBody.getSpanEnd(urlSpan);

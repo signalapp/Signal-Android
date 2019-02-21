@@ -37,10 +37,11 @@ public final class LinkPreviewUtil {
    */
   public static boolean isWhitelistedLinkUrl(@NonNull String linkUrl) {
     HttpUrl url = HttpUrl.parse(linkUrl);
-    return url != null                      &&
-           !TextUtils.isEmpty(url.scheme()) &&
-           "https".equals(url.scheme())     &&
-           LinkPreviewDomains.LINKS.contains(url.host());
+    return url != null                                   &&
+           !TextUtils.isEmpty(url.scheme())              &&
+           "https".equals(url.scheme())                  &&
+           LinkPreviewDomains.LINKS.contains(url.host()) &&
+           isLegalUrl(linkUrl);
   }
 
   /**
@@ -48,9 +49,18 @@ public final class LinkPreviewUtil {
    */
   public static boolean isWhitelistedMediaUrl(@NonNull String mediaUrl) {
     HttpUrl url = HttpUrl.parse(mediaUrl);
-    return url != null                      &&
-           !TextUtils.isEmpty(url.scheme()) &&
-           "https".equals(url.scheme())     &&
-           LinkPreviewDomains.IMAGES.contains(url.topPrivateDomain());
+    return url != null                                                &&
+           !TextUtils.isEmpty(url.scheme())                           &&
+           "https".equals(url.scheme())                               &&
+           LinkPreviewDomains.IMAGES.contains(url.topPrivateDomain()) &&
+           isLegalUrl(mediaUrl);
+  }
+
+  public static boolean isLegalUrl(@NonNull String url) {
+    if (LegalUrlPatterns.LATIN.matcher(url).find()) {
+      return !LegalUrlPatterns.CYRILLIC.matcher(url).find() &&
+             !LegalUrlPatterns.GREEK.matcher(url).find();
+    }
+    return true;
   }
 }
