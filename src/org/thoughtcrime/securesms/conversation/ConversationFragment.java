@@ -745,7 +745,9 @@ public class ConversationFragment extends Fragment
   }
 
   public void onSearchQueryUpdated(@Nullable String query) {
-    getListAdapter().onSearchQueryUpdated(query);
+    if (getListAdapter() != null) {
+      getListAdapter().onSearchQueryUpdated(query);
+    }
   }
 
   public void jumpToMessage(@NonNull Address author, long timestamp, @Nullable Runnable onMessageNotFound) {
