@@ -24,36 +24,23 @@ public class ContentProxySelector extends ProxySelector {
 
   private static final String TAG = ContentProxySelector.class.getSimpleName();
 
-  public static final Set<String> WHITELISTED_DOMAINS = new HashSet<>();
+  private static final Set<String> WHITELISTED_DOMAINS = new HashSet<>();
   static {
     WHITELISTED_DOMAINS.addAll(LinkPreviewDomains.LINKS);
     WHITELISTED_DOMAINS.addAll(LinkPreviewDomains.IMAGES);
     WHITELISTED_DOMAINS.add("giphy.com");
   }
 
-  private final    List<Proxy> EMPTY   = new ArrayList<>(1);
-  private volatile List<Proxy> CONTENT = null;
-
-  public ContentProxySelector() {
-    EMPTY.add(Proxy.NO_PROXY);
-
-    if (Util.isMainThread()) {
-      AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
-        synchronized (ContentProxySelector.this) {
-          initializeContentProxy();
-          ContentProxySelector.this.notifyAll();
-        }
-      });
-    } else {
-      initializeContentProxy();
-    }
-  }
+  private final List<Proxy> CONTENT = new ArrayList<Proxy>(1) {{
+    add(new Proxy(Proxy.Type.HTTP, InetSocketAddress.createUnresolved(BuildConfig.CONTENT_PROXY_HOST,
+                                                                      BuildConfig.CONTENT_PROXY_PORT)));
+  }};
 
   @Override
   public List<Proxy> select(URI uri) {
     for (String domain : WHITELISTED_DOMAINS) {
       if (uri.getHost().endsWith(domain)) {
-        return getOrCreateContentProxy();
+        return CONTENT;
       }
     }
     throw new IllegalArgumentException("Tried to proxy a non-whitelisted domain.");
@@ -61,24 +48,6 @@ public class ContentProxySelector extends ProxySelector {
 
   @Override
   public void connectFailed(URI uri, SocketAddress address, IOException failure) {
-    Log.w(TAG, failure);
+    Log.w(TAG, "Connection failed.", failure);
   }
-
-  private void initializeContentProxy() {
-    CONTENT = new ArrayList<Proxy>(1) {{
-      add(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(BuildConfig.CONTENT_PROXY_HOST,
-                                                           BuildConfig.CONTENT_PROXY_PORT)));
-    }};
-  }
-
-  private List<Proxy> getOrCreateContentProxy() {
-    if (CONTENT == null) {
-      synchronized (this) {
-        while (CONTENT == null) Util.wait(this, 0);
-      }
-    }
-
-    return CONTENT;
-  }
-
 }
