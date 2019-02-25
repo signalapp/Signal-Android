@@ -70,6 +70,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.annimon.stream.Stream;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import org.greenrobot.eventbus.EventBus;
@@ -581,7 +582,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
       }
 
-      sendMediaMessage(transport.isSms(), message, slideDeck, Collections.emptyList(), Collections.emptyList(), expiresIn, subscriptionId, initiating);
+      final Context context = ConversationActivity.this.getApplicationContext();
+
+      sendMediaMessage(transport.isSms(), message, slideDeck, Collections.emptyList(), Collections.emptyList(), expiresIn, subscriptionId, initiating).addListener(new AssertedSuccessListener<Void>() {
+        @Override
+        public void onSuccess(Void result) {
+          AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+            Stream.of(slideDeck.getSlides())
+                  .map(Slide::getUri)
+                  .withoutNulls()
+                  .forEach(uri -> PersistentBlobProvider.getInstance(context).delete(context, uri));
+          });
+        }
+      });
 
       break;
     }
@@ -2054,7 +2067,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       throws InvalidMessageException
   {
     Log.i(TAG, "Sending media message...");
-    sendMediaMessage(forceSms, getMessage(), attachmentManager.buildSlideDeck(), Collections.emptyList(), linkPreviewViewModel.getPersistedLinkPreviews(this), expiresIn, subscriptionId, initiating);
+    sendMediaMessage(forceSms, getMessage(), attachmentManager.buildSlideDeck(), Collections.emptyList(), linkPreviewViewModel.getActiveLinkPreviews(), expiresIn, subscriptionId, initiating);
   }
 
   private ListenableFuture<Void> sendMediaMessage(final boolean forceSms,

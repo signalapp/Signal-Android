@@ -51,37 +51,14 @@ public class LinkPreviewViewModel extends ViewModel {
     return linkPreviewState.getValue() != null && linkPreviewState.getValue().getLinkPreview().isPresent();
   }
 
-  public @NonNull List<LinkPreview> getPersistedLinkPreviews(@NonNull Context context) {
+  public @NonNull List<LinkPreview> getActiveLinkPreviews() {
     final LinkPreviewState state = linkPreviewState.getValue();
+
     if (state == null || !state.getLinkPreview().isPresent()) {
       return Collections.emptyList();
-    }
-
-    if (!state.getLinkPreview().get().getThumbnail().isPresent() || state.getLinkPreview().get().getThumbnail().get().getDataUri() == null) {
+    } else {
       return Collections.singletonList(state.getLinkPreview().get());
     }
-
-    LinkPreview originalPreview    = state.getLinkPreview().get();
-    Attachment  originalAttachment = originalPreview.getThumbnail().get();
-    Uri         memoryUri          = originalAttachment.getDataUri();
-    byte[]      imageBlob          = MemoryBlobProvider.getInstance().getBlob(memoryUri);
-    Uri         diskUri            = PersistentBlobProvider.getInstance(context).create(context, imageBlob, MediaUtil.IMAGE_JPEG, null);
-    Attachment  newAttachment      = new UriAttachment(diskUri,
-                                                       diskUri,
-                                                       originalAttachment.getContentType(),
-                                                       originalAttachment.getTransferState(),
-                                                       originalAttachment.getSize(),
-                                                       originalAttachment.getWidth(),
-                                                       originalAttachment.getHeight(),
-                                                       originalAttachment.getFileName(),
-                                                       originalAttachment.getFastPreflightId(),
-                                                       originalAttachment.isVoiceNote(),
-                                                       originalAttachment.isQuote(),
-                                                       originalAttachment.getCaption());
-
-    MemoryBlobProvider.getInstance().delete(memoryUri);
-
-    return Collections.singletonList(new LinkPreview(originalPreview.getUrl(), originalPreview.getTitle(), Optional.of(newAttachment)));
   }
 
   public void onTextChanged(@NonNull Context context, @NonNull String text, int cursorStart, int cursorEnd) {
