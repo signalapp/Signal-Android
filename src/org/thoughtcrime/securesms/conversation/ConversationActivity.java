@@ -25,6 +25,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -32,6 +33,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -105,9 +107,6 @@ import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.InputPanel;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
-import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
-import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.AttachmentDrawerListener;
-import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.identity.UntrustedSendDialog;
@@ -237,10 +236,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                AttachmentManager.AttachmentListener,
                RecipientModifiedListener,
                OnKeyboardShownListener,
-               AttachmentDrawerListener,
                InputPanel.Listener,
                InputPanel.MediaListener,
-    ComposeText.CursorPositionChangedListener,
+               ComposeText.CursorPositionChangedListener,
                ConversationSearchBottomBar.EventListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
@@ -296,7 +294,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Stub<EmojiDrawer>      emojiDrawerStub;
   protected HidingLinearLayout     quickAttachmentToggle;
   protected HidingLinearLayout     inlineAttachmentToggle;
-  private   QuickAttachmentDrawer  quickAttachmentDrawer;
   private   InputPanel             inputPanel;
 
   private LinkPreviewViewModel        linkPreviewViewModel;
@@ -410,7 +407,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
-    quickAttachmentDrawer.onResume();
 
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
@@ -434,7 +430,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onPause();
     MessageNotifier.setVisibleThread(-1L);
     if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
-    quickAttachmentDrawer.onPause();
     inputPanel.onPause();
 
     fragment.setLastSeen(System.currentTimeMillis());
@@ -454,7 +449,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Log.i(TAG, "onConfigurationChanged(" + newConfig.orientation + ")");
     super.onConfigurationChanged(newConfig);
     composeText.setTransport(sendButton.getSelectedTransport());
-    quickAttachmentDrawer.onConfigurationChanged();
 
     if (emojiDrawerStub.resolved() && container.getCurrentInput() == emojiDrawerStub.get()) {
       container.hideAttachedInput(true);
@@ -1524,7 +1518,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     reminderView           = ViewUtil.findStubById(this, R.id.reminder_stub);
     unverifiedBannerView   = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
     groupShareProfileView  = ViewUtil.findStubById(this, R.id.group_share_profile_view_stub);
-    quickAttachmentDrawer  = ViewUtil.findById(this, R.id.quick_attachment_drawer);
     quickAttachmentToggle  = ViewUtil.findById(this, R.id.quick_attachment_toggle);
     inlineAttachmentToggle = ViewUtil.findById(this, R.id.inline_attachment_container);
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
@@ -1573,12 +1566,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
 
-    if (QuickAttachmentDrawer.isDeviceSupported(this)) {
-      quickAttachmentDrawer.setListener(this);
+    if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA) && Camera.getNumberOfCameras() > 0) {
+      quickCameraToggle.setVisibility(View.VISIBLE);
       quickCameraToggle.setOnClickListener(new QuickCameraToggleListener());
     } else {
       quickCameraToggle.setVisibility(View.GONE);
-      quickCameraToggle.setEnabled(false);
     }
 
     searchNav.setEventListener(this);
@@ -2223,43 +2215,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
-
-  @Override
-  public void onAttachmentDrawerStateChanged(DrawerState drawerState) {
-    ActionBar supportActionBar = getSupportActionBar();
-    if (supportActionBar == null) throw new AssertionError();
-
-    if (drawerState == DrawerState.FULL_EXPANDED) {
-      supportActionBar.hide();
-    } else {
-      supportActionBar.show();
-    }
-
-    if (drawerState == DrawerState.COLLAPSED) {
-      container.hideAttachedInput(true);
-    }
-  }
-
-  @Override
-  public void onImageCapture(@NonNull final byte[] imageBytes) {
-    setMedia(PersistentBlobProvider.getInstance(this)
-                                   .create(this, imageBytes, MediaUtil.IMAGE_JPEG, null),
-             MediaType.IMAGE);
-    quickAttachmentDrawer.hide(false);
-  }
-
-  @Override
-  public void onCameraFail() {
-    Toast.makeText(this, R.string.ConversationActivity_quick_camera_unavailable, Toast.LENGTH_SHORT).show();
-    quickAttachmentDrawer.hide(false);
-    quickAttachmentToggle.disable();
-  }
-
-  @Override
-  public void onCameraStart() {}
-
-  @Override
-  public void onCameraStop() {}
 
   @Override
   public void onRecorderPermissionRequired() {
