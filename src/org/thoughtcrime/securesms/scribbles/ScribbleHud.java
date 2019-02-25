@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
@@ -169,6 +170,9 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
       sendButtonBkg.getBackground().setColorFilter(newTransport.getBackgroundColor(), PorterDuff.Mode.MULTIPLY);
       sendButtonBkg.getBackground().invalidateSelf();
     });
+
+    SendButtonListener sendButtonListener = new SendButtonListener();
+    composeText.setOnEditorActionListener(sendButtonListener);
 
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
@@ -397,6 +401,17 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
       }
     }
   };
+
+  private class SendButtonListener implements TextView.OnEditorActionListener {
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+      if (actionId == EditorInfo.IME_ACTION_SEND) {
+        sendButton.performClick();
+        return true;
+      }
+      return false;
+    }
+  }
 
   private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher, OnFocusChangeListener {
 
