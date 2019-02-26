@@ -20,12 +20,14 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public class GiphyActivity extends PassphraseRequiredActionBarActivity
@@ -115,8 +117,11 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
         try {
           byte[] data = viewHolder.getData(forMms);
 
-          return PersistentBlobProvider.getInstance(GiphyActivity.this).create(GiphyActivity.this, data, "image/gif", null);
-        } catch (InterruptedException | ExecutionException e) {
+          return BlobProvider.getInstance()
+                             .forData(data)
+                             .withMimeType(MediaUtil.IMAGE_GIF)
+                             .createForSingleSessionOnDisk(GiphyActivity.this);
+        } catch (InterruptedException | ExecutionException | IOException e) {
           Log.w(TAG, e);
           return null;
         }

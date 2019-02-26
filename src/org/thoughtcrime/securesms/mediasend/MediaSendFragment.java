@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.widget.ScribbleView;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -433,13 +434,17 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
               ByteArrayOutputStream  baos     = new ByteArrayOutputStream();
               bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
 
-              Uri   uri     = PersistentBlobProvider.getInstance(context).create(context, baos.toByteArray(), MediaUtil.IMAGE_JPEG, null);
+              Uri uri = BlobProvider.getInstance()
+                                    .forData(baos.toByteArray())
+                                    .withMimeType(MediaUtil.IMAGE_JPEG)
+                                    .createForSingleSessionOnDisk(context);
+
               Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), baos.size(), media.getBucketId(), media.getCaption());
 
               updatedMedia.add(updated);
               renderTimer.split("item");
 
-            } catch (InterruptedException | ExecutionException e) {
+            } catch (InterruptedException | ExecutionException | IOException e) {
               Log.w(TAG, "Failed to render image. Using base image.");
               updatedMedia.add(media);
             }

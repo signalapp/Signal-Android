@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

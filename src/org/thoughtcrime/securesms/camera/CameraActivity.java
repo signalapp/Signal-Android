@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.ScribbleFragment;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
@@ -85,7 +85,7 @@ public class CameraActivity extends PassphraseRequiredActionBarActivity implemen
     } else {
       if (editorFragment != null && captureUri != null) {
         Log.i(TAG, "Cleaning up unused capture: " + captureUri);
-        MemoryBlobProvider.getInstance().delete(captureUri);
+        BlobProvider.getInstance().delete(this, captureUri);
         captureUri = null;
       }
       super.onBackPressed();
@@ -99,7 +99,7 @@ public class CameraActivity extends PassphraseRequiredActionBarActivity implemen
 
     if (captureUri != null) {
       Log.i(TAG, "Cleaning up capture in onDestroy: " + captureUri);
-      MemoryBlobProvider.getInstance().delete(captureUri);
+      BlobProvider.getInstance().delete(this, captureUri);
     }
   }
 
@@ -114,7 +114,7 @@ public class CameraActivity extends PassphraseRequiredActionBarActivity implemen
   public void onImageCaptured(@NonNull byte[] data) {
     Log.i(TAG, "Fast image captured.");
 
-    captureUri = MemoryBlobProvider.getInstance().createUri(data);
+    captureUri = BlobProvider.getInstance().forData(data).createForSingleSessionInMemory();
     Log.i(TAG, "Fast image stored: " + captureUri.toString());
 
     SettableFuture<Boolean> result = new SettableFuture<>();

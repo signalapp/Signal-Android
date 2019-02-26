@@ -177,8 +177,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
-import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -592,7 +591,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             Stream.of(slideDeck.getSlides())
                   .map(Slide::getUri)
                   .withoutNulls()
-                  .forEach(uri -> PersistentBlobProvider.getInstance(context).delete(context, uri));
+                  .forEach(uri -> BlobProvider.getInstance().delete(context, uri));
           });
         }
       });
@@ -1974,9 +1973,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       bodyText = rawText.substring(0, maxPrimaryMessageSize);
 
       byte[] textData  = rawText.getBytes();
-      Uri    textUri   = MemoryBlobProvider.getInstance().createUri(textData);
       String timestamp = new SimpleDateFormat("yyyy-MM-dd-HHmmss", Locale.US).format(new Date());
       String filename  = String.format("signal-%s.txt", timestamp);
+      Uri    textUri   = BlobProvider.getInstance()
+                                     .forData(textData)
+                                     .withMimeType(MediaUtil.LONG_TEXT)
+                                     .withFileName(filename)
+                                     .createForSingleSessionInMemory();
 
       textSlide = Optional.of(new TextSlide(this, textUri, filename, textData.length));
     }
@@ -2299,7 +2302,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             new AsyncTask<Void, Void, Void>() {
               @Override
               protected Void doInBackground(Void... params) {
-                PersistentBlobProvider.getInstance(ConversationActivity.this).delete(ConversationActivity.this, result.first);
+                BlobProvider.getInstance().delete(ConversationActivity.this, result.first);
                 return null;
               }
             }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -2328,7 +2331,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         new AsyncTask<Void, Void, Void>() {
           @Override
           protected Void doInBackground(Void... params) {
-            PersistentBlobProvider.getInstance(ConversationActivity.this).delete(ConversationActivity.this, result.first);
+            BlobProvider.getInstance().delete(ConversationActivity.this, result.first);
             return null;
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,7 +24,8 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.scribbles.viewmodel.Font;
 import org.thoughtcrime.securesms.scribbles.viewmodel.Layer;
 import org.thoughtcrime.securesms.scribbles.viewmodel.TextLayer;
@@ -300,30 +302,40 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
   }
 
   @Override
-  public void onEditComplete(@NonNull Optional<String> message, Optional<TransportOption> transport) {
+  public void onEditComplete(@NonNull Optional<String> message, @NonNull Optional<TransportOption> transport) {
     ListenableFuture<Bitmap> future = scribbleView.getRenderedImage(glideRequests);
 
     future.addListener(new ListenableFuture.Listener<Bitmap>() {
       @Override
       public void onSuccess(Bitmap result) {
-        PersistentBlobProvider provider = PersistentBlobProvider.getInstance(getContext());
-        ByteArrayOutputStream  baos     = new ByteArrayOutputStream();
-        result.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+          try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            result.compress(Bitmap.CompressFormat.JPEG, 80, baos);
 
-        byte[] data = baos.toByteArray();
+            byte[] data = baos.toByteArray();
+            Uri    uri  = BlobProvider.getInstance()
+                                      .forData(data)
+                                      .withMimeType(MediaUtil.IMAGE_JPEG)
+                                      .createForSingleSessionOnDisk(requireContext());
 
-        controller.onImageEditComplete(provider.create(getContext(), data, MediaUtil.IMAGE_JPEG, null),
-                                       result.getWidth(),
-                                       result.getHeight(),
-                                       data.length,
-                                       message,
-                                       transport);
+            controller.onImageEditComplete(uri,
+                                           result.getWidth(),
+                                           result.getHeight(),
+                                           data.length,
+                                           message,
+                                           transport);
+          } catch (IOException e) {
+            Log.w(TAG, "Failed to persist image.", e);
+            Util.runOnMain(() -> controller.onImageEditFailure());
+          }
+        });
       }
 
       @Override
       public void onFailure(ExecutionException e) {
         Log.w(TAG, e);
-        controller.onImageEditFailure();
+        Util.runOnMain(() -> controller.onImageEditFailure());
       }
     });
   }

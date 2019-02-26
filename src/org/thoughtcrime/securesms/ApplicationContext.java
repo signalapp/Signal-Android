@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -119,6 +120,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeWebRtc();
     initializePendingMessages();
     initializeUnidentifiedDeliveryAbilityRefresh();
+    initializeBlobProvider();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
   }
@@ -311,5 +313,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (TextSecurePreferences.isMultiDevice(this) && !TextSecurePreferences.isUnidentifiedDeliveryEnabled(this)) {
       jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob(this));
     }
+  }
+
+  private void initializeBlobProvider() {
+    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+      BlobProvider.getInstance().onSessionStart(this);
+    });
   }
 }

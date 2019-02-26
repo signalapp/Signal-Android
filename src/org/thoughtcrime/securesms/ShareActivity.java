@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -132,7 +132,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public void onPause() {
     super.onPause();
     if (!isPassingAlongMedia && resolvedExtra != null) {
-      PersistentBlobProvider.getInstance(this).delete(this, resolvedExtra);
+      BlobProvider.getInstance().delete(this, resolvedExtra);
 
       if (!isFinishing()) {
         finish();
@@ -324,7 +324,11 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
           if (cursor != null) cursor.close();
         }
 
-        return PersistentBlobProvider.getInstance(context).create(context, inputStream, mimeType, fileName, fileSize);
+        return BlobProvider.getInstance()
+                           .forData(inputStream, fileSize == null ? 0 : fileSize)
+                           .withMimeType(mimeType)
+                           .withFileName(fileName)
+                           .createForMultipleSessionsOnDisk(context);
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;

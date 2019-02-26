@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.net.RequestController;
-import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -145,7 +145,7 @@ public class LinkPreviewRepository {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
 
         byte[]               bytes     = baos.toByteArray();
-        Uri                  uri       = MemoryBlobProvider.getInstance().createUri(bytes);
+        Uri                  uri       = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
         Optional<Attachment> thumbnail = Optional.of(new UriAttachment(uri,
                                                                        uri,
                                                                        MediaUtil.IMAGE_JPEG,
