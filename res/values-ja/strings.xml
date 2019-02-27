@@ -151,6 +151,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセス許可が必要です。</string>
   <string name="ConversationActivity_quoted_contact_message">%2$s%1$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalは現在、デフォルトのショートメッセージアプリになっていないため、メッセージが送信できません。設定を変更しますか？</string>
+  <string name="ConversationActivity_yes">はい</string>
+  <string name="ConversationActivity_no">いいえ</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d通の未読メッセージ</item>
@@ -260,13 +263,17 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">写真を撮りますが，準備はいいですか？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signalでプロフィール名と画像が設定できるようになりました。</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal のプロフィールは以下の通りです。</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">入力中アイコンとは</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">入力中アイコンのご紹介</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">メッセージが入力中であることを表示します。</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">いま有効化しますか？</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">アイコンはこれです。</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">アイコンの有効化</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">入力インジケーターを表示する</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">入力中アイコンはこちら</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">入力中アイコンを有効にする</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">入力中アイコンを表示する</string>
   <string name="ExperienceUpgradeActivity_no_thanks">しません</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">リンクプレビューについて</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">リンクのプレビューは、主要なネットサービスに対応しています。</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">この機能は、Signalの設定（プライバシー &gt; リンクプレビューを送る）で有効化できます。</string>
+  <string name="ExperienceUpgradeActivity_got_it">分かりました</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます...</string>
   <!--GcmRefreshJob-->
@@ -353,6 +360,17 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">マルチメディアメッセージ</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMSメッセージをダウンロード中</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMSメッセージのダウンロード中にエラーが発生しました。タップして再試行してください。</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">%sに送信</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">タップで選択</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="other">%d 個を超えるアイテムは共有できません</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">キャプション追加...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">すべてのメディア</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージは古いSignalで暗号化されているので解読不能です。Signalをアップデートして再送するよう送信者にお願いしてください。</string>
   <string name="MessageRecord_left_group">グループを抜けました</string>
@@ -912,6 +930,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">マルチメディア・メッセージの受信はすべてSignalで行う</string>
   <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
+  <string name="preferences__send_link_previews">リンクプレビューを送る</string>
+  <string name="preferences__previews_are_supported_for">リンクプレビューは、次のサービスに対応しています: Imgur, Instagram, Reddit, YouTube</string>
   <string name="preferences__choose_identity">認証を選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
@@ -982,7 +1002,7 @@
   <string name="preferences__read_receipts">既読通知</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
   <string name="preferences__typing_indicators">入力中アイコン</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">有効化されていなければ、相手の入力中アイコンは表示されません。</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">キーボード予測入力を無効化</string>
   <string name="preferences_app_protection__blocked_contacts">ブロックした連絡先</string>
   <string name="preferences_chats__when_using_mobile_data">モバイルデータ通信利用時</string>

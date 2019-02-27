@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.jobmanager.SafeData;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -68,7 +69,7 @@ public class LocalBackupJob extends ContextJob {
                                                  R.drawable.ic_signal_backup);
 
     try {
-      String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);
+      String backupPassword  = BackupPassphrase.get(context);
       File   backupDirectory = StorageUtil.getBackupDirectory();
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
       String fileName        = String.format("signal-%s.backup", timestamp);

@@ -33,18 +33,25 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
   private static final String KEY_READ_RECEIPTS_ENABLED                    = "read_receipts_enabled";
   private static final String KEY_TYPING_INDICATORS_ENABLED                = "typing_indicators_enabled";
   private static final String KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED = "unidentified_delivery_indicators_enabled";
+  private static final String KEY_LINK_PREVIEWS_ENABLED                    = "link_previews_enabled";
 
   @Inject transient SignalServiceMessageSender messageSender;
 
   private boolean readReceiptsEnabled;
   private boolean typingIndicatorsEnabled;
   private boolean unidentifiedDeliveryIndicatorsEnabled;
+  private boolean linkPreviewsEnabled;
 
   public MultiDeviceConfigurationUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
     super(context, workerParameters);
   }
 
-  public MultiDeviceConfigurationUpdateJob(Context context, boolean readReceiptsEnabled, boolean typingIndicatorsEnabled, boolean unidentifiedDeliveryIndicatorsEnabled) {
+  public MultiDeviceConfigurationUpdateJob(Context context,
+                                           boolean readReceiptsEnabled,
+                                           boolean typingIndicatorsEnabled,
+                                           boolean unidentifiedDeliveryIndicatorsEnabled,
+                                           boolean linkPreviewsEnabled)
+  {
     super(context, JobParameters.newBuilder()
                                 .withGroupId("__MULTI_DEVICE_CONFIGURATION_UPDATE_JOB__")
                                 .withNetworkRequirement()
@@ -53,6 +60,7 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
     this.readReceiptsEnabled                   = readReceiptsEnabled;
     this.typingIndicatorsEnabled               = typingIndicatorsEnabled;
     this.unidentifiedDeliveryIndicatorsEnabled = unidentifiedDeliveryIndicatorsEnabled;
+    this.linkPreviewsEnabled                   = linkPreviewsEnabled;
   }
 
   @Override
@@ -60,6 +68,7 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
     readReceiptsEnabled                   = data.getBoolean(KEY_READ_RECEIPTS_ENABLED);
     typingIndicatorsEnabled               = data.getBoolean(KEY_TYPING_INDICATORS_ENABLED);
     unidentifiedDeliveryIndicatorsEnabled = data.getBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED);
+    linkPreviewsEnabled                   = data.getBoolean(KEY_LINK_PREVIEWS_ENABLED);
   }
 
   @Override
@@ -67,6 +76,7 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
     return dataBuilder.putBoolean(KEY_READ_RECEIPTS_ENABLED, readReceiptsEnabled)
                       .putBoolean(KEY_TYPING_INDICATORS_ENABLED, typingIndicatorsEnabled)
                       .putBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED, unidentifiedDeliveryIndicatorsEnabled)
+                      .putBoolean(KEY_LINK_PREVIEWS_ENABLED, linkPreviewsEnabled)
                       .build();
   }
 
@@ -79,7 +89,8 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
 
     messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
                                                                                                  Optional.of(unidentifiedDeliveryIndicatorsEnabled),
-                                                                                                 Optional.of(typingIndicatorsEnabled))),
+                                                                                                 Optional.of(typingIndicatorsEnabled),
+                                                                                                 Optional.of(linkPreviewsEnabled))),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

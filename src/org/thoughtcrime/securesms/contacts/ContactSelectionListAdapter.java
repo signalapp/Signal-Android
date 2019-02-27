@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration.StickyHeaderAdapter;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashMap;

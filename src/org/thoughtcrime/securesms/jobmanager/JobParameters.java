@@ -104,6 +104,13 @@ public class JobParameters implements Serializable {
     return retryUntil;
   }
 
+  public ChainParameters getSoloChainParameters() {
+    return new ChainParameters.Builder()
+                              .setGroupId(groupId)
+                              .ignoreDuplicates(ignoreDuplicates)
+                              .build();
+  }
+
   /**
    * @return a builder used to construct JobParameters.
    */

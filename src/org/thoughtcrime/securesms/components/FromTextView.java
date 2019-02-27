@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ResUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.spans.CenterAlignedRelativeSizeSpan;
 
 public class FromTextView extends EmojiTextView {
@@ -52,7 +53,10 @@ public class FromTextView extends EmojiTextView {
     fromSpan.setSpan(new StyleSpan(typeface), 0, builder.length(),
                      Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 
-    if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
+
+    if (recipient.isLocalNumber()) {
+      builder.append(getContext().getString(R.string.note_to_self));
+    } else if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
       SpannableString profileName = new SpannableString(" (~" + recipient.getProfileName() + ") ");
       profileName.setSpan(new CenterAlignedRelativeSizeSpan(0.75f), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       profileName.setSpan(new TypefaceSpan("sans-serif-light"), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

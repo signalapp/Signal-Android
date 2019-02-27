@@ -29,7 +29,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.Collections;
 import java.util.List;
 
-public class ExperienceUpgradeActivity extends BaseActionBarActivity implements TypingIndicatorIntroFragment.Controller {
+public class ExperienceUpgradeActivity extends BaseActionBarActivity implements TypingIndicatorIntroFragment.Controller, LinkPreviewsIntroFragment.Controller {
   private static final String TAG             = ExperienceUpgradeActivity.class.getSimpleName();
   private static final String DISMISS_ACTION  = "org.thoughtcrime.securesms.ExperienceUpgradeActivity.DISMISS_ACTION";
   private static final int    NOTIFICATION_ID = 1339;
@@ -80,7 +80,14 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
                       R.string.ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed,
                       R.string.ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed,
                       null,
-                      true);
+                      true),
+    LINK_PREVIEWS(449,
+                  new IntroPage(0xFF2090EA, LinkPreviewsIntroFragment.newInstance()),
+                  R.string.ExperienceUpgradeActivity_introducing_link_previews,
+                  R.string.ExperienceUpgradeActivity_optional_link_previews_are_now_supported,
+                  R.string.ExperienceUpgradeActivity_optional_link_previews_are_now_supported,
+        null,
+        true);
 
     private            int             version;
     private            List<IntroPage> pages;
@@ -215,8 +222,13 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
   }
 
   @Override
-  public void onFinished() {
+  public void onTypingIndicatorsFinished() {
     onContinue(Optional.of(ExperienceUpgrade.TYPING_INDICATORS));
+  }
+
+  @Override
+  public void onLinkPreviewsFinished() {
+    onContinue(Optional.of(ExperienceUpgrade.LINK_PREVIEWS));
   }
 
   private final class OnPageChangeListener implements ViewPager.OnPageChangeListener {

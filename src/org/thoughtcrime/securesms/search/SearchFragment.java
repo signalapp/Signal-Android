@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -122,16 +122,6 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
   }
 
   @Override
-  public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-
-    if (listDecoration != null) {
-      listDecoration.invalidateLayouts();
-    }
-  }
-
-
-  @Override
   public void onConversationClicked(@NonNull ThreadRecord threadRecord) {
     ConversationListActivity conversationList = (ConversationListActivity) getActivity();
 
@@ -172,7 +162,7 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
         ConversationListActivity conversationList = (ConversationListActivity) getActivity();
         if (conversationList != null) {
           conversationList.openConversation(message.threadId,
-                                            message.recipient,
+                                            message.conversationRecipient,
                                             ThreadDatabase.DistributionTypes.DEFAULT,
                                             -1,
                                             startingPosition);

@@ -59,8 +59,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int SECRET_SENDER                    = 13;
   private static final int ATTACHMENT_CAPTIONS              = 14;
   private static final int ATTACHMENT_CAPTIONS_FIX          = 15;
+  private static final int PREVIEWS                         = 16;
+  private static final int CONVERSATION_SEARCH              = 17;
+  private static final int SELF_ATTACHMENT_CLEANUP          = 18;
 
-  private static final int    DATABASE_VERSION = 15;
+  private static final int    DATABASE_VERSION = 18;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -200,9 +203,29 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < FULL_TEXT_SEARCH) {
-        for (String sql : SearchDatabase.CREATE_TABLE) {
-          db.execSQL(sql);
-        }
+        db.execSQL("CREATE VIRTUAL TABLE sms_fts USING fts5(body, content=sms, content_rowid=_id)");
+        db.execSQL("CREATE TRIGGER sms_ai AFTER INSERT ON sms BEGIN\n" +
+                   "  INSERT INTO sms_fts(rowid, body) VALUES (new._id, new.body);\n" +
+                   "END;");
+        db.execSQL("CREATE TRIGGER sms_ad AFTER DELETE ON sms BEGIN\n" +
+                   "  INSERT INTO sms_fts(sms_fts, rowid, body) VALUES('delete', old._id, old.body);\n" +
+                   "END;\n");
+        db.execSQL("CREATE TRIGGER sms_au AFTER UPDATE ON sms BEGIN\n" +
+                   "  INSERT INTO sms_fts(sms_fts, rowid, body) VALUES('delete', old._id, old.body);\n" +
+                   "  INSERT INTO sms_fts(rowid, body) VALUES(new._id, new.body);\n" +
+                   "END;");
+
+        db.execSQL("CREATE VIRTUAL TABLE mms_fts USING fts5(body, content=mms, content_rowid=_id)");
+        db.execSQL("CREATE TRIGGER mms_ai AFTER INSERT ON mms BEGIN\n" +
+                   "  INSERT INTO mms_fts(rowid, body) VALUES (new._id, new.body);\n" +
+                   "END;");
+        db.execSQL("CREATE TRIGGER mms_ad AFTER DELETE ON mms BEGIN\n" +
+                   "  INSERT INTO mms_fts(mms_fts, rowid, body) VALUES('delete', old._id, old.body);\n" +
+                   "END;\n");
+        db.execSQL("CREATE TRIGGER mms_au AFTER UPDATE ON mms BEGIN\n" +
+                   "  INSERT INTO mms_fts(mms_fts, rowid, body) VALUES('delete', old._id, old.body);\n" +
+                   "  INSERT INTO mms_fts(rowid, body) VALUES(new._id, new.body);\n" +
+                   "END;");
 
         Log.i(TAG, "Beginning to build search index.");
         long start = SystemClock.elapsedRealtime();
@@ -305,6 +328,77 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < ATTACHMENT_CAPTIONS_FIX) {
         if (!columnExists(db, "part", "caption")) {
           db.execSQL("ALTER TABLE part ADD COLUMN caption TEXT DEFAULT NULL");
+        }
+      }
+
+      if (oldVersion < PREVIEWS) {
+        db.execSQL("ALTER TABLE mms ADD COLUMN previews TEXT");
+      }
+
+      if (oldVersion < CONVERSATION_SEARCH) {
+        db.execSQL("DROP TABLE sms_fts");
+        db.execSQL("DROP TABLE mms_fts");
+        db.execSQL("DROP TRIGGER sms_ai");
+        db.execSQL("DROP TRIGGER sms_au");
+        db.execSQL("DROP TRIGGER sms_ad");
+        db.execSQL("DROP TRIGGER mms_ai");
+        db.execSQL("DROP TRIGGER mms_au");
+        db.execSQL("DROP TRIGGER mms_ad");
+
+        db.execSQL("CREATE VIRTUAL TABLE sms_fts USING fts5(body, thread_id UNINDEXED, content=sms, content_rowid=_id)");
+        db.execSQL("CREATE TRIGGER sms_ai AFTER INSERT ON sms BEGIN\n" +
+                   "  INSERT INTO sms_fts(rowid, body, thread_id) VALUES (new._id, new.body, new.thread_id);\n" +
+                   "END;");
+        db.execSQL("CREATE TRIGGER sms_ad AFTER DELETE ON sms BEGIN\n" +
+                   "  INSERT INTO sms_fts(sms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id);\n" +
+                   "END;\n");
+        db.execSQL("CREATE TRIGGER sms_au AFTER UPDATE ON sms BEGIN\n" +
+                   "  INSERT INTO sms_fts(sms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id);\n" +
+                   "  INSERT INTO sms_fts(rowid, body, thread_id) VALUES(new._id, new.body, new.thread_id);\n" +
+                   "END;");
+
+        db.execSQL("CREATE VIRTUAL TABLE mms_fts USING fts5(body, thread_id UNINDEXED, content=mms, content_rowid=_id)");
+        db.execSQL("CREATE TRIGGER mms_ai AFTER INSERT ON mms BEGIN\n" +
+                   "  INSERT INTO mms_fts(rowid, body, thread_id) VALUES (new._id, new.body, new.thread_id);\n" +
+                   "END;");
+        db.execSQL("CREATE TRIGGER mms_ad AFTER DELETE ON mms BEGIN\n" +
+                   "  INSERT INTO mms_fts(mms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id);\n" +
+                   "END;\n");
+        db.execSQL("CREATE TRIGGER mms_au AFTER UPDATE ON mms BEGIN\n" +
+                   "  INSERT INTO mms_fts(mms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id);\n" +
+                   "  INSERT INTO mms_fts(rowid, body, thread_id) VALUES(new._id, new.body, new.thread_id);\n" +
+                   "END;");
+
+        Log.i(TAG, "Beginning to build search index.");
+        long start = SystemClock.elapsedRealtime();
+
+        db.execSQL("INSERT INTO sms_fts (rowid, body, thread_id) SELECT _id, body, thread_id FROM sms");
+
+        long smsFinished = SystemClock.elapsedRealtime();
+        Log.i(TAG, "Indexing SMS completed in " + (smsFinished - start) + " ms");
+
+        db.execSQL("INSERT INTO mms_fts (rowid, body, thread_id) SELECT _id, body, thread_id FROM mms");
+
+        long mmsFinished = SystemClock.elapsedRealtime();
+        Log.i(TAG, "Indexing MMS completed in " + (mmsFinished - smsFinished) + " ms");
+        Log.i(TAG, "Indexing finished. Total time: " + (mmsFinished - start) + " ms");
+      }
+
+      if (oldVersion < SELF_ATTACHMENT_CLEANUP) {
+        String localNumber = TextSecurePreferences.getLocalNumber(context);
+
+        if (!TextUtils.isEmpty(localNumber)) {
+          try (Cursor threadCursor = db.rawQuery("SELECT _id FROM thread WHERE recipient_ids = ?", new String[]{ localNumber })) {
+            if (threadCursor != null && threadCursor.moveToFirst()) {
+              long          threadId     = threadCursor.getLong(0);
+              ContentValues updateValues = new ContentValues(1);
+
+              updateValues.put("pending_push", 0);
+
+              int count = db.update("part", updateValues, "mid IN (SELECT _id FROM mms WHERE thread_id = ?)", new String[]{ String.valueOf(threadId) });
+              Log.i(TAG, "Updated " + count + " self-sent attachments.");
+            }
+          }
         }
       }
 

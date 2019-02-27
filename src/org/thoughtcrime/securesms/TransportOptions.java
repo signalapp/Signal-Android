@@ -62,6 +62,10 @@ public class TransportOptions {
   }
 
   public void setDefaultSubscriptionId(Optional<Integer> subscriptionId) {
+    if  (defaultSubscriptionId.equals(subscriptionId)) {
+      return;
+    }
+
     this.defaultSubscriptionId = subscriptionId;
 
     if (!selectedOption.isPresent()) {

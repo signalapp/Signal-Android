@@ -154,6 +154,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">El Signal necessita el permís de la càmera per tal de fer fotografies i vídeos, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi la càmera.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">El Signal necessita el permís de la càmera per fer fotografies i vídeos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">El Signal no pot enviar missatges SMS / MMS perquè no és la vostra aplicació d\'SMS predeterminada. Voleu canviar-ho a la configuració d\'Android?</string>
+  <string name="ConversationActivity_yes">Sí</string>
+  <string name="ConversationActivity_no">No</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -281,6 +284,10 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Habilita els indicadors de tecleig</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activa els indicadors de tecleig</string>
   <string name="ExperienceUpgradeActivity_no_thanks">No, gràcies</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Introduïnt previsualitzacions d\'enllaços.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Previsualitzacions d\'enllaços opcionals estan disponibles per algunes de les pàgines més populars d\'internet.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Pots habilitar o deshabilitar aquesta opció quan vulguis a la configuració del teu Signal (Privadesa &gt; Envia previsualitzacions d\'enllaços).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Entès!</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">S\'està recuperant un missatge...</string>
   <!--GcmRefreshJob-->
@@ -371,6 +378,18 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Missatge multimèdia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">S\'està baixant el missatge MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">S\'ha produït un error en baixar el missatge MMS. Toqueu per tornar a intentar-ho</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Envia-ho a %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Feu un toc per seleccionar-ho</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">No podeu compartir més d\'%d element.</item>
+    <item quantity="other">No podeu compartir més de %d elements.</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Afegiu-hi un títol...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Tot el contingut</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">S\'ha rebut un missatge encriptat amb una versió antiga del Signal que ja no s\'admet. Digueu-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
   <string name="MessageRecord_left_group">Heu abandonat el grup.</string>
@@ -945,6 +964,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Fes servir el Signal per a tots els missatges multimèdia d\'entrada</string>
   <string name="preferences__pref_enter_sends_title">Envia amb la tecla Retorn</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">En prémer Retorn s\'envia el missatge de text</string>
+  <string name="preferences__send_link_previews">Envia previsualitzacions d\'enllaços</string>
+  <string name="preferences__previews_are_supported_for">Les previsualitzacions estan disponibles per enllaços d\'Imgur, Instagram, Reddit i Youtube</string>
   <string name="preferences__choose_identity">Trieu la identitat a usar</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Trieu els contactes de la llista de contactes.</string>
   <string name="preferences__change_passphrase">Canvia la contrasenya</string>

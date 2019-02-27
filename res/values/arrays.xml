@@ -11,6 +11,7 @@
       <item>Čeština</item>
       <item>Chinese (Simplified) 中文 (简体)</item>
       <item>Chinese (Traditional) 中文 (繁體)</item>
+      <item>Cymraeg</item>
       <item>Dansk</item>
       <item>Deutsch</item>
       <item>Eesti</item>
@@ -21,6 +22,7 @@
       <item>Galego</item>
       <item>Greek ελληνικά</item>
       <item>Hebrew עברית</item>
+      <item>Hindi हिंदी</item>    
       <item>Hrvatski</item>
       <item>Indonesia</item>
       <item>Italiano</item>
@@ -39,6 +41,7 @@
       <item>Polski</item>
       <item>Português</item>
       <item>Português do Brasil</item>
+      <item>Quechua</item>    
       <item>Română</item>
       <item>Russian Pусский</item>
       <item>Serbian српски</item>
@@ -64,6 +67,7 @@
       <item>cs</item>
       <item>zh_CN</item>
       <item>zh_TW</item>
+      <item>cy</item> 
       <item>da</item>
       <item>de</item>
       <item>et</item>
@@ -74,11 +78,12 @@
       <item>gl</item>
       <item>el</item>
       <item>iw</item>
+      <item>hi</item>
       <item>hr</item>
       <item>in</item>
       <item>it</item>
       <item>ja</item>
-      <item>km_KH</item>
+      <item>km</item>
       <item>ko</item>
       <item>ku</item>
       <item>lt</item>
@@ -92,6 +97,7 @@
       <item>pl</item>
       <item>pt</item>
       <item>pt_BR</item>
+      <item>qu_EC</item>
       <item>ro</item>
       <item>ru</item>
       <item>sr</item>

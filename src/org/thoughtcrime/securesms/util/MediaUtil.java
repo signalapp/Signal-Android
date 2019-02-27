@@ -239,6 +239,8 @@ public class MediaUtil {
 
     if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
       return uri.getLastPathSegment().contains("video");
+    } else if (uri.toString().startsWith(MediaStore.Video.Media.EXTERNAL_CONTENT_URI.toString())) {
+      return true;
     }
 
     return false;
@@ -247,6 +249,13 @@ public class MediaUtil {
   public static @Nullable Bitmap getVideoThumbnail(Context context, Uri uri) {
     if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
       long videoId = Long.parseLong(uri.getLastPathSegment().split(":")[1]);
+
+      return MediaStore.Video.Thumbnails.getThumbnail(context.getContentResolver(),
+                                                      videoId,
+                                                      MediaStore.Images.Thumbnails.MINI_KIND,
+                                                      null);
+    } else if (uri.toString().startsWith(MediaStore.Video.Media.EXTERNAL_CONTENT_URI.toString())) {
+      long videoId = Long.parseLong(uri.getLastPathSegment());
 
       return MediaStore.Video.Thumbnails.getThumbnail(context.getContentResolver(),
                                                       videoId,

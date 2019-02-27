@@ -177,13 +177,17 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
 
-    emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
-
     colorPaletteAdapter = new ColorPaletteAdapter();
     colorPaletteAdapter.setEventListener(colorPicker::setActiveColor);
 
     colorPalette.setLayoutManager(new LinearLayoutManager(getContext()));
     colorPalette.setAdapter(colorPaletteAdapter);
+
+    if (TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
+      emojiToggle.setVisibility(GONE);
+    } else {
+      emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
+    }
   }
 
   public void setLocale(@NonNull Locale locale) {
@@ -198,6 +202,12 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     } else {
       saveButton.setVisibility(VISIBLE);
       inputContainer.setVisibility(GONE);
+    }
+  }
+
+  public void hideSaveButton(boolean hide) {
+    if (hide) {
+      saveButton.setVisibility(GONE);
     }
   }
 

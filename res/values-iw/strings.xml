@@ -160,6 +160,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal צריך את הרשאת המצלמה כדי לצלם תצלומים או וידיאו, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal צריך הרשאות מצלמה כדי לצלם תצלומים או להקליט וידיאו</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal לא יכול לשלוח הודעות SMS/MMS מאחר שהוא לא יישום המסרונים ברירת המחדל שלך. האם אתה רוצה לשנות זאת בהגדרות Android שלך?</string>
+  <string name="ConversationActivity_yes">כן</string>
+  <string name="ConversationActivity_no">לא</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -309,6 +312,10 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">אפשר מחווני הקלדה</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">הפעל מחווני הקלדה</string>
   <string name="ExperienceUpgradeActivity_no_thanks">לא תודה</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">היכרות עם קדם־תצוגות של קישורים.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">קדם־תצוגות רשותיות של קישורים נתמכות כעת עבור כמה מהאתרים הפופולריים ביותר באינטרנט.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">אתה יכול להשבית או לאפשר מאפיין זה בכל זמן בהגדרות Signal שלך (פרטיות &gt; שלח קדם־תצוגות של קישורים).</string>
+  <string name="ExperienceUpgradeActivity_got_it">הבנתי</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">מאחזר הודעה...</string>
   <!--GcmRefreshJob-->
@@ -407,6 +414,20 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">הודעת מולטימדיה</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">מוריד הודעת MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">שגיאה בהורדת הודעת MMS, הקש כדי לנסות שוב</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">שלח אל %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">הקש כדי לבחור</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">אתה לא יכול לשתף יותר מפריט %d.</item>
+    <item quantity="two">אתה לא יכול לשתף יותר מן %d פריטים.</item>
+    <item quantity="many">אתה לא יכול לשתף יותר מן %d פריטים.</item>
+    <item quantity="other">אתה לא יכול לשתף יותר מן %d פריטים.</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">הוסף כיתוב...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">כל המדיה</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">התקבלה הודעה מוצפנת ע\"י שימוש בגרסה ישנה של Signal שאינה נתמכת יותר. אנא בקש מהשולח לעדכן אל הגרסה העדכנית ביותר ולשלוח מחדש את ההודעה.</string>
   <string name="MessageRecord_left_group">עזבת את הקבוצה.</string>
@@ -954,7 +975,7 @@
   <string name="AndroidManifest__change_passphrase">שנה משפט סיסמה</string>
   <string name="AndroidManifest__verify_safety_number">וודא מספר ביטחון</string>
   <string name="AndroidManifest__log_submit">הגש יומן תקלים</string>
-  <string name="AndroidManifest__media_preview">תצוגה מקדימה של מדיה</string>
+  <string name="AndroidManifest__media_preview">קדם־תצוגה של מדיה</string>
   <string name="AndroidManifest__message_details">פרטי הודעה</string>
   <string name="AndroidManifest__linked_devices">מכשירים מקושרים</string>
   <string name="AndroidManifest__invite_friends">הזמן חברים</string>
@@ -1001,6 +1022,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב-Signal עבור כל הודעות המולטימדיה הנכנסות</string>
   <string name="preferences__pref_enter_sends_title">מקש Enter שולח</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על מקש Enter תישלח הודעות טקסט</string>
+  <string name="preferences__send_link_previews">שלח קדם־תצוגות של קישורים</string>
+  <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Reddit ו־YouTube</string>
   <string name="preferences__choose_identity">בחר זהות</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר את כניסת איש הקשר שלך מתוך רשימת אנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה משפט סיסמה</string>
@@ -1202,7 +1225,7 @@
   <!--media_overview-->
   <string name="media_overview_documents_fragment__no_documents_found">אין מסמכים</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">תצוגה מקדימה של מדיה</string>
+  <string name="media_preview_activity__media_content_description">קדם־תצוגה של מדיה</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">רענן</string>
   <!--redphone_audio_popup_menu-->

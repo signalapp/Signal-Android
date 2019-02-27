@@ -43,6 +43,21 @@ public class MemoryBlobProvider {
     cache.remove(ContentUris.parseId(uri));
   }
 
+  public synchronized @NonNull byte[] getBlob(@NonNull Uri uri) {
+    long  id    = ContentUris.parseId(uri);
+    Entry entry = cache.get(ContentUris.parseId(uri));
+
+    if (entry == null) {
+      throw new IllegalArgumentException("ID not found: " + id);
+    }
+
+    if (entry.isSingleUse()) {
+      cache.remove(id);
+    }
+
+    return entry.getBlob();
+  }
+
   public synchronized @NonNull InputStream getStream(long id) throws IOException {
     Entry entry = cache.get(id);
 

@@ -14,6 +14,7 @@ import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
 import org.webrtc.CameraVideoCapturer;
 import org.webrtc.DataChannel;
+import org.webrtc.EglBase;
 import org.webrtc.IceCandidate;
 import org.webrtc.MediaConstraints;
 import org.webrtc.MediaStream;
@@ -21,6 +22,7 @@ import org.webrtc.PeerConnection;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.SdpObserver;
 import org.webrtc.SessionDescription;
+import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoSink;
 import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
@@ -52,6 +54,7 @@ public class PeerConnectionWrapper {
                                @NonNull VideoSink                      localRenderer,
                                @NonNull List<PeerConnection.IceServer> turnServers,
                                @NonNull CameraEventListener            cameraEventListener,
+                               @NonNull EglBase                        eglBase,
                                boolean                                 hideIp)
   {
     List<PeerConnection.IceServer> iceServers = new LinkedList<>();
@@ -85,8 +88,10 @@ public class PeerConnectionWrapper {
     this.camera = new Camera(context, cameraEventListener);
 
     if (camera.capturer != null) {
-      this.videoSource = factory.createVideoSource(camera.capturer);
+      this.videoSource = factory.createVideoSource(false);
       this.videoTrack = factory.createVideoTrack("ARDAMSv0", videoSource);
+
+      camera.capturer.initialize(SurfaceTextureHelper.create("WebRTC-SurfaceTextureHelper", eglBase.getEglBaseContext()), context, videoSource.getCapturerObserver());
 
       this.videoTrack.addSink(localRenderer);
       this.videoTrack.setEnabled(false);

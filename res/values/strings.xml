@@ -6,6 +6,7 @@
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
     <string name="save">Save</string>
+    <string name="note_to_self">Note to Self</string>
 
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">New message</string>
@@ -177,6 +178,11 @@
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal needs Camera permissions to take photos or video</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+    <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal cannot send SMS/MMS messages because it is not your default SMS app. Would you like to change this in your Android settings?</string>
+    <string name="ConversationActivity_yes">Yes</string>
+    <string name="ConversationActivity_no">No</string>
+    <string name="ConversationActivity_search_position">%1$d of %2$d</string>
+    <string name="ConversationActivity_no_results">No results</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -325,6 +331,11 @@
     <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Turn on typing indicators</string>
     <string name="ExperienceUpgradeActivity_no_thanks">No thanks</string>
 
+    <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducing link previews.</string>
+    <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optional link previews are now supported for some of the most popular sites on the Internet.</string>
+    <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">You can disable or enable this feature anytime in your Signal settings (Privacy &gt; Send link previews).</string>
+    <string name="ExperienceUpgradeActivity_got_it">Got it</string>
+
     <!-- GcmBroadcastReceiver -->
     <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message...</string>
 
@@ -431,6 +442,23 @@
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
     <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloading MMS message</string>
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Error downloading MMS message, tap to retry</string>
+
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Send to %s</string>
+
+    <!-- MediaPickerItemFragment -->
+    <string name="MediaPickerItemFragment_tap_to_select">Tap to select</string>
+    <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+        <item quantity="one">You can\'t share more than %d item.</item>
+        <item quantity="other">You can\'t share more than %d items.</item>
+    </plurals>
+
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Add a caption...</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">An item was removed because it exceeded the size limit</string>
+
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">All media</string>
 
     <!-- MessageRecord -->
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>
@@ -569,6 +597,8 @@
         <item quantity="one">You are now %d step away from submitting a debug log.</item>
         <item quantity="other">You are now %d steps away from submitting a debug log.</item>
     </plurals>
+    <string name="RegistrationActivity_we_need_to_verify_that_youre_human">We need to verify that you\'re human.</string>
+    <string name="RegistrationActivity_failed_to_verify_the_captcha">Failed to verify the CAPTCHA</string>
 
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
@@ -1130,6 +1160,8 @@
     <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use Signal for all incoming multimedia messages</string>
     <string name="preferences__pref_enter_sends_title">Enter key sends</string>
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the Enter key will send text messages</string>
+    <string name="preferences__send_link_previews">Send link previews</string>
+    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Reddit, and YouTube links</string>
     <string name="preferences__choose_identity">Choose identity</string>
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>

@@ -17,7 +17,7 @@ import android.support.v7.preference.Preference;
 import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.LogSubmitActivity;
@@ -192,8 +192,8 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
             Log.w(TAG, e);
           }
 
-          if (!TextSecurePreferences.isGcmDisabled(context)) {
-            GoogleCloudMessaging.getInstance(context).unregister();
+          if (!TextSecurePreferences.isFcmDisabled(context)) {
+            FirebaseInstanceId.getInstance().deleteInstanceId();
           }
 
           return SUCCESS;

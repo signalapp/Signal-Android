@@ -358,6 +358,21 @@ public class AttachmentDatabase extends Database {
     thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
   }
 
+  public void updateAttachmentAfterUpload(@NonNull AttachmentId id, @NonNull Attachment attachment) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    ContentValues  values   = new ContentValues();
+
+    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    values.put(CONTENT_LOCATION, attachment.getLocation());
+    values.put(DIGEST, attachment.getDigest());
+    values.put(CONTENT_DISPOSITION, attachment.getKey());
+    values.put(NAME, attachment.getRelay());
+    values.put(SIZE, attachment.getSize());
+    values.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
+
+    database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
+  }
+
   @NonNull Map<Attachment, AttachmentId> insertAttachmentsForMessage(long mmsId, @NonNull List<Attachment> attachments, @NonNull List<Attachment> quoteAttachment)
       throws MmsException
   {

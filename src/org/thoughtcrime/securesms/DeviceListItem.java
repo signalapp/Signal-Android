@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 
 import java.util.Locale;
 
@@ -34,7 +34,7 @@ public class DeviceListItem extends LinearLayout {
     this.lastActive = (TextView) findViewById(R.id.active);
   }
 
-  public void set(DeviceInfo deviceInfo, Locale locale) {
+  public void set(Device deviceInfo, Locale locale) {
     if (TextUtils.isEmpty(deviceInfo.getName())) this.name.setText(R.string.DeviceListItem_unnamed_device);
     else                                         this.name.setText(deviceInfo.getName());
 

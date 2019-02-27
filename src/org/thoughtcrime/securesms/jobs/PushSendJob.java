@@ -2,6 +2,10 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+
+import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
@@ -22,22 +26,29 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
+import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import androidx.work.WorkerParameters;
@@ -48,7 +59,7 @@ public abstract class PushSendJob extends SendJob {
   private static final String TAG                           = PushSendJob.class.getSimpleName();
   private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
 
-  protected  PushSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
+  public PushSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
     super(context, workerParameters);
   }
 
@@ -136,7 +147,43 @@ public abstract class PushSendJob extends SendJob {
     return null;
   }
 
-  protected void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
+  protected @NonNull List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {
+    return Stream.of(attachments).map(this::getAttachmentPointerFor).filter(a -> a != null).toList();
+  }
+
+  protected @Nullable SignalServiceAttachment getAttachmentPointerFor(Attachment attachment) {
+    if (TextUtils.isEmpty(attachment.getLocation())) {
+      Log.w(TAG, "empty content id");
+      return null;
+    }
+
+    if (TextUtils.isEmpty(attachment.getKey())) {
+      Log.w(TAG, "empty encrypted key");
+      return null;
+    }
+
+    try {
+      long   id  = Long.parseLong(attachment.getLocation());
+      byte[] key = Base64.decode(attachment.getKey());
+
+      return new SignalServiceAttachmentPointer(id,
+                                                attachment.getContentType(),
+                                                key,
+                                                Optional.of(Util.toIntExact(attachment.getSize())),
+                                                Optional.absent(),
+                                                attachment.getWidth(),
+                                                attachment.getHeight(),
+                                                Optional.fromNullable(attachment.getDigest()),
+                                                Optional.fromNullable(attachment.getFileName()),
+                                                attachment.isVoiceNote(),
+                                                Optional.fromNullable(attachment.getCaption()));
+    } catch (IOException | ArithmeticException e) {
+      Log.w(TAG, e);
+      return null;
+    }
+  }
+
+  protected static void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
     long      threadId  = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
     Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
@@ -205,6 +252,13 @@ public abstract class PushSendJob extends SendJob {
     return sharedContacts;
   }
 
+  List<Preview> getPreviewsFor(OutgoingMediaMessage mediaMessage) {
+    return Stream.of(mediaMessage.getLinkPreviews()).map(lp -> {
+      SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
+      return new Preview(lp.getUrl(), lp.getTitle(), Optional.fromNullable(attachment));
+    }).toList();
+  }
+
   protected void rotateSenderCertificateIfNecessary() throws IOException {
     try {
       byte[] certificateBytes = TextSecurePreferences.getUnidentifiedAccessCertificate(context);
@@ -228,6 +282,17 @@ public abstract class PushSendJob extends SendJob {
       certificateJob.onRun();
     }
   }
+
+  protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
+    String                localNumber = TextSecurePreferences.getLocalNumber(context);
+    SentTranscriptMessage transcript  = new SentTranscriptMessage(localNumber,
+                                                                  message.getTimestamp(),
+                                                                  message,
+                                                                  message.getExpiresInSeconds(),
+                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()));
+    return SignalServiceSyncMessage.forSentTranscript(transcript);
+  }
+
 
   protected abstract void onPushSend() throws Exception;
 }

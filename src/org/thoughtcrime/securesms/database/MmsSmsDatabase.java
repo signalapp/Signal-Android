@@ -20,7 +20,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteQueryBuilder;
@@ -70,7 +69,8 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_BODY,
                                               MmsDatabase.QUOTE_MISSING,
                                               MmsDatabase.QUOTE_ATTACHMENT,
-                                              MmsDatabase.SHARED_CONTACTS};
+                                              MmsDatabase.SHARED_CONTACTS,
+                                              MmsDatabase.LINK_PREVIEWS};
 
   public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -183,6 +183,26 @@ public class MmsSmsDatabase extends Database {
     return -1;
   }
 
+  public int getMessagePositionInConversation(long threadId, long receivedTimestamp, @NonNull Address address) {
+    String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+
+    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.ADDRESS }, selection, order, null)) {
+      String  serializedAddress = address.serialize();
+      boolean isOwnNumber       = Util.isOwnNumber(context, address);
+
+      while (cursor != null && cursor.moveToNext()) {
+        boolean timestampMatches = cursor.getLong(0) == receivedTimestamp;
+        boolean addressMatches   = serializedAddress.equals(cursor.getString(1));
+
+        if (timestampMatches && (addressMatches || isOwnNumber)) {
+          return cursor.getPosition();
+        }
+      }
+    }
+    return -1;
+  }
+
   /**
    * Retrieves the position of the message with the provided timestamp in the query results you'd
    * get from calling {@link #getConversation(long)}.
@@ -246,7 +266,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_BODY,
                               MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
-                              MmsDatabase.SHARED_CONTACTS};
+                              MmsDatabase.SHARED_CONTACTS,
+                              MmsDatabase.LINK_PREVIEWS};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -271,7 +292,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_BODY,
                               MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
-                              MmsDatabase.SHARED_CONTACTS};
+                              MmsDatabase.SHARED_CONTACTS,
+                              MmsDatabase.LINK_PREVIEWS};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -338,6 +360,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.QUOTE_MISSING);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
+    mmsColumnsPresent.add(MmsDatabase.LINK_PREVIEWS);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);

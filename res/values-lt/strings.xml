@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nauja žinutė</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Šiuo metu: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Jūs dar nesate nustatę slaptafrazės!</string>
@@ -159,6 +160,9 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Norint fotografuoti ar filmuoti, Signal reikalinga prieiga prie kameros</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal negali siųsti SMS/MMS žinučių, nes ji nėra jūsų numatytoji SMS programėlė. Ar norėtumėte tai pakeisti savo Android nustatymuose?</string>
+  <string name="ConversationActivity_yes">Taip</string>
+  <string name="ConversationActivity_no">Ne</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
@@ -301,7 +305,17 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pasiruošę artimesniam bendravimui?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Dabar, su Signal draugais galite bendrinti profilio nuotrauką ir vardą</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiliai jau čia</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Pristatome rašymo indikatorius.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Dabar, galite pasirinktinai matyti kada yra rašomos žinutės ir rodyti kitiems, kai rašote žinutes.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Ar norėtumėte įjungti juos dabar?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Rašymo indikatoriai jau čia</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Įjungti rašymo indikatorius</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Įjungti rašymo indikatorius</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne, ačiū</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Pristatome nuorodų peržiūras.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Dabar yra palaikomos pasirinktinos populiariausių svetainių internete nuorodų peržiūros.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Šią ypatybę galite bet kuriuo metu įjungti ar išjungti savo Signal nustatymuose (Privatumas &gt; Siųsti nuorodų peržiūras).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Supratau</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Atgaunama žinutė...</string>
   <!--GcmRefreshJob-->
@@ -400,6 +414,20 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijos žinutė</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Atsiunčiama MMS žinutė</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Klaida, atsiunčiant MMS žinutę, bakstelėkite, norėdami bandyti dar kartą</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Siųsti kontaktui %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Bakstelėkite, norėdami pasirinkti</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Jūs negalite dalintis daugiau nei %d elementu.</item>
+    <item quantity="few">Jūs negalite dalintis daugiau nei %d elementais.</item>
+    <item quantity="many">Jūs negalite dalintis daugiau nei %d elementų.</item>
+    <item quantity="other">Jūs negalite dalintis daugiau nei %d elementu.</item>
+  </plurals>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Pridėti paaiškinimą...</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Visa medija</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Gauta žinutė buvo užšifruota, naudojant seną Signal versiją, kuri daugiau nebepalaikoma. Paprašykite siuntėjo atnaujinti savo programėlę į naujausią versiją ir iš naujo išsiųsti žinutę.</string>
   <string name="MessageRecord_left_group">Jūs išėjote iš grupės.</string>
@@ -670,6 +698,12 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d elementas</item>
+    <item quantity="few">%d elementai</item>
+    <item quantity="many">%d elementų</item>
+    <item quantity="other">%d elementas</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Įrenginys daugiau nebėra registruotas</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Tai yra tikėtina, nes registravote savo telefono numerį su Signal kitame įrenginyje. Bakstelėkite, norėdami registruoti iš naujo.</string>
@@ -994,6 +1028,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Naudoti Signal visoms gaunamosioms multimedijos žinutėms</string>
   <string name="preferences__pref_enter_sends_title">Enter (Įvedimo) klavišas išsiunčia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
+  <string name="preferences__send_link_previews">Siųsti nuorodų peržiūras</string>
+  <string name="preferences__previews_are_supported_for">Peržiūros yra palaikomos Imgur, Instagram, Reddit, ir YouTube nuorodoms</string>
   <string name="preferences__choose_identity">Pasirinkti tapatybę</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pasirinkite kontaktą iš kontaktų sąrašo.</string>
   <string name="preferences__change_passphrase">Pakeisti slaptafrazę</string>
@@ -1063,6 +1099,8 @@
   <string name="preferences__incognito_keyboard">Incognito klaviatūra</string>
   <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>
+  <string name="preferences__typing_indicators">Rašymo indikatoriai</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Išjungę rašymo indikatorius, nebegalėsite matyti kitų žmonių rašymo indikatorių.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Užklausti klaviatūrą, kad būtų išjungtas suasmenintas mokymasis</string>
   <string name="preferences_app_protection__blocked_contacts">Užblokuoti kontaktai</string>
   <string name="preferences_chats__when_using_mobile_data">Naudojant mobiliuosius duomenis</string>
