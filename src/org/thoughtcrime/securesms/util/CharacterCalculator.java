@@ -45,14 +45,16 @@ public abstract class CharacterCalculator {
   }
 
   public static class CharacterState {
-    public int charactersRemaining;
-    public int messagesSpent;
-    public int maxMessageSize;
+    public final int charactersRemaining;
+    public final int messagesSpent;
+    public final int maxTotalMessageSize;
+    public final int maxPrimaryMessageSize;
 
-    public CharacterState(int messagesSpent, int charactersRemaining, int maxMessageSize) {
-      this.messagesSpent       = messagesSpent;
-      this.charactersRemaining = charactersRemaining;
-      this.maxMessageSize      = maxMessageSize;
+    public CharacterState(int messagesSpent, int charactersRemaining, int maxTotalMessageSize, int maxPrimaryMessageSize) {
+      this.messagesSpent         = messagesSpent;
+      this.charactersRemaining   = charactersRemaining;
+      this.maxTotalMessageSize   = maxTotalMessageSize;
+      this.maxPrimaryMessageSize = maxPrimaryMessageSize;
     }
   }
 }

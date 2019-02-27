@@ -142,6 +142,15 @@ public class Util {
     return map.containsKey(key) ? map.get(key) : defaultValue;
   }
 
+  public static String getFirstNonEmpty(String... values) {
+    for (String value : values) {
+      if (!TextUtils.isEmpty(value)) {
+        return value;
+      }
+    }
+    return "";
+  }
+
   public static <E> List<List<E>> chunk(@NonNull List<E> list, int chunkSize) {
     List<List<E>> chunks = new ArrayList<>(list.size() / chunkSize);
 

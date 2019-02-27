@@ -218,6 +218,8 @@
                 android:value="org.thoughtcrime.securesms.ConversationListActivity" />
     </activity>
 
+    <activity android:name=".longmessage.LongMessageActivity" />
+
     <activity android:name=".conversation.ConversationPopupActivity"
               android:windowSoftInputMode="stateVisible"
               android:launchMode="singleTask"

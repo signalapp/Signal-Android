@@ -170,12 +170,14 @@ import org.thoughtcrime.securesms.mms.QuoteId;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
+import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
 import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -212,9 +214,12 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -1905,7 +1910,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       charactersLeft.setText(String.format(dynamicLanguage.getCurrentLocale(),
                                            "%d/%d (%d)",
                                            characterState.charactersRemaining,
-                                           characterState.maxMessageSize,
+                                           characterState.maxTotalMessageSize,
                                            characterState.messagesSpent));
       charactersLeft.setVisibility(View.VISIBLE);
     } else {
@@ -1959,6 +1964,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       throw new InvalidMessageException(getString(R.string.ConversationActivity_message_is_empty_exclamation));
 
     return rawText;
+  }
+
+  private Pair<String, Optional<Slide>> getSplitMessage(String rawText, int maxPrimaryMessageSize) {
+    String          bodyText  = rawText;
+    Optional<Slide> extraText = Optional.absent();
+
+    if (bodyText.length() > maxPrimaryMessageSize) {
+      bodyText = rawText.substring(0, maxPrimaryMessageSize);
+
+      byte[] extraData = rawText.substring(maxPrimaryMessageSize).getBytes();
+      Uri    textUri   = MemoryBlobProvider.getInstance().createUri(extraData);
+      String timestamp = new SimpleDateFormat("yyyy-MM-dd-HHmmss", Locale.US).format(new Date());
+      String filename  = String.format("signal-%s.txt", timestamp);
+
+      extraText = Optional.of(new TextSlide(this, textUri, filename, extraData.length));
+    }
+
+    return new Pair<>(bodyText, extraText);
   }
 
   private MediaConstraints getCurrentMediaConstraints() {
@@ -2021,6 +2044,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         throw new RecipientFormattingException("Badly formatted");
       }
 
+      String     message        = getMessage();
       boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
       int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
       long       expiresIn      = recipient.getExpireMessages() * 1000L;
@@ -2029,7 +2053,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                   recipient.isGroupRecipient()            ||
                                   recipient.getAddress().isEmail()        ||
                                   inputPanel.getQuote().isPresent()       ||
-                                  linkPreviewViewModel.hasLinkPreview();
+                                  linkPreviewViewModel.hasLinkPreview()   ||
+                                  message.length() > sendButton.getSelectedTransport().calculateCharacters(message).maxPrimaryMessageSize;
 
       Log.i(TAG, "isManual Selection: " + sendButton.isManualSelection());
       Log.i(TAG, "forceSms: " + forceSms);
@@ -2076,6 +2101,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!isDefaultSms && (!isSecureText || forceSms)) {
       showDefaultSmsPrompt();
       return new SettableFuture<>(null);
+    }
+
+    if (isSecureText && !forceSms) {
+      Pair<String, Optional<Slide>> splitMessage = getSplitMessage(body, sendButton.getSelectedTransport().calculateCharacters(body).maxPrimaryMessageSize);
+      body = splitMessage.first;
+
+      if (splitMessage.second.isPresent()) {
+        slideDeck.addSlide(splitMessage.second.get());
+      }
     }
 
     OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, inputPanel.getQuote().orNull(), contacts, previews);

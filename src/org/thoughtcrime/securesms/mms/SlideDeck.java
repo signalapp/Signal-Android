@@ -128,4 +128,14 @@ public class SlideDeck {
 
     return null;
   }
+
+  public @Nullable TextSlide getTextSlide() {
+    for (Slide slide: slides) {
+      if (MediaUtil.isLongTextType(slide.getContentType())) {
+        return (TextSlide)slide;
+      }
+    }
+
+    return null;
+  }
 }

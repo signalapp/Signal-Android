@@ -165,7 +165,9 @@
                 style="@style/Signal.Text.Body"
                 android:textColor="?conversation_item_received_text_primary_color"
                 android:textColorLink="?conversation_item_received_text_primary_color"
+                android:ellipsize="end"
                 app:scaleEmojis="true"
+                app:emoji_maxLength="1000"
                 tools:text="Mango pickle lorem ipsum"/>
 
             <org.thoughtcrime.securesms.components.ConversationItemFooter

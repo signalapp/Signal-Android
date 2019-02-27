@@ -82,9 +82,11 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -100,6 +102,8 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -516,43 +520,60 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleForwardMessage(MessageRecord message) {
-    Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
-    composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
-    if (message.isMms()) {
-      MmsMessageRecord mediaMessage = (MmsMessageRecord) message;
-      boolean          isAlbum      = mediaMessage.containsMediaSlide()                   &&
-                                      mediaMessage.getSlideDeck().getSlides().size() > 1  &&
-                                      mediaMessage.getSlideDeck().getAudioSlide() == null &&
-                                      mediaMessage.getSlideDeck().getDocumentSlide() == null;
+    SimpleTask.run(getLifecycle(), () -> {
+      Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
+      composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
 
-      if (isAlbum) {
-        ArrayList<Media> mediaList = new ArrayList<>(mediaMessage.getSlideDeck().getSlides().size());
+      if (message.isMms()) {
+        MmsMessageRecord mediaMessage = (MmsMessageRecord) message;
+        boolean          isAlbum      = mediaMessage.containsMediaSlide()                   &&
+                                        mediaMessage.getSlideDeck().getSlides().size() > 1  &&
+                                        mediaMessage.getSlideDeck().getAudioSlide() == null &&
+                                        mediaMessage.getSlideDeck().getDocumentSlide() == null;
 
-        for (Attachment attachment : mediaMessage.getSlideDeck().asAttachments()) {
-          Uri uri = attachment.getDataUri() != null ? attachment.getDataUri() : attachment.getThumbnailUri();
+        if (isAlbum) {
+          ArrayList<Media> mediaList   = new ArrayList<>(mediaMessage.getSlideDeck().getSlides().size());
+          List<Attachment> attachments = Stream.of(mediaMessage.getSlideDeck().getSlides())
+                                               .filter(s -> s.hasImage() || s.hasVideo())
+                                               .map(Slide::asAttachment)
+                                               .toList();
 
-          if (uri != null) {
-            mediaList.add(new Media(uri,
-                                    attachment.getContentType(),
-                                    System.currentTimeMillis(),
-                                    attachment.getWidth(),
-                                    attachment.getHeight(),
-                                    attachment.getSize(),
-                                    Optional.absent(),
-                                    Optional.fromNullable(attachment.getCaption())));
+          for (Attachment attachment : attachments) {
+            Uri uri = attachment.getDataUri() != null ? attachment.getDataUri() : attachment.getThumbnailUri();
+
+            if (uri != null) {
+              mediaList.add(new Media(uri,
+                                      attachment.getContentType(),
+                                      System.currentTimeMillis(),
+                                      attachment.getWidth(),
+                                      attachment.getHeight(),
+                                      attachment.getSize(),
+                                      Optional.absent(),
+                                      Optional.fromNullable(attachment.getCaption())));
+            }
+          };
+
+          if (!mediaList.isEmpty()) {
+            composeIntent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaList);
+          }
+        } else if (mediaMessage.containsMediaSlide()) {
+          Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
+          composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
+          composeIntent.setType(slide.getContentType());
+        }
+
+        if (mediaMessage.getSlideDeck().getTextSlide() != null && mediaMessage.getSlideDeck().getTextSlide().getUri() != null) {
+          try (InputStream stream = PartAuthority.getAttachmentStream(requireContext(), mediaMessage.getSlideDeck().getTextSlide().getUri())) {
+            String extraText = Util.readFullyAsString(stream);
+            composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString() + extraText);
+          } catch (IOException e) {
+            Log.w(TAG, "Failed to read long message text when forwarding.");
           }
         }
-
-        if (!mediaList.isEmpty()) {
-          composeIntent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaList);
-        }
-      } else if (mediaMessage.containsMediaSlide()) {
-        Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
-        composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
-        composeIntent.setType(slide.getContentType());
       }
-    }
-    startActivity(composeIntent);
+
+      return composeIntent;
+    }, this::startActivity);
   }
 
   private void handleResendMessage(final MessageRecord message) {
@@ -907,6 +928,13 @@ public class ConversationFragment extends Fragment
     public void onLinkPreviewClicked(@NonNull LinkPreview linkPreview) {
       if (getContext() != null && getActivity() != null) {
         CommunicationActions.openBrowserLink(getActivity(), linkPreview.getUrl());
+      }
+    }
+
+    @Override
+    public void onMoreTextClicked(@NonNull Address conversationAddress, long messageId, boolean isMms) {
+      if (getContext() != null && getActivity() != null) {
+        startActivity(LongMessageActivity.getIntent(getContext(), conversationAddress, messageId, isMms));
       }
     }
 

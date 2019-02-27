@@ -43,8 +43,6 @@ import java.util.List;
  */
 public abstract class MessageRecord extends DisplayRecord {
 
-  private static final int MAX_DISPLAY_LENGTH = 2000;
-
   private final Recipient                 individualRecipient;
   private final int                       recipientDeviceId;
   private final long                      id;
@@ -123,8 +121,6 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isIdentityDefault()) {
       if (isOutgoing()) return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, getIndividualRecipient().toShortString()));
       else              return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, getIndividualRecipient().toShortString()));
-    } else if (getBody().length() > MAX_DISPLAY_LENGTH) {
-      return new SpannableString(getBody().substring(0, MAX_DISPLAY_LENGTH));
     }
 
     return new SpannableString(getBody());

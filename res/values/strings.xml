@@ -133,6 +133,9 @@
     <string name="ConversationItem_copied_text">Copied %s</string>
     <string name="ConversationItem_from_s">from %s</string>
     <string name="ConversationItem_to_s">to %s</string>
+    <string name="ConversationItem_read_more">&#160; Read More</string>
+    <string name="ConversationItem_download_more">&#160; Download More</string>
+    <string name="ConversationItem_pending">&#160; Pending</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_reset_secure_session_question">Reset secure session?</string>
@@ -408,6 +411,11 @@
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
     <string name="MessageDetailsRecipient_new_safety_number">New safety number</string>
+
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">Unable to find message</string>
+    <string name="LongMessageActivity_message_from_s">Message from %1$s</string>
+    <string name="LongMessageActivity_your_message">Your message</string>
 
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>

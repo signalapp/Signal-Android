@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -358,7 +357,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
       charactersLeft.setText(String.format(locale,
                                            "%d/%d (%d)",
                                            characterState.charactersRemaining,
-                                           characterState.maxMessageSize,
+                                           characterState.maxTotalMessageSize,
                                            characterState.messagesSpent));
       charactersLeft.setVisibility(View.VISIBLE);
     } else {

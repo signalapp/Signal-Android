@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
@@ -30,9 +31,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
@@ -46,6 +51,8 @@ import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.LinkPreviewView;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
@@ -87,6 +94,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -119,7 +127,8 @@ public class ConversationItem extends LinearLayout
 {
   private static final String TAG = ConversationItem.class.getSimpleName();
 
-  private static final int MAX_MEASURE_CALLS = 3;
+  private static final int MAX_MEASURE_CALLS       = 3;
+  private static final int MAX_BODY_DISPLAY_LENGTH = 1000;
 
   private MessageRecord messageRecord;
   private Locale        locale;
@@ -129,7 +138,7 @@ public class ConversationItem extends LinearLayout
 
   protected ViewGroup              bodyBubble;
   private   QuoteView              quoteView;
-  private   TextView               bodyText;
+  private   EmojiTextView          bodyText;
   private   ConversationItemFooter footer;
   private   TextView               groupSender;
   private   TextView               groupSenderProfileName;
@@ -378,7 +387,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private boolean isCaptionlessMms(MessageRecord messageRecord) {
-    return TextUtils.isEmpty(messageRecord.getDisplayBody()) && messageRecord.isMms();
+    return TextUtils.isEmpty(messageRecord.getDisplayBody()) && messageRecord.isMms() && ((MmsMessageRecord) messageRecord).getSlideDeck().getTextSlide() == null;
   }
 
   private boolean hasAudio(MessageRecord messageRecord) {
@@ -395,6 +404,13 @@ public class ConversationItem extends LinearLayout
 
   private boolean hasDocument(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide() != null;
+  }
+
+  private boolean hasExtraText(MessageRecord messageRecord) {
+    boolean hasTextSlide    = messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getTextSlide() != null;
+    boolean hasOverflowText = messageRecord.getBody().length() > MAX_BODY_DISPLAY_LENGTH;
+
+    return hasTextSlide || hasOverflowText;
   }
 
   private boolean hasQuote(MessageRecord messageRecord) {
@@ -420,6 +436,12 @@ public class ConversationItem extends LinearLayout
       Spannable styledText = linkifyMessageBody(messageRecord.getDisplayBody(), batchSelected.isEmpty());
       styledText = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), styledText, searchQuery);
       styledText = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), styledText, searchQuery);
+
+      if (hasExtraText(messageRecord)) {
+        bodyText.setOverflowText(getLongMessageSpan(messageRecord));
+      } else {
+        bodyText.setOverflowText(null);
+      }
 
       bodyText.setText(styledText);
       bodyText.setVisibility(View.VISIBLE);
@@ -536,7 +558,7 @@ public class ConversationItem extends LinearLayout
       mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
       mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);
       mediaThumbnailStub.get().setOnClickListener(passthroughClickListener);
-      mediaThumbnailStub.get().showShade(TextUtils.isEmpty(messageRecord.getDisplayBody()));
+      mediaThumbnailStub.get().showShade(TextUtils.isEmpty(messageRecord.getDisplayBody()) && !hasExtraText(messageRecord));
       mediaThumbnailStub.get().setConversationColor(messageRecord.isOutgoing() ? defaultBubbleColor
                                                                                : messageRecord.getRecipient().getColor().toConversationColor(context));
 
@@ -613,7 +635,7 @@ public class ConversationItem extends LinearLayout
       topRight = 0;
     }
 
-    if (hasLinkPreview(messageRecord)) {
+    if (hasLinkPreview(messageRecord) || hasExtraText(messageRecord)) {
       bottomLeft  = 0;
       bottomRight = 0;
     }
@@ -748,7 +770,7 @@ public class ConversationItem extends LinearLayout
     ViewUtil.updateLayoutParams(footer, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
     footer.setVisibility(GONE);
-    if (sharedContactStub.resolved()) sharedContactStub.get().getFooter().setVisibility(GONE);
+    if (sharedContactStub.resolved())  sharedContactStub.get().getFooter().setVisibility(GONE);
     if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().getFooter().setVisibility(GONE);
 
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(context, locale, next.get().getTimestamp(), current.getTimestamp());
@@ -897,6 +919,49 @@ public class ConversationItem extends LinearLayout
     }
 
     new ConfirmIdentityDialog(context, messageRecord, mismatches.get(0)).show();
+  }
+
+  private Spannable getLongMessageSpan(@NonNull MessageRecord messageRecord) {
+    String   message;
+    Runnable action;
+
+    if (messageRecord.isMms()) {
+      TextSlide slide = ((MmsMessageRecord) messageRecord).getSlideDeck().getTextSlide();
+
+      if (slide != null && slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+        message = getResources().getString(R.string.ConversationItem_read_more);
+        action  = () -> eventListener.onMoreTextClicked(conversationRecipient.getAddress(), messageRecord.getId(), messageRecord.isMms());
+      } else if (slide != null && slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
+        message = getResources().getString(R.string.ConversationItem_pending);
+        action  = () -> {};
+      } else if (slide != null) {
+        message = getResources().getString(R.string.ConversationItem_download_more);
+        action  = () -> singleDownloadClickListener.onClick(bodyText, slide);
+      } else {
+        message = getResources().getString(R.string.ConversationItem_read_more);
+        action  = () -> eventListener.onMoreTextClicked(conversationRecipient.getAddress(), messageRecord.getId(), messageRecord.isMms());
+      }
+    } else {
+      message = getResources().getString(R.string.ConversationItem_read_more);
+      action  = () -> eventListener.onMoreTextClicked(conversationRecipient.getAddress(), messageRecord.getId(), messageRecord.isMms());
+    }
+
+    SpannableStringBuilder span = new SpannableStringBuilder(message);
+    CharacterStyle style = new ClickableSpan() {
+      @Override
+      public void onClick(@NonNull View widget) {
+        if (eventListener != null && batchSelected.isEmpty()) {
+          action.run();
+        }
+      }
+
+      @Override
+      public void updateDrawState(@NonNull TextPaint ds) {
+        ds.setTypeface(Typeface.DEFAULT_BOLD);
+      }
+    };
+    span.setSpan(style, 0, span.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+    return span;
   }
 
   @Override

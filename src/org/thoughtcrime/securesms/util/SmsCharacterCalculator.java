@@ -50,7 +50,7 @@ public class SmsCharacterCalculator extends CharacterCalculator {
       maxMessageSize = (charactersSpent + charactersRemaining);
     }
     
-    return new CharacterState(messagesSpent, charactersRemaining, maxMessageSize);
+    return new CharacterState(messagesSpent, charactersRemaining, maxMessageSize, maxMessageSize);
   }
 }
 

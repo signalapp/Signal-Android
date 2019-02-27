@@ -344,7 +344,7 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
       charactersLeft.setText(String.format(locale,
                                            "%d/%d (%d)",
                                            characterState.charactersRemaining,
-                                           characterState.maxMessageSize,
+                                           characterState.maxTotalMessageSize,
                                            characterState.messagesSpent));
       charactersLeft.setVisibility(View.VISIBLE);
     } else {
