@@ -61,25 +61,32 @@ public class SearchUtil {
                                                          @NonNull String text,
                                                          @NonNull String highlight)
   {
+    if (text.length() == 0) {
+      return Collections.emptyList();
+    }
+
     String       normalizedText      = text.toLowerCase(locale);
     String       normalizedHighlight = highlight.toLowerCase(locale);
     List<String> highlightTokens     = Stream.of(normalizedHighlight.split("\\s")).filter(s -> s.trim().length() > 0).toList();
-    List<String> textTokens          = Stream.of(normalizedText.split("\\s")).filter(s -> s.trim().length() > 0).toList();
 
     List<Pair<Integer, Integer>> ranges = new LinkedList<>();
 
-    int textListIndex = 0;
-    int textCharIndex = 0;
+    int lastHighlightEndIndex = 0;
 
     for (String highlightToken : highlightTokens) {
-      for (int i = textListIndex; i < textTokens.size(); i++) {
-        if (textTokens.get(i).startsWith(highlightToken)) {
-          textListIndex = i + 1;
-          ranges.add(new Pair<>(textCharIndex, textCharIndex + highlightToken.length()));
-          textCharIndex += textTokens.get(i).length() + 1;
-          break;
-        }
-        textCharIndex += textTokens.get(i).length() + 1;
+      int index;
+
+      do {
+        index = normalizedText.indexOf(highlightToken, lastHighlightEndIndex);
+        lastHighlightEndIndex = index + highlightToken.length();
+      } while (index > 0 && !Character.isWhitespace(normalizedText.charAt(index - 1)));
+
+      if (index >= 0) {
+        ranges.add(new Pair<>(index, lastHighlightEndIndex));
+      }
+
+      if (index < 0 || lastHighlightEndIndex >= normalizedText.length()) {
+        break;
       }
     }
 

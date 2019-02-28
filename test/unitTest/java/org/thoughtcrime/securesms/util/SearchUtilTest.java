@@ -24,6 +24,15 @@ public class SearchUtilTest {
   }
 
   @Test
+  public void getHighlightRanges_singleHighlightTokenWithNewLines() {
+    String                       text      = "123\n\n\nabc";
+    String                       highlight = "a";
+    List<Pair<Integer, Integer>> result    = SearchUtil.getHighlightRanges(LOCALE, text, highlight);
+
+    assertEquals(Arrays.asList(new Pair<>(6, 7)), result);
+  }
+
+  @Test
   public void getHighlightRanges_multipleHighlightTokens() {
     String                       text      = "a bc";
     String                       highlight = "a b";
