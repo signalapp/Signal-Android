@@ -394,6 +394,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (fragment != null) {
       fragment.onNewIntent();
     }
+
+    searchNav.setVisibility(View.GONE);
   }
 
   @Override
