@@ -33,6 +33,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
@@ -87,6 +88,7 @@ public class ScribbleView extends FrameLayout {
 
     glideRequests.load(new DecryptableUri(uri))
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
+                 .transition(DrawableTransitionOptions.withCrossFade())
                  .fitCenter()
                  .into(imageView);
   }

@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,31 +30,37 @@ class MediaSendViewModel extends ViewModel {
   private final MutableLiveData<List<Media>>       selectedMedia;
   private final MutableLiveData<List<Media>>       bucketMedia;
   private final MutableLiveData<Integer>           position;
-  private final MutableLiveData<Optional<String>>  bucketId;
+  private final MutableLiveData<String>            bucketId;
   private final MutableLiveData<List<MediaFolder>> folders;
+  private final MutableLiveData<CountButtonState>  countButtonState;
   private final SingleLiveEvent<Error>             error;
   private final Map<Uri, Object>                   savedDrawState;
 
-  private MediaConstraints mediaConstraints;
+  private MediaConstraints            mediaConstraints;
+  private CharSequence                body;
+  private CountButtonState.Visibility countButtonVisibility;
 
   private MediaSendViewModel(@NonNull MediaRepository repository) {
-    this.repository     = repository;
-    this.selectedMedia  = new MutableLiveData<>();
-    this.bucketMedia    = new MutableLiveData<>();
-    this.position       = new MutableLiveData<>();
-    this.bucketId       = new MutableLiveData<>();
-    this.folders        = new MutableLiveData<>();
-    this.error          = new SingleLiveEvent<>();
-    this.savedDrawState = new HashMap<>();
+    this.repository            = repository;
+    this.selectedMedia         = new MutableLiveData<>();
+    this.bucketMedia           = new MutableLiveData<>();
+    this.position              = new MutableLiveData<>();
+    this.bucketId              = new MutableLiveData<>();
+    this.folders               = new MutableLiveData<>();
+    this.countButtonState      = new MutableLiveData<>();
+    this.error                 = new SingleLiveEvent<>();
+    this.savedDrawState        = new HashMap<>();
+    this.countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
 
     position.setValue(-1);
+    countButtonState.setValue(new CountButtonState(0, CountButtonState.Visibility.CONDITIONAL));
   }
 
   void setMediaConstraints(@NonNull MediaConstraints mediaConstraints) {
     this.mediaConstraints = mediaConstraints;
   }
 
-  void setInitialSelectedMedia(@NonNull Context context, @NonNull List<Media> newMedia) {
+  void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
     repository.getPopulatedMedia(context, newMedia, populatedMedia -> {
       List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
 
@@ -63,26 +68,48 @@ class MediaSendViewModel extends ViewModel {
         error.postValue(Error.ITEM_TOO_LARGE);
       }
 
-      boolean allBucketsPopulated = Stream.of(filteredMedia).reduce(true, (populated, m) -> populated && m.getBucketId().isPresent());
+      if (filteredMedia.size() > 0) {
+        String computedId = Stream.of(filteredMedia)
+                                  .skip(1)
+                                  .reduce(filteredMedia.get(0).getBucketId().orNull(), (id, m) -> {
+                                    if (Util.equals(id, m.getBucketId().orNull())) {
+                                      return id;
+                                    } else {
+                                      return Media.ALL_MEDIA_BUCKET_ID;
+                                    }
+                                  });
+        bucketId.postValue(computedId);
+      } else {
+        bucketId.postValue(Media.ALL_MEDIA_BUCKET_ID);
+        countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
+      }
 
       selectedMedia.postValue(filteredMedia);
-      bucketId.postValue(allBucketsPopulated ? computeBucketId(filteredMedia) : Optional.absent());
+      countButtonState.postValue(new CountButtonState(filteredMedia.size(), countButtonVisibility));
     });
   }
 
-  void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
-    List<Media> filteredMedia = getFilteredMedia(context, newMedia, mediaConstraints);
+  void onMultiSelectStarted() {
+    countButtonVisibility = CountButtonState.Visibility.FORCED_ON;
+    countButtonState.postValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
+  }
 
-    if (filteredMedia.size() != newMedia.size()) {
-      error.setValue(Error.ITEM_TOO_LARGE);
-    }
+  void onImageEditorStarted() {
+    countButtonVisibility = CountButtonState.Visibility.FORCED_OFF;
+    countButtonState.postValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
+  }
 
-    selectedMedia.setValue(filteredMedia);
-    position.setValue(filteredMedia.isEmpty() ? -1 : 0);
+  void onImageEditorEnded() {
+    countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
+    countButtonState.postValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
+  }
+
+  void onBodyChanged(@NonNull CharSequence body) {
+    this.body = body;
   }
 
   void onFolderSelected(@NonNull String bucketId) {
-    this.bucketId.setValue(Optional.of(bucketId));
+    this.bucketId.setValue(bucketId);
     bucketMedia.setValue(Collections.emptyList());
   }
 
@@ -91,7 +118,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   void onMediaItemRemoved(int position) {
-    selectedMedia.getValue().remove(position);
+    getSelectedMediaOrDefault().remove(position);
     selectedMedia.setValue(selectedMedia.getValue());
   }
 
@@ -110,11 +137,11 @@ class MediaSendViewModel extends ViewModel {
     return savedDrawState;
   }
 
-  LiveData<List<Media>> getSelectedMedia() {
+  @NonNull LiveData<List<Media>> getSelectedMedia() {
     return selectedMedia;
   }
 
-  LiveData<List<Media>> getMediaInBucket(@NonNull Context context, @NonNull String bucketId) {
+  @NonNull LiveData<List<Media>> getMediaInBucket(@NonNull Context context, @NonNull String bucketId) {
     repository.getMediaInBucket(context, bucketId, bucketMedia::postValue);
     return bucketMedia;
   }
@@ -124,11 +151,19 @@ class MediaSendViewModel extends ViewModel {
     return folders;
   }
 
+  @NonNull LiveData<CountButtonState> getCountButtonState() {
+    return countButtonState;
+  }
+
+  CharSequence getBody() {
+    return body;
+  }
+
   LiveData<Integer> getPosition() {
     return position;
   }
 
-  LiveData<Optional<String>> getBucketId() {
+  LiveData<String> getBucketId() {
     return bucketId;
   }
 
@@ -136,17 +171,9 @@ class MediaSendViewModel extends ViewModel {
     return error;
   }
 
-  private Optional<String> computeBucketId(@NonNull List<Media> media) {
-    if (media.isEmpty() || !media.get(0).getBucketId().isPresent()) return Optional.absent();
-
-    String candidate = media.get(0).getBucketId().get();
-    for (int i = 1; i < media.size(); i++) {
-      if (!Util.equals(candidate, media.get(i).getBucketId().orNull())) {
-        return Optional.of(Media.ALL_MEDIA_BUCKET_ID);
-      }
-    }
-
-    return Optional.of(candidate);
+  private @NonNull List<Media> getSelectedMediaOrDefault() {
+    return selectedMedia.getValue() == null ? Collections.emptyList()
+                                            : selectedMedia.getValue();
   }
 
   private @NonNull List<Media> getFilteredMedia(@NonNull Context context, @NonNull List<Media> media, @NonNull MediaConstraints mediaConstraints) {
@@ -163,6 +190,33 @@ class MediaSendViewModel extends ViewModel {
 
   enum Error {
     ITEM_TOO_LARGE
+  }
+
+  static class CountButtonState {
+    private final int        count;
+    private final Visibility visibility;
+
+    private CountButtonState(int count, @NonNull Visibility visibility) {
+      this.count      = count;
+      this.visibility = visibility;
+    }
+
+    int getCount() {
+      return count;
+    }
+
+    boolean getVisibility() {
+      switch (visibility) {
+        case FORCED_ON:   return true;
+        case FORCED_OFF:  return false;
+        case CONDITIONAL: return count > 0;
+        default:          return false;
+      }
+    }
+
+    enum Visibility {
+      CONDITIONAL, FORCED_ON, FORCED_OFF
+    }
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {

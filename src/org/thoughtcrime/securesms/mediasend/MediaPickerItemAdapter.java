@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.util.StableIdGenerator;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -38,11 +39,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
     this.media             = new ArrayList<>();
     this.maxSelection      = maxSelection;
     this.stableIdGenerator = new StableIdGenerator<>();
-    this.selected          = new TreeSet<>((m1, m2) -> {
-      if      (m1.equals(m2))                                 return 0;
-      else if (Long.compare(m2.getDate(), m1.getDate()) == 0) return m2.getUri().compareTo(m1.getUri());
-      else                                                    return Long.compare(m2.getDate(), m1.getDate());
-    });
+    this.selected          = new LinkedHashSet<>();
 
     setHasStableIds(true);
   }
@@ -97,13 +94,17 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
 
     private final ImageView thumbnail;
     private final View      playOverlay;
-    private final View      selectedOverlay;
+    private final View      selectOn;
+    private final View      selectOff;
+    private final View      selectOverlay;
 
     ItemViewHolder(@NonNull View itemView) {
       super(itemView);
-      thumbnail       = itemView.findViewById(R.id.mediapicker_image_item_thumbnail);
-      playOverlay     = itemView.findViewById(R.id.mediapicker_play_overlay);
-      selectedOverlay = itemView.findViewById(R.id.mediapicker_selected);
+      thumbnail     = itemView.findViewById(R.id.mediapicker_image_item_thumbnail);
+      playOverlay   = itemView.findViewById(R.id.mediapicker_play_overlay);
+      selectOn      = itemView.findViewById(R.id.mediapicker_select_on);
+      selectOff     = itemView.findViewById(R.id.mediapicker_select_off);
+      selectOverlay = itemView.findViewById(R.id.mediapicker_select_overlay);
     }
 
     void bind(@NonNull Media media, boolean multiSelect, Set<Media> selected, int maxSelection, @NonNull GlideRequests glideRequests, @NonNull EventListener eventListener) {
@@ -113,10 +114,13 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
                    .into(thumbnail);
 
       playOverlay.setVisibility(MediaUtil.isVideoType(media.getMimeType()) ? View.VISIBLE : View.GONE);
-      selectedOverlay.setVisibility(selected.contains(media) ? View.VISIBLE : View.GONE);
 
       if (selected.isEmpty() && !multiSelect) {
         itemView.setOnClickListener(v -> eventListener.onMediaChosen(media));
+        selectOn.setVisibility(View.GONE);
+        selectOff.setVisibility(View.GONE);
+        selectOverlay.setVisibility(View.GONE);
+
         if (maxSelection > 1) {
           itemView.setOnLongClickListener(v -> {
             selected.add(media);
@@ -125,11 +129,17 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
           });
         }
       } else if (selected.contains(media)) {
+        selectOff.setVisibility(View.VISIBLE);
+        selectOn.setVisibility(View.VISIBLE);
+        selectOverlay.setVisibility(View.VISIBLE);
         itemView.setOnClickListener(v -> {
           selected.remove(media);
           eventListener.onMediaSelectionChanged(new ArrayList<>(selected));
         });
       } else {
+        selectOff.setVisibility(View.VISIBLE);
+        selectOn.setVisibility(View.GONE);
+        selectOverlay.setVisibility(View.GONE);
         itemView.setOnClickListener(v -> {
           if (selected.size() < maxSelection) {
             selected.add(media);

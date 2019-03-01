@@ -6,11 +6,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ScribbleFragment;
@@ -23,6 +30,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Encompasses the entire flow of sending media, starting from the selection process to the actual
@@ -56,9 +64,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private Recipient          recipient;
-  private String             body;
   private TransportOption    transport;
   private MediaSendViewModel viewModel;
+
+  private View     countButton;
+  private TextView countButtonText;
 
   /**
    * Get an intent to launch the media send flow starting with the picker.
@@ -94,28 +104,42 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
-    setContentView(R.layout.mediapicker_activity);
+    setContentView(R.layout.mediasend_activity);
     setResult(RESULT_CANCELED);
 
     if (savedInstanceState != null) {
       return;
     }
 
+    countButton     = findViewById(R.id.mediasend_count_button);
+    countButtonText = findViewById(R.id.mediasend_count_button_text);
+
     viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(new MediaRepository())).get(MediaSendViewModel.class);
     recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
-    body      = getIntent().getStringExtra(KEY_BODY);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 
     viewModel.setMediaConstraints(transport.isSms() ? MediaConstraints.getMmsMediaConstraints(transport.getSimSubscriptionId().or(-1))
                                                     : MediaConstraints.getPushMediaConstraints());
 
+    viewModel.onBodyChanged(getIntent().getStringExtra(KEY_BODY));
+
     List<Media> media = getIntent().getParcelableArrayListExtra(KEY_MEDIA);
 
     if (!Util.isEmpty(media)) {
-      navigateToMediaSend(media, body, transport);
+      viewModel.onSelectedMediaChanged(this, media);
+
+      Fragment fragment = MediaSendFragment.newInstance(transport, dynamicLanguage.getCurrentLocale());
+      getSupportFragmentManager().beginTransaction()
+                                 .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
+                                 .commit();
     } else {
-      navigateToFolderPicker(recipient);
+      MediaPickerFolderFragment fragment = MediaPickerFolderFragment.newInstance(recipient);
+      getSupportFragmentManager().beginTransaction()
+                                 .replace(R.id.mediasend_fragment_container, fragment, TAG_FOLDER_PICKER)
+                                 .commit();
     }
+
+    initializeCountButtonObserver(transport, dynamicLanguage.getCurrentLocale());
   }
 
   @Override
@@ -137,41 +161,34 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   public void onFolderSelected(@NonNull MediaFolder folder) {
     viewModel.onFolderSelected(folder.getBucketId());
 
-    MediaPickerItemFragment fragment = MediaPickerItemFragment.newInstance(folder.getBucketId(),
-                                                                           folder.getTitle(),
-                                                                           transport.isSms() ? MAX_SMS : MAX_PUSH);
-
+    MediaPickerItemFragment fragment = MediaPickerItemFragment.newInstance(folder.getBucketId(), folder.getTitle(), transport.isSms() ? MAX_SMS  :MAX_PUSH);
     getSupportFragmentManager().beginTransaction()
-                               .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
-                               .replace(R.id.mediapicker_fragment_container, fragment, TAG_ITEM_PICKER)
+                               .setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
+                               .replace(R.id.mediasend_fragment_container, fragment, TAG_ITEM_PICKER)
                                .addToBackStack(null)
                                .commit();
   }
 
   @Override
-  public void onMediaSelected(@NonNull String bucketId, @NonNull Collection<Media> media) {
-    MediaSendFragment fragment = MediaSendFragment.newInstance(body, transport, dynamicLanguage.getCurrentLocale());
-    getSupportFragmentManager().beginTransaction()
-                               .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
-                               .replace(R.id.mediapicker_fragment_container, fragment, TAG_SEND)
-                               .addToBackStack(null)
-                               .commit();
+  public void onMediaSelected(@NonNull String bucketId) {
+    navigateToMediaSend(transport, dynamicLanguage.getCurrentLocale());
   }
 
   @Override
   public void onAddMediaClicked(@NonNull String bucketId) {
+    // TODO: Get actual folder title somehow
     MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(recipient);
-    MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId,
-                                                                                   "",
-                                                                                   transport.isSms() ? MAX_SMS : MAX_PUSH);
+    MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", transport.isSms() ? MAX_SMS : MAX_PUSH);
 
     getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.mediapicker_fragment_container, folderFragment, TAG_FOLDER_PICKER)
+                               .setCustomAnimations(R.anim.stationary, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
+                               .replace(R.id.mediasend_fragment_container, folderFragment, TAG_FOLDER_PICKER)
                                .addToBackStack(null)
                                .commit();
 
     getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.mediapicker_fragment_container, itemFragment, TAG_ITEM_PICKER)
+                               .setCustomAnimations(R.anim.slide_from_right, R.anim.stationary, R.anim.slide_from_left, R.anim.slide_to_right)
+                               .replace(R.id.mediasend_fragment_container, itemFragment, TAG_ITEM_PICKER)
                                .addToBackStack(null)
                                .commit();
   }
@@ -214,20 +231,29 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     }
   }
 
-  private void navigateToMediaSend(List<Media> media, String body, TransportOption transport) {
-    viewModel.setInitialSelectedMedia(this, media);
+  private void initializeCountButtonObserver(@NonNull TransportOption transport, @NonNull Locale locale) {
+    viewModel.getCountButtonState().observe(this, buttonState -> {
+      if (buttonState == null) return;
 
-    MediaSendFragment sendFragment = MediaSendFragment.newInstance(body, transport, dynamicLanguage.getCurrentLocale());
-    getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.mediapicker_fragment_container, sendFragment, TAG_SEND)
-                               .commit();
+      countButton.setVisibility(buttonState.getVisibility() ? View.VISIBLE : View.GONE);
+      countButton.setOnClickListener(v -> navigateToMediaSend(transport, locale));
+      countButtonText.setText(String.valueOf(buttonState.getCount()));
+    });
   }
 
-  private void navigateToFolderPicker(@NonNull Recipient recipient) {
-    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(recipient);
+  private void navigateToMediaSend(@NonNull TransportOption transport, @NonNull Locale locale) {
+    MediaSendFragment fragment     = MediaSendFragment.newInstance(transport, locale);
+    String            backstackTag = null;
+
+    if (getSupportFragmentManager().findFragmentByTag(TAG_SEND) != null) {
+      getSupportFragmentManager().popBackStack(TAG_SEND, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+      backstackTag = TAG_SEND;
+    }
 
     getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.mediapicker_fragment_container, folderFragment, TAG_FOLDER_PICKER)
+                               .setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
+                               .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
+                               .addToBackStack(backstackTag)
                                .commit();
   }
 }

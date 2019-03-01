@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.scribbles.ScribbleFragment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -104,6 +105,15 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
       }
     }
     return new HashMap<>(savedState);
+  }
+
+  void saveAllState() {
+    for (MediaSendPageFragment fragment : fragments.values()) {
+      Object state = fragment.saveState();
+      if (state != null) {
+        savedState.put(fragment.getUri(), state);
+      }
+    }
   }
 
   void restoreState(@NonNull Map<Uri, Object> state) {

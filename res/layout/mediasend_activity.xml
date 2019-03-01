@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/mediasend_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/mediasend_count_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_gravity="bottom|right|end"
+        android:padding="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/media_count_button_background"
+        android:elevation="4dp"
+        tools:parentTag="android.widget.LinearLayout">
+
+        <TextView
+            android:id="@+id/mediasend_count_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="28dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            android:background="@drawable/media_count_number_background"
+            android:textColor="@color/signal_primary"
+            android:textSize="18sp"
+            tools:text="3" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:src="@drawable/ic_arrow_right"
+            android:tint="@color/core_white"/>
+
+    </LinearLayout>
+
+</FrameLayout>

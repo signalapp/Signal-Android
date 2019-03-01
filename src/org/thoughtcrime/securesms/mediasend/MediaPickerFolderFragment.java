@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -86,6 +87,14 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
     viewModel.getFolders(requireContext()).observe(this, adapter::setFolders);
 
     initToolbar(view.findViewById(R.id.mediapicker_toolbar));
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+
+    requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+    requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
   }
 
   @Override

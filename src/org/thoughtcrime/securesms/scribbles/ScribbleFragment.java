@@ -147,6 +147,10 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
   public void restoreState(@NonNull Object state) {
     if (state instanceof ScribbleView.SavedState) {
       savedState = (ScribbleView.SavedState) state;
+
+      if (scribbleView != null) {
+        scribbleView.restoreState(savedState);
+      }
     } else {
       Log.w(TAG, "Received a bad saved state. Received class: " + state.getClass().getName());
     }

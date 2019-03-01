@@ -6,14 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginRight="2dp"
-    android:layout_marginBottom="2dp">
+    android:layout_marginBottom="2dp"
+    android:animateLayoutChanges="true">
 
     <org.thoughtcrime.securesms.components.SquareImageView
         android:id="@+id/mediapicker_image_item_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        tools:src="@drawable/empty_inbox_1"/>
 
     <View
         android:layout_width="match_parent"
@@ -28,7 +30,7 @@
         android:layout_gravity="center"
         android:longClickable="false"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <ImageView
             android:layout_width="15dp"
@@ -41,20 +43,29 @@
 
     </FrameLayout>
 
-
-    <FrameLayout
-        android:id="@+id/mediapicker_selected"
+    <View
+        android:id="@+id/mediapicker_select_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparent_black_90"
-        android:visibility="gone">
+        android:background="@color/transparent_black_90" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_check_white_24dp" />
+    <ImageView
+        android:id="@+id/mediapicker_select_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right|end"
+        android:padding="6dp"
+        android:src="@drawable/ic_select_on"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
-    </FrameLayout>
+    <ImageView
+        android:id="@+id/mediapicker_select_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right|end"
+        android:padding="6dp"
+        android:src="@drawable/ic_select_off"
+        android:visibility="gone" />
 
 </FrameLayout>
