@@ -1968,20 +1968,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private Pair<String, Optional<Slide>> getSplitMessage(String rawText, int maxPrimaryMessageSize) {
     String          bodyText  = rawText;
-    Optional<Slide> extraText = Optional.absent();
+    Optional<Slide> textSlide = Optional.absent();
 
     if (bodyText.length() > maxPrimaryMessageSize) {
       bodyText = rawText.substring(0, maxPrimaryMessageSize);
 
-      byte[] extraData = rawText.substring(maxPrimaryMessageSize).getBytes();
-      Uri    textUri   = MemoryBlobProvider.getInstance().createUri(extraData);
+      byte[] textData  = rawText.getBytes();
+      Uri    textUri   = MemoryBlobProvider.getInstance().createUri(textData);
       String timestamp = new SimpleDateFormat("yyyy-MM-dd-HHmmss", Locale.US).format(new Date());
       String filename  = String.format("signal-%s.txt", timestamp);
 
-      extraText = Optional.of(new TextSlide(this, textUri, filename, extraData.length));
+      textSlide = Optional.of(new TextSlide(this, textUri, filename, textData.length));
     }
 
-    return new Pair<>(bodyText, extraText);
+    return new Pair<>(bodyText, textSlide);
   }
 
   private MediaConstraints getCurrentMediaConstraints() {

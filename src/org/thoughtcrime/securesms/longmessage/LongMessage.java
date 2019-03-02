@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.longmessage;
 
+import android.text.TextUtils;
+
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 
 /**
@@ -9,11 +11,11 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 class LongMessage {
 
   private final MessageRecord messageRecord;
-  private final String        extraBody;
+  private final String        fullBody;
 
-  LongMessage(MessageRecord messageRecord, String extraBody) {
+  LongMessage(MessageRecord messageRecord, String fullBody) {
     this.messageRecord = messageRecord;
-    this.extraBody     = extraBody;
+    this.fullBody      = fullBody;
   }
 
   MessageRecord getMessageRecord() {
@@ -21,6 +23,6 @@ class LongMessage {
   }
 
   String getFullBody() {
-    return messageRecord.getBody() + extraBody;
+    return !TextUtils.isEmpty(fullBody) ? fullBody : messageRecord.getBody();
   }
 }
