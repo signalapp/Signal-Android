@@ -6,6 +6,7 @@
   <string name="delete">Slett</string>
   <string name="please_wait">Vent litt </string>
   <string name="save">Lagra</string>
+  <string name="note_to_self">Notat til meg sjølv</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--AlbumThumbnailView-->
@@ -154,8 +155,11 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal treng tilgang til kameraet for å ta bilete eller videoar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal treng tilgang til kameraet for å ta bilete eller videoopptak</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikkje senda SMS/MMS-meldingar utan å vera standard SMS-app. Vil du endra dette no i Android-innstillingane dine?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nei</string>
+  <string name="ConversationActivity_search_position">%1$d av %2$d</string>
+  <string name="ConversationActivity_no_results">Ingen resultat</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulesen melding</item>
@@ -277,9 +281,15 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">No kan du dela profilbilete og namnet ditt med vennar på Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signalprofilar er her</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Her kjem tastevisning.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">No kan du sjå og visa inntasting av meldingar, viss du vil.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du skru på denne funksjonen no?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Tastevisning er her</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Skru på tastevisning</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Skru på tastevisning</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">No kjem lenkjesniktitt</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">No kan me laga førehandsvisningar av lenkjer til nokre av dei mest populære nettstadene, viss du vil.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan skru på eller av denne funksjonen når som helst i Signal-innstillingane dine (Privay → Send lenkjesniktitt).</string>
   <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Hentar ei melding …</string>
@@ -339,6 +349,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Sending mislukkast</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt tryggleiksnummer</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstilkopling på</string>
@@ -372,9 +383,16 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Lastar ned MMS-melding</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Klarte ikkje lasta ned MMS-melding, trykk for å prøva igjen</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Send til %s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Trykk for å velja</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="one">Du kan ikkje dela meir enn %d element.</item>
+    <item quantity="other">Du kan ikkje dela meir enn %d element.</item>
+  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Legg til bildetekst …</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Eit element vart fjerna fordi det gjekk over storleiksgrensa</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">All media</string>
   <!--MessageRecord-->
@@ -499,6 +517,10 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
     <item quantity="one">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
     <item quantity="other">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Me må sjekka om du er eit menneske.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Klarte ikkje stadfesta CAPTCHA-en</string>
+  <string name="RegistrationActivity_continue">Hald fram</string>
+  <string name="RegistrationActivity_call">Ring</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikkje lagra biletendringane</string>
   <!--Search-->
@@ -955,6 +977,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle inngåande multimediemeldingar </string>
   <string name="preferences__pref_enter_sends_title">Send med linjeskift</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk linjeskift for å senda tekstmeldingar</string>
+  <string name="preferences__send_link_previews">Send lenkjesniktitt</string>
+  <string name="preferences__previews_are_supported_for">Me kan visa sniktittar for lenkjer til Imgur, Instagram, Reddit og Youtube.</string>
   <string name="preferences__choose_identity">Vel identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vel kontakt frå kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passordfrase</string>
@@ -1053,7 +1077,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Forsegla sendar</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Visingsindikatorar</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis eit statusikon når du vel «Meldingsdetaljar» på meldingar som blei sende med forsegla sendar.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis eit statusikon når du vel «Meldingsdetaljar» på meldingar som vart sende med forsegla sendar.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat frå alle</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tillat forsegla sendar på meldingar du får frå folk som ikkje er i kontaktlista di, og folk du ikkje har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær meir</string>
@@ -1209,11 +1233,7 @@ Du er à jour!</string>
   <string name="ChatsPreferenceFragment_in_progress">I gang</string>
   <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string>
   <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
-  <string name="RegistrationActivity_verify_s">Stadfest %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn stadfestingskoden sendt til %s</string>
-  <string name="RegistrationActivity_wrong_number">Feil nummer?</string>
-  <string name="RegistrationActivity_call_me_instead">Ring meg i staden</string>
-  <string name="RegistrationActivity_available_in">Tilgjengeleg om:\u0020</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjend</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
@@ -1251,7 +1271,6 @@ Du er à jour!</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Klarte ikkje kopla til tenesta</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Skru av PIN-kode for registreringslås?</string>
   <string name="RegistrationLockDialog_disable">Slå av</string>
-  <string name="RegistrationActivity_continue">Hald fram</string>
   <string name="preferences_chats__backups">Reservekopiar</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSA OPP</string>

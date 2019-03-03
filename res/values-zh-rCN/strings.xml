@@ -6,6 +6,7 @@
   <string name="delete">删除</string>
   <string name="please_wait">请稍候…</string>
   <string name="save">保存</string>
+  <string name="note_to_self">备忘录</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新信息</string>
   <!--AlbumThumbnailView-->
@@ -110,6 +111,9 @@
   <string name="ConversationItem_copied_text">已复制 %s</string>
   <string name="ConversationItem_from_s">来自 %s</string>
   <string name="ConversationItem_to_s">至 %s</string>
+  <string name="ConversationItem_read_more"> 查看更多</string>
+  <string name="ConversationItem_download_more"> 下载更多</string>
+  <string name="ConversationItem_pending"> 等待中</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">该选项将会有助于解决您在会话中遇到的加密问题，但是您的消息可能会受人控制。</string>
@@ -154,6 +158,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal不能发送短信/彩信，因为它不是您默认的短信应用。您是否想在安卓设置里修改？</string>
   <string name="ConversationActivity_yes">是</string>
   <string name="ConversationActivity_no">否</string>
+  <string name="ConversationActivity_search_position">%2$d中之%1$d</string>
+  <string name="ConversationActivity_no_results">无结果</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读信息</item>
@@ -216,6 +222,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">无法设置个人信息</string>
   <string name="CreateProfileActivity_profile_photo">头像</string>
   <string name="CreateProfileActivity_too_long">过长</string>
+  <string name="CreateProfileActivity_profile_name">资料名称</string>
+  <string name="CreateProfileActivity_set_up_your_profile">设置您的资料</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal上的个人资料都是端到端加密的。Signal服务永远不会有权访问此数据。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定制：%s</string>
   <string name="CustomDefaultPreference_using_default">使用默认：%s</string>
@@ -273,7 +282,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">隆重推出“链接预览”功能。</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">可选的链接预览功能现支持互联网上一些最热门的站点。</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">您可以随时在Signal设置中启用或禁用此功能（隐私 &gt; 发送链接预览）。</string>
-  <string name="ExperienceUpgradeActivity_got_it">收到</string>
+  <string name="ExperienceUpgradeActivity_got_it">知道了</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->
@@ -330,6 +339,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">发送失败</string>
   <string name="MessageDetailsRecipient_new_safety_number">新的安全代码</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">找不到消息</string>
+  <string name="LongMessageActivity_message_from_s">%1$s发来的消息</string>
+  <string name="LongMessageActivity_your_message">您的消息</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">后台数据已启用</string>
@@ -369,6 +382,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">添加注释...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一个附件已被移除，因为它超过了文件大小限制。</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有媒体</string>
   <!--MessageRecord-->
@@ -490,6 +504,16 @@
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">您距离发送调试日志还有 %d 步之遥。</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我们需要验证您不是机器人。</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">验证码验证失败</string>
+  <string name="RegistrationActivity_next">下一步</string>
+  <string name="RegistrationActivity_continue">继续</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">让隐私与您形影不离。\n在每一条消息中展现真正的自己。</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">输入您的手机号以开始使用</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">您会收到一条验证码。运营商可能会收取费用。
+</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">请输入我们发送到%s的验证码</string>
+  <string name="RegistrationActivity_call">拨号</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">无法保存图像更改</string>
   <!--Search-->
@@ -1191,11 +1215,9 @@
   <string name="ChatsPreferenceFragment_in_progress">进行中</string>
   <string name="LocalBackupJob_creating_backup">正在创建备份…</string>
   <string name="ProgressPreference_d_messages_so_far">已处理 %d 条消息</string>
-  <string name="RegistrationActivity_verify_s">验证%s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">请输入发送到 %s 的验证码。</string>
-  <string name="RegistrationActivity_wrong_number">错误的号码？</string>
-  <string name="RegistrationActivity_call_me_instead">改成给我打电话</string>
-  <string name="RegistrationActivity_available_in">可用:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">号码错误</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">打电话给我 \n （%02d:%02d后可用）</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">锁屏</string>
@@ -1233,7 +1255,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">无法连接到服务</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">禁用注册锁定 PIN？</string>
   <string name="RegistrationLockDialog_disable">禁用</string>
-  <string name="RegistrationActivity_continue">继续</string>
   <string name="preferences_chats__backups">备份</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已锁定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">轻触解锁</string>

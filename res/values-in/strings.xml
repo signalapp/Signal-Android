@@ -215,6 +215,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Masalah pengaturan profil</string>
   <string name="CreateProfileActivity_profile_photo">Foto profil</string>
   <string name="CreateProfileActivity_too_long">Kepanjangan</string>
+  <string name="CreateProfileActivity_profile_name">Nama Profil</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Gunakan ubahsuai: %s</string>
   <string name="CustomDefaultPreference_using_default">Gunakan bawaan: %s</string>
@@ -269,6 +270,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktifkan indikator penulisan</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktifkan indikator penulisan</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Tidak, terima kasih</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Memperkenalkan pratinjau tautan.</string>
   <string name="ExperienceUpgradeActivity_got_it">Paham</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan...</string>
@@ -326,6 +328,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gagal mengirim</string>
   <string name="MessageDetailsRecipient_new_safety_number">Angka keamanan baru</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Koneksi latar belakang diaktifkan</string>
@@ -357,8 +360,11 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Mengunduh pesan MMS.</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gagal saat mengunduh pesan MMS, ketuk untuk mencoba lagi</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Kirim ke %s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Ketuk untuk memilih </string>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Tambah keterangan...</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Semua media</string>
   <!--MessageRecord-->
@@ -484,6 +490,9 @@ isikan (%s) tidak tepat.
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Kamu memiliki %d langkah lagi untuk mengirim log debug.</item>
   </plurals>
+  <string name="RegistrationActivity_next">Berikutnya</string>
+  <string name="RegistrationActivity_continue">Lanjutkan</string>
+  <string name="RegistrationActivity_call">Panggil</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Gagal menyimpan perubahan gambar.</string>
   <!--Search-->
@@ -781,6 +790,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="log_submit_activity__button_submit">Kirim</string>
   <string name="log_submit_activity__button_got_it">Paham</string>
   <string name="log_submit_activity__button_compose_email">Tulis surel</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Catatan ini akan diunggah secara publik agar kontributor dapat melihat, Anda dapat memeriksa kembali dan menyunting sebelum mengunggahnya.</string>
   <string name="log_submit_activity__loading_logs">Memuat log...</string>
   <string name="log_submit_activity__uploading_logs">Mengunggah log...</string>
   <string name="log_submit_activity__success">Sukses!</string>
@@ -927,6 +937,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan Signal untuk semua pesan multimedia yang masuk</string>
   <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
+  <string name="preferences__send_link_previews">Kirim pratinjau tautan</string>
+  <string name="preferences__previews_are_supported_for">Pratinjau didukung untuk tautan Imgur, Instagram, Reddit, dan Youtube</string>
   <string name="preferences__choose_identity">Pilih identitas</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
   <string name="preferences__change_passphrase">Ganti Kata Kunci</string>
@@ -1177,11 +1189,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChatsPreferenceFragment_in_progress">Sedang berjalan</string>
   <string name="LocalBackupJob_creating_backup">Buat cadangan</string>
   <string name="ProgressPreference_d_messages_so_far">%d pesan sejauh ini...</string>
-  <string name="RegistrationActivity_verify_s">Verifikasi %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Silakan masukkan kode verifikasi yang telah dikirim ke %s.</string>
-  <string name="RegistrationActivity_wrong_number">Salah nomor?</string>
-  <string name="RegistrationActivity_call_me_instead">Panggil saya saja</string>
-  <string name="RegistrationActivity_available_in">Tersedia dalam:\u0020</string>
   <string name="BackupUtil_never">Tidak pernah</string>
   <string name="BackupUtil_unknown">Tidak dikenal</string>
   <string name="preferences_app_protection__screen_lock">Layar terkunci</string>
@@ -1219,7 +1227,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Gagal saat menghubungi layanan</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Nonaktifkan Kunci PIN Pendaftaran?</string>
   <string name="RegistrationLockDialog_disable">Nonaktifkan</string>
-  <string name="RegistrationActivity_continue">Lanjutkan</string>
   <string name="preferences_chats__backups">Cadangan</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal terkunci</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KETUK UNTUK MEMBUKA</string>

@@ -328,6 +328,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Mana kacharirkachu</string>
   <string name="MessageDetailsRecipient_new_safety_number">Mushuk wakaychik yupay</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Washa washalla paskarishka sakirin</string>
@@ -477,6 +478,8 @@ riksichinami kanki
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal mutsunmi kikinpa mashi yupaykunaman yaykushpa mashikunawan rimarinkapak, killkarinkapak shinallata alli kayachikunata rurankapak.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Mana tinkiritay usharinchu. Rikupay internet tiyanchu, shinashpa kutinlla kallarinkapak.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pankalla kikinpa yupayta riksinkapak Signal paymanta pakalla yupayta chaskita ushan, killkana SMS paskarya kakpi.</string>
+  <string name="RegistrationActivity_continue">Katina</string>
+  <string name="RegistrationActivity_call">Kayachina</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kikinpa mushukyachishka shuyu mana allichirirka.</string>
   <!--Search-->
@@ -1171,11 +1174,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="ChatsPreferenceFragment_in_progress">Rurarikun</string>
   <string name="LocalBackupJob_creating_backup">Chayshinalla wakaychishkakunata wiñachikun</string>
   <string name="ProgressPreference_d_messages_so_far">Kunankaman %d chaskikuna</string>
-  <string name="RegistrationActivity_verify_s">Rikushpa arinina%s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ama shina kashpa  %s shinapacha yupay kachamushkata yaykuchipay </string>
-  <string name="RegistrationActivity_wrong_number">Pantashka yupay</string>
-  <string name="RegistrationActivity_call_me_instead">Kayachitarapash kayachiway</string>
-  <string name="RegistrationActivity_available_in">Chaypi tiyapan:\u0020</string>
   <string name="BackupUtil_never">Nimamanta</string>
   <string name="BackupUtil_unknown">Mana riksishka</string>
   <string name="preferences_app_protection__screen_lock">Pakallayachina</string>
@@ -1213,7 +1212,6 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Mana tinkirita ushnakichu</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">PIN killkashkata anchuchinayanchu</string>
   <string name="RegistrationLockDialog_disable">Mana rikuchina.</string>
-  <string name="RegistrationActivity_continue">Katina</string>
   <string name="preferences_chats__backups">Wakaychikpa chayshinakuna</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal anchuchishkami kan</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">LLAPI APAMUNKAPAK</string>

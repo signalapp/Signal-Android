@@ -6,6 +6,7 @@
   <string name="delete">Удалить</string>
   <string name="please_wait">Пожалуйста, подождите...</string>
   <string name="save">Сохранить</string>
+  <string name="note_to_self">Примечание для себя</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Новое сообщение</string>
   <!--AlbumThumbnailView-->
@@ -163,6 +164,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не может отправлять SMS/MMS-сообщения, так как не является приложением SMS по умолчанию. Хотите изменить это в настройках Android?</string>
   <string name="ConversationActivity_yes">Да</string>
   <string name="ConversationActivity_no">Нет</string>
+  <string name="ConversationActivity_search_position">%1$d из %2$d</string>
+  <string name="ConversationActivity_no_results">Нет результатов</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитанное сообщение</item>
@@ -258,6 +261,8 @@
   <string name="CreateProfileActivity_problem_setting_profile">Ошибка при сохранении профиля</string>
   <string name="CreateProfileActivity_profile_photo">Фото профиля</string>
   <string name="CreateProfileActivity_too_long">Слишком длинно</string>
+  <string name="CreateProfileActivity_profile_name">Имя профиля</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Настройте ваш профиль</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
   <string name="CustomDefaultPreference_using_default">По умолчанию: %s</string>
@@ -378,6 +383,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не удалось отправить</string>
   <string name="MessageDetailsRecipient_new_safety_number">Новый код безопасности</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Фоновое соединение включено</string>
@@ -426,6 +432,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Добавить субтитры...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Элемент был удален из-за превышения размера</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Все медиа-файлы</string>
   <!--MessageRecord-->
@@ -548,6 +555,12 @@
     <item quantity="many">Вы в %d шагах от отправки журнала отладки.</item>
     <item quantity="other">Вы в %d шагах от отправки журнала отладки.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Нам нужно убедиться, что вы человек.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Не удалось проверить CAPTCHA</string>
+  <string name="RegistrationActivity_next">Далее</string>
+  <string name="RegistrationActivity_continue">Продолжить</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Введите ваш номер телефона, чтобы начать</string>
+  <string name="RegistrationActivity_call">Вызов</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не удалось сохранить изменения изображения</string>
   <!--Search-->
@@ -1279,11 +1292,7 @@
   <string name="ChatsPreferenceFragment_in_progress">В процессе</string>
   <string name="LocalBackupJob_creating_backup">Создание резервной копии...</string>
   <string name="ProgressPreference_d_messages_so_far">еще %d сообщений</string>
-  <string name="RegistrationActivity_verify_s">Подтвердить %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Пожалуйста, введите проверочный код, отправленный на %s.</string>
-  <string name="RegistrationActivity_wrong_number">Неправильный номер?</string>
-  <string name="RegistrationActivity_call_me_instead">Позвонить мне вместо этого</string>
-  <string name="RegistrationActivity_available_in">Доступно в:\u0020</string>
   <string name="BackupUtil_never">Никогда</string>
   <string name="BackupUtil_unknown">Неизвестно</string>
   <string name="preferences_app_protection__screen_lock">Блокировка экрана</string>
@@ -1321,7 +1330,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Ошибка подключения к сервису</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Отключить PIN-код блокировки регистрации?</string>
   <string name="RegistrationLockDialog_disable">Отключить</string>
-  <string name="RegistrationActivity_continue">Продолжить</string>
   <string name="preferences_chats__backups">Резервные копии</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal заблокирован</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">КОСНИТЕСЬ, ЧТОБЫ РАЗБЛОКИРОВАТЬ</string>

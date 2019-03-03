@@ -6,6 +6,7 @@
   <string name="delete">Kustuta</string>
   <string name="please_wait">Palun oota...</string>
   <string name="save">Salvesta</string>
+  <string name="note_to_self">Märkus endale</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Uus sõnum</string>
   <!--AlbumThumbnailView-->
@@ -230,6 +231,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Profiili seadistamisel tekkis probleem</string>
   <string name="CreateProfileActivity_profile_photo">Profiilipilt</string>
   <string name="CreateProfileActivity_too_long">Liiga pikk</string>
+  <string name="CreateProfileActivity_profile_name">Profiili nimi</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kasutan kohandatud: %s</string>
   <string name="CustomDefaultPreference_using_default">Kasutan vaikimisi: %s</string>
@@ -284,6 +286,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Luba kirjutamisindikaatorid</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Lülita kirjutamisindikaatorid sisse</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Tänan, ei</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Tutvustame linkide eelvaateid.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valikulised linkide eelvaated on nüüd toetatud populaarseimate saitide puhul.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Sa saad seda funktsiooni igal ajal keelata ja lubada oma Signali seadetes (Privaatsus &gt; Saada linkide eelvaateid).</string>
   <string name="ExperienceUpgradeActivity_got_it">Sain aru</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Sõnumi vastuvõtmine...</string>
@@ -343,6 +348,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Saatmine ebaõnnestus</string>
   <string name="MessageDetailsRecipient_new_safety_number">Uus turvanumber</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Taustaühendus lubatud</string>
@@ -511,6 +517,9 @@
     <item quantity="one">Sa oled silumislogi saatmisest %d sammu kaugusel.</item>
     <item quantity="other">Sa oled silumislogi saatmisest %d sammu kaugusel.</item>
   </plurals>
+  <string name="RegistrationActivity_next">Edasi</string>
+  <string name="RegistrationActivity_continue">Jätka</string>
+  <string name="RegistrationActivity_call">Helista</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
   <!--Search-->
@@ -967,6 +976,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Kasuta Signalit kõigi sissetulevate multimeediasõnumite jaoks</string>
   <string name="preferences__pref_enter_sends_title">Sisestusklahv saadab</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Sisestusklahvi vajutamine saadab tekstsõnumeid</string>
+  <string name="preferences__send_link_previews">Saada linkide eelvaateid</string>
+  <string name="preferences__previews_are_supported_for">Eelvaated on toetatud Imgur, Instagram, Reddit ja YouTube linkide puhul</string>
   <string name="preferences__choose_identity">Vali identiteet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vali oma kontaktüksus kontaktnimekirjast.</string>
   <string name="preferences__change_passphrase">Muuda salaväljendit</string>
@@ -1220,11 +1231,7 @@
   <string name="ChatsPreferenceFragment_in_progress">Töötamisel</string>
   <string name="LocalBackupJob_creating_backup">Varunduse loomine...</string>
   <string name="ProgressPreference_d_messages_so_far">Siiani leidsime %d sõnumit</string>
-  <string name="RegistrationActivity_verify_s">Kinnita %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Palun sisesta kinnituskood, mille saatsime numbrile %s.</string>
-  <string name="RegistrationActivity_wrong_number">Vale number?</string>
-  <string name="RegistrationActivity_call_me_instead">Helista mulle parem</string>
-  <string name="RegistrationActivity_available_in">Saadaval:\u0020</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
   <string name="preferences_app_protection__screen_lock">Ekraanilukk</string>
@@ -1262,7 +1269,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Teenusega ühendamisel esines viga</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Keelad registreerimisluku PINi?</string>
   <string name="RegistrationLockDialog_disable">Keela</string>
-  <string name="RegistrationActivity_continue">Jätka</string>
   <string name="preferences_chats__backups">Varundused</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal on lukus</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KOPUTA AVAMISEKS</string>

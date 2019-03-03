@@ -6,6 +6,7 @@
   <string name="delete">Poista</string>
   <string name="please_wait">Odota hetki...</string>
   <string name="save">Tallenna</string>
+  <string name="note_to_self">Viestit itselleni</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Uusi viesti</string>
   <!--AlbumThumbnailView-->
@@ -113,6 +114,9 @@
   <string name="ConversationItem_copied_text">Kopioitu: %s</string>
   <string name="ConversationItem_from_s">SIM-kortilta %s</string>
   <string name="ConversationItem_to_s">vastaanotettu SIM-kortille %s</string>
+  <string name="ConversationItem_read_more">  Lue lisää</string>
+  <string name="ConversationItem_download_more">  Lataa lisää</string>
+  <string name="ConversationItem_pending">  Käsiteltävänä</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Alusta suojattu istunto?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tämä saattaa auttaa, jos tässä keskustelussa on ilmennyt salaukseen liittyviä ongelmia. Huom. tämä ei poista eikä muokkaa mitenkään olemassa olevia viestejä.</string>
@@ -157,6 +161,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ei voi lähettää SMS/MMS-viestejä, koska se ei ole oletus tekstiviestisovellus. Haluatko muuttaa tätä Androidin asetuksissa?</string>
   <string name="ConversationActivity_yes">Kyllä</string>
   <string name="ConversationActivity_no">Ei</string>
+  <string name="ConversationActivity_search_position">%1$d / %2$d</string>
+  <string name="ConversationActivity_no_results">Ei hakutuloksia</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lukematon viesti</item>
@@ -230,6 +236,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">Virhe asetettaessa profiilia</string>
   <string name="CreateProfileActivity_profile_photo">Profiilikuva</string>
   <string name="CreateProfileActivity_too_long">Liian pitkä</string>
+  <string name="CreateProfileActivity_profile_name">Profiilin nimi</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Aseta profiilisi</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiilit ovat päästä päähän salattuja eikä Signal-palvelulla ole pääsyä näihin tietoihin.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
   <string name="CustomDefaultPreference_using_default">Käytä oletusta: %s</string>
@@ -346,6 +355,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Lähetys epäonnistui</string>
   <string name="MessageDetailsRecipient_new_safety_number">Uusi turvanumero</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Viestiä ei löydy</string>
+  <string name="LongMessageActivity_message_from_s">Viesti lähettäjältä: %1$s</string>
+  <string name="LongMessageActivity_your_message">Sinun viesti</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Taustayhteys päällä</string>
@@ -388,6 +401,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Lisää kuvateksti...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Kohde poistettiin, koska se ylitti kokorajan</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kaikki media</string>
   <!--MessageRecord-->
@@ -510,6 +524,15 @@ puhelinnumero</string>
     <item quantity="one">Olet tällä hetkellä %d askeleen päässä virheenkorjauslokin lähettämisestä.</item>
     <item quantity="other">Olet tällä hetkellä %d askeleen päässä virheenkorjauslokin lähettämisestä.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Meidän on varmistettava, että olet ihminen.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA:n vahvistaminen epäonnistui</string>
+  <string name="RegistrationActivity_next">Seuraava</string>
+  <string name="RegistrationActivity_continue">Jatka</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ota yksityisyys mukaasi.\nOle itsesi jokaisessa viestissä.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Syötä puhelinnumerosi, jotta pääset alkuun</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %s</string>
+  <string name="RegistrationActivity_call">Soita</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kuvaan tehtyjen muutosten tallentaminen ei onnistunut.</string>
   <!--Search-->
@@ -1219,11 +1242,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ChatsPreferenceFragment_in_progress">Meneillään</string>
   <string name="LocalBackupJob_creating_backup">Luodaan varmuuskopiota...</string>
   <string name="ProgressPreference_d_messages_so_far">%d viestiä tähän mennessä</string>
-  <string name="RegistrationActivity_verify_s">Vahvista %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Syötä vahvistuskoodi, joka lähetettiin numeroon %s.</string>
-  <string name="RegistrationActivity_wrong_number">Väärä numero?</string>
-  <string name="RegistrationActivity_call_me_instead">Soita minulle</string>
-  <string name="RegistrationActivity_available_in">Saatavilla: </string>
+  <string name="RegistrationActivity_wrong_number">Väärä numero</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Saatavilla ajassa %02d:%02d)</string>
   <string name="BackupUtil_never">ei koskaan</string>
   <string name="BackupUtil_unknown">Tuntematon</string>
   <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>
@@ -1261,7 +1282,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Virhe yhdistettäessä palveluun</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Otetaanko rekisteröinnin lukituksen PIN-koodi pois käytöstä?</string>
   <string name="RegistrationLockDialog_disable">Poista käytöstä</string>
-  <string name="RegistrationActivity_continue">Jatka</string>
   <string name="preferences_chats__backups">Varmuuskopiot</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal on lukittu</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">AVAA NAPAUTTAMALLA</string>

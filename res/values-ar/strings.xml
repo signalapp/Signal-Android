@@ -278,6 +278,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_profile_photo">الصورة الشخصية</string>
   <string name="CreateProfileActivity_too_long">طويل جدا</string>
+  <string name="CreateProfileActivity_profile_name">اسم الشخصية</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
@@ -391,6 +392,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string>
   <string name="MessageDetailsRecipient_new_safety_number">رقم أمان جديد</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">تمكين الاتصالات الخلفية</string>
@@ -532,6 +534,10 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج Signal إلى إذن النفاذ لجهات الاتصال والوسائط من أجل التواصل مع الأصدقاء، تبادل الرسائل، وإجراء مكالمات آمنة.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">غير قادر علي الإتصال بالخدمة, برجاء التأكد من الإتصال بالشبكة و المحاولة مرة أخري.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">لتسهيل تأكيد رقم هاتفك في Signal يمكن تلقائيًا قراءة رسالة التحقق في حال منح Signal إذن الرسائل النصية SMS,</string>
+  <string name="RegistrationActivity_next">التالي
+</string>
+  <string name="RegistrationActivity_continue">استمر</string>
+  <string name="RegistrationActivity_call">اتصل</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">تعذر حفظ التغييرات بالصورة</string>
   <!--Search-->
@@ -1231,11 +1237,7 @@
   <string name="ChatsPreferenceFragment_in_progress">جارٍ</string>
   <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية...</string>
   <string name="ProgressPreference_d_messages_so_far">%dرسالة إلى الآن</string>
-  <string name="RegistrationActivity_verify_s">التحقّق %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">رجاء إدخال كود التحقق الذي تم إرساله إلى %s.</string>
-  <string name="RegistrationActivity_wrong_number">الرقم خاطئ ؟</string>
-  <string name="RegistrationActivity_call_me_instead">اتصل بي بدلا من ذلك</string>
-  <string name="RegistrationActivity_available_in">الوقت المتاح:\u0020</string>
   <string name="BackupUtil_never">أبدا</string>
   <string name="BackupUtil_unknown">مجهول</string>
   <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>
@@ -1273,7 +1275,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">حدث خطأ أثناء محاولة الربط بالخدمة</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">إلغاء الرقم التعريفي الشخصي لحماية التسجيل؟</string>
   <string name="RegistrationLockDialog_disable">تعطيل</string>
-  <string name="RegistrationActivity_continue">استمر</string>
   <string name="preferences_chats__backups">النُسخ الإحتياطية</string>
   <string name="prompt_passphrase_activity__signal_is_locked">إنَّ Signal مُقفَل</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">أنقُر لفك القُفل</string>

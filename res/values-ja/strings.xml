@@ -6,6 +6,7 @@
   <string name="delete">削除</string>
   <string name="please_wait">お待ち下さい…</string>
   <string name="save">保存</string>
+  <string name="note_to_self">自分のためのメモ</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新着メッセージ</string>
   <!--AlbumThumbnailView-->
@@ -110,6 +111,9 @@
   <string name="ConversationItem_copied_text">%sをコピーしました </string>
   <string name="ConversationItem_from_s">%sから</string>
   <string name="ConversationItem_to_s">%sへ</string>
+  <string name="ConversationItem_read_more">  詳細を読む</string>
+  <string name="ConversationItem_download_more">  更にダウンロード</string>
+  <string name="ConversationItem_pending">  保留中</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">この会話の暗号化で問題がある場合、改善される可能性があります。メッセージは削除されません。</string>
@@ -154,6 +158,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalは現在、デフォルトのショートメッセージアプリになっていないため、メッセージが送信できません。設定を変更しますか？</string>
   <string name="ConversationActivity_yes">はい</string>
   <string name="ConversationActivity_no">いいえ</string>
+  <string name="ConversationActivity_search_position">%1$d / %2$d</string>
+  <string name="ConversationActivity_no_results">見つかりません</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d通の未読メッセージ</item>
@@ -216,6 +222,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">プロフィールの設定に問題が生じました。</string>
   <string name="CreateProfileActivity_profile_photo">プロフィール画像</string>
   <string name="CreateProfileActivity_too_long">長すぎます</string>
+  <string name="CreateProfileActivity_profile_name">プロフィール名</string>
+  <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">プロフィールは暗号化され、Signalのサービスさえアクセスできません。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタム利用: %s</string>
   <string name="CustomDefaultPreference_using_default">デフォルト利用: %s</string>
@@ -330,6 +339,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">送信失敗</string>
   <string name="MessageDetailsRecipient_new_safety_number">新しい安全番号</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">メッセージが見つかりません</string>
+  <string name="LongMessageActivity_message_from_s">%1$sからのメッセージ</string>
+  <string name="LongMessageActivity_your_message">あなたのメッセージ</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">バックグラウンド通信が有効されました</string>
@@ -369,6 +382,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">キャプション追加...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">サイズの上限を超えたため、項目が削除されました。</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">すべてのメディア</string>
   <!--MessageRecord-->
@@ -487,6 +501,15 @@
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">デバッグログの提出まで、あと%dステップです。</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">あなたがロボットでないことを確認します</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHAの認証に失敗しました</string>
+  <string name="RegistrationActivity_next">進む</string>
+  <string name="RegistrationActivity_continue">続行</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">あなたの電話番号を入力してください</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金がかかるかもしれません。</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%sに送ったコードを入力してください</string>
+  <string name="RegistrationActivity_call">通話</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">画像の変更を保存できませんでした</string>
   <!--Search-->
@@ -1184,11 +1207,9 @@
   <string name="ChatsPreferenceFragment_in_progress">実施中</string>
   <string name="LocalBackupJob_creating_backup">バックアップを作成しています...</string>
   <string name="ProgressPreference_d_messages_so_far">今、%d個メッセージ</string>
-  <string name="RegistrationActivity_verify_s">%sを確認</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%sに送った検証コードを入力してください。</string>
-  <string name="RegistrationActivity_wrong_number">番号違いですか？</string>
-  <string name="RegistrationActivity_call_me_instead">音声通話で受信する</string>
-  <string name="RegistrationActivity_available_in">利用可能まで:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">番号が違います</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %02d:%02d)</string>
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>
@@ -1226,7 +1247,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">サービスへの接続中にエラーが発生しました</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">登録ロックPINを無効にしますか？</string>
   <string name="RegistrationLockDialog_disable">無効</string>
-  <string name="RegistrationActivity_continue">続行</string>
   <string name="preferences_chats__backups">バックアップ</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signalはロックされました</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">タップしてロック解除</string>

@@ -6,6 +6,7 @@
   <string name="delete">刪除</string>
   <string name="please_wait">請稍候...</string>
   <string name="save">儲存</string>
+  <string name="note_to_self">給自己的筆記</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新訊息</string>
   <!--AlbumThumbnailView-->
@@ -110,6 +111,9 @@
   <string name="ConversationItem_copied_text">已複製 %s</string>
   <string name="ConversationItem_from_s">來自 %s</string>
   <string name="ConversationItem_to_s">至 %s</string>
+  <string name="ConversationItem_read_more">讀取更多</string>
+  <string name="ConversationItem_download_more">下載更多</string>
+  <string name="ConversationItem_pending">等待中</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">重設安全對話？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">該選項將會有助於解決您在對話中遇到的加密問題。您的訊息將被保留。</string>
@@ -154,6 +158,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 無法傳送 SMS/MMS 訊息，因為Signal 不是你預設 SMS 應用軟體。你要在 Android 設定中改變這個設定嗎？</string>
   <string name="ConversationActivity_yes">是</string>
   <string name="ConversationActivity_no">否</string>
+  <string name="ConversationActivity_search_position">%1$d 的 %2$d</string>
+  <string name="ConversationActivity_no_results">沒有結果</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -216,6 +222,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">個人資訊設定出現問題</string>
   <string name="CreateProfileActivity_profile_photo">頭像照片</string>
   <string name="CreateProfileActivity_too_long">太長</string>
+  <string name="CreateProfileActivity_profile_name">使用者名稱</string>
+  <string name="CreateProfileActivity_set_up_your_profile">設定你的資訊</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal 資料是點對點加密，及Signal 服務絕不會讀取這些資訊。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用自訂：%s</string>
   <string name="CustomDefaultPreference_using_default">使用預設：%s</string>
@@ -330,6 +339,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">傳送失敗</string>
   <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">無法找到該訊息</string>
+  <string name="LongMessageActivity_message_from_s">從 %1$s 傳送的訊息</string>
+  <string name="LongMessageActivity_your_message">你的訊息</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">背景連線已經啟用</string>
@@ -351,7 +364,7 @@
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
-  <string name="NotificationBarManager__incoming_signal_call">Signal 通話來電</string>
+  <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
   <string name="NotificationBarManager__deny_call">拒絕接聽</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">結束通話</string>
@@ -369,19 +382,20 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">加入一個標題...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一個項目因為超過容量的限制而被移除</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有的媒體</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到一則使用舊版本並已經不再支援的 Signal 加密訊息。請尋求傳送人將 Signal 升級到最新的版本並再次傳送該訊息。</string>
   <string name="MessageRecord_left_group">您已經離開了此群組。</string>
   <string name="MessageRecord_you_updated_group">你已更新群組。</string>
-  <string name="MessageRecord_you_called">您打給</string>
+  <string name="MessageRecord_you_called">向外撥號</string>
   <string name="MessageRecord_called_you">聯絡人來電</string>
   <string name="MessageRecord_missed_call">未接來電</string>
   <string name="MessageRecord_s_updated_group">%s 更新了群組。</string>
-  <string name="MessageRecord_s_called_you">%s 呼叫您</string>
-  <string name="MessageRecord_called_s">已呼叫 %s</string>
-  <string name="MessageRecord_missed_call_from">來自 %s 的未接來電</string>
+  <string name="MessageRecord_s_called_you">%s來電</string>
+  <string name="MessageRecord_called_s">撥打給%s</string>
+  <string name="MessageRecord_missed_call_from">錯過來自%s的來電</string>
   <string name="MessageRecord_s_joined_signal">%s 在 Signal 了！</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">你關閉了自動銷毀訊息的功能。</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 關閉了自動銷毀訊息的功能。</string>
@@ -491,6 +505,15 @@
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">你現在距離提交偵錯日誌只有%d步之遙。</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我們必須驗證你是人類。</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">驗證CAPTCHA 失敗</string>
+  <string name="RegistrationActivity_next">下一步</string>
+  <string name="RegistrationActivity_continue">繼續</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">保護你的隱私。\n在每個訊息中做你自己。</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">輸入你的電話號碼即可開始使用。</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">你將收到驗證碼。各電信公司的收費費率可能有所不同。</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">輸入我們傳送給 %s 的驗證碼</string>
+  <string name="RegistrationActivity_call">撥打</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">無法儲存圖片的變更</string>
   <!--Search-->
@@ -528,8 +551,8 @@
   <string name="ThreadRecord_left_the_group">已離開群組</string>
   <string name="ThreadRecord_secure_session_reset">安全對話已重設</string>
   <string name="ThreadRecord_draft">草稿：</string>
-  <string name="ThreadRecord_called">您打給</string>
-  <string name="ThreadRecord_called_you">打給您</string>
+  <string name="ThreadRecord_called">向外撥號</string>
+  <string name="ThreadRecord_called_you">來電</string>
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 了！</string>
@@ -645,7 +668,7 @@
   <string name="VideoPlayer_error_playing_video">播放影片時發生錯誤</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">要回應來自%s的通話，請允許 Signal 使用你的麥克風。</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要\"麥克風\"及\"相機\"的權限以回應來電，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"麥克風\"及\"相機\"的權限。</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要\"麥克風\"及\"相機\"的權限以接聽來電，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"麥克風\"及\"相機\"的權限。</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
@@ -1192,11 +1215,9 @@
   <string name="ChatsPreferenceFragment_in_progress">處理中</string>
   <string name="LocalBackupJob_creating_backup">正在建立備份...</string>
   <string name="ProgressPreference_d_messages_so_far">目前有 %d 則訊息</string>
-  <string name="RegistrationActivity_verify_s">驗證 %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
-  <string name="RegistrationActivity_wrong_number">錯誤的號碼？</string>
-  <string name="RegistrationActivity_call_me_instead">改為撥電話給我</string>
-  <string name="RegistrationActivity_available_in">可用於：\u0020</string>
+  <string name="RegistrationActivity_wrong_number">驗證碼錯誤</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">改用電話打給我 \n (只提供於 %02d: %02d)</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>
@@ -1234,7 +1255,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">連線到服務錯誤</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">關閉註冊鎖定 PIN 碼？</string>
   <string name="RegistrationLockDialog_disable">停用</string>
-  <string name="RegistrationActivity_continue">繼續</string>
   <string name="preferences_chats__backups">備份</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已被鎖定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">觸碰來解鎖</string>

@@ -234,6 +234,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem kod postavljanja profila</string>
   <string name="CreateProfileActivity_profile_photo">Profilna slika</string>
   <string name="CreateProfileActivity_too_long">Predugo</string>
+  <string name="CreateProfileActivity_profile_name">Ime profila</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
   <string name="CustomDefaultPreference_using_default">Koristeći zadano: %s</string>
@@ -340,6 +341,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Neuspješno slanje</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novi sigurnosni broj</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Pozadinska veza omogućena</string>
@@ -484,6 +486,9 @@ telefona</string>
   <string name="RegistrationActivity_no_browser">Nije moguće otvoriti poveznicu. Web preglednik nije pronađen.</string>
   <string name="RegistrationActivity_more_information">Više informacija</string>
   <string name="RegistrationActivity_less_information">Manje informacija</string>
+  <string name="RegistrationActivity_next">Sljedeće</string>
+  <string name="RegistrationActivity_continue">Nastavi</string>
+  <string name="RegistrationActivity_call">Poziv</string>
   <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">Nema rezultata za \'%s\'</string>
@@ -1075,7 +1080,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="RegistrationLockDialog_registration_lock">Zaključavanje registracije</string>
   <string name="RegistrationLockDialog_enable">Omogući</string>
   <string name="RegistrationLockDialog_disable">Onemogući</string>
-  <string name="RegistrationActivity_continue">Nastavi</string>
   <string name="preferences_chats__backups">Sigurnosne kopije</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaključan</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">DODIRNI ZA OTKLJUČAVANJE</string>

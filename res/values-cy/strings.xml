@@ -6,6 +6,7 @@
   <string name="delete">Dileu</string>
   <string name="please_wait">Arhoswch...</string>
   <string name="save">Cadw</string>
+  <string name="note_to_self">Nodyn i Fi Fy Hun</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Neges newydd</string>
   <!--AlbumThumbnailView-->
@@ -165,6 +166,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Nid yw Signal yn gallu anfon negeseuon SMS/MMS gan nad yw eich ap ragosodedig SMS.Hoffech chi newid hyn yn eich gosodiadau Android?</string>
   <string name="ConversationActivity_yes">Iawn</string>
   <string name="ConversationActivity_no">Na</string>
+  <string name="ConversationActivity_search_position">%1$d o %2$d</string>
+  <string name="ConversationActivity_no_results">Dim canlyniadau</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neges heb ei ddarllen</item>
@@ -380,6 +383,7 @@ Send neges heb ei ddiogelu?</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Methwyd anfon</string>
   <string name="MessageDetailsRecipient_new_safety_number">Rhif diogelwch newydd</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Cysylltiad cefndir wedi\'i alluogi</string>
@@ -414,7 +418,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NotificationBarManager__cancel_call">Diffodd galwad</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Neges amlgyfrwng</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">Lawrlwytho neges MMS</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Llwytho i lawr neges MMS</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gwall wrth lawrlwytho neges MMS, tapio i geisio eto</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Anfon i %s</string>
@@ -428,6 +432,7 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Ychwanegu neges...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Cafodd eitem ei thynnu gan ei bod yn fwy na\'r maint mwyaf</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Pob cyfrwng</string>
   <!--MessageRecord-->
@@ -552,6 +557,10 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Rydych chi nawr %dcam cyn cyflwyno cofnod dadfygio.</item>
     <item quantity="other">Rydych chi nawr %dcam cyn cyflwyno cofnod dadfygio.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Mae angen i ni fod yn siŵr eich bod yn berson.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Methu dilysu\'r CAPTCHA</string>
+  <string name="RegistrationActivity_continue">Parhau</string>
+  <string name="RegistrationActivity_call">Galw</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Methu cadw newidiadau i ddelweddau</string>
   <!--Search-->
@@ -778,7 +787,7 @@ Send neges heb ei ddiogelu?</string>
   <!--audio_view-->
   <string name="audio_view__play_accessibility_description">Chwarae</string>
   <string name="audio_view__pause_accessibility_description">Oedi</string>
-  <string name="audio_view__download_accessibility_description">Lawrlwytho</string>
+  <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Sain</string>
   <string name="QuoteView_video">Fideo</string>
@@ -1102,7 +1111,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_chats__when_using_mobile_data">Wrth ddefnyddio data symudol</string>
   <string name="preferences_chats__when_using_wifi">Wrth ddefnyddio diwifr</string>
   <string name="preferences_chats__when_roaming">Wrth grwydro</string>
-  <string name="preferences_chats__media_auto_download">Awto lawrlwytho cyfryngau</string>
+  <string name="preferences_chats__media_auto_download">Awto lwytho cyfryngau</string>
   <string name="preferences_chats__message_trimming">Tocio sgyrsiau</string>
   <string name="preferences_advanced__use_system_emoji">Defnyddio emoji\'r system</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Analluogi cefnogaeth emoji Signal</string>
@@ -1281,11 +1290,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ChatsPreferenceFragment_in_progress">Cynnydd</string>
   <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn ...</string>
   <string name="ProgressPreference_d_messages_so_far">%d neges hyd yn hyn</string>
-  <string name="RegistrationActivity_verify_s">Gwirio %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
-  <string name="RegistrationActivity_wrong_number">Rhif anghywir?</string>
-  <string name="RegistrationActivity_call_me_instead">Ffonio fi yn lle hynny</string>
-  <string name="RegistrationActivity_available_in">Ar gael yn: \u0020</string>
   <string name="BackupUtil_never">Byth</string>
   <string name="BackupUtil_unknown">Anhysbys</string>
   <string name="preferences_app_protection__screen_lock">Clo sgrin</string>
@@ -1323,7 +1328,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Gwall wrth gysylltu â\'r gwasanaeth</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Analluogi PIN Cofrestru Clo?</string>
   <string name="RegistrationLockDialog_disable">Analluogi</string>
-  <string name="RegistrationActivity_continue">Parhau</string>
   <string name="preferences_chats__backups">Copïau wrth gefn</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Mae Signal wedi\'i gloi</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAPIO I DDATGLOI</string>

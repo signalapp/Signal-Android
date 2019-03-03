@@ -6,6 +6,7 @@
   <string name="delete">Fshije</string>
   <string name="please_wait">Ju lutemi, pritni…</string>
   <string name="save">Ruaje</string>
+  <string name="note_to_self">Shënim për Veten</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mesazh i ri</string>
   <!--AlbumThumbnailView-->
@@ -113,6 +114,9 @@
   <string name="ConversationItem_copied_text">U kopjua %s</string>
   <string name="ConversationItem_from_s">nga %s</string>
   <string name="ConversationItem_to_s">te %s</string>
+  <string name="ConversationItem_read_more">  Lexoni Më Tepër</string>
+  <string name="ConversationItem_download_more">  Shkarkoni Më Tepër</string>
+  <string name="ConversationItem_pending">  Pezull</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Të rikthehet te parazgjedhjet sesioni i sigurt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë nëse keni probleme fshehtëzimi në këtë bisedë. Mesazhet tuaja do të ruhen.</string>
@@ -157,6 +161,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal-i s\’mund të dërgojë mesazhe SMS/MMS, ngaqë s\’është aplikacioni juaj parazgjedhje për SMS. Doni ta ndryshoni këtë te rregullimet tuaja për Android-in?</string>
   <string name="ConversationActivity_yes">Po</string>
   <string name="ConversationActivity_no">Jo</string>
+  <string name="ConversationActivity_search_position">%1$d nga %2$d</string>
+  <string name="ConversationActivity_no_results">S’ka përfundime</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
@@ -230,6 +236,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem në rregullim profili</string>
   <string name="CreateProfileActivity_profile_photo">Foto profili</string>
   <string name="CreateProfileActivity_too_long">Shumë i gjatë</string>
+  <string name="CreateProfileActivity_profile_name">Emër Profili</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Ujdisni profilin tuaj</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilet Signal fshehtëzohen skaj-më-skaj, dhe shërbimi Signal s’mund të hyjë kurrë në këto të dhëna.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Me përdorim të një të përshtaturi: %s</string>
   <string name="CustomDefaultPreference_using_default">Me përdorim parazgjedhjeje: %s</string>
@@ -346,6 +355,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Dështoi dërgimi</string>
   <string name="MessageDetailsRecipient_new_safety_number">Numër sigurie i ri</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">S’arrihet të gjendet mesazh</string>
+  <string name="LongMessageActivity_message_from_s">Mesazh prej %1$s</string>
+  <string name="LongMessageActivity_your_message">Mesazhi Juaj</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">U aktivizua lidhja në prapaskenë</string>
@@ -388,6 +401,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Shtoni një përshkrim…</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">U hoq një objekt, ngaqë tejkalonte kufirin për madhësitë</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Gjithë mediat</string>
   <!--MessageRecord-->
@@ -512,6 +526,15 @@
     <item quantity="one">Ju ndan %d hap nga parashtrimi i një regjistri diagnostikimesh.</item>
     <item quantity="other">Ju ndajnë %d hapa nga parashtrimi i një regjistri diagnostikimesh.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Na duhet të verifikojmë se jeni qenie njerëzore</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">S’u arrit të verifikohej CAPTCHA</string>
+  <string name="RegistrationActivity_next">Pasuesi</string>
+  <string name="RegistrationActivity_continue">Vazhdo</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Merreni privatësinë me vete.\nJini ju vetë, në çdo mesazh.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Që t’ia filloni, jepni numrin tuaj të telefonit</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %s</string>
+  <string name="RegistrationActivity_call">Thirrje</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Dështoi ruajtja e ndryshimeve të figurës.</string>
   <!--Search-->
@@ -1221,11 +1244,9 @@
   <string name="ChatsPreferenceFragment_in_progress">Në kryerje e sipër</string>
   <string name="LocalBackupJob_creating_backup">Po krijohet kopjeruajtje…</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesazhe deri këtu</string>
-  <string name="RegistrationActivity_verify_s">Verifikoni %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ju lutemi, jepni kodin e verifikimit dërguar te %s.</string>
-  <string name="RegistrationActivity_wrong_number">Numër i gabuar?</string>
-  <string name="RegistrationActivity_call_me_instead">Më mirë më thirr</string>
-  <string name="RegistrationActivity_available_in">I gatshëm në:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Më mirë përmes thirrjeje \n (E mundshme në %02d:%02d)</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>
@@ -1263,7 +1284,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Gabim gjatë lidhjes me shërbimin</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Të çaktivizohet PIN-i i Kyçjes së Regjistrimit?</string>
   <string name="RegistrationLockDialog_disable">Çaktivizoje</string>
-  <string name="RegistrationActivity_continue">Vazhdo</string>
   <string name="preferences_chats__backups">Kopjeruajtje</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal-i është i kyçur</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">PREKENI QË TË SHKYÇET</string>

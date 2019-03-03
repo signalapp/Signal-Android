@@ -6,6 +6,7 @@
   <string name="delete">Usuń</string>
   <string name="please_wait">Proszę czekać...</string>
   <string name="save">Zapisz</string>
+  <string name="note_to_self">Moje notatki</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nowa wiadomość</string>
   <!--AlbumThumbnailView-->
@@ -163,6 +164,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nie może wysyłać wiadomości SMS/MMS, ponieważ nie jest to Twoją domyślną aplikacją do obsługi SMS-ów. Czy chcesz to zmienić w ustawieniach Androida?</string>
   <string name="ConversationActivity_yes">Tak</string>
   <string name="ConversationActivity_no">Nie</string>
+  <string name="ConversationActivity_search_position">%1$d z %2$d</string>
+  <string name="ConversationActivity_no_results">Brak wyników</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nieprzeczytana wiadomość</item>
@@ -258,6 +261,8 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem ustawiania profilu</string>
   <string name="CreateProfileActivity_profile_photo">Zdjęcie profilowe</string>
   <string name="CreateProfileActivity_too_long">Zbyt długie</string>
+  <string name="CreateProfileActivity_profile_name">Nazwa profilu</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Skonfiguruj swój profil</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Używa własnych: %s</string>
   <string name="CustomDefaultPreference_using_default">Używa domyślnych: %s</string>
@@ -314,7 +319,7 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Nie dzięki</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Przedstawiamy podgląd linków.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Opcjonalne podglądy linków są teraz obsługiwane dla niektórych najpopularniejszych witryn w Internecie.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">W dowolnej chwili możesz wyłączyć lub włączyć tę funkcję w ustawieniach Signal (Prywatność &amp;gt Podgląd linków).</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">W dowolnej chwili możesz wyłączyć lub włączyć tę funkcję w ustawieniach Signal (Prywatność &gt; Podgląd linków).</string>
   <string name="ExperienceUpgradeActivity_got_it">Rozumiem</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pobieranie wiadomości...</string>
@@ -378,6 +383,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nowy numer bezpieczeństwa</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Połączenie w tle jest włączone</string>
@@ -426,6 +432,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Dodaj podpis...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Pozycja została usunięta, ponieważ przekroczyła limit wielkości</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Wszystkie multimedia</string>
   <!--MessageRecord-->
@@ -549,6 +556,12 @@
     <item quantity="many">Jesteś o %d kroków od wysłania dziennika debugowania.</item>
     <item quantity="other">Jesteś o %d kroków od wysłania dziennika debugowania.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Musimy sprawdzić, czy jesteś człowiekiem.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Nie udało się zweryfikować CAPTCHA</string>
+  <string name="RegistrationActivity_next">Dalej</string>
+  <string name="RegistrationActivity_continue">Kontynuuj</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby rozpocząć, wprowadź swój numer telefonu.</string>
+  <string name="RegistrationActivity_call">Zadzwoń</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
   <!--Search-->
@@ -848,7 +861,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Twoje numery bezpieczeństwa z %1$s, %2$s i %3$s zmieniły się.</string>
   <plurals name="identity_others">
     <item quantity="one">%d inny</item>
-    <item quantity="few">%d inne</item>
+    <item quantity="few">%d innych</item>
     <item quantity="many">%d innych</item>
     <item quantity="other">%d innych</item>
   </plurals>
@@ -1277,11 +1290,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ChatsPreferenceFragment_in_progress">W trakcie</string>
   <string name="LocalBackupJob_creating_backup">Tworzenie kopii zapasowej...</string>
   <string name="ProgressPreference_d_messages_so_far">%d wiadomości</string>
-  <string name="RegistrationActivity_verify_s">Zweryfikuj %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Wprowadź kod weryfikacyjny przesłany na %s.</string>
-  <string name="RegistrationActivity_wrong_number">Błędny numer?</string>
-  <string name="RegistrationActivity_call_me_instead">Zadzwoń do mnie</string>
-  <string name="RegistrationActivity_available_in">Dostępne za:\u0020</string>
   <string name="BackupUtil_never">Nigdy</string>
   <string name="BackupUtil_unknown">Nieznane</string>
   <string name="preferences_app_protection__screen_lock">Blokada ekranu</string>
@@ -1319,7 +1328,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Błąd podczas łączenia się z usługą</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Wyłączyć PIN blokady rejestracji?</string>
   <string name="RegistrationLockDialog_disable">Wyłącz</string>
-  <string name="RegistrationActivity_continue">Kontynuuj</string>
   <string name="preferences_chats__backups">Kopie zapasowe</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal jest zablokowany</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">DOTKNIJ, ABY ODBLOKOWAĆ</string>

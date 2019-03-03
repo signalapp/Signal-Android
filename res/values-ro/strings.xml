@@ -6,6 +6,7 @@
   <string name="delete">Ștergeți</string>
   <string name="please_wait">Vă rugăm să așteptați...</string>
   <string name="save">Salvează</string>
+  <string name="note_to_self">Notă personală</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
   <!--AlbumThumbnailView-->
@@ -116,6 +117,9 @@
   <string name="ConversationItem_copied_text">Copiat %s</string>
   <string name="ConversationItem_from_s">de la %s</string>
   <string name="ConversationItem_to_s">către %s</string>
+  <string name="ConversationItem_read_more">  Citiți mai multe</string>
+  <string name="ConversationItem_download_more">  Descărcați mai multe</string>
+  <string name="ConversationItem_pending">  În curs</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string>
@@ -160,6 +164,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nu poate trimite mesaje SMS/MMS pentru că nu este aplicația implicită de SMS. Doriți să schimbați asta în setările dvs. Android?</string>
   <string name="ConversationActivity_yes">Da</string>
   <string name="ConversationActivity_no">Nu</string>
+  <string name="ConversationActivity_search_position">%1$d din %2$d</string>
+  <string name="ConversationActivity_no_results">Niciun rezultat</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesaj necitit</item>
@@ -244,6 +250,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemă la setarea profilului</string>
   <string name="CreateProfileActivity_profile_photo">Poză profil</string>
   <string name="CreateProfileActivity_too_long">Prea lung</string>
+  <string name="CreateProfileActivity_profile_name">Nume profil</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Configurează-ți profilul</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilurile Signal sunt criptate integral, iar serviciul Signal nu are niciodată acces la aceste informații.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
   <string name="CustomDefaultPreference_using_default">Implicit: %s</string>
@@ -362,6 +371,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Expediere eşuată</string>
   <string name="MessageDetailsRecipient_new_safety_number">Număr nou de siguranță</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Mesajul nu a putut fi găsit</string>
+  <string name="LongMessageActivity_message_from_s">Mesaj de la %1$s</string>
+  <string name="LongMessageActivity_your_message">Mesajul dvs.</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Conexiune în fundal activată</string>
@@ -407,6 +420,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Adăugați un titlu...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un element a fost eliminat pentru că depășește limita de mărime</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Toate fișierele media</string>
   <!--MessageRecord-->
@@ -531,6 +545,15 @@ furnizat (%s) este invalid.</string>
     <item quantity="few">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
     <item quantity="other">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Trebuie să verificăm că ești uman.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Nu s-a putut verifica CAPTCHA</string>
+  <string name="RegistrationActivity_next">Următorul</string>
+  <string name="RegistrationActivity_continue">Continuați</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ia-ți intimitatea cu tine.\nFii tu însuți în fiecare mesaj.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduceși numărul dvs. de telefon pentru a putea începe</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Veți primi un cod de verificare. Se pot aplica tarife de operator.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduceți codul trimis la %s</string>
+  <string name="RegistrationActivity_call">Apelează</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvarea modificărilor din imagine a eșuat</string>
   <!--Search-->
@@ -1251,11 +1274,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatsPreferenceFragment_in_progress">În curs</string>
   <string name="LocalBackupJob_creating_backup">Se creează backup-ul...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesaje până acum</string>
-  <string name="RegistrationActivity_verify_s">Verifică %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Vă rugăm să introduceți codul de verificare trimis la %s.</string>
-  <string name="RegistrationActivity_wrong_number">Număr greșit?</string>
-  <string name="RegistrationActivity_call_me_instead">Sună-mă mai bine</string>
-  <string name="RegistrationActivity_available_in">Disponibil în:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">Număr greșit</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Sună-mă mai bine \n (Disponibil în %02d:%02d)</string>
   <string name="BackupUtil_never">Niciodată</string>
   <string name="BackupUtil_unknown">Necunoscut</string>
   <string name="preferences_app_protection__screen_lock">Blocare ecran</string>
@@ -1293,7 +1314,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Eroare de conectare la serviciu</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Dezactivare PIN Blocare Înregistrare?</string>
   <string name="RegistrationLockDialog_disable">Dezactivați</string>
-  <string name="RegistrationActivity_continue">Continuați</string>
   <string name="preferences_chats__backups">Backup-uri</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal este blocat</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">APĂSAȚI PENTRU DEBLOCARE</string>

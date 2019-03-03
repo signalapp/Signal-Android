@@ -248,6 +248,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Не вдалося встановити профіль</string>
   <string name="CreateProfileActivity_profile_photo">Фото профілю</string>
   <string name="CreateProfileActivity_too_long">Задовге</string>
+  <string name="CreateProfileActivity_profile_name">Ім’я профілю</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Використання власного: %s</string>
   <string name="CustomDefaultPreference_using_default">Використання типового: %s</string>
@@ -357,6 +358,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Не вдалося надіслати</string>
   <string name="MessageDetailsRecipient_new_safety_number">Новий номер безпеки</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Фонове підключення активоване</string>
@@ -511,6 +513,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal потребує доступу до телефонної книги та файлової системи, щоб підключити друзів, відправляти повідомлення та здійснювати виклики</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Немає з\'єднання із сервером. Перевірте чи наявність доступу до Інтернет та спробуйте знову.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Якщо ви увімкнете дозвіл \"SMS\", перевірку коду буде виконано автоматично</string>
+  <string name="RegistrationActivity_next">Далі</string>
+  <string name="RegistrationActivity_continue">Продовжити</string>
+  <string name="RegistrationActivity_call">Виклик</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не вдалось змінити зображення</string>
   <!--Search-->
@@ -1219,11 +1224,7 @@
   <string name="ChatsPreferenceFragment_in_progress">В процесі</string>
   <string name="LocalBackupJob_creating_backup">Створення резервної копії...</string>
   <string name="ProgressPreference_d_messages_so_far">Залишилось %d повідомлень</string>
-  <string name="RegistrationActivity_verify_s">Перевірити %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Будь-ласка, введіть перевірочний код що відіслано до %s</string>
-  <string name="RegistrationActivity_wrong_number">Невірний номер?</string>
-  <string name="RegistrationActivity_call_me_instead">Зателефонувати замість цього</string>
-  <string name="RegistrationActivity_available_in">Доступний у:\u0020</string>
   <string name="BackupUtil_never">Ніколи</string>
   <string name="BackupUtil_unknown">Невідомо</string>
   <string name="preferences_app_protection__screen_lock">Блокування екрану</string>
@@ -1261,7 +1262,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Помилка підключення до сервісу</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Заборонити ПІН блокування доступу?</string>
   <string name="RegistrationLockDialog_disable">Вимкнути</string>
-  <string name="RegistrationActivity_continue">Продовжити</string>
   <string name="preferences_chats__backups">Резервні копії</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal заблоковано</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">НАТИСНІТЬ ДЛЯ РОЗБЛОКУВАННЯ</string>

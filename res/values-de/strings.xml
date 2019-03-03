@@ -6,6 +6,7 @@
   <string name="delete">Löschen</string>
   <string name="please_wait">Bitte warten …</string>
   <string name="save">Speichern</string>
+  <string name="note_to_self">Notiz an mich</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Neue Nachricht</string>
   <!--AlbumThumbnailView-->
@@ -113,6 +114,9 @@
   <string name="ConversationItem_copied_text">%s kopiert</string>
   <string name="ConversationItem_from_s">von %s</string>
   <string name="ConversationItem_to_s">an %s</string>
+  <string name="ConversationItem_read_more">  Mehr lesen</string>
+  <string name="ConversationItem_download_more">  Mehr herunterladen</string>
+  <string name="ConversationItem_pending">  Ausstehend</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Verschlüsselung neu starten?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung in dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string>
@@ -142,7 +146,7 @@
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
   <string name="ConversationActivity_unblock_this_group_description">Vorhandene Mitglieder werden dich wieder zur Gruppe hinzufügen können.</string>
   <string name="ConversationActivity_unblock">Freigeben</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die gesendete Nachtrichtenart.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die gesendete Nachrichtenart.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Auf deinem Gerät ist derzeit keine App installiert, die mit diesem Link umgehen könnte.</string>
@@ -157,6 +161,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kann keine SMS/MMS versenden, da es nicht als Standard-App für SMS festgelegt ist. Möchtest du dies in Androids Einstellungen ändern?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nein</string>
+  <string name="ConversationActivity_search_position">%1$d von %2$d</string>
+  <string name="ConversationActivity_no_results">Keine Ergebnisse</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ungelesene Nachricht</item>
@@ -230,6 +236,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problem beim Festlegen des Profils</string>
   <string name="CreateProfileActivity_profile_photo">Profilfoto</string>
   <string name="CreateProfileActivity_too_long">Zu lang</string>
+  <string name="CreateProfileActivity_profile_name">Profilname</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Dein Profil einrichten</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-Profile sind Ende-zu-Ende-verschlüsselt und der Signal-Dienst hat niemals Zugriff auf diese Informationen.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benutzerdefiniert: %s</string>
   <string name="CustomDefaultPreference_using_default">Standard: %s</string>
@@ -346,6 +355,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Versand gescheitert</string>
   <string name="MessageDetailsRecipient_new_safety_number">Neue Sicherheitsnummer</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Nachricht nicht gefunden</string>
+  <string name="LongMessageActivity_message_from_s">Nachricht von %1$s</string>
+  <string name="LongMessageActivity_your_message">Deine Nachricht</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Hintergrundverbindung aktiviert</string>
@@ -388,6 +401,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Beschriftung hinzufügen …</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ein Element wurde entfernt, da es zu groß war</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle Medieninhalte</string>
   <!--MessageRecord-->
@@ -506,6 +520,15 @@
     <item quantity="one">Du bist jetzt %d Schritt davon entfernt, ein Diagnoseprotokoll zu übermitteln.</item>
     <item quantity="other">Du bist jetzt %d Schritte davon entfernt, ein Diagnoseprotokoll zu übermitteln.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Wir müssen prüfen, ob du ein Mensch bist.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Verifikation des Captchas gescheitert</string>
+  <string name="RegistrationActivity_next">Weiter</string>
+  <string name="RegistrationActivity_continue">Weiter</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Nimm Privatsphäre mit dir.\nSei du selbst in jeder Nachricht.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Gib deine Rufnummer ein, um zu beginnen</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifikationscode erhalten. Möglicherweise fallen Mobilfunkgebühren an.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Gib den Code ein, den wir an %s gesendet haben</string>
+  <string name="RegistrationActivity_call">Anrufen</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
   <!--Search-->
@@ -1214,11 +1237,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatsPreferenceFragment_in_progress">In Arbeit …</string>
   <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
-  <string name="RegistrationActivity_verify_s">%s verifizieren</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
-  <string name="RegistrationActivity_wrong_number">Falsche Rufnummer?</string>
-  <string name="RegistrationActivity_call_me_instead">Mich anrufen</string>
-  <string name="RegistrationActivity_available_in">Verfügbar in:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">Falsche Rufnummer</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Mich stattdessen anrufen \n (Verfügbar in %02d:%02d)</string>
   <string name="BackupUtil_never">Nie</string>
   <string name="BackupUtil_unknown">Unbekannt</string>
   <string name="preferences_app_protection__screen_lock">Bildschirmsperre</string>
@@ -1256,7 +1277,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Fehler beim Verbinden mit Dienst</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Registrierungssperre deaktivieren?</string>
   <string name="RegistrationLockDialog_disable">Deaktivieren</string>
-  <string name="RegistrationActivity_continue">Weiter</string>
   <string name="preferences_chats__backups">Datensicherungen</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ist gesperrt</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ZUM ENTSPERREN ANTIPPEN</string>

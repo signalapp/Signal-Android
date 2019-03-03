@@ -6,6 +6,7 @@
   <string name="delete">លុប</string>
   <string name="please_wait">សូមរង់ចាំ...</string>
   <string name="save">រក្សាទុក</string>
+  <string name="note_to_self">កំណត់ចំណាំ</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">សារថ្មី</string>
   <!--AlbumThumbnailView-->
@@ -151,8 +152,11 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីថតរូប ឬវីដេអូ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"កាមេរ៉ា\"។</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal​ សុំសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីថតរូបភាព ឬវីដេអូ</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal មិនអាចផ្ញើសារ SMS/MMS ពីព្រោះវាមិនមែនកម្មវិធីសារ SMS លំនាំដើម។ តើអ្នកចង់ផ្លាស់ប្តូរវា ក្នុងកម្មវិធីកំណត់របស់ Android​ អ្នកទេ?</string>
   <string name="ConversationActivity_yes">មែន</string>
   <string name="ConversationActivity_no">ទេ</string>
+  <string name="ConversationActivity_search_position">%1$d នៃ%2$d</string>
+  <string name="ConversationActivity_no_results">គ្មានលទ្ធផល</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d សារមិនទាន់អាន</item>
@@ -215,6 +219,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">បញ្ហាក្នុងការកំណត់ប្រវត្តិរូប</string>
   <string name="CreateProfileActivity_profile_photo">រូបថតប្រវត្តិរូប</string>
   <string name="CreateProfileActivity_too_long">វែងពេក</string>
+  <string name="CreateProfileActivity_profile_name">ឈ្មោះប្រវត្តិរូប</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ប្រើផ្សេងៗ៖ %s</string>
   <string name="CustomDefaultPreference_using_default">ប្រើលំនាំដើម៖ %s</string>
@@ -269,6 +274,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">បើកការវាស់នៃការវាយអក្សរ</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">បើកការវាស់នៃការវាយអក្សរ</string>
   <string name="ExperienceUpgradeActivity_no_thanks">ទេ អរគុណ</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">ការណែនាំការមើលតំណភ្ជាប់។</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ការមើលតំណភ្ជាប់ ជាជម្រើសរើស ឥឡូវត្រូវបានគាំទ្រសម្រាប់គេហទំព័រពេញនិយមបំផុតមួយចំនួន​នៅលើអ៊ីនធឺណិត។</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">អ្នកអាច បិទ ឬ បើក មុខងារនេះបានគ្រប់ពេល ក្នុងការកំណត់របស់កម្មវិធី Signal របស់អ្នក (ឯកជនភាព &gt; ការមើលការផ្ញើតំណភ្ជាប់)។</string>
   <string name="ExperienceUpgradeActivity_got_it">ទទួលបាន</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">សារកំពុងទៅដល់...</string>
@@ -326,6 +334,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ផ្ញើបរាជ័យ</string>
   <string name="MessageDetailsRecipient_new_safety_number">លេខសុវត្ថិភាពថ្មី</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal"> Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">បានបើកការតភ្ជាប់ពីក្រោយ</string>
@@ -357,8 +366,15 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">កំពុងទាញយកសារ MMS </string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">មានបញ្ហាទាញយកសារMMS សូមចុច ដើម្បីព្យាយាមម្តងទៀត</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">ផ្ញើទៅកាន់ %s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">ចុចដើម្បីជ្រើសរើស</string>
+  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+    <item quantity="other">អ្នកមិនអាចចែករំលែកលើសពី %d ។</item>
+  </plurals>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">ដាក់ចំណងជើង...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ចំណុចមួយត្រូវបានលុបចេញព្រោះវាលើសពីទំហំកំណត់</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ព័ត៌មានទាំងអស់</string>
   <!--MessageRecord-->
@@ -480,6 +496,11 @@
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">You are now %d steps away from submitting a debug log.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">យើងត្រូវផ្ទៀងផ្ទាត់ថាអ្នកជាមនុស្ស។</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">បរាជ័យក្នុងការផ្ទៀងផ្ទាត់ CAPTCHA</string>
+  <string name="RegistrationActivity_next">បន្ទាប់</string>
+  <string name="RegistrationActivity_continue">បន្ត</string>
+  <string name="RegistrationActivity_call">ហៅចេញ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">បានបរាជ័យក្នុងការរក្សាទុកការផ្លាស់ប្តូររូបភាព</string>
   <!--Search-->
@@ -925,6 +946,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ប្រើ Signalសម្រាប់សារពហុមេឌៀដែលចូលមកទាំងអស់</string>
   <string name="preferences__pref_enter_sends_title">ចុច Enter ដើម្បីផ្ញើ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ចុចប៊ូតុង បញ្ចូន នឹងផ្ញើសារអក្សរ</string>
+  <string name="preferences__send_link_previews">ការមើល ការផ្ញើតំណភ្ជាប់</string>
+  <string name="preferences__previews_are_supported_for">ការមើលត្រូវបានគាំទ្រសម្រាប់ តំណភ្ជាប់របស់ Imgur, Instagram, Reddit, និង YouTube </string>
   <string name="preferences__choose_identity">ជ្រើសរើសអត្តសញ្ញាណ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ជ្រើសរើសលេខទំនាក់ទំនងរបស់អ្នកពីបញ្ជីទំនាក់ទំនង។</string>
   <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
@@ -1177,11 +1200,7 @@
   <string name="ChatsPreferenceFragment_in_progress">កំពុងដំណើរការ</string>
   <string name="LocalBackupJob_creating_backup">កំពុងបង្កើតការបម្រុងទុក...</string>
   <string name="ProgressPreference_d_messages_so_far">ឥឡូវនេះសារ%d</string>
-  <string name="RegistrationActivity_verify_s">ផ្ទៀងផ្ទាត់ %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">សូមបញ្ចូលលេខកូដផ្ទៀងផ្ទាត់ដែលបានផ្ញើទៅកាន់ %s។</string>
-  <string name="RegistrationActivity_wrong_number">ខុសលេខ?</string>
-  <string name="RegistrationActivity_call_me_instead">ហៅមកខ្ញុំជំនួសវិញ</string>
-  <string name="RegistrationActivity_available_in">មាននៅ :\u0020</string>
   <string name="BackupUtil_never">មិនធ្លាប់</string>
   <string name="BackupUtil_unknown">មិនស្គាល់</string>
   <string name="preferences_app_protection__screen_lock">ចាក់សោរអេក្រង់</string>
@@ -1219,7 +1238,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">បញ្ហាក្នុងការភ្ជាប់ទៅសេវា</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">បិទលេខ PIN សម្រាប់ចាក់សោរការចុះឈ្មោះ?</string>
   <string name="RegistrationLockDialog_disable">បិទ</string>
-  <string name="RegistrationActivity_continue">បន្ត</string>
   <string name="preferences_chats__backups">បម្រុងទុក</string>
   <string name="prompt_passphrase_activity__signal_is_locked"> Signal ជាប់សោរ</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ចុច ដើម្បីដោះសោរ</string>

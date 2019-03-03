@@ -6,6 +6,7 @@
   <string name="delete">Smazat</string>
   <string name="please_wait">Prosím čekejte…</string>
   <string name="save">Uložit</string>
+  <string name="note_to_self">Poznámka sobě</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--AlbumThumbnailView-->
@@ -163,6 +164,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nemůže posílat SMS/MMS zprávy, protože není výchozí SMS aplikací. Chcete to změnit v nastavení Android?</string>
   <string name="ConversationActivity_yes">Ano</string>
   <string name="ConversationActivity_no">Ne</string>
+  <string name="ConversationActivity_search_position">%1$d z %2$d</string>
+  <string name="ConversationActivity_no_results">Žádné výsledky.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepřečtená zpráva</item>
@@ -258,6 +261,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problém při nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
   <string name="CreateProfileActivity_too_long">Příliš dlouhý</string>
+  <string name="CreateProfileActivity_profile_name">Profilové jméno</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
   <string name="CustomDefaultPreference_using_default">Používá se výchozí: %s</string>
@@ -315,7 +319,7 @@
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Představujeme náhledy odkazu.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Volitelné náhledy odkazu jsou nyní podporovány na některých populárních internetových stránkách.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Tuto funkcionalitu můžete zakázat či povolit v Nastavení (Soukromí &gt; Odesílat náhledy odkazu)</string>
-  <string name="ExperienceUpgradeActivity_got_it">Mám to.</string>
+  <string name="ExperienceUpgradeActivity_got_it">Rozumím</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Načítám zprávu...</string>
   <!--GcmRefreshJob-->
@@ -331,7 +335,7 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Editovat skupinu</string>
   <string name="GroupCreateActivity_group_name_hint">Název skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali jste kontakt</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali jste kontakt, který nepodporuje Signal skupiny, proto tato skupina bude MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Nejste zaregistrován k použití Signalu pro zprávy a volání, takže jsou skupiny Signal zakázány. Prosím registrujte se v Nastavení &gt; Rozšířené</string>
   <string name="GroupCreateActivity_contacts_no_members">Ve vaší skupině musí být alespoň jeden kontakt.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členů Vaší skupiny má číslo, které se nedaří správně zpracovat. Prosím opravte jej nebo odstraňte a zkuste znovu.</string>
@@ -378,6 +382,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodařilo se odeslat</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostní kódy</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Komunikace na pozadí povolena</string>
@@ -522,7 +527,7 @@
   <string name="RedPhone_network_failed">Síť selhala!</string>
   <string name="RedPhone_number_not_registered">Číslo není registrováno!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Volané číslo nepodporuje šifrované hovory!</string>
-  <string name="RedPhone_got_it">Mám to.</string>
+  <string name="RedPhone_got_it">Rozumím</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zadejte kód
@@ -549,6 +554,9 @@ telefonní číslo</string>
     <item quantity="many">Zbývá vám %d kroků k odeslání ladícího logu.</item>
     <item quantity="other">Zbývá vám %d kroků k odeslání ladícího logu.</item>
   </plurals>
+  <string name="RegistrationActivity_next">Další</string>
+  <string name="RegistrationActivity_continue">Pokračovat</string>
+  <string name="RegistrationActivity_call">Volat</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodařilo se uložit změny v obrázku.</string>
   <!--Search-->
@@ -863,7 +871,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="log_submit_activity__no_browser_installed">Žádný prohlížeč není nainstalován</string>
   <string name="log_submit_activity__button_dont_submit">Neodesílat</string>
   <string name="log_submit_activity__button_submit">Odeslat</string>
-  <string name="log_submit_activity__button_got_it">Mám to.</string>
+  <string name="log_submit_activity__button_got_it">Rozumím</string>
   <string name="log_submit_activity__button_compose_email">Vytvořit email</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Tento log bude odeslán a zveřejněn online pro vývojáře. Před odesláním si můžete log prohlédnout či editovat.</string>
   <string name="log_submit_activity__loading_logs">Načítám logy...</string>
@@ -1278,11 +1286,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ChatsPreferenceFragment_in_progress">Probíhá</string>
   <string name="LocalBackupJob_creating_backup">Vytvářím zálohu...</string>
   <string name="ProgressPreference_d_messages_so_far">%dzpráv zatím</string>
-  <string name="RegistrationActivity_verify_s">Ověřuji %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím vložte ověřovací kód zaslaný %s</string>
-  <string name="RegistrationActivity_wrong_number">Špatné číslo?</string>
-  <string name="RegistrationActivity_call_me_instead">Zavolej mi místo toho</string>
-  <string name="RegistrationActivity_available_in">K dispozici v:\u0020</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
   <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>
@@ -1320,7 +1324,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Chyba při připojování k službě</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Zakázat PIN zámku registrace?</string>
   <string name="RegistrationLockDialog_disable">Deaktivovat</string>
-  <string name="RegistrationActivity_continue">Pokračovat</string>
   <string name="preferences_chats__backups">Zálohy</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zamčen</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">Klepnutím odemkněte</string>

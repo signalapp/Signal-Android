@@ -341,6 +341,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">పంపించడం విఫలమైనది</string>
   <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">నేపధ్యం కనెక్షన్ ప్రారంభించ</string>
@@ -499,6 +500,8 @@
     <item quantity="one">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %d దూరంగా ఉన్నారు.</item>
     <item quantity="other">డీబగ్ లాగ్ను సమర్పించకుండా మీరు ఇప్పుడు %d మళ్లే ఉన్నారు.</item>
   </plurals>
+  <string name="RegistrationActivity_continue">కొనసాగించు</string>
+  <string name="RegistrationActivity_call">కాల్</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">చిత్రం మార్పులను సేవ్ చేయడంలో విఫలమైంది</string>
   <!--Search-->
@@ -1199,11 +1202,7 @@
   <string name="ChatsPreferenceFragment_in_progress">పురోగతిలో ఉంది</string>
   <string name="LocalBackupJob_creating_backup">బ్యాకప్ను సృష్టిస్తోంది ...</string>
   <string name="ProgressPreference_d_messages_so_far">ఇప్పటివరకు %d సందేశాలు</string>
-  <string name="RegistrationActivity_verify_s">%s ను ధృవీకరించండి</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">దయచేసి %s కు పంపిన ధృవీకరణ కోడ్ను నమోదు చేయండి.</string>
-  <string name="RegistrationActivity_wrong_number">తపైనా సంఖ్యా?</string>
-  <string name="RegistrationActivity_call_me_instead">బదులుగా నన్ను కాల్ చేయండి</string>
-  <string name="RegistrationActivity_available_in">దీనిలో అందుబాటులో ఉంది:\u0020</string>
   <string name="BackupUtil_never">ఎప్పుడూ</string>
   <string name="BackupUtil_unknown">తెలియని</string>
   <string name="preferences_app_protection__screen_lock">స్క్రీన్ తాళం</string>
@@ -1241,7 +1240,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">సేవకు కనెక్ట్ చేయడంలో లోపం</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">నమోదు లాక్ పిన్ను నిలిపివేయాలా?</string>
   <string name="RegistrationLockDialog_disable">అచేతనించు</string>
-  <string name="RegistrationActivity_continue">కొనసాగించు</string>
   <string name="preferences_chats__backups">బ్యాకప్లు</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal లాక్ చేయబడింది</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">అన్లాక్ చేయడానికి ట్యాప్ చేయండి</string>

@@ -6,6 +6,7 @@
   <string name="delete">Suprimeix</string>
   <string name="please_wait">Espereu, si us plau...</string>
   <string name="save">Desa</string>
+  <string name="note_to_self">Notifica-m\'ho</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Missatge nou</string>
   <!--AlbumThumbnailView-->
@@ -113,6 +114,9 @@
   <string name="ConversationItem_copied_text">S\'ha copiat %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">a %s</string>
+  <string name="ConversationItem_read_more">  Més informació</string>
+  <string name="ConversationItem_download_more">  Baixa\'n més</string>
+  <string name="ConversationItem_pending">  Pendent</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string>
@@ -157,6 +161,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">El Signal no pot enviar missatges SMS / MMS perquè no és la vostra aplicació d\'SMS predeterminada. Voleu canviar-ho a la configuració d\'Android?</string>
   <string name="ConversationActivity_yes">Sí</string>
   <string name="ConversationActivity_no">No</string>
+  <string name="ConversationActivity_search_position">%1$d de %2$d</string>
+  <string name="ConversationActivity_no_results">No hi ha cap resultat.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -230,6 +236,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema en establir el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto del perfil</string>
   <string name="CreateProfileActivity_too_long">Massa llarg</string>
+  <string name="CreateProfileActivity_profile_name">Nom del perfil</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Establiu el perfil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Els perfils del Signal estan xifrats d\'extrem a extrem, i el servei del Signal no té accés a aquesta informació.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Ús de la personalització: %s</string>
   <string name="CustomDefaultPreference_using_default">Per defecte: %s</string>
@@ -346,6 +355,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">No s\'ha pogut enviar</string>
   <string name="MessageDetailsRecipient_new_safety_number">Número de seguretat nou</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">No s\'ha pogut trobar el missatge</string>
+  <string name="LongMessageActivity_message_from_s">Missatge de %1$s</string>
+  <string name="LongMessageActivity_your_message">El vostre missatge</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">S\'ha habilitat la connexió en segon pla</string>
@@ -388,6 +401,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Afegiu-hi un títol...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">S\'ha suprimit un element perquè excedia el límit de la mida.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tot el contingut</string>
   <!--MessageRecord-->
@@ -510,6 +524,14 @@ especificat (%s) no és vàlid.</string>
     <item quantity="one">Ara us queda %d pas per transmetre un informe de depuració.</item>
     <item quantity="other">Ara us queden %d passos per transmetre un informe de depuració.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Hem de verificar que sou una persona.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Ha fallat verificar el CAPTCHA</string>
+  <string name="RegistrationActivity_next">Següent</string>
+  <string name="RegistrationActivity_continue">Continua</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Per començar, introduïu el número de telèfon.</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduïu el codi que hem enviat a %s</string>
+  <string name="RegistrationActivity_call">Truca</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">No s\'ha pogut desar els canvis en la imatge</string>
   <!--Search-->
@@ -1219,11 +1241,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatsPreferenceFragment_in_progress">En curs</string>
   <string name="LocalBackupJob_creating_backup">S\'està creant una còpia de seguretat...</string>
   <string name="ProgressPreference_d_messages_so_far">%d missatges fins ara...</string>
-  <string name="RegistrationActivity_verify_s">Verifica %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Si us plau, escriviu el codi de verificació enviat a %s.</string>
-  <string name="RegistrationActivity_wrong_number">El número no és correcte?</string>
-  <string name="RegistrationActivity_call_me_instead">Alternativament, anomena\'m</string>
-  <string name="RegistrationActivity_available_in">Disponible en:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">Número no correcte</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Truca\'m, millor \n (disponible en %02d:%02d)</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Desconegut</string>
   <string name="preferences_app_protection__screen_lock">Bloqueig de pantalla</string>
@@ -1261,7 +1281,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Error en connectar al servei</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Voleu inhabilitar el PIN de bloqueig del registre?</string>
   <string name="RegistrationLockDialog_disable">Inhabilita</string>
-  <string name="RegistrationActivity_continue">Continua</string>
   <string name="preferences_chats__backups">Còpies de seguretat</string>
   <string name="prompt_passphrase_activity__signal_is_locked">El Signal està blocat</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUEU PER A DESBLOCAR-LO</string>

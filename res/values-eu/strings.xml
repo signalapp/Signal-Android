@@ -6,6 +6,7 @@
   <string name="delete">Ezabatu</string>
   <string name="please_wait">Itxaron, mesedez...</string>
   <string name="save">Gorde</string>
+  <string name="note_to_self">Norberarentzako oharra</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mezu berria</string>
   <!--AlbumThumbnailView-->
@@ -157,6 +158,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalek ezin ditu SMS/MMSak bidali ez delako zure defektuzko SMS aplikazioa. Androiden ezarpenetara joan eta hau aldatu nahi duzu?</string>
   <string name="ConversationActivity_yes">Bai</string>
   <string name="ConversationActivity_no">Ez</string>
+  <string name="ConversationActivity_search_position">%1$d / %2$d</string>
+  <string name="ConversationActivity_no_results">Ez da emaitzarik aurkitu.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mezu irakurri gabe</item>
@@ -347,6 +350,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Bidalketak huts egin du</string>
   <string name="MessageDetailsRecipient_new_safety_number">Segurtasun zenbaki berria</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Atzeko planoko konexioa gaituta</string>
@@ -389,6 +393,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Irudi-oina gehitu</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elementu bat ezabatu egin da tamaina muga gainditu duelako</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Euskarri guztiak</string>
   <!--MessageRecord-->
@@ -515,6 +520,11 @@ zenbakia (%s) baliogabea da.
     <item quantity="one"> Hurrats %d falta zaizu arazterko txosten bat bidaltzeko.</item>
     <item quantity="other">%d hurrats  falta zaizkizu arazterko txosten bat bidaltzeko.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Gizakia zarela egiaztatu behar dugu.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Huts egin du CAPTCHA egiaztaketak</string>
+  <string name="RegistrationActivity_next">Hurrengoa</string>
+  <string name="RegistrationActivity_continue">Jarraitu</string>
+  <string name="RegistrationActivity_call">Deitu</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Irudien aldaketak gordetzeak huts egin du</string>
   <!--Search-->
@@ -1227,11 +1237,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="ChatsPreferenceFragment_in_progress">Martxan</string>
   <string name="LocalBackupJob_creating_backup">Babeskopia sortzen...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mezu orain arte</string>
-  <string name="RegistrationActivity_verify_s">Egiaztatu %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Sartu %s(e)ra bidalitako egiaztapen-kodea.</string>
-  <string name="RegistrationActivity_wrong_number">Zenbaki okerra?</string>
-  <string name="RegistrationActivity_call_me_instead">Dei iezadazu ordea</string>
-  <string name="RegistrationActivity_available_in">Erabilgarri hemen:\u0020</string>
   <string name="BackupUtil_never">Inoiz ez</string>
   <string name="BackupUtil_unknown">Ezezaguna</string>
   <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>
@@ -1269,7 +1275,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Akatsa zerbitzura konektatzean</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Erregistratzea blokeatzeko PINa desgaitu?</string>
   <string name="RegistrationLockDialog_disable">Desgaitu</string>
-  <string name="RegistrationActivity_continue">Jarraitu</string>
   <string name="preferences_chats__backups">Babes-kopiak</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal blokeatuta dago</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">SAKATU DESBLOKEATZEKO</string>

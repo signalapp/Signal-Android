@@ -6,6 +6,7 @@
   <string name="delete">Izbriši</string>
   <string name="please_wait">Počakajte ...</string>
   <string name="save">Shrani</string>
+  <string name="note_to_self">Osebna zabeležka</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Novo sporočilo</string>
   <!--AlbumThumbnailView-->
@@ -119,6 +120,9 @@
   <string name="ConversationItem_copied_text">Prekopirano %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">za %s</string>
+  <string name="ConversationItem_read_more">Več informacij</string>
+  <string name="ConversationItem_download_more">Naloži več</string>
+  <string name="ConversationItem_pending">V teku</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
@@ -163,6 +167,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne more pošiljati sporočil SMS/MMS, ker ni nastavljen kot privzeta aplikacija SMS. Bi želeli to spremeniti v nastavitvah Android?</string>
   <string name="ConversationActivity_yes">Da</string>
   <string name="ConversationActivity_no">Ne</string>
+  <string name="ConversationActivity_search_position">%1$d od %2$d</string>
+  <string name="ConversationActivity_no_results">Brez rezultata.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprebrano sporočilo</item>
@@ -258,6 +264,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">Napaka pri nastavljanju profila</string>
   <string name="CreateProfileActivity_profile_photo">Predstavitvena fotografija</string>
   <string name="CreateProfileActivity_too_long">Ime profila je predolgo</string>
+  <string name="CreateProfileActivity_profile_name">Ime profila</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Nastavite svoj profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili v aplikaciji Signal so šifrirani od konca do konca, storitev Signal do njihove vsebine nima dostopa.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uporabljam izbirno: %s</string>
   <string name="CustomDefaultPreference_using_default">Prednastavljeno: %s</string>
@@ -378,6 +387,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Pošiljanje ni uspelo</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo varnostno število</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Sporočilo ni bilo najdeno</string>
+  <string name="LongMessageActivity_message_from_s">Sporočilo uporabnika %1$s</string>
+  <string name="LongMessageActivity_your_message">Vaše sporočilo</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Povezava v ozadju je omogočena</string>
@@ -426,6 +439,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Dodaj besedilo ...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Predmet je bil odstranjen, ker je presegel omejitev velikosti.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Vsa večpredstavnostna sporočila</string>
   <!--MessageRecord-->
@@ -547,6 +561,15 @@
     <item quantity="few">Ste %d korake pred oddajo sistemske zabeležbe.</item>
     <item quantity="other">Ste %d korakov pred oddajo sistemske zabeležbe.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Preveriti moramo, če ste človek.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Preverba CAPTCHA ni bila uspešna</string>
+  <string name="RegistrationActivity_next">Naprej</string>
+  <string name="RegistrationActivity_continue">Nadaljuj</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vzemite svojo zasebnost v lastne roke!\nDa boste v sporočilih lahko to kar ste.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Za začetek vpišite svojo telefonsko številko.</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Prejeli boste potrditveno kodo. Sporočilo SMS je lahko plačljivo.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Vpišite kodo poslano na %s</string>
+  <string name="RegistrationActivity_call">Kliči</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
   <!--Search-->
@@ -1276,11 +1299,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChatsPreferenceFragment_in_progress">V teku</string>
   <string name="LocalBackupJob_creating_backup">Izdelujem varnostno kopijo ... </string>
   <string name="ProgressPreference_d_messages_so_far">%d sporočil zaenkrat</string>
-  <string name="RegistrationActivity_verify_s">Potrdi %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosimo, vnesite potrditveno kodo, poslano na %s.</string>
-  <string name="RegistrationActivity_wrong_number">Napačna številka?</string>
-  <string name="RegistrationActivity_call_me_instead">Raje me pokličite</string>
-  <string name="RegistrationActivity_available_in">Dosegljiv čez:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">Napačna številka</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Raje me pokličite\n (Dosegljiv v %02d:%02d)</string>
   <string name="BackupUtil_never">Nikoli</string>
   <string name="BackupUtil_unknown">Neznano</string>
   <string name="preferences_app_protection__screen_lock">Zaklep zaslona</string>
@@ -1318,7 +1339,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Napaka pri povezavi do storitve</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Izklopim PIN za prijavo v omrežje?</string>
   <string name="RegistrationLockDialog_disable">Onemogoči</string>
-  <string name="RegistrationActivity_continue">Nadaljuj</string>
   <string name="preferences_chats__backups">Varnostne kopije</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaklenjen</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAPNITE ZA ODKLEPANJE</string>

@@ -6,6 +6,7 @@
   <string name="delete">Supprimer</string>
   <string name="please_wait">Veuillez patienter…</string>
   <string name="save">Enregistrer</string>
+  <string name="note_to_self">Note à mon intention</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nouveau message</string>
   <!--AlbumThumbnailView-->
@@ -157,6 +158,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne peut ni envoyer de textos ni de messages multimédias, car ce n’est pas votre appli de textos par défaut. Souhaitez-vous changer cela dans vos paramètres Android ?</string>
   <string name="ConversationActivity_yes">Oui</string>
   <string name="ConversationActivity_no">Non</string>
+  <string name="ConversationActivity_search_position">%1$d de %2$d</string>
+  <string name="ConversationActivity_no_results">Il n’y a aucun résultat</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -230,6 +233,8 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problème de définition du profil</string>
   <string name="CreateProfileActivity_profile_photo">Photo de profil</string>
   <string name="CreateProfileActivity_too_long">Trop long</string>
+  <string name="CreateProfileActivity_profile_name">Nom de profil</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Configurez votre profil</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé : %s</string>
   <string name="CustomDefaultPreference_using_default">Utilisation par défaut : %s</string>
@@ -346,6 +351,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Échec d’envoi</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nouveau numéro de sécurité</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">La connexion d’arrière-plan est activée</string>
@@ -388,6 +394,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Ajouter un légende…</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un élément a été supprimé, car il dépassait la taille limite</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tous les médias</string>
   <!--MessageRecord-->
@@ -511,6 +518,12 @@ introduit (%s) n’est pas valide.</string>
     <item quantity="one">Vous êtes maintenant à %d étape d’envoyer un journal de débogage.</item>
     <item quantity="other">Vous êtes maintenant à %d étapes d’envoyer un journal de débogage.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Nous devons vérifier que vous êtes un être humain.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Échec de vérification du CAPTCHA</string>
+  <string name="RegistrationActivity_next">Suivant</string>
+  <string name="RegistrationActivity_continue">Continuer</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Saisissez votre numéro de téléphone pour commencer</string>
+  <string name="RegistrationActivity_call">Appeler</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Échec d’enregistrement des modifications apportées aux images</string>
   <!--Search-->
@@ -1219,11 +1232,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="ChatsPreferenceFragment_in_progress">En cours</string>
   <string name="LocalBackupJob_creating_backup">Création de la sauvegarde…</string>
   <string name="ProgressPreference_d_messages_so_far">%d messages pour l’instant</string>
-  <string name="RegistrationActivity_verify_s">Vérifier %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Veuillez saisir le code de vérification envoyé à %s.</string>
-  <string name="RegistrationActivity_wrong_number">Mauvais numéro ?</string>
-  <string name="RegistrationActivity_call_me_instead">Appelez-moi plutôt</string>
-  <string name="RegistrationActivity_available_in">Disponible dans :\u0020</string>
   <string name="BackupUtil_never">Jamais</string>
   <string name="BackupUtil_unknown">Inconnu</string>
   <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>
@@ -1261,7 +1270,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Erreur de connexion au service !</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Désactiver le NIP de blocage de l’inscription ?</string>
   <string name="RegistrationLockDialog_disable">Désactiver</string>
-  <string name="RegistrationActivity_continue">Continuer</string>
   <string name="preferences_chats__backups">Sauvegardes</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal est verrouillé</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOUCHEZ POUR DÉVERROUILLER</string>

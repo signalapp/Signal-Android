@@ -6,6 +6,7 @@
   <string name="delete">Borrar</string>
   <string name="please_wait">Por favor, agarda...</string>
   <string name="save">Gardar</string>
+  <string name="note_to_self">Notificarmo</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensaxe</string>
   <!--AlbumThumbnailView-->
@@ -157,6 +158,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal non pode enviar SMS nin MMS porque non é a túa aplicación predefinida de SMS. Gustaríache cambiar isto nos axustes de Android?</string>
   <string name="ConversationActivity_yes">Si</string>
   <string name="ConversationActivity_no">Non</string>
+  <string name="ConversationActivity_search_position">%1$d de %2$d</string>
+  <string name="ConversationActivity_no_results">Sen resultados</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaxe sen ler</item>
@@ -230,6 +233,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problemas ao establecer o perfil</string>
   <string name="CreateProfileActivity_profile_photo">Fotografía do perfil</string>
   <string name="CreateProfileActivity_too_long">Moi longo</string>
+  <string name="CreateProfileActivity_profile_name">Nome do perfil</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uso personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Uso predefinido: %s</string>
@@ -346,6 +350,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Erro ao enviar</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo número de seguranza</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Activada conexión en segundo plano</string>
@@ -388,6 +393,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Engadir un título...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Eliminouse un elemento porque o seu tamaño excede o límite</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Ficheiros multimedia</string>
   <!--MessageRecord-->
@@ -514,6 +520,11 @@
     <item quantity="one">Estás a %d pasos de enviar un informe de depuración.</item>
     <item quantity="other">Estás a %d pasos de enviar un informe de depuración.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Necesitamos comprobar que es unha persoa.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Erro ao verificar o CAPTCHA</string>
+  <string name="RegistrationActivity_next">Seguinte</string>
+  <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="RegistrationActivity_call">Chamar</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Erro ao gardar os cambios na imaxe</string>
   <!--Search-->
@@ -1225,11 +1236,7 @@
   <string name="ChatsPreferenceFragment_in_progress">En curso</string>
   <string name="LocalBackupJob_creating_backup">Creando copia de seguranza...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensaxes ata o momento</string>
-  <string name="RegistrationActivity_verify_s">Comprobar %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insire o código de verificación enviado a %s.</string>
-  <string name="RegistrationActivity_wrong_number">Número incorrecto?</string>
-  <string name="RegistrationActivity_call_me_instead">Chamarme en cambio</string>
-  <string name="RegistrationActivity_available_in">Dispoñible en:\u0020</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Descoñecido</string>
   <string name="preferences_app_protection__screen_lock">Bloqueo da pantalla</string>
@@ -1267,7 +1274,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Erro ao conectarse ao servizo</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Desactivar o PIN de bloqueo do rexistro?</string>
   <string name="RegistrationLockDialog_disable">Desactivar</string>
-  <string name="RegistrationActivity_continue">Continuar</string>
   <string name="preferences_chats__backups">Copias de seguranza</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal está bloqueado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>

@@ -204,6 +204,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">ကိုယ်ပိုင်အကောင့်ပြုလုပ်ရာတွင် ပြဿနာရှိ </string>
   <string name="CreateProfileActivity_profile_photo">ကိုယ့်ပုံ </string>
   <string name="CreateProfileActivity_too_long">ရှည်လွန်းသည် </string>
+  <string name="CreateProfileActivity_profile_name">ပရိုဖိုင်းနာမည်</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">အထူးပြုသုံး %s</string>
   <string name="CustomDefaultPreference_using_default">မူရင်းကိုသုံး %s </string>
@@ -304,6 +305,7 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ပို့လွှတ်၍ မရပါ</string>
   <string name="MessageDetailsRecipient_new_safety_number">လုံခြုံရေးနံပါတ် အသစ်</string>
+  <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">အင်တာနက်ဆက်သွယ်မှု နောက်ကွယ်တွင် ဖွင့်ထားသည်</string>
@@ -445,6 +447,9 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">မိမိ၏ မိတ်ဆွေများနှင့် အဆက်အသွယ်လုပ်ရန်၊ စာတိုများအပြန်အလှန်ပေးပို့ရန်၊ စိတ်ချလုံခြုံသော ဖုန်းခေါ်ဆိုမှုများ ပြုလုပ်နိုင်ရန် မိမိ၏ အဆက်အသွယ်များနှင့် ရုပ်/သံ/ပုံ ပါသော ဖိုင်များကို Signalမှ အသုံးပြုခွင့်ရရန် လိုအပ်သည်</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ဝန်ဆောင်မှုနှင့် ဆက်သွယ်၍ မရနိုင်ပါ။ အင်တာနက်ချိတ်ဆက်မှုအား နောက်တစ်ကြိမ် စစ်ဆေး၍ ပြန်လည်ကြိုးစားကြည့်ပါ။</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">အတည်ပြုချက်နံပါတ်အား အလွယ်တကူရနိုင်ရန် Signalမှ မိမိ၏စာတိုများကို ကြည့်ရန်လိုအပ်သည်။</string>
+  <string name="RegistrationActivity_next">နောက်ထက်</string>
+  <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ</string>
+  <string name="RegistrationActivity_call">ဖုန်းခေါ်ဆိုမှု </string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ပြောင်းလဲလိုက်သည့် ရုပ်ပုံကို သိမ်းလို့ မရပါ</string>
   <!--Search-->
@@ -1107,11 +1112,7 @@
   <string name="ChatsPreferenceFragment_in_progress">ဆောင်ရွက်နေဆဲ</string>
   <string name="LocalBackupJob_creating_backup">အရံသိမ်းဆည်းမှုများ ဖန်တီးနေပါသည်...</string>
   <string name="ProgressPreference_d_messages_so_far">လက်ရှိအချိန်အထိ %d စာ ရှိပါသည်</string>
-  <string name="RegistrationActivity_verify_s">%s စစ်ဆေးအတည်ပြုပါ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">ကျေးဇူးပြု၍ %s သို့ ပေးပို့ထားသော အတည်ပြုကုတ် ထည့်ပါ။</string>
-  <string name="RegistrationActivity_wrong_number">ဖုန်းနံပါတ်မှားနေပါသလား?</string>
-  <string name="RegistrationActivity_call_me_instead">အဲ့ဒီအစား ကျွနု်ပ်ကို ဖုန်းခေါ်ပါ</string>
-  <string name="RegistrationActivity_available_in">\u0020 တွင် ရရှိနိုင်ပါသည်</string>
   <string name="BackupUtil_never">ဘယ်တော့မှ</string>
   <string name="BackupUtil_unknown">မသိ</string>
   <string name="preferences_app_protection__screen_lock">မျက်နှာပြင် ပိတ်ထားခြင်း</string>
@@ -1149,7 +1150,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">ဝန်ဆောင်မှုနှင့် ဆက်သွယ်ရာတွင် အခက်အခဲဖြစ်နေသည်</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">မှတ်ပုံတင်မှု ပိတ်ထားသည့် PIN ကို မလုပ်တော့ဘူးလား။</string>
   <string name="RegistrationLockDialog_disable">ပိတ်ထားပါ</string>
-  <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ</string>
   <string name="preferences_chats__backups">အရံသိမ်းဆည်းမှုများ</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal lock ကျနေပါသည်</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">လော့ခ်ဖြည်ရန် မျက်နှာပြင်ကို ထိပါ</string>

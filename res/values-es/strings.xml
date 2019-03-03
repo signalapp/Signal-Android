@@ -6,6 +6,7 @@
   <string name="delete">Eliminar</string>
   <string name="please_wait">Por favor, espera ...</string>
   <string name="save">Guardar</string>
+  <string name="note_to_self">Mensajes a ti mism@</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--AlbumThumbnailView-->
@@ -113,6 +114,9 @@
   <string name="ConversationItem_copied_text">%s copiado(s)</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">a %s</string>
+  <string name="ConversationItem_read_more">  Leer más</string>
+  <string name="ConversationItem_download_more">  Descargar más</string>
+  <string name="ConversationItem_pending">  Pendiente</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar sesión segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto puede ayudar si estás teniendo problemas de cifrado con este chat. Tus mensajes se mantendrán.</string>
@@ -157,6 +161,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal no puede enviar SMS/MMS ya que no es la aplicación configurada por defecto. ¿Deseas cambiar la configuración de Android para que Signal sea la aplicación por defecto para SMS?</string>
   <string name="ConversationActivity_yes">Sí</string>
   <string name="ConversationActivity_no">No</string>
+  <string name="ConversationActivity_search_position">%1$d de %2$d</string>
+  <string name="ConversationActivity_no_results">Sin resultados</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -230,6 +236,9 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema al crear el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto de perfil</string>
   <string name="CreateProfileActivity_too_long">Demasiado largo</string>
+  <string name="CreateProfileActivity_profile_name">Nombre de perfil</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Los perfiles de Signal están cifrados de punto a punto por lo que el servidor de Signal no tiene acceso a los datos.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Usar predeterminado: %s</string>
@@ -346,6 +355,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Fallo al enviar</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nuevas cifras de seguridad</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Imposible encontrar el mensaje</string>
+  <string name="LongMessageActivity_message_from_s">Mensaje de %1$s</string>
+  <string name="LongMessageActivity_your_message">Tu mensaje</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Conexión en segundo plano activada</string>
@@ -388,6 +401,7 @@
   </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Añadir explicación ...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Se eliminó un objeto ya que excedía el límite de tamaño</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Archivos multimedia</string>
   <!--MessageRecord-->
@@ -509,11 +523,20 @@ número de teléfono
   <string name="RegistrationActivity_less_information">Menos detalles</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos y medios para conectar con amigos, chatear, y hacer llamadas seguras.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar con el servidor. Por favor, comprueba la conexión de red e inténtalo de nuevo.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar cómodamente el número de teléfono, Signal puede detectar automáticamente el código de verificación si tiene acceso a mensajes SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar cómodamente el número de teléfono, Signal puede detectar automáticamente el código de verificación si tiene acceso a tus SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Estás a %d paso de enviar un informe de depuración.</item>
     <item quantity="other">Estás a %d pasos de enviar un informe de depuración.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Necesitamos verificar que eres humano.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Fallo al verificar el CAPTCHA</string>
+  <string name="RegistrationActivity_next">Siguiente</string>
+  <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nAñade tu personalidad en todos tus mensajes.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduce tu número de teléfono para comenzar</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado a %s</string>
+  <string name="RegistrationActivity_call">Llamar</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fallo al guardar los cambios de la imagen</string>
   <!--Search-->
@@ -901,7 +924,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="unknown_sender_view__add_to_contacts">AÑADIR A CONTACTOS</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NO AÑADIR, PERO HACER VISIBLE MI PERFIL</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Puedes verificar la seguridad del cifrado con %s, compara las cifras arriba con las del dispositivo de tu contacto. Como alternativa, puedes escanear el código presente en el teléfono de tu contacto, o pedirle que escanee él tu código. <a href="https://signal.org/redirect/safety-numbers">Más detalles.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Puedes verificar la seguridad del cifrado con %s, compara las cifras arriba con las del dispositivo de tu contacto. Como alternativa, puedes escanear el código presente en el teléfono de tu contacto, o pedirle escanear tu código. <a href="https://signal.org/redirect/safety-numbers">Más detalles.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toca para escanear</string>
   <string name="verify_display_fragment__loading">Cargando ...</string>
   <string name="verify_display_fragment__verified">Verificado</string>
@@ -1112,7 +1135,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
 ¡Esto es todo!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nuevo chat</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dale a tu buzón de entrada algo para escribir respuestas. Comienza un chat con un amigo.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dale a tu buzón de entrada una razón de ser. Comienza a chatear con un amigo.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sesión segura</string>
   <!--conversation_muted-->
@@ -1226,18 +1249,16 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChatsPreferenceFragment_in_progress">En curso</string>
   <string name="LocalBackupJob_creating_backup">Creando copia de seguridad ...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensajes hasta ahora</string>
-  <string name="RegistrationActivity_verify_s">Verificar %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, introduce el código de verificación enviado a %s.</string>
-  <string name="RegistrationActivity_wrong_number">¿Número erróneo?</string>
-  <string name="RegistrationActivity_call_me_instead">Recibir llamada con código</string>
-  <string name="RegistrationActivity_available_in">Disponible en:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">¿Número correcto?</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Recibir llamada con código \n (Disponible en %02d:%02d)</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconocido</string>
   <string name="preferences_app_protection__screen_lock">Bloqueo de pantalla</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloquea el acceso a Signal con el código de bloqueo de Android o la huella dactilar.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tiempo de inactividad para el bloqueo de pantalla</string>
   <string name="AppProtectionPreferenceFragment_none">Ninguno</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">El PIN de bloqueo de registro es distinto del código de verificación SMS que acabas de recibir. Por favor, introduce el PIN que has configurado previamente en la configuración de Signal.</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">El PIN de bloqueo de registro es distinto del código de verificación que acabas de recibir por SMS. Por favor, introduce el PIN que has seleccionado previamente en los ajustes de Signal.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueo de registro</string>
   <string name="registration_activity__forgot_pin">¿PIN olvidado?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">El PIN puede consistir en cuatro o más cifras. Si has olvidado el PIN, podrías perder el acceso a tu cuenta durante siete días.</string>
@@ -1268,7 +1289,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Fallo al conectar con el servicio</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">¿Desactivar el PIN de bloqueo de registro?</string>
   <string name="RegistrationLockDialog_disable">Desactivar</string>
-  <string name="RegistrationActivity_continue">Continuar</string>
   <string name="preferences_chats__backups">Copias de seguridad</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal está bloqueado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>
