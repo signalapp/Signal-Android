@@ -198,6 +198,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setLogo(null);
+    ViewUtil.setTopMargin(toolbar, ViewUtil.getStatusBarHeight(this));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
