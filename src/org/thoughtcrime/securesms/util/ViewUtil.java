@@ -243,6 +243,6 @@ public class ViewUtil {
 
   public static int getStatusBarHeight(@NonNull Context context) {
     final int statusBarRes = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-    return statusBarRes > 0 ? context.getResources().getDimensionPixelSize(statusBarRes) : 0;
+    return statusBarRes > 0 ? context.getResources().getDimensionPixelSize(statusBarRes) : ViewUtil.dpToPx(context, 24);
   }
 }
