@@ -240,4 +240,9 @@ public class ViewUtil {
   public static void setPaddingBottom(@NonNull View view, int padding) {
     view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), padding);
   }
+
+  public static int getStatusBarHeight(@NonNull Context context) {
+    final int statusBarRes = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+    return statusBarRes > 0 ? context.getResources().getDimensionPixelSize(statusBarRes) : 0;
+  }
 }
