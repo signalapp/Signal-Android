@@ -2044,17 +2044,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         throw new RecipientFormattingException("Badly formatted");
       }
 
-      String     message        = getMessage();
-      boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
-      int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
-      long       expiresIn      = recipient.getExpireMessages() * 1000L;
-      boolean    initiating     = threadId == -1;
-      boolean    isMediaMessage = attachmentManager.isAttachmentPresent() ||
-                                  recipient.isGroupRecipient()            ||
-                                  recipient.getAddress().isEmail()        ||
-                                  inputPanel.getQuote().isPresent()       ||
-                                  linkPreviewViewModel.hasLinkPreview()   ||
-                                  message.length() > sendButton.getSelectedTransport().calculateCharacters(message).maxPrimaryMessageSize;
+      String          message        = getMessage();
+      TransportOption transport      = sendButton.getSelectedTransport();
+      boolean         forceSms       = sendButton.isManualSelection() && transport.isSms();
+      int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+      long            expiresIn      = recipient.getExpireMessages() * 1000L;
+      boolean         initiating     = threadId == -1;
+      boolean         needsSplit     = !transport.isSms() && message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
+      boolean         isMediaMessage = attachmentManager.isAttachmentPresent() ||
+                                       recipient.isGroupRecipient()            ||
+                                       recipient.getAddress().isEmail()        ||
+                                       inputPanel.getQuote().isPresent()       ||
+                                       linkPreviewViewModel.hasLinkPreview()   ||
+                                       needsSplit;
 
       Log.i(TAG, "isManual Selection: " + sendButton.isManualSelection());
       Log.i(TAG, "forceSms: " + forceSms);
