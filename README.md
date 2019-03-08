@@ -1,52 +1,25 @@
-# Signal Android 
+# Loki Messenger Android
 
-Signal is a messaging app for simple private communication with friends.
-
-Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
-
-Currently available on the Play store.
-
-<a href='https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
+Loki messenger is a fully end to end encrypted messenger that aims to remove any chance of metadata collection by routing all messages through an onion routing network. Storage of offline messages is handled by Service Nodes, which are a distributed set of nodes run by the community. 
 
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
-https://github.com/signalapp/Signal-Android/issues
-
-## Joining the Beta
-Want to live life on the bleeding edge and help out with testing?
-
-You can subscribe to Signal Android Beta releases here:
-https://play.google.com/apps/testing/org.thoughtcrime.securesms
- 
-If you're interested in a life of peace and tranquility, stick with the standard releases.
-
-## Contributing Translations
-Interested in helping to translate Signal? Contribute here:
-
-https://www.transifex.com/projects/p/signal-android/
+https://github.com/loki-project/loki-messenger-android/issues
 
 ## Contributing Code
-Instructions on how to setup your development environment and build Signal can be found in  [BUILDING.md](https://github.com/signalapp/Signal-Android/blob/master/BUILDING.md).
 
-If you're new to the Signal codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar. Also please have a look at the [CONTRIBUTING.md](https://github.com/signalapp/Signal-Android/blob/master/CONTRIBUTING.md), that might answer some of your questions.
-
-For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
+Code should be contributed via pull request to the dev branch, all submitted code will be reviewed.
 
 ## Contributing Ideas
-Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
+Have something you want to say about Loki messenger, create an [issue](https://github.com/loki-project/loki-messenger-android/issues) with the discussion tag and the community can weigh in
 
 Help
 ====
-## Support
-For troubleshooting and questions, please visit our support center!
-
-https://support.signal.org/
-
 ## Documentation
-Looking for documentation? Check out the wiki!
+Looking for documentation? Check out the lokidocs!
 
-https://github.com/signalapp/Signal-Android/wiki
+https://loki-project.github.io/loki-docs/
 
 # Legal things
 ## Cryptography Notice
