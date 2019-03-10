@@ -77,7 +77,7 @@ dependencies {
     compile 'com.android.support:multidex:1.0.3'
     compile 'android.arch.lifecycle:extensions:1.1.1'
     compile 'android.arch.lifecycle:common-java8:1.1.1'
-    compile 'android.arch.work:work-runtime:1.0.0-beta05'
+    compile 'android.arch.work:work-runtime:1.0.0'
 
     compile('com.google.firebase:firebase-messaging:17.3.4') {
         exclude group: 'com.google.firebase', module: 'firebase-core'
@@ -180,7 +180,7 @@ dependencyVerification {
         'com.android.support:exifinterface:bbf44e519edd6333a24a3285aa21fd00181b920b81ca8aa89a8899f03ab4d6b0',
         'com.android.support.constraint:constraint-layout:27b4e5c0b80d3ff8b92f4c93b3b4d3ecf16c01589f4cdf70ca7cf64cb42d8122',
         'com.android.support:multidex:ecf6098572e23b5155bab3b9a82b2fd1530eda6c6c157745e0f5287c66eec60c',
-        'android.arch.work:work-runtime:a84a016b20a82fb67c59a4081d383a185b0f2affcadde2f435df7565d6843816',
+        'android.arch.work:work-runtime:51a3c9c85bef74d60737b40bb5ab5d1f5a2b825394d26e15f19b7316ac2bff20',
         'android.arch.lifecycle:extensions:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
         'android.arch.lifecycle:common-java8:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
         'com.google.firebase:firebase-messaging:e42288e7950d7d3b033d3395a5ac9365d230da3e439a2794ec13e2ef0fbaf078',
