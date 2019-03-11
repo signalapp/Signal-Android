@@ -536,9 +536,6 @@
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">The version of Google Play Services you have installed is not functioning correctly.  Please reinstall Google Play Services and try again.</string>
 
-    <!-- PushNotificationReceiveJob -->
-    <string name="PushNotificationReceiveJob_retrieving_a_message">Retrieving a message...</string>
-
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">Rate this app</string>
     <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">If you enjoy using this app, please take a moment to help us by rating it.</string>
@@ -626,9 +623,6 @@
     <string name="SearchFragment_header_conversations">Conversations</string>
     <string name="SearchFragment_header_contacts">Contacts</string>
     <string name="SearchFragment_header_messages">Messages</string>
-
-    <!-- SendJob -->
-    <string name="SendJob_sending_a_message">Sending a message...</string>
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Add to Contacts</string>

@@ -82,8 +82,6 @@ public abstract class Job extends Worker implements Serializable {
       ((ContextDependent)this).setContext(getApplicationContext());
     }
 
-    boolean foregroundRunning = false;
-
     try {
       initialize(new SafeData(data));
 
@@ -102,12 +100,6 @@ public abstract class Job extends Worker implements Serializable {
         return retry();
       }
 
-      if (needsForegroundService(data)) {
-        Log.i(TAG, "Running a foreground service with description '" + getDescription() + "' to aid in job execution." + logSuffix());
-        GenericForegroundService.startForegroundTask(getApplicationContext(), getDescription());
-        foregroundRunning = true;
-      }
-
       onRun();
 
       log("Successfully completed." + logSuffix());
@@ -119,11 +111,6 @@ public abstract class Job extends Worker implements Serializable {
       }
       warn("Failing due to an exception." + logSuffix(), e);
       return cancel();
-    } finally {
-      if (foregroundRunning) {
-        Log.i(TAG, "Stopping the foreground service." + logSuffix());
-        GenericForegroundService.stopForegroundTask(getApplicationContext());
-      }
     }
   }
 
@@ -140,14 +127,6 @@ public abstract class Job extends Worker implements Serializable {
     }
 
     onAdded();
-  }
-
-  /**
-   * @return A string that represents what the task does. Will be shown in a foreground notification
-   *         if necessary.
-   */
-  protected String getDescription() {
-    return getApplicationContext().getString(R.string.Job_working_in_the_background);
   }
 
   /**
@@ -236,13 +215,6 @@ public abstract class Job extends Worker implements Serializable {
     }
 
     return System.currentTimeMillis() < retryUntil;
-  }
-
-  private boolean needsForegroundService(@NonNull Data data) {
-    NetworkRequirement networkRequirement = new NetworkRequirement(getApplicationContext());
-    boolean            requiresNetwork    = data.getBoolean(KEY_REQUIRES_NETWORK, false);
-
-    return requiresNetwork && !networkRequirement.isPresent();
   }
 
   private void log(@NonNull String message) {

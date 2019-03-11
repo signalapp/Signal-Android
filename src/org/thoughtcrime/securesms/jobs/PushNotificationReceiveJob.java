@@ -46,11 +46,6 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
   }
 
   @Override
-  protected String getDescription() {
-    return context.getString(R.string.PushNotificationReceiveJob_retrieving_a_message);
-  }
-
-  @Override
   public void onRun() throws IOException {
     pullAndProcessMessages(receiver, TAG, System.currentTimeMillis());
   }

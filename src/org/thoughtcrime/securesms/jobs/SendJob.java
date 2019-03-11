@@ -40,11 +40,6 @@ public abstract class SendJob extends ContextJob {
   }
 
   @Override
-  protected String getDescription() {
-    return context.getString(R.string.SendJob_sending_a_message);
-  }
-
-  @Override
   public final void onRun() throws Exception {
     if (Util.getDaysTillBuildExpiry() <= 0) {
       throw new TextSecureExpiredException(String.format("TextSecure expired (build %d, now %d)",
