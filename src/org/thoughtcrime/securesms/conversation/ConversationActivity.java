@@ -181,6 +181,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -1110,14 +1111,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (recipient.getAddress().isGroup()) return;
 
     try {
-      final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-      if (recipient.getAddress().isEmail()) {
-        intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
-      } else {
-        intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
-      }
-      intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-      startActivityForResult(intent, ADD_CONTACT);
+      startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), ADD_CONTACT);
     } catch (ActivityNotFoundException e) {
       Log.w(TAG, e);
     }

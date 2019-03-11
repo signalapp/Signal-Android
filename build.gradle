@@ -142,7 +142,7 @@ dependencies {
     }
 
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.assertj:assertj-core:1.7.1'
+    testImplementation 'org.assertj:assertj-core:3.11.1'
     testImplementation 'org.mockito:mockito-core:1.9.5'
     testImplementation 'org.powermock:powermock-api-mockito:1.6.1'
     testImplementation 'org.powermock:powermock-module-junit4:1.6.1'
@@ -160,6 +160,8 @@ dependencies {
         exclude group: 'org.hamcrest',        module: 'hamcrest-core'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    testImplementation 'org.robolectric:robolectric:4.2'
+    testImplementation 'org.robolectric:shadows-multidex:4.2'
 }
 
 dependencyVerification {
@@ -421,6 +423,12 @@ android {
 
      lintOptions {
         abortOnError false
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }
 
