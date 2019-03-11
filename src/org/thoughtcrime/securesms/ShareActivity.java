@@ -36,6 +36,7 @@ import android.support.v7.widget.Toolbar;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.logging.Log;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -138,6 +139,16 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
         finish();
       }
     }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        onBackPressed();
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   @Override
