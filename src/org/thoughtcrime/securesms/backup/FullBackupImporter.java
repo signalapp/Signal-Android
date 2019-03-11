@@ -87,8 +87,6 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasAvatar())     processAvatar(context, frame.getAvatar(), inputStream);
       }
 
-      trimEntriesForExpiredMessages(context, db);
-
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -190,28 +188,6 @@ public class FullBackupImporter extends FullBackupBase {
       }
     }
   }
-
-  private static void trimEntriesForExpiredMessages(@NonNull Context context, @NonNull SQLiteDatabase db) {
-    String trimmedCondition = " NOT IN (SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME + ")";
-
-    db.delete(GroupReceiptDatabase.TABLE_NAME, GroupReceiptDatabase.MMS_ID + trimmedCondition, null);
-
-    String[] columns = new String[] { AttachmentDatabase.ROW_ID, AttachmentDatabase.UNIQUE_ID };
-    String   where   = AttachmentDatabase.MMS_ID + trimmedCondition;
-
-    try (Cursor cursor = db.query(AttachmentDatabase.TABLE_NAME, columns, where, null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(new AttachmentId(cursor.getLong(0), cursor.getLong(1)));
-      }
-    }
-
-    try (Cursor cursor = db.query(ThreadDatabase.TABLE_NAME, new String[] { ThreadDatabase.ID }, ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false);
-      }
-    }
-  }
-
 
   private static class BackupRecordInputStream extends BackupStream {
 

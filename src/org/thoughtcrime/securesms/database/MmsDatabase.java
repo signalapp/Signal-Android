@@ -531,6 +531,31 @@ public class MmsDatabase extends MessagingDatabase {
     updateMessageBodyAndType(messageId, body, Types.ENCRYPTION_MASK, type);
   }
 
+  /**
+   * Trims data related to expired messages. Only intended to be run after a backup restore.
+   */
+  void trimEntriesForExpiredMessages() {
+    SQLiteDatabase database         = databaseHelper.getWritableDatabase();
+    String         trimmedCondition = " NOT IN (SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME + ")";
+
+    database.delete(GroupReceiptDatabase.TABLE_NAME, GroupReceiptDatabase.MMS_ID + trimmedCondition, null);
+
+    String[] columns = new String[] { AttachmentDatabase.ROW_ID, AttachmentDatabase.UNIQUE_ID };
+    String   where   = AttachmentDatabase.MMS_ID + trimmedCondition;
+
+    try (Cursor cursor = database.query(AttachmentDatabase.TABLE_NAME, columns, where, null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(new AttachmentId(cursor.getLong(0), cursor.getLong(1)));
+      }
+    }
+
+    try (Cursor cursor = database.query(ThreadDatabase.TABLE_NAME, new String[] { ThreadDatabase.ID }, ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false);
+      }
+    }
+  }
+
   private Pair<Long, Long> updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +
