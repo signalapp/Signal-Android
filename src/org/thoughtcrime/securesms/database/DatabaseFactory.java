@@ -144,10 +144,6 @@ public class DatabaseFactory {
     getInstance(context).databaseHelper.markCurrent(database);
   }
 
-  public void doThing(Context context) {
-    getInstance(context).databaseHelper.getReadableDatabase().execSQL("ALTER TABLE mms ADD COLUMN previews TEXT");
-  }
-
   private DatabaseFactory(@NonNull Context context) {
     SQLiteDatabase.loadLibs(context);
 
