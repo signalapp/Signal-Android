@@ -177,6 +177,8 @@ public class TextSecurePreferences {
 
   public static final String LINK_PREVIEWS = "pref_link_previews";
 
+  private static final String GIF_GRID_LAYOUT = "pref_gif_grid_layout";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -360,6 +362,14 @@ public class TextSecurePreferences {
 
   public static boolean isLinkPreviewsEnabled(Context context) {
     return getBooleanPreference(context, LINK_PREVIEWS, true);
+  }
+
+  public static boolean isGifSearchInGridLayout(Context context) {
+    return getBooleanPreference(context, GIF_GRID_LAYOUT, false);
+  }
+
+  public static void setIsGifSearchInGridLayout(Context context, boolean isGrid) {
+    setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
   }
 
   public static @Nullable String getProfileKey(Context context) {

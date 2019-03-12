@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.net.GiphyLoader;
 import org.thoughtcrime.securesms.giph.util.InfiniteScrollListener;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.LinkedList;
@@ -56,7 +57,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
     this.giphyAdapter = new GiphyAdapter(getActivity(), GlideApp.with(this), new LinkedList<>());
     this.giphyAdapter.setListener(this);
 
-    this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    setLayoutManager(TextSecurePreferences.isGifSearchInGridLayout(getContext()));
     this.recyclerView.setItemAnimator(new DefaultItemAnimator());
     this.recyclerView.setAdapter(giphyAdapter);
     this.recyclerView.addOnScrollListener(new GiphyScrollListener());
@@ -80,12 +81,13 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
     this.giphyAdapter.setImages(new LinkedList<GiphyImage>());
   }
 
-  public void setLayoutManager(int type) {
-    if (type == GiphyActivityToolbar.OnLayoutChangedListener.LAYOUT_GRID) {
-      this.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-    } else {
-      this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
+  public void setLayoutManager(boolean gridLayout) {
+    recyclerView.setLayoutManager(getLayoutManager(gridLayout));
+  }
+
+  private RecyclerView.LayoutManager getLayoutManager(boolean gridLayout) {
+    return gridLayout ? new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                      : new LinearLayoutManager(getActivity());
   }
 
   public void setClickListener(GiphyAdapter.OnItemClickListener listener) {

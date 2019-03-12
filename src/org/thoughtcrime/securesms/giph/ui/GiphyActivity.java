@@ -69,6 +69,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
     GiphyActivityToolbar toolbar = ViewUtil.findById(this, R.id.giphy_toolbar);
     toolbar.setOnFilterChangedListener(this);
     toolbar.setOnLayoutChangedListener(this);
+    toolbar.setPersistence(GiphyActivityToolbarTextSecurePreferencesPersistence.fromContext(this));
 
     setSupportActionBar(toolbar);
 
@@ -99,9 +100,9 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onLayoutChanged(int type) {
-    this.gifFragment.setLayoutManager(type);
-    this.stickerFragment.setLayoutManager(type);
+  public void onLayoutChanged(boolean gridLayout) {
+    gifFragment.setLayoutManager(gridLayout);
+    stickerFragment.setLayoutManager(gridLayout);
   }
 
   @SuppressLint("StaticFieldLeak")
