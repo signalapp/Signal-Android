@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
  */
 public class ThreadRecord extends DisplayRecord {
 
-  private @NonNull  final Context context;
   private @Nullable final Uri     snippetUri;
   private           final long    count;
   private           final int     unreadCount;
@@ -49,14 +48,13 @@ public class ThreadRecord extends DisplayRecord {
   private           final long    expiresIn;
   private           final long    lastSeen;
 
-  public ThreadRecord(@NonNull Context context, @NonNull String body, @Nullable Uri snippetUri,
+  public ThreadRecord(@NonNull String body, @Nullable Uri snippetUri,
                       @NonNull Recipient recipient, long date, long count, int unreadCount,
                       long threadId, int deliveryReceiptCount, int status, long snippetType,
                       int distributionType, boolean archived, long expiresIn, long lastSeen,
                       int readReceiptCount)
   {
-    super(context, body, recipient, date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
-    this.context          = context.getApplicationContext();
+    super(body, recipient, date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
     this.snippetUri       = snippetUri;
     this.count            = count;
     this.unreadCount      = unreadCount;
@@ -71,7 +69,7 @@ public class ThreadRecord extends DisplayRecord {
   }
 
   @Override
-  public SpannableString getDisplayBody() {
+  public SpannableString getDisplayBody(@NonNull Context context) {
     if (isGroupUpdate()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));
     } else if (isGroupQuit()) {

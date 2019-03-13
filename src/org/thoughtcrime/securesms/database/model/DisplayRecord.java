@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 
 public abstract class DisplayRecord {
 
-  protected final Context context;
   protected final long type;
 
   private final Recipient  recipient;
@@ -46,11 +45,10 @@ public abstract class DisplayRecord {
   private final int        deliveryReceiptCount;
   private final int        readReceiptCount;
 
-  DisplayRecord(Context context, String body, Recipient recipient, long dateSent,
+  DisplayRecord(String body, Recipient recipient, long dateSent,
                 long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                 long type, int readReceiptCount)
   {
-    this.context              = context.getApplicationContext();
     this.threadId             = threadId;
     this.recipient            = recipient;
     this.dateSent             = dateSent;
@@ -83,7 +81,7 @@ public abstract class DisplayRecord {
     return MmsSmsColumns.Types.isOutgoingMessageType(type);
   }
 
-  public abstract SpannableString getDisplayBody();
+  public abstract SpannableString getDisplayBody(@NonNull Context context);
 
   public Recipient getRecipient() {
     return recipient;

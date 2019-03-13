@@ -437,7 +437,7 @@ public class MessageNotifier {
       Recipient    recipient             = record.getIndividualRecipient();
       Recipient    conversationRecipient = record.getRecipient();
       long         threadId              = record.getThreadId();
-      CharSequence body                  = record.getDisplayBody();
+      CharSequence body                  = record.getDisplayBody(context);
       Recipient    threadRecipients      = null;
       SlideDeck    slideDeck             = null;
       long         timestamp             = record.getTimestamp();

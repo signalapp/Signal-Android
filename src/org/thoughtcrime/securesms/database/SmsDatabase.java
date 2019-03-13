@@ -828,7 +828,7 @@ public class SmsDatabase extends MessagingDatabase {
     }
 
     public MessageRecord getCurrent() {
-      return new SmsMessageRecord(context, id, message.getMessageBody(),
+      return new SmsMessageRecord(id, message.getMessageBody(),
                                   message.getRecipient(), message.getRecipient(),
                                   1, System.currentTimeMillis(), System.currentTimeMillis(),
                                   0, message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
@@ -883,7 +883,7 @@ public class SmsDatabase extends MessagingDatabase {
       List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
       Recipient                 recipient  = Recipient.from(context, address, true);
 
-      return new SmsMessageRecord(context, messageId, body, recipient,
+      return new SmsMessageRecord(messageId, body, recipient,
                                   recipient,
                                   addressDeviceId,
                                   dateSent, dateReceived, deliveryReceiptCount, type,

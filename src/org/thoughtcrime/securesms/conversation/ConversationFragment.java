@@ -451,7 +451,7 @@ public class ConversationFragment extends Fragment
     ClipboardManager clipboard   = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
 
     for (MessageRecord messageRecord : messageList) {
-      String body = messageRecord.getDisplayBody().toString();
+      String body = messageRecord.getDisplayBody(requireContext()).toString();
       if (!TextUtils.isEmpty(body)) {
         bodyBuilder.append(body).append('\n');
       }
@@ -522,7 +522,7 @@ public class ConversationFragment extends Fragment
   private void handleForwardMessage(MessageRecord message) {
     SimpleTask.run(getLifecycle(), () -> {
       Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
-      composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
+      composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody(requireContext()).toString());
 
       if (message.isMms()) {
         MmsMessageRecord mediaMessage = (MmsMessageRecord) message;

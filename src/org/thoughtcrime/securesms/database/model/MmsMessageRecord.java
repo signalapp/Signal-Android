@@ -23,7 +23,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
   private final @NonNull  List<Contact>     contacts     = new LinkedList<>();
   private final @NonNull  List<LinkPreview> linkPreviews = new LinkedList<>();
 
-  MmsMessageRecord(Context context, long id, String body, Recipient conversationRecipient,
+  MmsMessageRecord(long id, String body, Recipient conversationRecipient,
                    Recipient individualRecipient, int recipientDeviceId, long dateSent,
                    long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                    long type, List<IdentityKeyMismatch> mismatches,
@@ -32,7 +32,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
                    @Nullable Quote quote, @NonNull List<Contact> contacts,
                    @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
   {
-    super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount, unidentified);
+    super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount, unidentified);
 
     this.slideDeck = slideDeck;
     this.quote     = quote;
