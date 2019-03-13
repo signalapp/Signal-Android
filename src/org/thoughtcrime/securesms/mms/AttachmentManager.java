@@ -387,7 +387,7 @@ public class AttachmentManager {
                .ifNecessary()
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
                .onAllGranted(() -> selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode))
-               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.getIntent(activity, recipient, body, transport), requestCode))
+               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body, transport), requestCode))
                .execute();
   }
 

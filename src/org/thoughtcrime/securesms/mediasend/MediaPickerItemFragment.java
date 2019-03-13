@@ -71,7 +71,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
     bucketId     = getArguments().getString(KEY_BUCKET_ID);
     folderTitle  = getArguments().getString(KEY_FOLDER_TITLE);
     maxSelection = getArguments().getInt(KEY_MAX_SELECTION);
-    viewModel    = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(new MediaRepository())).get(MediaSendViewModel.class);
+    viewModel    = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
 
   @Override

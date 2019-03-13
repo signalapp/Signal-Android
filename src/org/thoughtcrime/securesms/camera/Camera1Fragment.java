@@ -109,6 +109,9 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
       camera.setScreenRotation(controller.getDisplayRotation());
     });
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, this::updatePreviewScale);
+
+    requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
   }
 
   @Override
@@ -154,6 +157,10 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
   @Override
   public void onCameraUnavailable() {
     controller.onCameraError();
+  }
+
+  public void reset() {
+    orderEnforcer.reset();
   }
 
   @SuppressLint("ClickableViewAccessibility")
@@ -202,7 +209,7 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
   }
 
   private void onCaptureClicked() {
-    orderEnforcer.reset();
+    reset();
 
     Stopwatch fastCaptureTimer = new Stopwatch("Capture");
 
@@ -230,7 +237,7 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
                   fastCaptureTimer.split("bytes");
                   fastCaptureTimer.stop(TAG);
 
-                  controller.onImageCaptured(data);
+                  controller.onImageCaptured(data, resource.getWidth(), resource.getHeight());
                 }
 
                 @Override
@@ -299,7 +306,7 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
 
   public interface Controller {
     void onCameraError();
-    void onImageCaptured(@NonNull byte[] data);
+    void onImageCaptured(@NonNull byte[] data, int width, int height);
     int getDisplayRotation();
   }
 

@@ -259,7 +259,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   @Override
   public void onRailItemDeleteClicked(int distanceFromActive) {
-    viewModel.onMediaItemRemoved(fragmentPager.getCurrentItem() + distanceFromActive);
+    viewModel.onMediaItemRemoved(requireContext(), fragmentPager.getCurrentItem() + distanceFromActive);
   }
 
   @Override
@@ -296,7 +296,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   }
 
   private void initViewModel() {
-    viewModel = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(new MediaRepository())).get(MediaSendViewModel.class);
+    viewModel = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
 
     viewModel.getSelectedMedia().observe(this, media -> {
       if (Util.isEmpty(media)) {

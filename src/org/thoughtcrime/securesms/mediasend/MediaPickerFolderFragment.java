@@ -52,7 +52,7 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     recipientName = getArguments().getString(KEY_RECIPIENT_NAME);
-    viewModel     = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(new MediaRepository())).get(MediaSendViewModel.class);
+    viewModel     = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
 
   @Override

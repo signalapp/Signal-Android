@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
@@ -12,12 +13,15 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +30,7 @@ import java.util.Map;
  */
 class MediaSendViewModel extends ViewModel {
 
+  private final Application                        application;
   private final MediaRepository                    repository;
   private final MutableLiveData<List<Media>>       selectedMedia;
   private final MutableLiveData<List<Media>>       bucketMedia;
@@ -39,8 +44,11 @@ class MediaSendViewModel extends ViewModel {
   private MediaConstraints            mediaConstraints;
   private CharSequence                body;
   private CountButtonState.Visibility countButtonVisibility;
+  private boolean                     sentMedia;
+  private Optional<Media>             lastImageCapture;
 
-  private MediaSendViewModel(@NonNull MediaRepository repository) {
+  private MediaSendViewModel(@NonNull Application application, @NonNull MediaRepository repository) {
+    this.application           = application;
     this.repository            = repository;
     this.selectedMedia         = new MutableLiveData<>();
     this.bucketMedia           = new MutableLiveData<>();
@@ -51,6 +59,7 @@ class MediaSendViewModel extends ViewModel {
     this.error                 = new SingleLiveEvent<>();
     this.savedDrawState        = new HashMap<>();
     this.countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
+    this.lastImageCapture      = Optional.absent();
 
     position.setValue(-1);
     countButtonState.setValue(new CountButtonState(0, CountButtonState.Visibility.CONDITIONAL));
@@ -91,17 +100,17 @@ class MediaSendViewModel extends ViewModel {
 
   void onMultiSelectStarted() {
     countButtonVisibility = CountButtonState.Visibility.FORCED_ON;
-    countButtonState.postValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
+    countButtonState.setValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
   }
 
   void onImageEditorStarted() {
     countButtonVisibility = CountButtonState.Visibility.FORCED_OFF;
-    countButtonState.postValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
+    countButtonState.setValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
   }
 
   void onImageEditorEnded() {
     countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
-    countButtonState.postValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
+    countButtonState.setValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
   }
 
   void onBodyChanged(@NonNull CharSequence body) {
@@ -117,10 +126,50 @@ class MediaSendViewModel extends ViewModel {
     this.position.setValue(position);
   }
 
-  void onMediaItemRemoved(int position) {
-    getSelectedMediaOrDefault().remove(position);
+  void onMediaItemRemoved(@NonNull Context context, int position) {
+    Media removed = getSelectedMediaOrDefault().remove(position);
+
+    if (removed != null && BlobProvider.isAuthority(removed.getUri())) {
+      BlobProvider.getInstance().delete(context, removed.getUri());
+    }
+
     selectedMedia.setValue(selectedMedia.getValue());
   }
+
+  void onImageCaptured(@NonNull Media media) {
+    List<Media> selected = selectedMedia.getValue();
+
+    if (selected == null) {
+      selected = new LinkedList<>();
+    }
+
+    lastImageCapture = Optional.of(media);
+
+    selected.add(media);
+    selectedMedia.setValue(selected);
+    position.setValue(selected.size() - 1);
+    bucketId.setValue(Media.ALL_MEDIA_BUCKET_ID);
+
+    if (selected.size() == 1) {
+      countButtonVisibility = CountButtonState.Visibility.FORCED_OFF;
+    } else {
+      countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
+    }
+
+    countButtonState.setValue(new CountButtonState(selected.size(), countButtonVisibility));
+  }
+
+  void onImageCaptureUndo(@NonNull Context context) {
+    List<Media> selected = getSelectedMediaOrDefault();
+
+    if (lastImageCapture.isPresent() && selected.contains(lastImageCapture.get()) && selected.size() == 1) {
+      selected.remove(lastImageCapture.get());
+      selectedMedia.setValue(selected);
+      countButtonState.setValue(new CountButtonState(selected.size(), countButtonVisibility));
+      BlobProvider.getInstance().delete(context, lastImageCapture.get().getUri());
+    }
+  }
+
 
   void onCaptionChanged(@NonNull String newCaption) {
     if (position.getValue() >= 0 && !Util.isEmpty(selectedMedia.getValue())) {
@@ -131,6 +180,10 @@ class MediaSendViewModel extends ViewModel {
   void saveDrawState(@NonNull Map<Uri, Object> state) {
     savedDrawState.clear();
     savedDrawState.putAll(state);
+  }
+
+  void onSendClicked() {
+    sentMedia = true;
   }
 
   @NonNull Map<Uri, Object> getDrawState() {
@@ -188,6 +241,16 @@ class MediaSendViewModel extends ViewModel {
 
   }
 
+  @Override
+  protected void onCleared() {
+    if (!sentMedia) {
+      Stream.of(getSelectedMediaOrDefault())
+            .map(Media::getUri)
+            .filter(BlobProvider::isAuthority)
+            .forEach(uri -> BlobProvider.getInstance().delete(application.getApplicationContext(), uri));
+    }
+  }
+
   enum Error {
     ITEM_TOO_LARGE
   }
@@ -221,15 +284,17 @@ class MediaSendViewModel extends ViewModel {
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {
 
+    private final Application     application;
     private final MediaRepository repository;
 
-    Factory(@NonNull MediaRepository repository) {
-      this.repository = repository;
+    Factory(@NonNull Application application, @NonNull MediaRepository repository) {
+      this.application = application;
+      this.repository  = repository;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return modelClass.cast(new MediaSendViewModel(repository));
+      return modelClass.cast(new MediaSendViewModel(application, repository));
     }
   }
 }
