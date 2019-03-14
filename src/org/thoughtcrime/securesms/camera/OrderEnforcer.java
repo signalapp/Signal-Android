@@ -29,9 +29,7 @@ public class OrderEnforcer<E> {
   public synchronized void markCompleted(@NonNull E stage) {
     stages.get(stage).setCompleted(true);
 
-    for (E s : stages.keySet()) {
-      StageDetails details = stages.get(s);
-
+    for (StageDetails details : stages.values()) {
       if (details.isCompleted()) {
         for (Runnable r : details.getActions()) {
           r.run();
@@ -51,10 +49,10 @@ public class OrderEnforcer<E> {
   }
 
   private boolean isCompletedThrough(@NonNull E stage) {
-    for (E s : stages.keySet()) {
-      if (s.equals(stage)) {
-        return stages.get(s).isCompleted();
-      } else if (!stages.get(s).isCompleted()) {
+    for (Map.Entry<E, StageDetails> entry : stages.entrySet()) {
+      if (entry.getKey().equals(stage)) {
+        return entry.getValue().isCompleted();
+      } else if (!entry.getValue().isCompleted()) {
         return false;
       }
     }
