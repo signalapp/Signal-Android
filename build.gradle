@@ -149,6 +149,7 @@ dependencies {
     testImplementation 'org.powermock:powermock-module-junit4-rule:1.6.1'
     testImplementation 'org.powermock:powermock-classloading-xstream:1.6.1'
 
+    testImplementation 'androidx.test:core:1.1.1-alpha02'
     androidTestImplementation 'com.android.support:multidex:1.0.3'
     androidTestImplementation 'com.android.support:multidex-instrumentation:1.0.3'
     androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
@@ -324,10 +325,13 @@ android {
         buildConfigField "boolean", "DEV_BUILD", "false"
         buildConfigField "String", "MRENCLAVE", "\"cd6cfc342937b23b1bdd3bbf9721aa5615ac9ff50a75c5527d441cd3276826c9\""
         buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\""
+        buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
 
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"
         }
+
+        resConfigs autoResConfig()
     }
 
     compileOptions {
@@ -509,4 +513,17 @@ def getLastCommitTimestamp() {
 
         return os.toString() + "000"
     }
+}
+
+/**
+ * Discovers supported languages listed as under the res/values- directory.
+ */
+static def autoResConfig() {
+    def files = new ArrayList<String>()
+    def root = new File('res')
+    root.eachFile { f -> files.add(f.name) }
+    ['en'] + files.collect { f -> f =~ /^values-([a-z]{2}(-r[A-Z]{2})?)$/ }
+         .findAll { matcher -> matcher.find() }
+         .collect { matcher -> matcher.group(1) }
+         .sort()
 }
