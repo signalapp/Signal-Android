@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
@@ -818,13 +817,9 @@ public class SmsDatabase extends MessagingDatabase {
     private final long                threadId;
 
     public OutgoingMessageReader(OutgoingTextMessage message, long threadId) {
-      try {
-        this.message  = message;
-        this.threadId = threadId;
-        this.id       = SecureRandom.getInstance("SHA1PRNG").nextLong();
-      } catch (NoSuchAlgorithmException e) {
-        throw new AssertionError(e);
-      }
+      this.message  = message;
+      this.threadId = threadId;
+      this.id       = new SecureRandom().nextLong();
     }
 
     public MessageRecord getCurrent() {

@@ -71,7 +71,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.HashMap;
@@ -1279,13 +1278,9 @@ public class MmsDatabase extends MessagingDatabase {
     private final long                 threadId;
 
     public OutgoingMessageReader(OutgoingMediaMessage message, long threadId) {
-      try {
-        this.message = message;
-        this.id = SecureRandom.getInstance("SHA1PRNG").nextLong();
-        this.threadId = threadId;
-      } catch (NoSuchAlgorithmException e) {
-        throw new AssertionError(e);
-      }
+      this.message  = message;
+      this.id       = new SecureRandom().nextLong();
+      this.threadId = threadId;
     }
 
     public MessageRecord getCurrent() {

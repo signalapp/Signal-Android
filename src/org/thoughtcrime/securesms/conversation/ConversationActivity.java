@@ -879,24 +879,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleInviteLink() {
-    try {
-      String inviteText;
+    String inviteText;
 
-      boolean a = SecureRandom.getInstance("SHA1PRNG").nextBoolean();
-      if (a) inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, "https://sgnl.link/1LoIMUl");
-      else   inviteText = getString(R.string.ConversationActivity_lets_use_this_to_chat, "https://sgnl.link/1MF56H1");
+    boolean a = new SecureRandom().nextBoolean();
+    if (a) inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, "https://sgnl.link/1LoIMUl");
+    else   inviteText = getString(R.string.ConversationActivity_lets_use_this_to_chat, "https://sgnl.link/1MF56H1");
 
-      if (isDefaultSms) {
-        composeText.appendInvite(inviteText);
-      } else {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("smsto:" + recipient.getAddress().serialize()));
-        intent.putExtra("sms_body", inviteText);
-        intent.putExtra(Intent.EXTRA_TEXT, inviteText);
-        startActivity(intent);
-      }
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
+    if (isDefaultSms) {
+      composeText.appendInvite(inviteText);
+    } else {
+      Intent intent = new Intent(Intent.ACTION_SENDTO);
+      intent.setData(Uri.parse("smsto:" + recipient.getAddress().serialize()));
+      intent.putExtra("sms_body", inviteText);
+      intent.putExtra(Intent.EXTRA_TEXT, inviteText);
+      startActivity(intent);
     }
   }
 

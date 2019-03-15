@@ -456,11 +456,7 @@ public class Util {
   }
 
   public static <T> T getRandomElement(T[] elements) {
-    try {
-      return elements[SecureRandom.getInstance("SHA1PRNG").nextInt(elements.length)];
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    return elements[new SecureRandom().nextInt(elements.length)];
   }
 
   public static boolean equals(@Nullable Object a, @Nullable Object b) {
