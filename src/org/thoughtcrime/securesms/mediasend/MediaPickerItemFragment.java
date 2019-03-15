@@ -4,33 +4,27 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -119,25 +113,27 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   public void onResume() {
     super.onResume();
 
+    viewModel.onItemPickerStarted();
     requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
   }
 
   @Override
   public void onPrepareOptionsMenu(Menu menu) {
-    requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
-
-    MenuItem beginSelectionButton = menu.findItem(R.id.mediapicker_menu_add);
-
-    beginSelectionButton.setVisible(!viewModel.getCountButtonState().getValue().getVisibility());
+    if (viewModel.getCountButtonState().getValue() != null && viewModel.getCountButtonState().getValue().isVisible()) {
+      requireActivity().getMenuInflater().inflate(R.menu.mediapicker_multiselect, menu);
+    } else {
+      requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
+    }
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    if (item.getItemId() == R.id.mediapicker_menu_add) {
-      adapter.setForcedMultiSelect(true);
-      viewModel.onMultiSelectStarted();
-      return true;
+    switch (item.getItemId()) {
+      case R.id.mediapicker_menu_add:
+        adapter.setForcedMultiSelect(true);
+        viewModel.onMultiSelectStarted();
+        return true;
     }
     return false;
   }
@@ -162,7 +158,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
 
   @Override
   public void onMediaSelectionOverflow(int maxSelection) {
-    Toast.makeText(requireContext(), getResources().getQuantityString(R.plurals.MediaPickerItemFragment_cant_share_more_than_n_items, maxSelection, maxSelection), Toast.LENGTH_SHORT).show();
+    Toast.makeText(requireContext(), getResources().getQuantityString(R.plurals.MediaSendActivity_cant_share_more_than_n_items, maxSelection, maxSelection), Toast.LENGTH_SHORT).show();
   }
 
   private void initToolbar(Toolbar toolbar) {

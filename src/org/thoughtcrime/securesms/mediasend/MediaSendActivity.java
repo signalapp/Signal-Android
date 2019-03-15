@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.Manifest;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -19,10 +20,10 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
-import org.thoughtcrime.securesms.camera.Camera1Fragment;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ScribbleFragment;
@@ -58,8 +59,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   public static final String EXTRA_MESSAGE   = "message";
   public static final String EXTRA_TRANSPORT = "transport";
 
-  private static final int MAX_PUSH = 32;
-  private static final int MAX_SMS  = 1;
 
   private static final String KEY_ADDRESS   = "address";
   private static final String KEY_BODY      = "body";
@@ -81,6 +80,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   private View     countButton;
   private TextView countButtonText;
+  private View     cameraButton;
 
   /**
    * Get an intent to launch the media send flow starting with the picker.
@@ -134,14 +134,13 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
     countButton     = findViewById(R.id.mediasend_count_button);
     countButtonText = findViewById(R.id.mediasend_count_button_text);
+    cameraButton    = findViewById(R.id.mediasend_camera_button);
 
     viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
     recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 
-    viewModel.setMediaConstraints(transport.isSms() ? MediaConstraints.getMmsMediaConstraints(transport.getSimSubscriptionId().or(-1))
-                                                    : MediaConstraints.getPushMediaConstraints());
-
+    viewModel.setTransport(transport);
     viewModel.onBodyChanged(getIntent().getStringExtra(KEY_BODY));
 
     List<Media> media    = getIntent().getParcelableArrayListExtra(KEY_MEDIA);
@@ -156,7 +155,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     } else if (!Util.isEmpty(media)) {
       viewModel.onSelectedMediaChanged(this, media);
 
-      Fragment fragment = MediaSendFragment.newInstance(transport, dynamicLanguage.getCurrentLocale());
+      Fragment fragment = MediaSendFragment.newInstance(recipient, transport, dynamicLanguage.getCurrentLocale());
       getSupportFragmentManager().beginTransaction()
                                  .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
                                  .commit();
@@ -168,6 +167,18 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     }
 
     initializeCountButtonObserver(transport, dynamicLanguage.getCurrentLocale());
+    initializeCameraButtonObserver();
+    initializeErrorObserver();
+
+    cameraButton.setOnClickListener(v -> {
+      int maxSelection = viewModel.getMaxSelection();
+
+      if (viewModel.getSelectedMedia().getValue() != null && viewModel.getSelectedMedia().getValue().size() >= maxSelection) {
+        Toast.makeText(this, getResources().getQuantityString(R.plurals.MediaSendActivity_cant_share_more_than_n_items, maxSelection, maxSelection), Toast.LENGTH_SHORT).show();
+      } else {
+        navigateToCamera();
+      }
+    });
   }
 
   @Override
@@ -190,10 +201,15 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+  }
+
+  @Override
   public void onFolderSelected(@NonNull MediaFolder folder) {
     viewModel.onFolderSelected(folder.getBucketId());
 
-    MediaPickerItemFragment fragment = MediaPickerItemFragment.newInstance(folder.getBucketId(), folder.getTitle(), transport.isSms() ? MAX_SMS  :MAX_PUSH);
+    MediaPickerItemFragment fragment = MediaPickerItemFragment.newInstance(folder.getBucketId(), folder.getTitle(), viewModel.getMaxSelection());
     getSupportFragmentManager().beginTransaction()
                                .setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
                                .replace(R.id.mediasend_fragment_container, fragment, TAG_ITEM_PICKER)
@@ -203,14 +219,14 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   @Override
   public void onMediaSelected(@NonNull String bucketId) {
-    navigateToMediaSend(transport, dynamicLanguage.getCurrentLocale());
+    navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
   }
 
   @Override
   public void onAddMediaClicked(@NonNull String bucketId) {
     // TODO: Get actual folder title somehow
     MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(recipient);
-    MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", transport.isSms() ? MAX_SMS : MAX_PUSH);
+    MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
 
     getSupportFragmentManager().beginTransaction()
                                .setCustomAnimations(R.anim.stationary, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
@@ -302,7 +318,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       Log.i(TAG, "Camera capture stored: " + media.getUri().toString());
 
       viewModel.onImageCaptured(media);
-      navigateToMediaSend(transport, dynamicLanguage.getCurrentLocale());
+      navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
     });
   }
 
@@ -316,26 +332,42 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       if (buttonState == null) return;
 
       countButtonText.setText(String.valueOf(buttonState.getCount()));
-      countButton.setEnabled(buttonState.getVisibility());
-      animateCountButtonVisibility(countButton, countButton.getVisibility(), buttonState.getVisibility() ? View.VISIBLE : View.GONE);
+      countButton.setEnabled(buttonState.isVisible());
+      animateButtonVisibility(countButton, countButton.getVisibility(), buttonState.isVisible() ? View.VISIBLE : View.GONE);
 
       if (buttonState.getCount() > 0) {
-        countButton.setOnClickListener(v -> {
-          Camera1Fragment fragment = (Camera1Fragment) getSupportFragmentManager().findFragmentByTag(TAG_CAMERA);
-          if (fragment != null) {
-            fragment.reset();
-          }
-
-          navigateToMediaSend(transport, locale);
-        });
+        countButton.setOnClickListener(v -> navigateToMediaSend(recipient, transport, locale));
       } else {
         countButton.setOnClickListener(null);
       }
     });
   }
 
-  private void navigateToMediaSend(@NonNull TransportOption transport, @NonNull Locale locale) {
-    MediaSendFragment fragment     = MediaSendFragment.newInstance(transport, locale);
+  private void initializeCameraButtonObserver() {
+    viewModel.getCameraButtonVisibility().observe(this, visible -> {
+      if (visible == null) return;
+      animateButtonVisibility(cameraButton, cameraButton.getVisibility(), visible ? View.VISIBLE : View.GONE);
+    });
+  }
+
+  private void initializeErrorObserver() {
+    viewModel.getError().observe(this, error -> {
+      if (error == null) return;
+
+      switch (error) {
+        case ITEM_TOO_LARGE:
+          Toast.makeText(this, R.string.MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit, Toast.LENGTH_LONG).show();
+          break;
+        case TOO_MANY_ITEMS:
+          int maxSelection = viewModel.getMaxSelection();
+          Toast.makeText(this, getResources().getQuantityString(R.plurals.MediaSendActivity_cant_share_more_than_n_items, maxSelection, maxSelection), Toast.LENGTH_SHORT).show();
+          break;
+      }
+    });
+  }
+
+  private void navigateToMediaSend(@NonNull Recipient recipient, @NonNull TransportOption transport, @NonNull Locale locale) {
+    MediaSendFragment fragment     = MediaSendFragment.newInstance(recipient, transport, locale);
     String            backstackTag = null;
 
     if (getSupportFragmentManager().findFragmentByTag(TAG_SEND) != null) {
@@ -350,19 +382,44 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                .commit();
   }
 
-  private void animateCountButtonVisibility(View countButton, int oldVisibility, int newVisibility) {
+  private void navigateToCamera() {
+    Permissions.with(this)
+               .request(Manifest.permission.CAMERA)
+               .ifNecessary()
+               .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_photo_camera_white_48dp)
+               .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
+               .onAllGranted(() -> {
+                 Camera1Fragment fragment = getOrCreateCameraFragment();
+                 getSupportFragmentManager().beginTransaction()
+                                            .setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
+                                            .replace(R.id.mediasend_fragment_container, fragment, TAG_CAMERA)
+                                            .addToBackStack(null)
+                                            .commit();
+               })
+               .onAnyDenied(() -> Toast.makeText(MediaSendActivity.this, R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
+               .execute();
+  }
+
+  private Camera1Fragment getOrCreateCameraFragment() {
+    Camera1Fragment fragment = (Camera1Fragment) getSupportFragmentManager().findFragmentByTag(TAG_CAMERA);
+
+    return fragment != null ? fragment
+                            : Camera1Fragment.newInstance();
+  }
+
+  private void animateButtonVisibility(View button, int oldVisibility, int newVisibility) {
     if (oldVisibility == newVisibility) return;
 
-    if (countButton.getAnimation() != null) {
-      countButton.getAnimation().cancel();
-      countButton.setVisibility(newVisibility);
+    if (button.getAnimation() != null) {
+      button.getAnimation().cancel();
+      button.setVisibility(newVisibility);
     } else if (newVisibility == View.VISIBLE) {
-      countButton.setVisibility(View.VISIBLE);
+      button.setVisibility(View.VISIBLE);
 
       Animation animation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
       animation.setDuration(250);
       animation.setInterpolator(new OvershootInterpolator());
-      countButton.startAnimation(animation);
+      button.startAnimation(animation);
     } else {
       Animation animation = new ScaleAnimation(1, 0, 1, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
       animation.setDuration(150);
@@ -370,12 +427,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       animation.setAnimationListener(new SimpleAnimationListener() {
         @Override
         public void onAnimationEnd(Animation animation) {
-          countButton.setVisibility(View.GONE);
+          button.setVisibility(View.GONE);
         }
       });
 
-      countButton.startAnimation(animation);
+      button.startAnimation(animation);
     }
-
   }
 }

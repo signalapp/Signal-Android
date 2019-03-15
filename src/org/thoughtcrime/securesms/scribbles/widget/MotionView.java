@@ -136,6 +136,7 @@ public class MotionView  extends FrameLayout implements TextWatcher {
     this.addView(editText);
     this.editText.clearFocus();
     this.editText.addTextChangedListener(this);
+    this.editText.setId(R.id.motion_view_edittext);
 
     // init listeners
     this.scaleGestureDetector = new ScaleGestureDetector(context, new ScaleListener());

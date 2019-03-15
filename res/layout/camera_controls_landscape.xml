@@ -23,7 +23,7 @@
         android:layout_above="@+id/camera_capture_button"
         android:layout_marginBottom="40dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_camera_front"
+        android:src="@drawable/ic_switch_camera_36"
         android:scaleType="fitCenter"
         android:background="?selectableItemBackgroundBorderless"
         android:visibility="gone"

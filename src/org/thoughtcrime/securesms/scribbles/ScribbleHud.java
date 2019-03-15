@@ -41,11 +41,10 @@ import java.util.Set;
 public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.OnGlobalLayoutListener {
 
   private View                     drawButton;
-  private View                     highlightButton;
   private View                     textButton;
-  private View                     stickerButton;
   private View                     undoButton;
   private View                     deleteButton;
+  private View                     confirmButton;
   private View                     saveButton;
   private VerticalSlideColorPicker colorPicker;
   private RecyclerView             colorPalette;
@@ -111,11 +110,10 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     setOrientation(VERTICAL);
 
     drawButton      = findViewById(R.id.scribble_draw_button);
-    highlightButton = findViewById(R.id.scribble_highlight_button);
     textButton      = findViewById(R.id.scribble_text_button);
-    stickerButton   = findViewById(R.id.scribble_sticker_button);
     undoButton      = findViewById(R.id.scribble_undo_button);
     deleteButton    = findViewById(R.id.scribble_delete_button);
+    confirmButton   = findViewById(R.id.scribble_confirm_button);
     saveButton      = findViewById(R.id.scribble_save_button);
     colorPicker     = findViewById(R.id.scribble_color_picker);
     colorPalette    = findViewById(R.id.scribble_color_palette);
@@ -162,6 +160,8 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
       }
       setMode(Mode.NONE);
     });
+
+    confirmButton.setOnClickListener(v -> setMode(Mode.NONE));
 
     sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
       presentCharactersRemaining();
@@ -255,84 +255,70 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
 
   private void presentModeNone() {
     drawButton.setVisibility(VISIBLE);
-    highlightButton.setVisibility(VISIBLE);
     textButton.setVisibility(VISIBLE);
-    stickerButton.setVisibility(VISIBLE);
 
     undoButton.setVisibility(GONE);
     deleteButton.setVisibility(GONE);
+    confirmButton.setVisibility(GONE);
     colorPicker.setVisibility(GONE);
     colorPalette.setVisibility(GONE);
 
     drawButton.setOnClickListener(v -> setMode(Mode.DRAW));
-    highlightButton.setOnClickListener(v -> setMode(Mode.HIGHLIGHT));
     textButton.setOnClickListener(v -> setMode(Mode.TEXT));
-    stickerButton.setOnClickListener(v -> setMode(Mode.STICKER));
   }
 
   private void presentModeDraw() {
-    drawButton.setVisibility(VISIBLE);
+    confirmButton.setVisibility(VISIBLE);
     undoButton.setVisibility(VISIBLE);
     colorPicker.setVisibility(VISIBLE);
     colorPalette.setVisibility(VISIBLE);
 
-    highlightButton.setVisibility(GONE);
+    drawButton.setVisibility(GONE);
     textButton.setVisibility(GONE);
-    stickerButton.setVisibility(GONE);
     deleteButton.setVisibility(GONE);
 
-    drawButton.setOnClickListener(v -> setMode(Mode.NONE));
 
     colorPicker.setOnColorChangeListener(standardOnColorChangeListener);
     colorPicker.setActiveColor(Color.RED);
   }
 
   private void presentModeHighlight() {
-    highlightButton.setVisibility(VISIBLE);
+    confirmButton.setVisibility(VISIBLE);
     undoButton.setVisibility(VISIBLE);
     colorPicker.setVisibility(VISIBLE);
     colorPalette.setVisibility(VISIBLE);
 
     drawButton.setVisibility(GONE);
     textButton.setVisibility(GONE);
-    stickerButton.setVisibility(GONE);
     deleteButton.setVisibility(GONE);
-
-    highlightButton.setOnClickListener(v -> setMode(Mode.NONE));
 
     colorPicker.setOnColorChangeListener(highlightOnColorChangeListener);
     colorPicker.setActiveColor(Color.YELLOW);
   }
 
   private void presentModeText() {
-    textButton.setVisibility(VISIBLE);
+    confirmButton.setVisibility(VISIBLE);
     deleteButton.setVisibility(VISIBLE);
     colorPicker.setVisibility(VISIBLE);
     colorPalette.setVisibility(VISIBLE);
 
+    textButton.setVisibility(GONE);
     drawButton.setVisibility(GONE);
-    highlightButton.setVisibility(GONE);
-    stickerButton.setVisibility(GONE);
     undoButton.setVisibility(GONE);
-
-    textButton.setOnClickListener(v -> setMode(Mode.NONE));
 
     colorPicker.setOnColorChangeListener(standardOnColorChangeListener);
     colorPicker.setActiveColor(Color.WHITE);
   }
 
   private void presentModeSticker() {
-    stickerButton.setVisibility(VISIBLE);
     deleteButton.setVisibility(VISIBLE);
+    confirmButton.setVisibility(VISIBLE);
 
     drawButton.setVisibility(GONE);
-    highlightButton.setVisibility(GONE);
     textButton.setVisibility(GONE);
     undoButton.setVisibility(GONE);
     colorPicker.setVisibility(GONE);
     colorPalette.setVisibility(GONE);
-
-    stickerButton.setOnClickListener(v -> setMode(Mode.NONE));
   }
 
   private void presentCharactersRemaining() {

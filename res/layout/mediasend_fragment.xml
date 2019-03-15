@@ -37,56 +37,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
                 style="@style/Signal.Text.Body"
-                android:paddingTop="11dp"
-                android:paddingBottom="11dp"
-                android:drawableLeft="@drawable/ic_add_caption"
-                android:drawableStart="@drawable/ic_add_caption"
-                android:drawablePadding="6dp"
                 android:maxLines="3"
                 android:maxLength="240"
                 android:hint="@string/MediaSendActivity_add_a_caption"
+                android:autoText="true"
+                android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
                 android:background="@null"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/mediasend_media_rail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
                 tools:layout_height="64dp"/>
 
             <LinearLayout
                 android:id="@+id/mediasend_compose_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:orientation="horizontal"
-                android:paddingBottom="6dp">
-
-                <ImageView
-                    android:id="@+id/mediasend_add_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:src="@drawable/ic_add_photo"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:visibility="gone"
-                    tools:visibility="visible"/>
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:paddingLeft="10dp"
-                    android:paddingStart="10dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:orientation="horizontal"
                     android:background="@drawable/compose_background_camera">
 
@@ -152,10 +137,9 @@
                 android:id="@+id/mediasend_characters_left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:paddingBottom="6dp"
+                android:paddingBottom="12dp"
                 android:visibility="gone"
                 tools:visibility="visible"
                 tools:text="160/160 (1)" />
@@ -170,14 +154,5 @@
         </LinearLayout>
 
     </org.thoughtcrime.securesms.components.InputAwareLayout>
-
-    <!--<com.pnikosis.materialishprogress.ProgressWheel-->
-        <!--android:id="@+id/mediasend_progress_wheel"-->
-        <!--android:layout_width="70dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:visibility="gone"-->
-        <!--android:layout_gravity="center"-->
-        <!--app:matProg_barColor="@color/white"-->
-        <!--app:matProg_progressIndeterminate="true" />-->
 
 </FrameLayout>

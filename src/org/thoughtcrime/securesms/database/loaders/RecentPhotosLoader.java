@@ -21,7 +21,8 @@ public class RecentPhotosLoader extends CursorLoader {
       MediaStore.Images.ImageColumns.DATE_MODIFIED,
       MediaStore.Images.ImageColumns.ORIENTATION,
       MediaStore.Images.ImageColumns.MIME_TYPE,
-      MediaStore.Images.ImageColumns.BUCKET_ID
+      MediaStore.Images.ImageColumns.BUCKET_ID,
+      MediaStore.Images.ImageColumns.SIZE
   };
 
   private static final String[] PROJECTION_16 = new String[] {
@@ -31,6 +32,7 @@ public class RecentPhotosLoader extends CursorLoader {
       MediaStore.Images.ImageColumns.ORIENTATION,
       MediaStore.Images.ImageColumns.MIME_TYPE,
       MediaStore.Images.ImageColumns.BUCKET_ID,
+      MediaStore.Images.ImageColumns.SIZE,
       MediaStore.Images.ImageColumns.WIDTH,
       MediaStore.Images.ImageColumns.HEIGHT
   };

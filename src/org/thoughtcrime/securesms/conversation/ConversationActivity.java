@@ -2365,10 +2365,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    public void onQuickAttachment(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height) {
+    public void onQuickAttachment(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height, long size) {
       linkPreviewViewModel.onUserCancel();
-      // TODO: Carry over size?
-      Media media = new Media(uri, mimeType, dateTaken, width, height, 0, Optional.of(Media.ALL_MEDIA_BUCKET_ID), Optional.absent());
+      Media media = new Media(uri, mimeType, dateTaken, width, height, size, Optional.of(Media.ALL_MEDIA_BUCKET_ID), Optional.absent());
       startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient, composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
     }
   }

@@ -462,15 +462,16 @@
 
     <!-- MediaPickerItemFragment -->
     <string name="MediaPickerItemFragment_tap_to_select">Tap to select</string>
-    <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-        <item quantity="one">You can\'t share more than %d item.</item>
-        <item quantity="other">You can\'t share more than %d items.</item>
-    </plurals>
 
     <!-- MediaSendActivity -->
     <string name="MediaSendActivity_add_a_caption">Add a caption...</string>
     <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">An item was removed because it exceeded the size limit</string>
     <string name="MediaSendActivity_camera_unavailable">Camera unavailable.</string>
+    <string name="MediaSendActivity_message_to_s">Message to %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">You can\'t share more than %d item.</item>
+        <item quantity="other">You can\'t share more than %d items.</item>
+    </plurals>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">All media</string>
