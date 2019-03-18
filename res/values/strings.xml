@@ -381,6 +381,10 @@
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
 
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_group_avatar">@string/GroupCreateActivity_avatar_content_description</string>
+    <string name="CropImageActivity_profile_avatar">Avatar</string>
+
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
 

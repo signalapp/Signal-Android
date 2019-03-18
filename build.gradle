@@ -106,7 +106,7 @@ dependencies {
     compile 'com.pnikosis:materialish-progress:1.5'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'pl.tajchert:waitingdots:0.1.0'
-    compile 'com.soundcloud.android:android-crop:0.9.10@aar'
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'com.google.zxing:android-integration:3.1.0'
     compile 'com.squareup.dagger:dagger:1.2.2'
@@ -172,6 +172,7 @@ dependencyVerification {
         'com.android.support:preference-v7:75eabe936d1fc3b178450a554c4d433466036f2be6d6dccdf971eac9590fdbf5',
         'com.pnikosis:materialish-progress:d71d80e00717a096784482aee21001a9d299fec3833e4ebd87739ed36cf77c54',
         'pl.tajchert:waitingdots:2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c',
+        'com.theartofdev.edmodo:android-image-cropper:72a1b03c5642fe8489061c732e43b10558c850129b576970e4f77a5d4c25317a',
         'mobi.upod:time-duration-picker:db469ce0f48dd96b892eac424ed76870e54bf00fe0a28cdcddfbe5f2a226a0e1',
         'com.codewaves.stickyheadergrid:stickyheadergrid:5b4aa6a52a957cfd55f60f4220c11c0c371385a3cb9786cae03c260dcdef5794',
         'com.android.support:appcompat-v7:a3a8e5230359746ed91801579b5fbe4668e3b1c4e6a14c7d67c8f58cb0311752',
@@ -202,7 +203,6 @@ dependencyVerification {
         'com.github.bumptech.glide:glide:997de7ac95be6c944d3b8cbe13de11307736ea45451c1b09a6cec7c328ead59f',
         'com.makeramen:roundedimageview:1f5a1865796b308c6cdd114acc6e78408b110f0a62fc63553278fbeacd489cd1',
         'org.greenrobot:eventbus:180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c',
-        'com.soundcloud.android:android-crop:ffd4b973cf6e97f7d64118a0dc088df50e9066fd5634fe6911dd0c0c5d346177',
         'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
         'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
         'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',

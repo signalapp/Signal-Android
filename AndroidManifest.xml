@@ -403,7 +403,8 @@
               android:theme="@style/TextSecure.ScribbleTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+    <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+              android:theme="@style/TextSecure.DarkTheme"/>
 
     <activity android:name=".CreateProfileActivity"
               android:theme="@style/TextSecure.LightRegistrationTheme"

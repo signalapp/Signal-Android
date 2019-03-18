@@ -65,4 +65,6 @@
 
     <color name="logsubmit_confirmation_background">#44ff2d00</color>
 
+    <color name="avatar_background">@color/transparent_black_90</color>
+
 </resources>
