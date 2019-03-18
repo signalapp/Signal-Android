@@ -71,6 +71,7 @@ import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
+import org.thoughtcrime.securesms.components.reminder.UnsupportedAndroidVersionReminder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
@@ -201,6 +202,8 @@ public class ConversationListFragment extends Fragment
         final Context context = params[0];
         if (UnauthorizedReminder.isEligible(context)) {
           return Optional.of(new UnauthorizedReminder(context));
+        } else if (UnsupportedAndroidVersionReminder.isEligible()) {
+          return Optional.of(new UnsupportedAndroidVersionReminder(context));
         } else if (ExpiredBuildReminder.isEligible()) {
           return Optional.of(new ExpiredBuildReminder(context));
         } else if (ServiceOutageReminder.isEligible(context)) {
