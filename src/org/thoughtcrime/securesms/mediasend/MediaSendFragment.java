@@ -241,7 +241,6 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     super.onStop();
     fragmentPagerAdapter.saveAllState();
     viewModel.saveDrawState(fragmentPagerAdapter.getSavedState());
-    viewModel.onImageEditorEnded();
   }
 
   @Override

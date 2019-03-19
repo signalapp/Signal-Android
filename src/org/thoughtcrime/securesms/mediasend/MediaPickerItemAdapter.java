@@ -128,6 +128,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
         if (maxSelection > 1) {
           itemView.setOnLongClickListener(v -> {
             selected.add(media);
+            eventListener.onMediaSelectionStarted();
             eventListener.onMediaSelectionChanged(new ArrayList<>(selected));
             return true;
           });
@@ -137,6 +138,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
         selectOn.setVisibility(View.VISIBLE);
         selectOverlay.setVisibility(View.VISIBLE);
         selectOrder.setText(String.valueOf(selected.indexOf(media) + 1));
+        itemView.setOnLongClickListener(null);
         itemView.setOnClickListener(v -> {
           selected.remove(media);
           eventListener.onMediaSelectionChanged(new ArrayList<>(selected));
@@ -145,6 +147,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
         selectOff.setVisibility(View.VISIBLE);
         selectOn.setVisibility(View.GONE);
         selectOverlay.setVisibility(View.GONE);
+        itemView.setOnLongClickListener(null);
         itemView.setOnClickListener(v -> {
           if (selected.size() < maxSelection) {
             selected.add(media);
@@ -165,6 +168,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
 
   interface EventListener {
     void onMediaChosen(@NonNull Media media);
+    void onMediaSelectionStarted();
     void onMediaSelectionChanged(@NonNull List<Media> media);
     void onMediaSelectionOverflow(int maxSelection);
   }

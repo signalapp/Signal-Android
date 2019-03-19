@@ -65,12 +65,12 @@ class MediaSendViewModel extends ViewModel {
     this.cameraButtonVisibility = new MutableLiveData<>();
     this.error                  = new SingleLiveEvent<>();
     this.savedDrawState         = new HashMap<>();
-    this.countButtonVisibility  = CountButtonState.Visibility.CONDITIONAL;
+    this.countButtonVisibility  = CountButtonState.Visibility.FORCED_OFF;
     this.lastImageCapture       = Optional.absent();
     this.body                   = "";
 
     position.setValue(-1);
-    countButtonState.setValue(new CountButtonState(0, CountButtonState.Visibility.CONDITIONAL));
+    countButtonState.setValue(new CountButtonState(0, countButtonVisibility));
     cameraButtonVisibility.setValue(false);
   }
 
@@ -86,33 +86,54 @@ class MediaSendViewModel extends ViewModel {
 
   void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
     repository.getPopulatedMedia(context, newMedia, populatedMedia -> {
-      List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
+      Util.runOnMain(() -> {
 
-      if (filteredMedia.size() != newMedia.size()) {
-        error.postValue(Error.ITEM_TOO_LARGE);
-      } else if (filteredMedia.size() > maxSelection) {
-        filteredMedia = filteredMedia.subList(0, maxSelection);
-        error.postValue(Error.TOO_MANY_ITEMS);
-      }
+        List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
 
-      if (filteredMedia.size() > 0) {
-        String computedId = Stream.of(filteredMedia)
-                                  .skip(1)
-                                  .reduce(filteredMedia.get(0).getBucketId().or(Media.ALL_MEDIA_BUCKET_ID), (id, m) -> {
-                                    if (Util.equals(id, m.getBucketId().or(Media.ALL_MEDIA_BUCKET_ID))) {
-                                      return id;
-                                    } else {
-                                      return Media.ALL_MEDIA_BUCKET_ID;
-                                    }
-                                  });
-        bucketId.postValue(computedId);
-      } else {
-        bucketId.postValue(Media.ALL_MEDIA_BUCKET_ID);
-        countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
-      }
+        if (filteredMedia.size() != newMedia.size()) {
+          error.setValue(Error.ITEM_TOO_LARGE);
+        } else if (filteredMedia.size() > maxSelection) {
+          filteredMedia = filteredMedia.subList(0, maxSelection);
+          error.setValue(Error.TOO_MANY_ITEMS);
+        }
 
-      selectedMedia.postValue(filteredMedia);
-      countButtonState.postValue(new CountButtonState(filteredMedia.size(), countButtonVisibility));
+        if (filteredMedia.size() > 0) {
+          String computedId = Stream.of(filteredMedia)
+                                    .skip(1)
+                                    .reduce(filteredMedia.get(0).getBucketId().or(Media.ALL_MEDIA_BUCKET_ID), (id, m) -> {
+                                      if (Util.equals(id, m.getBucketId().or(Media.ALL_MEDIA_BUCKET_ID))) {
+                                        return id;
+                                      } else {
+                                        return Media.ALL_MEDIA_BUCKET_ID;
+                                      }
+                                    });
+          bucketId.setValue(computedId);
+        } else {
+          bucketId.setValue(Media.ALL_MEDIA_BUCKET_ID);
+          countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
+        }
+
+        selectedMedia.setValue(filteredMedia);
+        countButtonState.setValue(new CountButtonState(filteredMedia.size(), countButtonVisibility));
+      });
+    });
+  }
+
+  void onSingleMediaSelected(@NonNull Context context, @NonNull Media media) {
+    repository.getPopulatedMedia(context, Collections.singletonList(media), populatedMedia -> {
+      Util.runOnMain(() -> {
+        List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
+
+        if (filteredMedia.isEmpty()) {
+          error.setValue(Error.ITEM_TOO_LARGE);
+        }
+
+        countButtonVisibility = CountButtonState.Visibility.FORCED_OFF;
+
+        bucketId.setValue(filteredMedia.get(0).getBucketId().or(Media.ALL_MEDIA_BUCKET_ID));
+        selectedMedia.setValue(filteredMedia);
+        countButtonState.setValue(new CountButtonState(filteredMedia.size(), countButtonVisibility));
+      });
     });
   }
 
@@ -127,20 +148,21 @@ class MediaSendViewModel extends ViewModel {
     cameraButtonVisibility.setValue(false);
   }
 
-  void onImageEditorEnded() {
+  void onCameraStarted() {
     countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
     countButtonState.setValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
-  }
-
-  void onCameraStarted() {
     cameraButtonVisibility.setValue(false);
   }
 
   void onItemPickerStarted() {
+    countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
+    countButtonState.setValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
     cameraButtonVisibility.setValue(true);
   }
 
   void onFolderPickerStarted() {
+    countButtonVisibility = CountButtonState.Visibility.CONDITIONAL;
+    countButtonState.setValue(new CountButtonState(getSelectedMediaOrDefault().size(), countButtonVisibility));
     cameraButtonVisibility.setValue(true);
   }
 
@@ -175,7 +197,7 @@ class MediaSendViewModel extends ViewModel {
     }
 
     if (selected.size() >= maxSelection) {
-      error.postValue(Error.TOO_MANY_ITEMS);
+      error.setValue(Error.TOO_MANY_ITEMS);
       return;
     }
 

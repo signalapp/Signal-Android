@@ -120,10 +120,10 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
 
   @Override
   public void onPrepareOptionsMenu(Menu menu) {
+    requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
+
     if (viewModel.getCountButtonState().getValue() != null && viewModel.getCountButtonState().getValue().isVisible()) {
-      requireActivity().getMenuInflater().inflate(R.menu.mediapicker_multiselect, menu);
-    } else {
-      requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
+      menu.findItem(R.id.mediapicker_menu_add).setVisible(false);
     }
   }
 
@@ -146,8 +146,12 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
 
   @Override
   public void onMediaChosen(@NonNull Media media) {
-    viewModel.onSelectedMediaChanged(requireContext(), Collections.singletonList(media));
-    controller.onMediaSelected(bucketId);
+    controller.onMediaSelected(media);
+  }
+
+  @Override
+  public void onMediaSelectionStarted() {
+    viewModel.onMultiSelectStarted();
   }
 
   @Override
@@ -188,6 +192,6 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   }
 
   public interface Controller {
-    void onMediaSelected(@NonNull String bucketId);
+    void onMediaSelected(@NonNull Media media);
   }
 }

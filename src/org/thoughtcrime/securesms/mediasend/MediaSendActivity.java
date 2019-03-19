@@ -220,7 +220,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
-  public void onMediaSelected(@NonNull String bucketId) {
+  public void onMediaSelected(@NonNull Media media) {
+    viewModel.onSingleMediaSelected(this, media);
     navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
   }
 
@@ -339,7 +340,9 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
       if (buttonState.getCount() > 0) {
         countButton.setOnClickListener(v -> navigateToMediaSend(recipient, transport, locale));
-        animateButtonTextChange(countButton);
+        if (buttonState.isVisible()) {
+          animateButtonTextChange(countButton);
+        }
       } else {
         countButton.setOnClickListener(null);
       }

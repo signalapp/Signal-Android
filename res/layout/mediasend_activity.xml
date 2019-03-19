@@ -23,7 +23,8 @@
         android:orientation="horizontal"
         android:background="@drawable/media_count_button_background"
         android:elevation="4dp"
-        tools:parentTag="android.widget.LinearLayout">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <TextView
             android:id="@+id/mediasend_count_button_text"
