@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.util.StableIdGenerator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -27,7 +29,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
   private final GlideRequests            glideRequests;
   private final EventListener            eventListener;
   private final List<Media>              media;
-  private final Set<Media>               selected;
+  private final List<Media>              selected;
   private final int                      maxSelection;
   private final StableIdGenerator<Media> stableIdGenerator;
 
@@ -39,7 +41,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
     this.media             = new ArrayList<>();
     this.maxSelection      = maxSelection;
     this.stableIdGenerator = new StableIdGenerator<>();
-    this.selected          = new LinkedHashSet<>();
+    this.selected          = new LinkedList<>();
 
     setHasStableIds(true);
   }
@@ -81,7 +83,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
     notifyDataSetChanged();
   }
 
-  Set<Media> getSelected() {
+  List<Media> getSelected() {
     return selected;
   }
 
@@ -97,6 +99,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
     private final View      selectOn;
     private final View      selectOff;
     private final View      selectOverlay;
+    private final TextView  selectOrder;
 
     ItemViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -105,9 +108,10 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
       selectOn      = itemView.findViewById(R.id.mediapicker_select_on);
       selectOff     = itemView.findViewById(R.id.mediapicker_select_off);
       selectOverlay = itemView.findViewById(R.id.mediapicker_select_overlay);
+      selectOrder   = itemView.findViewById(R.id.mediapicker_select_order);
     }
 
-    void bind(@NonNull Media media, boolean multiSelect, Set<Media> selected, int maxSelection, @NonNull GlideRequests glideRequests, @NonNull EventListener eventListener) {
+    void bind(@NonNull Media media, boolean multiSelect, List<Media> selected, int maxSelection, @NonNull GlideRequests glideRequests, @NonNull EventListener eventListener) {
       glideRequests.load(media.getUri())
                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                    .transition(DrawableTransitionOptions.withCrossFade())
@@ -132,6 +136,7 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
         selectOff.setVisibility(View.VISIBLE);
         selectOn.setVisibility(View.VISIBLE);
         selectOverlay.setVisibility(View.VISIBLE);
+        selectOrder.setText(String.valueOf(selected.indexOf(media) + 1));
         itemView.setOnClickListener(v -> {
           selected.remove(media);
           eventListener.onMediaSelectionChanged(new ArrayList<>(selected));
@@ -154,6 +159,8 @@ public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItem
     void recycle() {
       itemView.setOnClickListener(null);
     }
+
+
   }
 
   interface EventListener {

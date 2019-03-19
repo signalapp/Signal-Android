@@ -49,15 +49,31 @@
         android:layout_height="match_parent"
         android:background="@color/transparent_black_90" />
 
-    <ImageView
+    <FrameLayout
         android:id="@+id/mediapicker_select_on"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right|end"
         android:padding="6dp"
-        android:src="@drawable/ic_select_on"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_select_on" />
+
+        <TextView
+            android:id="@+id/mediapicker_select_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/core_white"
+            android:textSize="14dp"
+            android:gravity="center"
+            tools:text="3"/>
+
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/mediapicker_select_off"
