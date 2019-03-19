@@ -10,10 +10,16 @@ import com.annimon.stream.Stream;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.HttpUrl;
 
 public final class LinkPreviewUtil {
+
+  private static final Pattern DOMAIN_PATTERN        = Pattern.compile("^(https?://)?([^/]+).*$");
+  private static final Pattern ALL_ASCII_PATTERN     = Pattern.compile("^[\\x00-\\x7F]*$");
+  private static final Pattern ALL_NON_ASCII_PATTERN = Pattern.compile("^[^\\x00-\\x7F]*$");
 
   /**
    * @return All whitelisted URLs in the source text.
@@ -57,10 +63,16 @@ public final class LinkPreviewUtil {
   }
 
   public static boolean isLegalUrl(@NonNull String url) {
-    if (LegalUrlPatterns.LATIN.matcher(url).find()) {
-      return !LegalUrlPatterns.CYRILLIC.matcher(url).find() &&
-             !LegalUrlPatterns.GREEK.matcher(url).find();
+    Matcher matcher = DOMAIN_PATTERN.matcher(url);
+
+    if (matcher.matches()) {
+      String domain        = matcher.group(2);
+      String cleanedDomain = domain.replaceAll("\\.", "");
+
+      return ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() ||
+             ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches();
+    } else {
+      return false;
     }
-    return true;
   }
 }
