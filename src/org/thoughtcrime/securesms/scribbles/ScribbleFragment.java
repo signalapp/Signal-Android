@@ -321,7 +321,7 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
             Uri    uri  = BlobProvider.getInstance()
                                       .forData(data)
                                       .withMimeType(MediaUtil.IMAGE_JPEG)
-                                      .createForSingleSessionOnDisk(requireContext());
+                                      .createForSingleSessionOnDisk(requireContext(), e -> Log.w(TAG, "Failed to persist image.", e));
 
             controller.onImageEditComplete(uri,
                                            result.getWidth(),

@@ -339,7 +339,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
                            .forData(inputStream, fileSize == null ? 0 : fileSize)
                            .withMimeType(mimeType)
                            .withFileName(fileName)
-                           .createForMultipleSessionsOnDisk(context);
+                           .createForMultipleSessionsOnDisk(context, e -> Log.w(TAG, "Failed to write to disk.", e));
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;

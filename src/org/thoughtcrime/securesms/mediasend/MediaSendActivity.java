@@ -297,7 +297,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         Uri uri = BlobProvider.getInstance()
                               .forData(data)
                               .withMimeType(MediaUtil.IMAGE_JPEG)
-                              .createForSingleSessionOnDisk(this);
+                              .createForSingleSessionOnDisk(this, e -> Log.w(TAG, "Failed to write to disk.", e));
         return new Media(uri,
                          MediaUtil.IMAGE_JPEG,
                          System.currentTimeMillis(),

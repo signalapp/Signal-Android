@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -24,6 +25,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.Executor;
 
 /**
  * Allows for the creation and retrieval of blobs.
@@ -172,13 +174,21 @@ public class BlobProvider {
   }
 
   @WorkerThread
-  private synchronized @NonNull Uri writeBlobSpecToDisk(@NonNull Context context, @NonNull BlobSpec blobSpec) throws IOException {
+  private synchronized @NonNull Uri writeBlobSpecToDisk(@NonNull Context context, @NonNull BlobSpec blobSpec, @Nullable ErrorListener errorListener) throws IOException {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
     String           directory        = getDirectory(blobSpec.getStorageType());
     File             outputFile       = new File(getOrCreateCacheDirectory(context, directory), buildFileName(blobSpec.id));
     OutputStream     outputStream     = ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).second;
 
-    Util.copy(blobSpec.getData(), outputStream);
+    SignalExecutors.IO.execute(() -> {
+      try {
+        Util.copy(blobSpec.getData(), outputStream);
+      } catch (IOException e) {
+        if (errorListener != null) {
+          errorListener.onError(e);
+        }
+      }
+    });
 
     return buildUri(blobSpec);
   }
@@ -249,8 +259,8 @@ public class BlobProvider {
      * period from one {@link Application#onCreate()} to the next.
      */
     @WorkerThread
-    public Uri createForSingleSessionOnDisk(@NonNull Context context) throws IOException {
-      return writeBlobSpecToDisk(context, new BlobSpec(data, id, StorageType.SINGLE_SESSION_DISK, mimeType, fileName, fileSize));
+    public Uri createForSingleSessionOnDisk(@NonNull Context context, @Nullable ErrorListener errorListener) throws IOException {
+      return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.SINGLE_SESSION_DISK), errorListener);
     }
 
     /**
@@ -258,8 +268,8 @@ public class BlobProvider {
      * eventually call {@link BlobProvider#delete(Context, Uri)} when the blob is no longer in use.
      */
     @WorkerThread
-    public Uri createForMultipleSessionsOnDisk(@NonNull Context context) throws IOException {
-      return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK));
+    public Uri createForMultipleSessionsOnDisk(@NonNull Context context, @Nullable ErrorListener errorListener) throws IOException {
+      return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK), errorListener);
     }
   }
 
@@ -300,6 +310,11 @@ public class BlobProvider {
     public Uri createForSingleSessionInMemory() {
       return writeBlobSpecToMemory(buildBlobSpec(StorageType.SINGLE_SESSION_MEMORY), data);
     }
+  }
+
+  public interface ErrorListener {
+    @WorkerThread
+    void onError(IOException e);
   }
 
   private static class BlobSpec {
