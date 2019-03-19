@@ -11,7 +11,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
@@ -337,6 +339,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
       if (buttonState.getCount() > 0) {
         countButton.setOnClickListener(v -> navigateToMediaSend(recipient, transport, locale));
+        animateButtonTextChange(countButton);
       } else {
         countButton.setOnClickListener(null);
       }
@@ -407,7 +410,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                             : Camera1Fragment.newInstance();
   }
 
-  private void animateButtonVisibility(View button, int oldVisibility, int newVisibility) {
+  private void animateButtonVisibility(@NonNull View button, int oldVisibility, int newVisibility) {
     if (oldVisibility == newVisibility) return;
 
     if (button.getAnimation() != null) {
@@ -433,5 +436,26 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
       button.startAnimation(animation);
     }
+  }
+
+  private void animateButtonTextChange(@NonNull View button) {
+    if (button.getAnimation() != null) {
+      button.getAnimation().cancel();
+    }
+
+    Animation grow = new ScaleAnimation(1f, 1.3f, 1f, 1.3f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    grow.setDuration(125);
+    grow.setInterpolator(new AccelerateInterpolator());
+    grow.setAnimationListener(new SimpleAnimationListener() {
+      @Override
+      public void onAnimationEnd(Animation animation) {
+        Animation shrink = new ScaleAnimation(1.3f, 1f, 1.3f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        shrink.setDuration(125);
+        shrink.setInterpolator(new DecelerateInterpolator());
+        button.startAnimation(shrink);
+      }
+    });
+
+    button.startAnimation(grow);
   }
 }
