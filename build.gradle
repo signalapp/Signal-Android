@@ -300,7 +300,7 @@ android {
         versionCode 470
         versionName "4.36.2"
 
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 26
         multiDexEnabled true
 
