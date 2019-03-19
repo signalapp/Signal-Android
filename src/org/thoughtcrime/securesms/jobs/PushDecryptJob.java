@@ -1156,7 +1156,7 @@ public class PushDecryptJob extends ContextJob {
       } else {
         return sender.isBlocked();
       }
-    } else if (content.getCallMessage().isPresent()) {
+    } else if (content.getCallMessage().isPresent() || content.getTypingMessage().isPresent()) {
       return sender.isBlocked();
     }
 
