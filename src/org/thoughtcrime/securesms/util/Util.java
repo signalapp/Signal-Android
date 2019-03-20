@@ -367,8 +367,7 @@ public class Util {
 
   @SuppressLint("NewApi")
   public static boolean isDefaultSmsProvider(Context context){
-    return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) ||
-      (context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context)));
+    return context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context));
   }
 
   public static int getCurrentApkReleaseVersion(Context context) {
@@ -395,12 +394,8 @@ public class Util {
   }
 
   public static int getDaysTillBuildExpiry() {
-    if (Build.VERSION.SDK_INT < 19) {
-      return Integer.MAX_VALUE;
-    } else {
-      int age = (int) TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP);
-      return 90 - age;
-    }
+    int age = (int) TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP);
+    return 90 - age;
   }
 
   @TargetApi(VERSION_CODES.LOLLIPOP)

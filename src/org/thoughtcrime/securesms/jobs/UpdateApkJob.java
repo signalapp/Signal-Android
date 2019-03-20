@@ -160,10 +160,7 @@ public class UpdateApkJob extends ContextJob {
     downloadRequest.setDescription("Downloading Signal " + versionName);
     downloadRequest.setVisibleInDownloadsUi(false);
     downloadRequest.setDestinationInExternalFilesDir(context, null, "signal-update.apk");
-
-    if (Build.VERSION.SDK_INT >= 11) {
-      downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
-    }
+    downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
 
     long downloadId = downloadManager.enqueue(downloadRequest);
     TextSecurePreferences.setUpdateApkDownloadId(context, downloadId);

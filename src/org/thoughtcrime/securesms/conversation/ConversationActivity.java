@@ -1570,12 +1570,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
     glideRequests    = GlideApp.with(this);
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-      LinearLayout conversationContainer = ViewUtil.findById(this, R.id.conversation_container);
-      conversationContainer.setClipChildren(true);
-      conversationContainer.setClipToPadding(true);
-    }
-
     recipient.addListener(this);
   }
 

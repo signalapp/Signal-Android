@@ -250,8 +250,12 @@ public class KeyCachingService extends Service {
     }
   }
 
-  @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-  private void foregroundServiceModern() {
+  private void foregroundService() {
+    if (TextSecurePreferences.isPasswordDisabled(this) && !TextSecurePreferences.isScreenLockEnabled(this)) {
+      stopForeground(true);
+      return;
+    }
+
     Log.i(TAG, "foregrounding KCS");
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
 
@@ -266,48 +270,6 @@ public class KeyCachingService extends Service {
 
     stopForeground(true);
     startForeground(SERVICE_RUNNING_ID, builder.build());
-  }
-
-  private void foregroundServiceICS() {
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
-    RemoteViews remoteViews            = new RemoteViews(getPackageName(), R.layout.key_caching_notification);
-
-    remoteViews.setOnClickPendingIntent(R.id.lock_cache_icon, buildLockIntent());
-
-    builder.setSmallIcon(R.drawable.icon_cached);
-    builder.setContent(remoteViews);
-    builder.setContentIntent(buildLaunchIntent());
-
-    stopForeground(true);
-    startForeground(SERVICE_RUNNING_ID, builder.build());
-  }
-
-  private void foregroundServiceLegacy() {
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
-    builder.setSmallIcon(R.drawable.icon_cached);
-    builder.setWhen(System.currentTimeMillis());
-
-    builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
-    builder.setContentText(getString(R.string.KeyCachingService_signal_passphrase_cached));
-    builder.setContentIntent(buildLaunchIntent());
-
-    stopForeground(true);
-    startForeground(SERVICE_RUNNING_ID, builder.build());
-  }
-
-  private void foregroundService() {
-    if (TextSecurePreferences.isPasswordDisabled(this) && !TextSecurePreferences.isScreenLockEnabled(this)) {
-      stopForeground(true);
-      return;
-    }
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      foregroundServiceModern();
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      foregroundServiceICS();
-    } else {
-      foregroundServiceLegacy();
-    }
   }
 
   private void broadcastNewSecret() {

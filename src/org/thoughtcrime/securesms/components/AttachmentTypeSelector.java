@@ -87,10 +87,6 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.closeButton.setOnClickListener(new CloseClickListener());
     this.recentRail.setListener(new RecentPhotoSelectedListener());
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-      ViewUtil.findById(layout, R.id.location_linear_layout).setVisibility(View.INVISIBLE);
-    }
-
     setContentView(layout);
     setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
     setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);

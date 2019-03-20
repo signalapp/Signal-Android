@@ -530,11 +530,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isSmsEnabled(Context context) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      return Util.isDefaultSmsProvider(context);
-    } else {
-      return isInterceptAllSmsEnabled(context);
-    }
+    return Util.isDefaultSmsProvider(context);
   }
 
   public static int getLocalRegistrationId(Context context) {

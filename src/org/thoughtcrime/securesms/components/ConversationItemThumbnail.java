@@ -73,15 +73,9 @@ public class ConversationItemThumbnail extends FrameLayout {
   @SuppressWarnings("SuspiciousNameCombination")
   @Override
   protected void dispatchDraw(Canvas canvas) {
-    if (cornerMask.isLegacy()) {
-      cornerMask.mask(canvas);
-    }
-
     super.dispatchDraw(canvas);
 
-    if (!cornerMask.isLegacy()) {
-      cornerMask.mask(canvas);
-    }
+    cornerMask.mask(canvas);
 
     if (album.getVisibility() != VISIBLE) {
       outliner.draw(canvas);

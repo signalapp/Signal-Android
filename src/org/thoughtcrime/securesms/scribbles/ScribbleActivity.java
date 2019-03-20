@@ -38,10 +38,8 @@ public class ScribbleActivity extends PassphraseRequiredActionBarActivity implem
       getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
     }
 
-    if (Build.VERSION.SDK_INT >= 19) {
-      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
-                                                       View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-    }
+    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
+                                                     View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
   }
 
   @Override

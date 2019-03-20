@@ -117,7 +117,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_PREF).setVisible(false);
 
       KeyguardManager keyguardManager = (KeyguardManager)getContext().getSystemService(Context.KEYGUARD_SERVICE);
-      if (Build.VERSION.SDK_INT < 16 || !keyguardManager.isKeyguardSecure()) {
+      if (!keyguardManager.isKeyguardSecure()) {
         ((SwitchPreferenceCompat)findPreference(TextSecurePreferences.SCREEN_LOCK)).setChecked(false);
         findPreference(TextSecurePreferences.SCREEN_LOCK).setEnabled(false);
       }

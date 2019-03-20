@@ -52,9 +52,7 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
   }
 
   private void initializeScreenshotSecurity() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
-            TextSecurePreferences.isScreenSecurityEnabled(this))
-    {
+    if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
       getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     } else {
       getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);

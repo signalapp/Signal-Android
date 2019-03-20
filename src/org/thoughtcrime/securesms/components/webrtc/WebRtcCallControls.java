@@ -186,7 +186,7 @@ public class WebRtcCallControls extends LinearLayout {
   }
 
   public void displayVideoTooltip(ViewGroup viewGroup) {
-    if (Build.VERSION.SDK_INT > 15 && videoMuteButton.getVisibility() == VISIBLE) {
+    if (videoMuteButton.getVisibility() == VISIBLE) {
       final ToolTipsManager toolTipsManager = new ToolTipsManager();
 
       ToolTip toolTip = new ToolTip.Builder(getContext(), videoMuteButton, viewGroup,

@@ -89,17 +89,8 @@ public class SmsListener extends BroadcastReceiver {
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
-        SMS_RECEIVED_ACTION.equals(intent.getAction()) &&
-        Util.isDefaultSmsProvider(context))
-    {
+    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && Util.isDefaultSmsProvider(context)) {
       return false;
-    }
-
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
-        TextSecurePreferences.isInterceptAllSmsEnabled(context))
-    {
-      return true;
     }
 
     return false;

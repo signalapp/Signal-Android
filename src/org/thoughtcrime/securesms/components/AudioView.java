@@ -218,10 +218,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
 
     this.timestamp.setTextColor(foregroundTint);
     this.seekBar.getProgressDrawable().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      this.seekBar.getThumb().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
-    }
+    this.seekBar.getThumb().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
   }
 
   private double getProgress() {

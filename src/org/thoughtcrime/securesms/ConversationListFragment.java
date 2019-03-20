@@ -71,18 +71,15 @@ import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
-import org.thoughtcrime.securesms.components.reminder.UnsupportedAndroidVersionReminder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
@@ -202,8 +199,6 @@ public class ConversationListFragment extends Fragment
         final Context context = params[0];
         if (UnauthorizedReminder.isEligible(context)) {
           return Optional.of(new UnauthorizedReminder(context));
-        } else if (UnsupportedAndroidVersionReminder.isEligible()) {
-          return Optional.of(new UnsupportedAndroidVersionReminder(context));
         } else if (ExpiredBuildReminder.isEligible()) {
           return Optional.of(new ExpiredBuildReminder(context));
         } else if (ServiceOutageReminder.isEligible(context)) {

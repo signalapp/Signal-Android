@@ -220,7 +220,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   private boolean hasBigPictureSlide(@Nullable SlideDeck slideDeck) {
-    if (slideDeck == null || Build.VERSION.SDK_INT < 16) {
+    if (slideDeck == null) {
       return false;
     }
 
