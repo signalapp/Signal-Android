@@ -10,7 +10,7 @@
     </item>
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/core_grey_05" />
+            <solid android:color="@color/core_white" />
         </shape>
     </item>
 </ripple>

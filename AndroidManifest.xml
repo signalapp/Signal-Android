@@ -281,7 +281,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <activity android:name=".mediasend.MediaSendActivity"
-                  android:theme="@style/TextSecure.LightNoActionBar"
+                  android:theme="@style/TextSecure.DarkNoActionBar"
                   android:windowSoftInputMode="stateHidden"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
