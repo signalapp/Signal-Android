@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -30,6 +31,8 @@ import java.util.Map;
  * Manages the observable datasets available in {@link MediaSendActivity}.
  */
 class MediaSendViewModel extends ViewModel {
+
+  private static final String TAG = MediaSendViewModel.class.getSimpleName();
 
   private static final int MAX_PUSH = 32;
   private static final int MAX_SMS  = 1;
@@ -176,10 +179,20 @@ class MediaSendViewModel extends ViewModel {
   }
 
   void onPageChanged(int position) {
+    if (position < 0 || position >= getSelectedMediaOrDefault().size()) {
+      Log.w(TAG, "Tried to move to an out-of-bounds item. Size: " + getSelectedMediaOrDefault().size() + ", position: " + position);
+      return;
+    }
+
     this.position.setValue(position);
   }
 
   void onMediaItemRemoved(@NonNull Context context, int position) {
+    if (position < 0 || position >= getSelectedMediaOrDefault().size()) {
+      Log.w(TAG, "Tried to remove an out-of-bounds item. Size: " + getSelectedMediaOrDefault().size() + ", position: " + position);
+      return;
+    }
+
     Media removed = getSelectedMediaOrDefault().remove(position);
 
     if (removed != null && BlobProvider.isAuthority(removed.getUri())) {
