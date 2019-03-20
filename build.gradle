@@ -321,7 +321,7 @@ android {
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
 
         ndk {
-            abiFilters "armeabi", "armeabi-v7a", "x86"
+            abiFilters 'armeabi-v7a', 'x86'
         }
 
         resConfigs autoResConfig()
