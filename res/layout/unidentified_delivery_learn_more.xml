@@ -10,7 +10,6 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_unidentified_delivery"
         android:tint="?conversation_item_sent_text_secondary_color"/>

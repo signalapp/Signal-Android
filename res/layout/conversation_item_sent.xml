@@ -18,7 +18,6 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/conversation_individual_right_gutter"
         android:layout_marginEnd="@dimen/conversation_individual_right_gutter"
         android:clipToPadding="false"
         android:clipChildren="false">
@@ -28,10 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_toLeftOf="@+id/indicators_parent"
             android:layout_toStartOf="@+id/indicators_parent"
             android:layout_alignWithParentIfMissing="true"
-            android:layout_marginLeft="@dimen/message_bubble_edge_margin"
             android:layout_marginStart="@dimen/message_bubble_edge_margin"
             android:clipToPadding="false"
             android:clipChildren="false"
@@ -43,8 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/message_bubble_top_padding"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
                 android:visibility="gone"
                 app:message_type="outgoing"
                 app:quote_colorPrimary="?attr/conversation_item_quote_text_color"
@@ -78,8 +75,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/message_bubble_top_padding"
                 android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
-                android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
-                android:layout_marginRight="@dimen/message_bubble_horizontal_padding" />
+                android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginEnd="@dimen/message_bubble_horizontal_padding" />
 
             <ViewStub
                 android:id="@+id/document_view_stub"
@@ -88,16 +85,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/message_bubble_top_padding"
                 android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
-                android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
-                android:layout_marginRight="@dimen/message_bubble_horizontal_padding" />
+                android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginEnd="@dimen/message_bubble_horizontal_padding" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/conversation_item_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/message_bubble_top_padding"
-                android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
-                android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
                 style="@style/Signal.Text.Body"
                 android:textColor="?conversation_item_sent_text_primary_color"
@@ -130,8 +127,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dp"
-                android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
-                android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
                 android:clipChildren="false"
                 android:clipToPadding="false"
@@ -146,9 +143,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="4dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true" />
 

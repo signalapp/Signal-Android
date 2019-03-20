@@ -10,8 +10,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="6dp"
-    android:paddingLeft="28dp"
-    android:paddingRight="28dp"
+    android:paddingStart="28dp"
+    android:paddingEnd="28dp"
     android:paddingTop="8dp">
 
     <LinearLayout
@@ -27,7 +27,6 @@
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="6dp"
-            android:layout_marginRight="6dp"
             android:src="@drawable/ic_timer" />
 
         <TextView

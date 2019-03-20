@@ -38,7 +38,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="-4dp"
                         android:layout_marginStart="-4dp"
                         android:gravity="center"
                         android:visibility="visible"
@@ -83,7 +82,6 @@
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="2dp"
                           android:layout_marginStart="2dp"
                           android:orientation="vertical"
                           android:focusable="false"

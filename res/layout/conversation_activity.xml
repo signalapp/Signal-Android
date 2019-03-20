@@ -91,7 +91,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="?android:windowBackground"
-            android:paddingLeft="5dip"
+            android:paddingStart="5dip"
             android:text="160/160 (1)"
             android:visibility="gone" />
 

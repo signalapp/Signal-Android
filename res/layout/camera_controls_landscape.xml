@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:layout_marginRight="16dp"
     android:layout_marginEnd="16dp"
-    android:layout_gravity="right|end">
+    android:layout_gravity="end">
 
     <Button
         android:id="@+id/camera_capture_button"

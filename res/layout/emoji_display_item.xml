@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingTop="6dp"
-        android:paddingRight="6dp"
-        android:paddingLeft="6dp"
+        android:paddingEnd="6dp"
+        android:paddingStart="6dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter" />
 
@@ -23,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="6dp"
-        android:paddingRight="6dp"
-        android:paddingLeft="6dp"
+        android:paddingEnd="6dp"
+        android:paddingStart="6dp"
         android:visibility="gone"/>
 
     <ImageView

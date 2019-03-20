@@ -7,8 +7,8 @@
     android:orientation="vertical"
     android:paddingTop="12dp"
     android:paddingBottom="13dp"
-    android:paddingLeft="28dp"
-    android:paddingRight="28dp">
+    android:paddingStart="28dp"
+    android:paddingEnd="28dp">
 
     <TextView
         android:id="@+id/text"

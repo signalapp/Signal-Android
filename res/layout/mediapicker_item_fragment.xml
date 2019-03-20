@@ -18,7 +18,7 @@
         android:id="@+id/mediapicker_item_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="2dp" />
 
 </LinearLayout>

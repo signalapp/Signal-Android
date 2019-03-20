@@ -28,8 +28,8 @@
               android:textSize="20sp"
               android:visibility="gone"
               android:text="@string/device_list_fragment__no_devices_linked"
-              android:paddingLeft="16dip"
-              android:paddingRight="16dip"
+              android:paddingStart="16dip"
+              android:paddingEnd="16dip"
               android:layout_weight="1"
               tools:visibility="visible"/>
 
@@ -38,8 +38,8 @@
               android:layout_height="match_parent"
               android:layout_weight="1"
               android:drawSelectorOnTop="false"
-              android:paddingLeft="16dip"
-              android:paddingRight="16dip"
+              android:paddingStart="16dip"
+              android:paddingEnd="16dip"
               tools:visibility="gone"/>
 
     <com.melnykov.fab.FloatingActionButton

@@ -12,8 +12,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
@@ -21,8 +21,7 @@
                 android:id="@+id/contact_avatar"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"/>
+                android:layout_marginEnd="8dp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -60,8 +59,8 @@
             android:id="@+id/contact_footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginRight="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="4dp"
             android:elevation="9dp"
             android:orientation="horizontal" />

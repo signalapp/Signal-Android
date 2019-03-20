@@ -8,7 +8,7 @@
     <EditText android:id="@+id/country_search"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:drawableLeft="@drawable/ic_menu_search_holo_light"
+              android:drawableStart="@drawable/ic_menu_search_holo_light"
               android:hint="@string/country_selection_fragment__search" />
 
     <ListView android:id="@android:id/list"

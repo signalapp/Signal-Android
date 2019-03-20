@@ -9,17 +9,15 @@
         android:nextFocusRight="@+id/fab"
         android:nextFocusLeft="@+id/container"
         android:layout_height="72dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
     <FrameLayout
         android:id="@+id/avatar_container"
         android:layout_width="54dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="6dp"
         android:layout_marginEnd="6dp">
 
         <org.thoughtcrime.securesms.components.AvatarImageView
@@ -34,7 +32,7 @@
             android:id="@+id/unread_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|end|top"
+            android:layout_gravity="end|top"
             style="@style/Signal.Text.Caption"
             android:fontFamily="sans-serif-medium"
             android:minWidth="@dimen/unread_count_bubble_diameter"
@@ -48,10 +46,8 @@
 
     <RelativeLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="4dp"
                   android:layout_marginStart="4dp"
                   android:layout_centerVertical="true"
-                  android:layout_toRightOf="@id/avatar_container"
                   android:layout_toEndOf="@id/avatar_container"
                   android:weightSum="1"
                   android:orientation="horizontal">
@@ -61,9 +57,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_alignParentTop="true"
-                  android:layout_alignParentLeft="true"
                   android:layout_alignParentStart="true"
-                  android:layout_toLeftOf="@+id/thumbnail"
                   android:layout_toStartOf="@+id/thumbnail"
                   style="@style/Signal.Text.Body"
                   android:fontFamily="sans-serif-medium"
@@ -79,9 +73,7 @@
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:paddingTop="2dp"
-                android:layout_marginRight="2dp"
                 android:layout_marginEnd="2dp"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/from"
                 app:useSmallIcon="true"
@@ -92,11 +84,9 @@
             android:id="@+id/subject_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="1dp"
+            android:paddingEnd="1dp"
             android:layout_below="@id/from"
-            android:layout_toRightOf="@id/indicators_parent"
             android:layout_toEndOf="@id/indicators_parent"
-            android:layout_toLeftOf="@+id/status"
             android:layout_toStartOf="@+id/status">
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -124,9 +114,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_toLeftOf="@+id/date"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_toStartOf="@+id/date"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="5dp"
@@ -136,14 +125,11 @@
                 tools:visibility="visible" />
 
         <TextView android:id="@id/date"
-                  android:layout_marginLeft="3dp"
                   android:layout_marginStart="3dp"
                   android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
-                  android:layout_alignParentRight="true"
                   android:layout_alignParentEnd="true"
                   android:layout_alignBaseline="@+id/from"
-                  android:layout_above="@id/subject"
                   style="@style/Signal.Text.Caption"
                   android:textColor="?attr/conversation_list_item_date_color"
                   android:textAllCaps="true"
@@ -154,13 +140,10 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_below="@id/date"
-                  android:layout_alignParentRight="true"
                   android:layout_alignParentEnd="true"
-                  android:layout_alignBaseline="@id/subject"
-                  android:layout_marginLeft="5dp"
                   android:layout_marginStart="5dp"
-                  android:paddingLeft="6dp"
-                  android:paddingRight="6dp"
+                  android:paddingStart="6dp"
+                  android:paddingEnd="6dp"
                   android:paddingTop="2dp"
                   android:paddingBottom="2dp"
                   style="@style/Signal.Text.Caption"
@@ -175,7 +158,6 @@
                      android:layout_height="wrap_content"
                      android:layout_marginTop="4dp"
                      android:layout_below="@id/date"
-                     android:layout_toLeftOf="@id/archived"
                      android:layout_toStartOf="@id/archived"
                      android:layout_alignWithParentIfMissing="true">
 

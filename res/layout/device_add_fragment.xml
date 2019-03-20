@@ -28,8 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:background="?android:windowBackground"
             android:gravity="center">
 
