@@ -129,11 +129,13 @@ class MediaSendViewModel extends ViewModel {
 
         if (filteredMedia.isEmpty()) {
           error.setValue(Error.ITEM_TOO_LARGE);
+          bucketId.setValue(Media.ALL_MEDIA_BUCKET_ID);
+        } else {
+          bucketId.setValue(filteredMedia.get(0).getBucketId().or(Media.ALL_MEDIA_BUCKET_ID));
         }
 
         countButtonVisibility = CountButtonState.Visibility.FORCED_OFF;
 
-        bucketId.setValue(filteredMedia.get(0).getBucketId().or(Media.ALL_MEDIA_BUCKET_ID));
         selectedMedia.setValue(filteredMedia);
         countButtonState.setValue(new CountButtonState(filteredMedia.size(), countButtonVisibility));
       });
