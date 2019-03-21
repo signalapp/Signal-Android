@@ -484,10 +484,6 @@ task signProductionWebsiteRelease {
 }
 
 tasks.whenTaskAdded { task ->
-    if (task.name.equals("lint")) {
-        task.enabled = false
-    }
-
     if (task.name.equals("assemblePlayRelease")) {
         task.finalizedBy signProductionPlayRelease
     }
@@ -520,4 +516,10 @@ static def autoResConfig() {
          .findAll { matcher -> matcher.find() }
          .collect { matcher -> matcher.group(1) }
          .sort()
+}
+
+task qa {
+  group 'Verification'
+  description 'Quality Assurance. Run before pushing.'
+  dependsOn ':testPlayReleaseUnitTest', ':assemblePlayDebug'
 }
