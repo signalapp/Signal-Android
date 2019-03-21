@@ -411,7 +411,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     if (oldVisibility == newVisibility) return;
 
     if (button.getAnimation() != null) {
-      button.getAnimation().cancel();
+      button.clearAnimation();
       button.setVisibility(newVisibility);
     } else if (newVisibility == View.VISIBLE) {
       button.setVisibility(View.VISIBLE);
@@ -427,6 +427,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       animation.setAnimationListener(new SimpleAnimationListener() {
         @Override
         public void onAnimationEnd(Animation animation) {
+          button.clearAnimation();
           button.setVisibility(View.GONE);
         }
       });
@@ -437,7 +438,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   private void animateButtonTextChange(@NonNull View button) {
     if (button.getAnimation() != null) {
-      button.getAnimation().cancel();
+      button.clearAnimation();
     }
 
     Animation grow = new ScaleAnimation(1f, 1.3f, 1f, 1.3f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
