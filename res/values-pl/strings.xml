@@ -71,14 +71,13 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Zablokowane kontakty</string>
   <!--BucketedThreadMedia-->
-  <string name="BucketedThreadMedia_Today">Dziś</string>
+  <string name="BucketedThreadMedia_Today">Dzisiaj</string>
   <string name="BucketedThreadMedia_Yesterday">Wczoraj</string>
   <string name="BucketedThreadMedia_This_week">W tym tygodniu</string>
   <string name="BucketedThreadMedia_This_month">W tym miesiącu</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Aparat niedostępny.</string>
   <string name="CameraActivity_image_save_failure">Błąd przy zapisie obrazu.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Usuń</string>
@@ -120,6 +119,9 @@
   <string name="ConversationItem_copied_text">Skopiowano %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">do %s</string>
+  <string name="ConversationItem_read_more">  Czytaj dalej</string>
+  <string name="ConversationItem_download_more">  Pobierz więcej</string>
+  <string name="ConversationItem_pending">  Oczekiwanie</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To może pomóc jeśli masz problemy z szyfrowaniem w tej konwersacji. Twoje wiadomości będą zachowane.</string>
@@ -262,7 +264,8 @@
   <string name="CreateProfileActivity_profile_photo">Zdjęcie profilowe</string>
   <string name="CreateProfileActivity_too_long">Zbyt długie</string>
   <string name="CreateProfileActivity_profile_name">Nazwa profilu</string>
-  <string name="CreateProfileActivity_set_up_your_profile">Skonfiguruj swój profil</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Ustaw swój profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profile Signal są szyfrowane end-to-end, a Signal nie ma dostępu do tych informacji.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Używa własnych: %s</string>
   <string name="CustomDefaultPreference_using_default">Używa domyślnych: %s</string>
@@ -270,7 +273,7 @@
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
-  <string name="DateUtils_today">Dziś</string>
+  <string name="DateUtils_today">Dzisiaj</string>
   <string name="DateUtils_yesterday">Wczoraj</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Wysyłanie</string>
@@ -289,7 +292,7 @@
   <string name="DeviceListItem_unnamed_device">Nieznane urządzenie</string>
   <string name="DeviceListItem_linked_s">Zarejestrowano %s</string>
   <string name="DeviceListItem_last_active_s">Ostatnio aktywny %s</string>
-  <string name="DeviceListItem_today">Dziś</string>
+  <string name="DeviceListItem_today">Dzisiaj</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Nieznany plik</string>
   <!--DozeReminder-->
@@ -353,6 +356,9 @@
   <string name="GroupShareProfileView_make_visible">Ustaw widocznym</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Avatar grupy</string>
+  <string name="CropImageActivity_profile_avatar">Awatar</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Dotknij i przytrzymaj, aby nagrać wiadomość głosową. Puść, aby wysłać.</string>
   <!--InviteActivity-->
@@ -384,6 +390,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Nie udało się wysłać</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nowy numer bezpieczeństwa</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Nie można znaleźć wiadomości</string>
+  <string name="LongMessageActivity_message_from_s">Wiadomość od %1$s</string>
+  <string name="LongMessageActivity_your_message">Twoja wiadomość</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Połączenie w tle jest włączone</string>
@@ -424,15 +433,17 @@
   <string name="MediaPickerActivity_send_to">Wyślij do %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Dotknij, aby zaznaczyć</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">Nie można udostępnić więcej niż %d element multimediów.</item>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Dodaj podpis...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Pozycja została usunięta, ponieważ przekroczyła limit wielkości</string>
+  <string name="MediaSendActivity_camera_unavailable">Aparat niedostępny.</string>
+  <string name="MediaSendActivity_message_to_s">Wiadomość do %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Nie można udostępnić więcej niż %d plik multimediów.</item>
     <item quantity="few">Nie można udostępnić więcej niż %d multimediów.</item>
     <item quantity="many">Nie można udostępnić więcej niż %d multimediów.</item>
     <item quantity="other">Nie można udostępnić więcej niż %d multimediów.</item>
   </plurals>
-  <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Dodaj podpis...</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Pozycja została usunięta, ponieważ przekroczyła limit wielkości</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Wszystkie multimedia</string>
   <!--MessageRecord-->
@@ -464,7 +475,7 @@
   <string name="DeviceProvisioningActivity_link_this_device">Połączyć z tym urządzeniem?</string>
   <string name="DeviceProvisioningActivity_cancel">ANULUJ</string>
   <string name="DeviceProvisioningActivity_continue">KONTYNUUJ</string>
-  <string name="DeviceProvisioningActivity_content_intro">Będę w stanie</string>
+  <string name="DeviceProvisioningActivity_content_intro">Będzie w stanie:</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 • Czytać wszystkie Twoje wiadomości
 \n• Wysyłać wiadomości w Twoim imieniu</string>
@@ -491,8 +502,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nieprawidłowe hasło!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Wersja Google Play Services którą masz zainstalowaną nie funkcjonuje poprawnie. Proszę przeinstaluj tę aplikację ponownie i spróbuj ponownie.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Pobieranie wiadomości...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceń tę aplikację</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeśli lubisz używać tę aplikację, to prosimy, pomóż nam i oceń ją.</string>
@@ -560,7 +569,10 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Nie udało się zweryfikować CAPTCHA</string>
   <string name="RegistrationActivity_next">Dalej</string>
   <string name="RegistrationActivity_continue">Kontynuuj</string>
-  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby rozpocząć, wprowadź swój numer telefonu.</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Weź prywatność w swoje ręce.\nBądź sobą w każdej wiadomości.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby rozpocząć, wprowadź swój numer telefonu</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Wprowadź kod, który wysłaliśmy na %s</string>
   <string name="RegistrationActivity_call">Zadzwoń</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
@@ -569,8 +581,6 @@
   <string name="SearchFragment_header_conversations">Rozmowy</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Wiadomości</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Wysyłanie wiadomości...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj do kontaktów</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Zaproś do używania Signal</string>
@@ -1229,6 +1239,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="reminder_header_share_title">Zaproś swoich znajomych!</string>
   <string name="reminder_header_share_text">Im więcej twoich znajomych używa Signal, tym bardziej staje się on użyteczny.</string>
   <string name="reminder_header_service_outage_text">Signal ma problemy techniczne. Dokładamy wszelkich starań, aby przywrócić usługę tak szybko, jak to możliwe.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Najnowsze funkcje Signal nie będą działać na tej wersji Androida. Zaktualizuj urządzenie, aby otrzymywać przyszłe aktualizacje Signal.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
   <string name="media_preview__forward_title">Przekaż dalej</string>
@@ -1291,6 +1302,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="LocalBackupJob_creating_backup">Tworzenie kopii zapasowej...</string>
   <string name="ProgressPreference_d_messages_so_far">%d wiadomości</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Wprowadź kod weryfikacyjny przesłany na %s.</string>
+  <string name="RegistrationActivity_wrong_number">Błędny numer</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Zadzwoń \n (Dostępne za %02d:%02d)</string>
   <string name="BackupUtil_never">Nigdy</string>
   <string name="BackupUtil_unknown">Nieznane</string>
   <string name="preferences_app_protection__screen_lock">Blokada ekranu</string>

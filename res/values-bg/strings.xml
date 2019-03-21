@@ -71,7 +71,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Не е открита камера.</string>
   <string name="CameraActivity_image_save_failure">Неуспешно запазване на изображението.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Премахни</string>
@@ -317,6 +316,9 @@
   <string name="GroupShareProfileView_make_visible">Направи видими</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Аз</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Аватар за групата</string>
+  <string name="CropImageActivity_profile_avatar">Снимка</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Натиснете и задръжте, за да запишете гласово съобщение, отпуснете, за да го изпратите</string>
   <!--InviteActivity-->
@@ -379,6 +381,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_camera_unavailable">Не е открита камера.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Всички прикачените файлове</string>
   <!--MessageRecord-->
@@ -438,8 +441,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Грешна парола!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Версията на Google Play Services, която сте инсталирали не функционира правилно. Моля, преинсталирайте Google Play Services и опитайте пак.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Изтегляне на съобщение...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцени тази програма</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ако харесваш тази програма, отдели една секунда и ни помогни като ѝ дадеш оценка.</string>
@@ -512,8 +513,6 @@
   <string name="SearchFragment_header_conversations">Чатове</string>
   <string name="SearchFragment_header_contacts">Контакти</string>
   <string name="SearchFragment_header_messages">Съобщения</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Изпращане на съобщение...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавяне към контакти</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Покани в Signal</string>

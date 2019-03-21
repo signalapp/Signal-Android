@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Sissetulev kõne</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Kaamera pole saadaval.</string>
   <string name="CameraActivity_image_save_failure">Pildi salvestamine ebaõnnestus.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eemalda</string>
@@ -114,6 +113,9 @@
   <string name="ConversationItem_copied_text">%s kopeeritud</string>
   <string name="ConversationItem_from_s">%s kaudu</string>
   <string name="ConversationItem_to_s">SIMile %s</string>
+  <string name="ConversationItem_read_more">  Loe rohkem</string>
+  <string name="ConversationItem_download_more">  Laadi rohkem alla</string>
+  <string name="ConversationItem_pending">  Ootel</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string>
@@ -158,6 +160,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ei saa SMS/MMS sõnumeid saata, kuna see pole sinu vaikimisi SMS-i rakendus. Kas soovid seda muuta oma Androidi seadetes?</string>
   <string name="ConversationActivity_yes">Jah</string>
   <string name="ConversationActivity_no">Ei</string>
+  <string name="ConversationActivity_search_position">%1$d / %2$d</string>
+  <string name="ConversationActivity_no_results">Tulemusi pole</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lugemata sõnum</item>
@@ -232,6 +236,8 @@
   <string name="CreateProfileActivity_profile_photo">Profiilipilt</string>
   <string name="CreateProfileActivity_too_long">Liiga pikk</string>
   <string name="CreateProfileActivity_profile_name">Profiili nimi</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Seadista oma profiil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signali profiilid on otspunktkrüpteeritud ning Signali teenusel ei ole kunagi sellele teabele juurdepääsu.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kasutan kohandatud: %s</string>
   <string name="CustomDefaultPreference_using_default">Kasutan vaikimisi: %s</string>
@@ -322,6 +328,9 @@
   <string name="GroupShareProfileView_make_visible">Tee nähtavaks</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Mina</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Grupi avatar</string>
+  <string name="CropImageActivity_profile_avatar">Pilt</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Koputa ja hoia all, et salvestada helisõnum, vabasta saatmiseks</string>
   <!--InviteActivity-->
@@ -349,6 +358,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Saatmine ebaõnnestus</string>
   <string name="MessageDetailsRecipient_new_safety_number">Uus turvanumber</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Sõnumit ei leitud</string>
+  <string name="LongMessageActivity_message_from_s">Sõnum kasutajalt %1$s</string>
+  <string name="LongMessageActivity_your_message">Sinu sõnum</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Taustaühendus lubatud</string>
@@ -385,12 +397,15 @@
   <string name="MediaPickerActivity_send_to">Saada kohta %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Koputa valimiseks</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Lisa pealkiri...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Üksus eemaldati, sest see ületas suuruspiirangut.</string>
+  <string name="MediaSendActivity_camera_unavailable">Kaamera pole saadaval.</string>
+  <string name="MediaSendActivity_message_to_s">Sõnum kasutajale %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Sa ei saa jagada rohkem kui %d üksust.</item>
     <item quantity="other">Sa ei saa jagada rohkem kui %d üksust.</item>
   </plurals>
-  <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Lisa pealkiri...</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kogu meedia</string>
   <!--MessageRecord-->
@@ -450,8 +465,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Sobimatu salaväljend!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services versioon, mis sul on installitud, ei toimi korrektselt. Palun taasinstalli Google Play Services ja proovi uuesti.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Sõnumi vastuvõtmine...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Hinda seda rakendust</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kui sa naudid selle rakenduse kasutamist, palun võta aega ja hinda seda, et meid aidata.</string>
@@ -517,8 +530,14 @@
     <item quantity="one">Sa oled silumislogi saatmisest %d sammu kaugusel.</item>
     <item quantity="other">Sa oled silumislogi saatmisest %d sammu kaugusel.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Me peame kinnitama, et oled inimene.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA kinnitamine ebaõnnestus</string>
   <string name="RegistrationActivity_next">Edasi</string>
   <string name="RegistrationActivity_continue">Jätka</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Võta privaatsus endaga kaasa.\nJää iga sõnumiga iseendaks.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Sisesta alustamiseks oma telefoninumber</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Sa saad kinnituskoodi. Rakenduda võivad operaatoritasud.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sisesta kood, mulle saatsime numbrile %s</string>
   <string name="RegistrationActivity_call">Helista</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
@@ -527,8 +546,6 @@
   <string name="SearchFragment_header_conversations">Vestlused</string>
   <string name="SearchFragment_header_contacts">Kontaktid</string>
   <string name="SearchFragment_header_messages">Sõnumid</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Sõnumi saatmine...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Lisa kontaktidesse</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Kutsu Signalisse</string>
@@ -1170,6 +1187,7 @@
   <string name="reminder_header_share_title">Kutsu oma sõpru!</string>
   <string name="reminder_header_share_text">Mida rohkem sõpru kasutavad Signalit, seda paremaks see muutub.</string>
   <string name="reminder_header_service_outage_text">Signalil on hetkel tehnilised probleemid. Töötame selle kallal, et taastada teenus nii kiiresti kui võimalik.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Viimatised Signali funktsioonid ei tööta selles Androidi versioonis. Palun uuenda oma seadet, et saada tulevikus Signali uuendusi.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvesta</string>
   <string name="media_preview__forward_title">Edasta</string>
@@ -1232,10 +1250,12 @@
   <string name="LocalBackupJob_creating_backup">Varunduse loomine...</string>
   <string name="ProgressPreference_d_messages_so_far">Siiani leidsime %d sõnumit</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Palun sisesta kinnituskood, mille saatsime numbrile %s.</string>
+  <string name="RegistrationActivity_wrong_number">Vale number</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Helista mulle selle asemel \n (Saadaval vahemikus %02d:%02d)</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
   <string name="preferences_app_protection__screen_lock">Ekraanilukk</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukusta Signalile juurdepääs Androidi lukukuva või sõrmejäljega</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukusta Signali juurdepääs Androidi lukustuskuva või sõrmejäljega</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekraaniluku ebaaktiivsuse ajalõpp</string>
   <string name="AppProtectionPreferenceFragment_none">Puudub</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreerimisluku PIN ei ole sama, mis SMSi kinnituskood, mille just said. Palun sisesta PIN, mille seadistasid eelnevalt rakenduse siseselt.</string>

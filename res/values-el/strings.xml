@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Εισερχόμενη κλήση</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Η κάμερα δεν είναι διαθέσιμη.</string>
   <string name="CameraActivity_image_save_failure">Αποτυχία αποθήκευσης της εικόνας.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Αφαίρεση</string>
@@ -325,6 +324,9 @@
   <string name="GroupShareProfileView_make_visible">Να γίνει ορατό</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Εγώ</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Εικόνα ομάδας</string>
+  <string name="CropImageActivity_profile_avatar">Εικόνα Προφίλ</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Πάτησε και κράτα πατημένο για να ηχογραφήσεις ένα φωνητικό μήνυμα, άφησε το κουμπί για αποστολή</string>
   <!--InviteActivity-->
@@ -388,13 +390,10 @@
   <string name="MediaPickerActivity_send_to">Αποστολή σε %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Πατήστε για επιλογή</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">Δεν μπορείτε να μοιραστείτε πάνω από %d αντικείμενο.</item>
-    <item quantity="other">Δεν μπορείτε να μοιραστείτε πάνω από %d αντικείμενα.</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Προσθήκη λεζάντας...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ένα στοιχείο αφαιρέθηκε επειδή υπερέβη το μέγιστο μέγεθος</string>
+  <string name="MediaSendActivity_camera_unavailable">Η κάμερα δεν είναι διαθέσιμη.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Όλα τα πολυμέσα</string>
   <!--MessageRecord-->
@@ -453,8 +452,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Μη έγκυρο συνθηματικό!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Η έκδοση των Υπηρεσιών Google Play που έχεις εγκαταστήσει δε λειτουργεί σωστά. Παρακαλούμε επανεγκατέστησε τις Υπηρεσίες Google Play και δοκίμασε ξανά.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Λαμβάνουμε ένα μήνυμα...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Βαθμολόγησε αυτή την εφαρμογή</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Αν σου αρέσει αυτή η εφαρμογή, βοήθησέ μας βαθμολογώντας την - δε θα σου πάρει πολύ χρόνο.</string>
@@ -529,8 +526,6 @@
   <string name="SearchFragment_header_conversations">Συνομιλίες</string>
   <string name="SearchFragment_header_contacts">Επαφές</string>
   <string name="SearchFragment_header_messages">Μηνύματα</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Στέλνουμε ένα μήνυμα...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Προσθήκη στις επαφές</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Πρόσκληση στο Signal</string>

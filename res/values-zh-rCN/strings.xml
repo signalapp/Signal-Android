@@ -69,7 +69,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">来电呼叫</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">摄像头不可用。</string>
   <string name="CameraActivity_image_save_failure">未能保存图像。</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">删除</string>
@@ -315,6 +314,9 @@
   <string name="GroupShareProfileView_make_visible">设置可见</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">我</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">群组头像</string>
+  <string name="CropImageActivity_profile_avatar">头像</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住并保持以录制语音信息，松开即发送</string>
   <!--InviteActivity-->
@@ -377,12 +379,10 @@
   <string name="MediaPickerActivity_send_to">发送给%s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">点击以选择</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="other">您最多分享%d项。</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">添加注释...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一个附件已被移除，因为它超过了文件大小限制。</string>
+  <string name="MediaSendActivity_camera_unavailable">摄像头不可用。</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有媒体</string>
   <!--MessageRecord-->
@@ -441,8 +441,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不真实的密钥！</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您当前所安装的 Google Play 服务没有正常的工作。请尝试重新安装 Google Play 服务然后重试。</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">检索消息中…</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
@@ -521,8 +519,6 @@
   <string name="SearchFragment_header_conversations">对话</string>
   <string name="SearchFragment_header_contacts">联系人</string>
   <string name="SearchFragment_header_messages">信息</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">正在发送消息…</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">添加到通讯录</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀请至Signal</string>

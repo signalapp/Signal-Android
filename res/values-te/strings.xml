@@ -70,7 +70,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">కొత్తగా వచ్చిన కాల్</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">కెమెరా అందుబాటులో లేదు.</string>
   <string name="CameraActivity_image_save_failure">చిత్రాన్ని సేవ్ చేయడంలో విఫలమైంది.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">తొలగించు</string>
@@ -315,6 +314,8 @@
   <string name="GroupShareProfileView_make_visible">కనిపించేలా చేయండి</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">నేను</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">గ్రూప్ అవతార్</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">మాటతో కూడిన సందేశాన్ని రికార్డు చేయుటకు తడుతూనే ఉంచి , పంపుటకు వదిలివేయండి.</string>
   <!--InviteActivity-->
@@ -377,6 +378,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_camera_unavailable">కెమెరా అందుబాటులో లేదు.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">అన్ని మీడియా</string>
   <!--MessageRecord-->
@@ -435,8 +437,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">చెల్లని సంకేతపదము!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">గూగుల్ ఫ్లే సేవలు ఒక్క వివరణం సరిగ్గ పని చెయ్యటంలేదు. దయచేసి  గూగుల్ ఫ్లే సేవలను మరల నెలకొల్పండి.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది ...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ఈ అప్లికేషన్ ని రేట్ చెయ్యండి</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ఈ కార్యక్షేత్రం నచ్చినచొ,దయచేసి కొంత సమయము వెచ్చించి దినిని విలువ కట్టండి.</string>
@@ -509,8 +509,6 @@
   <string name="SearchFragment_header_conversations">సంభాషణలు</string>
   <string name="SearchFragment_header_contacts">కాంటాక్ట్స్</string>
   <string name="SearchFragment_header_messages">సందేశాలు</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">సందేశాన్ని పంపుతోంది ...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">పరిచయాలకు జోడించు</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal కు ఆహ్వానించండి</string>

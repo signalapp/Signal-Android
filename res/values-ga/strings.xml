@@ -79,7 +79,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Glao isteach</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Níl an grianghrafadán ar fáil.</string>
   <string name="CameraActivity_image_save_failure">Theip air an íomhá a thaisceadh.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Bain é</string>
@@ -288,6 +287,7 @@
   <string name="GroupShareProfileView_make_visible">Cuir le fáil</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Mise</string>
+  <!--CropImageActivity-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Brúigh agus coinnigh síos é chun glórtheachtaireacht a thaifeadadh, scaoil chun í a sheoladh</string>
   <!--InviteActivity-->
@@ -340,6 +340,7 @@
   <string name="MediaPickerActivity_send_to">Seol chuig %s</string>
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_camera_unavailable">Níl an grianghrafadán ar fáil.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Gach meán</string>
   <!--MessageRecord-->
@@ -390,7 +391,6 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Seol isteach an nath faire</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nath faire neamhbhailí!</string>
   <!--PlayServicesProblemFragment-->
-  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Tabhair do mheas faoin bhfeidhmchláirín seo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Má bainnean tú sult as an aip seo, fan nóiméad chun sinne a chabhrú trí do mheas féin.</string>
@@ -450,8 +450,6 @@ a shonrú</string>
   <string name="SearchFragment_header_conversations">Comhráite</string>
   <string name="SearchFragment_header_contacts">Teagmhálaithe</string>
   <string name="SearchFragment_header_messages">Teachtaireachtaí</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Ag seoladh teachtaireacht...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Cuir leis na teagmhálacha</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Tabhair cuireadh chuig Signal</string>

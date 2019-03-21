@@ -36,10 +36,10 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para alterar a sua aplicação de SMS padrão</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS desativados</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Signal na sua aplicação SMS padrão</string>
-  <string name="ApplicationPreferencesActivity_on">on</string>
-  <string name="ApplicationPreferencesActivity_On">On</string>
-  <string name="ApplicationPreferencesActivity_off">off</string>
-  <string name="ApplicationPreferencesActivity_Off">Off</string>
+  <string name="ApplicationPreferencesActivity_on">ligado</string>
+  <string name="ApplicationPreferencesActivity_On">Ligadas</string>
+  <string name="ApplicationPreferencesActivity_off">desligado</string>
+  <string name="ApplicationPreferencesActivity_Off">Desligadas</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de ecrã %1$s, Bloqueio de registo %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">A receber chamada</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Câmara indisponível.</string>
   <string name="CameraActivity_image_save_failure">Não foi possível guardar a imagem.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
@@ -329,6 +328,9 @@
   <string name="GroupShareProfileView_make_visible">Tornar visível</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
+  <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pressione e mantenha para gravar uma mensagem de voz, liberte para a enviar.</string>
   <!--InviteActivity-->
@@ -395,13 +397,15 @@
   <string name="MediaPickerActivity_send_to">Enviar para %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tocar para selecionar</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">Não pode partilhar mais do que %d item.</item>
-    <item quantity="other">Não pode partilhar mais do que %d itens.</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Adicionar uma legenda...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Foi removido um item porque excedia o limite de tamanho</string>
+  <string name="MediaSendActivity_camera_unavailable">Câmara indisponível.</string>
+  <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Não pode partilhar mais do que %d item.</item>
+    <item quantity="other">Não pode partilhar mais do que %d itens.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Toda a multimédia</string>
   <!--MessageRecord-->
@@ -460,8 +464,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-passe inválida!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versão do Google Play Services que tem instalada não está a funcionar corretamente. Por favor, reinstale o Google Play Services e tente novamente.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">A obter uma mensagem...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Avaliar esta aplicação</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se gostou desta aplicação, ajude-nos avaliando-a.</string>
@@ -540,8 +542,6 @@ especificou (%s) é inválido.</string>
   <string name="SearchFragment_header_conversations">Conversas</string>
   <string name="SearchFragment_header_contacts">Contactos</string>
   <string name="SearchFragment_header_messages">Mensagens</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">A enviar uma mensagem...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Adicionar aos contactos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Convidar para o Signal</string>
@@ -785,7 +785,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Opcionalmente, veja e partilhe quando as mensagens tiverem sido lidas.</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ativar recibos de leitura</string>
   <!--expiration-->
-  <string name="expiration_off">Off</string>
+  <string name="expiration_off">Desligada</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d segundo</item>
     <item quantity="other">%d segundos</item>
@@ -1183,6 +1183,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="reminder_header_share_title">Convide os seus amigos!</string>
   <string name="reminder_header_share_text">Quanto mais amigos utilizarem o Signal, melhor este se torna.</string>
   <string name="reminder_header_service_outage_text">O Signal está a experienciar problemas técnicos. Estamos a trabalhar arduamente para re-estabelecer o serviço o mais rapidamente possível.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">As últimas funcionalidades do Signal não funcionarão nesta versão do Android. Por favor atualize este dispositivo para poder receber atualizações do Signal futuramente.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
   <string name="media_preview__forward_title">Reencaminhar</string>

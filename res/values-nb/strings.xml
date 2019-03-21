@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inngående samtale</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Kamera utilgjengelig.</string>
   <string name="CameraActivity_image_save_failure">Kunne ikke lagre bildet.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
@@ -114,6 +113,9 @@
   <string name="ConversationItem_copied_text">Kopiert %s</string>
   <string name="ConversationItem_from_s">fra %s</string>
   <string name="ConversationItem_to_s">til %s</string>
+  <string name="ConversationItem_read_more"> Les Mer</string>
+  <string name="ConversationItem_download_more">  Last ned mer</string>
+  <string name="ConversationItem_pending">  Venter</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestille sikker økt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe hvis du har krypteringsproblemer med samtalen. Meldinger blir beholdt.</string>
@@ -234,6 +236,8 @@
   <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
   <string name="CreateProfileActivity_too_long">For lang</string>
   <string name="CreateProfileActivity_profile_name">Profilnavn</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Sett opp din profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler er kryptert fra ende til ende, og Signal-tjenesten har aldri tilgang til denne informasjonen.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bruker selvvalgt: %s</string>
   <string name="CustomDefaultPreference_using_default">Bruker forvalgt: %s</string>
@@ -324,6 +328,9 @@
   <string name="GroupShareProfileView_make_visible">Gjør synlig</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Meg</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
+  <string name="CropImageActivity_profile_avatar">Profilbilde</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å spille inn talemelding , slipp for å sende</string>
   <!--InviteActivity-->
@@ -351,6 +358,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Sending mislyktes</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt sikkerhetsnummer</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Kunne ikke finne meldingen</string>
+  <string name="LongMessageActivity_message_from_s">Melding fra %1$s</string>
+  <string name="LongMessageActivity_your_message">Din melding</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstilkobling slått på</string>
@@ -387,13 +397,15 @@
   <string name="MediaPickerActivity_send_to">Send til %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Trykk for å velge</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">Du kan ikke dele mer enn %d gjenstand.</item>
-    <item quantity="other">Du kan ikke dele mer enn %d gjenstander.</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Legg til bildetekst…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">En gjenstand ble fjernet fordi den overskride størrelsesgrensen</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera utilgjengelig.</string>
+  <string name="MediaSendActivity_message_to_s">Melding til %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Du kan ikke dele mer enn %d fil.</item>
+    <item quantity="other">Du kan ikke dele mer enn %d filer.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle medier</string>
   <!--MessageRecord-->
@@ -453,8 +465,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passord!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play Tjenester som er installert på denne enheten fungerer ikke skikkelig. Installer Google Play Tjenester på nytt og prøv igjen.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Mottar en melding...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du liker dette programmet, vil vi gjerne at du hjelper oss ved å gi din vurdering.</string>
@@ -521,6 +531,10 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Kunne ikke bekrefte CAPTCHA</string>
   <string name="RegistrationActivity_next">Neste</string>
   <string name="RegistrationActivity_continue">Fortsett</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta personvernet med deg.\nVær deg selv i hver melding.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Skriv inn telefonnummeret ditt for å komme i gang</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil motta en bekreftelseskode. Teleoperatøren kan belaste deg for dette.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bruk koden som ble sendt til %s</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikke å lagre bildeendringer</string>
@@ -529,8 +543,6 @@ skrev inn (%s) er ugyldig.</string>
   <string name="SearchFragment_header_conversations">Samtaler</string>
   <string name="SearchFragment_header_contacts">Kontakter</string>
   <string name="SearchFragment_header_messages">Meldinger</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Sender en melding...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Legg til kontakt</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Inviter til Signal</string>
@@ -1171,6 +1183,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="reminder_header_share_title">Inviter vennene dine!</string>
   <string name="reminder_header_share_text">Jo flere venner som bruker Signal, desto bedre blir det.</string>
   <string name="reminder_header_service_outage_text">Signal har tekniske problemer. Vi jobber med å få tjenesten i gang igjen så fort som mulig.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funksjonene vil ikke fungere på denne versjonen av Android. Oppgrader denne enheten for å motta fremtidige Signal-oppdateringer.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagre</string>
   <string name="media_preview__forward_title">Videresend</string>
@@ -1233,6 +1246,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="LocalBackupJob_creating_backup">Tar sikkerhetskopi …</string>
   <string name="ProgressPreference_d_messages_so_far">%d meldinger hittil</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn bekreftelseskoden som er sendt til %s.</string>
+  <string name="RegistrationActivity_wrong_number">Feil nummer</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i stedet \n (Tilgjengelig om %02d:%02d)</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>

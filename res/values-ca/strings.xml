@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Trucada rebuda</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Càmera no disponible</string>
   <string name="CameraActivity_image_save_failure">No s\'ha pogut desar la imatge.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Suprimeix</string>
@@ -329,6 +328,9 @@
   <string name="GroupShareProfileView_make_visible">Fes-ho visible</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Jo</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Avatar del grup</string>
+  <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Manteniu-ho premut per enregistrar un missatge de veu, deixeu anar per enviar-lo</string>
   <!--InviteActivity-->
@@ -395,13 +397,10 @@
   <string name="MediaPickerActivity_send_to">Envia-ho a %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Feu un toc per seleccionar-ho</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">No podeu compartir més d\'%d element.</item>
-    <item quantity="other">No podeu compartir més de %d elements.</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Afegiu-hi un títol...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">S\'ha suprimit un element perquè excedia el límit de la mida.</string>
+  <string name="MediaSendActivity_camera_unavailable">Càmera no disponible</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tot el contingut</string>
   <!--MessageRecord-->
@@ -460,8 +459,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Contrasenya incorrecta!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versió del Google Play Services que hi ha instal·lada no funciona correctament. Reinstal·leu-lo i tornar a provar-ho.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">S\'està recuperant un missatge...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valoreu l\'aplicació</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si gaudiu usant aquesta aplicació, podeu ajudar-nos valorant-la.</string>
@@ -528,6 +525,7 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Ha fallat verificar el CAPTCHA</string>
   <string name="RegistrationActivity_next">Següent</string>
   <string name="RegistrationActivity_continue">Continua</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porteu a sobre la privadesa.\nSigueu vosaltres mateixos a cada missatge.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Per començar, introduïu el número de telèfon.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduïu el codi que hem enviat a %s</string>
@@ -539,8 +537,6 @@ especificat (%s) no és vàlid.</string>
   <string name="SearchFragment_header_conversations">Converses</string>
   <string name="SearchFragment_header_contacts">Contactes</string>
   <string name="SearchFragment_header_messages">Missatges</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">S\'està enviant un missatge...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Afegeix als contactes</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Convida al Signal</string>

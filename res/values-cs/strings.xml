@@ -78,7 +78,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Příchozí hovor</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Kamera není dostupná.</string>
   <string name="CameraActivity_image_save_failure">Nepodařilo se uložit obrázek.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odebrat</string>
@@ -120,6 +119,9 @@
   <string name="ConversationItem_copied_text">Zkopírováno %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">%s</string>
+  <string name="ConversationItem_read_more">Číst dál</string>
+  <string name="ConversationItem_download_more">Stáhnout další</string>
+  <string name="ConversationItem_pending">Probíhá</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetovat zabezpečenou konverzaci?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Může to pomoct pokud máte problém s šifrováním této konverzace. Vaše zprávy zůstanou zachovány.</string>
@@ -262,6 +264,8 @@
   <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
   <string name="CreateProfileActivity_too_long">Příliš dlouhý</string>
   <string name="CreateProfileActivity_profile_name">Profilové jméno</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Nastavit váš profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profily Signal jsou end-to-end šifrované a služba Signal nemá žádný přístup k těmto informacím.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
   <string name="CustomDefaultPreference_using_default">Používá se výchozí: %s</string>
@@ -352,6 +356,9 @@
   <string name="GroupShareProfileView_make_visible">Zapnout viditelnost</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Já</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Obrázek skupiny</string>
+  <string name="CropImageActivity_profile_avatar">Obrázek</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ťukněte a držte pro nahrání hlasové zprávy, pusťte pro odeslání.</string>
   <!--InviteActivity-->
@@ -383,6 +390,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Nepodařilo se odeslat</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostní kódy</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Nepodařilo se nalézt zprávu</string>
+  <string name="LongMessageActivity_message_from_s">Zpráva od %1$s</string>
+  <string name="LongMessageActivity_your_message">Vaše zpráva</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Komunikace na pozadí povolena</string>
@@ -423,14 +433,10 @@
   <string name="MediaPickerActivity_send_to">Poslat %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Klepněte pro výběr</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">Nemůžete sdílet více než %d položku.</item>
-    <item quantity="few">Nemůžete sdílet více než %d položek.</item>
-    <item quantity="many">Nemůžete sdílet více než %d položek.</item>
-    <item quantity="other">Nemůžete sdílet více než  %d položek.</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Přidat titulek...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka byla odebrána, protože překročila povolenou velikost.</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera není dostupná.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všechna media</string>
   <!--MessageRecord-->
@@ -489,8 +495,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Chybné heslo!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verze služby Google Play, kterou máte nainstalovánu, nepracuje správně. Prosím, přeinstalujte službu Google Play a zkuste to znovu.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Načítám zprávu...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotit tuto aplikaci</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Pokud jste s aplikací spokojeni, prosím věnujte chvilku jejímu ohodnocení. Pomůže nám to.</string>
@@ -554,8 +558,14 @@ telefonní číslo</string>
     <item quantity="many">Zbývá vám %d kroků k odeslání ladícího logu.</item>
     <item quantity="other">Zbývá vám %d kroků k odeslání ladícího logu.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Potřebujeme ověřit, že jste člověk.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Ověření CAPTCHA selhalo.</string>
   <string name="RegistrationActivity_next">Další</string>
   <string name="RegistrationActivity_continue">Pokračovat</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Noste soukromí s sebou.\nBuďte v každé zprávě.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Začněte zadáním telefonního čísla</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Bude vám zaslán ověřovací kód. Zaslání může být zpoplatněno.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadejte kód který jsme odeslali %s</string>
   <string name="RegistrationActivity_call">Volat</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodařilo se uložit změny v obrázku.</string>
@@ -564,8 +574,6 @@ telefonní číslo</string>
   <string name="SearchFragment_header_conversations">Konverzace</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Zprávy</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Odesílám zprávu...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Přidat do kontaktů</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pozvat do Signalu</string>
@@ -1287,6 +1295,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="LocalBackupJob_creating_backup">Vytvářím zálohu...</string>
   <string name="ProgressPreference_d_messages_so_far">%dzpráv zatím</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím vložte ověřovací kód zaslaný %s</string>
+  <string name="RegistrationActivity_wrong_number">Chybné číslo</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Raději mi zavolejte \n (V době %02d:%02d)</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
   <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>

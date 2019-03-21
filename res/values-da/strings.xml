@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Indgående opkald</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Kamera utilgængeligt</string>
   <string name="CameraActivity_image_save_failure">Fejl ved forsøg på at gemme billede</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
@@ -115,6 +114,9 @@
   <string name="ConversationItem_copied_text">Kopieret %s</string>
   <string name="ConversationItem_from_s">fra %s</string>
   <string name="ConversationItem_to_s">til %s</string>
+  <string name="ConversationItem_read_more">  Læs mere </string>
+  <string name="ConversationItem_download_more">  Download mere</string>
+  <string name="ConversationItem_pending">  Afventer </string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reset sikker forbindelse?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette vil muligvis hjælpe hvis du oplever krypteringsproblemer med samtalen. Dine beskeder bevares</string>
@@ -147,7 +149,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedhæftningen overskrider max. grænsen for filstørrelser, for den type af meddelelse du sender</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgængeligt</string>
   <string name="ConversationActivity_unable_to_record_audio">Fejl ved lydoptagelse!</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app tilgængelig, der kan åbne linket på din enhed</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app tilgængelig på enheden, der kan åbne linket</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Signal tilladelse til at tilgå mikrofonen</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal kræver tilladelse til at tilgå mikrofonen for at kunne sende lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\"</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">For at ringe til %s kræver Signal tilladelse til at tilgå din mikrofon og dit kamera</string>
@@ -235,6 +237,8 @@
   <string name="CreateProfileActivity_profile_photo">Profilbillede</string>
   <string name="CreateProfileActivity_too_long">For langt</string>
   <string name="CreateProfileActivity_profile_name">Profil navn</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Konfigurer din profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiler er krypteret begge veje, og Signal´s services har ingen adgang til informationen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
   <string name="CustomDefaultPreference_using_default">Anvender standard: %s</string>
@@ -251,7 +255,7 @@
   <string name="DeliveryStatus_read">Læst</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Frakobl \"%s\"?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Enheden vil ikke længere være i stand til at sende og modtage beskeder, hvis link fjernes</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Enheden vil ikke længere være i stand til at sende og modtage beskeder, hvis forbindelsen fjernes</string>
   <string name="DeviceListActivity_network_connection_failed">Forbindelse til netværk fejlede</string>
   <string name="DeviceListActivity_try_again">Prøv igen</string>
   <string name="DeviceListActivity_unlinking_device">Frakobler enhed...</string>
@@ -289,7 +293,7 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktivér skrive indikatorer</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktivér skrive indikatorer</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nej tak</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducere link eksempelvisning</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducere eksempelvisning for links</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mulighed for eksempelvisning af links, er nu understøttet for de fleste populære sider på nettet</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan når som helst aktivere eller deaktivere funktionaliteten, under Signal, Indstillinger (Privatliv -&gt; Send link eksempelvisning)</string>
   <string name="ExperienceUpgradeActivity_got_it">Modtaget</string>
@@ -325,6 +329,9 @@
   <string name="GroupShareProfileView_make_visible">Gør synlig</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Mig</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Gruppe ikon</string>
+  <string name="CropImageActivity_profile_avatar">Profilbillede</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap og hold for at optage en stemmebesked. Slip for at sende</string>
   <!--InviteActivity-->
@@ -352,6 +359,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Kunne ikke sendes</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nyt sikkerhedsnummer</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Kunne ikke finde beskeden</string>
+  <string name="LongMessageActivity_message_from_s">Besked fra %1$s</string>
+  <string name="LongMessageActivity_your_message">Din besked</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Baggrundsforbindelse aktiveret</string>
@@ -388,13 +398,15 @@
   <string name="MediaPickerActivity_send_to">Send til %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tap for at vælge</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">Du kan ikke dele flere end %d filer</item>
-    <item quantity="other">Du kan ikke dele flere end %d filer</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Tilføj en billedtekst...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Et element blev fjernet, fordi det oversteg max. grænsen</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera utilgængeligt</string>
+  <string name="MediaSendActivity_message_to_s">Besked til %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Du kan ikke dele flere end %d fil.</item>
+    <item quantity="other">Du kan ikke dele flere end %d filer.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle mediefiler</string>
   <!--MessageRecord-->
@@ -454,8 +466,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Din installerede version af Google Play tjenester virker ikke korrekt. Geninstallér venligst Google Play tjenester og prøv igen</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Modtager en meddelelse...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bedøm app\'en</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge app\'en, så hjælp os venligst ved at bedømme den</string>
@@ -524,6 +534,10 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Kunne ikke bekræfte CAPTCHA</string>
   <string name="RegistrationActivity_next">Næste</string>
   <string name="RegistrationActivity_continue">Fortsæt</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Tag privatlivet med dig. \nSkriv hvad du ønsker i enhver besked</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Indtast dit telefonnummer for at komme i gang</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Du modtager en verifikationskode. Takster fra din udbyder kan blive pålagt</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Indtast verifikationskoden sendt til %s</string>
   <string name="RegistrationActivity_call">Ring op</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fejl ved forsøg på at gemme redigeret billede</string>
@@ -532,8 +546,6 @@ nummer (%s) er ugyldigt</string>
   <string name="SearchFragment_header_conversations">Samtaler</string>
   <string name="SearchFragment_header_contacts">Kontakter</string>
   <string name="SearchFragment_header_messages">Beskeder</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Sender besked...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Føj til kontakter</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitér til Signal</string>
@@ -765,12 +777,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="country_selection_fragment__loading_countries">Indlæser lande...</string>
   <string name="country_selection_fragment__search">Søg</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skan QR-koden der vises på enheden, for at linke</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skan QR-koden der vises på enheden, for at forbinde</string>
   <!--device_link_fragment-->
-  <string name="device_link_fragment__link_device">Link til enhed</string>
+  <string name="device_link_fragment__link_device">Forbind enhed</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Ikke linket til nogen enheder</string>
-  <string name="device_list_fragment__link_new_device">Link ny enhed</string>
+  <string name="device_list_fragment__no_devices_linked">Ikke forbundet til nogen enheder</string>
+  <string name="device_list_fragment__link_new_device">Forbind ny enhed</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">fortsæt</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">´Læst af modtager´ er her</string>
@@ -938,7 +950,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="AndroidManifest__log_submit">Indsend fejlfindingslog</string>
   <string name="AndroidManifest__media_preview">Medie eksempel</string>
   <string name="AndroidManifest__message_details">Besked detaljer</string>
-  <string name="AndroidManifest__linked_devices">Linkede enheder</string>
+  <string name="AndroidManifest__linked_devices">Forbundne enheder</string>
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
   <string name="AndroidManifest_archived_conversations">Arkiverede samtaler</string>
   <string name="AndroidManifest_remove_photo">Fjern billede</string>
@@ -998,7 +1010,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__system_notification_settings">Systemindstillinger for notifikationer</string>
   <string name="preferences__led_color">LED farve</string>
   <string name="preferences__led_color_unknown">Ukendt</string>
-  <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
+  <string name="preferences__pref_led_blink_title">LED blinke mønster</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__silent">Lydløs</string>
   <string name="preferences__repeat_alerts">Gentag alarmer</string>
@@ -1037,7 +1049,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__conversation_length_limit">Grænse for samtaler</string>
   <string name="preferences__trim_all_conversations_now">Trim alle samtaler</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skan alle samtaler og tilpas begrænsninger for samtalelængde</string>
-  <string name="preferences__linked_devices">Linkede enheder</string>
+  <string name="preferences__linked_devices">Forbundne enheder</string>
   <string name="preferences__light_theme">Lyst</string>
   <string name="preferences__dark_theme">Mørkt</string>
   <string name="preferences__appearance">Udseende</string>
@@ -1175,6 +1187,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="reminder_header_share_title">Invitér dine venner!</string>
   <string name="reminder_header_share_text">Jo flere venner der bruger Signal, desto bedre bliver den</string>
   <string name="reminder_header_service_outage_text">Signal oplever tekniske problemer. Vi arbejder hårdt på at genoprette servicen, så hurtigt som muligt</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funktioner virker ikke på denne version af Android. Opgrader venligst denne enhed for at modtage fremtidige Signal-opdateringer.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <string name="media_preview__forward_title">Videresend</string>
@@ -1237,6 +1250,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="LocalBackupJob_creating_backup">Opretter backup...</string>
   <string name="ProgressPreference_d_messages_so_far">%d beskeder ind til videre</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv venligst sikkerhedskoden sendt til %s</string>
+  <string name="RegistrationActivity_wrong_number">Forkert nummer</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Ring til mig i stedet \n (Tilgængelig i %02d:%02d)</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Ukendt</string>
   <string name="preferences_app_protection__screen_lock">Skærmlås</string>

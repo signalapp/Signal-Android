@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Recebendo chamada</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Câmera indisponível.</string>
   <string name="CameraActivity_image_save_failure">Falha ao salvar imagem.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
@@ -114,6 +113,9 @@
   <string name="ConversationItem_copied_text">Copiou %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">para %s</string>
+  <string name="ConversationItem_read_more">  Saiba mais</string>
+  <string name="ConversationItem_download_more">  Mais downloads</string>
+  <string name="ConversationItem_pending">  Pendente</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
@@ -234,6 +236,8 @@
   <string name="CreateProfileActivity_profile_photo">Foto do perfil</string>
   <string name="CreateProfileActivity_too_long">Muito longo</string>
   <string name="CreateProfileActivity_profile_name">Nome de perfil</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Os perfis do Signal são criptografados de ponta a ponta, e o Signal jamais tem acesso a estas informações.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando padrão: %s</string>
@@ -324,6 +328,9 @@
   <string name="GroupShareProfileView_make_visible">Tornar visíveis</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
+  <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Aperte e segure para gravar uma mensagem de voz e solte para enviá-la</string>
   <!--InviteActivity-->
@@ -351,6 +358,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Falha no envio</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo número de segurança</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Mensagem não encontrada</string>
+  <string name="LongMessageActivity_message_from_s">Mensagem de %1$s</string>
+  <string name="LongMessageActivity_your_message">Sua mensagem</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Conexão em segundo plano habilitada</string>
@@ -387,13 +397,15 @@
   <string name="MediaPickerActivity_send_to">Enviar para %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Toque para selecionar</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">Você não pode compartilhar mais de %d item.</item>
-    <item quantity="other">Você não pode compartilhar mais de %d itens.</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Adicionar legenda...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Um item foi removido porque excedeu o limite de tamanho</string>
+  <string name="MediaSendActivity_camera_unavailable">Câmera indisponível.</string>
+  <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Você não pode compartilhar mais de %d item.</item>
+    <item quantity="other">Você não pode compartilhar mais de %d itens.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Todas as mídias</string>
   <!--MessageRecord-->
@@ -453,8 +465,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versão instalada do Serviços Google Play não está funcionando corretamente. Favor reinstalar o Serviços Google Play e tentar novamente.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Recuperando uma mensagem...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Avaliar este aplicativo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se você gosta de usar este aplicativo, por favor tire uns segundos para nos ajudar com sua avaliação.</string>
@@ -463,7 +473,7 @@
   <string name="RatingManager_later">Mais tarde</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ops, o aplicativo Play Store parece não estar instalado no seu dispositivo.</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear esta contato?</string>
+  <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear este contato?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Você não receberá mais mensagens e chamadas deste contato.</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group">Bloquear e deixar este grupo?</string>
   <string name="RecipientPreferenceActivity_block_group">Bloquear este grupo?</string>
@@ -524,6 +534,10 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Falha ao verificar o CAPTCHA</string>
   <string name="RegistrationActivity_next">Próximo</string>
   <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade consigo.\nSeja você em cada mensagem.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insira o seu número de telefone para começar</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Você vai receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insira o código que enviamos para %s</string>
   <string name="RegistrationActivity_call">Ligar</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao salvar alterações na imagem</string>
@@ -532,8 +546,6 @@
   <string name="SearchFragment_header_conversations">Conversas</string>
   <string name="SearchFragment_header_contacts">Contatos</string>
   <string name="SearchFragment_header_messages">Mensagens</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Enviando uma mensagem...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Adicionar a Contatos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Convidar para o Signal</string>
@@ -1176,6 +1188,7 @@
   <string name="reminder_header_share_title">Convide seus amigos!</string>
   <string name="reminder_header_share_text">Quanto mais gente usar o Signal, melhor ele fica.</string>
   <string name="reminder_header_service_outage_text">O Signal está com dificuldades técnicas. Estamos fazendo o máximo possível para restaurar o serviço o quanto antes.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Os recursos mais novos do Signal não funcionarão nesta versão do Android. Por favor, atualize este dispositivo para receber atualizações futuras do Signal.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvar</string>
   <string name="media_preview__forward_title">Avançar</string>
@@ -1238,6 +1251,8 @@
   <string name="LocalBackupJob_creating_backup">Criando backup...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até agora</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Favor digitar o código de verificação enviado para %s.</string>
+  <string name="RegistrationActivity_wrong_number">Número incorreto</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Me liga \n (Disponível em %02d:%02d)</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
   <string name="preferences_app_protection__screen_lock">Bloqueio de tela</string>
