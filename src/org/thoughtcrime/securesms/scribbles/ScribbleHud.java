@@ -41,7 +41,9 @@ import java.util.Set;
 public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.OnGlobalLayoutListener {
 
   private View                     drawButton;
+  private View                     highlightButton;
   private View                     textButton;
+  private View                     stickerButton;
   private View                     undoButton;
   private View                     deleteButton;
   private View                     confirmButton;
@@ -110,7 +112,9 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     setOrientation(VERTICAL);
 
     drawButton      = findViewById(R.id.scribble_draw_button);
+    highlightButton = findViewById(R.id.scribble_highlight_button);
     textButton      = findViewById(R.id.scribble_text_button);
+    stickerButton   = findViewById(R.id.scribble_sticker_button);
     undoButton      = findViewById(R.id.scribble_undo_button);
     deleteButton    = findViewById(R.id.scribble_delete_button);
     confirmButton   = findViewById(R.id.scribble_confirm_button);
@@ -255,7 +259,9 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
 
   private void presentModeNone() {
     drawButton.setVisibility(VISIBLE);
+    highlightButton.setVisibility(VISIBLE);
     textButton.setVisibility(VISIBLE);
+    stickerButton.setVisibility(VISIBLE);
 
     undoButton.setVisibility(GONE);
     deleteButton.setVisibility(GONE);
@@ -264,7 +270,9 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     colorPalette.setVisibility(GONE);
 
     drawButton.setOnClickListener(v -> setMode(Mode.DRAW));
+    highlightButton.setOnClickListener(v -> setMode(Mode.HIGHLIGHT));
     textButton.setOnClickListener(v -> setMode(Mode.TEXT));
+    stickerButton.setOnClickListener(v -> setMode(Mode.STICKER));
   }
 
   private void presentModeDraw() {
@@ -274,7 +282,9 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     colorPalette.setVisibility(VISIBLE);
 
     drawButton.setVisibility(GONE);
+    highlightButton.setVisibility(GONE);
     textButton.setVisibility(GONE);
+    stickerButton.setVisibility(GONE);
     deleteButton.setVisibility(GONE);
 
 
@@ -289,8 +299,10 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     colorPalette.setVisibility(VISIBLE);
 
     drawButton.setVisibility(GONE);
+    highlightButton.setVisibility(GONE);
     textButton.setVisibility(GONE);
     deleteButton.setVisibility(GONE);
+    stickerButton.setVisibility(GONE);
 
     colorPicker.setOnColorChangeListener(highlightOnColorChangeListener);
     colorPicker.setActiveColor(Color.YELLOW);
@@ -304,6 +316,8 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
 
     textButton.setVisibility(GONE);
     drawButton.setVisibility(GONE);
+    highlightButton.setVisibility(GONE);
+    stickerButton.setVisibility(GONE);
     undoButton.setVisibility(GONE);
 
     colorPicker.setOnColorChangeListener(standardOnColorChangeListener);
@@ -315,7 +329,9 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     confirmButton.setVisibility(VISIBLE);
 
     drawButton.setVisibility(GONE);
+    highlightButton.setVisibility(GONE);
     textButton.setVisibility(GONE);
+    stickerButton.setVisibility(GONE);
     undoButton.setVisibility(GONE);
     colorPicker.setVisibility(GONE);
     colorPalette.setVisibility(GONE);

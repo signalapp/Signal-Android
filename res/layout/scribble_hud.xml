@@ -58,6 +58,22 @@
                 android:src="@drawable/ic_undo_36" />
 
             <ImageView
+                android:id="@+id/scribble_draw_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_marker_36" />
+
+            <ImageView
+                android:id="@+id/scribble_highlight_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_highlighter_36" />
+
+            <ImageView
                 android:id="@+id/scribble_text_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,12 +82,12 @@
                 android:src="@drawable/ic_text_36" />
 
             <ImageView
-                android:id="@+id/scribble_draw_button"
+                android:id="@+id/scribble_sticker_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
-                android:src="@drawable/ic_marker_36" />
+                android:src="@drawable/ic_camera_emoji_36" />
 
             <ImageView
                 android:id="@+id/scribble_confirm_button"
