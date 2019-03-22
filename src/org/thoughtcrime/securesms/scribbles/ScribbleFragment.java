@@ -57,9 +57,6 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
   private static final String TAG = ScribbleFragment.class.getSimpleName();
 
   private static final String KEY_IMAGE_URI = "image_uri";
-  private static final String KEY_LOCALE    = "locale";
-  private static final String KEY_TRANSPORT = "compose_mode";
-  private static final String KEY_HIDE_SAVE = "hide_save";
 
   public static final int SELECT_STICKER_REQUEST_CODE = 123;
 
@@ -71,12 +68,9 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
 
   private ScribbleView.SavedState savedState;
 
-  public static ScribbleFragment newInstance(@NonNull Uri imageUri, @NonNull Locale locale, Optional<TransportOption> transport, boolean hideSave) {
+  public static ScribbleFragment newInstance(@NonNull Uri imageUri) {
     Bundle args = new Bundle();
     args.putParcelable(KEY_IMAGE_URI, imageUri);
-    args.putSerializable(KEY_LOCALE, locale);
-    args.putParcelable(KEY_TRANSPORT, transport.orNull());
-    args.putBoolean(KEY_HIDE_SAVE, hideSave);
 
     ScribbleFragment fragment = new ScribbleFragment();
     fragment.setArguments(args);
@@ -109,9 +103,6 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
     this.scribbleView  = view.findViewById(R.id.scribble_view);
 
     scribbleHud.setEventListener(this);
-    scribbleHud.setTransport(Optional.fromNullable(getArguments().getParcelable(KEY_TRANSPORT)));
-    scribbleHud.hideSaveButton(getArguments().getBoolean(KEY_HIDE_SAVE));
-    scribbleHud.setFullscreen((getActivity().getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) > 0);
 
     scribbleView.setMotionViewCallback(motionViewCallback);
     scribbleView.setDrawingChangedListener(() -> scribbleHud.setColorPalette(scribbleView.getUniqueColors()));
@@ -154,14 +145,6 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
     } else {
       Log.w(TAG, "Received a bad saved state. Received class: " + state.getClass().getName());
     }
-  }
-
-  public boolean isEmojiKeyboardVisible() {
-    return scribbleHud.isInputOpen();
-  }
-
-  public void dismissEmojiKeyboard() {
-    scribbleHud.dismissEmojiKeyboard();
   }
 
   private void addSticker(final Bitmap pica) {
@@ -305,45 +288,6 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
     scribbleHud.setColorPalette(scribbleView.getUniqueColors());
   }
 
-  @Override
-  public void onEditComplete(@NonNull Optional<String> message, @NonNull Optional<TransportOption> transport) {
-    ListenableFuture<Bitmap> future = scribbleView.getRenderedImage(glideRequests);
-
-    future.addListener(new ListenableFuture.Listener<Bitmap>() {
-      @Override
-      public void onSuccess(Bitmap result) {
-        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
-          try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            result.compress(Bitmap.CompressFormat.JPEG, 80, baos);
-
-            byte[] data = baos.toByteArray();
-            Uri    uri  = BlobProvider.getInstance()
-                                      .forData(data)
-                                      .withMimeType(MediaUtil.IMAGE_JPEG)
-                                      .createForSingleSessionOnDisk(requireContext(), e -> Log.w(TAG, "Failed to persist image.", e));
-
-            controller.onImageEditComplete(uri,
-                                           result.getWidth(),
-                                           result.getHeight(),
-                                           data.length,
-                                           message,
-                                           transport);
-          } catch (IOException e) {
-            Log.w(TAG, "Failed to persist image.", e);
-            Util.runOnMain(() -> controller.onImageEditFailure());
-          }
-        });
-      }
-
-      @Override
-      public void onFailure(ExecutionException e) {
-        Log.w(TAG, e);
-        Util.runOnMain(() -> controller.onImageEditFailure());
-      }
-    });
-  }
-
   private final MotionView.MotionViewCallback motionViewCallback = new MotionView.MotionViewCallback() {
     @Override
     public void onEntitySelected(@Nullable MotionEntity entity) {
@@ -369,8 +313,6 @@ public class ScribbleFragment extends Fragment implements ScribbleHud.EventListe
   };
 
   public interface Controller {
-    void onImageEditComplete(@NonNull Uri uri, int width, int height, long size, @NonNull Optional<String> message, @NonNull Optional<TransportOption> transport);
-    void onImageEditFailure();
     void onTouchEventsNeeded(boolean needed);
   }
 }

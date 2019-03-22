@@ -22,14 +22,12 @@ import java.util.Map;
 
 class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
-  private final Locale                              locale;
   private final List<Media>                         media;
   private final Map<Integer, MediaSendPageFragment> fragments;
   private final Map<Uri, Object>                    savedState;
 
-  MediaSendFragmentPagerAdapter(@NonNull FragmentManager fm, @NonNull Locale locale) {
+  MediaSendFragmentPagerAdapter(@NonNull FragmentManager fm) {
     super(fm);
-    this.locale     = locale;
     this.media      = new ArrayList<>();
     this.fragments  = new HashMap<>();
     this.savedState = new HashMap<>();
@@ -42,7 +40,7 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
     if (MediaUtil.isGif(mediaItem.getMimeType())) {
       return MediaSendGifFragment.newInstance(mediaItem.getUri());
     } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
-      return ScribbleFragment.newInstance(mediaItem.getUri(), locale, Optional.absent(), true);
+      return ScribbleFragment.newInstance(mediaItem.getUri());
     } else if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
       return MediaSendVideoFragment.newInstance(mediaItem.getUri());
     } else {

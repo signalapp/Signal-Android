@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
@@ -38,7 +39,7 @@ import java.util.Set;
  * The HUD (heads-up display) that contains all of the tools for interacting with
  * {@link org.thoughtcrime.securesms.scribbles.widget.ScribbleView}
  */
-public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.OnGlobalLayoutListener {
+public class ScribbleHud extends LinearLayout {
 
   private View                     drawButton;
   private View                     highlightButton;
@@ -47,23 +48,11 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
   private View                     undoButton;
   private View                     deleteButton;
   private View                     confirmButton;
-  private View                     saveButton;
   private VerticalSlideColorPicker colorPicker;
   private RecyclerView             colorPalette;
-  private ViewGroup                inputContainer;
-  private ComposeText              composeText;
-  private SendButton               sendButton;
-  private ViewGroup                sendButtonBkg;
-  private EmojiToggle              emojiToggle;
-  private Stub<EmojiDrawer>        emojiDrawer;
-  private TextView                 charactersLeft;
 
   private EventListener       eventListener;
   private ColorPaletteAdapter colorPaletteAdapter;
-  private int                 visibleHeight;
-  private Locale              locale;
-
-  private final Rect visibleBounds = new Rect();
 
   public ScribbleHud(@NonNull Context context) {
     super(context);
@@ -80,33 +69,6 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     initialize();
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    getRootView().getViewTreeObserver().addOnGlobalLayoutListener(this);
-  }
-
-  @Override
-  protected void onDetachedFromWindow() {
-    super.onDetachedFromWindow();
-    getRootView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
-  }
-
-  @Override
-  public void onGlobalLayout() {
-    getRootView().getWindowVisibleDisplayFrame(visibleBounds);
-
-    int currentVisibleHeight = visibleBounds.height();
-
-    if (currentVisibleHeight != visibleHeight) {
-      getLayoutParams().height = currentVisibleHeight;
-      layout(visibleBounds.left, visibleBounds.top, visibleBounds.right, visibleBounds.bottom);
-      requestLayout();
-
-      visibleHeight = currentVisibleHeight;
-    }
-  }
-
   private void initialize() {
     inflate(getContext(), R.layout.scribble_hud, this);
     setOrientation(VERTICAL);
@@ -118,20 +80,11 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     undoButton      = findViewById(R.id.scribble_undo_button);
     deleteButton    = findViewById(R.id.scribble_delete_button);
     confirmButton   = findViewById(R.id.scribble_confirm_button);
-    saveButton      = findViewById(R.id.scribble_save_button);
     colorPicker     = findViewById(R.id.scribble_color_picker);
     colorPalette    = findViewById(R.id.scribble_color_palette);
-    inputContainer  = findViewById(R.id.scribble_compose_container);
-    composeText     = findViewById(R.id.scribble_compose_text);
-    sendButton      = findViewById(R.id.scribble_send_button);
-    sendButtonBkg   = findViewById(R.id.scribble_send_button_bkg);
-    emojiToggle     = findViewById(R.id.scribble_emoji_toggle);
-    emojiDrawer     = new Stub<>(findViewById(R.id.scribble_emoji_drawer_stub));
-    charactersLeft  = findViewById(R.id.scribble_characters_left);
 
     initializeViews();
     setMode(Mode.NONE);
-    setTransport(Optional.absent());
   }
 
   private void initializeViews() {
@@ -148,75 +101,13 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
       setMode(Mode.NONE);
     });
 
-    saveButton.setOnClickListener(v -> {
-      if (eventListener != null) {
-        eventListener.onEditComplete(Optional.absent(), Optional.absent());
-      }
-      setMode(Mode.NONE);
-    });
-
-    sendButton.setOnClickListener(v -> {
-      if (eventListener != null) {
-        if (isKeyboardOpen()) {
-          hideSoftkey(composeText, null);
-        }
-        eventListener.onEditComplete(Optional.of(composeText.getTextTrimmed()), Optional.of(sendButton.getSelectedTransport()));
-      }
-      setMode(Mode.NONE);
-    });
-
     confirmButton.setOnClickListener(v -> setMode(Mode.NONE));
-
-    sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
-      presentCharactersRemaining();
-      composeText.setTransport(newTransport);
-      sendButtonBkg.getBackground().setColorFilter(newTransport.getBackgroundColor(), PorterDuff.Mode.MULTIPLY);
-      sendButtonBkg.getBackground().invalidateSelf();
-    });
-
-    ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
-
-    composeText.setOnKeyListener(composeKeyPressedListener);
-    composeText.addTextChangedListener(composeKeyPressedListener);
-    composeText.setOnClickListener(composeKeyPressedListener);
-    composeText.setOnFocusChangeListener(composeKeyPressedListener);
 
     colorPaletteAdapter = new ColorPaletteAdapter();
     colorPaletteAdapter.setEventListener(colorPicker::setActiveColor);
 
     colorPalette.setLayoutManager(new LinearLayoutManager(getContext()));
     colorPalette.setAdapter(colorPaletteAdapter);
-
-    if (TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
-      emojiToggle.setVisibility(GONE);
-    } else {
-      emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
-    }
-  }
-
-  public void setLocale(@NonNull Locale locale) {
-    this.locale = locale;
-  }
-
-  public void setTransport(@NonNull Optional<TransportOption> transport) {
-    if (transport.isPresent()) {
-      saveButton.setVisibility(GONE);
-      inputContainer.setVisibility(VISIBLE);
-      sendButton.setTransport(transport.get());
-    } else {
-      saveButton.setVisibility(VISIBLE);
-      inputContainer.setVisibility(GONE);
-    }
-  }
-
-  public void hideSaveButton(boolean hide) {
-    if (hide) {
-      saveButton.setVisibility(GONE);
-    }
-  }
-
-  public void dismissEmojiKeyboard() {
-    hideCurrentInput(composeText);
   }
 
   public void setColorPalette(@NonNull Set<Integer> colors) {
@@ -337,46 +228,6 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     colorPalette.setVisibility(GONE);
   }
 
-  private void presentCharactersRemaining() {
-    String          messageBody     = composeText.getTextTrimmed();
-    TransportOption transportOption = sendButton.getSelectedTransport();
-    CharacterState  characterState  = transportOption.calculateCharacters(messageBody);
-
-    if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
-      charactersLeft.setText(String.format(locale,
-                                           "%d/%d (%d)",
-                                           characterState.charactersRemaining,
-                                           characterState.maxTotalMessageSize,
-                                           characterState.messagesSpent));
-      charactersLeft.setVisibility(View.VISIBLE);
-    } else {
-      charactersLeft.setVisibility(View.GONE);
-    }
-  }
-
-  private void onEmojiToggleClicked(View v) {
-    if (!emojiDrawer.resolved()) {
-      emojiToggle.attach(emojiDrawer.get());
-      emojiDrawer.get().setEmojiEventListener(new EmojiDrawer.EmojiEventListener() {
-        @Override
-        public void onKeyEvent(KeyEvent keyEvent) {
-          composeText.dispatchKeyEvent(keyEvent);
-        }
-
-        @Override
-        public void onEmojiSelected(String emoji) {
-          composeText.insertEmoji(emoji);
-        }
-      });
-    }
-
-    if (getCurrentInput() == emojiDrawer.get()) {
-      showSoftkey(composeText);
-    } else {
-      hideSoftkey(composeText, () -> post(() -> show(composeText, emojiDrawer.get())));
-    }
-  }
-
   private final VerticalSlideColorPicker.OnColorChangeListener standardOnColorChangeListener = new VerticalSlideColorPicker.OnColorChangeListener() {
     @Override
     public void onColorChange(int selectedColor) {
@@ -400,46 +251,6 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     }
   };
 
-  private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher, OnFocusChangeListener {
-
-    int beforeLength;
-
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-      if (event.getAction() == KeyEvent.ACTION_DOWN) {
-        if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (TextSecurePreferences.isEnterSendsEnabled(getContext())) {
-            sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
-            sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-
-    @Override
-    public void onClick(View v) {
-      showSoftkey(composeText);
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count,int after) {
-      beforeLength = composeText.getTextTrimmed().length();
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-      presentCharactersRemaining();
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before,int count) {}
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {}
-  }
-
   public enum Mode {
     NONE, DRAW, HIGHLIGHT, TEXT, STICKER
   }
@@ -449,6 +260,5 @@ public class ScribbleHud extends InputAwareLayout implements ViewTreeObserver.On
     void onColorChange(int color);
     void onUndo();
     void onDelete();
-    void onEditComplete(@NonNull Optional<String> message, @NonNull Optional<TransportOption> transport);
   }
 }

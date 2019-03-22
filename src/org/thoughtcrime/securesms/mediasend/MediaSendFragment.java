@@ -177,7 +177,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     captionText.clearFocus();
     composeText.requestFocus();
 
-    fragmentPagerAdapter = new MediaSendFragmentPagerAdapter(getChildFragmentManager(), locale);
+    fragmentPagerAdapter = new MediaSendFragmentPagerAdapter(getChildFragmentManager());
     fragmentPager.setAdapter(fragmentPagerAdapter);
 
     FragmentPageChangeListener pageChangeListener = new FragmentPageChangeListener();

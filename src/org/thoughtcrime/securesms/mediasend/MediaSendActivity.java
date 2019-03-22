@@ -261,16 +261,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
-  public void onImageEditComplete(@NonNull Uri uri, int width, int height, long size, @NonNull Optional<String> message, @NonNull Optional<TransportOption> transport) {
-    throw new UnsupportedOperationException("Callback unsupported.");
-  }
-
-  @Override
-  public void onImageEditFailure() {
-    throw new UnsupportedOperationException("Callback unsupported.");
-  }
-
-  @Override
   public void onTouchEventsNeeded(boolean needed) {
     MediaSendFragment fragment = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
     if (fragment != null) {
@@ -308,7 +298,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       }
     }, media -> {
       if (media == null) {
-        onImageEditFailure();
+        onNoMediaAvailable();
         return;
       }
 
