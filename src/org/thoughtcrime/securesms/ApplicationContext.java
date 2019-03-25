@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
@@ -318,5 +319,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
       BlobProvider.getInstance().onSessionStart(this);
     });
+  }
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(base, TextSecurePreferences.getLanguage(base)));
   }
 }

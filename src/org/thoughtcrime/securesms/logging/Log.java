@@ -119,6 +119,13 @@ public class Log {
     }
   }
 
+  public static String tag(Class<?> clazz) {
+    String simpleName = clazz.getSimpleName();
+    if (simpleName.length() > 23) {
+      return simpleName.substring(0, 23);
+    }
+    return simpleName;
+  }
 
   public static abstract class Logger {
     public abstract void v(String tag, String message, Throwable t);
