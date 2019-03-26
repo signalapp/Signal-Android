@@ -51,6 +51,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.logging.Log;
@@ -62,7 +63,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
@@ -492,6 +495,7 @@ public class SubmitLogFragment extends Fragment {
     builder.append("Android : ").append(VERSION.RELEASE).append(" (")
                                .append(VERSION.INCREMENTAL).append(", ")
                                .append(Build.DISPLAY).append(")\n");
+    builder.append("ABIs    : ").append(TextUtils.join(", ", getSupportedAbis())).append("\n");
     builder.append("Memory  : ").append(getMemoryUsage(context)).append("\n");
     builder.append("Memclass: ").append(getMemoryClass(context)).append("\n");
     builder.append("OS Host : ").append(Build.HOST).append("\n");
@@ -506,6 +510,19 @@ public class SubmitLogFragment extends Fragment {
     }
 
     return builder.toString();
+  }
+
+  private static Iterable<String> getSupportedAbis() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      return Arrays.asList(Build.SUPPORTED_ABIS);
+    } else {
+      LinkedList<String> abis = new LinkedList<>();
+      abis.add(Build.CPU_ABI);
+      if (Build.CPU_ABI2 != null && !"unknown".equals(Build.CPU_ABI2)) {
+        abis.add(Build.CPU_ABI2);
+      }
+      return abis;
+    }
   }
 
   /**
