@@ -3,37 +3,30 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
-import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidVersionException;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
-
-import java.io.IOException;
-
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
 
 public class PushContentReceiveJob extends PushReceivedJob {
 
-  private static final long   serialVersionUID = 5685475456901715638L;
-
-  public PushContentReceiveJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
-  }
+  public static final String KEY = "PushContentReceiveJob";
 
   public PushContentReceiveJob(Context context) {
-    super(context, JobParameters.newBuilder().create());
+    this(new Job.Parameters.Builder().build());
+    setContext(context);
+  }
+
+  private PushContentReceiveJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) { }
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -45,5 +38,12 @@ public class PushContentReceiveJob extends PushReceivedJob {
   @Override
   public boolean onShouldRetry(Exception exception) {
     return false;
+  }
+
+  public static final class Factory implements Job.Factory<PushContentReceiveJob> {
+    @Override
+    public @NonNull PushContentReceiveJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new PushContentReceiveJob(parameters);
+    }
   }
 }

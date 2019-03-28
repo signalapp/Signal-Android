@@ -603,8 +603,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
             ApplicationContext.getInstance(getActivity())
                               .getJobManager()
-                              .add(new MultiDeviceVerifiedUpdateJob(getActivity(),
-                                                                    recipient.getAddress(),
+                              .add(new MultiDeviceVerifiedUpdateJob(recipient.getAddress(),
                                                                     remoteIdentity,
                                                                     isChecked ? VerifiedStatus.VERIFIED :
                                                                                 VerifiedStatus.DEFAULT));

@@ -1,23 +1,22 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
@@ -37,11 +36,10 @@ import java.io.InputStream;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class AttachmentDownloadJob extends BaseJob implements InjectableType {
 
-public class AttachmentDownloadJob extends ContextJob implements InjectableType {
-  private static final long   serialVersionUID    = 2L;
+  public static final String KEY = "AttachmentDownloadJob";
+
   private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
   private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
 
@@ -50,22 +48,27 @@ public class AttachmentDownloadJob extends ContextJob implements InjectableType 
   private static final String KEY_PAR_UNIQUE_ID = "part_unique_id";
   private static final String KEY_MANUAL        = "part_manual";
 
-  @Inject transient SignalServiceMessageReceiver messageReceiver;
+  @Inject SignalServiceMessageReceiver messageReceiver;
 
   private long    messageId;
   private long    partRowId;
   private long    partUniqueId;
   private boolean manual;
 
-  public AttachmentDownloadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public AttachmentDownloadJob(long messageId, AttachmentId attachmentId, boolean manual) {
+    this(new Job.Parameters.Builder()
+                           .setQueue("AttachmentDownloadJob" + attachmentId.getRowId() + "-" + attachmentId.getUniqueId())
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(25)
+                           .build(),
+         messageId,
+         attachmentId,
+         manual);
+
   }
 
-  public AttachmentDownloadJob(Context context, long messageId, AttachmentId attachmentId, boolean manual) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId(AttachmentDownloadJob.class.getSimpleName() + attachmentId.getRowId() + "-" + attachmentId.getUniqueId())
-                                .withNetworkRequirement()
-                                .create());
+  private AttachmentDownloadJob(@NonNull Job.Parameters parameters, long messageId, AttachmentId attachmentId, boolean manual) {
+    super(parameters);
 
     this.messageId    = messageId;
     this.partRowId    = attachmentId.getRowId();
@@ -74,20 +77,17 @@ public class AttachmentDownloadJob extends ContextJob implements InjectableType 
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    messageId    = data.getLong(KEY_MESSAGE_ID);
-    partRowId    = data.getLong(KEY_PART_ROW_ID);
-    partUniqueId = data.getLong(KEY_PAR_UNIQUE_ID);
-    manual       = data.getBoolean(KEY_MANUAL);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                             .putLong(KEY_PART_ROW_ID, partRowId)
+                             .putLong(KEY_PAR_UNIQUE_ID, partUniqueId)
+                             .putBoolean(KEY_MANUAL, manual)
+                             .build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
-                      .putLong(KEY_PART_ROW_ID, partRowId)
-                      .putLong(KEY_PAR_UNIQUE_ID, partUniqueId)
-                      .putBoolean(KEY_MANUAL, manual)
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -242,4 +242,13 @@ public class AttachmentDownloadJob extends ContextJob implements InjectableType 
     InvalidPartException(Exception e) {super(e);}
   }
 
+  public static final class Factory implements Job.Factory<AttachmentDownloadJob> {
+    @Override
+    public @NonNull AttachmentDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new AttachmentDownloadJob(parameters,
+                                       data.getLong(KEY_MESSAGE_ID),
+                                       new AttachmentId(data.getLong(KEY_PART_ROW_ID), data.getLong(KEY_PAR_UNIQUE_ID)),
+                                       data.getBoolean(KEY_MANUAL));
+    }
+  }
 }

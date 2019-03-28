@@ -659,6 +659,29 @@
         </intent-filter>
     </receiver>
 
+    <service
+        android:name=".jobmanager.JobSchedulerScheduler$SystemService"
+        android:permission="android.permission.BIND_JOB_SERVICE"
+        android:enabled="@bool/enable_job_service"
+        tools:targetApi="26" />
+
+    <service
+        android:name=".jobmanager.KeepAliveService"
+        android:enabled="@bool/enable_alarm_manager" />
+
+    <receiver
+        android:name=".jobmanager.AlarmManagerScheduler$RetryReceiver"
+        android:enabled="@bool/enable_alarm_manager" />
+
+    <!-- Probably don't need this one -->
+    <receiver
+        android:name=".jobmanager.BootReceiver"
+        android:enabled="true">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
     <uses-library android:name="com.sec.android.app.multiwindow" android:required="false"/>
     <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
     <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632.0dip" />

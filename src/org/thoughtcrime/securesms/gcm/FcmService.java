@@ -10,7 +10,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WakeLockUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -64,7 +63,7 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
 
     ApplicationContext.getInstance(getApplicationContext())
                       .getJobManager()
-                      .add(new FcmRefreshJob(getApplicationContext()));
+                      .add(new FcmRefreshJob());
   }
 
   private void handleReceivedNotification(Context context) {
@@ -78,7 +77,7 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
     long         startTime    = System.currentTimeMillis();
     PowerManager powerManager = ServiceUtil.getPowerManager(getApplicationContext());
     boolean      doze         = PowerManagerCompat.isDeviceIdleMode(powerManager);
-    boolean      network      = new NetworkRequirement(context).isPresent();
+    boolean      network      = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create().isMet();
 
     final Object         foregroundLock    = new Object();
     final AtomicBoolean  foregroundRunning = new AtomicBoolean(false);

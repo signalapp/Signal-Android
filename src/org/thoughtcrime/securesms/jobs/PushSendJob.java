@@ -19,7 +19,8 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -51,29 +52,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import androidx.work.WorkerParameters;
-
 public abstract class PushSendJob extends SendJob {
 
-  private static final long   serialVersionUID              = 5906098204770900739L;
   private static final String TAG                           = PushSendJob.class.getSimpleName();
   private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
 
-  public PushSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  protected PushSendJob(Job.Parameters parameters) {
+    super(parameters);
   }
 
-  protected PushSendJob(Context context, JobParameters parameters) {
-    super(context, parameters);
-  }
-
-  protected static JobParameters constructParameters(Address destination) {
-    JobParameters.Builder builder = JobParameters.newBuilder();
-    builder.withGroupId(destination.serialize());
-    builder.withNetworkRequirement();
-    builder.withRetryDuration(TimeUnit.DAYS.toMillis(1));
-
-    return builder.create();
+  protected static Job.Parameters constructParameters(Address destination) {
+    return new Parameters.Builder()
+                         .setQueue(destination.serialize())
+                         .addConstraint(NetworkConstraint.KEY)
+                         .setLifespan(TimeUnit.DAYS.toMillis(1))
+                         .setMaxAttempts(Parameters.UNLIMITED)
+                         .build();
   }
 
   @Override
@@ -81,7 +75,7 @@ public abstract class PushSendJob extends SendJob {
     if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new RotateSignedPreKeyJob(context));
+                        .add(new RotateSignedPreKeyJob());
 
       throw new TextSecureExpiredException("Too many signed prekey rotation failures");
     }
@@ -94,9 +88,9 @@ public abstract class PushSendJob extends SendJob {
     super.onRetry();
     Log.i(TAG, "onRetry()");
 
-    if (getRunAttemptCount() > 1) {
+    if (getRunAttempt() > 1) {
       Log.i(TAG, "Scheduling service outage detection job.");
-      ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob(context));
+      ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob());
     }
   }
 
@@ -278,7 +272,6 @@ public abstract class PushSendJob extends SendJob {
       Log.w(TAG, "Certificate was invalid at send time. Fetching a new one.", e);
       RotateCertificateJob certificateJob = new RotateCertificateJob(context);
       ApplicationContext.getInstance(context).injectDependencies(certificateJob);
-      certificateJob.setContext(context);
       certificateJob.onRun();
     }
   }

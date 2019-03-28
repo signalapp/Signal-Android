@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -16,33 +16,36 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
-
 public class PushNotificationReceiveJob extends PushReceivedJob implements InjectableType {
+
+  public static final String KEY = "PushNotificationReceiveJob";
 
   private static final String TAG = PushNotificationReceiveJob.class.getSimpleName();
 
-  @Inject transient SignalServiceMessageReceiver receiver;
-
-  public PushNotificationReceiveJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
-  }
+  @Inject SignalServiceMessageReceiver receiver;
 
   public PushNotificationReceiveJob(Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .withGroupId("__notification_received")
-                                .create());
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setQueue("__notification_received")
+                           .setMaxAttempts(3)
+                           .setMaxInstances(1)
+                           .build());
+    setContext(context);
+  }
+
+  private PushNotificationReceiveJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -74,5 +77,12 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
 
   private static String timeSuffix(long startTime) {
     return " (" + (System.currentTimeMillis() - startTime) + " ms elapsed)";
+  }
+
+  public static final class Factory implements Job.Factory<PushNotificationReceiveJob> {
+    @Override
+    public @NonNull PushNotificationReceiveJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new PushNotificationReceiveJob(parameters);
+    }
   }
 }

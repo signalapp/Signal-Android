@@ -852,7 +852,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
                          ApplicationContext.getInstance(ConversationActivity.this)
                              .getJobManager()
-                             .add(new MultiDeviceBlockedUpdateJob(ConversationActivity.this));
+                             .add(new MultiDeviceBlockedUpdateJob());
 
                          return null;
                        }
@@ -1377,7 +1377,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (ExpiredBuildReminder.isEligible()) {
       reminderView.get().showReminder(new ExpiredBuildReminder(this));
     } else if (ServiceOutageReminder.isEligible(this)) {
-      ApplicationContext.getInstance(this).getJobManager().add(new ServiceOutageDetectionJob(this));
+      ApplicationContext.getInstance(this).getJobManager().add(new ServiceOutageDetectionJob());
       reminderView.get().showReminder(new ServiceOutageReminder(this));
     } else if (TextSecurePreferences.isPushRegistered(this)      &&
                TextSecurePreferences.isShowInviteReminders(this) &&
@@ -1629,7 +1629,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     ApplicationContext.getInstance(this)
                       .getJobManager()
-                      .add(new RetrieveProfileJob(this, recipient));
+                      .add(new RetrieveProfileJob(recipient));
   }
 
   @Override

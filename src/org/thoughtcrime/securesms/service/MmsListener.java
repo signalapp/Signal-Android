@@ -19,13 +19,11 @@ package org.thoughtcrime.securesms.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.provider.Telephony;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.MmsReceiveJob;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 public class MmsListener extends BroadcastReceiver {
@@ -58,7 +56,7 @@ public class MmsListener extends BroadcastReceiver {
 
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MmsReceiveJob(context, intent.getByteArrayExtra("data"), subscriptionId));
+                        .add(new MmsReceiveJob(intent.getByteArrayExtra("data"), subscriptionId));
 
       abortBroadcast();
     }

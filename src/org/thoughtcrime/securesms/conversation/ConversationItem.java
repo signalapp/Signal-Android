@@ -1043,7 +1043,7 @@ public class ConversationItem extends LinearLayout
         Log.i(TAG, "Scheduling MMS attachment download");
         ApplicationContext.getInstance(context)
                           .getJobManager()
-                          .add(new MmsDownloadJob(context, messageRecord.getId(),
+                          .add(new MmsDownloadJob(messageRecord.getId(),
                                                   messageRecord.getThreadId(), false));
       } else {
         Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
@@ -1051,7 +1051,7 @@ public class ConversationItem extends LinearLayout
         for (Slide slide : slides) {
           ApplicationContext.getInstance(context)
                             .getJobManager()
-                            .add(new AttachmentDownloadJob(context, messageRecord.getId(),
+                            .add(new AttachmentDownloadJob(messageRecord.getId(),
                                                            ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
         }
       }
@@ -1171,7 +1171,7 @@ public class ConversationItem extends LinearLayout
 
         ApplicationContext.getInstance(context)
                           .getJobManager()
-                          .add(new MmsSendJob(context, messageRecord.getId()));
+                          .add(new MmsSendJob(messageRecord.getId()));
       } else {
         SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
         database.markAsInsecure(messageRecord.getId());

@@ -8,17 +8,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.Hex;
@@ -29,35 +29,36 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class UpdateApkJob extends ContextJob {
+public class UpdateApkJob extends BaseJob {
+
+  public static final String KEY = "UpdateApkJob";
 
   private static final String TAG = UpdateApkJob.class.getSimpleName();
 
-  public UpdateApkJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public UpdateApkJob() {
+    this(new Job.Parameters.Builder()
+                           .setQueue("UpdateApkJob")
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(2)
+                           .build());
   }
 
-  public UpdateApkJob(Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId(UpdateApkJob.class.getSimpleName())
-                                .withNetworkRequirement()
-                                .withRetryCount(2)
-                                .create());
-  }
-
-  @Override
-  protected void initialize(@NonNull SafeData data) {
+  private UpdateApkJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -258,6 +259,13 @@ public class UpdateApkJob extends ContextJob {
 
     public long getDownloadId() {
       return downloadId;
+    }
+  }
+
+  public static final class Factory implements Job.Factory<UpdateApkJob> {
+    @Override
+    public @NonNull UpdateApkJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new UpdateApkJob(parameters);
     }
   }
 }

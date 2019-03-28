@@ -1,244 +1,281 @@
 package org.thoughtcrime.securesms.jobmanager;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.jobmanager.dependencies.ContextDependent;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
-import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirement;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.service.GenericForegroundService;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.UUID;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-import androidx.work.Data;
-import androidx.work.ListenableWorker.Result;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
+/**
+ * A durable unit of work.
+ *
+ * Jobs have {@link Parameters} that describe the conditions upon when you'd like them to run, how
+ * often they should be retried, and how long they should be retried for.
+ *
+ * Never rely on a specific instance of this class being run. It can be created and destroyed as the
+ * job is retried. State that you want to save is persisted to a {@link Data} object in
+ * {@link #serialize()}. Your job is then recreated using a {@link Factory} that you register in
+ * {@link JobManager.Configuration.Builder#setJobFactories(Map)}, which is given the saved
+ * {@link Data} bundle.
+ */
+public abstract class Job {
 
-public abstract class Job extends Worker implements Serializable {
+  private static final String TAG = Log.tag(Job.class);
 
-  private static final long serialVersionUID = -4658540468214421276L;
+  private final Parameters parameters;
 
-  private static final String TAG = Job.class.getSimpleName();
+  private String id;
+  private int    runAttempt;
+  private long   nextRunAttemptTime;
 
-  private static final WorkLockManager WORK_LOCK_MANAGER = new WorkLockManager();
+  protected Context context;
 
-  static final String KEY_RETRY_COUNT        = "Job_retry_count";
-  static final String KEY_RETRY_UNTIL        = "Job_retry_until";
-  static final String KEY_SUBMIT_TIME        = "Job_submit_time";
-  static final String KEY_FAILED             = "Job_failed";
-  static final String KEY_REQUIRES_NETWORK   = "Job_requires_network";
-  static final String KEY_REQUIRES_SQLCIPHER = "Job_requires_sqlcipher";
-
-  private JobParameters parameters;
-
-  public Job(@NonNull Context context, @NonNull WorkerParameters workerParams) {
-    super(context, workerParams);
-  }
-
-  /**
-   * Invoked when a job is first created in our own codebase.
-   */
-  @SuppressLint("RestrictedApi")
-  protected Job(@NonNull Context context, @Nullable JobParameters parameters) {
-    //noinspection ConstantConditions
-    super(context, new WorkerParameters(null, null, Collections.emptySet(), null, 0, null, null, null));
+  public Job(@NonNull Parameters parameters) {
     this.parameters = parameters;
   }
 
-  @Override
-  public @NonNull Result doWork() {
-    log("doWork()" + logSuffix());
-
-    try (WorkLockManager.WorkLock workLock = WORK_LOCK_MANAGER.acquire(getId())) {
-      Result result = workLock.getResult();
-
-      if (result == null) {
-        result = doWorkInternal();
-        workLock.setResult(result);
-      } else {
-        log("Using result from preempted run (" + result + ")." + logSuffix());
-      }
-
-      return result;
-    }
+  public final String getId() {
+    return id;
   }
 
-  private @NonNull Result doWorkInternal() {
-    Data data = getInputData();
-
-    log("doWorkInternal()" + logSuffix());
-
-    ApplicationContext.getInstance(getApplicationContext()).injectDependencies(this);
-
-    if (this instanceof ContextDependent) {
-      ((ContextDependent)this).setContext(getApplicationContext());
-    }
-
-    try {
-      initialize(new SafeData(data));
-
-      if (data.getBoolean(KEY_FAILED, false)) {
-        warn("Failing due to a failure earlier in the chain." + logSuffix());
-        return cancel();
-      }
-
-      if (!withinRetryLimits(data)) {
-        warn("Failing after hitting the retry limit." + logSuffix());
-        return cancel();
-      }
-
-      if (!requirementsMet(data)) {
-        log("Retrying due to unmet requirements." + logSuffix());
-        return retry();
-      }
-
-      onRun();
-
-      log("Successfully completed." + logSuffix());
-      return success();
-    } catch (Exception e) {
-      if (onShouldRetry(e)) {
-        log("Retrying after a retryable exception." + logSuffix(), e);
-        return retry();
-      }
-      warn("Failing due to an exception." + logSuffix(), e);
-      return cancel();
-    }
+  public final @NonNull Parameters getParameters() {
+    return parameters;
   }
 
-  @Override
-  public void onStopped() {
-    log("onStopped()" + logSuffix());
+  public final int getRunAttempt() {
+    return runAttempt;
   }
 
-  final void onSubmit(@NonNull Context context, @NonNull UUID id) {
-    Log.i(TAG, buildLog(id, "onSubmit() network: " + (new NetworkRequirement(getApplicationContext()).isPresent())));
+  public final long getNextRunAttemptTime() {
+    return nextRunAttemptTime;
+  }
 
-    if (this instanceof ContextDependent) {
-      ((ContextDependent) this).setContext(context);
-    }
+  /**
+   * This is already called by {@link JobController} during job submission, but if you ever run a
+   * job without submitting it to the {@link JobManager}, then you'll need to invoke this yourself.
+   */
+  protected final void setContext(@NonNull Context context) {
+    this.context = context;
+  }
 
+  /** Should only be invoked by {@link JobController} */
+  final void setId(@NonNull String id) {
+    this.id = id;
+  }
+
+  /** Should only be invoked by {@link JobController} */
+  final void setRunAttempt(int runAttempt) {
+    this.runAttempt = runAttempt;
+  }
+
+  /** Should only be invoked by {@link JobController} */
+  final void setNextRunAttemptTime(long nextRunAttemptTime) {
+    this.nextRunAttemptTime = nextRunAttemptTime;
+  }
+
+  @WorkerThread
+  final void onSubmit() {
+    Log.i(TAG, JobLogger.format(this, "onSubmit()"));
     onAdded();
   }
 
   /**
-   * Called after a run has finished and we've determined a retry is required, but before the next
-   * attempt is run.
+   * Called when the job is first submitted to the {@link JobManager}.
    */
-  protected void onRetry() { }
-
-  /**
-   * Called after a job has been added to the JobManager queue. Invoked off the main thread, so its
-   * safe to do longer-running work. However, work should finish relatively quickly, as it will
-   * block the submission of future tasks.
-   */
-  protected void onAdded() { }
-
-  /**
-   * All instance state needs to be persisted in the provided {@link Data.Builder} so that it can
-   * be restored in {@link #initialize(SafeData)}.
-   * @param dataBuilder The builder where you put your state.
-   * @return The result of {@code dataBuilder.build()}.
-   */
-  protected abstract @NonNull Data serialize(@NonNull Data.Builder dataBuilder);
-
-  /**
-   * Restore all of your instance state from the provided {@link Data}. It should contain all of
-   * the data put in during {@link #serialize(Data.Builder)}.
-   * @param data Where your data is stored.
-   */
-  protected abstract void initialize(@NonNull SafeData data);
-
-  /**
-   * Called to actually execute the job.
-   * @throws Exception
-   */
-  public abstract void onRun() throws Exception;
-
-  /**
-   * Called if a job fails to run (onShouldRetry returned false, or the number of retries exceeded
-   * the job's configured retry count.
-   */
-  protected abstract void onCanceled();
-
-  /**
-   * If onRun() throws an exception, this method will be called to determine whether the
-   * job should be retried.
-   *
-   * @param exception The exception onRun() threw.
-   * @return true if onRun() should be called again, false otherwise.
-   */
-  protected abstract boolean onShouldRetry(Exception exception);
-
-  @Nullable JobParameters getJobParameters() {
-    return parameters;
+  @WorkerThread
+  public void onAdded() {
   }
 
-  private Result success() {
-    return Result.success();
+  /**
+   * Called after a job has run and its determined that a retry is required.
+   */
+  @WorkerThread
+  public void onRetry() {
   }
 
-  private Result retry() {
-    onRetry();
-    return Result.retry();
+  /**
+   * Serialize your job state so that it can be recreated in the future.
+   */
+  public abstract @NonNull Data serialize();
+
+  /**
+   * Returns the key that can be used to find the relevant factory needed to create your job.
+   */
+  public abstract @NonNull String getFactoryKey();
+
+  /**
+   * Called to do your actual work.
+   */
+  @WorkerThread
+  public abstract @NonNull Result run();
+
+  /**
+   * Called when your job has completely failed.
+   */
+  @WorkerThread
+  public abstract void onCanceled();
+
+  public interface Factory<T extends Job> {
+    @NonNull T create(@NonNull Parameters parameters, @NonNull Data data);
   }
 
-  private Result cancel() {
-    onCanceled();
-    return Result.success(new Data.Builder().putBoolean(KEY_FAILED, true).build());
+  public enum Result {
+    SUCCESS, FAILURE, RETRY
   }
 
-  private boolean requirementsMet(@NonNull Data data) {
-    boolean met = true;
+  public static final class Parameters {
 
-    if (data.getBoolean(KEY_REQUIRES_SQLCIPHER, false)) {
-      met &= new SqlCipherMigrationRequirement(getApplicationContext()).isPresent();
+    public static final int IMMORTAL  = -1;
+    public static final int UNLIMITED = -1;
+
+    private final long         createTime;
+    private final long         lifespan;
+    private final int          maxAttempts;
+    private final long         maxBackoff;
+    private final int          maxInstances;
+    private final String       queue;
+    private final List<String> constraintKeys;
+
+    private Parameters(long createTime,
+                       long lifespan,
+                       int maxAttempts,
+                       long maxBackoff,
+                       int maxInstances,
+                       @Nullable String queue,
+                       @NonNull List<String> constraintKeys)
+    {
+      this.createTime     = createTime;
+      this.lifespan       = lifespan;
+      this.maxAttempts    = maxAttempts;
+      this.maxBackoff     = maxBackoff;
+      this.maxInstances   = maxInstances;
+      this.queue          = queue;
+      this.constraintKeys = constraintKeys;
     }
 
-    return met;
-  }
-
-  private boolean withinRetryLimits(@NonNull Data data) {
-    int  retryCount = data.getInt(KEY_RETRY_COUNT, 0);
-    long retryUntil = data.getLong(KEY_RETRY_UNTIL, 0);
-
-    if (retryCount > 0) {
-      return getRunAttemptCount() <= retryCount;
+    public long getCreateTime() {
+      return createTime;
     }
 
-    return System.currentTimeMillis() < retryUntil;
-  }
+    public long getLifespan() {
+      return lifespan;
+    }
 
-  private void log(@NonNull String message) {
-    log(message, null);
-  }
+    public int getMaxAttempts() {
+      return maxAttempts;
+    }
 
-  private void log(@NonNull String message, @Nullable Throwable t) {
-    Log.i(TAG, buildLog(getId(), message), t);
-  }
+    public long getMaxBackoff() {
+      return maxBackoff;
+    }
 
-  private void warn(@NonNull String message) {
-    warn(message, null);
-  }
+    public int getMaxInstances() {
+      return maxInstances;
+    }
 
-  private void warn(@NonNull String message, @Nullable Throwable t) {
-    Log.w(TAG, buildLog(getId(), message), t);
-  }
+    public @Nullable String getQueue() {
+      return queue;
+    }
 
-  private String buildLog(@NonNull UUID id, @NonNull String message) {
-    return "[" + id + "] " + getClass().getSimpleName() + " :: " + message;
-  }
+    public List<String> getConstraintKeys() {
+      return constraintKeys;
+    }
 
-  protected String logSuffix() {
-    long timeSinceSubmission = System.currentTimeMillis() - getInputData().getLong(KEY_SUBMIT_TIME, 0);
-    return " (Time since submission: " + timeSinceSubmission + " ms, Run attempt: " + getRunAttemptCount() + ", isStopped: " + isStopped() + ")";
+
+    public static final class Builder {
+
+      private long         createTime     = System.currentTimeMillis();
+      private long         maxBackoff     = TimeUnit.SECONDS.toMillis(30);
+      private long         lifespan       = IMMORTAL;
+      private int          maxAttempts    = 1;
+      private int          maxInstances   = UNLIMITED;
+      private String       queue          = null;
+      private List<String> constraintKeys = new LinkedList<>();
+
+      /** Should only be invoked by {@link JobController} */
+      Builder setCreateTime(long createTime) {
+        this.createTime = createTime;
+        return this;
+      }
+
+      /**
+       * Specify the amount of time this job is allowed to be retried. Defaults to {@link #IMMORTAL}.
+       */
+      public @NonNull Builder setLifespan(long lifespan) {
+        this.lifespan = lifespan;
+        return this;
+      }
+
+      /**
+       * Specify the maximum number of times you want to attempt this job. Defaults to 1.
+       */
+      public @NonNull Builder setMaxAttempts(int maxAttempts) {
+        this.maxAttempts = maxAttempts;
+        return this;
+      }
+
+      /**
+       * Specify the longest amount of time to wait between retries. No guarantees that this will
+       * be respected on API >= 26.
+       */
+      public @NonNull Builder setMaxBackoff(long maxBackoff) {
+        this.maxBackoff = maxBackoff;
+        return this;
+      }
+
+      /**
+       * Specify the maximum number of instances you'd want of this job at any given time. If
+       * enqueueing this job would put it over that limit, it will be ignored.
+       *
+       * Duplicates are determined by two jobs having the same {@link Job#getFactoryKey()}.
+       *
+       * This property is ignored if the job is submitted as part of a {@link JobManager.Chain}.
+       *
+       * Defaults to {@link #UNLIMITED}.
+       */
+      public @NonNull Builder setMaxInstances(int maxInstances) {
+        this.maxInstances = maxInstances;
+        return this;
+      }
+
+      /**
+       * Specify a string representing a queue. All jobs within the same queue are run in a
+       * serialized fashion -- one after the other, in order of insertion. Failure of a job earlier
+       * in the queue has no impact on the execution of jobs later in the queue.
+       */
+      public @NonNull Builder setQueue(@Nullable String queue) {
+        this.queue = queue;
+        return this;
+      }
+
+      /**
+       * Add a constraint via the key that was used to register its factory in
+       * {@link JobManager.Configuration)};
+       */
+      public @NonNull Builder addConstraint(@NonNull String constraintKey) {
+        constraintKeys.add(constraintKey);
+        return this;
+      }
+
+      /**
+       * Set constraints via the key that was used to register its factory in
+       * {@link JobManager.Configuration)};
+       */
+      public @NonNull Builder setConstraints(@NonNull List<String> constraintKeys) {
+        this.constraintKeys.clear();
+        this.constraintKeys.addAll(constraintKeys);
+        return this;
+      }
+
+      public @NonNull Parameters build() {
+        return new Parameters(createTime, lifespan, maxAttempts, maxBackoff, maxInstances, queue, constraintKeys);
+      }
+    }
   }
 }

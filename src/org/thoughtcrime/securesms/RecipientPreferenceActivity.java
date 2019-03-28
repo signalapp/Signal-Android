@@ -771,12 +771,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             if (blocked && (recipient.resolve().isSystemContact() || recipient.resolve().isProfileSharing())) {
               ApplicationContext.getInstance(context)
                                 .getJobManager()
-                                .add(new RotateProfileKeyJob(context));
+                                .add(new RotateProfileKeyJob());
             }
 
             ApplicationContext.getInstance(context)
                               .getJobManager()
-                              .add(new MultiDeviceBlockedUpdateJob(context));
+                              .add(new MultiDeviceBlockedUpdateJob());
             return null;
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

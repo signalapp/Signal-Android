@@ -992,7 +992,7 @@ public class ConversationFragment extends Fragment
     if (requestCode == CODE_ADD_EDIT_CONTACT && getContext() != null) {
       ApplicationContext.getInstance(getContext().getApplicationContext())
                         .getJobManager()
-                        .add(new DirectoryRefreshJob(getContext().getApplicationContext(), false));
+                        .add(new DirectoryRefreshJob(false));
     }
   }
 

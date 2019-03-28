@@ -381,7 +381,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
           return false;
         }
 
-        ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob(context));
+        ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
 
         return true;
       }

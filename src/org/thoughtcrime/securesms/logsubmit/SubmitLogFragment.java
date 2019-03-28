@@ -51,7 +51,6 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.logging.Log;
@@ -93,6 +92,7 @@ public class SubmitLogFragment extends Fragment {
   private static final String API_ENDPOINT = "https://debuglogs.org";
 
   private static final String HEADER_SYSINFO = "========== SYSINFO ========";
+  private static final String HEADER_JOBS    = "=========== JOBS =========";
   private static final String HEADER_LOGCAT  = "========== LOGCAT ========";
   private static final String HEADER_LOGGER  = "========== LOGGER ========";
 
@@ -373,6 +373,8 @@ public class SubmitLogFragment extends Fragment {
 
       return HEADER_SYSINFO + "\n\n" +
              buildDescription(context) + "\n\n\n" +
+             HEADER_JOBS + "\n\n" +
+             scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()) + "\n\n" +
              HEADER_LOGCAT + "\n\n" +
              scrubbedLogcat + "\n\n\n" +
              HEADER_LOGGER + "\n\n" +
@@ -487,7 +489,7 @@ public class SubmitLogFragment extends Fragment {
     final PackageManager pm      = context.getPackageManager();
     final StringBuilder  builder = new StringBuilder();
 
-
+    builder.append("Time    : ").append(System.currentTimeMillis()).append('\n');
     builder.append("Device  : ")
            .append(Build.MANUFACTURER).append(" ")
            .append(Build.MODEL).append(" (")

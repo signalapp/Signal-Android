@@ -16,19 +16,17 @@
  */
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class TrimThreadJob extends BaseJob {
 
-public class TrimThreadJob extends ContextJob {
+  public static final String KEY = "TrimThreadJob";
 
   private static final String TAG = TrimThreadJob.class.getSimpleName();
 
@@ -36,24 +34,23 @@ public class TrimThreadJob extends ContextJob {
 
   private long threadId;
 
-  public TrimThreadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public TrimThreadJob(long threadId) {
+    this(new Job.Parameters.Builder().setQueue("TrimThreadJob").build(), threadId);
   }
 
-  public TrimThreadJob(Context context, long threadId) {
-    super(context, JobParameters.newBuilder().withGroupId(TrimThreadJob.class.getSimpleName()).create());
-    this.context  = context;
+  private TrimThreadJob(@NonNull Job.Parameters parameters, long threadId) {
+    super(parameters);
     this.threadId = threadId;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    threadId = data.getLong(KEY_THREAD_ID);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putLong(KEY_THREAD_ID, threadId).build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_THREAD_ID, threadId).build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -75,5 +72,12 @@ public class TrimThreadJob extends ContextJob {
   @Override
   public void onCanceled() {
     Log.w(TAG, "Canceling trim attempt: " + threadId);
+  }
+
+  public static final class Factory implements Job.Factory<TrimThreadJob> {
+    @Override
+    public @NonNull TrimThreadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new TrimThreadJob(parameters, data.getLong(KEY_THREAD_ID));
+    }
   }
 }
