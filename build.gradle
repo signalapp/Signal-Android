@@ -326,6 +326,15 @@ android {
         }
 
         resConfigs autoResConfig()
+
+        splits {
+            abi {
+                enable true
+                reset()
+                include 'armeabi-v7a', 'x86', 'armeabi'
+                universalApk true
+            }
+        }
     }
 
     compileOptions {
@@ -455,31 +464,33 @@ def assembleWebsiteDescriptor = { variant, file ->
 }
 
 def signProductionRelease = { variant ->
-    String apkName    = variant.outputs[0].outputFile.name
-    File   inputFile  = new File(variant.outputs[0].outputFile.path);
-    File   outputFile = new File(variant.outputs[0].outputFile.parent, apkName.replace("-unsigned", ""));
+    variant.outputs.collect { output ->
+        String apkName    = output.outputFile.name
+        File   inputFile  = new File(output.outputFile.path)
+        File   outputFile = new File(output.outputFile.parent, apkName.replace('-unsigned', ''))
 
-    new ApkSignerUtil("sun.security.pkcs11.SunPKCS11",
-                      "pkcs11.config",
-                      "PKCS11",
-                      "file:pkcs11.password").calculateSignature(inputFile.getAbsolutePath(),
-                                                                 outputFile.getAbsolutePath());
+        new ApkSignerUtil('sun.security.pkcs11.SunPKCS11',
+                          'pkcs11.config',
+                          'PKCS11',
+                          'file:pkcs11.password').calculateSignature(inputFile.getAbsolutePath(),
+                                                                     outputFile.getAbsolutePath())
 
-    inputFile.delete();
-    return outputFile
+        inputFile.delete()
+        outputFile
+    }
 }
 
 task signProductionPlayRelease {
     doLast {
-        signProductionRelease(android.applicationVariants.find({ it.name.equals("playRelease") }))
+        signProductionRelease(android.applicationVariants.find { (it.name == 'playRelease') })
     }
 }
 
 task signProductionWebsiteRelease {
     doLast {
-        def  variant       = android.applicationVariants.find({ it.name.equals("websiteRelease") })
-        File signedRelease = signProductionRelease(variant)
-        assembleWebsiteDescriptor(variant, signedRelease);
+        def  variant       = android.applicationVariants.find { (it.name == 'websiteRelease') }
+        File signedRelease = signProductionRelease(variant).find { it.name.contains('universal') }
+        assembleWebsiteDescriptor(variant, signedRelease)
     }
 }
 
