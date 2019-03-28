@@ -530,7 +530,7 @@
     <!-- ExpirationDialog -->
     <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
     <string name="ExpirationDialog_your_messages_will_not_expire">New messages will not expire.</string>
-    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">New messages sent and received in this conversation will disappear %s after they have been seen.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">New messages sent and received in this conversation will disappear for all participants of this chat %s after they have been seen.</string>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
@@ -1446,7 +1446,7 @@
     <string name="registration_activity__skip">Skip</string>
     <string name="registration_activity__register">Register</string>
     <string name="preferences_chats__chat_backups">Enable periodic backups</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to /Signal/Backups on your phone\'s internal storage</string>
+    <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to /Signal/Backups on your phone\'s internal storage every 24 hours</string>
     <string name="preferences_chats__create_backup">Create backup now</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
