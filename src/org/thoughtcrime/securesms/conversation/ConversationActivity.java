@@ -1995,6 +1995,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void sendMessage() {
+    if (inputPanel.isRecordingInLockedMode()) {
+      inputPanel.releaseRecordingLock();
+      return;
+    }
+
     try {
       Recipient recipient = getRecipient();
 
@@ -2176,6 +2181,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
+    if (inputPanel.isRecordingInLockedMode()) {
+      buttonToggle.display(sendButton);
+      quickAttachmentToggle.show();
+      inlineAttachmentToggle.hide();
+      return;
+    }
+
     if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
       buttonToggle.display(attachButton);
       quickAttachmentToggle.show();
@@ -2233,7 +2245,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
+  public void onRecorderLocked() {
+    updateToggleButtonState();
+  }
+
+  @Override
   public void onRecorderFinished() {
+    updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(20);
 
@@ -2274,6 +2292,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRecorderCanceled() {
+    updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(50);
 

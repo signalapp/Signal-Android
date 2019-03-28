@@ -124,31 +124,12 @@
                             <org.thoughtcrime.securesms.components.MicrophoneRecorderView
                                 android:id="@+id/recorder_view"
                                 android:layout_height="match_parent"
-                                android:layout_width="wrap_content"
+                                android:layout_width="36dp"
                                 android:layout_gravity="center_vertical"
                                 android:clipChildren="false"
                                 android:clipToPadding="false">
 
-                                <ImageButton
-                                    android:id="@+id/quick_audio_toggle"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginEnd="2dp"
-                                    android:padding="6dp"
-                                    android:src="?quick_mic_icon"
-                                    android:background="@null"
-                                    android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description" />
-
-                                <ImageView
-                                    android:id="@+id/quick_audio_fab"
-                                    android:layout_width="74dp"
-                                    android:layout_height="74dp"
-                                    android:src="@drawable/ic_mic_white_48dp"
-                                    android:background="@drawable/circle_tintable"
-                                    android:backgroundTint="@color/core_red"
-                                    android:visibility="gone"
-                                    android:scaleType="center"/>
+                                <include layout="@layout/microphone_recorder_view" />
 
                             </org.thoughtcrime.securesms.components.MicrophoneRecorderView>
 
@@ -177,51 +158,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/recording_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    tools:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/record_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="none"
-                        android:layout_marginStart="20dp"
-                        style="@style/Signal.Text.Body"
-                        android:text="00:00"
-                        android:textColor="@color/core_grey_60"
-                        android:singleLine="true"
-                        android:visibility="gone"
-                        tools:visibility="visible"/>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="true">
-
-                        <TextView
-                            android:id="@+id/slide_to_cancel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|start|center_vertical"
-                            android:drawableStart="@drawable/ic_keyboard_arrow_left_grey600_24dp"
-                            style="@style/Signal.Text.Caption"
-                            android:text="@string/conversation_input_panel__slide_to_cancel"
-                            android:textAllCaps="true"
-                            android:textColor="@color/core_grey_60"
-                            android:ellipsize="none"
-                            android:visibility="gone"
-                            android:paddingEnd="50dp"
-                            tools:visibility="visible"/>
-
-                    </FrameLayout>
-
-                </LinearLayout>
+                <include layout="@layout/recording_layout" />
 
             </FrameLayout>
 

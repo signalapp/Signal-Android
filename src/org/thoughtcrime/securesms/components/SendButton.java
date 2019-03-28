@@ -45,6 +45,8 @@ public class SendButton extends ImageButton
   }
 
   private TransportOptions initializeTransportOptions(boolean media) {
+    if (isInEditMode()) return null;
+
     TransportOptions transportOptions = new TransportOptions(getContext(), media);
     transportOptions.addOnTransportChangedListener(this);
 

@@ -99,4 +99,6 @@
 
     <dimen name="alertview_small_icon_size">14dp</dimen>
 
+    <dimen name="recording_voice_lock_target">-150dp</dimen>
+
 </resources>
