@@ -1256,7 +1256,7 @@
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
     <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
-    <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
+    <string name="preferences_chats__when_using_wifi">When using WiFi</string>
     <string name="preferences_chats__when_roaming">When roaming</string>
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_trimming">Limit message storage</string>
