@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -68,7 +67,7 @@ public class BitmapUtil {
                                     .load(model)
                                     .skipMemoryCache(true)
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                    .downsample(DownsampleStrategy.AT_MOST)
+                                    .centerInside()
                                     .submit(maxImageWidth, maxImageHeight)
                                     .get();
 
@@ -122,7 +121,7 @@ public class BitmapUtil {
       return GlideApp.with(context.getApplicationContext())
                      .asBitmap()
                      .load(model)
-                     .downsample(DownsampleStrategy.AT_MOST)
+                     .centerInside()
                      .submit(maxWidth, maxHeight)
                      .get();
     } catch (InterruptedException | ExecutionException e) {

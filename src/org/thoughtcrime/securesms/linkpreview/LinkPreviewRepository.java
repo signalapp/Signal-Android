@@ -8,7 +8,6 @@ import android.text.Html;
 import android.text.TextUtils;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 import com.bumptech.glide.request.FutureTarget;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -132,7 +131,7 @@ public class LinkPreviewRepository {
                                                               .load(new ChunkedImageUrl(imageUrl))
                                                               .skipMemoryCache(true)
                                                               .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                                              .downsample(DownsampleStrategy.AT_MOST)
+                                                              .centerInside()
                                                               .submit(1024, 1024);
 
     RequestController controller = () -> bitmapFuture.cancel(false);
