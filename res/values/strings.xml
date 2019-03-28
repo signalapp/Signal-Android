@@ -62,7 +62,7 @@
 
     <!-- AttchmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires permission to use the External storage in order to attach photos, videos, or audio, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires permission to use the external storage in order to attach photos, videos, or audio, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal requires Contacts permission in order to attach contact information, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requires Location permission in order to attach a location, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Location\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requires the Camera permission in order to take photos, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
@@ -201,23 +201,23 @@
         <item quantity="one">This will permanently delete the selected message.</item>
         <item quantity="other">This will permanently delete all %1$d selected messages.</item>
     </plurals>
-    <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
+    <string name="ConversationFragment_save_to_sd_card">Save to external storage?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Saving this media to external storage will allow any other apps on your device to access it.\n\nContinue?</item>
+        <item quantity="other">Saving all %1$d media to external storage will allow any other apps on your device to access them.\n\nContinue?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Error while saving attachment to storage!</item>
-        <item quantity="other">Error while saving attachments to storage!</item>
+        <item quantity="one">Error while saving attachment to external storage!</item>
+        <item quantity="other">Error while saving attachments to external storage!</item>
     </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
+    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to external storage!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Saving attachment</item>
         <item quantity="other">Saving %1$d attachments</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Saving attachment to external storage…</item>
+        <item quantity="other">Saving %1$d attachments to external storage…</item>
     </plurals>
     <string name="ConversationFragment_pending">Pending…</string>
     <string name="ConversationFragment_push">Internet (Signal Protocol)</string>
@@ -1440,13 +1440,13 @@
     <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Unlock to complete update</string>
     <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Please unlock Signal to complete update</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup passphrase</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to internal storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
     <string name="registration_activity__restore_backup">Restore backup</string>
     <string name="registration_activity__skip">Skip</string>
     <string name="registration_activity__register">Register</string>
-    <string name="preferences_chats__chat_backups">Create backups periodically</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to external storage</string>
+    <string name="preferences_chats__chat_backups">Enable periodic backups</string>
+    <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to /Signal/Backups on your phone\'s internal storage</string>
     <string name="preferences_chats__create_backup">Create backup now</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
@@ -1458,11 +1458,11 @@
     <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">You now have the opportunity to restore messages and media from a backup file. Beware: Restoring based off a backup can only be done during installation of the Signal app. You can no longer do this at a later stage, so if you wish to restore based off a backup you must do so now.</string>
     <string name="RegistrationActivity_backup_size_s">Backup size: %s</string>
     <string name="RegistrationActivity_backup_timestamp_s">Backup timestamp: %s</string>
-    <string name="BackupDialog_enable_local_backups">Enable local backups?</string>
+    <string name="BackupDialog_enable_local_backups">Enable backups to internal storage?</string>
     <string name="BackupDialog_enable_backups">Enable backups</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
     <string name="BackupDialog_delete_backups">Delete backups?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all backup files on your internal storage?</string>
     <string name="BackupDialog_delete_backups_statement">Delete backups</string>
     <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
     <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
