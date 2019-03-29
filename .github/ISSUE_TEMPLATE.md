@@ -15,7 +15,8 @@ Let's begin with a checklist: Replace the empty checkboxes [ ] below with checke
 - [ ] I have searched open and closed issues for duplicates
 - [ ] I am submitting a bug report for existing functionality that does not work as intended
 - [ ] I have read https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports
-- [ ] This isn't a feature request or a discussion topic
+- [ ] This isn't a feature request or a discussion topic 
+- For feature request please use: https://whispersystems.discoursehosting.net/
 
 ----------------------------------------
 
