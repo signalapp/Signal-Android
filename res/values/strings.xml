@@ -1037,7 +1037,7 @@
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
         <item quantity="one">%1$s has been added to the group.</item>
-        <item quantity="other">%1$s has been added the group.</item>
+        <item quantity="other">%1$s has been added to the group.</item>
     </plurals>
     <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
 
