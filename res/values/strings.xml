@@ -36,9 +36,9 @@
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disable Signal messages and calls by unregistering your phone number from the server. You will need to re-register your phone number to use this service again in the future.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch if you wish to change your default SMS app</string>
+    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap if you wish to change your default SMS app</string>
     <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabled</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Touch if you want to make Signal your default SMS app</string>
+    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap if you want to make Signal your default SMS app</string>
     <string name="ApplicationPreferencesActivity_on">on</string>
     <string name="ApplicationPreferencesActivity_On">On</string>
     <string name="ApplicationPreferencesActivity_off">off</string>
@@ -727,8 +727,8 @@
     <string name="ApplicationMigrationService_system_database_import_is_complete">System database import is complete.</string>
 
     <!-- KeyCachingService -->
-    <string name="KeyCachingService_signal_passphrase_cached">Touch to open.</string>
-    <string name="KeyCachingService_signal_passphrase_cached_with_lock">Touch to open, or touch the lock to close.</string>
+    <string name="KeyCachingService_signal_passphrase_cached">Tap to open.</string>
+    <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tap to open, or tap the lock to close.</string>
     <string name="KeyCachingService_passphrase_cached">Signal is unlocked</string>
     <string name="KeyCachingService_lock">Lock Signal</string>
 
