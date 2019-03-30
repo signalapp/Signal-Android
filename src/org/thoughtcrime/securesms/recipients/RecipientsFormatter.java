@@ -49,7 +49,7 @@ public class RecipientsFormatter {
   }
 
   public static List<String> getRecipients(String rawText) throws RecipientFormattingException {
-    ArrayList<String> results = new ArrayList<String>();
+    ArrayList<String> results = new ArrayList<>();
     StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
 
     while (tokenizer.hasMoreTokens()) {

@@ -827,7 +827,7 @@ public class SmsDatabase extends MessagingDatabase {
                                   message.getRecipient(), message.getRecipient(),
                                   1, System.currentTimeMillis(), System.currentTimeMillis(),
                                   0, message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
-                                  threadId, 0, new LinkedList<IdentityKeyMismatch>(),
+                                  threadId, 0, new LinkedList<>(),
                                   message.getSubscriptionId(), message.getExpiresIn(),
                                   System.currentTimeMillis(), 0, false);
     }

@@ -18,7 +18,7 @@ public class TransportOptionsPopup extends ListPopupWindow implements ListView.O
   public TransportOptionsPopup(@NonNull Context context, @NonNull View anchor, @NonNull SelectedListener listener) {
     super(context);
     this.listener = listener;
-    this.adapter  = new TransportOptionsAdapter(context, new LinkedList<TransportOption>());
+    this.adapter  = new TransportOptionsAdapter(context, new LinkedList<>());
 
     setVerticalOffset(context.getResources().getDimensionPixelOffset(R.dimen.transport_selection_popup_yoff));
     setHorizontalOffset(context.getResources().getDimensionPixelOffset(R.dimen.transport_selection_popup_xoff));

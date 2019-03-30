@@ -370,7 +370,7 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
         public List<String> getNumbers() {
             Spanned sp = mList.getText();
             int len = sp.length();
-            List<String> list = new ArrayList<String>();
+            List<String> list = new ArrayList<>();
 
             int start = 0;
             int i = 0;

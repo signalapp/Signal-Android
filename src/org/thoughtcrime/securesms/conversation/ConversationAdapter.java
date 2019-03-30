@@ -81,7 +81,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private static final int MAX_CACHE_SIZE = 40;
   private static final String TAG = ConversationAdapter.class.getSimpleName();
   private final Map<String,SoftReference<MessageRecord>> messageRecordCache =
-      Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
+      Collections.synchronizedMap(new LRUCache<>(MAX_CACHE_SIZE));
 
   private static final int MESSAGE_TYPE_OUTGOING           = 0;
   private static final int MESSAGE_TYPE_INCOMING           = 1;
@@ -93,7 +93,7 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private static final int MESSAGE_TYPE_DOCUMENT_OUTGOING  = 7;
   private static final int MESSAGE_TYPE_DOCUMENT_INCOMING  = 8;
 
-  private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
+  private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<>());
 
   private final @Nullable ItemClickListener clickListener;
   private final @NonNull  GlideRequests     glideRequests;

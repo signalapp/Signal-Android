@@ -78,7 +78,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   @Override
   public void onLoaderReset(Loader<List<GiphyImage>> loader) {
     noResultsView.setVisibility(View.GONE);
-    this.giphyAdapter.setImages(new LinkedList<GiphyImage>());
+    this.giphyAdapter.setImages(new LinkedList<>());
   }
 
   public void setLayoutManager(boolean gridLayout) {

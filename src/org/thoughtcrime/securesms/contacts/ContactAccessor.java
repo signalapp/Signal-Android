@@ -273,13 +273,13 @@ public class ContactAccessor {
     public ContactData(long id, String name) {
       this.id      = id;
       this.name    = name;
-      this.numbers = new LinkedList<NumberData>();
+      this.numbers = new LinkedList<>();
     }
 
     public ContactData(Parcel in) {
       id      = in.readLong();
       name    = in.readString();
-      numbers = new LinkedList<NumberData>();
+      numbers = new LinkedList<>();
       in.readTypedList(numbers, NumberData.CREATOR);
     }
 
@@ -361,7 +361,7 @@ public class ContactAccessor {
       result.add("\u00A0");                               // LABEL
       result.add(cons);                                   // NAME
 
-      ArrayList<ArrayList> wrap = new ArrayList<ArrayList>();
+      ArrayList<ArrayList> wrap = new ArrayList<>();
       wrap.add(result);
 
       ArrayListCursor translated = new ArrayListCursor(PROJECTION_PHONE, wrap);

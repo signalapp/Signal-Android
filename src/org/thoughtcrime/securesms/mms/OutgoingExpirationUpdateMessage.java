@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class OutgoingExpirationUpdateMessage extends OutgoingSecureMediaMessage {
 
   public OutgoingExpirationUpdateMessage(Recipient recipient, long sentTimeMillis, long expiresIn) {
-    super(recipient, "", new LinkedList<Attachment>(), sentTimeMillis,
+    super(recipient, "", new LinkedList<>(), sentTimeMillis,
           ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, null, Collections.emptyList(),
           Collections.emptyList());
   }

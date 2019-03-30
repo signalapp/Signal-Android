@@ -24,10 +24,10 @@ public class CountryListLoader extends AsyncTaskLoader<ArrayList<Map<String, Str
   @Override
   public ArrayList<Map<String, String>> loadInBackground() {
     Set<String> regions                    = PhoneNumberUtil.getInstance().getSupportedRegions();
-    ArrayList<Map<String, String>> results = new ArrayList<Map<String, String>>(regions.size());
+    ArrayList<Map<String, String>> results = new ArrayList<>(regions.size());
 
     for (String region : regions) {
-      Map<String, String> data = new HashMap<String, String>(2);
+      Map<String, String> data = new HashMap<>(2);
       data.put("country_name", PhoneNumberFormatter.getRegionDisplayName(region));
       data.put("country_code", "+" +PhoneNumberUtil.getInstance().getCountryCodeForRegion(region));
       results.add(data);

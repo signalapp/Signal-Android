@@ -64,8 +64,8 @@ public class CanvasView extends View {
   private int    canvasHeight  = 1;
   private Bitmap bitmap        = null;
 
-  private List<Path> pathLists  = new ArrayList<Path>();
-  private List<Paint> paintLists = new ArrayList<Paint>();
+  private List<Path> pathLists  = new ArrayList<>();
+  private List<Paint> paintLists = new ArrayList<>();
 
   // for Eraser
 //  private int baseColor = Color.WHITE;

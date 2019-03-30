@@ -86,7 +86,7 @@ public class GroupMessageProcessor {
     builder.setType(GroupContext.Type.UPDATE);
 
     SignalServiceAttachment avatar  = group.getAvatar().orNull();
-    List<Address>           members = group.getMembers().isPresent() ? new LinkedList<Address>() : null;
+    List<Address>           members = group.getMembers().isPresent() ? new LinkedList<>() : null;
 
     if (group.getMembers().isPresent()) {
       for (String member : group.getMembers().get()) {

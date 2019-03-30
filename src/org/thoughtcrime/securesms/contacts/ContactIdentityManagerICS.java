@@ -48,7 +48,7 @@ class ContactIdentityManagerICS extends ContactIdentityManager {
 
   @Override
   public List<Long> getSelfIdentityRawContactIds() {
-    List<Long> results = new LinkedList<Long>();
+    List<Long> results = new LinkedList<>();
 
     String[] PROJECTION = new String[] {
         ContactsContract.Profile._ID

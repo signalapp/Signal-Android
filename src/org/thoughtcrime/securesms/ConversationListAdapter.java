@@ -57,7 +57,7 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
   private final @Nullable ItemClickListener clickListener;
   private final @NonNull  MessageDigest     digest;
 
-  private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
+  private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<>());
   private       boolean   batchMode = false;
   private final Set<Long> typingSet = new HashSet<>();
 

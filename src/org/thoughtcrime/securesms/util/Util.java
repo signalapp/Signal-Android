@@ -116,7 +116,7 @@ public class Util {
   }
 
   public static ExecutorService newSingleThreadedLifoExecutor() {
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<>());
 
     executor.execute(() -> {
 //        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);

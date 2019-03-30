@@ -10,7 +10,7 @@ public class ThreadUtil {
 
   public static ExecutorService newDynamicSingleThreadedExecutor() {
     ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS,
-                                                         new LinkedBlockingQueue<Runnable>());
+            new LinkedBlockingQueue<>());
     executor.allowCoreThreadTimeOut(true);
 
     return executor;

@@ -65,7 +65,7 @@ public class Recipient implements RecipientModifiedListener {
   private static final String            TAG      = Recipient.class.getSimpleName();
   private static final RecipientProvider provider = new RecipientProvider();
 
-  private final Set<RecipientModifiedListener> listeners = Collections.newSetFromMap(new WeakHashMap<RecipientModifiedListener, Boolean>());
+  private final Set<RecipientModifiedListener> listeners = Collections.newSetFromMap(new WeakHashMap<>());
 
   private final @NonNull Address address;
   private final @NonNull List<Recipient> participants = new LinkedList<>();

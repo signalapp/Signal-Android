@@ -102,10 +102,10 @@ public class SoftHashMap<K, V> implements Map<K, V> {
   public SoftHashMap(int retentionSize) {
     super();
     RETENTION_SIZE = Math.max(0, retentionSize);
-    queue = new ReferenceQueue<V>();
+    queue = new ReferenceQueue<>();
     strongReferencesLock = new ReentrantLock();
-    map = new ConcurrentHashMap<K, SoftValue<V, K>>();
-    strongReferences = new ConcurrentLinkedQueue<V>();
+    map = new ConcurrentHashMap<>();
+    strongReferences = new ConcurrentLinkedQueue<>();
   }
 
   /**
@@ -232,7 +232,7 @@ public class SoftHashMap<K, V> implements Map<K, V> {
       //noinspection unchecked
       return Collections.EMPTY_SET;
     }
-    Collection<V> values = new ArrayList<V>(keys.size());
+    Collection<V> values = new ArrayList<>(keys.size());
     for (K key : keys) {
       V v = get(key);
       if (v != null) {
@@ -247,7 +247,7 @@ public class SoftHashMap<K, V> implements Map<K, V> {
    */
   public V put(K key, V value) {
     processQueue(); // throw out garbage collected values first
-    SoftValue<V, K> sv = new SoftValue<V, K>(value, key, queue);
+    SoftValue<V, K> sv = new SoftValue<>(value, key, queue);
     SoftValue<V, K> previous = map.put(key, sv);
     addToStrongReferences(value);
     return previous != null ? previous.get() : null;
@@ -283,7 +283,7 @@ public class SoftHashMap<K, V> implements Map<K, V> {
       return Collections.EMPTY_SET;
     }
 
-    Map<K, V> kvPairs = new HashMap<K, V>(keys.size());
+    Map<K, V> kvPairs = new HashMap<>(keys.size());
     for (K key : keys) {
       V v = get(key);
       if (v != null) {

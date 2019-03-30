@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class UncaughtExceptionHandlerManager implements Thread.UncaughtExceptionHandler {
   private final Thread.UncaughtExceptionHandler originalHandler;
-  private final List<Thread.UncaughtExceptionHandler> handlers = new ArrayList<Thread.UncaughtExceptionHandler>();
+  private final List<Thread.UncaughtExceptionHandler> handlers = new ArrayList<>();
 
   public UncaughtExceptionHandlerManager() {
     originalHandler = Thread.getDefaultUncaughtExceptionHandler();
