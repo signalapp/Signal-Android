@@ -150,6 +150,7 @@
                                 android:padding="8dp"
                                 android:src="@drawable/ic_add_white_24dp"
                                 android:tint="?attr/conversation_input_inline_attach_icon_tint"
+                                android:contentDescription="@string/ConversationActivity_add_attachment"
                                 android:background="?selectableItemBackgroundBorderless"/>
 
                         </org.thoughtcrime.securesms.components.HidingLinearLayout>
