@@ -24,6 +24,7 @@
                 android:layout_height="match_parent">
 
             <ImageView android:id="@+id/toolbar_icon"
+                       android:contentDescription="@string/conversation_list_settings_shortcut"
                        android:layout_width="36dp"
                        android:layout_height="36dp"
                        android:layout_marginStart="8dp"

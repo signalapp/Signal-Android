@@ -269,6 +269,7 @@
     <string name="CreateProfileActivity_profile_name">Profile Name</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, and the Signal service never has access to this information.</string>
+    <string name="CreateProfileActivity_set_avatar">Set avatar</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
@@ -839,6 +840,9 @@
 
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__enter_name_or_number">Enter name or number</string>
+    <string name="contact_selection_activity__clear_entered_text">Clear entered text</string>
+    <string name="contact_selection_activity__show_keyboard">Show keyboard</string>
+    <string name="contact_selection_activity__show_dial_pad">Show dialpad</string>
 
     <!-- contact_selection_group_activity -->
     <string name="contact_selection_group_activity__no_contacts">No contacts.</string>
@@ -1324,6 +1328,7 @@
     <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Unarchive selected</string>
 
     <!-- conversation_list -->
+    <string name="conversation_list_settings_shortcut">Settings shortcut</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
@@ -1332,6 +1337,7 @@
     <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox zeeerrro</string>
     <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada.\nYou\'re all caught up!</string>
 
+    <string name="conversation_list_item_view__navigate_up">Navigate up</string>
 
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>

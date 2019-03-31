@@ -34,6 +34,7 @@
                 android:gravity="center">
 
                 <ImageView android:id="@+id/search_dialpad"
+                           android:contentDescription="@string/contact_selection_activity__show_dial_pad"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_gravity="center_vertical"
@@ -44,6 +45,7 @@
                            android:src="@drawable/ic_dialpad_white_24dp" />
 
                 <ImageView android:id="@+id/search_keyboard"
+                           android:contentDescription="@string/contact_selection_activity__show_keyboard"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_gravity="center_vertical"
@@ -55,6 +57,7 @@
                            android:src="@drawable/ic_keyboard_white_24dp" />
 
                 <ImageView android:id="@+id/search_clear"
+                           android:contentDescription="@string/contact_selection_activity__clear_entered_text"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_gravity="center_vertical"
