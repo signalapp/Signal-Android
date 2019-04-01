@@ -11,18 +11,32 @@
     tools:visibility="visible"
     tools:showIn="@layout/conversation_input_panel">
 
+    <ImageView
+        android:id="@+id/microphone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:importantForAccessibility="no"
+        android:src="?quick_mic_icon"
+        android:tint="@color/red_500"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
     <TextView
         android:id="@+id/record_time"
         style="@style/Signal.Text.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="2dp"
         android:ellipsize="none"
         android:singleLine="true"
         android:textColor="@color/core_grey_60"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/microphone"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="00:00"
         tools:visibility="visible" />
@@ -36,9 +50,10 @@
         android:layout_marginEnd="8dp"
         android:ellipsize="none"
         android:gravity="center_vertical"
+        android:padding="4dp"
         android:text="@string/conversation_input_panel__cancel"
         android:textAllCaps="true"
-        android:textColor="@color/red_A700"
+        android:textColor="@color/red_500"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

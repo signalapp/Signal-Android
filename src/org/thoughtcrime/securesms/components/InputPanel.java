@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -99,6 +100,7 @@ public class InputPanel extends LinearLayout
     this.microphoneRecorderView = findViewById(R.id.recorder_view);
     this.microphoneRecorderView.setListener(this);
     this.recordTime             = new RecordTime(findViewById(R.id.record_time),
+                                                 findViewById(R.id.microphone),
                                                  TimeUnit.HOURS.toSeconds(1),
                                                  () -> microphoneRecorderView.cancelAction());
 
@@ -359,13 +361,15 @@ public class InputPanel extends LinearLayout
 
   private static class RecordTime implements Runnable {
 
-    private final TextView recordTimeView;
-    private final long     limitSeconds;
-    private final Runnable onLimitHit;
-    private       long     startTime;
+    private final @NonNull TextView recordTimeView;
+    private final @NonNull View     microphone;
+    private final @NonNull Runnable onLimitHit;
+    private final          long     limitSeconds;
+    private                long     startTime;
 
-    private RecordTime(TextView recordTimeView, long limitSeconds, Runnable onLimitHit) {
+    private RecordTime(@NonNull TextView recordTimeView, @NonNull View microphone, long limitSeconds, @NonNull Runnable onLimitHit) {
       this.recordTimeView = recordTimeView;
+      this.microphone     = microphone;
       this.limitSeconds   = limitSeconds;
       this.onLimitHit     = onLimitHit;
     }
@@ -376,6 +380,8 @@ public class InputPanel extends LinearLayout
       this.recordTimeView.setText(DateUtils.formatElapsedTime(0));
       ViewUtil.fadeIn(this.recordTimeView, FADE_TIME);
       Util.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
+      microphone.setVisibility(View.VISIBLE);
+      microphone.startAnimation(pulseAnimation());
     }
 
     @MainThread
@@ -383,6 +389,8 @@ public class InputPanel extends LinearLayout
       long elapsedTime = System.currentTimeMillis() - startTime;
       this.startTime = 0;
       ViewUtil.fadeOut(this.recordTimeView, FADE_TIME, View.INVISIBLE);
+      microphone.clearAnimation();
+      ViewUtil.fadeOut(this.microphone, FADE_TIME, View.INVISIBLE);
       return elapsedTime;
     }
 
@@ -400,6 +408,26 @@ public class InputPanel extends LinearLayout
           Util.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
         }
       }
+    }
+
+    private static Animation pulseAnimation() {
+      AlphaAnimation animation = new AlphaAnimation(0, 1);
+
+      animation.setInterpolator(pulseInterpolator());
+      animation.setRepeatCount(Animation.INFINITE);
+      animation.setDuration(1000);
+
+      return animation;
+    }
+
+    private static Interpolator pulseInterpolator() {
+      return input -> {
+        input *= 5;
+        if (input > 1) {
+          input = 4 - input;
+        }
+        return Math.max(0, Math.min(1, input));
+      };
     }
   }
 
