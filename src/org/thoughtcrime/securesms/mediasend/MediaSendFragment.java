@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
@@ -211,6 +212,11 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
                                     .or(Optional.fromNullable(recipient.getProfileName())
                                                 .or(recipient.getAddress().serialize()));
     composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
+    composeText.setOnEditorActionListener((v, actionId, event) -> {
+      boolean isSend = actionId == EditorInfo.IME_ACTION_SEND;
+      if (isSend) sendButton.performClick();
+      return isSend;
+    });
 
     if (TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
       emojiToggle.setVisibility(View.GONE);
