@@ -2543,6 +2543,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
+  public void onForwardClicked() {
+    inputPanel.clearQuote();
+  }
+
+  @Override
   public void onAttachmentChanged() {
     handleSecurityChange(isSecureText, isDefaultSms);
     updateToggleButtonState();

@@ -520,6 +520,8 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleForwardMessage(MessageRecord message) {
+    listener.onForwardClicked();
+
     SimpleTask.run(getLifecycle(), () -> {
       Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
       composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody(requireContext()).toString());
@@ -803,6 +805,7 @@ public class ConversationFragment extends Fragment
     void setThreadId(long threadId);
     void handleReplyMessage(MessageRecord messageRecord);
     void onMessageActionToolbarOpened();
+    void onForwardClicked();
   }
 
   private class ConversationScrollListener extends OnScrollListener {
