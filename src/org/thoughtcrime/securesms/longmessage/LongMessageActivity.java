@@ -12,6 +12,7 @@ import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -151,6 +153,7 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
       bubble.setVisibility(View.VISIBLE);
       text.setText(linkifyMessageBody(new SpannableString(message.get().getFullBody())));
       text.setMovementMethod(LinkMovementMethod.getInstance());
+      text.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(this));
       footer.setMessageRecord(message.get().getMessageRecord(), dynamicLanguage.getCurrentLocale());
     });
   }
