@@ -127,6 +127,14 @@ public class Log {
     return simpleName;
   }
 
+  public static void blockUntilAllWritesFinished() {
+    if (loggers != null) {
+      for (Logger logger : loggers) {
+        logger.blockUntilAllWritesFinished();
+      }
+    }
+  }
+
   public static abstract class Logger {
     public abstract void v(String tag, String message, Throwable t);
     public abstract void d(String tag, String message, Throwable t);
@@ -134,5 +142,6 @@ public class Log {
     public abstract void w(String tag, String message, Throwable t);
     public abstract void e(String tag, String message, Throwable t);
     public abstract void wtf(String tag, String message, Throwable t);
+    public abstract void blockUntilAllWritesFinished();
   }
 }

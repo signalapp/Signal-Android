@@ -31,4 +31,8 @@ public class AndroidLogger extends Log.Logger {
   public void wtf(String tag, String message, Throwable t) {
     android.util.Log.wtf(tag, message, t);
   }
+
+  @Override
+  public void blockUntilAllWritesFinished() {
+  }
 }
