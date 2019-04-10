@@ -41,6 +41,7 @@ public class ChunkedImageUrlLoader implements ModelLoader<ChunkedImageUrl, Input
       this.client  = new OkHttpClient.Builder()
                                      .proxySelector(new ContentProxySelector())
                                      .cache(null)
+                                     .addNetworkInterceptor(new PaddedHeadersInterceptor())
                                      .build();
     }
 
