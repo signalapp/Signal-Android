@@ -65,10 +65,7 @@ Contributing code
 
 Code contributions should be sent via github as pull requests, from feature branches [as explained here](https://help.github.com/articles/using-pull-requests).
 
-Mailing list
+Community forum
 ------------
 
-Development discussion happens on the whispersystems mailing list.
-[To join](https://lists.riseup.net/www/info/whispersystems)
-Send emails to whispersystems@lists.riseup.net
-
+Development discussion happens on the [community forum](https://community.signalusers.org/c/development).
