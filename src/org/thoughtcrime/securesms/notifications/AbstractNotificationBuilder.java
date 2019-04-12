@@ -22,6 +22,8 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
   @SuppressWarnings("unused")
   private static final String TAG = AbstractNotificationBuilder.class.getSimpleName();
 
+  private static final int MAX_DISPLAY_LENGTH = 500;
+
   protected Context                       context;
   protected NotificationPrivacyPreference privacy;
 
@@ -74,7 +76,7 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
 
   public void setTicker(@NonNull Recipient recipient, @Nullable CharSequence message) {
     if (privacy.isDisplayMessage()) {
-      setTicker(getStyledMessage(recipient, message));
+      setTicker(getStyledMessage(recipient, trimToDisplayLength(message)));
     } else if (privacy.isDisplayContact()) {
       setTicker(getStyledMessage(recipient, context.getString(R.string.AbstractNotificationBuilder_new_message)));
     } else {
@@ -87,5 +89,12 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
       blinkPattern = blinkPatternCustom;
 
     return blinkPattern.split(",");
+  }
+
+  protected @NonNull CharSequence trimToDisplayLength(@Nullable CharSequence text) {
+    text = text == null ? "" : text;
+
+    return text.length() <= MAX_DISPLAY_LENGTH ? text
+                                               : text.subSequence(0, MAX_DISPLAY_LENGTH);
   }
 }

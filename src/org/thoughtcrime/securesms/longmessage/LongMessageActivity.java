@@ -42,6 +42,8 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_IS_MMS     = "is_mms";
 
+  private static final int MAX_DISPLAY_LENGTH = 64 * 1024;
+
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
 
@@ -150,12 +152,20 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
       TextView               text   = bubble.findViewById(R.id.longmessage_text);
       ConversationItemFooter footer = bubble.findViewById(R.id.longmessage_footer);
 
+      String          trimmedBody = getTrimmedBody(message.get().getFullBody());
+      SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
+
       bubble.setVisibility(View.VISIBLE);
-      text.setText(linkifyMessageBody(new SpannableString(message.get().getFullBody())));
+      text.setText(styledBody);
       text.setMovementMethod(LinkMovementMethod.getInstance());
       text.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(this));
       footer.setMessageRecord(message.get().getMessageRecord(), dynamicLanguage.getCurrentLocale());
     });
+  }
+
+  private String getTrimmedBody(@NonNull String text) {
+    return text.length() <= MAX_DISPLAY_LENGTH ? text
+                                               : text.substring(0, MAX_DISPLAY_LENGTH);
   }
 
   private SpannableString linkifyMessageBody(SpannableString messageBody) {

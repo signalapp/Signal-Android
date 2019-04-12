@@ -257,15 +257,15 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   public NotificationCompat.Builder setContentText(CharSequence contentText) {
-    this.contentText = contentText;
-    return super.setContentText(contentText);
+    this.contentText = trimToDisplayLength(contentText);
+    return super.setContentText(this.contentText);
   }
 
   private CharSequence getBigText(List<CharSequence> messageBodies) {
     SpannableStringBuilder content = new SpannableStringBuilder();
 
     for (int i = 0; i < messageBodies.size(); i++) {
-      content.append(messageBodies.get(i));
+      content.append(trimToDisplayLength(messageBodies.get(i)));
       if (i < messageBodies.size() - 1) {
         content.append('\n');
       }
