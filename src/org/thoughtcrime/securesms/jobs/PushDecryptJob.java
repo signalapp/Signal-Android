@@ -284,6 +284,8 @@ public class PushDecryptJob extends ContextJob {
         Log.w(TAG, "Got unrecognized message...");
       }
 
+      resetRecipientToPush(Recipient.from(context, Address.fromExternal(context, content.getSender()), false));
+
       if (envelope.isPreKeySignalMessage()) {
         ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
       }
@@ -1161,6 +1163,12 @@ public class PushDecryptJob extends ContextJob {
     }
 
     return false;
+  }
+
+  private void resetRecipientToPush(@NonNull Recipient recipient) {
+    if (recipient.isForceSmsSelection()) {
+      DatabaseFactory.getRecipientDatabase(context).setForceSmsSelection(recipient, false);
+    }
   }
 
   @SuppressWarnings("WeakerAccess")

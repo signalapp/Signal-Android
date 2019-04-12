@@ -62,8 +62,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int PREVIEWS                         = 16;
   private static final int CONVERSATION_SEARCH              = 17;
   private static final int SELF_ATTACHMENT_CLEANUP          = 18;
+  private static final int RECIPIENT_FORCE_SMS_SELECTION    = 19;
 
-  private static final int    DATABASE_VERSION = 18;
+  private static final int    DATABASE_VERSION = 19;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -400,6 +401,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             }
           }
         }
+      }
+
+      if (oldVersion < RECIPIENT_FORCE_SMS_SELECTION) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN force_sms_selection INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();
