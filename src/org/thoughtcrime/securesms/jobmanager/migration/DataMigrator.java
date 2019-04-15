@@ -35,26 +35,26 @@ final class DataMigrator {
           builder.putString(entry.getKey(), (String) value);
         } else if (type == String[].class) {
           builder.putStringArray(entry.getKey(), (String[]) value);
-        } else if (type == Integer.class) {
+        } else if (type == Integer.class || type == int.class) {
           builder.putInt(entry.getKey(), (int) value);
-        } else if (type == int[].class) {
-          builder.putIntArray(entry.getKey(), (int[]) value);
-        } else if (type == Long.class) {
+        } else if (type == Integer[].class || type == int[].class) {
+          builder.putIntArray(entry.getKey(), convertToIntArray(value, type));
+        } else if (type == Long.class || type == long.class) {
           builder.putLong(entry.getKey(), (long) value);
-        } else if (type == long[].class) {
-          builder.putLongArray(entry.getKey(), (long[]) value);
-        } else if (type == Float.class) {
+        } else if (type == Long[].class || type == long[].class) {
+          builder.putLongArray(entry.getKey(), convertToLongArray(value, type));
+        } else if (type == Float.class || type == float.class) {
           builder.putFloat(entry.getKey(), (float) value);
-        } else if (type == float[].class) {
-          builder.putFloatArray(entry.getKey(), (float[]) value);
-        } else if (type == Double.class) {
+        } else if (type == Float[].class || type == float[].class) {
+          builder.putFloatArray(entry.getKey(), convertToFloatArray(value, type));
+        } else if (type == Double.class || type == double.class) {
           builder.putDouble(entry.getKey(), (double) value);
-        } else if (type == double[].class) {
-          builder.putDoubleArray(entry.getKey(), (double[]) value);
-        } else if (type == Boolean.class) {
+        } else if (type == Double[].class || type == double[].class) {
+          builder.putDoubleArray(entry.getKey(), convertToDoubleArray(value, type));
+        } else if (type == Boolean.class || type == boolean.class) {
           builder.putBoolean(entry.getKey(), (boolean) value);
-        } else if (type == boolean[].class) {
-          builder.putBooleanArray(entry.getKey(), (boolean[]) value);
+        } else if (type == Boolean[].class || type == boolean[].class) {
+          builder.putBooleanArray(entry.getKey(), convertToBooleanArray(value, type));
         } else {
           Log.w(TAG, "Encountered unexpected type '" + type + "'. Skipping.");
         }
@@ -89,6 +89,81 @@ final class DataMigrator {
       }
     }
     return map;
+  }
+
+  private static int[] convertToIntArray(Object value, Class type) {
+    if (type == int[].class) {
+      return (int[]) value;
+    }
+
+    Integer[] casted = (Integer[]) value;
+    int[]     output = new int[casted.length];
+
+    for (int i = 0; i < casted.length; i++) {
+      output[i] = casted[i];
+    }
+
+    return output;
+  }
+
+  private static long[] convertToLongArray(Object value, Class type) {
+    if (type == long[].class) {
+      return (long[]) value;
+    }
+
+    Long[] casted = (Long[]) value;
+    long[] output = new long[casted.length];
+
+    for (int i = 0; i < casted.length; i++) {
+      output[i] = casted[i];
+    }
+
+    return output;
+  }
+
+  private static float[] convertToFloatArray(Object value, Class type) {
+    if (type == float[].class) {
+      return (float[]) value;
+    }
+
+    Float[] casted = (Float[]) value;
+    float[] output = new float[casted.length];
+
+    for (int i = 0; i < casted.length; i++) {
+      output[i] = casted[i];
+    }
+
+    return output;
+  }
+
+  private static double[] convertToDoubleArray(Object value, Class type) {
+    if (type == double[].class) {
+      return (double[]) value;
+    }
+
+    Double[] casted = (Double[]) value;
+    double[] output = new double[casted.length];
+
+    for (int i = 0; i < casted.length; i++) {
+      output[i] = casted[i];
+    }
+
+    return output;
+  }
+
+  private static boolean[] convertToBooleanArray(Object value, Class type) {
+    if (type == boolean[].class) {
+      return (boolean[]) value;
+    }
+
+    Boolean[] casted = (Boolean[]) value;
+    boolean[] output = new boolean[casted.length];
+
+    for (int i = 0; i < casted.length; i++) {
+      output[i] = casted[i];
+    }
+
+    return output;
   }
 }
 

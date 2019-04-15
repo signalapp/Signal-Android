@@ -84,7 +84,7 @@ public class SendReadReceiptJob extends BaseJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
-    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) return;
+    if (!TextSecurePreferences.isReadReceiptsEnabled(context) || messageIds.isEmpty()) return;
 
     SignalServiceAddress        remoteAddress  = new SignalServiceAddress(address);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.READ, messageIds, timestamp);
@@ -110,7 +110,7 @@ public class SendReadReceiptJob extends BaseJob implements InjectableType {
     public @NonNull SendReadReceiptJob create(@NonNull Parameters parameters, @NonNull Data data) {
       Address    address    = Address.fromSerialized(data.getString(KEY_ADDRESS));
       long       timestamp  = data.getLong(KEY_TIMESTAMP);
-      long[]     ids        = data.getLongArray(KEY_MESSAGE_IDS);
+      long[]     ids        = data.hasLongArray(KEY_MESSAGE_IDS) ? data.getLongArray(KEY_MESSAGE_IDS) : new long[0];
       List<Long> messageIds = new ArrayList<>(ids.length);
 
       for (long id : ids) {
