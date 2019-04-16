@@ -622,7 +622,7 @@
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started</string>
     <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code. Carrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Enter the code we sent to %s</string>
-    <string name="RegistrationActivity_call">Call</string>
+    <string name="RegistrationActivity_call">Call me</string>
 
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
