@@ -109,8 +109,9 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
     boolean isForSmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.SMS_FTS_TABLE_NAME + "_");
     boolean isForMmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.MMS_FTS_TABLE_NAME + "_");
+    boolean isForSqliteSecretTable = statement.getStatement().toLowerCase().startsWith("create table sqlite_");
 
-    if (isForSmsFtsSecretTable || isForMmsFtsSecretTable) {
+    if (isForSmsFtsSecretTable || isForMmsFtsSecretTable || isForSqliteSecretTable) {
       Log.i(TAG, "Ignoring import for statement: " + statement.getStatement());
       return;
     }
@@ -165,7 +166,7 @@ public class FullBackupImporter extends FullBackupBase {
         String name = cursor.getString(0);
         String type = cursor.getString(1);
 
-        if ("table".equals(type)) {
+        if ("table".equals(type) && !name.startsWith("sqlite_")) {
           db.execSQL("DROP TABLE IF EXISTS " + name);
         }
       }
