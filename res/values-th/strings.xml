@@ -673,7 +673,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">บันทึกและส่งไฟล์แนบแบบเสียง</string>
   <string name="conversation_activity__enable_signal_for_sms">เปิดใช้งาน Signal สำหรับ SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">เลื่อนเพื่อยกเลิก</string>
+  <string name="conversation_input_panel__cancel">ยกเลิก</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">ข้อความสื่อ</string>
   <string name="conversation_item__secure_message_description">ข้อความที่ปลอดภัย</string>

@@ -679,7 +679,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">रिकॉर्ड करें और ऑडियो अटैचमेंट भेजें</string>
   <string name="conversation_activity__enable_signal_for_sms">एसएमएस के लिए Signal सक्षम करें</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">रद्द करने के लिए स्लाइड करें</string>
+  <string name="conversation_input_panel__cancel">रद्द करें</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">मीडिया संदेश</string>
   <string name="conversation_item__secure_message_description">सुरक्षित संदेश</string>

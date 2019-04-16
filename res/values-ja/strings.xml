@@ -383,6 +383,10 @@
   <string name="MediaSendActivity_add_a_caption">キャプション追加...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">サイズの上限を超えたため、項目が削除されました。</string>
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
+  <string name="MediaSendActivity_message_to_s">%s へメッセージ</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="other">%d以上のアイテムを共有できません</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">すべてのメディア</string>
   <!--MessageRecord-->
@@ -711,9 +715,11 @@
   <string name="conversation_activity__attachment_thumbnail">添付のサムネイル</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">迅速カメラ添付用引き出しの切替</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">音声を録音して送信する</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">添付音声の録音をロック</string>
   <string name="conversation_activity__enable_signal_for_sms">SignalのSMS機能を有効にする</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">スライドしてキャンセル</string>
+  <string name="conversation_input_panel__cancel">キャンセル</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">メディアメッセージ</string>
   <string name="conversation_item__secure_message_description">暗号化されたメッセージ</string>
@@ -1142,6 +1148,7 @@
   <string name="reminder_header_share_title">友達にオススメしよう！</string>
   <string name="reminder_header_share_text">ユーザが増やせば増やすほど、Signalはより便利になります</string>
   <string name="reminder_header_service_outage_text">Signalは技術的な問題を抱えています。私たちは、これをできるだけ早く解決するよう対応しています。</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Signalの最新機能は、このバージョンのAndroidでは対応しなくなります。OSのアップデートをしてください。</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">転送</string>
@@ -1205,7 +1212,7 @@
   <string name="ProgressPreference_d_messages_so_far">今、%d個メッセージ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%sに送った検証コードを入力してください。</string>
   <string name="RegistrationActivity_wrong_number">番号が違います</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">電話してください \n (Available in %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>

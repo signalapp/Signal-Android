@@ -685,7 +685,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Uyay kimichishkata rurashpa kachapay</string>
   <string name="conversation_activity__enable_signal_for_sms">SMS killkashkapak Signalta rikuchipay</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SHAYACHINKAPAKKA LLUCHACHIPAY</string>
+  <string name="conversation_input_panel__cancel">Shayachina</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimedia chaski</string>
   <string name="conversation_item__secure_message_description">Chaskita wakaychina</string>

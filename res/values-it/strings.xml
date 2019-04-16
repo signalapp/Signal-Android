@@ -744,9 +744,11 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_activity__attachment_thumbnail">Anteprima allegato</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Mostra/nascondi pannello fotocamera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registra ed invia allegato audio</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blocca la registrazione di un allegato audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Abilita Signal per gli SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SPOSTA IL DITO PER ANNULLARE</string>
+  <string name="conversation_input_panel__slide_to_cancel">Scorri per cancellare</string>
+  <string name="conversation_input_panel__cancel">Annulla</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Messaggio multimediale</string>
   <string name="conversation_item__secure_message_description">Messaggio sicuro</string>
@@ -1057,7 +1059,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS via WiFi (abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMS/MMS via WiFi (abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo)</string>
   <string name="preferences__incognito_keyboard">Tastiera in incognito</string>
   <string name="preferences__read_receipts">Conferme di lettura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se le conferme di lettura sono disabilitate, non sarai in grado di vedere le conferme di lettura da altri.</string>
@@ -1248,7 +1250,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ProgressPreference_d_messages_so_far">Ancora %d messaggi</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Per favore inserire il codice di verifica inviato a %s.</string>
   <string name="RegistrationActivity_wrong_number">Numero errato</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Chiamami \n (Disponibile tra %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Chiamami \n (Disponibile tra %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Sconosciuto</string>
   <string name="preferences_app_protection__screen_lock">Blocco schermo</string>

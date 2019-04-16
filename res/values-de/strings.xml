@@ -530,7 +530,7 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Gib deine Rufnummer ein, um zu beginnen</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifikationscode erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Gib den Code ein, den wir an %s gesendet haben</string>
-  <string name="RegistrationActivity_call">Anrufen</string>
+  <string name="RegistrationActivity_call">Anruf</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
   <!--Search-->
@@ -736,9 +736,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_activity__attachment_thumbnail">Anhangsvorschaubild</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Direktaufnahme</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Audioanhang aufnehmen und senden</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Audioaufnahme arretieren</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal für SMS aktivieren</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ZUM ABBRECHEN WISCHEN</string>
+  <string name="conversation_input_panel__slide_to_cancel">Zum Abbrechen wischen</string>
+  <string name="conversation_input_panel__cancel">Abbrechen</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Nachricht mit Medieninhalten</string>
   <string name="conversation_item__secure_message_description">Sichere Nachricht</string>
@@ -1240,7 +1242,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
   <string name="RegistrationActivity_wrong_number">Falsche Rufnummer</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Mich stattdessen anrufen \n (Verfügbar in %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Mich stattdessen anrufen \n (Verfügbar in %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Nie</string>
   <string name="BackupUtil_unknown">Unbekannt</string>
   <string name="preferences_app_protection__screen_lock">Bildschirmsperre</string>

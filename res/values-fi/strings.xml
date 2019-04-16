@@ -741,9 +741,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_activity__attachment_thumbnail">Liitteen esikatselu</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Avaa tai sulje pikakamera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nauhoita ja lähetä ääniviesti</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lukitse ääniviestin tallennus</string>
   <string name="conversation_activity__enable_signal_for_sms">Käytä Signalia tekstiviesteille</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">Pyyhkäise peruuttaaksesi</string>
+  <string name="conversation_input_panel__slide_to_cancel">Pyyhkäise hylkääksesi</string>
+  <string name="conversation_input_panel__cancel">Peruuta</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mediaviesti</string>
   <string name="conversation_item__secure_message_description">Salattu viesti</string>
@@ -1245,7 +1247,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ProgressPreference_d_messages_so_far">%d viestiä tähän mennessä</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Syötä vahvistuskoodi, joka lähetettiin numeroon %s.</string>
   <string name="RegistrationActivity_wrong_number">Väärä numero</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Saatavilla ajassa %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Saatavilla ajassa %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">ei koskaan</string>
   <string name="BackupUtil_unknown">Tuntematon</string>
   <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>

@@ -6,7 +6,7 @@
   <string name="delete">លុប</string>
   <string name="please_wait">សូមរង់ចាំ...</string>
   <string name="save">រក្សាទុក</string>
-  <string name="note_to_self">កំណត់ចំណាំ</string>
+  <string name="note_to_self">កំណត់ចំណាំខ្លួនឯង</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">សារថ្មី</string>
   <!--AlbumThumbnailView-->
@@ -383,6 +383,10 @@
   <string name="MediaSendActivity_add_a_caption">ដាក់ចំណងជើង...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ចំណុចមួយត្រូវបានលុបចេញព្រោះវាលើសពីទំហំកំណត់</string>
   <string name="MediaSendActivity_camera_unavailable">កាមេរ៉ាមិនដំណើរការ</string>
+  <string name="MediaSendActivity_message_to_s">សារទៅកាន់ %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="other">អ្នកមិនអាចចែករំលែកចំនួនលើសពី %d ។</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ព័ត៌មានទាំងអស់</string>
   <!--MessageRecord-->
@@ -716,9 +720,11 @@
   <string name="conversation_activity__attachment_thumbnail">ភ្ជាប់រូបភាពឯកសារ</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">បិទបើកថតឯកសារភ្ជាប់កាមេរ៉ារហ័ស</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ថត​ និងផ្ញើឯកសារភ្ជាប់ជាសំឡេង</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">បិទការថតឯកសារសម្លេង</string>
   <string name="conversation_activity__enable_signal_for_sms">បើក Signal សម្រាប់ SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">អូសដើម្បីបោះបង់</string>
+  <string name="conversation_input_panel__cancel">បោះបង់</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">សារជាព័ត៌មាន</string>
   <string name="conversation_item__secure_message_description">សារសុវត្ថិភាព</string>
@@ -1147,6 +1153,7 @@
   <string name="reminder_header_share_title">អញ្ជើញមិត្តរបស់អ្នក!</string>
   <string name="reminder_header_share_text">មានមិត្តភក្តិកាន់តែច្រើនប្រើប្រាស់Signal នោះវាកាន់តែប្រសើរឡើង</string>
   <string name="reminder_header_service_outage_text">Signal កំពុងជួបប្រទះបញ្ហាបច្ចេកទេស។ យើងកំពុងធ្វើការស្តារសេវាកម្មយ៉ាងរហ័សតាមដែលអាចធ្វើទៅបាន។</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">មុខងារជំនាន់ចុងក្រោយ Signal នឹងមិនអាចដំណើរការលើជំនាន់ Android នេះទេ។ សូមដំឡើងជំនាន់ឧបករណ៍នេះ ដើម្បីទទួលបានមុខងារថ្មីៗរបស់ Signal នៅពេលអនាគត។</string>
   <!--media_preview-->
   <string name="media_preview__save_title">រក្សាទុក</string>
   <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
@@ -1210,7 +1217,7 @@
   <string name="ProgressPreference_d_messages_so_far">ឥឡូវនេះសារ%d</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">សូមបញ្ចូលលេខកូដផ្ទៀងផ្ទាត់ដែលបានផ្ញើទៅកាន់ %s។</string>
   <string name="RegistrationActivity_wrong_number">ខុសលេខ</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំជំនួស​ \n (ទទួលក្នុង %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំជំនួសវិញ  \n (ទំនេរក្នុងរយៈពេល %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">មិនធ្លាប់</string>
   <string name="BackupUtil_unknown">មិនស្គាល់</string>
   <string name="preferences_app_protection__screen_lock">ចាក់សោរអេក្រង់</string>

@@ -157,7 +157,7 @@
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج Signal إلى أذونات الميكروفون والكاميرا من أجل الاتصال بـ%s ولكن تم إيقافهم على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\"</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لإلتقاط صور و فيديوهات, برجاء السماح لSignal بالوصول إلي الكاميرا.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج Signal إلى إذن الكاميرا من أجل التقاط صور وفيديو  ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج Signal إلي إذن الكاميرا لالتقاط صور أو فيديو</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج Signal إلي إذن الكاميرا لالتقاط صور أو تسجيل فيديو</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_yes">نعم</string>
   <string name="ConversationActivity_no">لا</string>
@@ -736,7 +736,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">تسجيل وإرسال مرفق صوتي</string>
   <string name="conversation_activity__enable_signal_for_sms">تمكين سيقنـال للرسائل النصية</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">سحب للإلغاء</string>
+  <string name="conversation_input_panel__cancel">إلغاء</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">رسالة وسائط متعددة</string>
   <string name="conversation_item__secure_message_description">رسالة آمنة</string>
@@ -1239,6 +1239,7 @@
   <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية...</string>
   <string name="ProgressPreference_d_messages_so_far">%dرسالة إلى الآن</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">رجاء إدخال كود التحقق الذي تم إرساله إلى %s.</string>
+  <string name="RegistrationActivity_wrong_number">رقم خاطئ </string>
   <string name="BackupUtil_never">أبدا</string>
   <string name="BackupUtil_unknown">مجهول</string>
   <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>

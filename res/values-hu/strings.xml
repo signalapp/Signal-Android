@@ -750,9 +750,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_activity__attachment_thumbnail">Melléklet előnézet</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Gyorskamera kapcsoló</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Hang melléklet felvétele és küldése</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Hangcsatolmány rögzítésének zárolása</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal engedélyezése SMS-hez</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">HÚZD ERRE A MEGSZAKÍTÁSHOZ</string>
+  <string name="conversation_input_panel__slide_to_cancel">Megszakításhoz csúsztasd</string>
+  <string name="conversation_input_panel__cancel">Mégse</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Médiaüzenet</string>
   <string name="conversation_item__secure_message_description">Biztonságos üzenet</string>
@@ -1254,7 +1256,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ProgressPreference_d_messages_so_far">Eddig %d db üzenet</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Kérlek add meg az alábbi számra kiküldött ellenőrző kódot: %s.</string>
   <string name="RegistrationActivity_wrong_number">Hibás szám</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Hívj fel inkább \n (elérhető %02d:%02d múlva)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Hívást kérek inkább \n (elérhető %1$02d:%2$02d múlva)</string>
   <string name="BackupUtil_never">Soha</string>
   <string name="BackupUtil_unknown">Ismeretlen</string>
   <string name="preferences_app_protection__screen_lock">Képernyőzár</string>

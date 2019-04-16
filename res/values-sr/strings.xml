@@ -654,7 +654,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Сними и пошаљи звук</string>
   <string name="conversation_activity__enable_signal_for_sms">Укључите Signal за СМС</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ПРЕВУЦИТЕ ДА ОТКАЖЕТЕ</string>
+  <string name="conversation_input_panel__cancel">Одустани</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Мултимедијална порука</string>
   <string name="conversation_item__secure_message_description">Обезбеђена порука</string>

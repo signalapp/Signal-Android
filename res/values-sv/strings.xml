@@ -741,9 +741,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_activity__attachment_thumbnail">Bifogad miniatyrbild</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Dölj/Visa snabbpanel för kamerabilaga</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Spela in och skicka ljudbilaga</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås inspelning av ljudbilaga</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktivera Signal för SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SVEP FÖR ATT AVBRYTA</string>
+  <string name="conversation_input_panel__slide_to_cancel">Dra för att avbryta</string>
+  <string name="conversation_input_panel__cancel">Avbryt</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mediameddelande</string>
   <string name="conversation_item__secure_message_description">Säkert meddelande</string>
@@ -1245,7 +1247,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meddelanden än så länge</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ange verifieringskoden som skickades till %s.</string>
   <string name="RegistrationActivity_wrong_number">Fel nummer</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Ring mig istället \n (Tillgänglig om %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Ring mig istället \n (Tillgänglig om %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Okänd</string>
   <string name="preferences_app_protection__screen_lock">Skärmlås</string>

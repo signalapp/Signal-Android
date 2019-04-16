@@ -740,7 +740,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og senda lydvedlegg</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktiver Signal for SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SKYV FOR Å AVBRYTA</string>
+  <string name="conversation_input_panel__cancel">Avbryt</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mediemelding</string>
   <string name="conversation_item__secure_message_description">Sikker melding</string>
@@ -1244,8 +1244,6 @@ Du er à jour!</string>
   <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn stadfestingskoden sendt til %s</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i staden \n
- (Tilgjengeleg i %02d:%02d)</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjend</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>

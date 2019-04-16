@@ -749,7 +749,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Salvesta ja saada helimanus</string>
   <string name="conversation_activity__enable_signal_for_sms">Luba Signal SMSide jaoks</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">LIBISTA TÜHISTAMISEKS</string>
+  <string name="conversation_input_panel__cancel">Loobu</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Meediasõnum</string>
   <string name="conversation_item__secure_message_description">Turvaline sõnum</string>
@@ -1251,7 +1251,6 @@
   <string name="ProgressPreference_d_messages_so_far">Siiani leidsime %d sõnumit</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Palun sisesta kinnituskood, mille saatsime numbrile %s.</string>
   <string name="RegistrationActivity_wrong_number">Vale number</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Helista mulle selle asemel \n (Saadaval vahemikus %02d:%02d)</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
   <string name="preferences_app_protection__screen_lock">Ekraanilukk</string>

@@ -401,6 +401,11 @@
   <string name="MediaSendActivity_add_a_caption">Afegiu-hi un títol...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">S\'ha suprimit un element perquè excedia el límit de la mida.</string>
   <string name="MediaSendActivity_camera_unavailable">Càmera no disponible</string>
+  <string name="MediaSendActivity_message_to_s">Missatge per a %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">No podeu compartir més de %d elements.</item>
+    <item quantity="other">No podeu compartir més de %d elements.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tot el contingut</string>
   <!--MessageRecord-->
@@ -736,9 +741,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_activity__attachment_thumbnail">Miniatura de l\'adjunt</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Desplega la pestanya d\'adjunts de càmera ràpida</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistra i envia un àudio adjunt</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Bloqueja la gravació d\'un adjunt d\'àudio</string>
   <string name="conversation_activity__enable_signal_for_sms">Habilita el Signal per als SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">LLISQUEU PER CANCEL·LAR</string>
+  <string name="conversation_input_panel__slide_to_cancel">Llisqueu per cancel·lar-ho</string>
+  <string name="conversation_input_panel__cancel">Cancel·la</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Missatge multimèdia</string>
   <string name="conversation_item__secure_message_description">Missatge segur</string>
@@ -1176,6 +1183,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="reminder_header_share_title">Convideu-hi amistats!</string>
   <string name="reminder_header_share_text">Com més amistats usin el Signal, millor.</string>
   <string name="reminder_header_service_outage_text">El Signal està patint problemes tècnics. Este treballant per a recuperar el servei tan ràpid com sigui possible.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Les darreres novetats del Signal no funcionaran en aquesta versió d\'Android. Si us plau, actualitzeu el dispositiu per rebre les futures actualitzacions del Signal.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Desa</string>
   <string name="media_preview__forward_title">Reenvia</string>
@@ -1239,7 +1247,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ProgressPreference_d_messages_so_far">%d missatges fins ara...</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Si us plau, escriviu el codi de verificació enviat a %s.</string>
   <string name="RegistrationActivity_wrong_number">Número no correcte</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Truca\'m, millor \n (disponible en %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Millor que em truquis.\n (Disponible d\'aquí a %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Desconegut</string>
   <string name="preferences_app_protection__screen_lock">Bloqueig de pantalla</string>

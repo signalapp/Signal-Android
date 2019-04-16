@@ -705,7 +705,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">రికార్డు మరియు ఆడియో అటాచ్మెంట్ పంపడానికి</string>
   <string name="conversation_activity__enable_signal_for_sms">ఎస్సెమ్మెస్ చేతనం</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">జారు</string>
+  <string name="conversation_input_panel__cancel">రద్దు</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">మీడియ సందేశం</string>
   <string name="conversation_item__secure_message_description">సురక్షిత సందేశం</string>

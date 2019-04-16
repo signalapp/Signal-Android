@@ -471,7 +471,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">未命名群組</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">正在通話</string>
+  <string name="RedPhone_answering">正在接聽</string>
   <string name="RedPhone_ending_call">掛斷通話</string>
   <string name="RedPhone_dialing">撥號中</string>
   <string name="RedPhone_ringing">響鈴中</string>
@@ -667,7 +667,7 @@
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">播放影片時發生錯誤</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">要回應來自%s的通話，請允許 Signal 使用你的麥克風。</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">要接聽來自%s的電話，請允許 Signal 使用你的麥克風。</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要\"麥克風\"及\"相機\"的權限以接聽來電，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"麥克風\"及\"相機\"的權限。</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
@@ -722,10 +722,12 @@
   <string name="conversation_activity__emoji_toggle_description">切換表情符號鍵盤</string>
   <string name="conversation_activity__attachment_thumbnail">附件縮圖</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切換快速相機附件抽屜</string>
-  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">錄制並分享音頻文件</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">錄製並傳送語音附件</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">鎖定語音錄製附件檔案</string>
   <string name="conversation_activity__enable_signal_for_sms">啟動 Signal 簡訊功能</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">滑動以取消</string>
+  <string name="conversation_input_panel__cancel">取消</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">媒體訊息</string>
   <string name="conversation_item__secure_message_description">安全的訊息</string>
@@ -900,7 +902,7 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
   <!--webrtc_answer_decline_button-->
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">往上滑動來回覆</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">往上滑動來接聽</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">往下滑動來拒接</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">一些問題需要您的注意。</string>
@@ -1082,7 +1084,7 @@
   <string name="conversation_context__menu_resend_message">重送訊息</string>
   <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">另存附件檔案</string>
+  <string name="conversation_context_image__save_attachment">儲存附件檔案</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">自動銷毀訊息</string>
   <!--conversation_expiring_on-->
@@ -1110,7 +1112,7 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">將通知調整為靜音</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">增加附件檔案</string>
+  <string name="conversation__menu_add_attachment">新增附件檔案</string>
   <string name="conversation__menu_edit_group">編輯群組</string>
   <string name="conversation__menu_leave_group">離開對話群組</string>
   <string name="conversation__menu_view_all_media">所有的媒體</string>
@@ -1218,7 +1220,7 @@
   <string name="ProgressPreference_d_messages_so_far">目前有 %d 則訊息</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_wrong_number">驗證碼錯誤</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">改用電話打給我 \n (只提供於 %02d: %02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">改用電話打給我 \n (只提供於 %1$02d : %2$02d )</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>

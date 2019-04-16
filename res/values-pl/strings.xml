@@ -781,9 +781,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_activity__attachment_thumbnail">Minaturka załącznika</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Bezpośrednie przechwytywanie</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nagraj i wyślij załącznik dźwiękowy</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zablokuj nagrywanie załącznika audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Włącz obsługę SMS w Signal</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">PRZECIĄGNIJ, ABY ANULOWAĆ</string>
+  <string name="conversation_input_panel__slide_to_cancel">Przesuń, aby anulować</string>
+  <string name="conversation_input_panel__cancel">Anuluj</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Wiadomość multimedialna</string>
   <string name="conversation_item__secure_message_description">Bezpieczna wiadomość</string>
@@ -1303,7 +1305,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ProgressPreference_d_messages_so_far">%d wiadomości</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Wprowadź kod weryfikacyjny przesłany na %s.</string>
   <string name="RegistrationActivity_wrong_number">Błędny numer</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Zadzwoń \n (Dostępne za %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Zadzwoń \n (Dostępne za %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Nigdy</string>
   <string name="BackupUtil_unknown">Nieznane</string>
   <string name="preferences_app_protection__screen_lock">Blokada ekranu</string>

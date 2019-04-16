@@ -306,7 +306,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fejl opstod ved hentning af GIF i fuld opløsning</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF´s</string>
-  <string name="GiphyFragmentPagerAdapter_stickers">Klistermærker</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Animationer</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Opret ny gruppe</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Rediger gruppe</string>
@@ -405,7 +405,7 @@
   <string name="MediaSendActivity_message_to_s">Besked til %s</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan ikke dele flere end %d fil.</item>
-    <item quantity="other">Du kan ikke dele flere end %d filer.</item>
+    <item quantity="other">Du kan ikke dele flere end %d filer</item>
   </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle mediefiler</string>
@@ -747,9 +747,11 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_activity__attachment_thumbnail">Vedhæftet skabelon</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Slå kamera til/fra</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Optag og send en lydbesked</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås den vedhæftede lydoptagelse</string>
   <string name="conversation_activity__enable_signal_for_sms">Brug Signal til SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SWIPE FOR AT AFBRYDE</string>
+  <string name="conversation_input_panel__slide_to_cancel">Slide for at annullere</string>
+  <string name="conversation_input_panel__cancel">Annuller</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimedie besked</string>
   <string name="conversation_item__secure_message_description">Sikker besked</string>
@@ -830,7 +832,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
     <item quantity="other">%d mere</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg i GIF´s og klistermærker</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg GIF´s og animationer</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Fandt ingenting</string>
   <!--log_submit_activity-->
@@ -948,7 +950,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="AndroidManifest__change_passphrase">Skift kodeord</string>
   <string name="AndroidManifest__verify_safety_number">Verificer sikkerhedsnummer</string>
   <string name="AndroidManifest__log_submit">Indsend fejlfindingslog</string>
-  <string name="AndroidManifest__media_preview">Medie eksempel</string>
+  <string name="AndroidManifest__media_preview">Medievisning</string>
   <string name="AndroidManifest__message_details">Besked detaljer</string>
   <string name="AndroidManifest__linked_devices">Forbundne enheder</string>
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
@@ -1063,14 +1065,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiveres kun hvis din enhed sender SMS/MMS via WiFi, og hvis WiFi opkald er aktiveret på din enhed</string>
   <string name="preferences__incognito_keyboard">Inkognito tastatur</string>
   <string name="preferences__read_receipts">Læst af modtager</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, vil du ikke kunne se status for andre</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, er det ikke muligt at se status for andre</string>
   <string name="preferences__typing_indicators">Skrive indikator</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, vil du ikke kunne se når andre skriver</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, er det ikke muligt at se når andre skriver</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Deaktivér personaliseret læring fra tastaturet</string>
   <string name="preferences_app_protection__blocked_contacts">Blokerede kontakter</string>
-  <string name="preferences_chats__when_using_mobile_data">Når der anvendes mobildata</string>
-  <string name="preferences_chats__when_using_wifi">Når der anvendes WiFi</string>
-  <string name="preferences_chats__when_roaming">Når der roames</string>
+  <string name="preferences_chats__when_using_mobile_data">Ved anvendelse af mobildata</string>
+  <string name="preferences_chats__when_using_wifi">Ved anvendelse af WiFi</string>
+  <string name="preferences_chats__when_roaming">Ved roaming</string>
   <string name="preferences_chats__media_auto_download">Hent automatisk multimedier</string>
   <string name="preferences_chats__message_trimming">Trimning af beskeder</string>
   <string name="preferences_advanced__use_system_emoji">Anvend system emoji´s</string>
@@ -1187,7 +1189,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="reminder_header_share_title">Invitér dine venner!</string>
   <string name="reminder_header_share_text">Jo flere venner der bruger Signal, desto bedre bliver den</string>
   <string name="reminder_header_service_outage_text">Signal oplever tekniske problemer. Vi arbejder hårdt på at genoprette servicen, så hurtigt som muligt</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funktioner virker ikke på denne version af Android. Opgrader venligst denne enhed for at modtage fremtidige Signal-opdateringer.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funktioner virker ikke på denne version af Android. Opgrader venligst denne enhed for at modtage fremtidige Signal-opdateringer</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <string name="media_preview__forward_title">Videresend</string>
@@ -1251,7 +1253,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ProgressPreference_d_messages_so_far">%d beskeder ind til videre</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv venligst sikkerhedskoden sendt til %s</string>
   <string name="RegistrationActivity_wrong_number">Forkert nummer</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Ring til mig i stedet \n (Tilgængelig i %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Ring venligst til mig i stedet \n (Tilgængelig i %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Ukendt</string>
   <string name="preferences_app_protection__screen_lock">Skærmlås</string>

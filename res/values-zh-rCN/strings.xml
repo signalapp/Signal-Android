@@ -383,6 +383,10 @@
   <string name="MediaSendActivity_add_a_caption">添加注释...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一个附件已被移除，因为它超过了文件大小限制。</string>
   <string name="MediaSendActivity_camera_unavailable">摄像头不可用。</string>
+  <string name="MediaSendActivity_message_to_s">发送给 %s 的消息</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="other">您最多分享 %d 项。</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有媒体</string>
   <!--MessageRecord-->
@@ -716,9 +720,11 @@
   <string name="conversation_activity__attachment_thumbnail">附件缩略图</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切换快速相机附件抽屉</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">录音并分享文件</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">保持录音状态</string>
   <string name="conversation_activity__enable_signal_for_sms"> 将 Signal 设置为默认短信应用</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">滑动以取消</string>
+  <string name="conversation_input_panel__slide_to_cancel"> 滑动以取消发送</string>
+  <string name="conversation_input_panel__cancel">取消</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">媒体信息</string>
   <string name="conversation_item__secure_message_description">安全信息</string>
@@ -1150,6 +1156,7 @@
   <string name="reminder_header_share_title">邀请您的好友！</string>
   <string name="reminder_header_share_text">当更多的朋友使用 Signal ，它将变得更好。</string>
   <string name="reminder_header_service_outage_text">Signal遇到了一些技术问题。我们会尽快恢复服务。</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">最新的Signal功能不支持此Android版本。请升级此设备以接收将来的Signal的更新。</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">转发</string>
@@ -1213,7 +1220,7 @@
   <string name="ProgressPreference_d_messages_so_far">已处理 %d 条消息</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">请输入发送到 %s 的验证码。</string>
   <string name="RegistrationActivity_wrong_number">号码错误</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">打电话给我 \n （%02d:%02d后可用）</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">打电话给我 \n （%1$02d:%2$02d后可用）</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">锁屏</string>

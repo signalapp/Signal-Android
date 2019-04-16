@@ -632,7 +632,7 @@ a shonrú</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ceangaltán fuaime a thaifid agus a sheoladh</string>
   <string name="conversation_activity__enable_signal_for_sms">Cumasaigh Signal le haghaidh SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SLEAMHNAIGH CHUN É A CHEALÚ</string>
+  <string name="conversation_input_panel__cancel">Cealaigh</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Teachtaireacht mheán</string>
   <string name="conversation_item__secure_message_description">Teachtaireacht slán</string>

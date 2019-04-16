@@ -174,6 +174,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Tatizo la kuweka profile</string>
   <string name="CreateProfileActivity_profile_photo">picha ya wasifu</string>
   <string name="CreateProfileActivity_too_long">ndefu sana</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Kuanzisha wasifu wako</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">tumia desturi: 1%s</string>
   <string name="CustomDefaultPreference_none">Hakuna</string>
@@ -352,6 +353,7 @@ Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa ka
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">passhrase sio sahihi</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <string name="RatingManager_rate_now">Kiwango cha sasa</string>
   <string name="RatingManager_no_thanks">Nashukuru hapana</string>
   <string name="RatingManager_later">Baadae</string>
   <!--RecipientPreferencesActivity-->
@@ -397,7 +399,9 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_more_information">taarifa zaidi</string>
   <string name="RegistrationActivity_less_information">taarifa chache</string>
   <string name="RegistrationActivity_continue">Endelea</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ingiza nambari yako ya simu kuanza kutumia</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">utapokea msimbo uliothibitishwa. gharama za kazi zitatumika.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ingiza msimbo tuetuma kwa 1%s</string>
   <string name="RegistrationActivity_call">wito</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">imefeli kuhifadhi picha zilizobadilika</string>
@@ -422,6 +426,7 @@ nambari yako ya simu</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">kupokea key iliyoharibika badilishana ujumbe
 </string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Nimepokea ujumbe wa kubadilishana funguo kwa toleo la protocol sio halali.</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">ujumbe uliopokelewa pamoja na namba ya usalama. Gusa kuchakata na kuonyesha.</string>
   <string name="SmsMessageRecord_secure_session_reset">umerekebisha salama kipindi</string>
   <string name="SmsMessageRecord_secure_session_reset_s">1%s kupanga tena kipindi salama</string>
@@ -437,6 +442,7 @@ nambari yako ya simu</string>
   <string name="ThreadRecord_media_message">Ujumbe wa vyombo vya habari</string>
   <string name="ThreadRecord_s_is_on_signal">1%s yupo Signal</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Uumbe zilizopotea  imezuiliwa</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ujumbe unapotea kwa mpangilio wa muda  kwa 1%s</string>
   <string name="ThreadRecord_safety_number_changed">namba salama zimebadilika</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">namba yako ya usalama pamoja na 1%s imebadilika</string>
   <string name="ThreadRecord_you_marked_verified">umeweka kuthibitishwa?</string>
@@ -449,6 +455,7 @@ nambari yako ya simu</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Namba zilizozuiliwa hazitoweza kukutumia ujumbe au kukupigia simu wewe.</string>
   <string name="UnknownSenderView_block">Zuia</string>
   <string name="UnknownSenderView_share_profile_with_s">kushiriki wasifu pamoja 1%s</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Njia rahisi ya kushirikisha taarifa za wasifu wako ni kuongeza mtumaji kwenye anwani zako. Kama usingependa,  bado unaweza kushirikisha taarifa za wasifu wako kwa njia hii. </string>
   <string name="UnknownSenderView_share_profile">tuma wasifu</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">tuma ujumbe?</string>
@@ -459,6 +466,7 @@ nambari yako ya simu</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mawasiliano yako inaendesha toleo la zamani la Signal. Tafadhali waulize update kabla ya kuthibitisha nambari yako ya usalama.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mawasiliano yako inaendesha toleo jipya la Signal na muundo wa msimbo wa QR usiofanana. Tafadhali sasisha ili ulinganishe</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Scani ya msimbo wa QR haikupangwa sahihi namba ya usalama msimbo wa kuthibitisha. Tafadhali jaribu kuscani tena.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">kushiriki namba salama kupitia...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Namba yetu ya usalama ya Signal</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Inaonekana huna programu yoyote ya kushiriki</string>
@@ -591,7 +599,7 @@ nambari yako ya simu</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Rekodi na tuma kiambatisho cha sauti</string>
   <string name="conversation_activity__enable_signal_for_sms">Wezesha Signal kwa meseji</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">Sogeza kufuta</string>
+  <string name="conversation_input_panel__cancel">futa</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Ujumbe wa vyombo vya habari</string>
   <string name="conversation_item__secure_message_description">ujumbe salama</string>
@@ -663,6 +671,7 @@ nambari yako ya simu</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Nambari ya msingi ya mfumo haitashirikiwa au kubadilishwa kwa njia yoyote.</string>
   <string name="database_migration_activity__skip">ruka</string>
   <string name="database_migration_activity__import">kuagiza</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Hii itachukua muda.  Tafadhali kuwa mvumilivu,  tutakujulisha wakati ingizaji ukikamilika.</string>
   <string name="database_migration_activity__importing">kupokea</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">sasisha database</string>

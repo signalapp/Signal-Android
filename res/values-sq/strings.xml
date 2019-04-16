@@ -15,8 +15,8 @@
   <string name="ApplicationPreferencesActivity_currently_s">I tanishmi: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">S\’keni caktuar ende frazëkalim!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">%d mesazh për shndërrim</item>
-    <item quantity="other">%d mesazhe për shndërrim</item>
+    <item quantity="one">%d mesazh për bisedë</item>
+    <item quantity="other">%d mesazhe për bisedë</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Të fshihen krejt mesazhet e vjetër tani?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -79,7 +79,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">S\’u gjet shfletues.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %1$s është ndryshuar. Kjo mund të jetë shenjë se ose dikush po rreket të përgjojë komunikimin tuaj, ose se %1$s thjesht ka riinstaluar Signal-in.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %1$s është ndryshuar. Kjo mund të jetë shenjë se ose dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mund të doni të verifikoni numrin tuaj të sigurisë me këtë kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Pranoje</string>
   <!--ContactsCursorLoader-->
@@ -165,7 +165,7 @@
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
-    <item quantity="other">%d porosi të palexuara</item>
+    <item quantity="other">%d mesazhe të palexuara</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
@@ -380,7 +380,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">Po fshihen mesazhet…</string>
   <string name="MediaOverviewActivity_Documents">Dokumente</string>
   <string name="MediaOverviewActivity_Select_all">Përzgjidhi krejt</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Po mblidhem bashkëngjitje…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Po mblidhen bashkëngjitje…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
@@ -422,7 +422,7 @@
   <string name="MessageRecord_s_joined_signal">%s është në Signal! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Çaktivizuat zhdukje mesazhesh.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s çaktivizoi zhdukje mesazhesh.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutën kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutë kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s e vuri kohëmatësin e tretjes së mesazheve në %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">E shënuat numrin tuaj të sigurisë me %s si të verifikuar</string>
@@ -541,7 +541,7 @@
   <string name="ScribbleActivity_save_failure">S’u arrit të ruheshin ndryshime të figurës.</string>
   <!--Search-->
   <string name="SearchFragment_no_results">S\’u gjetën përfundime për \'%s\'</string>
-  <string name="SearchFragment_header_conversations">Biseda.</string>
+  <string name="SearchFragment_header_conversations">Biseda</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
   <string name="SearchFragment_header_messages">Mesazhe</string>
   <!--SharedContactDetailsActivity-->
@@ -625,7 +625,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">Importimi i bazës së të dhënave të sistemit u plotësua.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Prekeni për ta hapur.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prekeni për ta hapur, ose prekni çelësin për ta mbyllur.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prekeni për ta hapur, ose prekni drynin për ta mbyllur.</string>
   <string name="KeyCachingService_passphrase_cached">Signal-i u shkyç</string>
   <string name="KeyCachingService_lock">Kyçe Signal-in</string>
   <!--MediaPreviewActivity-->
@@ -743,9 +743,11 @@
   <string name="conversation_activity__attachment_thumbnail">Miniaturë Bashkëngjitjeje</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hap/mbyll sirtar të shpejtë bashkëngjitjesh nga kamera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Incizoni dhe dërgoni bashkëngjitje zanore</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blloko incizim bashkëngjitjeje audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktivizo Signal për SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">RRËSHQITENI QË TË ANULOHET</string>
+  <string name="conversation_input_panel__slide_to_cancel">Rrëshqiteni që të anulohet</string>
+  <string name="conversation_input_panel__cancel">Anuloje</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mesazh media</string>
   <string name="conversation_item__secure_message_description">Mesazh i siguruar</string>
@@ -1195,7 +1197,7 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Po fshihet</string>
-  <string name="trimmer__deleting_old_messages">Po fshihem mesazhet e vjetra…</string>
+  <string name="trimmer__deleting_old_messages">Po fshihen mesazhet e vjetra…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mesazhet e vjetra u fshinë me sukses</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
@@ -1245,7 +1247,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d mesazhe deri këtu</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ju lutemi, jepni kodin e verifikimit dërguar te %s.</string>
   <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Më mirë përmes thirrjeje \n (E mundshme në %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Telefonomëni, më mirë \n (E përdorshme në %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>

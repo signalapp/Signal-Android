@@ -113,6 +113,9 @@
   <string name="ConversationItem_copied_text">Copiouse %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">a %s</string>
+  <string name="ConversationItem_read_more">Ler máis</string>
+  <string name="ConversationItem_download_more">Descargar máis</string>
+  <string name="ConversationItem_pending">Pendente</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Restablecer sesión segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode resultar de axuda en caso de haber problemas de cifraxe nesta conversa. As mensaxes manteranse.</string>
@@ -233,6 +236,8 @@
   <string name="CreateProfileActivity_profile_photo">Fotografía do perfil</string>
   <string name="CreateProfileActivity_too_long">Moi longo</string>
   <string name="CreateProfileActivity_profile_name">Nome do perfil</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Establece o teu perfil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Os perfís de Signal están cifrados de principio a fin e o servizo de Signal en ningún momento ten acceso a esta información.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uso personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Uso predefinido: %s</string>
@@ -353,6 +358,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Erro ao enviar</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo número de seguranza</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Non é posible atopar a mensaxe</string>
+  <string name="LongMessageActivity_message_from_s">Mensaxe de %1$s</string>
+  <string name="LongMessageActivity_your_message">A túa mensaxe</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Activada conexión en segundo plano</string>
@@ -393,6 +401,11 @@
   <string name="MediaSendActivity_add_a_caption">Engadir un título...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Eliminouse un elemento porque o seu tamaño excede o límite</string>
   <string name="MediaSendActivity_camera_unavailable">Cámara non dispoñible.</string>
+  <string name="MediaSendActivity_message_to_s">Mensaxe para %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Non podes compartir máis de %d elemento.</item>
+    <item quantity="other">Non podes compartir máis de %d elementos.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Ficheiros multimedia</string>
   <!--MessageRecord-->
@@ -521,6 +534,10 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Erro ao verificar o CAPTCHA</string>
   <string name="RegistrationActivity_next">Seguinte</string>
   <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leva a túa privacidade contigo.\nSé ti mesmo/a en cada mensaxe.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insire o teu número de teléfono para comezar</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación. Pode supoñer algunha tarifa por parte do operador.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insire o código que che enviamos a %s</string>
   <string name="RegistrationActivity_call">Chamar</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Erro ao gardar os cambios na imaxe</string>
@@ -732,7 +749,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar un anexo de audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Activar Signal para SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">PASAR O DEDO PARA CANCELAR</string>
+  <string name="conversation_input_panel__cancel">Cancelar</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mensaxe multimedia</string>
   <string name="conversation_item__secure_message_description">Mensaxe segura</string>
@@ -1170,6 +1187,7 @@
   <string name="reminder_header_share_title">Convida as túas amizades!</string>
   <string name="reminder_header_share_text">Cantas máis amizades usen Signal, mellor vai ser a cousa.</string>
   <string name="reminder_header_service_outage_text">Signal está experimentando problemas técnicos. Estamos a traballar arreo para restaurar o servizo o máis axiña posible.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">As últimas funcionalidades de Signal non son compatibles con esta versión de Android. Actualiza o dispositivo para recibir futuras actualizacións de Signal.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gardar</string>
   <string name="media_preview__forward_title">Reenviar</string>
@@ -1232,6 +1250,8 @@
   <string name="LocalBackupJob_creating_backup">Creando copia de seguranza...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensaxes ata o momento</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insire o código de verificación enviado a %s.</string>
+  <string name="RegistrationActivity_wrong_number">Número incorrecto</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Chámame mellor \n (Dispoñible en%1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Descoñecido</string>
   <string name="preferences_app_protection__screen_lock">Bloqueo da pantalla</string>

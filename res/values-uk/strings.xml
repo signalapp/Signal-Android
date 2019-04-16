@@ -720,7 +720,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записати та надіслати аудіо-прикріплення</string>
   <string name="conversation_activity__enable_signal_for_sms">Увімкнути Signal для SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДІТЬ, ЩОБ СКАСУВАТИ</string>
+  <string name="conversation_input_panel__cancel">Скасувати</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Медіа повідомлення</string>
   <string name="conversation_item__secure_message_description">Захищене повідомлення</string>

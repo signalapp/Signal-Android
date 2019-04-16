@@ -157,7 +157,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalek ezin ditu SMS/MMSak bidali ez delako zure defektuzko SMS aplikazioa. Androiden ezarpenetara joan eta hau aldatu nahi duzu?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalek ezin ditu SMS/MMSak bidali zure defektuzko SMS aplikazioa ez delako. Androiden ezarpenetara joan eta hau aldatu nahi duzu?</string>
   <string name="ConversationActivity_yes">Bai</string>
   <string name="ConversationActivity_no">Ez</string>
   <string name="ConversationActivity_search_position">%1$d / %2$d</string>
@@ -238,6 +238,7 @@
   <string name="CreateProfileActivity_too_long">Luzeegia</string>
   <string name="CreateProfileActivity_profile_name">Profilaren izena</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ezarri zure profila</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signalen profilak muturretik muturrera enkriptatuta daude, eta Signalen zerbitzuak ez dauka informazio hau eskuratzerik.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Pertsonalizatua: %s</string>
   <string name="CustomDefaultPreference_using_default">Lehenetsia: %s</string>
@@ -287,15 +288,15 @@
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilak heldu dira</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Idazketa jakinarazleak aurkezten.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Orain aukeran mezuak idazten ari direla erakutsi eta ikusi dezakezu.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Aktibatu nahi al duzu?</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Aktibatu nahi al duzu orain?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Idazketa jakinarazleak heldu dira</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Gaitu idazketa jakinarazleak</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktibatu idazketa jakinarazleak</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Ez eskerrik asko</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Ez, eskerrik asko</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Loturen aurrebistak aurkezten.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Loturen aurrebistak hautazkoak dira eta Interneteko hainbat zerbitzurekin funtzionatzen dute.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Aukera hau nahi duzunean aktibatu eta desaktibatu dezakezu Signalen ezarpenetan (Pribatutasuna &gt; Loturen aurrebistak bidali).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Jasota</string>
+  <string name="ExperienceUpgradeActivity_got_it">Ulertuta</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mezu bat berreskuratzen...</string>
   <!--GcmRefreshJob-->
@@ -359,6 +360,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">Segurtasun zenbaki berria</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Ezin izan da mezua aurkitu</string>
+  <string name="LongMessageActivity_message_from_s">Honen mezua: %1$s</string>
   <string name="LongMessageActivity_your_message">Zure mezua</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
@@ -400,6 +402,11 @@
   <string name="MediaSendActivity_add_a_caption">Irudi-oina gehitu</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elementu bat ezabatu egin da tamaina muga gainditu duelako</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ez dago eskuragarri</string>
+  <string name="MediaSendActivity_message_to_s">Honentzako mezua: %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Ezin duzu elementu %d baino gehiago partekatu</item>
+    <item quantity="other">Ezin duzu %d elementu baino gehiago partekatu.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Euskarri guztiak</string>
   <!--MessageRecord-->
@@ -528,6 +535,10 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Huts egin du CAPTCHA egiaztaketak</string>
   <string name="RegistrationActivity_next">Hurrengoa</string>
   <string name="RegistrationActivity_continue">Jarraitu</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pribatutasuna zurekin eraman.\nZu zeu izan mezu bakoitzean.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Zure telefono zenbakia sartu hasteko</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Berifikazio kode bat jasoko duzu. Operadoreak tarifa bat jarri dezake.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %s telefonora bidali dugun kodea.</string>
   <string name="RegistrationActivity_call">Deitu</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Irudien aldaketak gordetzeak huts egin du</string>
@@ -737,9 +748,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_activity__attachment_thumbnail">Eranskinerako koadro txikia</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Gaitu/ezgaitu kamara arinaren eranskinen tiradera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Audio eranskina grabatu eta bidali</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Finkatu audio atxikimenduen grabaketa audio mezu luzeak grabatzeko</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktibatu Signal SMSetarako</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">LERRATU UZTEKO</string>
+  <string name="conversation_input_panel__slide_to_cancel">Korritu alde batera ezeztatzeko</string>
+  <string name="conversation_input_panel__cancel">Utzi</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Media mezua</string>
   <string name="conversation_item__secure_message_description">Mezu segurua</string>
@@ -1056,7 +1069,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences__read_receipts">Irakurketa oharrak</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Irakurketa oharrak desaktibatuta badaude, ezingo dituzu besteenak ikusi</string>
   <string name="preferences__typing_indicators">Idazketa jakinarazleak</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Idazketa jakinarazleak desaktibatuta badaude ezin izango duzu besteek idazten ari direla ikusi</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Idazketa jakinarazleak desaktibatuta badaude ezin izango duzu besteek idazten ari diren ikusi</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Eskatu teklatuari pertsonalizatutako ikasketa desaktibatzeko</string>
   <string name="preferences_app_protection__blocked_contacts">Blokeatutako kontaktuak</string>
   <string name="preferences_chats__when_using_mobile_data">Datu mugikorrak erabiltzerakoan</string>
@@ -1178,6 +1191,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="reminder_header_share_title">Gonbidatu zure lagunak!</string>
   <string name="reminder_header_share_text">Zenbat eta Signalen adiskide gehiago izan, hobe.</string>
   <string name="reminder_header_service_outage_text">Signal arazo teknikoak izaten ari da. Gogor ari gara lanean zerbitzua ahal bezain laster berriro martxan jartzeko.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Signalen azkenengo ezaugarriek ez dute funtzionatuko Android bertsio honetan. Mesedez, eguneratu gailua Signalen egunerapenak jasotzeko.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gorde</string>
   <string name="media_preview__forward_title">Birbidali</string>
@@ -1241,6 +1255,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="ProgressPreference_d_messages_so_far">%d mezu orain arte</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Sartu %s(e)ra bidalitako egiaztapen-kodea.</string>
   <string name="RegistrationActivity_wrong_number">Zenbaki okerra</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu \n (Hemen topatuko nauzu: %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Inoiz ez</string>
   <string name="BackupUtil_unknown">Ezezaguna</string>
   <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>

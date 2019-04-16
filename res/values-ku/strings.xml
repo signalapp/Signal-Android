@@ -57,13 +57,13 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Sepana ji bo bijartina medyayê nehate dîtin.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Ji bo zêdekirina wêne, vidyo yan deng, Signal destûra Bîrbarê pêwîst dike, lê ew bi awayekî mayinde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û  \"Bîrbar\"ê çalak bike.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Ji bo zêdekirina agahiyên Kesan Signal destûra Têkilîdêr pêwîst dike, lê ew bi awayekî mayînde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Têkilîdêr\"ê çalak bike.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Ji bo tevllîkirina agahiyên berdenga Signal destûra Navnivîskê pêwîst dike, lê ew bi awayekî mayînde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Navnivîsk\"ê çalak bike.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Ji bo zêdekirina cih Signal destûra \"Cih\"ê pêwîst dike, lê ew bi awayekî mayinde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Cih\"ê çalak bike.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Ji bo kişandina wêneyan Signal destûra Kamera pêwîst dike, lê ew bi awayekî mayînde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Kamera\"yê çalak bike.</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Di lêdana deng de çewtî rû da!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Kesên astengkirî</string>
+  <string name="BlockedContactsActivity_blocked_contacts">Berdengên astengkirî</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Îro</string>
   <string name="BucketedThreadMedia_Yesterday">Doh</string>
@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Banga tê</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Kamera nayê bikar anîn.</string>
   <string name="CameraActivity_image_save_failure">Tomarkirina wêne têk çû.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Rake</string>
@@ -85,7 +84,7 @@
   <string name="ConfirmIdentityDialog_accept">Baş e</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Gotûbêjên dawî</string>
-  <string name="ContactsCursorLoader_contacts">Têkilîdêr</string>
+  <string name="ContactsCursorLoader_contacts">Navnivîsk</string>
   <string name="ContactsCursorLoader_groups">Kom</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Peyama %s</string>
@@ -100,10 +99,10 @@
   <string name="ContactShareEditActivity_type_home">Destpêk</string>
   <string name="ContactShareEditActivity_type_mobile">Mobîl</string>
   <string name="ContactShareEditActivity_type_work">Xebat</string>
-  <string name="ContactShareEditActivity_type_missing">Yên din</string>
-  <string name="ContactShareEditActivity_invalid_contact">Kesê bijartî nederbasdar e</string>
+  <string name="ContactShareEditActivity_type_missing">Yê din</string>
+  <string name="ContactShareEditActivity_invalid_contact">Berdengê bijartî nederbasdar e</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Şandin biserneket, ji bo hûrgiliyên bêhtir, bitepîne</string>
+  <string name="ConversationItem_error_not_delivered">Şandin têk çû, ji bo hûrgiliyên bêhtir, bitepîne</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Peyama veguhastina kilîdê hate stendin, ji bo pêvajoyê bitepîne.</string>
   <string name="ConversationItem_group_action_left">%1$s ji komê veqetiya.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Ji bo SMSa neşîfrekirî şûnde vegere?</string>
@@ -124,7 +123,7 @@
   <string name="ConversationActivity_select_contact_info">Agahiya têkiliyê bibijêre</string>
   <string name="ConversationActivity_compose_message">Peyam binivîse</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Bibore, di sazkirina servehiyê de çewtiyek rû da.</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Navnîşana epeyam an jî SMSa stîner ne derbasdar e!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Navnîşana epeyamê an jî SMSa stîner ne derbasdar e!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Peyam vala ye!</string>
   <string name="ConversationActivity_group_members">Endamên komê</string>
   <string name="ConversationActivity_invalid_recipient">Stînerê nederbasdar!</string>
@@ -138,11 +137,11 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Biçe Signalê %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ji bo gotûbêjê em vê bikarbînin: %1$s</string>
-  <string name="ConversationActivity_error_leaving_group">Di derketina ji komê de çewtî rû da</string>
-  <string name="ConversationActivity_specify_recipient">Ji kerema xwe kesekî bibijêre</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Bila astengkirina vî kesî rabe?</string>
+  <string name="ConversationActivity_error_leaving_group">Ji komê derketin pêk nehat</string>
+  <string name="ConversationActivity_specify_recipient">Ji kerema xwe berdengekî bibijêre</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Bila astengkirina vî berdengî rabe?</string>
   <string name="ConversationActivity_unblock_this_group_question">Bila astengkirina vê komê rabe?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu careke din dîsa dikare ji vî kesî bang û peyam bistîne.</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu careke din dîsa dikare ji vî berdengî bang û peyam bistîne.</string>
   <string name="ConversationActivity_unblock_this_group_description">Endamên amade ew ê dîsa bikaribin te tevlî komê bikin.</string>
   <string name="ConversationActivity_unblock">Astengê rake</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Servehî li gor şandina cûreya peyamê sînorên mezinahiyê derbas dike.</string>
@@ -182,7 +181,7 @@
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Dema servehî li bîrbarê dihat tomarkirin çewtî rû da!</item>
-    <item quantity="other">Di dema tomarkirina servehiyan li bîrbarê çewtî rû da!</item>
+    <item quantity="other">Di tomarkirina servehiyan bo bîrbarê çewtî pêk hat!</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Li bîrbarê nayê nivîsandin!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -267,8 +266,7 @@
   <string name="DocumentView_unknown_file">Pelgeya nenas</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Ji bo kêmasiya Play Servicesê, baştirîn bike</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ev amûr piştgiriya Play Services nake.
-Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbikin nahêle ku Signal peyam bistîne dema neçalak e. Ji bo girtina pergala batarya lêxe.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ev amûr piştgiriya Play Services nake.  Dema Signal neçalak be ji bo optîmîzasyonên beterya pergalê stendina peyaman asteng neke bitepîne.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Li gel parve bike</string>
   <!--ExperienceUpgradeActivity-->
@@ -284,7 +282,7 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ji bo wêneyê xwe amade yî?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Êdî tu dikarî li ser Signalê bi hevalên xwe re nav û wêneyê profîlê parve bikî.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê li vir in</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Tu dixwazî aniha rê bidî wan?</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">\?Tu dixwazî aniha rê bidî wan</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Na, sipas</string>
   <string name="ExperienceUpgradeActivity_got_it">Temam</string>
   <!--GcmBroadcastReceiver-->
@@ -319,6 +317,8 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="GroupShareProfileView_make_visible">Bide xwiyakirin</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ez</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Avatara komê</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ji bo peyamek dengî tomar bikî bitepîne û tiliya xwe li ser bihêle, paşê ji bo şandinê berde</string>
   <!--InviteActivity-->
@@ -386,6 +386,7 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Ji bo bijartinê bitepîne</string>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_camera_unavailable">Kamera nayê bikar anîn.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Hemû medya</string>
   <!--MessageRecord-->
@@ -412,7 +413,7 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Vê amûrê girê bide?</string>
   <string name="DeviceProvisioningActivity_cancel">BETAL</string>
-  <string name="DeviceProvisioningActivity_continue">BERDEWAM</string>
+  <string name="DeviceProvisioningActivity_continue">BIDOMÎNE</string>
   <string name="DeviceProvisioningActivity_content_intro">Ew ê bikaribe</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • Hemû peyamên xwe bixwîne
@@ -441,8 +442,6 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Borînbiwêja nederbasdar!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Guhertoya Google Play Servicesê ya di amûra te da sazkirî baş naxebite. Ji kerema xwe dîsa saz bike û biceribîne.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">...Peyamek tê wergirtin</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Puan bide vê sepanê</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ku ji bikaranîna vê sepanê dilxweş î, ji kerema xwe bo alîkariyê puan bide me.</string>
@@ -454,7 +453,7 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="RecipientPreferenceActivity_block_this_contact_question">Vî berdengî asteng bikin?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ji vî berdengî dê êdî peyam û bang neyên wergirtin.</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group">Vê komê asteng bike û jê derkeve?</string>
-  <string name="RecipientPreferenceActivity_block_group">Vê komê asteng bike?</string>
+  <string name="RecipientPreferenceActivity_block_group">\?Vê komê asteng bike</string>
   <string name="RecipientPreferenceActivity_block">Astengkirin</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Astenga vî berdengî rake?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu yê dîsa bikaribî ji vî berdengî peyam û bangan wer bigrî.</string>
@@ -462,7 +461,7 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="RecipientPreferenceActivity_unblock_this_group_description">Endamên amade ewê dîsa bikaribin te tevlî komê bikin.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Derketina ji komê pêk nehat</string>
   <string name="RecipientPreferenceActivity_unblock">Astengê rakirin</string>
-  <string name="RecipientPreferenceActivity_enabled">Rêdayî</string>
+  <string name="RecipientPreferenceActivity_enabled">Çalakkirî</string>
   <string name="RecipientPreferenceActivity_disabled">Neçalakkirî</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Dê piştî peyamek were şandin yan wergirtin berdest bibe</string>
   <!--RecipientProvider-->
@@ -511,8 +510,6 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="SearchFragment_header_conversations">Gotûbêj</string>
   <string name="SearchFragment_header_contacts">Berdeng</string>
   <string name="SearchFragment_header_messages">Peyam</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Peyamek tê şandin...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Tevlî berdengan bike</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Vexwîne Signalê</string>
@@ -716,7 +713,7 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Servehîya deng tomar bike û bişîne</string>
   <string name="conversation_activity__enable_signal_for_sms">Ji bo SMS Signalê çalak bike</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">BIKIŞÎNE KU BETAL BIBE</string>
+  <string name="conversation_input_panel__cancel">Betal</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Peyama medya</string>
   <string name="conversation_item__secure_message_description">Peyama parastî</string>
@@ -1024,7 +1021,7 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="preferences__default">Jixweber</string>
   <string name="preferences__language">Ziman</string>
   <string name="preferences__signal_messages_and_calls">Peyam û lêgerînên Signalê</string>
-  <string name="preferences__free_private_messages_and_calls">Ji bo bikarhênerên Signalê peyam û gazî belaş in</string>
+  <string name="preferences__free_private_messages_and_calls">Ji bo bikarhênerên Signalê peyamên taybet ên belaş û telefonkirinên belaş</string>
   <string name="preferences__submit_debug_log">Tomara pînekirina çewtiyan bişîne</string>
   <string name="preferences__support_wifi_calling">Moda hevahengiya \'Bangewaziyên WiFiyê\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Eger amûra te gihandina SMS/MMSê ya ji ser \'WiFi\'yê bi kar bîne, rê bide (tenê dema \'Lêgerîna WiFiyê\' ser amûra te vekirî be bila çalak be)</string>
@@ -1035,29 +1032,34 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Eger nîşanderên nivîsandinê girtî bin, tu yê nikaribî nîşanderên nivîsandinê bibînî ji ên din.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Textenivîsê bixwaze, da ku hînbûna kesanekirî neçalak bike</string>
   <string name="preferences_app_protection__blocked_contacts">Kesên astengkirî</string>
-  <string name="preferences_chats__when_using_mobile_data">Dema bikaranîna data ya SIM</string>
-  <string name="preferences_chats__when_using_wifi">Dema bikaranîna data ya WiFi</string>
-  <string name="preferences_chats__when_roaming">Dema bikaranîna \'roaming\'</string>
-  <string name="preferences_chats__media_auto_download">Medya bixwe dakevin</string>
-  <string name="preferences_chats__message_trimming">Xûrkirina peyam</string>
-  <string name="preferences_advanced__use_system_emoji">Emoji ya pergalê bikarbînin</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Rêya alîkariya emoji ya pergalê rakin</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Hemû gazî bi rajekara Signalê derbas bikin da ku ji tekiliya te navnîşana IP te xuya nake. Ev ê kaîteya gazî kêmbike.</string>
-  <string name="preferences_advanced__always_relay_calls">Gazî hertim derbas bikin</string>
-  <string name="preferences_app_protection__app_access">Rêbirina bernameyê</string>
-  <string name="preferences_app_protection__communication">Ragihandin</string>
-  <string name="preferences_chats__chats">Niqaş</string>
+  <string name="preferences_chats__when_using_mobile_data">Dema bikaranîna dataya mobîl</string>
+  <string name="preferences_chats__when_using_wifi">Dema bikaranîna dataya Wi-Fiyê</string>
+  <string name="preferences_chats__when_roaming">Dema gerrê</string>
+  <string name="preferences_chats__media_auto_download">Xwebixwe-daxistina medyayê</string>
+  <string name="preferences_chats__message_trimming">Qusandina peyamê</string>
+  <string name="preferences_advanced__use_system_emoji">Emojiya pergalê bi kar bîne</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Piştgiriya emojiyê a daxilî ya Signalê neçalak bike </string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Hemû lêgerîn bi riya rajekara Signalê neql bikin da ku ji berdengên te re navnîşana IPya te xuya neke. Çalakkirin wê qalîteya lêgerînê kêm bike.</string>
+  <string name="preferences_advanced__always_relay_calls">Lêgerînan hertim neql bike</string>
+  <string name="preferences_app_protection__app_access">Gihîna sepanê</string>
+  <string name="preferences_app_protection__communication">Têkilî</string>
+  <string name="preferences_chats__chats">Gotûbêj</string>
   <string name="preferences_notifications__messages">Peyam</string>
   <string name="preferences_notifications__events">Bûyer</string>
-  <string name="preferences_notifications__in_chat_sounds">Deng di niqaş de</string>
-  <string name="preferences_notifications__show">Nîşan bidin</string>
-  <string name="preferences_notifications__calls">Gazî</string>
+  <string name="preferences_notifications__in_chat_sounds">Dengên di gotûbêjê de</string>
+  <string name="preferences_notifications__show">Nîşan bide</string>
+  <string name="preferences_notifications__calls">Lêgerîn</string>
   <string name="preferences_notifications__ringtone">Dengê zengilê</string>
-  <string name="preferences_chats__show_invitation_prompts">Vexendin nîşan bidin</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vexandin ji bo tekilî bê Signalê nîşan bidin</string>
-  <string name="preferences_chats__message_text_size">Mezinahiya tîpên peyam</string>
-  <string name="preferences_events__contact_joined_signal">Tekilî Signalê tevlî bû</string>
+  <string name="preferences_chats__show_invitation_prompts">Daxwazên vexwendinê nîşan bide</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Daxwaznên vexwendinê ya ji bo berdengên bêyî Signalê nîşan bide</string>
+  <string name="preferences_chats__message_text_size">Mezinahiya curetîpên peyamê</string>
+  <string name="preferences_events__contact_joined_signal">Ev kes tevlî Signalê bû</string>
   <string name="preferences_notifications__priority">Pêşkî</string>
+  <string name="preferences_communication__category_sealed_sender">Şanderê Veşartî</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Nîşankerên dîmenderê</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Li ser peyamên ku bi bikaranîna şanderê veşartî hatine teslîmkirin, gava tu bitikînî \"Dêtayên peyamê\" nîşaneka rewşê nîşan bide.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Destûrê bide ji her kesî</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Şanderê veşartî çalak dike ji bo peyamên were yên ji kesên ne di navnivîska te de û ji kesên ku te profîla xwe bi wan re parve nekiriye re.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Bêhtir bizane</string>
   <!--****************************************-->
   <!--menus-->
@@ -1065,191 +1067,194 @@ Pê cihaz xizmetên Play çênabin ji ber ku pergal ji bo mesrefa batarya kêmbi
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Peyama nû ji bo...</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_callable_insecure__menu_call">Gazî</string>
+  <string name="conversation_callable_insecure__menu_call">Lêgerîn</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Gaziya Signalê</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Agahiya peyamê</string>
-  <string name="conversation_context__menu_copy_text">Nivîs copî bikin</string>
-  <string name="conversation_context__menu_delete_message">Peyam rakin</string>
-  <string name="conversation_context__menu_forward_message">Peyam pêşve bişînin</string>
-  <string name="conversation_context__menu_resend_message">Peyam dîsa bişînin</string>
-  <string name="conversation_context__menu_reply_to_message">Bersiv bidin peyamê</string>
+  <string name="conversation_context__menu_message_details">Hûrgiliyên peyamê</string>
+  <string name="conversation_context__menu_copy_text">Nivîsê ji ber bigire</string>
+  <string name="conversation_context__menu_delete_message">Peyamê rake</string>
+  <string name="conversation_context__menu_forward_message">Peyamê bişîne yekî din</string>
+  <string name="conversation_context__menu_resend_message">Peyam dîsa bişîne</string>
+  <string name="conversation_context__menu_reply_to_message">Bersiv bide peyamê</string>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Servehî tomar bikin</string>
+  <string name="conversation_context_image__save_attachment">Servehiyê tomar bike</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Peyam ku tunedibin</string>
+  <string name="conversation_expiring_off__disappearing_messages">Peyamên ku tune dibin</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">Peyam ku kevndibin</string>
+  <string name="menu_conversation_expiring_on__messages_expiring">Peyam kevin dibin</string>
   <!--conversation_insecure-->
-  <string name="conversation_insecure__invite">Vexwînin</string>
+  <string name="conversation_insecure__invite">Vexwîne</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Bijartin rakin</string>
-  <string name="conversation_list_batch__menu_select_all">Hemû bijerînin</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">Bijartin arşîv bikin</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Bijartin ji arşîv derbixin</string>
+  <string name="conversation_list_batch__menu_delete_selected">Yên bijartî rake</string>
+  <string name="conversation_list_batch__menu_select_all">Hemûyan bibijêre</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Yên bijartî arşîv bike</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Yên bijartî ji arşîvê derxîne</string>
   <!--conversation_list-->
   <!--conversation_list_item_view-->
-  <string name="conversation_list_item_view__contact_photo_image">Wêneya Têkilî</string>
-  <string name="conversation_list_item_view__archived">Çû arşîvê</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox sifffirrr</string>
+  <string name="conversation_list_item_view__contact_photo_image">Wêneya Berdengê</string>
+  <string name="conversation_list_item_view__archived">Arşîvkirî ye</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Hatdank vala ye</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Sifir. Tine. Netî. Netiştç\nKarê te nîne!</string>
   <!--conversation_list_fragment-->
-  <string name="conversation_list_fragment__fab_content_description">Axaftina nû</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Hinek kar bide inbox a xwe. Bi şandina peyamê hevala xwe destpêbike.</string>
+  <string name="conversation_list_fragment__fab_content_description">Gotûbêja nû</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Hinek kar bide hatdanka xwe. Bi şandina peyamê hevala xwe dest pê bike.</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Danisîna parastî dîsa danaye</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Danişîna parastî nûsaz bike</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Bideng bike</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">Agahdarî bêdeng bikin</string>
+  <string name="conversation_unmuted__mute_notifications">Danezanan bêdeng bike</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Servehî zêdebikin</string>
-  <string name="conversation__menu_edit_group">Kom weşandin</string>
-  <string name="conversation__menu_leave_group">Ji kom derkevin</string>
+  <string name="conversation__menu_add_attachment">Servehiyê lê zêde bike</string>
+  <string name="conversation__menu_edit_group">Komê sererast bike</string>
+  <string name="conversation__menu_leave_group">Ji komê veqete</string>
   <string name="conversation__menu_view_all_media">Hemû medya</string>
   <string name="conversation__menu_conversation_settings">Sazkariyên axaftinê</string>
-  <string name="conversation__menu_add_shortcut">Tevlî ekrana destpêkê bike</string>
+  <string name="conversation__menu_add_shortcut">Tevlî dîmendera destpêkê bike</string>
   <!--conversation_popup-->
-  <string name="conversation_popup__menu_expand_popup">Nîşan mezin bikin</string>
+  <string name="conversation_popup__menu_expand_popup">Hilpekokê berfireh bike</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_add_to_contacts__menu_add_to_contacts">Daxin têkilî</string>
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Tevlî berdengan bike</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lîsta stîndaran</string>
+  <string name="convesation_group_options__recipients_list">Lîsta wergiran</string>
   <string name="conversation_group_options__delivery">Gihiştin</string>
-  <string name="conversation_group_options__conversation">Hevpeyvîn</string>
-  <string name="conversation_group_options__broadcast">Belav bikin</string>
+  <string name="conversation_group_options__conversation">Gotûbêj</string>
+  <string name="conversation_group_options__broadcast">Belav bike</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_group">Koma nû</string>
   <string name="text_secure_normal__menu_settings">Sazkarî</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Qilf bikin</string>
-  <string name="text_secure_normal__mark_all_as_read">Hemû wek xwendin diyar bikin</string>
-  <string name="text_secure_normal__invite_friends">Heval vexwînin</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Biqufilîne</string>
+  <string name="text_secure_normal__mark_all_as_read">Hemûyan xwendî nîşan bike</string>
+  <string name="text_secure_normal__invite_friends">Hevalan vexwîne</string>
   <string name="text_secure_normal__help">Alîkarî</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopîkirin</string>
-  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bi kopî hevberkirin</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopî ser rûnûsgehê bike</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bi rûnûsgehê re bide ber hev</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versyiona Signala te kevn bû</string>
+  <string name="reminder_header_outdated_build">Guhertoya Signala te êdî kevn bûye</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Versiyona Signala te yê piştî %d roj kevin bibe. Ji bo rojanekirin versiyon herî nû lêxe.</item>
-    <item quantity="other">Versiyona Signala te yê piştî %d  roj kevin bibe. Ji bo rojanekirin versiyon herî nû lêxe.</item>
+    <item quantity="one">Guhertoya Signala te dê piştî %d rojê kevin bibe. Ji bo wê hildemînî guhertoya herî nû bitepîne.</item>
+    <item quantity="other">Guhertoya Signala te dê piştî %d rojan kevin bibe. Ji bo wê hildemînî guhertoya herî nû bitepîne.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versiyona Signala te ê îro kevin bibe. Ji bo rojanekirin versiyon herî nû lêxe.</string>
-  <string name="reminder_header_expired_build">Versiyona Signala te kevin bû!</string>
-  <string name="reminder_header_expired_build_details">Peyam nikarin bên şandin. Ji bo rojanekirin versiyon herî nû lêxe.</string>
-  <string name="reminder_header_sms_default_title">Wek bernameya SMS ya standar bikarbanîn</string>
-  <string name="reminder_header_sms_default_text">Ji bo Signalê wek bernameya SMS ya standar bikarbînin lêxe.</string>
-  <string name="reminder_header_sms_import_title">SMS ya pergalê ji derva anîn</string>
-  <string name="reminder_header_sms_import_text">Ji bo peyamên SMS kopîbikin databanka bişifre ya Signalê lêxe.</string>
-  <string name="reminder_header_push_title">Rê bide peyam û gazî yên Signalê</string>
-  <string name="reminder_header_push_text">Serpêhatiya ragihandina xwe bilindbike.</string>
-  <string name="reminder_header_invite_title">Vexwandin Signalê</string>
-  <string name="reminder_header_invite_text">Hevpeyvîna xwe bi %1$s re bibe asta pêsî.</string>
-  <string name="reminder_header_share_title">Hevalên xwe re vexwîne!</string>
-  <string name="reminder_header_share_text">Zêdetir heval Signalê bikarbînin, ew çêtir bibe.</string>
+  <string name="reminder_header_outdated_build_details_today">Guhertoya Signala te dê îro kevin bibe. Ji bo wê hildemînî guhertoya herî nû bitepîne.</string>
+  <string name="reminder_header_expired_build">Guhertoya Signala te êdî kevn bûye!</string>
+  <string name="reminder_header_expired_build_details">Êdî peyam nikarin bên şandin. Bo Signalê hildemînî guhertoya herî nû bitepîne.</string>
+  <string name="reminder_header_sms_default_title">Wek bernameya SMSê ya jixweber bi kar bîne.</string>
+  <string name="reminder_header_sms_default_text">Ji bo Signalê wek bernameya SMSê ya sereke bi kar bînî bitepîne.</string>
+  <string name="reminder_header_sms_import_title">SMSên pergalê bihundirîne</string>
+  <string name="reminder_header_sms_import_text">Ji bo peyamên SMSê yên xwe kopî bikî nav agahîdanka şîfrekirî ya Signalê, bitepîne</string>
+  <string name="reminder_header_push_title">Peyam û bangên Signalê çalak bike</string>
+  <string name="reminder_header_push_text">Serpêhatiya ragihandina xwe bilind bike.</string>
+  <string name="reminder_header_invite_title">Vexwîne Signalê</string>
+  <string name="reminder_header_invite_text">Gotûbeja xwe ya bi %1$sre pêş ve bibe.</string>
+  <string name="reminder_header_share_title">Hevalên xwe vexwîne!</string>
+  <string name="reminder_header_share_text">Çiqas pir hevalên te Signalê bi kar bînin, ewqas çêtir dibe.</string>
+  <string name="reminder_header_service_outage_text">Çend dijwariyên teknîkî pêk tên li ser Signalê. Qasî ji me tê em ji bo bilez wê dirist bikin dixebitin.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Tomarkirin</string>
   <string name="media_preview__forward_title">Pêşveşandin</string>
   <string name="media_preview__all_media_title">Hemû medya</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Belge nîne</string>
+  <string name="media_overview_documents_fragment__no_documents_found">Pelge nîn in</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">Medya zû temaşebikin</string>
+  <string name="media_preview_activity__media_content_description">Pêşdîtina medyayê</string>
   <!--new_conversation_activity-->
-  <string name="new_conversation_activity__refresh">Nûkirin</string>
+  <string name="new_conversation_activity__refresh">Binûyîne</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">Radikin</string>
-  <string name="trimmer__deleting_old_messages">Peyamên kevin radikin...</string>
-  <string name="trimmer__old_messages_successfully_deleted">Peyamên kevin hatin rakirin</string>
+  <string name="trimmer__deleting">Tê jêbirin</string>
+  <string name="trimmer__deleting_old_messages">Peyamên kevin tên jêbirin...</string>
+  <string name="trimmer__old_messages_successfully_deleted">Peyamên kevin hatin jêbirin</string>
   <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">Sembola guhastin</string>
+  <string name="transport_selection_list_item__transport_icon">Nîşaneka raguhastinê</string>
   <string name="ConversationListFragment_loading">Tê barkirin...</string>
-  <string name="CallNotificationBuilder_connecting">Girêdidin...</string>
+  <string name="CallNotificationBuilder_connecting">Tê girêdan...</string>
   <string name="Permissions_permission_required">Destûr pêwîst e</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Ji no şandina SMS Signal destûra SMS dixwaze, lê ew hat herdemî rakirin. Li \'Şikil\' &gt; \'Destûr\' &gt; \'SMS\' destûr bide.</string>
-  <string name="Permissions_continue">Bidomînin</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Ji bo Signal bikaribe SMSan bişîne destûra SMSê pêdivî ye, lê destûr nehatiye dayin. Ji kerema xwe ji sazkariyên sepanan, \"Destûr\"an bibijêre û \"SMS\"ê çalak bike.</string>
+  <string name="Permissions_continue">Bidomîne</string>
   <string name="Permissions_not_now">Ne niha</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Ji bo têkilî lêgerrîn Signal destûra Têkilî dixwaze, lê ew hat herdemî rakirin. Li \'Şikil\' &gt; \'Destûr\' &gt; \'Têkilî\' destûr bide.</string>
   <string name="conversation_activity__enable_signal_messages">RÊ BIDE PEYAMÊN SIGNALÊ</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Databanka Signalê derbasdikin</string>
-  <string name="PushDecryptJob_new_locked_message">Peyama nû ya qilfkirin</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">Ji bo dîtina peyamên ma qilf rake</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ji bo xelaskirina rojane qilf rake</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ji bo xelaskirina rojane, qilfê Signalê rake</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">Şifreya kopiya ewlerî</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Kopiyên ewlerî bi şifreya jêrê bên tomarkirin embarê derveyê. Ji bo vekirina kopî vê şifre pêwîst e.</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Min şifre nivîsand. Bê vê ez ê nikarim kopiya ewlerî vekim.</string>
-  <string name="registration_activity__restore_backup">Vekirina kopiya ewlerî</string>
-  <string name="registration_activity__skip">Vê nake</string>
-  <string name="registration_activity__register">Qeydkirin</string>
-  <string name="preferences_chats__chat_backups">Kopiyên ewlerî yên chat</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Kopiya ewleriya chat bikin embarê derve</string>
-  <string name="preferences_chats__create_backup">Kopiya ewlerî afirandin</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Şifreya kopiya ewlerî danîn</string>
-  <string name="RegistrationActivity_restore">Vekirin</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">Şifreya kopiya ewlerî çewt e</string>
-  <string name="RegistrationActivity_checking">Kontrol dikin...</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d peyam heta niha...</string>
-  <string name="RegistrationActivity_restore_from_backup">Vekirina kopiya ewlerî?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Ji kopiya ewleriya heremî anîna peyam û medya. Heger tu niha nabîne, tu ê piştre nikarî bînî.</string>
-  <string name="RegistrationActivity_backup_size_s">Mezinahiya kopiya ewlerî: %s</string>
-  <string name="RegistrationActivity_backup_timestamp_s">Dema kopiya ewlerî: %s</string>
-  <string name="BackupDialog_enable_local_backups">Rêdan kopiyên ewlerî yên heremî?</string>
-  <string name="BackupDialog_enable_backups">Rêdan kopiyên ewlerî</string>
-  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Li checkbox a sediqandin bixe ji bo diyarkirin ku tu fêmdikî.</string>
-  <string name="BackupDialog_delete_backups">Rakirina kopiyên ewlerî?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Rakirin û seqetkirina hemû kopiyên ewlerî yên heremî?</string>
-  <string name="BackupDialog_delete_backups_statement">Rakirina kopiyên ewlerî?</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Agahîdanka Signalê tê barkirin</string>
+  <string name="PushDecryptJob_new_locked_message">Peyama nû ya qufilandî</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Ji bo peyamên hilawîstî quflê veke</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ji bo hildemandin bi dawî bibe quflê veke</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ji bo hildemandin bi dawî bibe ji kerema xwe qufla Signalê veke</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Pêborîna paşekeftê</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Dê paşekeft li ser bîrbara derveyî werin tomarkirin û bi pêborîna li jêr werin şîfrekirin. Ji bo paşkeftekê paşê vegerînî divê ev pêborîn bi te re hebe.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Min vê pêborînê li cihekî nivîsî. Bê wê ezê nikaribim paşekeftê vegerînim.</string>
+  <string name="registration_activity__restore_backup">Paşekeftê vegerîne</string>
+  <string name="registration_activity__skip">Dev jê berde</string>
+  <string name="registration_activity__register">Tomar bike</string>
+  <string name="preferences_chats__chat_backups">Paşekeftên gotûbêjan</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Gotûbêjan li ser bîrbara derveyî paşekeft bike</string>
+  <string name="preferences_chats__create_backup">Paşkeftekê ava bike</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Pêborîna paşekeftê binivîse</string>
+  <string name="RegistrationActivity_restore">Vegerîne</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Nikarî paşekeftên yên guhertoyên nûtir yên Signalê bihundirînî</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Pêborîna paşekeftê şaş e</string>
+  <string name="RegistrationActivity_checking">Tê kontrol kirin...</string>
+  <string name="RegistrationActivity_d_messages_so_far">Heta niha %d peyam...</string>
+  <string name="RegistrationActivity_restore_from_backup">Ji paşekeftê vegerîne?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Peyam û medyayên xwe ji paşekeftek xwecihî vegerîne. Ku niha venegerînî tu yê nikaribî paşê vegerînî.</string>
+  <string name="RegistrationActivity_backup_size_s">Mezinahiya paşekeftê: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Dema paşekeftê: %s</string>
+  <string name="BackupDialog_enable_local_backups">Paşekeftên xwecihî çalak bike?</string>
+  <string name="BackupDialog_enable_backups">Paşekeftan çalak bike</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ji bo diyar bikî ku te fêm kiriye, kodika pejirandinê nîşan bike.</string>
+  <string name="BackupDialog_delete_backups">Paşekeftan jê bibe?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Hemû paşekeftên xwecihî neçalak bike û jê bibe?</string>
+  <string name="BackupDialog_delete_backups_statement">Paşekeftan jê bibe</string>
   <string name="BackupDialog_copied_to_clipboard">Hat kopîkirin</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Ji bo avakirina kopiyên ewlerî, Signal destûra embar dixwaze, lê ew hat herdemî rakirin. Li \'Şikil\' &gt; \'Destûr\' &gt; \'Embar\' destûr bide.</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Kopiya ewleriya herî nû: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">Tê kirin</string>
-  <string name="LocalBackupJob_creating_backup">Kopiya ewlerî tê afirandin...</string>
-  <string name="ProgressPreference_d_messages_so_far">%d peyam heta niha</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
-  <string name="BackupUtil_never">Tucar</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Ji bo Signal paşkeftan ava bike destûra Bîrbara Derveyî pêwîst e, lê destûr nehatiye dayin. Ji kerema xwe ji sazkariyên sepanê, \"Destûr\"an bibijêre û \"Bîrbar\"ê çalak bike.</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Paşekefta nûtirîn: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Didome</string>
+  <string name="LocalBackupJob_creating_backup">Paşekeft tê avakirin...</string>
+  <string name="ProgressPreference_d_messages_so_far">Heta niha %d peyam</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ji kerema xwe koda piştrastkirinê ya me bo %s şandiye têkin.</string>
+  <string name="RegistrationActivity_wrong_number">Jimara çewt</string>
+  <string name="BackupUtil_never">Qet</string>
   <string name="BackupUtil_unknown">Nenas</string>
-  <string name="preferences_app_protection__screen_lock">Qilfê ekranê</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bi qilfê ekranê Android an çapkirina tilî dergeha Signalê bigire</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Dema neçalakitiya qilfê ekranê derbas bû</string>
+  <string name="preferences_app_protection__screen_lock">Qufleya ekranê</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bi şoptilî an jî qufleya ekranê ya Androidê gihîna Signalê qufle bike</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Demboriya neçalakbûnê ya qufleya ekranê</string>
   <string name="AppProtectionPreferenceFragment_none">Tune</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN a Qilfê Qeyd û koda misogera SMS ku niha hat, tiştên cuda ne. Ka PIN ku te berê di bernameya de diyarkir binivîse.</string>
-  <string name="registration_activity__registration_lock_pin">PIN ji bo qilfa qeydê</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PINa Qufleya Tomarbûnê û koda piştrastkirina SMSî ya te niha wergirtiye ne wekhev e. Ji kerema xwe PINa te berê di sepanê de pevsazkiriye têxîne.</string>
+  <string name="registration_activity__registration_lock_pin">PINa Qufleya Tomarbûnê</string>
   <string name="registration_activity__forgot_pin">PIN ji bîr kir?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Çar an zêdetir hejmar di PIN de hene. Heger tu PIN a xwe jibîr bikî, belkî tu ê dema heft rojan nikarî dakevî hesaba xwe.</string>
-  <string name="registration_lock_dialog_view__enter_pin">PIN binivîse</string>
-  <string name="registration_lock_dialog_view__confirm_pin">PIN dîsa binivîse</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">PIN a Qilfê Qeyda te binivîse</string>
-  <string name="registration_lock_reminder_view__enter_pin">PIN binivîse</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Rêdana PIN a Qlifê Qeyd. Ji bo vê hejmara telefon di Signalê de dîsa qeydbikin, vê PIN pêwîst e.</string>
-  <string name="preferences_app_protection__registration_lock_pin">PIN ji bo qilfa qeydê</string>
-  <string name="preferences_app_protection__registration_lock">Kilîta qeyd</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Dive tu PIN a Qilfê Qeyd binivîsî</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN a Qilfê Qeyd çewt e</string>
-  <string name="RegistrationActivity_too_many_attempts">Zêde caran hewl da</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Te PIN a Qilfê Qeyda çewt gelek caran nivîsand. Ka piştî rojek dîsa biceribîne.</string>
-  <string name="RegistrationActivity_error_connecting_to_service">Girêdayê xizmetê çênebû</string>
-  <string name="RegistrationActivity_oh_no">Haho!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Piştî 7 roj ji carê dawî ku vê hejmara telefon di Signalê de çalak bû ve, tu bê PIN a Qilfê Qeyd dikarî qeyd bikî. %d roj ma(n).</string>
-  <string name="RegistrationActivity_registration_lock_pin">PIN a qilfê qeyd</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Tê hejmara telefon de qilfê qeyd heye. Ka PIN a Qilfê Qeyd binivîse.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Ji bo vê hejmara telefon, Qilfê Qeyd heye. Signal ê car caran PIN ji te re bipirse, da ku tu jibîr nakî.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Min PIN a xwe ji bîr kir</string>
-  <string name="RegistrationLockDialog_forgotten_pin">Te PIN a xwe ji bîr kir?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Qilfê Qeyd telefona te ji hewldana qeydên bêdestûr diparêze. Vê taybetmendî hertim dikare li \'Şikil\' &gt; \'Veşaritî\' bê seqetkirin.</string>
-  <string name="RegistrationLockDialog_registration_lock">Kilîta qeyd</string>
-  <string name="RegistrationLockDialog_enable">Rê dan</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN a kilîta qeyd dive herî kêm 4 hejmar bin.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Her du PIN ku te daxist ne wekhev in.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">Giredayê xizmet çênebû</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">PIN a kilîta qeyd seqitînin?</string>
-  <string name="RegistrationLockDialog_disable">Seqet bikin</string>
-  <string name="preferences_chats__backups">Kopî</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal bi kilît e</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">JI BO RAKIRINA KILÎIT LÊXE</string>
-  <string name="RegistrationLockDialog_reminder">Bîne bîra xwe:</string>
-  <string name="recipient_preferences__about">Li ser</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN dikare ji çar an jî bêhtir jimaran pêk bê. Heke tu PINa xwe ji bîr bike dibe ku ajimêra te ji bo heft roja were quflekirin.</string>
+  <string name="registration_lock_dialog_view__enter_pin">PINê Têxîne</string>
+  <string name="registration_lock_dialog_view__confirm_pin">PINê Bipejirîne</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">PINa Qufleya Tomarbûnê ya xwe Têxîne</string>
+  <string name="registration_lock_reminder_view__enter_pin">PINê Têxîne</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Ji bo vê hejmara telefonê dîsa bi Signalê re tomar bike, PINeke Qufleya Tomarbûnê ya wê pêwîst bibe biçalakîne.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PINa Qufleya Tomarbûnê</string>
+  <string name="preferences_app_protection__registration_lock">Qufleya Tomarbûnê</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Divê tu PINa Qufleya Tomarbûnê ya xwe têxîne</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">PINa Qufleya Tomarbûnê çewt e</string>
+  <string name="RegistrationActivity_too_many_attempts">Ceribandinên pirr zêde</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Te pirr zêde ceribandinên çewt yên PINa Qufleya Tomarbûnê kir. Ji kerema xwe piştî rojekê dîsa biceribîne.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Çewtiya girêdana xizmetê</string>
+  <string name="RegistrationActivity_oh_no">Wey na!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Tomarkirina vê hejmara telefonê bêyî PINa Qufleya Tomarbûnê wê mimkin bibe, piştî 7 rojan ji cara dawîn ku ev hejmara telefonê di Signalê de çalak bû û pê ve. %d rojên te yên mayî hene.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PINa qufleya tomarbûnê</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Qufleya Tomarbûnê ya vê hejmara telefonê çalakkirî ye. Ji kerema xwe PINa Qufleya Tomarbûnê têxîne.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Ji bo hejmara telefona te Qufleya Tomarbûnê çalak e. Bo alîkariya bibîrxistina PINa Qufleya Tomarbûnê ya te, Signal wê bi awayekî perîyodîk pejirandinê ji te bixwaze.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Min PINa xwe ji bîr kir.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Te PINa xwe ji bîr kir?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Qufleya Tomarbûnê wê hejmara telefona te ji hewldanên tomarbûnê yên bêdestûr biparêze. Tu hertim dikare vê taybetiyê ji sazkariyên nepeniya Signalê neçalak bike.</string>
+  <string name="RegistrationLockDialog_registration_lock">Qufleya Tomarbûnê</string>
+  <string name="RegistrationLockDialog_enable">Biçalakîne</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Divê PINa Qufleya Tomarbûnê herî kêm 4 jimar be.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Her du PINên te têxistiye ne wekhev in.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Çewtiya girêdana xizmetê</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Bila PINa Qufleya Tomarbûmê Neçalak Bibe?</string>
+  <string name="RegistrationLockDialog_disable">Neçalak bike</string>
+  <string name="preferences_chats__backups">Paşkeft</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal hate quflekirin</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">BO RAKIRINA QUFLEYÊ BITEPÎNE</string>
+  <string name="RegistrationLockDialog_reminder">Bi bîr anîn:</string>
+  <string name="recipient_preferences__about">Derbar</string>
   <!--EOF-->
 </resources>

@@ -780,9 +780,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_activity__attachment_thumbnail">Predogledna sličica priponke</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Vklopi hitri poteznik za video priponke</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Posnemi in pošlji glasovno priponko</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zakleni snemanje zvočne priponke</string>
   <string name="conversation_activity__enable_signal_for_sms">Omogoči uporabo sporočil SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ZA PREKINITEV PODRSAJTE</string>
+  <string name="conversation_input_panel__slide_to_cancel">Za prekinitev podrsajte v levo</string>
+  <string name="conversation_input_panel__cancel">Prekliči</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Večpredstavno sporočilo</string>
   <string name="conversation_item__secure_message_description">Zavarovano sporočilo</string>
@@ -1302,7 +1304,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ProgressPreference_d_messages_so_far">%d sporočil zaenkrat</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosimo, vnesite potrditveno kodo, poslano na %s.</string>
   <string name="RegistrationActivity_wrong_number">Napačna številka</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Raje me pokličite\n (Dosegljiv v %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Raje me pokličite \n (Dostopno čez %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Nikoli</string>
   <string name="BackupUtil_unknown">Neznano</string>
   <string name="preferences_app_protection__screen_lock">Zaklep zaslona</string>

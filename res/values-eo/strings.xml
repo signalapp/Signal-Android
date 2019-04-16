@@ -330,6 +330,7 @@
   <string name="GroupMembersDialog_me">Mi</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
+  <string name="CropImageActivity_profile_avatar">Avataro</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi</string>
   <!--InviteActivity-->
@@ -400,6 +401,11 @@
   <string name="MediaSendActivity_add_a_caption">Aldoni klarigon...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elemento estis forigita, ĉar ĝi transpasis la grandlimon.</string>
   <string name="MediaSendActivity_camera_unavailable">Fotilo ne disponeblas.</string>
+  <string name="MediaSendActivity_message_to_s">Mesaĝo al %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Vi ne povas kunhavigi pli ol %d elementon.</item>
+    <item quantity="other">Vi ne povas kunhavigi pli ol %d elementojn.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Ĉiuj aŭvidaĵoj</string>
   <!--MessageRecord-->
@@ -740,9 +746,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_activity__attachment_thumbnail">Kunsendaĵa miniaturo</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Baskuligi kunsendaĵon el rapida fotilo</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registri kaj sendi aŭdan kunsendaĵon</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ŝlosi registron de aŭda kunsendaĵo </string>
   <string name="conversation_activity__enable_signal_for_sms">Mastrumi mesaĝetojn (SMS) per Signal</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">DEŜOVU POR NULIGI</string>
+  <string name="conversation_input_panel__slide_to_cancel">Deŝovu por nuligi</string>
+  <string name="conversation_input_panel__cancel">Nuligi</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Aŭdvida mesaĝo</string>
   <string name="conversation_item__secure_message_description">Sekura mesaĝo</string>
@@ -1180,6 +1188,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="reminder_header_share_title">Invitu viajn amikojn!</string>
   <string name="reminder_header_share_text">Ju pli da amikoj uzas Signal-on, des pli bona ĝi estas.</string>
   <string name="reminder_header_service_outage_text">Signal havas kelkajn teĥnikajn problemojn. Ni laboras diligente por revenigi la servon kiel eble plej rapide.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">La plej freŝaj trajtoj de Signal ne funkcias ĉe tiu versio de Android. Bv. ĝisdatigi vian aparaton por ricevi venontajn Signal-ĝisdatigojn.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Konservi</string>
   <string name="media_preview__forward_title">Plusendi</string>
@@ -1243,7 +1252,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ProgressPreference_d_messages_so_far">%d mesaĝoj ĝis nun</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bv. entajpi la kontrolkodon senditan al %s.</string>
   <string name="RegistrationActivity_wrong_number">Erara numero</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Alvoki min anstataŭe \n (Disponebla post %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Alvoki min anstataŭe \n (Disponebla post %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Neniam</string>
   <string name="BackupUtil_unknown">Nekonata</string>
   <string name="preferences_app_protection__screen_lock">Ekranŝloso</string>

@@ -783,9 +783,11 @@
   <string name="conversation_activity__attachment_thumbnail">תמונה ממוזערת של צרופה</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">עורר מגירת צרופות מהירות של מצלמה</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">הקלט ושלח צרופת שמע</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">נעל הקלטת שמע</string>
   <string name="conversation_activity__enable_signal_for_sms">אפשר את Signal עבור מסרונים</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">החלק כדי לבטל</string>
+  <string name="conversation_input_panel__cancel">בטל</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">הודעת מדיה</string>
   <string name="conversation_item__secure_message_description">הודעה מאובטחת</string>
@@ -1305,7 +1307,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
   <string name="RegistrationActivity_wrong_number">מספר שגוי</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">חייג אליי במקום \n (זמין ב-%02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">חייג אליי במקום \n (זמין ב־%1$02d:%2$02d)</string>
   <string name="BackupUtil_never">לעולם לא</string>
   <string name="BackupUtil_unknown">לא ידוע</string>
   <string name="preferences_app_protection__screen_lock">נעילת מסך</string>

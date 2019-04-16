@@ -119,9 +119,9 @@
   <string name="ConversationItem_copied_text">Скопировано: %s</string>
   <string name="ConversationItem_from_s">от %s</string>
   <string name="ConversationItem_to_s">для %s</string>
-  <string name="ConversationItem_read_more"> Читать далее</string>
-  <string name="ConversationItem_download_more"> Скачать больше</string>
-  <string name="ConversationItem_pending"> Ожидание</string>
+  <string name="ConversationItem_read_more">  Читать далее</string>
+  <string name="ConversationItem_download_more">  Скачать больше</string>
+  <string name="ConversationItem_pending">  Ожидание</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Сбросить защищённый сеанс?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Все сообщения будут сохранены.</string>
@@ -783,9 +783,11 @@
   <string name="conversation_activity__attachment_thumbnail">Миниатюра вложения</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Показать панель быстрой камеры</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записать и отправить аудио-вложение</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Зафиксировать запись аудиосообщения</string>
   <string name="conversation_activity__enable_signal_for_sms">Использовать Signal для SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ПРОВЕДИТЕ ДЛЯ ОТМЕНЫ</string>
+  <string name="conversation_input_panel__slide_to_cancel">Проведите для отмены</string>
+  <string name="conversation_input_panel__cancel">Отменить</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">MMS-сообщение</string>
   <string name="conversation_item__secure_message_description">Защищённое сообщение</string>
@@ -1305,7 +1307,7 @@
   <string name="ProgressPreference_d_messages_so_far">еще %d сообщений</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Пожалуйста, введите проверочный код, отправленный на %s.</string>
   <string name="RegistrationActivity_wrong_number">Неправильный номер</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Позвоните мне вместо этого \n (Доступно через %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Позвоните мне вместо этого \n (Доступно через %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Никогда</string>
   <string name="BackupUtil_unknown">Неизвестно</string>
   <string name="preferences_app_protection__screen_lock">Блокировка экрана</string>

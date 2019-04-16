@@ -746,9 +746,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_activity__attachment_thumbnail">Eklenti Önizlemesi</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hızlı kamera eki çekmecesini göster/gizle</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ses eki kaydet ve gönder</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ses eklentisinin kaydını kilitle</string>
   <string name="conversation_activity__enable_signal_for_sms">SMS için Signal\'i etkinleştir</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">İPTAL ETMEK İÇİN KAYDIR</string>
+  <string name="conversation_input_panel__slide_to_cancel">İptal etmek için kaydırın</string>
+  <string name="conversation_input_panel__cancel">İptal</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Medya iletisi</string>
   <string name="conversation_item__secure_message_description">Güvenli ileti</string>
@@ -1186,7 +1188,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="reminder_header_share_title">Arkadaşlarını davet et!</string>
   <string name="reminder_header_share_text">Ne kadar çok arkadaşın Signal kullanırsa, o kadar iyi hale gelir.</string>
   <string name="reminder_header_service_outage_text">Signal teknik sorunlar yaşıyor. Hizmeti olabildiğince çabuk düzeltmek için sıkı çalışıyoruz.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Signal\'in son özellikleri bu Android sürümüyle çalışmayacak. Gelecekteki Signal güncellemelerini alabilmek için bu cihazı yükseltin.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Signal\'in son özellikleri bu Android sürümünde çalışmayacak. Gelecekteki Signal güncellemelerini alabilmek için lütfen bu cihazı yükseltin.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Kaydet</string>
   <string name="media_preview__forward_title">Yönlendir</string>
@@ -1250,7 +1252,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ProgressPreference_d_messages_so_far">Şimdiye kadar %d ileti</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Lütfen %s numarasına gönderilen doğrulama kodunu girin.</string>
   <string name="RegistrationActivity_wrong_number">Yanlış numara</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Bunun yerine beni ara \n (Kullanılabilir olmasına %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Bunun yerine beni ara \n (Kullanılabilir olmasına %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Asla</string>
   <string name="BackupUtil_unknown">Bilinmiyor</string>
   <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>

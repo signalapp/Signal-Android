@@ -6,6 +6,7 @@
   <string name="delete">Hapus</string>
   <string name="please_wait">Mohon tunggu...</string>
   <string name="save">Simpan</string>
+  <string name="note_to_self">Catatan Pribadi</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Pesan baru</string>
   <!--AlbumThumbnailView-->
@@ -109,6 +110,9 @@
   <string name="ConversationItem_copied_text">Disalin %s</string>
   <string name="ConversationItem_from_s">dari %s</string>
   <string name="ConversationItem_to_s">ke %s</string>
+  <string name="ConversationItem_read_more">Lanjut Baca</string>
+  <string name="ConversationItem_download_more">Unduh Lebih Banyak</string>
+  <string name="ConversationItem_pending">Tertunda</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ini dapat membantu jika Anda mengalami masalah enkripsi dalam percakapan ini. Pesan Anda akan disimpan.</string>
@@ -152,6 +156,7 @@
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_yes">Ya</string>
   <string name="ConversationActivity_no">Tidak</string>
+  <string name="ConversationActivity_no_results">Tidak ada hasil</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d pesan belum dibaca</item>
@@ -215,6 +220,7 @@
   <string name="CreateProfileActivity_profile_photo">Foto profil</string>
   <string name="CreateProfileActivity_too_long">Kepanjangan</string>
   <string name="CreateProfileActivity_profile_name">Nama Profil</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Siapkan profil Anda</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Gunakan ubahsuai: %s</string>
   <string name="CustomDefaultPreference_using_default">Gunakan bawaan: %s</string>
@@ -331,6 +337,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Gagal mengirim</string>
   <string name="MessageDetailsRecipient_new_safety_number">Angka keamanan baru</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">pesan tidak ditemukan</string>
+  <string name="LongMessageActivity_message_from_s">pesan dari %1$s</string>
+  <string name="LongMessageActivity_your_message">pesanmu</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Koneksi latar belakang diaktifkan</string>
@@ -367,7 +376,12 @@
   <string name="MediaPickerItemFragment_tap_to_select">Ketuk untuk memilih </string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Tambah keterangan...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">sebuah item dihapus karena melebihi batas ukuran</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera tidak tersedia.</string>
+  <string name="MediaSendActivity_message_to_s">kirim pesan ke %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="other">Anda tidak bisa membagikan lebih dari %d item</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Semua media</string>
   <!--MessageRecord-->
@@ -491,8 +505,12 @@ isikan (%s) tidak tepat.
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Kamu memiliki %d langkah lagi untuk mengirim log debug.</item>
   </plurals>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">gagal verifikasi CAPTCHA</string>
   <string name="RegistrationActivity_next">Berikutnya</string>
   <string name="RegistrationActivity_continue">Lanjutkan</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">masukkan nomor telepon untuk memulai</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">andak akan mendapakan kode verifikasi, Tarif operator berlaku</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">masukkan kode yang telah dikirimkan pada %s</string>
   <string name="RegistrationActivity_call">Panggil</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Gagal menyimpan perubahan gambar.</string>
@@ -702,7 +720,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Rekam dan kirim lampiran audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktifkan Signal untuk SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">GESER UNTUK MEMBATALKAN</string>
+  <string name="conversation_input_panel__cancel">Batal</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Pesan media</string>
   <string name="conversation_item__secure_message_description">Pesan aman</string>
@@ -793,6 +811,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="log_submit_activity__loading_logs">Memuat log...</string>
   <string name="log_submit_activity__uploading_logs">Mengunggah log...</string>
   <string name="log_submit_activity__success">Sukses!</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Salin URL ini dan tambahkan ke laporan masalah atau email dukungan Anda:\n\n <b> %1$s </b> \n </string>
   <string name="log_submit_activity__copied_to_clipboard">Disalin ke papan klip</string>
   <string name="log_submit_activity__choose_email_app">Pilih aplikasi email</string>
   <string name="log_submit_activity__network_failure">Kesalahan jaringan. Silakan coba lagi.</string>
@@ -1189,6 +1208,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="LocalBackupJob_creating_backup">Buat cadangan</string>
   <string name="ProgressPreference_d_messages_so_far">%d pesan sejauh ini...</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Silakan masukkan kode verifikasi yang telah dikirim ke %s.</string>
+  <string name="RegistrationActivity_wrong_number">Nomor salah</string>
   <string name="BackupUtil_never">Tidak pernah</string>
   <string name="BackupUtil_unknown">Tidak dikenal</string>
   <string name="preferences_app_protection__screen_lock">Layar terkunci</string>

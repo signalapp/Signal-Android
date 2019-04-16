@@ -763,9 +763,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_activity__attachment_thumbnail">Miniatură atașament</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Comutare panou cu atașamente de la camera rapidă </string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Înregistrează și trimite un atașament audio</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blocați înregistrarea atașamentului audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Activează Signal pentru SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">GLISAȚI PENTRU A ANULA</string>
+  <string name="conversation_input_panel__slide_to_cancel">Glisați pentru a anula</string>
+  <string name="conversation_input_panel__cancel">Anulați</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mesaj media</string>
   <string name="conversation_item__secure_message_description">Mesaj securizat</string>
@@ -1277,7 +1279,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ProgressPreference_d_messages_so_far">%d mesaje până acum</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Vă rugăm să introduceți codul de verificare trimis la %s.</string>
   <string name="RegistrationActivity_wrong_number">Număr greșit</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Sună-mă mai bine \n (Disponibil în %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Sună-mă mai bine \n (Disponibil în %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Niciodată</string>
   <string name="BackupUtil_unknown">Necunoscut</string>
   <string name="preferences_app_protection__screen_lock">Blocare ecran</string>

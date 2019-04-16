@@ -6,6 +6,7 @@
   <string name="delete">Изтрий</string>
   <string name="please_wait">Моля, изчакайте...</string>
   <string name="save">Запази</string>
+  <string name="note_to_self">Бележка за Мен</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ново съобщение</string>
   <!--AlbumThumbnailView-->
@@ -112,6 +113,9 @@
   <string name="ConversationItem_copied_text">%s e копирано</string>
   <string name="ConversationItem_from_s">от %s</string>
   <string name="ConversationItem_to_s">do %s</string>
+  <string name="ConversationItem_read_more">Прочети</string>
+  <string name="ConversationItem_download_more">Изтегли Повече</string>
+  <string name="ConversationItem_pending"> в Очакване</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Рестартирай сигурната сесия?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Това може да помогне ако имате проблеми с екрипцията в този разговор. Вашите съобщения ще бъдат запазени.</string>
@@ -153,8 +157,10 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal се нуждае от достъп до камерта Ви, за да може да прави снимки или видеота, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal се нуждае от достъп до камерата, за да прави снимки и видеота</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не може да изпраща SMS/MMS съобщения защото не е първо предназначена апликация за SMS. Желаетели да се промени това във вашите Android настройки ?</string>
   <string name="ConversationActivity_yes">Да</string>
   <string name="ConversationActivity_no">Не</string>
+  <string name="ConversationActivity_no_results">Няма резултати</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочетено съобщение</item>
@@ -229,6 +235,7 @@
   <string name="CreateProfileActivity_profile_photo">Снимка на профила</string>
   <string name="CreateProfileActivity_too_long">Твърде дълго</string>
   <string name="CreateProfileActivity_profile_name">Име на профила</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Настройте профила си</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Използване на специален:  %s</string>
   <string name="CustomDefaultPreference_using_default">Използване на подразбиращ се: %s</string>
@@ -715,7 +722,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записване и изпращане прикачено аудио</string>
   <string name="conversation_activity__enable_signal_for_sms">Активиране на Signal за SMS-и</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ПЛЪЗНЕТЕ, ЗА ДА ОТКАЖЕТЕ</string>
+  <string name="conversation_input_panel__cancel">Отказване</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Медийно съобщение</string>
   <string name="conversation_item__secure_message_description">Подсигурено съобщение</string>

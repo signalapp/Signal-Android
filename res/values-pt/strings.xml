@@ -743,9 +743,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_activity__attachment_thumbnail">Antevisão de anexo</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Comutar a câmara rápida da gaveta de anexos</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar anexo de áudio</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Bloquear a gravação de um anexo de áudio</string>
   <string name="conversation_activity__enable_signal_for_sms">Ativar SMS através do Signal</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">DESLIZE PARA CANCELAR</string>
+  <string name="conversation_input_panel__slide_to_cancel">Deslize para cancelar</string>
+  <string name="conversation_input_panel__cancel">Cancelar</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mensagem multimédia</string>
   <string name="conversation_item__secure_message_description">Mensagem segura</string>
@@ -1183,7 +1185,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="reminder_header_share_title">Convide os seus amigos!</string>
   <string name="reminder_header_share_text">Quanto mais amigos utilizarem o Signal, melhor este se torna.</string>
   <string name="reminder_header_service_outage_text">O Signal está a experienciar problemas técnicos. Estamos a trabalhar arduamente para re-estabelecer o serviço o mais rapidamente possível.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">As últimas funcionalidades do Signal não funcionarão nesta versão do Android. Por favor atualize este dispositivo para poder receber atualizações do Signal futuramente.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">As últimas funcionalidades do Signal não funcionarão nesta versão do Android. Por favor atualize este dispositivo para poder receber futuramente atualizações do Signal.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
   <string name="media_preview__forward_title">Reencaminhar</string>
@@ -1247,7 +1249,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até à data</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insira o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número errado</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Alternativamente liguem-me \n (Disponível em %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Como alternativa, ligue-me \n (Disponível às %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
   <string name="preferences_app_protection__screen_lock">Ecrã de bloqueio</string>
