@@ -45,6 +45,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -133,6 +134,7 @@ public class MotionView  extends FrameLayout implements TextWatcher {
     this.editText.setBackgroundColor(Color.TRANSPARENT);
     this.editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 1);
     this.editText.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+    this.editText.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
     this.addView(editText);
     this.editText.clearFocus();
     this.editText.addTextChangedListener(this);

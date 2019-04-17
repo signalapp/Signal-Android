@@ -93,11 +93,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   private void updateKeyboardState() {
-    if (isLandscape()) {
-      if (keyboardOpen) onKeyboardClose();
-      return;
-    }
-
     if (viewInset == 0 && Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) viewInset = getViewInset();
 
     getWindowVisibleDisplayFrame(rect);
