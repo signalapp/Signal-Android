@@ -227,13 +227,15 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException {
     rotateSenderCertificateIfNecessary();
 
-    String                        groupId            = message.getRecipient().getAddress().toGroupString();
-    Optional<byte[]>              profileKey         = getProfileKey(message.getRecipient());
-    Optional<Quote>               quote              = getQuoteFor(message);
-    List<SharedContact>           sharedContacts     = getSharedContactsFor(message);
-    List<Preview>                 previews           = getPreviewsFor(message);
-    List<SignalServiceAddress>    addresses          = Stream.of(destinations).map(this::getPushAddress).toList();
-    List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(message.getAttachments());
+    String                                     groupId            = message.getRecipient().getAddress().toGroupString();
+    Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
+    Optional<Quote>                            quote              = getQuoteFor(message);
+    Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
+    List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
+    List<Preview>                              previews           = getPreviewsFor(message);
+    List<SignalServiceAddress>                 addresses          = Stream.of(destinations).map(this::getPushAddress).toList();
+    List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+    List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
 
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(addresses)
                                                                       .map(address -> Address.fromSerialized(address.getNumber()))
@@ -265,6 +267,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withProfileKey(profileKey.orNull())
                                                                       .withQuote(quote.orNull())
+                                                                      .withSticker(sticker.orNull())
                                                                       .withSharedContacts(sharedContacts)
                                                                       .withPreviews(previews)
                                                                       .build();

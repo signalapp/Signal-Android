@@ -19,7 +19,7 @@ public class GifSlide extends ImageSlide {
   }
 
   public GifSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, width, height, true, null, caption, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, width, height, true, null, caption, null, false, false));
   }
 
   @Override

@@ -178,9 +178,10 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   @Override
   public final long getItemId(int position) {
-    if (isHeaderPosition(position))     return HEADER_ID;
-    if (isFooterPosition(position))     return FOOTER_ID;
-    if (isFastAccessPosition(position)) return getFastAccessItemId(position);
+    if (isHeaderPosition(position))          return HEADER_ID;
+    else if (isFooterPosition(position))     return FOOTER_ID;
+    else if (isFastAccessPosition(position)) return getFastAccessItemId(position);
+
     long itemId = getItemId(getCursorAtPositionOrThrow(position));
     return itemId <= Long.MIN_VALUE + 1 ? itemId + 2 : itemId;
   }

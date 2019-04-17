@@ -41,19 +41,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
-
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.MessageDetailsActivity;
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.ShareActivity;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.components.ConversationTypingView;
-import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
-import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.logging.Log;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,11 +56,20 @@ import android.widget.ViewSwitcher;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
-import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.MessageDetailsActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.ShareActivity;
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.components.ConversationTypingView;
+import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
+import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
-import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
+import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -82,6 +78,8 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -92,6 +90,8 @@ import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -379,10 +379,11 @@ public class ConversationFragment extends Fragment
       MessageRecord messageRecord = messageRecords.iterator().next();
 
       menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                     &&
-                                                                  messageRecord.isMms()              &&
-                                                                  !messageRecord.isMmsNotification() &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
+      menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                                              &&
+                                                                  messageRecord.isMms()                                       &&
+                                                                  !messageRecord.isMmsNotification()                          &&
+                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
+                                                                  ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null);
 
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
@@ -528,10 +529,11 @@ public class ConversationFragment extends Fragment
 
       if (message.isMms()) {
         MmsMessageRecord mediaMessage = (MmsMessageRecord) message;
-        boolean          isAlbum      = mediaMessage.containsMediaSlide()                   &&
-                                        mediaMessage.getSlideDeck().getSlides().size() > 1  &&
-                                        mediaMessage.getSlideDeck().getAudioSlide() == null &&
-                                        mediaMessage.getSlideDeck().getDocumentSlide() == null;
+        boolean          isAlbum      = mediaMessage.containsMediaSlide()                      &&
+                                        mediaMessage.getSlideDeck().getSlides().size() > 1     &&
+                                        mediaMessage.getSlideDeck().getAudioSlide() == null    &&
+                                        mediaMessage.getSlideDeck().getDocumentSlide() == null &&
+                                        mediaMessage.getSlideDeck().getStickerSlide() == null;
 
         if (isAlbum) {
           ArrayList<Media> mediaList   = new ArrayList<>(mediaMessage.getSlideDeck().getSlides().size());
@@ -562,6 +564,10 @@ public class ConversationFragment extends Fragment
           Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
           composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
           composeIntent.setType(slide.getContentType());
+
+          if (slide.hasSticker()) {
+            composeIntent.putExtra(ConversationActivity.STICKER_EXTRA, slide.asAttachment().getSticker());
+          }
         }
 
         if (mediaMessage.getSlideDeck().getTextSlide() != null && mediaMessage.getSlideDeck().getTextSlide().getUri() != null) {
@@ -938,6 +944,13 @@ public class ConversationFragment extends Fragment
     public void onMoreTextClicked(@NonNull Address conversationAddress, long messageId, boolean isMms) {
       if (getContext() != null && getActivity() != null) {
         startActivity(LongMessageActivity.getIntent(getContext(), conversationAddress, messageId, isMms));
+      }
+    }
+
+    @Override
+    public void onStickerClicked(@NonNull StickerLocator sticker) {
+      if (getContext() != null && getActivity() != null) {
+        startActivity(StickerPackPreviewActivity.getIntent(sticker.getPackId(), sticker.getPackKey()));
       }
     }
 

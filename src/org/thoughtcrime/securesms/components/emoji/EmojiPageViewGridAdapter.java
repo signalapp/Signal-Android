@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiPageView.EmojiSelectionListener;
+import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,17 +21,17 @@ public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageView
   private final EmojiProvider               emojiProvider;
   private final EmojiVariationSelectorPopup popup;
   private final VariationSelectorListener   variationSelectorListener;
-  private final EmojiSelectionListener      emojiSelectionListener;
+  private final EmojiEventListener          emojiEventListener;
 
   public EmojiPageViewGridAdapter(@NonNull EmojiProvider emojiProvider,
                                   @NonNull EmojiVariationSelectorPopup popup,
-                                  @NonNull EmojiSelectionListener emojiSelectionListener,
+                                  @NonNull EmojiEventListener emojiEventListener,
                                   @NonNull VariationSelectorListener variationSelectorListener)
   {
     this.emojiList                 = new ArrayList<>();
     this.emojiProvider             = emojiProvider;
     this.popup                     = popup;
-    this.emojiSelectionListener    = emojiSelectionListener;
+    this.emojiEventListener        = emojiEventListener;
     this.variationSelectorListener = variationSelectorListener;
 
     popup.setOnDismissListener(this);
@@ -62,7 +62,7 @@ public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageView
     }
 
     viewHolder.itemView.setOnClickListener(v -> {
-      emojiSelectionListener.onEmojiSelected(emoji.getValue());
+      emojiEventListener.onEmojiSelected(emoji.getValue());
     });
 
     if (emoji.getVariations().size() > 1) {
@@ -110,7 +110,7 @@ public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageView
     }
   }
 
-  interface VariationSelectorListener {
+  public interface VariationSelectorListener {
     void onVariationSelectorStateChanged(boolean open);
   }
 }

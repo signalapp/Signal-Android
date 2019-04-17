@@ -25,15 +25,12 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.ConnectException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
-import javax.net.ssl.SSLException;
 
 public class AttachmentUploadJob extends BaseJob implements InjectableType {
 
@@ -85,8 +82,8 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
     MediaConstraints               mediaConstraints = MediaConstraints.getPushMediaConstraints();
     Attachment                     scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
     SignalServiceAttachment        localAttachment  = getAttachmentFor(scaledAttachment);
-    SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream());
-    Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment)).get();
+    SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker());
+    Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
 
     database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment);
   }
@@ -96,9 +93,7 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception exception) {
-    return exception instanceof PushNetworkException ||
-           exception instanceof SSLException         ||
-           exception instanceof ConnectException;
+    return exception instanceof IOException;
   }
 
   private SignalServiceAttachment getAttachmentFor(Attachment attachment) {
