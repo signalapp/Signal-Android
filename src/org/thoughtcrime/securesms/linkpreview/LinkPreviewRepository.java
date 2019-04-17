@@ -171,7 +171,7 @@ public class LinkPreviewRepository {
   }
 
   private @NonNull Optional<String> getProperty(@NonNull String searchText, @NonNull String property) {
-    Pattern pattern = Pattern.compile("<\\s*meta\\s+property\\s*=\\s*\"\\s*og:" + property + "\\s*\"\\s+content\\s*=\\s*\"(.*?)\"\\s*/?\\s*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+    Pattern pattern = Pattern.compile("<\\s*meta\\s+property\\s*=\\s*\"\\s*og:" + property + "\\s*\"\\s+[^>]*content\\s*=\\s*\"(.*?)\"[^>]*/?\\s*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
     Matcher matcher = pattern.matcher(searchText);
 
     if (matcher.find()) {
