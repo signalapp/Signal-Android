@@ -28,9 +28,10 @@ import android.support.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
 
+import org.conscrypt.Conscrypt;
+import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
-import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -69,6 +70,7 @@ import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 
+import java.security.Security;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -105,7 +107,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onCreate() {
     super.onCreate();
     Log.i(TAG, "onCreate()");
-    initializeRandomNumberFix();
+    initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
     initializeDependencyInjection();
@@ -172,8 +174,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return persistentLogger;
   }
 
-  private void initializeRandomNumberFix() {
-    PRNGFixes.apply();
+  private void initializeSecurityProvider() {
+    Security.insertProviderAt(Conscrypt.newProvider(), 1);
+    Security.insertProviderAt(new AesGcmProvider(), 1);
   }
 
   private void initializeLogging() {
