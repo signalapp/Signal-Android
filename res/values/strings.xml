@@ -864,8 +864,8 @@
 
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Signal message</string>
-    <string name="conversation_activity__type_message_sms_insecure">Unsecured SMS</string>
-    <string name="conversation_activity__type_message_mms_insecure">Unsecured MMS</string>
+    <string name="conversation_activity__type_message_sms_insecure">Insecure SMS</string>
+    <string name="conversation_activity__type_message_mms_insecure">Insecure MMS</string>
     <string name="conversation_activity__from_sim_name">From %1$s</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__compose_description">Message composition</string>
