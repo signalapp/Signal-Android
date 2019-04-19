@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -155,14 +157,14 @@ public class TransportOptions {
                                                                         @NonNull String composeHint,
                                                                         @NonNull CharacterCalculator characterCalculator)
   {
-    List<TransportOption>        results             = new LinkedList<>();
-    SubscriptionManagerCompat    subscriptionManager = new SubscriptionManagerCompat(context);
-    List<SubscriptionInfoCompat> subscriptions;
+    List<TransportOption>              results             = new LinkedList<>();
+    SubscriptionManagerCompat          subscriptionManager = new SubscriptionManagerCompat(context);
+    Collection<SubscriptionInfoCompat> subscriptions;
 
     if (Permissions.hasAll(context, Manifest.permission.READ_PHONE_STATE)) {
-      subscriptions = subscriptionManager.getActiveSubscriptionInfoList();
+      subscriptions = subscriptionManager.getActiveAndReadySubscriptionInfos();
     } else {
-      subscriptions = new LinkedList<>();
+      subscriptions = Collections.emptyList();
     }
 
     if (subscriptions.size() < 2) {

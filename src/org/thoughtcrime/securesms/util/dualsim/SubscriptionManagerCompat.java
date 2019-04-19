@@ -9,10 +9,19 @@ import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.util.InvalidNumberException;
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
-import java.util.LinkedList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public final class SubscriptionManagerCompat {
 
@@ -35,48 +44,85 @@ public final class SubscriptionManagerCompat {
       return Optional.absent();
     }
 
-    SubscriptionInfo subscriptionInfo = getSubscriptionManager().getActiveSubscriptionInfo(subscriptionId);
-
-    if (subscriptionInfo != null) {
-      return Optional.of(new SubscriptionInfoCompat(subscriptionId, subscriptionInfo.getDisplayName(),
-                                                    subscriptionInfo.getMcc(), subscriptionInfo.getMnc()));
-    } else {
-      return Optional.absent();
-    }
+    return Optional.fromNullable(getActiveSubscriptionInfoMap(false).get(subscriptionId));
   }
 
-  public @NonNull List<SubscriptionInfoCompat> getActiveSubscriptionInfoList() {
+  public @NonNull Collection<SubscriptionInfoCompat> getActiveAndReadySubscriptionInfos() {
     if (Build.VERSION.SDK_INT < 22) {
-      return new LinkedList<>();
+      return Collections.emptyList();
     }
 
-    List<SubscriptionInfo> subscriptionInfos = getSubscriptionManager().getActiveSubscriptionInfoList();
+    return getActiveSubscriptionInfoMap(true).values();
+  }
+
+  @RequiresApi(api = 22)
+  private @NonNull Map<Integer, SubscriptionInfoCompat> getActiveSubscriptionInfoMap(boolean excludeUnreadySubscriptions) {
+    List<SubscriptionInfo> subscriptionInfos = ServiceUtil.getSubscriptionManager(context).getActiveSubscriptionInfoList();
 
     if (subscriptionInfos == null || subscriptionInfos.isEmpty()) {
-      return new LinkedList<>();
+      return Collections.emptyMap();
     }
 
-    List<SubscriptionInfoCompat> compatList = new LinkedList<>();
+    Map<SubscriptionInfo, CharSequence>  descriptions = getDescriptionsFor(subscriptionInfos);
+    Map<Integer, SubscriptionInfoCompat> map          = new LinkedHashMap<>();
 
     for (SubscriptionInfo subscriptionInfo : subscriptionInfos) {
-      if (isReady(subscriptionInfo)) {
-        compatList.add(new SubscriptionInfoCompat(subscriptionInfo.getSubscriptionId(),
-                                                  subscriptionInfo.getDisplayName(),
-                                                  subscriptionInfo.getMcc(),
-                                                  subscriptionInfo.getMnc()));
+      if (!excludeUnreadySubscriptions || isReady(subscriptionInfo)) {
+        map.put(subscriptionInfo.getSubscriptionId(),
+                new SubscriptionInfoCompat(subscriptionInfo.getSubscriptionId(),
+                                           descriptions.get(subscriptionInfo),
+                                           subscriptionInfo.getMcc(),
+                                           subscriptionInfo.getMnc()));
       }
     }
 
-    return compatList;
+    return map;
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
-  private SubscriptionManager getSubscriptionManager() {
-    return ServiceUtil.getSubscriptionManager(context);
+  @RequiresApi(api = 22)
+  private static Map<SubscriptionInfo, CharSequence> getDescriptionsFor(@NonNull Collection<SubscriptionInfo> subscriptions) {
+    Map<SubscriptionInfo, CharSequence> descriptions;
+
+    descriptions = createDescriptionMap(subscriptions, SubscriptionInfo::getDisplayName);
+    if (hasNoDuplicates(descriptions.values())) return descriptions;
+
+    descriptions = createDescriptionMap(subscriptions, SubscriptionInfo::getCarrierName);
+    if (hasNoDuplicates(descriptions.values())) return descriptions;
+
+    return createDescriptionMap(subscriptions, (subscriptionInfo) -> formatNumber(subscriptionInfo.getNumber()));
+  }
+
+  private static Map<SubscriptionInfo, CharSequence> createDescriptionMap(@NonNull Collection<SubscriptionInfo> subscriptions,
+                                                                          @NonNull Function<SubscriptionInfo, CharSequence> createDescription)
+  {
+    Map<SubscriptionInfo, CharSequence> descriptions = new HashMap<>();
+    for (SubscriptionInfo subscriptionInfo: subscriptions) {
+      descriptions.put(subscriptionInfo, createDescription.apply(subscriptionInfo));
+    }
+    return descriptions;
+  }
+
+  private static <T> boolean hasNoDuplicates(Collection<T> collection) {
+    final Set<T> set = new HashSet<>();
+
+    for (T t : collection) {
+      if (!set.add(t)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private static String formatNumber(String number) {
+    try {
+      return PhoneNumberFormatter.formatNumber(number, number);
+    } catch (InvalidNumberException e) {
+      return number;
+    }
   }
 
   private boolean isReady(@NonNull SubscriptionInfo subscriptionInfo) {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) return true;
+    if (Build.VERSION.SDK_INT < 24) return true;
 
     TelephonyManager telephonyManager = ServiceUtil.getTelephonyManager(context);
 
