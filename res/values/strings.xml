@@ -943,7 +943,7 @@
         <item quantity="other">%d minutes</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%dm</string>
+    <string name="expiration_minutes_abbreviated">%dmin</string>
 
     <plurals name="expiration_hours">
         <item quantity="one">%d hour</item>
@@ -965,6 +965,20 @@
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%dw</string>
+
+    <plurals name="expiration_months">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
+
+    <string name="expiration_months_abbreviated">%dmth</string>
+
+    <plurals name="expiration_years">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
+
+    <string name="expiration_years_abbreviated">%dy</string>
 
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Your safety number with %s has changed and is no longer verified</string>
