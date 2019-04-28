@@ -2014,7 +2014,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       String          message        = getMessage();
       TransportOption transport      = sendButton.getSelectedTransport();
-      boolean         forceSms       = sendButton.isManualSelection() && transport.isSms();
+      boolean         forceSms       = (recipient.isForceSmsSelection() || sendButton.isManualSelection()) && transport.isSms();
       int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
       long            expiresIn      = recipient.getExpireMessages() * 1000L;
       boolean         initiating     = threadId == -1;
