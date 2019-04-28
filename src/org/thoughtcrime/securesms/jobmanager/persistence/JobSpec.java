@@ -123,7 +123,7 @@ public final class JobSpec {
   @SuppressLint("DefaultLocale")
   @Override
   public @NonNull String toString() {
-    return String.format("id: %s | factoryKey: %s | queueKey: %s | createTime: %d | nextRunAttemptTime: %d | maxAttempts: %d | maxBackoff: %d | maxInstances: %d | lifespan: %d | isRunning: %b | data: %s",
-                         id, factoryKey, queueKey, createTime, nextRunAttemptTime, maxAttempts, maxBackoff, maxInstances, lifespan, isRunning, serializedData);
+    return String.format("id: %s | factoryKey: %s | queueKey: %s | createTime: %d | nextRunAttemptTime: %d | runAttempt: %d | maxAttempts: %d | maxBackoff: %d | maxInstances: %d | lifespan: %d | isRunning: %b | data: %s",
+                         id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, maxInstances, lifespan, isRunning, serializedData);
   }
 }
