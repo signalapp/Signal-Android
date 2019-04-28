@@ -87,14 +87,17 @@ public class JobDatabase extends Database {
 
     db.beginTransaction();
 
-    for (FullSpec fullSpec : fullSpecs) {
-      insertJobSpec(db, fullSpec.getJobSpec());
-      insertConstraintSpecs(db, fullSpec.getConstraintSpecs());
-      insertDependencySpecs(db, fullSpec.getDependencySpecs());
-    }
+    try {
+      for (FullSpec fullSpec : fullSpecs) {
+        insertJobSpec(db, fullSpec.getJobSpec());
+        insertConstraintSpecs(db, fullSpec.getConstraintSpecs());
+        insertDependencySpecs(db, fullSpec.getDependencySpecs());
+      }
 
-    db.setTransactionSuccessful();
-    db.endTransaction();
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
   }
 
   public synchronized @NonNull List<JobSpec> getAllJobSpecs() {
@@ -142,17 +145,21 @@ public class JobDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     db.beginTransaction();
-    for (String jobId : jobIds) {
-      String[] arg = new String[]{jobId};
 
-      db.delete(Jobs.TABLE_NAME, Jobs.JOB_SPEC_ID + " = ?", arg);
-      db.delete(Constraints.TABLE_NAME, Constraints.JOB_SPEC_ID + " = ?", arg);
-      db.delete(Dependencies.TABLE_NAME, Dependencies.JOB_SPEC_ID + " = ?", arg);
-      db.delete(Dependencies.TABLE_NAME, Dependencies.DEPENDS_ON_JOB_SPEC_ID + " = ?", arg);
+    try {
+      for (String jobId : jobIds) {
+        String[] arg = new String[]{jobId};
+
+        db.delete(Jobs.TABLE_NAME, Jobs.JOB_SPEC_ID + " = ?", arg);
+        db.delete(Constraints.TABLE_NAME, Constraints.JOB_SPEC_ID + " = ?", arg);
+        db.delete(Dependencies.TABLE_NAME, Dependencies.JOB_SPEC_ID + " = ?", arg);
+        db.delete(Dependencies.TABLE_NAME, Dependencies.DEPENDS_ON_JOB_SPEC_ID + " = ?", arg);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
     }
-
-    db.setTransactionSuccessful();
-    db.endTransaction();
   }
 
   public synchronized @NonNull List<ConstraintSpec> getAllConstraintSpecs() {
