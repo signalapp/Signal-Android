@@ -972,7 +972,7 @@
   <string name="preferences__enable_passphrase">啟用螢幕鎖定的自訂密碼</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用鎖定螢幕及通知密碼</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">在對話清單或應用內停用畫面擷取功能</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">在對話清單或應用程式內停用畫面擷取功能</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在特定時間內不活躍會自動鎖定 Signal</string>
   <string name="preferences__inactivity_timeout_passphrase">不活躍鎖定密碼</string>
   <string name="preferences__inactivity_timeout_interval">不活躍時間間隔</string>

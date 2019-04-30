@@ -510,7 +510,8 @@ indicatif de pays</string>
 votre numéro de téléphone</string>
   <string name="RegistrationActivity_invalid_number">Le numéro est invalide</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Le numéro que vous avez
-introduit (%s) n’est pas valide.</string>
+        indiqué (%s) n’est pas valide.
+    </string>
   <string name="RegistrationActivity_missing_google_play_services">Absence des services Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Cet appareil ne dispose pas des service Google Play. Vous pouvez quand même utiliser Signal, mais cette configuration pourrait entraîner une fiabilité ou des performances moindres.\n\nSi vous n’êtes pas un utilisateur expérimenté, que vous n’utilisez pas une image Android de remplacement ou si vous pensez voir ceci par erreur, veuillez contacter support@signal.org pour obtenir une aide au dépannage.</string>
   <string name="RegistrationActivity_i_understand">Je comprends</string>
@@ -842,7 +843,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="log_submit_activity__loading_logs">Chargement des journaux…</string>
   <string name="log_submit_activity__uploading_logs">Téléversement des journaux…</string>
   <string name="log_submit_activity__success">Réussite !</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre rapport de problème ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé de problème ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">Copié dans le presse-papiers</string>
   <string name="log_submit_activity__choose_email_app">Choisir un appli de courriel</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Veuillez examiner ce journal provenant de mon appli : %1$s</string>
@@ -1037,8 +1038,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__mms_proxy_port">Port du mandataire MMS</string>
   <string name="preferences__mmsc_username">Nom d’utilisateur MMSC</string>
   <string name="preferences__mmsc_password">Mot de passe MMSC</string>
-  <string name="preferences__sms_delivery_reports">Rapports de transmission des textos</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un rapport de transmission pour chaque texto envoyé</string>
+  <string name="preferences__sms_delivery_reports">Relevés de transmission des textos</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de transmission pour chaque texto envoyé</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Supprimer automatiquement les messages plus anciens dès qu’une conversation dépasse une certaine longueur</string>
   <string name="preferences__delete_old_messages">Supprimer les anciens messages</string>
   <string name="preferences__chats">Conversations et média</string>

@@ -409,7 +409,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle Medieninhalte</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Die empfangene Nachricht wurde mit einer veralteten Version von Signal verschlüsselt, die nicht mehr unterstützt wird. Bitte den Absender, Signal zu aktualisieren und die Nachricht erneut zu senden.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Eine empfangene Nachricht wurde mit einer alten, nicht mehr unterstützten Version von Signal verschlüsselt. Bitte den Absender, Signal auf die neueste Version zu aktualisieren und die Nachricht erneut zu senden.</string>
   <string name="MessageRecord_left_group">Du hast die Gruppe verlassen</string>
   <string name="MessageRecord_you_updated_group">Du hast die Gruppe aktualisiert</string>
   <string name="MessageRecord_you_called">Ausgegangener Anruf</string>
@@ -510,7 +510,7 @@
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings führt diese Konfiguration eventuell zu verringerter Zuverlässigkeit oder Leistung.\n\nFalls du kein erfahrener Benutzer bist, kein Custom-ROM verwendest oder glaubst, diese Meldung irrtümlich angezeigt zu bekommen, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
   <string name="RegistrationActivity_i_understand">Verstanden</string>
   <string name="RegistrationActivity_play_services_error">Fehler bei den Google-Play-Diensten</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht erreichbar. Bitte erneut versuchen.</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht verfügbar. Bitte erneut versuchen.</string>
   <string name="RegistrationActivity_terms_and_privacy">Bedingungen &amp; Datenschutzerklärung</string>
   <string name="RegistrationActivity_no_browser">Link kann nicht geöffnet werden. Kein Webbrowser gefunden.</string>
   <string name="RegistrationActivity_more_information">Mehr Informationen</string>
@@ -530,7 +530,7 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Gib deine Rufnummer ein, um zu beginnen</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifikationscode erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Gib den Code ein, den wir an %s gesendet haben</string>
-  <string name="RegistrationActivity_call">Anruf</string>
+  <string name="RegistrationActivity_call">Mich anrufen</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
   <!--Search-->
@@ -890,7 +890,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="recipient_preferences__custom_notifications_settings">Benachrichtigungseinstellungen</string>
   <string name="recipient_preferences__notification_sound">Benachrichtigungston</string>
   <string name="recipient_preferences__vibrate">Vibration</string>
-  <string name="recipient_preferences__block">Kontakt blockieren</string>
+  <string name="recipient_preferences__block">Blockieren</string>
   <string name="recipient_preferences__color">Farbe</string>
   <string name="recipient_preferences__view_safety_number">Sicherheitsnummer anzeigen</string>
   <string name="recipient_preferences__chat_settings">Unterhaltungseinstellungen</string>
@@ -1207,7 +1207,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-Datenbank wird migriert …</string>
   <string name="PushDecryptJob_new_locked_message">Neue gesperrte Nachricht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Entsperren, um ausstehende Nachrichten anzuzeigen</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Abschließen der Aktualisierung</string>
+  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Entsperren, um Aktualisierung abzuschließen</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Entsperre bitte Signal, um die Aktualisierung abzuschließen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Sicherungspassphrase</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Datensicherungen werden im Gerätespeicher gespeichert und mit der unten genannten Passphrase verschlüsselt. Die Passphrase ist notwendig, um die Sicherung später wiederherzustellen.</string>

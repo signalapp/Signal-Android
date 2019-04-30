@@ -6,7 +6,7 @@
   <string name="delete">Excluir</string>
   <string name="please_wait">Aguarde...</string>
   <string name="save">Salvar</string>
-  <string name="note_to_self">Recado para mim</string>
+  <string name="note_to_self">Recado pra mim</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
   <!--AlbumThumbnailView-->
@@ -102,10 +102,10 @@
   <string name="ContactShareEditActivity_type_missing">Outro</string>
   <string name="ContactShareEditActivity_invalid_contact">O contato selecionado é inválido</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">O envio falhou, toque para mais detalhes</string>
+  <string name="ConversationItem_error_not_delivered">Falha no envio, toque para detalhes</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Mensagem para troca de chaves recebida, clique para processá-la.</string>
   <string name="ConversationItem_group_action_left">%1$s saiu do grupo.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">O envio falhou, toque para alternativa insegura</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Falha no envio, toque para alternativa insegura</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Contingenciar para SMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Contingenciar para MMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois o destinatário não é mais um usuário Signal.\n\nEnviar mensagem não segura?</string>
@@ -1158,7 +1158,7 @@
   <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Conversa</string>
-  <string name="conversation_group_options__broadcast">Broadcast</string>
+  <string name="conversation_group_options__broadcast">Transmissão</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_group">Novo grupo</string>
   <string name="text_secure_normal__menu_settings">Configurações</string>
