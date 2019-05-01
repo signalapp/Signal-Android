@@ -956,7 +956,6 @@
   <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
   <string name="preferences__send_link_previews">リンクプレビューを送る</string>
-  <string name="preferences__previews_are_supported_for">リンクプレビューは、次のサービスに対応しています: Imgur, Instagram, Reddit, YouTube</string>
   <string name="preferences__choose_identity">認証を選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>

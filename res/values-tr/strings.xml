@@ -995,7 +995,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__pref_enter_sends_title">Enter tuşu ile gönder</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşuna basmak metin iletilerini gönderecektir</string>
   <string name="preferences__send_link_previews">Bağlantı ön izlemelerini gönder</string>
-  <string name="preferences__previews_are_supported_for">Ön izlemeler Imgur, Instagram, Reddit, ve YouTube bağlantıları için desteklenmektedir</string>
+  <string name="preferences__previews_are_supported_for">Ön izlemeler Imgur, Instagram, Pinterest, Reddit, ve YouTube bağlantıları için desteklenmektedir</string>
   <string name="preferences__choose_identity">Kimlik seçin</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
   <string name="preferences__change_passphrase">Parola değiştir</string>

@@ -991,7 +991,6 @@
   <string name="preferences__pref_enter_sends_title">Το Enter αποστέλλει</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Τα μηνύματα θα αποστέλλονται με το πάτημα του Enter</string>
   <string name="preferences__send_link_previews">Αποστολή προεπισκοπήσεων συνδέσμων</string>
-  <string name="preferences__previews_are_supported_for">Οι προεπισκοπήσεις υποστηρίζονται για συνδέσμους του Imgur, του Instagram, του Reddit και του YouTube </string>
   <string name="preferences__choose_identity">Επιλέξτε Ταυτότητα</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Επιλέξτε την επαφή σας από τη λίστα επαφών.</string>
   <string name="preferences__change_passphrase">Αλλαγή συνθηματικού</string>

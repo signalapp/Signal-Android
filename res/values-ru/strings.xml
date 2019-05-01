@@ -1048,7 +1048,6 @@
   <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
   <string name="preferences__send_link_previews">Отправлять предпросмотр ссылки</string>
-  <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок Imgur, Instagram, Reddit и YouTube</string>
   <string name="preferences__choose_identity">Выберите личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>

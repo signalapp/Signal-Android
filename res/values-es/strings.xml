@@ -996,7 +996,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__pref_enter_sends_title">Enviar al tocar «Intro»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Los mensajes se enviarán al pulsar la tecla Intro.</string>
   <string name="preferences__send_link_previews">Enviar previsualizaciones</string>
-  <string name="preferences__previews_are_supported_for">Las previsualizaciones funcionan con enlaces de Imgur, Instagram, Reddit y YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Las previsualizaciones están disponibles para enlaces hacia Imgur, Instagram, Pinterest, Reddit y YouTube.</string>
   <string name="preferences__choose_identity">Seleccionar identidad</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selecciona tu propio contacto de la lista de contactos.</string>
   <string name="preferences__change_passphrase">Cambiar clave de acceso</string>

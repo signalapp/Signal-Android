@@ -964,7 +964,7 @@
   <string name="preferences__pref_enter_sends_title">按下輸入鍵發送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下輸入鍵將會發送訊息</string>
   <string name="preferences__send_link_previews">傳送連結預覽</string>
-  <string name="preferences__previews_are_supported_for">預覽功能支援 Imgur、Instagram、Reddit 及 YouTube的連結。</string>
+  <string name="preferences__previews_are_supported_for">預覽功能支援 Imgur、 Instagram、 Pinterest、 Reddit 及 YouTube的連結。</string>
   <string name="preferences__choose_identity">選擇身分</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的聯絡人清單中選擇聯絡人項目。</string>
   <string name="preferences__change_passphrase">變更自訂密碼</string>

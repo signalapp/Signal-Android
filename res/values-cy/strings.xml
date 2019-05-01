@@ -1050,7 +1050,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__pref_enter_sends_title">Pwyso Enter i anfon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pwyso Enter i anfon negeseuon testun</string>
   <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string>
-  <string name="preferences__previews_are_supported_for">Mae rhagolygon dolenni Imgur, Instagram, Reddit, a YouTube yn cael eu cynnal</string>
   <string name="preferences__choose_identity">Dewis hunaniaeth</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Dewiswch eich cofnod cyswllt o\'r rhestr cysylltiadau.</string>
   <string name="preferences__change_passphrase">Newid cyfrinair</string>

@@ -1053,7 +1053,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__pref_enter_sends_title">Odoslať stlačením klávesy Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stlačením klávesy Enter sa správa odošle</string>
   <string name="preferences__send_link_previews">Posielať náhľady stránok</string>
-  <string name="preferences__previews_are_supported_for">Podporované sú náhľady webových stránok Imgur, Instagram, Reddit a YouTube</string>
   <string name="preferences__choose_identity">Vyberať identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__change_passphrase">Zmeniť heslo</string>

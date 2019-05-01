@@ -990,7 +990,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__pref_enter_sends_title">Envia amb la tecla Retorn</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">En prémer Retorn s\'envia el missatge de text</string>
   <string name="preferences__send_link_previews">Envia previsualitzacions d\'enllaços</string>
-  <string name="preferences__previews_are_supported_for">Les previsualitzacions estan disponibles per enllaços d\'Imgur, Instagram, Reddit i Youtube</string>
   <string name="preferences__choose_identity">Trieu la identitat a usar</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Trieu els contactes de la llista de contactes.</string>
   <string name="preferences__change_passphrase">Canvia la contrasenya</string>

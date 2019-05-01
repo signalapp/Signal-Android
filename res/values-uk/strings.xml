@@ -312,6 +312,7 @@
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Тепер ви можете встановити власне фото, а також ім\'я (чи нікнейм) для свого профілю який будуть бачити друзі.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профілі Signal знаходяться тут</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Тепер ви можете вибірково ділитись самі та бачити у інших, коли вони набирають текст.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Чи бажаєте запустити їх зараз?</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ні, дякую</string>
   <string name="ExperienceUpgradeActivity_got_it">Ясно</string>
   <!--GcmBroadcastReceiver-->

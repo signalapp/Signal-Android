@@ -991,7 +991,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__pref_enter_sends_title">La touche Entrée envoie</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Appuyer sur la touche Entrée enverra les textos</string>
   <string name="preferences__send_link_previews">Envoyer des aperçus de liens</string>
-  <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Reddit et YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Pinterest, Reddit et YouTube</string>
   <string name="preferences__choose_identity">Choisir une identité</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans la liste des contacts.</string>
   <string name="preferences__change_passphrase">Changer la phrase de passe</string>

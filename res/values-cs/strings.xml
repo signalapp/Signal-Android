@@ -1046,7 +1046,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="preferences__pref_enter_sends_title">Klávesa Enter odesílá</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka \'enter\' na klávesnici odešle zprávu</string>
   <string name="preferences__send_link_previews">Odesílat náhledy odkazu</string>
-  <string name="preferences__previews_are_supported_for">Náhledy jsou podporovaný pro odkazy na Imgur, Instagram, Reddit a YouTube</string>
   <string name="preferences__choose_identity">Zvolit identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zvolte osobu ze svého adresáře</string>
   <string name="preferences__change_passphrase">Změnit heslo</string>

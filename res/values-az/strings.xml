@@ -996,7 +996,6 @@
   <string name="preferences__pref_enter_sends_title">Daxil et düyməsi göndərir</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Daxil et düymasını kliklədikdə mesaj göndəriləcək</string>
   <string name="preferences__send_link_previews">Link ilkin baxışlarını göndər</string>
-  <string name="preferences__previews_are_supported_for">İmgur, İnstagram, Reddit və YouTube linkləri üçün ilkin baxış dəstəklənir</string>
   <string name="preferences__choose_identity">Şəxsiliyi seç</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Əlaqəni əlaqələr siyahından seç.</string>
   <string name="preferences__change_passphrase">Şifrə ifadəsini dəyiş</string>

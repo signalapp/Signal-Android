@@ -994,7 +994,6 @@
   <string name="preferences__pref_enter_sends_title">Tecla Intro para enviar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ao tocar na tecla Intro enviaranse as mensaxes</string>
   <string name="preferences__send_link_previews">Enviar previsualizacións das ligazóns.</string>
-  <string name="preferences__previews_are_supported_for">Admítense previsualizacións de Imgur, Instagram, Reddit e YouTube</string>
   <string name="preferences__choose_identity">Elixir identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elixe os contactos da túa listaxe.</string>
   <string name="preferences__change_passphrase">Cambiar frase de acceso</string>

@@ -282,6 +282,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ji bo wêneyê xwe amade yî?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Êdî tu dikarî li ser Signalê bi hevalên xwe re nav û wêneyê profîlê parve bikî.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê li vir in</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Tu dixwazî aniha rê bidî wan?</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Na, sipas</string>
   <string name="ExperienceUpgradeActivity_got_it">Temam</string>
   <!--GcmBroadcastReceiver-->
@@ -452,6 +453,7 @@
   <string name="RecipientPreferenceActivity_block_this_contact_question">Vî berdengî asteng bikin?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ji vî berdengî dê êdî peyam û bang neyên wergirtin.</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group">Vê komê asteng bike û jê derkeve?</string>
+  <string name="RecipientPreferenceActivity_block_group">Vê komê asteng bike?</string>
   <string name="RecipientPreferenceActivity_block">Astengkirin</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Astenga vî berdengî rake?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu yê dîsa bikaribî ji vî berdengî peyam û bangan wer bigrî.</string>
@@ -956,7 +958,6 @@
   <string name="preferences__pref_enter_sends_title">Tîpa Enter dişîne</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ji bo peyamên nivîsî bişîne pêl bike \"Enter\"ê</string>
   <string name="preferences__send_link_previews">Pêşdîtinên girêdanê bişîne</string>
-  <string name="preferences__previews_are_supported_for">Pêşdîtin ji bo girêdanên Imgur, Instagram, Reddit, and YouTube tê piştgirîkirin</string>
   <string name="preferences__choose_identity">Nasname bibijêre</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Tekiliya xwe ji lîsta tekilîdêran bibijêre</string>
   <string name="preferences__change_passphrase">Pêderbasokê biguherîne</string>

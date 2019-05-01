@@ -992,7 +992,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk enter-tast for å sende tekstmeldinger</string>
   <string name="preferences__send_link_previews">Send linkforhåndsvisninger</string>
-  <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Reddit og YouTube-koblinger</string>
+  <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Pinterest, Reddit og YouTube-koblinger.</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passord</string>

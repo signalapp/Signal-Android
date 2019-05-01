@@ -994,7 +994,6 @@
   <string name="preferences__pref_enter_sends_title">Sisestusklahv saadab</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Sisestusklahvi vajutamine saadab tekstsõnumeid</string>
   <string name="preferences__send_link_previews">Saada linkide eelvaateid</string>
-  <string name="preferences__previews_are_supported_for">Eelvaated on toetatud Imgur, Instagram, Reddit ja YouTube linkide puhul</string>
   <string name="preferences__choose_identity">Vali identiteet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vali oma kontaktüksus kontaktnimekirjast.</string>
   <string name="preferences__change_passphrase">Muuda salaväljendit</string>

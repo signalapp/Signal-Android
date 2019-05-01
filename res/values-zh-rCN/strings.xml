@@ -963,7 +963,6 @@
   <string name="preferences__pref_enter_sends_title">按下回车键发送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下回车键将会发送短信息</string>
   <string name="preferences__send_link_previews">发送链接预览</string>
-  <string name="preferences__previews_are_supported_for">预览现支持Imgur, Instagram, Reddit, 以及YouTube链接</string>
   <string name="preferences__choose_identity">选择身份</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择您的联系人条目。</string>
   <string name="preferences__change_passphrase"> 修改密码</string>

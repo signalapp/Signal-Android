@@ -990,7 +990,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__pref_enter_sends_title">Entertangenten skickar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Entertangenten skickar textmeddelanden</string>
   <string name="preferences__send_link_previews">Sicka länkförhandsvisning</string>
-  <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Reddit- och YouTube-länkar</string>
+  <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Pinterest-, Reddit- och YouTube-länkar.</string>
   <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontaktlistan.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>

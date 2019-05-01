@@ -996,7 +996,7 @@
   <string name="preferences__pref_enter_sends_title">Tecla Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter enviará mensagens de texto</string>
   <string name="preferences__send_link_previews">Enviar pré-visualizações de links</string>
-  <string name="preferences__previews_are_supported_for">Pré-visualizações estão disponíveis para links do Imgur, Instagram, Reddit e YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Visualizações são suportadas para links do Imgur, Instagram, Pinterest, Reddit e YouTube</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contato da lista de contatos.</string>
   <string name="preferences__change_passphrase">Mudar frase-chave</string>
