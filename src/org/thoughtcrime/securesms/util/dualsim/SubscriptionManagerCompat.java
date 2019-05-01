@@ -8,6 +8,7 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -24,6 +25,8 @@ import java.util.Map;
 import java.util.Set;
 
 public final class SubscriptionManagerCompat {
+
+  private static final String TAG = Log.tag(SubscriptionManagerCompat.class);
 
   private final Context context;
 
@@ -57,7 +60,14 @@ public final class SubscriptionManagerCompat {
 
   @RequiresApi(api = 22)
   private @NonNull Map<Integer, SubscriptionInfoCompat> getActiveSubscriptionInfoMap(boolean excludeUnreadySubscriptions) {
-    List<SubscriptionInfo> subscriptionInfos = ServiceUtil.getSubscriptionManager(context).getActiveSubscriptionInfoList();
+    SubscriptionManager subscriptionManager = ServiceUtil.getSubscriptionManager(context);
+
+    if (subscriptionManager == null) {
+      Log.w(TAG, "Missing SubscriptionManager.");
+      return Collections.emptyMap();
+    }
+
+    List<SubscriptionInfo> subscriptionInfos = subscriptionManager.getActiveSubscriptionInfoList();
 
     if (subscriptionInfos == null || subscriptionInfos.isEmpty()) {
       return Collections.emptyMap();
