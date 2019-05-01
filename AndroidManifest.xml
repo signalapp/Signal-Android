@@ -579,12 +579,6 @@
               android:authorities="org.thoughtcrime.securesms.database.attachment"
               android:exported="false" />
 
-    <provider
-              android:name="androidx.work.impl.WorkManagerInitializer"
-              android:authorities="${applicationId}.workmanager-init"
-              android:exported="false"
-              tools:node="remove" />
-
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
