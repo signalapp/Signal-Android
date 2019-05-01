@@ -26,7 +26,6 @@ import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -211,7 +210,7 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
       if (!Util.equals(plaintextProfileName, recipient.getProfileName())) {
         DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient, plaintextProfileName);
       }
-    } catch (InvalidCiphertextException | IOException e) {
+    } catch (ProfileCipher.InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
     }
   }
