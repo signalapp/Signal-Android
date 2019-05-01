@@ -463,6 +463,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     saveDraft();
     if (recipient != null)               recipient.removeListener(this);
     if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
+    if (attachmentTypeSelector != null)  attachmentTypeSelector.unregisterRecentPhotosObserver(this);
     super.onDestroy();
   }
 

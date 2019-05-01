@@ -5,9 +5,12 @@ import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.database.ContentObserver;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -27,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.loaders.RecentPhotosLoader;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -59,6 +63,8 @@ public class AttachmentTypeSelector extends PopupWindow {
   private @Nullable View                      currentAnchor;
   private @Nullable AttachmentClickedListener listener;
 
+  private @NonNull ContentObserver recentPhotosObserver;
+
   public AttachmentTypeSelector(@NonNull Context context, @NonNull LoaderManager loaderManager, @Nullable AttachmentClickedListener listener) {
     super(context);
 
@@ -76,6 +82,8 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.locationButton = ViewUtil.findById(layout, R.id.location_button);
     this.gifButton      = ViewUtil.findById(layout, R.id.giphy_button);
     this.closeButton    = ViewUtil.findById(layout, R.id.close_button);
+
+    this.recentPhotosObserver = new RecentPhotosObserver(new Handler(Looper.getMainLooper()));
 
     this.imageButton.setOnClickListener(new PropagatingClickListener(ADD_GALLERY));
     this.audioButton.setOnClickListener(new PropagatingClickListener(ADD_SOUND));
@@ -97,6 +105,8 @@ public class AttachmentTypeSelector extends PopupWindow {
     setTouchable(true);
 
     loaderManager.initLoader(1, null, recentRail);
+
+    this.setOnDismissListener(() -> unregisterRecentPhotosObserver(context));
   }
 
   public void show(@NonNull Activity activity, final @NonNull View anchor) {
@@ -135,6 +145,8 @@ public class AttachmentTypeSelector extends PopupWindow {
       animateButtonIn(contactButton, 0);
       animateButtonIn(closeButton, 0);
     }
+
+    registerRecentPhotosObserver(activity);
   }
 
   @Override
@@ -234,6 +246,15 @@ public class AttachmentTypeSelector extends PopupWindow {
     getContentView().startAnimation(animation);
   }
 
+  private void registerRecentPhotosObserver(Context context) {
+    context.getContentResolver().registerContentObserver(RecentPhotosLoader.BASE_URL,
+            true, recentPhotosObserver);
+  }
+
+  public void unregisterRecentPhotosObserver(Context context) {
+    context.getContentResolver().unregisterContentObserver(recentPhotosObserver);
+  }
+
   private Pair<Integer, Integer> getClickOrigin(@Nullable View anchor, @NonNull View contentView) {
     if (anchor == null) return new Pair<>(0, 0);
 
@@ -281,6 +302,19 @@ public class AttachmentTypeSelector extends PopupWindow {
     @Override
     public void onClick(View v) {
       dismiss();
+    }
+  }
+
+  private class RecentPhotosObserver extends ContentObserver {
+
+    public RecentPhotosObserver(Handler handler) {
+      super(handler);
+    }
+
+    @Override
+    public void onChange(boolean selfChange, Uri uri) {
+      super.onChange(selfChange, uri);
+      loaderManager.restartLoader(1, null, recentRail);
     }
   }
 
