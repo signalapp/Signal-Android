@@ -8,12 +8,11 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -90,16 +89,18 @@ public final class SubscriptionManagerCompat {
   }
 
   @RequiresApi(api = 22)
-  private static Map<SubscriptionInfo, CharSequence> getDescriptionsFor(@NonNull Collection<SubscriptionInfo> subscriptions) {
+  private Map<SubscriptionInfo, CharSequence> getDescriptionsFor(@NonNull Collection<SubscriptionInfo> subscriptions) {
     Map<SubscriptionInfo, CharSequence> descriptions;
 
     descriptions = createDescriptionMap(subscriptions, SubscriptionInfo::getDisplayName);
     if (hasNoDuplicates(descriptions.values())) return descriptions;
 
-    descriptions = createDescriptionMap(subscriptions, SubscriptionInfo::getCarrierName);
-    if (hasNoDuplicates(descriptions.values())) return descriptions;
+    return createDescriptionMap(subscriptions, this::describeSimIndex);
+  }
 
-    return createDescriptionMap(subscriptions, (subscriptionInfo) -> formatNumber(subscriptionInfo.getNumber()));
+  @RequiresApi(api = 22)
+  private String describeSimIndex(SubscriptionInfo info) {
+    return context.getString(R.string.conversation_activity__sim_n, info.getSimSlotIndex() + 1);
   }
 
   private static Map<SubscriptionInfo, CharSequence> createDescriptionMap(@NonNull Collection<SubscriptionInfo> subscriptions,
@@ -121,14 +122,6 @@ public final class SubscriptionManagerCompat {
       }
     }
     return true;
-  }
-
-  private static String formatNumber(String number) {
-    try {
-      return PhoneNumberFormatter.formatNumber(number, number);
-    } catch (InvalidNumberException e) {
-      return number;
-    }
   }
 
   private boolean isReady(@NonNull SubscriptionInfo subscriptionInfo) {
