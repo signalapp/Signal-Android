@@ -995,6 +995,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__pref_enter_sends_title">La Eniga klavo kaŭzas sendon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premi la Enigan klavon sendos mesaĝojn</string>
   <string name="preferences__send_link_previews">Sendi autaŭrigardojn de ligilo</string>
+  <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Pinterest, Reddit kaj YouTube</string>
   <string name="preferences__choose_identity">Elekti identecon</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elektu vian propran kontakton el la kontaktlisto.</string>
   <string name="preferences__change_passphrase">Ŝanĝi pasfrazon</string>

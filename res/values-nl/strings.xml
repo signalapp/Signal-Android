@@ -294,7 +294,7 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Nee bedankt</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Nieuw: voorbeeld-
 weergaven.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Voorbeeldweergaven worden vanaf nu optioneel ondersteund voor enkele van de populairste websites op het internet.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Voorbeeldweergaven worden vanaf nu optioneel ondersteund voor enkele van de populairste weblocaties op het internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Je kunt deze functionaliteit op elk gewenst moment in- of uitschakelen in je Signal-instellingen (Privacy &gt; Voorbeeldweergaven verzenden).</string>
   <string name="ExperienceUpgradeActivity_got_it">Begrepen</string>
   <!--GcmBroadcastReceiver-->

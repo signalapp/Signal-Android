@@ -10,6 +10,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova poruka</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
@@ -107,6 +108,7 @@
   <string name="ConversationItem_error_not_delivered">Slanje nije uspjelo, dodirnite za detalje</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Poruka za razmjenu ključeva je primljena, pritisnite da biste nastavili.</string>
   <string name="ConversationItem_group_action_left">%1$s je napustio grupu.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Slanje neuspješno, pritisnite za nesigurnu rezervu</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nekriptirani SMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nekriptirani MMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj nije više Signal korisnik.\n\nPošalji nesigurnu poruku?</string>
@@ -161,6 +163,7 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne može poslati SMS/MMS poruke jer nije označen kao vaša uobičajena SMS aplikacija. Želite li promijeniti ovu stavku u Android postavkama?</string>
   <string name="ConversationActivity_yes">Da</string>
   <string name="ConversationActivity_no">Ne</string>
+  <string name="ConversationActivity_search_position">%1$d od %2$d</string>
   <string name="ConversationActivity_no_results">Nema rezultata</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -296,6 +299,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Spremni za snimku izbliza?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sada možete podijeliti profilnu sliku i ime s prijateljima na Signalu</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profili su stigli</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavljamo pokazatelja tipkanja.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Želite li ih omogućiti sada?</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Omogući pokazitelje tipkanja</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne hvala</string>
