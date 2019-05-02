@@ -36,8 +36,6 @@ import android.support.v4.util.Pair;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import org.thoughtcrime.securesms.logging.Log;
-
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -60,8 +58,9 @@ import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedList
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
-import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewViewModel;
+import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -111,6 +110,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private boolean               leftIsRecent;
   private GestureDetector       clickDetector;
   private MediaPreviewViewModel viewModel;
+  private ViewPagerListener     viewPagerListener;
 
   private int restartItem = -1;
 
@@ -213,7 +213,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void initializeViews() {
     mediaPager = findViewById(R.id.media_pager);
     mediaPager.setOffscreenPageLimit(1);
-    mediaPager.addOnPageChangeListener(new ViewPagerListener());
+
+    viewPagerListener = new ViewPagerListener();
+    mediaPager.addOnPageChangeListener(viewPagerListener);
 
     albumRail        = findViewById(R.id.media_preview_album_rail);
     albumRailAdapter = new MediaRailAdapter(GlideApp.with(this), this, false);
@@ -453,8 +455,12 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
       viewModel.setCursor(this, data.first, leftIsRecent);
 
-      if (restartItem < 0) mediaPager.setCurrentItem(data.second);
-      else                 mediaPager.setCurrentItem(restartItem);
+      int item = restartItem >= 0 ? restartItem : data.second;
+      mediaPager.setCurrentItem(item);
+
+      if (item == 0) {
+        viewPagerListener.onPageSelected(0);
+      }
     }
   }
 
