@@ -342,14 +342,14 @@
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SMS AN %d FREUND SENDEN</item>
+    <item quantity="one">SMS AN EINEN FREUND SENDEN</item>
     <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">%d SMS-Einladung senden?</item>
+    <item quantity="one">Eine SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
   <!--Job-->
@@ -403,7 +403,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera nicht verfügbar.</string>
   <string name="MediaSendActivity_message_to_s">Nachricht an %s</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-    <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
+    <item quantity="one">Du kannst nicht mehr als ein Element teilen.</item>
     <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>
   </plurals>
   <!--MediaRepository-->
@@ -533,7 +533,7 @@
   <string name="RegistrationActivity_call">Mich anrufen</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
-  <!--Search-->
+  <!--SearchFragment-->
   <string name="SearchFragment_no_results">Keine Ergebnisse für »%s« gefunden</string>
   <string name="SearchFragment_header_conversations">Unterhaltungen</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
