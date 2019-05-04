@@ -160,8 +160,8 @@
     <string name="ConversationActivity_transport_insecure_sms_content_description">send as insecure S M S</string>
     <string name="ConversationActivity_transport_insecure_mms_content_description">send as insecure M M S</string>
     <string name="ConversationActivity_transport_signal_content_description">send as secure signal message</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal %1$s</string>
-    <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this app to chat: %1$s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal Private Messenger %1$s</string>
+    <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this messaging app to chat: %1$s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group</string>
     <string name="ConversationActivity_specify_recipient">Please choose a contact</string>
     <string name="ConversationActivity_unblock_this_contact_question">Unblock this contact?</string>
