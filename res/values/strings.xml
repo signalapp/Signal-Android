@@ -62,10 +62,10 @@
 
     <!-- AttchmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires permission to use the external storage in order to attach photos, videos, or audio, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal requires Contacts permission in order to attach contact information, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requires Location permission in order to attach a location, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Location\".</string>
-    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requires the Camera permission in order to take photos, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires permission to use the external storage in order to attach photos, videos, or audio, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal requires permission to view your contacts in order to attach contact information, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requires permission to view your location in order to attach a location, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Location\".</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requires permission to use the camera in order to take photos, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
 
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
@@ -175,12 +175,12 @@
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">To record audio messages, allow Signal access to your microphone.</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal requires the Microphone permission in order to record audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal requires permission to use the microphone in order to record audio messages, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
     <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">To call %s, Signal requires access to your microphone and camera.</string>
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal requires the Microphone and Camera permissions in order to call %s, but they have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
+    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal requires permissions to use the microphone and the camera in order to call %s, but those permission have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">To capture photos and video, allow Signal access to the camera.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal requires the Camera permission to take photos or video, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal requires Camera permissions to take photos or video</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal requires permission to make user of the camera in order to take photos or record video, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal requires permission to use the camera, in order to take photos or record video</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal cannot send SMS/MMS messages because it is not your default SMS app. Would you like to change this in your Android settings?</string>
@@ -527,8 +527,8 @@
     <string name="DeviceProvisioningActivity_link_a_signal_device">Link a Signal device?</string>
     <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">It looks like you\'re trying to link a Signal device by using a third party scanner.  For your protection, please scan the code again from within Signal.</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal requires the Camera permission in order to scan a QR code, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
-    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Unable to scan a QR code without the Camera permission</string>
+    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal requires permission to use the camera in order to scan a QR code, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Unable to scan a QR code without permission to use the camera</string>
 
     <!-- ExpirationDialog -->
     <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
@@ -706,7 +706,7 @@
     <string name="VerifyIdentityActivity_our_signal_safety_number">Our Signal safety number:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No safety number to compare was found in the clipboard</string>
-    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal requires the Camera permission in order to scan a QR code, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal requires permission to use the camera in order to scan a QR code, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Unable to scan QR code without Camera permission</string>
 
     <!-- MessageDisplayHelper -->
@@ -739,8 +739,8 @@
     <string name="MediaPreviewActivity_you">You</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
     <string name="MediaPreviewActivity_draft">Draft</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal requires the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal requires permission to use the external storage in order to save to the external storage, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permission</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">This message will be permanently deleted.</string>
 
@@ -806,7 +806,7 @@
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">To answer the call from %s, give Signal access to your microphone.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal requires Microphone and Camera permissions in order to make or receive calls, but they have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
+    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal requires permissions to use the microphone and the camera in order to make or receive calls, but those permissions have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
 
     <!-- WebRtcCallScreen -->
     <string name="WebRtcCallScreen_new_safety_numbers">The safety number for your conversation with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply re-installed Signal.</string>
@@ -852,7 +852,7 @@
     <string name="SingleContactSelectionActivity_contact_photo">Contact Photo</string>
 
     <!-- ContactSelectionListFragment-->
-    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal requires the Contacts permission in order to display your contacts, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
+    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal requires permission to view your contacts in order to display your contacts, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error retrieving contacts, please check your network connection</string>
 
     <!-- blocked_contacts_fragment -->
@@ -1094,7 +1094,7 @@
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
     <string name="redphone_call_controls__mute">Mute</string>
-    <string name="redphone_call_controls__flip_camera_rear">Switch Cameras</string>
+    <string name="redphone_call_controls__flip_camera_rear">Switch cameras</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
@@ -1448,10 +1448,10 @@
     <string name="ConversationListFragment_loading">Loading…</string>
     <string name="CallNotificationBuilder_connecting">Connecting…</string>
     <string name="Permissions_permission_required">Permission required</string>
-    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal requires SMS permission in order to send an SMS, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"SMS\".</string>
+    <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal requires permission to use SMS functions in order to send an SMS, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"SMS\".</string>
     <string name="Permissions_continue">Continue</string>
     <string name="Permissions_not_now">Not now</string>
-    <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal requires Contacts permission in order to search your contacts, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Contacts\".</string>
+    <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal requires permission to view your contacts in order to search your contacts, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="conversation_activity__enable_signal_messages">ENABLE SIGNAL MESSAGES</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrating Signal database</string>
     <string name="PushDecryptJob_new_locked_message">New locked message</string>
@@ -1484,7 +1484,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all backup files on your internal storage?</string>
     <string name="BackupDialog_delete_backups_statement">Delete backups</string>
     <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
-    <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires permission to use the external storage in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
+    <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires permission to use the external storage in order to create backups, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
     <string name="ChatsPreferenceFragment_last_backup_s">Most recent backup: %s</string>
     <string name="ChatsPreferenceFragment_in_progress">In progress</string>
     <string name="LocalBackupJob_creating_backup">Creating backup…</string>
