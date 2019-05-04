@@ -104,7 +104,7 @@
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>
-    <string name="ContactsDatabase_signal_call_s">Signal Call %s</string>
+    <string name="ContactsDatabase_signal_call_s">Signal call %s</string>
 
     <!-- ContactNameEditActivity -->
     <string name="ContactNameEditActivity_given_name">Given name</string>
