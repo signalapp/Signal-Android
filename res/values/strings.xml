@@ -1007,16 +1007,16 @@
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get a debug log instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
-    <string name="log_submit_activity__submitting">Submitting</string>
+    <string name="log_submit_activity__submitting">Uploading</string>
     <string name="log_submit_activity__no_browser_installed">No browser installed</string>
-    <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
-    <string name="log_submit_activity__button_submit">Submit</string>
+    <string name="log_submit_activity__button_dont_submit">Don\'t upload</string>
+    <string name="log_submit_activity__button_submit">Upload</string>
     <string name="log_submit_activity__button_got_it">Got it</string>
     <string name="log_submit_activity__button_compose_email">Compose email</string>
-    <string name="log_submit_activity__this_log_will_be_posted_online">This log will be posted publicly online for contributors to view, you may examine and edit it before submitting.</string>
+    <string name="log_submit_activity__this_log_will_be_posted_online">This log will be posted publicly online for contributors to view, you may examine and edit it before uploading.</string>
     <string name="log_submit_activity__loading_logs">Loading logs…</string>
     <string name="log_submit_activity__uploading_logs">Uploading logs…</string>
-    <string name="log_submit_activity__success">Successfully sent!</string>
+    <string name="log_submit_activity__success">Successfully uploaded!</string>
     <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copy this URL and add it to your issue report or support email:\n\n<b>%1$s</b>\n</string>
     <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
     <string name="log_submit_activity__choose_email_app">Choose email app</string>
