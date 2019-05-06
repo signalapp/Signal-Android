@@ -55,47 +55,47 @@ public class ClassicDecryptingPartInputStream {
 
       verifyMac(attachmentSecret, file);
 
-      FileInputStream fileStream = new FileInputStream(file);
-      byte[]          ivBytes    = new byte[IV_LENGTH];
-      readFully(fileStream, ivBytes);
+      try(FileInputStream fileStream = new FileInputStream(file)) {
+        byte[] ivBytes = new byte[IV_LENGTH];
+        readFully(fileStream, ivBytes);
 
-      Cipher          cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-      IvParameterSpec iv     = new IvParameterSpec(ivBytes);
-      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(attachmentSecret.getClassicCipherKey(), "AES"), iv);
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        IvParameterSpec iv = new IvParameterSpec(ivBytes);
+        cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(attachmentSecret.getClassicCipherKey(), "AES"), iv);
 
-      return new CipherInputStreamWrapper(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
-    } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
+        return new CipherInputStreamWrapper(new LimitedInputStream(fileStream, file.length() - MAC_LENGTH - IV_LENGTH), cipher);
+      }
+      } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
     }
   }
 
   private static void verifyMac(AttachmentSecret attachmentSecret, File file) throws IOException {
     Mac             mac        = initializeMac(new SecretKeySpec(attachmentSecret.getClassicMacKey(), "HmacSHA1"));
-    FileInputStream macStream  = new FileInputStream(file);
-    InputStream     dataStream = new LimitedInputStream(new FileInputStream(file), file.length() - MAC_LENGTH);
-    byte[]          theirMac   = new byte[MAC_LENGTH];
+    try(FileInputStream macStream  = new FileInputStream(file)) {
+      try(InputStream dataStream = new LimitedInputStream(new FileInputStream(file), file.length() - MAC_LENGTH)) {
+        byte[] theirMac = new byte[MAC_LENGTH];
 
-    if (macStream.skip(file.length() - MAC_LENGTH) != file.length() - MAC_LENGTH) {
-      throw new IOException("Unable to seek");
+        if (macStream.skip(file.length() - MAC_LENGTH) != file.length() - MAC_LENGTH) {
+          throw new IOException("Unable to seek");
+        }
+
+        readFully(macStream, theirMac);
+
+        byte[] buffer = new byte[4096];
+        int read;
+
+        while ((read = dataStream.read(buffer)) != -1) {
+          mac.update(buffer, 0, read);
+        }
+
+        byte[] ourMac = mac.doFinal();
+
+        if (!MessageDigest.isEqual(ourMac, theirMac)) {
+          throw new IOException("Bad MAC");
+        }
+      }
     }
-
-    readFully(macStream, theirMac);
-
-    byte[] buffer = new byte[4096];
-    int    read;
-
-    while ((read = dataStream.read(buffer)) != -1) {
-      mac.update(buffer, 0, read);
-    }
-
-    byte[] ourMac = mac.doFinal();
-
-    if (!MessageDigest.isEqual(ourMac, theirMac)) {
-      throw new IOException("Bad MAC");
-    }
-
-    macStream.close();
-    dataStream.close();
   }
 
   private static Mac initializeMac(SecretKeySpec key) {

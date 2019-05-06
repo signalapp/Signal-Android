@@ -178,12 +178,11 @@ public class UpdateApkJob extends BaseJob {
   private @Nullable byte[] getDigestForDownloadId(long downloadId) {
     try {
       DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-      FileInputStream fin             = new FileInputStream(downloadManager.openDownloadedFile(downloadId).getFileDescriptor());
-      byte[]          digest          = FileUtils.getFileDigest(fin);
+      try (FileInputStream fin             = new FileInputStream(downloadManager.openDownloadedFile(downloadId).getFileDescriptor())) {
+        byte[] digest = FileUtils.getFileDigest(fin);
 
-      fin.close();
-
-      return digest;
+        return digest;
+      }
     } catch (IOException e) {
       Log.w(TAG, e);
       return null;

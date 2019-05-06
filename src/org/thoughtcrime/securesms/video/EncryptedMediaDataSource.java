@@ -38,32 +38,32 @@ public class EncryptedMediaDataSource extends MediaDataSource {
   }
 
   private int readAtClassic(long position, byte[] bytes, int offset, int length) throws IOException {
-    InputStream inputStream     = ClassicDecryptingPartInputStream.createFor(attachmentSecret, mediaFile);
-    byte[]      buffer          = new byte[4096];
-    long        headerRemaining = position;
+    try(InputStream inputStream     = ClassicDecryptingPartInputStream.createFor(attachmentSecret, mediaFile)) {
+      byte[] buffer = new byte[4096];
+      long headerRemaining = position;
 
-    while (headerRemaining > 0) {
-      int read = inputStream.read(buffer, 0, Util.toIntExact(Math.min((long)buffer.length, headerRemaining)));
+      while (headerRemaining > 0) {
+        int read = inputStream.read(buffer, 0, Util.toIntExact(Math.min((long) buffer.length, headerRemaining)));
 
-      if (read == -1) return -1;
+        if (read == -1) return -1;
 
-      headerRemaining -= read;
+        headerRemaining -= read;
+      }
+
+      int returnValue = inputStream.read(bytes, offset, length);
+      inputStream.close();
+      return returnValue;
     }
-
-    int returnValue = inputStream.read(bytes, offset, length);
-    inputStream.close();
-    return returnValue;
   }
 
   private int readAtModern(long position, byte[] bytes, int offset, int length) throws IOException {
     assert(random != null);
 
-    InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, mediaFile, position);
-    int         returnValue = inputStream.read(bytes, offset, length);
+    try(InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, mediaFile, position)) {
+      int returnValue = inputStream.read(bytes, offset, length);
 
-    inputStream.close();
-
-    return returnValue;
+      return returnValue;
+    }
   }
 
   @Override

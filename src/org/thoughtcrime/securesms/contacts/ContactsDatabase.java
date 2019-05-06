@@ -238,10 +238,11 @@ public class ContactsDatabase {
         }
 
         if (shouldAdd) {
-          MatrixCursor selfCursor = new MatrixCursor(projection);
-          selfCursor.addRow(new Object[]{ context.getString(R.string.note_to_self), TextSecurePreferences.getLocalNumber(context)});
+          try(MatrixCursor selfCursor = new MatrixCursor(projection)) {
+            selfCursor.addRow(new Object[]{context.getString(R.string.note_to_self), TextSecurePreferences.getLocalNumber(context)});
 
-          cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
+            cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{cursor, selfCursor});
+          }
         }
       }
     }

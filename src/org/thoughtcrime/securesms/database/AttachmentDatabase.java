@@ -491,15 +491,16 @@ public class AttachmentDatabase extends Database {
       if (dataInfo.random != null && dataInfo.random.length == 32) {
         return ModernDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.random, dataInfo.file, offset);
       } else {
-        InputStream stream  = ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.file);
-        long        skipped = stream.skip(offset);
+        try(InputStream stream  = ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataInfo.file)) {
+          long skipped = stream.skip(offset);
 
-        if (skipped != offset) {
-          Log.w(TAG, "Skip failed: " + skipped + " vs " + offset);
-          return null;
+          if (skipped != offset) {
+            Log.w(TAG, "Skip failed: " + skipped + " vs " + offset);
+            return null;
+          }
+
+          return stream;
         }
-
-        return stream;
       }
     } catch (IOException e) {
       Log.w(TAG, e);

@@ -255,17 +255,17 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
     Uri displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
 
     try {
-      AssetFileDescriptor fd = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
+       try(AssetFileDescriptor fd = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r")) {
+         if (fd == null) {
+           return Optional.absent();
+         }
 
-      if (fd == null) {
-        return Optional.absent();
-      }
-
-      return Optional.of(SignalServiceAttachment.newStreamBuilder()
-                                                .withStream(fd.createInputStream())
-                                                .withContentType("image/*")
-                                                .withLength(fd.getLength())
-                                                .build());
+         return Optional.of(SignalServiceAttachment.newStreamBuilder()
+                 .withStream(fd.createInputStream())
+                 .withContentType("image/*")
+                 .withLength(fd.getLength())
+                 .build());
+       }
     } catch (IOException e) {
       Log.i(TAG, "Could not find avatar for URI: " + displayPhotoUri);
     }

@@ -364,9 +364,10 @@ public class ContactAccessor {
       ArrayList<ArrayList> wrap = new ArrayList<ArrayList>();
       wrap.add(result);
 
-      ArrayListCursor translated = new ArrayListCursor(PROJECTION_PHONE, wrap);
+      try(ArrayListCursor translated = new ArrayListCursor(PROJECTION_PHONE, wrap)) {
 
-      return new MergeCursor(new Cursor[] { translated, phoneCursor });
+        return new MergeCursor(new Cursor[]{translated, phoneCursor});
+      }
     } else {
       return phoneCursor;
     }
