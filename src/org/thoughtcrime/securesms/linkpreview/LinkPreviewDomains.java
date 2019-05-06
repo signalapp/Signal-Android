@@ -30,6 +30,7 @@ public class LinkPreviewDomains {
       "fbcdn.net",
       "redd.it",
       "imgur.com",
-      "pinimg.com"
+      "pinimg.com",
+      "giphy.com"
   ));
 }

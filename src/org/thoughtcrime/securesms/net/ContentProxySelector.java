@@ -29,7 +29,6 @@ public class ContentProxySelector extends ProxySelector {
   static {
     WHITELISTED_DOMAINS.addAll(LinkPreviewDomains.LINKS);
     WHITELISTED_DOMAINS.addAll(LinkPreviewDomains.IMAGES);
-    WHITELISTED_DOMAINS.add("giphy.com");
   }
 
   private final List<Proxy> CONTENT = new ArrayList<Proxy>(1) {{
