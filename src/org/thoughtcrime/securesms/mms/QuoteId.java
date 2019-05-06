@@ -16,8 +16,8 @@ public class QuoteId {
 
   private static final String TAG = QuoteId.class.getSimpleName();
 
-  private static final String ID      = "id";
-  private static final String AUTHOR  = "author";
+  private static final String ID_STRING = "id";
+  private static final String AUTHOR_STRING = "author";
 
   private final long    id;
   private final Address author;
@@ -38,8 +38,8 @@ public class QuoteId {
   public @NonNull String serialize() {
     try {
       JSONObject object = new JSONObject();
-      object.put(ID, id);
-      object.put(AUTHOR, author.serialize());
+      object.put(ID_STRING, id);
+      object.put(AUTHOR_STRING, author.serialize());
       return object.toString();
     } catch (JSONException e) {
       Log.e(TAG, "Failed to serialize to json", e);
@@ -50,7 +50,7 @@ public class QuoteId {
   public static @Nullable QuoteId deserialize(@NonNull String serialized) {
     try {
       JSONObject json = new JSONObject(serialized);
-      return new QuoteId(json.getLong(ID), Address.fromSerialized(json.getString(AUTHOR)));
+      return new QuoteId(json.getLong(ID_STRING), Address.fromSerialized(json.getString(AUTHOR_STRING)));
     } catch (JSONException e) {
       Log.e(TAG, "Failed to deserialize from json", e);
       return null;

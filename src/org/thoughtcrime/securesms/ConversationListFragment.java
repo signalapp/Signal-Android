@@ -113,13 +113,13 @@ public class ConversationListFragment extends Fragment
   private PulsingFloatingActionButton fab;
   private Locale                      locale;
   private String                      queryFilter  = "";
-  private boolean                     archive;
+  private boolean archiveConversation;
 
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
     locale  = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
-    archive = getArguments().getBoolean(ARCHIVE, false);
+    archiveConversation = getArguments().getBoolean(ARCHIVE, false);
   }
 
   @Override
@@ -133,7 +133,7 @@ public class ConversationListFragment extends Fragment
     emptyImage   = ViewUtil.findById(view, R.id.empty);
     emptySearch  = ViewUtil.findById(view, R.id.empty_search);
 
-    if (archive) fab.setVisibility(View.GONE);
+    if (archiveConversation) fab.setVisibility(View.GONE);
     else         fab.setVisibility(View.VISIBLE);
 
     reminderView.setOnDismissListener(() -> updateReminders(true));
@@ -248,7 +248,7 @@ public class ConversationListFragment extends Fragment
   @SuppressLint("StaticFieldLeak")
   private void handleArchiveAllSelected() {
     final Set<Long> selectedConversations = new HashSet<>(getListAdapter().getBatchSelections());
-    final boolean   archive               = this.archive;
+    final boolean   archive               = this.archiveConversation;
 
     int snackBarTitleId;
 
@@ -353,12 +353,12 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationListLoader(getActivity(), queryFilter, archive);
+    return new ConversationListLoader(getActivity(), queryFilter, archiveConversation);
   }
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    if ((cursor == null || cursor.getCount() <= 0) && TextUtils.isEmpty(queryFilter) && !archive) {
+    if ((cursor == null || cursor.getCount() <= 0) && TextUtils.isEmpty(queryFilter) && !archiveConversation) {
       list.setVisibility(View.INVISIBLE);
       emptyState.setVisibility(View.VISIBLE);
       emptySearch.setVisibility(View.INVISIBLE);
@@ -426,7 +426,7 @@ public class ConversationListFragment extends Fragment
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
     MenuInflater inflater = getActivity().getMenuInflater();
 
-    if (archive) inflater.inflate(R.menu.conversation_list_batch_unarchive, menu);
+    if (archiveConversation) inflater.inflate(R.menu.conversation_list_batch_unarchive, menu);
     else         inflater.inflate(R.menu.conversation_list_batch_archive, menu);
 
     inflater.inflate(R.menu.conversation_list_batch, menu);
@@ -508,7 +508,7 @@ public class ConversationListFragment extends Fragment
       final long threadId    = ((ConversationListItem)viewHolder.itemView).getThreadId();
       final int  unreadCount = ((ConversationListItem)viewHolder.itemView).getUnreadCount();
 
-      if (archive) {
+      if (archiveConversation) {
         new SnackbarAsyncTask<Long>(getView(),
                                     getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
                                     getString(R.string.ConversationListFragment_undo),
@@ -571,7 +571,7 @@ public class ConversationListFragment extends Fragment
         if (dX > 0) {
           Bitmap icon;
 
-          if (archive) icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_unarchive_white_36dp);
+          if (archiveConversation) icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_unarchive_white_36dp);
           else         icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_archive_white_36dp);
 
           if (alpha > 0) p.setColor(getResources().getColor(R.color.green_500));
