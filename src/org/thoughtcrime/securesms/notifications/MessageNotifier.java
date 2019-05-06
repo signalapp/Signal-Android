@@ -315,9 +315,12 @@ public class MessageNotifier {
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
+    ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
+
     builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
                        notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),
-                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient()));
+                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod),
+                       replyMethod);
 
     builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
                                  notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
