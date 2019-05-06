@@ -59,7 +59,7 @@ public class ClassicDecryptingPartInputStream {
       byte[]          ivBytes    = new byte[IV_LENGTH];
       readFully(fileStream, ivBytes);
 
-      Cipher          cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+      Cipher          cipher = Cipher.getInstance("AES/GCM/NoPadding");
       IvParameterSpec iv     = new IvParameterSpec(ivBytes);
       cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(attachmentSecret.getClassicCipherKey(), "AES"), iv);
 

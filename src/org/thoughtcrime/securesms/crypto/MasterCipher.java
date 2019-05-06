@@ -65,8 +65,8 @@ public class MasterCipher {
   public MasterCipher(MasterSecret masterSecret) {
     try {
       this.masterSecret = masterSecret;		
-      this.encryptingCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-      this.decryptingCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+      this.encryptingCipher = Cipher.getInstance("AES/GCM/NoPadding");
+      this.decryptingCipher = Cipher.getInstance("AES/GCM/NoPadding");
       this.hmac             = Mac.getInstance("HmacSHA1");
     } catch (NoSuchPaddingException | NoSuchAlgorithmException nspe) {
       throw new AssertionError(nspe);
