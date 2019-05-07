@@ -243,13 +243,8 @@ public class IdentityUtil {
       if (recipients.size() == 2) {
         return context.getString(resourceTwo, firstName, secondName);
       } else {
-        String nMore;
-
-        if (recipients.size() == 3) {
-          nMore = context.getResources().getQuantityString(R.plurals.identity_others, 1);
-        } else {
-          nMore = context.getResources().getQuantityString(R.plurals.identity_others, recipients.size() - 2);
-        }
+        int    othersCount = recipients.size() - 2;
+        String nMore       = context.getResources().getQuantityString(R.plurals.identity_others, othersCount, othersCount);
 
         return context.getString(resourceMany, firstName, secondName, nMore);
       }
