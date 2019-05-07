@@ -59,16 +59,9 @@ public final class SubscriptionManagerCompat {
 
   @RequiresApi(api = 22)
   private @NonNull Map<Integer, SubscriptionInfoCompat> getActiveSubscriptionInfoMap(boolean excludeUnreadySubscriptions) {
-    SubscriptionManager subscriptionManager = ServiceUtil.getSubscriptionManager(context);
+    List<SubscriptionInfo> subscriptionInfos = getActiveSubscriptionInfoList();
 
-    if (subscriptionManager == null) {
-      Log.w(TAG, "Missing SubscriptionManager.");
-      return Collections.emptyMap();
-    }
-
-    List<SubscriptionInfo> subscriptionInfos = subscriptionManager.getActiveSubscriptionInfoList();
-
-    if (subscriptionInfos == null || subscriptionInfos.isEmpty()) {
+    if (subscriptionInfos.isEmpty()) {
       return Collections.emptyMap();
     }
 
@@ -86,6 +79,28 @@ public final class SubscriptionManagerCompat {
     }
 
     return map;
+  }
+
+  public boolean isMultiSim() {
+    if (Build.VERSION.SDK_INT < 22) {
+      return false;
+    }
+
+    return getActiveSubscriptionInfoList().size() >= 2;
+  }
+
+  @RequiresApi(api = 22)
+  private @NonNull List<SubscriptionInfo> getActiveSubscriptionInfoList() {
+    SubscriptionManager subscriptionManager = ServiceUtil.getSubscriptionManager(context);
+
+    if (subscriptionManager == null) {
+      Log.w(TAG, "Missing SubscriptionManager.");
+      return Collections.emptyList();
+    }
+
+    List<SubscriptionInfo> list = subscriptionManager.getActiveSubscriptionInfoList();
+
+    return list != null? list : Collections.emptyList();
   }
 
   @RequiresApi(api = 22)
