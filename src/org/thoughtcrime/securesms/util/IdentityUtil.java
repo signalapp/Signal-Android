@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.util;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.support.annotation.UiThread;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
@@ -47,8 +45,6 @@ public class IdentityUtil {
 
   private static final String TAG = IdentityUtil.class.getSimpleName();
 
-  @SuppressLint("StaticFieldLeak")
-  @UiThread
   public static ListenableFuture<Optional<IdentityRecord>> getRemoteIdentityKey(final Context context, final Recipient recipient) {
     final SettableFuture<Optional<IdentityRecord>> future = new SettableFuture<>();
 
