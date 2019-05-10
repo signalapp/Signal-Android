@@ -735,6 +735,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_activity__type_message_sms_insecure">Salaamaton SMS-viesti</string>
   <string name="conversation_activity__type_message_mms_insecure">Salaamaton MMS-viesti</string>
   <string name="conversation_activity__from_sim_name">SIM-kortilta %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Lähetä</string>
   <string name="conversation_activity__compose_description">Viestin kirjoitus</string>
   <string name="conversation_activity__emoji_toggle_description">Avaa tai sulje emoji-näppäimistö</string>

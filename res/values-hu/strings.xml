@@ -744,6 +744,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_activity__type_message_sms_insecure">Titkosítatlan SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Titkosítatlan MMS</string>
   <string name="conversation_activity__from_sim_name">%1$s hálózaton</string>
+  <string name="conversation_activity__sim_n">%1$d. SIM</string>
   <string name="conversation_activity__send">Küldés</string>
   <string name="conversation_activity__compose_description">Üzenet írása</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji billentyűzet kapcsoló</string>

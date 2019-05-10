@@ -137,7 +137,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met deze app: %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met deze berichten app: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep</string>
   <string name="ConversationActivity_specify_recipient">Kies een gesprekspartner</string>
   <string name="ConversationActivity_unblock_this_contact_question">Gesprekspartner deblokkeren?</string>
@@ -743,6 +743,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde sms</string>
   <string name="conversation_activity__type_message_mms_insecure">Onbeveiligde mms</string>
   <string name="conversation_activity__from_sim_name">Van %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Verzenden</string>
   <string name="conversation_activity__compose_description">Berichtsamenstelling</string>
   <string name="conversation_activity__emoji_toggle_description">Emojitoetsenbord wisselen</string>

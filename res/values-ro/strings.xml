@@ -757,6 +757,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_activity__type_message_sms_insecure">SMS nesecurizat</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS nesecurizat</string>
   <string name="conversation_activity__from_sim_name">De la %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Trimite</string>
   <string name="conversation_activity__compose_description">Compunere mesaj</string>
   <string name="conversation_activity__emoji_toggle_description">Comutare tastatură emoji</string>

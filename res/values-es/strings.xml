@@ -741,6 +741,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_activity__type_message_sms_insecure">SMS sin cifrado</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS sin cifrado</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__compose_description">Redactar mensaje</string>
   <string name="conversation_activity__emoji_toggle_description">Cambiar a teclado emoji</string>

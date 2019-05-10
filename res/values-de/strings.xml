@@ -730,6 +730,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS</string>
   <string name="conversation_activity__from_sim_name">Von %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Senden</string>
   <string name="conversation_activity__compose_description">Nachricht verfassen</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji-Tastatur aktivieren</string>

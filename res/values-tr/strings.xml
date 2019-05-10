@@ -330,7 +330,7 @@
   <string name="GroupMembersDialog_me">Ben</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
-  <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <string name="CropImageActivity_profile_avatar">Resim</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın</string>
   <!--InviteActivity-->
@@ -740,13 +740,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_activity__type_message_sms_insecure">Şifresiz SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Şifresiz MMS</string>
   <string name="conversation_activity__from_sim_name">Gönderen %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Gönder</string>
   <string name="conversation_activity__compose_description">İleti oluştur</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji klavyesini göster/gizle</string>
   <string name="conversation_activity__attachment_thumbnail">Eklenti Önizlemesi</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hızlı kamera eki çekmecesini göster/gizle</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ses eki kaydet ve gönder</string>
-  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ses eklentisinin kaydını kilitle</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ses eklentisi kaydını kilitle</string>
   <string name="conversation_activity__enable_signal_for_sms">SMS için Signal\'i etkinleştir</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">İptal etmek için kaydırın</string>

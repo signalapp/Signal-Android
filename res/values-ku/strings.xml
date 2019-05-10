@@ -159,6 +159,7 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nikare peyamên SMS/MMSê bişîne ji ber ku ne sepana SMSê ya sereke ye. Tu dixwazî vê di sazkariya xwe yî Androidê de biguherînî?</string>
   <string name="ConversationActivity_yes">Erê</string>
   <string name="ConversationActivity_no">Na</string>
+  <string name="ConversationActivity_search_position">%1$d ji %2$d</string>
   <string name="ConversationActivity_no_results">Encam nîn e</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -282,6 +283,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ji bo wêneyê xwe amade yî?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Êdî tu dikarî li ser Signalê bi hevalên xwe re nav û wêneyê profîlê parve bikî.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê li vir in</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Niha tu dikarî bibînî û parvebikî, dema peyam tên nivîsandin.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Tu dixwazî aniha rê bidî wan?</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Na, sipas</string>
   <string name="ExperienceUpgradeActivity_got_it">Temam</string>
@@ -386,7 +388,10 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Ji bo bijartinê bitepîne</string>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Binnivîs zêdebikin</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Tiştek hat rakirin ji ber ku zêde mezin bû</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera nayê bikar anîn.</string>
+  <string name="MediaSendActivity_message_to_s">Peyam ji bo %s</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Hemû medya</string>
   <!--MessageRecord-->

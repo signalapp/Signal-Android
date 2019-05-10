@@ -615,7 +615,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_called_you">Wedi\'ch galw chi</string>
   <string name="ThreadRecord_missed_call">Galwad coll</string>
   <string name="ThreadRecord_media_message">Neges cyfryngau</string>
-  <string name="ThreadRecord_s_is_on_signal">Mae %d ar Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">Mae %s ar Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>
   <string name="ThreadRecord_safety_number_changed">Mae\'r rhif diogelwch wedi newid</string>
@@ -779,6 +779,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS anniogel</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS anniogel</string>
   <string name="conversation_activity__from_sim_name">Oddi wrth %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Anfon</string>
   <string name="conversation_activity__compose_description">Cyfansoddiad neges</string>
   <string name="conversation_activity__emoji_toggle_description">Toglo bysellfwrdd gwenogluniau</string>
@@ -1050,6 +1051,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__pref_enter_sends_title">Pwyso Enter i anfon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pwyso Enter i anfon negeseuon testun</string>
   <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string>
+  <string name="preferences__previews_are_supported_for">Cefnogir rhagweld cynnwys trwy ddolenni Imgur, Instagram, Pinterest, Reddit a YouTube</string>
   <string name="preferences__choose_identity">Dewis hunaniaeth</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Dewiswch eich cofnod cyswllt o\'r rhestr cysylltiadau.</string>
   <string name="preferences__change_passphrase">Newid cyfrinair</string>
