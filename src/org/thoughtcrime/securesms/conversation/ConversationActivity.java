@@ -1180,7 +1180,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!isSecureText && !isPushGroupConversation()) sendButton.disableTransport(Type.TEXTSECURE);
     if (recipient.isPushGroupRecipient())            sendButton.disableTransport(Type.SMS);
 
-    if (recipient.isForceSmsSelection()) {
+    if (!recipient.isPushGroupRecipient() && recipient.isForceSmsSelection()) {
       sendButton.setDefaultTransport(Type.SMS);
     } else {
       if (isSecureText || isPushGroupConversation()) sendButton.setDefaultTransport(Type.TEXTSECURE);
@@ -2226,7 +2226,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         recipientDatabase.setDefaultSubscriptionId(recipient, transportOption.getSimSubscriptionId().or(-1));
 
-        recipientDatabase.setForceSmsSelection(recipient, recipient.getRegistered() == RegisteredState.REGISTERED && transportOption.isSms());
+        if (!recipient.isPushGroupRecipient()) {
+          recipientDatabase.setForceSmsSelection(recipient, recipient.getRegistered() == RegisteredState.REGISTERED && transportOption.isSms());
+        }
 
         return null;
       }
