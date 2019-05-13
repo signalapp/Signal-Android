@@ -19,11 +19,8 @@
             android:id="@+id/scribble_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="top|end"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
-            android:animateLayoutChanges="true"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
