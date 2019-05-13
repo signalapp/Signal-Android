@@ -328,7 +328,7 @@
     <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal now supports secure video calling. Tap to explore.</string>
 
     <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ready for your closeup?</string>
-    <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Now you can share a profile photo and name with friends on Signal</string>
+    <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Now you can make a profile photo and name visible to your friends on Signal</string>
     <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiles are here</string>
 
     <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducing typing indicators.</string>
@@ -377,7 +377,7 @@
     <string name="GroupCreateActivity_youre_already_in_the_group">You\'re already in the group.</string>
 
     <!-- GroupShareProfileView -->
-    <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Share your profile name and photo with this group?</string>
+    <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Make your profile name and photo visible to this group?</string>
     <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Do you want to make your profile name and photo visible to all current and future members of this group?</string>
     <string name="GroupShareProfileView_make_visible">Make visible</string>
 
@@ -687,8 +687,8 @@
     <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blocked contacts will still be able to call you or send you a message, but you will never receive those calls or messages.</string>
     <string name="UnknownSenderView_block">Block</string>
     <string name="UnknownSenderView_share_profile_with_s">Make profile visible to %s?</string>
-    <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">The easiest way to make your profile information visible is to add the sender to your contacts. If you do not wish to, you can still share your profile information this way.</string>
-    <string name="UnknownSenderView_share_profile">Share profile</string>
+    <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">The easiest way to make your profile avatar and profile name visible is to add the sender to your contacts. If you do not wish to, you can still make your profile visible this way.</string>
+    <string name="UnknownSenderView_share_profile">Make profile visible</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Send message?</string>
