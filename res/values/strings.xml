@@ -264,14 +264,14 @@
     <string name="ConversationListItemAction_archived_conversations_d">Archived conversations (%d)</string>
 
     <!-- CreateProfileActivity -->
-    <string name="CreateProfileActivity_your_profile_info">Your profile info</string>
+    <string name="CreateProfileActivity_your_profile_info">Your profile information</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
     <string name="CreateProfileActivity_too_long">Too long</string>
     <string name="CreateProfileActivity_profile_name">Profile Name</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, and the Signal service never has access to this information.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, so even Signal service never has access to your profile information.</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
@@ -1303,7 +1303,7 @@
     <string name="preferences_communication__sealed_sender_display_indicators">Show sealed sender indicator</string>
     <string name="preferences_communication__sealed_sender_display_indicators_description">Show a status icon when you select "Message details" on messages that were delivered using sealed sender.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Allow from anyone</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people with whom you have not shared your profile.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people to whom you have not made your profile visible.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Learn more</string>
 
     <!-- **************************************** -->
