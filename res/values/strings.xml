@@ -274,8 +274,8 @@
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, so even Signal service never has access to your profile information.</string>
 
     <!-- CustomDefaultPreference -->
-    <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
-    <string name="CustomDefaultPreference_using_default">Using default: %s</string>
+    <string name="CustomDefaultPreference_using_custom">Using custom setting: %s</string>
+    <string name="CustomDefaultPreference_using_default">Using Android default: %s</string>
     <string name="CustomDefaultPreference_none">None</string>
 
     <!-- DateUtils -->
@@ -310,7 +310,7 @@
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
-    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
+    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable Android battery optimizations that prevent Signal from retrieving messages while inactive.</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
@@ -727,7 +727,7 @@
     <string name="ApplicationMigrationService_import_in_progress">Import in progress</string>
     <string name="ApplicationMigrationService_importing_text_messages">Importing text messages</string>
     <string name="ApplicationMigrationService_import_complete">Import complete</string>
-    <string name="ApplicationMigrationService_system_database_import_is_complete">System database import is complete.</string>
+    <string name="ApplicationMigrationService_system_database_import_is_complete">Android database import is complete.</string>
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Tap to open.</string>
@@ -762,7 +762,7 @@
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
 
     <!-- Notification Channels -->
-    <string name="NotificationChannel_messages">Default</string>
+    <string name="NotificationChannel_messages">Android default</string>
     <string name="NotificationChannel_calls">Calls</string>
     <string name="NotificationChannel_failures">Failures</string>
     <string name="NotificationChannel_backups">Backups</string>
@@ -1025,7 +1025,7 @@
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal\'s encrypted database?</string>
-    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">The default system database will not be modified or altered in any way.</string>
+    <string name="database_migration_activity__the_default_system_database_will_not_be_modified">The default Android database will not be modified or altered in any way.</string>
     <string name="database_migration_activity__skip">Skip</string>
     <string name="database_migration_activity__import">Import</string>
     <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">This could take a moment. Please be patient, we\'ll notify you when the import is complete.</string>
@@ -1034,8 +1034,8 @@
     <!-- database_upgrade_activity -->
     <string name="database_upgrade_activity__updating_database">Updating database…</string>
 
-    <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
-    <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the default system messenger app</string>
+    <string name="import_fragment__import_system_sms_database">Import Android SMS database</string>
+    <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the Android default messenger app</string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
     <string name="import_fragment__import_a_plaintext_backup_file">Import a plaintext backup file. Compatible with \'SMS Backup &amp; Restore.\'</string>
 
@@ -1080,7 +1080,7 @@
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
     <string name="recipient_preferences__custom_notifications">Custom notifications</string>
-    <string name="recipient_preferences__custom_notifications_settings">System notification settings</string>
+    <string name="recipient_preferences__custom_notifications_settings">Android notification settings</string>
     <string name="recipient_preferences__notification_sound">Notification sound</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
@@ -1150,7 +1150,7 @@
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import</string>
-    <string name="arrays__use_default">Use default</string>
+    <string name="arrays__use_default">Use Android default</string>
     <string name="arrays__use_custom">Use custom</string>
 
     <string name="arrays__mute_for_one_hour">Mute for 1 hour</string>
@@ -1162,7 +1162,7 @@
     <string name="arrays__mute_for_one_month">Mute for 3 months</string>
     <string name="arrays__mute_for_one_year">Mute for 1 year</string>
 
-    <string name="arrays__settings_default">Settings default</string>
+    <string name="arrays__settings_default">Android default</string>
     <string name="arrays__enabled">Enabled</string>
     <string name="arrays__disabled">Disabled</string>
 
@@ -1180,7 +1180,7 @@
     <string name="arrays__large">Large</string>
     <string name="arrays__extra_large">Extra large</string>
 
-    <string name="arrays__default">Default</string>
+    <string name="arrays__default">Android default</string>
     <string name="arrays__high">High</string>
     <string name="arrays__max">Max</string>
 
@@ -1212,7 +1212,7 @@
     <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
     <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
     <string name="preferences__notifications">Notifications</string>
-    <string name="preferences__system_notification_settings">System notification settings</string>
+    <string name="preferences__system_notification_settings">Android notification settings</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__led_color_unknown">Unknown</string>
     <string name="preferences__led_color_not_using">Don\'t use LED</string>
@@ -1261,7 +1261,7 @@
     <string name="preferences__dark_theme">Dark</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
-    <string name="preferences__default">Default</string>
+    <string name="preferences__default">Android default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__signal_messages_and_calls">Signal messages and calls</string>
     <string name="preferences__free_private_messages_and_calls">Free private messages and calls to Signal users</string>
@@ -1281,7 +1281,7 @@
     <string name="preferences_chats__when_roaming">When roaming</string>
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_trimming">Limit message storage</string>
-    <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
+    <string name="preferences_advanced__use_system_emoji">Use Android emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
     <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
@@ -1412,8 +1412,8 @@
     <string name="reminder_header_expired_build_details">Messages will no longer send successfully. Tap to update to the most recent version.</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
-    <string name="reminder_header_sms_import_title">Import system SMS</string>
-    <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into Signal\'s encrypted database.</string>
+    <string name="reminder_header_sms_import_title">Import Android SMS</string>
+    <string name="reminder_header_sms_import_text">Tap to copy SMS messages from the Android default SMS app into Signal\'s encrypted database.</string>
     <string name="reminder_header_push_title">Enable Signal messages and calls</string>
     <string name="reminder_header_push_text">Upgrade your communication experience.</string>
     <string name="reminder_header_invite_title">Invite to Signal</string>
