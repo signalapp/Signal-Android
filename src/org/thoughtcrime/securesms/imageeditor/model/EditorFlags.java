@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.imageeditor.model;
 
+import android.support.annotation.NonNull;
+
 /**
  * Flags for an {@link EditorElement}.
  * <p>
@@ -112,5 +114,10 @@ public final class EditorFlags {
 
   void restoreState(int flags) {
     this.flags = flags;
+  }
+
+  public void set(@NonNull EditorFlags from) {
+    this.persistedFlags = from.persistedFlags;
+    this.flags = from.flags;
   }
 }

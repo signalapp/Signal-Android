@@ -107,7 +107,7 @@ public final class ImageEditorHud extends LinearLayout {
 
     setVisibleViewsWhenInMode(Mode.MOVE_DELETE, confirmButton, deleteButton);
 
-    setVisibleViewsWhenInMode(Mode.CROP, confirmButton, cropFlipButton, cropRotateButton, cropAspectLock);
+    setVisibleViewsWhenInMode(Mode.CROP, confirmButton, cropFlipButton, cropRotateButton, cropAspectLock, undoButton);
 
     for (Set<View> views : visibilityModeMap.values()) {
       allViews.addAll(views);

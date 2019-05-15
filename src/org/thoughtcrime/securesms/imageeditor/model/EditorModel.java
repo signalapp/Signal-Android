@@ -40,8 +40,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   @NonNull
   private Runnable invalidate = NULL_RUNNABLE;
 
-  private final ElementStack undoStack;
-  private final ElementStack redoStack;
+  private final UndoRedoStacks undoRedoStacks;
+  private final UndoRedoStacks cropUndoRedoStacks;
 
   private EditorElementHierarchy editorElementHierarchy;
 
@@ -51,16 +51,16 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   public EditorModel() {
     this.size                   = new Point(1024, 1024);
     this.editorElementHierarchy = EditorElementHierarchy.create();
-    this.undoStack              = new ElementStack(50);
-    this.redoStack              = new ElementStack(50);
+    this.undoRedoStacks         = new UndoRedoStacks(50);
+    this.cropUndoRedoStacks     = new UndoRedoStacks(50);
   }
 
   private EditorModel(Parcel in) {
     ClassLoader classLoader     = getClass().getClassLoader();
     this.size                   = new Point(in.readInt(), in.readInt());
     this.editorElementHierarchy = EditorElementHierarchy.create(in.readParcelable(classLoader));
-    this.undoStack              = in.readParcelable(classLoader);
-    this.redoStack              = in.readParcelable(classLoader);
+    this.undoRedoStacks         = in.readParcelable(classLoader);
+    this.cropUndoRedoStacks     = in.readParcelable(classLoader);
   }
 
   public void setInvalidate(@Nullable Runnable invalidate) {
@@ -107,28 +107,35 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   }
 
   public void pushUndoPoint() {
-    if (undoStack.tryPush(editorElementHierarchy.getRoot())) {
-      redoStack.clear();
+    UndoRedoStacks stacks = isCropping() ? cropUndoRedoStacks : undoRedoStacks;
+
+    if (stacks.getUndoStack().tryPush(editorElementHierarchy.getRoot())) {
+      stacks.getRedoStack().clear();
     }
   }
 
   public void undo() {
-    undoRedo(undoStack, redoStack);
+    boolean        cropping = isCropping();
+    UndoRedoStacks stacks   = cropping ? cropUndoRedoStacks : undoRedoStacks;
+
+    undoRedo(stacks.getUndoStack(), stacks.getRedoStack(), cropping);
   }
 
   public void redo() {
-    undoRedo(redoStack, undoStack);
+    boolean        cropping = isCropping();
+    UndoRedoStacks stacks   = cropping ? cropUndoRedoStacks : undoRedoStacks;
+
+    undoRedo(stacks.getRedoStack(), stacks.getUndoStack(), cropping);
   }
 
-  private void undoRedo(@NonNull ElementStack fromStack, @NonNull ElementStack toStack) {
+  private void undoRedo(@NonNull ElementStack fromStack, @NonNull ElementStack toStack, boolean keepEditorState) {
     final EditorElement popped = fromStack.pop();
-
     if (popped != null) {
       EditorElement oldRootElement = editorElementHierarchy.getRoot();
       editorElementHierarchy = EditorElementHierarchy.create(popped);
       toStack.tryPush(oldRootElement);
 
-      restoreStateWithAnimations(oldRootElement, editorElementHierarchy.getRoot(), invalidate);
+      restoreStateWithAnimations(oldRootElement, editorElementHierarchy.getRoot(), invalidate, keepEditorState);
       invalidate.run();
 
       // re-zoom image root as the view port might be different now
@@ -136,7 +143,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     }
   }
 
-  private static void restoreStateWithAnimations(@NonNull EditorElement fromRootElement, @NonNull EditorElement toRootElement, @NonNull Runnable onInvalidate) {
+  private static void restoreStateWithAnimations(@NonNull EditorElement fromRootElement, @NonNull EditorElement toRootElement, @NonNull Runnable onInvalidate, boolean keepEditorState) {
     Map<UUID, EditorElement> fromMap = getElementMap(fromRootElement);
     Map<UUID, EditorElement> toMap = getElementMap(toRootElement);
 
@@ -145,6 +152,11 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
       EditorElement toElement = toMap.get(fromElement.getId());
       if (toElement != null) {
         toElement.animateFrom(fromElement.getLocalMatrixAnimating(), onInvalidate);
+
+        if (keepEditorState) {
+          toElement.getEditorMatrix().set(fromElement.getEditorMatrix());
+          toElement.getFlags().set(fromElement.getFlags());
+        }
       } else {
         // element is removed
         EditorElement parentFrom = fromRootElement.parentOf(fromElement);
@@ -173,6 +185,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   public void startCrop() {
     pushUndoPoint();
+    cropUndoRedoStacks.getUndoStack().clear();
+    cropUndoRedoStacks.getUndoStack().clear();
     editorElementHierarchy.startCrop(invalidate);
   }
 
@@ -236,8 +250,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     dest.writeInt(size.x);
     dest.writeInt(size.y);
     dest.writeParcelable(editorElementHierarchy.getRoot(), flags);
-    dest.writeParcelable(undoStack, flags);
-    dest.writeParcelable(redoStack, flags);
+    dest.writeParcelable(undoRedoStacks, flags);
+    dest.writeParcelable(cropUndoRedoStacks, flags);
   }
 
   /**
@@ -337,11 +351,12 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     parent.addElement(element);
 
     if (parent != mainImage) {
-      undoStack.clear();
+      undoRedoStacks.getUndoStack().clear();
     }
   }
 
   public boolean isChanged() {
+    ElementStack undoStack = undoRedoStacks.getUndoStack();
     return !undoStack.isEmpty() || undoStack.isOverflowed();
   }
 
@@ -381,7 +396,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     editorElementHierarchy.flipRotate(0, -1, 1, visibleViewPort, invalidate);
   }
 
-  public void flipVerticle() {
+  public void flipVertical() {
     pushUndoPoint();
     editorElementHierarchy.flipRotate(0, 1, -1, visibleViewPort, invalidate);
   }
