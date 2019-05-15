@@ -212,7 +212,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   protected void addText() {
-    String        initialText = requireContext().getString(R.string.ImageEditorFragment_initial_text);
+    String        initialText = "";
     int           color       = imageEditorHud.getActiveColor();
     TextRenderer  renderer    = new TextRenderer(initialText, color);
     EditorElement element     = new EditorElement(renderer);

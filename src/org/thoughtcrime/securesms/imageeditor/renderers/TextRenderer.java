@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.imageeditor.renderers;
 
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -10,6 +11,7 @@ import android.os.Parcel;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.animation.Interpolator;
 
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
@@ -42,6 +44,9 @@ public final class TextRenderer extends InvalidateableRenderer implements Colora
   private int     selStart;
   private int     selEnd;
   private boolean hasFocus;
+
+  private ValueAnimator cursorAnimator;
+  private float         cursorAnimatedValue;
 
   public TextRenderer(@Nullable String text, @ColorInt int color) {
     setColor(color);
@@ -78,9 +83,12 @@ public final class TextRenderer extends InvalidateableRenderer implements Colora
 
     rendererContext.canvasMatrix.concat(projectionMatrix);
 
-    canvas.clipRect(textBounds);
-
     if (hasFocus) {
+      if (selStart == selEnd) {
+        selectionPaint.setAlpha((int) (cursorAnimatedValue * 128));
+      } else {
+        selectionPaint.setAlpha(128);
+      }
       canvas.drawRect(selectionBounds, selectionPaint);
     }
 
@@ -166,7 +174,7 @@ public final class TextRenderer extends InvalidateableRenderer implements Colora
     if (this.color != color) {
       this.color = color;
       paint.setColor(color);
-      selectionPaint.setColor(color & ~0xff000000 | 0x7f000000);
+      selectionPaint.setColor(color);
       invalidate();
     }
   }
@@ -198,7 +206,33 @@ public final class TextRenderer extends InvalidateableRenderer implements Colora
   public void setFocused(boolean hasFocus) {
     if (this.hasFocus != hasFocus) {
       this.hasFocus = hasFocus;
-      invalidate();
+      if (cursorAnimator != null) {
+          cursorAnimator.cancel();
+          cursorAnimator = null;
+      }
+      if (hasFocus) {
+        cursorAnimator = ValueAnimator.ofFloat(0, 1);
+        cursorAnimator.setInterpolator(pulseInterpolator());
+        cursorAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        cursorAnimator.setDuration(1000);
+        cursorAnimator.addUpdateListener(animation -> {
+          cursorAnimatedValue = (float) animation.getAnimatedValue();
+          invalidate();
+        });
+        cursorAnimator.start();
+      } else {
+        invalidate();
+      }
     }
+  }
+
+  private static Interpolator pulseInterpolator() {
+    return input -> {
+      input *= 5;
+      if (input > 1) {
+        input = 4 - input;
+      }
+      return Math.max(0, Math.min(1, input));
+    };
   }
 }

@@ -623,8 +623,6 @@
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
 
-    <string name="ImageEditorFragment_initial_text">Signal</string>
-
     <!-- Search -->
     <string name="SearchFragment_no_results">No results found for \'%s\'</string>
     <string name="SearchFragment_header_conversations">Conversations</string>
