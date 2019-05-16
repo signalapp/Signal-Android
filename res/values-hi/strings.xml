@@ -488,6 +488,7 @@
   <string name="RegistrationActivity_call">कोल</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">छवि परिवर्तनों को सहेजने में विफल</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' के लिए कोई परिणाम नहीं मिला</string>
   <string name="SearchFragment_header_conversations">संवाद</string>
@@ -597,6 +598,8 @@
   <string name="MessageNotifier_mark_read">पढ़ा हुआ चिह्नित करें</string>
   <string name="MessageNotifier_media_message">मीडिया संदेश</string>
   <string name="MessageNotifier_reply">उत्तर</string>
+  <string name="MessageNotifier_signal_message">Signal संदेश</string>
+  <string name="MessageNotifier_unsecured_sms">असुरक्षित एसएमएस</string>
   <string name="MessageNotifier_pending_signal_messages">लंबित Signal संदेश</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">आपके पास Signal संदेश लंबित हैं, खोलने और पुनर्प्राप्त करने के लिए टैप करें</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>

@@ -518,6 +518,7 @@
   <string name="RegistrationActivity_call">撥打</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">無法儲存圖片的變更</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">沒有找到「%s」的結果</string>
   <string name="SearchFragment_header_conversations">對話</string>
@@ -629,6 +630,8 @@
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_reply">回覆</string>
+  <string name="MessageNotifier_signal_message">Signal 訊息</string>
+  <string name="MessageNotifier_unsecured_sms">不安全的簡訊</string>
   <string name="MessageNotifier_pending_signal_messages">擱置的 Signal 訊息</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Signal 訊息，輕觸打開及取得訊息</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

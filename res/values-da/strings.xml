@@ -541,6 +541,7 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_call">Ring op</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fejl ved forsøg på at gemme redigeret billede</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ingen resultater fundet for ´%s´</string>
   <string name="SearchFragment_header_conversations">Samtaler</string>
@@ -652,6 +653,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
   <string name="MessageNotifier_reply">Svar</string>
+  <string name="MessageNotifier_signal_message">Signalbesked</string>
+  <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Afventende Signalbeskeder</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du har afventende Signalbeskeder, tap for at åbne og modtage</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>

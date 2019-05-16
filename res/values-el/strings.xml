@@ -537,6 +537,7 @@
   <string name="RegistrationActivity_call">Κλήση</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Αποτυχία αποθήκευσης των αλλαγών της εικόνας</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Δε βρέθηκαν αποτελέσματα για \"%s\"</string>
   <string name="SearchFragment_header_conversations">Συνομιλίες</string>
@@ -647,6 +648,8 @@
   <string name="MessageNotifier_mark_read">Σημείωση ως αναγνωσμένο</string>
   <string name="MessageNotifier_media_message">Μήνυμα πολυμέσων</string>
   <string name="MessageNotifier_reply">Απάντηση</string>
+  <string name="MessageNotifier_signal_message">Μήνυμα Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Μη ασφαλές SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Μηνύματα Signal σε αναμονή</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Έχετε μηνύματα Signal σε αναμονή, πατήστε για να τα ανοίξετε και να τα λάβετε</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

@@ -577,6 +577,7 @@
   <string name="RegistrationActivity_call">חייג</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">נכשל בשמירת שינויי תמונה</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">לא נמצאו תוצאות עבור \'%s\'</string>
   <string name="SearchFragment_header_conversations">שיחות</string>
@@ -686,6 +687,8 @@
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_media_message">הודעת מדיה</string>
   <string name="MessageNotifier_reply">השב</string>
+  <string name="MessageNotifier_signal_message">הודעת Signal</string>
+  <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
   <string name="MessageNotifier_pending_signal_messages">הודעות Signal ממתינות</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">יש לך הודעות Signal ממתינות, הקש כדי לפתוח ולאחזר אותן</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>

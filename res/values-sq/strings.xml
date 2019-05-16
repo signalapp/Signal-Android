@@ -539,6 +539,7 @@
   <string name="RegistrationActivity_call">Thirrje</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">S’u arrit të ruheshin ndryshime të figurës.</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">S\’u gjetën përfundime për \'%s\'</string>
   <string name="SearchFragment_header_conversations">Biseda</string>
@@ -648,6 +649,8 @@
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_media_message">Mesazh media</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
+  <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
   <string name="MessageNotifier_pending_signal_messages">Mesazhe Signal pezull</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Keni mesazhe Signal pezull, prekeni për t\’ia hapur dhe rimarrë</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

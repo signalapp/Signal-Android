@@ -405,6 +405,7 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_call">wito</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">imefeli kuhifadhi picha zilizobadilika</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Hakuna matokeo yamepatikana kwa \'1%s\'</string>
   <string name="SearchFragment_header_conversations">mazungumzo</string>
@@ -509,6 +510,8 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_mark_read">soma nakili</string>
   <string name="MessageNotifier_media_message">Ujumbe wa vyombo vya habari</string>
   <string name="MessageNotifier_reply">jibu</string>
+  <string name="MessageNotifier_signal_message">ujumbe wa Signal</string>
+  <string name="MessageNotifier_unsecured_sms">ujumbe sio salama</string>
   <string name="MessageNotifier_pending_signal_messages">Ujumbe wa Signal inasubiri</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">una ujumbe wa Signal unasubiri, gusa kufungua na kurudi</string>
   <string name="MessageNotifier_unknown_contact_message">Mawasiliano</string>

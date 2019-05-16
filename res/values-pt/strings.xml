@@ -537,6 +537,7 @@ especificou (%s) é inválido.</string>
   <string name="RegistrationActivity_call">Telefonar</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao guardar as alterações da imagem</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Sem resultados para \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversas</string>
@@ -648,6 +649,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimédia</string>
   <string name="MessageNotifier_reply">Responder</string>
+  <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
   <string name="MessageNotifier_pending_signal_messages">Mensagens do Signal pendentes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tem mensagens do Signal pendentes, toque para abrir e obter</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>

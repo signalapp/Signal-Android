@@ -558,6 +558,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_call">Apelează</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvarea modificărilor din imagine a eșuat</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nu s-a găsit nici un rezultat pentru \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversații</string>
@@ -667,6 +668,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_mark_read">Marchează ca citit</string>
   <string name="MessageNotifier_media_message">Mesaj media</string>
   <string name="MessageNotifier_reply">Răspunde</string>
+  <string name="MessageNotifier_signal_message">Mesaj Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS nesecurizat</string>
   <string name="MessageNotifier_pending_signal_messages">Mesaje Signal în așteptare</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Ai mesaje Signal în așteptare, apasă pentru deschidere și recuperare</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

@@ -581,6 +581,7 @@
   <string name="RegistrationActivity_call">Skambinti</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nerasta jokių rezultatų, atitinkančių \"%s\"</string>
   <string name="SearchFragment_header_conversations">Pokalbiai</string>
@@ -692,6 +693,8 @@
   <string name="MessageNotifier_mark_read">Žymėti kaip skaitytą</string>
   <string name="MessageNotifier_media_message">Medijos žinutė</string>
   <string name="MessageNotifier_reply">Atsakyti</string>
+  <string name="MessageNotifier_signal_message">Signal žinutė</string>
+  <string name="MessageNotifier_unsecured_sms">Neapsaugota SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Laukiančios Signal žinutės</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Jūs turite laukiančių Signal žinučių, bakstelėkite, norėdami atverti ir jas gauti</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

@@ -517,6 +517,7 @@
   <string name="RegistrationActivity_call">ហៅចេញ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">បានបរាជ័យក្នុងការរក្សាទុកការផ្លាស់ប្តូររូបភាព</string>
+  <string name="ImageEditorFragment_initial_text"> Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
   <string name="SearchFragment_header_conversations">ការសន្ទនា</string>
@@ -626,6 +627,8 @@
   <string name="MessageNotifier_mark_read">សម្គាល់ថាបានអាន</string>
   <string name="MessageNotifier_media_message">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
+  <string name="MessageNotifier_signal_message">សារ Signal </string>
+  <string name="MessageNotifier_unsecured_sms">SMS គ្មានសុវត្ថិភាព</string>
   <string name="MessageNotifier_pending_signal_messages">សារ Signal បញ្ចូនមិនទាន់សម្រេច</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">អ្នកមានសារSignal មិនទាន់បញ្ចូនសម្រេច ចុចបើក និងទាញយកមកវិញ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

@@ -541,6 +541,7 @@
   <string name="RegistrationActivity_call">Helista</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Tulemusi ei leitud otsingule \'%s\'</string>
   <string name="SearchFragment_header_conversations">Vestlused</string>
@@ -652,6 +653,8 @@
   <string name="MessageNotifier_mark_read">Märgi loetuks</string>
   <string name="MessageNotifier_media_message">Meediasõnum</string>
   <string name="MessageNotifier_reply">Vasta</string>
+  <string name="MessageNotifier_signal_message">Signali sõnum</string>
+  <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Ootel Signali sõnumid</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Sul on ootel Signali sõnumeid, koputa vaatamiseks</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

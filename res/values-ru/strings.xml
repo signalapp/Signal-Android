@@ -575,6 +575,7 @@
   <string name="RegistrationActivity_call">Вызов</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не удалось сохранить изменения изображения</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Результаты не найдены для \'%s\'</string>
   <string name="SearchFragment_header_conversations">Беседы</string>
@@ -686,6 +687,8 @@
   <string name="MessageNotifier_mark_read">Прочитано</string>
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_reply">Ответить</string>
+  <string name="MessageNotifier_signal_message">Сообщение Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Незащищённое SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Неполученные сообщения</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">У вас есть неполученные сообщения в Signal. Нажмите, чтобы открыть приложение и получить их.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

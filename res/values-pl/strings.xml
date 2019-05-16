@@ -576,6 +576,7 @@
   <string name="RegistrationActivity_call">Zadzwoń</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Brak wyników dla \'%s\'</string>
   <string name="SearchFragment_header_conversations">Rozmowy</string>
@@ -684,6 +685,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_mark_read">Przeczytane</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
+  <string name="MessageNotifier_signal_message">Wiadomość Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Nieszyfrowany SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Oczekujące wiadomości Signal</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Masz oczekujące wiadomości Signal. Dotknij, aby otworzyć.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

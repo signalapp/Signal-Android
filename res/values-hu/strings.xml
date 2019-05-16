@@ -543,6 +543,7 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_call">Hívás</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nem sikerült elmenteni a kép változásait</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nincs találat a \'%s\' kifejezésre</string>
   <string name="SearchFragment_header_conversations">Beszélgetések</string>
@@ -654,6 +655,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_mark_read">Olvasottnak jelöl</string>
   <string name="MessageNotifier_media_message">Médiaüzenet</string>
   <string name="MessageNotifier_reply">Válasz</string>
+  <string name="MessageNotifier_signal_message">Signal üzenet</string>
+  <string name="MessageNotifier_unsecured_sms">Titkosítatlan SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Függő Signal üzenetek</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Függő Signal üzeneteid vannak, koppints a megnyitáshoz és letöltéshez</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

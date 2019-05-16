@@ -228,7 +228,7 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
   <!--ConversationListItemAction-->
-  <string name="ConversationListItemAction_archived_conversations_d">Arşivlenen sohbetler (%d)</string>
+  <string name="ConversationListItemAction_archived_conversations_d">Arşivlenmiş sohbetler (%d)</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Profil bilgileriniz</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil fotoğrafı kaydedilirken hata</string>
@@ -542,6 +542,7 @@
   <string name="RegistrationActivity_call">Ara</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Görüntü değişiklikleri kaydedilemedi</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' için hiç sonuç bulunamadı.</string>
   <string name="SearchFragment_header_conversations">Sohbetler</string>
@@ -570,7 +571,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s güvenli oturumu sıfırladı.</string>
   <string name="SmsMessageRecord_duplicate_message">Tekrarlanan ileti.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_group_updated">Grup güncelledi</string>
+  <string name="ThreadRecord_group_updated">Grup güncellendi</string>
   <string name="ThreadRecord_left_the_group">Gruptan ayrıldı</string>
   <string name="ThreadRecord_secure_session_reset">Güvenli oturumu sıfırla.</string>
   <string name="ThreadRecord_draft">Taslak:</string>
@@ -651,6 +652,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_mark_read">Okundu işaretle</string>
   <string name="MessageNotifier_media_message">Medya iletisi</string>
   <string name="MessageNotifier_reply">Cevapla</string>
+  <string name="MessageNotifier_signal_message">Signal İletisi</string>
+  <string name="MessageNotifier_unsecured_sms">Şifresiz SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Bekleyen Signal iletileri</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Bekleyen Signal iletileriniz var, almak ve açmak için dokunun</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

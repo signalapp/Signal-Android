@@ -541,6 +541,7 @@
   <string name="RegistrationActivity_call">Alvoko</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Malsukcesis konservi bildajn ŝanĝojn</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Neniu rezulto troveblas pri „%s“</string>
   <string name="SearchFragment_header_conversations">Interparoloj</string>
@@ -651,6 +652,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_mark_read">Marki legita</string>
   <string name="MessageNotifier_media_message">Aŭdvida mesaĝo</string>
   <string name="MessageNotifier_reply">Respondi</string>
+  <string name="MessageNotifier_signal_message">Signal-mesaĝo</string>
+  <string name="MessageNotifier_unsecured_sms">Nesekura SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Pritraktotaj Signal-aj mesaĝoj</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Vi havas pritraktotajn Signal-ajn mesaĝojn; tuŝetu por malfermi kaj ricevi ilin</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

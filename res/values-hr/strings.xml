@@ -537,6 +537,7 @@ telefona</string>
   <string name="RegistrationActivity_call">Poziv</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Slikovne promjene nisu uspjele.</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nema rezultata za \'%s\'</string>
   <string name="SearchFragment_header_conversations">Razgovori</string>
@@ -642,6 +643,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MessageNotifier_mark_read">Označi pročitano</string>
   <string name="MessageNotifier_media_message">Multimedijalna poruka</string>
   <string name="MessageNotifier_reply">Odgovori</string>
+  <string name="MessageNotifier_unsecured_sms">Nesigurni SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Signal poruke na čekanju</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Imate Signal poruka na čekanju, pritisnite kako biste ih otvorili i preuzeli</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>

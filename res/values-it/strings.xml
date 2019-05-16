@@ -539,6 +539,7 @@ Sii te stesso in ogni messaggio.</string>
   <string name="RegistrationActivity_call">Chiama</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvataggio modifiche all\'immagine fallito</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nessun risultato trovato per \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversazioni</string>
@@ -649,6 +650,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_mark_read">Segna come già letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
   <string name="MessageNotifier_reply">Rispondi</string>
+  <string name="MessageNotifier_signal_message">Messaggio Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
   <string name="MessageNotifier_pending_signal_messages">Messaggi Signal in attesa</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Hai messaggi Signal in attesa, tocca per aprire e ricevere</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

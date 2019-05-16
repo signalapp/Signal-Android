@@ -542,6 +542,7 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_call">Deitu</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Irudien aldaketak gordetzeak huts egin du</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ez dago emaitzarik \'%s\' bilatuta</string>
   <string name="SearchFragment_header_conversations">Txatak</string>
@@ -653,6 +654,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_mark_read">Markatu irakurritako gisa</string>
   <string name="MessageNotifier_media_message">Multimedia mezua</string>
   <string name="MessageNotifier_reply">Erantzun</string>
+  <string name="MessageNotifier_signal_message">Signal mezua</string>
+  <string name="MessageNotifier_unsecured_sms">SMS ez segurua</string>
   <string name="MessageNotifier_pending_signal_messages">Falta diren Signalen mezuak</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signal mezuak  zain dauzkazu, ukitu irekitzeko eta jasotzeko.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>

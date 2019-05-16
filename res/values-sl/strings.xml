@@ -574,6 +574,7 @@
   <string name="RegistrationActivity_call">Kliči</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
   <string name="SearchFragment_header_conversations">Pogovori</string>
@@ -683,6 +684,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_mark_read">Označi kot prebrano</string>
   <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string>
   <string name="MessageNotifier_reply">Odgovor</string>
+  <string name="MessageNotifier_signal_message">Sporočilo Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Nezavarovan SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Čakajoča sporočila Signal</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Imate čakajoča sporočila Signal. Tapnite za pridobitev in pregled.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

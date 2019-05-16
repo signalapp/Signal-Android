@@ -541,6 +541,7 @@
   <string name="RegistrationActivity_call">Zəng et</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Şəkilə olan dəyişiklikləri yadda saxlaya bilmədik</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' üçün nəticə tapılmadı</string>
   <string name="SearchFragment_header_conversations">Söhbətlər</string>
@@ -652,6 +653,8 @@
   <string name="MessageNotifier_mark_read">Oxunmuş kimi nişanla</string>
   <string name="MessageNotifier_media_message">Media mesajı</string>
   <string name="MessageNotifier_reply">Cavab ver</string>
+  <string name="MessageNotifier_signal_message">Signal Mesajı</string>
+  <string name="MessageNotifier_unsecured_sms">Mühafizə edilməyən SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Gözləmədə olan Signal mesajları</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Gözləmədə olan Signal mesajların var, açmaq və bərpa etmək üçün kliklə</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

@@ -537,6 +537,7 @@ puhelinnumero</string>
   <string name="RegistrationActivity_call">Soita</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kuvaan tehtyjen muutosten tallentaminen ei onnistunut.</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ei hakutuloksia: \'%s\'</string>
   <string name="SearchFragment_header_conversations">Keskustelut</string>
@@ -646,6 +647,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_media_message">Mediaviesti</string>
   <string name="MessageNotifier_reply">Vastaa</string>
+  <string name="MessageNotifier_signal_message">Signal viesti</string>
+  <string name="MessageNotifier_unsecured_sms">Salaamaton SMS-viesti</string>
   <string name="MessageNotifier_pending_signal_messages">Signal-viestejä odottamassa</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Sinulle on Signal-viestejä. Avaa ja hae napauttamalla.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

@@ -533,6 +533,7 @@
   <string name="RegistrationActivity_call">Mich anrufen</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
+  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Keine Ergebnisse für »%s« gefunden</string>
   <string name="SearchFragment_header_conversations">Unterhaltungen</string>
@@ -641,6 +642,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_mark_read">Gelesen</string>
   <string name="MessageNotifier_media_message">Nachricht mit Medieninhalten</string>
   <string name="MessageNotifier_reply">Antworten</string>
+  <string name="MessageNotifier_signal_message">Signal-Nachricht</string>
+  <string name="MessageNotifier_unsecured_sms">Unsichere SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Ausstehende Signal-Nachrichten</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du hast ausstehende Signal-Nachrichten. Antippen zum Öffnen und Abrufen.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
