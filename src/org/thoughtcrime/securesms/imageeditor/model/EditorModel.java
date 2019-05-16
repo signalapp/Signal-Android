@@ -37,11 +37,14 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   private static final int MINIMUM_OUTPUT_WIDTH = 0;
 
+  private static final float MAXIMUM_CROP = 0.20f;
+
   @NonNull
   private Runnable invalidate = NULL_RUNNABLE;
 
   private final UndoRedoStacks undoRedoStacks;
   private final UndoRedoStacks cropUndoRedoStacks;
+  private final InBoundsMemory inBoundsMemory = new InBoundsMemory();
 
   private EditorElementHierarchy editorElementHierarchy;
 
@@ -88,7 +91,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return null;
   }
 
-  private @Nullable Matrix findElementMatrix(@NonNull EditorElement element, @NonNull Matrix viewMatrix) {
+  public @Nullable Matrix findElementMatrix(@NonNull EditorElement element, @NonNull Matrix viewMatrix) {
     Matrix inverse = findElementInverseMatrix(element, viewMatrix);
     if (inverse != null) {
       Matrix regular = new Matrix();
@@ -107,7 +110,12 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   }
 
   public void pushUndoPoint() {
-    UndoRedoStacks stacks = isCropping() ? cropUndoRedoStacks : undoRedoStacks;
+    boolean cropping = isCropping();
+    if (cropping && !currentCropIsAcceptable()) {
+      return;
+    }
+
+    UndoRedoStacks stacks = cropping ? cropUndoRedoStacks : undoRedoStacks;
 
     if (stacks.getUndoStack().tryPush(editorElementHierarchy.getRoot())) {
       stacks.getRedoStack().clear();
@@ -140,12 +148,14 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
       // re-zoom image root as the view port might be different now
       editorElementHierarchy.updateViewToCrop(visibleViewPort, invalidate);
+
+      inBoundsMemory.push(editorElementHierarchy.getMainImage(), editorElementHierarchy.getCropEditorElement());
     }
   }
 
   private static void restoreStateWithAnimations(@NonNull EditorElement fromRootElement, @NonNull EditorElement toRootElement, @NonNull Runnable onInvalidate, boolean keepEditorState) {
     Map<UUID, EditorElement> fromMap = getElementMap(fromRootElement);
-    Map<UUID, EditorElement> toMap = getElementMap(toRootElement);
+    Map<UUID, EditorElement> toMap   = getElementMap(toRootElement);
 
     for (EditorElement fromElement : fromMap.values()) {
       fromElement.stopAnimation();
@@ -188,6 +198,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     cropUndoRedoStacks.getUndoStack().clear();
     cropUndoRedoStacks.getUndoStack().clear();
     editorElementHierarchy.startCrop(invalidate);
+    inBoundsMemory.push(editorElementHierarchy.getMainImage(), editorElementHierarchy.getCropEditorElement());
   }
 
   public void doneCrop() {
@@ -196,9 +207,11 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   public void setCropAspectLock(boolean locked) {
     EditorFlags flags = editorElementHierarchy.getCropEditorElement().getFlags();
-    int currentState = flags.setAspectLocked(locked).getCurrentState();
+    int currentState  = flags.setAspectLocked(locked).getCurrentState();
+
     flags.reset();
-    flags.setAspectLocked(locked).persist();
+    flags.setAspectLocked(locked)
+         .persist();
     flags.restoreState(currentState);
   }
 
@@ -206,8 +219,111 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return editorElementHierarchy.getCropEditorElement().getFlags().isAspectLocked();
   }
 
+  public void postEdit(boolean allowScaleToRepairCrop) {
+    if (isCropping()) {
+      ensureFitsBounds(allowScaleToRepairCrop);
+    }
+  }
+
+  private void ensureFitsBounds(boolean allowScaleToRepairCrop) {
+    EditorElement mainImage = editorElementHierarchy.getMainImage();
+    if (mainImage == null) return;
+
+    EditorElement cropEditorElement = editorElementHierarchy.getCropEditorElement();
+
+    if (!currentCropIsAcceptable()) {
+      if (allowScaleToRepairCrop) {
+        if (!tryToScaleToFit(cropEditorElement, 0.9f)) {
+          tryToScaleToFit(mainImage, 2f);
+        }
+      }
+
+      if (!currentCropIsAcceptable()) {
+        inBoundsMemory.restore(mainImage, cropEditorElement, invalidate);
+      } else {
+        inBoundsMemory.push(mainImage, cropEditorElement);
+      }
+    }
+
+    editorElementHierarchy.dragDropRelease(visibleViewPort, invalidate);
+  }
+
+  /**
+   * Attempts to scale the supplied element such that {@link #cropIsWithinMainImageBounds} is true.
+   * <p>
+   * Does not respect minimum scale, so does need a further check to {@link #currentCropIsAcceptable} afterwards.
+   *
+   * @param element     The element to be scaled. If successful, it will be animated to the correct position.
+   * @param scaleAtMost The amount of scale to apply at most. Use < 1 for the crop, and > 1 for the image.
+   * @return true if successfully scaled the element. false if the element was left unchanged.
+   */
+  private boolean tryToScaleToFit(@NonNull EditorElement element, float scaleAtMost) {
+    Matrix  elementMatrix     = element.getLocalMatrix();
+    Matrix  original          = new Matrix(elementMatrix);
+    Matrix  lastSuccessful    = new Matrix();
+    boolean success           = false;
+    float   unsuccessfulScale = 1;
+    int     attempt           = 0;
+
+    do {
+      float tryScale = (scaleAtMost + unsuccessfulScale) / 2f;
+      elementMatrix.set(original);
+      elementMatrix.preScale(tryScale, tryScale);
+
+      if (cropIsWithinMainImageBounds(editorElementHierarchy)) {
+        scaleAtMost = tryScale;
+        success = true;
+        lastSuccessful.set(elementMatrix);
+      } else {
+        unsuccessfulScale = tryScale;
+      }
+      attempt++;
+    } while (attempt < 16 && Math.abs(scaleAtMost - unsuccessfulScale) > 0.001f);
+
+    elementMatrix.set(original);
+    if (success) {
+      element.animateLocalTo(lastSuccessful, invalidate);
+    }
+    return success;
+  }
+
   public void dragDropRelease() {
     editorElementHierarchy.dragDropRelease(visibleViewPort, invalidate);
+  }
+
+  /**
+   * Pixel count must be no smaller than the MAXIMUM_CROP of its original size and all points must be within the bounds.
+   */
+  private boolean currentCropIsAcceptable() {
+    Point outputSize        = getOutputSize();
+    int   outputPixelCount  = outputSize.x * outputSize.y;
+    int   minimumPixelCount = (int) (size.x * size.y * MAXIMUM_CROP * MAXIMUM_CROP);
+
+    return outputPixelCount >= minimumPixelCount &&
+           cropIsWithinMainImageBounds(editorElementHierarchy);
+  }
+
+  /**
+   * @return true if and only if the current crop rect is fully in the bounds.
+   */
+  private static boolean cropIsWithinMainImageBounds(@NonNull EditorElementHierarchy hierarchy) {
+    return Bounds.boundsRemainInBounds(hierarchy.imageMatrixRelativeToCrop());
+  }
+
+  /**
+   * Called as edits are underway.
+   */
+  public void moving(@NonNull EditorElement editorElement) {
+    if (!isCropping()) return;
+
+    EditorElement mainImage = editorElementHierarchy.getMainImage();
+    EditorElement cropEditorElement = editorElementHierarchy.getCropEditorElement();
+
+    if (editorElement == mainImage || editorElement == cropEditorElement) {
+      if (currentCropIsAcceptable()) {
+        inBoundsMemory.push(mainImage, cropEditorElement);
+      }
+    }
   }
 
   public void setVisibleViewPort(@NonNull RectF visibleViewPort) {
@@ -364,21 +480,36 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return findCropRelativeTo(editorElementHierarchy.getRoot());
   }
 
-  private RectF findCropRelativeTo(EditorElement element) {
+  RectF findCropRelativeTo(EditorElement element) {
     return findRelativeBounds(editorElementHierarchy.getCropEditorElement(), element);
   }
 
-  private RectF findRelativeBounds(EditorElement from, EditorElement to) {
-    Matrix matrix1 = findElementMatrix(from, new Matrix());
-    Matrix matrix2 = findElementInverseMatrix(to, new Matrix());
+  RectF findRelativeBounds(EditorElement from, EditorElement to) {
+    Matrix relative = findRelativeMatrix(from, to);
 
     RectF dst = new RectF(Bounds.FULL_BOUNDS);
-    if (matrix1 != null) {
-      matrix1.preConcat(matrix2);
-
-      matrix1.mapRect(dst, Bounds.FULL_BOUNDS);
+    if (relative != null) {
+      relative.mapRect(dst, Bounds.FULL_BOUNDS);
     }
     return dst;
+  }
+
+  /**
+   * Returns a matrix that maps points in the {@param from} element in to points in the {@param to} element.
+   *
+   * @param from
+   * @param to
+   * @return
+   */
+  @Nullable Matrix findRelativeMatrix(@NonNull EditorElement from, @NonNull EditorElement to) {
+    Matrix matrix = findElementInverseMatrix(to, new Matrix());
+    Matrix outOf  = findElementMatrix(from, new Matrix());
+
+    if (outOf != null && matrix != null) {
+      matrix.preConcat(outOf);
+      return matrix;
+    }
+    return null;
   }
 
   public void rotate90clockwise() {

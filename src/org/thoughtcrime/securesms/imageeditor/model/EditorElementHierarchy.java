@@ -66,7 +66,7 @@ final class EditorElementHierarchy {
 
   private EditorElementHierarchy(@NonNull EditorElement root) {
     this.root              = root;
-    this.view = this.root.getChild(0);
+    this.view              = this.root.getChild(0);
     this.flipRotate        = this.view.getChild(0);
     this.imageRoot         = this.flipRotate.getChild(0);
     this.overlay           = this.flipRotate.getChild(1);
@@ -237,6 +237,30 @@ final class EditorElementHierarchy {
     return matrix;
   }
 
+  /**
+   * Returns a matrix that maps points from the crop on to the visible image.
+   * <p>
+   * i.e. if a mapped point is in bounds, then the point is on the visible image.
+   */
+  @Nullable Matrix imageMatrixRelativeToCrop() {
+    EditorElement mainImage = getMainImage();
+    if (mainImage == null) return null;
+
+    Matrix matrix1 = new Matrix(imageCrop.getLocalMatrix());
+    matrix1.preConcat(cropEditorElement.getLocalMatrix());
+    matrix1.preConcat(cropEditorElement.getEditorMatrix());
+
+    Matrix matrix2 = new Matrix(mainImage.getLocalMatrix());
+    matrix2.preConcat(mainImage.getEditorMatrix());
+    matrix2.preConcat(imageCrop.getLocalMatrix());
+
+    Matrix inverse = new Matrix();
+    matrix2.invert(inverse);
+    inverse.preConcat(matrix1);
+
+    return inverse;
+  }
+
   void dragDropRelease(@NonNull RectF visibleViewPort, @NonNull Runnable invalidate) {
     if (cropEditorElement.getFlags().isVisible()) {
       updateViewToCrop(visibleViewPort, invalidate);
@@ -299,9 +323,10 @@ final class EditorElementHierarchy {
 
     matrix.preConcat(flipRotate.getLocalMatrix());
     matrix.preConcat(cropEditorElement.getLocalMatrix());
+    matrix.preConcat(cropEditorElement.getEditorMatrix());
     EditorElement mainImage = getMainImage();
     if (mainImage != null) {
-      float xScale = 1f / xScale(mainImage.getLocalMatrix());
+      float xScale = 1f / (xScale(mainImage.getLocalMatrix()) * xScale(mainImage.getEditorMatrix()));
       matrix.preScale(xScale, xScale);
     }
 

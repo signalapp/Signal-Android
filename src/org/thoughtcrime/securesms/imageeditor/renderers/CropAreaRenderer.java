@@ -106,7 +106,7 @@ public final class CropAreaRenderer implements Renderer {
 
   @Override
   public boolean hitTest(float x, float y) {
-    return !Bounds.FULL_BOUNDS.contains(x, y);
+    return !Bounds.contains(x, y);
   }
 
   public static final Creator<CropAreaRenderer> CREATOR = new Creator<CropAreaRenderer>() {

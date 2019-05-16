@@ -65,6 +65,10 @@ public interface ThumbRenderer extends Renderer {
     public boolean isVerticalCenter() {
       return this == ControlPoint.TOP_CENTER || this == ControlPoint.BOTTOM_CENTER;
     }
+
+    public boolean isCenter() {
+      return isHorizontalCenter() || isVerticalCenter();
+    }
   }
 
   ControlPoint getControlPoint();

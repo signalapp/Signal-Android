@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 
 abstract class ElementEditSession implements EditSession {
 
-  private final Matrix        inverseMatrix;
+  private final Matrix inverseMatrix;
 
   final EditorElement selected;
 
@@ -60,7 +60,7 @@ abstract class ElementEditSession implements EditSession {
    * @param matrix Matrix to transform point with.
    * @param src    Input point.
    */
-  static void mapPoint(@NonNull PointF dst, @NonNull Matrix matrix, @NonNull PointF src) {
+  private static void mapPoint(@NonNull PointF dst, @NonNull Matrix matrix, @NonNull PointF src) {
     float[] in = { src.x, src.y };
     float[] out = new float[2];
     matrix.mapPoints(out, in);

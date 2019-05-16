@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 
 final class ElementScaleEditSession extends ElementEditSession {
 
-  private ElementScaleEditSession(EditorElement selected, Matrix inverseMatrix) {
+  private ElementScaleEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix) {
     super(selected, inverseMatrix);
   }
 
@@ -56,20 +56,20 @@ final class ElementScaleEditSession extends ElementEditSession {
   }
 
   @Override
-  public EditSession newPoint(Matrix newInverse, PointF point, int p) {
+  public EditSession newPoint(@NonNull Matrix newInverse, @NonNull PointF point, int p) {
     return this;
   }
 
   @Override
-  public EditSession removePoint(Matrix newInverse, int p) {
+  public EditSession removePoint(@NonNull Matrix newInverse, int p) {
     return convertToDrag(p, newInverse);
   }
 
-  private static double angle(PointF a, PointF b) {
+  private static double angle(@NonNull PointF a, @NonNull PointF b) {
     return Math.atan2(a.y - b.y, a.x - b.x);
   }
 
-  private ElementDragEditSession convertToDrag(int p, Matrix inverse) {
+  private ElementDragEditSession convertToDrag(int p, @NonNull Matrix inverse) {
     return ElementDragEditSession.startDrag(selected, inverse, endPointScreen[1 - p]);
   }
 

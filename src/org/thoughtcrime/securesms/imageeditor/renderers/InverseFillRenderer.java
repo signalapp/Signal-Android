@@ -44,7 +44,7 @@ public final class InverseFillRenderer implements Renderer {
 
   @Override
   public boolean hitTest(float x, float y) {
-    return !Bounds.FULL_BOUNDS.contains(x, y);
+    return !Bounds.contains(x, y);
   }
 
   public static final Creator<InverseFillRenderer> CREATOR = new Creator<InverseFillRenderer>() {

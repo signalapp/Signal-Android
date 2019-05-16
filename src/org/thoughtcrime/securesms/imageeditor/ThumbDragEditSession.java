@@ -39,7 +39,7 @@ class ThumbDragEditSession extends ElementEditSession {
 
     editorMatrix.postTranslate(-x, -y);
 
-    boolean aspectLocked = selected.getFlags().isAspectLocked();
+    boolean aspectLocked = selected.getFlags().isAspectLocked() && !controlPoint.isCenter();
 
     float defaultScale = aspectLocked ? 2 : 1;
 
@@ -57,12 +57,12 @@ class ThumbDragEditSession extends ElementEditSession {
   }
 
   @Override
-  public EditSession newPoint(Matrix newInverse, PointF point, int p) {
+  public EditSession newPoint(@NonNull Matrix newInverse, @NonNull PointF point, int p) {
     return null;
   }
 
   @Override
-  public EditSession removePoint(Matrix newInverse, int p) {
+  public EditSession removePoint(@NonNull Matrix newInverse, int p) {
     return null;
   }
 }

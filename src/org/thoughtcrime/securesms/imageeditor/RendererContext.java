@@ -96,6 +96,10 @@ public final class RendererContext {
     canvasMatrix.restore();
   }
 
+  public void getCurrent(@NonNull Matrix into) {
+    canvasMatrix.getCurrent(into);
+  }
+
   public interface Ready {
 
     Ready NULL = (renderer, cropMatrix, size) -> {

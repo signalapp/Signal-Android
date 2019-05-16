@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.imageeditor;
 
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 
@@ -18,13 +19,13 @@ import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
  */
 interface EditSession {
 
-  void movePoint(int p, PointF point);
+  void movePoint(int p, @NonNull PointF point);
 
   EditorElement getSelected();
 
-  EditSession newPoint(Matrix newInverse, PointF point, int p);
+  EditSession newPoint(@NonNull Matrix newInverse, @NonNull PointF point, int p);
 
-  EditSession removePoint(Matrix newInverse, int p);
+  EditSession removePoint(@NonNull Matrix newInverse, int p);
 
   void commit();
 }

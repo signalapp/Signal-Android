@@ -31,12 +31,12 @@ final class ElementDragEditSession extends ElementEditSession {
   }
 
   @Override
-  public EditSession newPoint(Matrix newInverse, PointF point, int p) {
+  public EditSession newPoint(@NonNull Matrix newInverse, PointF point, int p) {
     return ElementScaleEditSession.startScale(this, newInverse, point, p);
   }
 
   @Override
-  public EditSession removePoint(Matrix newInverse, int p) {
+  public EditSession removePoint(@NonNull Matrix newInverse, int p) {
     return this;
   }
 }
