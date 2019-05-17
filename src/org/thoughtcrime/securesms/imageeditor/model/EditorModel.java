@@ -122,14 +122,12 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
       return;
     }
 
-    UndoRedoStacks stacks = cropping ? cropUndoRedoStacks : undoRedoStacks;
-
-    stacks.pushState(editorElementHierarchy.getRoot());
+    getActiveUndoRedoStacks(cropping).pushState(editorElementHierarchy.getRoot());
   }
 
   public void undo() {
     boolean        cropping = isCropping();
-    UndoRedoStacks stacks   = cropping ? cropUndoRedoStacks : undoRedoStacks;
+    UndoRedoStacks stacks   = getActiveUndoRedoStacks(cropping);
 
     undoRedo(stacks.getUndoStack(), stacks.getRedoStack(), cropping);
 
@@ -138,7 +136,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   public void redo() {
     boolean        cropping = isCropping();
-    UndoRedoStacks stacks   = cropping ? cropUndoRedoStacks : undoRedoStacks;
+    UndoRedoStacks stacks   = getActiveUndoRedoStacks(cropping);
 
     undoRedo(stacks.getRedoStack(), stacks.getUndoStack(), cropping);
 
@@ -239,12 +237,20 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   }
 
   public void postEdit(boolean allowScaleToRepairCrop) {
-    if (isCropping()) {
+    boolean cropping = isCropping();
+    if (cropping) {
       ensureFitsBounds(allowScaleToRepairCrop);
     }
 
-    UndoRedoStacks stacks = isCropping() ? cropUndoRedoStacks : undoRedoStacks;
-    updateUndoRedoAvailableState(stacks);
+    updateUndoRedoAvailableState(getActiveUndoRedoStacks(cropping));
+  }
+
+  /**
+   * @param cropping Set to true if cropping is underway.
+   * @return The correct stack for the mode of operation.
+   */
+  private UndoRedoStacks getActiveUndoRedoStacks(boolean cropping) {
+    return cropping ? cropUndoRedoStacks : undoRedoStacks;
   }
 
   private void ensureFitsBounds(boolean allowScaleToRepairCrop) {
@@ -536,23 +542,25 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   }
 
   public void rotate90clockwise() {
-    pushUndoPoint();
-    editorElementHierarchy.flipRotate(90, 1, 1, visibleViewPort, invalidate);
+    flipRotate(90, 1, 1);
   }
 
   public void rotate90anticlockwise() {
-    pushUndoPoint();
-    editorElementHierarchy.flipRotate(-90, 1, 1, visibleViewPort, invalidate);
+    flipRotate(-90, 1, 1);
   }
 
   public void flipHorizontal() {
-    pushUndoPoint();
-    editorElementHierarchy.flipRotate(0, -1, 1, visibleViewPort, invalidate);
+    flipRotate(0, -1, 1);
   }
 
   public void flipVertical() {
+    flipRotate(0, 1, -1);
+  }
+
+  private void flipRotate(int degrees, int scaleX, int scaleY) {
     pushUndoPoint();
-    editorElementHierarchy.flipRotate(0, 1, -1, visibleViewPort, invalidate);
+    editorElementHierarchy.flipRotate(degrees, scaleX, scaleY, visibleViewPort, invalidate);
+    updateUndoRedoAvailableState(getActiveUndoRedoStacks(isCropping()));
   }
 
   public EditorElement getRoot() {
