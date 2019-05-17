@@ -36,9 +36,10 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   private static final Runnable NULL_RUNNABLE = () -> {
   };
 
-  private static final int MINIMUM_OUTPUT_WIDTH = 0;
+  private static final int MINIMUM_OUTPUT_WIDTH = 1024;
 
-  private static final float MAXIMUM_CROP = 0.20f;
+  private static final int   MINIMUM_CROP_PIXEL_COUNT = 100;
+  private static final Point MINIMIM_RATIO            = new Point(15, 1);
 
   @NonNull
   private Runnable invalidate = NULL_RUNNABLE;
@@ -98,7 +99,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return null;
   }
 
-  public @Nullable Matrix findElementMatrix(@NonNull EditorElement element, @NonNull Matrix viewMatrix) {
+  private @Nullable Matrix findElementMatrix(@NonNull EditorElement element, @NonNull Matrix viewMatrix) {
     Matrix inverse = findElementInverseMatrix(element, viewMatrix);
     if (inverse != null) {
       Matrix regular = new Matrix();
@@ -320,15 +321,39 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   }
 
   /**
-   * Pixel count must be no smaller than the MAXIMUM_CROP of its original size and all points must be within the bounds.
+   * Pixel count must be no smaller than {@link #MINIMUM_CROP_PIXEL_COUNT} (unless it's original size was less than that)
+   * and all points must be within the bounds.
    */
   private boolean currentCropIsAcceptable() {
     Point outputSize        = getOutputSize();
     int   outputPixelCount  = outputSize.x * outputSize.y;
-    int   minimumPixelCount = (int) (size.x * size.y * MAXIMUM_CROP * MAXIMUM_CROP);
+    int   minimumPixelCount = Math.min(size.x * size.y, MINIMUM_CROP_PIXEL_COUNT);
 
-    return outputPixelCount >= minimumPixelCount &&
+    Point thinnestRatio = MINIMIM_RATIO;
+
+    if (compareRatios(size, thinnestRatio) < 0) {
+      // original is narrower than the thinnestRatio
+      thinnestRatio = size;
+    }
+
+    return compareRatios(outputSize, thinnestRatio) >= 0 &&
+           outputPixelCount >= minimumPixelCount &&
            cropIsWithinMainImageBounds(editorElementHierarchy);
+  }
+
+  /**
+   * -1 iff a is a narrower ratio than b.
+   * +1 iff a is a squarer ratio than b.
+   * 0 if the ratios are the same.
+   */
+  private static int compareRatios(@NonNull Point a, @NonNull Point b) {
+    int smallA = Math.min(a.x, a.y);
+    int largeA = Math.max(a.x, a.y);
+    
+    int smallB = Math.min(b.x, b.y);
+    int largeB = Math.max(b.x, b.y);
+
+    return Integer.compare(smallA * largeB, smallB * largeA);
   }
 
   /**

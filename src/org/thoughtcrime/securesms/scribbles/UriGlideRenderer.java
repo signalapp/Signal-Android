@@ -48,6 +48,8 @@ final class UriGlideRenderer implements Renderer {
     this.maxWidth    = maxWidth;
     this.maxHeight   = maxHeight;
     paint.setAntiAlias(true);
+    paint.setFilterBitmap(true);
+    paint.setDither(true);
   }
 
   @Override
