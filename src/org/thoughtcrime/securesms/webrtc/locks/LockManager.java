@@ -48,7 +48,7 @@ public class LockManager {
     partialLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "RedPhone Partial");
     proximityLock = new ProximityLock(pm);
 
-    WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+    WifiManager wm = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
     wifiLock = wm.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, "RedPhone Wifi");
 
     fullLock.setReferenceCounted(false);
