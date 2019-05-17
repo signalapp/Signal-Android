@@ -118,13 +118,14 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    imageEditorHud = view.findViewById(R.id.scribble_hud);
-    imageEditorView  = view.findViewById(R.id.image_editor_view);
+    imageEditorHud  = view.findViewById(R.id.scribble_hud);
+    imageEditorView = view.findViewById(R.id.image_editor_view);
 
     imageEditorHud.setEventListener(this);
 
     imageEditorView.setTapListener(selectionListener);
     imageEditorView.setDrawingChangedListener(this::refreshUniqueColors);
+    imageEditorView.setUndoRedoStackListener(this::onUndoRedoAvailabilityChanged);
 
     EditorModel editorModel = null;
 
@@ -319,6 +320,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   private void refreshUniqueColors() {
     imageEditorHud.setColorPalette(imageEditorView.getModel().getUniqueColorsIgnoringAlpha());
+  }
+
+  private void onUndoRedoAvailabilityChanged(boolean undoAvailable, boolean redoAvailable) {
+    imageEditorHud.setUndoAvailability(undoAvailable);
   }
 
    private final ImageEditorView.TapListener selectionListener = new ImageEditorView.TapListener() {

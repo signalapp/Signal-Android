@@ -44,7 +44,7 @@ public final class EditorElement implements Parcelable {
 
   private final Matrix tempMatrix = new Matrix();
 
-  private final List<EditorElement> children = new LinkedList<>();
+  private final List<EditorElement> children        = new LinkedList<>();
   private final List<EditorElement> deletedChildren = new LinkedList<>();
 
   @NonNull

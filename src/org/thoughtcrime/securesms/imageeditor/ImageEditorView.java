@@ -60,6 +60,9 @@ public final class ImageEditorView extends FrameLayout {
   @Nullable
   private DrawingChangedListener drawingChangedListener;
 
+  @Nullable
+  private UndoRedoStackListener undoRedoStackListener;
+
   private final Matrix viewMatrix      = new Matrix();
   private final RectF  viewPort        = Bounds.newFullBounds();
   private final RectF  visibleViewPort = Bounds.newFullBounds();
@@ -200,9 +203,11 @@ public final class ImageEditorView extends FrameLayout {
     if (this.model != model) {
       if (this.model != null) {
         this.model.setInvalidate(null);
+        this.model.setUndoRedoStackListener(null);
       }
       this.model = model;
       this.model.setInvalidate(this::invalidate);
+      this.model.setUndoRedoStackListener(this::onUndoRedoAvailabilityChanged);
       this.model.setVisibleViewPort(visibleViewPort);
       invalidate();
     }
@@ -386,6 +391,10 @@ public final class ImageEditorView extends FrameLayout {
     this.drawingChangedListener = drawingChangedListener;
   }
 
+  public void setUndoRedoStackListener(@Nullable UndoRedoStackListener undoRedoStackListener) {
+    this.undoRedoStackListener = undoRedoStackListener;
+  }
+
   public void setTapListener(TapListener tapListener) {
     this.tapListener = tapListener;
   }
@@ -395,6 +404,12 @@ public final class ImageEditorView extends FrameLayout {
       model.pushUndoPoint();
       model.delete(editorElement);
       invalidate();
+    }
+  }
+
+  private void onUndoRedoAvailabilityChanged(boolean undoAvailable, boolean redoAvailable) {
+    if (undoRedoStackListener != null) {
+      undoRedoStackListener.onAvailabilityChanged(undoAvailable, redoAvailable);
     }
   }
 

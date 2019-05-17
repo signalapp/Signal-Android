@@ -47,7 +47,10 @@ public final class ImageEditorHud extends LinearLayout {
   private ColorPaletteAdapter        colorPaletteAdapter;
 
   private final Map<Mode, Set<View>> visibilityModeMap = new HashMap<>();
-  private final Set<View> allViews = new HashSet<>();
+  private final Set<View>            allViews          = new HashSet<>();
+
+  private Mode    currentMode;
+  private boolean undoAvailable;
 
   public ImageEditorHud(@NonNull Context context) {
     super(context);
@@ -171,9 +174,10 @@ public final class ImageEditorHud extends LinearLayout {
   }
 
   private void setMode(@NonNull Mode mode, boolean notify) {
+    this.currentMode = mode;
     Set<View> visibleButtons = visibilityModeMap.get(mode);
     for (View button : allViews) {
-      button.setVisibility(visibleButtons != null && visibleButtons.contains(button) ? VISIBLE : GONE);
+      button.setVisibility(buttonIsVisible(visibleButtons, button) ? VISIBLE : GONE);
     }
 
     switch (mode) {
@@ -187,6 +191,12 @@ public final class ImageEditorHud extends LinearLayout {
       eventListener.onModeStarted(mode);
     }
     eventListener.onRequestFullScreen(mode != Mode.NONE);
+  }
+
+  private boolean buttonIsVisible(@Nullable Set<View> visibleButtons, @NonNull View button) {
+    return visibleButtons != null &&
+           visibleButtons.contains(button) &&
+           (button != undoButton || undoAvailable);
   }
 
   private void presentModeCrop() {
@@ -214,6 +224,12 @@ public final class ImageEditorHud extends LinearLayout {
 
   private static int replaceAlphaWith128(int color) {
     return color & ~0xff000000 | 0x80000000;
+  }
+
+  public void setUndoAvailability(boolean undoAvailable) {
+    this.undoAvailable = undoAvailable;
+
+    undoButton.setVisibility(buttonIsVisible(visibilityModeMap.get(currentMode), undoButton) ? VISIBLE : GONE);
   }
 
   public enum Mode {
