@@ -43,7 +43,6 @@
                 style="@style/Signal.Text.Body"
                 android:maxLines="3"
                 android:maxLength="240"
-                android:imeOptions="flagNoExtractUi"
                 android:hint="@string/MediaSendActivity_add_a_caption"
                 android:autoText="true"
                 android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
@@ -98,7 +97,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:imeOptions="flagNoExtractUi"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
                         tools:hint="Send TextSecure message" >
