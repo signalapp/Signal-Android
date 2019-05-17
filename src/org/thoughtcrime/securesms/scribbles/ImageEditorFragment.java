@@ -236,6 +236,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       EditorElement element     = new EditorElement(renderer);
       imageEditorView.getModel().addElementCentered(element, 0.2f);
       currentSelection = element;
+    } else {
+      imageEditorHud.enterMode(ImageEditorHud.Mode.NONE);
     }
   }
 
