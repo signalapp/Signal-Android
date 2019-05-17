@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.webrtc;
+package org.thoughtcrime.securesms.ringrtc;
 
 import androidx.annotation.NonNull;
 
