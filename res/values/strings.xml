@@ -283,6 +283,13 @@
     <string name="DateUtils_minutes_ago">%d min</string>
     <string name="DateUtils_today">Today</string>
     <string name="DateUtils_yesterday">Yesterday</string>
+    <string name="DateUtils_Sunday_abbreviated">Sun</string>
+    <string name="DateUtils_Monday_abbreviated">Mon</string>
+    <string name="DateUtils_Tuesday_abbreviated">Tue</string>
+    <string name="DateUtils_Wednesday_abbreviated">Wed</string>
+    <string name="DateUtils_Thursday_abbreviated">Thu</string>
+    <string name="DateUtils_Friday_abbreviated">Fri</string>
+    <string name="DateUtils_Saterday_abbreviated">Sat</string>
 
     <!-- DeliveryStatus -->
     <string name="DeliveryStatus_sending">Sending</string>
