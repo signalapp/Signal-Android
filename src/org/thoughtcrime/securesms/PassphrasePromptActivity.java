@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.DynamicIntroTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * Activity that prompts for a user's passphrase.
@@ -206,6 +207,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     ImageButton okButton = findViewById(R.id.ok_button);
     Toolbar     toolbar  = findViewById(R.id.toolbar);
+
+    ViewUtil.setTopMargin(toolbar, ViewUtil.getStatusBarHeight(this));
 
     showButton                    = findViewById(R.id.passphrase_visibility);
     hideButton                    = findViewById(R.id.passphrase_visibility_off);
