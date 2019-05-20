@@ -76,6 +76,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   public void setUndoRedoStackListener(UndoRedoStackListener undoRedoStackListener) {
     this.undoRedoStackListener = undoRedoStackListener;
+
+    updateUndoRedoAvailableState(getActiveUndoRedoStacks(isCropping()));
   }
 
   /**
@@ -265,6 +267,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
         if (!tryToScaleToFit(cropEditorElement, 0.9f)) {
           tryToScaleToFit(mainImage, 2f);
         }
+      } else {
+        tryToFixTranslationOutOfBounds(mainImage, inBoundsMemory.getLastKnownGoodMainImageMatrix());
       }
 
       if (!currentCropIsAcceptable()) {
@@ -287,33 +291,104 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
    * @return true if successfully scaled the element. false if the element was left unchanged.
    */
   private boolean tryToScaleToFit(@NonNull EditorElement element, float scaleAtMost) {
-    Matrix  elementMatrix     = element.getLocalMatrix();
-    Matrix  original          = new Matrix(elementMatrix);
-    Matrix  lastSuccessful    = new Matrix();
-    boolean success           = false;
-    float   unsuccessfulScale = 1;
-    int     attempt           = 0;
+    return Bisect.bisectToTest(element,
+                        1,
+                        scaleAtMost,
+                        this::cropIsWithinMainImageBounds,
+                        (matrix, scale) -> matrix.preScale(scale, scale),
+                        invalidate);
+  }
 
-    do {
-      float tryScale = (scaleAtMost + unsuccessfulScale) / 2f;
-      elementMatrix.set(original);
-      elementMatrix.preScale(tryScale, tryScale);
+  /**
+   * Attempts to translate the supplied element such that {@link #cropIsWithinMainImageBounds} is true.
+   * If you supply both x and y, it will attempt to find a fit on the diagonal with vector x, y.
+   *
+   * @param element          The element to be translated. If successful, it will be animated to the correct position.
+   * @param translateXAtMost The maximum translation to apply in the x axis.
+   * @param translateYAtMost The maximum translation to apply in the y axis.
+   * @return a matrix if successfully translated the element. null if the element unable to be translated to fit.
+   */
+  private Matrix tryToTranslateToFit(@NonNull EditorElement element, float translateXAtMost, float translateYAtMost) {
+    return Bisect.bisectToTest(element,
+                               0,
+                               1,
+                               this::cropIsWithinMainImageBounds,
+                               (matrix, factor) -> matrix.postTranslate(factor * translateXAtMost, factor * translateYAtMost));
+  }
 
-      if (cropIsWithinMainImageBounds(editorElementHierarchy)) {
-        scaleAtMost = tryScale;
-        success = true;
-        lastSuccessful.set(elementMatrix);
-      } else {
-        unsuccessfulScale = tryScale;
-      }
-      attempt++;
-    } while (attempt < 16 && Math.abs(scaleAtMost - unsuccessfulScale) > 0.001f);
+  /**
+   * Tries to fix an element that is out of bounds by adjusting it's translation.
+   *
+   * @param element               Element to move.
+   * @param lastKnownGoodPosition Last known good position of element.
+   * @return true iff fixed the element.
+   */
+  private boolean tryToFixTranslationOutOfBounds(@NonNull EditorElement element, @NonNull Matrix lastKnownGoodPosition) {
+    final Matrix  elementMatrix = element.getLocalMatrix();
+    final Matrix  original      = new Matrix(elementMatrix);
+    final float[] current       = new float[9];
+    final float[] lastGood      = new float[9];
+    Matrix matrix;
 
-    elementMatrix.set(original);
-    if (success) {
-      element.animateLocalTo(lastSuccessful, invalidate);
+    elementMatrix.getValues(current);
+    lastKnownGoodPosition.getValues(lastGood);
+
+    final float xTranslate = current[2] - lastGood[2];
+    final float yTranslate = current[5] - lastGood[5];
+
+    if (Math.abs(xTranslate) < Bisect.ACCURACY && Math.abs(yTranslate) < Bisect.ACCURACY) {
+      return false;
     }
-    return success;
+
+    float pass1X;
+    float pass1Y;
+
+    float pass2X;
+    float pass2Y;
+
+    // try the fix by the smallest user translation first
+    if (Math.abs(xTranslate) < Math.abs(yTranslate)) {
+      // try to bisect along x
+      pass1X = -xTranslate;
+      pass1Y = 0;
+
+      // then y
+      pass2X = 0;
+      pass2Y = -yTranslate;
+    } else {
+      // try to bisect along y
+      pass1X = 0;
+      pass1Y = -yTranslate;
+
+      // then x
+      pass2X = -xTranslate;
+      pass2Y = 0;
+    }
+
+    matrix = tryToTranslateToFit(element, pass1X, pass1Y);
+    if (matrix != null) {
+      element.animateLocalTo(matrix, invalidate);
+      return true;
+    }
+
+    matrix = tryToTranslateToFit(element, pass2X, pass2Y);
+    if (matrix != null) {
+      element.animateLocalTo(matrix, invalidate);
+      return true;
+    }
+
+    // apply pass 1 fully
+    elementMatrix.postTranslate(pass1X, pass1Y);
+
+    matrix = tryToTranslateToFit(element, pass2X, pass2Y);
+    elementMatrix.set(original);
+
+    if (matrix != null) {
+      element.animateLocalTo(matrix, invalidate);
+      return true;
+    }
+
+    return false;
   }
 
   public void dragDropRelease() {
@@ -321,7 +396,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   }
 
   /**
-   * Pixel count must be no smaller than {@link #MINIMUM_CROP_PIXEL_COUNT} (unless it's original size was less than that)
+   * Pixel count must be no smaller than {@link #MINIMUM_CROP_PIXEL_COUNT} (unless its original size was less than that)
    * and all points must be within the bounds.
    */
   private boolean currentCropIsAcceptable() {
@@ -338,7 +413,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
     return compareRatios(outputSize, thinnestRatio) >= 0 &&
            outputPixelCount >= minimumPixelCount &&
-           cropIsWithinMainImageBounds(editorElementHierarchy);
+           cropIsWithinMainImageBounds();
   }
 
   /**
@@ -359,8 +434,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   /**
    * @return true if and only if the current crop rect is fully in the bounds.
    */
-  private static boolean cropIsWithinMainImageBounds(@NonNull EditorElementHierarchy hierarchy) {
-    return Bounds.boundsRemainInBounds(hierarchy.imageMatrixRelativeToCrop());
+  private boolean cropIsWithinMainImageBounds() {
+    return Bounds.boundsRemainInBounds(editorElementHierarchy.imageMatrixRelativeToCrop());
   }
 
   /**

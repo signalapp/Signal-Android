@@ -27,4 +27,8 @@ final class InBoundsMemory {
     }
     cropEditorElement.animateLocalTo(lastGoodUserCrop, invalidate);
   }
+
+  Matrix getLastKnownGoodMainImageMatrix() {
+    return new Matrix(lastGoodMainImage);
+  }
 }
