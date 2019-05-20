@@ -149,7 +149,7 @@ public class ApplicationMigrationService extends Service
     public void run() {
       notification              = initializeBackgroundNotification();
       PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
-      WakeLock     wakeLock     = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Migration");
+      WakeLock     wakeLock     = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "signal:migration");
 
       try {
         wakeLock.acquire();
