@@ -576,7 +576,6 @@
   <string name="RegistrationActivity_call">Zadzwoń</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Brak wyników dla \'%s\'</string>
   <string name="SearchFragment_header_conversations">Rozmowy</string>

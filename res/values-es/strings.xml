@@ -541,7 +541,6 @@ número de teléfono
   <string name="RegistrationActivity_call">Llamada</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fallo al guardar los cambios de la imagen</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">No se encontraron resultados para «%s»</string>
   <string name="SearchFragment_header_conversations">Chats</string>

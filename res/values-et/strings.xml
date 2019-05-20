@@ -541,7 +541,6 @@
   <string name="RegistrationActivity_call">Helista</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Tulemusi ei leitud otsingule \'%s\'</string>
   <string name="SearchFragment_header_conversations">Vestlused</string>

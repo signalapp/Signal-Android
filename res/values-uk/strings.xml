@@ -554,7 +554,6 @@
   <string name="RegistrationActivity_call">Виклик</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не вдалось змінити зображення</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Не знайдено результатів для \'%s\'</string>
   <string name="SearchFragment_header_conversations">Розмови</string>

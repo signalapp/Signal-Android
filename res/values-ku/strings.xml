@@ -510,7 +510,6 @@
   <string name="RegistrationActivity_call">Gazî</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Guhertinên weneyê nehate tomarkirin</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ji bo \'%s\' ti encam nehatin peydakirin</string>
   <string name="SearchFragment_header_conversations">Gotûbêj</string>

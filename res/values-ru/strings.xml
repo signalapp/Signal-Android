@@ -575,7 +575,6 @@
   <string name="RegistrationActivity_call">Вызов</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не удалось сохранить изменения изображения</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Результаты не найдены для \'%s\'</string>
   <string name="SearchFragment_header_conversations">Беседы</string>

@@ -577,7 +577,6 @@
   <string name="RegistrationActivity_call">חייג</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">נכשל בשמירת שינויי תמונה</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">לא נמצאו תוצאות עבור \'%s\'</string>
   <string name="SearchFragment_header_conversations">שיחות</string>

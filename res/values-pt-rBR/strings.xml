@@ -541,7 +541,6 @@
   <string name="RegistrationActivity_call">Ligar</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao salvar alterações na imagem</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nenhum resultado encontrado para \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversas</string>

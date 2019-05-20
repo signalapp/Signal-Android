@@ -534,7 +534,6 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikkje lagra biletendringane</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Fann ingen resultat for «%s»</string>
   <string name="SearchFragment_header_conversations">Samtalar</string>

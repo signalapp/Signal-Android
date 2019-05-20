@@ -514,7 +514,6 @@
   <string name="RegistrationActivity_call">通話</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">画像の変更を保存できませんでした</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">「%s」に一致する情報は見つかりませんでした。</string>
   <string name="SearchFragment_header_conversations">会話</string>

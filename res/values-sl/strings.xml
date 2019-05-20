@@ -574,7 +574,6 @@
   <string name="RegistrationActivity_call">Kliči</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
   <string name="SearchFragment_header_conversations">Pogovori</string>

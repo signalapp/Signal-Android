@@ -473,7 +473,6 @@
   <string name="RegistrationActivity_call">Позови</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Неуспех уписа промене слике</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Нема резултата за \'%s\'</string>
   <string name="SearchFragment_header_conversations">Преписке</string>

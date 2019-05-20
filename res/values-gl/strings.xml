@@ -541,7 +541,6 @@
   <string name="RegistrationActivity_call">Chamar</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Erro ao gardar os cambios na imaxe</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ningún resultado atopado para \'%s\'</string>
   <string name="SearchFragment_header_conversations">Conversas</string>

@@ -517,7 +517,6 @@
   <string name="RegistrationActivity_call">ហៅចេញ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">បានបរាជ័យក្នុងការរក្សាទុកការផ្លាស់ប្តូររូបភាព</string>
-  <string name="ImageEditorFragment_initial_text"> Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">រកមិនឃើញលទ្ធផលសម្រាប់ \'%s\'</string>
   <string name="SearchFragment_header_conversations">ការសន្ទនា</string>

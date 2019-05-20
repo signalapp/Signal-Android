@@ -504,7 +504,6 @@
   <string name="RegistrationActivity_call">కాల్</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">చిత్రం మార్పులను సేవ్ చేయడంలో విఫలమైంది</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' కోసం ఫలితాలు కనుగొనబడలేదు</string>
   <string name="SearchFragment_header_conversations">సంభాషణలు</string>

@@ -537,7 +537,6 @@
   <string name="RegistrationActivity_call">Κλήση</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Αποτυχία αποθήκευσης των αλλαγών της εικόνας</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Δε βρέθηκαν αποτελέσματα για \"%s\"</string>
   <string name="SearchFragment_header_conversations">Συνομιλίες</string>
@@ -739,6 +738,7 @@
   <string name="conversation_activity__type_message_sms_insecure">Μη ασφαλές SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Μη ασφαλές MMS</string>
   <string name="conversation_activity__from_sim_name">Από%1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Αποστολή</string>
   <string name="conversation_activity__compose_description">Σύνθεση μηνύματος</string>
   <string name="conversation_activity__emoji_toggle_description">Εναλλαγή πληκτρολογίου emoji</string>
@@ -994,6 +994,7 @@
   <string name="preferences__pref_enter_sends_title">Το Enter αποστέλλει</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Τα μηνύματα θα αποστέλλονται με το πάτημα του Enter</string>
   <string name="preferences__send_link_previews">Αποστολή προεπισκοπήσεων συνδέσμων</string>
+  <string name="preferences__previews_are_supported_for">Οι προεπισκοπήσεις υποστηρίζονται για συνδέσμους Imgur, Instagram, Pinterest, Reddit, και YouTube.</string>
   <string name="preferences__choose_identity">Επιλέξτε Ταυτότητα</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Επιλέξτε την επαφή σας από τη λίστα επαφών.</string>
   <string name="preferences__change_passphrase">Αλλαγή συνθηματικού</string>

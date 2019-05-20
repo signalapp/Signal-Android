@@ -537,7 +537,6 @@ telefona</string>
   <string name="RegistrationActivity_call">Poziv</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Slikovne promjene nisu uspjele.</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nema rezultata za \'%s\'</string>
   <string name="SearchFragment_header_conversations">Razgovori</string>

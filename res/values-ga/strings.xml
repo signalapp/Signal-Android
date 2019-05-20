@@ -457,7 +457,6 @@ a shonrú</string>
   <string name="RegistrationActivity_continue">Lean ar aghaidh</string>
   <string name="RegistrationActivity_call">Glao</string>
   <!--ScribbleActivity-->
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Níor aimsíodh aon torthaí le haghaidh \'%s\'</string>
   <string name="SearchFragment_header_conversations">Comhráite</string>

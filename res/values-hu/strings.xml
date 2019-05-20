@@ -543,7 +543,6 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_call">Hívás</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nem sikerült elmenteni a kép változásait</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nincs találat a \'%s\' kifejezésre</string>
   <string name="SearchFragment_header_conversations">Beszélgetések</string>

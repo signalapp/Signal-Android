@@ -539,7 +539,6 @@
   <string name="RegistrationActivity_call">Thirrje</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">S’u arrit të ruheshin ndryshime të figurës.</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">S\’u gjetën përfundime për \'%s\'</string>
   <string name="SearchFragment_header_conversations">Biseda</string>

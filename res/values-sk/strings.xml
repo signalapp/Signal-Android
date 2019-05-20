@@ -580,7 +580,6 @@ telefónne číslo
   <string name="RegistrationActivity_call">Zavolať</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodarilo sa uložiť zmeny v obrázku</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Žiadne výsledky pre \"%s\"</string>
   <string name="SearchFragment_header_conversations">Konverzácie</string>

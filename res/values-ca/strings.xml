@@ -537,7 +537,6 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_call">Truca</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">No s\'ha pogut desar els canvis en la imatge</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">No s\'ha trobat cap resultat per a «%s»</string>
   <string name="SearchFragment_header_conversations">Converses</string>

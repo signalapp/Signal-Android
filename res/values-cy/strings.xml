@@ -579,7 +579,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_call">Galw</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Methu cadw newidiadau i ddelweddau</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Dim canlyniadau ar gyfer \'%s\'</string>
   <string name="SearchFragment_header_conversations">Sgyrsiau</string>

@@ -541,7 +541,6 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_call">Ring op</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fejl ved forsøg på at gemme redigeret billede</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ingen resultater fundet for ´%s´</string>
   <string name="SearchFragment_header_conversations">Samtaler</string>

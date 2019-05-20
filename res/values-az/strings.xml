@@ -541,7 +541,6 @@
   <string name="RegistrationActivity_call">Zəng et</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Şəkilə olan dəyişiklikləri yadda saxlaya bilmədik</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' üçün nəticə tapılmadı</string>
   <string name="SearchFragment_header_conversations">Söhbətlər</string>

@@ -581,7 +581,6 @@
   <string name="RegistrationActivity_call">Skambinti</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Nerasta jokių rezultatų, atitinkančių \"%s\"</string>
   <string name="SearchFragment_header_conversations">Pokalbiai</string>

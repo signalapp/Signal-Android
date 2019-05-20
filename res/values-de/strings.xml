@@ -533,7 +533,6 @@
   <string name="RegistrationActivity_call">Mich anrufen</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Keine Ergebnisse für »%s« gefunden</string>
   <string name="SearchFragment_header_conversations">Unterhaltungen</string>

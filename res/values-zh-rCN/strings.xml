@@ -518,7 +518,6 @@
   <string name="RegistrationActivity_call">拨号</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">无法保存图像更改</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">没有找到关于“%s”的信息</string>
   <string name="SearchFragment_header_conversations">对话</string>

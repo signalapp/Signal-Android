@@ -543,7 +543,6 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="RegistrationActivity_call">Bellen</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Mislukt om bewerkte afbeelding op te slaan</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Geen resultaten gevonden voor ‘%s’</string>
   <string name="SearchFragment_header_conversations">Gesprekken</string>

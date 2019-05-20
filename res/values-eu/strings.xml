@@ -542,7 +542,6 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_call">Deitu</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Irudien aldaketak gordetzeak huts egin du</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ez dago emaitzarik \'%s\' bilatuta</string>
   <string name="SearchFragment_header_conversations">Txatak</string>

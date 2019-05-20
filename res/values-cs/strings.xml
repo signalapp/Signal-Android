@@ -576,7 +576,6 @@ telefonní číslo</string>
   <string name="RegistrationActivity_call">Volat</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodařilo se uložit změny v obrázku.</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Pro \'%s\' nebylo nic nalezeno</string>
   <string name="SearchFragment_header_conversations">Konverzace</string>

@@ -454,7 +454,6 @@
   <string name="RegistrationActivity_call">ဖုန်းခေါ်ဆိုမှု </string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ပြောင်းလဲလိုက်သည့် ရုပ်ပုံကို သိမ်းလို့ မရပါ</string>
-  <string name="ImageEditorFragment_initial_text">Signal</string>
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' ကို ရှာမတွေ့ပါ</string>
   <string name="SearchFragment_header_conversations">စကားဝိုင်းများ</string>
