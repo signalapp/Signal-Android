@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms.components.emoji;
 
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiDrawerListener;
 
-public class EmojiToggle extends ImageButton implements EmojiDrawerListener {
+public class EmojiToggle extends AppCompatImageButton implements EmojiDrawerListener {
 
   private Drawable emojiToggle;
   private Drawable imeToggle;
