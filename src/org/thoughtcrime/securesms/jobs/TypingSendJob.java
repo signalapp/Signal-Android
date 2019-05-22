@@ -104,7 +104,7 @@ public class TypingSendJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  protected boolean onShouldRetry(Exception exception) {
+  protected boolean onShouldRetry(@NonNull Exception exception) {
     return false;
   }
 

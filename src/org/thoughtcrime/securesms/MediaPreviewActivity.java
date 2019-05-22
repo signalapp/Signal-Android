@@ -441,12 +441,12 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   @Override
-  public Loader<Pair<Cursor, Integer>> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<Pair<Cursor, Integer>> onCreateLoader(int id, Bundle args) {
     return new PagingMediaLoader(this, conversationRecipient, initialMediaUri, leftIsRecent);
   }
 
   @Override
-  public void onLoadFinished(Loader<Pair<Cursor, Integer>> loader, @Nullable Pair<Cursor, Integer> data) {
+  public void onLoadFinished(@NonNull Loader<Pair<Cursor, Integer>> loader, @Nullable Pair<Cursor, Integer> data) {
     if (data != null) {
       @SuppressWarnings("ConstantConditions")
       CursorPagerAdapter adapter = new CursorPagerAdapter(this, GlideApp.with(this), getWindow(), data.first, data.second, leftIsRecent);
@@ -465,7 +465,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   @Override
-  public void onLoaderReset(Loader<Pair<Cursor, Integer>> loader) {
+  public void onLoaderReset(@NonNull Loader<Pair<Cursor, Integer>> loader) {
 
   }
 

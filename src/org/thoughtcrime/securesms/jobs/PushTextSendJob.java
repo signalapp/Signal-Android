@@ -60,9 +60,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId).build();
   }
 
-  @NonNull
   @Override
-  public String getFactoryKey() {
+  public @NonNull String getFactoryKey() {
     return KEY;
   }
 
@@ -134,7 +133,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     if (exception instanceof RetryLaterException) return true;
 
     return false;

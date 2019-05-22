@@ -132,7 +132,7 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
   }
 
   @Override
-  public GiphyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public @NonNull GiphyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View itemView = LayoutInflater.from(parent.getContext())
                                   .inflate(R.layout.giphy_thumbnail, parent, false);
 
@@ -140,7 +140,7 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
   }
 
   @Override
-  public void onBindViewHolder(GiphyViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull GiphyViewHolder holder, int position) {
     GiphyImage image = images.get(position);
 
     holder.modelReady = false;
@@ -173,7 +173,7 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
   }
 
   @Override
-  public void onViewRecycled(GiphyViewHolder holder) {
+  public void onViewRecycled(@NonNull GiphyViewHolder holder) {
     super.onViewRecycled(holder);
     glideRequests.clear(holder.thumbnail);
   }

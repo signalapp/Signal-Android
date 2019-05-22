@@ -34,7 +34,7 @@ public class ChunkedImageUrl implements Key {
   }
 
   @Override
-  public void updateDiskCacheKey(MessageDigest messageDigest) {
+  public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
     messageDigest.update(url.getBytes());
     messageDigest.update(Conversions.longToByteArray(size));
   }

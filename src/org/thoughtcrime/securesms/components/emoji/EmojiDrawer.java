@@ -165,19 +165,19 @@ public class EmojiDrawer extends LinearLayout implements InputView, EmojiSelecti
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
       container.removeView((View)object);
     }
 
     @Override
-    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
       EmojiPageView current = (EmojiPageView) object;
       current.onSelected();
       super.setPrimaryItem(container, position, object);
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
       return view == object;
     }
 

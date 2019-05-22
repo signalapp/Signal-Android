@@ -95,13 +95,13 @@ public class LinkPreviewRepository {
 
     call.enqueue(new okhttp3.Callback() {
       @Override
-      public void onFailure(Call call, IOException e) {
+      public void onFailure(@NonNull Call call, @NonNull IOException e) {
         Log.w(TAG, "Request failed.", e);
         callback.onComplete(Metadata.empty());
       }
 
       @Override
-      public void onResponse(Call call, Response response) throws IOException {
+      public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
         if (!response.isSuccessful()) {
           Log.w(TAG, "Non-successful response. Code: " + response.code());
           callback.onComplete(Metadata.empty());

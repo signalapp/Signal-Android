@@ -86,7 +86,7 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(Exception e) {
+  public boolean onShouldRetry(@NonNull Exception e) {
     return false;
   }
 

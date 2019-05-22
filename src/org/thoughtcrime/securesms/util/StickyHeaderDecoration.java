@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build.VERSION;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,8 +43,8 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
    * {@inheritDoc}
    */
   @Override
-  public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
-                             RecyclerView.State state)
+  public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent,
+                             @NonNull RecyclerView.State state)
   {
     int position     = parent.getChildAdapterPosition(view);
     int headerHeight = 0;
@@ -106,7 +107,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
    * {@inheritDoc}
    */
   @Override
-  public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+  public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
     final int count = parent.getChildCount();
 
     for (int layoutPos = 0; layoutPos < count; layoutPos++) {

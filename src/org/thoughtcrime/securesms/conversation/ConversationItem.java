@@ -149,12 +149,12 @@ public class ConversationItem extends LinearLayout
   private   ViewGroup              container;
 
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
-  private @NonNull  Recipient                       conversationRecipient;
-  private @NonNull  Stub<ConversationItemThumbnail> mediaThumbnailStub;
-  private @NonNull  Stub<AudioView>                 audioViewStub;
-  private @NonNull  Stub<DocumentView>              documentViewStub;
-  private @NonNull  Stub<SharedContactView>         sharedContactStub;
-  private @NonNull  Stub<LinkPreviewView>           linkPreviewStub;
+  private           Recipient                       conversationRecipient;
+  private           Stub<ConversationItemThumbnail> mediaThumbnailStub;
+  private           Stub<AudioView>                 audioViewStub;
+  private           Stub<DocumentView>              documentViewStub;
+  private           Stub<SharedContactView>         sharedContactStub;
+  private           Stub<LinkPreviewView>           linkPreviewStub;
   private @Nullable EventListener                   eventListener;
 
   private int defaultBubbleColor;

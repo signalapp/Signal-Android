@@ -615,7 +615,7 @@ public class ConversationFragment extends Fragment
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     Log.i(TAG, "onCreateLoader");
     loaderStartTime = System.currentTimeMillis();
 
@@ -630,7 +630,7 @@ public class ConversationFragment extends Fragment
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+  public void onLoadFinished(@NonNull Loader<Cursor> cursorLoader, Cursor cursor) {
     long loadTime = System.currentTimeMillis() - loaderStartTime;
     int  count    = cursor.getCount();
     Log.i(TAG, "onLoadFinished - took " + loadTime + " ms to load a cursor of size " + count);
@@ -705,7 +705,7 @@ public class ConversationFragment extends Fragment
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> arg0) {
+  public void onLoaderReset(@NonNull Loader<Cursor> arg0) {
     if (list.getAdapter() != null) {
       getListAdapter().changeCursor(null);
     }
@@ -828,7 +828,7 @@ public class ConversationFragment extends Fragment
     }
 
     @Override
-    public void onScrolled(final RecyclerView rv, final int dx, final int dy) {
+    public void onScrolled(@NonNull final RecyclerView rv, final int dx, final int dy) {
       boolean currentlyAtBottom           = isAtBottom();
       boolean currentlyAtZoomScrollHeight = isAtZoomScrollHeight();
       int     positionId                  = getHeaderPositionId();
@@ -854,7 +854,7 @@ public class ConversationFragment extends Fragment
     }
 
     @Override
-    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
       if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
         conversationDateHeader.show();
       } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {

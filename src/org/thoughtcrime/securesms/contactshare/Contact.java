@@ -540,7 +540,7 @@ public class Contact implements Parcelable {
     };
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
       StringBuilder builder = new StringBuilder();
 
       if (!TextUtils.isEmpty(street)) {

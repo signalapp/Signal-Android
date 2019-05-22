@@ -145,7 +145,7 @@ public class Address implements Parcelable, Comparable<Address> {
   }
 
   @Override
-  public String toString() {
+  public @NonNull String toString() {
     return address;
   }
 

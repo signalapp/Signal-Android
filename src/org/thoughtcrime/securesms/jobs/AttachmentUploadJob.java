@@ -95,7 +95,7 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
   public void onCanceled() { }
 
   @Override
-  protected boolean onShouldRetry(Exception exception) {
+  protected boolean onShouldRetry(@NonNull Exception exception) {
     return exception instanceof PushNetworkException ||
            exception instanceof SSLException         ||
            exception instanceof ConnectException;

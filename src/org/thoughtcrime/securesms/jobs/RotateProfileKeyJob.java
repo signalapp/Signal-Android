@@ -69,7 +69,7 @@ public class RotateProfileKeyJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  protected boolean onShouldRetry(Exception exception) {
+  protected boolean onShouldRetry(@NonNull Exception exception) {
     return exception instanceof PushNetworkException;
   }
 
