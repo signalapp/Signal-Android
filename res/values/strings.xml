@@ -271,7 +271,7 @@
     <string name="CreateProfileActivity_too_long">Too long</string>
     <string name="CreateProfileActivity_profile_name">Profile Name</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, so even Signal service never has access to your profile information.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, so even the Signal service never has access to your profile information.</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom setting: %s</string>
@@ -1257,12 +1257,12 @@
     <string name="preferences__mmsc_password">MMSC Password</string>
     <string name="preferences__sms_delivery_reports">SMS delivery reports</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
-    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatically delete older messages once a conversation exceeds a specified length</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatically delete old messages once a conversation exceeds a specified number of messages. Use this to keep the app from taking up too much storage space, or to prevent old messages from lingering on your phone.</string>
     <string name="preferences__delete_old_messages">Delete old messages</string>
     <string name="preferences__chats">Chats and media</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__trim_all_conversations_now">Delete all old messages now</string>
-    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan through all conversations and enforce conversation length limits</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan through all conversations and enforce the conversation length limit right now</string>
     <string name="preferences__linked_devices">Linked devices</string>
     <string name="preferences__light_theme">Light</string>
     <string name="preferences__dark_theme">Dark</string>
@@ -1273,7 +1273,7 @@
     <string name="preferences__signal_messages_and_calls">Signal messages and calls</string>
     <string name="preferences__free_private_messages_and_calls">Free private messages and calls to Signal users</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
-    <string name="preferences__submit_debug_log_names_and_phone_numbers_are_not_in_this_log">Phone numbers and names are always redacted, and are not in this log</string>
+    <string name="preferences__submit_debug_log_names_and_phone_numbers_are_not_in_this_log">This log does not keep any names of your contacts and only keeps the last two digits of phone numbers.</string>
     <string name="preferences__support_wifi_calling">\'Wi-Fi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if you wish to send and receive SMS/MMS over Wi-Fi (only enable this when \'Wi-Fi Calling\' is enabled on your device)</string>
     <string name="preferences__incognito_keyboard">Incognito keyboard</string>
