@@ -12,7 +12,6 @@ import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
@@ -57,6 +56,6 @@ public class ServiceUtil {
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
   public static @Nullable SubscriptionManager getSubscriptionManager(@NonNull Context context) {
-    return ContextCompat.getSystemService(context, SubscriptionManager.class);
+    return (SubscriptionManager) context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
   }
 }
