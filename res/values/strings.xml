@@ -94,6 +94,7 @@
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
+    <string name="CommunicationActions_a_cellular_call_is_already_in_progress">A cellular call is already in progress.</string>
 
     <!-- ConfirmIdentityDialog -->
     <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Your safety number with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply reinstalled Signal.</string>
