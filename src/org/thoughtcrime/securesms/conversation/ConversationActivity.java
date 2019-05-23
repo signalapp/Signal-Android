@@ -210,7 +210,6 @@ import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
-import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -874,11 +873,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleInviteLink() {
-    String inviteText;
-
-    boolean a = new SecureRandom().nextBoolean();
-    if (a) inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, "https://sgnl.link/1LoIMUl");
-    else   inviteText = getString(R.string.ConversationActivity_lets_use_this_to_chat, "https://sgnl.link/1MF56H1");
+    String inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, getString(R.string.install_url));
 
     if (isDefaultSms) {
       composeText.appendInvite(inviteText);

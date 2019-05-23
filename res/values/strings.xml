@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Signal</string>
+
+    <string name="install_url" translatable="false">https://signal.org/install</string>
+
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="delete">Delete</string>
@@ -158,7 +161,6 @@
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
     <string name="ConversationActivity_transport_signal">Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal %1$s</string>
-    <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %1$s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group</string>
     <string name="ConversationActivity_specify_recipient">Please choose a contact</string>
     <string name="ConversationActivity_unblock_this_contact_question">Unblock this contact?</string>
