@@ -36,9 +36,9 @@
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disable Signal messages and calls by unregistering your phone number from the server. You will need to re-register your phone number to use this service again in the future.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap if you wish to change your default SMS app</string>
+    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap here if you wish to change your default SMS app</string>
     <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabled</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap if you want to make Signal your default SMS app</string>
+    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap here if you want to make Signal your default SMS app</string>
     <string name="ApplicationPreferencesActivity_on">on</string>
     <string name="ApplicationPreferencesActivity_On">On</string>
     <string name="ApplicationPreferencesActivity_off">off</string>
@@ -614,7 +614,7 @@
     <string name="RegistrationActivity_no_browser">Unable to open this link. No web browser found.</string>
     <string name="RegistrationActivity_more_information">More information</string>
     <string name="RegistrationActivity_less_information">Less information</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal requires access to your contacts in order to send messages and place calls to known contacts. Signal also requires access to media on your device in order to add files as attachment. Finally, Signal requires permission to make calls.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal requires permission to view your contacts, in order to send messages and initiate calls to your contacts. Signal also requires access to media on your device in order to add files as attachments. Finally, Signal requires permission to make view your call status so Signal calls won't interfere with other calls.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
     <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">To easily verify your phone number, Signal can automatically detect your verification code if you allow Signal to view SMS messages.</string>
     <plurals name="RegistrationActivity_debug_log_hint">
@@ -1105,7 +1105,7 @@
 
     <!-- registration_activity -->
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
-    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">You need to register your phone number, so anyone who has your phone number in their address book can see that they can message you using Signal. An other thing Signal does is compare the numbers in your address book with numbers of people who registered their Signal app, so you see which of your contacts you can send a message using Signal.\n\nTo make this possible, Signal reads the phone numbers in your address book and and generates a hash for each phone number. Those hashes are uploaded to the Signal service, so it can check if any of those match hashes of people who registered on Signal, and let you know you can message those contacts. Actual phone numbers of your contacts are never uploaded and neither are any other details about your contacts. Even the hashes are only used in that moment, and are not stored on any server.</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">When you register, the Signal service stores a hash of your phone number, so when anyone adds you as a contact, the Signal service can let them know you are availabe to receive messages on Signal. An other thing Signal does is look up if the the phone numbers in your address book have been registered on Signal, so you can see which of your contacts can receive messages using Signal.\n\nSignal never uploads any information about any about your contacts. Instead, Signal reads the phone numbers in your address book and and generates a hash for each phone number. Those hashes are uploaded to the Signal service, so the Signal service can check if any of those match the hashes of people who registered on Signal. If any of your contacts are registed on Signal, they will show up in your Signal app as someone you can message to. Even the hashes are only used in that moment, and are never stored on any server.\nSignal requires permission to read your contacts, so it can generate the hashes, and look up if any of your contacts are registered.</string>
     <string name="registration_activity__verify_your_number">Verify Your Number</string>
     <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Please enter your mobile number to receive a verification code. Carrier rates may apply.</string>
 
@@ -1302,7 +1302,7 @@
     <string name="preferences_notifications__calls">Calls</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
     <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display invitation prompts for contacts without Signal</string>
+    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display a suggestion to intive your contact to Signal, above an SMS chat with a contact who is not on Signal.</string>
     <string name="preferences_chats__message_text_size">Message font size</string>
     <string name="preferences_events__contact_joined_signal">Contact now uses Signal</string>
     <string name="preferences_notifications__priority">Urgency</string>
@@ -1424,7 +1424,7 @@
     <string name="reminder_header_push_title">Enable Signal messages and calls</string>
     <string name="reminder_header_push_text">Upgrade your communication experience.</string>
     <string name="reminder_header_invite_title">Invite to Signal</string>
-    <string name="reminder_header_invite_text">Take your conversation with %1$s to the next level.</string>
+    <string name="reminder_header_invite_text">Suggest to %1$s to continue this conversation as a secure Signal conversation.</string>
     <string name="reminder_header_share_title">Invite your friends!</string>
     <string name="reminder_header_share_text">The more people use Signal, the more often you can communicate in pivate.</string>
     <string name="reminder_header_service_outage_text">Signal is experiencing technical difficulties. We are working hard to restore service as quickly as possible.</string>
