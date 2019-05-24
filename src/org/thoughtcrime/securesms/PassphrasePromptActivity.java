@@ -25,6 +25,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.os.CancellationSignal;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
@@ -39,6 +40,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
@@ -220,6 +222,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     setSupportActionBar(toolbar);
     getSupportActionBar().setTitle("");
+    adjustForNotch(toolbar);
 
     SpannableString hint = new SpannableString("  " + getString(R.string.PassphrasePromptActivity_enter_passphrase));
     hint.setSpan(new RelativeSizeSpan(0.9f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
@@ -237,6 +240,14 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
 
     lockScreenButton.setOnClickListener(v -> resumeScreenLock());
+  }
+
+  private void adjustForNotch(Toolbar toolbar) {
+    ViewCompat.setOnApplyWindowInsetsListener(toolbar, (view, windowInsetsCompat) -> {
+      MarginLayoutParams params = (MarginLayoutParams) toolbar.getLayoutParams();
+      params.topMargin = windowInsetsCompat.getSystemWindowInsetTop();
+      return windowInsetsCompat;
+    });
   }
 
   private void setLockTypeVisibility() {
