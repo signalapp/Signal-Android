@@ -424,8 +424,9 @@ android {
         website.manifest.srcFile 'website/AndroidManifest.xml'
     }
 
-     lintOptions {
-        abortOnError false
+    lintOptions {
+        abortOnError true
+        baseline file("lint-baseline.xml")
     }
 
     testOptions {
@@ -528,5 +529,5 @@ static def autoResConfig() {
 task qa {
   group 'Verification'
   description 'Quality Assurance. Run before pushing.'
-  dependsOn ':testPlayReleaseUnitTest', ':assemblePlayDebug'
+  dependsOn ':testPlayReleaseUnitTest', ':lintPlayRelease', ':assemblePlayDebug'
 }
