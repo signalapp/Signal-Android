@@ -48,10 +48,10 @@ import android.support.v4.content.pm.ShortcutInfoCompat;
 import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v4.graphics.drawable.IconCompat;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.WindowCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -193,7 +193,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -308,9 +308,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private boolean    isMmsEnabled          = true;
   private boolean    isSecurityInitialized = false;
 
-  private final IdentityRecordList identityRecords = new IdentityRecordList();
-  private final DynamicTheme       dynamicTheme    = new DynamicTheme();
-  private final DynamicLanguage    dynamicLanguage = new DynamicLanguage();
+  private final IdentityRecordList      identityRecords = new IdentityRecordList();
+  private final DynamicNoActionBarTheme dynamicTheme    = new DynamicNoActionBarTheme();
+  private final DynamicLanguage         dynamicLanguage = new DynamicLanguage();
 
   @Override
   protected void onPreCreate() {
@@ -322,7 +322,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onCreate(Bundle state, boolean ready) {
     Log.i(TAG, "onCreate()");
 
-    supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
     setContentView(R.layout.conversation_activity);
 
     TypedArray typedArray = obtainStyledAttributes(new int[] {R.attr.conversation_background});
@@ -1467,10 +1466,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
-    ActionBar supportActionBar = getSupportActionBar();
-    if (supportActionBar == null) throw new AssertionError();
-
-    titleView              = (ConversationTitleView) supportActionBar.getCustomView();
+    titleView              = findViewById(R.id.conversation_title_view);
     buttonToggle           = ViewUtil.findById(this, R.id.button_toggle);
     sendButton             = ViewUtil.findById(this, R.id.send_button);
     attachButton           = ViewUtil.findById(this, R.id.attach_button);
@@ -1522,7 +1518,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     titleView.setOnClickListener(v -> handleConversationSettings());
     titleView.setOnLongClickListener(v -> handleDisplayQuickContact());
-    titleView.setOnBackClickedListener(view -> super.onBackPressed());
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
     registerButton.setOnClickListener(v -> handleRegisterForSignal());
@@ -1546,12 +1541,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   protected void initializeActionBar() {
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar == null) throw new AssertionError();
 
-    supportActionBar.setDisplayHomeAsUpEnabled(false);
-    supportActionBar.setCustomView(R.layout.conversation_title_view);
-    supportActionBar.setDisplayShowCustomEnabled(true);
+    supportActionBar.setDisplayHomeAsUpEnabled(true);
     supportActionBar.setDisplayShowTitleEnabled(false);
   }
 
