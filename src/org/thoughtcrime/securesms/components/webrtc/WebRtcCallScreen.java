@@ -203,6 +203,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     if (this.localRenderLayout.isHidden() == cameraState.isEnabled()) {
       this.localRenderLayout.setHidden(!cameraState.isEnabled());
       this.localRenderLayout.requestLayout();
+      this.localRenderer.setVisibility(cameraState.isEnabled() ? VISIBLE : INVISIBLE);
     }
   }
 
