@@ -1513,7 +1513,7 @@
     <string name="registration_lock_dialog_view__confirm_pin">Confirm PIN</string>
     <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Enter your Registration Lock PIN</string>
     <string name="registration_lock_reminder_view__enter_pin">Enter PIN</string>
-    <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">If you enable this Registration Lock, anyone who tries to register Signal using your number will also require a PIN code. This way even someone who can read your SMS will still not be able to send or receive Signal messages on your phone number.</string>
+    <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">If you enable this Registration Lock, anyone who tries to register Signal using your number will also require a PIN code. Even if someone manages to take control over your phone number, he still cannot use it to register on Signal without this PIN code, so he cannot send or receive Signal messages on it.</string>
     <string name="preferences_app_protection__registration_lock_pin">Registration Lock PIN</string>
     <string name="preferences_app_protection__registration_lock">Registration Lock</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">You must enter your Registration Lock PIN</string>
