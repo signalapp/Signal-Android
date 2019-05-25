@@ -22,12 +22,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -39,10 +45,15 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.ConversationListFragment;
+import org.thoughtcrime.securesms.ConversationListItem;
+import org.thoughtcrime.securesms.ConversationListItemAction;
+import org.thoughtcrime.securesms.ConversationListItemInboxZero;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
@@ -51,6 +62,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -88,6 +100,8 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -100,6 +114,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -169,12 +184,15 @@ public class ConversationFragment extends Fragment
     list.setLayoutManager(layoutManager);
     list.setItemAnimator(null);
 
+
     topLoadMoreView    = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
     bottomLoadMoreView = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
     initializeLoadMoreView(topLoadMoreView);
     initializeLoadMoreView(bottomLoadMoreView);
 
     typingView = (ConversationTypingView) inflater.inflate(R.layout.conversation_typing_view, container, false);
+
+    new ReplySwipeHelper(new ConversationFragment.ArchiveListenerCallback()).attachToRecyclerView(list);
 
     return view;
   }
@@ -1081,7 +1099,7 @@ public class ConversationFragment extends Fragment
 
     private ConversationDateHeader(Context context, TextView textView) {
       super(textView);
-      this.animateIn  = AnimationUtils.loadAnimation(context, R.anim.slide_from_top);
+      this.animateIn = AnimationUtils.loadAnimation(context, R.anim.slide_from_top);
       this.animateOut = AnimationUtils.loadAnimation(context, R.anim.slide_to_top);
 
       this.animateIn.setDuration(100);
@@ -1108,6 +1126,67 @@ public class ConversationFragment extends Fragment
           }
         }
       }, 400);
+    }
+  }
+
+  private class ArchiveListenerCallback extends ReplySwipeHelper.SimpleCallback {
+
+    ArchiveListenerCallback() {
+      super(ItemTouchHelper.RIGHT);
+    }
+
+    @Override
+    public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+      return super.getSwipeDirs(recyclerView, viewHolder);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+      MessageRecord messageRecord = ((ConversationItem) viewHolder.itemView).getMessageRecord();
+
+      handleReplyMessage(messageRecord);
+    }
+
+    @Override
+    public void onChildDraw(Canvas c, RecyclerView recyclerView,
+                            RecyclerView.ViewHolder viewHolder,
+                            float dX, float dY, int actionState,
+                            boolean isCurrentlyActive) {
+      if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
+      if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+        View itemView = viewHolder.itemView;
+        Paint p = new Paint();
+        float alpha;
+
+        float screenFactor = 4.0F;
+        float threshold = viewHolder.itemView.getWidth() / screenFactor;
+
+        if (dX > threshold) {
+          alpha = 1.0F;
+          viewHolder.itemView.setTranslationX(threshold + (dX - threshold) / screenFactor);
+        } else {
+          alpha = dX / threshold;
+          viewHolder.itemView.setTranslationX(dX);
+        }
+
+        if (dX > 0) {
+          Bitmap icon;
+
+          icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_reply_white_24dp);
+
+          p.setAlpha((int) (alpha * 255));
+
+          c.drawBitmap(icon,
+                  (float) itemView.getLeft() + getResources().getDimension(R.dimen.conversation_list_fragment_archive_padding),
+                  (float) itemView.getTop() + ((float) itemView.getBottom() - (float) itemView.getTop() - icon.getHeight()) / 2,
+                  p);
+        }
+
+      } else {
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+      }
     }
   }
 }

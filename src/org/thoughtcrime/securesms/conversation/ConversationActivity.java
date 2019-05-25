@@ -2546,6 +2546,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                           messageRecord.getBody(),
                           messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck());
     }
+
+    inputPanel.showKeyboard();
   }
 
   @Override
