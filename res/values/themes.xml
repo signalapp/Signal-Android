@@ -165,6 +165,7 @@
         <item name="conversation_attach">@drawable/ic_attach_grey600_24dp</item>
         <item name="conversation_number_picker_text_color_normal">@color/gray65</item>
         <item name="conversation_number_picker_text_color_selected">@color/black</item>
+        <item name="conversation_reply_tint">@color/black</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_light</item>
 
@@ -357,6 +358,7 @@
         <item name="conversation_attach">@drawable/ic_attach_white_24dp</item>
         <item name="conversation_number_picker_text_color_normal">@color/gray13</item>
         <item name="conversation_number_picker_text_color_selected">@color/white</item>
+        <item name="conversation_reply_tint">@color/white</item>
 
         <item name="emoji_tab_strip_background">@color/gray95</item>
         <item name="emoji_tab_indicator">@color/gray65</item>

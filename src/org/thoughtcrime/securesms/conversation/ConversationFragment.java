@@ -26,7 +26,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -38,6 +41,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -110,6 +114,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -1155,9 +1160,12 @@ public class ConversationFragment extends Fragment
                             float dX, float dY, int actionState,
                             boolean isCurrentlyActive) {
       if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
+
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
         View itemView = viewHolder.itemView;
         Paint p = new Paint();
+        p.setColorFilter(new PorterDuffColorFilter(ThemeUtil.getThemedColor(getActivity(), R.attr.conversation_reply_tint), PorterDuff.Mode.SRC_IN));
+
         float alpha;
 
         float screenFactor = 4.0F;
