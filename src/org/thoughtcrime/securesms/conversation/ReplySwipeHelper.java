@@ -702,7 +702,7 @@ public class ReplySwipeHelper extends RecyclerView.ItemDecoration implements Rec
         }
 
         public float getSwipeThreshold(@NonNull RecyclerView.ViewHolder viewHolder) {
-            return 0.2F;
+            return 0.5F;
         }
 
         public float getSwipeEscapeVelocity(float defaultValue) {

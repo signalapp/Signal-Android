@@ -1145,6 +1145,11 @@ public class ConversationFragment extends Fragment
       return super.getSwipeDirs(recyclerView, viewHolder);
     }
 
+    @Override
+    public float getSwipeThreshold(@NonNull RecyclerView.ViewHolder viewHolder) {
+      return 0.2F;
+    }
+
     @SuppressLint("StaticFieldLeak")
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
@@ -1163,23 +1168,18 @@ public class ConversationFragment extends Fragment
 
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
         View itemView = viewHolder.itemView;
+        float width = itemView.getWidth();
         Paint p = new Paint();
         p.setColorFilter(new PorterDuffColorFilter(ThemeUtil.getThemedColor(getActivity(), R.attr.conversation_reply_tint), PorterDuff.Mode.SRC_IN));
 
-        float alpha;
+        float alpha = Math.min(1.0F, dX / (getSwipeThreshold(viewHolder) * width));
 
-        float screenFactor = 4.0F;
-        float threshold = viewHolder.itemView.getWidth() / screenFactor;
+        float factor = Math.max(0.0F, (float)(0.3134665 - 0.315195*Math.exp(-4.50835*dX/width)));
 
-        if (dX > threshold) {
-          alpha = 1.0F;
-          viewHolder.itemView.setTranslationX(threshold + (dX - threshold) / screenFactor);
-        } else {
-          alpha = dX / threshold;
-          viewHolder.itemView.setTranslationX(dX);
-        }
+        viewHolder.itemView.setTranslationX(factor * width);
 
         if (dX > 0) {
+          
           Bitmap icon;
 
           icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_reply_white_24dp);
