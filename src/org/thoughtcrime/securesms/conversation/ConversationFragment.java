@@ -1164,8 +1164,6 @@ public class ConversationFragment extends Fragment
                             RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState,
                             boolean isCurrentlyActive) {
-      if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
-
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
         View itemView = viewHolder.itemView;
         float width = itemView.getWidth();
@@ -1174,12 +1172,16 @@ public class ConversationFragment extends Fragment
 
         float alpha = Math.min(1.0F, dX / (getSwipeThreshold(viewHolder) * width));
 
-        float factor = Math.max(0.0F, (float)(0.3134665 - 0.315195*Math.exp(-4.50835*dX/width)));
+        float factor = (float) (0.0
+                + 1.141149 * dX / width
+                - 1.868806 * Math.pow(dX / width, 2.0F)
+                + 1.661371 * Math.pow(dX / width, 3.0F)
+                - 0.6061141 * Math.pow(dX / width, 4.0F));
 
         viewHolder.itemView.setTranslationX(factor * width);
-
+        
         if (dX > 0) {
-          
+
           Bitmap icon;
 
           icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_reply_white_24dp);

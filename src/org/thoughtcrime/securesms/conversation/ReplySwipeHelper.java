@@ -271,13 +271,18 @@ public class ReplySwipeHelper extends RecyclerView.ItemDecoration implements Rec
                     };
                     long duration = this.mCallback.getAnimationDuration(this.mRecyclerView, animationType, targetTranslateX - currentTranslateX, targetTranslateY - currentTranslateY);
                     rv.setDuration(duration);
-                    this.mRecoverAnimations.add(rv);
-                    rv.start();
 
-                    preventLayout = true;
+                    if (targetTranslateX != currentTranslateX) {
+                        this.mRecoverAnimations.add(rv);
+                        rv.start();
 
-                    if (swipeDir > 0) {
-                        ReplySwipeHelper.this.postDispatchSwipe(rv, swipeDir);
+                        preventLayout = true;
+
+                        if (swipeDir > 0) {
+                            ReplySwipeHelper.this.postDispatchSwipe(rv, swipeDir);
+                        }
+                    } else {
+                        ReplySwipeHelper.this.mCallback.clearView(ReplySwipeHelper.this.mRecyclerView, prevSelected);
                     }
                 } else {
                     this.mCallback.clearView(this.mRecyclerView, prevSelected);
@@ -343,7 +348,7 @@ public class ReplySwipeHelper extends RecyclerView.ItemDecoration implements Rec
         for(int i = recoverAnimSize - 1; i >= 0; --i) {
             ReplySwipeHelper.RecoverAnimation anim = (ReplySwipeHelper.RecoverAnimation)this.mRecoverAnimations.get(i);
             if (anim.mViewHolder == viewHolder) {
-                anim.mOverridden |= override;
+                anim.mOverridden = override;
                 if (!anim.mEnded) {
                     anim.cancel();
                 }
