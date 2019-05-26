@@ -1172,6 +1172,16 @@ public class ConversationFragment extends Fragment
 
         float alpha = Math.min(1.0F, dX / (getSwipeThreshold(viewHolder) * width));
 
+        // The 'sticky' curve was created using the site and the points: (4th order polynomial
+        // quadratic regression)
+        // https://mycurvefit.com/
+        // (0,0)
+        // (0.05,0.05)
+        // (0.1,0.1)
+        // (0.5,0.27)
+        // (0.75,0.32)
+        // (0.9, 0.32)
+        // (1.0, 0.33)
         float factor = (float) (0.0
                 + 1.141149 * dX / width
                 - 1.868806 * Math.pow(dX / width, 2.0F)
@@ -1179,7 +1189,7 @@ public class ConversationFragment extends Fragment
                 - 0.6061141 * Math.pow(dX / width, 4.0F));
 
         viewHolder.itemView.setTranslationX(factor * width);
-        
+
         if (dX > 0) {
 
           Bitmap icon;
