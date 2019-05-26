@@ -646,6 +646,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_media_message">Mediaviesti</string>
   <string name="MessageNotifier_reply">Vastaa</string>
+  <string name="MessageNotifier_signal_message">Signal viesti</string>
+  <string name="MessageNotifier_unsecured_sms">Salaamaton SMS-viesti</string>
   <string name="MessageNotifier_pending_signal_messages">Signal-viestejä odottamassa</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Sinulle on Signal-viestejä. Avaa ja hae napauttamalla.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -735,6 +737,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_activity__type_message_sms_insecure">Salaamaton SMS-viesti</string>
   <string name="conversation_activity__type_message_mms_insecure">Salaamaton MMS-viesti</string>
   <string name="conversation_activity__from_sim_name">SIM-kortilta %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Lähetä</string>
   <string name="conversation_activity__compose_description">Viestin kirjoitus</string>
   <string name="conversation_activity__emoji_toggle_description">Avaa tai sulje emoji-näppäimistö</string>
@@ -990,7 +993,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__pref_enter_sends_title">Rivinvaihto lähettää</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Rivinvaihdon painallus lähettää viestin</string>
   <string name="preferences__send_link_previews">Lähetä esikatselukuva linkeistä</string>
-  <string name="preferences__previews_are_supported_for">Esikatselu tukee sivustoja Imgur, Instagram, Reddit ja YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Esikatselu tukee sivustoja Imgur, Instagram, Pinterest, Reddit ja YouTube.</string>
   <string name="preferences__choose_identity">Valitse identiteetti</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Valitse yhteystieto osoitekirjasta.</string>
   <string name="preferences__change_passphrase">Salalauseen vaihto</string>

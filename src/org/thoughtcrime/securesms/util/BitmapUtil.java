@@ -10,14 +10,15 @@ import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.*;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.support.media.ExifInterface;
-import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 
@@ -26,6 +27,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -42,9 +44,10 @@ public class BitmapUtil {
   private static final int MIN_COMPRESSION_QUALITY          = 45;
   private static final int MAX_COMPRESSION_ATTEMPTS         = 5;
   private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
+  private static final int MAX_IMAGE_HALF_SCALES            = 3;
 
   @WorkerThread
-  public static <T> ScaleResult createScaledBytes(Context context, T model, MediaConstraints constraints)
+  public static <T> ScaleResult createScaledBytes(@NonNull Context context, @NonNull T model, @NonNull MediaConstraints constraints)
       throws BitmapDecodingException
   {
     return createScaledBytes(context, model,
@@ -54,7 +57,24 @@ public class BitmapUtil {
   }
 
   @WorkerThread
-  public static <T> ScaleResult createScaledBytes(Context context, T model, int maxImageWidth, int maxImageHeight, int maxImageSize)
+  public static <T> ScaleResult createScaledBytes(@NonNull Context context,
+                                                  @NonNull T model,
+                                                  final int maxImageWidth,
+                                                  final int maxImageHeight,
+                                                  final int maxImageSize)
+      throws BitmapDecodingException
+  {
+    return createScaledBytes(context, model, maxImageWidth, maxImageHeight, maxImageSize, 1, 0);
+  }
+
+  @WorkerThread
+  private static <T> ScaleResult createScaledBytes(@NonNull Context context,
+                                                   @NonNull T model,
+                                                   final int maxImageWidth,
+                                                   final int maxImageHeight,
+                                                   final int maxImageSize,
+                                                   final int sizeAttempt,
+                                                   int totalAttempts)
       throws BitmapDecodingException
   {
     try {
@@ -75,15 +95,17 @@ public class BitmapUtil {
         throw new BitmapDecodingException("Unable to decode image");
       }
 
-      Log.i(TAG, "Initial scaled bitmap has size of " + scaledBitmap.getByteCount() + " bytes.");
+      Log.i(TAG, String.format(Locale.US,"Initial scaled bitmap has size of %d bytes.", scaledBitmap.getByteCount()));
+      Log.i(TAG, String.format(Locale.US, "Max dimensions %d x %d, %d bytes", maxImageWidth, maxImageHeight, maxImageSize));
 
       try {
         do {
+          totalAttempts++;
           ByteArrayOutputStream baos = new ByteArrayOutputStream();
           scaledBitmap.compress(CompressFormat.JPEG, quality, baos);
           bytes = baos.toByteArray();
 
-          Log.d(TAG, "iteration with quality " + quality + " size " + (bytes.length / 1024) + "kb");
+          Log.d(TAG, "iteration with quality " + quality + " size " + bytes.length + " bytes.");
           if (quality == MIN_COMPRESSION_QUALITY) break;
 
           int nextQuality = (int)Math.floor(quality * Math.sqrt((double)maxImageSize / bytes.length));
@@ -95,14 +117,22 @@ public class BitmapUtil {
         while (bytes.length > maxImageSize && attempts++ < MAX_COMPRESSION_ATTEMPTS);
 
         if (bytes.length > maxImageSize) {
-          throw new BitmapDecodingException("Unable to scale image below: " + bytes.length);
+          if (sizeAttempt <= MAX_IMAGE_HALF_SCALES) {
+            scaledBitmap.recycle();
+            scaledBitmap = null;
+
+            Log.i(TAG, "Halving dimensions and retrying.");
+            return createScaledBytes(context, model, maxImageWidth / 2, maxImageHeight / 2, maxImageSize, sizeAttempt + 1, totalAttempts);
+          } else {
+            throw new BitmapDecodingException("Unable to scale image below " + bytes.length + " bytes.");
+          }
         }
 
         if (bytes.length <= 0) {
           throw new BitmapDecodingException("Decoding failed. Bitmap has a length of " + bytes.length + " bytes.");
         }
 
-        Log.i(TAG, "createScaledBytes(" + model.toString() + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
+        Log.i(TAG, String.format(Locale.US, "createScaledBytes(%s) -> quality %d, %d attempt(s) over %d sizes.", model.getClass().getName(), quality, totalAttempts, sizeAttempt));
 
         return new ScaleResult(bytes, scaledBitmap.getWidth(), scaledBitmap.getHeight());
       } finally {

@@ -593,6 +593,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="MessageNotifier_mark_read">Killkakatishkami nishpa unanchay</string>
   <string name="MessageNotifier_media_message">Multimedia chaski</string>
   <string name="MessageNotifier_reply">Kutichina</string>
+  <string name="MessageNotifier_signal_message">Signal chaski</string>
+  <string name="MessageNotifier_unsecured_sms">Kay killkaska SMS mana pakallachu</string>
   <string name="MessageNotifier_pending_signal_messages">Signal chaskikuna shuyanakun</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signal chaskikuna shuyanakukta charinki, paskankapak uryakuchinkapakpash llapipay</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>

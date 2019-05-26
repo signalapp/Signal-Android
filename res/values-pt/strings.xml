@@ -648,6 +648,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimédia</string>
   <string name="MessageNotifier_reply">Responder</string>
+  <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
   <string name="MessageNotifier_pending_signal_messages">Mensagens do Signal pendentes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tem mensagens do Signal pendentes, toque para abrir e obter</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
@@ -737,6 +739,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_activity__type_message_sms_insecure">SMS insegura</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS insegura</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__compose_description">Composição da mensagem</string>
   <string name="conversation_activity__emoji_toggle_description">Teclado de emojis</string>
@@ -992,7 +995,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__pref_enter_sends_title">Tecla de Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter envia as mensagens de texto</string>
   <string name="preferences__send_link_previews">Enviar pré-visualização de hiperligações</string>
-  <string name="preferences__previews_are_supported_for">As pré-visualizações são suportadas em hiperligações do Imgur, Instagram, Reddit, e YouTube.</string>
+  <string name="preferences__previews_are_supported_for">As pré-visualizações são suportadas em hiperligações do Imgur, Instagram, Pinterest, Reddit e YouTube</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha a sua entrada de contacto da lista de contactos.</string>
   <string name="preferences__change_passphrase">Alterar frase-passe</string>

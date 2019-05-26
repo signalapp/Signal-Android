@@ -159,6 +159,7 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nikare peyamên SMS/MMSê bişîne ji ber ku ne sepana SMSê ya sereke ye. Tu dixwazî vê di sazkariya xwe yî Androidê de biguherînî?</string>
   <string name="ConversationActivity_yes">Erê</string>
   <string name="ConversationActivity_no">Na</string>
+  <string name="ConversationActivity_search_position">%1$d ji %2$d</string>
   <string name="ConversationActivity_no_results">Encam nîn e</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -282,7 +283,8 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ji bo wêneyê xwe amade yî?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Êdî tu dikarî li ser Signalê bi hevalên xwe re nav û wêneyê profîlê parve bikî.</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê li vir in</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">\?Tu dixwazî aniha rê bidî wan</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Niha tu dikarî bibînî û parvebikî, dema peyam tên nivîsandin.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Tu dixwazî aniha rê bidî wan?</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Na, sipas</string>
   <string name="ExperienceUpgradeActivity_got_it">Temam</string>
   <!--GcmBroadcastReceiver-->
@@ -386,7 +388,10 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Ji bo bijartinê bitepîne</string>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Binnivîs zêdebikin</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Tiştek hat rakirin ji ber ku zêde mezin bû</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera nayê bikar anîn.</string>
+  <string name="MediaSendActivity_message_to_s">Peyam ji bo %s</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Hemû medya</string>
   <!--MessageRecord-->
@@ -453,7 +458,7 @@
   <string name="RecipientPreferenceActivity_block_this_contact_question">Vî berdengî asteng bikin?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ji vî berdengî dê êdî peyam û bang neyên wergirtin.</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group">Vê komê asteng bike û jê derkeve?</string>
-  <string name="RecipientPreferenceActivity_block_group">\?Vê komê asteng bike</string>
+  <string name="RecipientPreferenceActivity_block_group">Vê komê asteng bike?</string>
   <string name="RecipientPreferenceActivity_block">Astengkirin</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Astenga vî berdengî rake?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu yê dîsa bikaribî ji vî berdengî peyam û bangan wer bigrî.</string>
@@ -616,6 +621,8 @@
   <string name="MessageNotifier_mark_read">Xwendî nîşan bike</string>
   <string name="MessageNotifier_media_message">Peyama medya</string>
   <string name="MessageNotifier_reply">Bersiv bide</string>
+  <string name="MessageNotifier_signal_message">Peyama Signalê</string>
+  <string name="MessageNotifier_unsecured_sms">SMSa neewledar</string>
   <string name="MessageNotifier_pending_signal_messages">Peyamên hilawistî yên Signalê </string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Peyamên hilawistî yên Signalê hene, ji bo vekî û werbigirî bitepîne</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -958,7 +965,6 @@
   <string name="preferences__pref_enter_sends_title">Tîpa Enter dişîne</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ji bo peyamên nivîsî bişîne pêl bike \"Enter\"ê</string>
   <string name="preferences__send_link_previews">Pêşdîtinên girêdanê bişîne</string>
-  <string name="preferences__previews_are_supported_for">Pêşdîtin ji bo girêdanên Imgur, Instagram, Reddit, and YouTube tê piştgirîkirin</string>
   <string name="preferences__choose_identity">Nasname bibijêre</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Tekiliya xwe ji lîsta tekilîdêran bibijêre</string>
   <string name="preferences__change_passphrase">Pêderbasokê biguherîne</string>

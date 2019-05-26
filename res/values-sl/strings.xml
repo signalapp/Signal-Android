@@ -683,6 +683,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_mark_read">Označi kot prebrano</string>
   <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string>
   <string name="MessageNotifier_reply">Odgovor</string>
+  <string name="MessageNotifier_signal_message">Sporočilo Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Nezavarovan SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Čakajoča sporočila Signal</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Imate čakajoča sporočila Signal. Tapnite za pridobitev in pregled.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -774,6 +776,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_activity__type_message_sms_insecure">Nezavarovan SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Nezavarovan MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Pošlji</string>
   <string name="conversation_activity__compose_description">Sestavljanje sporočila</string>
   <string name="conversation_activity__emoji_toggle_description">Vklop tipkovnice emoji</string>
@@ -1045,7 +1048,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__pref_enter_sends_title">Tipka \'Naprej\' pošlje</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritisk na tipko \'Naprej\' pošlje sporočilo</string>
   <string name="preferences__send_link_previews">Pošiljanje povezav s predogledom</string>
-  <string name="preferences__previews_are_supported_for">Predogled je na voljo za povezave na Imgur, Instagram, Reddit in YouTube</string>
+  <string name="preferences__previews_are_supported_for">Predogled je na voljo za povezave na Imgur, Instagram, Pinterest, Reddit in YouTube</string>
   <string name="preferences__choose_identity">Izberi identiteto</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>

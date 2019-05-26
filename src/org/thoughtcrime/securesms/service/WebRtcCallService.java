@@ -794,6 +794,10 @@ public class WebRtcCallService extends Service implements InjectableType,
     if (this.peerConnection != null) {
       this.peerConnection.setAudioEnabled(this.microphoneEnabled);
     }
+
+    if (recipient != null) {
+      sendMessage(viewModelStateFor(callState), recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    }
   }
 
   private void handleSetMuteVideo(Intent intent) {

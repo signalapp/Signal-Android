@@ -48,7 +48,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
       Recipient       recipient       = Recipient.from(context, mismatch.getAddress(), false);
       String          name            = recipient.toShortString();
-      String          introduction    = String.format(context.getString(R.string.ConfirmIdentityDialog_your_safety_number_with_s_has_changed), name, name);
+      String          introduction    = context.getString(R.string.ConfirmIdentityDialog_your_safety_number_with_s_has_changed, name, name);
       SpannableString spannableString = new SpannableString(introduction + " " +
                                                             context.getString(R.string.ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact));
 

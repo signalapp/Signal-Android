@@ -4,10 +4,10 @@ package org.thoughtcrime.securesms.attachments;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
 
-import org.spongycastle.util.encoders.Hex;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.BufferedOutputStream;
@@ -52,7 +52,7 @@ public class AttachmentServer implements Runnable {
       this.attachment   = attachment;
       this.socket       = new ServerSocket(0, 0, InetAddress.getByAddress(new byte[]{127, 0, 0, 1}));
       this.port         = socket.getLocalPort();
-      this.auth         = new String(Hex.encode(Util.getSecretBytes(16)));
+      this.auth         = Hex.toStringCondensed(Util.getSecretBytes(16));
 
       this.socket.setSoTimeout(5000);
     } catch (UnknownHostException e) {

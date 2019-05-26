@@ -629,6 +629,8 @@
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_reply">回覆</string>
+  <string name="MessageNotifier_signal_message">Signal 訊息</string>
+  <string name="MessageNotifier_unsecured_sms">不安全的簡訊</string>
   <string name="MessageNotifier_pending_signal_messages">擱置的 Signal 訊息</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Signal 訊息，輕觸打開及取得訊息</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -717,6 +719,7 @@
   <string name="conversation_activity__type_message_sms_insecure">不安全的簡訊</string>
   <string name="conversation_activity__type_message_mms_insecure">不安全的多媒體訊息</string>
   <string name="conversation_activity__from_sim_name">來自 %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">送出</string>
   <string name="conversation_activity__compose_description">編輯簡訊</string>
   <string name="conversation_activity__emoji_toggle_description">切換表情符號鍵盤</string>
@@ -964,7 +967,7 @@
   <string name="preferences__pref_enter_sends_title">按下輸入鍵發送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下輸入鍵將會發送訊息</string>
   <string name="preferences__send_link_previews">傳送連結預覽</string>
-  <string name="preferences__previews_are_supported_for">預覽功能支援 Imgur、Instagram、Reddit 及 YouTube的連結。</string>
+  <string name="preferences__previews_are_supported_for">預覽功能支援 Imgur、 Instagram、 Pinterest、 Reddit 及 YouTube的連結。</string>
   <string name="preferences__choose_identity">選擇身分</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的聯絡人清單中選擇聯絡人項目。</string>
   <string name="preferences__change_passphrase">變更自訂密碼</string>
@@ -972,7 +975,7 @@
   <string name="preferences__enable_passphrase">啟用螢幕鎖定的自訂密碼</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用鎖定螢幕及通知密碼</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">在對話清單或應用內停用畫面擷取功能</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">在對話清單或應用程式內停用畫面擷取功能</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在特定時間內不活躍會自動鎖定 Signal</string>
   <string name="preferences__inactivity_timeout_passphrase">不活躍鎖定密碼</string>
   <string name="preferences__inactivity_timeout_interval">不活躍時間間隔</string>

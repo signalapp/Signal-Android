@@ -612,6 +612,8 @@
   <string name="MessageNotifier_mark_read">చదివినట్టు గుర్తుపెట్టు</string>
   <string name="MessageNotifier_media_message">మీడియ సందేశం</string>
   <string name="MessageNotifier_reply">స్పంధించు</string>
+  <string name="MessageNotifier_signal_message">Signal సందేశం</string>
+  <string name="MessageNotifier_unsecured_sms">భద్రతలేని సందేశం</string>
   <string name="MessageNotifier_pending_signal_messages">Signal సందేశాలు పెండింగ్లో ఉన్నాయి</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">మీ Signal సందేశాలు పెండింగ్లో ఉన్నాయి, తెరవడానికి మరియు తిరిగి పొందడానికి నొక్కండి</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

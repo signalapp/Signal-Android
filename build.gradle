@@ -84,8 +84,12 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer-core:2.9.1'
     compile 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
 
-    compile 'org.whispersystems:signal-service-android:2.12.8'
-    compile 'org.whispersystems:webrtc-android:M73-S1'
+    compile 'org.conscrypt:conscrypt-android:2.0.0'
+    compile 'org.signal:aesgcmprovider:0.0.3'
+
+    compile 'org.whispersystems:signal-service-android:2.13.1'
+
+    compile 'org.whispersystems:webrtc-android:M74'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -184,8 +188,10 @@ dependencyVerification {
         'com.google.android.gms:play-services-auth:aec9e1c584d442cb9f59481a50b2c66dc191872607c04d97ecb82dd0eb5149ec',
         'com.google.android.exoplayer:exoplayer-ui:7a942afcc402ff01e9bf48e8d3942850986710f06562d50a1408aaf04a683151',
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
-        'org.whispersystems:signal-service-android:68a349a9e05089f33ab5a9b9fc330526f59d31e8385ff9f5b70bc4a88bd0e297',
-        'org.whispersystems:webrtc-android:1ae3716728f2581724f982f5b4ded92d7aa33edf19d0daa35529d9529f8eb3a2',
+        'org.conscrypt:conscrypt-android:400ca559a49b860a82862b22cee0e3110764bdcf7ee7c79e7479895c25cdfc09',
+        'org.signal:aesgcmprovider:6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1',
+        'org.whispersystems:signal-service-android:2f5ac0cc0d3a016285fd02ec0fb12cf287653fca056a499643aadb4ed35b1c85',
+        'org.whispersystems:webrtc-android:2f7befaa3b47a04d244a4eef7c03c2d49c1685a6f92fc505cd5f4ac7eca2dc18',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
@@ -251,8 +257,8 @@ dependencyVerification {
         'com.android.support:interpolator:7bc7ee86a0db39a4b51956f3e89842d2bd962118d57d779eb6ed6b34ba0677ea',
         'com.android.support:support-annotations:5d5b9414f02d3fa0ee7526b8d5ddae0da67c8ecc8c4d63ffa6cf91488a93b927',
         'com.android.support.constraint:constraint-layout-solver:2cafbe356f71c208013d021f32943904798cd6459e5107f9fe27000eb5bc2aef',
-        'org.signal:signal-metadata-android:d9d798aab7ee7200373ecff8718baf8aaeb632c123604e8a41b7b4c0c97eeee1',
-        'org.whispersystems:signal-service-java:fde1a008fe42ebbf1cd35018b363135cd8fec9e690304f8917b5ffb7080fa2a5',
+        'org.signal:signal-metadata-android:02323bc29317fa9d3b62fab0b507c94ba2e9bcc4a78d588888ffd313853757b3',
+        'org.whispersystems:signal-service-java:5275b437591577d9da1cc6bde7d4fc1d6549c221e2365e108a595b4d21cf7499',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
         'com.github.bumptech.glide:annotations:bede99ef9f71517a4274bac18fd3e483e9f2b6108d7d6fe8f4949be4aa4d9512',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
@@ -260,24 +266,22 @@ dependencyVerification {
         'com.klinkerapps:logger:177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541',
         'com.google.android:flexbox:a9989fd13ae2ee42765dfc515fe362edf4f326e74925d02a10369df8092a4935',
         'org.jsoup:jsoup:abeaf34795a4de70f72aed6de5966d2955ec7eb348eeb813324f23c999575473',
-        'org.whispersystems:signal-protocol-android:b41b7c3a47b0a4ce35802474ae7c5ddc8f033d80209e98abf7ec669543b2b3ee',
-        'org.signal:signal-metadata-java:af1d0dd766b1e301ed1c44e65161084cf03e2587fe97fdd29ecbea58c6aa6930',
-        'org.whispersystems:signal-protocol-java:b08207f7e1847228f2a1f0d49e113f93c96c6ed8490be14edddd4be55b2a4a4e',
+        'org.whispersystems:signal-protocol-android:c80aac5f93114da2810e2e89437831f79fcbc8bece652f64aeab313a651cba85',
+        'org.signal:signal-metadata-java:2ce71cc4ec5dacfbaef4a265fceef61b8a09696b541994106a22a946762cbdcc',
+        'org.whispersystems:signal-protocol-java:7f6df67a963acbab7716424b01b12fa7279f18a9623a2a7c8ba7b1c285830168',
         'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
-        'com.googlecode.libphonenumber:libphonenumber:183392c0565be16d3f6f86680b4106bbde6fe31a402ad21bf9823d938c0c8706',
-        'com.fasterxml.jackson.core:jackson-databind:0fb4e079c118e752cc94c15ad22e6782b0dfc5dc09145f4813fb39d82e686047',
-        'com.squareup.okhttp3:okhttp:7265adbd6f028aade307f58569d814835cd02bc9beffb70c25f72c9de50d61c4',
-        'com.madgag.spongycastle:pkix:0d9cca6991f68eb373cfad309d5268c9fc38db5efb5fe00dcccf5c973af1eca1',
-        'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
+        'com.googlecode.libphonenumber:libphonenumber:dbf4bf566d17a60044c19e282a619684e4b4abb0f9f9f24f843c55d19826ab5e',
+        'com.fasterxml.jackson.core:jackson-databind:2351c3eba73a545db9079f5d6d768347ad72666537362c8220fe3e950a55a864',
+        'com.squareup.okhttp3:okhttp:07c3d82ca7eaf4722f00b2da807dc7860f6169ae60cfedcf5d40218f90880a46',
         'org.threeten:threetenbp:f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7',
-        'org.whispersystems:curve25519-android:82595394422b957d4a5b5f1b27b75ba25cf6dc4db4d312418ca38cd6fff279ca',
+        'org.whispersystems:curve25519-android:b502bcf83efe001f09a7a9efda6f0fa772c43ed5924e97816296ed3503caa092',
         'com.fasterxml.jackson.core:jackson-annotations:45d32ac61ef8a744b464c54c2b3414be571016dd46bfc2bec226761cf7ae457a',
-        'com.fasterxml.jackson.core:jackson-core:a2bebaa325ad25455b02149c67e6052367a7d7fc1ce77de000eed284a5214eac',
-        'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
-        'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
-        'org.whispersystems:curve25519-java:7dd659d8822c06c3aea1a47f18fac9e5761e29cab8100030b877db445005f03e',
+        'com.fasterxml.jackson.core:jackson-core:d934dab0bd48994eeea2c1b493cb547158a338a80b58c4fbc8e85fb0905e105f',
+        'com.squareup.okio:okio:693fa319a7e8843300602b204023b7674f106ebcb577f2dd5807212b66118bd2',
+        'org.whispersystems:curve25519-java:0aadd43cf01d11e9b58f867b3c4f25c3194e8b0623d1953d32dfbfbee009e38d',
     ]
 }
+
 
 android {
     flavorDimensions "none"
@@ -290,8 +294,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 476
-        versionName "4.38.2"
+        versionCode 487
+        versionName "4.40.4"
 
         minSdkVersion 19
         targetSdkVersion 26

@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.scribbles.ScribbleFragment;
+import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -49,7 +49,7 @@ import java.util.Locale;
 public class MediaSendActivity extends PassphraseRequiredActionBarActivity implements MediaPickerFolderFragment.Controller,
                                                                                       MediaPickerItemFragment.Controller,
                                                                                       MediaSendFragment.Controller,
-                                                                                      ScribbleFragment.Controller,
+                                                                                      ImageEditorFragment.Controller,
                                                                                       Camera1Fragment.Controller
 {
   private static final String TAG = MediaSendActivity.class.getSimpleName();
@@ -445,5 +445,13 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     });
 
     button.startAnimation(grow);
+  }
+
+  @Override
+  public void onRequestFullScreen(boolean fullScreen) {
+    MediaSendFragment sendFragment = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
+    if (sendFragment != null && sendFragment.isVisible()) {
+      sendFragment.onRequestFullScreen(fullScreen);
+    }
   }
 }

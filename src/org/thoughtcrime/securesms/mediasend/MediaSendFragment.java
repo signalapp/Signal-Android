@@ -28,6 +28,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.ComposeText;
@@ -43,7 +44,7 @@ import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.scribbles.widget.ScribbleView;
+import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -51,6 +52,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -79,6 +81,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   private static final String KEY_LOCALE    = "locale";
 
   private InputAwareLayout  hud;
+  private View              captionAndRail;
   private SendButton        sendButton;
   private ComposeText       composeText;
   private ViewGroup         composeContainer;
@@ -140,6 +143,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     hud                       = view.findViewById(R.id.mediasend_hud);
+    captionAndRail            = view.findViewById(R.id.mediasend_caption_and_rail);
     sendButton                = view.findViewById(R.id.mediasend_send_button);
     composeText               = view.findViewById(R.id.mediasend_compose_text);
     composeContainer          = view.findViewById(R.id.mediasend_compose_container);
@@ -313,7 +317,9 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   }
 
   public void onTouchEventsNeeded(boolean needed) {
-    fragmentPager.setEnabled(!needed);
+    if (fragmentPager != null) {
+      fragmentPager.setEnabled(!needed);
+    }
   }
 
   public boolean handleBackPress() {
@@ -423,8 +429,11 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     for (Media media : mediaList) {
       Object state = savedState.get(media.getUri());
 
-      if (state instanceof ScribbleView.SavedState && !((ScribbleView.SavedState) state).isEmpty()) {
-        futures.put(media, ScribbleView.renderImage(requireContext(), media.getUri(), (ScribbleView.SavedState) state, GlideApp.with(this)));
+      if (state instanceof ImageEditorFragment.Data) {
+        EditorModel model = ((ImageEditorFragment.Data) state).readModel();
+        if (model != null && model.isChanged()) {
+          futures.put(media, render(requireContext(), model));
+        }
       }
     }
 
@@ -491,6 +500,18 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
         renderTimer.stop(TAG);
       }
     }.execute();
+  }
+
+  private static ListenableFuture<Bitmap> render(@NonNull Context context, @NonNull EditorModel model) {
+    SettableFuture<Bitmap> future = new SettableFuture<>();
+
+    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> future.set(model.render(context)));
+
+    return future;
+  }
+
+  public void onRequestFullScreen(boolean fullScreen) {
+    captionAndRail.setVisibility(fullScreen ? View.GONE : View.VISIBLE);
   }
 
   private class FragmentPageChangeListener extends ViewPager.SimpleOnPageChangeListener {

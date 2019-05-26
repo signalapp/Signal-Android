@@ -86,35 +86,35 @@ public class SignalServiceNetworkAccess {
   public SignalServiceNetworkAccess(Context context) {
 
     final TrustStore                trustStore              = new DomainFrontingTrustStore(context);
-    final SignalServiceUrl          baseGoogleService       = new SignalServiceUrl("https://www.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalServiceUrl          baseAndroidService      = new SignalServiceUrl("https://android.clients.google.com", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
-    final SignalServiceUrl          mapsOneAndroidService   = new SignalServiceUrl("https://clients3.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalServiceUrl          mapsTwoAndroidService   = new SignalServiceUrl("https://clients4.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalServiceUrl          mailAndroidService      = new SignalServiceUrl("https://inbox.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalServiceUrl          egyptGoogleService      = new SignalServiceUrl("https://www.google.com.eg", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalServiceUrl          uaeGoogleService        = new SignalServiceUrl("https://www.google.com.ae", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalServiceUrl          omanGoogleService       = new SignalServiceUrl("https://www.google.com.om", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalServiceUrl          qatarGoogleService      = new SignalServiceUrl("https://www.google.com.qa", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalServiceUrl          baseGoogleService       = new SignalServiceUrl("https://www.google.com/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalServiceUrl          baseAndroidService      = new SignalServiceUrl("https://android.clients.google.com/service", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
+    final SignalServiceUrl          mapsOneAndroidService   = new SignalServiceUrl("https://clients3.google.com/service", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalServiceUrl          mapsTwoAndroidService   = new SignalServiceUrl("https://clients4.google.com/service", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalServiceUrl          mailAndroidService      = new SignalServiceUrl("https://inbox.google.com/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalServiceUrl          egyptGoogleService      = new SignalServiceUrl("https://www.google.com.eg/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalServiceUrl          uaeGoogleService        = new SignalServiceUrl("https://www.google.com.ae/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalServiceUrl          omanGoogleService       = new SignalServiceUrl("https://www.google.com.om/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalServiceUrl          qatarGoogleService      = new SignalServiceUrl("https://www.google.com.qa/service", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
-    final SignalCdnUrl              baseGoogleCdn           = new SignalCdnUrl("https://www.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalCdnUrl              baseAndroidCdn          = new SignalCdnUrl("https://android.clients.google.com", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
-    final SignalCdnUrl              mapsOneAndroidCdn       = new SignalCdnUrl("https://clients3.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalCdnUrl              mapsTwoAndroidCdn       = new SignalCdnUrl("https://clients4.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalCdnUrl              mailAndroidCdn          = new SignalCdnUrl("https://inbox.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalCdnUrl              egyptGoogleCdn          = new SignalCdnUrl("https://www.google.com.eg", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalCdnUrl              uaeGoogleCdn            = new SignalCdnUrl("https://www.google.com.ae", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalCdnUrl              omanGoogleCdn           = new SignalCdnUrl("https://www.google.com.om", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalCdnUrl              qatarGoogleCdn          = new SignalCdnUrl("https://www.google.com.qa", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalCdnUrl              baseGoogleCdn           = new SignalCdnUrl("https://www.google.com/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalCdnUrl              baseAndroidCdn          = new SignalCdnUrl("https://android.clients.google.com/cdn", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
+    final SignalCdnUrl              mapsOneAndroidCdn       = new SignalCdnUrl("https://clients3.google.com/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalCdnUrl              mapsTwoAndroidCdn       = new SignalCdnUrl("https://clients4.google.com/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalCdnUrl              mailAndroidCdn          = new SignalCdnUrl("https://inbox.google.com/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalCdnUrl              egyptGoogleCdn          = new SignalCdnUrl("https://www.google.com.eg/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalCdnUrl              uaeGoogleCdn            = new SignalCdnUrl("https://www.google.com.ae/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalCdnUrl              omanGoogleCdn           = new SignalCdnUrl("https://www.google.com.om/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalCdnUrl              qatarGoogleCdn          = new SignalCdnUrl("https://www.google.com.qa/cdn", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
-    final SignalContactDiscoveryUrl baseGoogleDiscovery     = new SignalContactDiscoveryUrl("https://www.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl baseAndroidDiscovery    = new SignalContactDiscoveryUrl("https://android.clients.google.com", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl mapsOneAndroidDiscovery = new SignalContactDiscoveryUrl("https://clients3.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl mapsTwoAndroidDiscovery = new SignalContactDiscoveryUrl("https://clients4.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl mailAndroidDiscovery    = new SignalContactDiscoveryUrl("https://inbox.google.com", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl egyptGoogleDiscovery    = new SignalContactDiscoveryUrl("https://www.google.com.eg", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl uaeGoogleDiscovery      = new SignalContactDiscoveryUrl("https://www.google.com.ae", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl omanGoogleDiscovery     = new SignalContactDiscoveryUrl("https://www.google.com.om", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
-    final SignalContactDiscoveryUrl qatarGoogleDiscovery    = new SignalContactDiscoveryUrl("https://www.google.com.qa", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl baseGoogleDiscovery     = new SignalContactDiscoveryUrl("https://www.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl baseAndroidDiscovery    = new SignalContactDiscoveryUrl("https://android.clients.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, PLAY_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl mapsOneAndroidDiscovery = new SignalContactDiscoveryUrl("https://clients3.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl mapsTwoAndroidDiscovery = new SignalContactDiscoveryUrl("https://clients4.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAPS_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl mailAndroidDiscovery    = new SignalContactDiscoveryUrl("https://inbox.google.com/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl egyptGoogleDiscovery    = new SignalContactDiscoveryUrl("https://www.google.com.eg/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl uaeGoogleDiscovery      = new SignalContactDiscoveryUrl("https://www.google.com.ae/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl omanGoogleDiscovery     = new SignalContactDiscoveryUrl("https://www.google.com.om/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
+    final SignalContactDiscoveryUrl qatarGoogleDiscovery    = new SignalContactDiscoveryUrl("https://www.google.com.qa/directory", SERVICE_REFLECTOR_HOST, trustStore, GMAIL_CONNECTION_SPEC);
 
 
     this.censorshipConfiguration = new HashMap<String, SignalServiceConfiguration>() {{

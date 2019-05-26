@@ -624,6 +624,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_mark_read">Tandai sudah dibaca</string>
   <string name="MessageNotifier_media_message">Pesan media</string>
   <string name="MessageNotifier_reply">Balas</string>
+  <string name="MessageNotifier_signal_message">Pesan Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Kirim SMS tidak aman</string>
   <string name="MessageNotifier_pending_signal_messages">Pesan Signal tertunda</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Signal yang tertunda, ketuk untuk membuka dan menerima</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -956,7 +958,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
   <string name="preferences__send_link_previews">Kirim pratinjau tautan</string>
-  <string name="preferences__previews_are_supported_for">Pratinjau didukung untuk tautan Imgur, Instagram, Reddit, dan Youtube</string>
   <string name="preferences__choose_identity">Pilih identitas</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
   <string name="preferences__change_passphrase">Ganti Kata Kunci</string>

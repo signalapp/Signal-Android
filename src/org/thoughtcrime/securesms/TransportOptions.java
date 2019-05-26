@@ -5,15 +5,18 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.MmsCharacterCalculator;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -105,13 +108,17 @@ public class TransportOptions {
   }
 
   public void disableTransport(Type type) {
-    Optional<TransportOption> option = find(type);
+    TransportOption selected = selectedOption.orNull();
 
-    if (option.isPresent()) {
-      enabledTransports.remove(option.get());
+    Iterator<TransportOption> iterator = enabledTransports.iterator();
+    while (iterator.hasNext()) {
+      TransportOption option = iterator.next();
 
-      if (selectedOption.isPresent() && selectedOption.get().getType() == type) {
-        setSelectedTransport(null);
+      if (option.isType(type)) {
+        if (selected == option) {
+          setSelectedTransport(null);
+        }
+        iterator.remove();
       }
     }
   }
@@ -150,14 +157,14 @@ public class TransportOptions {
                                                                         @NonNull String composeHint,
                                                                         @NonNull CharacterCalculator characterCalculator)
   {
-    List<TransportOption>        results             = new LinkedList<>();
-    SubscriptionManagerCompat    subscriptionManager = new SubscriptionManagerCompat(context);
-    List<SubscriptionInfoCompat> subscriptions;
+    List<TransportOption>              results             = new LinkedList<>();
+    SubscriptionManagerCompat          subscriptionManager = new SubscriptionManagerCompat(context);
+    Collection<SubscriptionInfoCompat> subscriptions;
 
     if (Permissions.hasAll(context, Manifest.permission.READ_PHONE_STATE)) {
-      subscriptions = subscriptionManager.getActiveSubscriptionInfoList();
+      subscriptions = subscriptionManager.getActiveAndReadySubscriptionInfos();
     } else {
-      subscriptions = new LinkedList<>();
+      subscriptions = Collections.emptyList();
     }
 
     if (subscriptions.size() < 2) {
@@ -181,16 +188,6 @@ public class TransportOptions {
     for (OnTransportChangedListener listener : listeners) {
       listener.onChange(getSelectedTransport(), selectedOption.isPresent());
     }
-  }
-
-  private Optional<TransportOption> find(Type type) {
-    for (TransportOption option : enabledTransports) {
-      if (option.isType(type)) {
-        return Optional.of(option);
-      }
-    }
-
-    return Optional.absent();
   }
 
   private boolean isEnabled(TransportOption transportOption) {

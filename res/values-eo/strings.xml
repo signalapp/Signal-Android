@@ -651,6 +651,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_mark_read">Marki legita</string>
   <string name="MessageNotifier_media_message">Aŭdvida mesaĝo</string>
   <string name="MessageNotifier_reply">Respondi</string>
+  <string name="MessageNotifier_signal_message">Signal-mesaĝo</string>
+  <string name="MessageNotifier_unsecured_sms">Nesekura SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Pritraktotaj Signal-aj mesaĝoj</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Vi havas pritraktotajn Signal-ajn mesaĝojn; tuŝetu por malfermi kaj ricevi ilin</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -740,6 +742,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_activity__type_message_sms_insecure">Nesekura SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Nesekura MMS</string>
   <string name="conversation_activity__from_sim_name">El %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Sendi</string>
   <string name="conversation_activity__compose_description">Mesaĝa redakto</string>
   <string name="conversation_activity__emoji_toggle_description">Baskuligi emoĝian klavaron</string>
@@ -995,7 +998,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__pref_enter_sends_title">La Eniga klavo kaŭzas sendon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premi la Enigan klavon sendos mesaĝojn</string>
   <string name="preferences__send_link_previews">Sendi autaŭrigardojn de ligilo</string>
-  <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Reddit kaj YouTube</string>
+  <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Pinterest, Reddit kaj YouTube</string>
   <string name="preferences__choose_identity">Elekti identecon</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elektu vian propran kontakton el la kontaktlisto.</string>
   <string name="preferences__change_passphrase">Ŝanĝi pasfrazon</string>

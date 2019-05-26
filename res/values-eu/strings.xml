@@ -653,6 +653,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_mark_read">Markatu irakurritako gisa</string>
   <string name="MessageNotifier_media_message">Multimedia mezua</string>
   <string name="MessageNotifier_reply">Erantzun</string>
+  <string name="MessageNotifier_signal_message">Signal mezua</string>
+  <string name="MessageNotifier_unsecured_sms">SMS ez segurua</string>
   <string name="MessageNotifier_pending_signal_messages">Falta diren Signalen mezuak</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signal mezuak  zain dauzkazu, ukitu irekitzeko eta jasotzeko.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
@@ -998,7 +1000,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences__pref_enter_sends_title">Enter teklak bidaltzen duena</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tekla sakatzeak testu mezuak bidaliko ditu</string>
   <string name="preferences__send_link_previews">Loturen aurrebistak bidali</string>
-  <string name="preferences__previews_are_supported_for">Aurrebistak honako zerbitzuekin funtzionatzen du: Imgur, Instagram, Reddit eta YouTube</string>
   <string name="preferences__choose_identity">Aukeratu nortasuna</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
   <string name="preferences__change_passphrase">Pasahitza aldatu</string>

@@ -228,7 +228,7 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
   <!--ConversationListItemAction-->
-  <string name="ConversationListItemAction_archived_conversations_d">Arşivlenen sohbetler (%d)</string>
+  <string name="ConversationListItemAction_archived_conversations_d">Arşivlenmiş sohbetler (%d)</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Profil bilgileriniz</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil fotoğrafı kaydedilirken hata</string>
@@ -330,7 +330,7 @@
   <string name="GroupMembersDialog_me">Ben</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
-  <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <string name="CropImageActivity_profile_avatar">Resim</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın</string>
   <!--InviteActivity-->
@@ -570,7 +570,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s güvenli oturumu sıfırladı.</string>
   <string name="SmsMessageRecord_duplicate_message">Tekrarlanan ileti.</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_group_updated">Grup güncelledi</string>
+  <string name="ThreadRecord_group_updated">Grup güncellendi</string>
   <string name="ThreadRecord_left_the_group">Gruptan ayrıldı</string>
   <string name="ThreadRecord_secure_session_reset">Güvenli oturumu sıfırla.</string>
   <string name="ThreadRecord_draft">Taslak:</string>
@@ -651,6 +651,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_mark_read">Okundu işaretle</string>
   <string name="MessageNotifier_media_message">Medya iletisi</string>
   <string name="MessageNotifier_reply">Cevapla</string>
+  <string name="MessageNotifier_signal_message">Signal İletisi</string>
+  <string name="MessageNotifier_unsecured_sms">Şifresiz SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Bekleyen Signal iletileri</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Bekleyen Signal iletileriniz var, almak ve açmak için dokunun</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -740,13 +742,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_activity__type_message_sms_insecure">Şifresiz SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Şifresiz MMS</string>
   <string name="conversation_activity__from_sim_name">Gönderen %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Gönder</string>
   <string name="conversation_activity__compose_description">İleti oluştur</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji klavyesini göster/gizle</string>
   <string name="conversation_activity__attachment_thumbnail">Eklenti Önizlemesi</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hızlı kamera eki çekmecesini göster/gizle</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ses eki kaydet ve gönder</string>
-  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ses eklentisinin kaydını kilitle</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ses eklentisi kaydını kilitle</string>
   <string name="conversation_activity__enable_signal_for_sms">SMS için Signal\'i etkinleştir</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">İptal etmek için kaydırın</string>
@@ -995,7 +998,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__pref_enter_sends_title">Enter tuşu ile gönder</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşuna basmak metin iletilerini gönderecektir</string>
   <string name="preferences__send_link_previews">Bağlantı ön izlemelerini gönder</string>
-  <string name="preferences__previews_are_supported_for">Ön izlemeler Imgur, Instagram, Reddit, ve YouTube bağlantıları için desteklenmektedir</string>
+  <string name="preferences__previews_are_supported_for">Ön izlemeler Imgur, Instagram, Pinterest, Reddit, ve YouTube bağlantıları için desteklenmektedir</string>
   <string name="preferences__choose_identity">Kimlik seçin</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
   <string name="preferences__change_passphrase">Parola değiştir</string>

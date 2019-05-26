@@ -574,6 +574,8 @@
   <string name="MessageNotifier_mark_read">Означи прочитаним</string>
   <string name="MessageNotifier_media_message">Мултимедијална порука</string>
   <string name="MessageNotifier_reply">Одговори</string>
+  <string name="MessageNotifier_signal_message">Порука на Signalу</string>
+  <string name="MessageNotifier_unsecured_sms">Необезбеђени СМС</string>
   <string name="MessageNotifier_pending_signal_messages">Поруке са Signal-a на чекању</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Имате поруке на Signalу, тапните да отворите и добавите</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

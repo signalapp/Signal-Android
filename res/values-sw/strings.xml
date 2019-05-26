@@ -509,6 +509,8 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_mark_read">soma nakili</string>
   <string name="MessageNotifier_media_message">Ujumbe wa vyombo vya habari</string>
   <string name="MessageNotifier_reply">jibu</string>
+  <string name="MessageNotifier_signal_message">ujumbe wa Signal</string>
+  <string name="MessageNotifier_unsecured_sms">ujumbe sio salama</string>
   <string name="MessageNotifier_pending_signal_messages">Ujumbe wa Signal inasubiri</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">una ujumbe wa Signal unasubiri, gusa kufungua na kurudi</string>
   <string name="MessageNotifier_unknown_contact_message">Mawasiliano</string>
@@ -799,7 +801,6 @@ nambari yako ya simu</string>
   <string name="preferences__pref_enter_sends_title">Ingiza kutuma muhimu</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">bonyeza kibodi ya kuingia ili kutuma ujumbe wa maandishi</string>
   <string name="preferences__send_link_previews">tuma kiungo kilichoonekana</string>
-  <string name="preferences__previews_are_supported_for">Uhakikisho unasaidiwa kwa Imgur, Instagram, Reddit, na viungo vya YouTube</string>
   <string name="preferences__choose_identity">chagua utambulisho</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">chagua mawasiliano kutoka kwenye list yako ya mawasiliano.</string>
   <string name="preferences__change_passphrase">badili passphrase</string>

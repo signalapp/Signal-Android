@@ -581,6 +581,8 @@
   <string name="MessageNotifier_mark_read">ทำเครื่องหมายว่าอ่านแล้ว</string>
   <string name="MessageNotifier_media_message">ข้อความสื่อ</string>
   <string name="MessageNotifier_reply">ตอบกลับ</string>
+  <string name="MessageNotifier_signal_message">ข้อความ Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS ที่ไม่ปลอดภัย</string>
   <string name="MessageNotifier_pending_signal_messages">ข้อความ Signal ที่รอดำเนินการ</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Signal ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

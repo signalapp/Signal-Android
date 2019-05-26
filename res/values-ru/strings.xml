@@ -686,6 +686,8 @@
   <string name="MessageNotifier_mark_read">Прочитано</string>
   <string name="MessageNotifier_media_message">Медиа-сообщение</string>
   <string name="MessageNotifier_reply">Ответить</string>
+  <string name="MessageNotifier_signal_message">Сообщение Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Незащищённое SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Неполученные сообщения</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">У вас есть неполученные сообщения в Signal. Нажмите, чтобы открыть приложение и получить их.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -777,6 +779,7 @@
   <string name="conversation_activity__type_message_sms_insecure">Незащищённое SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Незащищённое MMS</string>
   <string name="conversation_activity__from_sim_name">Через %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Отправить</string>
   <string name="conversation_activity__compose_description">Написание сообщения</string>
   <string name="conversation_activity__emoji_toggle_description">Клавиатура смайликов</string>
@@ -1048,7 +1051,7 @@
   <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
   <string name="preferences__send_link_previews">Отправлять предпросмотр ссылки</string>
-  <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок Imgur, Instagram, Reddit и YouTube</string>
+  <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок Imgur, Instagram, Pinterest, Reddit и YouTube.</string>
   <string name="preferences__choose_identity">Выберите личность</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>

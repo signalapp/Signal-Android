@@ -684,6 +684,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_mark_read">Przeczytane</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
+  <string name="MessageNotifier_signal_message">Wiadomość Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Nieszyfrowany SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Oczekujące wiadomości Signal</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Masz oczekujące wiadomości Signal. Dotknij, aby otworzyć.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -775,6 +777,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_activity__type_message_sms_insecure">Nieszyfrowany SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Nieszyfrowany MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Wyślij</string>
   <string name="conversation_activity__compose_description">Kompozycja wiadomości</string>
   <string name="conversation_activity__emoji_toggle_description">Przełącz do emoji klawiatury</string>
@@ -1046,7 +1049,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__pref_enter_sends_title">Enter wysyła</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Wciśnięcie przycisku Enter spowoduje wysłanie wiadomości</string>
   <string name="preferences__send_link_previews">Podgląd linków</string>
-  <string name="preferences__previews_are_supported_for">Podglądy linków są obsługiwane dla Imgur, Instagram, Reddit i YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Podglądy linków są wspierane dla Imgur, Instagram, Pinterest, Reddit i YouTube.</string>
   <string name="preferences__choose_identity">Wybierz tożsamość</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wybierz swój kontakt z listy kontaktów.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>

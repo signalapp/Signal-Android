@@ -652,6 +652,8 @@
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensaxe multimedia</string>
   <string name="MessageNotifier_reply">Responder</string>
+  <string name="MessageNotifier_signal_message">Mensaxe de Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS insegura</string>
   <string name="MessageNotifier_pending_signal_messages">Mensaxes de Signal pendentes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Tes mensaxes de Signal pendentes, toca para abrir e recuperalas</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -994,7 +996,6 @@
   <string name="preferences__pref_enter_sends_title">Tecla Intro para enviar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ao tocar na tecla Intro enviaranse as mensaxes</string>
   <string name="preferences__send_link_previews">Enviar previsualizacións das ligazóns.</string>
-  <string name="preferences__previews_are_supported_for">Admítense previsualizacións de Imgur, Instagram, Reddit e YouTube</string>
   <string name="preferences__choose_identity">Elixir identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elixe os contactos da túa listaxe.</string>
   <string name="preferences__change_passphrase">Cambiar frase de acceso</string>

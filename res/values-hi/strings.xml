@@ -109,6 +109,9 @@
   <string name="ConversationItem_copied_text">%s अनुकरण </string>
   <string name="ConversationItem_from_s">%s से</string>
   <string name="ConversationItem_to_s">%s को</string>
+  <string name="ConversationItem_read_more">और पढो</string>
+  <string name="ConversationItem_download_more">और डाउनलोड करें</string>
+  <string name="ConversationItem_pending">बचा हुआ</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करें?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">अगर आपको इस वार्तालाप में एन्क्रिप्शन समस्याएं आ रही हैं तो इससे मदद मिल सकती है। आपके संदेश रखे जाएंगे।</string>
@@ -150,6 +153,7 @@
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_yes">हाँ </string>
   <string name="ConversationActivity_no">नहीं</string>
+  <string name="ConversationActivity_no_results">कोई परिणाम नहीं</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d अपठित संदेश</item>
@@ -223,6 +227,8 @@
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफ़ाइल सेट करने में समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाइल फोटो</string>
   <string name="CreateProfileActivity_too_long">बहुत लंबा</string>
+  <string name="CreateProfileActivity_profile_name">प्रोफ़ाइल नाम</string>
+  <string name="CreateProfileActivity_set_up_your_profile">अपना प्रोफ़ाइल सेट करें</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">कस्टम %s का इस्तेमाल </string>
   <string name="CustomDefaultPreference_using_default">डिफ़ॉल्ट %s का इस्तेमाल </string>
@@ -270,6 +276,10 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">अपनी तस्वीर के लिए तैयार हैं?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">अब आप Signal पर दोस्तों के साथ प्रोफाइल फोटो और नाम साझा कर सकते हैं।</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal प्रोफाइल यहाँ हैं</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">पेश है टंकण संकेतक</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">टंकण संकेतक यहाँ हैं</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">टंकण संकेतक सक्षम करें</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">टंकण संकेतक चालू करें</string>
   <string name="ExperienceUpgradeActivity_no_thanks">नहीं धन्यवाद </string>
   <string name="ExperienceUpgradeActivity_got_it">समझ गया </string>
   <!--GcmBroadcastReceiver-->
@@ -587,6 +597,8 @@
   <string name="MessageNotifier_mark_read">पढ़ा हुआ चिह्नित करें</string>
   <string name="MessageNotifier_media_message">मीडिया संदेश</string>
   <string name="MessageNotifier_reply">उत्तर</string>
+  <string name="MessageNotifier_signal_message">Signal संदेश</string>
+  <string name="MessageNotifier_unsecured_sms">असुरक्षित एसएमएस</string>
   <string name="MessageNotifier_pending_signal_messages">लंबित Signal संदेश</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">आपके पास Signal संदेश लंबित हैं, खोलने और पुनर्प्राप्त करने के लिए टैप करें</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>

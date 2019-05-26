@@ -9,11 +9,13 @@ import com.bumptech.glide.util.ContentLengthInputStream;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,23 +43,31 @@ public class ChunkedDataFetcher {
 
   public RequestController fetch(@NonNull String url, long contentLength, @NonNull Callback callback) {
     if (contentLength <= 0) {
-      return fetch(url, callback);
+      return fetchChunksWithUnknownTotalSize(url, callback);
     }
 
     CompositeRequestController compositeController = new CompositeRequestController();
-    fetchChunks(url, contentLength, compositeController, callback);
+    fetchChunks(url, contentLength, Optional.absent(), compositeController, callback);
     return compositeController;
   }
 
-  public RequestController fetch(@NonNull String url, @NonNull Callback callback) {
+  private RequestController fetchChunksWithUnknownTotalSize(@NonNull String url, @NonNull Callback callback) {
     CompositeRequestController compositeController = new CompositeRequestController();
 
-    Call headCall = client.newCall(new Request.Builder().url(url).head().cacheControl(NO_CACHE).build());
-    compositeController.addController(new CallRequestController(headCall));
+    long    chunkSize = new SecureRandom().nextInt(1024) + 1024;
+    Request request   = new Request.Builder()
+                                   .url(url)
+                                   .cacheControl(NO_CACHE)
+                                   .addHeader("Range", "bytes=0-" + (chunkSize - 1))
+                                   .addHeader("Accept-Encoding", "identity")
+                                   .build();
 
-    headCall.enqueue(new okhttp3.Callback() {
+    Call firstChunkCall = client.newCall(request);
+    compositeController.addController(new CallRequestController(firstChunkCall));
+
+    firstChunkCall.enqueue(new okhttp3.Callback() {
       @Override
-      public void onFailure(Call call, IOException e) {
+      public void onFailure(@NonNull Call call, @NonNull IOException e) {
         if (!compositeController.isCanceled()) {
           callback.onFailure(e);
           compositeController.cancel();
@@ -65,9 +75,8 @@ public class ChunkedDataFetcher {
       }
 
       @Override
-      public void onResponse(Call call, Response response) throws IOException {
-        String contentLength = response.header("Content-Length");
-        String acceptRanges  = response.header("Accept-Ranges");
+      public void onResponse(@NonNull Call call, @NonNull Response response) {
+        String contentRange = response.header("Content-Range");
 
         if (!response.isSuccessful()) {
           Log.w(TAG, "Non-successful response code: " + response.code());
@@ -77,39 +86,64 @@ public class ChunkedDataFetcher {
           return;
         }
 
-        if (TextUtils.isEmpty(contentLength)) {
-          Log.w(TAG, "Missing Content-Length header.");
+        if (TextUtils.isEmpty(contentRange)) {
+          Log.w(TAG, "Missing Content-Range header.");
           callback.onFailure(new IOException("Missing Content-Length header."));
           compositeController.cancel();
           if (response.body() != null) response.body().close();
           return;
         }
 
-        long parsedContentLength;
-        try {
-          parsedContentLength = Long.parseLong(contentLength);
-        } catch (NumberFormatException e) {
-          Log.w(TAG, "Invalid Content-Length value.");
-          callback.onFailure(new IOException("Invalid Content-Length value."));
+        if (response.body() == null) {
+          Log.w(TAG, "Missing body.");
+          callback.onFailure(new IOException("Missing body on initial request."));
           compositeController.cancel();
           return;
         }
 
-        if (response.body() != null) {
-          response.body().close();
+        Optional<Long> contentLength = parseLengthFromContentRange(contentRange);
+
+        if (!contentLength.isPresent()) {
+          Log.w(TAG, "Unable to parse length from Content-Range.");
+          callback.onFailure(new IOException("Unable to get parse length from Content-Range."));
+          compositeController.cancel();
+          return;
         }
 
-        fetchChunks(url, parsedContentLength, compositeController, callback);
+        if (chunkSize >= contentLength.get()) {
+          try {
+            callback.onSuccess(response.body().byteStream());
+          } catch (IOException e) {
+            callback.onFailure(e);
+            compositeController.cancel();
+          }
+        } else {
+          InputStream stream = ContentLengthInputStream.obtain(response.body().byteStream(), chunkSize);
+          fetchChunks(url, contentLength.get(), Optional.of(new Pair<>(stream, chunkSize)), compositeController, callback);
+        }
       }
     });
 
     return compositeController;
   }
 
-  private void fetchChunks(@NonNull String url, long contentLength, CompositeRequestController compositeController, Callback callback) {
+  private void fetchChunks(@NonNull String url,
+                           long contentLength,
+                           Optional<Pair<InputStream, Long>> firstChunk,
+                           CompositeRequestController compositeController,
+                           Callback callback)
+  {
     List<ByteRange> requestPattern;
     try {
-      requestPattern = getRequestPattern(contentLength);
+      if (firstChunk.isPresent()) {
+        requestPattern = Stream.of(getRequestPattern(contentLength - firstChunk.get().second()))
+                               .map(b -> new ByteRange(b.start + firstChunk.get().second(),
+                                                       b.end   + firstChunk.get().second(),
+                                                       b.ignoreFirst))
+                               .toList();
+      } else {
+        requestPattern = getRequestPattern(contentLength);
+      }
     } catch (IOException e) {
       callback.onFailure(e);
       compositeController.cancel();
@@ -118,7 +152,11 @@ public class ChunkedDataFetcher {
 
     SignalExecutors.IO.execute(() -> {
       List<CallRequestController> controllers = Stream.of(requestPattern).map(range -> makeChunkRequest(client, url, range)).toList();
-      List<InputStream>           streams     = new ArrayList<>(controllers.size());
+      List<InputStream>           streams     = new ArrayList<>(controllers.size() + (firstChunk.isPresent() ? 1 : 0));
+
+      if (firstChunk.isPresent()) {
+        streams.add(firstChunk.get().first());
+      }
 
       Stream.of(controllers).forEach(compositeController::addController);
 
@@ -157,12 +195,12 @@ public class ChunkedDataFetcher {
 
     call.enqueue(new okhttp3.Callback() {
       @Override
-      public void onFailure(Call call, IOException e) {
+      public void onFailure(@NonNull Call call, @NonNull IOException e) {
         callController.cancel();
       }
 
       @Override
-      public void onResponse(Call call, Response response) throws IOException {
+      public void onResponse(@NonNull Call call, @NonNull Response response) {
         if (!response.isSuccessful()) {
           callController.cancel();
           if (response.body() != null) response.body().close();
@@ -181,6 +219,22 @@ public class ChunkedDataFetcher {
     });
 
     return callController;
+  }
+
+  private Optional<Long> parseLengthFromContentRange(@NonNull String contentRange) {
+    int totalStartPos = contentRange.indexOf('/');
+
+    if (totalStartPos >= 0 && contentRange.length() > totalStartPos + 1) {
+      String totalString = contentRange.substring(totalStartPos + 1);
+
+      try {
+        return Optional.of(Long.parseLong(totalString));
+      } catch (NumberFormatException e) {
+        return Optional.absent();
+      }
+    }
+
+    return Optional.absent();
   }
 
   private List<ByteRange> getRequestPattern(long size) throws IOException {

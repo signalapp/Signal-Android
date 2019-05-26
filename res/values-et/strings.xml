@@ -652,6 +652,8 @@
   <string name="MessageNotifier_mark_read">Märgi loetuks</string>
   <string name="MessageNotifier_media_message">Meediasõnum</string>
   <string name="MessageNotifier_reply">Vasta</string>
+  <string name="MessageNotifier_signal_message">Signali sõnum</string>
+  <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Ootel Signali sõnumid</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Sul on ootel Signali sõnumeid, koputa vaatamiseks</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -741,14 +743,17 @@
   <string name="conversation_activity__type_message_sms_insecure">Turvamata SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Turvamata MMS</string>
   <string name="conversation_activity__from_sim_name">SIMilt %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Saada</string>
   <string name="conversation_activity__compose_description">Sõnumi koostamine</string>
   <string name="conversation_activity__emoji_toggle_description">Lülita emoji klaviatuuri</string>
   <string name="conversation_activity__attachment_thumbnail">Manuse pisipilt</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Lülita kiire kaamera manuse sahtel sisse või välja</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Salvesta ja saada helimanus</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lukusta helimanuse salvestamine</string>
   <string name="conversation_activity__enable_signal_for_sms">Luba Signal SMSide jaoks</string>
   <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">Libista tühistamiseks</string>
   <string name="conversation_input_panel__cancel">Loobu</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Meediasõnum</string>
@@ -994,7 +999,7 @@
   <string name="preferences__pref_enter_sends_title">Sisestusklahv saadab</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Sisestusklahvi vajutamine saadab tekstsõnumeid</string>
   <string name="preferences__send_link_previews">Saada linkide eelvaateid</string>
-  <string name="preferences__previews_are_supported_for">Eelvaated on toetatud Imgur, Instagram, Reddit ja YouTube linkide puhul</string>
+  <string name="preferences__previews_are_supported_for">Eelvaated on toetatud Imgur, Instagram, Pinterest, Reddit ja YouTube linkide puhul</string>
   <string name="preferences__choose_identity">Vali identiteet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vali oma kontaktüksus kontaktnimekirjast.</string>
   <string name="preferences__change_passphrase">Muuda salaväljendit</string>
@@ -1251,6 +1256,7 @@
   <string name="ProgressPreference_d_messages_so_far">Siiani leidsime %d sõnumit</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Palun sisesta kinnituskood, mille saatsime numbrile %s.</string>
   <string name="RegistrationActivity_wrong_number">Vale number</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Helista mulle selle asemel \n (Saadaval vahemikus %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
   <string name="preferences_app_protection__screen_lock">Ekraanilukk</string>

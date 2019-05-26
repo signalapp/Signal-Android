@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="4">
+    <bool name="enabledMMS">true</bool>
+    <int name="maxMessageSize">307200</int>
+    <int name="maxImageHeight">1944</int>
+    <int name="maxImageWidth">2592</int>
+    <int name="defaultSMSMessagesPerThread">10000</int>
+    <int name="defaultMMSMessagesPerThread">1000</int>
+    <int name="minMessageCountPerThread">10</int>
+    <int name="maxMessageCountPerThread">5000</int>
+    <int name="recipientLimit">-1</int>
+    <bool name="enableSlideDuration">true</bool>
+    <int name="maxMessageTextSize">-1</int>
+    <bool name="config_cellBroadcastAppLinks">false</bool>
+</mms_config>

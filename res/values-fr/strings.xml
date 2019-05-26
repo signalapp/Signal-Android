@@ -108,7 +108,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Échec d’envoi, touchez pour utiliser la solution de rechange non sécurisée</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Se replier sur un texto non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Se replier sur un message multimédia non chiffrés ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le récepteur n’a plus Signal. \n\nEnvoyer un message non sécurisé?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le destinataire n’est plus un utilisateur de Signal. \n\nEnvoyer un message non sécurisé ?</string>
   <string name="ConversationItem_unable_to_open_media">Impossible de trouver une appli pour ouvrir ce média.</string>
   <string name="ConversationItem_copied_text">Copié %s</string>
   <string name="ConversationItem_from_s">de %s</string>
@@ -510,7 +510,8 @@ indicatif de pays</string>
 votre numéro de téléphone</string>
   <string name="RegistrationActivity_invalid_number">Le numéro est invalide</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Le numéro que vous avez
-introduit (%s) n’est pas valide.</string>
+        indiqué (%s) n’est pas valide.
+    </string>
   <string name="RegistrationActivity_missing_google_play_services">Absence des services Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Cet appareil ne dispose pas des service Google Play. Vous pouvez quand même utiliser Signal, mais cette configuration pourrait entraîner une fiabilité ou des performances moindres.\n\nSi vous n’êtes pas un utilisateur expérimenté, que vous n’utilisez pas une image Android de remplacement ou si vous pensez voir ceci par erreur, veuillez contacter support@signal.org pour obtenir une aide au dépannage.</string>
   <string name="RegistrationActivity_i_understand">Je comprends</string>
@@ -646,6 +647,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="MessageNotifier_mark_read">Marquer comme lu</string>
   <string name="MessageNotifier_media_message">Message multimédia</string>
   <string name="MessageNotifier_reply">Répondre</string>
+  <string name="MessageNotifier_signal_message">Message Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Texto non sécurisé</string>
   <string name="MessageNotifier_pending_signal_messages">Messages Signal en attente</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Vous avez des messages Signal en attente. Touchez pour ouvrir et les récupérer</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -735,6 +738,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="conversation_activity__type_message_sms_insecure">Texto non sécurisé</string>
   <string name="conversation_activity__type_message_mms_insecure">Message multimédia non sécurisé</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__compose_description">Rédaction d’un message</string>
   <string name="conversation_activity__emoji_toggle_description">Afficher, masquer le clavier des émojis</string>
@@ -842,7 +846,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="log_submit_activity__loading_logs">Chargement des journaux…</string>
   <string name="log_submit_activity__uploading_logs">Téléversement des journaux…</string>
   <string name="log_submit_activity__success">Réussite !</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre rapport de problème ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé de problème ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">Copié dans le presse-papiers</string>
   <string name="log_submit_activity__choose_email_app">Choisir un appli de courriel</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Veuillez examiner ce journal provenant de mon appli : %1$s</string>
@@ -990,7 +994,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__pref_enter_sends_title">La touche Entrée envoie</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Appuyer sur la touche Entrée enverra les textos</string>
   <string name="preferences__send_link_previews">Envoyer des aperçus de liens</string>
-  <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Reddit et YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Pinterest, Reddit et YouTube</string>
   <string name="preferences__choose_identity">Choisir une identité</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans la liste des contacts.</string>
   <string name="preferences__change_passphrase">Changer la phrase de passe</string>
@@ -1037,8 +1041,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__mms_proxy_port">Port du mandataire MMS</string>
   <string name="preferences__mmsc_username">Nom d’utilisateur MMSC</string>
   <string name="preferences__mmsc_password">Mot de passe MMSC</string>
-  <string name="preferences__sms_delivery_reports">Rapports de transmission des textos</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un rapport de transmission pour chaque texto envoyé</string>
+  <string name="preferences__sms_delivery_reports">Relevés de transmission des textos</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de transmission pour chaque texto envoyé</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Supprimer automatiquement les messages plus anciens dès qu’une conversation dépasse une certaine longueur</string>
   <string name="preferences__delete_old_messages">Supprimer les anciens messages</string>
   <string name="preferences__chats">Conversations et média</string>
@@ -1256,7 +1260,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="AppProtectionPreferenceFragment_none">Aucune</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Le NIP de blocage de l’inscription ne correspond pas au code de vérification que vous venez de recevoir par texto. Veuillez saisir le NIP que vous avez précédemment défini dans l’application.</string>
   <string name="registration_activity__registration_lock_pin">NIP de blocage de l’inscription</string>
-  <string name="registration_activity__forgot_pin">NIP oublié ?</string>
+  <string name="registration_activity__forgot_pin">Avez-vous oublié votre NIP ?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Le NIP peut comprendre quatre chiffres ou plus. Si vous oubliez votre NIP, vous pourriez ne pas avoir accès à votre compte pendant sept jours. </string>
   <string name="registration_lock_dialog_view__enter_pin">Saisir le NIP</string>
   <string name="registration_lock_dialog_view__confirm_pin">Confirmer le NIP</string>

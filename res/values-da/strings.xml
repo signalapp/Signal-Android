@@ -417,7 +417,7 @@
   <string name="MessageRecord_called_you">Opkald fra kontakt</string>
   <string name="MessageRecord_missed_call">Mistede opkald</string>
   <string name="MessageRecord_s_updated_group">%s opdaterede gruppen</string>
-  <string name="MessageRecord_s_called_you">%s ringede til dig</string>
+  <string name="MessageRecord_s_called_you">%s ringede til mig</string>
   <string name="MessageRecord_called_s">Ringet til %s</string>
   <string name="MessageRecord_missed_call_from">Mistet opkald fra %s</string>
   <string name="MessageRecord_s_joined_signal">%s bruger Signal!</string>
@@ -576,7 +576,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ThreadRecord_secure_session_reset">Nulstil sikker forbindelse</string>
   <string name="ThreadRecord_draft">Kladder:</string>
   <string name="ThreadRecord_called">Du ringede</string>
-  <string name="ThreadRecord_called_you">Ringede til dig</string>
+  <string name="ThreadRecord_called_you">Ringede til mig</string>
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
@@ -652,6 +652,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
   <string name="MessageNotifier_reply">Svar</string>
+  <string name="MessageNotifier_signal_message">Signalbesked</string>
+  <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Afventende Signalbeskeder</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du har afventende Signalbeskeder, tap for at åbne og modtage</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
@@ -741,6 +743,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__compose_description">Beskedsammensætning</string>
   <string name="conversation_activity__emoji_toggle_description">Slå Emoji tastatur til/fra</string>
@@ -996,7 +999,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tap på [Enter] sender beskeden</string>
   <string name="preferences__send_link_previews">Send link eksempelvisning</string>
-  <string name="preferences__previews_are_supported_for">Eksempelvisning er understøttet for Imgur, Instagram, Reddit og YouTube links</string>
+  <string name="preferences__previews_are_supported_for">Eksempelvisning er understøttet for Imgur, Instagram, Pinterest, Reddit og YouTube links</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten</string>
   <string name="preferences__change_passphrase">Skift kodeord</string>
@@ -1062,7 +1065,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Signal brugere</string>
   <string name="preferences__submit_debug_log">Indsend fejlfindingslog</string>
   <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for WiFi opkald</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiveres kun hvis din enhed sender SMS/MMS via WiFi, og hvis WiFi opkald er aktiveret på din enhed</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivér hvis din enhed understøtter SMS/MMS via WiFi (kun hvis WiFi opkald er aktiveret på din enhed)</string>
   <string name="preferences__incognito_keyboard">Inkognito tastatur</string>
   <string name="preferences__read_receipts">Læst af modtager</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, er det ikke muligt at se status for andre</string>
@@ -1095,7 +1098,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Sikker afsender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Vis indikator</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis et status ikon når ´Besked detaljer´ vælges for beskeder som er modtaget, ved brug af sikker afsender</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis status ikon når ´Besked detaljer´ vælges for beskeder som er modtaget ved brug af sikker afsender</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillad fra alle</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiver ´Sikker afsender´ for indgående beskeder fra personer som ikke er kontakter, og som hvem du ikke har delt din profil med</string>
   <string name="preferences_communication__sealed_sender_learn_more">Læs mere</string>

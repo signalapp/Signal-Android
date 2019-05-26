@@ -28,13 +28,11 @@ import android.support.v4.app.RemoteInput;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -48,6 +46,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
   public static final String TAG           = RemoteReplyReceiver.class.getSimpleName();
   public static final String REPLY_ACTION  = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
   public static final String ADDRESS_EXTRA = "address";
+  public static final String REPLY_METHOD  = "reply_method";
 
   @SuppressLint("StaticFieldLeak")
   @Override
@@ -59,7 +58,11 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
     if (remoteInput == null) return;
 
     final Address      address      = intent.getParcelableExtra(ADDRESS_EXTRA);
+    final ReplyMethod  replyMethod  = (ReplyMethod) intent.getSerializableExtra(REPLY_METHOD);
     final CharSequence responseText = remoteInput.getCharSequence(MessageNotifier.EXTRA_REMOTE_REPLY);
+
+    if (address     == null) throw new AssertionError("No address specified");
+    if (replyMethod == null) throw new AssertionError("No reply method specified");
 
     if (responseText != null) {
       new AsyncTask<Void, Void, Void>() {
@@ -71,15 +74,24 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
           int  subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
           long expiresIn      = recipient.getExpireMessages() * 1000L;
 
-          if (recipient.isGroupRecipient()) {
-            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-            threadId = MessageSender.send(context, reply, -1, false, null);
-          } else if (TextSecurePreferences.isPushRegistered(context) && recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-            OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
-            threadId = MessageSender.send(context, reply, -1, false, null);
-          } else {
-            OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
-            threadId = MessageSender.send(context, reply, -1, false, null);
+          switch (replyMethod) {
+            case GroupMessage: {
+              OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
+              threadId = MessageSender.send(context, reply, -1, false, null);
+              break;
+            }
+            case SecureMessage: {
+              OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
+              threadId = MessageSender.send(context, reply, -1, false, null);
+              break;
+            }
+            case UnsecuredSmsMessage: {
+              OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
+              threadId = MessageSender.send(context, reply, -1, true, null);
+              break;
+            }
+            default:
+              throw new AssertionError("Unknown Reply method");
           }
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
@@ -91,6 +103,5 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
-
   }
 }

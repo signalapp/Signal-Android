@@ -160,6 +160,7 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не може да изпраща SMS/MMS съобщения защото не е първо предназначена апликация за SMS. Желаетели да се промени това във вашите Android настройки ?</string>
   <string name="ConversationActivity_yes">Да</string>
   <string name="ConversationActivity_no">Не</string>
+  <string name="ConversationActivity_search_position">%1$d от %2$d</string>
   <string name="ConversationActivity_no_results">Няма резултати</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -236,6 +237,7 @@
   <string name="CreateProfileActivity_too_long">Твърде дълго</string>
   <string name="CreateProfileActivity_profile_name">Име на профила</string>
   <string name="CreateProfileActivity_set_up_your_profile">Настройте профила си</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профилите в Signal са криптирани от край до край, Signal никога не получава достъп до тази информация.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Използване на специален:  %s</string>
   <string name="CustomDefaultPreference_using_default">Използване на подразбиращ се: %s</string>
@@ -290,6 +292,9 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Активиране на индикатори за писане</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Активиране на индикатори за писане</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Не, благодаря</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Представяме ви визуализации на линковете.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Опционални визуализации на линковете вече са поддържани за някои от най-популярните сайтове в интернет.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Можете да деактивирате или активирате тази функция по всяко време в настройките на Signal (Поверителност &gt; Изпращане на визуализации на връзката).</string>
   <string name="ExperienceUpgradeActivity_got_it">Ясно</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Изтегляне на съобщение...</string>
@@ -331,7 +336,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Споделяне</string>
   <string name="InviteActivity_choose_contacts">Избор на контакти</string>
-  <string name="InviteActivity_cancel">Отказване</string>
+  <string name="InviteActivity_cancel">Отказ</string>
   <string name="InviteActivity_sending">Изпращане...</string>
   <string name="InviteActivity_heart_content_description">Сърце</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
@@ -353,6 +358,9 @@
   <string name="MessageDetailsRecipient_failed_to_send">Неуспешно изпращане</string>
   <string name="MessageDetailsRecipient_new_safety_number">Нови числа за сигурност</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Съобщението не е намерено</string>
+  <string name="LongMessageActivity_message_from_s">Съобщение от %1$s</string>
+  <string name="LongMessageActivity_your_message">Вашето съобщение</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Връзката във фонов режим е активирана</string>
@@ -386,9 +394,18 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Изтегляне на MMS съобщение</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Грешка при изтегляне на MMS съобщение, натиснете за да опитате повторно</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Изпрати на %s</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Натиснете, за да изберете</string>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Добави надпис...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Един елемент бе премахнат, защото надхвърля ограничението за размер</string>
   <string name="MediaSendActivity_camera_unavailable">Не е открита камера.</string>
+  <string name="MediaSendActivity_message_to_s">Изпрати на %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Не можете да споделяте повече от %d елемент.</item>
+    <item quantity="other">Не можете да споделяте повече от %d елементи.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Всички прикачените файлове</string>
   <!--MessageRecord-->
@@ -418,7 +435,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Въведете нова парола!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Свържи това устройство?</string>
-  <string name="DeviceProvisioningActivity_cancel">ОТКАЗВАНЕ</string>
+  <string name="DeviceProvisioningActivity_cancel">ОТКАЗ</string>
   <string name="DeviceProvisioningActivity_continue">ПРОДЪЛЖИ</string>
   <string name="DeviceProvisioningActivity_content_intro">Ще може да</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -510,8 +527,13 @@
     <item quantity="one">Сега сте %d стъпка от изпращането на дебъг лога.</item>
     <item quantity="other">Сега сте на %d стъпки от изпращането на дебъг лога.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Трябва да проверим дали сте човек.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA проверката бе неуспешна</string>
   <string name="RegistrationActivity_next">Следващ</string>
   <string name="RegistrationActivity_continue">Продължи</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Въведете телефонния си номер, за да започнете</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Ще получите код за потвърждение. Цените на плана ви важат.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Въведете кода, който изпратихме на %s</string>
   <string name="RegistrationActivity_call">Обаждане</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Неуспешнп запазване на промененото изображение</string>
@@ -625,6 +647,8 @@
   <string name="MessageNotifier_mark_read">Прочетено</string>
   <string name="MessageNotifier_media_message">Медийно съобщение</string>
   <string name="MessageNotifier_reply">Отговори</string>
+  <string name="MessageNotifier_signal_message">Signal-ско съобщение</string>
+  <string name="MessageNotifier_unsecured_sms">Некриптиран SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Непрочетени Signal съобщения</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Имате непрочетени Signal съобщения, натиснете, за да ги отворите и прегледате</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -714,6 +738,7 @@
   <string name="conversation_activity__type_message_sms_insecure">Некриптиран SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Некриптиран MMS</string>
   <string name="conversation_activity__from_sim_name">От %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Изпращане</string>
   <string name="conversation_activity__compose_description">Създаване на съобщение</string>
   <string name="conversation_activity__emoji_toggle_description">Смени emoji клавиатурата</string>
@@ -722,7 +747,8 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записване и изпращане прикачено аудио</string>
   <string name="conversation_activity__enable_signal_for_sms">Активиране на Signal за SMS-и</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__cancel">Отказване</string>
+  <string name="conversation_input_panel__slide_to_cancel">Плъзнете за отказ</string>
+  <string name="conversation_input_panel__cancel">Отказ</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Медийно съобщение</string>
   <string name="conversation_item__secure_message_description">Подсигурено съобщение</string>
@@ -966,6 +992,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Използване на Signal за всички входящи мултимедийни съобщения</string>
   <string name="preferences__pref_enter_sends_title">Клавишът Enter се използва за изпращане</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Натискане на клавиша Enter ще изпрати текстово съобщене</string>
+  <string name="preferences__send_link_previews">Изпращане на визуализации на връзката</string>
+  <string name="preferences__previews_are_supported_for">Визуализации са поддържани за линкове към Imgur, Instagram, Pinterest, Reddit, и YouTube.</string>
   <string name="preferences__choose_identity">Избери самоличност</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изберете контакт от списъка с контакти.</string>
   <string name="preferences__change_passphrase">Смени паролата</string>
@@ -1158,6 +1186,7 @@
   <string name="reminder_header_share_title">Поканете приятелите си!</string>
   <string name="reminder_header_share_text">Колкото повече приятели използват Signal, толкова по-добър става той.</string>
   <string name="reminder_header_service_outage_text">Signal изпитва технически проблеми. Работи здраво, за да възстановим нормална операция възможно най-бързо.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Най-новите функции на Signal не работят с тази версия на Android. Моля, обновете устройството, за да получавате бъдещи актуализации на Signal.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Запази</string>
   <string name="media_preview__forward_title">Препращане</string>
@@ -1220,6 +1249,7 @@
   <string name="LocalBackupJob_creating_backup">Създаване на архив...</string>
   <string name="ProgressPreference_d_messages_so_far">%d съобщения до тук</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Моля, въведте кодът за потвържение изпрате на %s</string>
+  <string name="RegistrationActivity_wrong_number">Грешен номер</string>
   <string name="BackupUtil_never">Никога</string>
   <string name="BackupUtil_unknown">Непознат</string>
   <string name="preferences_app_protection__screen_lock">Заключен екран</string>

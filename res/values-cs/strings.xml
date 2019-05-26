@@ -437,6 +437,13 @@
   <string name="MediaSendActivity_add_a_caption">Přidat titulek...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka byla odebrána, protože překročila povolenou velikost.</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera není dostupná.</string>
+  <string name="MediaSendActivity_message_to_s">Zpráva %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Nemůžete sdílet více než  %d položku.</item>
+    <item quantity="few">Nemůžete sdílet více než  %d položky.</item>
+    <item quantity="many">Nemůžete sdílet více než  %d položek.</item>
+    <item quantity="other">Nemůžete sdílet více než  %d položek.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všechna media</string>
   <!--MessageRecord-->
@@ -677,6 +684,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MessageNotifier_mark_read">Označit jako přečtené</string>
   <string name="MessageNotifier_media_message">Multimediální zpráva</string>
   <string name="MessageNotifier_reply">Odpověď</string>
+  <string name="MessageNotifier_signal_message">Zpráva Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Nevyřízené zprávy Signal</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Máte nevyřízené zprávy Signal, klepnutím je otevřete a načtete.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -768,14 +777,17 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_activity__type_message_sms_insecure">Nezabezpečená SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Nezabezpečená MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Odeslat</string>
   <string name="conversation_activity__compose_description">Sestavení zprávy</string>
   <string name="conversation_activity__emoji_toggle_description">Zapnout klávesnici se smajlíky</string>
   <string name="conversation_activity__attachment_thumbnail">Připojený náhled</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Vytvořit rychlou přílohu kamerou</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nahrát a poslat zvukovou přílohu</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zamknout nahrávání audio přílohy</string>
   <string name="conversation_activity__enable_signal_for_sms">Povolit aplikaci Signal pro SMS</string>
   <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">Pro zrušení přejeďte</string>
   <string name="conversation_input_panel__cancel">Storno</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimediální zpráva</string>
@@ -1037,7 +1049,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="preferences__pref_enter_sends_title">Klávesa Enter odesílá</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka \'enter\' na klávesnici odešle zprávu</string>
   <string name="preferences__send_link_previews">Odesílat náhledy odkazu</string>
-  <string name="preferences__previews_are_supported_for">Náhledy jsou podporovaný pro odkazy na Imgur, Instagram, Reddit a YouTube</string>
+  <string name="preferences__previews_are_supported_for">Náhledy jsou podporovaný pro odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string>
   <string name="preferences__choose_identity">Zvolit identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zvolte osobu ze svého adresáře</string>
   <string name="preferences__change_passphrase">Změnit heslo</string>
@@ -1232,6 +1244,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="reminder_header_share_title">Pozvěte vaše přátele!</string>
   <string name="reminder_header_share_text">Čím víc bude uživatelů Signal, tím bude lepší.</string>
   <string name="reminder_header_service_outage_text">Signál zaznamenal technické potíže. Pracujeme tvrdě na co nejrychlejší obnově služby.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Nejnovější funkce aplikace Signal nemohou pracovat s touto verzí Androidu. Prosím aktualizujte své zařízení abyste mohli používat nové verze aplikace Signal.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložit</string>
   <string name="media_preview__forward_title">Přeposlat</string>
@@ -1296,6 +1309,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ProgressPreference_d_messages_so_far">%dzpráv zatím</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím vložte ověřovací kód zaslaný %s</string>
   <string name="RegistrationActivity_wrong_number">Chybné číslo</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Raději mi zavolejte \n (V době %1$02d: %2$02d)</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
   <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>

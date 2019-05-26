@@ -626,6 +626,8 @@
   <string name="MessageNotifier_mark_read">សម្គាល់ថាបានអាន</string>
   <string name="MessageNotifier_media_message">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
+  <string name="MessageNotifier_signal_message">សារ Signal </string>
+  <string name="MessageNotifier_unsecured_sms">SMS គ្មានសុវត្ថិភាព</string>
   <string name="MessageNotifier_pending_signal_messages">សារ Signal បញ្ចូនមិនទាន់សម្រេច</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">អ្នកមានសារSignal មិនទាន់បញ្ចូនសម្រេច ចុចបើក និងទាញយកមកវិញ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -961,7 +963,6 @@
   <string name="preferences__pref_enter_sends_title">ចុច Enter ដើម្បីផ្ញើ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ចុចប៊ូតុង បញ្ចូន នឹងផ្ញើសារអក្សរ</string>
   <string name="preferences__send_link_previews">ការមើល ការផ្ញើតំណភ្ជាប់</string>
-  <string name="preferences__previews_are_supported_for">ការមើលត្រូវបានគាំទ្រសម្រាប់ តំណភ្ជាប់របស់ Imgur, Instagram, Reddit, និង YouTube </string>
   <string name="preferences__choose_identity">ជ្រើសរើសអត្តសញ្ញាណ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ជ្រើសរើសលេខទំនាក់ទំនងរបស់អ្នកពីបញ្ជីទំនាក់ទំនង។</string>
   <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>

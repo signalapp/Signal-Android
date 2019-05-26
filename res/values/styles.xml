@@ -42,7 +42,7 @@
     <style name="TextSecure.DarkActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/core_grey_90</item>
-        <item name="android:popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="android:popupTheme" tools:ignore="NewApi">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="elevation">4dp</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
@@ -155,8 +155,8 @@
     </style>
 
     <style name="MaterialButton">
-        <item name="android:elevation">1dp</item>
-        <item name="android:translationZ">1dp</item>
+        <item name="android:elevation" tools:ignore="NewApi">1dp</item>
+        <item name="android:translationZ" tools:ignore="NewApi">1dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12sp</item>
     </style>

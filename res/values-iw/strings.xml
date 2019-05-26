@@ -686,6 +686,8 @@
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_media_message">הודעת מדיה</string>
   <string name="MessageNotifier_reply">השב</string>
+  <string name="MessageNotifier_signal_message">הודעת Signal</string>
+  <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
   <string name="MessageNotifier_pending_signal_messages">הודעות Signal ממתינות</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">יש לך הודעות Signal ממתינות, הקש כדי לפתוח ולאחזר אותן</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
@@ -777,6 +779,7 @@
   <string name="conversation_activity__type_message_sms_insecure">מסרון בלתי מאובטח</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS בלתי מאובטח</string>
   <string name="conversation_activity__from_sim_name">מאת %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">שלח</string>
   <string name="conversation_activity__compose_description">חיבור הודעה</string>
   <string name="conversation_activity__emoji_toggle_description">עורר מקלדת אימוג\'י</string>
@@ -1048,7 +1051,7 @@
   <string name="preferences__pref_enter_sends_title">מקש Enter שולח</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על מקש Enter תישלח הודעות טקסט</string>
   <string name="preferences__send_link_previews">שלח קדם־תצוגות של קישורים</string>
-  <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Reddit ו־YouTube</string>
+  <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Pinterest, Reddit ו־YouTube</string>
   <string name="preferences__choose_identity">בחר זהות</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר את כניסת איש הקשר שלך מתוך רשימת אנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה משפט סיסמה</string>

@@ -621,6 +621,8 @@
   <string name="MessageNotifier_mark_read">既読にする</string>
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_reply">返信</string>
+  <string name="MessageNotifier_signal_message">Signalメッセージ</string>
+  <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
   <string name="MessageNotifier_pending_signal_messages">保留中のメッセージ</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">保留中のメッセージがあります。取得するにはタップしてください。</string>
   <string name="MessageNotifier_contact_message">%2$s%1$s</string>
@@ -709,6 +711,7 @@
   <string name="conversation_activity__type_message_sms_insecure">安全でないSMS</string>
   <string name="conversation_activity__type_message_mms_insecure">安全でないMMS</string>
   <string name="conversation_activity__from_sim_name">%1$sから</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">送信</string>
   <string name="conversation_activity__compose_description">メッセージ新規作成</string>
   <string name="conversation_activity__emoji_toggle_description">絵文字キーボードの切替</string>
@@ -956,7 +959,7 @@
   <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
   <string name="preferences__send_link_previews">リンクプレビューを送る</string>
-  <string name="preferences__previews_are_supported_for">リンクプレビューは、次のサービスに対応しています: Imgur, Instagram, Reddit, YouTube</string>
+  <string name="preferences__previews_are_supported_for">プレビューはImgur、Instagram、Pinterest、RedditおよびYouTubeリンクをサポートしています</string>
   <string name="preferences__choose_identity">認証を選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>

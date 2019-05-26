@@ -649,6 +649,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_mark_read">Segna come già letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
   <string name="MessageNotifier_reply">Rispondi</string>
+  <string name="MessageNotifier_signal_message">Messaggio Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
   <string name="MessageNotifier_pending_signal_messages">Messaggi Signal in attesa</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Hai messaggi Signal in attesa, tocca per aprire e ricevere</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -738,6 +740,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_activity__type_message_sms_insecure">SMS non sicuro</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS non sicuro</string>
   <string name="conversation_activity__from_sim_name">Da %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Invia</string>
   <string name="conversation_activity__compose_description">Composizione messaggio</string>
   <string name="conversation_activity__emoji_toggle_description">Dis/attiva la tastiera emoji</string>
@@ -993,7 +996,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__pref_enter_sends_title">Spedisci premendo Invio</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Il tasto Invio manderà il messaggio</string>
   <string name="preferences__send_link_previews">Invia anteprime dei link</string>
-  <string name="preferences__previews_are_supported_for">Le anteprime sono supportate per i link di Imgur, Instagram, Reddit e YouTube</string>
+  <string name="preferences__previews_are_supported_for">Le anteprime sono supportate per link di Imgur, Instagram, Pinterest, Reddit e YouTube.</string>
   <string name="preferences__choose_identity">Scegli identità</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
   <string name="preferences__change_passphrase">Cambia password</string>

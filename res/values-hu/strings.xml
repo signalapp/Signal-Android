@@ -654,6 +654,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_mark_read">Olvasottnak jelöl</string>
   <string name="MessageNotifier_media_message">Médiaüzenet</string>
   <string name="MessageNotifier_reply">Válasz</string>
+  <string name="MessageNotifier_signal_message">Signal üzenet</string>
+  <string name="MessageNotifier_unsecured_sms">Titkosítatlan SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Függő Signal üzenetek</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Függő Signal üzeneteid vannak, koppints a megnyitáshoz és letöltéshez</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -744,6 +746,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_activity__type_message_sms_insecure">Titkosítatlan SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Titkosítatlan MMS</string>
   <string name="conversation_activity__from_sim_name">%1$s hálózaton</string>
+  <string name="conversation_activity__sim_n">%1$d. SIM</string>
   <string name="conversation_activity__send">Küldés</string>
   <string name="conversation_activity__compose_description">Üzenet írása</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji billentyűzet kapcsoló</string>
@@ -999,7 +1002,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__pref_enter_sends_title">Küldés az Enter lenyomásával</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Az Enter billentyű megnyomása elküldi a szöveges üzeneteket</string>
   <string name="preferences__send_link_previews">Hivatkozások előnézeti képének küldése</string>
-  <string name="preferences__previews_are_supported_for">Az előnézeti képek az Imgur, Instagram, Reddit és YouTube szolgáltatásokhoz érhetőek el.</string>
+  <string name="preferences__previews_are_supported_for">Az előnézeti képek az Imgur, Instagram, Pinterest, Reddit és YouTube szolgáltatásokhoz érhetőek el.</string>
   <string name="preferences__choose_identity">Azonosító választása</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Válaszd ki saját névjegyed a névjegyzékből.</string>
   <string name="preferences__change_passphrase">Jelmondat megváltoztatása</string>

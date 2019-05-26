@@ -407,7 +407,7 @@
     <item quantity="other">S\’mund të ndani me të tjerët më shumë se %d objekte.</item>
   </plurals>
   <!--MediaRepository-->
-  <string name="MediaRepository_all_media">Gjithë mediat</string>
+  <string name="MediaRepository_all_media">Krejt mediat</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Signal-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
   <string name="MessageRecord_left_group">E keni lënë grupin.</string>
@@ -490,7 +490,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grup i paemër</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Duke u përgjigjur</string>
+  <string name="RedPhone_answering">Përgjigje</string>
   <string name="RedPhone_ending_call">Po përfundohet thirrja</string>
   <string name="RedPhone_dialing">Po thirret</string>
   <string name="RedPhone_ringing">Po bie zilja</string>
@@ -648,6 +648,8 @@
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_media_message">Mesazh media</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
+  <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
   <string name="MessageNotifier_pending_signal_messages">Mesazhe Signal pezull</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Keni mesazhe Signal pezull, prekeni për t\’ia hapur dhe rimarrë</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -737,6 +739,7 @@
   <string name="conversation_activity__type_message_sms_insecure">SMS e pasiguruar</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS e pasiguruar</string>
   <string name="conversation_activity__from_sim_name">Nga %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Dërgoje</string>
   <string name="conversation_activity__compose_description">Hartim mesazhi</string>
   <string name="conversation_activity__emoji_toggle_description">Shfaq/fshih tastierë emoji</string>
@@ -946,7 +949,7 @@
   <string name="AndroidManifest__change_passphrase">Ndryshoni frazëkalimin</string>
   <string name="AndroidManifest__verify_safety_number">Verifiko numër siguri</string>
   <string name="AndroidManifest__log_submit">Parashtro regjistër diagnostikimi</string>
-  <string name="AndroidManifest__media_preview">Parapamje e medias</string>
+  <string name="AndroidManifest__media_preview">Paraparje e medias</string>
   <string name="AndroidManifest__message_details">Hollësi mesazhi</string>
   <string name="AndroidManifest__linked_devices">Pajisje të lidhura</string>
   <string name="AndroidManifest__invite_friends">Ftoni shokë</string>
@@ -971,10 +974,10 @@
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumente</string>
-  <string name="arrays__small">I vogël</string>
-  <string name="arrays__normal">Normal</string>
-  <string name="arrays__large">I madh</string>
-  <string name="arrays__extra_large">Shumë i madh</string>
+  <string name="arrays__small">Të vogla</string>
+  <string name="arrays__normal">Normale</string>
+  <string name="arrays__large">Të mëdha</string>
+  <string name="arrays__extra_large">Shumë të mëdha</string>
   <string name="arrays__default">Parazgjedhje</string>
   <string name="arrays__high">Lartësi</string>
   <string name="arrays__max">Maks.</string>
@@ -992,7 +995,7 @@
   <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
   <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string>
-  <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Reddit, dhe YouTube</string>
+  <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Pinterest, Reddit, dhe YouTube.</string>
   <string name="preferences__choose_identity">Zgjidhni identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zgjidhni kontaktin tuaj nga lista e kontakteve.</string>
   <string name="preferences__change_passphrase">Ndryshoje frazëkalimin</string>

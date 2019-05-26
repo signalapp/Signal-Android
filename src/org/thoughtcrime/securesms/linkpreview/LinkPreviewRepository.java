@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
+import org.thoughtcrime.securesms.net.ContentProxySafetyInterceptor;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -49,6 +50,7 @@ public class LinkPreviewRepository {
   public LinkPreviewRepository() {
     this.client = new OkHttpClient.Builder()
                                   .proxySelector(new ContentProxySelector())
+                                  .addNetworkInterceptor(new ContentProxySafetyInterceptor())
                                   .cache(null)
                                   .build();
   }
@@ -171,7 +173,7 @@ public class LinkPreviewRepository {
   }
 
   private @NonNull Optional<String> getProperty(@NonNull String searchText, @NonNull String property) {
-    Pattern pattern = Pattern.compile("<\\s*meta\\s+property\\s*=\\s*\"\\s*og:" + property + "\\s*\"\\s+content\\s*=\\s*\"(.*?)\"\\s*/?\\s*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+    Pattern pattern = Pattern.compile("<\\s*meta\\s+property\\s*=\\s*\"\\s*og:" + property + "\\s*\"\\s+[^>]*content\\s*=\\s*\"(.*?)\"[^>]*/?\\s*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
     Matcher matcher = pattern.matcher(searchText);
 
     if (matcher.find()) {

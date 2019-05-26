@@ -561,6 +561,8 @@
   <string name="MessageNotifier_mark_read">ဖတ်ပြီးသား</string>
   <string name="MessageNotifier_media_message">ရုပ်/သံ/ပုံပါ စာ</string>
   <string name="MessageNotifier_reply">အကြောင်းပြန်မည်</string>
+  <string name="MessageNotifier_signal_message">Signal မှ စာများ</string>
+  <string name="MessageNotifier_unsecured_sms">မလုံခြုံသော SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားခြင်း</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားပါသည်၊ ပြန်ဖွင့်ရန် နှိပ်လိုက်ပါ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>

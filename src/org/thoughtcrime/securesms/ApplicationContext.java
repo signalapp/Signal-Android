@@ -28,9 +28,10 @@ import android.support.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
 
+import org.conscrypt.Conscrypt;
+import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
-import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -69,6 +70,7 @@ import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 
+import java.security.Security;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -105,7 +107,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onCreate() {
     super.onCreate();
     Log.i(TAG, "onCreate()");
-    initializeRandomNumberFix();
+    initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
     initializeDependencyInjection();
@@ -172,8 +174,28 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return persistentLogger;
   }
 
-  private void initializeRandomNumberFix() {
-    PRNGFixes.apply();
+  private void initializeSecurityProvider() {
+    try {
+      Class.forName("org.signal.aesgcmprovider.AesGcmCipher");
+    } catch (ClassNotFoundException e) {
+      Log.e(TAG, "Failed to find AesGcmCipher class");
+      throw new ProviderInitializationException();
+    }
+
+    int aesPosition = Security.insertProviderAt(new AesGcmProvider(), 1);
+    Log.i(TAG, "Installed AesGcmProvider: " + aesPosition);
+
+    if (aesPosition < 0) {
+      Log.e(TAG, "Failed to install AesGcmProvider()");
+      throw new ProviderInitializationException();
+    }
+
+    int conscryptPosition = Security.insertProviderAt(Conscrypt.newProvider(), 2);
+    Log.i(TAG, "Installed Conscrypt provider: " + conscryptPosition);
+
+    if (conscryptPosition < 0) {
+      Log.w(TAG, "Did not install Conscrypt provider. May already be present.");
+    }
   }
 
   private void initializeLogging() {
@@ -259,6 +281,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         add("Mi A1");
         add("E5823"); // Sony z5 compact
         add("Redmi Note 5");
+        add("FP2"); // Fairphone FP2
+        add("MI 5");
       }};
 
       Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
@@ -328,5 +352,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   protected void attachBaseContext(Context base) {
     super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(base, TextSecurePreferences.getLanguage(base)));
+  }
+
+  private static class ProviderInitializationException extends RuntimeException {
   }
 }

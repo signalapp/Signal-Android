@@ -137,7 +137,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met deze app: %1$s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met deze berichten app: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep</string>
   <string name="ConversationActivity_specify_recipient">Kies een gesprekspartner</string>
   <string name="ConversationActivity_unblock_this_contact_question">Gesprekspartner deblokkeren?</string>
@@ -237,7 +237,7 @@
   <string name="CreateProfileActivity_too_long">Te lang</string>
   <string name="CreateProfileActivity_profile_name">Profielnaam</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen zijn eind-tot-eind-versleuteld dus de Signal-dienst heeft nooit toegang tot deze informatie.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen zijn eind-tot-eind-versleuteld dus zelfs de Signal-dienst heeft nooit toegang tot profielinformatie.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aanpassing in gebruik: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -283,7 +283,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ondersteunt vanaf nu beveiligde videogesprekken.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ondersteunt vanaf nu beveiligde videogesprekken. Tik om te verkennen.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klaar voor je close-up?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Je kunt vanaf nu een profielfoto en naam delen met je gesprekspartners op Signal</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Je kunt vanaf nu een profielfoto en naam zichtbaar maken voor je gesprekspartners op Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal-profielen zijn vanaf nu beschikbaar</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">We introduceren typindicatoren.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Vanaf nu kun je zien of je gesprekspartner een bericht aan het typen is. Deze functie is optioneel; je kunt hem op ieder moment uitschakelen.</string>
@@ -294,7 +294,7 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Nee bedankt</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Nieuw: voorbeeld-
 weergaven.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Voorbeeldweergaven worden vanaf nu optioneel ondersteund voor enkele van de populairste websites op het internet.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Voorbeeldweergaven worden vanaf nu optioneel ondersteund voor enkele van de populairste weblocaties op het internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Je kunt deze functionaliteit op elk gewenst moment in- of uitschakelen in je Signal-instellingen (Privacy &gt; Voorbeeldweergaven verzenden).</string>
   <string name="ExperienceUpgradeActivity_got_it">Begrepen</string>
   <!--GcmBroadcastReceiver-->
@@ -324,7 +324,7 @@ weergaven.</string>
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails aan het laden…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Je bent al lid van deze groep.</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Je profielnaam en -foto met deze groep delen?</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Je profielnaam en -foto voor deze groep zichtbaar maken?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Wil je je profielnaam en -foto zichtbaar maken voor alle huidige en toekomstige leden van deze groep?</string>
   <string name="GroupShareProfileView_make_visible">Zichtbaar maken</string>
   <!--GroupMembersDialog-->
@@ -595,9 +595,9 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="UnknownSenderView_block_s">%s blokkeren?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Geblokkeerde contactpersonen zullen je nog steeds kunnen bellen en zullen nog steeds berichten naar je kunnen sturen, maar die oproepen en berichten zullen nooit aankomen.</string>
   <string name="UnknownSenderView_block">Blokkeren</string>
-  <string name="UnknownSenderView_share_profile_with_s">Je profiel delen met %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">De eenvoudigste manier om je profielinformatie te delen is door de afzender aan je contacten toe te voegen. Als je dat niet wilt, kun je je profielinformatie nog steeds langs deze weg delen.</string>
-  <string name="UnknownSenderView_share_profile">Profiel delen</string>
+  <string name="UnknownSenderView_share_profile_with_s">Je profiel zichtbaar maken voor %s?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">De eenvoudigste manier om je profielfoto en naam zichtbaar te maken is door de afzender aan je contacten toe te voegen. Als je dat niet wilt, kun je je profiel alsnog langs deze weg zichtbaar maken.</string>
+  <string name="UnknownSenderView_share_profile">Profiel zichtbaar maken</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Bericht verzenden?</string>
   <string name="UntrustedSendDialog_send">Verzenden</string>
@@ -628,7 +628,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="ApplicationMigrationService_import_in_progress">Bezig met importeren</string>
   <string name="ApplicationMigrationService_importing_text_messages">Tekstberichten aan het importeren</string>
   <string name="ApplicationMigrationService_import_complete">Importeren voltooid</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">Het importeren van de systeemdatabase is voltooid.</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Het importeren van de systeemdatabank is voltooid.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tik om te openen.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tik om te openen of tik op het slot om te sluiten.</string>
@@ -654,6 +654,8 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="MessageNotifier_mark_read">Markeren als gelezen</string>
   <string name="MessageNotifier_media_message">Mediabericht</string>
   <string name="MessageNotifier_reply">Reageren</string>
+  <string name="MessageNotifier_signal_message">Signal-bericht</string>
+  <string name="MessageNotifier_unsecured_sms">Onbeveiligde sms</string>
   <string name="MessageNotifier_pending_signal_messages">Signal-berichten in wachtrij</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Er staan Signal-berichten in de wachtrij, tik om Signal te openen en om ze op te halen</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -743,6 +745,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde sms</string>
   <string name="conversation_activity__type_message_mms_insecure">Onbeveiligde mms</string>
   <string name="conversation_activity__from_sim_name">Van %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Verzenden</string>
   <string name="conversation_activity__compose_description">Berichtsamenstelling</string>
   <string name="conversation_activity__emoji_toggle_description">Emojitoetsenbord wisselen</string>
@@ -803,7 +806,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
     <item quantity="one">%d minuut</item>
     <item quantity="other">%d minuten</item>
   </plurals>
-  <string name="expiration_minutes_abbreviated">%dm</string>
+  <string name="expiration_minutes_abbreviated">%dmin</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d uur</item>
     <item quantity="other">%d uur</item>
@@ -846,7 +849,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="log_submit_activity__button_submit">Indienen</string>
   <string name="log_submit_activity__button_got_it">Begrepen</string>
   <string name="log_submit_activity__button_compose_email">E-mail opstellen</string>
-  <string name="log_submit_activity__this_log_will_be_posted_online">Dit logbestand wordt publiek beschikbaar gesteld op internet zodat de ontwikkelaars het kunnen zien, je kunt het bestuderen en aanpassen voor je het verzendt.</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken en aanpassen voor je het verzendt.</string>
   <string name="log_submit_activity__loading_logs">Logbestanden inladen…</string>
   <string name="log_submit_activity__uploading_logs">Logbestanden aan het uploaden…</string>
   <string name="log_submit_activity__success">Succesvol verzonden!</string>
@@ -856,16 +859,16 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="log_submit_activity__please_review_this_log_from_my_app">Gelieve dit logbestand van mijn app te bestuderen: %1$s</string>
   <string name="log_submit_activity__network_failure">Netwerkfout. Probeer het opnieuw.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je huidige tekstberichtendatabase importeren naar de versleutelde database van Signal?</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaardsysteemdatabase zal niet gewijzigd of aangepast worden op enige wijze.</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je huidige tekstberichtendatabank importeren naar de versleutelde databank van Signal?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaardsysteemdatabank zal niet gewijzigd of aangepast worden op enige wijze.</string>
   <string name="database_migration_activity__skip">Overslaan</string>
   <string name="database_migration_activity__import">Importeren</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan even duren. Even geduld, we zullen je melden wanneer het importeren voltooid is.</string>
   <string name="database_migration_activity__importing">BEZIG MET IMPORTEREN</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Database bijwerken…</string>
-  <string name="import_fragment__import_system_sms_database">Sms-berichten uit de systeemdatabase importeren?</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importeer de database van de standaardberichtenapp</string>
+  <string name="database_upgrade_activity__updating_database">Databank bijwerken…</string>
+  <string name="import_fragment__import_system_sms_database">Sms-berichten uit de systeemdatabank importeren?</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importeer de databank van de standaardberichtenapp</string>
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importeer een onversleutelde back-up. Compatibel met ‘Sms back-up &amp; Herstellen’.</string>
   <!--load_more_header-->
@@ -884,7 +887,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   </plurals>
   <string name="GroupUtil_group_name_is_now">De groepsnaam is nu ‘%1$s’.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Je profielnaam en -foto zichtbaar maken voor deze groep?</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Je profielfoto en naam zichtbaar maken voor deze groep?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ontgrendelen</string>
   <!--prompt_mms_activity-->
@@ -998,7 +1001,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor verzenden van tekstberichten</string>
   <string name="preferences__send_link_previews">Voorbeeldweergaven verzenden</string>
-  <string name="preferences__previews_are_supported_for">Voorbeelden worden ondersteund voor koppelingen naar Imgur, Instagram, Reddit en YouTube</string>
+  <string name="preferences__previews_are_supported_for">Voorbeelden worden ondersteund voor koppelingen naar Imgur, Instagram, Pinterest, Reddit en YouTube</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -1097,9 +1100,9 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences_notifications__priority">Belangrijkheid</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Toon of verzegelde afzender is gebruikt</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je drukt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Schakel verzegelde afzender in voor berichten afkomstig van niet-contactpersonen en mensen waarmee je jouw profiel niet hebt gedeeld.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Schakel verzegelde afzender in voor berichten afkomstig van niet-contactpersonen en mensen voor wie je je profiel niet zichtbaar hebt gemaakt.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Meer leren hierover</string>
   <!--****************************************-->
   <!--menus-->
@@ -1183,7 +1186,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="reminder_header_sms_default_title">Gebruiken als standaard sms-app</string>
   <string name="reminder_header_sms_default_text">Tik om van Signal je standaard sms-app te maken.</string>
   <string name="reminder_header_sms_import_title">Sms uit systeem importeren</string>
-  <string name="reminder_header_sms_import_text">Tik om de sms-berichten uit je telefoon te kopiëren naar de versleutelde database van Signal.</string>
+  <string name="reminder_header_sms_import_text">Tik om de sms-berichten uit je telefoon te kopiëren naar de versleutelde databank van Signal.</string>
   <string name="reminder_header_push_title">Signal-berichten en -oproepen inschakelen</string>
   <string name="reminder_header_push_text">Verbeter je communicatie-ervaring.</string>
   <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
@@ -1217,7 +1220,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="Permissions_not_now">Niet nu</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot je lijst met contacten om contactpersonen te zoeken, maar toestemming om de contactenlijst in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL-BERICHTEN INSCHAKELEN</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-database wordt gemigreerd</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-databank wordt gemigreerd</string>
   <string name="PushDecryptJob_new_locked_message">Nieuw vergrendeld bericht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ontgrendel om bijwerken te voltooien</string>
@@ -1228,8 +1231,8 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="registration_activity__restore_backup">Back-up terugzetten</string>
   <string name="registration_activity__skip">Overslaan</string>
   <string name="registration_activity__register">Registreren</string>
-  <string name="preferences_chats__chat_backups">Automatische back-ups van gesprekken</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Gesprekken automatisch af en toe back-uppen naar externe opslag</string>
+  <string name="preferences_chats__chat_backups">Laat Signal backups maken</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Sta Signal toe om versleutelde back-ups van gesprekken en media te maken naar /Signal/Backups op je interne opslag. Als dit is ingeschakeld maakt Signal automatisch elke 24 uur een back-up. Alleen de twee meest recente geslaagde back-ups worden bewaard.</string>
   <string name="preferences_chats__create_backup">Nu een back-up maken</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Voer back-upwachtwoord in</string>
   <string name="RegistrationActivity_restore">Herstellen</string>
@@ -1241,11 +1244,11 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-up bestand terug te zetten. Let op: Herstellen vanaf een back-up kan alleen tijdens de installatie van de Signal app. Je kunt dit op een later moment niet langer doen, dus als je de back-up wilt terugzetten moet je dit nu doen.</string>
   <string name="RegistrationActivity_backup_size_s">Back-upgrootte: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Back-uptijdstip: %s</string>
-  <string name="BackupDialog_enable_local_backups">Lokale back-ups inschakelen?</string>
+  <string name="BackupDialog_enable_local_backups">Signal back-ups laten maken?</string>
   <string name="BackupDialog_enable_backups">Back-ups inschakelen</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
-  <string name="BackupDialog_delete_backups">Back-ups wissen?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Uitschakelen en alle lokale back-ups wissen?</string>
+  <string name="BackupDialog_delete_backups">Alle back-ups wissen?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-ups wilt laten maken, dan zal Signal ook alle bestaande back-ups van /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
   <string name="BackupDialog_delete_backups_statement">Back-ups wissen</string>
   <string name="BackupDialog_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-ups te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
