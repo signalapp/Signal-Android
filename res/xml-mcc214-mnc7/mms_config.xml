@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="6">
+    <int name="maxMessageSize">512000</int>
+    <int name="maxImageHeight">1944</int>
+    <int name="maxImageWidth">2592</int>
+    <bool name="smsUsesSimpleCharactersOnly">false</bool>
+    <bool name="allowEnablingWapPushSI">true</bool>
+    <bool name="enableWapPushSI">true</bool>
+</mms_config>

@@ -9,26 +9,22 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.scribbles.ScribbleFragment;
+import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
-  private final Locale                              locale;
   private final List<Media>                         media;
   private final Map<Integer, MediaSendPageFragment> fragments;
   private final Map<Uri, Object>                    savedState;
 
-  MediaSendFragmentPagerAdapter(@NonNull FragmentManager fm, @NonNull Locale locale) {
+  MediaSendFragmentPagerAdapter(@NonNull FragmentManager fm) {
     super(fm);
-    this.locale     = locale;
     this.media      = new ArrayList<>();
     this.fragments  = new HashMap<>();
     this.savedState = new HashMap<>();
@@ -41,7 +37,7 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
     if (MediaUtil.isGif(mediaItem.getMimeType())) {
       return MediaSendGifFragment.newInstance(mediaItem.getUri());
     } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
-      return ScribbleFragment.newInstance(mediaItem.getUri(), locale, Optional.absent(), true);
+      return ImageEditorFragment.newInstance(mediaItem.getUri());
     } else if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
       return MediaSendVideoFragment.newInstance(mediaItem.getUri());
     } else {
@@ -104,6 +100,15 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
       }
     }
     return new HashMap<>(savedState);
+  }
+
+  void saveAllState() {
+    for (MediaSendPageFragment fragment : fragments.values()) {
+      Object state = fragment.saveState();
+      if (state != null) {
+        savedState.put(fragment.getUri(), state);
+      }
+    }
   }
 
   void restoreState(@NonNull Map<Uri, Object> state) {

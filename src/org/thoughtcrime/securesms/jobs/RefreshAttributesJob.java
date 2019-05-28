@@ -1,14 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -19,35 +19,33 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class RefreshAttributesJob extends BaseJob implements InjectableType {
 
-public class RefreshAttributesJob extends ContextJob implements InjectableType {
-
-  public static final long serialVersionUID = 1L;
+  public static final String KEY = "RefreshAttributesJob";
 
   private static final String TAG = RefreshAttributesJob.class.getSimpleName();
 
-  @Inject transient SignalServiceAccountManager signalAccountManager;
+  @Inject SignalServiceAccountManager signalAccountManager;
 
-  public RefreshAttributesJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public RefreshAttributesJob() {
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setQueue("RefreshAttributesJob")
+                           .build());
   }
 
-  public RefreshAttributesJob(Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .withGroupId(RefreshAttributesJob.class.getName())
-                                .create());
-  }
-
-  @Override
-  protected void initialize(@NonNull SafeData data) {
+  private RefreshAttributesJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -63,7 +61,7 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
 
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new RefreshUnidentifiedDeliveryAbilityJob(context));
+                      .add(new RefreshUnidentifiedDeliveryAbilityJob());
   }
 
   @Override
@@ -74,5 +72,12 @@ public class RefreshAttributesJob extends ContextJob implements InjectableType {
   @Override
   public void onCanceled() {
     Log.w(TAG, "Failed to update account attributes!");
+  }
+
+  public static class Factory implements Job.Factory<RefreshAttributesJob> {
+    @Override
+    public @NonNull RefreshAttributesJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
+      return new RefreshAttributesJob(parameters);
+    }
   }
 }

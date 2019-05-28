@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -62,8 +63,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int PREVIEWS                         = 16;
   private static final int CONVERSATION_SEARCH              = 17;
   private static final int SELF_ATTACHMENT_CLEANUP          = 18;
+  private static final int RECIPIENT_FORCE_SMS_SELECTION    = 19;
+  private static final int JOBMANAGER_STRIKES_BACK          = 20;
 
-  private static final int    DATABASE_VERSION = 18;
+  private static final int    DATABASE_VERSION = 20;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -106,6 +109,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     for (String sql : SearchDatabase.CREATE_TABLE) {
       db.execSQL(sql);
     }
+    for (String sql : JobDatabase.CREATE_TABLE) {
+      db.execSQL(sql);
+    }
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -127,7 +133,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       else                      TextSecurePreferences.setNeedsSqlCipherMigration(context, true);
 
       if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
-        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
+        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
       }
 
       SessionStoreMigrationHelper.migrateSessions(context, db);
@@ -153,7 +159,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE one_time_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL)");
 
         if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
+          ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
         }
       }
 
@@ -400,6 +406,36 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             }
           }
         }
+      }
+
+      if (oldVersion < RECIPIENT_FORCE_SMS_SELECTION) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN force_sms_selection INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < JOBMANAGER_STRIKES_BACK) {
+        db.execSQL("CREATE TABLE job_spec(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                         "job_spec_id TEXT UNIQUE, " +
+                                         "factory_key TEXT, " +
+                                         "queue_key TEXT, " +
+                                         "create_time INTEGER, " +
+                                         "next_run_attempt_time INTEGER, " +
+                                         "run_attempt INTEGER, " +
+                                         "max_attempts INTEGER, " +
+                                         "max_backoff INTEGER, " +
+                                         "max_instances INTEGER, " +
+                                         "lifespan INTEGER, " +
+                                         "serialized_data TEXT, " +
+                                         "is_running INTEGER)");
+
+        db.execSQL("CREATE TABLE constraint_spec(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                "job_spec_id TEXT, " +
+                                                "factory_key TEXT, " +
+                                                "UNIQUE(job_spec_id, factory_key))");
+
+        db.execSQL("CREATE TABLE dependency_spec(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                "job_spec_id TEXT, " +
+                                                "depends_on_job_spec_id TEXT, " +
+                                                "UNIQUE(job_spec_id, depends_on_job_spec_id))");
       }
 
       db.setTransactionSuccessful();

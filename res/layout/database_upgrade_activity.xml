@@ -11,8 +11,8 @@
             android:layout_height="fill_parent"
             android:gravity="center" >
 
-        <LinearLayout android:paddingRight="16dip"
-                      android:paddingLeft="16dip"
+        <LinearLayout android:paddingEnd="16dip"
+                      android:paddingStart="16dip"
                       android:paddingTop="10dip"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"

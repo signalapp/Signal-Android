@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
@@ -15,6 +13,8 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -34,38 +34,36 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
-
 public class PushTextSendJob extends PushSendJob implements InjectableType {
 
-  private static final long serialVersionUID = 1L;
+  public static final String KEY = "PushTextSendJob";
 
   private static final String TAG = PushTextSendJob.class.getSimpleName();
 
   private static final String KEY_MESSAGE_ID = "message_id";
 
-  @Inject transient SignalServiceMessageSender messageSender;
+  @Inject SignalServiceMessageSender messageSender;
 
   private long messageId;
 
-  public PushTextSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public PushTextSendJob(long messageId, Address destination) {
+    this(constructParameters(destination), messageId);
   }
 
-  public PushTextSendJob(Context context, long messageId, Address destination) {
-    super(context, constructParameters(destination));
+  private PushTextSendJob(@NonNull Job.Parameters parameters, long messageId) {
+    super(parameters);
     this.messageId = messageId;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    messageId = data.getLong(KEY_MESSAGE_ID);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId).build();
   }
 
+  @NonNull
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId).build();
+  public String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -126,7 +124,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       warn(TAG, "Failure", e);
       database.markAsPendingInsecureSmsFallback(record.getId());
       MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
-      ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, false));
+      ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(false));
     } catch (UntrustedIdentityException e) {
       warn(TAG, "Failure", e);
       database.addMismatchedIdentity(record.getId(), Address.fromSerialized(e.getE164Number()), e.getIdentityKey());
@@ -189,6 +187,13 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     } catch (IOException e) {
       warn(TAG, "Failure", e);
       throw new RetryLaterException(e);
+    }
+  }
+
+  public static class Factory implements Job.Factory<PushTextSendJob> {
+    @Override
+    public @NonNull PushTextSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new PushTextSendJob(parameters, data.getLong(KEY_MESSAGE_ID));
     }
   }
 }

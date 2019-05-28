@@ -26,9 +26,7 @@
             <ImageView android:id="@+id/toolbar_icon"
                        android:layout_width="36dp"
                        android:layout_height="36dp"
-                       android:layout_marginLeft="8dp"
                        android:layout_marginStart="8dp"
-                       android:layout_alignParentLeft="true"
                        android:layout_alignParentStart="true"
                        android:layout_centerVertical="true"/>
 
@@ -38,20 +36,15 @@
                       android:textColor="@color/white"
                       android:textSize="25sp"
                       android:layout_alignParentStart="true"
-                      android:layout_alignParentLeft="true"
                       android:layout_centerVertical="true"
-                      android:layout_toLeftOf="@+id/search_action"
                       android:layout_toStartOf="@+id/search_action"
-                      android:layout_marginStart="66dp"
-                      android:layout_marginLeft="66dp"/>
+                      android:layout_marginStart="66dp"/>
 
             <ImageView android:id="@+id/search_action"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:src="@drawable/ic_search_white_24dp"
-                       android:paddingRight="16dp"
                        android:paddingEnd="16dp"
-                       android:layout_alignParentRight="true"
                        android:layout_alignParentEnd="true"
                        android:layout_centerVertical="true"/>
 

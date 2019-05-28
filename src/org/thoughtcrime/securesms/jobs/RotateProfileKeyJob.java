@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -8,8 +7,9 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -22,33 +22,33 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class RotateProfileKeyJob extends BaseJob implements InjectableType {
 
-public class RotateProfileKeyJob extends ContextJob implements InjectableType {
+  public static String KEY = "RotateProfileKeyJob";
 
   @Inject SignalServiceAccountManager accountManager;
 
-  public RotateProfileKeyJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public RotateProfileKeyJob() {
+    this(new Job.Parameters.Builder()
+                           .setQueue("__ROTATE_PROFILE_KEY__")
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(25)
+                           .setMaxInstances(1)
+                           .build());
   }
 
-  public RotateProfileKeyJob(Context context) {
-    super(context, new JobParameters.Builder()
-                                    .withGroupId("__ROTATE_PROFILE_KEY__")
-                                    .withDuplicatesIgnored(true)
-                                    .withNetworkRequirement()
-                                    .create());
-  }
-
-  @NonNull
-  @Override
-  protected Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  private RotateProfileKeyJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -60,11 +60,11 @@ public class RotateProfileKeyJob extends ContextJob implements InjectableType {
 
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new RefreshAttributesJob(context));
+                      .add(new RefreshAttributesJob());
   }
 
   @Override
-  protected void onCanceled() {
+  public void onCanceled() {
 
   }
 
@@ -85,5 +85,12 @@ public class RotateProfileKeyJob extends ContextJob implements InjectableType {
       return null;
     }
     return null;
+  }
+
+  public static final class Factory implements Job.Factory<RotateProfileKeyJob> {
+    @Override
+    public @NonNull RotateProfileKeyJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new RotateProfileKeyJob(parameters);
+    }
   }
 }

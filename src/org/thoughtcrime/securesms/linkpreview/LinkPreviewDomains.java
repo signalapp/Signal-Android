@@ -18,7 +18,10 @@ public class LinkPreviewDomains {
       "m.imgur.com",
       "instagram.com",
       "www.instagram.com",
-      "m.instagram.com"
+      "m.instagram.com",
+      "pinterest.com",
+      "www.pinterest.com",
+      "pin.it"
   ));
 
   public static final Set<String> IMAGES = new HashSet<>(Arrays.asList(
@@ -26,6 +29,8 @@ public class LinkPreviewDomains {
       "cdninstagram.com",
       "fbcdn.net",
       "redd.it",
-      "imgur.com"
+      "imgur.com",
+      "pinimg.com",
+      "giphy.com"
   ));
 }

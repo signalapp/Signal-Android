@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="2">
+    <bool name="allowEnablingWapPushSI">true</bool>
+    <bool name="enableWapPushSI">true</bool>
+    <int name="maxImageHeight">768</int>
+    <int name="maxImageWidth">1024</int>
+</mms_config>

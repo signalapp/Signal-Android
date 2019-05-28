@@ -1,17 +1,17 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.telephony.SmsMessage;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -23,12 +23,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class SmsReceiveJob extends BaseJob {
 
-public class SmsReceiveJob extends ContextJob {
-
-  private static final long serialVersionUID = 1L;
+  public static final String KEY = "SmsReceiveJob";
 
   private static final String TAG = SmsReceiveJob.class.getSimpleName();
 
@@ -39,44 +36,37 @@ public class SmsReceiveJob extends ContextJob {
 
   private int subscriptionId;
 
-  public SmsReceiveJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public SmsReceiveJob(@Nullable Object[] pdus, int subscriptionId) {
+    this(new Job.Parameters.Builder()
+                           .addConstraint(SqlCipherMigrationConstraint.KEY)
+                           .setMaxAttempts(25)
+                           .build(),
+         pdus,
+         subscriptionId);
   }
 
-  public SmsReceiveJob(@NonNull Context context, @Nullable Object[] pdus, int subscriptionId) {
-    super(context, JobParameters.newBuilder()
-                                .withSqlCipherRequirement()
-                                .create());
+  private SmsReceiveJob(@NonNull Job.Parameters parameters, @Nullable Object[] pdus, int subscriptionId) {
+    super(parameters);
 
     this.pdus           = pdus;
     this.subscriptionId = subscriptionId;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    String[] encoded = data.getStringArray(KEY_PDUS);
-    pdus = new Object[encoded.length];
-    try {
-      for (int i = 0; i < encoded.length; i++) {
-        pdus[i] = Base64.decode(encoded[i]);
-      }
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
-
-    subscriptionId = data.getInt(KEY_SUBSCRIPTION_ID);
-  }
-
-  @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
+  public @NonNull Data serialize() {
     String[] encoded = new String[pdus.length];
     for (int i = 0; i < pdus.length; i++) {
       encoded[i] = Base64.encodeBytes((byte[]) pdus[i]);
     }
 
-    return dataBuilder.putStringArray(KEY_PDUS, encoded)
-                      .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
-                      .build();
+    return new Data.Builder().putStringArray(KEY_PDUS, encoded)
+                             .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
+                             .build();
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -155,6 +145,24 @@ public class SmsReceiveJob extends ContextJob {
   }
 
   private class MigrationPendingException extends Exception {
+  }
 
+  public static final class Factory implements Job.Factory<SmsReceiveJob> {
+    @Override
+    public @NonNull SmsReceiveJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      try {
+        int subscriptionId = data.getInt(KEY_SUBSCRIPTION_ID);
+        String[] encoded   = data.getStringArray(KEY_PDUS);
+        Object[] pdus      = new Object[encoded.length];
+
+        for (int i = 0; i < encoded.length; i++) {
+          pdus[i] = Base64.decode(encoded[i]);
+        }
+
+        return new SmsReceiveJob(parameters, pdus, subscriptionId);
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+    }
   }
 }

@@ -4,7 +4,8 @@
     <dimen name="min_keyboard_size">50dp</dimen>
     <dimen name="default_custom_keyboard_size">220dp</dimen>
     <dimen name="min_custom_keyboard_size">110dp</dimen>
-    <dimen name="min_custom_keyboard_top_margin">170dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin_landscape">50dp</dimen>
     <dimen name="emoji_drawer_item_padding">5dp</dimen>
     <dimen name="emoji_drawer_indicator_height">1.5dp</dimen>
     <dimen name="emoji_drawer_left_right_padding">5dp</dimen>
@@ -98,5 +99,7 @@
     <dimen name="floating_action_button_margin">16dp</dimen>
 
     <dimen name="alertview_small_icon_size">14dp</dimen>
+
+    <dimen name="recording_voice_lock_target">-150dp</dimen>
 
 </resources>

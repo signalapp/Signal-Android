@@ -144,24 +144,20 @@ public abstract class Slide {
                                                                    boolean voiceNote,
                                                                    boolean quote)
   {
-    try {
-      String                 resolvedType    = Optional.fromNullable(MediaUtil.getMimeType(context, uri)).or(defaultMime);
-      String                 fastPreflightId = String.valueOf(SecureRandom.getInstance("SHA1PRNG").nextLong());
-      return new UriAttachment(uri,
-                               hasThumbnail ? uri : null,
-                               resolvedType,
-                               AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
-                               size,
-                               width,
-                               height,
-                               fileName,
-                               fastPreflightId,
-                               voiceNote,
-                               quote,
-                               caption);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    String                 resolvedType    = Optional.fromNullable(MediaUtil.getMimeType(context, uri)).or(defaultMime);
+    String                 fastPreflightId = String.valueOf(new SecureRandom().nextLong());
+    return new UriAttachment(uri,
+                             hasThumbnail ? uri : null,
+                             resolvedType,
+                             AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
+                             size,
+                             width,
+                             height,
+                             fileName,
+                             fastPreflightId,
+                             voiceNote,
+                             quote,
+                             caption);
   }
 
   @Override

@@ -23,7 +23,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end"
         android:layout_margin="25dp"
         android:src="@drawable/ic_arrow_forward_white_24dp"
         android:focusable="true"

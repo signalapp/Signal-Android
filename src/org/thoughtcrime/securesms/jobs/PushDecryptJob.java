@@ -55,8 +55,8 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
@@ -112,12 +112,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class PushDecryptJob extends BaseJob {
 
-public class PushDecryptJob extends ContextJob {
-
-  private static final long serialVersionUID = 2L;
+  public static final String KEY = "PushDecryptJob";
 
   public static final String TAG = PushDecryptJob.class.getSimpleName();
 
@@ -126,10 +123,6 @@ public class PushDecryptJob extends ContextJob {
 
   private long messageId;
   private long smsMessageId;
-
-  public PushDecryptJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
-  }
 
   public PushDecryptJob(Context context) {
     this(context, -1);
@@ -140,24 +133,32 @@ public class PushDecryptJob extends ContextJob {
   }
 
   public PushDecryptJob(Context context, long pushMessageId, long smsMessageId) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId("__PUSH_DECRYPT_JOB__")
-                                .create());
+    this(new Job.Parameters.Builder()
+                           .setQueue("__PUSH_DECRYPT_JOB__")
+                           .setMaxAttempts(10)
+                           .build(),
+         pushMessageId,
+         smsMessageId);
+    setContext(context);
+  }
+
+  private PushDecryptJob(@NonNull Job.Parameters parameters, long pushMessageId, long smsMessageId) {
+    super(parameters);
+
     this.messageId    = pushMessageId;
     this.smsMessageId = smsMessageId;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    messageId    = data.getLong(KEY_MESSAGE_ID);
-    smsMessageId = data.getLong(KEY_SMS_MESSAGE_ID);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                             .putLong(KEY_SMS_MESSAGE_ID, smsMessageId)
+                             .build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
-                      .putLong(KEY_SMS_MESSAGE_ID, smsMessageId)
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -284,8 +285,10 @@ public class PushDecryptJob extends ContextJob {
         Log.w(TAG, "Got unrecognized message...");
       }
 
+      resetRecipientToPush(Recipient.from(context, Address.fromExternal(context, content.getSender()), false));
+
       if (envelope.isPreKeySignalMessage()) {
-        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
+        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
       }
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
@@ -473,7 +476,7 @@ public class PushDecryptJob extends ContextJob {
   {
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new RequestGroupInfoJob(context, content.getSender(), group.getGroupId()));
+                      .add(new RequestGroupInfoJob(content.getSender(), group.getGroupId()));
   }
 
   private void handleExpirationUpdate(@NonNull SignalServiceContent content,
@@ -550,8 +553,8 @@ public class PushDecryptJob extends ContextJob {
       }
 
       if (threadId != null) {
-        DatabaseFactory.getThreadDatabase(getContext()).setRead(threadId, true);
-        MessageNotifier.updateNotification(getContext());
+        DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+        MessageNotifier.updateNotification(context);
       }
 
       MessageNotifier.setLastDesktopActivityTimestamp(message.getTimestamp());
@@ -565,33 +568,32 @@ public class PushDecryptJob extends ContextJob {
     if (message.isContactsRequest()) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MultiDeviceContactUpdateJob(getContext(), true));
+                        .add(new MultiDeviceContactUpdateJob(context, true));
 
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new RefreshUnidentifiedDeliveryAbilityJob(context));
+                        .add(new RefreshUnidentifiedDeliveryAbilityJob());
     }
 
     if (message.isGroupsRequest()) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MultiDeviceGroupUpdateJob(getContext()));
+                        .add(new MultiDeviceGroupUpdateJob());
     }
 
     if (message.isBlockedListRequest()) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MultiDeviceBlockedUpdateJob(getContext()));
+                        .add(new MultiDeviceBlockedUpdateJob());
     }
 
     if (message.isConfigurationRequest()) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(getContext(),
-                                                                   TextSecurePreferences.isReadReceiptsEnabled(getContext()),
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(context),
+                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(context),
+                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+                                                                   TextSecurePreferences.isLinkPreviewsEnabled(context)));
     }
   }
 
@@ -650,7 +652,7 @@ public class PushDecryptJob extends ContextJob {
         for (DatabaseAttachment attachment : attachments) {
           ApplicationContext.getInstance(context)
                             .getJobManager()
-                            .add(new AttachmentDownloadJob(context, insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
+                            .add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
         }
 
         if (smsMessageId.isPresent()) {
@@ -723,7 +725,7 @@ public class PushDecryptJob extends ContextJob {
     for (DatabaseAttachment attachment : DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new AttachmentDownloadJob(context, messageId, attachment.getAttachmentId(), false));
+                        .add(new AttachmentDownloadJob(messageId, attachment.getAttachmentId(), false));
     }
 
     if (message.getMessage().getExpiresInSeconds() > 0) {
@@ -936,7 +938,7 @@ public class PushDecryptJob extends ContextJob {
     if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
       database.setProfileKey(recipient, message.getProfileKey().get());
       database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN);
-      ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(context, recipient));
+      ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(recipient));
     }
   }
 
@@ -945,7 +947,7 @@ public class PushDecryptJob extends ContextJob {
   {
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new SendDeliveryReceiptJob(context, Address.fromExternal(context, content.getSender()), message.getTimestamp()));
+                      .add(new SendDeliveryReceiptJob(Address.fromExternal(context, content.getSender()), message.getTimestamp()));
   }
 
   @SuppressLint("DefaultLocale")
@@ -1156,11 +1158,17 @@ public class PushDecryptJob extends ContextJob {
       } else {
         return sender.isBlocked();
       }
-    } else if (content.getCallMessage().isPresent()) {
+    } else if (content.getCallMessage().isPresent() || content.getTypingMessage().isPresent()) {
       return sender.isBlocked();
     }
 
     return false;
+  }
+
+  private void resetRecipientToPush(@NonNull Recipient recipient) {
+    if (recipient.isForceSmsSelection()) {
+      DatabaseFactory.getRecipientDatabase(context).setForceSmsSelection(recipient, false);
+    }
   }
 
   @SuppressWarnings("WeakerAccess")
@@ -1183,4 +1191,10 @@ public class PushDecryptJob extends ContextJob {
     }
   }
 
+  public static final class Factory implements Job.Factory<PushDecryptJob> {
+    @Override
+    public @NonNull PushDecryptJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new PushDecryptJob(parameters, data.getLong(KEY_MESSAGE_ID), data.getLong(KEY_SMS_MESSAGE_ID));
+    }
+  }
 }

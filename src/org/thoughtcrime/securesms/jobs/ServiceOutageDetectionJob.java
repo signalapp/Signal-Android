@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -15,10 +15,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class ServiceOutageDetectionJob extends BaseJob {
 
-public class ServiceOutageDetectionJob extends ContextJob {
+  public static final String KEY = "ServiceOutageDetectionJob";
 
   private static final String TAG = ServiceOutageDetectionJob.class.getSimpleName();
 
@@ -26,26 +25,27 @@ public class ServiceOutageDetectionJob extends ContextJob {
   private static final String IP_FAILURE = "127.0.0.2";
   private static final long   CHECK_TIME = 1000 * 60;
 
-  public ServiceOutageDetectionJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public ServiceOutageDetectionJob() {
+    this(new Job.Parameters.Builder()
+                           .setQueue("ServiceOutageDetectionJob")
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(5)
+                           .setMaxInstances(1)
+                           .build());
   }
 
-  public ServiceOutageDetectionJob(Context context) {
-    super(context, new JobParameters.Builder()
-                                    .withGroupId(ServiceOutageDetectionJob.class.getSimpleName())
-                                    .withDuplicatesIgnored(true)
-                                    .withNetworkRequirement()
-                                    .withRetryCount(5)
-                                    .create());
-  }
-
-  @Override
-  protected void initialize(@NonNull SafeData data) {
+  private ServiceOutageDetectionJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -91,5 +91,12 @@ public class ServiceOutageDetectionJob extends ContextJob {
     TextSecurePreferences.setServiceOutage(context, false);
     TextSecurePreferences.setLastOutageCheckTime(context, System.currentTimeMillis());
     EventBus.getDefault().post(new ReminderUpdateEvent());
+  }
+
+  public static final class Factory implements Job.Factory<ServiceOutageDetectionJob> {
+    @Override
+    public @NonNull ServiceOutageDetectionJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new ServiceOutageDetectionJob(parameters);
+    }
   }
 }

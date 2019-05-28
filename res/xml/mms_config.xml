@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="4">
+    <bool name="enabledMMS">true</bool>
+    <int name="maxMessageSize">307200</int>
+    <int name="maxImageHeight">480</int>
+    <int name="maxImageWidth">640</int>
+    <int name="recipientLimit">-1</int>
+    <bool name="enableMultipartSMS">true</bool>
+    <int name="smsToMmsTextThreshold">-1</int>
+    <int name="maxMessageTextSize">-1</int>
+    <bool name="groupChatDefaultsToMMS">false</bool>
+</mms_config>

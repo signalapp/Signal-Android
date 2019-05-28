@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ThreadUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -26,15 +26,13 @@ public class AudioRecorder {
 
   private static final ExecutorService executor = ThreadUtil.newDynamicSingleThreadedExecutor();
 
-  private final Context                context;
-  private final PersistentBlobProvider blobProvider;
+  private final Context context;
 
   private AudioCodec audioCodec;
   private Uri        captureUri;
 
   public AudioRecorder(@NonNull Context context) {
-    this.context      = context;
-    this.blobProvider = PersistentBlobProvider.getInstance(context.getApplicationContext());
+    this.context = context;
   }
 
   public void startRecording() {
@@ -49,9 +47,11 @@ public class AudioRecorder {
 
         ParcelFileDescriptor fds[] = ParcelFileDescriptor.createPipe();
 
-        captureUri  = blobProvider.create(context, new ParcelFileDescriptor.AutoCloseInputStream(fds[0]),
-                                          MediaUtil.AUDIO_AAC, null, null);
-        audioCodec  = new AudioCodec();
+        captureUri = BlobProvider.getInstance()
+                                 .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
+                                 .withMimeType(MediaUtil.AUDIO_AAC)
+                                 .createForSingleSessionOnDisk(context, e -> Log.w(TAG, "Error during recording", e));
+        audioCodec = new AudioCodec();
 
         audioCodec.start(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));
       } catch (IOException e) {

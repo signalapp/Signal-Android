@@ -44,10 +44,9 @@ import java.util.List;
 public class MediaMmsMessageRecord extends MmsMessageRecord {
   private final static String TAG = MediaMmsMessageRecord.class.getSimpleName();
 
-  private final Context context;
   private final int     partCount;
 
-  public MediaMmsMessageRecord(Context context, long id, Recipient conversationRecipient,
+  public MediaMmsMessageRecord(long id, Recipient conversationRecipient,
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, int deliveryReceiptCount,
                                long threadId, String body,
@@ -59,12 +58,10 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                @Nullable Quote quote, @Nullable List<Contact> contacts,
                                @Nullable List<LinkPreview> linkPreviews, boolean unidentified)
   {
-    super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
+    super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
           subscriptionId, expiresIn, expireStarted, slideDeck, readReceiptCount, quote, contacts,
           linkPreviews, unidentified);
-
-    this.context   = context.getApplicationContext();
     this.partCount = partCount;
   }
 
@@ -78,7 +75,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   }
 
   @Override
-  public SpannableString getDisplayBody() {
+  public SpannableString getDisplayBody(@NonNull Context context) {
     if (MmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
     } else if (MmsDatabase.Types.isDuplicateMessageType(type)) {
@@ -89,6 +86,6 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     }
 
-    return super.getDisplayBody();
+    return super.getDisplayBody(context);
   }
 }

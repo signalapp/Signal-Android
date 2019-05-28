@@ -77,7 +77,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new MultiDeviceReadUpdateJob(context, syncMessageIds));
+                      .add(new MultiDeviceReadUpdateJob(syncMessageIds));
 
     Map<Address, List<SyncMessageId>> addressMap = Stream.of(markedReadMessages)
                                                          .map(MarkedMessageInfo::getSyncMessageId)
@@ -88,7 +88,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new SendReadReceiptJob(context, address, timestamps));
+                        .add(new SendReadReceiptJob(address, timestamps));
     }
   }
 

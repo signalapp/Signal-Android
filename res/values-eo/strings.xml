@@ -72,7 +72,6 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Envena alvoko</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Fotilo ne disponeblas.</string>
   <string name="CameraActivity_image_save_failure">Eraro dum konservo de bildo.</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Forviŝi</string>
@@ -329,6 +328,9 @@
   <string name="GroupShareProfileView_make_visible">Videbligi</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Mi</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
+  <string name="CropImageActivity_profile_avatar">Avataro</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi</string>
   <!--InviteActivity-->
@@ -395,13 +397,15 @@
   <string name="MediaPickerActivity_send_to">Sendi al %s</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tuŝeto por elekti</string>
-  <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-    <item quantity="one">Vi ne povas kunhavigi pli ol %d elementon.</item>
-    <item quantity="other">Vi ne povas kunhavigi pli ol %d elementojn.</item>
-  </plurals>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Aldoni klarigon...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elemento estis forigita, ĉar ĝi transpasis la grandlimon.</string>
+  <string name="MediaSendActivity_camera_unavailable">Fotilo ne disponeblas.</string>
+  <string name="MediaSendActivity_message_to_s">Mesaĝo al %s</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Vi ne povas kunhavigi pli ol %d elementon.</item>
+    <item quantity="other">Vi ne povas kunhavigi pli ol %d elementojn.</item>
+  </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Ĉiuj aŭvidaĵoj</string>
   <!--MessageRecord-->
@@ -461,8 +465,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nevalida pasfrazo!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La instalita versio de la Google-servoj „Play“ ne bone funkcias. Bv. re-instali „Google Play Services“, kaj provi denove.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Ricevo de mesaĝo...</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Pritaksi tiun aplikaĵon</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se vi ŝatas uzi tiun aplikaĵon, bv. helpi nin per via pritakso.</string>
@@ -544,8 +546,6 @@
   <string name="SearchFragment_header_conversations">Interparoloj</string>
   <string name="SearchFragment_header_contacts">Kontaktaro</string>
   <string name="SearchFragment_header_messages">Mesaĝoj</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Sendo de mesaĝo...</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Aldoni al kontaktaro</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Inviti al Signal</string>
@@ -651,6 +651,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_mark_read">Marki legita</string>
   <string name="MessageNotifier_media_message">Aŭdvida mesaĝo</string>
   <string name="MessageNotifier_reply">Respondi</string>
+  <string name="MessageNotifier_signal_message">Signal-mesaĝo</string>
+  <string name="MessageNotifier_unsecured_sms">Nesekura SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Pritraktotaj Signal-aj mesaĝoj</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Vi havas pritraktotajn Signal-ajn mesaĝojn; tuŝetu por malfermi kaj ricevi ilin</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -740,15 +742,18 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_activity__type_message_sms_insecure">Nesekura SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Nesekura MMS</string>
   <string name="conversation_activity__from_sim_name">El %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Sendi</string>
   <string name="conversation_activity__compose_description">Mesaĝa redakto</string>
   <string name="conversation_activity__emoji_toggle_description">Baskuligi emoĝian klavaron</string>
   <string name="conversation_activity__attachment_thumbnail">Kunsendaĵa miniaturo</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Baskuligi kunsendaĵon el rapida fotilo</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registri kaj sendi aŭdan kunsendaĵon</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ŝlosi registron de aŭda kunsendaĵo </string>
   <string name="conversation_activity__enable_signal_for_sms">Mastrumi mesaĝetojn (SMS) per Signal</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">DEŜOVU POR NULIGI</string>
+  <string name="conversation_input_panel__slide_to_cancel">Deŝovu por nuligi</string>
+  <string name="conversation_input_panel__cancel">Nuligi</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Aŭdvida mesaĝo</string>
   <string name="conversation_item__secure_message_description">Sekura mesaĝo</string>
@@ -993,7 +998,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__pref_enter_sends_title">La Eniga klavo kaŭzas sendon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premi la Enigan klavon sendos mesaĝojn</string>
   <string name="preferences__send_link_previews">Sendi autaŭrigardojn de ligilo</string>
-  <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Reddit kaj YouTube</string>
+  <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Pinterest, Reddit kaj YouTube</string>
   <string name="preferences__choose_identity">Elekti identecon</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elektu vian propran kontakton el la kontaktlisto.</string>
   <string name="preferences__change_passphrase">Ŝanĝi pasfrazon</string>
@@ -1186,6 +1191,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="reminder_header_share_title">Invitu viajn amikojn!</string>
   <string name="reminder_header_share_text">Ju pli da amikoj uzas Signal-on, des pli bona ĝi estas.</string>
   <string name="reminder_header_service_outage_text">Signal havas kelkajn teĥnikajn problemojn. Ni laboras diligente por revenigi la servon kiel eble plej rapide.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">La plej freŝaj trajtoj de Signal ne funkcias ĉe tiu versio de Android. Bv. ĝisdatigi vian aparaton por ricevi venontajn Signal-ĝisdatigojn.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Konservi</string>
   <string name="media_preview__forward_title">Plusendi</string>
@@ -1249,7 +1255,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ProgressPreference_d_messages_so_far">%d mesaĝoj ĝis nun</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bv. entajpi la kontrolkodon senditan al %s.</string>
   <string name="RegistrationActivity_wrong_number">Erara numero</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Alvoki min anstataŭe \n (Disponebla post %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Alvoki min anstataŭe \n (Disponebla post %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Neniam</string>
   <string name="BackupUtil_unknown">Nekonata</string>
   <string name="preferences_app_protection__screen_lock">Ekranŝloso</string>

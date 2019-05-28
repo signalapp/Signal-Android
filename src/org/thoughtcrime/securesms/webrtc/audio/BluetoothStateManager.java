@@ -129,11 +129,7 @@ public class BluetoothStateManager {
   }
 
   private String getScoChangeIntent() {
-    if (Build.VERSION.SDK_INT >= 14) {
-      return AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED;
-    } else {
-      return AudioManager.ACTION_SCO_AUDIO_STATE_CHANGED;
-    }
+    return AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED;
   }
 
 

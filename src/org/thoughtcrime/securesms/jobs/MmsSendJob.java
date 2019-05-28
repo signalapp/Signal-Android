@@ -4,7 +4,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import android.webkit.MimeTypeMap;
 
@@ -28,7 +30,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -49,12 +50,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
-
 public class MmsSendJob extends SendJob {
 
-  private static final long serialVersionUID = 0L;
+  public static final String KEY = "MmsSendJob";
 
   private static final String TAG = MmsSendJob.class.getSimpleName();
 
@@ -62,28 +60,28 @@ public class MmsSendJob extends SendJob {
 
   private long messageId;
 
-  public MmsSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public MmsSendJob(long messageId) {
+    this(new Job.Parameters.Builder()
+                           .setQueue("mms-operation")
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(15)
+                           .build(),
+         messageId);
   }
 
-  public MmsSendJob(Context context, long messageId) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId("mms-operation")
-                                .withNetworkRequirement()
-                                .withRetryCount(15)
-                                .create());
-
+  private MmsSendJob(@NonNull Job.Parameters parameters, long messageId) {
+    super(parameters);
     this.messageId = messageId;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    messageId = data.getLong(KEY_MESSAGE_ID);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId).build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId).build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -316,6 +314,13 @@ public class MmsSendJob extends SendJob {
       return Utils.getMyPhoneNumber(context);
     } catch (SecurityException e) {
       throw new UndeliverableMessageException(e);
+    }
+  }
+
+  public static class Factory implements Job.Factory<MmsSendJob> {
+    @Override
+    public @NonNull MmsSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new MmsSendJob(parameters, data.getLong(KEY_MESSAGE_ID));
     }
   }
 }

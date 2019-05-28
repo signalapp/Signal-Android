@@ -29,8 +29,8 @@
                 android:id="@+id/backspace"
                 android:background="?emoji_tab_strip_background"
                 android:src="@drawable/ic_backspace_grey600_24dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
 

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -9,25 +8,19 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
-import androidx.work.WorkerParameters;
-
-public abstract class PushReceivedJob extends ContextJob {
+public abstract class PushReceivedJob extends BaseJob {
 
   private static final String TAG = PushReceivedJob.class.getSimpleName();
 
   public static final Object RECEIVE_LOCK = new Object();
 
-  protected PushReceivedJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
-  }
-
-  protected PushReceivedJob(Context context, JobParameters parameters) {
-    super(context, parameters);
+  protected PushReceivedJob(Job.Parameters parameters) {
+    super(parameters);
   }
 
   public void processEnvelope(@NonNull SignalServiceEnvelope envelope) {
@@ -38,7 +31,7 @@ public abstract class PushReceivedJob extends ContextJob {
 
         if (!isActiveNumber(recipient)) {
           DatabaseFactory.getRecipientDatabase(context).setRegistered(recipient, RecipientDatabase.RegisteredState.REGISTERED);
-          ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(context, recipient, false));
+          ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(recipient, false));
         }
       }
 

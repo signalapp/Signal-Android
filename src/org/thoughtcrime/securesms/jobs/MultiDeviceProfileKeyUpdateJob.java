@@ -1,17 +1,16 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -27,51 +26,53 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class MultiDeviceProfileKeyUpdateJob extends BaseJob implements InjectableType {
 
-public class MultiDeviceProfileKeyUpdateJob extends ContextJob implements InjectableType {
+  public static String KEY = "MultiDeviceProfileKeyUpdateJob";
 
-  private static final long serialVersionUID = 1L;
   private static final String TAG = MultiDeviceProfileKeyUpdateJob.class.getSimpleName();
 
-  @Inject transient SignalServiceMessageSender messageSender;
+  @Inject SignalServiceMessageSender messageSender;
 
-  public MultiDeviceProfileKeyUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public MultiDeviceProfileKeyUpdateJob() {
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setQueue("MultiDeviceProfileKeyUpdateJob")
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .build());
   }
 
-  public MultiDeviceProfileKeyUpdateJob(Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .withGroupId(MultiDeviceProfileKeyUpdateJob.class.getSimpleName())
-                                .create());
+  private MultiDeviceProfileKeyUpdateJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
-    if (!TextSecurePreferences.isMultiDevice(getContext())) {
+    if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device...");
       return;
     }
 
-    Optional<byte[]>           profileKey = Optional.of(ProfileKeyUtil.getProfileKey(getContext()));
+    Optional<byte[]>           profileKey = Optional.of(ProfileKeyUtil.getProfileKey(context));
     ByteArrayOutputStream      baos       = new ByteArrayOutputStream();
     DeviceContactsOutputStream out        = new DeviceContactsOutputStream(baos);
 
-    out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(getContext()),
+    out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(context),
                                 Optional.absent(),
                                 Optional.absent(),
                                 Optional.absent(),
@@ -100,5 +101,12 @@ public class MultiDeviceProfileKeyUpdateJob extends ContextJob implements Inject
   @Override
   public void onCanceled() {
     Log.w(TAG, "Profile key sync failed!");
+  }
+
+  public static final class Factory implements Job.Factory<MultiDeviceProfileKeyUpdateJob> {
+    @Override
+    public @NonNull MultiDeviceProfileKeyUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new MultiDeviceProfileKeyUpdateJob(parameters);
+    }
   }
 }

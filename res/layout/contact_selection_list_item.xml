@@ -9,9 +9,7 @@
         android:gravity="center_vertical"
         android:focusable="true"
         android:background="@drawable/conversation_item_background"
-        android:paddingLeft="48dp"
         android:paddingStart="48dp"
-        android:paddingRight="24dp"
         android:paddingEnd="24dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
@@ -26,9 +24,7 @@
     <LinearLayout android:layout_width="0dp"
                   android:layout_height="wrap_content"
                   android:layout_weight="1"
-                  android:layout_marginLeft="16dp"
                   android:layout_marginStart="16dp"
-                  android:paddingRight="16dp"
                   android:paddingEnd="16dp"
                   android:orientation="vertical">
 
@@ -62,7 +58,6 @@
             <TextView android:id="@+id/label"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:paddingLeft="10dip"
                       android:paddingStart="10dip"
                       android:ellipsize="end"
                       android:singleLine="true"

@@ -32,23 +32,21 @@ public class SystemProfileUtil {
     new AsyncTask<Void, Void, byte[]>() {
       @Override
       protected @Nullable byte[] doInBackground(Void... params) {
-        if (Build.VERSION.SDK_INT >= 14) {
-          try (Cursor cursor = context.getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null)) {
-            while (cursor != null && cursor.moveToNext()) {
-              String photoUri = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Profile.PHOTO_URI));
+        try (Cursor cursor = context.getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            String photoUri = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Profile.PHOTO_URI));
 
-              if (!TextUtils.isEmpty(photoUri)) {
-                try {
-                  BitmapUtil.ScaleResult result = BitmapUtil.createScaledBytes(context, Uri.parse(photoUri), mediaConstraints);
-                  return result.getBitmap();
-                } catch (BitmapDecodingException e) {
-                  Log.w(TAG, e);
-                }
+            if (!TextUtils.isEmpty(photoUri)) {
+              try {
+                BitmapUtil.ScaleResult result = BitmapUtil.createScaledBytes(context, Uri.parse(photoUri), mediaConstraints);
+                return result.getBitmap();
+              } catch (BitmapDecodingException e) {
+                Log.w(TAG, e);
               }
             }
-          } catch (SecurityException se) {
-            Log.w(TAG, se);
           }
+        } catch (SecurityException se) {
+          Log.w(TAG, se);
         }
 
         return null;
@@ -73,14 +71,12 @@ public class SystemProfileUtil {
       protected String doInBackground(Void... params) {
         String name = null;
 
-        if (Build.VERSION.SDK_INT >= 14) {
-          try (Cursor cursor =  context.getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null)) {
-            if (cursor != null && cursor.moveToNext()) {
-              name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Profile.DISPLAY_NAME));
-            }
-          } catch (SecurityException se) {
-            Log.w(TAG, se);
+        try (Cursor cursor =  context.getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null)) {
+          if (cursor != null && cursor.moveToNext()) {
+            name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Profile.DISPLAY_NAME));
           }
+        } catch (SecurityException se) {
+          Log.w(TAG, se);
         }
 
         if (name == null) {

@@ -59,8 +59,7 @@ public class TypingIndicatorIntroFragment extends Fragment {
     TextSecurePreferences.setTypingIndicatorsEnabled(getContext(), typingEnabled);
     ApplicationContext.getInstance(requireContext())
                       .getJobManager()
-                      .add(new MultiDeviceConfigurationUpdateJob(getContext(),
-                                                                 TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
+                      .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
                                                                  typingEnabled,
                                                                  TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
                                                                  TextSecurePreferences.isLinkPreviewsEnabled(getContext())));

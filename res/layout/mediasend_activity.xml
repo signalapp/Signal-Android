@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/mediasend_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/mediasend_count_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_gravity="bottom|end"
+        android:padding="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/media_count_button_background"
+        android:elevation="4dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/mediasend_count_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="28dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            android:background="@drawable/media_count_number_background"
+            android:textColor="@color/signal_primary"
+            android:textSize="18sp"
+            tools:text="3" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:src="@drawable/ic_arrow_right"
+            android:tint="@color/core_white"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/mediasend_camera_button"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_gravity="bottom|start"
+        android:padding="12dp"
+        android:src="@drawable/ic_camera_filled_24"
+        android:tint="@color/core_grey_60"
+        android:background="@drawable/media_camera_button_background"
+        android:elevation="4dp"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</FrameLayout>

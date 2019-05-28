@@ -177,7 +177,7 @@ public class DeviceListFragment extends ListFragment
 
           ApplicationContext.getInstance(getContext())
                             .getJobManager()
-                            .add(new RefreshUnidentifiedDeliveryAbilityJob(getContext()));
+                            .add(new RefreshUnidentifiedDeliveryAbilityJob());
         } catch (IOException e) {
           Log.w(TAG, e);
           Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();

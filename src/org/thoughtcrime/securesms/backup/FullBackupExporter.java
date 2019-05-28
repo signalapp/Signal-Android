@@ -84,7 +84,8 @@ public class FullBackupExporter extends FullBackupBase {
                  !table.equals(OneTimePreKeyDatabase.TABLE_NAME)      &&
                  !table.equals(SessionDatabase.TABLE_NAME)            &&
                  !table.startsWith(SearchDatabase.SMS_FTS_TABLE_NAME) &&
-                 !table.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME))
+                 !table.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME) &&
+                 !table.startsWith("sqlite_"))
       {
         count = exportTable(table, input, outputStream, null, null, count);
       }

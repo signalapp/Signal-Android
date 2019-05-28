@@ -1,14 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -19,15 +19,13 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
 
-public class SendDeliveryReceiptJob extends ContextJob implements InjectableType {
-
-  private static final long serialVersionUID = 1L;
+  public static final String KEY = "SendDeliveryReceiptJob";
 
   private static final String KEY_ADDRESS    = "address";
   private static final String KEY_MESSAGE_ID = "message_id";
@@ -42,37 +40,40 @@ public class SendDeliveryReceiptJob extends ContextJob implements InjectableType
   private long   messageId;
   private long   timestamp;
 
-  public SendDeliveryReceiptJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public SendDeliveryReceiptJob(@NonNull Address address, long messageId) {
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .build(),
+         address,
+         messageId,
+         System.currentTimeMillis());
   }
 
-  public SendDeliveryReceiptJob(Context context, Address address, long messageId) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .create());
+  private SendDeliveryReceiptJob(@NonNull Job.Parameters parameters,
+                                 @NonNull Address address,
+                                 long messageId,
+                                 long timestamp)
+  {
+    super(parameters);
 
     this.address   = address.serialize();
     this.messageId = messageId;
-    this.timestamp = System.currentTimeMillis();
+    this.timestamp = timestamp;
   }
 
   @Override
-  public void onAdded() {}
-
-  @NonNull
-  @Override
-  protected Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putString(KEY_ADDRESS, address)
-                      .putLong(KEY_MESSAGE_ID, messageId)
-                      .putLong(KEY_TIMESTAMP, timestamp)
-                      .build();
+  public @NonNull Data serialize() {
+    return new Data.Builder().putString(KEY_ADDRESS, address)
+                             .putLong(KEY_MESSAGE_ID, messageId)
+                             .putLong(KEY_TIMESTAMP, timestamp)
+                             .build();
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    this.address   = data.getString(KEY_ADDRESS);
-    this.messageId = data.getLong(KEY_MESSAGE_ID);
-    this.timestamp = data.getLong(KEY_TIMESTAMP);
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -98,4 +99,13 @@ public class SendDeliveryReceiptJob extends ContextJob implements InjectableType
     Log.w(TAG, "Failed to send delivery receipt to: " + address);
   }
 
+  public static final class Factory implements Job.Factory<SendDeliveryReceiptJob> {
+    @Override
+    public @NonNull SendDeliveryReceiptJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new SendDeliveryReceiptJob(parameters,
+                                        Address.fromSerialized(data.getString(KEY_ADDRESS)),
+                                        data.getLong(KEY_MESSAGE_ID),
+                                        data.getLong(KEY_TIMESTAMP));
+    }
+  }
 }

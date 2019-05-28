@@ -95,6 +95,7 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable String         profileAvatar;
   private           boolean        profileSharing;
   private           String         notificationChannel;
+  private           boolean        forceSmsSelection;
 
   private @NonNull  UnidentifiedAccessMode unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
 
@@ -148,6 +149,7 @@ public class Recipient implements RecipientModifiedListener {
       this.profileAvatar          = stale.profileAvatar;
       this.profileSharing         = stale.profileSharing;
       this.unidentifiedAccessMode = stale.unidentifiedAccessMode;
+      this.forceSmsSelection      = stale.forceSmsSelection;
 
       this.participants.clear();
       this.participants.addAll(stale.participants);
@@ -175,6 +177,7 @@ public class Recipient implements RecipientModifiedListener {
       this.profileAvatar          = details.get().profileAvatar;
       this.profileSharing         = details.get().profileSharing;
       this.unidentifiedAccessMode = details.get().unidentifiedAccessMode;
+      this.forceSmsSelection      = details.get().forceSmsSelection;
 
       this.participants.clear();
       this.participants.addAll(details.get().participants);
@@ -207,8 +210,8 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.profileName            = result.profileName;
             Recipient.this.profileAvatar          = result.profileAvatar;
             Recipient.this.profileSharing         = result.profileSharing;
-            Recipient.this.profileName            = result.profileName;
             Recipient.this.unidentifiedAccessMode = result.unidentifiedAccessMode;
+            Recipient.this.forceSmsSelection      = result.forceSmsSelection;
 
             Recipient.this.participants.clear();
             Recipient.this.participants.addAll(result.participants);
@@ -257,6 +260,7 @@ public class Recipient implements RecipientModifiedListener {
     this.profileAvatar          = details.profileAvatar;
     this.profileSharing         = details.profileSharing;
     this.unidentifiedAccessMode = details.unidentifiedAccessMode;
+    this.forceSmsSelection      = details.forceSmsSelection;
 
     this.participants.addAll(details.participants);
     this.resolving    = false;
@@ -623,6 +627,18 @@ public class Recipient implements RecipientModifiedListener {
     }
 
     if (notify) notifyListeners();
+  }
+
+  public boolean isForceSmsSelection() {
+    return forceSmsSelection;
+  }
+
+  public void setForceSmsSelection(boolean value) {
+    synchronized (this) {
+      this.forceSmsSelection = value;
+    }
+
+    notifyListeners();
   }
 
   public synchronized @Nullable byte[] getProfileKey() {

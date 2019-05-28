@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -21,12 +21,9 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class MultiDeviceConfigurationUpdateJob extends BaseJob implements InjectableType {
 
-public class MultiDeviceConfigurationUpdateJob extends ContextJob implements InjectableType {
-
-  private static final long serialVersionUID = 1L;
+  public static final String KEY = "MultiDeviceConfigurationUpdateJob";
 
   private static final String TAG = MultiDeviceConfigurationUpdateJob.class.getSimpleName();
 
@@ -35,27 +32,37 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
   private static final String KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED = "unidentified_delivery_indicators_enabled";
   private static final String KEY_LINK_PREVIEWS_ENABLED                    = "link_previews_enabled";
 
-  @Inject transient SignalServiceMessageSender messageSender;
+  @Inject SignalServiceMessageSender messageSender;
 
   private boolean readReceiptsEnabled;
   private boolean typingIndicatorsEnabled;
   private boolean unidentifiedDeliveryIndicatorsEnabled;
   private boolean linkPreviewsEnabled;
 
-  public MultiDeviceConfigurationUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
-  }
-
-  public MultiDeviceConfigurationUpdateJob(Context context,
-                                           boolean readReceiptsEnabled,
+  public MultiDeviceConfigurationUpdateJob(boolean readReceiptsEnabled,
                                            boolean typingIndicatorsEnabled,
                                            boolean unidentifiedDeliveryIndicatorsEnabled,
                                            boolean linkPreviewsEnabled)
   {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId("__MULTI_DEVICE_CONFIGURATION_UPDATE_JOB__")
-                                .withNetworkRequirement()
-                                .create());
+    this(new Job.Parameters.Builder()
+                           .setQueue("__MULTI_DEVICE_CONFIGURATION_UPDATE_JOB__")
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(10)
+                           .build(),
+         readReceiptsEnabled,
+         typingIndicatorsEnabled,
+         unidentifiedDeliveryIndicatorsEnabled,
+         linkPreviewsEnabled);
+
+  }
+
+  private MultiDeviceConfigurationUpdateJob(@NonNull Job.Parameters parameters,
+                                            boolean readReceiptsEnabled,
+                                            boolean typingIndicatorsEnabled,
+                                            boolean unidentifiedDeliveryIndicatorsEnabled,
+                                            boolean linkPreviewsEnabled)
+  {
+    super(parameters);
 
     this.readReceiptsEnabled                   = readReceiptsEnabled;
     this.typingIndicatorsEnabled               = typingIndicatorsEnabled;
@@ -64,20 +71,17 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    readReceiptsEnabled                   = data.getBoolean(KEY_READ_RECEIPTS_ENABLED);
-    typingIndicatorsEnabled               = data.getBoolean(KEY_TYPING_INDICATORS_ENABLED);
-    unidentifiedDeliveryIndicatorsEnabled = data.getBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED);
-    linkPreviewsEnabled                   = data.getBoolean(KEY_LINK_PREVIEWS_ENABLED);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putBoolean(KEY_READ_RECEIPTS_ENABLED, readReceiptsEnabled)
+                             .putBoolean(KEY_TYPING_INDICATORS_ENABLED, typingIndicatorsEnabled)
+                             .putBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED, unidentifiedDeliveryIndicatorsEnabled)
+                             .putBoolean(KEY_LINK_PREVIEWS_ENABLED, linkPreviewsEnabled)
+                             .build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putBoolean(KEY_READ_RECEIPTS_ENABLED, readReceiptsEnabled)
-                      .putBoolean(KEY_TYPING_INDICATORS_ENABLED, typingIndicatorsEnabled)
-                      .putBoolean(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED, unidentifiedDeliveryIndicatorsEnabled)
-                      .putBoolean(KEY_LINK_PREVIEWS_ENABLED, linkPreviewsEnabled)
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -102,5 +106,16 @@ public class MultiDeviceConfigurationUpdateJob extends ContextJob implements Inj
   @Override
   public void onCanceled() {
     Log.w(TAG, "**** Failed to synchronize read receipts state!");
+  }
+
+  public static final class Factory implements Job.Factory<MultiDeviceConfigurationUpdateJob> {
+    @Override
+    public @NonNull MultiDeviceConfigurationUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new MultiDeviceConfigurationUpdateJob(parameters,
+                                                   data.getBooleanOrDefault(KEY_READ_RECEIPTS_ENABLED, false),
+                                                   data.getBooleanOrDefault(KEY_TYPING_INDICATORS_ENABLED, false),
+                                                   data.getBooleanOrDefault(KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED, false),
+                                                   data.getBooleanOrDefault(KEY_LINK_PREVIEWS_ENABLED, false));
+    }
   }
 }

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
@@ -12,8 +11,9 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
@@ -35,10 +35,9 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.net.ssl.SSLException;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class AttachmentUploadJob extends BaseJob implements InjectableType {
 
-public class AttachmentUploadJob extends ContextJob implements InjectableType {
+  public static final String KEY = "AttachmentUploadJob";
 
   private static final String TAG = AttachmentUploadJob.class.getSimpleName();
 
@@ -48,29 +47,30 @@ public class AttachmentUploadJob extends ContextJob implements InjectableType {
   private AttachmentId               attachmentId;
   @Inject SignalServiceMessageSender messageSender;
 
-  public AttachmentUploadJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public AttachmentUploadJob(AttachmentId attachmentId) {
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .build(),
+         attachmentId);
   }
 
-  protected AttachmentUploadJob(@NonNull Context context, AttachmentId attachmentId) {
-    super(context, new JobParameters.Builder()
-                                    .withNetworkRequirement()
-                                    .withRetryDuration(TimeUnit.DAYS.toMillis(1))
-                                    .create());
-
+  private AttachmentUploadJob(@NonNull Job.Parameters parameters, @NonNull AttachmentId attachmentId) {
+    super(parameters);
     this.attachmentId = attachmentId;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    this.attachmentId = new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID));
+  public @NonNull Data serialize() {
+    return new Data.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
+                             .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
+                             .build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_ROW_ID, attachmentId.getRowId())
-                      .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -92,7 +92,7 @@ public class AttachmentUploadJob extends ContextJob implements InjectableType {
   }
 
   @Override
-  protected void onCanceled() { }
+  public void onCanceled() { }
 
   @Override
   protected boolean onShouldRetry(Exception exception) {
@@ -143,6 +143,13 @@ public class AttachmentUploadJob extends ContextJob implements InjectableType {
       }
     } catch (IOException | MmsException e) {
       throw new UndeliverableMessageException(e);
+    }
+  }
+
+  public static final class Factory implements Job.Factory<AttachmentUploadJob> {
+    @Override
+    public @NonNull AttachmentUploadJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
+      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)));
     }
   }
 }

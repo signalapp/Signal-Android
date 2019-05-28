@@ -253,7 +253,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     if (requestCode == CODE_ADD_EDIT_CONTACT && contact != null) {
       ApplicationContext.getInstance(getApplicationContext())
                         .getJobManager()
-                        .add(new DirectoryRefreshJob(getApplicationContext(), false));
+                        .add(new DirectoryRefreshJob(false));
     }
   }
 }

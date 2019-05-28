@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="57dp"
+    android:layout_height="57dp"
+    android:layout_margin="2dp"
+    android:animateLayoutChanges="true">
+
+    <org.thoughtcrime.securesms.components.ThumbnailView
+        android:id="@+id/rail_item_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:background="@drawable/mediarail_media_outline"
+        app:thumbnail_radius="5dp"/>
+
+    <ImageView
+        android:id="@+id/rail_item_outline"
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:src="@drawable/mediarail_media_outline"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:src="@drawable/mediapicker_item_border_dark"/>
+
+    <ImageView
+        android:id="@+id/rail_item_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="2dp"
+        android:src="@drawable/ic_caption_28"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/rail_item_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_margin="1dp"
+        android:src="@drawable/ic_x_28"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</FrameLayout>

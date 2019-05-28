@@ -57,6 +57,7 @@ public class DatabaseFactory {
   private final SignedPreKeyDatabase  signedPreKeyDatabase;
   private final SessionDatabase       sessionDatabase;
   private final SearchDatabase        searchDatabase;
+  private final JobDatabase           jobDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -135,6 +136,10 @@ public class DatabaseFactory {
     return getInstance(context).searchDatabase;
   }
 
+  public static JobDatabase getJobDatabase(Context context) {
+    return getInstance(context).jobDatabase;
+  }
+
   public static SQLiteDatabase getBackupDatabase(Context context) {
     return getInstance(context).databaseHelper.getReadableDatabase();
   }
@@ -142,10 +147,6 @@ public class DatabaseFactory {
   public static void upgradeRestored(Context context, SQLiteDatabase database){
     getInstance(context).databaseHelper.onUpgrade(database, database.getVersion(), -1);
     getInstance(context).databaseHelper.markCurrent(database);
-  }
-
-  public void doThing(Context context) {
-    getInstance(context).databaseHelper.getReadableDatabase().execSQL("ALTER TABLE mms ADD COLUMN previews TEXT");
   }
 
   private DatabaseFactory(@NonNull Context context) {
@@ -172,6 +173,7 @@ public class DatabaseFactory {
     this.signedPreKeyDatabase = new SignedPreKeyDatabase(context, databaseHelper);
     this.sessionDatabase      = new SessionDatabase(context, databaseHelper);
     this.searchDatabase       = new SearchDatabase(context, databaseHelper);
+    this.jobDatabase          = new JobDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,

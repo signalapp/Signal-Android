@@ -687,7 +687,7 @@ public class ThreadDatabase extends Database {
         readReceiptCount = 0;
       }
 
-      return new ThreadRecord(context, body, snippetUri, recipient, date, count,
+      return new ThreadRecord(body, snippetUri, recipient, date, count,
                               unreadCount, threadId, deliveryReceiptCount, status, type,
                               distributionType, archived, expiresIn, lastSeen, readReceiptCount);
     }

@@ -135,8 +135,7 @@ public class ContactSelectionListFragment extends    Fragment
     showContactsProgress    = view.findViewById(R.id.progress);
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-    swipeRefresh.setEnabled(getActivity().getIntent().getBooleanExtra(REFRESHABLE, true) &&
-                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
+    swipeRefresh.setEnabled(getActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
 
     return view;
   }

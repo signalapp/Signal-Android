@@ -303,6 +303,8 @@
   <string name="GroupShareProfileView_make_visible">Rikuchiyachik</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ñuka</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Tantanakuypa shuyuta ruray</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Shuk uyaychaskita rurankapakka llapishpa charipay, kachankapakka llapishkata kacharipay.</string>
   <!--InviteActivity-->
@@ -421,7 +423,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Pakalla killkayka mana chay kanchu!</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kunan Google Play Services tiyakuka mana alli katikunchu. Google Play Servicesta kutinlla churamupay.</string>
-  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Kay aplicacionka imashinatak kan</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kay aplicacionta allikachishpaka, kay pachapi imashina kakta willachishpa yanapapay.</string>
@@ -487,7 +488,6 @@ riksichinami kanki
   <string name="SearchFragment_header_conversations">Rimarikuna</string>
   <string name="SearchFragment_header_contacts">Yupay mashi</string>
   <string name="SearchFragment_header_messages">Chaskikuna</string>
-  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Yupaymashiman churay</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal ukuman kayachiy</string>
@@ -593,6 +593,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="MessageNotifier_mark_read">Killkakatishkami nishpa unanchay</string>
   <string name="MessageNotifier_media_message">Multimedia chaski</string>
   <string name="MessageNotifier_reply">Kutichina</string>
+  <string name="MessageNotifier_signal_message">Signal chaski</string>
+  <string name="MessageNotifier_unsecured_sms">Kay killkaska SMS mana pakallachu</string>
   <string name="MessageNotifier_pending_signal_messages">Signal chaskikuna shuyanakun</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signal chaskikuna shuyanakukta charinki, paskankapak uryakuchinkapakpash llapipay</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
@@ -685,7 +687,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Uyay kimichishkata rurashpa kachapay</string>
   <string name="conversation_activity__enable_signal_for_sms">SMS killkashkapak Signalta rikuchipay</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SHAYACHINKAPAKKA LLUCHACHIPAY</string>
+  <string name="conversation_input_panel__cancel">Shayachina</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimedia chaski</string>
   <string name="conversation_item__secure_message_description">Chaskita wakaychina</string>

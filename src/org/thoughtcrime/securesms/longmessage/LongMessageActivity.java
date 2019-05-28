@@ -8,21 +8,30 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
+import android.text.util.Linkify;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -32,6 +41,8 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
   private static final String KEY_ADDRESS    = "address";
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_IS_MMS     = "is_mms";
+
+  private static final int MAX_DISPLAY_LENGTH = 64 * 1024;
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -141,9 +152,31 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
       TextView               text   = bubble.findViewById(R.id.longmessage_text);
       ConversationItemFooter footer = bubble.findViewById(R.id.longmessage_footer);
 
+      String          trimmedBody = getTrimmedBody(message.get().getFullBody());
+      SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
+
       bubble.setVisibility(View.VISIBLE);
-      text.setText(message.get().getFullBody());
+      text.setText(styledBody);
+      text.setMovementMethod(LinkMovementMethod.getInstance());
+      text.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(this));
       footer.setMessageRecord(message.get().getMessageRecord(), dynamicLanguage.getCurrentLocale());
     });
+  }
+
+  private String getTrimmedBody(@NonNull String text) {
+    return text.length() <= MAX_DISPLAY_LENGTH ? text
+                                               : text.substring(0, MAX_DISPLAY_LENGTH);
+  }
+
+  private SpannableString linkifyMessageBody(SpannableString messageBody) {
+    int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
+    boolean hasLinks    = Linkify.addLinks(messageBody, linkPattern);
+
+    if (hasLinks) {
+      Stream.of(messageBody.getSpans(0, messageBody.length(), URLSpan.class))
+            .filterNot(url -> LinkPreviewUtil.isLegalUrl(url.getURL()))
+            .forEach(messageBody::removeSpan);
+    }
+    return messageBody;
   }
 }

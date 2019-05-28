@@ -415,72 +415,68 @@ public class WebRtcCallService extends Service implements InjectableType,
 
     if (callState != CallState.STATE_IDLE) throw new IllegalStateException("Dialing from non-idle?");
 
-    try {
-      this.callState                 = CallState.STATE_DIALING;
-      this.recipient                 = getRemoteRecipient(intent);
-      this.callId                    = SecureRandom.getInstance("SHA1PRNG").nextLong();
-      this.pendingOutgoingIceUpdates = new LinkedList<>();
+    this.callState                 = CallState.STATE_DIALING;
+    this.recipient                 = getRemoteRecipient(intent);
+    this.callId                    = new SecureRandom().nextLong();
+    this.pendingOutgoingIceUpdates = new LinkedList<>();
 
-      initializeVideo();
+    initializeVideo();
 
-      sendMessage(WebRtcViewModel.State.CALL_OUTGOING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-      lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
-      audioManager.initializeAudioForCall();
-      audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
-      bluetoothStateManager.setWantsConnection(true);
+    sendMessage(WebRtcViewModel.State.CALL_OUTGOING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+    audioManager.initializeAudioForCall();
+    audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
+    bluetoothStateManager.setWantsConnection(true);
 
-      setCallInProgressNotification(TYPE_OUTGOING_RINGING, recipient);
-      DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(recipient.getAddress());
+    setCallInProgressNotification(TYPE_OUTGOING_RINGING, recipient);
+    DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(recipient.getAddress());
 
-      timeoutExecutor.schedule(new TimeoutRunnable(this.callId), 2, TimeUnit.MINUTES);
+    timeoutExecutor.schedule(new TimeoutRunnable(this.callId), 2, TimeUnit.MINUTES);
 
-      retrieveTurnServers().addListener(new SuccessOnlyListener<List<PeerConnection.IceServer>>(this.callState, this.callId) {
-        @Override
-        public void onSuccessContinue(List<PeerConnection.IceServer> result) {
-          try {
-            boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
+    retrieveTurnServers().addListener(new SuccessOnlyListener<List<PeerConnection.IceServer>>(this.callState, this.callId) {
+      @Override
+      public void onSuccessContinue(List<PeerConnection.IceServer> result) {
+        try {
+          boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
 
-            WebRtcCallService.this.peerConnection = new PeerConnectionWrapper(WebRtcCallService.this, peerConnectionFactory, WebRtcCallService.this, localRenderer, result, WebRtcCallService.this, eglBase, isAlwaysTurn);
-            WebRtcCallService.this.localCameraState = WebRtcCallService.this.peerConnection.getCameraState();
-            WebRtcCallService.this.dataChannel    = WebRtcCallService.this.peerConnection.createDataChannel(DATA_CHANNEL_NAME);
-            WebRtcCallService.this.dataChannel.registerObserver(WebRtcCallService.this);
+          WebRtcCallService.this.peerConnection = new PeerConnectionWrapper(WebRtcCallService.this, peerConnectionFactory, WebRtcCallService.this, localRenderer, result, WebRtcCallService.this, eglBase, isAlwaysTurn);
+          WebRtcCallService.this.localCameraState = WebRtcCallService.this.peerConnection.getCameraState();
+          WebRtcCallService.this.dataChannel    = WebRtcCallService.this.peerConnection.createDataChannel(DATA_CHANNEL_NAME);
+          WebRtcCallService.this.dataChannel.registerObserver(WebRtcCallService.this);
 
-            SessionDescription sdp = WebRtcCallService.this.peerConnection.createOffer(new MediaConstraints());
-            WebRtcCallService.this.peerConnection.setLocalDescription(sdp);
+          SessionDescription sdp = WebRtcCallService.this.peerConnection.createOffer(new MediaConstraints());
+          WebRtcCallService.this.peerConnection.setLocalDescription(sdp);
 
-            Log.i(TAG, "Sending offer: " + sdp.description);
+          Log.i(TAG, "Sending offer: " + sdp.description);
 
-            ListenableFutureTask<Boolean> listenableFutureTask = sendMessage(recipient, SignalServiceCallMessage.forOffer(new OfferMessage(WebRtcCallService.this.callId, sdp.description)));
+          ListenableFutureTask<Boolean> listenableFutureTask = sendMessage(recipient, SignalServiceCallMessage.forOffer(new OfferMessage(WebRtcCallService.this.callId, sdp.description)));
 
-            listenableFutureTask.addListener(new FailureListener<Boolean>(callState, callId) {
-              @Override
-              public void onFailureContinue(Throwable error) {
-                Log.w(TAG, error);
+          listenableFutureTask.addListener(new FailureListener<Boolean>(callState, callId) {
+            @Override
+            public void onFailureContinue(Throwable error) {
+              Log.w(TAG, error);
 
-                if (error instanceof UntrustedIdentityException) {
-                  sendMessage(WebRtcViewModel.State.UNTRUSTED_IDENTITY, recipient, ((UntrustedIdentityException)error).getIdentityKey(), localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-                } else if (error instanceof UnregisteredUserException) {
-                  sendMessage(WebRtcViewModel.State.NO_SUCH_USER, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-                } else if (error instanceof IOException) {
-                  sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-                }
-
-                terminate();
+              if (error instanceof UntrustedIdentityException) {
+                sendMessage(WebRtcViewModel.State.UNTRUSTED_IDENTITY, recipient, ((UntrustedIdentityException)error).getIdentityKey(), localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+              } else if (error instanceof UnregisteredUserException) {
+                sendMessage(WebRtcViewModel.State.NO_SUCH_USER, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+              } else if (error instanceof IOException) {
+                sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
               }
-            });
 
-            if (recipient != null) {
-              sendMessage(viewModelStateFor(callState), recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+              terminate();
             }
-          } catch (PeerConnectionException e) {
-            Log.w(TAG, e);
-            terminate();
+          });
+
+          if (recipient != null) {
+            sendMessage(viewModelStateFor(callState), recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
           }
+        } catch (PeerConnectionException e) {
+          Log.w(TAG, e);
+          terminate();
         }
-      });
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+      }
+    });
   }
 
   private void handleResponseMessage(Intent intent) {
@@ -797,6 +793,10 @@ public class WebRtcCallService extends Service implements InjectableType,
 
     if (this.peerConnection != null) {
       this.peerConnection.setAudioEnabled(this.microphoneEnabled);
+    }
+
+    if (recipient != null) {
+      sendMessage(viewModelStateFor(callState), recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
     }
   }
 

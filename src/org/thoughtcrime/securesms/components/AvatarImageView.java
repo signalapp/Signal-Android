@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,16 +10,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.view.View;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public class AvatarImageView extends AppCompatImageView {
@@ -110,14 +108,7 @@ public class AvatarImageView extends AppCompatImageView {
         if (recipient.getContactUri() != null) {
           ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
         } else {
-          final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-          if (recipient.getAddress().isEmail()) {
-            intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
-          } else {
-            intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
-          }
-          intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-          getContext().startActivity(intent);
+          getContext().startActivity(RecipientExporter.export(recipient).asAddContactIntent());
         }
       });
     } else {

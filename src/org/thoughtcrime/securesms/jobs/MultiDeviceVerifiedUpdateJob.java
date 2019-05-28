@@ -1,19 +1,18 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
@@ -25,15 +24,13 @@ import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class MultiDeviceVerifiedUpdateJob extends BaseJob implements InjectableType {
 
-public class MultiDeviceVerifiedUpdateJob extends ContextJob implements InjectableType {
-
-  private static final long serialVersionUID = 1L;
+  public static final String KEY = "MultiDeviceVerifiedUpdateJob";
 
   private static final String TAG = MultiDeviceVerifiedUpdateJob.class.getSimpleName();
 
@@ -42,50 +39,52 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
   private static final String KEY_VERIFIED_STATUS = "verified_status";
   private static final String KEY_TIMESTAMP       = "timestamp";
 
-  @Inject
-  transient SignalServiceMessageSender messageSender;
+  @Inject SignalServiceMessageSender messageSender;
 
   private String         destination;
   private byte[]         identityKey;
   private VerifiedStatus verifiedStatus;
   private long           timestamp;
 
-  public MultiDeviceVerifiedUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public MultiDeviceVerifiedUpdateJob(Address destination, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setQueue("__MULTI_DEVICE_VERIFIED_UPDATE__")
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .build(),
+         destination,
+         identityKey.serialize(),
+         verifiedStatus,
+         System.currentTimeMillis());
   }
 
-  public MultiDeviceVerifiedUpdateJob(Context context, Address destination, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .withGroupId("__MULTI_DEVICE_VERIFIED_UPDATE__")
-                                .create());
+  private MultiDeviceVerifiedUpdateJob(@NonNull Job.Parameters parameters,
+                                       @NonNull Address destination,
+                                       @NonNull byte[] identityKey,
+                                       @NonNull VerifiedStatus verifiedStatus,
+                                       long timestamp)
+  {
+    super(parameters);
 
     this.destination    = destination.serialize();
-    this.identityKey    = identityKey.serialize();
+    this.identityKey    = identityKey;
     this.verifiedStatus = verifiedStatus;
-    this.timestamp      = System.currentTimeMillis();
+    this.timestamp      = timestamp;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    destination    = data.getString(KEY_DESTINATION);
-    verifiedStatus = VerifiedStatus.forState(data.getInt(KEY_VERIFIED_STATUS));
-    timestamp      = data.getLong(KEY_TIMESTAMP);
-
-    try {
-      identityKey = Base64.decode(data.getString(KEY_IDENTITY_KEY));
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
+  public @NonNull Data serialize() {
+    return new Data.Builder().putString(KEY_DESTINATION, destination)
+                             .putString(KEY_IDENTITY_KEY, Base64.encodeBytes(identityKey))
+                             .putInt(KEY_VERIFIED_STATUS, verifiedStatus.toInt())
+                             .putLong(KEY_TIMESTAMP, timestamp)
+                             .build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putString(KEY_DESTINATION, destination)
-                      .putString(KEY_IDENTITY_KEY, Base64.encodeBytes(identityKey))
-                      .putInt(KEY_VERIFIED_STATUS, verifiedStatus.toInt())
-                      .putLong(KEY_TIMESTAMP, timestamp)
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -133,5 +132,21 @@ public class MultiDeviceVerifiedUpdateJob extends ContextJob implements Injectab
   @Override
   public void onCanceled() {
 
+  }
+
+  public static final class Factory implements Job.Factory<MultiDeviceVerifiedUpdateJob> {
+    @Override
+    public @NonNull MultiDeviceVerifiedUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      try {
+        Address        destination    = Address.fromSerialized(data.getString(KEY_DESTINATION));
+        VerifiedStatus verifiedStatus = VerifiedStatus.forState(data.getInt(KEY_VERIFIED_STATUS));
+        long           timestamp      = data.getLong(KEY_TIMESTAMP);
+        byte[]         identityKey    = Base64.decode(data.getString(KEY_IDENTITY_KEY));
+
+        return new MultiDeviceVerifiedUpdateJob(parameters, destination, identityKey, verifiedStatus, timestamp);
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+    }
   }
 }

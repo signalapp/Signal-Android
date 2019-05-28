@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.annimon.stream.Stream;
@@ -8,8 +7,8 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -23,13 +22,13 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class TypingSendJob extends BaseJob implements InjectableType {
 
-public class TypingSendJob extends ContextJob implements InjectableType {
+  public static final String KEY = "TypingSendJob";
 
   private static final String TAG = TypingSendJob.class.getSimpleName();
 
@@ -41,32 +40,34 @@ public class TypingSendJob extends ContextJob implements InjectableType {
 
   @Inject SignalServiceMessageSender messageSender;
 
-  public TypingSendJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public TypingSendJob(long threadId, boolean typing) {
+    this(new Job.Parameters.Builder()
+                           .setQueue("TYPING_" + threadId)
+                           .setMaxAttempts(1)
+                           .setLifespan(TimeUnit.SECONDS.toMillis(5))
+                           .build(),
+         threadId,
+         typing);
   }
 
-  public TypingSendJob(Context context, long threadId, boolean typing) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId("TYPING_" + threadId)
-                                .withRetryCount(1)
-                                .create());
+  private TypingSendJob(@NonNull Job.Parameters parameters, long threadId, boolean typing) {
+    super(parameters);
 
     this.threadId = threadId;
     this.typing   = typing;
   }
 
+
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    this.threadId = data.getLong(KEY_THREAD_ID);
-    this.typing   = data.getBoolean(KEY_TYPING);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putLong(KEY_THREAD_ID, threadId)
+                             .putBoolean(KEY_TYPING, typing)
+                             .build();
   }
 
-  @NonNull
   @Override
-  protected Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_THREAD_ID, threadId)
-                      .putBoolean(KEY_TYPING, typing)
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -99,11 +100,18 @@ public class TypingSendJob extends ContextJob implements InjectableType {
   }
 
   @Override
-  protected void onCanceled() {
+  public void onCanceled() {
   }
 
   @Override
   protected boolean onShouldRetry(Exception exception) {
     return false;
+  }
+
+  public static final class Factory implements Job.Factory<TypingSendJob> {
+    @Override
+    public @NonNull TypingSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new TypingSendJob(parameters, data.getLong(KEY_THREAD_ID), data.getBoolean(KEY_TYPING));
+    }
   }
 }

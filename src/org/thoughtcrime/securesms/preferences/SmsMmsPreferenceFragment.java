@@ -112,14 +112,8 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
     boolean postKitkatSMS = Util.isDefaultSmsProvider(context);
     boolean preKitkatSMS  = TextSecurePreferences.isInterceptAllSmsEnabled(context);
     boolean preKitkatMMS  = TextSecurePreferences.isInterceptAllMmsEnabled(context);
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      if (postKitkatSMS)                      return onCaps;
-      else                                    return offCaps;
-    } else {
-      if      (preKitkatSMS && preKitkatMMS)  return onCaps;
-      else if (preKitkatSMS && !preKitkatMMS) return context.getString(smsMmsSummaryResId, on,  off);
-      else if (!preKitkatSMS && preKitkatMMS) return context.getString(smsMmsSummaryResId, off, on);
-      else                                    return offCaps;
-    }
+
+    if (postKitkatSMS) return onCaps;
+    else               return offCaps;
   }
 }

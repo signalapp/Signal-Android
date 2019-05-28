@@ -168,11 +168,9 @@ class MediaRepository {
     String[] projection;
 
     if (hasOrienation) {
-      projection = Build.VERSION.SDK_INT >= 16 ? new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE}
-                                               : new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.SIZE};
+      projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
     } else {
-      projection = Build.VERSION.SDK_INT >= 16 ? new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE}
-                                               : new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.SIZE};
+      projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
     }
 
     if (Media.ALL_MEDIA_BUCKET_ID.equals(bucketId)) {
@@ -186,14 +184,9 @@ class MediaRepository {
         String mimetype    = cursor.getString(cursor.getColumnIndexOrThrow(Images.Media.MIME_TYPE));
         long   dateTaken   = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.DATE_TAKEN));
         int    orientation = hasOrienation ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
-        int    width       = 0;
-        int    height      = 0;
+        int    width       = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
+        int    height      = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
-
-        if (Build.VERSION.SDK_INT >= 16) {
-          width  = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
-          height = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
-        }
 
         media.add(new Media(uri, mimetype, dateTaken, width, height, size, Optional.of(bucketId), Optional.absent()));
       }

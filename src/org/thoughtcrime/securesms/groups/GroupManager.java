@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
-import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -111,7 +111,7 @@ public class GroupManager {
       GroupContext groupContext = groupContextBuilder.build();
 
       if (avatar != null) {
-        Uri avatarUri = MemoryBlobProvider.getInstance().createSingleUseUri(avatar);
+        Uri avatarUri = BlobProvider.getInstance().forData(avatar).createForSingleUseInMemory();
         avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, null);
       }
 

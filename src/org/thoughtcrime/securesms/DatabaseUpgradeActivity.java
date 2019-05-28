@@ -26,10 +26,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobmanager.persistence.JavaJobSerializer;
-import org.thoughtcrime.securesms.jobmanager.persistence.PersistentStorage;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
 import org.thoughtcrime.securesms.logging.Log;
@@ -261,7 +257,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < CONTACTS_ACCOUNT_VERSION) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
+                          .add(new DirectoryRefreshJob(false));
       }
 
       if (params[0] < MEDIA_DOWNLOAD_CONTROLS_VERSION) {
@@ -271,16 +267,16 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < REDPHONE_SUPPORT_VERSION) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new RefreshAttributesJob(getApplicationContext()));
+                          .add(new RefreshAttributesJob());
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
+                          .add(new DirectoryRefreshJob(false));
       }
 
       if (params[0] < PROFILES) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
+                          .add(new DirectoryRefreshJob(false));
       }
 
       if (params[0] < SCREENSHOTS) {
@@ -335,17 +331,18 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         }
       }
 
-      if (params[0] < WORKMANAGER_MIGRATION) {
-        Log.i(TAG, "Beginning migration of existing jobs to WorkManager");
-
-        JobManager        jobManager = ApplicationContext.getInstance(getApplicationContext()).getJobManager();
-        PersistentStorage storage    = new PersistentStorage(getApplicationContext(), "TextSecureJobs", new JavaJobSerializer());
-
-        for (Job job : storage.getAllUnencrypted()) {
-          jobManager.add(job);
-          Log.i(TAG, "Migrated job with class '" + job.getClass().getSimpleName() + "' to run on new JobManager.");
-        }
-      }
+      // This migration became unnecessary after switching away from WorkManager
+//      if (params[0] < WORKMANAGER_MIGRATION) {
+//        Log.i(TAG, "Beginning migration of existing jobs to WorkManager");
+//
+//        JobManager        jobManager = ApplicationContext.getInstance(getApplicationContext()).getJobManager();
+//        PersistentStorage storage    = new PersistentStorage(getApplicationContext(), "TextSecureJobs", new JavaJobSerializer());
+//
+//        for (Job job : storage.getAllUnencrypted()) {
+//          jobManager.add(job);
+//          Log.i(TAG, "Migrated job with class '" + job.getClass().getSimpleName() + "' to run on new JobManager.");
+//        }
+//      }
 
       if (params[0] < COLOR_MIGRATION) {
         long startTime = System.currentTimeMillis();
@@ -372,14 +369,14 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         Log.i(TAG, "Scheduling UD attributes refresh.");
         ApplicationContext.getInstance(context)
                           .getJobManager()
-                          .add(new RefreshAttributesJob(context));
+                          .add(new RefreshAttributesJob());
       }
 
       if (params[0] < SIGNALING_KEY_DEPRECATION) {
         Log.i(TAG, "Scheduling a RefreshAttributesJob to remove the signaling key remotely.");
         ApplicationContext.getInstance(context)
                           .getJobManager()
-                          .add(new RefreshAttributesJob(context));
+                          .add(new RefreshAttributesJob());
       }
 
       return null;
@@ -402,7 +399,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
           Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
           ApplicationContext.getInstance(context)
                             .getJobManager()
-                            .add(new AttachmentDownloadJob(context, attachment.getMmsId(), attachment.getAttachmentId(), false));
+                            .add(new AttachmentDownloadJob(attachment.getMmsId(), attachment.getAttachmentId(), false));
         }
         reader.close();
       }

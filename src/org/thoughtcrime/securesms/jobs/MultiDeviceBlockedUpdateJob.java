@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientReader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -24,39 +23,40 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class MultiDeviceBlockedUpdateJob extends BaseJob implements InjectableType {
 
-public class MultiDeviceBlockedUpdateJob extends ContextJob implements InjectableType {
-
-  private static final long serialVersionUID = 1L;
+  public static final String KEY = "MultiDeviceBlockedUpdateJob";
 
   @SuppressWarnings("unused")
   private static final String TAG = MultiDeviceBlockedUpdateJob.class.getSimpleName();
 
-  @Inject transient SignalServiceMessageSender messageSender;
+  @Inject SignalServiceMessageSender messageSender;
 
-  public MultiDeviceBlockedUpdateJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public MultiDeviceBlockedUpdateJob() {
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setQueue("MultiDeviceBlockedUpdateJob")
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .build());
   }
 
-  public MultiDeviceBlockedUpdateJob(Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .withGroupId(MultiDeviceBlockedUpdateJob.class.getSimpleName())
-                                .create());
+  private MultiDeviceBlockedUpdateJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -97,6 +97,12 @@ public class MultiDeviceBlockedUpdateJob extends ContextJob implements Injectabl
 
   @Override
   public void onCanceled() {
+  }
 
+  public static final class Factory implements Job.Factory<MultiDeviceBlockedUpdateJob> {
+    @Override
+    public @NonNull MultiDeviceBlockedUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new MultiDeviceBlockedUpdateJob(parameters);
+    }
   }
 }

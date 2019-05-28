@@ -17,14 +17,12 @@
 
     <ImageButton
         android:id="@+id/camera_flip_button"
-        android:layout_width="48dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/camera_capture_button"
         android:layout_toStartOf="@+id/camera_capture_button"
-        android:layout_marginRight="40dp"
         android:layout_marginEnd="40dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_camera_front"
+        android:src="@drawable/ic_switch_camera_32"
         android:scaleType="fitCenter"
         android:background="?selectableItemBackgroundBorderless"
         android:visibility="gone"

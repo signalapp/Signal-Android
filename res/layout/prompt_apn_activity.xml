@@ -11,8 +11,8 @@
         android:layout_height="fill_parent"
         android:gravity="center" >
         
-        <LinearLayout android:paddingRight="16dip"
-                      android:paddingLeft="16dip"
+        <LinearLayout android:paddingEnd="16dip"
+                      android:paddingStart="16dip"
                       android:paddingTop="10dip"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="7dip"
+                        android:layout_marginEnd="7dip"
                         android:textAppearance="?android:attr/textAppearanceMedium"/>
                 
                 <Button android:id="@+id/ok_button"

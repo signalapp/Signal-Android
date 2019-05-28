@@ -6,8 +6,14 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.PowerManager;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -47,5 +53,10 @@ public class ServiceUtil {
 
   public static Vibrator getVibrator(Context context) {
     return  (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+  }
+
+  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+  public static @Nullable SubscriptionManager getSubscriptionManager(@NonNull Context context) {
+    return ContextCompat.getSystemService(context, SubscriptionManager.class);
   }
 }

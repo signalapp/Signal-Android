@@ -11,11 +11,12 @@ import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+
+import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.whispersystems.libsignal.util.Medium;
@@ -177,6 +178,8 @@ public class TextSecurePreferences {
 
   public static final String LINK_PREVIEWS = "pref_link_previews";
 
+  private static final String GIF_GRID_LAYOUT = "pref_gif_grid_layout";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -283,7 +286,7 @@ public class TextSecurePreferences {
 
   public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
     setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value);
-    EventBus.getDefault().post(new SqlCipherMigrationRequirementProvider.SqlCipherNeedsMigrationEvent());
+    EventBus.getDefault().post(new SqlCipherMigrationConstraintObserver.SqlCipherNeedsMigrationEvent());
   }
 
   public static boolean getNeedsSqlCipherMigration(@NonNull Context context) {
@@ -360,6 +363,14 @@ public class TextSecurePreferences {
 
   public static boolean isLinkPreviewsEnabled(Context context) {
     return getBooleanPreference(context, LINK_PREVIEWS, true);
+  }
+
+  public static boolean isGifSearchInGridLayout(Context context) {
+    return getBooleanPreference(context, GIF_GRID_LAYOUT, false);
+  }
+
+  public static void setIsGifSearchInGridLayout(Context context, boolean isGrid) {
+    setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
   }
 
   public static @Nullable String getProfileKey(Context context) {
@@ -520,11 +531,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isSmsEnabled(Context context) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      return Util.isDefaultSmsProvider(context);
-    } else {
-      return isInterceptAllSmsEnabled(context);
-    }
+    return Util.isDefaultSmsProvider(context);
   }
 
   public static int getLocalRegistrationId(Context context) {

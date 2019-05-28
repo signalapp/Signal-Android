@@ -83,7 +83,6 @@
     <string name="CallScreen_Incoming_call">Incoming call</string>
 
     <!-- CameraActivity -->
-    <string name="CameraActivity_camera_unavailable">Camera unavailable.</string>
     <string name="CameraActivity_image_save_failure">Failed to save image.</string>
 
     <!-- ClearProfileActivity -->
@@ -382,6 +381,10 @@
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
 
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_group_avatar">Group avatar</string>
+    <string name="CropImageActivity_profile_avatar">Avatar</string>
+
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
 
@@ -459,14 +462,16 @@
 
     <!-- MediaPickerItemFragment -->
     <string name="MediaPickerItemFragment_tap_to_select">Tap to select</string>
-    <plurals name="MediaPickerItemFragment_cant_share_more_than_n_items">
-        <item quantity="one">You can\'t share more than %d item.</item>
-        <item quantity="other">You can\'t share more than %d items.</item>
-    </plurals>
 
     <!-- MediaSendActivity -->
     <string name="MediaSendActivity_add_a_caption">Add a caption...</string>
     <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">An item was removed because it exceeded the size limit</string>
+    <string name="MediaSendActivity_camera_unavailable">Camera unavailable.</string>
+    <string name="MediaSendActivity_message_to_s">Message to %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">You can\'t share more than %d item.</item>
+        <item quantity="other">You can\'t share more than %d items.</item>
+    </plurals>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">All media</string>
@@ -535,9 +540,6 @@
 
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">The version of Google Play Services you have installed is not functioning correctly.  Please reinstall Google Play Services and try again.</string>
-
-    <!-- PushNotificationReceiveJob -->
-    <string name="PushNotificationReceiveJob_retrieving_a_message">Retrieving a message...</string>
 
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">Rate this app</string>
@@ -626,9 +628,6 @@
     <string name="SearchFragment_header_conversations">Conversations</string>
     <string name="SearchFragment_header_contacts">Contacts</string>
     <string name="SearchFragment_header_messages">Messages</string>
-
-    <!-- SendJob -->
-    <string name="SendJob_sending_a_message">Sending a message...</string>
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Add to Contacts</string>
@@ -753,6 +752,8 @@
     <string name="MessageNotifier_mark_read">Mark read</string>
     <string name="MessageNotifier_media_message">Media message</string>
     <string name="MessageNotifier_reply">Reply</string>
+    <string name="MessageNotifier_signal_message">Signal Message</string>
+    <string name="MessageNotifier_unsecured_sms">Unsecured SMS</string>
     <string name="MessageNotifier_pending_signal_messages">Pending Signal messages</string>
     <string name="MessageNotifier_you_have_pending_signal_messages">You have pending Signal messages, tap to open and retrieve</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -864,16 +865,19 @@
     <string name="conversation_activity__type_message_sms_insecure">Unsecured SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Unsecured MMS</string>
     <string name="conversation_activity__from_sim_name">From %1$s</string>
+    <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__compose_description">Message composition</string>
     <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
     <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Toggle quick camera attachment drawer</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Record and send audio attachment</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
     <string name="conversation_activity__enable_signal_for_sms">Enable Signal for SMS</string>
 
     <!-- conversation_input_panel -->
-    <string name="conversation_input_panel__slide_to_cancel">SLIDE TO CANCEL</string>
+    <string name="conversation_input_panel__slide_to_cancel">Slide to cancel</string>
+    <string name="conversation_input_panel__cancel">Cancel</string>
 
     <!-- conversation_item -->
     <string name="conversation_item__mms_image_description">Media message</string>
@@ -1179,7 +1183,7 @@
     <string name="preferences__pref_enter_sends_title">Enter key sends</string>
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the Enter key will send text messages</string>
     <string name="preferences__send_link_previews">Send link previews</string>
-    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Reddit, and YouTube links</string>
+    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Pinterest, Reddit, and YouTube links</string>
     <string name="preferences__choose_identity">Choose identity</string>
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>
@@ -1398,6 +1402,7 @@
     <string name="reminder_header_share_title">Invite your friends!</string>
     <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
     <string name="reminder_header_service_outage_text">Signal is experiencing technical difficulties. We are working hard to restore service as quickly as possible.</string>
+    <string name="reminder_header_the_latest_signal_features_wont_work">The latest Signal features won\'t work on this version of Android. Please upgrade this device to receive future Signal updates.</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
@@ -1467,7 +1472,7 @@
     <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
     <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
     <string name="RegistrationActivity_wrong_number">Wrong number</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %02d:%02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %1$02d:%2$02d)</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
     <string name="preferences_app_protection__screen_lock">Screen lock</string>

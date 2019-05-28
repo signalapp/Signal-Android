@@ -110,8 +110,9 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
       String mimeType     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.MIME_TYPE));
       String bucketId     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_ID));
       int    orientation  = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
-      int    width        = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation))) : 0;
-      int    height       = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation))) : 0;
+      long   size         = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.SIZE));
+      int    width        = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
+      int    height       = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
 
       final Uri uri = Uri.withAppendedPath(baseUri, Long.toString(id));
 
@@ -124,7 +125,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
               .into(viewHolder.imageView);
 
       viewHolder.imageView.setOnClickListener(v -> {
-        if (clickedListener != null) clickedListener.onItemClicked(uri, mimeType, bucketId, dateTaken, width, height);
+        if (clickedListener != null) clickedListener.onItemClicked(uri, mimeType, bucketId, dateTaken, width, height, size);
       });
 
     }
@@ -160,6 +161,6 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   }
 
   public interface OnItemClickedListener {
-    void onItemClicked(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height);
+    void onItemClicked(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height, long size);
   }
 }

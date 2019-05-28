@@ -7,7 +7,7 @@
         android:title=""
         android:id="@+id/mediapicker_menu_add"
         android:visible="true"
-        android:icon="@drawable/ic_add_photo"
+        android:icon="@drawable/ic_create_album_outline_32"
         app:showAsAction="always" />
 
 </menu>

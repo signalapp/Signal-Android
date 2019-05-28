@@ -9,8 +9,8 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:clickable="true"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:clipChildren="false"
@@ -36,8 +36,8 @@
                 android:id="@+id/quote_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
                 android:layout_marginTop="6dp"
                 android:visibility="gone"
                 app:message_type="preview"
@@ -49,8 +49,8 @@
                 android:id="@+id/link_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
                 android:layout_marginTop="6dp"
                 android:visibility="gone"
                 app:linkpreview_type="compose" />
@@ -64,7 +64,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
                     android:paddingStart="10dp"
                     android:clipChildren="false"
                     android:clipToPadding="false">
@@ -74,9 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/conversation_compose_height"
                         android:layout_gravity="bottom"
-                        android:paddingLeft="4dp"
                         android:paddingStart="4dp"
-                        android:paddingRight="6dp"
                         android:paddingEnd="6dp"
                         android:background="?selectableItemBackgroundBorderless"
                         android:contentDescription="@string/conversation_activity__emoji_toggle_description" />
@@ -119,40 +116,20 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_vertical"
                                 android:src="?quick_camera_icon"
-                                android:paddingLeft="6dp"
-                                android:paddingRight="6dp"
+                                android:paddingStart="6dp"
+                                android:paddingEnd="6dp"
                                 android:background="?selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_camera_description" />
 
                             <org.thoughtcrime.securesms.components.MicrophoneRecorderView
                                 android:id="@+id/recorder_view"
                                 android:layout_height="match_parent"
-                                android:layout_width="wrap_content"
+                                android:layout_width="36dp"
                                 android:layout_gravity="center_vertical"
                                 android:clipChildren="false"
                                 android:clipToPadding="false">
 
-                                <ImageButton
-                                    android:id="@+id/quick_audio_toggle"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginRight="2dp"
-                                    android:layout_marginEnd="2dp"
-                                    android:padding="6dp"
-                                    android:src="?quick_mic_icon"
-                                    android:background="@null"
-                                    android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description" />
-
-                                <ImageView
-                                    android:id="@+id/quick_audio_fab"
-                                    android:layout_width="74dp"
-                                    android:layout_height="74dp"
-                                    android:src="@drawable/ic_mic_white_48dp"
-                                    android:background="@drawable/circle_tintable"
-                                    android:backgroundTint="@color/core_red"
-                                    android:visibility="gone"
-                                    android:scaleType="center"/>
+                                <include layout="@layout/microphone_recorder_view" />
 
                             </org.thoughtcrime.securesms.components.MicrophoneRecorderView>
 
@@ -181,54 +158,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/recording_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    tools:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/record_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="none"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        style="@style/Signal.Text.Body"
-                        android:text="00:00"
-                        android:textColor="@color/core_grey_60"
-                        android:singleLine="true"
-                        android:visibility="gone"
-                        tools:visibility="visible"/>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="true">
-
-                        <TextView
-                            android:id="@+id/slide_to_cancel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|start|center_vertical"
-                            android:drawableLeft="@drawable/ic_keyboard_arrow_left_grey600_24dp"
-                            android:drawableStart="@drawable/ic_keyboard_arrow_left_grey600_24dp"
-                            style="@style/Signal.Text.Caption"
-                            android:text="@string/conversation_input_panel__slide_to_cancel"
-                            android:textAllCaps="true"
-                            android:textColor="@color/core_grey_60"
-                            android:ellipsize="none"
-                            android:visibility="gone"
-                            android:paddingRight="50dp"
-                            android:paddingEnd="50dp"
-                            tools:visibility="visible"/>
-
-                    </FrameLayout>
-
-                </LinearLayout>
+                <include layout="@layout/recording_layout" />
 
             </FrameLayout>
 
@@ -240,7 +170,6 @@
         android:id="@+id/button_toggle"
         android:layout_width="@dimen/conversation_compose_height"
         android:layout_height="@dimen/conversation_compose_height"
-        android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:background="@drawable/circle_tintable"
         android:layout_gravity="bottom">
@@ -260,9 +189,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="6dp"
-            android:paddingRight="6dp"
+            android:paddingEnd="6dp"
             android:paddingBottom="6dp"
-            android:paddingLeft="11dp"
+            android:paddingStart="11dp"
             android:scaleType="fitCenter"
             android:contentDescription="@string/conversation_activity__send"
             android:nextFocusLeft="@+id/embedded_text_editor"

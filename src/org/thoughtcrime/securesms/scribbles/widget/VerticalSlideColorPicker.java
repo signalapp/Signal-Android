@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.R;
 
 public class VerticalSlideColorPicker extends View {
 
-  private static final float INDICATOR_TO_BAR_WIDTH_RATIO = 0.8f;
+  private static final float INDICATOR_TO_BAR_WIDTH_RATIO = 0.5f;
 
   private Paint  paint;
   private Paint  strokePaint;
@@ -131,9 +131,9 @@ public class VerticalSlideColorPicker extends View {
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
 
-    path.addCircle(centerX, borderWidth + colorPickerRadius, colorPickerRadius, Path.Direction.CW);
+    path.addCircle(centerX, borderWidth + colorPickerRadius + indicatorRadius, colorPickerRadius, Path.Direction.CW);
     path.addRect(colorPickerBody, Path.Direction.CW);
-    path.addCircle(centerX, viewHeight - (borderWidth + colorPickerRadius), colorPickerRadius, Path.Direction.CW);
+    path.addCircle(centerX, viewHeight - (borderWidth + colorPickerRadius + indicatorRadius), colorPickerRadius, Path.Direction.CW);
 
     bitmapCanvas.drawColor(Color.TRANSPARENT);
 
@@ -172,13 +172,18 @@ public class VerticalSlideColorPicker extends View {
     viewWidth  = w;
     viewHeight = h;
 
+    if (viewWidth <= 0 || viewHeight <= 0) return;
+
     int barWidth = (int) (viewWidth * INDICATOR_TO_BAR_WIDTH_RATIO);
 
     centerX           = viewWidth / 2;
     indicatorRadius   = (viewWidth / 2) - borderWidth;
     colorPickerRadius = (barWidth / 2) - borderWidth;
 
-    colorPickerBody   = new RectF(centerX - colorPickerRadius, borderWidth + colorPickerRadius, centerX + colorPickerRadius, viewHeight - (borderWidth + colorPickerRadius));
+    colorPickerBody   = new RectF(centerX - colorPickerRadius,
+                                  borderWidth + colorPickerRadius + indicatorRadius,
+                                  centerX + colorPickerRadius,
+                                  viewHeight - (borderWidth + colorPickerRadius + indicatorRadius));
 
     LinearGradient gradient = new LinearGradient(0, colorPickerBody.top, 0, colorPickerBody.bottom, colors, null, Shader.TileMode.CLAMP);
     paint.setShader(gradient);

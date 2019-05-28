@@ -308,13 +308,9 @@ public class GroupDatabase extends Database {
 
 
   public byte[] allocateGroupId() {
-    try {
-      byte[] groupId = new byte[16];
-      SecureRandom.getInstance("SHA1PRNG").nextBytes(groupId);
-      return groupId;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    byte[] groupId = new byte[16];
+    new SecureRandom().nextBytes(groupId);
+    return groupId;
   }
 
   public static class Reader implements Closeable {

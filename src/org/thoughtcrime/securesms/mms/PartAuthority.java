@@ -10,9 +10,9 @@ import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.providers.PartProvider;
-import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +27,7 @@ public class PartAuthority {
   private static final int PART_ROW       = 1;
   private static final int THUMB_ROW      = 2;
   private static final int PERSISTENT_ROW = 3;
-  private static final int SINGLE_USE_ROW = 4;
+  private static final int BLOB_ROW       = 4;
 
   private static final UriMatcher uriMatcher;
 
@@ -35,9 +35,9 @@ public class PartAuthority {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     uriMatcher.addURI("org.thoughtcrime.securesms", "part/*/#", PART_ROW);
     uriMatcher.addURI("org.thoughtcrime.securesms", "thumb/*/#", THUMB_ROW);
-    uriMatcher.addURI(PersistentBlobProvider.AUTHORITY, PersistentBlobProvider.EXPECTED_PATH_OLD, PERSISTENT_ROW);
-    uriMatcher.addURI(PersistentBlobProvider.AUTHORITY, PersistentBlobProvider.EXPECTED_PATH_NEW, PERSISTENT_ROW);
-    uriMatcher.addURI(MemoryBlobProvider.AUTHORITY, MemoryBlobProvider.PATH, SINGLE_USE_ROW);
+    uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_OLD, PERSISTENT_ROW);
+    uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_NEW, PERSISTENT_ROW);
+    uriMatcher.addURI(BlobProvider.AUTHORITY, BlobProvider.PATH, BLOB_ROW);
   }
 
   public static InputStream getAttachmentStream(@NonNull Context context, @NonNull Uri uri)
@@ -48,8 +48,8 @@ public class PartAuthority {
       switch (match) {
       case PART_ROW:       return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
       case THUMB_ROW:      return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(new PartUriParser(uri).getPartId());
-      case PERSISTENT_ROW: return PersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
-      case SINGLE_USE_ROW: return MemoryBlobProvider.getInstance().getStream(ContentUris.parseId(uri));
+      case PERSISTENT_ROW: return DeprecatedPersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
+      case BLOB_ROW:       return BlobProvider.getInstance().getStream(context, uri);
       default:             return context.getContentResolver().openInputStream(uri);
       }
     } catch (SecurityException se) {
@@ -68,8 +68,9 @@ public class PartAuthority {
       if (attachment != null) return attachment.getFileName();
       else                    return null;
     case PERSISTENT_ROW:
-      return PersistentBlobProvider.getFileName(context, uri);
-    case SINGLE_USE_ROW:
+      return DeprecatedPersistentBlobProvider.getFileName(context, uri);
+    case BLOB_ROW:
+      return BlobProvider.getFileName(uri);
     default:
       return null;
     }
@@ -86,8 +87,9 @@ public class PartAuthority {
         if (attachment != null) return attachment.getSize();
         else                    return null;
       case PERSISTENT_ROW:
-        return PersistentBlobProvider.getFileSize(context, uri);
-      case SINGLE_USE_ROW:
+        return DeprecatedPersistentBlobProvider.getFileSize(context, uri);
+      case BLOB_ROW:
+        return BlobProvider.getFileSize(uri);
       default:
         return null;
     }
@@ -104,8 +106,9 @@ public class PartAuthority {
         if (attachment != null) return attachment.getContentType();
         else                    return null;
       case PERSISTENT_ROW:
-        return PersistentBlobProvider.getMimeType(context, uri);
-      case SINGLE_USE_ROW:
+        return DeprecatedPersistentBlobProvider.getMimeType(context, uri);
+      case BLOB_ROW:
+        return BlobProvider.getMimeType(uri);
       default:
         return null;
     }
@@ -132,7 +135,7 @@ public class PartAuthority {
     case PART_ROW:
     case THUMB_ROW:
     case PERSISTENT_ROW:
-    case SINGLE_USE_ROW:
+    case BLOB_ROW:
       return true;
     }
     return false;

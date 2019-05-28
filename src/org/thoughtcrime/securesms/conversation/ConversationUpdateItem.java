@@ -123,7 +123,7 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isOutgoingCall()) icon.setImageResource(R.drawable.ic_call_made_grey600_24dp);
     else                                     icon.setImageResource(R.drawable.ic_call_missed_grey600_24dp);
 
-    body.setText(messageRecord.getDisplayBody());
+    body.setText(messageRecord.getDisplayBody(getContext()));
     date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateReceived()));
 
     title.setVisibility(GONE);
@@ -141,7 +141,7 @@ public class ConversationUpdateItem extends LinearLayout
     }
 
     title.setText(ExpirationUtil.getExpirationDisplayValue(getContext(), (int)(messageRecord.getExpiresIn() / 1000)));
-    body.setText(messageRecord.getDisplayBody());
+    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(VISIBLE);
     body.setVisibility(VISIBLE);
@@ -151,7 +151,7 @@ public class ConversationUpdateItem extends LinearLayout
   private void setIdentityRecord(final MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_security_white_24dp);
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
-    body.setText(messageRecord.getDisplayBody());
+    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
     body.setVisibility(VISIBLE);
@@ -163,7 +163,7 @@ public class ConversationUpdateItem extends LinearLayout
     else                                    icon.setImageResource(R.drawable.ic_info_outline_white_24dp);
 
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
-    body.setText(messageRecord.getDisplayBody());
+    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
     body.setVisibility(VISIBLE);
@@ -175,7 +175,7 @@ public class ConversationUpdateItem extends LinearLayout
     icon.clearColorFilter();
 
     GroupUtil.getDescription(getContext(), messageRecord.getBody()).addListener(this);
-    body.setText(messageRecord.getDisplayBody());
+    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
     body.setVisibility(VISIBLE);
@@ -185,7 +185,7 @@ public class ConversationUpdateItem extends LinearLayout
   private void setJoinedRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_favorite_grey600_24dp);
     icon.clearColorFilter();
-    body.setText(messageRecord.getDisplayBody());
+    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
     body.setVisibility(VISIBLE);
@@ -195,7 +195,7 @@ public class ConversationUpdateItem extends LinearLayout
   private void setEndSessionRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_refresh_white_24dp);
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
-    body.setText(messageRecord.getDisplayBody());
+    body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
     body.setVisibility(VISIBLE);

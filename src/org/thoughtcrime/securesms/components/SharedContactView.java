@@ -101,26 +101,12 @@ public class SharedContactView extends LinearLayout implements RecipientModified
       footer.setIconColor(iconColor);
       footer.setAlpha(footerAlpha);
     }
-
-    if (cornerMask.isLegacy()) {
-      setWillNotDraw(false);
-    }
-  }
-
-  @Override
-  protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
-    if (cornerMask.isLegacy()) {
-      cornerMask.mask(canvas);
-    }
   }
 
   @Override
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
-    if (!cornerMask.isLegacy()) {
-      cornerMask.mask(canvas);
-    }
+    cornerMask.mask(canvas);
   }
 
   public void setContact(@NonNull Contact contact, @NonNull GlideRequests glideRequests, @NonNull Locale locale) {

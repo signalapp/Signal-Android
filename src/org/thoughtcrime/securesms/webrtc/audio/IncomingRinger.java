@@ -79,11 +79,7 @@ public class IncomingRinger {
       return true;
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      return shouldVibrateNew(context, ringerMode, vibrate);
-    } else {
-      return shouldVibrateOld(context, vibrate);
-    }
+    return shouldVibrateNew(context, ringerMode, vibrate);
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)

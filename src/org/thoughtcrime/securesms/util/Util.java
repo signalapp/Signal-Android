@@ -367,8 +367,7 @@ public class Util {
 
   @SuppressLint("NewApi")
   public static boolean isDefaultSmsProvider(Context context){
-    return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) ||
-      (context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context)));
+    return context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context));
   }
 
   public static int getCurrentApkReleaseVersion(Context context) {
@@ -395,7 +394,7 @@ public class Util {
   }
 
   public static int getDaysTillBuildExpiry() {
-    int age = (int)TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP);
+    int age = (int) TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP);
     return 90 - age;
   }
 
@@ -452,11 +451,7 @@ public class Util {
   }
 
   public static <T> T getRandomElement(T[] elements) {
-    try {
-      return elements[SecureRandom.getInstance("SHA1PRNG").nextInt(elements.length)];
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    return elements[new SecureRandom().nextInt(elements.length)];
   }
 
   public static boolean equals(@Nullable Object a, @Nullable Object b) {

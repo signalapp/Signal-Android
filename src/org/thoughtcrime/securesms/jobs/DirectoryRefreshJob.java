@@ -1,68 +1,66 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
+import android.app.Application;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 
-import androidx.work.Data;
-import androidx.work.WorkerParameters;
+public class DirectoryRefreshJob extends BaseJob {
 
-public class DirectoryRefreshJob extends ContextJob {
+  public static final String KEY = "DirectoryRefreshJob";
 
   private static final String TAG = DirectoryRefreshJob.class.getSimpleName();
 
   private static final String KEY_ADDRESS             = "address";
   private static final String KEY_NOTIFY_OF_NEW_USERS = "notify_of_new_users";
 
-  @Nullable private transient Recipient    recipient;
-            private transient boolean      notifyOfNewUsers;
+  @Nullable private Recipient recipient;
+            private boolean   notifyOfNewUsers;
 
-  public DirectoryRefreshJob(@NonNull Context context, @NonNull WorkerParameters workerParameters) {
-    super(context, workerParameters);
+  public DirectoryRefreshJob(boolean notifyOfNewUsers) {
+    this(null, notifyOfNewUsers);
   }
 
-  public DirectoryRefreshJob(@NonNull Context context, boolean notifyOfNewUsers) {
-    this(context, null, notifyOfNewUsers);
-  }
-
-  public DirectoryRefreshJob(@NonNull Context context,
-                             @Nullable Recipient recipient,
-                                       boolean notifyOfNewUsers)
+  public DirectoryRefreshJob(@Nullable Recipient recipient,
+                             boolean notifyOfNewUsers)
   {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId(DirectoryRefreshJob.class.getSimpleName())
-                                .withNetworkRequirement()
-                                .create());
+    this(new Job.Parameters.Builder()
+                           .setQueue("DirectoryRefreshJob")
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(10)
+                           .build(),
+         recipient,
+         notifyOfNewUsers);
+  }
+
+  private DirectoryRefreshJob(@NonNull Job.Parameters parameters, @Nullable Recipient recipient, boolean notifyOfNewUsers) {
+    super(parameters);
 
     this.recipient        = recipient;
     this.notifyOfNewUsers = notifyOfNewUsers;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    String  serializedAddress = data.getString(KEY_ADDRESS);
-    Address address           = serializedAddress != null ? Address.fromSerialized(serializedAddress) : null;
-
-    recipient        = address != null ? Recipient.from(context, address, true) : null;
-    notifyOfNewUsers = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putString(KEY_ADDRESS, recipient != null ? recipient.getAddress().serialize() : null)
+                             .putBoolean(KEY_NOTIFY_OF_NEW_USERS, notifyOfNewUsers)
+                             .build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putString(KEY_ADDRESS, recipient != null ? recipient.getAddress().serialize() : null)
-                      .putBoolean(KEY_NOTIFY_OF_NEW_USERS, notifyOfNewUsers)
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -84,4 +82,23 @@ public class DirectoryRefreshJob extends ContextJob {
 
   @Override
   public void onCanceled() {}
+
+  public static final class Factory implements Job.Factory<DirectoryRefreshJob> {
+
+    private final Application application;
+
+    public Factory(@NonNull Application application) {
+      this.application = application;
+    }
+
+    @Override
+    public @NonNull DirectoryRefreshJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      String    serializedAddress = data.getString(KEY_ADDRESS);
+      Address   address           = serializedAddress != null ? Address.fromSerialized(serializedAddress) : null;
+      Recipient recipient         = address != null ? Recipient.from(application, address, true) : null;
+      boolean   notifyOfNewUsers  = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS);
+
+      return new DirectoryRefreshJob(parameters, recipient, notifyOfNewUsers);
+    }
+  }
 }

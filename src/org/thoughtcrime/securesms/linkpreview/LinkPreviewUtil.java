@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.linkpreview;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.URLSpan;
@@ -10,10 +11,16 @@ import com.annimon.stream.Stream;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.HttpUrl;
 
 public final class LinkPreviewUtil {
+
+  private static final Pattern DOMAIN_PATTERN        = Pattern.compile("^(https?://)?([^/]+).*$");
+  private static final Pattern ALL_ASCII_PATTERN     = Pattern.compile("^[\\x00-\\x7F]*$");
+  private static final Pattern ALL_NON_ASCII_PATTERN = Pattern.compile("^[^\\x00-\\x7F]*$");
 
   /**
    * @return All whitelisted URLs in the source text.
@@ -35,7 +42,9 @@ public final class LinkPreviewUtil {
   /**
    * @return True if the host is present in the link whitelist.
    */
-  public static boolean isWhitelistedLinkUrl(@NonNull String linkUrl) {
+  public static boolean isWhitelistedLinkUrl(@Nullable String linkUrl) {
+    if (linkUrl == null) return false;
+
     HttpUrl url = HttpUrl.parse(linkUrl);
     return url != null                                   &&
            !TextUtils.isEmpty(url.scheme())              &&
@@ -47,7 +56,9 @@ public final class LinkPreviewUtil {
   /**
    * @return True if the top-level domain is present in the media whitelist.
    */
-  public static boolean isWhitelistedMediaUrl(@NonNull String mediaUrl) {
+  public static boolean isWhitelistedMediaUrl(@Nullable String mediaUrl) {
+    if (mediaUrl == null) return false;
+
     HttpUrl url = HttpUrl.parse(mediaUrl);
     return url != null                                                &&
            !TextUtils.isEmpty(url.scheme())                           &&
@@ -57,10 +68,16 @@ public final class LinkPreviewUtil {
   }
 
   public static boolean isLegalUrl(@NonNull String url) {
-    if (LegalUrlPatterns.LATIN.matcher(url).find()) {
-      return !LegalUrlPatterns.CYRILLIC.matcher(url).find() &&
-             !LegalUrlPatterns.GREEK.matcher(url).find();
+    Matcher matcher = DOMAIN_PATTERN.matcher(url);
+
+    if (matcher.matches()) {
+      String domain        = matcher.group(2);
+      String cleanedDomain = domain.replaceAll("\\.", "");
+
+      return ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() ||
+             ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches();
+    } else {
+      return false;
     }
-    return true;
   }
 }

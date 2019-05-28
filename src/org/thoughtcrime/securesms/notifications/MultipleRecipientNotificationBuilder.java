@@ -81,7 +81,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
       NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
 
       for (CharSequence body : messageBodies) {
-        style.addLine(body);
+        style.addLine(trimToDisplayLength(body));
       }
 
       setStyle(style);

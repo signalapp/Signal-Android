@@ -61,6 +61,8 @@ public class ConversationListItem extends RelativeLayout
   private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif-medium", Typeface.NORMAL);
   private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif", Typeface.NORMAL);
 
+  private static final int MAX_SNIPPET_LENGTH = 500;
+
   private Set<Long>           selectedThreads;
   private Recipient           recipient;
   private long                threadId;
@@ -156,7 +158,7 @@ public class ConversationListItem extends RelativeLayout
       this.typingView.stopAnimation();
 
       this.subjectView.setVisibility(VISIBLE);
-      this.subjectView.setText(thread.getDisplayBody());
+      this.subjectView.setText(getTrimmedSnippet(thread.getDisplayBody(getContext())));
       this.subjectView.setTypeface(unreadCount == 0 ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
       this.subjectView.setTextColor(unreadCount == 0 ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_subject_color)
                                                      : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
@@ -263,6 +265,11 @@ public class ConversationListItem extends RelativeLayout
 
   public long getLastSeen() {
     return lastSeen;
+  }
+
+  private @NonNull CharSequence getTrimmedSnippet(@NonNull CharSequence snippet) {
+    return snippet.length() <= MAX_SNIPPET_LENGTH ? snippet
+                                                  : snippet.subSequence(0, MAX_SNIPPET_LENGTH);
   }
 
   private void setThumbnailSnippet(ThreadRecord thread) {

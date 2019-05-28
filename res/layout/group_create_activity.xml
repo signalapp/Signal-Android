@@ -15,8 +15,8 @@
         <LinearLayout android:id="@+id/group_details_layout"
             android:layout_width="fill_parent"
             android:layout_height="106dp"
-            android:paddingLeft="14dp"
-            android:paddingRight="18dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="18dp"
             android:paddingTop="14dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
@@ -25,7 +25,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 position="bottom_right"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:contentDescription="@string/GroupCreateActivity_avatar_content_description" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiEditText
@@ -43,8 +43,8 @@
         <LinearLayout android:id="@+id/creating_group_layout"
             android:layout_width="fill_parent"
             android:layout_height="106dp"
-            android:paddingLeft="18dp"
-            android:paddingRight="18dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
             android:paddingTop="18dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
@@ -53,7 +53,7 @@
             <ProgressBar android:id="@+id/creating_progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 style="@android:style/Widget.ProgressBar"
                 android:indeterminate="true" />
 
@@ -92,8 +92,8 @@
     <org.thoughtcrime.securesms.components.PushRecipientsPanel android:id="@+id/recipients"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp" />
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp" />
 
     <ListView android:id="@+id/selected_contacts_list"
         android:layout_width="match_parent"

@@ -106,7 +106,7 @@ public class ConversationItemFooter extends LinearLayout {
   private void presentSimInfo(@NonNull MessageRecord messageRecord) {
     SubscriptionManagerCompat subscriptionManager = new SubscriptionManagerCompat(getContext());
 
-    if (messageRecord.isPush() || messageRecord.getSubscriptionId() == -1 || !Permissions.hasAll(getContext(), Manifest.permission.READ_PHONE_STATE) || subscriptionManager.getActiveSubscriptionInfoList().size() < 2) {
+    if (messageRecord.isPush() || messageRecord.getSubscriptionId() == -1 || !Permissions.hasAll(getContext(), Manifest.permission.READ_PHONE_STATE) || !subscriptionManager.isMultiSim()) {
       simView.setVisibility(View.GONE);
     } else {
       Optional<SubscriptionInfoCompat> subscriptionInfo = subscriptionManager.getActiveSubscriptionInfo(messageRecord.getSubscriptionId());

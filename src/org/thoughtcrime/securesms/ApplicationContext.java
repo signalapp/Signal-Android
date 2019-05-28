@@ -28,16 +28,19 @@ import android.support.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
 
+import org.conscrypt.Conscrypt;
+import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
-import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
+import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobmanager.dependencies.DependencyInjector;
+import org.thoughtcrime.securesms.jobs.FastJobStorage;
+import org.thoughtcrime.securesms.jobs.JobManagerFactories;
+import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
@@ -49,6 +52,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -59,18 +63,18 @@ import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 
+import java.security.Security;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import androidx.work.Configuration;
-import androidx.work.WorkManager;
 import dagger.ObjectGraph;
 
 /**
@@ -88,7 +92,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private ExpiringMessageManager  expiringMessageManager;
   private TypingStatusRepository  typingStatusRepository;
   private TypingStatusSender      typingStatusSender;
-  private JobManager              jobManager;
+  private JobManager jobManager;
   private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
   private PersistentLogger        persistentLogger;
@@ -103,7 +107,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onCreate() {
     super.onCreate();
     Log.i(TAG, "onCreate()");
-    initializeRandomNumberFix();
+    initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
     initializeDependencyInjection();
@@ -119,6 +123,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeWebRtc();
     initializePendingMessages();
     initializeUnidentifiedDeliveryAbilityRefresh();
+    initializeBlobProvider();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
   }
@@ -169,8 +174,28 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return persistentLogger;
   }
 
-  private void initializeRandomNumberFix() {
-    PRNGFixes.apply();
+  private void initializeSecurityProvider() {
+    try {
+      Class.forName("org.signal.aesgcmprovider.AesGcmCipher");
+    } catch (ClassNotFoundException e) {
+      Log.e(TAG, "Failed to find AesGcmCipher class");
+      throw new ProviderInitializationException();
+    }
+
+    int aesPosition = Security.insertProviderAt(new AesGcmProvider(), 1);
+    Log.i(TAG, "Installed AesGcmProvider: " + aesPosition);
+
+    if (aesPosition < 0) {
+      Log.e(TAG, "Failed to install AesGcmProvider()");
+      throw new ProviderInitializationException();
+    }
+
+    int conscryptPosition = Security.insertProviderAt(Conscrypt.newProvider(), 2);
+    Log.i(TAG, "Installed Conscrypt provider: " + conscryptPosition);
+
+    if (conscryptPosition < 0) {
+      Log.w(TAG, "Did not install Conscrypt provider. May already be present.");
+    }
   }
 
   private void initializeLogging() {
@@ -182,15 +207,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeCrashHandling() {
     final Thread.UncaughtExceptionHandler originalHandler = Thread.getDefaultUncaughtExceptionHandler();
-    Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionLogger(originalHandler, persistentLogger));
+    Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionLogger(originalHandler));
   }
 
   private void initializeJobManager() {
-    WorkManager.initialize(this, new Configuration.Builder()
-                                                  .setMinimumLoggingLevel(android.util.Log.INFO)
-                                                  .build());
-
-    this.jobManager = new JobManager(this, WorkManager.getInstance());
+    this.jobManager = new JobManager(this, new JobManager.Configuration.Builder()
+                                                                       .setDataSerializer(new JsonDataSerializer())
+                                                                       .setJobFactories(JobManagerFactories.getJobFactories(this))
+                                                                       .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
+                                                                       .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
+                                                                       .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
+                                                                       .setDependencyInjector(this)
+                                                                       .build());
   }
 
   public void initializeMessageRetrieval() {
@@ -207,7 +235,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
 
       if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
-        this.jobManager.add(new FcmRefreshJob(this));
+        this.jobManager.add(new FcmRefreshJob());
       }
     }
   }
@@ -253,6 +281,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         add("Mi A1");
         add("E5823"); // Sony z5 compact
         add("Redmi Note 5");
+        add("FP2"); // Fairphone FP2
+        add("MI 5");
       }};
 
       Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
@@ -309,7 +339,21 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeUnidentifiedDeliveryAbilityRefresh() {
     if (TextSecurePreferences.isMultiDevice(this) && !TextSecurePreferences.isUnidentifiedDeliveryEnabled(this)) {
-      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob(this));
+      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob());
     }
+  }
+
+  private void initializeBlobProvider() {
+    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+      BlobProvider.getInstance().onSessionStart(this);
+    });
+  }
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(base, TextSecurePreferences.getLanguage(base)));
+  }
+
+  private static class ProviderInitializationException extends RuntimeException {
   }
 }

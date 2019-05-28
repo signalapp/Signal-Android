@@ -281,7 +281,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <activity android:name=".mediasend.MediaSendActivity"
-                  android:theme="@style/TextSecure.LightNoActionBar"
+                  android:theme="@style/TextSecure.DarkNoActionBar"
                   android:windowSoftInputMode="stateHidden"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -394,16 +394,12 @@
               android:theme="@style/TextSecure.LightTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".scribbles.ScribbleActivity"
-              android:theme="@style/TextSecure.ScribbleTheme"
-              android:windowSoftInputMode="stateHidden"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".scribbles.StickerSelectActivity"
-              android:theme="@style/TextSecure.ScribbleTheme"
+              android:theme="@style/TextSecure.DarkTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+    <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+              android:theme="@style/TextSecure.DarkTheme"/>
 
     <activity android:name=".CreateProfileActivity"
               android:theme="@style/TextSecure.LightRegistrationTheme"
@@ -437,11 +433,6 @@
     <activity android:name=".ShortcutLauncherActivity"
               android:theme="@style/TextSecure.LightNoActionBar"
               android:exported="true"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".camera.CameraActivity"
-              android:theme="@style/TextSecure.ScribbleTheme"
-              android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
@@ -588,12 +579,6 @@
               android:authorities="org.thoughtcrime.securesms.database.attachment"
               android:exported="false" />
 
-    <provider
-              android:name="androidx.work.impl.WorkManagerInitializer"
-              android:authorities="${applicationId}.workmanager-init"
-              android:exported="false"
-              tools:node="remove" />
-
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -665,6 +650,29 @@
         android:exported="true">
         <intent-filter>
             <action android:name="info.guardianproject.panic.action.TRIGGER" />
+        </intent-filter>
+    </receiver>
+
+    <service
+        android:name=".jobmanager.JobSchedulerScheduler$SystemService"
+        android:permission="android.permission.BIND_JOB_SERVICE"
+        android:enabled="@bool/enable_job_service"
+        tools:targetApi="26" />
+
+    <service
+        android:name=".jobmanager.KeepAliveService"
+        android:enabled="@bool/enable_alarm_manager" />
+
+    <receiver
+        android:name=".jobmanager.AlarmManagerScheduler$RetryReceiver"
+        android:enabled="@bool/enable_alarm_manager" />
+
+    <!-- Probably don't need this one -->
+    <receiver
+        android:name=".jobmanager.BootReceiver"
+        android:enabled="true">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
         </intent-filter>
     </receiver>
 

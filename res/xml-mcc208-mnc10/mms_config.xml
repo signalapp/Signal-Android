@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="7">
+    <int name="maxMessageSize">614400</int>
+    <int name="maxImageHeight">1944</int>
+    <int name="maxImageWidth">2592</int>
+    <bool name="enableMultipartSMS">true</bool>
+    <int name="smsToMmsTextThreshold">10</int>
+    <bool name="mmsRoamingAutoRetrieveByDefault">true</bool>
+    <bool name="groupChatDefaultsToMMS">false</bool>
+    <bool name="allowEnablingWapPushSI">false</bool>
+    <bool name="enableWapPushSI">true</bool>
+</mms_config>

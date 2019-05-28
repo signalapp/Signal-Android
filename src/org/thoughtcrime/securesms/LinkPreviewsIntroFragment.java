@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -48,8 +47,7 @@ public class LinkPreviewsIntroFragment extends Fragment {
     view.findViewById(R.id.experience_ok_button).setOnClickListener(v -> {
       ApplicationContext.getInstance(requireContext())
                         .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(getContext(),
-                                                                   TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
+                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
                                                                    TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
                                                                    TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(requireContext()),
                                                                    TextSecurePreferences.isLinkPreviewsEnabled(requireContext())));

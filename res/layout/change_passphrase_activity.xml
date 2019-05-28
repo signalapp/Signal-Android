@@ -9,8 +9,8 @@
                  android:layout_height="wrap_content"
                  android:gravity="center">
         
-        <LinearLayout android:paddingRight="16dip"
-                      android:paddingLeft="16dip"
+        <LinearLayout android:paddingEnd="16dip"
+                      android:paddingStart="16dip"
                       android:paddingTop="10dip"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
@@ -61,14 +61,14 @@
             <LinearLayout android:orientation="horizontal"
                           android:layout_width="fill_parent"
                           android:layout_height="wrap_content"
-                          android:layout_marginTop="30dip">
+                          android:layout_marginTop="30dp">
 
                 <Button android:id="@+id/cancel_button"
                         android:text="@android:string/cancel"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="7dip"
+                        android:layout_marginEnd="7dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"/>
                 
                 <Button android:id="@+id/ok_button"

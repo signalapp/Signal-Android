@@ -62,7 +62,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
@@ -90,6 +92,7 @@ public class SubmitLogFragment extends Fragment {
   private static final String API_ENDPOINT = "https://debuglogs.org";
 
   private static final String HEADER_SYSINFO = "========== SYSINFO ========";
+  private static final String HEADER_JOBS    = "=========== JOBS =========";
   private static final String HEADER_LOGCAT  = "========== LOGCAT ========";
   private static final String HEADER_LOGGER  = "========== LOGGER ========";
 
@@ -370,6 +373,8 @@ public class SubmitLogFragment extends Fragment {
 
       return HEADER_SYSINFO + "\n\n" +
              buildDescription(context) + "\n\n\n" +
+             HEADER_JOBS + "\n\n" +
+             scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()) + "\n\n" +
              HEADER_LOGCAT + "\n\n" +
              scrubbedLogcat + "\n\n\n" +
              HEADER_LOGGER + "\n\n" +
@@ -484,7 +489,7 @@ public class SubmitLogFragment extends Fragment {
     final PackageManager pm      = context.getPackageManager();
     final StringBuilder  builder = new StringBuilder();
 
-
+    builder.append("Time    : ").append(System.currentTimeMillis()).append('\n');
     builder.append("Device  : ")
            .append(Build.MANUFACTURER).append(" ")
            .append(Build.MODEL).append(" (")
@@ -492,6 +497,7 @@ public class SubmitLogFragment extends Fragment {
     builder.append("Android : ").append(VERSION.RELEASE).append(" (")
                                .append(VERSION.INCREMENTAL).append(", ")
                                .append(Build.DISPLAY).append(")\n");
+    builder.append("ABIs    : ").append(TextUtils.join(", ", getSupportedAbis())).append("\n");
     builder.append("Memory  : ").append(getMemoryUsage(context)).append("\n");
     builder.append("Memclass: ").append(getMemoryClass(context)).append("\n");
     builder.append("OS Host : ").append(Build.HOST).append("\n");
@@ -506,6 +512,19 @@ public class SubmitLogFragment extends Fragment {
     }
 
     return builder.toString();
+  }
+
+  private static Iterable<String> getSupportedAbis() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      return Arrays.asList(Build.SUPPORTED_ABIS);
+    } else {
+      LinkedList<String> abis = new LinkedList<>();
+      abis.add(Build.CPU_ABI);
+      if (Build.CPU_ABI2 != null && !"unknown".equals(Build.CPU_ABI2)) {
+        abis.add(Build.CPU_ABI2);
+      }
+      return abis;
+    }
   }
 
   /**

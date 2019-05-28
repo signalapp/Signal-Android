@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
@@ -71,7 +70,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.HashMap;
@@ -177,11 +175,8 @@ public class MmsDatabase extends MessagingDatabase {
   private final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache();
   private final EarlyReceiptCache earlyReadReceiptCache     = new EarlyReceiptCache();
 
-  private final JobManager jobManager;
-
   public MmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
-    this.jobManager = ApplicationContext.getInstance(context).getJobManager();
   }
 
   @Override
@@ -838,7 +833,7 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     notifyConversationListeners(threadId);
-    jobManager.add(new TrimThreadJob(context, threadId));
+    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
     return Optional.of(new InsertResult(messageId, threadId));
   }
@@ -919,7 +914,7 @@ public class MmsDatabase extends MessagingDatabase {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
 
-    jobManager.add(new TrimThreadJob(context, threadId));
+    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
   }
 
   public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
@@ -984,7 +979,7 @@ public class MmsDatabase extends MessagingDatabase {
 
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
-    jobManager.add(new TrimThreadJob(context, threadId));
+    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
     return messageId;
   }
@@ -1279,19 +1274,15 @@ public class MmsDatabase extends MessagingDatabase {
     private final long                 threadId;
 
     public OutgoingMessageReader(OutgoingMediaMessage message, long threadId) {
-      try {
-        this.message = message;
-        this.id = SecureRandom.getInstance("SHA1PRNG").nextLong();
-        this.threadId = threadId;
-      } catch (NoSuchAlgorithmException e) {
-        throw new AssertionError(e);
-      }
+      this.message  = message;
+      this.id       = new SecureRandom().nextLong();
+      this.threadId = threadId;
     }
 
     public MessageRecord getCurrent() {
       SlideDeck slideDeck = new SlideDeck(context, message.getAttachments());
 
-      return new MediaMmsMessageRecord(context, id, message.getRecipient(), message.getRecipient(),
+      return new MediaMmsMessageRecord(id, message.getRecipient(), message.getRecipient(),
                                        1, System.currentTimeMillis(), System.currentTimeMillis(),
                                        0, threadId, message.getBody(),
                                        slideDeck, slideDeck.getSlides().size(),
@@ -1372,7 +1363,7 @@ public class MmsDatabase extends MessagingDatabase {
       SlideDeck slideDeck = new SlideDeck(context, new MmsNotificationAttachment(status, messageSize));
 
 
-      return new NotificationMmsMessageRecord(context, id, recipient, recipient,
+      return new NotificationMmsMessageRecord(id, recipient, recipient,
                                               addressDeviceId, dateSent, dateReceived, deliveryReceiptCount, threadId,
                                               contentLocationBytes, messageSize, expiry, status,
                                               transactionIdBytes, mailbox, subscriptionId, slideDeck,
@@ -1413,7 +1404,7 @@ public class MmsDatabase extends MessagingDatabase {
       SlideDeck                 slideDeck          = getSlideDeck(Stream.of(attachments).filterNot(contactAttachments::contains).filterNot(previewAttachments::contains).toList());
       Quote                     quote              = getQuote(cursor);
 
-      return new MediaMmsMessageRecord(context, id, recipient, recipient,
+      return new MediaMmsMessageRecord(id, recipient, recipient,
                                        addressDeviceId, dateSent, dateReceived, deliveryReceiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
