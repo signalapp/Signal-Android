@@ -307,7 +307,7 @@ public class ConversationItem extends LinearLayout
     int availableWidth;
     if (hasAudio(messageRecord)) {
       availableWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
-    } else if (hasThumbnail(messageRecord)) {
+    } else if (hasThumbnail(messageRecord) || hasBigImageLinkPreview(messageRecord)) {
       availableWidth = mediaThumbnailStub.get().getMeasuredWidth();
     } else {
       availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
@@ -440,6 +440,17 @@ public class ConversationItem extends LinearLayout
     return messageRecord.isMms() && !((MmsMessageRecord)messageRecord).getLinkPreviews().isEmpty();
   }
 
+  private boolean hasBigImageLinkPreview(MessageRecord messageRecord) {
+    if (!hasLinkPreview(messageRecord)) return false;
+
+    LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
+    int         minWidth    = getResources().getDimensionPixelSize(R.dimen.media_bubble_min_width);
+
+    return linkPreview.getThumbnail().isPresent()                  &&
+           linkPreview.getThumbnail().get().getWidth() >= minWidth &&
+           !StickerUrl.isValidShareLink(linkPreview.getUrl());
+  }
+
   private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery) {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
@@ -500,7 +511,7 @@ public class ConversationItem extends LinearLayout
       //noinspection ConstantConditions
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
 
-      if (linkPreview.getThumbnail().isPresent() && shouldPromotePreviewImage(linkPreview.getThumbnail().get(), linkPreview.getUrl())) {
+      if (hasBigImageLinkPreview(messageRecord)) {
         mediaThumbnailStub.get().setVisibility(VISIBLE);
         mediaThumbnailStub.get().setImageResource(glideRequests, Collections.singletonList(new ImageSlide(context, linkPreview.getThumbnail().get())), showControls, false);
         mediaThumbnailStub.get().setThumbnailClickListener(new LinkPreviewThumbnailClickListener());
@@ -720,11 +731,6 @@ public class ConversationItem extends LinearLayout
   private void setContactPhoto(@NonNull Recipient recipient) {
     if (contactPhoto == null) return;
     contactPhoto.setAvatar(glideRequests, recipient, true);
-  }
-
-  private boolean shouldPromotePreviewImage(@NonNull Attachment attachment, @NonNull String url) {
-    int minWidth = getResources().getDimensionPixelSize(R.dimen.media_bubble_min_width);
-    return attachment.getWidth() >= minWidth && !StickerUrl.isValidShareLink(url);
   }
 
   private SpannableString linkifyMessageBody(SpannableString messageBody, boolean shouldLinkifyAllLinks) {
