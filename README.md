@@ -1,8 +1,8 @@
 # Loki Messenger Android
 
-Loki messenger is a fully end to end encrypted messenger that aims to remove any chance of metadata collection by routing all messages through an onion routing network. Storage of offline messages is handled by Service Nodes, which are a distributed set of nodes run by the community. 
+Loki Messenger is a fully end to end encrypted messenger that aims to remove any chance of metadata collection by routing all messages through an onion routing network. Storage of offline messages is handled by Service Nodes, which are a distributed set of nodes run by the community. 
 
-## Contributing Bug reports
+## Contributing Bug Reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
 https://github.com/loki-project/loki-messenger-android/issues
@@ -12,7 +12,7 @@ https://github.com/loki-project/loki-messenger-android/issues
 Code should be contributed via pull request to the dev branch, all submitted code will be reviewed.
 
 ## Contributing Ideas
-Have something you want to say about Loki messenger, create an [issue](https://github.com/loki-project/loki-messenger-android/issues) with the discussion tag and the community can weigh in
+Have something you want to say about Loki Messenger, create an [issue](https://github.com/loki-project/loki-messenger-android/issues) with the discussion tag and the community can weigh in.
 
 Help
 ====
@@ -21,7 +21,7 @@ Looking for documentation? Check out the lokidocs!
 
 https://loki-project.github.io/loki-docs/
 
-# Legal things
+# Legal Things
 ## Cryptography Notice
 
 This distribution includes cryptographic software. The country in which you currently reside may have restrictions on the import, possession, use, and/or re-export to another country, of encryption software.
