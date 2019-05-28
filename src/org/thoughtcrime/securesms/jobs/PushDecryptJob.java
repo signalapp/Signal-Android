@@ -117,6 +117,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -331,6 +332,9 @@ public class PushDecryptJob extends BaseJob {
       Log.w(TAG, e);
     } catch (SelfSendException e) {
       Log.i(TAG, "Dropping UD message from self.");
+    } catch (UnsupportedDataMessageException e) {
+      Log.w(TAG, e);
+      handleUnsupportedDataMessage(e.getSender(), e.getSenderDevice(), e.getGroup(), envelope.getTimestamp(), smsMessageId);
     }
   }
 
@@ -1011,6 +1015,26 @@ public class PushDecryptJob extends BaseJob {
     }
   }
 
+  private void handleUnsupportedDataMessage(@NonNull String sender,
+                                            int senderDevice,
+                                            @NonNull Optional<SignalServiceGroup> group,
+                                            long timestamp,
+                                            @NonNull Optional<Long> smsMessageId)
+  {
+    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
+
+    if (!smsMessageId.isPresent()) {
+      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp, group);
+
+      if (insertResult.isPresent()) {
+        smsDatabase.markAsUnsupportedProtocolVersion(insertResult.get().getMessageId());
+        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+      }
+    } else {
+      smsDatabase.markAsNoSession(smsMessageId.get());
+    }
+  }
+
   private void handleLegacyMessage(@NonNull String sender, int senderDevice, long timestamp,
                                    @NonNull Optional<Long> smsMessageId)
   {
@@ -1241,10 +1265,14 @@ public class PushDecryptJob extends BaseJob {
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp) {
+    return insertPlaceholder(sender, senderDevice, timestamp, Optional.absent());
+  }
+
+  private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp, Optional<SignalServiceGroup> group) {
     SmsDatabase         database    = DatabaseFactory.getSmsDatabase(context);
     IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromExternal(context, sender),
                                                               senderDevice, timestamp, "",
-                                                              Optional.absent(), 0, false);
+                                                              group, 0, false);
 
     textMessage = new IncomingEncryptedMessage(textMessage, "");
     return database.insertMessageInbox(textMessage);
