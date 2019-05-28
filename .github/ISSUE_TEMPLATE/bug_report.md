@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
@@ -10,13 +10,16 @@ assignees: ''
 **Describe the bug**
 A clear and concise description of what the bug is.
 
-**To Reproduce**
+**To reproduce**
 Steps to reproduce the behavior:
 
-**Screenshots or Logs**
-If applicable, add screenshots or log files to help explain your problem.
+**Screenshots or logs**
+If applicable, add screenshots or logs to help explain your problem.
 
-**Smartphone details (please complete the following information):**
+**Smartphone (please complete the following information):**
  - Device: [e.g. Samsung Galaxy S8]
  - OS: [e.g. Android Pie]
- - Loki Messenger version, or git hash
+ - Version of Loki Messenger or latest commit hash
+
+**Additional context**
+Add any other context about the problem here.
