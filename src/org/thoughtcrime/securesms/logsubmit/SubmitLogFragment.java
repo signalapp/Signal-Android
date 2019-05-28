@@ -506,7 +506,9 @@ public class SubmitLogFragment extends Fragment {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
              .append(" ")
              .append(pm.getPackageInfo(context.getPackageName(), 0).versionName)
-             .append("\n");
+             .append(" (")
+             .append(Util.getManifestApkVersion(context))
+             .append(")\n");
     } catch (PackageManager.NameNotFoundException nnfe) {
       builder.append("Unknown\n");
     }

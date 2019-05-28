@@ -512,13 +512,13 @@ public class TextSecurePreferences {
 
   public static void setFcmToken(Context context, String registrationId) {
     setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);
-    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCurrentApkReleaseVersion(context));
+    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCanonicalVersionCode());
   }
 
   public static String getFcmToken(Context context) {
     int storedRegistrationIdVersion = getIntegerPreference(context, GCM_REGISTRATION_ID_VERSION_PREF, 0);
 
-    if (storedRegistrationIdVersion != Util.getCurrentApkReleaseVersion(context)) {
+    if (storedRegistrationIdVersion != Util.getCanonicalVersionCode()) {
       return null;
     } else {
       return getStringPreference(context, GCM_REGISTRATION_ID_PREF, null);

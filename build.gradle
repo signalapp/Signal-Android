@@ -282,6 +282,15 @@ dependencyVerification {
     ]
 }
 
+def canonicalVersionCode = 487
+def canonicalVersionName = "4.40.4"
+
+def postFixSize = 10
+def abiPostFix = ['armeabi-v7a' : 1,
+                  'arm64-v8a'   : 2,
+                  'x86'         : 3,
+                  'x86_64'      : 4,
+                  'universal'   : 5]
 
 android {
     flavorDimensions "none"
@@ -294,8 +303,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 487
-        versionName "4.40.4"
+        versionCode canonicalVersionCode * postFixSize
+        versionName canonicalVersionName
 
         minSdkVersion 19
         targetSdkVersion 26
@@ -316,9 +325,10 @@ android {
         buildConfigField "String", "MRENCLAVE", "\"cd6cfc342937b23b1bdd3bbf9721aa5615ac9ff50a75c5527d441cd3276826c9\""
         buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
+        buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
 
         ndk {
-            abiFilters 'armeabi-v7a', 'x86'
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
 
         resConfigs autoResConfig()
@@ -327,7 +337,7 @@ android {
             abi {
                 enable true
                 reset()
-                include 'armeabi-v7a', 'x86'
+                include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
                 universalApk true
             }
         }
@@ -397,8 +407,14 @@ android {
     }
 
     android.applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = outputFileName.replace(".apk", "-${variant.versionName}.apk")
+        variant.outputs.each { output ->
+            output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
+            def abiName = output.getFilter("ABI") ?: 'universal'
+            def postFix = abiPostFix.get(abiName, 0)
+
+            if (postFix >= postFixSize) throw new AssertionError("postFix is too large")
+
+            output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
         }
     }
 
@@ -448,8 +464,8 @@ def assembleWebsiteDescriptor = { variant, file ->
         String apkName = file.getName()
 
         String descriptor = "{" +
-                "\"versionCode\" : $project.android.defaultConfig.versionCode," +
-                "\"versionName\" : \"$project.android.defaultConfig.versionName\"," +
+                "\"versionCode\" : $canonicalVersionCode," +
+                "\"versionName\" : \"$canonicalVersionName\"," +
                 "\"sha256sum\" : \"$digest\"," +
                 "\"url\" : \"$url/$apkName\"" +
                 "}"
