@@ -308,7 +308,8 @@ public abstract class PushSendJob extends SendJob {
                                                                   message.getTimestamp(),
                                                                   message,
                                                                   message.getExpiresInSeconds(),
-                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()));
+                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()),
+                                                                  false);
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
 

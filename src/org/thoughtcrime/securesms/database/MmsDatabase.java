@@ -926,6 +926,14 @@ public class MmsDatabase extends MessagingDatabase {
                                   @Nullable SmsDatabase.InsertListener insertListener)
       throws MmsException
   {
+    return insertMessageOutbox(message, threadId, forceSms, GroupReceiptDatabase.STATUS_UNDELIVERED, insertListener);
+  }
+
+  public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
+                                  long threadId, boolean forceSms, int defaultReceiptStatus,
+                                  @Nullable SmsDatabase.InsertListener insertListener)
+      throws MmsException
+  {
     long type = Types.BASE_SENDING_TYPE;
 
     if (message.isSecure()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
@@ -975,7 +983,7 @@ public class MmsDatabase extends MessagingDatabase {
       GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
 
       receiptDatabase.insert(Stream.of(members).map(Recipient::getAddress).toList(),
-                             messageId, GroupReceiptDatabase.STATUS_UNDELIVERED, message.getSentTimeMillis());
+                             messageId, defaultReceiptStatus, message.getSentTimeMillis());
 
       for (Address address : earlyDeliveryReceipts.keySet()) receiptDatabase.update(address, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
       for (Address address : earlyReadReceipts.keySet())     receiptDatabase.update(address, messageId, GroupReceiptDatabase.STATUS_READ, -1);

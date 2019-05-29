@@ -86,7 +86,7 @@ dependencies {
     compile 'org.conscrypt:conscrypt-android:2.0.0'
     compile 'org.signal:aesgcmprovider:0.0.3'
 
-    compile 'org.whispersystems:signal-service-android:2.13.2'
+    compile 'org.whispersystems:signal-service-android:2.13.3'
 
     compile 'org.whispersystems:webrtc-android:M74'
 
@@ -190,7 +190,7 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
         'org.conscrypt:conscrypt-android:400ca559a49b860a82862b22cee0e3110764bdcf7ee7c79e7479895c25cdfc09',
         'org.signal:aesgcmprovider:6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1',
-        'org.whispersystems:signal-service-android:11fd7307248429e5bf3274b57410e60b26492621b138a3d651cc8369d5aa6507',
+        'org.whispersystems:signal-service-android:ac6f2c70c4111f9f982bbfc9b34063834afdce31333405bec10506a31f0961cd',
         'org.whispersystems:webrtc-android:2f7befaa3b47a04d244a4eef7c03c2d49c1685a6f92fc505cd5f4ac7eca2dc18',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -258,7 +258,7 @@ dependencyVerification {
         'com.android.support:support-annotations:5d5b9414f02d3fa0ee7526b8d5ddae0da67c8ecc8c4d63ffa6cf91488a93b927',
         'com.android.support.constraint:constraint-layout-solver:2cafbe356f71c208013d021f32943904798cd6459e5107f9fe27000eb5bc2aef',
         'org.signal:signal-metadata-android:02323bc29317fa9d3b62fab0b507c94ba2e9bcc4a78d588888ffd313853757b3',
-        'org.whispersystems:signal-service-java:c48607b1fa3dbb67b5204adfd681c6948c7bbb43cc3e6502b65984a3ef53dc49',
+        'org.whispersystems:signal-service-java:440777f4beca894f37b86258f1493fd5c2e87df02fb9a6331f0c82b842c91012',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
         'com.github.bumptech.glide:annotations:bede99ef9f71517a4274bac18fd3e483e9f2b6108d7d6fe8f4949be4aa4d9512',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',

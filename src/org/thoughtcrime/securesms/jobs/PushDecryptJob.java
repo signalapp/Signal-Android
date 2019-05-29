@@ -45,10 +45,12 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -122,6 +124,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class PushDecryptJob extends BaseJob {
 
@@ -557,9 +560,11 @@ public class PushDecryptJob extends BaseJob {
     try {
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
 
-      Long threadId;
+      Long threadId = null;
 
-      if (message.getMessage().isEndSession()) {
+      if (message.isRecipientUpdate()) {
+        handleGroupRecipientUpdate(message);
+      } else if (message.getMessage().isEndSession()) {
         threadId = handleSynchronizeSentEndSessionMessage(message);
       } else if (message.getMessage().isGroupUpdate()) {
         threadId = GroupMessageProcessor.process(context, content, message.getMessage(), true);
@@ -775,15 +780,10 @@ public class PushDecryptJob extends BaseJob {
     database.beginTransaction();
 
     try {
-      long messageId = database.insertMessageOutbox(mediaMessage, threadId, false, null);
+      long messageId = database.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptDatabase.STATUS_UNKNOWN, null);
 
       if (recipients.getAddress().isGroup()) {
-        GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
-        List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipients.getAddress().toGroupString(), false);
-
-        for (Recipient member : members) {
-          receiptDatabase.setUnidentified(member.getAddress(), messageId, message.isUnidentified(member.getAddress().serialize()));
-        }
+        updateGroupReceiptStatus(message, messageId, recipients.getAddress().toGroupString());
       }
 
       database.markAsSent(messageId, true);
@@ -821,6 +821,51 @@ public class PushDecryptJob extends BaseJob {
       database.endTransaction();
     }
     return threadId;
+  }
+
+  private void handleGroupRecipientUpdate(@NonNull SentTranscriptMessage message) {
+    Recipient recipient = getSyncMessageDestination(message);
+
+    if (!recipient.isGroupRecipient()) {
+      Log.w(TAG, "Got recipient update for a non-group message! Skipping.");
+      return;
+    }
+
+    MmsSmsDatabase database = DatabaseFactory.getMmsSmsDatabase(context);
+    MessageRecord  record   = database.getMessageFor(message.getTimestamp(),
+                                                     Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+
+    if (record == null) {
+      Log.w(TAG, "Got recipient update for non-existing message! Skipping.");
+      return;
+    }
+
+    if (!record.isMms()) {
+      Log.w(TAG, "Recipient update matched a non-MMS message! Skipping.");
+      return;
+    }
+
+    updateGroupReceiptStatus(message, record.getId(), recipient.getAddress().toGroupString());
+  }
+
+  private void updateGroupReceiptStatus(@NonNull SentTranscriptMessage message, long messageId, @NonNull String groupString) {
+    GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+    List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupString, false);
+    Map<String, Integer> localReceipts   = Stream.of(receiptDatabase.getGroupReceiptInfo(messageId))
+                                                 .collect(Collectors.toMap(info -> info.getAddress().serialize(), GroupReceiptInfo::getStatus));
+
+    for (String address : message.getRecipients()) {
+      //noinspection ConstantConditions
+      if (localReceipts.containsKey(address) && localReceipts.get(address) < GroupReceiptDatabase.STATUS_UNDELIVERED) {
+        receiptDatabase.update(Address.fromSerialized(address), messageId, GroupReceiptDatabase.STATUS_UNDELIVERED, message.getTimestamp());
+      } else if (!localReceipts.containsKey(address)) {
+        receiptDatabase.insert(Collections.singletonList(Address.fromSerialized(address)), messageId, GroupReceiptDatabase.STATUS_UNDELIVERED, message.getTimestamp());
+      }
+    }
+
+    for (Recipient member : members) {
+      receiptDatabase.setUnidentified(member.getAddress(), messageId, message.isUnidentified(member.getAddress().serialize()));
+    }
   }
 
   private void handleTextMessage(@NonNull SignalServiceContent content,
@@ -867,7 +912,6 @@ public class PushDecryptJob extends BaseJob {
   private long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)
       throws MmsException
   {
-
     Recipient recipient       = getSyncMessageDestination(message);
     String    body            = message.getMessage().getBody().or("");
     long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
@@ -886,15 +930,10 @@ public class PushDecryptJob extends BaseJob {
       OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient, new SlideDeck(), body, message.getTimestamp(), -1, expiresInMillis, ThreadDatabase.DistributionTypes.DEFAULT, null, Collections.emptyList(), Collections.emptyList());
       outgoingMediaMessage = new OutgoingSecureMediaMessage(outgoingMediaMessage);
 
-      messageId = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMediaMessage, threadId, false, null);
+      messageId = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMediaMessage, threadId, false, GroupReceiptDatabase.STATUS_UNKNOWN, null);
       database  = DatabaseFactory.getMmsDatabase(context);
 
-      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
-      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
-
-      for (Recipient member : members) {
-        receiptDatabase.setUnidentified(member.getAddress(), messageId, message.isUnidentified(member.getAddress().serialize()));
-      }
+      updateGroupReceiptStatus(message, messageId, recipient.getAddress().toGroupString());
     } else {
       OutgoingTextMessage outgoingTextMessage = new OutgoingEncryptedMessage(recipient, body, expiresInMillis);
 
