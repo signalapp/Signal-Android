@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.LightTheme">
         <item name="windowActionBar">false</item>
@@ -25,7 +25,11 @@
         <item name="media_overview_document_secondary">@color/core_grey_60</item>
     </style>
 
-    <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.DarkTheme">
+    <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
+        <!-- leave empty to allow overriding -->
+    </style>
+
+    <style name="TextSecure.BaseDarkNoActionBar" parent="@style/TextSecure.BaseDarkTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
@@ -34,7 +38,6 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="colorPrimary">@color/gray95</item>
         <item name="colorAccent">@color/signal_primary_dark</item>
-        <item name="android:colorControlActivated" tools:ignore="NewApi">@color/signal_primary_dark</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66eeeeee</item>
@@ -108,11 +111,11 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">stateUnchanged</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowActionModeOverlay" tools:targetApi="honeycomb">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowAnimationStyle">@style/PopupAnimation</item>
-        <item name="android:windowCloseOnTouchOutside" tools:targetApi="honeycomb">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
@@ -294,7 +297,11 @@
         <item name="shared_contact_item_button_color">@color/core_grey_02</item>
     </style>
 
-    <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
+    <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
+        <!-- leave empty to allow overriding -->
+    </style>
+
+    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.AppCompat">
         <item name="theme_type">dark</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
