@@ -3,19 +3,24 @@ import org.signal.signing.ApkSignerUtil
 import java.security.MessageDigest
 
 buildscript {
+    ext.kotlin_version = '1.3.31'
     repositories {
         google()
         maven {
             url "https://repo1.maven.org/maven2"
         }
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath files('libs/gradle-witness.jar')
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'witness'
 
 repositories {
@@ -159,6 +164,7 @@ dependencies {
     }
     testImplementation 'org.robolectric:robolectric:4.2'
     testImplementation 'org.robolectric:shadows-multidex:4.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 dependencyVerification {
