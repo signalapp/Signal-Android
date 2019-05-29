@@ -107,6 +107,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -695,6 +697,17 @@ public class ConversationFragment extends Fragment
 
     if (lastSeenPosition <= 0) {
       setLastSeen(0);
+    }
+
+    if(actionMode != null) {
+      Iterator<MessageRecord> itr = getListAdapter().getSelectedItems().iterator();
+      while(itr.hasNext()) {
+        MessageRecord mr = itr.next();
+        if((mr.getExpireStarted() + mr.getExpiresIn()) - GregorianCalendar.getInstance().getTimeInMillis() < 0) {
+          getListAdapter().toggleSelection(mr);
+        }
+      }
+      setCorrectMenuVisibility(actionMode.getMenu());
     }
   }
 
