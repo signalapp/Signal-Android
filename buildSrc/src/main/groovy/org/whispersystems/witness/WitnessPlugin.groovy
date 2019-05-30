@@ -79,14 +79,6 @@ class WitnessPlugin implements Plugin<Project> {
         def configurationName = project.dependencyVerification.configuration
         project.configurations
                 .findAll { config -> config.name =~ configurationName }
-                .collectMany { tryGetArtifacts(it) }
-    }
-
-    private static Set<ResolvedArtifact> tryGetArtifacts(Configuration configuration) {
-        try {
-            configuration.resolvedConfiguration.resolvedArtifacts
-        } catch (Exception ignored) {
-            [] as Set<ResolvedArtifact>
-        }
+                .collectMany { it.resolvedConfiguration.resolvedArtifacts }
     }
 }
