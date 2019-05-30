@@ -1297,7 +1297,7 @@
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>
-    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences_notifications__in_chat_sounds">Also sound if Signal is open already</string>
     <string name="preferences_notifications__show">Show</string>
     <string name="preferences_notifications__calls">Calls</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
