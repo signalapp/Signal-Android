@@ -44,7 +44,7 @@ public class MmsRadio {
     PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
     this.context             = context;
     this.connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    this.wakeLock            = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MMS Connection");
+    this.wakeLock            = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "signal:mms");
     this.wakeLock.setReferenceCounted(true);
   }
 

@@ -65,7 +65,7 @@ public class RefreshAttributesJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(Exception e) {
+  public boolean onShouldRetry(@NonNull Exception e) {
     return e instanceof NetworkFailureException;
   }
 

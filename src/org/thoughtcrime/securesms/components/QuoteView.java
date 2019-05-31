@@ -209,6 +209,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     List<Slide> documentSlides = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
     List<Slide> imageSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasImage).limit(1).toList();
     List<Slide> videoSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasVideo).limit(1).toList();
+    List<Slide> stickerSlides  = Stream.of(attachments.getSlides()).filter(Slide::hasSticker).limit(1).toList();
 
     // Given that most types have images, we specifically check images last
     if (!audioSlides.isEmpty()) {
@@ -217,13 +218,15 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
       mediaDescriptionText.setVisibility(GONE);
     } else if (!videoSlides.isEmpty()) {
       mediaDescriptionText.setText(R.string.QuoteView_video);
+    } else if (!stickerSlides.isEmpty()) {
+      mediaDescriptionText.setText(R.string.QuoteView_sticker);
     } else if (!imageSlides.isEmpty()) {
       mediaDescriptionText.setText(R.string.QuoteView_photo);
     }
   }
 
   private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull SlideDeck slideDeck) {
-    List<Slide> imageVideoSlides = Stream.of(slideDeck.getSlides()).filter(s -> s.hasImage() || s.hasVideo()).limit(1).toList();
+    List<Slide> imageVideoSlides = Stream.of(slideDeck.getSlides()).filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).limit(1).toList();
     List<Slide> documentSlides   = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
 
     attachmentVideoOverlayView.setVisibility(GONE);

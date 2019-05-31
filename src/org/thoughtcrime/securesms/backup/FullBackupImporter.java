@@ -7,9 +7,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
-
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -21,6 +18,7 @@ import org.thoughtcrime.securesms.backup.BackupProtos.BackupFrame;
 import org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion;
 import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference;
 import org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement;
+import org.thoughtcrime.securesms.backup.BackupProtos.Sticker;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.Address;
@@ -29,10 +27,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
+import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
@@ -85,6 +83,7 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasStatement())  processStatement(db, frame.getStatement());
         else if (frame.hasPreference()) processPreference(context, frame.getPreference());
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
+        else if (frame.hasSticker())    processSticker(context, attachmentSecret, db, frame.getSticker(), inputStream);
         else if (frame.hasAvatar())     processAvatar(context, frame.getAvatar(), inputStream);
       }
 
@@ -148,6 +147,25 @@ public class FullBackupImporter extends FullBackupBase {
     db.update(AttachmentDatabase.TABLE_NAME, contentValues,
               AttachmentDatabase.ROW_ID + " = ? AND " + AttachmentDatabase.UNIQUE_ID + " = ?",
               new String[] {String.valueOf(attachment.getRowId()), String.valueOf(attachment.getAttachmentId())});
+  }
+
+  private static void processSticker(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Sticker sticker, BackupRecordInputStream inputStream)
+      throws IOException
+  {
+    File stickerDirectory = context.getDir(AttachmentDatabase.DIRECTORY, Context.MODE_PRIVATE);
+    File dataFile         = File.createTempFile("sticker", ".mms", stickerDirectory);
+
+    Pair<byte[], OutputStream> output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
+
+    inputStream.readAttachmentTo(output.second, sticker.getLength());
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(StickerDatabase.FILE_PATH, dataFile.getAbsolutePath());
+    contentValues.put(StickerDatabase.FILE_RANDOM, output.first);
+
+    db.update(StickerDatabase.TABLE_NAME, contentValues,
+              StickerDatabase._ID + " = ?",
+              new String[] {String.valueOf(sticker.getRowId())});
   }
 
   private static void processAvatar(@NonNull Context context, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {

@@ -88,7 +88,7 @@ public class SlideDeck {
 
   public boolean containsMediaSlide() {
     for (Slide slide : slides) {
-      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) {
+      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument() || slide.hasSticker()) {
         return true;
       }
     }
@@ -133,6 +133,16 @@ public class SlideDeck {
     for (Slide slide: slides) {
       if (MediaUtil.isLongTextType(slide.getContentType())) {
         return (TextSlide)slide;
+      }
+    }
+
+    return null;
+  }
+
+  public @Nullable StickerSlide getStickerSlide() {
+    for (Slide slide: slides) {
+      if (slide.hasSticker()) {
+        return (StickerSlide)slide;
       }
     }
 

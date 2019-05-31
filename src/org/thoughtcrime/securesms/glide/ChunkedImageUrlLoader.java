@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.glide;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bumptech.glide.load.Options;
@@ -23,14 +24,13 @@ public class ChunkedImageUrlLoader implements ModelLoader<ChunkedImageUrl, Input
     this.client  = client;
   }
 
-  @Nullable
   @Override
-  public LoadData<InputStream> buildLoadData(ChunkedImageUrl url, int width, int height, Options options) {
+  public @Nullable LoadData<InputStream> buildLoadData(@NonNull ChunkedImageUrl url, int width, int height, @NonNull Options options) {
     return new LoadData<>(url, new ChunkedImageUrlFetcher(client, url));
   }
 
   @Override
-  public boolean handles(ChunkedImageUrl url) {
+  public boolean handles(@NonNull ChunkedImageUrl url) {
     return true;
   }
 
@@ -48,7 +48,7 @@ public class ChunkedImageUrlLoader implements ModelLoader<ChunkedImageUrl, Input
     }
 
     @Override
-    public ModelLoader<ChunkedImageUrl, InputStream> build(MultiModelLoaderFactory multiFactory) {
+    public @NonNull ModelLoader<ChunkedImageUrl, InputStream> build(@NonNull MultiModelLoaderFactory multiFactory) {
       return new ChunkedImageUrlLoader(client);
     }
 

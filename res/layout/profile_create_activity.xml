@@ -163,7 +163,7 @@
             android:text="@string/profile_create_activity__set_later"
             android:textColor="@color/gray50" />
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiDrawer
+        <org.thoughtcrime.securesms.components.emoji.MediaKeyboard
             android:id="@+id/emoji_drawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

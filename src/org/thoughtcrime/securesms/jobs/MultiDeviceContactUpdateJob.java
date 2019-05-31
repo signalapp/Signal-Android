@@ -217,7 +217,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

@@ -13,7 +13,9 @@ import java.util.Stack;
  * <p>
  * Elements are mutable, so this stack serializes the element and keeps a stack of serialized data.
  * <p>
- * The stack has a {@link #limit} and if it exceeds that limit during a push the earliest item is removed.
+ * The stack has a {@link #limit} and if it exceeds that limit during a push the second to earliest item
+ * is removed so that it can always go back to the first state. Effectively collapsing the history for
+ * the start of the stack.
  */
 final class ElementStack implements Parcelable {
 
@@ -35,6 +37,8 @@ final class ElementStack implements Parcelable {
   /**
    * Pushes an element to the stack iff the element's serialized value is different to any found at
    * the top of the stack.
+   * <p>
+   * Removes the second to earliest item if it is overflowing.
    *
    * @param element new editor element state.
    * @return true iff the pushed item was different to the top item.
@@ -46,7 +50,7 @@ final class ElementStack implements Parcelable {
     if (push) {
       stack.push(bytes);
       if (stack.size() > limit) {
-        stack.remove(0);
+        stack.remove(1);
       }
     }
     return push;

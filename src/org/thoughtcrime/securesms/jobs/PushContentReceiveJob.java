@@ -36,7 +36,7 @@ public class PushContentReceiveJob extends PushReceivedJob {
   public void onCanceled() { }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     return false;
   }
 

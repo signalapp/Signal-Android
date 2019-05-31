@@ -19,15 +19,18 @@ import java.io.InputStream;
 
 public class PartAuthority {
 
-  private static final String PART_URI_STRING   = "content://org.thoughtcrime.securesms/part";
-  private static final String THUMB_URI_STRING  = "content://org.thoughtcrime.securesms/thumb";
-  private static final Uri    PART_CONTENT_URI  = Uri.parse(PART_URI_STRING);
-  private static final Uri    THUMB_CONTENT_URI = Uri.parse(THUMB_URI_STRING);
+  private static final String PART_URI_STRING     = "content://org.thoughtcrime.securesms/part";
+  private static final String THUMB_URI_STRING    = "content://org.thoughtcrime.securesms/thumb";
+  private static final String STICKER_URI_STRING  = "content://org.thoughtcrime.securesms/sticker";
+  private static final Uri    PART_CONTENT_URI    = Uri.parse(PART_URI_STRING);
+  private static final Uri    THUMB_CONTENT_URI   = Uri.parse(THUMB_URI_STRING);
+  private static final Uri    STICKER_CONTENT_URI = Uri.parse(STICKER_URI_STRING);
 
   private static final int PART_ROW       = 1;
   private static final int THUMB_ROW      = 2;
   private static final int PERSISTENT_ROW = 3;
   private static final int BLOB_ROW       = 4;
+  private static final int STICKER_ROW    = 5;
 
   private static final UriMatcher uriMatcher;
 
@@ -35,6 +38,7 @@ public class PartAuthority {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     uriMatcher.addURI("org.thoughtcrime.securesms", "part/*/#", PART_ROW);
     uriMatcher.addURI("org.thoughtcrime.securesms", "thumb/*/#", THUMB_ROW);
+    uriMatcher.addURI("org.thoughtcrime.securesms", "sticker/#", STICKER_ROW);
     uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_OLD, PERSISTENT_ROW);
     uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_NEW, PERSISTENT_ROW);
     uriMatcher.addURI(BlobProvider.AUTHORITY, BlobProvider.PATH, BLOB_ROW);
@@ -48,6 +52,7 @@ public class PartAuthority {
       switch (match) {
       case PART_ROW:       return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
       case THUMB_ROW:      return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(new PartUriParser(uri).getPartId());
+      case STICKER_ROW:    return DatabaseFactory.getStickerDatabase(context).getStickerStream(ContentUris.parseId(uri));
       case PERSISTENT_ROW: return DeprecatedPersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
       case BLOB_ROW:       return BlobProvider.getInstance().getStream(context, uri);
       default:             return context.getContentResolver().openInputStream(uri);
@@ -127,6 +132,10 @@ public class PartAuthority {
   public static Uri getAttachmentThumbnailUri(AttachmentId attachmentId) {
     Uri uri = Uri.withAppendedPath(THUMB_CONTENT_URI, String.valueOf(attachmentId.getUniqueId()));
     return ContentUris.withAppendedId(uri, attachmentId.getRowId());
+  }
+
+  public static Uri getStickerUri(long id) {
+    return ContentUris.withAppendedId(STICKER_CONTENT_URI, id);
   }
 
   public static boolean isLocalUri(final @NonNull Uri uri) {

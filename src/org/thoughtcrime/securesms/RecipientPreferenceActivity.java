@@ -231,12 +231,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new ThreadMediaLoader(this, address, true);
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+  public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
     if (data != null && data.getCount() > 0) {
       this.threadPhotoRailLabel.setVisibility(View.VISIBLE);
       this.threadPhotoRailView.setVisibility(View.VISIBLE);
@@ -253,7 +253,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> loader) {
+  public void onLoaderReset(@NonNull Loader<Cursor> loader) {
     this.threadPhotoRailView.setCursor(glideRequests, null);
   }
 

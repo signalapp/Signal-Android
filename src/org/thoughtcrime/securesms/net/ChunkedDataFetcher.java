@@ -150,7 +150,7 @@ public class ChunkedDataFetcher {
       return;
     }
 
-    SignalExecutors.IO.execute(() -> {
+    SignalExecutors.UNBOUNDED.execute(() -> {
       List<CallRequestController> controllers = Stream.of(requestPattern).map(range -> makeChunkRequest(client, url, range)).toList();
       List<InputStream>           streams     = new ArrayList<>(controllers.size() + (firstChunk.isPresent() ? 1 : 0));
 

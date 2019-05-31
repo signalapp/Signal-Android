@@ -200,7 +200,7 @@ public class ConversationListItem extends RelativeLayout
     String name = recipient.isLocalNumber() ? getContext().getString(R.string.note_to_self) : recipient.getName();
 
     fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), name, highlightSubstring));
-    subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), contact.getAddress().toPhoneString(), highlightSubstring));
+    subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), contact.getAddress().toString(), highlightSubstring));
     dateView.setText("");
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);

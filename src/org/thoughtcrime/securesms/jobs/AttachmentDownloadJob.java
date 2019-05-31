@@ -4,11 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
-
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -17,6 +12,10 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
@@ -107,6 +106,11 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
+    doWork();
+    MessageNotifier.updateNotification(context, 0);
+  }
+
+  public void doWork() throws IOException {
     Log.i(TAG, "onRun() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
 
     final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
@@ -133,7 +137,6 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
     database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
 
     retrieveAttachment(messageId, attachmentId, attachment);
-    MessageNotifier.updateNotification(context);
   }
 
   @Override
@@ -145,7 +148,7 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  protected boolean onShouldRetry(Exception exception) {
+  protected boolean onShouldRetry(@NonNull Exception exception) {
     return (exception instanceof PushNetworkException);
   }
 

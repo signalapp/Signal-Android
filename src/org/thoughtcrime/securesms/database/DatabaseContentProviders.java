@@ -29,6 +29,14 @@ public class DatabaseContentProviders {
     public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.attachment");
   }
 
+  public static class Sticker extends NoopContentProvider {
+    public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.sticker");
+  }
+
+  public static class StickerPack extends NoopContentProvider {
+    public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.stickerpack");
+  }
+
   private static abstract class NoopContentProvider extends ContentProvider {
 
     @Override

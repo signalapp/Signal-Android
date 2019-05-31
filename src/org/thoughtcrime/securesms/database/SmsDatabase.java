@@ -217,6 +217,10 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
   }
 
+  public void markAsUnsupportedProtocolVersion(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.UNSUPPORTED_MESSAGE_TYPE);
+  }
+
   public void markAsLegacyVersion(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT);
   }

@@ -23,10 +23,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.widget.RecyclerView;
-
-import org.thoughtcrime.securesms.BindableConversationItem;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,14 +30,17 @@ import android.widget.TextView;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
+import org.thoughtcrime.securesms.BindableConversationItem;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.FastCursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -296,10 +295,15 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   protected long getItemId(@NonNull MessageRecord record) {
     if (record.isOutgoing() && record.isMms()) {
-      SlideDeck slideDeck = ((MmsMessageRecord)record).getSlideDeck();
+      MmsMessageRecord mmsRecord = (MmsMessageRecord) record;
+      SlideDeck        slideDeck = mmsRecord.getSlideDeck();
 
       if (slideDeck.getThumbnailSlide() != null && slideDeck.getThumbnailSlide().getFastPreflightId() != null) {
         return Long.valueOf(slideDeck.getThumbnailSlide().getFastPreflightId());
+      }
+
+      if (slideDeck.getStickerSlide() != null && slideDeck.getStickerSlide().getFastPreflightId() != null) {
+        return Long.valueOf(slideDeck.getStickerSlide().getFastPreflightId());
       }
     }
 
