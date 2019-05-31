@@ -57,6 +57,9 @@
     <color name="import_export_touch_highlight_light">#400099cc</color>
     <color name="import_export_touch_highlight_dark">#40ffffff</color>
 
+    <color name="StickerPreviewActivity_remove_button_color">@color/conversation_crimson</color>
+    <color name="StickerPreviewActivity_install_button_color">@color/core_blue</color>
+
     <color name="sticker_selected_color">#99ffffff</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="transparent_black">#00000000</color>

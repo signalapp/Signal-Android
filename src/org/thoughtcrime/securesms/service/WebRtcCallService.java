@@ -18,8 +18,8 @@ import android.os.ResultReceiver;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
+import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -34,12 +34,14 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
@@ -90,12 +92,10 @@ import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -192,15 +192,21 @@ public class WebRtcCallService extends Service implements InjectableType,
   private ExecutorService          networkExecutor = Executors.newSingleThreadExecutor();
   private ScheduledExecutorService timeoutExecutor = Executors.newScheduledThreadPool(1);
 
+  private final PhoneStateListener hangUpRtcOnDeviceCallAnswered = new HangUpRtcOnPstnCallAnsweredListener();
+
   @Override
   public void onCreate() {
     super.onCreate();
+    Log.d(TAG, "onCreate");
 
     initializeResources();
 
     registerIncomingPstnCallReceiver();
     registerUncaughtExceptionHandler();
     registerWiredHeadsetStateReceiver();
+
+    TelephonyUtil.getManager(this)
+                 .listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE);
   }
 
   @Override
@@ -239,6 +245,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   @Override
   public void onDestroy() {
     super.onDestroy();
+    Log.d(TAG, "onDestroy");
 
     if (callReceiver != null) {
       unregisterReceiver(callReceiver);
@@ -261,6 +268,9 @@ public class WebRtcCallService extends Service implements InjectableType,
       unregisterReceiver(powerButtonReceiver);
       powerButtonReceiver = null;
     }
+
+    TelephonyUtil.getManager(this)
+                 .listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_NONE);
   }
 
   @Override
@@ -901,9 +911,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   /// Helper Methods
 
   private boolean isBusy() {
-    TelephonyManager telephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-
-    return callState != CallState.STATE_IDLE || telephonyManager.getCallState() != TelephonyManager.CALL_STATE_IDLE;
+    return callState != CallState.STATE_IDLE || TelephonyUtil.isAnyPstnLineBusy(this);
   }
 
   private boolean isIdle() {
@@ -1380,5 +1388,24 @@ public class WebRtcCallService extends Service implements InjectableType,
     intent.putExtra(EXTRA_RESULT_RECEIVER, resultReceiver);
 
     context.startService(intent);
+  }
+
+  private class HangUpRtcOnPstnCallAnsweredListener extends PhoneStateListener {
+
+    @Override
+    public void onCallStateChanged(int state, String phoneNumber) {
+      super.onCallStateChanged(state, phoneNumber);
+      if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
+        hangup();
+        Log.i(TAG, "Device phone call ended Signal call.");
+      }
+    }
+
+    private void hangup() {
+      Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
+      intent.setAction(ACTION_LOCAL_HANGUP);
+
+      startService(intent);
+    }
   }
 }

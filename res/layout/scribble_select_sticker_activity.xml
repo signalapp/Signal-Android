@@ -6,14 +6,14 @@
               android:orientation="vertical">
 
     <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+            android:id="@+id/camera_sticker_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabBackground="@color/core_grey_90"
             app:tabMode="fixed"/>
 
     <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
+            android:id="@+id/camera_sticker_pager"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1" />

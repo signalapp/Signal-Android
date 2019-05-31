@@ -122,6 +122,12 @@
                 android:layout="@layout/conversation_item_received_thumbnail" />
 
             <ViewStub
+                android:id="@+id/sticker_view_stub"
+                android:layout_width="@dimen/media_bubble_sticker_dimens"
+                android:layout_height="@dimen/media_bubble_sticker_dimens"
+                android:layout="@layout/conversation_item_received_sticker" />
+
+            <ViewStub
                 android:id="@+id/link_preview_stub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -176,6 +182,19 @@
                 android:alpha="0.7"
                 app:footer_text_color="?conversation_item_received_text_secondary_color"
                 app:footer_icon_color="?conversation_item_received_text_secondary_color"/>
+
+            <org.thoughtcrime.securesms.components.ConversationItemFooter
+                android:id="@+id/conversation_item_sticker_footer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+                android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:visibility="gone"
+                app:footer_text_color="?conversation_sticker_footer_text_color"
+                app:footer_icon_color="?conversation_sticker_footer_icon_color"/>
 
         </LinearLayout>
 

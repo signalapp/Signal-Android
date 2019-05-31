@@ -21,11 +21,10 @@ import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.AttrRes;
-import android.support.annotation.DrawableRes;
+import android.support.annotation.DimenRes;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 
@@ -60,5 +59,11 @@ public class ResUtil {
     }
     typedArray.recycle();
     return resourceIds;
+  }
+
+  public static float getFloat(@NonNull Context context, @DimenRes int resId) {
+    TypedValue value = new TypedValue();
+    context.getResources().getValue(resId, value, true);
+    return value.getFloat();
   }
 }

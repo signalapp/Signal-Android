@@ -25,6 +25,14 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 public class CommunicationActions {
 
   public static void startVoiceCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+    if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
+      Toast.makeText(activity,
+                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
+                     Toast.LENGTH_SHORT
+                    ).show();
+      return;
+    }
+
     Permissions.with(activity)
         .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
         .ifNecessary()

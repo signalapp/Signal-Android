@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -89,7 +90,7 @@ public class DeviceListFragment extends ListFragment
   }
 
   @Override
-  public Loader<List<Device>> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<List<Device>> onCreateLoader(int id, Bundle args) {
     empty.setVisibility(View.GONE);
     progressContainer.setVisibility(View.VISIBLE);
 
@@ -97,7 +98,7 @@ public class DeviceListFragment extends ListFragment
   }
 
   @Override
-  public void onLoadFinished(Loader<List<Device>> loader, List<Device> data) {
+  public void onLoadFinished(@NonNull Loader<List<Device>> loader, List<Device> data) {
     progressContainer.setVisibility(View.GONE);
 
     if (data == null) {
@@ -116,7 +117,7 @@ public class DeviceListFragment extends ListFragment
   }
 
   @Override
-  public void onLoaderReset(Loader<List<Device>> loader) {
+  public void onLoaderReset(@NonNull Loader<List<Device>> loader) {
     setListAdapter(null);
   }
 
@@ -210,7 +211,7 @@ public class DeviceListFragment extends ListFragment
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
       if (convertView == null) {
         convertView = ((Activity)getContext()).getLayoutInflater().inflate(resource, parent, false);
       }

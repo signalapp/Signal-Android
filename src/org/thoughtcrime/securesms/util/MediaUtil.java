@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
-import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.webkit.MimeTypeMap;
 
@@ -17,6 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 
@@ -40,6 +41,7 @@ public class MediaUtil {
 
   public static final String IMAGE_PNG         = "image/png";
   public static final String IMAGE_JPEG        = "image/jpeg";
+  public static final String IMAGE_WEBP        = "image/webp";
   public static final String IMAGE_GIF         = "image/gif";
   public static final String AUDIO_AAC         = "audio/aac";
   public static final String AUDIO_UNSPECIFIED = "audio/*";
@@ -50,7 +52,9 @@ public class MediaUtil {
 
   public static Slide getSlideForAttachment(Context context, Attachment attachment) {
     Slide slide = null;
-    if (isGif(attachment.getContentType())) {
+    if (attachment.isSticker()) {
+      slide = new StickerSlide(context, attachment);
+    } else if (isGif(attachment.getContentType())) {
       slide = new GifSlide(context, attachment);
     } else if (isImageType(attachment.getContentType())) {
       slide = new ImageSlide(context, attachment);

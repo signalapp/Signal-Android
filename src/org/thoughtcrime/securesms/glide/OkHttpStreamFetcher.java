@@ -35,7 +35,7 @@ class OkHttpStreamFetcher implements DataFetcher<InputStream> {
   }
 
   @Override
-  public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
+  public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
     try {
       Request.Builder requestBuilder = new Request.Builder()
           .url(url.toStringUrl());
@@ -82,15 +82,13 @@ class OkHttpStreamFetcher implements DataFetcher<InputStream> {
     // TODO: call cancel on the client when this method is called on a background thread. See #257
   }
 
-  @NonNull
   @Override
-  public Class<InputStream> getDataClass() {
+  public @NonNull Class<InputStream> getDataClass() {
     return InputStream.class;
   }
 
-  @NonNull
   @Override
-  public DataSource getDataSource() {
+  public @NonNull DataSource getDataSource() {
     return DataSource.REMOTE;
   }
 }

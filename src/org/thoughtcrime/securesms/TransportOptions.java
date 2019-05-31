@@ -34,10 +34,12 @@ public class TransportOptions {
   private Optional<Integer>         defaultSubscriptionId = Optional.absent();
   private Optional<TransportOption> selectedOption        = Optional.absent();
 
+  private final Optional<Integer> systemSubscriptionId;
+
   public TransportOptions(Context context, boolean media) {
-    this.context               = context;
-    this.enabledTransports     = initializeAvailableTransports(media);
-    this.defaultSubscriptionId = new SubscriptionManagerCompat(context).getPreferredSubscriptionId();
+    this.context              = context;
+    this.enabledTransports    = initializeAvailableTransports(media);
+    this.systemSubscriptionId = new SubscriptionManagerCompat(context).getPreferredSubscriptionId();
   }
 
   public void reset(boolean media) {
@@ -88,13 +90,10 @@ public class TransportOptions {
   public @NonNull TransportOption getSelectedTransport() {
     if (selectedOption.isPresent()) return selectedOption.get();
 
-    if (defaultSubscriptionId.isPresent()) {
-      for (TransportOption transportOption : enabledTransports) {
-        if (transportOption.getType() == defaultTransportType &&
-            (int)defaultSubscriptionId.get() == transportOption.getSimSubscriptionId().or(-1))
-        {
-          return transportOption;
-        }
+    if (defaultTransportType == Type.SMS) {
+      TransportOption transportOption = findEnabledSmsTransportOption(defaultSubscriptionId.or(systemSubscriptionId));
+      if (transportOption != null) {
+        return transportOption;
       }
     }
 
@@ -105,6 +104,20 @@ public class TransportOptions {
     }
 
     throw new AssertionError("No options of default type!");
+  }
+
+  private @Nullable TransportOption findEnabledSmsTransportOption(Optional<Integer> subscriptionId) {
+    if (subscriptionId.isPresent()) {
+      final int subId = subscriptionId.get();
+
+      for (TransportOption transportOption : enabledTransports) {
+        if (transportOption.getType() == Type.SMS &&
+            subId == transportOption.getSimSubscriptionId().or(-1)) {
+          return transportOption;
+        }
+      }
+    }
+    return null;
   }
 
   public void disableTransport(Type type) {

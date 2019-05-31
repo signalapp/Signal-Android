@@ -11,7 +11,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
-        classpath files('libs/gradle-witness.jar')
     }
 }
 
@@ -87,7 +86,7 @@ dependencies {
     compile 'org.conscrypt:conscrypt-android:2.0.0'
     compile 'org.signal:aesgcmprovider:0.0.3'
 
-    compile 'org.whispersystems:signal-service-android:2.13.1'
+    compile 'org.whispersystems:signal-service-android:2.13.3'
 
     compile 'org.whispersystems:webrtc-android:M74'
 
@@ -162,6 +161,7 @@ dependencies {
 }
 
 dependencyVerification {
+    configuration = '(play|website)(Debug|Release)RuntimeClasspath'
     verify = [
         'com.android.support:design:7874ad1904eedc74aa41cffffb7f759d8990056f3bbbc9264911651c67c42f5f',
         'com.android.support:preference-v14:8133c6e19233fa51e036a341e6d3f4adeead3375cebf777efced0fe154c3267e',
@@ -190,7 +190,7 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
         'org.conscrypt:conscrypt-android:400ca559a49b860a82862b22cee0e3110764bdcf7ee7c79e7479895c25cdfc09',
         'org.signal:aesgcmprovider:6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1',
-        'org.whispersystems:signal-service-android:2f5ac0cc0d3a016285fd02ec0fb12cf287653fca056a499643aadb4ed35b1c85',
+        'org.whispersystems:signal-service-android:ac6f2c70c4111f9f982bbfc9b34063834afdce31333405bec10506a31f0961cd',
         'org.whispersystems:webrtc-android:2f7befaa3b47a04d244a4eef7c03c2d49c1685a6f92fc505cd5f4ac7eca2dc18',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -258,7 +258,7 @@ dependencyVerification {
         'com.android.support:support-annotations:5d5b9414f02d3fa0ee7526b8d5ddae0da67c8ecc8c4d63ffa6cf91488a93b927',
         'com.android.support.constraint:constraint-layout-solver:2cafbe356f71c208013d021f32943904798cd6459e5107f9fe27000eb5bc2aef',
         'org.signal:signal-metadata-android:02323bc29317fa9d3b62fab0b507c94ba2e9bcc4a78d588888ffd313853757b3',
-        'org.whispersystems:signal-service-java:5275b437591577d9da1cc6bde7d4fc1d6549c221e2365e108a595b4d21cf7499',
+        'org.whispersystems:signal-service-java:440777f4beca894f37b86258f1493fd5c2e87df02fb9a6331f0c82b842c91012',
         'com.github.bumptech.glide:disklrucache:c1b1b6f5bbd01e2fcdc9d7f60913c8d338bdb65ed4a93bfa02b56f19daaade4b',
         'com.github.bumptech.glide:annotations:bede99ef9f71517a4274bac18fd3e483e9f2b6108d7d6fe8f4949be4aa4d9512',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
@@ -282,6 +282,15 @@ dependencyVerification {
     ]
 }
 
+def canonicalVersionCode = 489
+def canonicalVersionName = "4.41.1"
+
+def postFixSize = 10
+def abiPostFix = ['armeabi-v7a' : 1,
+                  'arm64-v8a'   : 2,
+                  'x86'         : 3,
+                  'x86_64'      : 4,
+                  'universal'   : 5]
 
 android {
     flavorDimensions "none"
@@ -294,8 +303,8 @@ android {
     }
 
     defaultConfig {
-        versionCode 487
-        versionName "4.40.4"
+        versionCode canonicalVersionCode * postFixSize
+        versionName canonicalVersionName
 
         minSdkVersion 19
         targetSdkVersion 26
@@ -316,9 +325,10 @@ android {
         buildConfigField "String", "MRENCLAVE", "\"cd6cfc342937b23b1bdd3bbf9721aa5615ac9ff50a75c5527d441cd3276826c9\""
         buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
+        buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
 
         ndk {
-            abiFilters 'armeabi-v7a', 'x86'
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
 
         resConfigs autoResConfig()
@@ -327,7 +337,7 @@ android {
             abi {
                 enable true
                 reset()
-                include 'armeabi-v7a', 'x86'
+                include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
                 universalApk true
             }
         }
@@ -397,8 +407,14 @@ android {
     }
 
     android.applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = outputFileName.replace(".apk", "-${variant.versionName}.apk")
+        variant.outputs.each { output ->
+            output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
+            def abiName = output.getFilter("ABI") ?: 'universal'
+            def postFix = abiPostFix.get(abiName, 0)
+
+            if (postFix >= postFixSize) throw new AssertionError("postFix is too large")
+
+            output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
         }
     }
 
@@ -424,8 +440,9 @@ android {
         website.manifest.srcFile 'website/AndroidManifest.xml'
     }
 
-     lintOptions {
-        abortOnError false
+    lintOptions {
+        abortOnError true
+        baseline file("lint-baseline.xml")
     }
 
     testOptions {
@@ -447,8 +464,8 @@ def assembleWebsiteDescriptor = { variant, file ->
         String apkName = file.getName()
 
         String descriptor = "{" +
-                "\"versionCode\" : $project.android.defaultConfig.versionCode," +
-                "\"versionName\" : \"$project.android.defaultConfig.versionName\"," +
+                "\"versionCode\" : $canonicalVersionCode," +
+                "\"versionName\" : \"$canonicalVersionName\"," +
                 "\"sha256sum\" : \"$digest\"," +
                 "\"url\" : \"$url/$apkName\"" +
                 "}"
@@ -528,5 +545,5 @@ static def autoResConfig() {
 task qa {
   group 'Verification'
   description 'Quality Assurance. Run before pushing.'
-  dependsOn ':testPlayReleaseUnitTest', ':assemblePlayDebug'
+  dependsOn ':testPlayReleaseUnitTest', ':lintPlayRelease', ':assemblePlayDebug'
 }
