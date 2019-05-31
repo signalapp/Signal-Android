@@ -393,13 +393,10 @@
         <item name="conversation_attach">@drawable/ic_attach_white_24dp</item>
         <item name="conversation_number_picker_text_color_normal">@color/gray13</item>
         <item name="conversation_number_picker_text_color_selected">@color/white</item>
-<<<<<<< HEAD
-        <item name="conversation_reply_tint">@color/white</item>
-=======
         <item name="conversation_sticker_footer_text_color">@color/core_grey_25</item>
         <item name="conversation_sticker_footer_icon_color">@color/core_grey_25</item>
         <item name="conversation_sticker_author_color">@color/core_grey_05</item>
->>>>>>> master
+        <item name="conversation_reply_tint">@color/white</item>
 
         <item name="emoji_tab_strip_background">@color/core_grey_85</item>
         <item name="emoji_tab_indicator">@color/gray65</item>
