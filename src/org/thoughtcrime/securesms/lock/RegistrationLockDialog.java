@@ -72,7 +72,7 @@ public class RegistrationLockDialog {
 
     ClickableSpan clickableSpan = new ClickableSpan() {
       @Override
-      public void onClick(View widget) {
+      public void onClick(@NonNull View widget) {
         dialog.dismiss();
         new AlertDialog.Builder(context).setTitle(R.string.RegistrationLockDialog_forgotten_pin)
                                         .setMessage(R.string.RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts)

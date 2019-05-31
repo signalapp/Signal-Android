@@ -109,6 +109,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_verified));
     } else if (SmsDatabase.Types.isIdentityDefault(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_unverified));
+    } else if (SmsDatabase.Types.isUnsupportedMessageType(type)) {
+      return emphasisAdded(context.getString(R.string.ThreadRecord_message_could_not_be_processed));
     } else {
       if (TextUtils.isEmpty(getBody())) {
         return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));

@@ -178,7 +178,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     if (exception instanceof RetryLaterException) return true;
     return false;
   }
@@ -200,19 +200,22 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     try {
       rotateSenderCertificateIfNecessary();
 
-      SignalServiceAddress                     address            = getPushAddress(message.getRecipient().getAddress());
-      List<SignalServiceAttachment>            serviceAttachments = getAttachmentPointersFor(message.getAttachments());
-      Optional<byte[]>                         profileKey         = getProfileKey(message.getRecipient());
-      Optional<SignalServiceDataMessage.Quote> quote              = getQuoteFor(message);
-      List<SharedContact>                      sharedContacts     = getSharedContactsFor(message);
-      List<Preview>                            previews           = getPreviewsFor(message);
-      SignalServiceDataMessage                 mediaMessage       = SignalServiceDataMessage.newBuilder()
+      SignalServiceAddress                       address            = getPushAddress(message.getRecipient().getAddress());
+      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
+      Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
+      Optional<SignalServiceDataMessage.Quote>   quote              = getQuoteFor(message);
+      Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
+      List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
+      List<Preview>                              previews           = getPreviewsFor(message);
+      SignalServiceDataMessage                   mediaMessage       = SignalServiceDataMessage.newBuilder()
                                                                                             .withBody(message.getBody())
                                                                                             .withAttachments(serviceAttachments)
                                                                                             .withTimestamp(message.getSentTimeMillis())
                                                                                             .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                                             .withProfileKey(profileKey.orNull())
                                                                                             .withQuote(quote.orNull())
+                                                                                            .withSticker(sticker.orNull())
                                                                                             .withSharedContacts(sharedContacts)
                                                                                             .withPreviews(previews)
                                                                                             .asExpirationUpdate(message.isExpirationUpdate())

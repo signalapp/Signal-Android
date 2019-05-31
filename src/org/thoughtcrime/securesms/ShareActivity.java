@@ -32,23 +32,22 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.logging.Log;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -254,12 +253,14 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
-    final Intent           intent     = new Intent(this, target);
-    final String           textExtra  = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    final ArrayList<Media> mediaExtra = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
+    final Intent           intent       = new Intent(this, target);
+    final String           textExtra    = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    final ArrayList<Media> mediaExtra   = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
+    final StickerLocator   stickerExtra = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
 
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
     intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
+    intent.putExtra(ConversationActivity.STICKER_EXTRA, stickerExtra);
 
     if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 

@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.Context;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
@@ -32,7 +33,7 @@ public class LongClickCopySpan extends URLSpan {
   }
 
   @Override
-  public void updateDrawState(TextPaint ds) {
+  public void updateDrawState(@NonNull TextPaint ds) {
     super.updateDrawState(ds);
     ds.bgColor = highlightColor;
     ds.setUnderlineText(!isHighlighted);

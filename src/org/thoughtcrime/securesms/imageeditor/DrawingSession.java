@@ -34,12 +34,12 @@ class DrawingSession extends ElementEditSession {
   }
 
   @Override
-  public EditSession newPoint(Matrix newInverse, PointF point, int p) {
+  public EditSession newPoint(@NonNull Matrix newInverse, @NonNull PointF point, int p) {
     return this;
   }
 
   @Override
-  public EditSession removePoint(Matrix newInverse, int p) {
+  public EditSession removePoint(@NonNull Matrix newInverse, int p) {
     return this;
   }
 }

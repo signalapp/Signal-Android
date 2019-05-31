@@ -41,7 +41,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   protected String searchString;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     ViewGroup container = ViewUtil.inflate(inflater, viewGroup, R.layout.giphy_fragment);
     this.recyclerView    = ViewUtil.findById(container, R.id.giphy_list);
     this.loadingProgress = ViewUtil.findById(container, R.id.loading_progress);
@@ -66,7 +66,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   }
 
   @Override
-  public void onLoadFinished(Loader<List<GiphyImage>> loader, @NonNull List<GiphyImage> data) {
+  public void onLoadFinished(@NonNull Loader<List<GiphyImage>> loader, @NonNull List<GiphyImage> data) {
     this.loadingProgress.setVisibility(View.GONE);
 
     if (data.isEmpty()) noResultsView.setVisibility(View.VISIBLE);
@@ -76,7 +76,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   }
 
   @Override
-  public void onLoaderReset(Loader<List<GiphyImage>> loader) {
+  public void onLoaderReset(@NonNull Loader<List<GiphyImage>> loader) {
     noResultsView.setVisibility(View.GONE);
     this.giphyAdapter.setImages(new LinkedList<GiphyImage>());
   }

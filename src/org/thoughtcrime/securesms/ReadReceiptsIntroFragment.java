@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class ReadReceiptsIntroFragment extends Fragment {
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View         v          = inflater.inflate(R.layout.experience_upgrade_preference_fragment, container, false);
     SwitchCompat preference = ViewUtil.findById(v, R.id.preference);
 

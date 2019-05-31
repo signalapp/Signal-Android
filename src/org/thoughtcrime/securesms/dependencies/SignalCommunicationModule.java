@@ -2,30 +2,27 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.gcm.FcmService;
-import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
-import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
-import org.thoughtcrime.securesms.jobs.TypingSendJob;
-import org.thoughtcrime.securesms.logging.Log;
-
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.gcm.FcmService;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
+import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
@@ -34,18 +31,27 @@ import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
+import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
+import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.RotateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
+import org.thoughtcrime.securesms.jobs.StickerDownloadJob;
+import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
+import org.thoughtcrime.securesms.jobs.TypingSendJob;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository;
+import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -95,7 +101,14 @@ import dagger.Provides;
                                      MultiDeviceConfigurationUpdateJob.class,
                                      RefreshUnidentifiedDeliveryAbilityJob.class,
                                      TypingSendJob.class,
-                                     AttachmentUploadJob.class})
+                                     AttachmentUploadJob.class,
+                                     StickerDownloadJob.class,
+                                     StickerPackPreviewRepository.class,
+                                     StickerRemoteUriLoader.Factory.class,
+                                     StickerPackDownloadJob.class,
+                                     MultiDeviceStickerPackOperationJob.class,
+                                     MultiDeviceStickerPackSyncJob.class,
+                                     LinkPreviewRepository.class})
 public class SignalCommunicationModule {
 
   private static final String TAG = SignalCommunicationModule.class.getSimpleName();

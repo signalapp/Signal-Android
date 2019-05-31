@@ -39,17 +39,17 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
   }
 
   @Override
-  public ContactFieldViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public @NonNull ContactFieldViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new ContactFieldViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_selectable_contact_field, parent, false));
   }
 
   @Override
-  public void onBindViewHolder(ContactFieldViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ContactFieldViewHolder holder, int position) {
     holder.bind(fields.get(position), glideRequests, selectable);
   }
 
   @Override
-  public void onViewRecycled(ContactFieldViewHolder holder) {
+  public void onViewRecycled(@NonNull ContactFieldViewHolder holder) {
     holder.recycle();
   }
 

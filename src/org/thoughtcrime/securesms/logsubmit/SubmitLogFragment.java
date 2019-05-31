@@ -139,14 +139,14 @@ public class SubmitLogFragment extends Fragment {
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_submit_log, container, false);
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     initializeResources();
   }
@@ -199,7 +199,7 @@ public class SubmitLogFragment extends Fragment {
 
     logPreview.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
-      public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+      public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
         if (((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition() < logPreviewAdapter.getItemCount() - 10) {
           scrollButton.setVisibility(View.VISIBLE);
         } else {
@@ -506,7 +506,9 @@ public class SubmitLogFragment extends Fragment {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
              .append(" ")
              .append(pm.getPackageInfo(context.getPackageName(), 0).versionName)
-             .append("\n");
+             .append(" (")
+             .append(Util.getManifestApkVersion(context))
+             .append(")\n");
     } catch (PackageManager.NameNotFoundException nnfe) {
       builder.append("Unknown\n");
     }

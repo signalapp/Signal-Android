@@ -46,9 +46,13 @@
     <dimen name="media_bubble_max_width">240dp</dimen>
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
+    <dimen name="media_bubble_sticker_dimens">128dp</dimen>
 
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
+
+    <dimen name="media_keyboard_provider_icon_padding">5dp</dimen>
+    <dimen name="media_keyboard_provider_icon_margin">4dp</dimen>
 
     <dimen name="mediasend_progress_dialog_size">120dp</dimen>
 
@@ -71,6 +75,15 @@
     <dimen name="message_details_table_row_pad">10dp</dimen>
 
     <dimen name="quick_camera_shutter_ring_size">52dp</dimen>
+
+    <dimen name="sticker_page_item_padding">8dp</dimen>
+    <dimen name="sticker_page_item_divisor">88dp</dimen>
+    <dimen name="sticker_page_item_multiplier">8dp</dimen>
+    <dimen name="sticker_preview_sticker_size">96dp</dimen>
+
+    <dimen name="sticker_management_horizontal_margin">16dp</dimen>
+
+    <dimen name="tooltip_popup_margin">8dp</dimen>
 
     <dimen name="transfer_controls_expanded_width">150dp</dimen>
     <dimen name="transfer_controls_contracted_width">70dp</dimen>
