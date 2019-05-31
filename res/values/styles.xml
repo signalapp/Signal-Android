@@ -97,15 +97,6 @@
         <item name="android:textColor">#BFffffff</item>
     </style>
 
-    <style name="NotificationText">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-
-    <style name="NotificationTitle">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
-      <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="Registration.Description" parent="@android:style/TextAppearance">
         <item name="android:textSize">16.0sp</item>
         <item name="android:typeface">sans</item>

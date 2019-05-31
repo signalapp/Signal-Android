@@ -5,10 +5,6 @@
     <dimen name="default_custom_keyboard_size">220dp</dimen>
     <dimen name="min_custom_keyboard_size">110dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
-    <dimen name="min_custom_keyboard_top_margin_landscape">50dp</dimen>
-    <dimen name="emoji_drawer_item_padding">5dp</dimen>
-    <dimen name="emoji_drawer_indicator_height">1.5dp</dimen>
-    <dimen name="emoji_drawer_left_right_padding">5dp</dimen>
     <dimen name="emoji_drawer_item_width">48dp</dimen>
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
@@ -74,8 +70,6 @@
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
 
-    <dimen name="quick_camera_shutter_ring_size">52dp</dimen>
-
     <dimen name="sticker_page_item_padding">8dp</dimen>
     <dimen name="sticker_page_item_divisor">88dp</dimen>
     <dimen name="sticker_page_item_multiplier">8dp</dimen>
@@ -85,8 +79,6 @@
 
     <dimen name="tooltip_popup_margin">8dp</dimen>
 
-    <dimen name="transfer_controls_expanded_width">150dp</dimen>
-    <dimen name="transfer_controls_contracted_width">70dp</dimen>
     <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
@@ -106,8 +98,6 @@
 
     <dimen name="onboarding_title_size">34sp</dimen>
     <dimen name="onboarding_subtitle_size">20sp</dimen>
-
-    <dimen name="scribble_stroke_size">2dp</dimen>
 
     <dimen name="floating_action_button_margin">16dp</dimen>
 

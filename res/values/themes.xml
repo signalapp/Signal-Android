@@ -481,9 +481,6 @@
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>
 
-    <style name="TextSecure.ScribbleTheme" parent="TextSecure.DarkNoActionBar">
-    </style>
-
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
         <item name="android:background">@color/core_grey_95</item>
     </style>
