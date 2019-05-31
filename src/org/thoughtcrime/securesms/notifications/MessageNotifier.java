@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SoftHashMap;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
@@ -63,6 +64,7 @@ import org.whispersystems.signalservice.internal.util.Util;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -85,16 +87,18 @@ public class MessageNotifier {
 
   public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
 
-  private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
-  private static final int    PENDING_MESSAGES_ID       = 1111;
-  private static final String NOTIFICATION_GROUP        = "messages";
-  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
-  private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
+  private static final  int   SUMMARY_NOTIFICATION_ID         = 1338;
+  private static final int    PENDING_MESSAGES_ID             = 1111;
+  private static final String NOTIFICATION_GROUP              = "messages";
+  private static final long   MIN_AUDIBLE_PERIOD_MILLIS       = TimeUnit.SECONDS.toMillis(2);
+  private static final long   DESKTOP_ACTIVITY_PERIOD         = TimeUnit.MINUTES.toMillis(1);
+  private static final long   MIN_AUDIBLE_GROUP_PERIOD_MILLIS = TimeUnit.MINUTES.toMillis(3);
 
-  private volatile static       long               visibleThread                = -1;
-  private volatile static       long               lastDesktopActivityTimestamp = -1;
-  private volatile static       long               lastAudibleNotification      = -1;
-  private          static final CancelableExecutor executor                     = new CancelableExecutor();
+  private volatile static       long               visibleThread                     = -1;
+  private volatile static       long               lastDesktopActivityTimestamp      = -1;
+  private          static       long               lastAudibleNotification           = -1;
+  private          static final Map<Long, Long>    lastAudibleNotificationsPerThread = new SoftHashMap<>();
+  private          static final CancelableExecutor executor                          = new CancelableExecutor();
 
   public static void setVisibleThread(long threadId) {
     visibleThread = threadId;
@@ -135,6 +139,7 @@ public class MessageNotifier {
   private static void cancelActiveNotifications(@NonNull Context context) {
     NotificationManager notifications = ServiceUtil.getNotificationManager(context);
     notifications.cancel(SUMMARY_NOTIFICATION_ID);
+    lastAudibleNotificationsPerThread.clear();
 
     if (Build.VERSION.SDK_INT >= 23) {
       try {
@@ -187,6 +192,10 @@ public class MessageNotifier {
     }
   }
 
+  public static void updateThreadRead(long threadId) {
+    lastAudibleNotificationsPerThread.remove(threadId);
+  }
+
   public static void updateNotification(@NonNull Context context) {
     if (!TextSecurePreferences.isNotificationsEnabled(context)) {
       return;
@@ -224,6 +233,16 @@ public class MessageNotifier {
         (recipients != null && recipients.isMuted()))
     {
       return;
+    }
+
+    if (signal && recipients != null && recipients.isGroupRecipient())
+    {
+      Long lastNotificationTimestamp = lastAudibleNotificationsPerThread.get(threadId);
+      if (lastNotificationTimestamp != null && (System.currentTimeMillis() - lastNotificationTimestamp) < MIN_AUDIBLE_GROUP_PERIOD_MILLIS) {
+        signal = false;
+      } else {
+        lastAudibleNotificationsPerThread.put(threadId, System.currentTimeMillis());
+      }
     }
 
     if (isVisible) {

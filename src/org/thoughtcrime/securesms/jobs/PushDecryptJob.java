@@ -598,6 +598,7 @@ public class PushDecryptJob extends BaseJob {
 
       if (threadId != null) {
         DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+        MessageNotifier.updateThreadRead(threadId);
         MessageNotifier.updateNotification(context);
       }
 

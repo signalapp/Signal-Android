@@ -62,6 +62,7 @@ public class AndroidAutoHeardReceiver extends BroadcastReceiver {
           for (long threadId : threadIds) {
             Log.i(TAG, "Marking meassage as read: " + threadId);
             List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+            MessageNotifier.updateThreadRead(threadId);
 
             messageIdsCollection.addAll(messageIds);
           }

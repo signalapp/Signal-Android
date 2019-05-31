@@ -538,6 +538,7 @@ public class ConversationListFragment extends Fragment
 
             if (unreadCount > 0) {
               List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
+              MessageNotifier.updateThreadRead(threadId);
               MessageNotifier.updateNotification(getActivity());
               MarkReadReceiver.process(getActivity(), messageIds);
             }

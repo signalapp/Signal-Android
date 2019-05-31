@@ -2053,6 +2053,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Context                 context    = ConversationActivity.this;
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
 
+        MessageNotifier.updateThreadRead(params[0]);
         MessageNotifier.updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
 
