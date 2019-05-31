@@ -50,7 +50,7 @@ public class NotificationItem {
     return individualRecipient;
   }
 
-  public @Nullable CharSequence getText() {
+  public CharSequence getText() {
     return text;
   }
 

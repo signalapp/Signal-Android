@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.StorageUtil;
 
 public class TextSlide extends Slide {
 
@@ -16,6 +17,6 @@ public class TextSlide extends Slide {
   }
 
   public TextSlide(@NonNull Context context, @NonNull Uri uri, @Nullable String filename, long size) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.LONG_TEXT, size, 0, 0, true, filename, null, null, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.LONG_TEXT, size, 0, 0, true, filename, null, false, false));
   }
 }

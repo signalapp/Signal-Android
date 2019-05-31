@@ -102,7 +102,7 @@ public class LocalBackupJob extends BaseJob {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception e) {
+  public boolean onShouldRetry(Exception e) {
     return false;
   }
 

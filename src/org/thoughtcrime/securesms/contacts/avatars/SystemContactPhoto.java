@@ -30,8 +30,9 @@ public class SystemContactPhoto implements ContactPhoto {
     return context.getContentResolver().openInputStream(contactPhotoUri);
   }
 
+  @Nullable
   @Override
-  public @Nullable Uri getUri(@NonNull Context context) {
+  public Uri getUri(@NonNull Context context) {
     return contactPhotoUri;
   }
 
@@ -41,7 +42,7 @@ public class SystemContactPhoto implements ContactPhoto {
   }
 
   @Override
-  public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+  public void updateDiskCacheKey(MessageDigest messageDigest) {
     messageDigest.update(address.serialize().getBytes());
     messageDigest.update(contactPhotoUri.toString().getBytes());
     messageDigest.update(Conversions.longToByteArray(lastModifiedTime));

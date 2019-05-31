@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util.spans;
 
 
-import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 
@@ -14,7 +13,7 @@ public class CenterAlignedRelativeSizeSpan extends MetricAffectingSpan {
   }
 
   @Override
-  public void updateMeasureState(@NonNull TextPaint p) {
+  public void updateMeasureState(TextPaint p) {
     updateDrawState(p);
   }
 

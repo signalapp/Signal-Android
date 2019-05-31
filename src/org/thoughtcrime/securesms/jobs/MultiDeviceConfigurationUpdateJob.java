@@ -99,7 +99,7 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob implements Inject
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception e) {
+  public boolean onShouldRetry(Exception e) {
     return e instanceof PushNetworkException;
   }
 

@@ -112,7 +112,7 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception e) {
+  public boolean onShouldRetry(Exception e) {
     if (e instanceof PushNetworkException) return true;
     return false;
   }

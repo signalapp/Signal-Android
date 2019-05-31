@@ -119,7 +119,7 @@ public class FcmRefreshJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception throwable) {
+  public boolean onShouldRetry(Exception throwable) {
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
     return true;
   }

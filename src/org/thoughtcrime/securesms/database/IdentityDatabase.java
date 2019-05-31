@@ -210,7 +210,7 @@ public class IdentityDatabase extends Database {
     }
 
     @Override
-    public @NonNull String toString() {
+    public String toString() {
       return "{address: " + address + ", identityKey: " + identitykey + ", verifiedStatus: " + verifiedStatus + ", firstUse: " + firstUse + "}";
     }
 

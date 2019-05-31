@@ -3,6 +3,9 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,7 +32,6 @@ public class ConversationItemThumbnail extends FrameLayout {
   private ConversationItemFooter footer;
   private CornerMask             cornerMask;
   private Outliner               outliner;
-  private boolean                borderless;
 
   public ConversationItemThumbnail(Context context) {
     super(context);
@@ -73,12 +75,10 @@ public class ConversationItemThumbnail extends FrameLayout {
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
 
-    if (!borderless) {
-      cornerMask.mask(canvas);
+    cornerMask.mask(canvas);
 
-      if (album.getVisibility() != VISIBLE) {
-        outliner.draw(canvas);
-      }
+    if (album.getVisibility() != VISIBLE) {
+      outliner.draw(canvas);
     }
   }
 
@@ -108,10 +108,6 @@ public class ConversationItemThumbnail extends FrameLayout {
   public void setCorners(int topLeft, int topRight, int bottomRight, int bottomLeft) {
     cornerMask.setRadii(topLeft, topRight, bottomRight, bottomLeft);
     outliner.setRadii(topLeft, topRight, bottomRight, bottomLeft);
-  }
-
-  public void setBorderless(boolean borderless) {
-    this.borderless = borderless;
   }
 
   public ConversationItemFooter getFooter() {

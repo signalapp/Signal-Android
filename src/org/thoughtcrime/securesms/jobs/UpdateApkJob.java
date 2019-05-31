@@ -97,7 +97,7 @@ public class UpdateApkJob extends BaseJob {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception e) {
+  public boolean onShouldRetry(Exception e) {
     return e instanceof  IOException;
   }
 
@@ -229,7 +229,7 @@ public class UpdateApkJob extends BaseJob {
       return url;
     }
 
-    public @NonNull String toString() {
+    public String toString() {
       return "["  + versionCode + ", " + versionName + ", " + url + "]";
     }
 

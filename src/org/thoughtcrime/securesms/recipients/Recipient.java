@@ -653,7 +653,7 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
-  public @NonNull synchronized UnidentifiedAccessMode getUnidentifiedAccessMode() {
+  public synchronized UnidentifiedAccessMode getUnidentifiedAccessMode() {
     return unidentifiedAccessMode;
   }
 

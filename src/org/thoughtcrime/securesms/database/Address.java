@@ -126,26 +126,22 @@ public class Address implements Parcelable, Comparable<Address> {
   }
 
   public @NonNull String toGroupString() {
-    if (!isGroup()) throw new AssertionError("Not group");
+    if (!isGroup()) throw new AssertionError("Not group: " + address);
     return address;
   }
 
   public @NonNull String toPhoneString() {
-    if (!isPhone()) {
-      if (isEmail()) throw new AssertionError("Not e164, is email");
-      if (isGroup()) throw new AssertionError("Not e164, is group");
-      throw new AssertionError("Not e164, unknown");
-    }
+    if (!isPhone()) throw new AssertionError("Not e164: " + address);
     return address;
   }
 
   public @NonNull String toEmailString() {
-    if (!isEmail()) throw new AssertionError("Not email");
+    if (!isEmail()) throw new AssertionError("Not email: " + address);
     return address;
   }
 
   @Override
-  public @NonNull String toString() {
+  public String toString() {
     return address;
   }
 

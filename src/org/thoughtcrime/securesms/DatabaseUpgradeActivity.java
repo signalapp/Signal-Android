@@ -20,16 +20,19 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
+
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
+import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -43,7 +46,6 @@ import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -146,7 +148,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   private boolean needsUpgradeTask() {
-    int currentVersionCode = Util.getCanonicalVersionCode();
+    int currentVersionCode = Util.getCurrentApkReleaseVersion(this);
     int lastSeenVersion    = VersionTracker.getLastSeenVersion(this);
 
     Log.i("DatabaseUpgradeActivity", "LastSeenVersion: " + lastSeenVersion);
@@ -164,10 +166,14 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   public static boolean isUpdate(Context context) {
-    int currentVersionCode  = Util.getCanonicalVersionCode();
-    int previousVersionCode = VersionTracker.getLastSeenVersion(context);
+    try {
+      int currentVersionCode  = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+      int previousVersionCode = VersionTracker.getLastSeenVersion(context);
 
-    return previousVersionCode < currentVersionCode;
+      return previousVersionCode < currentVersionCode;
+    } catch (PackageManager.NameNotFoundException e) {
+      throw new AssertionError(e);
+    }
   }
 
   @SuppressLint("StaticFieldLeak")

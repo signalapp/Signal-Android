@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+import android.database.ContentObservable;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
@@ -33,9 +35,6 @@ public class MediaDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_ID + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
@@ -48,8 +47,7 @@ public class MediaDatabase extends Database {
         + " FROM " + MmsDatabase.TABLE_NAME
         + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND (%s) AND "
         + AttachmentDatabase.DATA + " IS NOT NULL AND "
-        + AttachmentDatabase.QUOTE + " = 0 AND "
-        + AttachmentDatabase.STICKER_PACK_ID + " IS NULL "
+        + AttachmentDatabase.QUOTE + " = 0 "
         + "ORDER BY " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC";
 
   private static final String GALLERY_MEDIA_QUERY  = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR " + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%'");

@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.ResolveInfo;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,7 @@ public class ShareIntentListAdapter extends ArrayAdapter<ResolveInfo> {
   }
 
   @Override
-  public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
+  public View getView(int position, View convertView, ViewGroup parent) {
     LayoutInflater  inflater    = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View            rowView     = inflater.inflate(R.layout.share_intent_row, parent, false);
     ImageView       intentImage = (ImageView) rowView.findViewById(R.id.share_intent_image);

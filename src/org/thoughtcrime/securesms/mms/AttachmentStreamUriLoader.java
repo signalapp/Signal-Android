@@ -18,20 +18,21 @@ import java.security.MessageDigest;
 
 public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, InputStream> {
 
+  @Nullable
   @Override
-  public @Nullable LoadData<InputStream> buildLoadData(@NonNull AttachmentModel attachmentModel, int width, int height, @NonNull Options options) {
+  public LoadData<InputStream> buildLoadData(AttachmentModel attachmentModel, int width, int height, Options options) {
     return new LoadData<>(attachmentModel, new AttachmentStreamLocalUriFetcher(attachmentModel.attachment, attachmentModel.plaintextLength, attachmentModel.key, attachmentModel.digest));
   }
 
   @Override
-  public boolean handles(@NonNull AttachmentModel attachmentModel) {
+  public boolean handles(AttachmentModel attachmentModel) {
     return true;
   }
 
   static class Factory implements ModelLoaderFactory<AttachmentModel, InputStream> {
 
     @Override
-    public @NonNull ModelLoader<AttachmentModel, InputStream> build(@NonNull MultiModelLoaderFactory multiFactory) {
+    public ModelLoader<AttachmentModel, InputStream> build(MultiModelLoaderFactory multiFactory) {
       return new AttachmentStreamUriLoader();
     }
 
@@ -57,7 +58,7 @@ public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, I
     }
 
     @Override
-    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+    public void updateDiskCacheKey(MessageDigest messageDigest) {
       messageDigest.update(attachment.toString().getBytes());
     }
 

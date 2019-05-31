@@ -9,17 +9,17 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
+import org.thoughtcrime.securesms.components.emoji.EmojiPageView.EmojiSelectionListener;
 
 import java.util.List;
 
 public class EmojiVariationSelectorPopup extends PopupWindow {
 
-  private final Context            context;
-  private final ViewGroup          list;
-  private final EmojiEventListener listener;
+  private final Context                context;
+  private final ViewGroup              list;
+  private final EmojiSelectionListener listener;
 
-  public EmojiVariationSelectorPopup(@NonNull Context context, @NonNull EmojiEventListener listener) {
+  public EmojiVariationSelectorPopup(@NonNull Context context, @NonNull EmojiSelectionListener listener) {
     super(LayoutInflater.from(context).inflate(R.layout.emoji_variation_selector, null),
           ViewGroup.LayoutParams.WRAP_CONTENT,
           ViewGroup.LayoutParams.WRAP_CONTENT);

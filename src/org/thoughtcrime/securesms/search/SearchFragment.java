@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.search;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,9 +29,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.search.model.SearchResult;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.Locale;
+import java.util.concurrent.Executors;
 
 /**
  * A fragment that is displayed to do full-text search of messages, groups, and contacts.
@@ -70,7 +71,7 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
                                                              DatabaseFactory.getContactsDatabase(getContext()),
                                                              DatabaseFactory.getThreadDatabase(getContext()),
                                                              ContactAccessor.getInstance(),
-                                                             SignalExecutors.SERIAL);
+                                                             Executors.newSingleThreadExecutor());
     viewModel = ViewModelProviders.of(this, new SearchViewModel.Factory(searchRepository)).get(SearchViewModel.class);
 
     if (pendingQuery != null) {

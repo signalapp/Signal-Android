@@ -83,7 +83,7 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof NonSuccessfulResponseCodeException) return false;
     if (exception instanceof PushNetworkException)               return true;
 

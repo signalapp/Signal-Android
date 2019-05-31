@@ -66,8 +66,7 @@ public class IncomingMediaMessage {
                               Optional<List<SignalServiceAttachment>> attachments,
                               Optional<QuoteModel> quote,
                               Optional<List<Contact>> sharedContacts,
-                              Optional<List<LinkPreview>> linkPreviews,
-                              Optional<Attachment> sticker)
+                              Optional<List<LinkPreview>> linkPreviews)
   {
     this.push             = true;
     this.from             = from;
@@ -85,10 +84,6 @@ public class IncomingMediaMessage {
     this.attachments.addAll(PointerAttachment.forPointers(attachments));
     this.sharedContacts.addAll(sharedContacts.or(Collections.emptyList()));
     this.linkPreviews.addAll(linkPreviews.or(Collections.emptyList()));
-
-    if (sticker.isPresent()) {
-      this.attachments.add(sticker.get());
-    }
   }
 
   public int getSubscriptionId() {

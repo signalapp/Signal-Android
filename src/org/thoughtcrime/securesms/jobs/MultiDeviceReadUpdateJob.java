@@ -98,7 +98,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob implements InjectableType 
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return exception instanceof PushNetworkException;
   }
 

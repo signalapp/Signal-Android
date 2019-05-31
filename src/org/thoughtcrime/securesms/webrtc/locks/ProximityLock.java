@@ -32,13 +32,14 @@ class ProximityLock {
   private Optional<PowerManager.WakeLock> getProximityLock(PowerManager pm) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       if (pm.isWakeLockLevelSupported(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK)) {
-        return Optional.fromNullable(pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:proximity"));
+        return Optional.fromNullable(pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK,
+                                                    "Signal Proximity Lock"));
       } else {
         return Optional.absent();
       }
     } else {
       try {
-        return Optional.fromNullable(pm.newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:incall"));
+        return Optional.fromNullable(pm.newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "RedPhone Incall"));
       } catch (Throwable t) {
         Log.e(TAG, "Failed to create proximity lock", t);
         return Optional.absent();

@@ -93,7 +93,7 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception throwable) {
+  public boolean onShouldRetry(Exception throwable) {
     return false;
   }
 

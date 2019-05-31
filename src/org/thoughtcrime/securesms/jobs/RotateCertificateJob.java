@@ -47,7 +47,7 @@ public class RotateCertificateJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public @NonNull String getFactoryKey() {
+  public String getFactoryKey() {
     return KEY;
   }
 
@@ -63,7 +63,7 @@ public class RotateCertificateJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception e) {
+  public boolean onShouldRetry(Exception e) {
     return e instanceof PushNetworkException;
   }
 

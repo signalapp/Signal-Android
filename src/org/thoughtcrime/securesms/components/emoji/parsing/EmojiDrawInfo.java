@@ -22,7 +22,7 @@ public class EmojiDrawInfo {
   }
 
   @Override
-  public @NonNull String toString() {
+  public String toString() {
     return "DrawInfo{" +
         "page=" + page +
         ", index=" + index +

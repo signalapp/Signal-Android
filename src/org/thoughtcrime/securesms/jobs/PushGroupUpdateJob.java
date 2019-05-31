@@ -124,7 +124,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception e) {
+  public boolean onShouldRetry(Exception e) {
     Log.w(TAG, e);
     return e instanceof PushNetworkException;
   }

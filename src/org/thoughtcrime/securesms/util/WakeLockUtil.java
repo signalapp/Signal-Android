@@ -13,8 +13,6 @@ public class WakeLockUtil {
 
   /**
    * Run a runnable with a wake lock. Ensures that the lock is safely acquired and released.
-   *
-   * @param tag will be prefixed with "signal:" if it does not already start with it.
    */
   public static void runWithLock(@NonNull Context context, int lockType, long timeout, @NonNull String tag, @NonNull Runnable task) {
     WakeLock wakeLock = null;
@@ -28,11 +26,7 @@ public class WakeLockUtil {
     }
   }
 
-  /**
-   * @param tag will be prefixed with "signal:" if it does not already start with it.
-   */
   public static WakeLock acquire(@NonNull Context context, int lockType, long timeout, @NonNull String tag) {
-    tag = prefixTag(tag);
     try {
       PowerManager powerManager = ServiceUtil.getPowerManager(context);
       WakeLock     wakeLock     = powerManager.newWakeLock(lockType, tag);
@@ -47,11 +41,7 @@ public class WakeLockUtil {
     }
   }
 
-  /**
-   * @param tag will be prefixed with "signal:" if it does not already start with it.
-   */
   public static void release(@NonNull WakeLock wakeLock, @NonNull String tag) {
-    tag = prefixTag(tag);
     try {
       if (wakeLock.isHeld()) {
         wakeLock.release();
@@ -62,9 +52,5 @@ public class WakeLockUtil {
     } catch (Exception e) {
       Log.w(TAG, "Failed to release wakelock with tag: " + tag, e);
     }
-  }
-
-  private static String prefixTag(@NonNull String tag) {
-    return tag.startsWith("signal:") ? tag : "signal:" + tag;
   }
 }

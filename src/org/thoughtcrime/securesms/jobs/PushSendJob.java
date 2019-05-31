@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -31,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -199,21 +197,17 @@ public abstract class PushSendJob extends SendJob {
     for (Attachment attachment : message.getOutgoingQuote().getAttachments()) {
       BitmapUtil.ScaleResult  thumbnailData = null;
       SignalServiceAttachment thumbnail     = null;
-      String                  thumbnailType = MediaUtil.IMAGE_JPEG;
 
       try {
         if (MediaUtil.isImageType(attachment.getContentType()) && attachment.getDataUri() != null) {
-          Bitmap.CompressFormat format = BitmapUtil.getCompressFormatForContentType(attachment.getContentType());
-
-          thumbnailData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getDataUri()), 100, 100, 500 * 1024, format);
-          thumbnailType = attachment.getContentType();
+          thumbnailData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getDataUri()), 100, 100, 500 * 1024);
         } else if (MediaUtil.isVideoType(attachment.getContentType()) && attachment.getThumbnailUri() != null) {
           thumbnailData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getThumbnailUri()), 100, 100, 500 * 1024);
         }
 
         if (thumbnailData != null) {
           thumbnail = SignalServiceAttachment.newStreamBuilder()
-                                             .withContentType(thumbnailType)
+                                             .withContentType("image/jpeg")
                                              .withWidth(thumbnailData.getWidth())
                                              .withHeight(thumbnailData.getHeight())
                                              .withLength(thumbnailData.getBitmap().length)
@@ -230,26 +224,6 @@ public abstract class PushSendJob extends SendJob {
     }
 
     return Optional.of(new SignalServiceDataMessage.Quote(quoteId, new SignalServiceAddress(quoteAuthor.serialize()), quoteBody, quoteAttachments));
-  }
-
-  protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {
-    Attachment stickerAttachment = Stream.of(message.getAttachments()).filter(Attachment::isSticker).findFirst().orElse(null);
-
-    if (stickerAttachment == null) {
-      return Optional.absent();
-    }
-
-    try {
-      byte[]                  packId     = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackId());
-      byte[]                  packKey    = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackKey());
-      int                     stickerId  = stickerAttachment.getSticker().getStickerId();
-      SignalServiceAttachment attachment = getAttachmentPointerFor(stickerAttachment);
-
-      return Optional.of(new SignalServiceDataMessage.Sticker(packId, packKey, stickerId, attachment));
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to decode sticker id/key", e);
-      return Optional.absent();
-    }
   }
 
   List<SharedContact> getSharedContactsFor(OutgoingMediaMessage mediaMessage) {
@@ -308,8 +282,7 @@ public abstract class PushSendJob extends SendJob {
                                                                   message.getTimestamp(),
                                                                   message,
                                                                   message.getExpiresInSeconds(),
-                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()),
-                                                                  false);
+                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()));
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
 

@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.components;
 
+import android.annotation.TargetApi;
 import android.content.Context;
-import android.support.v7.widget.AppCompatImageView;
+import android.os.Build;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
-public class SquareImageView extends AppCompatImageView {
+public class SquareImageView extends ImageView {
   public SquareImageView(Context context) {
     super(context);
   }
@@ -17,9 +19,13 @@ public class SquareImageView extends AppCompatImageView {
     super(context, attrs, defStyleAttr);
   }
 
+  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+  public SquareImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    super(context, attrs, defStyleAttr, defStyleRes);
+  }
+
   @Override
   public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    //noinspection SuspiciousNameCombination
     super.onMeasure(widthMeasureSpec, widthMeasureSpec);
   }
 }

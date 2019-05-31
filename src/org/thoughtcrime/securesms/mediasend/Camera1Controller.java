@@ -243,7 +243,7 @@ class Camera1Controller {
     }
 
     @Override
-    public @NonNull String toString() {
+    public String toString() {
       return "cameraCount: " + cameraCount + "  previewWidth: " + previewWidth + "  previewHeight: " + previewHeight;
     }
   }

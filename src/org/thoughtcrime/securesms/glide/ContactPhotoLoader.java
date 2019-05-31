@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.glide;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bumptech.glide.load.Options;
@@ -21,13 +20,14 @@ public class ContactPhotoLoader implements ModelLoader<ContactPhoto, InputStream
     this.context = context;
   }
 
+  @Nullable
   @Override
-  public @Nullable LoadData<InputStream> buildLoadData(@NonNull ContactPhoto contactPhoto, int width, int height, @NonNull Options options) {
+  public LoadData<InputStream> buildLoadData(ContactPhoto contactPhoto, int width, int height, Options options) {
     return new LoadData<>(contactPhoto, new ContactPhotoFetcher(context, contactPhoto));
   }
 
   @Override
-  public boolean handles(@NonNull ContactPhoto contactPhoto) {
+  public boolean handles(ContactPhoto contactPhoto) {
     return true;
   }
 
@@ -40,7 +40,7 @@ public class ContactPhotoLoader implements ModelLoader<ContactPhoto, InputStream
     }
 
     @Override
-    public @NonNull ModelLoader<ContactPhoto, InputStream> build(@NonNull MultiModelLoaderFactory multiFactory) {
+    public ModelLoader<ContactPhoto, InputStream> build(MultiModelLoaderFactory multiFactory) {
       return new ContactPhotoLoader(context);
     }
 

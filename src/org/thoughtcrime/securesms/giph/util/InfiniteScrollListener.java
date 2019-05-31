@@ -2,7 +2,6 @@
 
 package org.thoughtcrime.securesms.giph.util;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
 public abstract class InfiniteScrollListener extends RecyclerView.OnScrollListener {
@@ -18,7 +17,7 @@ public abstract class InfiniteScrollListener extends RecyclerView.OnScrollListen
   private int currentPage = 1;
 
   @Override
-  public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+  public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
     super.onScrolled(recyclerView, dx, dy);
 
     RecyclerViewPositionHelper recyclerViewPositionHelper = RecyclerViewPositionHelper.createHelper(recyclerView);

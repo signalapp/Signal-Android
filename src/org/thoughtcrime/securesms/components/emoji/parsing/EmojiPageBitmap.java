@@ -104,7 +104,7 @@ public class EmojiPageBitmap {
   }
 
   @Override
-  public @NonNull String toString() {
+  public String toString() {
     return model.getSprite();
   }
 }

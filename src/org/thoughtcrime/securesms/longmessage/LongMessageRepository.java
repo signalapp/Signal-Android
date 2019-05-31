@@ -1,8 +1,11 @@
 package org.thoughtcrime.securesms.longmessage;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
 
@@ -15,7 +18,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -34,7 +36,7 @@ class LongMessageRepository {
   }
 
   void getMessage(@NonNull Context context, long messageId, boolean isMms, @NonNull Callback<Optional<LongMessage>> callback) {
-    SignalExecutors.BOUNDED.execute(() -> {
+    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
       if (isMms) {
         callback.onComplete(getMmsLongMessage(context, mmsDatabase, messageId));
       } else {

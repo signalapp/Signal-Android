@@ -121,7 +121,7 @@ public class MmsSendJob extends SendJob {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 

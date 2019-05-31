@@ -64,19 +64,7 @@ public class BitmapUtil {
                                                   final int maxImageSize)
       throws BitmapDecodingException
   {
-    return createScaledBytes(context, model, maxImageWidth, maxImageHeight, maxImageSize, CompressFormat.JPEG);
-  }
-
-  @WorkerThread
-  public static <T> ScaleResult createScaledBytes(Context context,
-                                                  T model,
-                                                  int maxImageWidth,
-                                                  int maxImageHeight,
-                                                  int maxImageSize,
-                                                  @NonNull CompressFormat format)
-      throws BitmapDecodingException
-  {
-    return createScaledBytes(context, model, maxImageWidth, maxImageHeight, maxImageSize, format, 1, 0);
+    return createScaledBytes(context, model, maxImageWidth, maxImageHeight, maxImageSize, 1, 0);
   }
 
   @WorkerThread
@@ -85,7 +73,6 @@ public class BitmapUtil {
                                                    final int maxImageWidth,
                                                    final int maxImageHeight,
                                                    final int maxImageSize,
-                                                   @NonNull CompressFormat format,
                                                    final int sizeAttempt,
                                                    int totalAttempts)
       throws BitmapDecodingException
@@ -115,7 +102,7 @@ public class BitmapUtil {
         do {
           totalAttempts++;
           ByteArrayOutputStream baos = new ByteArrayOutputStream();
-          scaledBitmap.compress(format, quality, baos);
+          scaledBitmap.compress(CompressFormat.JPEG, quality, baos);
           bytes = baos.toByteArray();
 
           Log.d(TAG, "iteration with quality " + quality + " size " + bytes.length + " bytes.");
@@ -135,7 +122,7 @@ public class BitmapUtil {
             scaledBitmap = null;
 
             Log.i(TAG, "Halving dimensions and retrying.");
-            return createScaledBytes(context, model, maxImageWidth / 2, maxImageHeight / 2, maxImageSize, format, sizeAttempt + 1, totalAttempts);
+            return createScaledBytes(context, model, maxImageWidth / 2, maxImageHeight / 2, maxImageSize, sizeAttempt + 1, totalAttempts);
           } else {
             throw new BitmapDecodingException("Unable to scale image below " + bytes.length + " bytes.");
           }
@@ -195,17 +182,6 @@ public class BitmapUtil {
     }
 
     return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
-  }
-
-  public static @NonNull CompressFormat getCompressFormatForContentType(@Nullable String contentType) {
-    if (contentType == null) return CompressFormat.JPEG;
-
-    switch (contentType) {
-      case MediaUtil.IMAGE_JPEG: return CompressFormat.JPEG;
-      case MediaUtil.IMAGE_PNG:  return CompressFormat.PNG;
-      case MediaUtil.IMAGE_WEBP: return CompressFormat.WEBP;
-      default:                   return CompressFormat.JPEG;
-    }
   }
 
   private static BitmapFactory.Options getImageDimensions(InputStream inputStream)

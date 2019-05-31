@@ -74,7 +74,7 @@ public class CreateSignedPreKeyJob extends BaseJob implements InjectableType {
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

@@ -90,7 +90,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob implements InjectableTy
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

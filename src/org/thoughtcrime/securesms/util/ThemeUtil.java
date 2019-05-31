@@ -38,12 +38,9 @@ public class ThemeUtil {
     TypedValue outValue = new TypedValue();
 
     if (context.getTheme().resolveAttribute(attribute, outValue, true)) {
-      CharSequence charSequence = outValue.coerceToString();
-      if (charSequence != null) {
-        return charSequence.toString();
-      }
+      return outValue.coerceToString().toString();
+    } else {
+      return defaultValue;
     }
-
-    return defaultValue;
   }
 }

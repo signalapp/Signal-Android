@@ -9,8 +9,6 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -26,14 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
+import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -46,24 +40,21 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class InputPanel extends LinearLayout
     implements MicrophoneRecorderView.Listener,
                KeyboardAwareLinearLayout.OnKeyboardShownListener,
-               EmojiKeyboardProvider.EmojiEventListener,
-               ConversationStickerSuggestionAdapter.EventListener
+               EmojiDrawer.EmojiEventListener
 {
 
   private static final String TAG = InputPanel.class.getSimpleName();
 
   private static final int FADE_TIME = 150;
 
-  private RecyclerView    stickerSuggestion;
   private QuoteView       quoteView;
   private LinkPreviewView linkPreview;
-  private EmojiToggle     mediaKeyboard;
+  private EmojiToggle     emojiToggle;
   private ComposeText     composeText;
   private View            quickCameraToggle;
   private View            quickAudioToggle;
@@ -76,9 +67,7 @@ public class InputPanel extends LinearLayout
   private RecordTime             recordTime;
 
   private @Nullable Listener listener;
-  private           boolean  emojiVisible;
-
-  private ConversationStickerSuggestionAdapter stickerSuggestionAdapter;
+  private boolean emojiVisible;
 
   public InputPanel(Context context) {
     super(context);
@@ -99,10 +88,9 @@ public class InputPanel extends LinearLayout
 
     View quoteDismiss = findViewById(R.id.quote_dismiss);
 
-    this.stickerSuggestion      = findViewById(R.id.input_panel_sticker_suggestion);
     this.quoteView              = findViewById(R.id.quote_view);
     this.linkPreview            = findViewById(R.id.link_preview);
-    this.mediaKeyboard          = findViewById(R.id.emoji_toggle);
+    this.emojiToggle            = findViewById(R.id.emoji_toggle);
     this.composeText            = findViewById(R.id.embedded_text_editor);
     this.quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
     this.quickAudioToggle       = findViewById(R.id.quick_audio_toggle);
@@ -120,10 +108,10 @@ public class InputPanel extends LinearLayout
     this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction());
 
     if (TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
-      mediaKeyboard.setVisibility(View.GONE);
+      emojiToggle.setVisibility(View.GONE);
       emojiVisible = false;
     } else {
-      mediaKeyboard.setVisibility(View.VISIBLE);
+      emojiToggle.setVisibility(View.VISIBLE);
       emojiVisible = true;
     }
 
@@ -134,11 +122,6 @@ public class InputPanel extends LinearLayout
         listener.onLinkPreviewCanceled();
       }
     });
-
-    stickerSuggestionAdapter = new ConversationStickerSuggestionAdapter(GlideApp.with(this), this);
-
-    stickerSuggestion.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-    stickerSuggestion.setAdapter(stickerSuggestionAdapter);
   }
 
   public void showKeyboard() {
@@ -149,7 +132,7 @@ public class InputPanel extends LinearLayout
   public void setListener(final @NonNull Listener listener) {
     this.listener = listener;
 
-    mediaKeyboard.setOnClickListener(v -> listener.onEmojiToggle());
+    emojiToggle.setOnClickListener(v -> listener.onEmojiToggle());
   }
 
   public void setMediaListener(@NonNull MediaListener listener) {
@@ -202,26 +185,8 @@ public class InputPanel extends LinearLayout
     this.linkPreview.setCorners(cornerRadius, cornerRadius);
   }
 
-  public void setMediaKeyboard(@NonNull MediaKeyboard mediaKeyboard) {
-    this.mediaKeyboard.attach(mediaKeyboard);
-  }
-
-  public void setStickerSuggestions(@NonNull List<StickerRecord> stickers) {
-    stickerSuggestion.setVisibility(stickers.isEmpty() ? View.GONE : View.VISIBLE);
-    stickerSuggestionAdapter.setStickers(stickers);
-  }
-
-  public void showMediaKeyboardToggle(boolean show) {
-    emojiVisible = show;
-    mediaKeyboard.setVisibility(show ? View.VISIBLE : GONE);
-  }
-
-  public void setMediaKeyboardToggleMode(boolean isSticker) {
-    mediaKeyboard.setStickerMode(isSticker);
-  }
-
-  public View getMediaKeyboardToggleAnchorView() {
-    return mediaKeyboard;
+  public void setEmojiDrawer(@NonNull EmojiDrawer emojiDrawer) {
+    emojiToggle.attach(emojiDrawer);
   }
 
   @Override
@@ -235,7 +200,7 @@ public class InputPanel extends LinearLayout
     recordTime.display();
     slideToCancel.display();
 
-    if (emojiVisible) ViewUtil.fadeOut(mediaKeyboard, FADE_TIME, View.INVISIBLE);
+    if (emojiVisible) ViewUtil.fadeOut(emojiToggle, FADE_TIME, View.INVISIBLE);
     ViewUtil.fadeOut(composeText, FADE_TIME, View.INVISIBLE);
     ViewUtil.fadeOut(quickCameraToggle, FADE_TIME, View.INVISIBLE);
     ViewUtil.fadeOut(quickAudioToggle, FADE_TIME, View.INVISIBLE);
@@ -291,7 +256,7 @@ public class InputPanel extends LinearLayout
 
   public void setEnabled(boolean enabled) {
     composeText.setEnabled(enabled);
-    mediaKeyboard.setEnabled(enabled);
+    emojiToggle.setEnabled(enabled);
     quickAudioToggle.setEnabled(enabled);
     quickCameraToggle.setEnabled(enabled);
   }
@@ -305,7 +270,7 @@ public class InputPanel extends LinearLayout
     future.addListener(new AssertedSuccessListener<Void>() {
       @Override
       public void onSuccess(Void result) {
-        if (emojiVisible) ViewUtil.fadeIn(mediaKeyboard, FADE_TIME);
+        if (emojiVisible) ViewUtil.fadeIn(emojiToggle, FADE_TIME);
         ViewUtil.fadeIn(composeText, FADE_TIME);
         ViewUtil.fadeIn(quickCameraToggle, FADE_TIME);
         ViewUtil.fadeIn(quickAudioToggle, FADE_TIME);
@@ -318,7 +283,7 @@ public class InputPanel extends LinearLayout
 
   @Override
   public void onKeyboardShown() {
-    mediaKeyboard.setToMedia();
+    emojiToggle.setToEmoji();
   }
 
   @Override
@@ -329,13 +294,6 @@ public class InputPanel extends LinearLayout
   @Override
   public void onEmojiSelected(String emoji) {
     composeText.insertEmoji(emoji);
-  }
-
-  @Override
-  public void onStickerSuggestionClicked(@NonNull StickerRecord sticker) {
-    if (listener != null) {
-      listener.onStickerSuggestionSelected(sticker);
-    }
   }
 
   private int readDimen(@DimenRes int dimenRes) {
@@ -358,7 +316,6 @@ public class InputPanel extends LinearLayout
     void onRecorderPermissionRequired();
     void onEmojiToggle();
     void onLinkPreviewCanceled();
-    void onStickerSuggestionSelected(@NonNull StickerRecord sticker);
   }
 
   private static class SlideToCancel {

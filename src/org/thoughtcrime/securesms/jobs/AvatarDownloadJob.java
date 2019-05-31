@@ -111,7 +111,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     if (exception instanceof IOException) return true;
     return false;
   }

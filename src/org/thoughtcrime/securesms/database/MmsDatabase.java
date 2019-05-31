@@ -134,7 +134,7 @@ public class MmsDatabase extends MessagingDatabase {
     "CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + "," + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_message_box_index ON " + TABLE_NAME + " (" + MESSAGE_BOX + ");",
     "CREATE INDEX IF NOT EXISTS mms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ");",
-    "CREATE INDEX IF NOT EXISTS mms_thread_date_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + ");",
+    "CREATE INDEX IF NOT EXISTS mms_thread_date_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + ");"
   };
 
   private static final String[] MMS_PROJECTION = new String[] {
@@ -166,10 +166,7 @@ public class MmsDatabase extends MessagingDatabase {
           "'" + AttachmentDatabase.CONTENT_DISPOSITION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", " +
           "'" + AttachmentDatabase.NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", " +
           "'" + AttachmentDatabase.TRANSFER_STATE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", " +
-          "'" + AttachmentDatabase.CAPTION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", " +
-          "'" + AttachmentDatabase.STICKER_PACK_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_ID+ ", " +
-          "'" + AttachmentDatabase.STICKER_PACK_KEY + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", " +
-          "'" + AttachmentDatabase.STICKER_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID +
+          "'" + AttachmentDatabase.CAPTION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION +
           ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
   };
 
@@ -761,8 +758,7 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getWidth(),
                                                databaseAttachment.getHeight(),
                                                databaseAttachment.isQuote(),
-                                               databaseAttachment.getCaption(),
-                                               databaseAttachment.getSticker()));
+                                               databaseAttachment.getCaption()));
       }
 
       return insertMediaMessage(request.getBody(),
@@ -926,14 +922,6 @@ public class MmsDatabase extends MessagingDatabase {
                                   @Nullable SmsDatabase.InsertListener insertListener)
       throws MmsException
   {
-    return insertMessageOutbox(message, threadId, forceSms, GroupReceiptDatabase.STATUS_UNDELIVERED, insertListener);
-  }
-
-  public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
-                                  long threadId, boolean forceSms, int defaultReceiptStatus,
-                                  @Nullable SmsDatabase.InsertListener insertListener)
-      throws MmsException
-  {
     long type = Types.BASE_SENDING_TYPE;
 
     if (message.isSecure()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
@@ -983,7 +971,7 @@ public class MmsDatabase extends MessagingDatabase {
       GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
 
       receiptDatabase.insert(Stream.of(members).map(Recipient::getAddress).toList(),
-                             messageId, defaultReceiptStatus, message.getSentTimeMillis());
+                             messageId, GroupReceiptDatabase.STATUS_UNDELIVERED, message.getSentTimeMillis());
 
       for (Address address : earlyDeliveryReceipts.keySet()) receiptDatabase.update(address, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
       for (Address address : earlyReadReceipts.keySet())     receiptDatabase.update(address, messageId, GroupReceiptDatabase.STATUS_READ, -1);
@@ -1077,8 +1065,6 @@ public class MmsDatabase extends MessagingDatabase {
     database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
     boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
     notifyConversationListeners(threadId);
-    notifyStickerListeners();
-    notifyStickerPackListeners();
     return threadDeleted;
   }
 
@@ -1232,18 +1218,6 @@ public class MmsDatabase extends MessagingDatabase {
       // call.
       throw new IllegalArgumentException(npe);
     }
-  }
-
-  public void beginTransaction() {
-    databaseHelper.getWritableDatabase().beginTransaction();
-  }
-
-  public void setTransactionSuccessful() {
-    databaseHelper.getWritableDatabase().setTransactionSuccessful();
-  }
-
-  public void endTransaction() {
-    databaseHelper.getWritableDatabase().endTransaction();
   }
 
   public Reader readerFor(Cursor cursor) {
@@ -1474,10 +1448,8 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     private SlideDeck getSlideDeck(@NonNull List<DatabaseAttachment> attachments) {
-      List<? extends Attachment> messageAttachments = Stream.of(attachments)
-                                                            .filterNot(Attachment::isQuote)
-                                                            .toList();
-      return new SlideDeck(context, messageAttachments);
+      List<? extends Attachment> messageAttachmnets = Stream.of(attachments).filterNot(Attachment::isQuote).toList();
+      return new SlideDeck(context, messageAttachmnets);
     }
 
     private @Nullable Quote getQuote(@NonNull Cursor cursor) {

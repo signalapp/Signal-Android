@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -55,12 +54,12 @@ public class CountrySelectionFragment extends ListFragment implements LoaderMana
   }
 
   @Override
-  public @NonNull Loader<ArrayList<Map<String, String>>> onCreateLoader(int arg0, Bundle arg1) {
+  public Loader<ArrayList<Map<String, String>>> onCreateLoader(int arg0, Bundle arg1) {
     return new CountryListLoader(getActivity());
   }
 
   @Override
-  public void onLoadFinished(@NonNull Loader<ArrayList<Map<String, String>>> loader,
+  public void onLoadFinished(Loader<ArrayList<Map<String, String>>> loader,
                              ArrayList<Map<String, String>> results)
   {
     String[] from = {"country_name", "country_code"};
@@ -73,7 +72,7 @@ public class CountrySelectionFragment extends ListFragment implements LoaderMana
   }
 
   @Override
-  public void onLoaderReset(@NonNull Loader<ArrayList<Map<String, String>>> arg0) {
+  public void onLoaderReset(Loader<ArrayList<Map<String, String>>> arg0) {
     this.setListAdapter(null);
   }
 

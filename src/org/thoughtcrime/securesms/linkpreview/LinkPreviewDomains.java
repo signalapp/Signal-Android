@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LinkPreviewDomains {
-  public static final String STICKERS = "signal.org";
-
   public static final Set<String> LINKS = new HashSet<>(Arrays.asList(
       "youtube.com",
       "www.youtube.com",

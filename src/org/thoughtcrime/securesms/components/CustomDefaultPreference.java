@@ -140,7 +140,7 @@ public class CustomDefaultPreference extends DialogPreference {
 
 
     @Override
-    public @NonNull Dialog onCreateDialog(Bundle instanceState) {
+    public Dialog onCreateDialog(Bundle instanceState) {
       Dialog dialog = super.onCreateDialog(instanceState);
 
       CustomDefaultPreference preference = (CustomDefaultPreference)getPreference();

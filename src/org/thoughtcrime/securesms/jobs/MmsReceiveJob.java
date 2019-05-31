@@ -95,7 +95,7 @@ public class MmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 

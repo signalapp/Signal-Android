@@ -81,7 +81,7 @@ public class ServiceOutageDetectionJob extends BaseJob {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception e) {
+  public boolean onShouldRetry(Exception e) {
     return e instanceof RetryLaterException;
   }
 
