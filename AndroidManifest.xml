@@ -684,6 +684,12 @@
     </receiver>
 
     <service
+        android:name=".gcm.FcmJobService"
+        android:permission="android.permission.BIND_JOB_SERVICE"
+        android:enabled="@bool/enable_job_service"
+        tools:targetApi="26" />
+
+    <service
         android:name=".jobmanager.JobSchedulerScheduler$SystemService"
         android:permission="android.permission.BIND_JOB_SERVICE"
         android:enabled="@bool/enable_job_service"

@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -61,6 +62,7 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
         Log.i(tag, "Successfully processed an envelope." + timeSuffix(startTime));
       });
       TextSecurePreferences.setNeedsMessagePull(context, false);
+      MessageNotifier.cancelMessagesPending(context);
     }
   }
   @Override

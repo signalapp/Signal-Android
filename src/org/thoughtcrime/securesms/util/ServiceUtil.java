@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
+import android.app.job.JobScheduler;
 import android.content.Context;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
@@ -52,6 +53,11 @@ public class ServiceUtil {
 
   public static Vibrator getVibrator(Context context) {
     return  (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+  }
+
+  @RequiresApi(26)
+  public static JobScheduler getJobScheduler(Context context) {
+    return (JobScheduler) context.getSystemService(JobScheduler.class);
   }
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)

@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
+import org.thoughtcrime.securesms.gcm.FcmJobService;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
@@ -135,6 +136,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Log.i(TAG, "App is now visible.");
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
+    MessageNotifier.cancelMessagesPending(this);
   }
 
   @Override
@@ -334,7 +336,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void initializePendingMessages() {
     if (TextSecurePreferences.getNeedsMessagePull(this)) {
       Log.i(TAG, "Scheduling a message fetch.");
-      ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+      if (Build.VERSION.SDK_INT >= 26) {
+        FcmJobService.schedule(this);
+      } else {
+        ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+      }
       TextSecurePreferences.setNeedsMessagePull(this, false);
     }
   }

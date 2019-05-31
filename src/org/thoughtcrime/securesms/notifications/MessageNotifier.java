@@ -38,6 +38,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import android.text.TextUtils;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -120,12 +121,16 @@ public class MessageNotifier {
   }
 
   public static void notifyMessagesPending(Context context) {
-    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
+    if (!TextSecurePreferences.isNotificationsEnabled(context) || ApplicationContext.getInstance(context).isAppVisible()) {
       return;
     }
 
     PendingMessageNotificationBuilder builder = new PendingMessageNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
     ServiceUtil.getNotificationManager(context).notify(PENDING_MESSAGES_ID, builder.build());
+  }
+
+  public static void cancelMessagesPending(Context context) {
+    ServiceUtil.getNotificationManager(context).cancel(PENDING_MESSAGES_ID);
   }
 
   public static void cancelDelayedNotifications() {
