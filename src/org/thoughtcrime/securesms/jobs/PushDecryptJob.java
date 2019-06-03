@@ -227,8 +227,8 @@ public class PushDecryptJob extends BaseJob {
       GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore  axolotlStore  = new SignalProtocolStoreImpl(context);
       SignalServiceAddress localAddress  = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher  cipher        = new LokiServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
-      /* Loki Original Code
+      LokiServiceCipher    cipher        = new LokiServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
+      /* Loki - Original code
       SignalServiceCipher  cipher        = new SignalServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
        */
 
@@ -239,7 +239,7 @@ public class PushDecryptJob extends BaseJob {
         return;
       }
 
-      // Loki: Handle any loki specific messages
+      // Loki - Handle Loki specific messages
       if (content.lokiMessage.isPresent()) {
         LokiServiceMessage lokiMessage = content.lokiMessage.get();
         if (lokiMessage.getPreKeyBundleMessage() != null) {
