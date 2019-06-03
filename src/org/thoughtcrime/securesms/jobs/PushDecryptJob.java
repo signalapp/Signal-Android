@@ -105,6 +105,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -225,7 +226,10 @@ public class PushDecryptJob extends BaseJob {
       GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore  axolotlStore  = new SignalProtocolStoreImpl(context);
       SignalServiceAddress localAddress  = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
+      LokiServiceCipher  cipher        = new LokiServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
+      /* Loki Original Code
       SignalServiceCipher  cipher        = new SignalServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
+       */
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
