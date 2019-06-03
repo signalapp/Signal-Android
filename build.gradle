@@ -153,6 +153,10 @@ dependencies {
         exclude group: 'org.freemarker'
     }
 
+    implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
+    implementation "com.squareup.okhttp3:okhttp:3.12.1"
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.11.1'
     testImplementation 'org.mockito:mockito-core:1.9.5'
