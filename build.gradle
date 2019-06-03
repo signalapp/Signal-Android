@@ -102,6 +102,9 @@ dependencies {
 
     implementation "com.github.loki-project:loki-messenger-android-core:master-SNAPSHOT"
 
+    // Jitpack doesn't pull in loki-message-android-core dependencies, so we have to manually copy them ;(
+    implementation "org.signal:signal-metadata-java:0.0.3"
+
     compile 'org.whispersystems:webrtc-android:M74'
 
     compile "me.leolin:ShortcutBadger:1.1.16"
