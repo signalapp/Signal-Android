@@ -33,9 +33,9 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal Signal-berichten en -oproepen uitschakelen door je telefoonnummer uit te schrijven bij de server. Je zult je telefoonnummer opnieuw moeten registreren als je deze functies weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Sms ingeschakeld</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tik als je je standaard-sms-applicatie wilt wijzigen</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tik hier als je je standaard-sms-applicatie wilt wijzigen</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Sms uitgeschakeld</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tik als je Signal wilt instellen als je standaard-sms-applicatie</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tik hier als je Signal wilt instellen als je standaard-sms-applicatie</string>
   <string name="ApplicationPreferencesActivity_on">aan</string>
   <string name="ApplicationPreferencesActivity_On">Aan</string>
   <string name="ApplicationPreferencesActivity_off">uit</string>
@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Er is al een telefoongesprek gaande.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw heeft geïnstalleerd.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Je wilt misschien jouw veiligheidsnummer bij deze contactpersoon verifiëren.</string>
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met deze berichten app: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep</string>
   <string name="ConversationActivity_specify_recipient">Kies een gesprekspartner</string>
   <string name="ConversationActivity_unblock_this_contact_question">Gesprekspartner deblokkeren?</string>
@@ -162,6 +162,8 @@
   <string name="ConversationActivity_no">Nee</string>
   <string name="ConversationActivity_search_position">%1$d van %2$d</string>
   <string name="ConversationActivity_no_results">Geen resultaten</string>
+  <string name="ConversationActivity_sticker_pack_installed">Stikkerpakket geïnstalleerd</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Nieuw: zeg het met stikkers</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -318,7 +320,7 @@ weergaven.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Het telefoonnummer van één van de leden van je groep kan niet goed worden gelezen. Corrigeer dit nummer of verwijder deze contactpersoon en probeer het opnieuw.</string>
   <string name="GroupCreateActivity_avatar_content_description">Groepsafbeelding</string>
   <string name="GroupCreateActivity_menu_apply_button">Toepassen</string>
-  <string name="GroupCreateActivity_creating_group">%1$s aanmaken…</string>
+  <string name="GroupCreateActivity_creating_group">%1$s aan het aanmaken…</string>
   <string name="GroupCreateActivity_updating_group">%1$s aan het aanpassen…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kon %1$s niet toevoegen omdat zij geen Signal-gebruiker zijn.</string>
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails aan het laden…</string>
@@ -343,7 +345,7 @@ weergaven.</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
   <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">VERZEND SMS NAAR %d VRIEND</item>
+    <item quantity="one">VERZEND SMS NAAR %d KENNIS</item>
     <item quantity="other">VERZEND SMS NAAR %d KENNISSEN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
@@ -518,10 +520,10 @@ weergaven.</string>
   <string name="RegistrationActivity_missing_google_play_services">De Google Play Services zijn niet aanwezig</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en prestaties verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat het tonen van dit bericht onterecht is, neem dan contact op met support@signal.org voor hulp met probleemoplossen.</string>
   <string name="RegistrationActivity_i_understand">Ik begrijp het</string>
-  <string name="RegistrationActivity_play_services_error">Play services fout</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services zijn momenteel aan het updaten of zijn tijdelijk niet beschikbaar. Probeer het nog eens.</string>
+  <string name="RegistrationActivity_play_services_error">Google Play Services fout</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services is momenteel aan het updaten of is tijdelijk niet beschikbaar. Probeer het nog eens.</string>
   <string name="RegistrationActivity_terms_and_privacy">Gebruiksvoorwaarden &amp; privacybeleid</string>
-  <string name="RegistrationActivity_no_browser">Kan koppeling niet openen, geen webbrowser gevonden.</string>
+  <string name="RegistrationActivity_no_browser">Kan deze koppeling niet openen; geen webbrowser gevonden.</string>
   <string name="RegistrationActivity_more_information">Meer informatie</string>
   <string name="RegistrationActivity_less_information">Minder informatie</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal heeft toegang nodig tot je contactenlijst om aan bestaande contacten berichten te kunnen sturen en om met hen beveiligde oproepen te kunnen maken.
@@ -559,6 +561,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="SharedContactView_message">Signal-bericht</string>
   <!--Slide-->
   <string name="Slide_image">Afbeelding</string>
+  <string name="Slide_sticker">Stikker</string>
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -572,6 +575,26 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="SmsMessageRecord_secure_session_reset">Je hebt de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s heeft de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_duplicate_message">Gedupliceerd bericht.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+        Dit bericht kon niet worden verwerkt omdat het is verzonden vanuit een nieuwere versie van Signal. Je kunt je gesprekspartner vragen om dit bericht opnieuw te verzenden nadat je jouw Signal app hebt bijwerkt naar een nieuwere versie.
+    </string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Stikkers</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Geïnstalleerde stikkers</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Door jou ontvangen stikkers</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal-kunstenaarserie</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Geen stikkers geïnstalleerd</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Stikkers uit binnenkomende berichten zullen hier verschijnen</string>
+  <string name="StickerManagementAdapter_untitled">Zonder titel</string>
+  <string name="StickerManagementAdapter_unknown">Onbekend</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Zonder titel</string>
+  <string name="StickerPackPreviewActivity_unknown">Onbekend</string>
+  <string name="StickerPackPreviewActivity_install">Installeer</string>
+  <string name="StickerPackPreviewActivity_remove">Verwijderen</string>
+  <string name="StickerPackPreviewActivity_stickers">Stikkers</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Laden van stikkerpakket mislukt</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Groep aangepast</string>
   <string name="ThreadRecord_left_the_group">Heeft de groep verlaten</string>
@@ -588,6 +611,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="ThreadRecord_you_marked_verified">Door jou als geverifieerd gemarkeerd</string>
   <string name="ThreadRecord_you_marked_unverified">Door jou als niet geverifieerd gemarkeerd</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Bericht kon niet worden verwerkt</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nieuwe versie van Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar, tik om bij te werken</string>
@@ -653,6 +677,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="MessageNotifier_mark_all_as_read">Alles markeren als gelezen</string>
   <string name="MessageNotifier_mark_read">Markeren als gelezen</string>
   <string name="MessageNotifier_media_message">Mediabericht</string>
+  <string name="MessageNotifier_sticker">Stikker</string>
   <string name="MessageNotifier_reply">Reageren</string>
   <string name="MessageNotifier_signal_message">Signal-bericht</string>
   <string name="MessageNotifier_unsecured_sms">Onbeveiligde sms</string>
@@ -775,6 +800,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Stikker</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Jij</string>
   <string name="QuoteView_original_missing">Oorspronkelijk bericht niet gevonden</string>
@@ -784,7 +810,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="country_selection_fragment__loading_countries">Landen laden…</string>
   <string name="country_selection_fragment__search">Zoeken</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de weergegeven QR-code op het te koppelen apparaat</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de QR-code welke wordt weergegeven op het te koppelen apparaat</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Apparaat koppelen</string>
   <!--device_list_fragment-->
@@ -837,7 +863,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
     <item quantity="other">%d anderen</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs en stickers zoeken</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs en stikkers zoeken</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Niets gevonden</string>
   <!--log_submit_activity-->
@@ -859,8 +885,8 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="log_submit_activity__please_review_this_log_from_my_app">Gelieve dit logbestand van mijn app te bestuderen: %1$s</string>
   <string name="log_submit_activity__network_failure">Netwerkfout. Probeer het opnieuw.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je huidige tekstberichtendatabank importeren naar de versleutelde databank van Signal?</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaardsysteemdatabank zal niet gewijzigd of aangepast worden op enige wijze.</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je sms- en mmsberichten importeren naar de versleutelde databank van Signal?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De standaard systeemdatabank zal op geen enkele wijze worden gewijzigd of aangepast.</string>
   <string name="database_migration_activity__skip">Overslaan</string>
   <string name="database_migration_activity__import">Importeren</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan even duren. Even geduld, we zullen je melden wanneer het importeren voltooid is.</string>
@@ -1001,7 +1027,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor verzenden van tekstberichten</string>
   <string name="preferences__send_link_previews">Voorbeeldweergaven verzenden</string>
-  <string name="preferences__previews_are_supported_for">Voorbeelden worden ondersteund voor koppelingen naar Imgur, Instagram, Pinterest, Reddit en YouTube</string>
+  <string name="preferences__previews_are_supported_for">Voorbeelden worden ondersteund voor koppelingen naar Imgur, Instagram, Pinterest, Reddit en YouTube.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -1093,8 +1119,8 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences_notifications__show">Laat zien</string>
   <string name="preferences_notifications__calls">Oproepen</string>
   <string name="preferences_notifications__ringtone">Beltoon</string>
-  <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvragen tonen</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Laat uitnodigingsberichten zien aan contactpersonen wie Signal niet gebruiken</string>
+  <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvoorstel tonen</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon een suggestie om je gesprekspartner uit te nodigen op Signal, boven sms gesprekken met gesprekspartners die niet op Signal zitten.</string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
   <string name="preferences_events__contact_joined_signal">Contactpersoon gebruikt nu Signal</string>
   <string name="preferences_notifications__priority">Belangrijkheid</string>
@@ -1177,11 +1203,11 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Je versie van Signal is verouderd</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Je versie van Signal zal over %d dag verlopen. Tik om bij te werken naar de meest recente versie.</item>
-    <item quantity="other">Je versie van Signal zal over %d dagen verlopen. Tik om bij te werken naar de meest recente versie.</item>
+    <item quantity="one">Deze versie van Signal zal over %d dag verlopen. Tik om bij te werken naar de meest recente versie.</item>
+    <item quantity="other">Deze versie van Signal zal over %d dagen verlopen. Tik om bij te werken naar de meest recente versie.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Je versie van Signal zal vandaag verlopen. Tik om bij te werken naar de meest recente versie.</string>
-  <string name="reminder_header_expired_build">Je versie van Signal is verlopen!</string>
+  <string name="reminder_header_outdated_build_details_today">Deze versie van Signal zal vandaag verlopen. Tik om bij te werken naar de meest recente versie.</string>
+  <string name="reminder_header_expired_build">Deze versie van Signal is verlopen!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden. Tik om bij te werken naar de meest recente versie.</string>
   <string name="reminder_header_sms_default_title">Gebruiken als standaard sms-app</string>
   <string name="reminder_header_sms_default_text">Tik om van Signal je standaard sms-app te maken.</string>
@@ -1190,7 +1216,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="reminder_header_push_title">Signal-berichten en -oproepen inschakelen</string>
   <string name="reminder_header_push_text">Verbeter je communicatie-ervaring.</string>
   <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
-  <string name="reminder_header_invite_text">Neem je gesprek met %1$s naar een hoger niveau.</string>
+  <string name="reminder_header_invite_text">Stel aan %1$s voor om dit gesprek als beveiligd Signal gesprek voort te zetten.</string>
   <string name="reminder_header_share_title">Nodig je vrienden uit!</string>
   <string name="reminder_header_share_text">Hoe meer mensen Signal gebruiken, des te vaker je beveiligd kunt communiceren.</string>
   <string name="reminder_header_service_outage_text">Signal heeft technische problemen. We werken er hard aan om zo snel mogelijk de dienst weer beschikbaar te maken.</string>
@@ -1231,7 +1257,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="registration_activity__restore_backup">Back-up terugzetten</string>
   <string name="registration_activity__skip">Overslaan</string>
   <string name="registration_activity__register">Registreren</string>
-  <string name="preferences_chats__chat_backups">Laat Signal backups maken</string>
+  <string name="preferences_chats__chat_backups">Laat Signal back-ups maken</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sta Signal toe om versleutelde back-ups van gesprekken en media te maken naar /Signal/Backups op je interne opslag. Als dit is ingeschakeld maakt Signal automatisch elke 24 uur een back-up. Alleen de twee meest recente geslaagde back-ups worden bewaard.</string>
   <string name="preferences_chats__create_backup">Nu een back-up maken</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Voer back-upwachtwoord in</string>
@@ -1248,7 +1274,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="BackupDialog_enable_backups">Back-ups inschakelen</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
   <string name="BackupDialog_delete_backups">Alle back-ups wissen?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-ups wilt laten maken, dan zal Signal ook alle bestaande back-ups van /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-ups wilt laten maken, dan zal Signal ook alle bestaande back-ups in /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
   <string name="BackupDialog_delete_backups_statement">Back-ups wissen</string>
   <string name="BackupDialog_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-ups te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>

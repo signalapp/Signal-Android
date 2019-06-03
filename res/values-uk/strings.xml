@@ -142,7 +142,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Незахищене MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давай перейдемо у Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Давай використовувати це для чату: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Помилка при виході з групи</string>
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Розблокувати цей контакт?</string>
@@ -582,6 +581,18 @@
   <string name="SmsMessageRecord_secure_session_reset">Ви скинули безпечний сеанс.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s скидає безпечний сеанс.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат повідомлення.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Наліпки</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Встановлені наліпки</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Встановлені наліпки відсутні</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Наліпки від вхідних дзвінків з\'являться тут</string>
+  <string name="StickerManagementAdapter_unknown">Невідомо</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Невідомо</string>
+  <string name="StickerPackPreviewActivity_install">Встановити</string>
+  <string name="StickerPackPreviewActivity_remove">Вилучити</string>
+  <string name="StickerPackPreviewActivity_stickers">Наліпки</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Групу оновлено</string>
   <string name="ThreadRecord_left_the_group">Покинути групу</string>

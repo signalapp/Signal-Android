@@ -137,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Zəmanətsiz MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Gəl %1$s Signal-a keçək</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Gəl bu söhbətləşməni istifadə edək: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Qrupdan çıxarkən xəta</string>
   <string name="ConversationActivity_specify_recipient">Zəgmət olmasa əlaqəni seç</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bi əlaqənin kilidini açırsan?</string>
@@ -570,6 +569,14 @@
   <string name="SmsMessageRecord_secure_session_reset">Təhlükəsiz sessiyanı yenidən başlatdın.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s təhlükəsiz sessiyanı yenidən başlatdı.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesajın surətini çıxar.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Elanlar</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Naməlum</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Naməlum</string>
+  <string name="StickerPackPreviewActivity_remove">Sil</string>
+  <string name="StickerPackPreviewActivity_stickers">Elanlar</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Qrup yeniləndi</string>
   <string name="ThreadRecord_left_the_group">Qrupdan çıxdı</string>

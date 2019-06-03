@@ -138,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Usikret MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lad os bruge Signal %1$s?</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Lad os bruge Signal til beskeder: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fejl ved forsøg på at forlade gruppen</string>
   <string name="ConversationActivity_specify_recipient">Vælg venligst en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Fjern blokering af kontakten?</string>
@@ -570,6 +569,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="SmsMessageRecord_secure_session_reset">Nulstillet sikker forbindelse</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s har nulstillet den sikre session</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliker besked</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Animationer</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Ukendt</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Ukendt</string>
+  <string name="StickerPackPreviewActivity_remove">Fjern</string>
+  <string name="StickerPackPreviewActivity_stickers">Animationer</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe opdateret</string>
   <string name="ThreadRecord_left_the_group">Har forladt gruppen</string>

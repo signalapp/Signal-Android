@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Eliminar a foto do perfil?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Non se atopou ningún navegador web.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Xa está en curso unha chamada.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O teu número de seguranza con %1$s foi modificado. Isto pode significar que alguén está a tentar interceptar a vosa comunicación ou simplemente que %2$s reinstalou Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Convén verificar o teu número de seguranza con este contacto.</string>
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS insegura</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Imos cambiar a Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Imos usar isto para charlar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao abandonar o grupo</string>
   <string name="ConversationActivity_specify_recipient">Por favor, elixe un contacto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desbloquear este contacto?</string>
@@ -162,6 +162,8 @@
   <string name="ConversationActivity_no">Non</string>
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Sen resultados</string>
+  <string name="ConversationActivity_sticker_pack_installed">Paquete de adhesivos instalado</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Novo! Dille ola aos adhesivos ou stickers</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaxe sen ler</item>
@@ -557,6 +559,7 @@
   <string name="SharedContactView_message">Mensaxe de Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imaxe</string>
+  <string name="Slide_sticker">Adhesivo</string>
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Vídeo</string>
   <!--SmsMessageRecord-->
@@ -570,6 +573,26 @@
   <string name="SmsMessageRecord_secure_session_reset">Restableciches a sesión segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s restableceu a conexión segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensaxe duplicada.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+        Non se puido procesar esta mensaxe porque foi enviada desde unha versión de Signal máis nova. Podes pedirlle ao teu contacto que a volva enviar logo de actualizares.
+    </string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Adhesivos</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Adhesivos instalados</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Adhesivos que recibiches</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Serie de artistas de Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Sen adhesivos instalados</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Os adhesivos das mensaxes entrantes aparecerán aquí</string>
+  <string name="StickerManagementAdapter_untitled">Sen título</string>
+  <string name="StickerManagementAdapter_unknown">Descoñecido</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Sen título</string>
+  <string name="StickerPackPreviewActivity_unknown">Descoñecido</string>
+  <string name="StickerPackPreviewActivity_install">Instalar</string>
+  <string name="StickerPackPreviewActivity_remove">Eliminar</string>
+  <string name="StickerPackPreviewActivity_stickers">Adhesivos</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Erro ao cargar o paquete de adhesivos</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo actualizado</string>
   <string name="ThreadRecord_left_the_group">Abandonou o grupo</string>
@@ -586,6 +609,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">O teu número de seguranza con %s cambiou.</string>
   <string name="ThreadRecord_you_marked_verified">Marcaches como verificado</string>
   <string name="ThreadRecord_you_marked_unverified">Marcaches como sen verificar</string>
+  <string name="ThreadRecord_message_could_not_be_processed">A mensaxe non se puido procesar</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualizar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hai dispoñible unha nova versión de Signal; toca para actualizar</string>
@@ -651,6 +675,7 @@
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensaxe multimedia</string>
+  <string name="MessageNotifier_sticker">Adhesivo</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensaxe de Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS insegura</string>
@@ -743,14 +768,17 @@
   <string name="conversation_activity__type_message_sms_insecure">SMS insegura</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS insegura</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__compose_description">Redacción da mensaxe</string>
   <string name="conversation_activity__emoji_toggle_description">Cambiar a teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura do anexo</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Activar panel rápido de ficheiros da cámara</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar un anexo de audio</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Bloquear a gravación dun ficheiro anexo de audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Activar Signal para SMS</string>
   <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">Pasa o dedo para cancelar</string>
   <string name="conversation_input_panel__cancel">Cancelar</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mensaxe multimedia</string>
@@ -770,6 +798,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Fotografía</string>
+  <string name="QuoteView_sticker">Adhesivo</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Ti</string>
   <string name="QuoteView_original_missing">Non se atopou a mensaxe orixinal</string>
@@ -996,6 +1025,7 @@
   <string name="preferences__pref_enter_sends_title">Tecla Intro para enviar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ao tocar na tecla Intro enviaranse as mensaxes</string>
   <string name="preferences__send_link_previews">Enviar previsualizacións das ligazóns.</string>
+  <string name="preferences__previews_are_supported_for">Admítense previsualizacións das ligazóns para Imgur, Instagram, Pinterest, Reddit e YouTube.</string>
   <string name="preferences__choose_identity">Elixir identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elixe os contactos da túa listaxe.</string>
   <string name="preferences__change_passphrase">Cambiar frase de acceso</string>

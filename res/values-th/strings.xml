@@ -127,7 +127,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS ที่ไม่ปลอดภัย</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">ใช้อันนี้คุยกัน: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">เกิดข้อผิดพลาดระหว่างออกจากกลุ่ม</string>
   <string name="ConversationActivity_specify_recipient">โปรดเลือกผู้ติดต่อ</string>
   <string name="ConversationActivity_unblock_this_contact_question">เลิกปิดกั้นผู้ติดต่อนี้หรือไม่</string>
@@ -499,6 +498,14 @@
   <string name="SmsMessageRecord_secure_session_reset">คุณได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
   <string name="SmsMessageRecord_duplicate_message">ข้อความซ้ำ</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">สติกเกอร์</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">ไม่ทราบ</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">ไม่ทราบ</string>
+  <string name="StickerPackPreviewActivity_remove">เอาออก</string>
+  <string name="StickerPackPreviewActivity_stickers">สติกเกอร์</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">อัพเดตกลุ่มแล้ว</string>
   <string name="ThreadRecord_left_the_group">ออกจากกลุ่มแล้ว</string>

@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Të hiqet foto profili?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">S\’u gjet shfletues.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ka në kryerje e sipër një thirrje në celular</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %1$s është ndryshuar. Kjo mund të jetë shenjë se ose dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mund të doni të verifikoni numrin tuaj të sigurisë me këtë kontakt.</string>
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS i pasigurt</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Le të kalojmë në Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Le ta përdorim këtë për të biseduar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gabim braktisje grupi</string>
   <string name="ConversationActivity_specify_recipient">Ju lutem, zgjidhni një kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Të zhbllokohet ky kontakt?</string>
@@ -162,6 +162,8 @@
   <string name="ConversationActivity_no">Jo</string>
   <string name="ConversationActivity_search_position">%1$d nga %2$d</string>
   <string name="ConversationActivity_no_results">S\’ka përfundime</string>
+  <string name="ConversationActivity_sticker_pack_installed">Paketa e ngjitësve u instalua</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">E re! Shprehuni me ngjitës</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
@@ -555,6 +557,7 @@
   <string name="SharedContactView_message">Mesazhe Signal</string>
   <!--Slide-->
   <string name="Slide_image">Figurë</string>
+  <string name="Slide_sticker">Ngjitës</string>
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -566,6 +569,26 @@
   <string name="SmsMessageRecord_secure_session_reset">E kthyet te parazgjedhjet sesionin e sigurt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s e ktheu te parazgjedhjet sesionin e sigurt.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesazh i përsëdytur.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+        Ky mesazh s’u përpunua dot, ngaqë qe dërguar prej një versioni më të ri Signal-i. Mund t’i kërkoni kontaktit tuaj ta ridërgojë këtë mesazh, pasi ta përditësoni.
+    </string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Ngjitëse</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Ngjitës të Instaluar</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Ngjitës Që Keni Marrë</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Seritë Artis Signal-i</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">S’ka ngjitës të instaluar</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Këtu do të shfaqen ngjitësit prej mesazhesh të marrë</string>
+  <string name="StickerManagementAdapter_untitled">Pa titull</string>
+  <string name="StickerManagementAdapter_unknown">I panjohur</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Pa titull</string>
+  <string name="StickerPackPreviewActivity_unknown">I panjohur</string>
+  <string name="StickerPackPreviewActivity_install">Instaloje</string>
+  <string name="StickerPackPreviewActivity_remove">Hiqe</string>
+  <string name="StickerPackPreviewActivity_stickers">Ngjitëse</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">S’u arrit të ngarkohej paketë ngjitësish</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupi u përditësua</string>
   <string name="ThreadRecord_left_the_group">Iku nga grupi</string>
@@ -582,6 +605,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>
   <string name="ThreadRecord_you_marked_verified">E shënuat si të verifikuar</string>
   <string name="ThreadRecord_you_marked_unverified">E shënuat si të paverifikuar</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Mesazhi s’u përpunua dot</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Përditësim i Signal-it</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Signal-it, prekeni që të përditësohet</string>
@@ -647,6 +671,7 @@
   <string name="MessageNotifier_mark_all_as_read">Vëru shenjë të gjithëve si të lexuar</string>
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_media_message">Mesazh media</string>
+  <string name="MessageNotifier_sticker">Ngjitës</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
   <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
@@ -769,6 +794,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Ngjitës</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Ju</string>
   <string name="QuoteView_original_missing">S\’u gjet mesazhi origjinal</string>

@@ -124,7 +124,6 @@
   <string name="ConversationActivity_transport_insecure_mms">မလုံခြုံသော MMS</string>
   <string name="ConversationActivity_transport_signal">Signal </string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ကိုပြောင်းသုံးကြပါစို့</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">ဒါလေး %1$s သုံးပြီးပြောကြစို့  </string>
   <string name="ConversationActivity_error_leaving_group">အုပ်စုမှထွက်ခွာရန် အခက်အခဲ ရှိသည် </string>
   <string name="ConversationActivity_specify_recipient">ဆက်သွယ်လိုသည့်သူကို ရွေးချယ်ပါ </string>
   <string name="ConversationActivity_unblock_this_contact_question">ဤသူကို ဘလော့ဖြည်မလား? </string>
@@ -480,6 +479,14 @@
   <string name="SmsMessageRecord_secure_session_reset">သင်သည် လုံခြုံသောဆက်ရှင်များကို ပြန်ညှိလိုက်ပါသည်။</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s သည် လုံခြုံသောဆက်ရှင်ကို ပြန်ညှိလိုက်ပါသည်။</string>
   <string name="SmsMessageRecord_duplicate_message">ဆင်တူဖြစ်နေသောစာ</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">စတစ်ကာများ </string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">မသိ</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">မသိ</string>
+  <string name="StickerPackPreviewActivity_remove">ဖယ်ပစ်ပါ။</string>
+  <string name="StickerPackPreviewActivity_stickers">စတစ်ကာများ </string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">အဖွဲ့ကို ပြင်ဆင်ပြီး</string>
   <string name="ThreadRecord_left_the_group">အဖွဲ့မှထွက်သွားသည်</string>

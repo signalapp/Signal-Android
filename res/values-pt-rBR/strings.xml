@@ -25,7 +25,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Excluir</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Signal e de mensagens.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Signal e das mensagens.</string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal...</string>
@@ -137,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Vamos mudar para o Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo</string>
   <string name="ConversationActivity_specify_recipient">Favor escolher um contato</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desbloquear este contato?</string>
@@ -162,6 +161,7 @@
   <string name="ConversationActivity_no">Não</string>
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Nenhum resultado</string>
+  <string name="ConversationActivity_sticker_pack_installed">Pacote de figurinhas instalado</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -557,6 +557,7 @@
   <string name="SharedContactView_message">Mensagem no Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
+  <string name="Slide_sticker">Figurinha</string>
   <string name="Slide_audio">Áudio</string>
   <string name="Slide_video">Vídeo</string>
   <!--SmsMessageRecord-->
@@ -570,6 +571,20 @@
   <string name="SmsMessageRecord_secure_session_reset">Você reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Figurinhas</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Figurinhas instaladas</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Figurinhas que você recebeu</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Série Signal Artist</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Nenhuma figurinha instalada</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Figurinhas de mensagens recebidas aparecerão aqui</string>
+  <string name="StickerManagementAdapter_unknown">Desconhecida</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Desconhecida</string>
+  <string name="StickerPackPreviewActivity_install">Instalar</string>
+  <string name="StickerPackPreviewActivity_remove">Remover</string>
+  <string name="StickerPackPreviewActivity_stickers">Figurinhas</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo atualizado</string>
   <string name="ThreadRecord_left_the_group">Você saiu do grupo</string>
@@ -651,6 +666,7 @@
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimídia</string>
+  <string name="MessageNotifier_sticker">Figurinha</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem no Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
@@ -743,6 +759,7 @@
   <string name="conversation_activity__type_message_sms_insecure">SMS inseguro</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS inseguro</string>
   <string name="conversation_activity__from_sim_name">Usando %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__compose_description">Composição de mensagem</string>
   <string name="conversation_activity__emoji_toggle_description">Alternar teclado emoji</string>
@@ -772,6 +789,7 @@
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Figurinha</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>
   <string name="QuoteView_original_missing">Mensagem original não encontrada</string>

@@ -130,7 +130,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Необезбеђени ММС</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Пребацимо се на Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Хајде да користимо ово за ћаскање: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка при напуштању групе</string>
   <string name="ConversationActivity_specify_recipient">Одредите примаоца</string>
   <string name="ConversationActivity_unblock_this_contact_question">Одлокирати овај контакт?</string>
@@ -500,6 +499,14 @@
   <string name="SmsMessageRecord_secure_session_reset">Ресетовали сте безбедну сесију.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ресетова безбедну сесију.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Налепнице</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Непозната</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Непозната</string>
+  <string name="StickerPackPreviewActivity_remove">Уклони</string>
+  <string name="StickerPackPreviewActivity_stickers">Налепнице</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Група ажурирана.</string>
   <string name="ThreadRecord_left_the_group">Напусти групу</string>

@@ -75,6 +75,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を消去しますか？</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ウェブブラウザが見つかりません。</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">電話を使用中です</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sとの安全番号が変更されました。通信が傍受されている可能性がありますが，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
@@ -134,7 +135,6 @@
   <string name="ConversationActivity_transport_insecure_mms">暗号化されていないMMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">チャットアプリをSignalに変えましょう。%1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">チャット・アプリ『Signal』を使いませんか？ %1$s</string>
   <string name="ConversationActivity_error_leaving_group">グループ脱退でエラー</string>
   <string name="ConversationActivity_specify_recipient">連絡先を選択してください</string>
   <string name="ConversationActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか？</string>
@@ -159,6 +159,8 @@
   <string name="ConversationActivity_no">いいえ</string>
   <string name="ConversationActivity_search_position">%1$d / %2$d</string>
   <string name="ConversationActivity_no_results">見つかりません</string>
+  <string name="ConversationActivity_sticker_pack_installed">ステッカーパックをインストールしました</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">ステッカーが使えます！</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d通の未読メッセージ</item>
@@ -530,6 +532,7 @@
   <string name="SharedContactView_message">Signalメッセージ</string>
   <!--Slide-->
   <string name="Slide_image">画像</string>
+  <string name="Slide_sticker">ステッカー</string>
   <string name="Slide_audio">音声</string>
   <string name="Slide_video">動画</string>
   <!--SmsMessageRecord-->
@@ -539,6 +542,24 @@
   <string name="SmsMessageRecord_secure_session_reset">セキュアセッションを設定し直しました</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%sがセキュアセッションを設定し直しました。</string>
   <string name="SmsMessageRecord_duplicate_message">重複メッセージ</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">このメッセージは、Signalの新バージョンの機能を利用しているため、表示できません。アップデートしてから、メッセージの再送を依頼してください。</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">ステッカー</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">インストール済みステッカー</string>
+  <string name="StickerManagementAdapter_stickers_you_received">受信済みステッカー</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signalアーティストシリーズ</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">ステッカーはインストールされていません</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">受信メッセージのステッカーはここに表示されます</string>
+  <string name="StickerManagementAdapter_untitled">無題</string>
+  <string name="StickerManagementAdapter_unknown">不明</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">無題</string>
+  <string name="StickerPackPreviewActivity_unknown">不明</string>
+  <string name="StickerPackPreviewActivity_install">インストール</string>
+  <string name="StickerPackPreviewActivity_remove">削除</string>
+  <string name="StickerPackPreviewActivity_stickers">ステッカー</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ステッカーパックを読み込ませんでした</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">グループが更新されました</string>
   <string name="ThreadRecord_left_the_group">グループを抜けました</string>
@@ -555,6 +576,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">%sとの安全番号が変わりました</string>
   <string name="ThreadRecord_you_marked_verified">検証済みにしました</string>
   <string name="ThreadRecord_you_marked_unverified">未検証にしました</string>
+  <string name="ThreadRecord_message_could_not_be_processed">メッセージが処理できませんでした</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signalをアップデートする</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalの最新版が出ました。タップしてアップデートしてください。</string>
@@ -620,6 +642,7 @@
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_read">既読にする</string>
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
+  <string name="MessageNotifier_sticker">ステッカー</string>
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
@@ -741,6 +764,7 @@
   <string name="QuoteView_audio">音声</string>
   <string name="QuoteView_video">動画</string>
   <string name="QuoteView_photo">写真</string>
+  <string name="QuoteView_sticker">ステッカー</string>
   <string name="QuoteView_document">ドキュメント</string>
   <string name="QuoteView_you">あなた</string>
   <string name="QuoteView_original_missing">元のメッセージが見つかりません</string>

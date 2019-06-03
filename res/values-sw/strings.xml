@@ -117,7 +117,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS si salama</string>
   <string name="ConversationActivity_transport_signal">Please  Tafadhali</string>
   <string name="ConversationActivity_lets_switch_to_signal">Acha tubadili kwa Signal 1%1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Acha tutumia hii kwa mazungumzo:  1%1$s</string>
   <string name="ConversationActivity_error_leaving_group">kosa la kuondoka kwenye kundi</string>
   <string name="ConversationActivity_specify_recipient">tafadhali chagua mawasiliano</string>
   <string name="ConversationActivity_unblock_this_contact_question">Fungua mawasiliano hii?</string>
@@ -431,6 +430,14 @@ nambari yako ya simu</string>
   <string name="SmsMessageRecord_secure_session_reset">umerekebisha salama kipindi</string>
   <string name="SmsMessageRecord_secure_session_reset_s">1%s kupanga tena kipindi salama</string>
   <string name="SmsMessageRecord_duplicate_message">kutoa nakala ya ujumbe</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Stika</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Isiyojulikana</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Isiyojulikana</string>
+  <string name="StickerPackPreviewActivity_remove">Ondoa</string>
+  <string name="StickerPackPreviewActivity_stickers">Stika</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Kikundi kilichosasishwa</string>
   <string name="ThreadRecord_left_the_group">kujitoa katika kundi</string>

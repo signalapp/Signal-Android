@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Eltávolítod a profilképed?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nem található böngésző.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Egy mobilhívás épp folyamatban van.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Biztonsági számod a következő kontaktoddal megváltozott: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, de az is lehetséges, hogy %2$s egyszerűen csak újratelepítette a Signal-t.
     </string>
@@ -138,7 +139,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Titkosítatlan MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Váltsunk Signal-ra %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Használjuk ezt csevegéshez: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Hiba történt a csoport elhagyásakor</string>
   <string name="ConversationActivity_specify_recipient">Kérlek válassz egy kontaktot</string>
   <string name="ConversationActivity_unblock_this_contact_question">Feloldod ezt a kontaktot?</string>
@@ -163,6 +163,8 @@
   <string name="ConversationActivity_no">Nem</string>
   <string name="ConversationActivity_search_position">%1$d / %2$d</string>
   <string name="ConversationActivity_no_results">Nincs találat</string>
+  <string name="ConversationActivity_sticker_pack_installed">Matricacsomag telepítve</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Új! Fejezd el matricákkal</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d olvasatlan üzenet</item>
@@ -559,6 +561,7 @@ szám (%s) érvénytelen.
   <string name="SharedContactView_message">Signal üzenet</string>
   <!--Slide-->
   <string name="Slide_image">Kép</string>
+  <string name="Slide_sticker">Matrica</string>
   <string name="Slide_audio">Hang</string>
   <string name="Slide_video">Videó</string>
   <!--SmsMessageRecord-->
@@ -572,6 +575,26 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SmsMessageRecord_secure_session_reset">Újraindítottad a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s újraindította a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+        Ez az üzenet nem dolgozható fel, mert a Signal egy újabb verziójából lett küldve. Megkérheted a kontaktod, hogy küldje újra az üzenetet miután frissítettél.
+    </string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Matricák</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Telepített matricák</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Beérkezett matricák</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal Művészi Sorozat</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Nincsenek matricák telepítve</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">A beérkezett üzenetekben szereplő matricák itt fognak megjelenni</string>
+  <string name="StickerManagementAdapter_untitled">Névtelen</string>
+  <string name="StickerManagementAdapter_unknown">Ismeretlen</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Névtelen</string>
+  <string name="StickerPackPreviewActivity_unknown">Ismeretlen</string>
+  <string name="StickerPackPreviewActivity_install">Telepítés</string>
+  <string name="StickerPackPreviewActivity_remove">Eltávolítás</string>
+  <string name="StickerPackPreviewActivity_stickers">Matricák</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nem sikerült betölteni a matricacsomagot</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Csoport frissítve</string>
   <string name="ThreadRecord_left_the_group">Elhagyta a csoportot</string>
@@ -588,6 +611,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
   <string name="ThreadRecord_you_marked_verified">Megerősítettnek jelölted</string>
   <string name="ThreadRecord_you_marked_unverified">Megerősítetlennek jelölted</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Az üzenet nem dolgozható fel</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal frissítés</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A Signal egy új verziója érhető el, koppints a frissítéshez</string>
@@ -653,6 +677,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_mark_all_as_read">Összes megjelölése olvasottként</string>
   <string name="MessageNotifier_mark_read">Olvasottnak jelöl</string>
   <string name="MessageNotifier_media_message">Médiaüzenet</string>
+  <string name="MessageNotifier_sticker">Matrica</string>
   <string name="MessageNotifier_reply">Válasz</string>
   <string name="MessageNotifier_signal_message">Signal üzenet</string>
   <string name="MessageNotifier_unsecured_sms">Titkosítatlan SMS</string>
@@ -776,6 +801,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QuoteView_audio">Hang</string>
   <string name="QuoteView_video">Videó</string>
   <string name="QuoteView_photo">Fotó</string>
+  <string name="QuoteView_sticker">Matrica</string>
   <string name="QuoteView_document">Dokumentum</string>
   <string name="QuoteView_you">Te</string>
   <string name="QuoteView_original_missing">Az eredeti üzenet nem található</string>

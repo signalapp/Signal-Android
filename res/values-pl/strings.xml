@@ -143,7 +143,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Zacznij używać Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Zacznij używać Signal: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Błąd podczas opuszczania grupy</string>
   <string name="ConversationActivity_specify_recipient">Proszę wybierz kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokować ten kontakt?</string>
@@ -168,6 +167,7 @@
   <string name="ConversationActivity_no">Nie</string>
   <string name="ConversationActivity_search_position">%1$d z %2$d</string>
   <string name="ConversationActivity_no_results">Brak wyników</string>
+  <string name="ConversationActivity_sticker_pack_installed">Zainstalowano pakiet naklejek</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nieprzeczytana wiadomość</item>
@@ -592,6 +592,7 @@
   <string name="SharedContactView_message">Wiadomość Signal</string>
   <!--Slide-->
   <string name="Slide_image">Obraz</string>
+  <string name="Slide_sticker">Naklejka</string>
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Wideo</string>
   <!--SmsMessageRecord-->
@@ -602,6 +603,19 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SmsMessageRecord_secure_session_reset">Zresetowałeś(aś) bezpieczną sesję.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s zresetował(a) bezpieczną sesję.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Naklejki</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Zainstalowane naklejki</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Naklejki, które odebrano</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Brak naklejek</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Tutaj pojawią się naklejki z wiadomości przychodzących</string>
+  <string name="StickerManagementAdapter_unknown">Nieznany</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Nieznany</string>
+  <string name="StickerPackPreviewActivity_install">Zainstaluj</string>
+  <string name="StickerPackPreviewActivity_remove">Usuń</string>
+  <string name="StickerPackPreviewActivity_stickers">Naklejki</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupa zaktualizowana</string>
   <string name="ThreadRecord_left_the_group">Opuścił(a) grupę</string>
@@ -683,6 +697,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <string name="MessageNotifier_mark_read">Przeczytane</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
+  <string name="MessageNotifier_sticker">Naklejka</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
   <string name="MessageNotifier_signal_message">Wiadomość Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nieszyfrowany SMS</string>
@@ -807,6 +822,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QuoteView_audio">Dźwięk</string>
   <string name="QuoteView_video">Wideo</string>
   <string name="QuoteView_photo">Zdjęcie</string>
+  <string name="QuoteView_sticker">Naklejka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Ty</string>
   <string name="QuoteView_original_missing">Nie znaleziono oryginalnej wiadomości</string>

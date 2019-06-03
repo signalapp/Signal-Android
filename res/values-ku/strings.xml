@@ -136,7 +136,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMSa neparastî</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Biçe Signalê %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Ji bo gotûbêjê em vê bikarbînin: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Ji komê derketin pêk nehat</string>
   <string name="ConversationActivity_specify_recipient">Ji kerema xwe berdengekî bibijêre</string>
   <string name="ConversationActivity_unblock_this_contact_question">Bila astengkirina vî berdengî rabe?</string>
@@ -539,6 +538,14 @@
   <string name="SmsMessageRecord_secure_session_reset">Te danişîna parastî nûsazand.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s danişîna parastî nûsazand.</string>
   <string name="SmsMessageRecord_duplicate_message">Peyamê dubare bike.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Stickers</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Nenas</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Nenas</string>
+  <string name="StickerPackPreviewActivity_remove">Rake</string>
+  <string name="StickerPackPreviewActivity_stickers">Stickers</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Kom hat hildemandin</string>
   <string name="ThreadRecord_left_the_group">Ji komê derket</string>

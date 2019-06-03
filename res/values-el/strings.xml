@@ -137,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ας χρησιμοποιήσουμε το Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό για να συνομιλήσουμε: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Πρόβλημα κατά την αποχώρηση από την ομάδα</string>
   <string name="ConversationActivity_specify_recipient">Παρακαλώ επιλέξτε μια επαφή</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ξεμπλοκάρισμα αυτής της επαφής;</string>
@@ -565,6 +564,14 @@
   <string name="SmsMessageRecord_secure_session_reset">Επανεκκινήσατε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">Ο/Η %s επανεκκίνησε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Αυτοκόλλητα</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Άγνωστο</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Άγνωστο</string>
+  <string name="StickerPackPreviewActivity_remove">Αφαίρεση</string>
+  <string name="StickerPackPreviewActivity_stickers">Αυτοκόλλητα</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Η ομάδα ενημερώθηκε</string>
   <string name="ThreadRecord_left_the_group">Έφυγες από την ομάδα</string>

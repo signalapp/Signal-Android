@@ -132,7 +132,6 @@
   <string name="ConversationActivity_transport_insecure_mms">అసురక్షిత ఎమ్మెమ్మెస్</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">మనం Signal %1$sకు మారుదాం</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">ఈ యొక్క చాట్ ని  ఉపయోగించు: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">సమూహం నుండి వైదొలగటంలో లోపం</string>
   <string name="ConversationActivity_specify_recipient">దయచేసి ఒక పరిచయం ఎంచుకోండి</string>
   <string name="ConversationActivity_unblock_this_contact_question">ఈ పరిచయం నిరోధించాలా?</string>
@@ -530,6 +529,14 @@
   <string name="SmsMessageRecord_secure_session_reset">మీ సెషన్ సురక్షిత ంగ పునరుద్ధరించు.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s సురక్షిత భాగాన్ని మరలా మార్చు</string>
   <string name="SmsMessageRecord_duplicate_message">నకిలీ సందేశాం.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">స్టిక్కర్లు</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">తెలియని</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">తెలియని</string>
+  <string name="StickerPackPreviewActivity_remove">తొలగించు</string>
+  <string name="StickerPackPreviewActivity_stickers">స్టిక్కర్లు</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">సమూహం నవీకరించబడింది</string>
   <string name="ThreadRecord_left_the_group">సమూహన్ని వదిలివేయుట</string>

@@ -137,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signalera aldatu dezagun %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Erabili dezagun hau txatarako: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Taldetik irteterakoan huts egin du</string>
   <string name="ConversationActivity_specify_recipient">Kontaktu bat aukeratu, mesedez</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desblokeatu kontaktu hau?</string>
@@ -571,6 +570,14 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SmsMessageRecord_secure_session_reset">Saio segurua berrezarri duzu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s berrezarri saio segurua.</string>
   <string name="SmsMessageRecord_duplicate_message">Mezu bikoiztua.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Eranskailuak</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Ezezaguna</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Ezezaguna</string>
+  <string name="StickerPackPreviewActivity_remove">Ezabatu</string>
+  <string name="StickerPackPreviewActivity_stickers">Eranskailuak</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Taldea eguneratu da</string>
   <string name="ThreadRecord_left_the_group">Taldea utzi duzu</string>
@@ -744,6 +751,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_activity__type_message_sms_insecure">SMS ez segurua</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS ez segurua</string>
   <string name="conversation_activity__from_sim_name">%1$s-(e)tik</string>
+  <string name="conversation_activity__sim_n">%1$d SIM-a</string>
   <string name="conversation_activity__send">Bidali</string>
   <string name="conversation_activity__compose_description">Mezuaren konposizioa</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji teklatua aktibatu/desaktibatu</string>
@@ -1000,6 +1008,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences__pref_enter_sends_title">Enter teklak bidaltzen duena</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tekla sakatzeak testu mezuak bidaliko ditu</string>
   <string name="preferences__send_link_previews">Loturen aurrebistak bidali</string>
+  <string name="preferences__previews_are_supported_for">Aurrebistak honako zerbitzuekin funtzionatzen du: Imgur, Instagram, Reddit eta YouTube</string>
   <string name="preferences__choose_identity">Aukeratu nortasuna</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
   <string name="preferences__change_passphrase">Pasahitza aldatu</string>

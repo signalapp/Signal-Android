@@ -130,7 +130,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS mana allikakta yacharinchu</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal ukuman yallishunchik: %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Kaywan rimarishun: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Tantanakuymanta mana llukshita usharirkachu</string>
   <string name="ConversationActivity_specify_recipient">Ama shina kashpa, shuk yupaymashita akllapay</string>
   <string name="ConversationActivity_unblock_this_contact_question">Kay yupaymashita pakashkamanta llukchinayanchu</string>
@@ -511,6 +510,14 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="SmsMessageRecord_secure_session_reset">Kutinlla kallarirkanki </string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s kutinlla kallarirkanki</string>
   <string name="SmsMessageRecord_duplicate_message">Chaskita ishkaychi</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Llutanakukuna </string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Mana riksishka</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Mana riksishka</string>
+  <string name="StickerPackPreviewActivity_remove">Anchuchina</string>
+  <string name="StickerPackPreviewActivity_stickers">Llutanakukuna </string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Tantanakuy mushukyashka</string>
   <string name="ThreadRecord_left_the_group">Tanatakuymanta llukshi</string>

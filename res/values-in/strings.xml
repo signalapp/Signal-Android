@@ -134,7 +134,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS tidak aman</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ayo pindah ke Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Ayo gunakan ini untuk mengobrol: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gagal meninggalkan grup</string>
   <string name="ConversationActivity_specify_recipient">Silahkan pilih kontak</string>
   <string name="ConversationActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
@@ -542,6 +541,14 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SmsMessageRecord_secure_session_reset">Anda mengatur ulang sesi aman.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s mengatur ulang sesi aman.</string>
   <string name="SmsMessageRecord_duplicate_message">Pesan Duplikat</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Stiker</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Tidak dikenal</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Tidak dikenal</string>
+  <string name="StickerPackPreviewActivity_remove">Hapus</string>
+  <string name="StickerPackPreviewActivity_stickers">Stiker</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup diperbarui</string>
   <string name="ThreadRecord_left_the_group">Meninggalkan grup</string>

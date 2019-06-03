@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Rimuovere foto profilo?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nessun browser web trovato.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">C\'è già una chiamata telefonica in corso.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Il codice di sicurezza con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Dovresti verificare il tuo codice di sicurezza con questo contatto.</string>
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS non sicuro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Passiamo a Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Chattiamo con questa app: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Errore nell\'uscita dal gruppo</string>
   <string name="ConversationActivity_specify_recipient">Scegli un contatto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Sbloccare questo contatto?</string>
@@ -162,6 +162,8 @@
   <string name="ConversationActivity_no">No</string>
   <string name="ConversationActivity_search_position">%1$d di %2$d</string>
   <string name="ConversationActivity_no_results">Nessun risultato</string>
+  <string name="ConversationActivity_sticker_pack_installed">Pacchetto adesivi installato</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Nuovo! Dillo con gli adesivi</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>
@@ -555,6 +557,7 @@ Sii te stesso in ogni messaggio.</string>
   <string name="SharedContactView_message">Messaggio Signal</string>
   <!--Slide-->
   <string name="Slide_image">Immagini</string>
+  <string name="Slide_sticker">Adesivo</string>
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -567,6 +570,26 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="SmsMessageRecord_secure_session_reset">Hai resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+        Impossibile elaborare questo messaggio perchè è stato inviato da una versione più recente di Signal. Puoi chiedere al tuo contatto di reinviarlo dopo che hai aggiornato.
+    </string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Adesivi</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Adesivi installati</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Adesivi che hai ricevuto</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Serie artisti di Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Nessun pacchetto di adesivi installato</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Gli adesivi dei messaggi in arrivo appariranno qui</string>
+  <string name="StickerManagementAdapter_untitled">Senza titolo</string>
+  <string name="StickerManagementAdapter_unknown">Sconosciuto</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Senza titolo</string>
+  <string name="StickerPackPreviewActivity_unknown">Sconosciuto</string>
+  <string name="StickerPackPreviewActivity_install">Installa</string>
+  <string name="StickerPackPreviewActivity_remove">Elimina</string>
+  <string name="StickerPackPreviewActivity_stickers">Adesivi</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Caricamento pacchetto adesivi fallito</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppo aggiornato</string>
   <string name="ThreadRecord_left_the_group">Abbandona il gruppo</string>
@@ -583,6 +606,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Il codice di sicurezza con %s è cambiato.</string>
   <string name="ThreadRecord_you_marked_verified">Segna come verificato</string>
   <string name="ThreadRecord_you_marked_unverified">Segna come non verificato</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Impossibile elaborare il messaggio</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aggiornamento Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">È disponibile una nuova versione di Signal, tocca per aggiornare</string>
@@ -648,6 +672,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_mark_all_as_read">Segna tutto come già letto</string>
   <string name="MessageNotifier_mark_read">Segna come già letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
+  <string name="MessageNotifier_sticker">Adesivo</string>
   <string name="MessageNotifier_reply">Rispondi</string>
   <string name="MessageNotifier_signal_message">Messaggio Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
@@ -770,6 +795,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Adesivo</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Tu</string>
   <string name="QuoteView_original_missing">Messaggio originale non trovato</string>

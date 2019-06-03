@@ -143,7 +143,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pojďme přepnout na Signal: %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Pojďme použít na chat: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba při opouštění skupiny</string>
   <string name="ConversationActivity_specify_recipient">Vyberte prosím kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokovat tento kontakt?</string>
@@ -602,6 +601,14 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="SmsMessageRecord_secure_session_reset">Resetujete zabezpečenou konverzaci</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetuje zabezpečenou konverzaci</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Nálepky</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Neznámý</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Neznámý</string>
+  <string name="StickerPackPreviewActivity_remove">Odebrat</string>
+  <string name="StickerPackPreviewActivity_stickers">Nálepky</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Skupina upravena</string>
   <string name="ThreadRecord_left_the_group">Opustil skupinu.</string>

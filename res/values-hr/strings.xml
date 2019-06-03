@@ -140,7 +140,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Nesigurni MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Prebaci se na Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Koristi ovo za razgovor: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Greška pri napuštanju grupe</string>
   <string name="ConversationActivity_specify_recipient">Odaberite kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ukloni blokadu ovog kontakta?</string>
@@ -562,6 +561,14 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="SmsMessageRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Naljepnice</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Nepoznato</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Nepoznato</string>
+  <string name="StickerPackPreviewActivity_remove">Ukloni</string>
+  <string name="StickerPackPreviewActivity_stickers">Naljepnice</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupa je ažurirana</string>
   <string name="ThreadRecord_left_the_group">Napustio/la grupu</string>

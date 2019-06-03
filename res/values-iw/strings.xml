@@ -143,7 +143,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS בלתי מאובטח</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">בוא נחליף אל Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">בוא נשתמש בזה להתכתבות: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">שגיאה בעזיבת קבוצה</string>
   <string name="ConversationActivity_specify_recipient">אנא בחר איש קשר</string>
   <string name="ConversationActivity_unblock_this_contact_question">לבטל חסימת איש קשר זה?</string>
@@ -168,6 +167,7 @@
   <string name="ConversationActivity_no">לא</string>
   <string name="ConversationActivity_search_position">%1$d מתוך %2$d</string>
   <string name="ConversationActivity_no_results">אין תוצאות</string>
+  <string name="ConversationActivity_sticker_pack_installed">חבילת מדבקות הותקנה</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -593,6 +593,7 @@
   <string name="SharedContactView_message">הודעת Signal</string>
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
+  <string name="Slide_sticker">מדבקה</string>
   <string name="Slide_audio">שמע</string>
   <string name="Slide_video">וידיאו</string>
   <!--SmsMessageRecord-->
@@ -604,6 +605,20 @@
   <string name="SmsMessageRecord_secure_session_reset">איפסת את השיח המאובטח.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">ההתחברות המאובטחת אותחלה על־ידי %s.</string>
   <string name="SmsMessageRecord_duplicate_message">הודעה כפולה.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">מדבקות</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">מדבקות מותקנות</string>
+  <string name="StickerManagementAdapter_stickers_you_received">מדבקות שקיבלת</string>
+  <string name="StickerManagementAdapter_signal_artist_series">סדרת אומנים Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">אין מדבקות מותקנות</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">מדבקות מהודעות נכנסות יופיעו כאן</string>
+  <string name="StickerManagementAdapter_unknown">לא ידוע</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">לא ידוע</string>
+  <string name="StickerPackPreviewActivity_install">התקן</string>
+  <string name="StickerPackPreviewActivity_remove">הסר</string>
+  <string name="StickerPackPreviewActivity_stickers">מדבקות</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">הקבוצה עודכנה</string>
   <string name="ThreadRecord_left_the_group">עזב את הקבוצה</string>
@@ -685,6 +700,7 @@
   <string name="MessageNotifier_mark_all_as_read">סמן שהכל נקרא</string>
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_media_message">הודעת מדיה</string>
+  <string name="MessageNotifier_sticker">מדבקה</string>
   <string name="MessageNotifier_reply">השב</string>
   <string name="MessageNotifier_signal_message">הודעת Signal</string>
   <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
@@ -809,6 +825,7 @@
   <string name="QuoteView_audio">שמע</string>
   <string name="QuoteView_video">וידיאו</string>
   <string name="QuoteView_photo">תצלום</string>
+  <string name="QuoteView_sticker">מדבקה</string>
   <string name="QuoteView_document">מסמך</string>
   <string name="QuoteView_you">אתה</string>
   <string name="QuoteView_original_missing">הודעה מקורית לא נמצאה</string>

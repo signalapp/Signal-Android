@@ -133,7 +133,6 @@
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित एमएमएस</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s चलो Signal पर स्विच करें</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">%1$s चलो चैट करने के लिए इसका इस्तेमाल करते हैं</string>
   <string name="ConversationActivity_error_leaving_group">समूह छोड़ने में त्रुटि</string>
   <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क चुनें</string>
   <string name="ConversationActivity_unblock_this_contact_question">इस संपर्क को अनवरोधित करें?</string>
@@ -515,6 +514,14 @@
   <string name="SmsMessageRecord_secure_session_reset">आपने सुरक्षित सत्र रीसेट कर दिया है।</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ने सुरक्षित सत्र को रीसेट कर दिया है </string>
   <string name="SmsMessageRecord_duplicate_message">संदेश डुप्लिकेट करें</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">स्टिकर</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">अनजान</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">अनजान</string>
+  <string name="StickerPackPreviewActivity_remove">हटा दें </string>
+  <string name="StickerPackPreviewActivity_stickers">स्टिकर</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">समूह अद्यतन</string>
   <string name="ThreadRecord_left_the_group">समूह छोड़ दिया</string>

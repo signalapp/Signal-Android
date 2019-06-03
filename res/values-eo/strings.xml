@@ -137,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Nesekura MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ni ŝanĝiĝu al Signal: %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Ni ekuzu ĉi tion por babili: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Eraro dum forlaso de grupo</string>
   <string name="ConversationActivity_specify_recipient">Bonvolu elekti kontakon</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ĉu malbloki ĉi tiun kontakton?</string>
@@ -569,6 +568,20 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SmsMessageRecord_secure_session_reset">Vi restarigis la sekuran seancon.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s restarigis la sekuran seancon.</string>
   <string name="SmsMessageRecord_duplicate_message">Duobla mesaĝo.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Glumarkoj</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Instalitaj glumarkaroj</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Glumarkaroj, kiujn vi ricevis</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Artista serio de Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Neniu glumarkaro instalita</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Glumarkoj el envenaj mesaĝoj aperos ĉi tie</string>
+  <string name="StickerManagementAdapter_unknown">Nekonata</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Nekonata</string>
+  <string name="StickerPackPreviewActivity_install">Instali</string>
+  <string name="StickerPackPreviewActivity_remove">Forviŝi</string>
+  <string name="StickerPackPreviewActivity_stickers">Glumarkoj</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo ĝisdatigita</string>
   <string name="ThreadRecord_left_the_group">Forlasis la grupon</string>

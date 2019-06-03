@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Voleu suprimir la foto de perfil?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">No s\'ha trobat cap navegador web.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ja hi ha una de mòbil en curs.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">El número de seguretat amb %1$s ha canviat. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que %2$s ha reinstal·lat el Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Potser voleu verificar el número de seguretat amb aquest contacte.</string>
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS no segur</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Canviem al Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Fem servir això per xerrar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Error en abandonar el grup</string>
   <string name="ConversationActivity_specify_recipient">Trieu un contacte</string>
   <string name="ConversationActivity_unblock_this_contact_question">Voleu desblocar aquest contacte?</string>
@@ -162,6 +162,8 @@
   <string name="ConversationActivity_no">No</string>
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">No hi ha cap resultat.</string>
+  <string name="ConversationActivity_sticker_pack_installed">Paquet d\'adhesius instal·lat</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Nou! Digueu-ho amb adhesius.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -553,6 +555,7 @@ especificat (%s) no és vàlid.</string>
   <string name="SharedContactView_message">Missatge del Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imatge</string>
+  <string name="Slide_sticker">Adhesiu</string>
   <string name="Slide_audio">Àudio</string>
   <string name="Slide_video">Vídeo</string>
   <!--SmsMessageRecord-->
@@ -564,6 +567,26 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SmsMessageRecord_secure_session_reset">Heu restablit la sessió segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha restablit la sessió segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Missatge duplicat.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+        No s’ha pogut processar aquest missatge perquè s’ha enviat des d’una versió més recent del Signal. Podeu demanar al vostre contacte que enviï aquest missatge un cop l\'hàgiu actualitzat.
+    </string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Adhesius</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Adhesius instal·lats</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Adhesius que heu rebut</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Sèries d\'artistes de Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">No hi ha adhesius instal·lats.</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Els adhesius dels missatges d\'entrada apareixeran aquí.</string>
+  <string name="StickerManagementAdapter_untitled">Sense títol</string>
+  <string name="StickerManagementAdapter_unknown">Desconegut</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Sense títol</string>
+  <string name="StickerPackPreviewActivity_unknown">Desconegut</string>
+  <string name="StickerPackPreviewActivity_install">Instal·la</string>
+  <string name="StickerPackPreviewActivity_remove">Suprimeix</string>
+  <string name="StickerPackPreviewActivity_stickers">Adhesius</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Ha fallat carregar el paquet d\'adhesius.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">S\'ha actualitzat el grup</string>
   <string name="ThreadRecord_left_the_group">Ha abandonat el grup</string>
@@ -580,6 +603,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
   <string name="ThreadRecord_you_marked_verified">Heu verificat</string>
   <string name="ThreadRecord_you_marked_unverified">Heu tret la verificació</string>
+  <string name="ThreadRecord_message_could_not_be_processed">No s\'ha pogut processar el missatge.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualització del Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hi ha disponible una versió nova del Signal. Toqueu per actualitzar-lo</string>
@@ -645,6 +669,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_mark_all_as_read">Marca-ho tot com a llegit</string>
   <string name="MessageNotifier_mark_read">Marca\'l com a llegit</string>
   <string name="MessageNotifier_media_message">Missatge multimèdia</string>
+  <string name="MessageNotifier_sticker">Adhesiu</string>
   <string name="MessageNotifier_reply">Respon</string>
   <string name="MessageNotifier_signal_message">Missatge del Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no segur</string>
@@ -767,6 +792,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QuoteView_audio">Àudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Adhesiu</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Jo</string>
   <string name="QuoteView_original_missing">No s\'ha trobat el missatge original.</string>

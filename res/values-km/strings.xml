@@ -134,7 +134,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS មិនមានសុវត្ថិភាព</string>
   <string name="ConversationActivity_transport_signal"> Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">តោះដូរទៅកាន់ Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">តោះសូមប្រើនេះ ដើម្បីជជែកគ្នា៖ %1$s</string>
   <string name="ConversationActivity_error_leaving_group">បញ្ហាសម្រាប់ការចាកចេញពីក្រុម</string>
   <string name="ConversationActivity_specify_recipient">សូមជ្រើសរើសលេខទំនាក់ទំនង១</string>
   <string name="ConversationActivity_unblock_this_contact_question">បើកលេខទំនាក់ទំនងនេះ?</string>
@@ -544,6 +543,14 @@
   <string name="SmsMessageRecord_secure_session_reset">អ្នកកំណត់ការចូលប្រើប្រាស់សុវត្ថិភាពឡើងវិញ។</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s កំណត់ការចូលប្រើប្រាស់សុវត្ថិភាពឡើងវិញ។</string>
   <string name="SmsMessageRecord_duplicate_message">សារស្ទួន។</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">ស្ទីកគ័រ</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">មិនស្គាល់</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">មិនស្គាល់</string>
+  <string name="StickerPackPreviewActivity_remove">លុបចេញ</string>
+  <string name="StickerPackPreviewActivity_stickers">ស្ទីកគ័រ</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">បានធ្វើបច្ចុប្បន្នភាពក្រុម</string>
   <string name="ThreadRecord_left_the_group">បានចាកចេញពីក្រុម</string>
@@ -716,6 +723,7 @@
   <string name="conversation_activity__type_message_sms_insecure">SMS គ្មានសុវត្ថិភាព</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS គ្មានសុវត្ថិភាព</string>
   <string name="conversation_activity__from_sim_name">មកពី %1$s</string>
+  <string name="conversation_activity__sim_n">ស៊ីមកាត %1$d</string>
   <string name="conversation_activity__send">ផ្ញើ</string>
   <string name="conversation_activity__compose_description">ការបង្កើតសារថ្មី</string>
   <string name="conversation_activity__emoji_toggle_description">បិទបើកក្តារចុចរូបអារម្មណ៍emoji</string>
@@ -963,6 +971,7 @@
   <string name="preferences__pref_enter_sends_title">ចុច Enter ដើម្បីផ្ញើ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ចុចប៊ូតុង បញ្ចូន នឹងផ្ញើសារអក្សរ</string>
   <string name="preferences__send_link_previews">ការមើល ការផ្ញើតំណភ្ជាប់</string>
+  <string name="preferences__previews_are_supported_for">ការមើលជាមុនបានគាំទ្រសម្រាប់ Imgur Instagram Pinterest Reddit និងតំណររបស់ YouTube</string>
   <string name="preferences__choose_identity">ជ្រើសរើសអត្តសញ្ញាណ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ជ្រើសរើសលេខទំនាក់ទំនងរបស់អ្នកពីបញ្ជីទំនាក់ទំនង។</string>
   <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>

@@ -141,7 +141,6 @@
   <string name="ConversationActivity_transport_insecure_mms">رسالة وسائط متعددة غير آمنة</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">هيا ننتقل إلى Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">دعنا نتواصل عبر هذا: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">خطأ أثناء مغادرة المجموعة</string>
   <string name="ConversationActivity_specify_recipient">رجاء اختيار جهة اتصال</string>
   <string name="ConversationActivity_unblock_this_contact_question">إلغاء حظر جهة الاتصال؟</string>
@@ -568,6 +567,14 @@
   <string name="SmsMessageRecord_secure_session_reset">لقد قمت بإعادة ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s أعاد ضبط تأمين المحادثة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">لصاقات</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">مجهول</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">مجهول</string>
+  <string name="StickerPackPreviewActivity_remove">إزالة</string>
+  <string name="StickerPackPreviewActivity_stickers">لصاقات</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">تم تحديث المحموعة</string>
   <string name="ThreadRecord_left_the_group">غادر المجموعة</string>

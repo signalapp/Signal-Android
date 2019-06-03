@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Eemaldad profiilipildi?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Veebibrauserit ei leitud.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobiilsidekõne on juba käimas.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %1$s on muutunud. See võib tähendada, et keegi proovib sinu vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Ebaturvaline MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lähme Signalile üle %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Kasutame seda vestlemiseks: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Grupist lahkumisel tekkis viga</string>
   <string name="ConversationActivity_specify_recipient">Palun vali kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Eemaldada kontakti blokeering?</string>
@@ -162,6 +162,8 @@
   <string name="ConversationActivity_no">Ei</string>
   <string name="ConversationActivity_search_position">%1$d / %2$d</string>
   <string name="ConversationActivity_no_results">Tulemusi pole</string>
+  <string name="ConversationActivity_sticker_pack_installed">Kleepsupakk paigaldatud</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Uus! Ütle seda koos kleepsudega</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lugemata sõnum</item>
@@ -557,6 +559,7 @@
   <string name="SharedContactView_message">Signali sõnum</string>
   <!--Slide-->
   <string name="Slide_image">Pilt</string>
+  <string name="Slide_sticker">Kleeps</string>
   <string name="Slide_audio">Heli</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -570,6 +573,26 @@
   <string name="SmsMessageRecord_secure_session_reset">Sa lähtestasid turvalise sessiooni.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s lähtestas turvalise sessiooni.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikaatsõnum.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+        Seda sõnumit ei saanud töödelda, kuna see saadeti Signali uuemast versioonist. Sa võid paluda oma kontaktil see sõnum uuesti saata, kui oled ise rakendust uuendanud.
+    </string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Kleepsud</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Paigaldatud kleepsud</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Vastuvõetud kleepsud</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signali artisti seeria</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Kleepse pole paigaldatud</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Kleepsud sissetulevatelt sõnumitelt kuvatakse siin</string>
+  <string name="StickerManagementAdapter_untitled">Nimetu</string>
+  <string name="StickerManagementAdapter_unknown">Tundmatu</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Nimetu</string>
+  <string name="StickerPackPreviewActivity_unknown">Tundmatu</string>
+  <string name="StickerPackPreviewActivity_install">Paigalda</string>
+  <string name="StickerPackPreviewActivity_remove">Eemalda</string>
+  <string name="StickerPackPreviewActivity_stickers">Kleepsud</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Kleepsupaki laadimine ebaõnnestus</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupp uuendatud</string>
   <string name="ThreadRecord_left_the_group">Lahkus grupist</string>
@@ -586,6 +609,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
   <string name="ThreadRecord_you_marked_verified">Sa märkisid kinnitatuks</string>
   <string name="ThreadRecord_you_marked_unverified">Sa märkisid mittekinnitatuks</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Sõnumit ei saanud töödelda</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signali uuendus</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uus Signali versioon on saadaval, koputa uuendamiseks</string>
@@ -651,6 +675,7 @@
   <string name="MessageNotifier_mark_all_as_read">Märgi kõik loetuks</string>
   <string name="MessageNotifier_mark_read">Märgi loetuks</string>
   <string name="MessageNotifier_media_message">Meediasõnum</string>
+  <string name="MessageNotifier_sticker">Kleeps</string>
   <string name="MessageNotifier_reply">Vasta</string>
   <string name="MessageNotifier_signal_message">Signali sõnum</string>
   <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
@@ -773,6 +798,7 @@
   <string name="QuoteView_audio">Heli</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Kleeps</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Sina</string>
   <string name="QuoteView_original_missing">Originaalsõnumit ei leitud</string>

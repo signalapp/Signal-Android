@@ -75,6 +75,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">删除头像</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">未能找到网页浏览器。</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">一个基站通话已在处理中。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全代码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了 Signal 。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望验证这个联系人的安全码。</string>
@@ -134,7 +135,6 @@
   <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
   <string name="ConversationActivity_transport_signal"> Signal </string>
   <string name="ConversationActivity_lets_switch_to_signal">让我们切换到 Signal  %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">让我们使用它来聊天：%1$s</string>
   <string name="ConversationActivity_error_leaving_group">离开群组时出错</string>
   <string name="ConversationActivity_specify_recipient">请选择一个联系人</string>
   <string name="ConversationActivity_unblock_this_contact_question">取消屏蔽此联系人吗？</string>
@@ -159,6 +159,8 @@
   <string name="ConversationActivity_no">否</string>
   <string name="ConversationActivity_search_position">%2$d中之%1$d</string>
   <string name="ConversationActivity_no_results">无结果</string>
+  <string name="ConversationActivity_sticker_pack_installed">表情包已安装</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">新！可以发表情了！</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读信息</item>
@@ -534,6 +536,7 @@
   <string name="SharedContactView_message">Signal 消息</string>
   <!--Slide-->
   <string name="Slide_image">图片</string>
+  <string name="Slide_sticker">表情包</string>
   <string name="Slide_audio">音频</string>
   <string name="Slide_video">视频</string>
   <!--SmsMessageRecord-->
@@ -544,6 +547,24 @@
   <string name="SmsMessageRecord_secure_session_reset">您重置了安全会话。</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+    由于对方版本的 Signal 版本高于您使用的版本，此信息无法处理。请升级您的 Signal 版本，然后要求对方再发送一次。</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">表情</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">可用表情</string>
+  <string name="StickerManagementAdapter_stickers_you_received">你收到的贴纸</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">没有安装任何贴纸包</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">消息中的表情包会显示在这里</string>
+  <string name="StickerManagementAdapter_untitled">未命名</string>
+  <string name="StickerManagementAdapter_unknown">未知</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">未命名</string>
+  <string name="StickerPackPreviewActivity_unknown">未知</string>
+  <string name="StickerPackPreviewActivity_install">安装</string>
+  <string name="StickerPackPreviewActivity_remove">删除</string>
+  <string name="StickerPackPreviewActivity_stickers">表情</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">无法加载贴纸包</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">群组已更新</string>
   <string name="ThreadRecord_left_the_group">离开此群组</string>
@@ -625,6 +646,7 @@
   <string name="MessageNotifier_mark_all_as_read">全部标记为已读</string>
   <string name="MessageNotifier_mark_read">标记为已读</string>
   <string name="MessageNotifier_media_message">媒体信息</string>
+  <string name="MessageNotifier_sticker">表情包</string>
   <string name="MessageNotifier_reply">回复</string>
   <string name="MessageNotifier_signal_message">Signal 消息</string>
   <string name="MessageNotifier_unsecured_sms">未加密的短信</string>
@@ -746,6 +768,7 @@
   <string name="QuoteView_audio">音频</string>
   <string name="QuoteView_video">视频</string>
   <string name="QuoteView_photo">图片</string>
+  <string name="QuoteView_sticker">表情包</string>
   <string name="QuoteView_document">文档</string>
   <string name="QuoteView_you">您</string>
   <string name="QuoteView_original_missing">没有找到原信息</string>

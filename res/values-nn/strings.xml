@@ -137,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss byte til Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">La oss bruka dette til å prata: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Klarte ikkje forlata gruppa</string>
   <string name="ConversationActivity_specify_recipient">Vel ein kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Vil du fjerne blokkering av denne kontakten?</string>
@@ -561,6 +560,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Klistremerke</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Ukjend</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Ukjend</string>
+  <string name="StickerPackPreviewActivity_remove">Fjern</string>
+  <string name="StickerPackPreviewActivity_stickers">Klistremerke</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupper oppdatert</string>
   <string name="ThreadRecord_left_the_group">Forlét gruppa</string>

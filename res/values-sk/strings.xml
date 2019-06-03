@@ -143,7 +143,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Prejdime na Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Chatujme cez toto: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba pri opustení skupiny</string>
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokovať tento kontakt?</string>
@@ -609,6 +608,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SmsMessageRecord_secure_session_reset">Obnovili ste bezpečnú reláciu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval/a zabezpečenú reláciu.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikácia správy.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Nálepky</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Neznáme</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Neznáme</string>
+  <string name="StickerPackPreviewActivity_remove">Odstrániť</string>
+  <string name="StickerPackPreviewActivity_stickers">Nálepky</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Skupina bola aktualizovaná</string>
   <string name="ThreadRecord_left_the_group">Opustil/a skupinu</string>

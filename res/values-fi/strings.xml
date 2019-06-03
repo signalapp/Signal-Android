@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Poista profiilikuva?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Verkkoselainta ei löytynyt.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Matkapuhelu on jo käynnissä.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Saatat haluta varmentaa turvanumerosi tämän yhteystiedon kanssa.</string>
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Salaamaton MMS-viesti</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hei, vaihdetaan Signaliin %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Hei, kokeillaan keskustella tällä: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Virhe ryhmästä lähtiessä</string>
   <string name="ConversationActivity_specify_recipient">Valitse yhteystieto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Poista esto tältä yhteystiedolta?</string>
@@ -162,6 +162,8 @@
   <string name="ConversationActivity_no">Ei</string>
   <string name="ConversationActivity_search_position">%1$d / %2$d</string>
   <string name="ConversationActivity_no_results">Ei hakutuloksia</string>
+  <string name="ConversationActivity_sticker_pack_installed">Tarrapaketti asennettu</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Uutuus! Sano se tarroilla</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lukematon viesti</item>
@@ -553,6 +555,7 @@ puhelinnumero</string>
   <string name="SharedContactView_message">Signal viesti</string>
   <!--Slide-->
   <string name="Slide_image">Kuva</string>
+  <string name="Slide_sticker">Tarra</string>
   <string name="Slide_audio">Äänitallenne</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -564,6 +567,23 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SmsMessageRecord_secure_session_reset">Sinä alustit suojatun istunnon.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s alusti suojatun istunnon.</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
+        Tätä viestiä ei voitu käsitellä, koska se lähetettiin uudemmasta Signal-versiosta. Voit pyytää yhteystietoasi lähettämään viestin uudelleen sen jälkeen kun olet päivittänyt.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Tarrat</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Asennetut tarrat</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Vastaanotetut tarrat</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal Artist -sarja</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Tarroja ei ole asennettu</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Saapuvien viestien tarrat tulevat näkymään tässä</string>
+  <string name="StickerManagementAdapter_unknown">Tuntematon</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Tuntematon</string>
+  <string name="StickerPackPreviewActivity_install">Asenna</string>
+  <string name="StickerPackPreviewActivity_remove">Poista</string>
+  <string name="StickerPackPreviewActivity_stickers">Tarrat</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Tarrapaketin lataaminen epäonnistui</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Ryhmä päivitetty</string>
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä</string>
@@ -580,6 +600,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
   <string name="ThreadRecord_you_marked_verified">Merkitsit varmennetuksi.</string>
   <string name="ThreadRecord_you_marked_unverified">Merkitsit varmentamattomaksi.</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Viestin käsittely epäonnistui</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napauttamalla.</string>
@@ -645,6 +666,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_media_message">Mediaviesti</string>
+  <string name="MessageNotifier_sticker">Tarra</string>
   <string name="MessageNotifier_reply">Vastaa</string>
   <string name="MessageNotifier_signal_message">Signal viesti</string>
   <string name="MessageNotifier_unsecured_sms">Salaamaton SMS-viesti</string>
@@ -767,6 +789,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuoteView_audio">Äänitallenne</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Kuva</string>
+  <string name="QuoteView_sticker">Tarra</string>
   <string name="QuoteView_document">Dokumentti</string>
   <string name="QuoteView_you">Sinä</string>
   <string name="QuoteView_original_missing">Alkuperäistä viestiä ei löytynyt</string>
