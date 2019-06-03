@@ -106,6 +106,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
+import org.whispersystems.signalservice.loki.messages.LokiServiceMessage;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -236,6 +237,18 @@ public class PushDecryptJob extends BaseJob {
       if (shouldIgnore(content)) {
         Log.i(TAG, "Ignoring message.");
         return;
+      }
+
+      // Loki: Handle any loki specific messages
+      if (content.lokiMessage.isPresent()) {
+        LokiServiceMessage lokiMessage = content.lokiMessage.get();
+        if (lokiMessage.getPreKeyBundleMessage() != null) {
+          // TODO: Loki - Handle pre key bundle
+        }
+
+        if (lokiMessage.getAddressMessage() != null) {
+          // TODO: Loki - Handle address message
+        }
       }
 
       if (content.getDataMessage().isPresent()) {
