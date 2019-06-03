@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageButton;
@@ -9,6 +8,7 @@ import android.util.AttributeSet;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
+import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.MediaKeyboardListener {
@@ -44,17 +44,11 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
   }
 
   private void initialize() {
-    int attributes[] = new int[] {R.attr.conversation_emoji_toggle,
-                                  R.attr.conversation_sticker_toggle,
-                                  R.attr.conversation_keyboard_toggle};
+    this.emojiToggle   = ResUtil.getDrawable(getContext(), R.attr.conversation_emoji_toggle);
+    this.stickerToggle = ResUtil.getDrawable(getContext(), R.attr.conversation_sticker_toggle);
+    this.imeToggle     = ResUtil.getDrawable(getContext(), R.attr.conversation_keyboard_toggle);
+    this.mediaToggle   = emojiToggle;
 
-    TypedArray drawables = getContext().obtainStyledAttributes(attributes);
-    this.emojiToggle     = drawables.getDrawable(0);
-    this.stickerToggle   = drawables.getDrawable(1);
-    this.imeToggle       = drawables.getDrawable(2);
-    this.mediaToggle     = emojiToggle;
-
-    drawables.recycle();
     setToMedia();
   }
 

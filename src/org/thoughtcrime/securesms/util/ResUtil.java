@@ -26,6 +26,7 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.util.TypedValue;
 
 public class ResUtil {
@@ -48,7 +49,7 @@ public class ResUtil {
   }
 
   public static Drawable getDrawable(Context c, @AttrRes int attr) {
-    return ContextCompat.getDrawable(c, getDrawableRes(c, attr));
+    return AppCompatResources.getDrawable(c, getDrawableRes(c, attr));
   }
 
   public static int[] getResourceIds(Context c, @ArrayRes int array) {
