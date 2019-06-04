@@ -91,7 +91,6 @@ public class PreKeyUtil {
   }
 
   // region - Loki
-
   public synchronized static List<PreKeyRecord> generatePreKeys(Context context, int amount) {
     PreKeyStore        preKeyStore    = new TextSecurePreKeyStore(context);
     List<PreKeyRecord> records        = new LinkedList<>();
@@ -122,7 +121,5 @@ public class PreKeyUtil {
     PreKeyStore preKeyStore = new TextSecurePreKeyStore(context);
     return preKeyStore.loadPreKey(preKeyId);
   }
-
   // endregion
-
 }

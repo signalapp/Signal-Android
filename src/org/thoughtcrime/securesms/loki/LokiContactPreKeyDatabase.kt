@@ -9,13 +9,14 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.whispersystems.libsignal.state.PreKeyRecord
 
 /**
- * A database for associating a `PreKeyRecord` id to a contact public key.
+ * A database for associating pre key records to contact public keys.
  */
 class LokiContactPreKeyDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
+
     companion object {
         private val tableName = "loki_contact_pre_key_database"
-        private val pubKey = "pub_key"
         private val preKeyId = "pre_key_id"
+        private val pubKey = "pub_key"
 
         @JvmStatic
         val createTableCommand = "CREATE TABLE $tableName ($preKeyId INTEGER PRIMARY KEY, $pubKey TEXT);"

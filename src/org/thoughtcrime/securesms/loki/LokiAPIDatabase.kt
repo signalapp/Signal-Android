@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
@@ -15,17 +14,17 @@ class LokiAPIDatabase(private val userPublicKey: String, context: Context, helpe
         private val swarmCache = "loki_api_swarm_cache"
         private val hexEncodedPublicKey = "hex_encoded_public_key"
         private val swarm = "swarm"
-        @JvmStatic val createSwarmCacheTableCommand = "CREATE TABLE $swarmCache ($hexEncodedPublicKey TEXT, $swarm TEXT);"
+        @JvmStatic val createSwarmCacheTableCommand = "CREATE TABLE $swarmCache ($hexEncodedPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
         // Last message hash value cache
         private val lastMessageHashValueCache = "loki_api_last_message_hash_value_cache"
         private val target = "target"
         private val lastMessageHashValue = "last_message_hash_value"
-        @JvmStatic val createLastMessageHashValueTableCommand = "CREATE TABLE $lastMessageHashValueCache ($target TEXT, $lastMessageHashValue TEXT);"
+        @JvmStatic val createLastMessageHashValueTableCommand = "CREATE TABLE $lastMessageHashValueCache ($target TEXT PRIMARY KEY, $lastMessageHashValue TEXT);"
         // Received message hash values cache
         private val receivedMessageHashValuesCache = "loki_api_received_message_hash_values_cache"
         private val userID = "user_id"
         private val receivedMessageHashValues = "received_message_hash_values"
-        @JvmStatic val createReceivedMessageHashValuesTableCommand = "CREATE TABLE $receivedMessageHashValuesCache ($userID TEXT, $receivedMessageHashValues TEXT);"
+        @JvmStatic val createReceivedMessageHashValuesTableCommand = "CREATE TABLE $receivedMessageHashValuesCache ($userID TEXT PRIMARY KEY, $receivedMessageHashValues TEXT);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): List<LokiAPITarget>? {
@@ -75,7 +74,6 @@ class LokiAPIDatabase(private val userPublicKey: String, context: Context, helpe
 }
 
 // region Convenience
-
 private inline fun <reified T> wrap(x: T): Array<T> {
     return Array(1) { x }
 }
