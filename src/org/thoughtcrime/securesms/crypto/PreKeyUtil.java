@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyException;
+import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECKeyPair;
 import org.whispersystems.libsignal.state.PreKeyRecord;
@@ -88,5 +89,40 @@ public class PreKeyUtil {
   public static synchronized int getActiveSignedPreKeyId(Context context) {
     return TextSecurePreferences.getActiveSignedPreKeyId(context);
   }
+
+  // region - Loki
+
+  public synchronized static List<PreKeyRecord> generatePreKeys(Context context, int amount) {
+    PreKeyStore        preKeyStore    = new TextSecurePreKeyStore(context);
+    List<PreKeyRecord> records        = new LinkedList<>();
+    int                preKeyIdOffset = TextSecurePreferences.getNextPreKeyId(context);
+
+    for (int i = 0; i < amount; i++) {
+      int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
+      ECKeyPair    keyPair  = Curve.generateKeyPair();
+      PreKeyRecord record   = new PreKeyRecord(preKeyId, keyPair);
+
+      preKeyStore.storePreKey(preKeyId, record);
+      records.add(record);
+    }
+
+    TextSecurePreferences.setNextPreKeyId(context, (preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
+
+    return records;
+  }
+
+  public synchronized static void storePreKeyRecords(Context context, List<PreKeyRecord> records) {
+    PreKeyStore preKeyStore = new TextSecurePreKeyStore(context);
+    for (PreKeyRecord record : records) {
+      preKeyStore.storePreKey(record.getId(), record);
+    }
+  }
+
+  public synchronized static PreKeyRecord loadPreKey(Context context, int preKeyId) throws InvalidKeyIdException {
+    PreKeyStore preKeyStore = new TextSecurePreKeyStore(context);
+    return preKeyStore.loadPreKey(preKeyId);
+  }
+
+  // endregion
 
 }
