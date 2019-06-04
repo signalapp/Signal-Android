@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
-import org.whispersystems.signalservice.loki.api.LokiSwarmAPI
 
 class LokiAPIDatabase(private val userPublicKey: String, context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
 
@@ -32,13 +31,18 @@ class LokiAPIDatabase(private val userPublicKey: String, context: Context, helpe
     override fun getSwarmCache(hexEncodedPublicKey: String): List<LokiAPITarget>? {
         return get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
             val swarmAsString = cursor.getString(cursor.getColumnIndexOrThrow(swarm))
-            swarmAsString.split(",").map { LokiAPITarget(it, LokiSwarmAPI.defaultSnodePort) }
+            swarmAsString.split(",").map { targetAsString ->
+                val components = targetAsString.split("?port=")
+                LokiAPITarget(components[0], components[1].toInt())
+            }
         }
     }
 
     override fun setSwarmCache(hexEncodedPublicKey: String, newValue: List<LokiAPITarget>) {
         val database = databaseHelper.writableDatabase
-        val swarmAsString = newValue.joinToString(",") { it.address }
+        val swarmAsString = newValue.joinToString(",") { target ->
+            "${target.address}?port=${target.port}"
+        }
         database.update(swarmCache, wrap(mapOf( swarm to swarmAsString )), "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey))
     }
 
