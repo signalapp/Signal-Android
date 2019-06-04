@@ -25,6 +25,6 @@ fun Cursor.getString(columnName: String): String {
     return this.getString(this.getColumnIndexOrThrow(columnName))
 }
 
-fun Cursor.getBase64Bytes(columnName: String): ByteArray {
+fun Cursor.getBase64EncodedData(columnName: String): ByteArray {
     return Base64.decode(this.getString(columnName))
 }

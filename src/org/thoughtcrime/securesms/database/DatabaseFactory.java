@@ -151,7 +151,6 @@ public class DatabaseFactory {
   }
 
   // region Loki
-
   public static LokiContactPreKeyDatabase getLokiContactPreKeyDatabase(Context context) {
     return getInstance(context).lokiContactPreKeyDatabase;
   }
@@ -159,7 +158,6 @@ public class DatabaseFactory {
   public static LokiPreKeyBundleDatabase getLokiPreKeyBundleDatabase(Context context) {
     return getInstance(context).lokiPreKeyBundleDatabase;
   }
-
   // endregion
 
   public static void upgradeRestored(Context context, SQLiteDatabase database){

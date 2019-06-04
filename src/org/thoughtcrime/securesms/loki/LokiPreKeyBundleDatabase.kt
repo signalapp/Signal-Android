@@ -14,10 +14,8 @@ import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.state.PreKeyBundle
 
-/**
- * A database for associating a `PreKeyBundle` to a contact public key.
- */
 class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
+
     companion object {
         private val tableName = "loki_pre_key_bundle_database"
         private val pubKey = "pub_key"
@@ -47,15 +45,15 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
     /**
      * Generate a `PreKeyBundle` for the given contact.
      * This generated bundle shouldn't be stored locally since this is used to generate bundles to send to other users.
-     * @param pubKey String The hex encoded public key of the contact
-     * @return PreKeyBundle? A bundle or null if something went wrong
+     *
+     * @param pubKey String The hex encoded public key of the contact.
+     * @return PreKeyBundle? A pre key bundle or `null` if something went wrong.
      */
     fun generatePreKeyBundle(pubKey: String): PreKeyBundle? {
         // TODO: Check if we have pre keys
         val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
 
-        val signedPreKey = PreKeyUtil.getActiveSignedPreKey(context)
-        if (signedPreKey == null) return null
+        val signedPreKey = PreKeyUtil.getActiveSignedPreKey(context) ?: return null
 
         val preKeyRecord = DatabaseFactory.getLokiContactPreKeyDatabase(context).getOrCreatePreKey(pubKey)
         val registrationId = TextSecurePreferences.getLocalRegistrationId(context)
@@ -69,8 +67,9 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     /**
      * Get the `PreKeyBundle` associated with the given contact.
+     *
      * @param pubKey String The hex encoded public key of the contact.
-     * @return PreKeyBundle? The prekey bundle or null if it doesn't exist
+     * @return PreKeyBundle? The pre key bundle or `null` if it doesn't exist.
      */
     fun getPreKeyBundle(pubKey: String): PreKeyBundle? {
         val database = databaseHelper.readableDatabase
@@ -78,20 +77,21 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
             val registrationId = cursor.getInt(registrationId)
             val deviceId = cursor.getInt(deviceId)
             val preKeyId = cursor.getInt(preKeyId)
-            val preKey = Curve.decodePoint(cursor.getBase64Bytes(preKeyPublic), 0)
+            val preKey = Curve.decodePoint(cursor.getBase64EncodedData(preKeyPublic), 0)
             val signedPreKeyId = cursor.getInt(signedPreKeyId)
-            val signedPreKey = Curve.decodePoint(cursor.getBase64Bytes(signedPreKeyPublic), 0)
-            val signedPreKeySignature = cursor.getBase64Bytes(signedPreKeySignature)
-            val identityKey = IdentityKey(cursor.getBase64Bytes(identityKey), 0)
+            val signedPreKey = Curve.decodePoint(cursor.getBase64EncodedData(signedPreKeyPublic), 0)
+            val signedPreKeySignature = cursor.getBase64EncodedData(signedPreKeySignature)
+            val identityKey = IdentityKey(cursor.getBase64EncodedData(identityKey), 0)
 
             PreKeyBundle(registrationId, deviceId, preKeyId, preKey, signedPreKeyId, signedPreKey, signedPreKeySignature, identityKey)
         }
     }
 
     /**
-     * Set the `PreKeyBundle` fore the given contact.
-     * @param pubKey String The hex encoded public key of the contact
-     * @param preKeyBundle PreKeyBundle The pre key bundle
+     * Set the `PreKeyBundle` for the given contact.
+     *
+     * @param pubKey String The hex encoded public key of the contact.
+     * @param preKeyBundle PreKeyBundle The pre key bundle.
      */
     fun setPreKeyBundle(pubKey: String, preKeyBundle: PreKeyBundle) {
         val database = databaseHelper.writableDatabase
@@ -111,7 +111,8 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     /**
      * Remove the `PreKeyBundle` for the given contact.
-     * @param pubKey String The hex encoded public key of the contact
+     * 
+     * @param pubKey String The hex encoded public key of the contact.
      */
     fun removePreKeyBundle(pubKey: String) {
         val database = databaseHelper.writableDatabase
