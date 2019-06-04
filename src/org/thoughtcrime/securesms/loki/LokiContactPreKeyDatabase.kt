@@ -32,7 +32,7 @@ class LokiContactPreKeyDatabase(context: Context, helper: SQLCipherOpenHelper) :
     fun getPreKey(pubKey: String): PreKeyRecord? {
         val database = databaseHelper.readableDatabase
         return database.get(tableName, "${Companion.pubKey} = ?", arrayOf(pubKey)) { cursor ->
-            val preKeyId = cursor.getInt(cursor.getColumnIndexOrThrow(preKeyId))
+            val preKeyId = cursor.getInt(preKeyId)
             PreKeyUtil.loadPreKey(context, preKeyId)
         }
     }
