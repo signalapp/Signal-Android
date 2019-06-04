@@ -37,7 +37,7 @@ class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
   public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
     try {
       if (!digest.isPresent()) throw new InvalidMessageException("No attachment digest!");
-      is = AttachmentCipherInputStream.createFor(attachment, plaintextLength, key, digest.get());
+      is = AttachmentCipherInputStream.createForAttachment(attachment, plaintextLength, key, digest.get());
       callback.onDataReady(is);
     } catch (IOException | InvalidMessageException e) {
       callback.onLoadFailed(e);
