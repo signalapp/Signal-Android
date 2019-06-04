@@ -113,7 +113,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     for (String sql : JobDatabase.CREATE_TABLE) {
       db.execSQL(sql);
     }
-    db.execSQL(LokiAPIDatabase.getCreateTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSwarmCacheTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
