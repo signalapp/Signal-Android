@@ -106,7 +106,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
-import org.whispersystems.signalservice.loki.messages.LokiServiceMessage;
+import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
