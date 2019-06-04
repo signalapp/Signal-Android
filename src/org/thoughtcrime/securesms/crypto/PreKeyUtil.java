@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 
+import org.jetbrains.annotations.Nullable;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -91,6 +92,16 @@ public class PreKeyUtil {
   }
 
   // region - Loki
+
+  public static synchronized @Nullable SignedPreKeyRecord getActiveSignedPreKey(Context context) {
+    SignedPreKeyStore signedPreKeyStore = new TextSecurePreKeyStore(context);
+    try {
+      return signedPreKeyStore.loadSignedPreKey(getActiveSignedPreKeyId(context));
+    } catch (InvalidKeyIdException e) {
+      // Fall through
+    }
+    return null;
+  }
 
   public synchronized static List<PreKeyRecord> generatePreKeys(Context context, int amount) {
     PreKeyStore        preKeyStore    = new TextSecurePreKeyStore(context);

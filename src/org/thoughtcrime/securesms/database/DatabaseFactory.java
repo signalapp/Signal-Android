@@ -31,6 +31,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.loki.LokiContactPreKeyDatabase;
+import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DatabaseFactory {
@@ -58,6 +60,10 @@ public class DatabaseFactory {
   private final SessionDatabase       sessionDatabase;
   private final SearchDatabase        searchDatabase;
   private final JobDatabase           jobDatabase;
+
+  // Loki
+  private final LokiContactPreKeyDatabase lokiContactPreKeyDatabase;
+  private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -144,6 +150,18 @@ public class DatabaseFactory {
     return getInstance(context).databaseHelper.getReadableDatabase();
   }
 
+  // region Loki
+
+  public static LokiContactPreKeyDatabase getLokiContactPreKeyDatabase(Context context) {
+    return getInstance(context).lokiContactPreKeyDatabase;
+  }
+
+  public static LokiPreKeyBundleDatabase getLokiPreKeyBundleDatabase(Context context) {
+    return getInstance(context).lokiPreKeyBundleDatabase;
+  }
+
+  // endregion
+
   public static void upgradeRestored(Context context, SQLiteDatabase database){
     getInstance(context).databaseHelper.onUpgrade(database, database.getVersion(), -1);
     getInstance(context).databaseHelper.markCurrent(database);
@@ -174,6 +192,9 @@ public class DatabaseFactory {
     this.sessionDatabase      = new SessionDatabase(context, databaseHelper);
     this.searchDatabase       = new SearchDatabase(context, databaseHelper);
     this.jobDatabase          = new JobDatabase(context, databaseHelper);
+
+    this.lokiContactPreKeyDatabase = new LokiContactPreKeyDatabase(context, databaseHelper);
+    this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,
