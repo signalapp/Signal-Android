@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    tools:context=".AccountDetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                style="@style/Signal.Text.Headline.Registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:text="@string/activity_account_details_title" />
+
+            <TextView
+                android:id="@+id/subtitleTextView"
+                style="@style/Signal.Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/activity_account_details_subtitle" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:paddingBottom="0dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            tools:visibility="gone">
+
+            <org.thoughtcrime.securesms.components.LabeledEditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labeledEditText_background="@color/white"
+                app:labeledEditText_label="Display Name (Optional)"/>
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/nextButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/signal_primary"
+                android:textColor="@color/white"
+                app:cpb_colorIndicator="@color/white"
+                app:cpb_colorProgress="@color/textsecure_primary"
+                app:cpb_cornerRadius="4dp"
+                app:cpb_selectorIdle="@drawable/progress_button_state"
+                app:cpb_textIdle="@string/activity_account_details_button_title" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

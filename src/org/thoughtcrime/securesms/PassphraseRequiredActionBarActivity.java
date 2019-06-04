@@ -9,10 +9,11 @@ import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.AccountDetailsActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.registration.WelcomeActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -182,7 +183,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getPushRegistrationIntent() {
-    return getRoutedIntent(RegistrationActivity.class, getCreateProfileIntent());
+    return getRoutedIntent(AccountDetailsActivity.class, getCreateProfileIntent());
   }
 
   private Intent getCreateProfileIntent() {

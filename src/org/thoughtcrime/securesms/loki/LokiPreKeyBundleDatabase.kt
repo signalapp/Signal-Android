@@ -111,7 +111,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     /**
      * Remove the `PreKeyBundle` for the given contact.
-     * 
+     *
      * @param pubKey String The hex encoded public key of the contact.
      */
     fun removePreKeyBundle(pubKey: String) {

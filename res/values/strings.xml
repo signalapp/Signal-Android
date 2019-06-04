@@ -1517,4 +1517,9 @@
     <string name="recipient_preferences__about">About</string>
     <!-- EOF -->
 
+    <!-- Loki -->
+    <string name="activity_account_details_title">Create Your Loki Messenger Account</string>
+    <string name="activity_account_details_subtitle">Enter a name to be shown to your contacts</string>
+    <string name="activity_account_details_button_title">Next</string>
+
 </resources>
