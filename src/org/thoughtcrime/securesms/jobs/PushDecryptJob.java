@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -81,6 +82,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -243,7 +245,13 @@ public class PushDecryptJob extends BaseJob {
       if (content.lokiMessage.isPresent()) {
         LokiServiceMessage lokiMessage = content.lokiMessage.get();
         if (lokiMessage.getPreKeyBundleMessage() != null) {
-          // TODO: Loki - Handle pre key bundle
+          Log.i(TAG, "[Loki] Received a prekey bundle from: " + envelope.getSource());
+          int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
+          if (registrationId > 0) {
+            LokiPreKeyBundleDatabase preKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
+            PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationId);
+            preKeyBundleDatabase.setPreKeyBundle(envelope.getSource(), preKeyBundle);
+          }
         }
 
         if (lokiMessage.getAddressMessage() != null) {

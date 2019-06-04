@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.state.PreKeyBundle
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
 
 class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
@@ -57,9 +58,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         val registrationId = TextSecurePreferences.getLocalRegistrationId(context)
         if (registrationId == 0) return null
 
-        // TODO: This is the primary device id, we may want to change it to support multiple devices?
-        val deviceId = 1
-
+        val deviceId = SignalServiceAddress.DEFAULT_DEVICE_ID
         return PreKeyBundle(registrationId, deviceId,preKeyRecord.id, preKeyRecord.keyPair.publicKey, signedPreKey.id, signedPreKey.keyPair.publicKey, signedPreKey.signature, identityKeyPair.publicKey)
     }
 
