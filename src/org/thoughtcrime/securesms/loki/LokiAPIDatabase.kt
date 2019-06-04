@@ -9,7 +9,7 @@ import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
 import org.whispersystems.signalservice.loki.api.LokiSwarmAPI
 
-class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
+class LokiAPIDatabase(private val userPublicKey: String, context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
 
     companion object {
         // Swarm cache
@@ -54,7 +54,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     }
 
     override fun getReceivedMessageHashValues(): Set<String>? {
-        return get(receivedMessageHashValuesCache, "$userID = ?", wrap("0")) { cursor ->
+        return get(receivedMessageHashValuesCache, "$userID = ?", wrap(userPublicKey)) { cursor ->
             val receivedMessageHashValuesAsString = cursor.getString(cursor.getColumnIndexOrThrow(receivedMessageHashValues))
             receivedMessageHashValuesAsString.split(",").toSet()
         }
@@ -63,7 +63,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setReceivedMessageHashValues(newValue: Set<String>) {
         val database = databaseHelper.writableDatabase
         val receivedMessageHashValuesAsString = newValue.joinToString(",")
-        database.update(receivedMessageHashValuesCache, wrap(mapOf( receivedMessageHashValues to receivedMessageHashValuesAsString )), "$userID = ?", wrap("0"))
+        database.update(receivedMessageHashValuesCache, wrap(mapOf( receivedMessageHashValues to receivedMessageHashValuesAsString )), "$userID = ?", wrap(userPublicKey))
     }
 
     // region Convenience
