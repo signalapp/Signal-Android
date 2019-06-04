@@ -29,7 +29,8 @@ class LokiAPIDatabase(private val userPublicKey: String, context: Context, helpe
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): List<LokiAPITarget>? {
-        return get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
+        val database = databaseHelper.readableDatabase
+        return database.get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
             val swarmAsString = cursor.getString(cursor.getColumnIndexOrThrow(swarm))
             swarmAsString.split(",").map { targetAsString ->
                 val components = targetAsString.split("?port=")
@@ -47,7 +48,8 @@ class LokiAPIDatabase(private val userPublicKey: String, context: Context, helpe
     }
 
     override fun getLastMessageHashValue(target: LokiAPITarget): String? {
-        return get(lastMessageHashValueCache, "${Companion.target} = ?", wrap(target.address)) { cursor ->
+        val database = databaseHelper.readableDatabase
+        return database.get(lastMessageHashValueCache, "${Companion.target} = ?", wrap(target.address)) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(lastMessageHashValue))
         }
     }
@@ -58,7 +60,8 @@ class LokiAPIDatabase(private val userPublicKey: String, context: Context, helpe
     }
 
     override fun getReceivedMessageHashValues(): Set<String>? {
-        return get(receivedMessageHashValuesCache, "$userID = ?", wrap(userPublicKey)) { cursor ->
+        val database = databaseHelper.readableDatabase
+        return database.get(receivedMessageHashValuesCache, "$userID = ?", wrap(userPublicKey)) { cursor ->
             val receivedMessageHashValuesAsString = cursor.getString(cursor.getColumnIndexOrThrow(receivedMessageHashValues))
             receivedMessageHashValuesAsString.split(",").toSet()
         }
@@ -69,22 +72,9 @@ class LokiAPIDatabase(private val userPublicKey: String, context: Context, helpe
         val receivedMessageHashValuesAsString = newValue.joinToString(",")
         database.update(receivedMessageHashValuesCache, wrap(mapOf( receivedMessageHashValues to receivedMessageHashValuesAsString )), "$userID = ?", wrap(userPublicKey))
     }
-
-    // region Convenience
-    private fun <T> get(table: String, query: String, arguments: Array<String>, get: (Cursor) -> T): T? {
-        val database = databaseHelper.readableDatabase
-        var cursor: Cursor? = null
-        try {
-            cursor = database.query(table, null, query, arguments, null, null, null)
-            if (cursor != null && cursor.moveToFirst()) { return get(cursor) }
-        } catch (e: Exception) {
-            // Do nothing
-        } finally {
-            cursor?.close()
-        }
-        return null
-    }
 }
+
+// region Convenience
 
 private inline fun <reified T> wrap(x: T): Array<T> {
     return Array(1) { x }
