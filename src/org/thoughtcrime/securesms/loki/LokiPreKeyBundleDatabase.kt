@@ -50,9 +50,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
      * @return PreKeyBundle? A pre key bundle or `null` if something went wrong.
      */
     fun generatePreKeyBundle(pubKey: String): PreKeyBundle? {
-        // TODO: Check if we have pre keys
         val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
-
         val signedPreKey = PreKeyUtil.getActiveSignedPreKey(context) ?: return null
 
         val preKeyRecord = DatabaseFactory.getLokiContactPreKeyDatabase(context).getOrCreatePreKey(pubKey)
