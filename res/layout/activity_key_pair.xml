@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    tools:context=".loki.KeyPairActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            style="@style/Signal.Text.Headline.Registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/activity_key_pair_title"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/subtitleTextView"
+            style="@style/Signal.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/activity_key_pair_subtitle"
+            android:textStyle="bold"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/mnemonicTextView"
+            style="@style/Signal.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:alpha="0.8"
+            android:textStyle="italic"
+            android:textAlignment="center" />
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/signal_primary"
+            android:textColor="@color/white"
+            app:cpb_colorIndicator="@color/white"
+            app:cpb_colorProgress="@color/textsecure_primary"
+            app:cpb_cornerRadius="4dp"
+            app:cpb_selectorIdle="@drawable/progress_button_state"
+            app:cpb_textIdle="@string/activity_key_pair_button_title" />
+
+    </LinearLayout>
+
+</ScrollView>

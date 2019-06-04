@@ -12,14 +12,11 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
-import org.whispersystems.libsignal.state.PreKeyRecord;
-import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -60,21 +57,19 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
     if (!TextSecurePreferences.isPushRegistered(context)) return;
 
     if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-      Log.i(TAG, "Already have a signed pre key set");
+      Log.i(TAG, "Already have a signed pre key registered.");
       return;
     }
 
     Log.i(TAG, "Registering new signed pre key...");
-    IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context);
+    IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context);
     PreKeyUtil.generateSignedPreKey(context, identityKey, true);
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
 
-    ApplicationContext.getInstance(context)
-            .getJobManager()
-            .add(new CleanPreKeysJob());
+    ApplicationContext.getInstance(context).getJobManager().add(new CleanPreKeysJob());
   }
 
-  /* Loki - Original Code
+  /* Loki - Original code
   @Override
   public void onRun() throws IOException {
     if (!TextSecurePreferences.isPushRegistered(context)) return;
@@ -101,7 +96,7 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
                       .getJobManager()
                       .add(new CleanPreKeysJob());
   }
-  */
+   */
 
   @Override
   public boolean onShouldRetry(Exception exception) {

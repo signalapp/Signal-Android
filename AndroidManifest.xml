@@ -441,6 +441,11 @@
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".loki.KeyPairActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:windowSoftInputMode="stateUnchanged"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>

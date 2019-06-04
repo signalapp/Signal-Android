@@ -1518,8 +1518,14 @@
     <!-- EOF -->
 
     <!-- Loki -->
+
+    <!-- Account details activity -->
     <string name="activity_account_details_title">Create Your Loki Messenger Account</string>
     <string name="activity_account_details_subtitle">Enter a name to be shown to your contacts</string>
     <string name="activity_account_details_button_title">Next</string>
+    <!-- Key pair activity -->
+    <string name="activity_key_pair_title">Create Your Loki Messenger Account</string>
+    <string name="activity_key_pair_subtitle">Please save the seed below in a safe location. It can be used to restore your account if you lose access, or to migrate to a new device.</string>
+    <string name="activity_key_pair_button_title">Register</string>
 
 </resources>
