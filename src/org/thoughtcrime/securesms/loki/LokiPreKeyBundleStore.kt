@@ -8,17 +8,17 @@ import org.whispersystems.signalservice.loki.messaging.LokiPreKeyBundleStoreProt
 class LokiPreKeyBundleStore(val context: Context) : LokiPreKeyBundleStoreProtocol {
 
     companion object {
-        private val fileLock = Object()
+        private val lock = Object()
     }
 
     override fun getPreKeyBundle(pubKey: String): PreKeyBundle? {
-        synchronized (fileLock) {
+        synchronized(lock) {
             return DatabaseFactory.getLokiPreKeyBundleDatabase(context).getPreKeyBundle(pubKey)
         }
     }
 
     override fun removePreKeyBundle(pubKey: String) {
-        synchronized (fileLock) {
+        synchronized(lock) {
             DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(pubKey)
         }
     }

@@ -1,13 +1,18 @@
 package org.thoughtcrime.securesms.loki
 
+import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_key_pair.*
 import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.ConversationListActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.IdentityKeyPair
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
 import java.io.File
 import java.io.FileOutputStream
 
@@ -24,6 +29,7 @@ class KeyPairActivity : BaseActionBarActivity() {
         setContentView(R.layout.activity_key_pair)
         setUpLanguageFileDirectory()
         updateKeyPair()
+        nextButton.setOnClickListener { register() }
     }
     // endregion
 
@@ -62,6 +68,18 @@ class KeyPairActivity : BaseActionBarActivity() {
 
     private fun updateMnemonicTextView() {
         mnemonicTextView.text = mnemonic!!
+    }
+    // endregion
+
+    // region Interaction
+    private fun register() {
+        val publicKey = keyPair!!.publicKey
+        val hexEncodedPublicKey = publicKey.fingerprint
+        DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
+                IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
+        TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
+        TextSecurePreferences.setProfileName(this, "User McUserFace") // TODO: For debugging purposes
+        startActivity(Intent(this, ConversationListActivity::class.java))
     }
     // endregion
 }
