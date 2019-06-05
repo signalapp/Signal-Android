@@ -9,7 +9,7 @@ public class OutgoingTextMessage {
   private final String    message;
   private final int       subscriptionId;
   private final long      expiresIn;
-  private boolean         isFriendRequest = false;
+  boolean                 isFriendRequest = false;
 
   public OutgoingTextMessage(Recipient recipient, String message, int subscriptionId) {
     this(recipient, message, 0, subscriptionId);
@@ -68,9 +68,6 @@ public class OutgoingTextMessage {
   public boolean isIdentityDefault() {
     return false;
   }
-
-  public boolean isFriendRequest() { return isFriendRequest; }
-  public void setIsFriendRequest(boolean value) { this.isFriendRequest = value; }
 
   public static OutgoingTextMessage from(SmsMessageRecord record) {
     if (record.isSecure()) {

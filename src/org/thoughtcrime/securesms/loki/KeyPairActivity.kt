@@ -22,7 +22,6 @@ import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import java.io.File
 import java.io.FileOutputStream
 
-
 class KeyPairActivity : BaseActionBarActivity() {
     private lateinit var languageFileDirectory: File
     private var keyPair: IdentityKeyPair? = null
