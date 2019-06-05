@@ -29,6 +29,10 @@ public class PushRegistrationReminder extends Reminder {
   }
 
   public static boolean isEligible(Context context) {
-    return !TextSecurePreferences.isPushRegistered(context);
+    return false;
+    // Loki - Original code
+    // ========
+//    return !TextSecurePreferences.isPushRegistered(context);
+    // ========
   }
 }

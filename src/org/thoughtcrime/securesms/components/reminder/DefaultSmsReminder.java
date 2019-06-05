@@ -39,11 +39,15 @@ public class DefaultSmsReminder extends Reminder {
   }
 
   public static boolean isEligible(Context context) {
-    final boolean isDefault = Util.isDefaultSmsProvider(context);
-    if (isDefault) {
-      TextSecurePreferences.setPromptedDefaultSmsProvider(context, false);
-    }
-
-    return !isDefault && !TextSecurePreferences.hasPromptedDefaultSmsProvider(context);
+    return false;
+    // Loki - Original code
+    // ========
+//    final boolean isDefault = Util.isDefaultSmsProvider(context);
+//    if (isDefault) {
+//      TextSecurePreferences.setPromptedDefaultSmsProvider(context, false);
+//    }
+//
+//    return !isDefault && !TextSecurePreferences.hasPromptedDefaultSmsProvider(context);
+    // ========
   }
 }
