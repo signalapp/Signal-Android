@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -164,6 +165,9 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
       log(TAG, "Have access key to use: " + unidentifiedAccess.isPresent());
 
+      // Loki - Generate a PreKeyBundle for a friend request.
+      PreKeyBundle preKeyBundle = message.isFriendRequest() ? DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber()) : null;
+
       SignalServiceDataMessage textSecureMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getDateSent())
                                                                            .withBody(message.getBody())
@@ -171,6 +175,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
                                                                            .withProfileKey(profileKey.orNull())
                                                                            .asEndSessionMessage(message.isEndSession())
                                                                            .asFriendRequest(message.isFriendRequest())
+                                                                           .withPreKeyBundle(preKeyBundle)
                                                                            .build();
 
       if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
