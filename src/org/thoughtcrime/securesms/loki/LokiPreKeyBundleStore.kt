@@ -5,7 +5,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.whispersystems.libsignal.state.PreKeyBundle
 import org.whispersystems.signalservice.loki.utilities.LokiPreKeyBundleStore
 
-class LokiPreKeyBundleStoreImpl(val context: Context): LokiPreKeyBundleStore {
+class LokiPreKeyBundleStore(val context: Context) : LokiPreKeyBundleStoreProtocol {
+
     companion object {
         val FILE_LOCK = Object()
     }
