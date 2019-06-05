@@ -170,6 +170,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
                                                                            .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                            .withProfileKey(profileKey.orNull())
                                                                            .asEndSessionMessage(message.isEndSession())
+                                                                           .asFriendRequest(message.isFriendRequest())
                                                                            .build();
 
       if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
