@@ -17,10 +17,6 @@ import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-
-import org.thoughtcrime.securesms.avatar.AvatarSelection;
-import org.thoughtcrime.securesms.components.LabeledEditText;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -32,7 +28,9 @@ import android.widget.Toast;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
 
+import org.thoughtcrime.securesms.avatar.AvatarSelection;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
+import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
@@ -40,6 +38,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -364,16 +363,24 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         Context context    = CreateProfileActivity.this;
         byte[]  profileKey = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
 
-        try {
-          accountManager.setProfileName(profileKey, name);
-          TextSecurePreferences.setProfileName(context, name);
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          return false;
-        }
+        TextSecurePreferences.setProfileName(context, name);
+
+        // Loki - Original code
+        // ========
+//        try {
+//          accountManager.setProfileName(profileKey, name);
+//          TextSecurePreferences.setProfileName(context, name);
+//        } catch (IOException e) {
+//          Log.w(TAG, e);
+//          return false;
+//        }
+        // ========
 
         try {
-          accountManager.setProfileAvatar(profileKey, avatar);
+          // Loki - Original code
+          // ========
+          // accountManager.setProfileAvatar(profileKey, avatar);
+          // ========
           AvatarHelper.setAvatar(CreateProfileActivity.this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
           TextSecurePreferences.setProfileAvatarId(CreateProfileActivity.this, new SecureRandom().nextInt());
         } catch (IOException e) {
