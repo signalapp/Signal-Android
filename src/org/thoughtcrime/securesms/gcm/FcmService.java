@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.gcm;
 
 import android.content.Context;
 import android.os.PowerManager;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

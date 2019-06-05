@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobmanager;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * Service that keeps the application in memory while the app is closed.

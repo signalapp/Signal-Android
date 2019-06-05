@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Represents a folder that's shown in {@link MediaPickerFolderFragment}.

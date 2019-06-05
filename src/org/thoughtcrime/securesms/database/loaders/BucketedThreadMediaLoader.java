@@ -4,14 +4,13 @@ package org.thoughtcrime.securesms.database.loaders;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.support.v4.content.AsyncTaskLoader;
+import androidx.annotation.NonNull;
+import androidx.loader.content.AsyncTaskLoader;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;

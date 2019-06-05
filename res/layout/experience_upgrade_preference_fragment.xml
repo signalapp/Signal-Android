@@ -50,7 +50,7 @@
                   android:text="@string/experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read"
                   android:textColor="@android:color/white" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/preference"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.imageeditor;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Tracks the current matrix for a canvas.

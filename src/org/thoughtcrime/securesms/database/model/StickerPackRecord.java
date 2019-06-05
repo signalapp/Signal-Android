@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.database.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.whispersystems.libsignal.util.guava.Optional;

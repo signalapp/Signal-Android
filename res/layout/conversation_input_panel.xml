@@ -10,7 +10,7 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/input_panel_sticker_suggestion"
         android:layout_width="match_parent"
         android:layout_height="90dp"

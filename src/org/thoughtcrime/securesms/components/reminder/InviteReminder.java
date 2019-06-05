@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components.reminder;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.View.OnClickListener;
 

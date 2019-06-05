@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.Manifest;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.jobmanager.Data;

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.mediasend;
 
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.Surface;
 
 import org.thoughtcrime.securesms.logging.Log;

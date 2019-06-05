@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.glide;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.security.SecureRandom;

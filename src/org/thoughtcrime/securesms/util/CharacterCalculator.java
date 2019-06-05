@@ -17,7 +17,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.os.Parcel;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public abstract class CharacterCalculator {
 

@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.util.concurrent;
 
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.Util;
-
-import java.util.concurrent.Callable;
 
 public class SimpleTask {
 

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.imageeditor.renderers.TextRenderer;
 /**
  * Invisible {@link android.widget.EditText} that is used during in-image text editing.
  */
-final class HiddenEditText extends android.support.v7.widget.AppCompatEditText {
+final class HiddenEditText extends androidx.appcompat.widget.AppCompatEditText {
 
   @SuppressLint("InlinedApi")
   private static final int INCOGNITO_KEYBOARD_IME = EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING;

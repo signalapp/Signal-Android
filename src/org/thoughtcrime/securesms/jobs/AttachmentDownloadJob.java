@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
 import org.greenrobot.eventbus.EventBus;

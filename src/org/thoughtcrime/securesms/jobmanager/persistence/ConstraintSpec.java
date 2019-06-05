@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.jobmanager.persistence;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.Objects;
 

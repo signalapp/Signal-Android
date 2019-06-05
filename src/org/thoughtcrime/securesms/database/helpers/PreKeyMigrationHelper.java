@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.database.helpers;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
