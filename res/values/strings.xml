@@ -1526,6 +1526,8 @@
     <!-- Key pair activity -->
     <string name="activity_key_pair_title">Create Your Loki Messenger Account</string>
     <string name="activity_key_pair_subtitle">Please save the seed below in a safe location. It can be used to restore your account if you lose access, or to migrate to a new device.</string>
-    <string name="activity_key_pair_button_title">Register</string>
+    <string name="activity_key_pair_copy_button_title">Copy</string>
+    <string name="activity_key_pair_mnemonic_copied_message">Copied to Clipboard</string>
+    <string name="activity_key_pair_register_button_title">Register</string>
 
 </resources>

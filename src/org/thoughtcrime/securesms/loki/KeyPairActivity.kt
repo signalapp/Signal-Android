@@ -1,7 +1,11 @@
 package org.thoughtcrime.securesms.loki
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_key_pair.*
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
@@ -18,6 +22,7 @@ import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import java.io.File
 import java.io.FileOutputStream
 
+
 class KeyPairActivity : BaseActionBarActivity() {
     private lateinit var languageFileDirectory: File
     private var keyPair: IdentityKeyPair? = null
@@ -31,7 +36,8 @@ class KeyPairActivity : BaseActionBarActivity() {
         setContentView(R.layout.activity_key_pair)
         setUpLanguageFileDirectory()
         updateKeyPair()
-        nextButton.setOnClickListener { register() }
+        copyButton.setOnClickListener { copy() }
+        registerButton.setOnClickListener { register() }
     }
     // endregion
 
@@ -74,6 +80,13 @@ class KeyPairActivity : BaseActionBarActivity() {
     // endregion
 
     // region Interaction
+    private fun copy() {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("mnemonic", mnemonic)
+        clipboard.primaryClip = clip
+        Toast.makeText(this, R.string.activity_key_pair_mnemonic_copied_message, Toast.LENGTH_SHORT).show()
+    }
+
     private fun register() {
         val publicKey = keyPair!!.publicKey
         val hexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
