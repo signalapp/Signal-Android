@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.whispersystems.libsignal.state.PreKeyBundle
-import org.whispersystems.signalservice.loki.utilities.LokiPreKeyBundleStore
+import org.whispersystems.signalservice.loki.messaging.LokiPreKeyBundleStore
 
 class LokiPreKeyBundleStore(val context: Context) : LokiPreKeyBundleStoreProtocol {
 
