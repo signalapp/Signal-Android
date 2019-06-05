@@ -432,7 +432,7 @@
 
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
-    <string name="MessageRetrievalService_background_connection_enabled">Background connection enabled</string>
+    <string name="MessageRetrievalService_background_connection_enabled">Receive messages in the background is active</string>
 
     <!-- MmsDownloader -->
     <string name="MmsDownloader_error_reading_mms_settings">Error reading wireless provider MMS settings</string>
