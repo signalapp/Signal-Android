@@ -13,6 +13,8 @@ import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.IdentityKeyPair
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
+import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
+import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import java.io.File
 import java.io.FileOutputStream
 
@@ -74,11 +76,10 @@ class KeyPairActivity : BaseActionBarActivity() {
     // region Interaction
     private fun register() {
         val publicKey = keyPair!!.publicKey
-        val hexEncodedPublicKey = publicKey.fingerprint
+        val hexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
                 IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
-        TextSecurePreferences.setProfileName(this, "User McUserFace") // TODO: For debugging purposes
         TextSecurePreferences.setPromptedPushRegistration(this, true)
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
