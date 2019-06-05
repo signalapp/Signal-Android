@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.whispersystems.libsignal.IdentityKeyPair
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
+import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
 import java.io.File
 import java.io.FileOutputStream
 
@@ -56,8 +57,7 @@ class KeyPairActivity : BaseActionBarActivity() {
     }
 
     private fun updateMnemonic() {
-        val hexEncodedPrivateKey = ("67982927" + "aaaabbbb" + "8926bfgd" + "0bfbba33" + "67982927" + "aaaabbbb" + "8926bfgd" + "0bfbba33").toUpperCase() // Hex.toString(keyPair!!.privateKey.serialize())
-        mnemonic = MnemonicCodec(languageFileDirectory).encode(hexEncodedPrivateKey)
+        mnemonic = MnemonicCodec(languageFileDirectory).encode(keyPair!!.hexEncodedPrivateKey)
     }
 
     private fun updateMnemonicTextView() {
