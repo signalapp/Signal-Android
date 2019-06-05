@@ -31,14 +31,14 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
         @JvmStatic
         val createTableCommand = "CREATE TABLE $tableName (" +
-                "$pubKey TEXT PRIMARY KEY" +
+                "$pubKey TEXT PRIMARY KEY," +
                 "$preKeyId INTEGER," +
-                "$preKeyPublic TEXT NOT NULL" +
-                "$signedPreKeyId INTEGER" +
-                "$signedPreKeyPublic TEXT NOT NULL" +
-                "$signedPreKeySignature TEXT" +
-                "$identityKey TEXT NOT NULL" +
-                "$deviceId INTEGER" +
+                "$preKeyPublic TEXT NOT NULL," +
+                "$signedPreKeyId INTEGER," +
+                "$signedPreKeyPublic TEXT NOT NULL," +
+                "$signedPreKeySignature TEXT," +
+                "$identityKey TEXT NOT NULL," +
+                "$deviceId INTEGER," +
                 "$registrationId INTEGER" +
                 ");"
     }
