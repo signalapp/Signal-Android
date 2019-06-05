@@ -24,7 +24,6 @@ import android.database.MergeCursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.annimon.stream.Stream;
 
@@ -40,6 +39,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -78,9 +78,7 @@ public class ThreadDatabase extends Database {
   public  static final String EXPIRES_IN             = "expires_in";
   public  static final String LAST_SEEN              = "last_seen";
   private static final String HAS_SENT               = "has_sent";
-
-  // Loki
-  private static final String FRIEND_REQUEST_STATUS  = "friend_request_status";
+  private static final String FRIEND_REQUEST_STATUS  = "friend_request_status"; // Loki
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
     ID + " INTEGER PRIMARY KEY, " + DATE + " INTEGER DEFAULT 0, "                                  +
@@ -672,7 +670,7 @@ public class ThreadDatabase extends Database {
   public static class LokiFriendRequestStatus {
     // New conversation; no messages sent or received.
     public static final int NONE = 0;
-    // This state is used to lock the input early while sending
+    // This state is used to lock the input early while sending.
     public static final int REQUEST_SENDING = 1;
     // Friend request sent; awaiting response.
     public static final int REQUEST_SENT = 2;

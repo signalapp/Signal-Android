@@ -136,8 +136,8 @@ public class SignalCommunicationModule {
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                                           Optional.of(new SecurityEventListener(context)));
 
-      // LOKI - Set the prekey bundle store
-      // This is something that we MUST have otherwise our loki logic will fail
+      // Loki - Set the pre key bundle store
+      // This is something that we MUST have or our Loki logic will fail
       this.messageSender.setPreKeyBundleStore(new LokiPreKeyBundleStore(context));
     } else {
       this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());

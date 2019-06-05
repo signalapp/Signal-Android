@@ -815,15 +815,12 @@ public class PushDecryptJob extends BaseJob {
     }
   }
 
-  private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope,
-                                           @NonNull SignalServiceContent content,
-                                           @NonNull SignalServiceDataMessage message) {
+  private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
 
     Recipient recipient = getMessageDestination(content, message);
     ThreadDatabase database = DatabaseFactory.getThreadDatabase(context);
     long threadId = database.getThreadIdIfExistsFor(recipient);
     int friendRequestStatus = database.getFriendRequestStatus(threadId);
-
     if (envelope.isFriendRequest()) {
       if (friendRequestStatus == ThreadDatabase.LokiFriendRequestStatus.REQUEST_SENT) {
         // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
@@ -850,7 +847,6 @@ public class PushDecryptJob extends BaseJob {
       // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
       // it must be a friend request accepted message. Declining a friend request doesn't send a message.
       database.setFriendRequestStatus(threadId, ThreadDatabase.LokiFriendRequestStatus.FRIENDS);
-
       // TODO: Send p2p details here
     }
   }
