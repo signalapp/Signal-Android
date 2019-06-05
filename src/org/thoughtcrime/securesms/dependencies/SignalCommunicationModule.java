@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.jobs.RotateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
+import org.thoughtcrime.securesms.loki.LokiPreKeyBundleStoreImpl;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -134,6 +135,10 @@ public class SignalCommunicationModule {
                                                           Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                                           Optional.of(new SecurityEventListener(context)));
+
+      // LOKI - Set the prekey bundle store
+      // This is something that we MUST have otherwise our loki logic will fail
+      this.messageSender.setPreKeyBundleStore(new LokiPreKeyBundleStoreImpl(context));
     } else {
       this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
       this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));
