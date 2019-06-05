@@ -56,82 +56,82 @@ repositories {
 dependencies {
     def supportVersion = '28.0.0'
 
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:recyclerview-v7:$supportVersion"
-    compile "com.android.support:design:$supportVersion"
-    compile "com.android.support:support-v13:$supportVersion"
-    compile "com.android.support:cardview-v7:$supportVersion"
-    compile "com.android.support:preference-v7:$supportVersion"
-    compile "com.android.support:preference-v14:$supportVersion"
-    compile "com.android.support:gridlayout-v7:$supportVersion"
-    compile "com.android.support:exifinterface:$supportVersion"
-    compile 'com.android.support.constraint:constraint-layout:1.1.3'
-    compile 'com.android.support:multidex:1.0.3'
-    compile 'android.arch.lifecycle:extensions:1.1.1'
-    compile 'android.arch.lifecycle:common-java8:1.1.1'
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:recyclerview-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+    implementation "com.android.support:support-v13:$supportVersion"
+    implementation "com.android.support:cardview-v7:$supportVersion"
+    implementation "com.android.support:preference-v7:$supportVersion"
+    implementation "com.android.support:preference-v14:$supportVersion"
+    implementation "com.android.support:gridlayout-v7:$supportVersion"
+    implementation "com.android.support:exifinterface:$supportVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation 'android.arch.lifecycle:common-java8:1.1.1'
 
-    compile('com.google.firebase:firebase-messaging:17.3.4') {
+    implementation('com.google.firebase:firebase-messaging:17.3.4') {
         exclude group: 'com.google.firebase', module: 'firebase-core'
         exclude group: 'com.google.firebase', module: 'firebase-analytics'
         exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
     }
 
-    compile 'com.google.android.gms:play-services-maps:16.0.0'
-    compile 'com.google.android.gms:play-services-places:16.0.0'
-    compile 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
-    compile 'com.google.android.exoplayer:exoplayer-core:2.9.1'
-    compile 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.9.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
 
-    compile 'org.conscrypt:conscrypt-android:2.0.0'
-    compile 'org.signal:aesgcmprovider:0.0.3'
+    implementation 'org.conscrypt:conscrypt-android:2.0.0'
+    implementation 'org.signal:aesgcmprovider:0.0.3'
 
-    compile 'org.whispersystems:signal-service-android:2.13.3'
+    implementation 'org.whispersystems:signal-service-android:2.13.3'
 
-    compile 'org.whispersystems:webrtc-android:M74'
+    implementation 'org.whispersystems:webrtc-android:M74'
 
-    compile "me.leolin:ShortcutBadger:1.1.16"
-    compile 'se.emilsjolander:stickylistheaders:2.7.0'
-    compile 'com.jpardogo.materialtabstrip:library:1.0.9'
-    compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
-    compile 'com.github.chrisbanes:PhotoView:2.1.3'
-    compile 'com.github.bumptech.glide:glide:4.5.0'
+    implementation "me.leolin:ShortcutBadger:1.1.16"
+    implementation 'se.emilsjolander:stickylistheaders:2.7.0'
+    implementation 'com.jpardogo.materialtabstrip:library:1.0.9'
+    implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
-    compile 'com.makeramen:roundedimageview:2.1.0'
-    compile 'com.pnikosis:materialish-progress:1.5'
-    compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'pl.tajchert:waitingdots:0.1.0'
-    compile 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
-    compile 'com.melnykov:floatingactionbutton:1.3.0'
-    compile 'com.google.zxing:android-integration:3.1.0'
-    compile 'com.squareup.dagger:dagger:1.2.2'
+    implementation 'com.makeramen:roundedimageview:2.1.0'
+    implementation 'com.pnikosis:materialish-progress:1.5'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'pl.tajchert:waitingdots:0.1.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
+    implementation 'com.melnykov:floatingactionbutton:1.3.0'
+    implementation 'com.google.zxing:android-integration:3.1.0'
+    implementation 'com.squareup.dagger:dagger:1.2.2'
     annotationProcessor 'com.squareup.dagger:dagger-compiler:1.2.2'
-    compile 'mobi.upod:time-duration-picker:1.1.3'
+    implementation 'mobi.upod:time-duration-picker:1.1.3'
     compileOnly 'com.squareup.dagger:dagger-compiler:1.2.2'
-    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'com.google.zxing:core:3.2.1'
-    compile ('com.davemorrissey.labs:subsampling-scale-image-view:3.6.0') {
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation 'com.google.zxing:core:3.2.1'
+    implementation ('com.davemorrissey.labs:subsampling-scale-image-view:3.6.0') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    compile ('cn.carbswang.android:NumberPickerView:1.0.9') {
+    implementation ('cn.carbswang.android:NumberPickerView:1.0.9') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    compile ('com.tomergoldst.android:tooltips:1.0.6') {
+    implementation ('com.tomergoldst.android:tooltips:1.0.6') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    compile ('com.klinkerapps:android-smsmms:4.0.1') {
+    implementation ('com.klinkerapps:android-smsmms:4.0.1') {
         exclude group: 'com.squareup.okhttp', module: 'okhttp'
         exclude group: 'com.squareup.okhttp', module: 'okhttp-urlconnection'
     }
-    compile 'com.annimon:stream:1.1.8'
-    compile ('com.takisoft.fix:colorpicker:0.9.1') {
+    implementation 'com.annimon:stream:1.1.8'
+    implementation ('com.takisoft.fix:colorpicker:0.9.1') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
-    compile 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
-    compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
-    compile 'org.signal:android-database-sqlcipher:3.5.9-S3'
-    compile ('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
+    implementation 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
+    implementation 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
+    implementation 'org.signal:android-database-sqlcipher:3.5.9-S3'
+    implementation ('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'org.freemarker'
     }
