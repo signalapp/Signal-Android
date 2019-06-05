@@ -9,7 +9,7 @@ public class OutgoingTextMessage {
   private final String    message;
   private final int       subscriptionId;
   private final long      expiresIn;
-  boolean                 isFriendRequest = false;
+  public boolean          isFriendRequest = false;
 
   public OutgoingTextMessage(Recipient recipient, String message, int subscriptionId) {
     this(recipient, message, 0, subscriptionId);

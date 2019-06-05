@@ -643,7 +643,7 @@ public class SmsDatabase extends MessagingDatabase {
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
     contentValues.put(READ_RECEIPT_COUNT, Stream.of(earlyReadReceipts.values()).mapToLong(Long::longValue).sum());
-    contentValues.put(IS_FRIEND_REQUEST, message.isFriendRequest() ? 1 : 0);
+    contentValues.put(IS_FRIEND_REQUEST, message.isFriendRequest ? 1 : 0);
 
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
