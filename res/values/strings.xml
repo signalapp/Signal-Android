@@ -1529,5 +1529,8 @@
     <string name="activity_key_pair_copy_button_title">Copy</string>
     <string name="activity_key_pair_mnemonic_copied_message">Copied to Clipboard</string>
     <string name="activity_key_pair_register_button_title">Register</string>
+    <!-- Settings -->
+    <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
+    <string name="activity_settings_public_key_copied_message">Copied to Clipboard</string>
 
 </resources>

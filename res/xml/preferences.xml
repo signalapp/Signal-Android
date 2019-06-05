@@ -33,4 +33,8 @@
                 android:title="@string/preferences__advanced"
                 android:icon="@drawable/ic_advanced_24dp"/>
 
+    <Preference android:key="preference_category_public_key"
+                android:title="@string/activity_settings_share_public_key_button_title"
+                android:icon="@drawable/ic_textsms_24dp"/>
+
 </PreferenceScreen>
