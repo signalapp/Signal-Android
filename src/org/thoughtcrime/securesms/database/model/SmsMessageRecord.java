@@ -36,8 +36,24 @@ import java.util.List;
  * @author Moxie Marlinspike
  *
  */
-
 public class SmsMessageRecord extends MessageRecord {
+
+  // Loki
+  private final boolean isFriendRequest;
+
+  public SmsMessageRecord(long id,
+                           String body, Recipient recipient,
+                           Recipient individualRecipient,
+                           int recipientDeviceId,
+                           long dateSent, long dateReceived,
+                           int deliveryReceiptCount,
+                           long type, long threadId,
+                           int status, List<IdentityKeyMismatch> mismatches,
+                           int subscriptionId, long expiresIn, long expireStarted,
+                           int readReceiptCount, boolean unidentified)
+  {
+    this(id, body, recipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, deliveryReceiptCount, type, threadId, status, mismatches, subscriptionId, expiresIn, expireStarted, readReceiptCount, unidentified, false);
+  }
 
   public SmsMessageRecord(long id,
                           String body, Recipient recipient,
@@ -48,17 +64,21 @@ public class SmsMessageRecord extends MessageRecord {
                           long type, long threadId,
                           int status, List<IdentityKeyMismatch> mismatches,
                           int subscriptionId, long expiresIn, long expireStarted,
-                          int readReceiptCount, boolean unidentified)
+                          int readReceiptCount, boolean unidentified, boolean isFriendRequest)
   {
     super(id, body, recipient, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
-          mismatches, new LinkedList<>(), subscriptionId,
-          expiresIn, expireStarted, readReceiptCount, unidentified);
+            dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
+            mismatches, new LinkedList<>(), subscriptionId,
+            expiresIn, expireStarted, readReceiptCount, unidentified);
+    this.isFriendRequest = isFriendRequest;
   }
 
   public long getType() {
     return type;
   }
+
+  // Loki
+  public boolean isFriendRequest() { return isFriendRequest; }
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
