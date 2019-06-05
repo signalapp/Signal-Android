@@ -86,7 +86,6 @@ import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
@@ -267,7 +266,11 @@ public class PushDecryptJob extends BaseJob {
         else if (message.isGroupUpdate())       handleGroupMessage(content, message, smsMessageId);
         else if (message.isExpirationUpdate())  handleExpirationUpdate(content, message, smsMessageId);
         else if (isMediaMessage)                handleMediaMessage(content, message, smsMessageId);
-        else if (message.getBody().isPresent()) handleTextMessage(content, message, smsMessageId);
+        else if (message.getBody().isPresent()) {
+          // Loki - Handle friend request logic
+          handleFriendRequestIfNeeded(envelope, content, message);
+          handleTextMessage(content, message, smsMessageId);
+        }
 
         if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
           handleUnknownGroupMessage(content, message.getGroupInfo().get());
@@ -809,6 +812,46 @@ public class PushDecryptJob extends BaseJob {
 
     if (threadId != null) {
       MessageNotifier.updateNotification(context, threadId);
+    }
+  }
+
+  private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope,
+                                           @NonNull SignalServiceContent content,
+                                           @NonNull SignalServiceDataMessage message) {
+
+    Recipient recipient = getMessageDestination(content, message);
+    ThreadDatabase database = DatabaseFactory.getThreadDatabase(context);
+    long threadId = database.getThreadIdIfExistsFor(recipient);
+    int friendRequestStatus = database.getFriendRequestStatus(threadId);
+
+    if (envelope.isFriendRequest()) {
+      if (friendRequestStatus == ThreadDatabase.LokiFriendRequestStatus.REQUEST_SENT) {
+        // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
+        // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
+        // and send a friend request accepted message back to Bob. We don't check that sending the
+        // friend request accepted message succeeded. Even if it doesn't, the thread's current friend
+        // request status will be set to `FRIENDS` for Alice making it possible
+        // for Alice to send messages to Bob. When Bob receives a message, his thread's friend request status
+        // will then be set to `FRIENDS`. If we do check for a successful send
+        // before updating Alice's thread's friend request status to `FRIENDS`,
+        // we can end up in a deadlock where both users' threads' friend request statuses are
+        // `REQUEST_SENT`.
+        database.setFriendRequestStatus(threadId, ThreadDatabase.LokiFriendRequestStatus.FRIENDS);
+        // TODO: Send empty message here
+      } else if (friendRequestStatus != ThreadDatabase.LokiFriendRequestStatus.FRIENDS) {
+        // Checking that the sender of the message isn't already a friend is necessary because otherwise
+        // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
+        // friend request status is reset to `NONE`. Bob now sends Alice a friend
+        // request. Alice's thread's friend request status is reset to
+        // `REQUEST_RECEIVED`.
+        database.setFriendRequestStatus(threadId, ThreadDatabase.LokiFriendRequestStatus.REQUEST_RECEIVED);
+      }
+    } else if (friendRequestStatus != ThreadDatabase.LokiFriendRequestStatus.FRIENDS) {
+      // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
+      // it must be a friend request accepted message. Declining a friend request doesn't send a message.
+      database.setFriendRequestStatus(threadId, ThreadDatabase.LokiFriendRequestStatus.FRIENDS);
+
+      // TODO: Send p2p details here
     }
   }
 

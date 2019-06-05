@@ -79,6 +79,9 @@ public class ThreadDatabase extends Database {
   public  static final String LAST_SEEN              = "last_seen";
   private static final String HAS_SENT               = "has_sent";
 
+  // Loki
+  private static final String FRIEND_REQUEST_STATUS  = "friend_request_status";
+
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
     ID + " INTEGER PRIMARY KEY, " + DATE + " INTEGER DEFAULT 0, "                                  +
     MESSAGE_COUNT + " INTEGER DEFAULT 0, " + ADDRESS + " TEXT, " + SNIPPET + " TEXT, "             +
@@ -88,7 +91,8 @@ public class ThreadDatabase extends Database {
     ARCHIVED + " INTEGER DEFAULT 0, " + STATUS + " INTEGER DEFAULT 0, "                            +
     DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + EXPIRES_IN + " INTEGER DEFAULT 0, "          +
     LAST_SEEN + " INTEGER DEFAULT 0, " + HAS_SENT + " INTEGER DEFAULT 0, "                         +
-    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + UNREAD_COUNT + " INTEGER DEFAULT 0);";
+    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + UNREAD_COUNT + " INTEGER DEFAULT 0,"              +
+    FRIEND_REQUEST_STATUS + "INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + ADDRESS + ");",
@@ -428,6 +432,32 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
+  // region Loki
+  public int getFriendRequestStatus(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor = db.query(TABLE_NAME, new String[]{FRIEND_REQUEST_STATUS}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
+
+    try {
+      if (cursor != null && cursor.moveToNext()) {
+        return cursor.getInt(cursor.getColumnIndexOrThrow(FRIEND_REQUEST_STATUS));
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
+    return LokiFriendRequestStatus.NONE;
+  }
+
+  public void setFriendRequestStatus(long threadId, int status) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(FRIEND_REQUEST_STATUS, status);
+
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(threadId)});
+    notifyConversationListListeners();
+  }
+  //endregion
+
   public Pair<Long, Boolean> getLastSeenAndHasSent(long threadId) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
     Cursor         cursor = db.query(TABLE_NAME, new String[]{LAST_SEEN, HAS_SENT}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
@@ -636,6 +666,22 @@ public class ThreadDatabase extends Database {
     public static final int CONVERSATION = 2;
     public static final int ARCHIVE      = 3;
     public static final int INBOX_ZERO   = 4;
+  }
+
+  // Loki
+  public static class LokiFriendRequestStatus {
+    // New conversation; no messages sent or received.
+    public static final int NONE = 0;
+    // This state is used to lock the input early while sending
+    public static final int REQUEST_SENDING = 1;
+    // Friend request sent; awaiting response.
+    public static final int REQUEST_SENT = 2;
+    // Friend request received; awaiting user input.
+    public static final int REQUEST_RECEIVED = 3;
+    // We are friends with the user in this thread.
+    public static final int FRIENDS = 4;
+    // A friend request was sent, but it timed out (i.e other user didn't accept within the allocated time)
+    public static final int REQUEST_EXPIRED = 5;
   }
 
   public class Reader implements Closeable {
