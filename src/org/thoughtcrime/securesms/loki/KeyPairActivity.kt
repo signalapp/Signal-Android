@@ -79,7 +79,9 @@ class KeyPairActivity : BaseActionBarActivity() {
                 IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
         TextSecurePreferences.setProfileName(this, "User McUserFace") // TODO: For debugging purposes
+        TextSecurePreferences.setPromptedPushRegistration(this, true)
         startActivity(Intent(this, ConversationListActivity::class.java))
+        finish()
     }
     // endregion
 }

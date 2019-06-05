@@ -22,5 +22,6 @@ class AccountDetailsActivity : BaseActionBarActivity() {
             return nameEditText.input.setError("Too Long")
         }
         startActivity(Intent(this, KeyPairActivity::class.java))
+        finish()
     }
 }
