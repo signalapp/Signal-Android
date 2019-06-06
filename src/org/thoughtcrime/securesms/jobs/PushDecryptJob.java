@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -86,6 +87,8 @@ import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
@@ -115,7 +118,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PushDecryptJob extends BaseJob {
+import javax.inject.Inject;
+
+public class PushDecryptJob extends BaseJob implements InjectableType {
 
   public static final String KEY = "PushDecryptJob";
 
@@ -126,6 +131,8 @@ public class PushDecryptJob extends BaseJob {
 
   private long messageId;
   private long smsMessageId;
+
+  @Inject SignalServiceMessageSender messageSender;
 
   public PushDecryptJob(Context context) {
     this(context, -1);
@@ -834,7 +841,8 @@ public class PushDecryptJob extends BaseJob {
         // we can end up in a deadlock where both users' threads' friend request statuses are
         // `REQUEST_SENT`.
         database.setFriendRequestStatus(threadId, ThreadDatabase.LokiFriendRequestStatus.FRIENDS);
-        // TODO: Send empty message here
+        // Accept the friend request
+        sendEmptyMessageTo(envelope.getSource());
       } else if (friendRequestStatus != ThreadDatabase.LokiFriendRequestStatus.FRIENDS) {
         // Checking that the sender of the message isn't already a friend is necessary because otherwise
         // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
@@ -848,6 +856,18 @@ public class PushDecryptJob extends BaseJob {
       // it must be a friend request accepted message. Declining a friend request doesn't send a message.
       database.setFriendRequestStatus(threadId, ThreadDatabase.LokiFriendRequestStatus.FRIENDS);
       // TODO: Send p2p details here
+    }
+  }
+
+  private void sendEmptyMessageTo(String pubKey) {
+    try {
+      SignalServiceAddress address = new SignalServiceAddress(pubKey);
+      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+      Optional<UnidentifiedAccessPair> access = Optional.absent();
+
+      messageSender.sendMessage(address, access, message);
+    } catch (Exception e) {
+      Log.w(TAG, "Failed to send empty message to " + pubKey);
     }
   }
 
