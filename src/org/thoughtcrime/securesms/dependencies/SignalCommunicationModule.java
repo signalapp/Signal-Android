@@ -5,6 +5,7 @@ import android.content.Context;
 import org.thoughtcrime.securesms.gcm.FcmService;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
+import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
@@ -96,7 +97,8 @@ import dagger.Provides;
                                      MultiDeviceConfigurationUpdateJob.class,
                                      RefreshUnidentifiedDeliveryAbilityJob.class,
                                      TypingSendJob.class,
-                                     AttachmentUploadJob.class})
+                                     AttachmentUploadJob.class,
+                                     PushDecryptJob.class})
 public class SignalCommunicationModule {
 
   private static final String TAG = SignalCommunicationModule.class.getSimpleName();
