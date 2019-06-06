@@ -48,7 +48,9 @@ import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
 /**
  * The Activity for application preference display and management.
@@ -271,10 +273,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           fragment = new AdvancedPreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_PUBLIC_KEY:
-          ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-          ClipData clip = ClipData.newPlainText("public key", "public key"); // TODO: Use actual public key
-          clipboard.setPrimaryClip(clip);
-          Toast.makeText(getContext(), R.string.activity_settings_public_key_copied_message, Toast.LENGTH_SHORT).show();
+          String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
+          Intent shareIntent = new Intent();
+          shareIntent.setAction(Intent.ACTION_SEND);
+          shareIntent.putExtra(Intent.EXTRA_TEXT, hexEncodedPublicKey);
+          shareIntent.setType("text/plain");
+          startActivity(shareIntent);
           break;
         default:
           throw new AssertionError();
