@@ -21,7 +21,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -33,7 +32,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +49,6 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.io.IOException;
@@ -99,26 +96,28 @@ public class ContactSelectionListFragment extends    Fragment
   public void onStart() {
     super.onStart();
 
-    Permissions.with(this)
-               .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS)
-               .ifNecessary()
-               .onAllGranted(() -> {
-                 if (!TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
-                   handleContactPermissionGranted();
-                 } else {
-                   this.getLoaderManager().initLoader(0, null, this);
-                 }
-               })
-               .onAnyDenied(() -> {
-                 getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    handleContactPermissionGranted();
 
-                 if (getActivity().getIntent().getBooleanExtra(RECENTS, false)) {
-                   getLoaderManager().initLoader(0, null, ContactSelectionListFragment.this);
-                 } else {
-                   initializeNoContactsPermission();
-                 }
-               })
-               .execute();
+//    Permissions.with(this)
+//               .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS)
+//               .ifNecessary()
+//               .onAllGranted(() -> {
+//                 if (!TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
+//                   handleContactPermissionGranted();
+//                 } else {
+//                   this.getLoaderManager().initLoader(0, null, this);
+//                 }
+//               })
+//               .onAnyDenied(() -> {
+//                 getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+//
+//                 if (getActivity().getIntent().getBooleanExtra(RECENTS, false)) {
+//                   getLoaderManager().initLoader(0, null, ContactSelectionListFragment.this);
+//                 } else {
+//                   initializeNoContactsPermission();
+//                 }
+//               })
+//               .execute();
   }
 
   @Override

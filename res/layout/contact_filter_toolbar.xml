@@ -14,7 +14,7 @@
                       android:layout_height="wrap_content"
                       android:layout_width="0px"
                       android:layout_weight="1"
-                      android:hint="@string/contact_selection_activity__enter_name_or_number"
+                      android:hint="@string/activity_contact_selection_search_bar_placeholder"
                       android:inputType="textPersonName"
                       style="@style/TextSecure.TitleTextStyle"
                       android:background="@android:color/transparent"
@@ -33,26 +33,26 @@
                 android:paddingEnd="10dp"
                 android:gravity="center">
 
-                <ImageView android:id="@+id/search_dialpad"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:gravity="center_vertical"
-                           android:clickable="true"
-                           android:focusable="true"
-                           android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_dialpad_white_24dp" />
+                <!--<ImageView android:id="@+id/search_dialpad"-->
+                           <!--android:layout_width="wrap_content"-->
+                           <!--android:layout_height="wrap_content"-->
+                           <!--android:layout_gravity="center_vertical"-->
+                           <!--android:gravity="center_vertical"-->
+                           <!--android:clickable="true"-->
+                           <!--android:focusable="true"-->
+                           <!--android:background="@drawable/circle_touch_highlight_background"-->
+                           <!--android:src="@drawable/ic_dialpad_white_24dp" />-->
 
-                <ImageView android:id="@+id/search_keyboard"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:gravity="center_vertical"
-                           android:clickable="true"
-                           android:visibility="gone"
-                           android:focusable="true"
-                           android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_keyboard_white_24dp" />
+                <!--<ImageView android:id="@+id/search_keyboard"-->
+                           <!--android:layout_width="wrap_content"-->
+                           <!--android:layout_height="wrap_content"-->
+                           <!--android:layout_gravity="center_vertical"-->
+                           <!--android:gravity="center_vertical"-->
+                           <!--android:clickable="true"-->
+                           <!--android:visibility="gone"-->
+                           <!--android:focusable="true"-->
+                           <!--android:background="@drawable/circle_touch_highlight_background"-->
+                           <!--android:src="@drawable/ic_keyboard_white_24dp" />-->
 
                 <ImageView android:id="@+id/search_clear"
                            android:layout_width="wrap_content"

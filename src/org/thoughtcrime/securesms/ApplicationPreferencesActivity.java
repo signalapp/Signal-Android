@@ -21,6 +21,7 @@ import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -34,9 +35,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
@@ -48,9 +51,11 @@ import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
+import org.whispersystems.signalservice.loki.utilities.SerializationKt;
+
+import java.io.File;
 
 /**
  * The Activity for application preference display and management.
@@ -74,6 +79,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   private static final String PREFERENCE_CATEGORY_DEVICES        = "preference_category_devices";
   private static final String PREFERENCE_CATEGORY_ADVANCED       = "preference_category_advanced";
   private static final String PREFERENCE_CATEGORY_PUBLIC_KEY     = "preference_category_public_key";
+  private static final String PREFERENCE_CATEGORY_SEED           = "preference_category_seed";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -162,6 +168,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
       this.findPreference(PREFERENCE_CATEGORY_PUBLIC_KEY)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_PUBLIC_KEY));
+      this.findPreference(PREFERENCE_CATEGORY_SEED)
+        .setOnPreferenceClickListener(new CategoryClickListener((PREFERENCE_CATEGORY_SEED)));
 
       if (VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
         tintIcons(getActivity());
@@ -213,7 +221,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       Drawable chats         = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_forum_white_24dp));
       Drawable devices       = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_laptop_white_24dp));
       Drawable advanced      = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_advanced_white_24dp));
-      Drawable publicKey     = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_share_white_24dp));
+      Drawable publicKey     = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_textsms_24dp));
+      Drawable seed          = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_security_24dp));
 
       int[]      tintAttr   = new int[]{R.attr.pref_icon_tint};
       TypedArray typedArray = context.obtainStyledAttributes(tintAttr);
@@ -227,6 +236,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       DrawableCompat.setTint(chats, color);
       DrawableCompat.setTint(devices, color);
       DrawableCompat.setTint(advanced, color);
+      DrawableCompat.setTint(publicKey, color);
+      DrawableCompat.setTint(seed, color);
 
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS).setIcon(sms);
       this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS).setIcon(notifications);
@@ -236,6 +247,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       this.findPreference(PREFERENCE_CATEGORY_DEVICES).setIcon(devices);
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED).setIcon(advanced);
       this.findPreference(PREFERENCE_CATEGORY_PUBLIC_KEY).setIcon(publicKey);
+      this.findPreference(PREFERENCE_CATEGORY_SEED).setIcon(seed);
     }
 
     private class CategoryClickListener implements Preference.OnPreferenceClickListener {
@@ -279,6 +291,22 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           shareIntent.putExtra(Intent.EXTRA_TEXT, hexEncodedPublicKey);
           shareIntent.setType("text/plain");
           startActivity(shareIntent);
+          break;
+        case PREFERENCE_CATEGORY_SEED:
+          File languageFileDirectory = new File(getContext().getApplicationInfo().dataDir);
+          String hexEncodedPrivateKey = SerializationKt.getHexEncodedPrivateKey(IdentityKeyUtil.getIdentityKeyPair(getContext()));
+          String seed = new MnemonicCodec(languageFileDirectory).encode(hexEncodedPrivateKey, MnemonicCodec.Language.Configuration.Companion.getEnglish());
+          new AlertDialog.Builder(getContext())
+                  .setTitle(R.string.activity_settings_seed_dialog_title)
+                  .setMessage(seed)
+                  .setPositiveButton(R.string.activity_settings_seed_dialog_copy_button_title, (DialogInterface.OnClickListener) (dialog, which) -> {
+                    ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("seed", seed);
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(getContext(), R.string.activity_settings_seed_copied_message, Toast.LENGTH_SHORT).show();
+                  })
+                  .setNeutralButton(R.string.activity_settings_seed_dialog_cancel_button_title, null)
+                  .show();
           break;
         default:
           throw new AssertionError();

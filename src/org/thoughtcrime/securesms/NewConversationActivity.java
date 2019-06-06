@@ -18,10 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.Address;
@@ -91,12 +88,12 @@ public class NewConversationActivity extends ContactSelectionActivity {
     startActivity(new Intent(this, InviteActivity.class));
   }
 
-  @Override
-  protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-    MenuInflater inflater = this.getMenuInflater();
-    menu.clear();
-    inflater.inflate(R.menu.new_conversation_activity, menu);
-    super.onPrepareOptionsMenu(menu);
-    return true;
-  }
+//  @Override
+//  protected boolean onPrepareOptionsPanel(View view, Menu menu) {
+//    MenuInflater inflater = this.getMenuInflater();
+//    menu.clear();
+//    inflater.inflate(R.menu.new_conversation_activity, menu);
+//    super.onPrepareOptionsMenu(menu);
+//    return true;
+//  }
 }

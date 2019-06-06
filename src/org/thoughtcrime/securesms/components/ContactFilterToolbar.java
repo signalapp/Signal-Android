@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ContactFilterToolbar extends Toolbar {
@@ -22,8 +21,8 @@ public class ContactFilterToolbar extends Toolbar {
 
   private EditText        searchText;
   private AnimatingToggle toggle;
-  private ImageView       keyboardToggle;
-  private ImageView       dialpadToggle;
+//  private ImageView       keyboardToggle;
+//  private ImageView       dialpadToggle;
   private ImageView       clearToggle;
   private LinearLayout    toggleContainer;
 
@@ -41,36 +40,36 @@ public class ContactFilterToolbar extends Toolbar {
 
     this.searchText      = ViewUtil.findById(this, R.id.search_view);
     this.toggle          = ViewUtil.findById(this, R.id.button_toggle);
-    this.keyboardToggle  = ViewUtil.findById(this, R.id.search_keyboard);
-    this.dialpadToggle   = ViewUtil.findById(this, R.id.search_dialpad);
+//    this.keyboardToggle  = ViewUtil.findById(this, R.id.search_keyboard);
+//    this.dialpadToggle   = ViewUtil.findById(this, R.id.search_dialpad);
     this.clearToggle     = ViewUtil.findById(this, R.id.search_clear);
     this.toggleContainer = ViewUtil.findById(this, R.id.toggle_container);
 
-    this.keyboardToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
-        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
-        displayTogglingView(dialpadToggle);
-      }
-    });
+//    this.keyboardToggle.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        searchText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+//        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
+//        displayTogglingView(dialpadToggle);
+//      }
+//    });
 
-    this.dialpadToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setInputType(InputType.TYPE_CLASS_PHONE);
-        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
-        displayTogglingView(keyboardToggle);
-      }
-    });
+//    this.dialpadToggle.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        searchText.setInputType(InputType.TYPE_CLASS_PHONE);
+//        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
+//        displayTogglingView(keyboardToggle);
+//      }
+//    });
 
     this.clearToggle.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         searchText.setText("");
 
-        if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
-        else displayTogglingView(keyboardToggle);
+//        if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
+//        else displayTogglingView(keyboardToggle);
       }
     });
 
@@ -88,15 +87,17 @@ public class ContactFilterToolbar extends Toolbar {
       @Override
       public void afterTextChanged(Editable s) {
         if (!SearchUtil.isEmpty(searchText)) displayTogglingView(clearToggle);
-        else if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
-        else if (SearchUtil.isPhoneInput(searchText)) displayTogglingView(keyboardToggle);
+        else displayTogglingView(null);
+//        else if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
+//        else if (SearchUtil.isPhoneInput(searchText)) displayTogglingView(keyboardToggle);
         notifyListener();
       }
     });
 
     setLogo(null);
     setContentInsetStartWithNavigation(0);
-    expandTapArea(toggleContainer, dialpadToggle);
+    displayTogglingView(null);
+//    expandTapArea(toggleContainer, dialpadToggle);
   }
 
   public void clear() {
@@ -114,7 +115,9 @@ public class ContactFilterToolbar extends Toolbar {
 
   private void displayTogglingView(View view) {
     toggle.display(view);
-    expandTapArea(toggleContainer, view);
+    if (view != null) {
+      expandTapArea(toggleContainer, view);
+    }
   }
 
   private void expandTapArea(final View container, final View child) {
