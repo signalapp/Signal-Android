@@ -379,7 +379,7 @@ public class DirectoryHelper {
   private static Set<String> sanitizeNumbers(@NonNull Set<String> numbers) {
     return Stream.of(numbers).filter(number -> {
       try {
-        return number.startsWith("+") && number.length() > 1 && Long.parseLong(number.substring(1)) > 0;
+        return number.startsWith("+") && number.length() > 1 && number.charAt(1) != '0' && Long.parseLong(number.substring(1)) > 0;
       } catch (NumberFormatException e) {
         return false;
       }
