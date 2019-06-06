@@ -547,8 +547,6 @@
   <string name="SmsMessageRecord_secure_session_reset">您重置了安全会话。</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-    由于对方版本的 Signal 版本高于您使用的版本，此信息无法处理。请升级您的 Signal 版本，然后要求对方再发送一次。</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">表情</string>
   <!--StickerManagementAdapter-->

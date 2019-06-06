@@ -573,9 +573,7 @@
   <string name="SmsMessageRecord_secure_session_reset">Sa lähtestasid turvalise sessiooni.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s lähtestas turvalise sessiooni.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikaatsõnum.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Seda sõnumit ei saanud töödelda, kuna see saadeti Signali uuemast versioonist. Sa võid paluda oma kontaktil see sõnum uuesti saata, kui oled ise rakendust uuendanud.
-    </string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Seda sõnumit ei saanud töödelda, kuna see saadeti Signali uuemast versioonist. Sa võid paluda oma kontaktil see sõnum uuesti saata, kui oled ise rakendust uuendanud.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Kleepsud</string>
   <!--StickerManagementAdapter-->

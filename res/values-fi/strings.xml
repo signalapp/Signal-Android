@@ -567,8 +567,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SmsMessageRecord_secure_session_reset">Sinä alustit suojatun istunnon.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s alusti suojatun istunnon.</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Tätä viestiä ei voitu käsitellä, koska se lähetettiin uudemmasta Signal-versiosta. Voit pyytää yhteystietoasi lähettämään viestin uudelleen sen jälkeen kun olet päivittänyt.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Tarrat</string>
   <!--StickerManagementAdapter-->

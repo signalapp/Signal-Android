@@ -572,9 +572,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SmsMessageRecord_secure_session_reset">Güvenli oturumu sıfırladınız.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s güvenli oturumu sıfırladı.</string>
   <string name="SmsMessageRecord_duplicate_message">Tekrarlanan ileti.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Bu mesaj Signal\'in yeni sürümünden gönderildiği için işlenemiyor. Güncelledikten sonra bu iletiyi tekrar göndermelerini isteyebilirsiniz.
-    </string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Bu ileti Signal\'in yeni sürümünden gönderildiği için işlenemiyor. Güncelledikten sonra kişinizden bu iletiyi tekrar göndermelerini isteyebilirsiniz.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Çıkartmalar</string>
   <!--StickerManagementAdapter-->

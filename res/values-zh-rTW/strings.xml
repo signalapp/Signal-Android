@@ -549,9 +549,7 @@
   <string name="SmsMessageRecord_secure_session_reset">您已重設安全對話。</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重設安全對話。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-這個訊息無法處理，因為它是從較新版本的Signal發送的。 在更新後，你可以要求你的聯絡人再次發送此訊息。
-</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">無法處理此訊息，因為它是從較新版本的Signal 傳送的。 更新後，你可以要求你的聯絡人再次傳送此訊息。</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">貼圖</string>
   <!--StickerManagementAdapter-->

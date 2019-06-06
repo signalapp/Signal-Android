@@ -569,9 +569,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="SmsMessageRecord_secure_session_reset">Reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Esta mensagem não pode ser processada porque foi enviada a partir de uma versão mais recente do Signal. Peça ao seu contacto para lhe reenviar novamente esta mensagem após você proceder à atualização do Signal.
-    </string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Não foi possível processar esta mensagem porque foi enviada a partir de uma versão mais recente do Signal. Peça ao seu contacto para lhe reenviar novamente esta mensagem após você ter feito a atualização do Signal.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Autocolantes</string>
   <!--StickerManagementAdapter-->

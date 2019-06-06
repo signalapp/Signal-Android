@@ -568,9 +568,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="SmsMessageRecord_secure_session_reset">Vous avez réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message en double.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Ce message n’a pas pu être traité, car il a été envoyé à partir d’une version plus récente de Signal. Vous pourrez demander à votre contact de renvoyer ce message une fois que vous aurez mis Signal à jour.
-</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ce message n’a pas pu être traité, car il a été envoyé à partir d’une version plus récente de Signal. Vous pourrez demander à votre contact de renvoyer ce message une fois que vous aurez mis Signal à jour.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Autocollants</string>
   <!--StickerManagementAdapter-->

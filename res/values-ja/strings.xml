@@ -542,7 +542,7 @@
   <string name="SmsMessageRecord_secure_session_reset">セキュアセッションを設定し直しました</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%sがセキュアセッションを設定し直しました。</string>
   <string name="SmsMessageRecord_duplicate_message">重複メッセージ</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">このメッセージは、Signalの新バージョンの機能を利用しているため、表示できません。アップデートしてから、メッセージの再送を依頼してください。</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">このメッセージは、新しいバージョンのSignalから送信されたため、表示できません。アップデートしてから、メッセージの再送を依頼してください。</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">ステッカー</string>
   <!--StickerManagementAdapter-->

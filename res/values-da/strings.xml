@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbillede?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen Webbrowser fundet</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Et netværksopkald er allerede igang</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhedsnøglen for %1$s er blevet ændret. Dette kan enten betyde at nogen forsøger at opsnappe kommunikationen, eller at %2$s blot har geninstalleret Signal og nu har en ny sikkerhedsnøgle
     </string>
@@ -162,6 +163,8 @@
   <string name="ConversationActivity_no">Nej</string>
   <string name="ConversationActivity_search_position">%1$d af %2$d</string>
   <string name="ConversationActivity_no_results">Ingen resultater</string>
+  <string name="ConversationActivity_sticker_pack_installed">Pakke med klistermærker installeret</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Nyt! Udtryk dig med klistermærker</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>
@@ -556,6 +559,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SharedContactView_message">Signalbesked</string>
   <!--Slide-->
   <string name="Slide_image">Billede</string>
+  <string name="Slide_sticker">Klistermærker</string>
   <string name="Slide_audio">Lyd</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -572,11 +576,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Animationer</string>
   <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Installeret klistermærker</string>
   <string name="StickerManagementAdapter_unknown">Ukendt</string>
   <!--StickerPackPreviewActivity-->
   <string name="StickerPackPreviewActivity_unknown">Ukendt</string>
+  <string name="StickerPackPreviewActivity_install">Installér</string>
   <string name="StickerPackPreviewActivity_remove">Fjern</string>
   <string name="StickerPackPreviewActivity_stickers">Animationer</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Fejl ved hentning af klistermærker</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe opdateret</string>
   <string name="ThreadRecord_left_the_group">Har forladt gruppen</string>
@@ -658,6 +665,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_all_as_read">Markér alle som læst</string>
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
+  <string name="MessageNotifier_sticker">Klistermærker</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signalbesked</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
@@ -780,6 +788,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Billed</string>
+  <string name="QuoteView_sticker">Klistermærker</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Dig</string>
   <string name="QuoteView_original_missing">Original besked ikke fundet</string>

@@ -570,9 +570,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="SmsMessageRecord_secure_session_reset">Hai resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Impossibile elaborare questo messaggio perchè è stato inviato da una versione più recente di Signal. Puoi chiedere al tuo contatto di reinviarlo dopo che hai aggiornato.
-    </string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Questo messaggio non può essere elaborato poiché è stato inviato da una versione più recente di Signal. Puoi chiedere al tuo contatto di inviare di nuovo questo messaggio dopo che hai aggiornato.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Adesivi</string>
   <!--StickerManagementAdapter-->

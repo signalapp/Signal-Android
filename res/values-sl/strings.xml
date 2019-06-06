@@ -604,7 +604,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SmsMessageRecord_secure_session_reset">Ponastavili ste varno sejo.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">Oseba %s je ponastavila varno sejo.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Sporočilo ni moglo biti obdelano, ker je bilo poslano iz novejše različice aplikacije Signal. Po posodobitvi aplikacije lahko prosite uporabnika naj vam ga ponovno pošlje.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Sporočilo ni moglo biti obdelano, ker je bilo poslano iz novejše različice aplikacije Signal. Po posodobitvi aplikacije lahko prosite osebo na drugi strani naj vam ga ponovno pošlje.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Nalepke</string>
   <!--StickerManagementAdapter-->

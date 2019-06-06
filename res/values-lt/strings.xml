@@ -612,9 +612,7 @@
   <string name="SmsMessageRecord_secure_session_reset">Jūs atstatėte saugųjį seansą.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s atstatė saugųjį seansą.</string>
   <string name="SmsMessageRecord_duplicate_message">Dviguba žinutė.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Šios žinutės nepavyko apdoroti, nes ji buvo išsiųsta, naudojant naujesnę Signal versiją. Kai atsinaujinsite programėlę, galite paprašyti adresato, kad išsiųstų jums šią žinutę dar kartą.
-    </string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Šios žinutės nepavyko apdoroti, nes ji buvo išsiųsta, naudojant naujesnę Signal versiją. Kai atsinaujinsite programėlę, galite paprašyti adresato, kad išsiųstų jums šią žinutę dar kartą.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Lipdukai</string>
   <!--StickerManagementAdapter-->

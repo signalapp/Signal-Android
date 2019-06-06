@@ -588,9 +588,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SmsMessageRecord_secure_session_reset">Ai resetat sesiunea securizată.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s a resetat sesiunea securizată.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Acest mesaj nu a putut fi procesat deoarece a fost trimis de pe o versiune mai nouă versiune de Signal. Puteți solicita contactului dvs. să trimită din nou acest mesaj după ce actualizați.
-    </string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Autocolante</string>
   <!--StickerManagementAdapter-->

@@ -573,9 +573,6 @@
   <string name="SmsMessageRecord_secure_session_reset">Restableciches a sesión segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s restableceu a conexión segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensaxe duplicada.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Non se puido procesar esta mensaxe porque foi enviada desde unha versión de Signal máis nova. Podes pedirlle ao teu contacto que a volva enviar logo de actualizares.
-    </string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Adhesivos</string>
   <!--StickerManagementAdapter-->

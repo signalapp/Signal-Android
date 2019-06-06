@@ -575,9 +575,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SmsMessageRecord_secure_session_reset">Újraindítottad a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s újraindította a biztonságos munkamenetet.</string>
   <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">
-        Ez az üzenet nem dolgozható fel, mert a Signal egy újabb verziójából lett küldve. Megkérheted a kontaktod, hogy küldje újra az üzenetet miután frissítettél.
-    </string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ez az üzenet nem dolgozható fel, mert a Signal egy újabb verziójából lett küldve. Kérd meg a partnered, hogy frissítés után ismét küldje el az üzenetet!   </string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Matricák</string>
   <!--StickerManagementAdapter-->
