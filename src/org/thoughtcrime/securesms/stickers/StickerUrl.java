@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import com.google.android.gms.common.util.Hex;
+
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -24,7 +26,7 @@ public class StickerUrl {
     String packId  = uri.getQueryParameter("pack_id");
     String packKey = uri.getQueryParameter("pack_key");
 
-    if (TextUtils.isEmpty(packId) || TextUtils.isEmpty(packKey)) {
+    if (TextUtils.isEmpty(packId) || TextUtils.isEmpty(packKey) || !isValidHex(packId) || !isValidHex(packKey)) {
       return Optional.absent();
     }
 
@@ -45,7 +47,12 @@ public class StickerUrl {
     Matcher matcher = STICKER_URL_PATTERN.matcher(url);
 
     if (matcher.matches() && matcher.groupCount() == 2) {
-      return Optional.of(new Pair<>(matcher.group(1), matcher.group(2)));
+      String packId  = matcher.group(1);
+      String packKey = matcher.group(2);
+
+      if (isValidHex(packId) && isValidHex(packKey)) {
+        return Optional.of(new Pair<>(packId, packKey));
+      }
     }
 
     return Optional.absent();
@@ -53,5 +60,14 @@ public class StickerUrl {
 
   public static String createShareLink(@NonNull String packId, @NonNull String packKey) {
     return "https://signal.org/addstickers/#pack_id=" + packId + "&pack_key=" + packKey;
+  }
+
+  private static boolean isValidHex(String value) {
+    try {
+      Hex.stringToBytes(value);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
   }
 }
