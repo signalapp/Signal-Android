@@ -1534,9 +1534,11 @@
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
     <string name="activity_settings_seed_dialog_copy_button_title">Copy</string>
-    <string name="activity_settings_seed_dialog_cancel_button_title">Cancel</string>
+    <string name="activity_settings_seed_dialog_ok_button_title">OK</string>
     <string name="activity_settings_seed_copied_message">Copied to Clipboard</string>
     <!-- Contact selection activity -->
     <string name="activity_contact_selection_search_bar_placeholder">Search by name or public key</string>
+    <!-- New conversation activity -->
+    <string name="activity_new_conversation_invalid_public_key_message">Invalid Public Key</string>
 
 </resources>

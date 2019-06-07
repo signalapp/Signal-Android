@@ -305,7 +305,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
                     clipboard.setPrimaryClip(clip);
                     Toast.makeText(getContext(), R.string.activity_settings_seed_copied_message, Toast.LENGTH_SHORT).show();
                   })
-                  .setNeutralButton(R.string.activity_settings_seed_dialog_cancel_button_title, null)
+                  .setNeutralButton(R.string.activity_settings_seed_dialog_ok_button_title, null)
                   .show();
           break;
         default:
