@@ -1332,8 +1332,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           registeredState = recipient.resolve().getRegistered();
         }
 
+        // Loki - Override the flag below
+        registeredState = RegisteredState.REGISTERED;
+
         Log.i(TAG, "Resolved registered state: " + registeredState);
-        boolean           signalEnabled   = TextSecurePreferences.isPushRegistered(context);
+        // Loki - Override the flag below
+        boolean signalEnabled = true; // TextSecurePreferences.isPushRegistered(context);
 
         if (registeredState == RegisteredState.UNKNOWN) {
           try {
