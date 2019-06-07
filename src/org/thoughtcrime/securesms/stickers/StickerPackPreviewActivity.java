@@ -78,7 +78,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
 
     if (!stickerParams.isPresent()) {
       Log.w(TAG, "Invalid URI!");
-      finish();
+      presentError();
       return;
     }
 
@@ -147,7 +147,8 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
       if (manifest.isPresent()) {
         presentManifest(manifest.get().getManifest());
         presentButton(manifest.get().isInstalled());
-        presentShareButton(manifest.get().isInstalled(), manifest.get().getManifest().getPackId(), manifest.get().getManifest().getPackKey());
+        // TODO [Stickers]: Re-enable later
+//        presentShareButton(manifest.get().isInstalled(), manifest.get().getManifest().getPackId(), manifest.get().getManifest().getPackKey());
       } else {
         presentError();
       }
