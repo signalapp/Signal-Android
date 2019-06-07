@@ -183,15 +183,19 @@ public class MessageSender {
   }
 
   private static boolean isPushTextSend(Context context, Recipient recipient, boolean keyExchange) {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
-      return false;
-    }
-
-    if (keyExchange) {
-      return false;
-    }
-
-    return isPushDestination(context, recipient);
+    return true;
+    // Loki - Original code
+    // ========
+//    if (!TextSecurePreferences.isPushRegistered(context)) {
+//      return false;
+//    }
+//
+//    if (keyExchange) {
+//      return false;
+//    }
+//
+//    return isPushDestination(context, recipient);
+    // ========
   }
 
   private static boolean isPushMediaSend(Context context, Recipient recipient) {

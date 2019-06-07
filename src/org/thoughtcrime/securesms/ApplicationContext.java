@@ -29,6 +29,7 @@ import android.support.multidex.MultiDexApplication;
 import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
+import org.jetbrains.annotations.NotNull;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -69,6 +70,8 @@ import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
+import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
+import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 
 import java.security.Security;
 import java.util.HashSet;
@@ -76,6 +79,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
+import kotlin.jvm.functions.Function2;
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -85,7 +89,7 @@ import dagger.ObjectGraph;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver {
+public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
@@ -126,6 +130,17 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeBlobProvider();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+
+    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (hexEncodedPublicKey != null) {
+      LokiP2PAPI.Companion.configure(hexEncodedPublicKey, new Function2<Boolean, String, Void>() {
+
+        @Override
+        public Void invoke(Boolean aBoolean, String s) {
+          return null;
+        }
+      }, this);
+    }
   }
 
   @Override
@@ -355,5 +370,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private static class ProviderInitializationException extends RuntimeException {
+  }
+
+  @Override
+  public void ping(@NotNull String s) {
+    // TODO: Implement
   }
 }

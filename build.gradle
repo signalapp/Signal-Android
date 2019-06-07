@@ -5,6 +5,8 @@ import java.security.MessageDigest
 buildscript {
     ext.gradle_version = "3.4.1"
     ext.kotlin_version = "1.3.31"
+    ext.kovenant_version = "3.3.0"
+
     repositories {
         google()
         mavenCentral()
@@ -180,6 +182,7 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.2'
     testImplementation 'org.robolectric:shadows-multidex:4.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "nl.komponents.kovenant:kovenant:$kovenant_version"
 }
 
 android {

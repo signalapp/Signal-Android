@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.Address;
@@ -50,10 +49,10 @@ public class NewConversationActivity extends ContactSelectionActivity {
   public void onContactSelected(String number) {
     boolean isValid = PublicKeyValidation.isValid(number);
 
-    if (!isValid) {
-      Toast.makeText(this, R.string.activity_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show();
-      return;
-    }
+//    if (!isValid) {
+//      Toast.makeText(this, R.string.activity_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show();
+//      return;
+//    }
 
     Recipient recipient = Recipient.from(this, Address.fromSerialized(number), true);
 

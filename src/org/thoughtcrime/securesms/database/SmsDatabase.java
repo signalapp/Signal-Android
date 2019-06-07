@@ -870,7 +870,7 @@ public class SmsDatabase extends MessagingDatabase {
       long    expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.EXPIRE_STARTED));
       String  body                 = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
       boolean unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.UNIDENTIFIED)) == 1;
-      boolean isFriendRequest      = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.IS_FRIEND_REQUEST)) == 1;
+      boolean isFriendRequest      = true;//= cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.IS_FRIEND_REQUEST)) == 1;
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;

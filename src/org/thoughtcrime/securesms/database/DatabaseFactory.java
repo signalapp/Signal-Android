@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiContactPreKeyDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -62,6 +63,7 @@ public class DatabaseFactory {
   private final JobDatabase           jobDatabase;
 
   // Loki
+  private final LokiAPIDatabase lokiAPIDatabase;
   private final LokiContactPreKeyDatabase lokiContactPreKeyDatabase;
   private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
 
@@ -151,6 +153,10 @@ public class DatabaseFactory {
   }
 
   // region Loki
+  public static LokiAPIDatabase getLokiAPIDatabase(Context context) {
+    return getInstance(context).lokiAPIDatabase;
+  }
+
   public static LokiContactPreKeyDatabase getLokiContactPreKeyDatabase(Context context) {
     return getInstance(context).lokiContactPreKeyDatabase;
   }
@@ -191,6 +197,7 @@ public class DatabaseFactory {
     this.searchDatabase       = new SearchDatabase(context, databaseHelper);
     this.jobDatabase          = new JobDatabase(context, databaseHelper);
 
+    this.lokiAPIDatabase = new LokiAPIDatabase(TextSecurePreferences.getLocalNumber(context), context, databaseHelper);
     this.lokiContactPreKeyDatabase = new LokiContactPreKeyDatabase(context, databaseHelper);
     this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
   }
