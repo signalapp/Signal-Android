@@ -1024,7 +1024,7 @@
     <string name="log_submit_activity__loading_logs">Loading logs…</string>
     <string name="log_submit_activity__uploading_logs">Uploading logs…</string>
     <string name="log_submit_activity__success">Successfully uploaded!</string>
-    <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">One more step to finish sumitting your issue; copy this URL and add it to an issue report on GitHub (https://github.com/signalapp/Signal-Android/issues) or include this url in an email to support (support@signal.org). This is the url you have to include:\n\n<b>%1$s</b>\n</string>
+    <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">One more step to finish sumitting your issue report; copy this URL and add it to an issue report on GitHub (https://github.com/signalapp/Signal-Android/issues) or include this url in an email to support (support@signal.org). This is the url you have to include:\n\n<b>%1$s</b>\n</string>
     <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
     <string name="log_submit_activity__choose_email_app">Choose email app</string>
     <string name="log_submit_activity__please_review_this_log_from_my_app">Please review this log from my app: %1$s</string>
