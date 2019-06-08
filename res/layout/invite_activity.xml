@@ -32,7 +32,6 @@
                       android:layout_marginBottom="30dp"
                       android:layout_marginTop="18dp"
                       android:fontFamily="sans-serif-light"
-                      android:paddingLeft="10dp"
                       android:paddingStart="10dp"/>
 
             <EditText android:id="@+id/invite_text"
@@ -43,8 +42,8 @@
                       android:background="@drawable/message_bubble_background"
                       android:paddingTop="10dp"
                       android:paddingBottom="10dp"
-                      android:paddingLeft="10dp"
-                      android:paddingRight="20dp"
+                      android:paddingStart="10dp"
+                      android:paddingEnd="20dp"
                       android:gravity="top"
                       android:inputType="textShortMessage|textMultiLine"
                       android:textColor="#ff333333"/>
@@ -57,7 +56,6 @@
 
                 <Button android:id="@+id/share_button"
                         android:drawablePadding="10dp"
-                        android:drawableLeft="@drawable/ic_share_black_18dp"
                         android:drawableStart="@drawable/ic_share_black_18dp"
                         android:text="@string/InviteActivity_share"
                         android:layout_width="wrap_content"
@@ -65,7 +63,6 @@
                         tools:ignore="ButtonStyle" />
 
                 <Button android:id="@+id/sms_button"
-                        android:drawableLeft="@drawable/ic_message_black_18dp"
                         android:drawableStart="@drawable/ic_message_black_18dp"
                         android:drawablePadding="10dp"
                         android:text="@string/InviteActivity_choose_contacts"

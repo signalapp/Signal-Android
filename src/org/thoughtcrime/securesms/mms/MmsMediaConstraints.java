@@ -1,16 +1,14 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
-import android.os.Bundle;
 
 import com.android.mms.service_alt.MmsConfig;
 
-class MmsMediaConstraints extends MediaConstraints {
-
-  private static final int DEFAULT_MAX_IMAGE_DIMEN  = 1024;
-  private static final int DEFAULT_MAX_MESSAGE_SIZE = 280 * 1024;
+final class MmsMediaConstraints extends MediaConstraints {
 
   private final int subscriptionId;
+
+  private static final int MIN_IMAGE_DIMEN = 1024;
 
   MmsMediaConstraints(int subscriptionId) {
     this.subscriptionId = subscriptionId;
@@ -18,26 +16,12 @@ class MmsMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxWidth(Context context) {
-    MmsConfig mmsConfig = MmsConfigManager.getMmsConfig(context, subscriptionId);
-
-    if (mmsConfig != null) {
-      MmsConfig.Overridden overridden = new MmsConfig.Overridden(mmsConfig, new Bundle());
-      return overridden.getMaxImageWidth();
-    }
-
-    return DEFAULT_MAX_IMAGE_DIMEN;
+    return Math.max(MIN_IMAGE_DIMEN, getOverriddenMmsConfig(context).getMaxImageWidth());
   }
 
   @Override
   public int getImageMaxHeight(Context context) {
-    MmsConfig mmsConfig = MmsConfigManager.getMmsConfig(context, subscriptionId);
-
-    if (mmsConfig != null) {
-      MmsConfig.Overridden overridden = new MmsConfig.Overridden(mmsConfig, new Bundle());
-      return overridden.getMaxImageHeight();
-    }
-
-    return DEFAULT_MAX_IMAGE_DIMEN;
+    return Math.max(MIN_IMAGE_DIMEN, getOverriddenMmsConfig(context).getMaxImageHeight());
   }
 
   @Override
@@ -66,13 +50,12 @@ class MmsMediaConstraints extends MediaConstraints {
   }
 
   private int getMaxMessageSize(Context context) {
+    return getOverriddenMmsConfig(context).getMaxMessageSize();
+  }
+
+  private MmsConfig.Overridden getOverriddenMmsConfig(Context context) {
     MmsConfig mmsConfig = MmsConfigManager.getMmsConfig(context, subscriptionId);
 
-    if (mmsConfig != null) {
-      MmsConfig.Overridden overridden = new MmsConfig.Overridden(mmsConfig, new Bundle());
-      return overridden.getMaxMessageSize();
-    }
-
-    return DEFAULT_MAX_MESSAGE_SIZE;
+    return new MmsConfig.Overridden(mmsConfig, null);
   }
 }

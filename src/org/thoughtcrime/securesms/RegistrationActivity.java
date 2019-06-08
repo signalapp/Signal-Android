@@ -91,7 +91,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.push.LockedException;
 
@@ -729,7 +728,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private void handleSuccessfulRegistration() {
-    ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(RegistrationActivity.this, false));
+    ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(false));
     ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new RotateCertificateJob(RegistrationActivity.this));
 
     DirectoryRefreshListener.schedule(RegistrationActivity.this);

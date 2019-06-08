@@ -89,24 +89,11 @@ public class LinkPreviewView extends FrameLayout {
   }
 
   @Override
-  protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
-    if (type == TYPE_COMPOSE) return;
-
-    if (cornerMask.isLegacy()) {
-      cornerMask.mask(canvas);
-    }
-  }
-
-  @Override
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
     if (type == TYPE_COMPOSE) return;
 
-    if (!cornerMask.isLegacy()) {
-      cornerMask.mask(canvas);
-    }
-
+    cornerMask.mask(canvas);
     outliner.draw(canvas);
   }
 

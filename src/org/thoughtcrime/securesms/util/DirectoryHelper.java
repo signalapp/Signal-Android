@@ -42,6 +42,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.TrustStore;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedQuoteException;
@@ -282,7 +283,7 @@ public class DirectoryHelper {
                                                                   @NonNull RecipientDatabase recipientDatabase,
                                                                   @NonNull Set<String> eligibleContactNumbers)
   {
-    return SignalExecutors.IO.submit(() -> {
+    return SignalExecutors.UNBOUNDED.submit(() -> {
       List<ContactTokenDetails> activeTokens = accountManager.getContacts(eligibleContactNumbers);
 
       if (activeTokens != null) {
@@ -328,7 +329,7 @@ public class DirectoryHelper {
                                                                   @NonNull RecipientDatabase           recipientDatabase,
                                                                   @NonNull Recipient                   recipient)
   {
-    return SignalExecutors.IO.submit(() -> {
+    return SignalExecutors.UNBOUNDED.submit(() -> {
       boolean                       activeUser    = recipient.resolve().getRegistered() == RegisteredState.REGISTERED;
       boolean                       systemContact = recipient.isSystemContact();
       String                        number        = recipient.getAddress().serialize();
@@ -364,10 +365,11 @@ public class DirectoryHelper {
     Set<String>               sanitizedNumbers = sanitizeNumbers(eligibleContactNumbers);
     List<Set<String>>         batches          = splitIntoBatches(sanitizedNumbers, CONTACT_DISCOVERY_BATCH_SIZE);
     List<Future<Set<String>>> futures          = new ArrayList<>(batches.size());
+    KeyStore                  iasKeyStore      = getIasKeyStore(context);
 
     for (Set<String> batch : batches) {
-      Future<Set<String>> future = SignalExecutors.IO.submit(() -> {
-        return new HashSet<>(accountManager.getRegisteredUsers(getIasKeyStore(context), batch, BuildConfig.MRENCLAVE));
+      Future<Set<String>> future = SignalExecutors.UNBOUNDED.submit(() -> {
+        return new HashSet<>(accountManager.getRegisteredUsers(iasKeyStore, batch, BuildConfig.MRENCLAVE));
       });
       futures.add(future);
     }
@@ -377,7 +379,7 @@ public class DirectoryHelper {
   private static Set<String> sanitizeNumbers(@NonNull Set<String> numbers) {
     return Stream.of(numbers).filter(number -> {
       try {
-        return number.startsWith("+") && number.length() > 1 && Long.parseLong(number.substring(1)) > 0;
+        return number.startsWith("+") && number.length() > 1 && number.charAt(1) != '0' && Long.parseLong(number.substring(1)) > 0;
       } catch (NumberFormatException e) {
         return false;
       }
@@ -414,6 +416,9 @@ public class DirectoryHelper {
       } else if (e.getCause() instanceof PushNetworkException) {
         Log.w(TAG, "Failed due to poor network.", e);
         return Optional.absent();
+      } else if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
+        Log.w(TAG, "Failed due to non successful response code.", e);
+        return Optional.absent();
       } else {
         Log.w(TAG, "Failed for an unknown reason.", e);
         accountManager.reportContactDiscoveryServiceUnexpectedError(buildErrorReason(e.getCause()));
@@ -432,15 +437,17 @@ public class DirectoryHelper {
            e instanceof Quote.InvalidQuoteFormatException;
   }
 
-  private static KeyStore getIasKeyStore(@NonNull Context context)
-      throws CertificateException, NoSuchAlgorithmException, IOException, KeyStoreException
-  {
-    TrustStore contactTrustStore = new IasTrustStore(context);
+  private static KeyStore getIasKeyStore(@NonNull Context context) {
+    try {
+      TrustStore contactTrustStore = new IasTrustStore(context);
 
-    KeyStore keyStore = KeyStore.getInstance("BKS");
-    keyStore.load(contactTrustStore.getKeyStoreInputStream(), contactTrustStore.getKeyStorePassword().toCharArray());
+      KeyStore keyStore = KeyStore.getInstance("BKS");
+      keyStore.load(contactTrustStore.getKeyStoreInputStream(), contactTrustStore.getKeyStorePassword().toCharArray());
 
-    return keyStore;
+      return keyStore;
+    } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
   }
 
   private static String buildErrorReason(@Nullable Throwable t) {

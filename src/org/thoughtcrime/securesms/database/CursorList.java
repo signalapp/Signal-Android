@@ -2,11 +2,10 @@ package org.thoughtcrime.securesms.database;
 
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.database.MatrixCursor;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-import java.io.Closeable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.ListIterator;
  *
  * Given that this is cursor-backed, it is effectively immutable.
  */
-public class CursorList<T> implements List<T>, Closeable {
+public class CursorList<T> implements List<T>, ObservableContent {
 
   private final Cursor          cursor;
   private final ModelBuilder<T> modelBuilder;
@@ -58,9 +57,8 @@ public class CursorList<T> implements List<T>, Closeable {
     throw new UnsupportedOperationException();
   }
 
-  @NonNull
   @Override
-  public Iterator<T> iterator() {
+  public @NonNull Iterator<T> iterator() {
     return new Iterator<T>() {
       int index = 0;
 
@@ -77,9 +75,8 @@ public class CursorList<T> implements List<T>, Closeable {
     };
   }
 
-  @NonNull
   @Override
-  public Object[] toArray() {
+  public @NonNull Object[] toArray() {
     Object[] out = new Object[size()];
     for (int i = 0; i < cursor.getCount(); i++) {
       cursor.moveToPosition(i);
@@ -145,19 +142,17 @@ public class CursorList<T> implements List<T>, Closeable {
   }
 
   @Override
-  public ListIterator<T> listIterator() {
+  public @NonNull ListIterator<T> listIterator() {
     throw new UnsupportedOperationException();
   }
 
-  @NonNull
   @Override
-  public ListIterator<T> listIterator(int i) {
+  public @NonNull ListIterator<T> listIterator(int i) {
     throw new UnsupportedOperationException();
   }
 
-  @NonNull
   @Override
-  public List<T> subList(int i, int i1) {
+  public @NonNull List<T> subList(int i, int i1) {
     throw new UnsupportedOperationException();
   }
 
@@ -176,9 +171,8 @@ public class CursorList<T> implements List<T>, Closeable {
     throw new UnsupportedOperationException();
   }
 
-  @NonNull
   @Override
-  public T[] toArray(@NonNull Object[] objects) {
+  public @NonNull T[] toArray(@Nullable Object[] objects) {
     throw new UnsupportedOperationException();
   }
 
@@ -189,10 +183,12 @@ public class CursorList<T> implements List<T>, Closeable {
     }
   }
 
+  @Override
   public void registerContentObserver(@NonNull ContentObserver observer) {
     cursor.registerContentObserver(observer);
   }
 
+  @Override
   public void unregisterContentObserver(@NonNull ContentObserver observer) {
     cursor.unregisterContentObserver(observer);
   }

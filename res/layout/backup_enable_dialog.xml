@@ -5,8 +5,8 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:paddingTop="16dp"
-              android:paddingLeft="23dp"
-              android:paddingRight="23dp">
+              android:paddingStart="23dp"
+              android:paddingEnd="23dp">
 
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -34,18 +34,16 @@
             <TextView android:id="@+id/code_second"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginLeft="20dp"
+                      android:layout_marginStart="20dp"
                       style="@style/BackupPassphrase"
-                      tools:text="56944"
-                      android:layout_marginStart="20dp"/>
+                      tools:text="56944" />
 
             <TextView android:id="@+id/code_third"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginLeft="20dp"
+                      android:layout_marginStart="20dp"
                       style="@style/BackupPassphrase"
-                      tools:text="42738"
-                      android:layout_marginStart="20dp"/>
+                      tools:text="42738" />
         </TableRow>
 
         <TableRow android:gravity="center_horizontal">
@@ -58,18 +56,16 @@
             <TextView android:id="@+id/code_fifth"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginLeft="20dp"
+                      android:layout_marginStart="20dp"
                       style="@style/BackupPassphrase"
-                      tools:text="24922"
-                      android:layout_marginStart="20dp"/>
+                      tools:text="24922" />
 
             <TextView android:id="@+id/code_sixth"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginLeft="20dp"
+                      android:layout_marginStart="20dp"
                       style="@style/BackupPassphrase"
-                      tools:text="58594"
-                      android:layout_marginStart="20dp"/>
+                      tools:text="58594" />
         </TableRow>
     </TableLayout>
 
@@ -82,7 +78,6 @@
         <CheckBox android:id="@+id/confirmation_check"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginRight="10dp"
                   android:layout_marginEnd="10dp"/>
 
         <TextView android:id="@+id/confirmation_text"

@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Handler;
@@ -39,7 +38,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
@@ -50,6 +48,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -60,7 +59,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -367,11 +365,27 @@ public class Util {
 
   @SuppressLint("NewApi")
   public static boolean isDefaultSmsProvider(Context context){
-    return (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) ||
-      (context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context)));
+    return context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context));
   }
 
-  public static int getCurrentApkReleaseVersion(Context context) {
+  /**
+   * The app version.
+   * <p>
+   * This code should be used in all places that compare app versions rather than
+   * {@link #getManifestApkVersion(Context)} or {@link BuildConfig#VERSION_CODE}.
+   */
+  public static int getCanonicalVersionCode() {
+    return BuildConfig.CANONICAL_VERSION_CODE;
+  }
+
+  /**
+   * {@link BuildConfig#VERSION_CODE} may not be the actual version due to ABI split code adding a
+   * postfix after BuildConfig is generated.
+   * <p>
+   * However, in most cases you want to use {@link BuildConfig#CANONICAL_VERSION_CODE} via
+   * {@link #getCanonicalVersionCode()}
+   */
+  public static int getManifestApkVersion(Context context) {
     try {
       return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
     } catch (PackageManager.NameNotFoundException e) {
@@ -395,12 +409,8 @@ public class Util {
   }
 
   public static int getDaysTillBuildExpiry() {
-    if (Build.VERSION.SDK_INT < 19) {
-      return Integer.MAX_VALUE;
-    } else {
-      int age = (int) TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP);
-      return 90 - age;
-    }
+    int age = (int) TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP);
+    return 90 - age;
   }
 
   @TargetApi(VERSION_CODES.LOLLIPOP)
@@ -456,11 +466,7 @@ public class Util {
   }
 
   public static <T> T getRandomElement(T[] elements) {
-    try {
-      return elements[SecureRandom.getInstance("SHA1PRNG").nextInt(elements.length)];
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    return elements[new SecureRandom().nextInt(elements.length)];
   }
 
   public static boolean equals(@Nullable Object a, @Nullable Object b) {

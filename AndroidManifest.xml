@@ -174,6 +174,22 @@
 
     </activity>
 
+    <activity android:name=".stickers.StickerPackPreviewActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:launchMode="singleTask"
+              android:noHistory="true"
+              android:windowSoftInputMode="stateHidden"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="sgnl"
+                  android:host="addstickers" />
+        </intent-filter>
+    </activity>
+
+
     <activity android:name=".ConversationListActivity"
               android:label="@string/app_name"
               android:launchMode="singleTask"
@@ -318,6 +334,12 @@
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".stickers.StickerManagementActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/TextSecure.LightTheme"
+              android:windowSoftInputMode="stateUnchanged"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
      <activity android:name=".DeviceActivity"
                android:label="@string/AndroidManifest__linked_devices"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -392,11 +414,6 @@
 
     <activity android:name=".BlockedContactsActivity"
               android:theme="@style/TextSecure.LightTheme"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".scribbles.ScribbleActivity"
-              android:theme="@style/TextSecure.ScribbleTheme"
-              android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".scribbles.StickerSelectActivity"
@@ -584,11 +601,13 @@
               android:authorities="org.thoughtcrime.securesms.database.attachment"
               android:exported="false" />
 
-    <provider
-              android:name="androidx.work.impl.WorkManagerInitializer"
-              android:authorities="${applicationId}.workmanager-init"
-              android:exported="false"
-              tools:node="remove" />
+    <provider android:name=".database.DatabaseContentProviders$Sticker"
+              android:authorities="org.thoughtcrime.securesms.database.sticker"
+              android:exported="false" />
+
+    <provider android:name=".database.DatabaseContentProviders$StickerPack"
+              android:authorities="org.thoughtcrime.securesms.database.stickerpack"
+              android:exported="false" />
 
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
@@ -661,6 +680,29 @@
         android:exported="true">
         <intent-filter>
             <action android:name="info.guardianproject.panic.action.TRIGGER" />
+        </intent-filter>
+    </receiver>
+
+    <service
+        android:name=".jobmanager.JobSchedulerScheduler$SystemService"
+        android:permission="android.permission.BIND_JOB_SERVICE"
+        android:enabled="@bool/enable_job_service"
+        tools:targetApi="26" />
+
+    <service
+        android:name=".jobmanager.KeepAliveService"
+        android:enabled="@bool/enable_alarm_manager" />
+
+    <receiver
+        android:name=".jobmanager.AlarmManagerScheduler$RetryReceiver"
+        android:enabled="@bool/enable_alarm_manager" />
+
+    <!-- Probably don't need this one -->
+    <receiver
+        android:name=".jobmanager.BootReceiver"
+        android:enabled="true">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
         </intent-filter>
     </receiver>
 

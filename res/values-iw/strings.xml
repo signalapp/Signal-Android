@@ -84,6 +84,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">להסיר תצלום פרופיל?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">לא נמצא דפדפן.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">שיחה סלולרית נמצאת כבר בתהליך.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %1$s השתנה. ייתכן שזה אומר שמישהו מנסה ליירט את התקשורת שלכם או שפשוט %2$s התקין מחדש את Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ייתכן שתרצה לוודא את מספר הביטחון שלך עם איש קשר זה.</string>
@@ -143,7 +144,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS בלתי מאובטח</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">בוא נחליף אל Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">בוא נשתמש בזה להתכתבות: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">שגיאה בעזיבת קבוצה</string>
   <string name="ConversationActivity_specify_recipient">אנא בחר איש קשר</string>
   <string name="ConversationActivity_unblock_this_contact_question">לבטל חסימת איש קשר זה?</string>
@@ -168,6 +168,8 @@
   <string name="ConversationActivity_no">לא</string>
   <string name="ConversationActivity_search_position">%1$d מתוך %2$d</string>
   <string name="ConversationActivity_no_results">אין תוצאות</string>
+  <string name="ConversationActivity_sticker_pack_installed">חבילת מדבקות הותקנה</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">חדש! אמור זאת עם מדבקות</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -593,6 +595,7 @@
   <string name="SharedContactView_message">הודעת Signal</string>
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
+  <string name="Slide_sticker">מדבקה</string>
   <string name="Slide_audio">שמע</string>
   <string name="Slide_video">וידיאו</string>
   <!--SmsMessageRecord-->
@@ -604,6 +607,24 @@
   <string name="SmsMessageRecord_secure_session_reset">איפסת את השיח המאובטח.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">ההתחברות המאובטחת אותחלה על־ידי %s.</string>
   <string name="SmsMessageRecord_duplicate_message">הודעה כפולה.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">הודעה זו לא יכלה להיות מעובדת מאחר שהיא נשלחה מגרסה חדשה יותר של Signal. אתה יכול לבקש מאיש הקשר שלך לשלוח הודעה זו שוב לאחר שתעדכן.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">מדבקות</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">מדבקות מותקנות</string>
+  <string name="StickerManagementAdapter_stickers_you_received">מדבקות שקיבלת</string>
+  <string name="StickerManagementAdapter_signal_artist_series">סדרת אומנים Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">אין מדבקות מותקנות</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">מדבקות מהודעות נכנסות יופיעו כאן</string>
+  <string name="StickerManagementAdapter_untitled">ללא כותרת</string>
+  <string name="StickerManagementAdapter_unknown">לא ידוע</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">ללא כותרת</string>
+  <string name="StickerPackPreviewActivity_unknown">לא ידוע</string>
+  <string name="StickerPackPreviewActivity_install">התקן</string>
+  <string name="StickerPackPreviewActivity_remove">הסר</string>
+  <string name="StickerPackPreviewActivity_stickers">מדבקות</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">נכשל בטעינת חבילת מדבקות</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">הקבוצה עודכנה</string>
   <string name="ThreadRecord_left_the_group">עזב את הקבוצה</string>
@@ -620,6 +641,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %s השתנה.</string>
   <string name="ThreadRecord_you_marked_verified">סימנת כמוודא</string>
   <string name="ThreadRecord_you_marked_unverified">סימנת כבלתי מוודא</string>
+  <string name="ThreadRecord_message_could_not_be_processed">ההודעה לא יכלה להיות מעובדת.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">עדכון Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">גרסה חדשה של Signal זמינה, הקש כדי לעדכן</string>
@@ -685,7 +707,10 @@
   <string name="MessageNotifier_mark_all_as_read">סמן שהכל נקרא</string>
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_media_message">הודעת מדיה</string>
+  <string name="MessageNotifier_sticker">מדבקה</string>
   <string name="MessageNotifier_reply">השב</string>
+  <string name="MessageNotifier_signal_message">הודעת Signal</string>
+  <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
   <string name="MessageNotifier_pending_signal_messages">הודעות Signal ממתינות</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">יש לך הודעות Signal ממתינות, הקש כדי לפתוח ולאחזר אותן</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
@@ -777,15 +802,18 @@
   <string name="conversation_activity__type_message_sms_insecure">מסרון בלתי מאובטח</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS בלתי מאובטח</string>
   <string name="conversation_activity__from_sim_name">מאת %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">שלח</string>
   <string name="conversation_activity__compose_description">חיבור הודעה</string>
   <string name="conversation_activity__emoji_toggle_description">עורר מקלדת אימוג\'י</string>
   <string name="conversation_activity__attachment_thumbnail">תמונה ממוזערת של צרופה</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">עורר מגירת צרופות מהירות של מצלמה</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">הקלט ושלח צרופת שמע</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">נעל הקלטת שמע</string>
   <string name="conversation_activity__enable_signal_for_sms">אפשר את Signal עבור מסרונים</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">החלק כדי לבטל</string>
+  <string name="conversation_input_panel__cancel">בטל</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">הודעת מדיה</string>
   <string name="conversation_item__secure_message_description">הודעה מאובטחת</string>
@@ -804,6 +832,7 @@
   <string name="QuoteView_audio">שמע</string>
   <string name="QuoteView_video">וידיאו</string>
   <string name="QuoteView_photo">תצלום</string>
+  <string name="QuoteView_sticker">מדבקה</string>
   <string name="QuoteView_document">מסמך</string>
   <string name="QuoteView_you">אתה</string>
   <string name="QuoteView_original_missing">הודעה מקורית לא נמצאה</string>
@@ -1046,7 +1075,7 @@
   <string name="preferences__pref_enter_sends_title">מקש Enter שולח</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על מקש Enter תישלח הודעות טקסט</string>
   <string name="preferences__send_link_previews">שלח קדם־תצוגות של קישורים</string>
-  <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Reddit ו־YouTube</string>
+  <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Pinterest, Reddit ו־YouTube</string>
   <string name="preferences__choose_identity">בחר זהות</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר את כניסת איש הקשר שלך מתוך רשימת אנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה משפט סיסמה</string>
@@ -1305,7 +1334,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
   <string name="RegistrationActivity_wrong_number">מספר שגוי</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">חייג אליי במקום \n (זמין ב-%02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">חייג אליי במקום \n (זמין ב־%1$02d:%2$02d)</string>
   <string name="BackupUtil_never">לעולם לא</string>
   <string name="BackupUtil_unknown">לא ידוע</string>
   <string name="preferences_app_protection__screen_lock">נעילת מסך</string>

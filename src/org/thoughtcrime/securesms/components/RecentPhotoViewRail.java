@@ -64,17 +64,17 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new RecentPhotosLoader(getContext());
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+  public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
     this.recyclerView.setAdapter(new RecentPhotoAdapter(getContext(), data, RecentPhotosLoader.BASE_URL, listener));
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> loader) {
+  public void onLoaderReset(@NonNull Loader<Cursor> loader) {
     ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(null);
   }
 
@@ -111,8 +111,8 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
       String bucketId     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_ID));
       int    orientation  = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
       long   size         = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.SIZE));
-      int    width        = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation))) : 0;
-      int    height       = Build.VERSION.SDK_INT >= 16 ? cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation))) : 0;
+      int    width        = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
+      int    height       = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
 
       final Uri uri = Uri.withAppendedPath(baseUri, Long.toString(id));
 

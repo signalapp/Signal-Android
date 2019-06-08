@@ -23,7 +23,6 @@
                       android:layout_height="wrap_content"
                       android:layout_width="0px"
                       android:layout_weight="1"
-                      android:layout_marginLeft="5dp"
                       android:layout_marginStart="5dp"
                       android:hint="@string/giphy_activity_toolbar__search_gifs_and_stickers"
                       android:textColor="@color/white"
@@ -53,8 +52,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:gravity="center">
 
                 <ImageView android:id="@+id/view_grid"

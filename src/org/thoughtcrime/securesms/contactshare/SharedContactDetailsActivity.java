@@ -230,7 +230,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
 
       inviteButtonView.setOnClickListener(v -> {
         ContactUtil.selectRecipientThroughDialog(this, systemUsers, dynamicLanguage.getCurrentLocale(), recipient -> {
-          CommunicationActions.composeSmsThroughDefaultApp(this, recipient.getAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, "https://sgnl.link/1KpeYmF"));
+          CommunicationActions.composeSmsThroughDefaultApp(this, recipient.getAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
         });
       });
     } else {
@@ -253,7 +253,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     if (requestCode == CODE_ADD_EDIT_CONTACT && contact != null) {
       ApplicationContext.getInstance(getApplicationContext())
                         .getJobManager()
-                        .add(new DirectoryRefreshJob(getApplicationContext(), false));
+                        .add(new DirectoryRefreshJob(false));
     }
   }
 }

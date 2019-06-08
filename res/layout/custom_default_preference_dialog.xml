@@ -9,23 +9,21 @@
              android:layout_height="wrap_content"
              android:entries="@array/default_or_custom_entries"
              android:entryValues="@array/default_or_custom_values"
-             android:layout_marginStart="16dip"
-             android:layout_marginLeft="16dip"
+             android:layout_marginStart="16dp"
              android:spinnerMode="dropdown"/>
 
     <TextView android:id="@+id/default_label"
-              android:layout_marginLeft="18dip"
-              android:layout_marginRight="16dip"
-              android:layout_marginTop="16dip"
-              android:layout_marginBottom="16dip"
+              android:layout_marginEnd="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginBottom="16dp"
               android:layout_width="match_parent"
               android:layout_height="match_parent"/>
 
     <EditText android:id="@+id/custom_edit"
-              android:layout_marginLeft="16dip"
-              android:layout_marginRight="16dip"
-              android:layout_marginTop="16dip"
-              android:layout_marginBottom="16dip"
+              android:layout_marginStart="16dp"
+              android:layout_marginEnd="16dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginBottom="16dp"
               android:visibility="gone"
               android:layout_width="match_parent"
               android:layout_height="match_parent"/>

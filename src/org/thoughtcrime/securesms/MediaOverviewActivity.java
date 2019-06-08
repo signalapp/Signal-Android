@@ -257,12 +257,12 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @Override
-    public Loader<BucketedThreadMedia> onCreateLoader(int i, Bundle bundle) {
+    public @NonNull Loader<BucketedThreadMedia> onCreateLoader(int i, Bundle bundle) {
       return new BucketedThreadMediaLoader(getContext(), recipient.getAddress());
     }
 
     @Override
-    public void onLoadFinished(Loader<BucketedThreadMedia> loader, BucketedThreadMedia bucketedThreadMedia) {
+    public void onLoadFinished(@NonNull Loader<BucketedThreadMedia> loader, BucketedThreadMedia bucketedThreadMedia) {
       ((MediaGalleryAdapter) recyclerView.getAdapter()).setMedia(bucketedThreadMedia);
       ((MediaGalleryAdapter) recyclerView.getAdapter()).notifyAllSectionsDataSetChanged();
 
@@ -271,7 +271,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @Override
-    public void onLoaderReset(Loader<BucketedThreadMedia> cursorLoader) {
+    public void onLoaderReset(@NonNull Loader<BucketedThreadMedia> cursorLoader) {
       ((MediaGalleryAdapter) recyclerView.getAdapter()).setMedia(new BucketedThreadMedia(getContext()));
     }
 
@@ -496,12 +496,12 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
       return new ThreadMediaLoader(getContext(), recipient.getAddress(), false);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
       ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(data);
       getActivity().invalidateOptionsMenu();
 
@@ -509,7 +509,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
       ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(null);
       getActivity().invalidateOptionsMenu();
     }

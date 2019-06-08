@@ -185,7 +185,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
   private void onContinue(Optional<ExperienceUpgrade> seenUpgrade) {
     ServiceUtil.getNotificationManager(this).cancel(NOTIFICATION_ID);
     int latestVersion = seenUpgrade.isPresent() ? seenUpgrade.get().getVersion()
-                                                : Util.getCurrentApkReleaseVersion(this);
+                                                : Util.getCanonicalVersionCode();
     TextSecurePreferences.setLastExperienceVersionCode(this, latestVersion);
     if (seenUpgrade.isPresent() && seenUpgrade.get().nextIntent != null) {
       Intent intent     = new Intent(this, seenUpgrade.get().nextIntent);
@@ -204,7 +204,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
   }
 
   public static Optional<ExperienceUpgrade> getExperienceUpgrade(Context context) {
-    final int currentVersionCode = Util.getCurrentApkReleaseVersion(context);
+    final int currentVersionCode = Util.getCanonicalVersionCode();
     final int lastSeenVersion    = TextSecurePreferences.getLastExperienceVersionCode(context);
     Log.i(TAG, "getExperienceUpgrade(" + lastSeenVersion + ")");
 
@@ -311,7 +311,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
                                         .build();
         ServiceUtil.getNotificationManager(context).notify(NOTIFICATION_ID, notification);
       } else if (DISMISS_ACTION.equals(intent.getAction())) {
-        TextSecurePreferences.setExperienceDismissedVersionCode(context, Util.getCurrentApkReleaseVersion(context));
+        TextSecurePreferences.setExperienceDismissedVersionCode(context, Util.getCanonicalVersionCode());
       }
     }
   }

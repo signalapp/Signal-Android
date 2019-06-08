@@ -9,7 +9,7 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -17,7 +17,7 @@
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@id/name"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:fontFamily="sans-serif-light" />
@@ -26,7 +26,7 @@
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:background="#00ffffff"
         android:src="@drawable/ic_menu_remove_holo_light" />

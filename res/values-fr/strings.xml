@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Un appel cellulaire est déjà en cours.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %1$s a changé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous voudrez peut-être vérifier votre numéro de sécurité avec ce contact.</string>
@@ -108,7 +109,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Échec d’envoi, touchez pour utiliser la solution de rechange non sécurisée</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Se replier sur un texto non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Se replier sur un message multimédia non chiffrés ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le récepteur n’a plus Signal. \n\nEnvoyer un message non sécurisé?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> être chiffré, car le destinataire n’est plus un utilisateur de Signal. \n\nEnvoyer un message non sécurisé ?</string>
   <string name="ConversationItem_unable_to_open_media">Impossible de trouver une appli pour ouvrir ce média.</string>
   <string name="ConversationItem_copied_text">Copié %s</string>
   <string name="ConversationItem_from_s">de %s</string>
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Message multimédia non sécurisé</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Passons à Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Utilisons cela pour dialoguer : %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Erreur en quittant le groupe</string>
   <string name="ConversationActivity_specify_recipient">Veuillez choisir un contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
@@ -162,6 +162,8 @@
   <string name="ConversationActivity_no">Non</string>
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Il n’y a aucun résultat</string>
+  <string name="ConversationActivity_sticker_pack_installed">Le paquet d’autocollants a été installé</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Nouveau ! Dites-le avec des autocollants</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -510,7 +512,8 @@ indicatif de pays</string>
 votre numéro de téléphone</string>
   <string name="RegistrationActivity_invalid_number">Le numéro est invalide</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Le numéro que vous avez
-introduit (%s) n’est pas valide.</string>
+        indiqué (%s) n’est pas valide.
+    </string>
   <string name="RegistrationActivity_missing_google_play_services">Absence des services Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Cet appareil ne dispose pas des service Google Play. Vous pouvez quand même utiliser Signal, mais cette configuration pourrait entraîner une fiabilité ou des performances moindres.\n\nSi vous n’êtes pas un utilisateur expérimenté, que vous n’utilisez pas une image Android de remplacement ou si vous pensez voir ceci par erreur, veuillez contacter support@signal.org pour obtenir une aide au dépannage.</string>
   <string name="RegistrationActivity_i_understand">Je comprends</string>
@@ -554,6 +557,7 @@ introduit (%s) n’est pas valide.</string>
   <string name="SharedContactView_message">Message Signal</string>
   <!--Slide-->
   <string name="Slide_image">Image</string>
+  <string name="Slide_sticker">Autocollant</string>
   <string name="Slide_audio">Son</string>
   <string name="Slide_video">Vidéo</string>
   <!--SmsMessageRecord-->
@@ -564,6 +568,24 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="SmsMessageRecord_secure_session_reset">Vous avez réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message en double.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ce message n’a pas pu être traité, car il a été envoyé à partir d’une version plus récente de Signal. Vous pourrez demander à votre contact de renvoyer ce message une fois que vous aurez mis Signal à jour.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Autocollants</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Autocollants installés</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Autocollants que vous avez reçus</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Série d’artiste Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Aucun autocollant n’est installé</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Les autocollants des messages entrants apparaîtront ici</string>
+  <string name="StickerManagementAdapter_untitled">Sans titre</string>
+  <string name="StickerManagementAdapter_unknown">Inconnu</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Sans titre</string>
+  <string name="StickerPackPreviewActivity_unknown">Inconnu</string>
+  <string name="StickerPackPreviewActivity_install">Installer</string>
+  <string name="StickerPackPreviewActivity_remove">Supprimer</string>
+  <string name="StickerPackPreviewActivity_stickers">Autocollants</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Échec de chargement de paquet d’autocollants</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Le groupe a été mis à jour</string>
   <string name="ThreadRecord_left_the_group">A quitté le groupe</string>
@@ -580,6 +602,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé</string>
   <string name="ThreadRecord_you_marked_verified">Vous avez marqué comme vérifié</string>
   <string name="ThreadRecord_you_marked_unverified">Vous avez marqué comme non vérifié</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Le message n’a pas pu être traité.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est proposée. Touchez pour lancer la mise à jour</string>
@@ -645,7 +668,10 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
   <string name="MessageNotifier_mark_read">Marquer comme lu</string>
   <string name="MessageNotifier_media_message">Message multimédia</string>
+  <string name="MessageNotifier_sticker">Autocollant</string>
   <string name="MessageNotifier_reply">Répondre</string>
+  <string name="MessageNotifier_signal_message">Message Signal</string>
+  <string name="MessageNotifier_unsecured_sms">Texto non sécurisé</string>
   <string name="MessageNotifier_pending_signal_messages">Messages Signal en attente</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Vous avez des messages Signal en attente. Touchez pour ouvrir et les récupérer</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -735,15 +761,18 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="conversation_activity__type_message_sms_insecure">Texto non sécurisé</string>
   <string name="conversation_activity__type_message_mms_insecure">Message multimédia non sécurisé</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__compose_description">Rédaction d’un message</string>
   <string name="conversation_activity__emoji_toggle_description">Afficher, masquer le clavier des émojis</string>
   <string name="conversation_activity__attachment_thumbnail">Imagette de pièces jointes</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Afficher, masquer le tiroir permettant de lancer l’appareil photo à basse résolution</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer une pièce jointe audio</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de pièces jointes audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Gérer les textos avec Signal</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">FAIRE GLISSER POUR ANNULER</string>
+  <string name="conversation_input_panel__slide_to_cancel">Faire glisser pour annuler</string>
+  <string name="conversation_input_panel__cancel">Annuler</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Message multimédia</string>
   <string name="conversation_item__secure_message_description">Message sécurisé</string>
@@ -762,6 +791,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="QuoteView_audio">Contenu audio</string>
   <string name="QuoteView_video">Vidéo</string>
   <string name="QuoteView_photo">Photo</string>
+  <string name="QuoteView_sticker">Autocollant</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Vous</string>
   <string name="QuoteView_original_missing">Le message original est introuvable</string>
@@ -840,7 +870,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="log_submit_activity__loading_logs">Chargement des journaux…</string>
   <string name="log_submit_activity__uploading_logs">Téléversement des journaux…</string>
   <string name="log_submit_activity__success">Réussite !</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre rapport de problème ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b>\n</string>
+  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé de problème ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">Copié dans le presse-papiers</string>
   <string name="log_submit_activity__choose_email_app">Choisir un appli de courriel</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Veuillez examiner ce journal provenant de mon appli : %1$s</string>
@@ -988,7 +1018,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__pref_enter_sends_title">La touche Entrée envoie</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Appuyer sur la touche Entrée enverra les textos</string>
   <string name="preferences__send_link_previews">Envoyer des aperçus de liens</string>
-  <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Reddit et YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Pinterest, Reddit et YouTube</string>
   <string name="preferences__choose_identity">Choisir une identité</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans la liste des contacts.</string>
   <string name="preferences__change_passphrase">Changer la phrase de passe</string>
@@ -1035,8 +1065,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__mms_proxy_port">Port du mandataire MMS</string>
   <string name="preferences__mmsc_username">Nom d’utilisateur MMSC</string>
   <string name="preferences__mmsc_password">Mot de passe MMSC</string>
-  <string name="preferences__sms_delivery_reports">Rapports de transmission des textos</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un rapport de transmission pour chaque texto envoyé</string>
+  <string name="preferences__sms_delivery_reports">Relevés de transmission des textos</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de transmission pour chaque texto envoyé</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Supprimer automatiquement les messages plus anciens dès qu’une conversation dépasse une certaine longueur</string>
   <string name="preferences__delete_old_messages">Supprimer les anciens messages</string>
   <string name="preferences__chats">Conversations et média</string>
@@ -1245,7 +1275,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="ProgressPreference_d_messages_so_far">%d messages pour l’instant</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Veuillez saisir le code de vérification envoyé à %s.</string>
   <string name="RegistrationActivity_wrong_number">Mauvais numéro</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi plutôt\n(disponible dans (%02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi plutôt \n (disponible dans (%1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Jamais</string>
   <string name="BackupUtil_unknown">Inconnu</string>
   <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>
@@ -1254,7 +1284,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="AppProtectionPreferenceFragment_none">Aucune</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Le NIP de blocage de l’inscription ne correspond pas au code de vérification que vous venez de recevoir par texto. Veuillez saisir le NIP que vous avez précédemment défini dans l’application.</string>
   <string name="registration_activity__registration_lock_pin">NIP de blocage de l’inscription</string>
-  <string name="registration_activity__forgot_pin">NIP oublié ?</string>
+  <string name="registration_activity__forgot_pin">Avez-vous oublié votre NIP ?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Le NIP peut comprendre quatre chiffres ou plus. Si vous oubliez votre NIP, vous pourriez ne pas avoir accès à votre compte pendant sept jours. </string>
   <string name="registration_lock_dialog_view__enter_pin">Saisir le NIP</string>
   <string name="registration_lock_dialog_view__confirm_pin">Confirmer le NIP</string>

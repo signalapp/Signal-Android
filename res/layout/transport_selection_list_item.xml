@@ -6,8 +6,8 @@
               android:layout_width="@dimen/transport_selection_popup_width"
               android:layout_height="60dp"
               android:gravity="center_vertical"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp">
+              android:paddingStart="10dp"
+              android:paddingEnd="10dp">
 
     <ImageView android:id="@+id/icon"
                android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:gravity="center_vertical"
-                  android:paddingLeft="10dp">
+                  android:paddingStart="10dp">
 
         <TextView android:id="@+id/text"
                   android:fontFamily="sans-serif-light"

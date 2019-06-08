@@ -57,12 +57,14 @@ public class RecipientDatabase extends Database {
   private static final String CALL_VIBRATE             = "call_vibrate";
   private static final String NOTIFICATION_CHANNEL     = "notification_channel";
   private static final String UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode";
+  private static final String FORCE_SMS_SELECTION      = "force_sms_selection";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       BLOCK, NOTIFICATION, CALL_RINGTONE, VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
       PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_CONTACT_URI,
       SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
-      UNIDENTIFIED_ACCESS_MODE
+      UNIDENTIFIED_ACCESS_MODE,
+      FORCE_SMS_SELECTION,
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -147,7 +149,8 @@ public class RecipientDatabase extends Database {
           CALL_RINGTONE + " TEXT DEFAULT NULL, " +
           CALL_VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
           NOTIFICATION_CHANNEL + " TEXT DEFAULT NULL, " +
-          UNIDENTIFIED_ACCESS_MODE + " INTEGER DEFAULT 0);";
+          UNIDENTIFIED_ACCESS_MODE + " INTEGER DEFAULT 0, " +
+          FORCE_SMS_SELECTION + " INTEGER DEFAULT 0);";
 
   public RecipientDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -211,6 +214,7 @@ public class RecipientDatabase extends Database {
     boolean profileSharing         = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))      == 1;
     String  notificationChannel    = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION_CHANNEL));
     int     unidentifiedAccessMode = cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED_ACCESS_MODE));
+    boolean forceSmsSelection      = cursor.getInt(cursor.getColumnIndexOrThrow(FORCE_SMS_SELECTION))  == 1;
 
     MaterialColor color;
     byte[] profileKey = null;
@@ -241,7 +245,8 @@ public class RecipientDatabase extends Database {
                                              profileKey, systemDisplayName, systemContactPhoto,
                                              systemPhoneLabel, systemContactUri,
                                              signalProfileName, signalProfileAvatar, profileSharing,
-                                             notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode)));
+                                             notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
+                                             forceSmsSelection));
   }
 
   public BulkOperationsHandle resetAllSystemContactInfo() {
@@ -271,6 +276,13 @@ public class RecipientDatabase extends Database {
     values.put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setDefaultSubscriptionId(Optional.of(defaultSubscriptionId));
+  }
+
+  public void setForceSmsSelection(@NonNull Recipient recipient, boolean forceSmsSelection) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(FORCE_SMS_SELECTION, forceSmsSelection ? 1 : 0);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.resolve().setForceSmsSelection(forceSmsSelection);
   }
 
   public void setBlocked(@NonNull Recipient recipient, boolean blocked) {
@@ -556,6 +568,7 @@ public class RecipientDatabase extends Database {
     private final boolean                profileSharing;
     private final String                 notificationChannel;
     private final UnidentifiedAccessMode unidentifiedAccessMode;
+    private final boolean                forceSmsSelection;
 
     RecipientSettings(boolean blocked, long muteUntil,
                       @NonNull VibrateState messageVibrateState,
@@ -576,7 +589,8 @@ public class RecipientDatabase extends Database {
                       @Nullable String signalProfileAvatar,
                       boolean profileSharing,
                       @Nullable String notificationChannel,
-                      @NonNull UnidentifiedAccessMode unidentifiedAccessMode)
+                      @NonNull UnidentifiedAccessMode unidentifiedAccessMode,
+                      boolean forceSmsSelection)
     {
       this.blocked                = blocked;
       this.muteUntil              = muteUntil;
@@ -599,6 +613,7 @@ public class RecipientDatabase extends Database {
       this.profileSharing         = profileSharing;
       this.notificationChannel    = notificationChannel;
       this.unidentifiedAccessMode = unidentifiedAccessMode;
+      this.forceSmsSelection      = forceSmsSelection;
     }
 
     public @Nullable MaterialColor getColor() {
@@ -683,6 +698,10 @@ public class RecipientDatabase extends Database {
 
     public @NonNull UnidentifiedAccessMode getUnidentifiedAccessMode() {
       return unidentifiedAccessMode;
+    }
+
+    public boolean isForceSmsSelection() {
+      return forceSmsSelection;
     }
   }
 

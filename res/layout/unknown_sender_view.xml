@@ -3,8 +3,8 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:paddingLeft="16dp"
-              android:paddingRight="16dp"
+              android:paddingStart="16dp"
+              android:paddingEnd="16dp"
               android:layout_marginTop="20dp"
               android:background="@color/white">
 
@@ -30,8 +30,7 @@
                    android:src="@drawable/ic_block_white_24dp"
                    android:tint="@color/signal_primary"/>
 
-        <TextView android:layout_marginLeft="15dp"
-                  android:layout_marginStart="15dp"
+        <TextView android:layout_marginStart="15dp"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:text="@string/unknown_sender_view__block"
@@ -55,8 +54,7 @@
                    android:src="@drawable/ic_person_add_white_24dp"
                    android:tint="@color/signal_primary"/>
 
-        <TextView android:layout_marginLeft="15dp"
-                  android:layout_marginStart="15dp"
+        <TextView android:layout_marginStart="15dp"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:text="@string/unknown_sender_view__add_to_contacts"
@@ -80,8 +78,7 @@
                    android:src="@drawable/ic_face_white_24dp"
                    android:tint="@color/signal_primary"/>
 
-        <TextView android:layout_marginLeft="15dp"
-                  android:layout_marginStart="15dp"
+        <TextView android:layout_marginStart="15dp"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:text="@string/unknown_sender_view__don_t_add_but_make_my_profile_visible"

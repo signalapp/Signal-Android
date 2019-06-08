@@ -26,11 +26,11 @@ import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 public abstract class Slide {
@@ -85,6 +85,8 @@ public abstract class Slide {
     return false;
   }
 
+  public boolean hasSticker() { return false; }
+
   public boolean hasVideo() {
     return false;
   }
@@ -132,36 +134,34 @@ public abstract class Slide {
     return false;
   }
 
-  protected static Attachment constructAttachmentFromUri(@NonNull  Context context,
-                                                         @NonNull  Uri     uri,
-                                                         @NonNull  String  defaultMime,
-                                                                   long    size,
-                                                                   int     width,
-                                                                   int     height,
-                                                                   boolean hasThumbnail,
-                                                         @Nullable String  fileName,
-                                                         @Nullable String  caption,
-                                                                   boolean voiceNote,
-                                                                   boolean quote)
+  protected static Attachment constructAttachmentFromUri(@NonNull  Context        context,
+                                                         @NonNull  Uri            uri,
+                                                         @NonNull  String         defaultMime,
+                                                                   long           size,
+                                                                   int            width,
+                                                                   int            height,
+                                                                   boolean        hasThumbnail,
+                                                         @Nullable String         fileName,
+                                                         @Nullable String         caption,
+                                                         @Nullable StickerLocator stickerLocator,
+                                                                   boolean        voiceNote,
+                                                                   boolean        quote)
   {
-    try {
-      String                 resolvedType    = Optional.fromNullable(MediaUtil.getMimeType(context, uri)).or(defaultMime);
-      String                 fastPreflightId = String.valueOf(SecureRandom.getInstance("SHA1PRNG").nextLong());
-      return new UriAttachment(uri,
-                               hasThumbnail ? uri : null,
-                               resolvedType,
-                               AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
-                               size,
-                               width,
-                               height,
-                               fileName,
-                               fastPreflightId,
-                               voiceNote,
-                               quote,
-                               caption);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    String                 resolvedType    = Optional.fromNullable(MediaUtil.getMimeType(context, uri)).or(defaultMime);
+    String                 fastPreflightId = String.valueOf(new SecureRandom().nextLong());
+    return new UriAttachment(uri,
+                             hasThumbnail ? uri : null,
+                             resolvedType,
+                             AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
+                             size,
+                             width,
+                             height,
+                             fileName,
+                             fastPreflightId,
+                             voiceNote,
+                             quote,
+                             caption,
+                             stickerLocator);
   }
 
   @Override

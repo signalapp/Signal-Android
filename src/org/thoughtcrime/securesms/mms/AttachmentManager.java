@@ -27,7 +27,6 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
@@ -60,7 +59,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.scribbles.ScribbleActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -115,7 +113,6 @@ public class AttachmentManager {
       this.removableMediaView = ViewUtil.findById(root, R.id.removable_media_view);
 
       removableMediaView.setRemoveClickListener(new RemoveButtonListener());
-      removableMediaView.setEditClickListener(new EditButtonListener());
       thumbnail.setOnClickListener(new ThumbnailClickListener());
       documentView.getBackground().setColorFilter(ThemeUtil.getThemedColor(context, R.attr.conversation_item_bubble_background), PorterDuff.Mode.MULTIPLY);
     }
@@ -468,18 +465,16 @@ public class AttachmentManager {
     final Intent intent = new Intent();
     intent.setType(type);
 
-    if (extraMimeType != null && Build.VERSION.SDK_INT >= 19) {
+    if (extraMimeType != null) {
       intent.putExtra(Intent.EXTRA_MIME_TYPES, extraMimeType);
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-      try {
-        activity.startActivityForResult(intent, requestCode);
-        return;
-      } catch (ActivityNotFoundException anfe) {
-        Log.w(TAG, "couldn't complete ACTION_OPEN_DOCUMENT, no activity found. falling back.");
-      }
+    intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+    try {
+      activity.startActivityForResult(intent, requestCode);
+      return;
+    } catch (ActivityNotFoundException anfe) {
+      Log.w(TAG, "couldn't complete ACTION_OPEN_DOCUMENT, no activity found. falling back.");
     }
 
     intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -526,15 +521,6 @@ public class AttachmentManager {
     public void onClick(View v) {
       cleanup();
       clear(GlideApp.with(context.getApplicationContext()), true);
-    }
-  }
-
-  private class EditButtonListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      Intent intent = new Intent(context, ScribbleActivity.class);
-      intent.setData(getSlideUri());
-      ((Activity)context).startActivityForResult(intent, ScribbleActivity.SCRIBBLE_REQUEST_CODE);
     }
   }
 

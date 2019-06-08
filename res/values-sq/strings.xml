@@ -15,8 +15,8 @@
   <string name="ApplicationPreferencesActivity_currently_s">I tanishmi: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">S\’keni caktuar ende frazëkalim!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">%d mesazh për shndërrim</item>
-    <item quantity="other">%d mesazhe për shndërrim</item>
+    <item quantity="one">%d mesazh për bisedë</item>
+    <item quantity="other">%d mesazhe për bisedë</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Të fshihen krejt mesazhet e vjetër tani?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -78,8 +78,9 @@
   <string name="ClearProfileActivity_remove_profile_photo">Të hiqet foto profili?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">S\’u gjet shfletues.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ka në kryerje e sipër një thirrje në celular</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %1$s është ndryshuar. Kjo mund të jetë shenjë se ose dikush po rreket të përgjojë komunikimin tuaj, ose se %1$s thjesht ka riinstaluar Signal-in.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %1$s është ndryshuar. Kjo mund të jetë shenjë se ose dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mund të doni të verifikoni numrin tuaj të sigurisë me këtë kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Pranoje</string>
   <!--ContactsCursorLoader-->
@@ -137,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS i pasigurt</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Le të kalojmë në Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Le ta përdorim këtë për të biseduar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gabim braktisje grupi</string>
   <string name="ConversationActivity_specify_recipient">Ju lutem, zgjidhni një kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Të zhbllokohet ky kontakt?</string>
@@ -162,10 +162,12 @@
   <string name="ConversationActivity_no">Jo</string>
   <string name="ConversationActivity_search_position">%1$d nga %2$d</string>
   <string name="ConversationActivity_no_results">S\’ka përfundime</string>
+  <string name="ConversationActivity_sticker_pack_installed">Paketa e ngjitësve u instalua</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">E re! Shprehuni me ngjitës</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
-    <item quantity="other">%d porosi të palexuara</item>
+    <item quantity="other">%d mesazhe të palexuara</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
@@ -380,7 +382,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">Po fshihen mesazhet…</string>
   <string name="MediaOverviewActivity_Documents">Dokumente</string>
   <string name="MediaOverviewActivity_Select_all">Përzgjidhi krejt</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Po mblidhem bashkëngjitje…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Po mblidhen bashkëngjitje…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
@@ -407,7 +409,7 @@
     <item quantity="other">S\’mund të ndani me të tjerët më shumë se %d objekte.</item>
   </plurals>
   <!--MediaRepository-->
-  <string name="MediaRepository_all_media">Gjithë mediat</string>
+  <string name="MediaRepository_all_media">Krejt mediat</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Signal-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
   <string name="MessageRecord_left_group">E keni lënë grupin.</string>
@@ -422,7 +424,7 @@
   <string name="MessageRecord_s_joined_signal">%s është në Signal! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Çaktivizuat zhdukje mesazhesh.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s çaktivizoi zhdukje mesazhesh.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutën kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutë kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s e vuri kohëmatësin e tretjes së mesazheve në %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">E shënuat numrin tuaj të sigurisë me %s si të verifikuar</string>
@@ -490,7 +492,7 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grup i paemër</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Duke u përgjigjur</string>
+  <string name="RedPhone_answering">Përgjigje</string>
   <string name="RedPhone_ending_call">Po përfundohet thirrja</string>
   <string name="RedPhone_dialing">Po thirret</string>
   <string name="RedPhone_ringing">Po bie zilja</string>
@@ -541,7 +543,7 @@
   <string name="ScribbleActivity_save_failure">S’u arrit të ruheshin ndryshime të figurës.</string>
   <!--Search-->
   <string name="SearchFragment_no_results">S\’u gjetën përfundime për \'%s\'</string>
-  <string name="SearchFragment_header_conversations">Biseda.</string>
+  <string name="SearchFragment_header_conversations">Biseda</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
   <string name="SearchFragment_header_messages">Mesazhe</string>
   <!--SharedContactDetailsActivity-->
@@ -555,6 +557,7 @@
   <string name="SharedContactView_message">Mesazhe Signal</string>
   <!--Slide-->
   <string name="Slide_image">Figurë</string>
+  <string name="Slide_sticker">Ngjitës</string>
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -566,6 +569,24 @@
   <string name="SmsMessageRecord_secure_session_reset">E kthyet te parazgjedhjet sesionin e sigurt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s e ktheu te parazgjedhjet sesionin e sigurt.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesazh i përsëdytur.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ky mesazh s’u përpunua dot, ngaqë qe dërguar prej një versioni më të ri Signal-i. Mund t’i kërkoni kontaktit tuaj ta ridërgojë këtë mesazh, pasi ta përditësoni.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Ngjitëse</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Ngjitës të Instaluar</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Ngjitës Që Keni Marrë</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Seritë Artis Signal-i</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">S’ka ngjitës të instaluar</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Këtu do të shfaqen ngjitësit prej mesazhesh të marrë</string>
+  <string name="StickerManagementAdapter_untitled">Pa titull</string>
+  <string name="StickerManagementAdapter_unknown">I panjohur</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Pa titull</string>
+  <string name="StickerPackPreviewActivity_unknown">I panjohur</string>
+  <string name="StickerPackPreviewActivity_install">Instaloje</string>
+  <string name="StickerPackPreviewActivity_remove">Hiqe</string>
+  <string name="StickerPackPreviewActivity_stickers">Ngjitëse</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">S’u arrit të ngarkohej paketë ngjitësish</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupi u përditësua</string>
   <string name="ThreadRecord_left_the_group">Iku nga grupi</string>
@@ -582,6 +603,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>
   <string name="ThreadRecord_you_marked_verified">E shënuat si të verifikuar</string>
   <string name="ThreadRecord_you_marked_unverified">E shënuat si të paverifikuar</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Mesazhi s’u përpunua dot</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Përditësim i Signal-it</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Signal-it, prekeni që të përditësohet</string>
@@ -625,7 +647,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">Importimi i bazës së të dhënave të sistemit u plotësua.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Prekeni për ta hapur.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prekeni për ta hapur, ose prekni çelësin për ta mbyllur.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prekeni për ta hapur, ose prekni drynin për ta mbyllur.</string>
   <string name="KeyCachingService_passphrase_cached">Signal-i u shkyç</string>
   <string name="KeyCachingService_lock">Kyçe Signal-in</string>
   <!--MediaPreviewActivity-->
@@ -647,7 +669,10 @@
   <string name="MessageNotifier_mark_all_as_read">Vëru shenjë të gjithëve si të lexuar</string>
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_media_message">Mesazh media</string>
+  <string name="MessageNotifier_sticker">Ngjitës</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
+  <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
   <string name="MessageNotifier_pending_signal_messages">Mesazhe Signal pezull</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Keni mesazhe Signal pezull, prekeni për t\’ia hapur dhe rimarrë</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -737,15 +762,18 @@
   <string name="conversation_activity__type_message_sms_insecure">SMS e pasiguruar</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS e pasiguruar</string>
   <string name="conversation_activity__from_sim_name">Nga %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Dërgoje</string>
   <string name="conversation_activity__compose_description">Hartim mesazhi</string>
   <string name="conversation_activity__emoji_toggle_description">Shfaq/fshih tastierë emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniaturë Bashkëngjitjeje</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hap/mbyll sirtar të shpejtë bashkëngjitjesh nga kamera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Incizoni dhe dërgoni bashkëngjitje zanore</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blloko incizim bashkëngjitjeje audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktivizo Signal për SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">RRËSHQITENI QË TË ANULOHET</string>
+  <string name="conversation_input_panel__slide_to_cancel">Rrëshqiteni që të anulohet</string>
+  <string name="conversation_input_panel__cancel">Anuloje</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mesazh media</string>
   <string name="conversation_item__secure_message_description">Mesazh i siguruar</string>
@@ -764,6 +792,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Ngjitës</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Ju</string>
   <string name="QuoteView_original_missing">S\’u gjet mesazhi origjinal</string>
@@ -944,7 +973,7 @@
   <string name="AndroidManifest__change_passphrase">Ndryshoni frazëkalimin</string>
   <string name="AndroidManifest__verify_safety_number">Verifiko numër siguri</string>
   <string name="AndroidManifest__log_submit">Parashtro regjistër diagnostikimi</string>
-  <string name="AndroidManifest__media_preview">Parapamje e medias</string>
+  <string name="AndroidManifest__media_preview">Paraparje e medias</string>
   <string name="AndroidManifest__message_details">Hollësi mesazhi</string>
   <string name="AndroidManifest__linked_devices">Pajisje të lidhura</string>
   <string name="AndroidManifest__invite_friends">Ftoni shokë</string>
@@ -969,10 +998,10 @@
   <string name="arrays__audio">Audio</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">Dokumente</string>
-  <string name="arrays__small">I vogël</string>
-  <string name="arrays__normal">Normal</string>
-  <string name="arrays__large">I madh</string>
-  <string name="arrays__extra_large">Shumë i madh</string>
+  <string name="arrays__small">Të vogla</string>
+  <string name="arrays__normal">Normale</string>
+  <string name="arrays__large">Të mëdha</string>
+  <string name="arrays__extra_large">Shumë të mëdha</string>
   <string name="arrays__default">Parazgjedhje</string>
   <string name="arrays__high">Lartësi</string>
   <string name="arrays__max">Maks.</string>
@@ -990,7 +1019,7 @@
   <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
   <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string>
-  <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Reddit, dhe YouTube</string>
+  <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Pinterest, Reddit, dhe YouTube.</string>
   <string name="preferences__choose_identity">Zgjidhni identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zgjidhni kontaktin tuaj nga lista e kontakteve.</string>
   <string name="preferences__change_passphrase">Ndryshoje frazëkalimin</string>
@@ -1195,7 +1224,7 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Po fshihet</string>
-  <string name="trimmer__deleting_old_messages">Po fshihem mesazhet e vjetra…</string>
+  <string name="trimmer__deleting_old_messages">Po fshihen mesazhet e vjetra…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mesazhet e vjetra u fshinë me sukses</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
@@ -1245,7 +1274,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d mesazhe deri këtu</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ju lutemi, jepni kodin e verifikimit dërguar te %s.</string>
   <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Më mirë përmes thirrjeje \n (E mundshme në %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Telefonomëni, më mirë \n (E përdorshme në %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>

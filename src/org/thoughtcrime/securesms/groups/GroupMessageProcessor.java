@@ -166,7 +166,7 @@ public class GroupMessageProcessor {
     if (record.getMembers().contains(Address.fromExternal(context, content.getSender()))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new PushGroupUpdateJob(context, content.getSender(), group.getGroupId()));
+                        .add(new PushGroupUpdateJob(content.getSender(), group.getGroupId()));
     }
 
     return null;
@@ -204,7 +204,7 @@ public class GroupMessageProcessor {
   {
     if (group.getAvatar().isPresent()) {
       ApplicationContext.getInstance(context).getJobManager()
-                        .add(new AvatarDownloadJob(context, group.getGroupId()));
+                        .add(new AvatarDownloadJob(group.getGroupId()));
     }
 
     try {

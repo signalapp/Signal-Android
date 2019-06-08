@@ -73,7 +73,6 @@ public class RecentEmojiPageModel implements EmojiPageModel {
   }
 
   public void onCodePointSelected(String emoji) {
-    Log.i(TAG, "onCodePointSelected(" + emoji + ")");
     recentlyUsed.remove(emoji);
     recentlyUsed.add(emoji);
 

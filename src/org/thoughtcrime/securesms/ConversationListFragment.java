@@ -27,8 +27,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -71,18 +69,15 @@ import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
-import org.thoughtcrime.securesms.components.reminder.UnsupportedAndroidVersionReminder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
@@ -138,8 +133,8 @@ public class ConversationListFragment extends Fragment
     emptyImage   = ViewUtil.findById(view, R.id.empty);
     emptySearch  = ViewUtil.findById(view, R.id.empty_search);
 
-    if (archive) fab.setVisibility(View.GONE);
-    else         fab.setVisibility(View.VISIBLE);
+    if (archive) fab.hide();
+    else         fab.show();
 
     reminderView.setOnDismissListener(() -> updateReminders(true));
 
@@ -202,12 +197,10 @@ public class ConversationListFragment extends Fragment
         final Context context = params[0];
         if (UnauthorizedReminder.isEligible(context)) {
           return Optional.of(new UnauthorizedReminder(context));
-        } else if (UnsupportedAndroidVersionReminder.isEligible()) {
-          return Optional.of(new UnsupportedAndroidVersionReminder(context));
         } else if (ExpiredBuildReminder.isEligible()) {
           return Optional.of(new ExpiredBuildReminder(context));
         } else if (ServiceOutageReminder.isEligible(context)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob(context));
+          ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob());
           return Optional.of(new ServiceOutageReminder(context));
         } else if (OutdatedBuildReminder.isEligible()) {
           return Optional.of(new OutdatedBuildReminder(context));
@@ -359,12 +352,12 @@ public class ConversationListFragment extends Fragment
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+  public @NonNull Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
     return new ConversationListLoader(getActivity(), queryFilter, archive);
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
+  public void onLoadFinished(@NonNull Loader<Cursor> arg0, Cursor cursor) {
     if ((cursor == null || cursor.getCount() <= 0) && TextUtils.isEmpty(queryFilter) && !archive) {
       list.setVisibility(View.INVISIBLE);
       emptyState.setVisibility(View.VISIBLE);
@@ -387,7 +380,7 @@ public class ConversationListFragment extends Fragment
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> arg0) {
+  public void onLoaderReset(@NonNull Loader<Cursor> arg0) {
     getListAdapter().changeCursor(null);
   }
 
@@ -488,15 +481,15 @@ public class ConversationListFragment extends Fragment
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView,
-                          RecyclerView.ViewHolder viewHolder,
-                          RecyclerView.ViewHolder target)
+    public boolean onMove(@NonNull RecyclerView recyclerView,
+                          @NonNull RecyclerView.ViewHolder viewHolder,
+                          @NonNull RecyclerView.ViewHolder target)
     {
       return false;
     }
 
     @Override
-    public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+    public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
       if (viewHolder.itemView instanceof ConversationListItemAction) {
         return 0;
       }
@@ -510,7 +503,7 @@ public class ConversationListFragment extends Fragment
 
     @SuppressLint("StaticFieldLeak")
     @Override
-    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
       if (viewHolder.itemView instanceof ConversationListItemInboxZero) return;
       final long threadId    = ((ConversationListItem)viewHolder.itemView).getThreadId();
       final int  unreadCount = ((ConversationListItem)viewHolder.itemView).getUnreadCount();
@@ -564,8 +557,8 @@ public class ConversationListFragment extends Fragment
     }
 
     @Override
-    public void onChildDraw(Canvas c, RecyclerView recyclerView,
-                            RecyclerView.ViewHolder viewHolder,
+    public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
+                            @NonNull RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState,
                             boolean isCurrentlyActive)
     {

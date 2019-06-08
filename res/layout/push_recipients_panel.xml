@@ -12,18 +12,18 @@
             android:autoText="true"
             android:singleLine="true"
             android:hint="@string/recipients_panel__to"
-            android:paddingRight="45dip"
+            android:paddingEnd="45dp"
             android:textColor="?conversation_editor_text_color"
             android:layout_width="fill_parent"/>
 
         <ImageButton android:id="@+id/contacts_button"
                      android:background="#00000000"
-                     android:layout_width="40dip"
-                     android:layout_height="35dip"
-                     android:layout_marginRight="5dip"
-                     android:layout_marginTop="4dip"
+                     android:layout_width="40dp"
+                     android:layout_height="35dp"
+                     android:layout_marginEnd="5dp"
+                     android:layout_marginTop="4dp"
                      android:src="@drawable/ic_menu_add_field_holo_light"
-                     android:layout_alignRight="@id/recipients_text"
+                     android:layout_alignEnd="@id/recipients_text"
                      android:maxWidth="32dip"
                      android:maxHeight="32dip" />
 

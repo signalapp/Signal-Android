@@ -230,7 +230,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     private boolean    animateFailureOnDraw = false;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container        = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_display_fragment);
       this.numbersContainer = ViewUtil.findById(container, R.id.number_table);
       this.qrCode           = ViewUtil.findById(container, R.id.qr_code);
@@ -483,30 +483,26 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     }
 
     private void setCodeSegment(final TextView codeView, String segment) {
-      if (Build.VERSION.SDK_INT >= 11) {
-        ValueAnimator valueAnimator = new ValueAnimator();
-        valueAnimator.setObjectValues(0, Integer.parseInt(segment));
+      ValueAnimator valueAnimator = new ValueAnimator();
+      valueAnimator.setObjectValues(0, Integer.parseInt(segment));
 
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-          @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-          @Override
-          public void onAnimationUpdate(ValueAnimator animation) {
-            int value = (int) animation.getAnimatedValue();
-            codeView.setText(String.format("%05d", value));
-          }
-        });
+      valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+        @Override
+        public void onAnimationUpdate(ValueAnimator animation) {
+          int value = (int) animation.getAnimatedValue();
+          codeView.setText(String.format("%05d", value));
+        }
+      });
 
-        valueAnimator.setEvaluator(new TypeEvaluator<Integer>() {
-          public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
-            return Math.round(startValue + (endValue - startValue) * fraction);
-          }
-        });
+      valueAnimator.setEvaluator(new TypeEvaluator<Integer>() {
+        public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
+          return Math.round(startValue + (endValue - startValue) * fraction);
+        }
+      });
 
-        valueAnimator.setDuration(1000);
-        valueAnimator.start();
-      } else {
-        codeView.setText(segment);
-      }
+      valueAnimator.setDuration(1000);
+      valueAnimator.start();
     }
 
     private String[] getSegments(Fingerprint fingerprint, int segmentCount) {
@@ -607,8 +603,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
             ApplicationContext.getInstance(getActivity())
                               .getJobManager()
-                              .add(new MultiDeviceVerifiedUpdateJob(getActivity(),
-                                                                    recipient.getAddress(),
+                              .add(new MultiDeviceVerifiedUpdateJob(recipient.getAddress(),
                                                                     remoteIdentity,
                                                                     isChecked ? VerifiedStatus.VERIFIED :
                                                                                 VerifiedStatus.DEFAULT));
@@ -628,7 +623,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     private ScanningThread scanningThread;
     private ScanListener   scanListener;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container  = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_scan_fragment);
       this.cameraView = ViewUtil.findById(container, R.id.scanner);
 

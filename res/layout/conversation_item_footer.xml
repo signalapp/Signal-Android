@@ -12,7 +12,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginRight="6dp"
         android:layout_marginEnd="6dp"
         android:orientation="horizontal"
         android:gravity="left|start|center_vertical">
@@ -31,7 +30,6 @@
         <org.thoughtcrime.securesms.components.ExpirationTimerView
             android:id="@+id/footer_expiration_timer"
             android:layout_gravity="center_vertical|end"
-            android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
             android:layout_width="12dp"
             android:layout_height="12dp"
@@ -45,14 +43,13 @@
         android:autoLink="none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="4dp"
         android:layout_marginEnd="4dp"
         android:maxWidth="140dp"
         android:maxLines="1"
         android:ellipsize="end"
         android:linksClickable="false"
         style="@style/Signal.Text.Caption.MessageSent"
-        android:layout_gravity="right|end|bottom"
+        android:layout_gravity="end|bottom"
         android:fontFamily="sans-serif-light"
         android:visibility="gone"
         tools:visibility="visible"
@@ -64,7 +61,7 @@
         android:layout_height="11dp"
         android:src="@drawable/ic_unlocked_white_18dp"
         android:visibility="gone"
-        android:layout_gravity="center_vertical|right|end"
+        android:layout_gravity="center_vertical|end"
         android:contentDescription="@string/conversation_item__secure_message_description"
         tools:visibility="visible"/>
 

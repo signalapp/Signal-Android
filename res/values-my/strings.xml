@@ -124,7 +124,6 @@
   <string name="ConversationActivity_transport_insecure_mms">မလုံခြုံသော MMS</string>
   <string name="ConversationActivity_transport_signal">Signal </string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ကိုပြောင်းသုံးကြပါစို့</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">ဒါလေး %1$s သုံးပြီးပြောကြစို့  </string>
   <string name="ConversationActivity_error_leaving_group">အုပ်စုမှထွက်ခွာရန် အခက်အခဲ ရှိသည် </string>
   <string name="ConversationActivity_specify_recipient">ဆက်သွယ်လိုသည့်သူကို ရွေးချယ်ပါ </string>
   <string name="ConversationActivity_unblock_this_contact_question">ဤသူကို ဘလော့ဖြည်မလား? </string>
@@ -480,6 +479,14 @@
   <string name="SmsMessageRecord_secure_session_reset">သင်သည် လုံခြုံသောဆက်ရှင်များကို ပြန်ညှိလိုက်ပါသည်။</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s သည် လုံခြုံသောဆက်ရှင်ကို ပြန်ညှိလိုက်ပါသည်။</string>
   <string name="SmsMessageRecord_duplicate_message">ဆင်တူဖြစ်နေသောစာ</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">စတစ်ကာများ </string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">မသိ</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">မသိ</string>
+  <string name="StickerPackPreviewActivity_remove">ဖယ်ပစ်ပါ။</string>
+  <string name="StickerPackPreviewActivity_stickers">စတစ်ကာများ </string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">အဖွဲ့ကို ပြင်ဆင်ပြီး</string>
   <string name="ThreadRecord_left_the_group">အဖွဲ့မှထွက်သွားသည်</string>
@@ -561,6 +568,8 @@
   <string name="MessageNotifier_mark_read">ဖတ်ပြီးသား</string>
   <string name="MessageNotifier_media_message">ရုပ်/သံ/ပုံပါ စာ</string>
   <string name="MessageNotifier_reply">အကြောင်းပြန်မည်</string>
+  <string name="MessageNotifier_signal_message">Signal မှ စာများ</string>
+  <string name="MessageNotifier_unsecured_sms">မလုံခြုံသော SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားခြင်း</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားပါသည်၊ ပြန်ဖွင့်ရန် နှိပ်လိုက်ပါ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -649,7 +658,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">အသံဖမ်းပြီး ပေးပို့လိုက်ပါ</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal မှာ SMS ပို့လို့ရပါပြီ</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">မလုပ်တော့ဘူးဆိုရင် ဘေးသို့ဆွဲပါ</string>
+  <string name="conversation_input_panel__cancel">မလုပ်တော့ပါ</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">ရုပ်/သံ/ပုံပါစာ</string>
   <string name="conversation_item__secure_message_description">လုံခြုံသောစာ</string>

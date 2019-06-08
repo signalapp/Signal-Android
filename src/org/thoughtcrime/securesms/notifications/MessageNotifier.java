@@ -37,12 +37,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.text.TextUtils;
-import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.contactshare.ContactUtil;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -50,6 +49,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -315,9 +315,12 @@ public class MessageNotifier {
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
+    ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
+
     builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
                        notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),
-                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient()));
+                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod),
+                       replyMethod);
 
     builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
                                  notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
@@ -452,6 +455,9 @@ public class MessageNotifier {
       } else if (record.isMms() && !((MmsMessageRecord) record).getSharedContacts().isEmpty()) {
         Contact contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
         body = ContactUtil.getStringSummary(context, contact);
+      } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
+        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
+        slideDeck = ((MmsMessageRecord) record).getSlideDeck();
       } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();

@@ -31,7 +31,7 @@ public class UpdateApkRefreshListener extends PersistentAlarmManagerListener {
       Log.i(TAG, "Queueing APK update job...");
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new UpdateApkJob(context));
+                        .add(new UpdateApkJob());
     }
 
     long newTime = System.currentTimeMillis() + INTERVAL;

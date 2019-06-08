@@ -5,10 +5,10 @@
 
     <LinearLayout android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentStart="true"
                   android:layout_centerVertical="true"
                   android:orientation="vertical"
-                  android:layout_marginLeft="10dip">
+                  android:layout_marginStart="10dip">
 	<TextView android:id="@+id/title"
         android:textAppearance="@style/NotificationTitle"
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_height="64dp"
         android:background="@drawable/notify_panel_notification_icon_bg_tile"
         android:scaleType="center" 
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         />
 	    
 </RelativeLayout>

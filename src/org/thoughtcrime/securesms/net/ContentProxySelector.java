@@ -14,6 +14,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.ProxySelector;
 import java.net.SocketAddress;
+import java.net.SocketException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,7 +29,6 @@ public class ContentProxySelector extends ProxySelector {
   static {
     WHITELISTED_DOMAINS.addAll(LinkPreviewDomains.LINKS);
     WHITELISTED_DOMAINS.addAll(LinkPreviewDomains.IMAGES);
-    WHITELISTED_DOMAINS.add("giphy.com");
   }
 
   private final List<Proxy> CONTENT = new ArrayList<Proxy>(1) {{
@@ -48,6 +48,10 @@ public class ContentProxySelector extends ProxySelector {
 
   @Override
   public void connectFailed(URI uri, SocketAddress address, IOException failure) {
-    Log.w(TAG, "Connection failed.", failure);
+    if (failure instanceof SocketException) {
+      Log.d(TAG, "Socket exception. Likely a cancellation.");
+    } else {
+      Log.w(TAG, "Connection failed.", failure);
+    }
   }
 }

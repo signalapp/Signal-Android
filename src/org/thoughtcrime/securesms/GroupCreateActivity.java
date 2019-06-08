@@ -343,6 +343,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       for (Recipient recipient : members) {
         memberAddresses.add(recipient.getAddress());
       }
+      memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(activity)));
 
       String    groupId        = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true);
       Recipient groupRecipient = Recipient.from(activity, Address.fromSerialized(groupId), true);

@@ -264,8 +264,8 @@ public class MasterSecretUtil {
     }
   }
 
-  private static byte[] generateSalt() throws NoSuchAlgorithmException {
-    SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+  private static byte[] generateSalt() {
+    SecureRandom random = new SecureRandom();
     byte[] salt         = new byte[16];
     random.nextBytes(salt);
 

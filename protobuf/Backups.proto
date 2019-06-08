@@ -34,6 +34,11 @@ message Attachment {
     optional uint32 length       = 3;
 }
 
+message Sticker {
+    optional uint64 rowId  = 1;
+    optional uint32 length = 2;
+}
+
 message Avatar {
     optional string name   = 1;
     optional uint32 length = 2;
@@ -56,4 +61,5 @@ message BackupFrame {
     optional DatabaseVersion  version    = 5;
     optional bool             end        = 6;
     optional Avatar           avatar     = 7;
+    optional Sticker          sticker    = 8;
 }

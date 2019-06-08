@@ -262,13 +262,13 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     assert keyguardManager != null;
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && !keyguardManager.isKeyguardSecure()) {
+    if (!keyguardManager.isKeyguardSecure()) {
       Log.w(TAG ,"Keyguard not secure...");
       handleAuthenticated();
       return;
     }
 
-    if (Build.VERSION.SDK_INT >= 16 && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
+    if (fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
       Log.i(TAG, "Listening for fingerprints...");
       fingerprintCancellationSignal = new CancellationSignal();
       fingerprintManager.authenticate(null, 0, fingerprintCancellationSignal, fingerprintListener, null);
@@ -283,7 +283,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void pauseScreenLock() {
-    if (Build.VERSION.SDK_INT >= 16 && fingerprintCancellationSignal != null) {
+    if (fingerprintCancellationSignal != null) {
       fingerprintCancellationSignal.cancel();
     }
   }

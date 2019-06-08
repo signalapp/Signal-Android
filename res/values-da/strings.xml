@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbillede?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen Webbrowser fundet</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Et netværksopkald er allerede igang</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhedsnøglen for %1$s er blevet ændret. Dette kan enten betyde at nogen forsøger at opsnappe kommunikationen, eller at %2$s blot har geninstalleret Signal og nu har en ny sikkerhedsnøgle
     </string>
@@ -138,7 +139,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Usikret MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lad os bruge Signal %1$s?</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Lad os bruge Signal til beskeder: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fejl ved forsøg på at forlade gruppen</string>
   <string name="ConversationActivity_specify_recipient">Vælg venligst en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Fjern blokering af kontakten?</string>
@@ -163,6 +163,8 @@
   <string name="ConversationActivity_no">Nej</string>
   <string name="ConversationActivity_search_position">%1$d af %2$d</string>
   <string name="ConversationActivity_no_results">Ingen resultater</string>
+  <string name="ConversationActivity_sticker_pack_installed">Pakke med klistermærker installeret</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Nyt! Udtryk dig med klistermærker</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>
@@ -306,7 +308,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fejl opstod ved hentning af GIF i fuld opløsning</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIF´s</string>
-  <string name="GiphyFragmentPagerAdapter_stickers">Klistermærker</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Animationer</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Opret ny gruppe</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Rediger gruppe</string>
@@ -405,7 +407,7 @@
   <string name="MediaSendActivity_message_to_s">Besked til %s</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan ikke dele flere end %d fil.</item>
-    <item quantity="other">Du kan ikke dele flere end %d filer.</item>
+    <item quantity="other">Du kan ikke dele flere end %d filer</item>
   </plurals>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle mediefiler</string>
@@ -417,7 +419,7 @@
   <string name="MessageRecord_called_you">Opkald fra kontakt</string>
   <string name="MessageRecord_missed_call">Mistede opkald</string>
   <string name="MessageRecord_s_updated_group">%s opdaterede gruppen</string>
-  <string name="MessageRecord_s_called_you">%s ringede til dig</string>
+  <string name="MessageRecord_s_called_you">%s ringede til mig</string>
   <string name="MessageRecord_called_s">Ringet til %s</string>
   <string name="MessageRecord_missed_call_from">Mistet opkald fra %s</string>
   <string name="MessageRecord_s_joined_signal">%s bruger Signal!</string>
@@ -557,6 +559,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SharedContactView_message">Signalbesked</string>
   <!--Slide-->
   <string name="Slide_image">Billede</string>
+  <string name="Slide_sticker">Klistermærker</string>
   <string name="Slide_audio">Lyd</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -570,13 +573,24 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="SmsMessageRecord_secure_session_reset">Nulstillet sikker forbindelse</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s har nulstillet den sikre session</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliker besked</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Animationer</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Installeret klistermærker</string>
+  <string name="StickerManagementAdapter_unknown">Ukendt</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Ukendt</string>
+  <string name="StickerPackPreviewActivity_install">Installér</string>
+  <string name="StickerPackPreviewActivity_remove">Fjern</string>
+  <string name="StickerPackPreviewActivity_stickers">Animationer</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Fejl ved hentning af klistermærker</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe opdateret</string>
   <string name="ThreadRecord_left_the_group">Har forladt gruppen</string>
   <string name="ThreadRecord_secure_session_reset">Nulstil sikker forbindelse</string>
   <string name="ThreadRecord_draft">Kladder:</string>
   <string name="ThreadRecord_called">Du ringede</string>
-  <string name="ThreadRecord_called_you">Ringede til dig</string>
+  <string name="ThreadRecord_called_you">Ringede til mig</string>
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
@@ -651,7 +665,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_all_as_read">Markér alle som læst</string>
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
+  <string name="MessageNotifier_sticker">Klistermærker</string>
   <string name="MessageNotifier_reply">Svar</string>
+  <string name="MessageNotifier_signal_message">Signalbesked</string>
+  <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Afventende Signalbeskeder</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du har afventende Signalbeskeder, tap for at åbne og modtage</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
@@ -741,15 +758,18 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__compose_description">Beskedsammensætning</string>
   <string name="conversation_activity__emoji_toggle_description">Slå Emoji tastatur til/fra</string>
   <string name="conversation_activity__attachment_thumbnail">Vedhæftet skabelon</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Slå kamera til/fra</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Optag og send en lydbesked</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås den vedhæftede lydoptagelse</string>
   <string name="conversation_activity__enable_signal_for_sms">Brug Signal til SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SWIPE FOR AT AFBRYDE</string>
+  <string name="conversation_input_panel__slide_to_cancel">Slide for at annullere</string>
+  <string name="conversation_input_panel__cancel">Annuller</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimedie besked</string>
   <string name="conversation_item__secure_message_description">Sikker besked</string>
@@ -768,6 +788,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Billed</string>
+  <string name="QuoteView_sticker">Klistermærker</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Dig</string>
   <string name="QuoteView_original_missing">Original besked ikke fundet</string>
@@ -830,7 +851,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
     <item quantity="other">%d mere</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg i GIF´s og klistermærker</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg GIF´s og animationer</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Fandt ingenting</string>
   <!--log_submit_activity-->
@@ -948,7 +969,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="AndroidManifest__change_passphrase">Skift kodeord</string>
   <string name="AndroidManifest__verify_safety_number">Verificer sikkerhedsnummer</string>
   <string name="AndroidManifest__log_submit">Indsend fejlfindingslog</string>
-  <string name="AndroidManifest__media_preview">Medie eksempel</string>
+  <string name="AndroidManifest__media_preview">Medievisning</string>
   <string name="AndroidManifest__message_details">Besked detaljer</string>
   <string name="AndroidManifest__linked_devices">Forbundne enheder</string>
   <string name="AndroidManifest__invite_friends">Invitér venner</string>
@@ -994,7 +1015,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tap på [Enter] sender beskeden</string>
   <string name="preferences__send_link_previews">Send link eksempelvisning</string>
-  <string name="preferences__previews_are_supported_for">Eksempelvisning er understøttet for Imgur, Instagram, Reddit og YouTube links</string>
+  <string name="preferences__previews_are_supported_for">Eksempelvisning er understøttet for Imgur, Instagram, Pinterest, Reddit og YouTube links</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten</string>
   <string name="preferences__change_passphrase">Skift kodeord</string>
@@ -1060,17 +1081,17 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Signal brugere</string>
   <string name="preferences__submit_debug_log">Indsend fejlfindingslog</string>
   <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for WiFi opkald</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiveres kun hvis din enhed sender SMS/MMS via WiFi, og hvis WiFi opkald er aktiveret på din enhed</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivér hvis din enhed understøtter SMS/MMS via WiFi (kun hvis WiFi opkald er aktiveret på din enhed)</string>
   <string name="preferences__incognito_keyboard">Inkognito tastatur</string>
   <string name="preferences__read_receipts">Læst af modtager</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, vil du ikke kunne se status for andre</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, er det ikke muligt at se status for andre</string>
   <string name="preferences__typing_indicators">Skrive indikator</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, vil du ikke kunne se når andre skriver</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, er det ikke muligt at se når andre skriver</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Deaktivér personaliseret læring fra tastaturet</string>
   <string name="preferences_app_protection__blocked_contacts">Blokerede kontakter</string>
-  <string name="preferences_chats__when_using_mobile_data">Når der anvendes mobildata</string>
-  <string name="preferences_chats__when_using_wifi">Når der anvendes WiFi</string>
-  <string name="preferences_chats__when_roaming">Når der roames</string>
+  <string name="preferences_chats__when_using_mobile_data">Ved anvendelse af mobildata</string>
+  <string name="preferences_chats__when_using_wifi">Ved anvendelse af WiFi</string>
+  <string name="preferences_chats__when_roaming">Ved roaming</string>
   <string name="preferences_chats__media_auto_download">Hent automatisk multimedier</string>
   <string name="preferences_chats__message_trimming">Trimning af beskeder</string>
   <string name="preferences_advanced__use_system_emoji">Anvend system emoji´s</string>
@@ -1093,7 +1114,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Sikker afsender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Vis indikator</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis et status ikon når ´Besked detaljer´ vælges for beskeder som er modtaget, ved brug af sikker afsender</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis status ikon når ´Besked detaljer´ vælges for beskeder som er modtaget ved brug af sikker afsender</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillad fra alle</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiver ´Sikker afsender´ for indgående beskeder fra personer som ikke er kontakter, og som hvem du ikke har delt din profil med</string>
   <string name="preferences_communication__sealed_sender_learn_more">Læs mere</string>
@@ -1187,7 +1208,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="reminder_header_share_title">Invitér dine venner!</string>
   <string name="reminder_header_share_text">Jo flere venner der bruger Signal, desto bedre bliver den</string>
   <string name="reminder_header_service_outage_text">Signal oplever tekniske problemer. Vi arbejder hårdt på at genoprette servicen, så hurtigt som muligt</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funktioner virker ikke på denne version af Android. Opgrader venligst denne enhed for at modtage fremtidige Signal-opdateringer.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funktioner virker ikke på denne version af Android. Opgrader venligst denne enhed for at modtage fremtidige Signal-opdateringer</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <string name="media_preview__forward_title">Videresend</string>
@@ -1251,7 +1272,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ProgressPreference_d_messages_so_far">%d beskeder ind til videre</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv venligst sikkerhedskoden sendt til %s</string>
   <string name="RegistrationActivity_wrong_number">Forkert nummer</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Ring til mig i stedet \n (Tilgængelig i %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Ring venligst til mig i stedet \n (Tilgængelig i %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Ukendt</string>
   <string name="preferences_app_protection__screen_lock">Skærmlås</string>

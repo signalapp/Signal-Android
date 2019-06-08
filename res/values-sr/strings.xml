@@ -130,7 +130,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Необезбеђени ММС</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Пребацимо се на Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Хајде да користимо ово за ћаскање: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка при напуштању групе</string>
   <string name="ConversationActivity_specify_recipient">Одредите примаоца</string>
   <string name="ConversationActivity_unblock_this_contact_question">Одлокирати овај контакт?</string>
@@ -500,6 +499,14 @@
   <string name="SmsMessageRecord_secure_session_reset">Ресетовали сте безбедну сесију.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ресетова безбедну сесију.</string>
   <string name="SmsMessageRecord_duplicate_message">Порука дупликат.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Налепнице</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Непозната</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Непозната</string>
+  <string name="StickerPackPreviewActivity_remove">Уклони</string>
+  <string name="StickerPackPreviewActivity_stickers">Налепнице</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Група ажурирана.</string>
   <string name="ThreadRecord_left_the_group">Напусти групу</string>
@@ -574,6 +581,8 @@
   <string name="MessageNotifier_mark_read">Означи прочитаним</string>
   <string name="MessageNotifier_media_message">Мултимедијална порука</string>
   <string name="MessageNotifier_reply">Одговори</string>
+  <string name="MessageNotifier_signal_message">Порука на Signalу</string>
+  <string name="MessageNotifier_unsecured_sms">Необезбеђени СМС</string>
   <string name="MessageNotifier_pending_signal_messages">Поруке са Signal-a на чекању</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Имате поруке на Signalу, тапните да отворите и добавите</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -654,7 +663,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Сними и пошаљи звук</string>
   <string name="conversation_activity__enable_signal_for_sms">Укључите Signal за СМС</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ПРЕВУЦИТЕ ДА ОТКАЖЕТЕ</string>
+  <string name="conversation_input_panel__cancel">Одустани</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Мултимедијална порука</string>
   <string name="conversation_item__secure_message_description">Обезбеђена порука</string>

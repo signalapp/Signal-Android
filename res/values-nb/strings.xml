@@ -137,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss bytte til Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">La oss bruke dette til å prate: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Klarte ikke å forlate gruppe</string>
   <string name="ConversationActivity_specify_recipient">Velg en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Vil du fjerne blokkering av denne kontakten?</string>
@@ -565,6 +564,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Klistremerker</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Ukjent</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Ukjent</string>
+  <string name="StickerPackPreviewActivity_remove">Fjern</string>
+  <string name="StickerPackPreviewActivity_stickers">Klistremerker</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe oppdatert</string>
   <string name="ThreadRecord_left_the_group">Forlot gruppa</string>
@@ -647,6 +654,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_mark_read">Merk som lest</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_reply">Svar</string>
+  <string name="MessageNotifier_signal_message">Signal-melding</string>
+  <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
   <string name="MessageNotifier_pending_signal_messages">Venter Signalmeldinger </string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Du har ventende Signalmeldinger, trykk for å åpne og hente</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -736,15 +745,18 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__compose_description">Meldingsskriving</string>
   <string name="conversation_activity__emoji_toggle_description">Slå på/av emoji-tastatur</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatyrbilde av vedlegg</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Slå av/på hurtig kamera-vedleggsfunksjon</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og sende lyd vedlegg</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås opptak av lydmelding</string>
   <string name="conversation_activity__enable_signal_for_sms">Bruk Signal for SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SKYV FOR Å AVBRYTE</string>
+  <string name="conversation_input_panel__slide_to_cancel">Skyv for å avbryte</string>
+  <string name="conversation_input_panel__cancel">Avbryt</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mediemelding</string>
   <string name="conversation_item__secure_message_description">Sikker melding</string>
@@ -990,7 +1002,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk enter-tast for å sende tekstmeldinger</string>
   <string name="preferences__send_link_previews">Send linkforhåndsvisninger</string>
-  <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Reddit og YouTube-koblinger</string>
+  <string name="preferences__previews_are_supported_for">Forhåndsvisninger støttes for Imgur, Instagram, Pinterest, Reddit og YouTube-koblinger.</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passord</string>
@@ -1247,7 +1259,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meldinger hittil</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn bekreftelseskoden som er sendt til %s.</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i stedet \n (Tilgjengelig om %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i stedet \n (Tilgjengelig om %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>

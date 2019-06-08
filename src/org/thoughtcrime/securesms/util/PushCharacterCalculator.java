@@ -17,9 +17,7 @@
 package org.thoughtcrime.securesms.util;
 
 public class PushCharacterCalculator extends CharacterCalculator {
-  // TODO: Switch to 64kb to enable long message sending.
-//  private static final int MAX_TOTAL_SIZE   = 64 * 1024;
-  private static final int MAX_TOTAL_SIZE   = 2000;
+  private static final int MAX_TOTAL_SIZE   = 64 * 1024;
   private static final int MAX_PRIMARY_SIZE = 2000;
   @Override
   public CharacterState calculateCharacters(String messageBody) {

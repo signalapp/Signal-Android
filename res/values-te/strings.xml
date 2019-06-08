@@ -132,7 +132,6 @@
   <string name="ConversationActivity_transport_insecure_mms">అసురక్షిత ఎమ్మెమ్మెస్</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">మనం Signal %1$sకు మారుదాం</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">ఈ యొక్క చాట్ ని  ఉపయోగించు: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">సమూహం నుండి వైదొలగటంలో లోపం</string>
   <string name="ConversationActivity_specify_recipient">దయచేసి ఒక పరిచయం ఎంచుకోండి</string>
   <string name="ConversationActivity_unblock_this_contact_question">ఈ పరిచయం నిరోధించాలా?</string>
@@ -530,6 +529,14 @@
   <string name="SmsMessageRecord_secure_session_reset">మీ సెషన్ సురక్షిత ంగ పునరుద్ధరించు.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s సురక్షిత భాగాన్ని మరలా మార్చు</string>
   <string name="SmsMessageRecord_duplicate_message">నకిలీ సందేశాం.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">స్టిక్కర్లు</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">తెలియని</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">తెలియని</string>
+  <string name="StickerPackPreviewActivity_remove">తొలగించు</string>
+  <string name="StickerPackPreviewActivity_stickers">స్టిక్కర్లు</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">సమూహం నవీకరించబడింది</string>
   <string name="ThreadRecord_left_the_group">సమూహన్ని వదిలివేయుట</string>
@@ -612,6 +619,8 @@
   <string name="MessageNotifier_mark_read">చదివినట్టు గుర్తుపెట్టు</string>
   <string name="MessageNotifier_media_message">మీడియ సందేశం</string>
   <string name="MessageNotifier_reply">స్పంధించు</string>
+  <string name="MessageNotifier_signal_message">Signal సందేశం</string>
+  <string name="MessageNotifier_unsecured_sms">భద్రతలేని సందేశం</string>
   <string name="MessageNotifier_pending_signal_messages">Signal సందేశాలు పెండింగ్లో ఉన్నాయి</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">మీ Signal సందేశాలు పెండింగ్లో ఉన్నాయి, తెరవడానికి మరియు తిరిగి పొందడానికి నొక్కండి</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -705,7 +714,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">రికార్డు మరియు ఆడియో అటాచ్మెంట్ పంపడానికి</string>
   <string name="conversation_activity__enable_signal_for_sms">ఎస్సెమ్మెస్ చేతనం</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">జారు</string>
+  <string name="conversation_input_panel__cancel">రద్దు</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">మీడియ సందేశం</string>
   <string name="conversation_item__secure_message_description">సురక్షిత సందేశం</string>

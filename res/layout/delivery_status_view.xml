@@ -6,7 +6,7 @@
         android:id="@+id/pending_indicator"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp"
         android:layout_gravity="center_vertical|end"
         android:src="@drawable/ic_delivery_status_sending"
         android:visibility="gone" />
@@ -16,7 +16,7 @@
                android:layout_height="wrap_content"
                android:layout_gravity="center_vertical|end"
                android:src="@drawable/ic_delivery_status_sent"
-               android:paddingLeft="2dp"
+               android:paddingStart="2dp"
                android:visibility="gone"
                android:contentDescription="@string/conversation_item_sent__delivered_description" />
 
@@ -25,7 +25,7 @@
                android:layout_height="wrap_content"
                android:layout_gravity="center_vertical|end"
                android:src="@drawable/ic_delivery_status_delivered"
-               android:paddingLeft="2dp"
+               android:paddingStart="2dp"
                android:visibility="gone"
                android:contentDescription="@string/conversation_item_sent__delivered_description"
                tools:visibility="gone"/>
@@ -35,7 +35,7 @@
                android:layout_height="wrap_content"
                android:layout_gravity="center_vertical|end"
                android:src="@drawable/ic_delivery_status_read"
-               android:paddingLeft="2dp"
+               android:paddingStart="2dp"
                android:visibility="gone"
                android:contentDescription="@string/conversation_item_sent__message_read"
                android:tint="@color/core_blue"

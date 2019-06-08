@@ -6,7 +6,7 @@
   <string name="delete">Excluir</string>
   <string name="please_wait">Aguarde...</string>
   <string name="save">Salvar</string>
-  <string name="note_to_self">Recado para mim</string>
+  <string name="note_to_self">Recado pra mim</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
   <!--AlbumThumbnailView-->
@@ -25,7 +25,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Excluir</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Signal e de mensagens.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Signal e das mensagens.</string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal...</string>
@@ -102,10 +102,10 @@
   <string name="ContactShareEditActivity_type_missing">Outro</string>
   <string name="ContactShareEditActivity_invalid_contact">O contato selecionado é inválido</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">O envio falhou, toque para mais detalhes</string>
+  <string name="ConversationItem_error_not_delivered">Falha no envio, toque para detalhes</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Mensagem para troca de chaves recebida, clique para processá-la.</string>
   <string name="ConversationItem_group_action_left">%1$s saiu do grupo.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">O envio falhou, toque para alternativa insegura</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Falha no envio, toque para alternativa insegura</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Contingenciar para SMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Contingenciar para MMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois o destinatário não é mais um usuário Signal.\n\nEnviar mensagem não segura?</string>
@@ -137,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Vamos mudar para o Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo</string>
   <string name="ConversationActivity_specify_recipient">Favor escolher um contato</string>
   <string name="ConversationActivity_unblock_this_contact_question">Desbloquear este contato?</string>
@@ -162,6 +161,7 @@
   <string name="ConversationActivity_no">Não</string>
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Nenhum resultado</string>
+  <string name="ConversationActivity_sticker_pack_installed">Pacote de figurinhas instalado</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -385,7 +385,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo uma ligação via Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Recebendo ligação via Signal</string>
-  <string name="NotificationBarManager__deny_call">Bloquear ligação</string>
+  <string name="NotificationBarManager__deny_call">Recusar ligação</string>
   <string name="NotificationBarManager__answer_call">Atender ligação</string>
   <string name="NotificationBarManager__end_call">Terminar ligação</string>
   <string name="NotificationBarManager__cancel_call">Cancelar ligação</string>
@@ -532,7 +532,7 @@
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Precisamos verificar que você é um ser humano.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Falha ao verificar o CAPTCHA</string>
-  <string name="RegistrationActivity_next">Próximo</string>
+  <string name="RegistrationActivity_next">Avançar</string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade consigo.\nSeja você em cada mensagem.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insira o seu número de telefone para começar</string>
@@ -557,6 +557,7 @@
   <string name="SharedContactView_message">Mensagem no Signal</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
+  <string name="Slide_sticker">Figurinha</string>
   <string name="Slide_audio">Áudio</string>
   <string name="Slide_video">Vídeo</string>
   <!--SmsMessageRecord-->
@@ -570,9 +571,23 @@
   <string name="SmsMessageRecord_secure_session_reset">Você reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Figurinhas</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Figurinhas instaladas</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Figurinhas que você recebeu</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Série Signal Artist</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Nenhuma figurinha instalada</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Figurinhas de mensagens recebidas aparecerão aqui</string>
+  <string name="StickerManagementAdapter_unknown">Desconhecida</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Desconhecida</string>
+  <string name="StickerPackPreviewActivity_install">Instalar</string>
+  <string name="StickerPackPreviewActivity_remove">Remover</string>
+  <string name="StickerPackPreviewActivity_stickers">Figurinhas</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo atualizado</string>
-  <string name="ThreadRecord_left_the_group">Saiu do grupo</string>
+  <string name="ThreadRecord_left_the_group">Você saiu do grupo</string>
   <string name="ThreadRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="ThreadRecord_draft">Rascunho:</string>
   <string name="ThreadRecord_called">Ligação efetuada</string>
@@ -630,7 +645,7 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Toque para abrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Toque para abrir ou clique no cadeado para fechar.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal está destravado</string>
+  <string name="KeyCachingService_passphrase_cached">Signal está destrancado</string>
   <string name="KeyCachingService_lock">Trancar Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
@@ -651,14 +666,17 @@
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimídia</string>
+  <string name="MessageNotifier_sticker">Figurinha</string>
   <string name="MessageNotifier_reply">Responder</string>
+  <string name="MessageNotifier_signal_message">Mensagem no Signal</string>
+  <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
   <string name="MessageNotifier_pending_signal_messages">Mensagens Signal pendentes</string>
   <string name="MessageNotifier_you_have_pending_signal_messages">Você tem mensagens Signal pendentes. Clique para abrir e recuperá-las.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contato</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Padrão</string>
-  <string name="NotificationChannel_calls">Chamadas</string>
+  <string name="NotificationChannel_calls">Ligações</string>
   <string name="NotificationChannel_failures">Falhas</string>
   <string name="NotificationChannel_backups">Backups</string>
   <string name="NotificationChannel_locked_status">Status de bloqueio</string>
@@ -724,7 +742,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Digite o nome ou número</string>
   <!--contact_selection_group_activity-->
-  <string name="contact_selection_group_activity__no_contacts">Sem contactos.</string>
+  <string name="contact_selection_group_activity__no_contacts">Nenhum contato.</string>
   <string name="contact_selection_group_activity__finding_contacts">Carregando contatos...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contato</string>
@@ -740,16 +758,19 @@
   <string name="conversation_activity__type_message_push">Mensagem Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS inseguro</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS inseguro</string>
-  <string name="conversation_activity__from_sim_name">De %1$s</string>
+  <string name="conversation_activity__from_sim_name">Usando %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__compose_description">Composição de mensagem</string>
   <string name="conversation_activity__emoji_toggle_description">Alternar teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura do anexo</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Alternar gaveta rápida de anexos de câmera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar áudio em anexo</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Trancar gravação de anexo de áudio</string>
   <string name="conversation_activity__enable_signal_for_sms">Habilitar Signal para SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">DESLIZE PARA CANCELAR</string>
+  <string name="conversation_input_panel__slide_to_cancel">Deslize para cancelar</string>
+  <string name="conversation_input_panel__cancel">Cancelar</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mensagem multimídia</string>
   <string name="conversation_item__secure_message_description">Mensagem segura</string>
@@ -768,6 +789,7 @@
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Figurinha</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>
   <string name="QuoteView_original_missing">Mensagem original não encontrada</string>
@@ -962,13 +984,13 @@
   <string name="arrays__mute_for_two_hours">Silenciar por 2 horas</string>
   <string name="arrays__mute_for_one_day">Silenciar por 1 dia</string>
   <string name="arrays__mute_for_seven_days">Silenciar por 7 dias</string>
-  <string name="arrays__mute_for_one_year">Deixar mudo por 1 ano</string>
+  <string name="arrays__mute_for_one_year">Silenciar por 1 ano</string>
   <string name="arrays__settings_default">Padrão de configurações</string>
   <string name="arrays__enabled">Habilitado</string>
   <string name="arrays__disabled">Desabilitado</string>
   <string name="arrays__name_and_message">Nome e mensagem</string>
   <string name="arrays__name_only">Apenas nome</string>
-  <string name="arrays__no_name_or_message">Sem nome ou mensagem</string>
+  <string name="arrays__no_name_or_message">Nem nome nem mensagem</string>
   <string name="arrays__images">Imagens</string>
   <string name="arrays__audio">Áudio</string>
   <string name="arrays__video">Vídeo</string>
@@ -976,7 +998,7 @@
   <string name="arrays__small">Pequeno</string>
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Grande</string>
-  <string name="arrays__extra_large">Extra grande</string>
+  <string name="arrays__extra_large">Gigante</string>
   <string name="arrays__default">Padrão</string>
   <string name="arrays__high">Alto</string>
   <string name="arrays__max">Máx</string>
@@ -994,7 +1016,7 @@
   <string name="preferences__pref_enter_sends_title">Tecla Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter enviará mensagens de texto</string>
   <string name="preferences__send_link_previews">Enviar pré-visualizações de links</string>
-  <string name="preferences__previews_are_supported_for">Pré-visualizações estão disponíveis para links do Imgur, Instagram, Reddit e YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Visualizações são suportadas para links do Imgur, Instagram, Pinterest, Reddit e YouTube</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contato da lista de contatos.</string>
   <string name="preferences__change_passphrase">Mudar frase-chave</string>
@@ -1156,7 +1178,7 @@
   <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Conversa</string>
-  <string name="conversation_group_options__broadcast">Broadcast</string>
+  <string name="conversation_group_options__broadcast">Transmissão</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_group">Novo grupo</string>
   <string name="text_secure_normal__menu_settings">Configurações</string>
@@ -1252,7 +1274,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até agora</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Favor digitar o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorreto</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Me liga \n (Disponível em %02d:%02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Me liga \n (Disponível em %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
   <string name="preferences_app_protection__screen_lock">Bloqueio de tela</string>

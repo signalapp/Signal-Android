@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LinkPreviewDomains {
+  public static final String STICKERS = "signal.org";
+
   public static final Set<String> LINKS = new HashSet<>(Arrays.asList(
       "youtube.com",
       "www.youtube.com",
@@ -18,7 +20,10 @@ public class LinkPreviewDomains {
       "m.imgur.com",
       "instagram.com",
       "www.instagram.com",
-      "m.instagram.com"
+      "m.instagram.com",
+      "pinterest.com",
+      "www.pinterest.com",
+      "pin.it"
   ));
 
   public static final Set<String> IMAGES = new HashSet<>(Arrays.asList(
@@ -26,6 +31,8 @@ public class LinkPreviewDomains {
       "cdninstagram.com",
       "fbcdn.net",
       "redd.it",
-      "imgur.com"
+      "imgur.com",
+      "pinimg.com",
+      "giphy.com"
   ));
 }

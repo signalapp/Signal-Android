@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="6">
+    <bool name="groupChatDefaultsToMMS">false</bool>
+    <bool name="allowEnablingWapPushSI">false</bool>
+    <bool name="enableWapPushSI">true</bool>
+    <int name="maxMessageSize">614400</int>
+    <int name="maxImageHeight">1200</int>
+    <int name="maxImageWidth">1600</int>
+    <bool name="smsUsesSimpleCharactersOnly">true</bool>
+    <bool name="smsEncodingChangeable">true</bool>
+    <bool name="allowEditingSmscAddress">true</bool>
+</mms_config>

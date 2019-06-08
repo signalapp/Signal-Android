@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
@@ -33,16 +34,18 @@ import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.ControllableViewPager;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.SendButton;
-import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
+import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
+import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
+import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.scribbles.widget.ScribbleView;
+import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -50,6 +53,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -78,12 +82,13 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   private static final String KEY_LOCALE    = "locale";
 
   private InputAwareLayout  hud;
+  private View              captionAndRail;
   private SendButton        sendButton;
   private ComposeText       composeText;
   private ViewGroup         composeContainer;
   private EmojiEditText     captionText;
   private EmojiToggle       emojiToggle;
-  private Stub<EmojiDrawer> emojiDrawer;
+  private Stub<MediaKeyboard> emojiDrawer;
   private ViewGroup         playbackControlsContainer;
   private TextView          charactersLeft;
 
@@ -139,6 +144,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     hud                       = view.findViewById(R.id.mediasend_hud);
+    captionAndRail            = view.findViewById(R.id.mediasend_caption_and_rail);
     sendButton                = view.findViewById(R.id.mediasend_send_button);
     composeText               = view.findViewById(R.id.mediasend_compose_text);
     composeContainer          = view.findViewById(R.id.mediasend_compose_container);
@@ -177,7 +183,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     captionText.clearFocus();
     composeText.requestFocus();
 
-    fragmentPagerAdapter = new MediaSendFragmentPagerAdapter(getChildFragmentManager(), locale);
+    fragmentPagerAdapter = new MediaSendFragmentPagerAdapter(getChildFragmentManager());
     fragmentPager.setAdapter(fragmentPagerAdapter);
 
     FragmentPageChangeListener pageChangeListener = new FragmentPageChangeListener();
@@ -211,6 +217,11 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
                                     .or(Optional.fromNullable(recipient.getProfileName())
                                                 .or(recipient.getAddress().serialize()));
     composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
+    composeText.setOnEditorActionListener((v, actionId, event) -> {
+      boolean isSend = actionId == EditorInfo.IME_ACTION_SEND;
+      if (isSend) sendButton.performClick();
+      return isSend;
+    });
 
     if (TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
       emojiToggle.setVisibility(View.GONE);
@@ -307,7 +318,9 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   }
 
   public void onTouchEventsNeeded(boolean needed) {
-    fragmentPager.setEnabled(!needed);
+    if (fragmentPager != null) {
+      fragmentPager.setEnabled(!needed);
+    }
   }
 
   public boolean handleBackPress() {
@@ -389,8 +402,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   private void onEmojiToggleClicked(View v) {
     if (!emojiDrawer.resolved()) {
-      emojiToggle.attach(emojiDrawer.get());
-      emojiDrawer.get().setEmojiEventListener(new EmojiDrawer.EmojiEventListener() {
+      emojiDrawer.get().setProviders(0, new EmojiKeyboardProvider(requireContext(), new EmojiKeyboardProvider.EmojiEventListener() {
         @Override
         public void onKeyEvent(KeyEvent keyEvent) {
           getActiveInputField().dispatchKeyEvent(keyEvent);
@@ -400,7 +412,8 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
         public void onEmojiSelected(String emoji) {
           getActiveInputField().insertEmoji(emoji);
         }
-      });
+      }));
+      emojiToggle.attach(emojiDrawer.get());
     }
 
     if (hud.getCurrentInput() == emojiDrawer.get()) {
@@ -417,8 +430,11 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     for (Media media : mediaList) {
       Object state = savedState.get(media.getUri());
 
-      if (state instanceof ScribbleView.SavedState && !((ScribbleView.SavedState) state).isEmpty()) {
-        futures.put(media, ScribbleView.renderImage(requireContext(), media.getUri(), (ScribbleView.SavedState) state, GlideApp.with(this)));
+      if (state instanceof ImageEditorFragment.Data) {
+        EditorModel model = ((ImageEditorFragment.Data) state).readModel();
+        if (model != null && model.isChanged()) {
+          futures.put(media, render(requireContext(), model));
+        }
       }
     }
 
@@ -485,6 +501,18 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
         renderTimer.stop(TAG);
       }
     }.execute();
+  }
+
+  private static ListenableFuture<Bitmap> render(@NonNull Context context, @NonNull EditorModel model) {
+    SettableFuture<Bitmap> future = new SettableFuture<>();
+
+    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> future.set(model.render(context)));
+
+    return future;
+  }
+
+  public void onRequestFullScreen(boolean fullScreen) {
+    captionAndRail.setVisibility(fullScreen ? View.GONE : View.VISIBLE);
   }
 
   private class FragmentPageChangeListener extends ViewPager.SimpleOnPageChangeListener {

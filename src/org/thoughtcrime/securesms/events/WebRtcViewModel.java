@@ -117,7 +117,7 @@ public class WebRtcViewModel {
     return remoteRenderer;
   }
 
-  public String toString() {
+  public @NonNull String toString() {
     return "[State: " + state + ", recipient: " + recipient.getAddress() + ", identity: " + identityKey + ", remoteVideo: " + remoteVideoEnabled + ", localVideo: " + localCameraState.isEnabled() + "]";
   }
 }

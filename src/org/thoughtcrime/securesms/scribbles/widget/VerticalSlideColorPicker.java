@@ -172,6 +172,8 @@ public class VerticalSlideColorPicker extends View {
     viewWidth  = w;
     viewHeight = h;
 
+    if (viewWidth <= 0 || viewHeight <= 0) return;
+
     int barWidth = (int) (viewWidth * INDICATOR_TO_BAR_WIDTH_RATIO);
 
     centerX           = viewWidth / 2;

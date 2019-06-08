@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 3.3.2" client="gradle" variant="playRelease" version="3.3.2">
+
+    <issue
+        id="LintError"
+        message="Unexpected failure during lint analysis of JobManager.java (this is a bug in lint or one of the libraries it depends on)&#xA;&#xA;Stack: `NullPointerException:ClsFileImpl.getMirror(ClsFileImpl.java:343)←ClsElementImpl.getMirror(ClsElementImpl.java:159)←ClsElementImpl.getText(ClsElementImpl.java:202)←InferenceSession.argConstraints(InferenceSession.java:1817)←InferenceSession.isFunctionalTypeMoreSpecific(InferenceSession.java:1748)←InferenceSession.isFunctionalTypeMoreSpecificOnExpression(InferenceSession.java:1729)←JavaMethodsConflictResolver.isFunctionalTypeMoreSpecific(JavaMethodsConflictResolver.java:779)←JavaMethodsConflictResolver.isTypeMoreSpecific(JavaMethodsConflictResolver.java:673)`&#xA;&#xA;You can set environment variable `LINT_PRINT_STACKTRACE=true` to dump a full stacktrace to stdout.">
+        <location
+            file="src/org/thoughtcrime/securesms/jobmanager/JobManager.java"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        errorLine1="    List&lt;SubscriptionInfo> list = subscriptionManager.getActiveSubscriptionInfoList();"
+        errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/org/thoughtcrime/securesms/util/dualsim/SubscriptionManagerCompat.java"
+            line="101"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="ResourceType"
+        message="Expected resource of type styleable"
+        errorLine1="                drawables.getColor(1, 0xff000000);"
+        errorLine2="                                   ~">
+        <location
+            file="src/org/thoughtcrime/securesms/contacts/ContactSelectionListAdapter.java"
+            line="187"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="AppLinkUrlError"
+        message="Missing URL"
+        errorLine1="        &lt;intent-filter>"
+        errorLine2="        ^">
+        <location
+            file="AndroidManifest.xml"
+            line="368"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppLinkUrlError"
+        message="Missing URL"
+        errorLine1="        &lt;intent-filter>"
+        errorLine2="        ^">
+        <location
+            file="AndroidManifest.xml"
+            line="381"
+            column="9"/>
+    </issue>
+
+</issues>

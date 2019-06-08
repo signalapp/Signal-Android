@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="2dp"
+    android:layout_marginEnd="2dp"
     android:layout_marginBottom="2dp"
     android:animateLayoutChanges="true">
 
@@ -36,7 +36,7 @@
             android:layout_width="15dp"
             android:layout_height="18dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:tint="@color/core_blue"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/triangle_right" />

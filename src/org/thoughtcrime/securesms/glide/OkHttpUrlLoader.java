@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.glide;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.bumptech.glide.load.Options;
@@ -25,14 +26,13 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
     this.client = client;
   }
 
-  @Nullable
   @Override
-  public LoadData<InputStream> buildLoadData(GlideUrl glideUrl, int width, int height, Options options) {
+  public @Nullable LoadData<InputStream> buildLoadData(@NonNull GlideUrl glideUrl, int width, int height, @NonNull Options options) {
     return new LoadData<>(glideUrl, new OkHttpStreamFetcher(client, glideUrl));
   }
 
   @Override
-  public boolean handles(GlideUrl glideUrl) {
+  public boolean handles(@NonNull GlideUrl glideUrl) {
     return true;
   }
 
@@ -62,7 +62,7 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
     }
 
     @Override
-    public ModelLoader<GlideUrl, InputStream> build(MultiModelLoaderFactory multiFactory) {
+    public @NonNull ModelLoader<GlideUrl, InputStream> build(@NonNull MultiModelLoaderFactory multiFactory) {
       return new OkHttpUrlLoader(client);
     }
 
