@@ -197,7 +197,7 @@ public class DatabaseFactory {
     this.searchDatabase       = new SearchDatabase(context, databaseHelper);
     this.jobDatabase          = new JobDatabase(context, databaseHelper);
 
-    this.lokiAPIDatabase = new LokiAPIDatabase(TextSecurePreferences.getLocalNumber(context), context, databaseHelper);
+    this.lokiAPIDatabase = new LokiAPIDatabase(context, databaseHelper);
     this.lokiContactPreKeyDatabase = new LokiContactPreKeyDatabase(context, databaseHelper);
     this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
   }

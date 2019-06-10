@@ -4,10 +4,13 @@ import android.content.ContentValues
 import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
 
-class LokiAPIDatabase(private val userPublicKey: String, context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
+class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
+
+    private val userPublicKey get() = TextSecurePreferences.getLocalNumber(context)
 
     companion object {
         // Swarm cache
