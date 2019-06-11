@@ -36,8 +36,7 @@ public class RecentPhotosLoader extends CursorLoader {
   @Override
   public Cursor loadInBackground() {
     if (Permissions.hasAll(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-      return context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                                PROJECTION, null, null,
+      return context.getContentResolver().query(BASE_URL, PROJECTION, null, null,
                                                 MediaStore.Images.ImageColumns.DATE_MODIFIED + " DESC");
     } else {
       return null;
