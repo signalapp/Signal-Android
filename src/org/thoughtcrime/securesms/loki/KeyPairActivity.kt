@@ -93,6 +93,9 @@ class KeyPairActivity : BaseActionBarActivity() {
                 IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
         TextSecurePreferences.setPromptedPushRegistration(this, true)
+
+        // TODO: Configure P2P API
+
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
     }

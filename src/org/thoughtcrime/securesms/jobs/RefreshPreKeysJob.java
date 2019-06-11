@@ -54,8 +54,6 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    if (!TextSecurePreferences.isPushRegistered(context)) return;
-
     if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
       Log.i(TAG, "Already have a signed pre key registered.");
       return;
