@@ -29,15 +29,10 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
-import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.messaging.SignalMessageInfo;
 
 import java.io.IOException;
 
 import javax.inject.Inject;
-
-import kotlin.Unit;
 
 public class PushTextSendJob extends PushSendJob implements InjectableType {
 
@@ -93,11 +88,6 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       Recipient              recipient  = record.getRecipient().resolve();
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
-
-      String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-      SignalMessageInfo message = new SignalMessageInfo(SignalServiceProtos.Envelope.Type.FRIEND_REQUEST, System.currentTimeMillis(), hexEncodedPublicKey, 0, "stub", recipient.getAddress().serialize(), 4 * 24 * 60 * 60 * 1000, false);
-      LokiAPI api = new LokiAPI(hexEncodedPublicKey, DatabaseFactory.getLokiAPIDatabase(context));
-      api.sendSignalMessage(message, () -> Unit.INSTANCE);
 
       boolean unidentified = deliver(record);
 
