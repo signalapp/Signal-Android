@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.content.Context;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.gcm.FcmService;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
@@ -136,7 +137,10 @@ public class SignalCommunicationModule {
                                                           TextSecurePreferences.isMultiDevice(context),
                                                           Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
-                                                          Optional.of(new SecurityEventListener(context)));
+                                                          Optional.of(new SecurityEventListener(context)),
+                                                          TextSecurePreferences.getLocalNumber(context),
+                                                          0,
+                                                          DatabaseFactory.getLokiAPIDatabase(context));
 
       // Loki - Set the pre key bundle store
       // This is something that we MUST have or our Loki logic will fail
