@@ -735,7 +735,7 @@ public class WebRtcCallService extends Service implements InjectableType,
     DatabaseFactory.getSmsDatabase(this).insertReceivedCall(recipient.getAddress());
 
     this.peerConnection.setAudioEnabled(true);
-    this.peerConnection.setVideoEnabled(true);
+    this.peerConnection.setVideoEnabled(false);
     this.dataChannel.send(new DataChannel.Buffer(ByteBuffer.wrap(Data.newBuilder().setConnected(Connected.newBuilder().setId(this.callId)).build().toByteArray()), false));
 
     intent.putExtra(EXTRA_CALL_ID, callId);
