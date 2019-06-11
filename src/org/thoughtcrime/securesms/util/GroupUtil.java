@@ -73,7 +73,7 @@ public class GroupUtil {
                                             .setType(GroupContext.Type.QUIT)
                                             .build();
 
-    return Optional.of(new OutgoingGroupMediaMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, null, Collections.emptyList(), Collections.emptyList()));
+    return Optional.of(new OutgoingGroupMediaMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, 0, null, Collections.emptyList(), Collections.emptyList()));
   }
 
 

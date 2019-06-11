@@ -194,6 +194,13 @@ public class PushGroupSendJob extends PushSendJob {
                             .getExpiringMessageManager()
                             .scheduleDeletion(messageId, true, message.getExpiresIn());
         }
+
+        if (message.getRevealDuration() > 0) {
+          database.markRevealStarted(messageId);
+          ApplicationContext.getInstance(context)
+                            .getRevealableMessageManager()
+                            .scheduleIfNecessary();
+        }
       } else if (!networkFailures.isEmpty()) {
         throw new RetryLaterException();
       } else if (!identityMismatches.isEmpty()) {
@@ -262,6 +269,7 @@ public class PushGroupSendJob extends PushSendJob {
                                                                       .withAttachments(attachmentPointers)
                                                                       .withBody(message.getBody())
                                                                       .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                      .withMessageTimer((int)(message.getRevealDuration() / 1000))
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withProfileKey(profileKey.orNull())
                                                                       .withQuote(quote.orNull())

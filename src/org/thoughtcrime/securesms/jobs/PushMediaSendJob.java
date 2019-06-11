@@ -159,6 +159,13 @@ public class PushMediaSendJob extends PushSendJob {
         expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
       }
 
+      if (message.getRevealDuration() > 0) {
+        database.markRevealStarted(messageId);
+        ApplicationContext.getInstance(context)
+                          .getRevealableMessageManager()
+                          .scheduleIfNecessary();
+      }
+
       log(TAG, "Sent message: " + messageId);
 
     } catch (InsecureFallbackApprovalException ifae) {
@@ -210,6 +217,7 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                             .withAttachments(serviceAttachments)
                                                                                             .withTimestamp(message.getSentTimeMillis())
                                                                                             .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                                            .withMessageTimer((int) message.getRevealDuration() / 1000)
                                                                                             .withProfileKey(profileKey.orNull())
                                                                                             .withQuote(quote.orNull())
                                                                                             .withSticker(sticker.orNull())

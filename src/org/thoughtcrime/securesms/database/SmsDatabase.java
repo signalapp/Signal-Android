@@ -221,6 +221,10 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.UNSUPPORTED_MESSAGE_TYPE);
   }
 
+  public void markAsInvalidMessage(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.INVALID_MESSAGE_TYPE);
+  }
+
   public void markAsLegacyVersion(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT);
   }
@@ -883,7 +887,8 @@ public class SmsDatabase extends MessagingDatabase {
                                   addressDeviceId,
                                   dateSent, dateReceived, deliveryReceiptCount, type,
                                   threadId, status, mismatches, subscriptionId,
-                                  expiresIn, expireStarted, readReceiptCount, unidentified);
+                                  expiresIn, expireStarted,
+                                  readReceiptCount, unidentified);
     }
 
     private List<IdentityKeyMismatch> getMismatches(String document) {

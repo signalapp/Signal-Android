@@ -639,6 +639,11 @@
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Enter the code we sent to %s</string>
     <string name="RegistrationActivity_call">Call</string>
 
+    <!-- RevealableMessageView -->
+    <string name="RevealableMessageView_view_photo">View Photo</string>
+    <string name="RevealableMessageView_viewed">Viewed</string>
+    <string name="RevealableMessageView_photo">Photo</string>
+
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
 
@@ -677,6 +682,7 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%s reset the secure session.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
     <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">This message could not be processed because it was sent from a newer version of Signal. You can ask your contact to send this message again after you update.</string>
+    <string name="SmsMessageRecord_error_handling_incoming_message">Error handling incoming message</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Stickers</string>
@@ -707,6 +713,8 @@
     <string name="ThreadRecord_called_you">Called you</string>
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
+    <string name="ThreadRecord_sticker">Sticker</string>
+    <string name="ThreadRecord_disappearing_photo">Disappearing photo</string>
     <string name="ThreadRecord_s_is_on_signal">%s is on Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
@@ -794,6 +802,7 @@
     <string name="MessageNotifier_mark_read">Mark read</string>
     <string name="MessageNotifier_media_message">Media message</string>
     <string name="MessageNotifier_sticker">Sticker</string>
+    <string name="MessageNotifier_disappearing_photo">Disappearing photo</string>
     <string name="MessageNotifier_reply">Reply</string>
     <string name="MessageNotifier_signal_message">Signal Message</string>
     <string name="MessageNotifier_unsecured_sms">Unsecured SMS</string>

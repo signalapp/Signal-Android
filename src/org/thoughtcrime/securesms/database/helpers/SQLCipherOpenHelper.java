@@ -66,8 +66,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int RECIPIENT_FORCE_SMS_SELECTION    = 19;
   private static final int JOBMANAGER_STRIKES_BACK          = 20;
   private static final int STICKERS                         = 21;
+  private static final int REVEALABLE_MESSAGES              = 22;
 
-  private static final int    DATABASE_VERSION = 21;
+  private static final int    DATABASE_VERSION = 22;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -460,6 +461,14 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL("ALTER TABLE part ADD COLUMN sticker_pack_key TEXT");
         db.execSQL("ALTER TABLE part ADD COLUMN sticker_id INTEGER DEFAULT -1");
         db.execSQL("CREATE INDEX IF NOT EXISTS part_sticker_pack_id_index ON part (sticker_pack_id)");
+      }
+
+      if (oldVersion < REVEALABLE_MESSAGES) {
+        db.execSQL("ALTER TABLE mms ADD COLUMN reveal_duration INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN reveal_start_time INTEGER DEFAULT 0");
+
+        db.execSQL("ALTER TABLE thread ADD COLUMN snippet_content_type TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE thread ADD COLUMN snippet_extras TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

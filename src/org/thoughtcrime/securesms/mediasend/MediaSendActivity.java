@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
-import org.thoughtcrime.securesms.mediasend.MediaSendViewModel.TimerState;
+import org.thoughtcrime.securesms.mediasend.MediaSendViewModel.RevealState;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -122,6 +122,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private ViewGroup           composeContainer;
   private ViewGroup           countButton;
   private TextView            countButtonText;
+  private ImageView           revealButton;
   private EmojiEditText       captionText;
   private EmojiToggle         emojiToggle;
   private Stub<MediaKeyboard> emojiDrawer;
@@ -191,6 +192,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     composeContainer    = findViewById(R.id.mediasend_compose_container);
     countButton         = findViewById(R.id.mediasend_count_button);
     countButtonText     = findViewById(R.id.mediasend_count_button_text);
+    revealButton        = findViewById(R.id.mediasend_reveal_toggle);
     captionText         = findViewById(R.id.mediasend_caption);
     emojiToggle         = findViewById(R.id.mediasend_emoji_toggle);
     charactersLeft      = findViewById(R.id.mediasend_characters_left);
@@ -289,6 +291,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                    .or(recipient.getAddress().serialize()));
       composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
     }
+
     composeText.setOnEditorActionListener((v, actionId, event) -> {
       boolean isSend = actionId == EditorInfo.IME_ACTION_SEND;
       if (isSend) sendButton.performClick();
@@ -302,6 +305,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     }
 
     initViewModel();
+
+    revealButton.setOnClickListener(v -> viewModel.onRevealButtonToggled());
   }
 
   @Override
@@ -512,14 +517,14 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       if (state == null) return;
 
       hud.setVisibility(state.isHudVisible() ? View.VISIBLE : View.GONE);
-      composeContainer.setVisibility(state.isComposeVisible() ? View.VISIBLE : (state.getTimerState() == TimerState.GONE ? View.GONE : View.INVISIBLE));
+      composeContainer.setVisibility(state.isComposeVisible() ? View.VISIBLE : (state.getRevealState() == RevealState.GONE ? View.GONE : View.INVISIBLE));
       captionText.setVisibility(state.isCaptionVisible() ? View.VISIBLE : View.GONE);
 
       int captionBackground;
 
       if (state.getRailState() == MediaSendViewModel.RailState.VIEWABLE) {
         captionBackground = R.color.core_grey_90;
-      } else if (state.getTimerState() == TimerState.ENABLED) {
+      } else if (state.getRevealState() == RevealState.ENABLED) {
         captionBackground = 0;
       } else {
         captionBackground = R.color.transparent_black_70;
@@ -540,6 +545,20 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         case GONE:
           sendButtonContainer.setVisibility(View.GONE);
           countButton.setVisibility(View.GONE);
+          break;
+      }
+
+      switch (state.getRevealState()) {
+        case ENABLED:
+          revealButton.setVisibility(View.VISIBLE);
+          revealButton.setImageResource(R.drawable.ic_view_once_32);
+          break;
+        case DISABLED:
+          revealButton.setVisibility(View.VISIBLE);
+          revealButton.setImageResource(R.drawable.ic_view_infinite_32);
+          break;
+        case GONE:
+          revealButton.setVisibility(View.GONE);
           break;
       }
 

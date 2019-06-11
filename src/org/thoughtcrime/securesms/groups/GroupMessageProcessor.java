@@ -212,7 +212,7 @@ public class GroupMessageProcessor {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
         Address                   addres          = Address.fromExternal(context, GroupUtil.getEncodedId(group.getGroupId(), false));
         Recipient                 recipient       = Recipient.from(context, addres, false);
-        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, null, Collections.emptyList(), Collections.emptyList());
+        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, 0, null, Collections.emptyList(), Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
         long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
@@ -222,7 +222,7 @@ public class GroupMessageProcessor {
       } else {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage  incoming     = new IncomingTextMessage(Address.fromExternal(context, content.getSender()), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(group), 0, content.isNeedsReceipt());
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Address.fromExternal(context, content.getSender()), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(group), 0, 0, content.isNeedsReceipt());
         IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
+import org.thoughtcrime.securesms.revealable.RevealableMessageManager;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
@@ -90,12 +91,13 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
-  private ExpiringMessageManager  expiringMessageManager;
-  private TypingStatusRepository  typingStatusRepository;
-  private TypingStatusSender      typingStatusSender;
-  private JobManager              jobManager;
-  private IncomingMessageObserver incomingMessageObserver;
-  private PersistentLogger        persistentLogger;
+  private ExpiringMessageManager   expiringMessageManager;
+  private RevealableMessageManager revealableMessageManager;
+  private TypingStatusRepository   typingStatusRepository;
+  private TypingStatusSender       typingStatusSender;
+  private JobManager               jobManager;
+  private IncomingMessageObserver  incomingMessageObserver;
+  private PersistentLogger         persistentLogger;
 
   private volatile boolean isAppVisible;
 
@@ -114,6 +116,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeJobManager();
     initializeMessageRetrieval();
     initializeExpiringMessageManager();
+    initializeRevealableMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
     initializeGcmCheck();
@@ -152,6 +155,10 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   public ExpiringMessageManager getExpiringMessageManager() {
     return expiringMessageManager;
+  }
+
+  public RevealableMessageManager getRevealableMessageManager() {
+    return revealableMessageManager;
   }
 
   public TypingStatusRepository getTypingStatusRepository() {
@@ -242,6 +249,10 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   private void initializeExpiringMessageManager() {
     this.expiringMessageManager = new ExpiringMessageManager(this);
+  }
+
+  private void initializeRevealableMessageManager() {
+    this.revealableMessageManager = new RevealableMessageManager(this);
   }
 
   private void initializeTypingStatusRepository() {

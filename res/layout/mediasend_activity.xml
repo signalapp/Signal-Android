@@ -60,6 +60,15 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="12dp"
                 android:orientation="horizontal">
+                
+                <ImageView
+                    android:id="@+id/mediasend_reveal_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_gravity="bottom"
+                    tools:src="@drawable/ic_view_infinite_32" />
 
                 <LinearLayout
                     android:id="@+id/mediasend_compose_container"

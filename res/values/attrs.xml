@@ -94,6 +94,7 @@
     <attr name="conversation_item_sticky_date_background" format="reference" />
     <attr name="conversation_item_sticky_date_text_color" format="color" />
     <attr name="conversation_item_image_outline_color" format="color" />
+    <attr name="conversation_item_reveal_viewed_background_color" format="color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -346,5 +347,10 @@
         <attr name="labeledEditText_label" format="string" />
         <attr name="labeledEditText_background" format="color" />
         <attr name="labeledEditText_textLayout" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RevealableMessageView">
+        <attr name="revealable_unopenedForegroundColor" format="color" />
+        <attr name="revealable_openedForegroundColor" format="color" />
     </declare-styleable>
 </resources>
