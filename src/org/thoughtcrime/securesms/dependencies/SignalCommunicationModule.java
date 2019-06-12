@@ -140,11 +140,8 @@ public class SignalCommunicationModule {
                                                           Optional.of(new SecurityEventListener(context)),
                                                           TextSecurePreferences.getLocalNumber(context),
                                                           0,
-                                                          DatabaseFactory.getLokiAPIDatabase(context));
-
-      // Loki - Set the pre key bundle store
-      // This is something that we MUST have or our Loki logic will fail
-      this.messageSender.setPreKeyBundleStore(new LokiPreKeyBundleStore(context));
+                                                          DatabaseFactory.getLokiAPIDatabase(context),
+                                                          new LokiPreKeyBundleStore(context));
     } else {
       this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
       this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));
