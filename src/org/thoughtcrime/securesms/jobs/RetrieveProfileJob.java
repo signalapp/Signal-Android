@@ -33,7 +33,6 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.List;
@@ -50,7 +49,7 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
 
   @Inject SignalServiceMessageReceiver receiver;
 
-  private Recipient recipient;
+  private final Recipient recipient;
 
   public RetrieveProfileJob(@NonNull Recipient recipient) {
     this(new Job.Parameters.Builder()
@@ -76,13 +75,9 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public void onRun() throws IOException, InvalidKeyException {
-    try {
-      if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
-      else                              handleIndividualRecipient(recipient);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-    }
+  public void onRun() throws IOException {
+    if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
+    else                              handleIndividualRecipient(recipient);
   }
 
   @Override
@@ -93,9 +88,12 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
   @Override
   public void onCanceled() {}
 
-  private void handleIndividualRecipient(Recipient recipient)
-      throws IOException, InvalidKeyException, InvalidNumberException
-  {
+  private void handleIndividualRecipient(Recipient recipient) throws IOException {
+     if (recipient.getAddress().isPhone()) handlePhoneNumberRecipient(recipient);
+     else                                  Log.w(TAG, "Skipping fetching profile of non-phone recipient");
+  }
+
+  private void handlePhoneNumberRecipient(Recipient recipient) throws IOException {
     String                       number             = recipient.getAddress().toPhoneString();
     Optional<UnidentifiedAccess> unidentifiedAccess = getUnidentifiedAccess(recipient);
 
@@ -117,9 +115,7 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
   }
 
-  private void handleGroupRecipient(Recipient group)
-      throws IOException, InvalidKeyException, InvalidNumberException
-  {
+  private void handleGroupRecipient(Recipient group) throws IOException {
     List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(group.getAddress().toGroupString(), false);
 
     for (Recipient recipient : recipients) {
