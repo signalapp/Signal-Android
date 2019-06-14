@@ -306,19 +306,19 @@ public class ConversationFragment extends Fragment
       }
 
       if (recipients.size() > 0) {
-        if (adapter.getHeaderView() == null && isAtBottom()) {
+        if (!isTypingIndicatorShowing() && isAtBottom()) {
           list.setVerticalScrollBarEnabled(false);
           list.post(() -> getListLayoutManager().smoothScrollToPosition(requireContext(), 0, 250));
           list.postDelayed(() -> list.setVerticalScrollBarEnabled(true), 300);
           adapter.setHeaderView(typingView);
           adapter.notifyItemInserted(0);
         } else {
-          if (adapter.getHeaderView() == null) {
-            adapter.setHeaderView(typingView);
-            adapter.notifyItemInserted(0);
-          } else  {
+          if (isTypingIndicatorShowing()) {
             adapter.setHeaderView(typingView);
             adapter.notifyItemChanged(0);
+          } else {
+            adapter.setHeaderView(typingView);
+            adapter.notifyItemInserted(0);
           }
         }
       } else {
@@ -677,7 +677,7 @@ public class ConversationFragment extends Fragment
 
     int lastSeenPosition = adapter.findLastSeenPosition(lastSeen);
 
-    if (adapter.getHeaderView() == typingView) {
+    if (isTypingIndicatorShowing()) {
       lastSeenPosition = Math.max(lastSeenPosition - 1, 0);
     }
 
@@ -765,12 +765,16 @@ public class ConversationFragment extends Fragment
 
     int firstVisiblePosition = getListLayoutManager().findFirstVisibleItemPosition();
 
-    if (getListAdapter().getHeaderView() == typingView) {
+    if (isTypingIndicatorShowing()) {
       RecyclerView.ViewHolder item1 = list.findViewHolderForAdapterPosition(1);
       return firstVisiblePosition <= 1 && item1 != null && item1.itemView.getBottom() <= list.getHeight();
     }
 
     return firstVisiblePosition == 0 && list.getChildAt(0).getBottom() <= list.getHeight();
+  }
+
+  private boolean isTypingIndicatorShowing() {
+    return getListAdapter().getHeaderView() == typingView;
   }
 
   public void onSearchQueryUpdated(@Nullable String query) {
@@ -783,7 +787,7 @@ public class ConversationFragment extends Fragment
     SimpleTask.run(getLifecycle(), () -> {
       return DatabaseFactory.getMmsSmsDatabase(getContext())
                             .getMessagePositionInConversation(threadId, timestamp, author);
-    }, p -> moveToMessagePosition(p, onMessageNotFound));
+    }, p -> moveToMessagePosition(p + (isTypingIndicatorShowing() ? 1 : 0), onMessageNotFound));
   }
 
   private void moveToMessagePosition(int position, @Nullable Runnable onMessageNotFound) {
@@ -928,7 +932,7 @@ public class ConversationFragment extends Fragment
                               .getQuotedMessagePosition(threadId,
                                                         messageRecord.getQuote().getId(),
                                                         messageRecord.getQuote().getAuthor());
-      }, p -> moveToMessagePosition(p, () -> {
+      }, p -> moveToMessagePosition(p + (isTypingIndicatorShowing() ? 1 : 0), () -> {
         Toast.makeText(getContext(), R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT).show();
       }));
     }
