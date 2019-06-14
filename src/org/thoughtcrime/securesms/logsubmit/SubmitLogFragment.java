@@ -466,11 +466,11 @@ public class SubmitLogFragment extends Fragment {
   }
 
   public static String getMemoryUsage(Context context) {
-    Runtime info = Runtime.getRuntime();
-    info.totalMemory();
+    Runtime info        = Runtime.getRuntime();
+    long    totalMemory = info.totalMemory();
     return String.format(Locale.ENGLISH, "%dM (%.2f%% free, %dM max)",
-                         asMegs(info.totalMemory()),
-                         (float)info.freeMemory() / info.totalMemory() * 100f,
+                         asMegs(totalMemory),
+                         (float)info.freeMemory() / totalMemory * 100f,
                          asMegs(info.maxMemory()));
   }
 
