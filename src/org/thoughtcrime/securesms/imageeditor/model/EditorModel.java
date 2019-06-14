@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;
 import org.thoughtcrime.securesms.imageeditor.UndoRedoStackListener;
+import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -88,9 +89,30 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
    * Child nodes are supplied with a viewModelMatrix' = viewModelMatrix * matrix * editorMatrix
    *
    * @param rendererContext Canvas to draw on to.
+   * @param renderOnTop     This element will appear on top of the overlay.
    */
-  public void draw(@NonNull RendererContext rendererContext) {
-    editorElementHierarchy.getRoot().draw(rendererContext);
+  public void draw(@NonNull RendererContext rendererContext, @Nullable EditorElement renderOnTop) {
+    EditorElement root = editorElementHierarchy.getRoot();
+    if (renderOnTop != null) {
+      root.forAllInTree(element -> element.getFlags().mark());
+
+      renderOnTop.getFlags().setVisible(false);
+    }
+
+    // pass 1
+    root.draw(rendererContext);
+
+    if (renderOnTop != null) {
+      // hide all
+      try {
+        root.forAllInTree(element -> element.getFlags().setVisible(renderOnTop == element));
+
+        // pass 2
+        root.draw(rendererContext);
+      } finally {
+        root.forAllInTree(element -> element.getFlags().restore());
+      }
+    }
   }
 
   public @Nullable Matrix findElementInverseMatrix(@NonNull EditorElement element, @NonNull Matrix viewMatrix) {
@@ -676,25 +698,22 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   }
 
   /**
-   * Changes the temporary view so that the element is centered in it.
+   * Changes the temporary view so that the text element is centered in it.
    *
-   * @param entity Entity to center on.
-   * @param y      An optional extra value to translate the view by to leave space for the keyboard for example.
-   * @param doNotZoomOut Iff true, undoes any zoom out
+   * @param entity       Entity to center on.
+   * @param textRenderer The text renderer, which can make additional adjustments to the zoom matrix
+   *                     to leave space for the keyboard for example.
    */
-  public void zoomTo(@NonNull EditorElement entity, float y, boolean doNotZoomOut) {
+  public void zoomToTextElement(@NonNull EditorElement entity, @NonNull MultiLineTextRenderer textRenderer) {
     Matrix elementInverseMatrix = findElementInverseMatrix(entity, new Matrix());
     if (elementInverseMatrix != null) {
-      elementInverseMatrix.preConcat(editorElementHierarchy.getRoot().getEditorMatrix());
+      EditorElement root = editorElementHierarchy.getRoot();
 
-      float xScale = EditorElementHierarchy.xScale(elementInverseMatrix);
-      if (doNotZoomOut && xScale < 1) {
-        elementInverseMatrix.postScale(1 / xScale, 1 / xScale);
-      }
+      elementInverseMatrix.preConcat(root.getEditorMatrix());
 
-      elementInverseMatrix.postTranslate(0, y);
+      textRenderer.applyRecommendedEditorMatrix(elementInverseMatrix);
 
-      editorElementHierarchy.getRoot().animateEditorTo(elementInverseMatrix, invalidate);
+      root.animateEditorTo(elementInverseMatrix, invalidate);
     }
   }
 

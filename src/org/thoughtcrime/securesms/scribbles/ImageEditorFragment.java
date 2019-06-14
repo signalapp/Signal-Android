@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.imageeditor.ImageEditorView;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
-import org.thoughtcrime.securesms.imageeditor.renderers.TextRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -213,10 +213,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   protected void addText() {
-    String        initialText = "";
-    int           color       = imageEditorHud.getActiveColor();
-    TextRenderer  renderer    = new TextRenderer(initialText, color);
-    EditorElement element     = new EditorElement(renderer);
+    String                initialText = "";
+    int                   color       = imageEditorHud.getActiveColor();
+    MultiLineTextRenderer renderer    = new MultiLineTextRenderer(initialText, color);
+    EditorElement         element     = new EditorElement(renderer);
 
     imageEditorView.getModel().addElementCentered(element, 1);
     imageEditorView.invalidate();
@@ -346,7 +346,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
      public void onEntitySingleTap(@Nullable EditorElement editorElement) {
        currentSelection = editorElement;
        if (currentSelection != null) {
-         if (editorElement.getRenderer() instanceof TextRenderer) {
+         if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
            setTextElement(editorElement, (ColorableRenderer) editorElement.getRenderer(), imageEditorView.isTextEditing());
          } else {
            imageEditorHud.enterMode(ImageEditorHud.Mode.MOVE_DELETE);
@@ -357,7 +357,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
      @Override
       public void onEntityDoubleTap(@NonNull EditorElement editorElement) {
         currentSelection = editorElement;
-        if (editorElement.getRenderer() instanceof TextRenderer) {
+        if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
           setTextElement(editorElement, (ColorableRenderer) editorElement.getRenderer(), true);
         }
       }

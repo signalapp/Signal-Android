@@ -19,6 +19,7 @@ public final class EditorFlags {
   private static final int EDITABLE         = 32;
 
   private int flags;
+  private int markedFlags;
   private int persistedFlags;
 
   EditorFlags() {
@@ -114,6 +115,14 @@ public final class EditorFlags {
 
   void restoreState(int flags) {
     this.flags = flags;
+  }
+
+  void mark() {
+    markedFlags = flags;
+  }
+
+  void restore() {
+    flags = markedFlags;
   }
 
   public void set(@NonNull EditorFlags from) {
