@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiContactPreKeyDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
+import org.thoughtcrime.securesms.loki.LokiSmsFriendRequestDatabase;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DatabaseFactory {
@@ -66,6 +67,7 @@ public class DatabaseFactory {
   private final LokiAPIDatabase lokiAPIDatabase;
   private final LokiContactPreKeyDatabase lokiContactPreKeyDatabase;
   private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
+  private final LokiSmsFriendRequestDatabase lokiSmsFriendRequestDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -164,6 +166,10 @@ public class DatabaseFactory {
   public static LokiPreKeyBundleDatabase getLokiPreKeyBundleDatabase(Context context) {
     return getInstance(context).lokiPreKeyBundleDatabase;
   }
+
+  public static  LokiSmsFriendRequestDatabase getLokiSmsFriendRequestDatabase(Context context) {
+    return getInstance(context).lokiSmsFriendRequestDatabase;
+  }
   // endregion
 
   public static void upgradeRestored(Context context, SQLiteDatabase database){
@@ -200,6 +206,7 @@ public class DatabaseFactory {
     this.lokiAPIDatabase = new LokiAPIDatabase(context, databaseHelper);
     this.lokiContactPreKeyDatabase = new LokiContactPreKeyDatabase(context, databaseHelper);
     this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
+    this.lokiSmsFriendRequestDatabase = new LokiSmsFriendRequestDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,
