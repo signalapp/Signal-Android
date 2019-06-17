@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Ĉu forviŝi profilan foton?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Neniu retumilo trovita.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ĉela alvoko jam estas okazanta.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Via sekuriga numero kun %1$s ŝanĝiĝis. Tio povas aŭ signifi, ke iu provas interkapti viajn komunikojn, aŭ ke %2$s simple reinstalis Signal-on.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vi eble volas kontroli vian sekurigan numeron kun ĉi tiu kontakto.</string>
@@ -161,6 +162,8 @@
   <string name="ConversationActivity_no">Ne</string>
   <string name="ConversationActivity_search_position">%1$d el %2$d</string>
   <string name="ConversationActivity_no_results">Neniu rezulto</string>
+  <string name="ConversationActivity_sticker_pack_installed">Glumarkaro instaliĝis</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Nove! Parolu per glumarkoj</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nelegita mesaĝo</item>
@@ -556,6 +559,7 @@
   <string name="SharedContactView_message">Signal-mesaĝo</string>
   <!--Slide-->
   <string name="Slide_image">Bildo</string>
+  <string name="Slide_sticker">Glumarko</string>
   <string name="Slide_audio">Sonaĵo</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -568,6 +572,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SmsMessageRecord_secure_session_reset">Vi restarigis la sekuran seancon.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s restarigis la sekuran seancon.</string>
   <string name="SmsMessageRecord_duplicate_message">Duobla mesaĝo.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Tiu ĉi mesaĝo ne montreblas, ĉar ĝin sendis nova versio de Signal. Vi povos peti al via kontakto resendi tiun ĉi mesaĝon, post kiam vi ĝisdatigos vian aplikaĵon.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Glumarkoj</string>
   <!--StickerManagementAdapter-->
@@ -576,12 +581,15 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="StickerManagementAdapter_signal_artist_series">Artista serio de Signal</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Neniu glumarkaro instalita</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Glumarkoj el envenaj mesaĝoj aperos ĉi tie</string>
+  <string name="StickerManagementAdapter_untitled">Sentitola</string>
   <string name="StickerManagementAdapter_unknown">Nekonata</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Sentitola</string>
   <string name="StickerPackPreviewActivity_unknown">Nekonata</string>
   <string name="StickerPackPreviewActivity_install">Instali</string>
   <string name="StickerPackPreviewActivity_remove">Forviŝi</string>
   <string name="StickerPackPreviewActivity_stickers">Glumarkoj</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Malsukcesis ŝargi glumarkaron</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo ĝisdatigita</string>
   <string name="ThreadRecord_left_the_group">Forlasis la grupon</string>
@@ -598,6 +606,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Via sekuriga numero kun %s ŝanĝiĝis.</string>
   <string name="ThreadRecord_you_marked_verified">Vi markis kiel konfirmita</string>
   <string name="ThreadRecord_you_marked_unverified">Vi markis kiel nekonfirmita</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Mesaĝo ne montreblas</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Ĝisdatigo de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova versio de Signal disponeblas, tuŝetu por ĝisdatigi</string>
@@ -663,6 +672,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_mark_all_as_read">Marki ĉiujn legitaj</string>
   <string name="MessageNotifier_mark_read">Marki legita</string>
   <string name="MessageNotifier_media_message">Aŭdvida mesaĝo</string>
+  <string name="MessageNotifier_sticker">Glumarko</string>
   <string name="MessageNotifier_reply">Respondi</string>
   <string name="MessageNotifier_signal_message">Signal-mesaĝo</string>
   <string name="MessageNotifier_unsecured_sms">Nesekura SMS</string>
@@ -785,6 +795,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QuoteView_audio">Sonaĵo</string>
   <string name="QuoteView_video">Videaĵo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Glumarko</string>
   <string name="QuoteView_document">Dokumento</string>
   <string name="QuoteView_you">Vi</string>
   <string name="QuoteView_original_missing">Origina mesaĝo ne troveblas</string>

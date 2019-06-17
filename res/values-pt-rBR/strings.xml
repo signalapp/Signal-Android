@@ -6,7 +6,7 @@
   <string name="delete">Excluir</string>
   <string name="please_wait">Aguarde...</string>
   <string name="save">Salvar</string>
-  <string name="note_to_self">Recado pra mim</string>
+  <string name="note_to_self">Nota para mim</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
   <!--AlbumThumbnailView-->
@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Remover foto do perfil?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenhum navegador encontrado.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Uma chamada já está em andamento.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Seu número de segurança com %1$s mudou. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
@@ -162,6 +163,7 @@
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Nenhum resultado</string>
   <string name="ConversationActivity_sticker_pack_installed">Pacote de figurinhas instalado</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Use os novos stickers!</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -571,6 +573,7 @@
   <string name="SmsMessageRecord_secure_session_reset">Você reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Essa mensagem não pôde ser processada porque foi enviada de uma versão mais recente do Signal. Peça ao seu contato para enviar outra mensagem após a atualização.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Figurinhas</string>
   <!--StickerManagementAdapter-->
@@ -579,12 +582,15 @@
   <string name="StickerManagementAdapter_signal_artist_series">Série Signal Artist</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Nenhuma figurinha instalada</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Figurinhas de mensagens recebidas aparecerão aqui</string>
+  <string name="StickerManagementAdapter_untitled">Sem título</string>
   <string name="StickerManagementAdapter_unknown">Desconhecida</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Sem título</string>
   <string name="StickerPackPreviewActivity_unknown">Desconhecida</string>
   <string name="StickerPackPreviewActivity_install">Instalar</string>
   <string name="StickerPackPreviewActivity_remove">Remover</string>
   <string name="StickerPackPreviewActivity_stickers">Figurinhas</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Falha ao carregar o pacote de stickers</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo atualizado</string>
   <string name="ThreadRecord_left_the_group">Você saiu do grupo</string>
@@ -601,6 +607,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <string name="ThreadRecord_you_marked_verified">Você marcou como verificado</string>
   <string name="ThreadRecord_you_marked_unverified">Você marcou como não verificado</string>
+  <string name="ThreadRecord_message_could_not_be_processed">A mensagem não pôde ser processada</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, clique para atualizar.</string>
@@ -1302,7 +1309,7 @@
   <string name="RegistrationActivity_registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de telefone está com o Bloqueio de Cadastro ativo. Por favor, insira o PIN de Desbloqueio de Cadastro.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">O Bloqueio de Cadastro está ativo para seu número de telefone. Para ajudar você a memorizar seu PIN de Desbloqueio de Cadastro, o Signal pedirá que o confirme periodicamente.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Eu esqueci meu PIN.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Bloqueio de Cadastro ajuda a proteger seu número de telefone de tentativas de cadastro não autorizadas. Esse recurso pode ser desativado a qualquer instante nas configurações de privacidade do Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">Bloqueio de Cadastro</string>

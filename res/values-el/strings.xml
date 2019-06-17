@@ -6,7 +6,7 @@
   <string name="delete">Διαγραφή</string>
   <string name="please_wait">Παρακαλώ περιμένετε...</string>
   <string name="save">Αποθήκευση</string>
-  <string name="note_to_self">Να μην ξεχάσω </string>
+  <string name="note_to_self">Μήνυμα σε εμένα</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Νέο μήνυμα</string>
   <!--AlbumThumbnailView-->
@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Αφαίρεση φωτογραφίας προφίλ?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε web browser.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Μια τηλεφωνική κλήση είναι ήδη σε εξέλιξη.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας σας με τον/την %1$s άλλαξε. Είτε κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, είτε ο/η %2$s απλά επανεγκατέστησε το Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Προτείνουμε να επιβεβαιώσετε τον αριθμό ασφαλείας σας με αυτή την επαφή.</string>
@@ -161,6 +162,8 @@
   <string name="ConversationActivity_no">Όχι</string>
   <string name="ConversationActivity_search_position">%1$dαπό%2$d</string>
   <string name="ConversationActivity_no_results">Δεν υπάρχουν αποτελέσματα</string>
+  <string name="ConversationActivity_sticker_pack_installed">Το πακέτο αυτοκολλήτων εγκαταστάθηκε</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Νέο! Πες το με αυτοκόλλητα</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d μη αναγνωσμένο μήνυμα</item>
@@ -552,6 +555,7 @@
   <string name="SharedContactView_message">Μήνυμα Signal</string>
   <!--Slide-->
   <string name="Slide_image">Εικόνα</string>
+  <string name="Slide_sticker">Αυτοκόλλητο</string>
   <string name="Slide_audio">Ήχος</string>
   <string name="Slide_video">Βίντεο</string>
   <!--SmsMessageRecord-->
@@ -564,14 +568,24 @@
   <string name="SmsMessageRecord_secure_session_reset">Επανεκκινήσατε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">Ο/Η %s επανεκκίνησε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Αυτό το μήνυμα δεν μπόρεσε να επεξεργαστεί γιατί στάλθηκε από νεότερη έκδοση του Signal. Μπορείτε να ζητήσετε από την επαφή να σας ξαναστείλει το μήνυμα, αφού την αναβαθμίσετε.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Αυτοκόλλητα</string>
   <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Εγκατεστημένα αυτοκόλλητα</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Αυτοκόλλητα που έχετε λάβει</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Σειρά καλλιτεχνών Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Δεν έχουν εγκατασταθεί αυτοκόλλητα</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Αυτοκόλλητα από εισερχόμενα μηνύματα θα εμφανίζονται εδώ</string>
+  <string name="StickerManagementAdapter_untitled">Χωρίς τίτλο</string>
   <string name="StickerManagementAdapter_unknown">Άγνωστο</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Χωρίς τίτλο</string>
   <string name="StickerPackPreviewActivity_unknown">Άγνωστο</string>
+  <string name="StickerPackPreviewActivity_install">Εγκατάσταση</string>
   <string name="StickerPackPreviewActivity_remove">Αφαίρεση</string>
   <string name="StickerPackPreviewActivity_stickers">Αυτοκόλλητα</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Αποτυχία φόρτωσης του πακέτου αυτοκολλήτων</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Η ομάδα ενημερώθηκε</string>
   <string name="ThreadRecord_left_the_group">Έφυγες από την ομάδα</string>
@@ -588,6 +602,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>
   <string name="ThreadRecord_you_marked_verified">Σημειώσατε ως επιβεβαιωμένο</string>
   <string name="ThreadRecord_you_marked_unverified">Σημειώσατε ως μη επιβεβαιωμένο</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Αποτυχία επεξεργασίας μηνύματος</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Μια νέα έκδοση του Signal είναι διαθέσιμη, πατήστε για αναβάθμιση</string>
@@ -653,6 +668,7 @@
   <string name="MessageNotifier_mark_all_as_read">Σημείωση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_mark_read">Σημείωση ως αναγνωσμένο</string>
   <string name="MessageNotifier_media_message">Μήνυμα πολυμέσων</string>
+  <string name="MessageNotifier_sticker">Αυτοκόλλητο</string>
   <string name="MessageNotifier_reply">Απάντηση</string>
   <string name="MessageNotifier_signal_message">Μήνυμα Signal</string>
   <string name="MessageNotifier_unsecured_sms">Μη ασφαλές SMS</string>
@@ -775,6 +791,7 @@
   <string name="QuoteView_audio">Ήχος</string>
   <string name="QuoteView_video">Βίντεο</string>
   <string name="QuoteView_photo">Φωτογραφία</string>
+  <string name="QuoteView_sticker">Αυτοκόλλητο</string>
   <string name="QuoteView_document">Έγγραφο</string>
   <string name="QuoteView_you">Εσείς</string>
   <string name="QuoteView_original_missing">Το αρχικό μήνυμα δε βρέθηκε</string>

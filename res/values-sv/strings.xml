@@ -239,7 +239,7 @@
   <string name="CreateProfileActivity_too_long">För långt</string>
   <string name="CreateProfileActivity_profile_name">Profilnamn</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ställ in din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler är end-to-end krypterade och Signal-tjänsten har aldrig tillgång till denna information.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler är end-to-end-krypterade och Signal-tjänsten har aldrig tillgång till denna information.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
   <string name="CustomDefaultPreference_using_default">Använder standard: %s</string>
@@ -425,7 +425,7 @@
   <string name="MessageRecord_you_disabled_disappearing_messages">Du stängde av att meddelanden försvinner.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s stängde av att meddelanden försvinner.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte tid innan meddelanden försvinner till %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$ssatte tid innan meddelanden försvinner till %2$s. </string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satte tid innan meddelanden försvinner till %2$s. </string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerade ditt säkerhetsnummer med %s verifierad</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du markerade ditt säkerhetsnummer med %s verifierad från en annan enhet</string>
@@ -1016,7 +1016,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimedia-meddelanden</string>
   <string name="preferences__pref_enter_sends_title">Entertangenten skickar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Entertangenten skickar textmeddelanden</string>
-  <string name="preferences__send_link_previews">Sicka länkförhandsvisning</string>
+  <string name="preferences__send_link_previews">Skicka länkförhandsvisning</string>
   <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Pinterest-, Reddit- och YouTube-länkar.</string>
   <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontaktlistan.</string>

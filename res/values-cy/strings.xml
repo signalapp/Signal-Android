@@ -84,6 +84,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Tynnu\'r llun proffil?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Heb ganfod porwr gwe.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mae galwad ffôn eisoes ar waith</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mae\'ch rhif diogelwch gyda %1$s wedi newid. Gall hyn olygu bod rhywun yn ceisio ymyrryd a\'ch cyfathrebu, neu bod %2$s wedi cael ei ail-osod.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Efallai yr hoffech wirio\'ch rhif diogelwch gyda\'r cyswllt hwn.</string>
@@ -169,6 +170,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_no">Na</string>
   <string name="ConversationActivity_search_position">%1$d o %2$d</string>
   <string name="ConversationActivity_no_results">Dim canlyniadau</string>
+  <string name="ConversationActivity_sticker_pack_installed">Pac sticeri wedi ei osod</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Newydd! Dweud gyda sticeri</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neges heb ei ddarllen</item>
@@ -594,6 +597,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SharedContactView_message">Neges Signal</string>
   <!--Slide-->
   <string name="Slide_image">Llun</string>
+  <string name="Slide_sticker">Sticer</string>
   <string name="Slide_audio">Sain</string>
   <string name="Slide_video">Fideo</string>
   <!--SmsMessageRecord-->
@@ -605,14 +609,24 @@ Send neges heb ei ddiogelu?</string>
   <string name="SmsMessageRecord_secure_session_reset">Rydych yn ailosod y sesiwn ddiogel.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ailosod y sesiwn ddiogel.</string>
   <string name="SmsMessageRecord_duplicate_message">Neges ddyblyg.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Nid oedd modd prosesu\'r neges gan ei fod wedi ei anfon o fersiwn mwy diweddar o Signal. Gallwch ofyn i\'ch cysylltiad ail anfon y neges ar ôl i chi ddiweddaru.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Sticeri</string>
   <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Sticeri wedi\'u Gosod</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Sticeri rydych wedi\'u Derbyn</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Cyfres Artistiaid Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Heb osod sticeri</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Bydd sticeri gan negeseuon wedi\'u derbyn yn ymddangos yma</string>
+  <string name="StickerManagementAdapter_untitled">Dideitl</string>
   <string name="StickerManagementAdapter_unknown">Anhysbys</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Dideitl</string>
   <string name="StickerPackPreviewActivity_unknown">Anhysbys</string>
+  <string name="StickerPackPreviewActivity_install">Gosod</string>
   <string name="StickerPackPreviewActivity_remove">Tynnu</string>
   <string name="StickerPackPreviewActivity_stickers">Sticeri</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Methu llwytho pac sticeri</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grŵp wedi\'i ddiweddaru</string>
   <string name="ThreadRecord_left_the_group">Wedi gadael y grŵp.</string>
@@ -629,6 +643,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Mae\'ch rhif diogelwch gyda %1$s wedi newid.</string>
   <string name="ThreadRecord_you_marked_verified">Eich marcio wedi\'i wirio</string>
   <string name="ThreadRecord_you_marked_unverified">Eich marcio heb ei wirio</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Methu prosesu neges</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Diweddariad Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mae fersiwn newydd o Signal ar gael. Tapiwch i ddiweddaru.</string>
@@ -694,6 +709,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_mark_all_as_read">Marcio popeth wedi\'i ddarllen</string>
   <string name="MessageNotifier_mark_read">Marcio wedi\'i ddarllen</string>
   <string name="MessageNotifier_media_message">Neges cyfryngau</string>
+  <string name="MessageNotifier_sticker">Sticer</string>
   <string name="MessageNotifier_reply">Ymateb</string>
   <string name="MessageNotifier_signal_message">Neges Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS anniogel</string>
@@ -818,6 +834,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="QuoteView_audio">Sain</string>
   <string name="QuoteView_video">Fideo</string>
   <string name="QuoteView_photo">Llun</string>
+  <string name="QuoteView_sticker">Sticer</string>
   <string name="QuoteView_document">Dogfen</string>
   <string name="QuoteView_you">Chi</string>
   <string name="QuoteView_original_missing">Heb ganfod y neges wreiddiol</string>

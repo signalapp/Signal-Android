@@ -161,6 +161,7 @@
   <string name="ConversationActivity_no">Xeyr</string>
   <string name="ConversationActivity_search_position">%2$d-dən%1$d</string>
   <string name="ConversationActivity_no_results">Nəticə yoxdur</string>
+  <string name="ConversationActivity_sticker_pack_installed">Sticker pkaketi yükləndi</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d oxunmamış mesaj</item>
@@ -556,6 +557,7 @@
   <string name="SharedContactView_message">Signal Mesajı</string>
   <!--Slide-->
   <string name="Slide_image">Şəkil</string>
+  <string name="Slide_sticker">Sticker</string>
   <string name="Slide_audio">Səs</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -572,9 +574,15 @@
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Elanlar</string>
   <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Yüklənən Stickerlər</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Sizə Gələn Stickerlər</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signalın Arist Seriaları</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Yüklü Sticket yoxdur</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Gələn mesajdan Sticker bubrada görünəcək</string>
   <string name="StickerManagementAdapter_unknown">Naməlum</string>
   <!--StickerPackPreviewActivity-->
   <string name="StickerPackPreviewActivity_unknown">Naməlum</string>
+  <string name="StickerPackPreviewActivity_install">Yüklə</string>
   <string name="StickerPackPreviewActivity_remove">Sil</string>
   <string name="StickerPackPreviewActivity_stickers">Elanlar</string>
   <!--ThreadRecord-->
@@ -658,6 +666,7 @@
   <string name="MessageNotifier_mark_all_as_read">Hamısını oxunmuş kimi nişanla</string>
   <string name="MessageNotifier_mark_read">Oxunmuş kimi nişanla</string>
   <string name="MessageNotifier_media_message">Media mesajı</string>
+  <string name="MessageNotifier_sticker">Sticker</string>
   <string name="MessageNotifier_reply">Cavab ver</string>
   <string name="MessageNotifier_signal_message">Signal Mesajı</string>
   <string name="MessageNotifier_unsecured_sms">Mühafizə edilməyən SMS</string>
@@ -779,6 +788,7 @@
   <string name="QuoteView_audio">Səs</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Şəkil</string>
+  <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Sənəd</string>
   <string name="QuoteView_you">Sən</string>
   <string name="QuoteView_original_missing">Mesajın əsli tapılmadı</string>

@@ -50,18 +50,18 @@
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(image)</string>
-  <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(son)</string>
   <string name="DraftDatabase_Draft_video_snippet">(vidéo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(position)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(réponse)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal exige l’autorisation Stockage afin de joindre des photos, des vidéos ou du contenu audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal exige l’autorisation Stockage afin de joindre des photos, des vidéos ou du son, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal exige l’autorisation Contacts afin de joindre des renseignements de contact, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal exige l’autorisation Position afin de joindre une position géographique, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Position ».</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal exige l’autorisation « Appareil photo » afin de prendre des photos, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Appareil photo ».</string>
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Erreur de lecture du fichier audio !</string>
+  <string name="AudioSlidePlayer_error_playing_audio">Erreur de lecture du son !</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacts bloqués</string>
   <!--BucketedThreadMedia-->
@@ -147,7 +147,7 @@
   <string name="ConversationActivity_unblock">Débloquer</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">La pièce jointe dépasse la limite de taille pour le type de message que vous envoyé.</string>
   <string name="ConversationActivity_quick_camera_unavailable">L’appareil photo n’est pas disponible</string>
-  <string name="ConversationActivity_unable_to_record_audio">Impossible d’enregistrer l’audio !</string>
+  <string name="ConversationActivity_unable_to_record_audio">Impossible d’enregistrer le son !</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, autorisez Signal à accéder à votre microphone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal exige l’autorisation Microphone afin d’envoyer des messages audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Microphone ».</string>
@@ -723,7 +723,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="WebRtcCallControls_tap_to_enable_your_video">Touchez pour activer votre vidéo</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Son</string>
-  <string name="attachment_type_selector__audio_description">Fichiers audios</string>
+  <string name="attachment_type_selector__audio_description">Son</string>
   <string name="attachment_type_selector__contact">Contact</string>
   <string name="attachment_type_selector__contact_description">Contact</string>
   <string name="attachment_type_selector__camera">Appareil photo</string>
@@ -767,8 +767,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="conversation_activity__emoji_toggle_description">Afficher, masquer le clavier des émojis</string>
   <string name="conversation_activity__attachment_thumbnail">Imagette de pièces jointes</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Afficher, masquer le tiroir permettant de lancer l’appareil photo à basse résolution</string>
-  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer une pièce jointe audio</string>
-  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de pièces jointes audio</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer une pièce jointe son</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de pièces jointes son</string>
   <string name="conversation_activity__enable_signal_for_sms">Gérer les textos avec Signal</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Faire glisser pour annuler</string>
@@ -788,7 +788,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="audio_view__pause_accessibility_description">Mettre en pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
   <!--QuoteView-->
-  <string name="QuoteView_audio">Contenu audio</string>
+  <string name="QuoteView_audio">Son</string>
   <string name="QuoteView_video">Vidéo</string>
   <string name="QuoteView_photo">Photo</string>
   <string name="QuoteView_sticker">Autocollant</string>

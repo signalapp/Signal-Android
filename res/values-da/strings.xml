@@ -559,7 +559,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SharedContactView_message">Signalbesked</string>
   <!--Slide-->
   <string name="Slide_image">Billede</string>
-  <string name="Slide_sticker">Klistermærker</string>
+  <string name="Slide_sticker">Klistermærke</string>
   <string name="Slide_audio">Lyd</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -573,16 +573,23 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="SmsMessageRecord_secure_session_reset">Nulstillet sikker forbindelse</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s har nulstillet den sikre session</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliker besked</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Beskeden kunne ikke håndteres, fordi den er sendt fra en nyere version af Signal. Du kan bede din kontakt om at sende beskeden igen, efter du har opdateret</string>
   <!--StickerManagementActivity-->
-  <string name="StickerManagementActivity_stickers">Animationer</string>
+  <string name="StickerManagementActivity_stickers">Klistermærker</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">Installeret klistermærker</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Klistermærker du har modtaget</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal Artist Serie</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Ingen klistermærker installeret</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Klistermærker fra modtaget beskeder vil vises her</string>
+  <string name="StickerManagementAdapter_untitled">Ingen titel</string>
   <string name="StickerManagementAdapter_unknown">Ukendt</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Ingen titel</string>
   <string name="StickerPackPreviewActivity_unknown">Ukendt</string>
   <string name="StickerPackPreviewActivity_install">Installér</string>
   <string name="StickerPackPreviewActivity_remove">Fjern</string>
-  <string name="StickerPackPreviewActivity_stickers">Animationer</string>
+  <string name="StickerPackPreviewActivity_stickers">Klistermærker</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Fejl ved hentning af klistermærker</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe opdateret</string>
@@ -600,6 +607,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
   <string name="ThreadRecord_you_marked_verified">Markerét som verificeret</string>
   <string name="ThreadRecord_you_marked_unverified">Markerét som ubekræftet</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Besked kunne ikke håndteres</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal opdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tap for at opdatere</string>
@@ -665,7 +673,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_all_as_read">Markér alle som læst</string>
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
-  <string name="MessageNotifier_sticker">Klistermærker</string>
+  <string name="MessageNotifier_sticker">Klistermærke</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signalbesked</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
@@ -788,7 +796,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Billed</string>
-  <string name="QuoteView_sticker">Klistermærker</string>
+  <string name="QuoteView_sticker">Klistermærke</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Dig</string>
   <string name="QuoteView_original_missing">Original besked ikke fundet</string>
