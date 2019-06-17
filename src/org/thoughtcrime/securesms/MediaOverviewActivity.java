@@ -488,7 +488,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       this.noMedia       = ViewUtil.findById(view, R.id.no_documents);
 
       this.recyclerView.setAdapter(adapter);
-      this.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+      this.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
       this.recyclerView.addItemDecoration(new StickyHeaderDecoration(adapter, false, true));
       this.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
