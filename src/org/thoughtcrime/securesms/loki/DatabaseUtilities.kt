@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki
 
+import android.content.ContentValues
 import net.sqlcipher.Cursor
 import net.sqlcipher.database.SQLiteDatabase
 import org.thoughtcrime.securesms.util.Base64
@@ -15,6 +16,13 @@ fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String
         cursor?.close()
     }
     return null
+}
+
+fun SQLiteDatabase.insertOrUpdate(table: String, values: ContentValues, whereClause: String, whereArgs: Array<String>) {
+    val id = this.insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE).toInt()
+    if (id == -1) {
+        this.update(table, values, whereClause, whereArgs)
+    }
 }
 
 fun Cursor.getInt(columnName: String): Int {
