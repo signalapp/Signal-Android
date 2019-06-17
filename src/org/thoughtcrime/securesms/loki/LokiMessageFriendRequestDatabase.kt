@@ -5,10 +5,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 
-/**
- * A database for associating friend request data to Sms
- */
-class LokiSmsFriendRequestDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
+class LokiMessageFriendRequestDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
     companion object {
         private val tableName = "loki_sms_friend_request_database"
@@ -21,8 +18,8 @@ class LokiSmsFriendRequestDatabase(context: Context, helper: SQLCipherOpenHelper
 
     fun getIsFriendRequest(messageId: Long): Boolean {
         val database = databaseHelper.readableDatabase
-        return database.get(tableName, ID_WHERE, arrayOf(messageId.toString())) { cursor ->
-            val rawIsFriendRequest =  cursor.getInt(isFriendRequest)
+        return database.get(tableName, ID_WHERE, arrayOf( messageId.toString() )) { cursor ->
+            val rawIsFriendRequest = cursor.getInt(isFriendRequest)
             rawIsFriendRequest == 1
         } ?: false
     }
@@ -36,6 +33,6 @@ class LokiSmsFriendRequestDatabase(context: Context, helper: SQLCipherOpenHelper
         contentValues.put(smsId, messageId)
         contentValues.put(Companion.isFriendRequest, rawIsFriendRequest)
 
-        database.insertOrUpdate(tableName, contentValues, ID_WHERE, arrayOf(messageId.toString()))
+        database.insertOrUpdate(tableName, contentValues, ID_WHERE, arrayOf( messageId.toString() ))
     }
 }

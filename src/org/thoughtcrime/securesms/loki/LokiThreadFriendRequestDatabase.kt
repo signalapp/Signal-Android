@@ -5,9 +5,6 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 
-/**
- * A database for associating friend request data to Threads
- */
 class LokiThreadFriendRequestDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
     companion object {
@@ -19,20 +16,24 @@ class LokiThreadFriendRequestDatabase(context: Context, helper: SQLCipherOpenHel
         val createTableCommand = "CREATE TABLE $tableName ($threadId INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
     }
 
-    fun getFriendRequestStatus(threadId: Long): Int {
+    fun getFriendRequestStatus(threadId: Long): LokiFriendRequestStatus {
         val db = databaseHelper.readableDatabase
-        return db.get(tableName, ID_WHERE, arrayOf(threadId.toString())) { cursor ->
+        val result = db.get(tableName, ID_WHERE, arrayOf( threadId.toString() )) { cursor ->
             cursor.getInt(friendRequestStatus)
-        } ?: LokiFriendRequestStatus.NONE
+        }
+        return if (result != null) {
+            LokiFriendRequestStatus.values().first { it.rawValue == result }
+        } else {
+            LokiFriendRequestStatus.NONE
+        }
     }
 
-    fun setFriendRequestStatus(threadId: Long, status: Int) {
+    fun setFriendRequestStatus(threadId: Long, status: LokiFriendRequestStatus) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(1)
         contentValues.put(Companion.threadId, threadId)
-        contentValues.put(friendRequestStatus, status)
-
-        database.insertOrUpdate(tableName, contentValues, ID_WHERE, arrayOf(threadId.toString()))
+        contentValues.put(friendRequestStatus, status.rawValue)
+        database.insertOrUpdate(tableName, contentValues, ID_WHERE, arrayOf( threadId.toString() ))
         notifyConversationListListeners()
     }
 }

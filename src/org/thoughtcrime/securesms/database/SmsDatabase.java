@@ -661,7 +661,7 @@ public class SmsDatabase extends MessagingDatabase {
       ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
     }
 
-    // Loki: Save friend request state on sms
+    // Loki - Save friend request state on sms
     if (message.isFriendRequest) {
       DatabaseFactory.getLokiSmsFriendRequestDatabase(context).setIsFriendRequest(messageId, message.isFriendRequest);
     }
@@ -879,7 +879,7 @@ public class SmsDatabase extends MessagingDatabase {
       List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
       Recipient                 recipient  = Recipient.from(context, address, true);
 
-      // Loki: Check to see if this message was a friend request
+      // Loki - Check to see if this message was a friend request
       boolean isFriendRequest = DatabaseFactory.getLokiSmsFriendRequestDatabase(context).getIsFriendRequest(messageId);
 
       return new SmsMessageRecord(messageId, body, recipient,

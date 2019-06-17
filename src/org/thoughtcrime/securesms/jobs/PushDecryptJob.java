@@ -830,7 +830,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
 
     LokiThreadFriendRequestDatabase database = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
-    int friendRequestStatus = database.getFriendRequestStatus(threadId);
+    LokiFriendRequestStatus friendRequestStatus = database.getFriendRequestStatus(threadId);
     if (envelope.isFriendRequest()) {
       if (friendRequestStatus == LokiFriendRequestStatus.REQUEST_SENT) {
         // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his

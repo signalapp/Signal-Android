@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiContactPreKeyDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.LokiSmsFriendRequestDatabase;
+import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabase;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -68,7 +68,7 @@ public class DatabaseFactory {
   private final LokiAPIDatabase lokiAPIDatabase;
   private final LokiContactPreKeyDatabase lokiContactPreKeyDatabase;
   private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
-  private final LokiSmsFriendRequestDatabase lokiSmsFriendRequestDatabase;
+  private final LokiMessageFriendRequestDatabase lokiMessageFriendRequestDatabase;
   private final LokiThreadFriendRequestDatabase lokiThreadFriendRequestDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
@@ -169,8 +169,8 @@ public class DatabaseFactory {
     return getInstance(context).lokiPreKeyBundleDatabase;
   }
 
-  public static  LokiSmsFriendRequestDatabase getLokiSmsFriendRequestDatabase(Context context) {
-    return getInstance(context).lokiSmsFriendRequestDatabase;
+  public static LokiMessageFriendRequestDatabase getLokiSmsFriendRequestDatabase(Context context) {
+    return getInstance(context).lokiMessageFriendRequestDatabase;
   }
 
   public static  LokiThreadFriendRequestDatabase getLokiThreadFriendRequestDatabase(Context context) {
@@ -212,7 +212,7 @@ public class DatabaseFactory {
     this.lokiAPIDatabase = new LokiAPIDatabase(context, databaseHelper);
     this.lokiContactPreKeyDatabase = new LokiContactPreKeyDatabase(context, databaseHelper);
     this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
-    this.lokiSmsFriendRequestDatabase = new LokiSmsFriendRequestDatabase(context, databaseHelper);
+    this.lokiMessageFriendRequestDatabase = new LokiMessageFriendRequestDatabase(context, databaseHelper);
     this.lokiThreadFriendRequestDatabase = new LokiThreadFriendRequestDatabase(context, databaseHelper);
   }
 

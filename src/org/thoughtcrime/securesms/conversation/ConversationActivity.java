@@ -2155,7 +2155,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     // Loki - Always send friend requests if we're not friends with the user
-    int friendRequestStatus = DatabaseFactory.getLokiThreadFriendRequestDatabase(context).getFriendRequestStatus(threadId);
+    LokiFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadFriendRequestDatabase(context).getFriendRequestStatus(threadId);
     message.isFriendRequest = (friendRequestStatus != LokiFriendRequestStatus.FRIENDS);
 
     Permissions.with(this)
