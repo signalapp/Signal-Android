@@ -165,6 +165,7 @@
                                     android:layout_marginEnd="8dp"
                                     android:layout_gravity="bottom"
                                     android:background="?selectableItemBackgroundBorderless"
+                                    android:contentDescription="@string/ConversationActivity_add_attachment"
                                     android:scaleType="fitCenter"
                                     android:tint="?attr/conversation_input_inline_attach_icon_tint"
                                     app:srcCompat="@drawable/ic_plus_24" />
