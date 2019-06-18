@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_key_pair.*
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
 import org.thoughtcrime.securesms.R
@@ -95,6 +96,9 @@ class KeyPairActivity : BaseActionBarActivity() {
         TextSecurePreferences.setPromptedPushRegistration(this, true)
 
         // TODO: Configure P2P API
+
+        // Loki - start the long polling
+        ApplicationContext.getInstance(this).startLokiLongPolling()
 
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()

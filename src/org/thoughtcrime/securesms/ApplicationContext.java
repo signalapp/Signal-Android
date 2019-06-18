@@ -24,6 +24,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
+import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -70,6 +72,8 @@ import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
+import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 
@@ -100,6 +104,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
   private PersistentLogger        persistentLogger;
+
+  private LokiLongPoller lokiLongPoller = null;
 
   private volatile boolean isAppVisible;
 
@@ -149,6 +155,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Log.i(TAG, "App is now visible.");
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
+
+    // Start message receiving if we have registered
+    startLokiLongPolling();
   }
 
   @Override
@@ -156,6 +165,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     isAppVisible = false;
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
+
+    if (lokiLongPoller != null) {
+      lokiLongPoller.stop();
+    }
   }
 
   @Override
@@ -187,6 +200,24 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public PersistentLogger getPersistentLogger() {
     return persistentLogger;
+  }
+
+  public void startLokiLongPolling() {
+    initializeLokiLongPoller();
+    if (lokiLongPoller != null) {
+      lokiLongPoller.startIfNecessary();
+    }
+  }
+
+  private void initializeLokiLongPoller() {
+    if (lokiLongPoller != null) return;
+
+    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (hexEncodedPublicKey == null) return;
+
+    LokiAPIDatabase database = DatabaseFactory.getLokiAPIDatabase(this);
+    LokiAPI lokiAPI = new LokiAPI(hexEncodedPublicKey, database);
+    lokiLongPoller = new LokiLongPoller(hexEncodedPublicKey, lokiAPI);
   }
 
   private void initializeSecurityProvider() {
