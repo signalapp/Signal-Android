@@ -139,7 +139,6 @@ public class SignalCommunicationModule {
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                                           Optional.of(new SecurityEventListener(context)),
                                                           TextSecurePreferences.getLocalNumber(context),
-                                                          0,
                                                           DatabaseFactory.getLokiAPIDatabase(context),
                                                           new LokiPreKeyBundleStore(context));
     } else {
