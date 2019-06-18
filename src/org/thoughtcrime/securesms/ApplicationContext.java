@@ -24,7 +24,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
@@ -40,11 +39,11 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobs.FastJobStorage;
-import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
+import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
@@ -83,7 +82,6 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
-import kotlin.jvm.functions.Function2;
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -104,8 +102,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
   private PersistentLogger        persistentLogger;
-
-  private LokiLongPoller lokiLongPoller = null;
+  private LokiLongPoller          lokiLongPoller = null; // Loki
 
   private volatile boolean isAppVisible;
 
@@ -136,17 +133,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeBlobProvider();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-
-    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-    if (hexEncodedPublicKey != null) {
-      LokiP2PAPI.Companion.configure(hexEncodedPublicKey, new Function2<Boolean, String, Void>() {
-
-        @Override
-        public Void invoke(Boolean aBoolean, String s) {
-          return null;
-        }
-      }, this);
-    }
+    // Loki - Set up P2P API if needed
+    setUpP2PAPI();
   }
 
   @Override
@@ -155,9 +143,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Log.i(TAG, "App is now visible.");
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
-
-    // Start message receiving if we have registered
-    startLokiLongPolling();
+    // Loki - Start long polling if needed
+    startLongPolling();
   }
 
   @Override
@@ -165,10 +152,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     isAppVisible = false;
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
-
-    if (lokiLongPoller != null) {
-      lokiLongPoller.stop();
-    }
+    // Loki - Stop long polling if needed
+    if (lokiLongPoller != null) { lokiLongPoller.stop(); }
   }
 
   @Override
@@ -200,24 +185,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public PersistentLogger getPersistentLogger() {
     return persistentLogger;
-  }
-
-  public void startLokiLongPolling() {
-    initializeLokiLongPoller();
-    if (lokiLongPoller != null) {
-      lokiLongPoller.startIfNecessary();
-    }
-  }
-
-  private void initializeLokiLongPoller() {
-    if (lokiLongPoller != null) return;
-
-    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-    if (hexEncodedPublicKey == null) return;
-
-    LokiAPIDatabase database = DatabaseFactory.getLokiAPIDatabase(this);
-    LokiAPI lokiAPI = new LokiAPI(hexEncodedPublicKey, database);
-    lokiLongPoller = new LokiLongPoller(hexEncodedPublicKey, lokiAPI);
   }
 
   private void initializeSecurityProvider() {
@@ -403,8 +370,33 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private static class ProviderInitializationException extends RuntimeException {
   }
 
+  // region Loki
+  public void setUpP2PAPI() {
+    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (hexEncodedPublicKey == null) { return; }
+    LokiP2PAPI.Companion.configure(hexEncodedPublicKey, (isOnline, contactPublicKey) -> {
+      // TODO: Implement
+      return null;
+    }, this);
+  }
+
   @Override
   public void ping(@NotNull String s) {
     // TODO: Implement
   }
+
+  public void startLongPolling() {
+    setUpLongPollingIfNeeded();
+    if (lokiLongPoller != null) { lokiLongPoller.startIfNecessary(); }
+  }
+
+  private void setUpLongPollingIfNeeded() {
+    if (lokiLongPoller != null) return;
+    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (hexEncodedPublicKey == null) return;
+    LokiAPIDatabase database = DatabaseFactory.getLokiAPIDatabase(this);
+    LokiAPI lokiAPI = new LokiAPI(hexEncodedPublicKey, database);
+    lokiLongPoller = new LokiLongPoller(hexEncodedPublicKey, lokiAPI);
+  }
+  // endregion
 }

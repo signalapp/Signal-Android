@@ -94,12 +94,9 @@ class KeyPairActivity : BaseActionBarActivity() {
                 IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
         TextSecurePreferences.setPromptedPushRegistration(this, true)
-
-        // TODO: Configure P2P API
-
-        // Loki - start the long polling
-        ApplicationContext.getInstance(this).startLokiLongPolling()
-
+        val application = ApplicationContext.getInstance(this)
+        application.setUpP2PAPI()
+        application.startLongPolling()
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
     }
