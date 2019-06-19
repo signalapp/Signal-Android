@@ -71,7 +71,6 @@ import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
-import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
@@ -153,7 +152,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
     // Loki - Stop long polling if needed
-    if (lokiLongPoller != null) { lokiLongPoller.stop(); }
+    if (lokiLongPoller != null) { lokiLongPoller.stopIfNeeded(); }
   }
 
   @Override
@@ -387,7 +386,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public void startLongPolling() {
     setUpLongPollingIfNeeded();
-    if (lokiLongPoller != null) { lokiLongPoller.startIfNecessary(); }
+    if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
   }
 
   private void setUpLongPollingIfNeeded() {
@@ -395,8 +394,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (hexEncodedPublicKey == null) return;
     LokiAPIDatabase database = DatabaseFactory.getLokiAPIDatabase(this);
-    LokiAPI lokiAPI = new LokiAPI(hexEncodedPublicKey, database);
-    lokiLongPoller = new LokiLongPoller(hexEncodedPublicKey, lokiAPI);
+    lokiLongPoller = new LokiLongPoller(hexEncodedPublicKey, database);
   }
   // endregion
 }
