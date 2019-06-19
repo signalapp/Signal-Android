@@ -94,8 +94,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
       recipient.removeListener(this);
       recipient = null;
     }
-
-    contactPhotoImage.clear(glideRequests);
   }
 
   private void setText(int type, String name, String number, String label) {
