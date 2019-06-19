@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.util.Base64
 fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String>, get: (Cursor) -> T): T? {
     var cursor: Cursor? = null
     try {
-        cursor = this.query(table, null, query, arguments, null, null, null)
+        cursor = query(table, null, query, arguments, null, null, null)
         if (cursor != null && cursor.moveToFirst()) { return get(cursor) }
     } catch (e: Exception) {
         // Do nothing
@@ -19,20 +19,20 @@ fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String
 }
 
 fun SQLiteDatabase.insertOrUpdate(table: String, values: ContentValues, whereClause: String, whereArgs: Array<String>) {
-    val id = this.insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE).toInt()
+    val id = insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE).toInt()
     if (id == -1) {
-        this.update(table, values, whereClause, whereArgs)
+        update(table, values, whereClause, whereArgs)
     }
 }
 
 fun Cursor.getInt(columnName: String): Int {
-    return this.getInt(this.getColumnIndexOrThrow(columnName))
+    return getInt(getColumnIndexOrThrow(columnName))
 }
 
 fun Cursor.getString(columnName: String): String {
-    return this.getString(this.getColumnIndexOrThrow(columnName))
+    return getString(getColumnIndexOrThrow(columnName))
 }
 
 fun Cursor.getBase64EncodedData(columnName: String): ByteArray {
-    return Base64.decode(this.getString(columnName))
+    return Base64.decode(getString(columnName))
 }

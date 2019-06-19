@@ -34,7 +34,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val database = databaseHelper.readableDatabase
         return database.get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
             val swarmAsString = cursor.getString(cursor.getColumnIndexOrThrow(swarm))
-            swarmAsString.split(",").map { targetAsString ->
+            swarmAsString.split(", ").map { targetAsString ->
                 val components = targetAsString.split("?port=")
                 LokiAPITarget(components[0], components[1].toInt())
             }
@@ -43,10 +43,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun setSwarmCache(hexEncodedPublicKey: String, newValue: List<LokiAPITarget>) {
         val database = databaseHelper.writableDatabase
-        val swarmAsString = newValue.joinToString(",") { target ->
+        val swarmAsString = newValue.joinToString(", ") { target ->
             "${target.address}?port=${target.port}"
         }
-        database.update(swarmCache, wrap(mapOf( swarm to swarmAsString )), "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey))
+        val row = wrap(mapOf( Companion.hexEncodedPublicKey to hexEncodedPublicKey, swarm to swarmAsString ))
+        database.insertOrUpdate(swarmCache, row, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey))
     }
 
     override fun getLastMessageHashValue(target: LokiAPITarget): String? {
@@ -58,21 +59,23 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun setLastMessageHashValue(target: LokiAPITarget, newValue: String) {
         val database = databaseHelper.writableDatabase
-        database.update(lastMessageHashValueCache, wrap(mapOf( lastMessageHashValue to newValue )), "${Companion.target} = ?", wrap(target.address))
+        val row = wrap(mapOf( Companion.target to target.address, lastMessageHashValue to newValue ))
+        database.insertOrUpdate(lastMessageHashValueCache, row, "${Companion.target} = ?", wrap(target.address))
     }
 
     override fun getReceivedMessageHashValues(): Set<String>? {
         val database = databaseHelper.readableDatabase
         return database.get(receivedMessageHashValuesCache, "$userID = ?", wrap(userPublicKey)) { cursor ->
             val receivedMessageHashValuesAsString = cursor.getString(cursor.getColumnIndexOrThrow(receivedMessageHashValues))
-            receivedMessageHashValuesAsString.split(",").toSet()
+            receivedMessageHashValuesAsString.split(", ").toSet()
         }
     }
 
     override fun setReceivedMessageHashValues(newValue: Set<String>) {
         val database = databaseHelper.writableDatabase
-        val receivedMessageHashValuesAsString = newValue.joinToString(",")
-        database.update(receivedMessageHashValuesCache, wrap(mapOf( receivedMessageHashValues to receivedMessageHashValuesAsString )), "$userID = ?", wrap(userPublicKey))
+        val receivedMessageHashValuesAsString = newValue.joinToString(", ")
+        val row = wrap(mapOf( userID to userPublicKey, receivedMessageHashValues to receivedMessageHashValuesAsString ))
+        database.insertOrUpdate(receivedMessageHashValuesCache, row, "$userID = ?", wrap(userPublicKey))
     }
 }
 
