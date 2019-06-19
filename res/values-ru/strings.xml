@@ -259,6 +259,8 @@
   <string name="ConversationListItem_key_exchange_message">Сообщение обмена ключами</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архивированные разговоры (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Подтверждён</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Ваш профиль</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Ошибка при сохранении фото профиля</string>
@@ -711,8 +713,8 @@
   <string name="MessageNotifier_reply">Ответить</string>
   <string name="MessageNotifier_signal_message">Сообщение Signal</string>
   <string name="MessageNotifier_unsecured_sms">Незащищённое SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Неполученные сообщения</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">У вас есть неполученные сообщения в Signal. Нажмите, чтобы открыть приложение и получить их.</string>
+  <string name="MessageNotifier_you_may_have_new_messages">У вас могут быть новые сообщения</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Откройте Signal, чтобы проверить недавние уведомления.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--Notification Channels-->

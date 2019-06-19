@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Enarĥivigitaj interparoloj (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Konfirmita</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Via profila informo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eraro agordante profilan foton</string>
@@ -676,8 +678,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_reply">Respondi</string>
   <string name="MessageNotifier_signal_message">Signal-mesaĝo</string>
   <string name="MessageNotifier_unsecured_sms">Nesekura SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Pritraktotaj Signal-aj mesaĝoj</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Vi havas pritraktotajn Signal-ajn mesaĝojn; tuŝetu por malfermi kaj ricevi ilin</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakto</string>
   <!--Notification Channels-->

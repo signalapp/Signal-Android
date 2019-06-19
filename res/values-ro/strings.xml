@@ -245,6 +245,8 @@
   <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimbul de chei</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversații arhivate (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verificat</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Detalii profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eroare la setarea pozei de profil</string>
@@ -692,8 +694,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_reply">Răspunde</string>
   <string name="MessageNotifier_signal_message">Mesaj Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS nesecurizat</string>
-  <string name="MessageNotifier_pending_signal_messages">Mesaje Signal în așteptare</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Ai mesaje Signal în așteptare, apasă pentru deschidere și recuperare</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--Notification Channels-->

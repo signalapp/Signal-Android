@@ -255,6 +255,8 @@
   <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключам</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архівовані розмови (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Завірено</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Інформація щодо вашого профілю</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося встановити фото профілю</string>
@@ -677,8 +679,6 @@
   <string name="MessageNotifier_reply">Відповісти</string>
   <string name="MessageNotifier_signal_message">Повідомлення Signal</string>
   <string name="MessageNotifier_unsecured_sms">Незахищене SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Повідомлення в очікуванні</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">У вас є повідомлення в очікуванні, торкніться щоб отримати їх</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--Notification Channels-->

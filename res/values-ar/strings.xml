@@ -271,6 +271,8 @@
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">أرشيف المحادثات (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified"> تم التحقق منه</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">معلومات حول ملفك الشخصي</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في إعداد صورة الملف الشخصي</string>
@@ -659,7 +661,6 @@
   <string name="MessageNotifier_reply">رَدّ</string>
   <string name="MessageNotifier_signal_message">رسالة Signal</string>
   <string name="MessageNotifier_unsecured_sms">رسائل نصية غير آمنة</string>
-  <string name="MessageNotifier_pending_signal_messages">رسائل Signal المعلقة</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">متصل</string>
   <!--Notification Channels-->

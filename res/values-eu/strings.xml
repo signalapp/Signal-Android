@@ -229,6 +229,8 @@
   <string name="ConversationListItem_key_exchange_message">Gakoaren trukatzerako mezua</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Artxibatutako elkarrizketak (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Egiaztatua</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Zure profilaren informazioa</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Errorea gertatu da profileko argazkia gordetzean</string>
@@ -662,8 +664,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_reply">Erantzun</string>
   <string name="MessageNotifier_signal_message">Signal mezua</string>
   <string name="MessageNotifier_unsecured_sms">SMS ez segurua</string>
-  <string name="MessageNotifier_pending_signal_messages">Falta diren Signalen mezuak</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Signal mezuak  zain dauzkazu, ukitu irekitzeko eta jasotzeko.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontaktua</string>
   <!--Notification Channels-->

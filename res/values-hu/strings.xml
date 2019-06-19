@@ -232,6 +232,8 @@
   <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivált beszélgetések (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Megerősítve</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Profilod adatai</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Hiba történt a profilkép beállítása során</string>
@@ -679,8 +681,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_reply">Válasz</string>
   <string name="MessageNotifier_signal_message">Signal üzenet</string>
   <string name="MessageNotifier_unsecured_sms">Titkosítatlan SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Függő Signal üzenetek</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Függő Signal üzeneteid vannak, koppints a megnyitáshoz és letöltéshez</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Új üzeneteid érkezhettek</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Nyisd meg a Signal-t a legújabb értesítések megtekintéséhez!</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Névjegy</string>
   <!--Notification Channels-->

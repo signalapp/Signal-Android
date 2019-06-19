@@ -217,6 +217,8 @@
   <string name="ConversationListItem_key_exchange_message">키 교환 메시지</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">보관된 대화 (%d개)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">검증됨</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">내 프로필</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">프로필 사진 설정 중 오류 발생</string>
@@ -644,8 +646,6 @@
   <string name="MessageNotifier_reply">답장</string>
   <string name="MessageNotifier_signal_message">Signal 메시지</string>
   <string name="MessageNotifier_unsecured_sms">비보안 SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">보류 중인 Signal 메시지</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">보류 중인 Signal 메시지가 있습니다, 탭하여 가져오세요</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">연락처</string>
   <!--Notification Channels-->
@@ -1252,7 +1252,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">번호 확인</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">등록 잠금 번호를 입력하세요</string>
   <string name="registration_lock_reminder_view__enter_pin">번호 입력</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">등록 잠금 번호를 설정한다면, 다시 이 휴대전화 번호로 Signal에 가입할 때 이 번호를 입력해야 합니다.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">등록 잠금 번호를 설정한다면 이 전화번호로 Signal에 다시 등록할 때 이 번호를 입력해야 합니다.</string>
   <string name="preferences_app_protection__registration_lock_pin">등록 잠금 번호</string>
   <string name="preferences_app_protection__registration_lock">등록 잠금</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">반드시 등록 잠금 번호를 입력해야 합니다</string>

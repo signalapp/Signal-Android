@@ -259,6 +259,8 @@
   <string name="ConversationListItem_key_exchange_message">Sporočilo za izmenjavo ključev</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arhivirani pogovori (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Potrjeno</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Vaša predstavitvena fotografija</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Napaka pri pošiljanju predstavitvene fotografije</string>
@@ -708,8 +710,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_reply">Odgovor</string>
   <string name="MessageNotifier_signal_message">Sporočilo Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nezavarovan SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Čakajoča sporočila Signal</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Imate čakajoča sporočila Signal. Tapnite za pridobitev in pregled.</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Lahko da imate nova sporočila Signal</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Odprite Signal in preverite nova sporočila.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Stik</string>
   <!--Notification Channels-->

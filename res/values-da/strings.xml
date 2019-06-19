@@ -232,6 +232,8 @@
   <string name="ConversationListItem_key_exchange_message">Besked med udvekslingsnøgle</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverede samtaler (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verificeret</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Din profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fejl opstået ved oprettelse af profilbilledet</string>
@@ -677,8 +679,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signalbesked</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Afventende Signalbeskeder</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du har afventende Signalbeskeder, tap for at åbne og modtage</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

@@ -217,6 +217,8 @@
   <string name="ConversationListItem_key_exchange_message">សារផ្លាស់ប្តូរសោរ</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">សន្ទនារក្សាទុកក្នុងបណ្ណសារ (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">បានផ្ទៀងផ្ទាត់</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">ព័ត៌មានអំពីខ្លួនអ្នក</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ការកំណត់រូបថតប្រវត្តរូបមានបញ្ហា</string>
@@ -651,8 +653,6 @@
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
   <string name="MessageNotifier_signal_message">សារ Signal </string>
   <string name="MessageNotifier_unsecured_sms">SMS គ្មានសុវត្ថិភាព</string>
-  <string name="MessageNotifier_pending_signal_messages">សារ Signal បញ្ចូនមិនទាន់សម្រេច</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">អ្នកមានសារSignal មិនទាន់បញ្ចូនសម្រេច ចុចបើក និងទាញយកមកវិញ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ទំនាក់ទំនង</string>
   <!--Notification Channels-->

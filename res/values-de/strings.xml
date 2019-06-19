@@ -163,7 +163,7 @@
   <string name="ConversationActivity_search_position">%1$d von %2$d</string>
   <string name="ConversationActivity_no_results">Keine Ergebnisse</string>
   <string name="ConversationActivity_sticker_pack_installed">Sticker-Set installiert</string>
-  <string name="ConversationActivity_new_say_it_with_stickers">Neu! Sag es mit Stickern</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Neu! Sag‘s mit Stickern</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ungelesene Nachricht</item>
@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivierte Unterhaltungen (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verifiziert</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Deine Profilinformationen</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fehler beim Festlegen des Profilfotos</string>
@@ -666,8 +668,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_reply">Antworten</string>
   <string name="MessageNotifier_signal_message">Signal-Nachricht</string>
   <string name="MessageNotifier_unsecured_sms">Unsichere SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Ausstehende Signal-Nachrichten</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du hast ausstehende Signal-Nachrichten. Antippen zum Öffnen und Abrufen.</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Du hast vielleicht neue Nachrichten</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Öffne Signal, um nach neuen Benachrichtigungen zu sehen.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

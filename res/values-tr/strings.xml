@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arşivlenmiş sohbetler (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Doğrulandı</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Profil bilgileriniz</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil fotoğrafı kaydedilirken hata</string>
@@ -676,8 +678,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_reply">Cevapla</string>
   <string name="MessageNotifier_signal_message">Signal İletisi</string>
   <string name="MessageNotifier_unsecured_sms">Şifresiz SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Bekleyen Signal iletileri</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Bekleyen Signal iletileriniz var, almak ve açmak için dokunun</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kişi</string>
   <!--Notification Channels-->

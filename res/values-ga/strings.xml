@@ -214,6 +214,8 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Teachtaireacht malartú eocharacha</string>
   <!--ConversationListItemAction-->
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Fíordheimhnithe</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Do eolas próifíle</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Tharla botún ag athrú do ghrianghraf próifíle</string>
@@ -573,8 +575,6 @@ a shonrú</string>
   <string name="MessageNotifier_reply">Freagair</string>
   <string name="MessageNotifier_signal_message">Teachtaireacht Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS nach bhfuil slán</string>
-  <string name="MessageNotifier_pending_signal_messages">Ar feitheamh ar teachtaireachtaí Signal</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Tá teachtaireachtaí Signal ar feitheamh agat, cnag chun iad a oscailt agus a athfháil.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Teagmhálaí</string>
   <!--Notification Channels-->

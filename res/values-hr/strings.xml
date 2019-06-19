@@ -242,6 +242,8 @@
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arhivirani razgovori (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Potvrđeno</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Informacije vašeg profila</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Greška prilikom postavljanja profilne slike</string>
@@ -650,8 +652,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MessageNotifier_media_message">Multimedijalna poruka</string>
   <string name="MessageNotifier_reply">Odgovori</string>
   <string name="MessageNotifier_unsecured_sms">Nesigurni SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Signal poruke na čekanju</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Imate Signal poruka na čekanju, pritisnite kako biste ih otvorili i preuzeli</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

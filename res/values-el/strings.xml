@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιού</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Αρχειοθετημένες συνομιλίες (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Επιβεβαιωμένο</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Οι πληροφορίες του προφίλ σας</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Πρόβλημα κατά τον καθορισμό φωτογραφίας προφίλ</string>
@@ -672,8 +674,6 @@
   <string name="MessageNotifier_reply">Απάντηση</string>
   <string name="MessageNotifier_signal_message">Μήνυμα Signal</string>
   <string name="MessageNotifier_unsecured_sms">Μη ασφαλές SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Μηνύματα Signal σε αναμονή</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Έχετε μηνύματα Signal σε αναμονή, πατήστε για να τα ανοίξετε και να τα λάβετε</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Επαφή</string>
   <!--Notification Channels-->

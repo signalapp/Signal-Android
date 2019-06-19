@@ -212,6 +212,8 @@
   <string name="ConversationListItem_key_exchange_message">Kunci pertukaran pesan</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arsip percakapan (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Terverifikasi</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Profil informasi Anda</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gagal mengatur foto profil</string>
@@ -633,8 +635,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_reply">Balas</string>
   <string name="MessageNotifier_signal_message">Pesan Signal</string>
   <string name="MessageNotifier_unsecured_sms">Kirim SMS tidak aman</string>
-  <string name="MessageNotifier_pending_signal_messages">Pesan Signal tertunda</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Signal yang tertunda, ketuk untuk membuka dan menerima</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontak</string>
   <!--Notification Channels-->

@@ -217,6 +217,8 @@
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">アーカイブ済みの会話 (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">確認済み</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">プロフィール情報</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール画像の設定に失敗しました。</string>
@@ -646,8 +648,6 @@
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
-  <string name="MessageNotifier_pending_signal_messages">保留中のメッセージ</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">保留中のメッセージがあります。取得するにはタップしてください。</string>
   <string name="MessageNotifier_contact_message">%2$s%1$s</string>
   <string name="MessageNotifier_unknown_contact_message">連絡先</string>
   <!--Notification Channels-->

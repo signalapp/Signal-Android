@@ -202,6 +202,8 @@
   <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนคีย์</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">การสนทนาที่ถูกเก็บในที่เก็บถาวร (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">ตรวจยืนยันแล้ว</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">ข้อมูลโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>
@@ -590,8 +592,6 @@
   <string name="MessageNotifier_reply">ตอบกลับ</string>
   <string name="MessageNotifier_signal_message">ข้อความ Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS ที่ไม่ปลอดภัย</string>
-  <string name="MessageNotifier_pending_signal_messages">ข้อความ Signal ที่รอดำเนินการ</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Signal ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ผู้ติดต่อ</string>
   <!--Notification Channels-->

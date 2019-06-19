@@ -197,6 +197,8 @@
   <string name="ConversationListItem_key_exchange_message">ကီးအလဲအလှယ် စာသား</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">မှတ်တမ်းပြုထားသော ပြောစကား (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">အတည်ပြုပြီး</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">ကိုယ်ရေးအချက်အလက် </string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ဓါတ်ပုံတင်ရာတွင် အခက်အခဲရှိ </string>
@@ -570,8 +572,6 @@
   <string name="MessageNotifier_reply">အကြောင်းပြန်မည်</string>
   <string name="MessageNotifier_signal_message">Signal မှ စာများ</string>
   <string name="MessageNotifier_unsecured_sms">မလုံခြုံသော SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားခြင်း</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Signalတွင် စာပေးပို့/လက်ခံမှုကို ဆိုင်းငံ့ထားပါသည်၊ ပြန်ဖွင့်ရန် နှိပ်လိုက်ပါ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">အဆက်အသွယ်</string>
   <!--Notification Channels-->

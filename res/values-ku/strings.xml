@@ -227,6 +227,8 @@
   <string name="ConversationListItem_key_exchange_message">Peyama guherandina kilîdê</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">(%d) Gotûbêjên arşîvkirî</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Rastandî ye</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Agahiya profîla te</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Di sazkirina wêneyê profîlê de çewtî rû da</string>
@@ -630,8 +632,6 @@
   <string name="MessageNotifier_reply">Bersiv bide</string>
   <string name="MessageNotifier_signal_message">Peyama Signalê</string>
   <string name="MessageNotifier_unsecured_sms">SMSa neewledar</string>
-  <string name="MessageNotifier_pending_signal_messages">Peyamên hilawistî yên Signalê </string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Peyamên hilawistî yên Signalê hene, ji bo vekî û werbigirî bitepîne</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Berdeng</string>
   <!--Notification Channels-->

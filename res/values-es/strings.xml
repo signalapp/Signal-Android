@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Chats archivados (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verificado</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Información de perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fallo al establecer la foto de perfil</string>
@@ -677,8 +679,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensaje de Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no cifrado</string>
-  <string name="MessageNotifier_pending_signal_messages">Mensajes de Signal pendientes</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Tienes mensajes de Signal pendientes, toca para abrir y descargar</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Tienes nuevos mensajes</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Abre Signal para comprobar las últimas notificaciones.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
   <!--Notification Channels-->

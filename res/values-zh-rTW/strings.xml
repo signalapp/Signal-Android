@@ -217,6 +217,8 @@
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">存檔對話 (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">已驗證</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">你的個人資訊</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">頭像照片設定出現錯誤</string>
@@ -654,8 +656,8 @@
   <string name="MessageNotifier_reply">回覆</string>
   <string name="MessageNotifier_signal_message">Signal 訊息</string>
   <string name="MessageNotifier_unsecured_sms">不安全的簡訊</string>
-  <string name="MessageNotifier_pending_signal_messages">擱置的 Signal 訊息</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Signal 訊息，輕觸打開及取得訊息</string>
+  <string name="MessageNotifier_you_may_have_new_messages">你有新訊息</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">開啟 Signal 以查驗最近的通知。</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
   <!--Notification Channels-->

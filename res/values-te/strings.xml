@@ -224,6 +224,8 @@
   <string name="ConversationListItem_key_exchange_message">కీ  సందేశం మార్పిడి</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d"> భద్రపరిచిన సంభాషణలు (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">ధృవీకరించబడింది</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">మీ ప్రొఫైల్ సమాచారం</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ప్రొఫైల్ ఫోటోను సెట్ చేయడంలో లోపం</string>
@@ -621,8 +623,6 @@
   <string name="MessageNotifier_reply">స్పంధించు</string>
   <string name="MessageNotifier_signal_message">Signal సందేశం</string>
   <string name="MessageNotifier_unsecured_sms">భద్రతలేని సందేశం</string>
-  <string name="MessageNotifier_pending_signal_messages">Signal సందేశాలు పెండింగ్లో ఉన్నాయి</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">మీ Signal సందేశాలు పెండింగ్లో ఉన్నాయి, తెరవడానికి మరియు తిరిగి పొందడానికి నొక్కండి</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">పరిచయం</string>
   <!--Notification Channels-->

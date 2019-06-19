@@ -220,6 +220,8 @@
   <string name="ConversationListItem_key_exchange_message">Порука размене кључева</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архивиране преписке (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Потврђен</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Подаци вашег профила</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Грешка постављања профилне слике</string>
@@ -583,8 +585,6 @@
   <string name="MessageNotifier_reply">Одговори</string>
   <string name="MessageNotifier_signal_message">Порука на Signalу</string>
   <string name="MessageNotifier_unsecured_sms">Необезбеђени СМС</string>
-  <string name="MessageNotifier_pending_signal_messages">Поруке са Signal-a на чекању</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Имате поруке на Signalу, тапните да отворите и добавите</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--Notification Channels-->

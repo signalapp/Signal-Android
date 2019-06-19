@@ -228,6 +228,8 @@
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtalar (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Godkjent</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Din profilinfo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klarte ikkje endra profilbilete</string>
@@ -652,8 +654,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signal-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikra SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Uhenta Signal-meldingar</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du har uhenta Signal-meldingar, klikk for å opna og henta</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

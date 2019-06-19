@@ -229,6 +229,8 @@
   <string name="ConversationListItem_key_exchange_message">Açar mübadilə mesajı</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arxivləşdirilmiş söhbətlər (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Təsdiq edildi</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Profil məlumatların</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil şəklinin təyini zamanı xəta</string>
@@ -670,8 +672,6 @@
   <string name="MessageNotifier_reply">Cavab ver</string>
   <string name="MessageNotifier_signal_message">Signal Mesajı</string>
   <string name="MessageNotifier_unsecured_sms">Mühafizə edilməyən SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Gözləmədə olan Signal mesajları</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Gözləmədə olan Signal mesajların var, açmaq və bərpa etmək üçün kliklə</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Əlaqə</string>
   <!--Notification Channels-->

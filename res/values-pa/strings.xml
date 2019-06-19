@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">ਮੁੱਖ ਐਕਸਚੇਜ਼ ਸੁਨੇਹਾ</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">ਗੱਲਾਂਬਾਤਾਂ ਆਰਕਾਈਵਡ (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">ਪ੍ਰਮਾਣਿਤ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਜਾਣਕਾਰੀ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਨੂੰ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ</string>
@@ -671,8 +673,6 @@
   <string name="MessageNotifier_reply">ਜਵਾਬ </string>
   <string name="MessageNotifier_signal_message">Signal ਸੁਨੇਹਾ</string>
   <string name="MessageNotifier_unsecured_sms">ਅਸੁਰੱਖਿਅਤ ਐਸਐਮਐਸ</string>
-  <string name="MessageNotifier_pending_signal_messages">ਬਕਾਇਆ Signal ਸੁਨੇਹੇ</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">ਤੁਹਾਡੇ ਕੋਲ ਲੰਬੇ ਸਮੇਂ ਦੇ Signal ਸੁਨੇਹੇ ਹਨ, ਖੋਲ੍ਹਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ਸੰਪਰਕ </string>
   <!--Notification Channels-->

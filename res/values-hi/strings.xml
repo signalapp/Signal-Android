@@ -220,6 +220,8 @@
   <string name="ConversationListItem_key_exchange_message">कुंजी विनिमय संदेश</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">संग्रहीत बातचीत (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">सत्यापित</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">आपकी प्रोफाइल जानकारी</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाइल फोटो सेट करने में त्रुटि</string>
@@ -606,8 +608,6 @@
   <string name="MessageNotifier_reply">उत्तर</string>
   <string name="MessageNotifier_signal_message">Signal संदेश</string>
   <string name="MessageNotifier_unsecured_sms">असुरक्षित एसएमएस</string>
-  <string name="MessageNotifier_pending_signal_messages">लंबित Signal संदेश</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">आपके पास Signal संदेश लंबित हैं, खोलने और पुनर्प्राप्त करने के लिए टैप करें</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
   <!--Notification Channels-->

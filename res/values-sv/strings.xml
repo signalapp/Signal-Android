@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverade konversationer (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verifierat</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Din profilinfo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gick ej att välja profilbild</string>
@@ -671,8 +673,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_reply">Svara</string>
   <string name="MessageNotifier_signal_message">Signal-meddelande</string>
   <string name="MessageNotifier_unsecured_sms">Osäkert SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Väntande Signal-meddelanden</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du har väntande Signal-meddelanden, tryck för att öppna och hämta</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Du kan ha nya meddelanden</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Öppna Signal för att kontrollera efter senaste aviseringar.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

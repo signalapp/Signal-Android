@@ -259,6 +259,8 @@
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archiwum konwersacji (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Zweryfikowano</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Twój profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Błąd ustawiania zdjęcia profilowego</string>
@@ -708,8 +710,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
   <string name="MessageNotifier_signal_message">Wiadomość Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nieszyfrowany SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Oczekujące wiadomości Signal</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Masz oczekujące wiadomości Signal. Dotknij, aby otworzyć.</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Możesz mieć nowe wiadomości.</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Otwórz Signal, aby zobaczyć najnowsze powiadomienia.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

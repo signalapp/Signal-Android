@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verificado</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">A sua informação de prefil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro a definir a foto de perfil</string>
@@ -673,8 +675,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
-  <string name="MessageNotifier_pending_signal_messages">Mensagens do Signal pendentes</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Tem mensagens do Signal pendentes, toque para abrir e obter</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
   <!--Notification Channels-->

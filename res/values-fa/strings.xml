@@ -232,6 +232,8 @@
   <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">گفتگوهای آرشیو شده (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">تائید شده</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">مشخصات پروفایل شما</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم عکس پروفایل</string>
@@ -672,8 +674,6 @@
   <string name="MessageNotifier_reply">پاسخ</string>
   <string name="MessageNotifier_signal_message">پیام Signal</string>
   <string name="MessageNotifier_unsecured_sms">پیامک ناامن</string>
-  <string name="MessageNotifier_pending_signal_messages">پیام در انتظار Signal</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">شما در Signal پیام در انتظار دارید، برای مشاهده و بازیابی پیام اینجا ضربه بزنید</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">مخاطب</string>
   <!--Notification Channels-->

@@ -256,6 +256,8 @@
   <string name="ConversationListItem_key_exchange_message">Správa výmeny kľúčov</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivované konverzácie (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Overený</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Váš profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba pri nastavení profilovej fotky</string>
@@ -700,8 +702,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_reply">Odpovedať</string>
   <string name="MessageNotifier_signal_message">Signal správa</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Nevybavené Signal správy </string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Máte nevybavené Signal správy, stlačením otvorte a prevezmite</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arhiveeritud vestlused (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Kontrollitud</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Sinu profiiliinfo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profiilipildi seadmisel tekkis viga</string>
@@ -677,8 +679,6 @@
   <string name="MessageNotifier_reply">Vasta</string>
   <string name="MessageNotifier_signal_message">Signali sõnum</string>
   <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Ootel Signali sõnumid</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Sul on ootel Signali sõnumeid, koputa vaatamiseks</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

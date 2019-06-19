@@ -167,6 +167,8 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Ujumbe wa kubadilishana muhimu</string>
   <!--ConversationListItemAction-->
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">iliyothibitishwa</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">taarifa za wasifu wako</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Hitilafu ya kuweka picha ya wasifu</string>
@@ -518,8 +520,6 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_reply">jibu</string>
   <string name="MessageNotifier_signal_message">ujumbe wa Signal</string>
   <string name="MessageNotifier_unsecured_sms">ujumbe sio salama</string>
-  <string name="MessageNotifier_pending_signal_messages">Ujumbe wa Signal inasubiri</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">una ujumbe wa Signal unasubiri, gusa kufungua na kurudi</string>
   <string name="MessageNotifier_unknown_contact_message">Mawasiliano</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Chaguo Msingi</string>

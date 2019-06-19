@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Message d’échange de clés</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversations archivées (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Vérifié</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Vos renseignements de profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erreur de définition de la photo de profil</string>
@@ -239,7 +241,7 @@
   <string name="CreateProfileActivity_too_long">Trop long</string>
   <string name="CreateProfileActivity_profile_name">Nom de profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurez votre profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Les profils de Signal sont chiffrés de bout en bout et le service Signal n’a jamais accès à ces renseignements.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Les profils Signal sont chiffrés de bout en bout et le service Signal n’a jamais accès à ces renseignements.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé : %s</string>
   <string name="CustomDefaultPreference_using_default">Utilisation par défaut : %s</string>
@@ -252,7 +254,7 @@
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Envoi</string>
   <string name="DeliveryStatus_sent">Envoyé</string>
-  <string name="DeliveryStatus_delivered">Transmis</string>
+  <string name="DeliveryStatus_delivered">Remis</string>
   <string name="DeliveryStatus_read">Lu</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Annuler le lien avec « %s » ?</string>
@@ -286,7 +288,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal prend désormais en charge les appels vidéo sécurisés. Touchez pour explorer.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prêt pour votre gros plan ?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Vous pouvez maintenant partager une photo de profil et un nom avec des amis sur Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Les profils de Signal sont arrivés</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Les profils Signal sont arrivés</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Les indicateurs de saisie sont arrivés</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Vous pouvez maintenant facultativement voir et faire savoir que des messages sont en cours de saisie.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Souhaitez-vous les activer maintenant ?</string>
@@ -663,8 +665,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="MessageNotifier_locked_message">Message verrouillé</string>
   <string name="MessageNotifier_media_message_with_text">Message multimédia : %s</string>
   <string name="MessageNotifier_message_delivery_failed">La transmission du message a échoué.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Échec de transmission du message.</string>
-  <string name="MessageNotifier_error_delivering_message">Erreur de transmission du message.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Échec de remise du message.</string>
+  <string name="MessageNotifier_error_delivering_message">Erreur de remise du message.</string>
   <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
   <string name="MessageNotifier_mark_read">Marquer comme lu</string>
   <string name="MessageNotifier_media_message">Message multimédia</string>
@@ -672,8 +674,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="MessageNotifier_reply">Répondre</string>
   <string name="MessageNotifier_signal_message">Message Signal</string>
   <string name="MessageNotifier_unsecured_sms">Texto non sécurisé</string>
-  <string name="MessageNotifier_pending_signal_messages">Messages Signal en attente</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Vous avez des messages Signal en attente. Touchez pour ouvrir et les récupérer</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--Notification Channels-->
@@ -779,7 +779,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__send_failed_indicator_description">Échec d’envoi</string>
   <string name="conversation_item_sent__pending_approval_description">En attente d’approbation</string>
-  <string name="conversation_item_sent__delivered_description">Transmis</string>
+  <string name="conversation_item_sent__delivered_description">Remis</string>
   <string name="conversation_item_sent__message_read">Message lu</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Photo du contact</string>
@@ -908,7 +908,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal exige les paramètres de messages multimédias (MMS) pour transmettre les messages multimédias et de groupe en utilisant votre opérateur sans fil. Votre appareil n’offre pas ces renseignements, ce qui arrive parfois pour les appareils verrouillés ou autres configurations restrictives.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal exige que les paramètres de messages multimédias (MMS) remettent les messages multimédias et de groupe en utilisant votre opérateur sans fil. Votre appareil n’offre pas ces renseignements, ce qui arrive parfois pour les appareils verrouillés ou autres configurations restrictives.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer des messages multimédias ou de groupe, touchez Valider et remplissez les champs demandés. Les paramètres de messages multimédias (MMS) pour votre opérateur peuvent habituellement être trouvés en cherchant l’APN (nom du point d’accès) de votre opérateur. Vous n’aurez à le faire qu’une seule fois.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Définir plus tard</string>
@@ -1117,7 +1117,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences_notifications__priority">Priorité</string>
   <string name="preferences_communication__category_sealed_sender">Expéditeur scellé</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Afficher les indicateurs</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Afficher une icône d’état quand vous sélectionnez « Détails du message » pour les messages qui ont été distribués avec l’option « expéditeur scellé ».</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Afficher une icône d’état quand vous sélectionnez « Détails du message » pour les messages qui ont été remis avec l’option « expéditeur scellé ».</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Autoriser de n’importe qui</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activez l’option « expéditeur scellé » pour les messages entrants provenant d’expéditeurs qui ne sont pas dans vos contacts et de personnes avec qui vous n’avez pas partagé votre profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">En apprendre davantage</string>

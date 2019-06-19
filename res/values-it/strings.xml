@@ -231,6 +231,8 @@
   <string name="ConversationListItem_key_exchange_message">Messaggio per lo scambio della chiave</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversazioni archiviate (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verificato</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Il tuo profilo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Errore salvando la foto del profilo</string>
@@ -674,8 +676,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_reply">Rispondi</string>
   <string name="MessageNotifier_signal_message">Messaggio Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
-  <string name="MessageNotifier_pending_signal_messages">Messaggi Signal in attesa</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Hai messaggi Signal in attesa, tocca per aprire e ricevere</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Potresti avere nuovi messaggi</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Apri Signal per controllare le notifiche recenti.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contatto</string>
   <!--Notification Channels-->

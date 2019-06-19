@@ -261,6 +261,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationListItem_key_exchange_message">Neges cyfnewid allwedd</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Sgyrsiau wedi\'u harchifo (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Gwiriwyd</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Manylion eich proffil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gwall gosod llun proffil</string>
@@ -713,8 +715,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_reply">Ymateb</string>
   <string name="MessageNotifier_signal_message">Neges Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS anniogel</string>
-  <string name="MessageNotifier_pending_signal_messages">Negeseuon Signal yn aros</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Mae gennych negeseuon Signal yn aros, tapiwch i\'w hagor ac adfer</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Cysylltiad</string>
   <!--Notification Channels-->

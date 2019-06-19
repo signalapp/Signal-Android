@@ -217,6 +217,8 @@
   <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">存档的会话 (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">确认</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">个人信息</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">无法设置头像</string>
@@ -648,8 +650,6 @@
   <string name="MessageNotifier_reply">回复</string>
   <string name="MessageNotifier_signal_message">Signal 消息</string>
   <string name="MessageNotifier_unsecured_sms">未加密的短信</string>
-  <string name="MessageNotifier_pending_signal_messages"> Signal 信息待处理</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">您有待处理的信号消息，轻触来打开和收取</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">联系人</string>
   <!--Notification Channels-->

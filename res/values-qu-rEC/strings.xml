@@ -216,6 +216,8 @@
   <string name="ConversationListItem_key_exchange_message">Ranti paskachik chaski</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Rimariykuna allichirishka (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Shinapachami</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Ñukanchikpa kallariwillaykuna</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Ñawishuyuta mana churay usharirkachu </string>
@@ -602,8 +604,6 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="MessageNotifier_reply">Kutichina</string>
   <string name="MessageNotifier_signal_message">Signal chaski</string>
   <string name="MessageNotifier_unsecured_sms">Kay killkaska SMS mana pakallachu</string>
-  <string name="MessageNotifier_pending_signal_messages">Signal chaskikuna shuyanakun</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Signal chaskikuna shuyanakukta charinki, paskankapak uryakuchinkapakpash llapipay</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Yupay mashi</string>
   <!--Notification Channels-->
