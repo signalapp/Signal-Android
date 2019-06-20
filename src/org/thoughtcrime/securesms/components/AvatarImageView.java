@@ -105,13 +105,12 @@ public class AvatarImageView extends AppCompatImageView {
         Drawable fallbackContactPhotoDrawable = photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
 
         if (photo.contactPhoto != null) {
-          GlideApp.with(this)
-                  .load(photo.contactPhoto)
-                  .fallback(fallbackContactPhotoDrawable)
-                  .error(fallbackContactPhotoDrawable)
-                  .diskCacheStrategy(DiskCacheStrategy.ALL)
-                  .circleCrop()
-                  .into(this);
+          requestManager.load(photo.contactPhoto)
+                        .fallback(fallbackContactPhotoDrawable)
+                        .error(fallbackContactPhotoDrawable)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .circleCrop()
+                        .into(this);
         } else {
           setImageDrawable(fallbackContactPhotoDrawable);
         }
