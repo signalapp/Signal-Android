@@ -481,6 +481,10 @@
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>
 
+    <style name="RationaleDialog.Dark">
+        <item name="android:editTextColor">@color/text_color_dark_theme</item>
+    </style>
+
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
         <item name="android:background">@color/core_grey_95</item>
     </style>
