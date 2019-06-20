@@ -713,6 +713,8 @@
   <string name="MessageNotifier_reply">השב</string>
   <string name="MessageNotifier_signal_message">הודעת Signal</string>
   <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
+  <string name="MessageNotifier_you_may_have_new_messages">ייתכן שיש לך הודעות חדשות</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">פתח את Signal כדי לבדוק התראות אחרונות.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">איש קשר</string>
   <!--Notification Channels-->

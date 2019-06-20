@@ -648,6 +648,8 @@
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
+  <string name="MessageNotifier_you_may_have_new_messages">新しいメッセージがあるかも</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">通知を確認するため、Signalを開いてください</string>
   <string name="MessageNotifier_contact_message">%2$s%1$s</string>
   <string name="MessageNotifier_unknown_contact_message">連絡先</string>
   <!--Notification Channels-->

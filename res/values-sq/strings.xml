@@ -675,6 +675,8 @@
   <string name="MessageNotifier_reply">Përgjigju</string>
   <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Mund të keni mesazhe të rinj</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Që të shihni për njoftime së fundi, hapni Signal-in.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

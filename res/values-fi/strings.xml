@@ -673,6 +673,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_reply">Vastaa</string>
   <string name="MessageNotifier_signal_message">Signal viesti</string>
   <string name="MessageNotifier_unsecured_sms">Salaamaton SMS-viesti</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Olet saattanut saada uusia viestejä</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Avaa Signal tarkistaaksesi viimeisimmät ilmoitukset.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Yhteystieto</string>
   <!--Notification Channels-->

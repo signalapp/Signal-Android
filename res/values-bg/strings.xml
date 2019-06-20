@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Премахване на снимката от профила?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Не е открит уеб браузър.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Обаждането вече е в прогрес.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %1$s са променени. Това означава, че или някой се опитва да прехване комуникацията Ви, или че %2$s е преинсталирал Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
@@ -161,6 +162,8 @@
   <string name="ConversationActivity_no">Не</string>
   <string name="ConversationActivity_search_position">%1$d от %2$d</string>
   <string name="ConversationActivity_no_results">Няма резултати</string>
+  <string name="ConversationActivity_sticker_pack_installed">Пакетът със стикери е инсталиран</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Ново! Кажи го със стикери</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочетено съобщение</item>
@@ -554,6 +557,7 @@
   <string name="SharedContactView_message">Signal-ско съобщение</string>
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
+  <string name="Slide_sticker">Стикер</string>
   <string name="Slide_audio">Аудио</string>
   <string name="Slide_video">Видео</string>
   <!--SmsMessageRecord-->
@@ -566,14 +570,24 @@
   <string name="SmsMessageRecord_secure_session_reset">Вие рестартирахте сигурната сесия.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s рестартира сигурната сесия.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублирай съобщението.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Това съпбщение не можа да бъде обработено, защото бе изпратено от по-нова версиа на Signal. Може да помолите Вашия контакт да изпрати съобщението отново след като актуализирате.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Стикери</string>
   <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Инсталирани стикери</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Получени стикери</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal Artist серии</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Няма инсталирани стикери</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Стикери от входящи съобщения ще се появяват тук</string>
+  <string name="StickerManagementAdapter_untitled">Неозаглавен</string>
   <string name="StickerManagementAdapter_unknown">Непознат</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Неозаглавен</string>
   <string name="StickerPackPreviewActivity_unknown">Непознат</string>
+  <string name="StickerPackPreviewActivity_install">Инсталирай</string>
   <string name="StickerPackPreviewActivity_remove">Премахни</string>
   <string name="StickerPackPreviewActivity_stickers">Стикери</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Пакетът със стикерите не можа да бъде зареден</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Групата е обновена</string>
   <string name="ThreadRecord_left_the_group">Напусна групата</string>
@@ -590,6 +604,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %s са променени.</string>
   <string name="ThreadRecord_you_marked_verified">Отбелязахте като потвърдено</string>
   <string name="ThreadRecord_you_marked_unverified">Отбелязахте като непотвърдено</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Съобщението не можа да бъде отработено</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Обновление на Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Има нова версия на Signal, натиснете, за да обновите.</string>
@@ -655,9 +670,12 @@
   <string name="MessageNotifier_mark_all_as_read">Всички са прочетени</string>
   <string name="MessageNotifier_mark_read">Прочетено</string>
   <string name="MessageNotifier_media_message">Медийно съобщение</string>
+  <string name="MessageNotifier_sticker">Стикер</string>
   <string name="MessageNotifier_reply">Отговори</string>
   <string name="MessageNotifier_signal_message">Signal-ско съобщение</string>
   <string name="MessageNotifier_unsecured_sms">Некриптиран SMS</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Вие може да имате нови съобщения</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Отворете Signal за да проверите за скорошни известия</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--Notification Channels-->
@@ -774,6 +792,7 @@
   <string name="QuoteView_audio">Аудио</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Снимка</string>
+  <string name="QuoteView_sticker">Стикер</string>
   <string name="QuoteView_document">Документ</string>
   <string name="QuoteView_you">Ти</string>
   <string name="QuoteView_original_missing">Оригиналното съобщение не е открито</string>
@@ -1257,6 +1276,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d съобщения до тук</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Моля, въведте кодът за потвържение изпрате на %s</string>
   <string name="RegistrationActivity_wrong_number">Грешен номер</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Обадете ми се  \n  (На разположение след%1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Никога</string>
   <string name="BackupUtil_unknown">Непознат</string>
   <string name="preferences_app_protection__screen_lock">Заключен екран</string>

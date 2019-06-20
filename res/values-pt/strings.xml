@@ -675,6 +675,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Pode ter novas mensagens</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Abra o Signal para verificar se existem notificações recentes.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
   <!--Notification Channels-->
