@@ -15,6 +15,7 @@ build.log
 build-log.xml
 .gradle
 build
+website/
 signing.properties
 library/lib/
 library/obj/
