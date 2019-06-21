@@ -9,7 +9,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 
 class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     var message: Any? = null
@@ -42,7 +41,6 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     private val buttonLinearLayout by lazy {
         val result = LinearLayout(context)
         result.orientation = HORIZONTAL
-        result.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 50)
         result
     }
     // endregion
@@ -56,9 +54,6 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         addView(topSpacer)
         addView(label)
 //        if (kind == Kind.Incoming) {
-            //
-            val buttonLayoutParams = LayoutParams(0, 50)
-            buttonLayoutParams.weight = 1f
             // Accept button
             val acceptButton = Button(context)
             acceptButton.text = "Accept"
@@ -70,7 +65,9 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
                 acceptButton.stateListAnimator = null
             }
             acceptButton.setOnClickListener { accept() }
-            acceptButton.layoutParams = buttonLayoutParams
+            val acceptButtonLayoutParams = LayoutParams(0, convertToPixels(50, resources))
+            acceptButtonLayoutParams.weight = 1f
+            acceptButton.layoutParams = acceptButtonLayoutParams
             buttonLinearLayout.addView(acceptButton)
             // Reject button
             val rejectButton = Button(context)
@@ -83,11 +80,15 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
                 rejectButton.stateListAnimator = null
             }
             rejectButton.setOnClickListener { reject() }
-            rejectButton.layoutParams = buttonLayoutParams
+            val rejectButtonLayoutParams = LayoutParams(0, convertToPixels(50, resources))
+            rejectButtonLayoutParams.weight = 1f
+            rejectButton.layoutParams = rejectButtonLayoutParams
             buttonLinearLayout.addView(rejectButton)
             //
+            buttonLinearLayout.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, convertToPixels(50, resources))
             addView(buttonLinearLayout)
 //        }
+        kind = Kind.Incoming // TODO: For debugging purposes
         updateUI()
         // TODO: Observe friend request status changes
     }
@@ -97,7 +98,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     private fun updateUI() {
         when (kind) {
             Kind.Incoming -> {
-                val message = this.message as IncomingTextMessage
+//                val message = this.message as IncomingTextMessage
 //                buttonLinearLayout.visibility = View.GONE // TODO: Base on friend request status
                 val text = { // TODO: Base on friend request status
                     "You've received a friend request"
@@ -105,7 +106,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
                 label.text = text
             }
             Kind.Outgoing -> {
-                val message = this.message as OutgoingTextMessage
+//                val message = this.message as OutgoingTextMessage
 //                buttonLinearLayout.visibility = View.GONE
                 val text = {
                     "You've sent a friend request"
@@ -118,15 +119,15 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
 
     // region Interaction
     private fun accept() {
-        val message = this.message as IncomingTextMessage
+//        val message = this.message as IncomingTextMessage
         // TODO: Update message friend request status
-        delegate?.acceptFriendRequest(message)
+//        delegate?.acceptFriendRequest(message)
     }
 
     private fun reject() {
-        val message = this.message as IncomingTextMessage
+//        val message = this.message as IncomingTextMessage
         // TODO: Update message friend request status
-        delegate?.rejectFriendRequest(message)
+//        delegate?.rejectFriendRequest(message)
     }
     // endregion
 }
