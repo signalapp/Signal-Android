@@ -142,7 +142,7 @@ public class MmsSmsDatabase extends Database {
     try {
       return cursor != null ? cursor.getCount() : 0;
     } finally {
-      if (cursor != null) cursor.close();;
+      if (cursor != null) cursor.close();
     }
   }
 

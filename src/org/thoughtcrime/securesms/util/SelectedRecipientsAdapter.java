@@ -27,7 +27,7 @@ public class SelectedRecipientsAdapter extends BaseAdapter {
   @NonNull  private List<RecipientWrapper>     recipients;
 
   public SelectedRecipientsAdapter(@NonNull Context context) {
-    this(context, Collections.<Recipient>emptyList());
+    this(context, Collections.emptyList());
   }
 
   public SelectedRecipientsAdapter(@NonNull Context context,
@@ -101,9 +101,9 @@ public class SelectedRecipientsAdapter extends BaseAdapter {
     final Recipient        p          = rw.getRecipient();
     final boolean          modifiable = rw.isModifiable();
 
-    TextView    name   = (TextView)    v.findViewById(R.id.name);
-    TextView    phone  = (TextView)    v.findViewById(R.id.phone);
-    ImageButton delete = (ImageButton) v.findViewById(R.id.delete);
+    TextView    name   = v.findViewById(R.id.name);
+    TextView    phone  = v.findViewById(R.id.phone);
+    ImageButton delete = v.findViewById(R.id.delete);
 
     name.setText(p.getName());
     phone.setText(p.getAddress().serialize());

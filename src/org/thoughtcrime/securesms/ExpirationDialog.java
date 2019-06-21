@@ -81,7 +81,7 @@ public class ExpirationDialog extends AlertDialog {
   }
 
   public interface OnClickListener {
-    public void onClick(int expirationTime);
+    void onClick(int expirationTime);
   }
 
 }

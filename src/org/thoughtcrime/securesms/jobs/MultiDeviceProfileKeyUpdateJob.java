@@ -94,8 +94,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob implements Injectabl
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof PushNetworkException) return true;
-    return false;
+      return exception instanceof PushNetworkException;
   }
 
   @Override

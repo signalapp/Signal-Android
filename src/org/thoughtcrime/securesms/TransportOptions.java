@@ -212,6 +212,6 @@ public class TransportOptions {
   }
 
   public interface OnTransportChangedListener {
-    public void onChange(TransportOption newTransport, boolean manuallySelected);
+    void onChange(TransportOption newTransport, boolean manuallySelected);
   }
 }

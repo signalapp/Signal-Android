@@ -51,6 +51,7 @@
     <attr name="conversation_sticker_footer_text_color" format="reference|color"/>
     <attr name="conversation_sticker_footer_icon_color" format="reference|color"/>
     <attr name="conversation_sticker_author_color" format="reference|color"/>
+    <attr name="conversation_reply_tint" format="reference|color"/>
 
     <attr name="emoji_tab_strip_background" format="color" />
     <attr name="emoji_tab_indicator" format="color" />

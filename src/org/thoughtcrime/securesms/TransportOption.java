@@ -34,7 +34,7 @@ public class TransportOption implements Parcelable {
                          @NonNull CharacterCalculator characterCalculator)
   {
     this(type, drawable, backgroundColor, text, composeHint, characterCalculator,
-         Optional.<CharSequence>absent(), Optional.<Integer>absent());
+         Optional.absent(), Optional.absent());
   }
 
   public TransportOption(@NonNull  Type type,

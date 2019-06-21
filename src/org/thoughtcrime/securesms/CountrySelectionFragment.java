@@ -34,7 +34,7 @@ public class CountrySelectionFragment extends ListFragment implements LoaderMana
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
-    this.countryFilter = (EditText)getView().findViewById(R.id.country_search);
+    this.countryFilter = getView().findViewById(R.id.country_search);
     this.countryFilter.addTextChangedListener(new FilterWatcher());
     getLoaderManager().initLoader(0, null, this).forceLoad();
   }
@@ -78,7 +78,7 @@ public class CountrySelectionFragment extends ListFragment implements LoaderMana
   }
 
   public interface CountrySelectedListener {
-    public void countrySelected(String countryName, int countryCode);
+    void countrySelected(String countryName, int countryCode);
   }
 
   private class FilterWatcher implements TextWatcher {

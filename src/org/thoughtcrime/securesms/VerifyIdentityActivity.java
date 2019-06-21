@@ -89,6 +89,7 @@ import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
@@ -123,7 +124,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
 
-    Recipient recipient = Recipient.from(this, (Address)getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
+    Recipient recipient = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     recipient.addListener(this);
 
     setActionBarNotificationBarColor(recipient.getColor());
@@ -371,7 +372,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
     public void setScannedFingerprint(String scanned) {
       try {
-        if (fingerprint.getScannableFingerprint().compareTo(scanned.getBytes("ISO-8859-1"))) {
+        if (fingerprint.getScannableFingerprint().compareTo(scanned.getBytes(StandardCharsets.ISO_8859_1))) {
           this.animateSuccessOnDraw = true;
         } else {
           this.animateFailureOnDraw = true;
@@ -386,8 +387,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       } catch (FingerprintParsingException e) {
         Log.w(TAG, e);
         Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number, Toast.LENGTH_LONG).show();
-      } catch (UnsupportedEncodingException e) {
-        throw new AssertionError(e);
       }
     }
 

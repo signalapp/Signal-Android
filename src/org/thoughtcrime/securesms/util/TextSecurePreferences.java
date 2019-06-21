@@ -284,7 +284,7 @@ public class TextSecurePreferences {
   }
 
   public static void setActiveSignedPreKeyId(@NonNull Context context, int value) {
-    setIntegerPrefrence(context, ACTIVE_SIGNED_PRE_KEY_ID, value);;
+    setIntegerPrefrence(context, ACTIVE_SIGNED_PRE_KEY_ID, value);
   }
 
   public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
@@ -1141,7 +1141,7 @@ public class TextSecurePreferences {
   private static Set<String> getStringSetPreference(Context context, String key, Set<String> defaultValues) {
     final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
     if (prefs.contains(key)) {
-      return prefs.getStringSet(key, Collections.<String>emptySet());
+      return prefs.getStringSet(key, Collections.emptySet());
     } else {
       return defaultValues;
     }

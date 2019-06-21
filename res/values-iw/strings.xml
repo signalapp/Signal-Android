@@ -78,8 +78,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">נכשל בשמירת תמונה.</string>
-  <!--ClearProfileActivity-->
+    <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">הסר</string>
   <string name="ClearProfileActivity_remove_profile_photo">להסיר תצלום פרופיל?</string>
   <!--CommunicationActions-->
@@ -152,8 +151,7 @@
   <string name="ConversationActivity_unblock_this_group_description">חברי קבוצה קיימים יוכלו להוסיף אותך אל הקבוצה שוב.</string>
   <string name="ConversationActivity_unblock">בטל חסימה</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה חורגת ממגבלות הגודל עבור הסוג של ההודעה שאתה שולח.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">המצלמה אינה זמינה</string>
-  <string name="ConversationActivity_unable_to_record_audio">לא היה ניתן להקליט שמע!</string>
+    <string name="ConversationActivity_unable_to_record_audio">לא היה ניתן להקליט שמע!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין יישום זמין לטיפול בקישור זה במכשיר שלך.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">כדי לשלוח הודעות שמע, אפשר ל-Signal לקבל גישה אל המיקרופון שלך.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal דורש את הרשאת המיקרופון על מנת לשלוח הודעות שמע, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקרופון\".</string>
@@ -262,8 +260,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">מוודא</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">מידע הפרופיל שלך</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">שגיאה בהגדרת תצלום פרופיל</string>
+    <string name="CreateProfileActivity_error_setting_profile_photo">שגיאה בהגדרת תצלום פרופיל</string>
   <string name="CreateProfileActivity_problem_setting_profile">בעיה בהגדרת פרופיל</string>
   <string name="CreateProfileActivity_profile_photo">תצלום פרופיל</string>
   <string name="CreateProfileActivity_too_long">ארוך מדי</string>
@@ -280,11 +277,7 @@
   <string name="DateUtils_today">היום</string>
   <string name="DateUtils_yesterday">אתמול</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">שולח</string>
-  <string name="DeliveryStatus_sent">נשלח</string>
-  <string name="DeliveryStatus_delivered">נמסר</string>
-  <string name="DeliveryStatus_read">נקרא</string>
-  <!--DeviceListActivity-->
+    <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">לבטל קישור \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ע\"י ביטול קישור של מכשיר זה, הוא לא יוכל יותר לשלוח או לקבל הודעות.</string>
   <string name="DeviceListActivity_network_connection_failed">חיבור רשת נכשל</string>
@@ -320,17 +313,14 @@
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">היכרות עם מחווני הקלדה</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">כעת אתה יכול לראות ולשתף באופן רשותי מתי הודעות מוקלדות.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">האם אתה רוצה לאפשר אותם כעת?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">מחווני הקלדה כאן</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">אפשר מחווני הקלדה</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">הפעל מחווני הקלדה</string>
+    <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">הפעל מחווני הקלדה</string>
   <string name="ExperienceUpgradeActivity_no_thanks">לא תודה</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">היכרות עם קדם־תצוגות של קישורים.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">קדם־תצוגות רשותיות של קישורים נתמכות כעת עבור כמה מהאתרים הפופולריים ביותר באינטרנט.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">אתה יכול להשבית או לאפשר מאפיין זה בכל זמן בהגדרות Signal שלך (פרטיות &gt; שלח קדם־תצוגות של קישורים).</string>
   <string name="ExperienceUpgradeActivity_got_it">הבנתי</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">מאחזר הודעה...</string>
-  <!--GcmRefreshJob-->
+    <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">כישלון תקשורת קבוע של Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal לא היה יכול להירשם עם שירותי Google Play. הודעות ושיחות של Signal הושבתו, אנא נסה להירשם מחדש בהגדרות &lt; מתקדם.</string>
   <!--GiphyActivity-->
@@ -389,8 +379,7 @@
   <string name="InviteActivity_no_app_to_share_to">נראה שאין לך יישומים כלשהם לשתף בהם.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">חברים לא נותנים לחברים להתכתב באופן לא מוצפן.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">עובד ברקע...</string>
-  <!--MessageDetailsRecipient-->
+    <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">נכשל לשלוח</string>
   <string name="MessageDetailsRecipient_new_safety_number">מספר ביטחון חדש</string>
   <!--LongMessageActivity-->
@@ -436,8 +425,7 @@
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">שלח אל %s</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">הקש כדי לבחור</string>
-  <!--MediaSendActivity-->
+    <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">הוסף כיתוב...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">פריט נמחק מאחר שהוא חרג ממגבלת הגודל</string>
   <string name="MediaSendActivity_camera_unavailable">מצלמה אינה זמינה.</string>
@@ -455,13 +443,10 @@
   <string name="MessageRecord_left_group">עזבת את הקבוצה.</string>
   <string name="MessageRecord_you_updated_group">עדכנת את הקבוצה.</string>
   <string name="MessageRecord_you_called">התקשרת</string>
-  <string name="MessageRecord_called_you">איש קשר חייג</string>
-  <string name="MessageRecord_missed_call">שיחה שלא נענתה</string>
+    <string name="MessageRecord_missed_call">שיחה שלא נענתה</string>
   <string name="MessageRecord_s_updated_group">%s עדכן את הקבוצה</string>
   <string name="MessageRecord_s_called_you">הייתה לך שיחה מאת %s</string>
-  <string name="MessageRecord_called_s">התקשרת אל %s</string>
-  <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string>
-  <string name="MessageRecord_s_joined_signal">%s משתמש ב-Signal!</string>
+    <string name="MessageRecord_s_joined_signal">%s משתמש ב-Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">הִשְׁבַּתְתָּ הודעות נעלמות.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s השבית הודעות נעלמות.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">הִגְדַּרְתָּ את קוצב הזמן של ההודעות הנעלמות אל %1$s.</string>
@@ -558,13 +543,9 @@
   <string name="RegistrationActivity_play_services_error">שגיאת שירותי Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">שירותי גוגל Play מתעדכנים או שאינם זמינים כעת. נא לנסות שוב.</string>
   <string name="RegistrationActivity_terms_and_privacy">תנאים ומדיניות פרטיות</string>
-  <string name="RegistrationActivity_no_browser">לא היה ניתן לפתוח קישור זה. לא נמצא דפדפן רשת.</string>
-  <string name="RegistrationActivity_more_information">יותר מידע</string>
-  <string name="RegistrationActivity_less_information">פחות מידע</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal צריך גישה אל אנשי הקשר והמדיה שלך על מנת לחבור אל חברים, להחליף הודעות ולקיים שיחות מאובטחות</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal צריך גישה אל אנשי הקשר והמדיה שלך על מנת לחבור אל חברים, להחליף הודעות ולקיים שיחות מאובטחות</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">לא היה ניתן להתחבר אל השירות. אנא בדוק את חיבור האינטרנט ונסה שוב.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">כדי לוודא בקלות את מספר הטלפון שלך, Signal יכול לזהות באופן אוטומטי את קוד הוידוא שלך אם תתיר אל Signal לראות הודעות מסרונים.</string>
-  <plurals name="RegistrationActivity_debug_log_hint">
+    <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">אתה כעת במרחק צעד %d מהגשת יומן ניפוי תקלים.</item>
     <item quantity="two">אתה כעת במרחק %d צעדים מהגשת יומן ניפוי תקלים.</item>
     <item quantity="many">אתה כעת במרחק %d צעדים מהגשת יומן ניפוי תקלים.</item>
@@ -580,8 +561,7 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %s</string>
   <string name="RegistrationActivity_call">חייג</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">נכשל בשמירת שינויי תמונה</string>
-  <!--Search-->
+    <!--Search-->
   <string name="SearchFragment_no_results">לא נמצאו תוצאות עבור \'%s\'</string>
   <string name="SearchFragment_header_conversations">שיחות</string>
   <string name="SearchFragment_header_contacts">אנשי קשר</string>
@@ -687,8 +667,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">ייבוא</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">גע כדי לפתוח.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">גע כדי לפתוח, או גע במנעול כדי לסגור.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal אינו נעול</string>
+    <string name="KeyCachingService_passphrase_cached">Signal אינו נעול</string>
   <string name="KeyCachingService_lock">נעל את Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">אתה</string>
@@ -835,8 +814,7 @@
   <string name="QuoteView_video">וידיאו</string>
   <string name="QuoteView_photo">תצלום</string>
   <string name="QuoteView_sticker">מדבקה</string>
-  <string name="QuoteView_document">מסמך</string>
-  <string name="QuoteView_you">אתה</string>
+    <string name="QuoteView_you">אתה</string>
   <string name="QuoteView_original_missing">הודעה מקורית לא נמצאה</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">גלול לתחתית</string>
@@ -939,11 +917,7 @@
   <string name="database_migration_activity__importing">מייבא</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">מעדכן מסד נתונים...</string>
-  <string name="import_fragment__import_system_sms_database">לייבא את מסד הנתונים של SMS מהמערכת</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">לייבא את מסד הנתונים מאפליקציית המסרים הרגילה של המערכת</string>
-  <string name="import_fragment__import_plaintext_backup">ייבוא גיבוי בטקסט פשוט</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">שחזור קובץ גיבוי בטקסט פשוט. זה מתאים ל„גיבוי ושחזור SMS”.</string>
-  <!--load_more_header-->
+    <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">ראה שיחה מלאה</string>
   <string name="load_more_header__loading">טוען</string>
   <!--media_overview_activity-->
@@ -951,8 +925,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">הצג</string>
   <string name="message_recipients_list_item__resend">שלח מחדש</string>
-  <string name="message_recipients_list_item__resending">שולח מחדש...</string>
-  <!--GroupUtil-->
+    <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s הצטרף אל הקבוצה.</item>
     <item quantity="two">%1$s הצטרפו אל הקבוצה.</item>
@@ -970,15 +943,13 @@
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">הגדר מאוחר יותר</string>
   <string name="profile_create_activity__finish">סיים</string>
-  <string name="profile_create_activity__who_can_see_this_information">מי יכול לראות מידע זה?</string>
-  <string name="profile_create_activity__your_name">שמך</string>
+    <string name="profile_create_activity__your_name">שמך</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">מדיה משותפת</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">השתק שיחה</string>
   <string name="recipient_preferences__custom_notifications">התראות מותאמות אישית</string>
-  <string name="recipient_preferences__custom_notifications_settings">הגדרות של התראות מערכת</string>
-  <string name="recipient_preferences__notification_sound">צליל התראה</string>
+    <string name="recipient_preferences__notification_sound">צליל התראה</string>
   <string name="recipient_preferences__vibrate">הרטט</string>
   <string name="recipient_preferences__block">חסום</string>
   <string name="recipient_preferences__color">צֶבַע</string>
@@ -992,9 +963,7 @@
   <string name="redphone_call_controls__mute">השתק</string>
   <string name="redphone_call_controls__flip_camera_rear">החלף מצלמות</string>
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">מספר טלפון</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal מסייע לתקשר ע\"י שימוש במספר הטלפון ובפנקס הכתובות הקיימים שלך. חברים ואנשי קשר שיודעים כבר איך ליצור איתך קשר בטלפון, יוכלו לשמור על קשר בקלות ב־Signal.\n\nרישום משדר מידע מסוים של אנשי קשר אל השרת. הוא לא מאוחסן.</string>
-  <string name="registration_activity__verify_your_number">וודא את המספר שלך</string>
+    <string name="registration_activity__verify_your_number">וודא את המספר שלך</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">אנא הכנס את המספר הנייד שלך כדי לקבל קוד וידוא. חיובי מפעיל עשויים לחול.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>הכנס שם או מספר</small></string>
@@ -1036,8 +1005,7 @@
   <string name="AndroidManifest_archived_conversations">שיחות בארכיון</string>
   <string name="AndroidManifest_remove_photo">הסר תצלום</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">ייבא</string>
-  <string name="arrays__use_default">השתמש בברירת מחדל</string>
+    <string name="arrays__use_default">השתמש בברירת מחדל</string>
   <string name="arrays__use_custom">השתמש במותאם אישית</string>
   <string name="arrays__mute_for_one_hour">השתק למשך שעה</string>
   <string name="arrays__mute_for_two_hours">השתק למשך שעתיים</string>
@@ -1090,8 +1058,7 @@
   <string name="preferences__inactivity_timeout_passphrase">משפט־סיסמה של אי־פעילות</string>
   <string name="preferences__inactivity_timeout_interval">מרווח אי־פעילות</string>
   <string name="preferences__notifications">התראות</string>
-  <string name="preferences__system_notification_settings">הגדרות של התראות מערכת</string>
-  <string name="preferences__led_color">צבע LED</string>
+    <string name="preferences__led_color">צבע LED</string>
   <string name="preferences__led_color_unknown">לא ידוע</string>
   <string name="preferences__pref_led_blink_title">תבנית הבהוב LED</string>
   <string name="preferences__sound">קול</string>
@@ -1225,8 +1192,7 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">השתק התראות</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">הוסף צרופה</string>
-  <string name="conversation__menu_edit_group">ערוך קבוצה</string>
+    <string name="conversation__menu_edit_group">ערוך קבוצה</string>
   <string name="conversation__menu_leave_group">עזוב קבוצה</string>
   <string name="conversation__menu_view_all_media">כל המדיה</string>
   <string name="conversation__menu_conversation_settings">הגדרות שיחה</string>
@@ -1272,8 +1238,7 @@
   <string name="reminder_header_share_title">הזמן את חבריך!</string>
   <string name="reminder_header_share_text">ככל שיותר חברים משתמשים ב-Signal, כך הוא משתפר.</string>
   <string name="reminder_header_service_outage_text">Signal חווה קשיים טכניים. אנו עובדים קשה כדי לשחזר שירות מהר ככל האפשר.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">המאפיינים האחרונים של Signal לא יעבדו על גרסה זו של Android. אנא שדרג מכשיר זה כדי לקבל עדכונים עתידיים של Signal.</string>
-  <!--media_preview-->
+    <!--media_preview-->
   <string name="media_preview__save_title">שמור</string>
   <string name="media_preview__forward_title">העבר הלאה</string>
   <string name="media_preview__all_media_title">כל המדיה</string>
@@ -1308,8 +1273,7 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>
   <string name="registration_activity__restore_backup">שחזר גיבוי</string>
   <string name="registration_activity__skip">דלג</string>
-  <string name="registration_activity__register">הירשם</string>
-  <string name="preferences_chats__chat_backups">גיבויי התכתבויות</string>
+    <string name="preferences_chats__chat_backups">גיבויי התכתבויות</string>
   <string name="preferences_chats__backup_chats_to_external_storage">גבה התכתבויות באחסון חיצוני</string>
   <string name="preferences_chats__create_backup">צור גיבוי</string>
   <string name="RegistrationActivity_enter_backup_passphrase">הכנס משפט־סיסמה של גיבוי</string>
@@ -1334,8 +1298,7 @@
   <string name="ChatsPreferenceFragment_in_progress">בתהליך</string>
   <string name="LocalBackupJob_creating_backup">יוצר גיבוי...</string>
   <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
-  <string name="RegistrationActivity_wrong_number">מספר שגוי</string>
+    <string name="RegistrationActivity_wrong_number">מספר שגוי</string>
   <string name="RegistrationActivity_call_me_instead_available_in">חייג אליי במקום \n (זמין ב־%1$02d:%2$02d)</string>
   <string name="BackupUtil_never">לעולם לא</string>
   <string name="BackupUtil_unknown">לא ידוע</string>

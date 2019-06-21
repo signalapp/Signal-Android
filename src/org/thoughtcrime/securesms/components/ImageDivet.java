@@ -45,7 +45,7 @@ public class ImageDivet extends AppCompatImageView {
   }
 
   private void setDrawable() {
-    int attributes[]     = new int[] {R.attr.lower_right_divet};
+      int[] attributes = new int[]{R.attr.lower_right_divet};
 
     TypedArray drawables = getContext().obtainStyledAttributes(attributes);
 

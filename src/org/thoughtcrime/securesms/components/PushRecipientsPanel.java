@@ -94,7 +94,7 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientModi
 
   private void initRecipientsEditor() {
 
-    this.recipientsText = (RecipientsEditor)findViewById(R.id.recipients_text);
+    this.recipientsText = findViewById(R.id.recipients_text);
 
     List<Recipient> recipients = getRecipients();
 
@@ -162,7 +162,7 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientModi
   }
 
   public interface RecipientsPanelChangedListener {
-    public void onRecipientsPanelUpdate(List<Recipient> recipients);
+    void onRecipientsPanelUpdate(List<Recipient> recipients);
   }
 
 }

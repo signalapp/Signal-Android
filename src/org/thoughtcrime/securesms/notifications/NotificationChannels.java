@@ -266,7 +266,7 @@ public class NotificationChannels {
     if (!supported()) {
       return;
     }
-    Log.i(TAG, "Updating default message ringtone with URI: " + String.valueOf(uri));
+    Log.i(TAG, "Updating default message ringtone with URI: " + uri);
 
     updateMessageChannel(context, channel -> {
       channel.setSound(uri == null ? Settings.System.DEFAULT_NOTIFICATION_URI : uri, getRingtoneAudioAttributes());
@@ -284,7 +284,7 @@ public class NotificationChannels {
     if (!supported() || recipient.getNotificationChannel() == null) {
       return;
     }
-    Log.i(TAG, "Updating recipient message ringtone with URI: " + String.valueOf(uri));
+    Log.i(TAG, "Updating recipient message ringtone with URI: " + uri);
 
     String  newChannelId = generateChannelIdFor(recipient.getAddress());
     boolean success      = updateExistingChannel(ServiceUtil.getNotificationManager(context),

@@ -65,7 +65,7 @@ public class LongClickMovementMethod extends LinkMovementMethod {
       int line = layout.getLineForVertical(y);
       int off = layout.getOffsetForHorizontal(line, x);
 
-      LongClickCopySpan longClickCopySpan[] = buffer.getSpans(off, off, LongClickCopySpan.class);
+        LongClickCopySpan[] longClickCopySpan = buffer.getSpans(off, off, LongClickCopySpan.class);
       if (longClickCopySpan.length != 0) {
         LongClickCopySpan aSingleSpan = longClickCopySpan[0];
         if (action == MotionEvent.ACTION_DOWN) {

@@ -179,8 +179,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof RetryLaterException) return true;
-    return false;
+    return exception instanceof RetryLaterException;
   }
 
   @Override

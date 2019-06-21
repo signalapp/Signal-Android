@@ -127,9 +127,9 @@ public class CustomDefaultPreference extends DialogPreference {
 
       CustomDefaultPreference preference = (CustomDefaultPreference)getPreference();
 
-      this.spinner      = (Spinner) view.findViewById(R.id.default_or_custom);
-      this.defaultLabel = (TextView) view.findViewById(R.id.default_label);
-      this.customText   = (EditText) view.findViewById(R.id.custom_edit);
+      this.spinner      = view.findViewById(R.id.default_or_custom);
+      this.defaultLabel = view.findViewById(R.id.default_label);
+      this.customText   = view.findViewById(R.id.custom_edit);
 
       this.customText.setInputType(preference.inputType);
       this.customText.addTextChangedListener(new TextValidator());
@@ -164,7 +164,7 @@ public class CustomDefaultPreference extends DialogPreference {
     }
 
     interface CustomPreferenceValidator {
-      public boolean isValid(String value);
+      boolean isValid(String value);
     }
 
     private static class NullValidator implements CustomPreferenceValidator {

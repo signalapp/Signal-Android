@@ -6,5 +6,4 @@
     <string name="firebase_database_url" translatable="false">https://api-project-312334754206.firebaseio.com</string>
     <string name="google_api_key" translatable="false">AIzaSyDrfzNAPBPzX6key51hqo3p5LZXF5Y-yxU</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDrfzNAPBPzX6key51hqo3p5LZXF5Y-yxU</string>
-    <string name="project_id" translatable="false">api-project-312334754206</string>
 </resources>

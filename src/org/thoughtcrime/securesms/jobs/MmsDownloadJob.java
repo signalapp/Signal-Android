@@ -39,6 +39,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -122,17 +123,13 @@ public class MmsDownloadJob extends BaseJob {
       String contentLocation = notification.get().getContentLocation();
       byte[] transactionId   = new byte[0];
 
-      try {
         if (notification.get().getTransactionId() != null) {
-          transactionId = notification.get().getTransactionId().getBytes(CharacterSets.MIMENAME_ISO_8859_1);
+          transactionId = notification.get().getTransactionId().getBytes(StandardCharsets.ISO_8859_1);
         } else {
           Log.w(TAG, "No transaction ID!");
         }
-      } catch (UnsupportedEncodingException e) {
-        Log.w(TAG, e);
-      }
 
-      Log.i(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost() + ", subscription ID: " + notification.get().getSubscriptionId());
+        Log.i(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost() + ", subscription ID: " + notification.get().getSubscriptionId());
 
       RetrieveConf retrieveConf = new CompatMmsConnection(context).retrieve(contentLocation, transactionId, notification.get().getSubscriptionId());
 

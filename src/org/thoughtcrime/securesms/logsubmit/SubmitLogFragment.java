@@ -540,9 +540,9 @@ public class SubmitLogFragment extends Fragment {
    * >Communicating with Other Fragments</a> for more information.
    */
   public interface OnLogSubmittedListener {
-    public void onSuccess();
-    public void onFailure();
-    public void onCancel();
+    void onSuccess();
+    void onFailure();
+    void onCancel();
   }
 
   private static final class LogPreviewAdapter extends RecyclerView.Adapter<LogPreviewViewHolder> {

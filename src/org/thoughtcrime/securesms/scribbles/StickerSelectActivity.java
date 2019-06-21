@@ -48,10 +48,10 @@ public class StickerSelectActivity extends FragmentActivity implements StickerSe
     super.onCreate(savedInstanceState);
     setContentView(R.layout.scribble_select_sticker_activity);
 
-    ViewPager viewPager = (ViewPager) findViewById(R.id.camera_sticker_pager);
+    ViewPager viewPager = findViewById(R.id.camera_sticker_pager);
     viewPager.setAdapter(new StickerPagerAdapter(getSupportFragmentManager(), this));
 
-    TabLayout tabLayout = (TabLayout) findViewById(R.id.camera_sticker_tabs);
+    TabLayout tabLayout = findViewById(R.id.camera_sticker_tabs);
     tabLayout.setupWithViewPager(viewPager);
 
     for (int i=0;i<tabLayout.getTabCount();i++) {

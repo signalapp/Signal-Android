@@ -3,6 +3,8 @@
 
 package org.thoughtcrime.securesms.backup;
 
+import com.google.protobuf.AbstractMessageLite;
+
 public final class BackupProtos {
   private BackupProtos() {}
   public static void registerAllExtensions(
@@ -1530,7 +1532,7 @@ public final class BackupProtos {
           java.lang.Iterable<? extends org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.SqlParameter> values) {
         if (parametersBuilder_ == null) {
           ensureParametersIsMutable();
-          super.addAll(values, parameters_);
+          addAll(values, parameters_);
           onChanged();
         } else {
           parametersBuilder_.addAllMessages(values);

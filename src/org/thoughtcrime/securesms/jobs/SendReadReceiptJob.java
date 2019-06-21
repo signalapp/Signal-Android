@@ -96,8 +96,7 @@ public class SendReadReceiptJob extends BaseJob implements InjectableType {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
-    if (e instanceof PushNetworkException) return true;
-    return false;
+      return e instanceof PushNetworkException;
   }
 
   @Override

@@ -134,9 +134,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof RetryLaterException) return true;
+    return exception instanceof RetryLaterException;
 
-    return false;
   }
 
   @Override

@@ -58,8 +58,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private static final int VIEW_TYPE_CONTACT = 0;
   private static final int VIEW_TYPE_DIVIDER = 1;
 
-  private final static int STYLE_ATTRIBUTES[] = new int[]{R.attr.contact_selection_push_user,
-                                                          R.attr.contact_selection_lay_user};
+    private final static int[] STYLE_ATTRIBUTES = new int[]{R.attr.contact_selection_push_user,
+            R.attr.contact_selection_lay_user};
 
   private final boolean           multiSelect;
   private final LayoutInflater    li;

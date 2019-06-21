@@ -74,7 +74,7 @@ public class DeprecatedPersistentBlobProvider {
   }
 
   public Uri createForExternal(@NonNull Context context, @NonNull String mimeType) throws IOException {
-    File target = new File(getExternalDir(context), String.valueOf(System.currentTimeMillis()) + "." + getExtensionFromMimeType(mimeType));
+    File target = new File(getExternalDir(context), System.currentTimeMillis() + "." + getExtensionFromMimeType(mimeType));
     return FileProviderUtil.getUriFor(context, target);
   }
 

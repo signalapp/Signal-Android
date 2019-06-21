@@ -110,7 +110,7 @@ public class ViewUtil {
   }
 
   public static <T extends View> Stub<T> findStubById(@NonNull Activity parent, @IdRes int resId) {
-    return new Stub<T>((ViewStub)parent.findViewById(resId));
+    return new Stub<T>(parent.findViewById(resId));
   }
 
   private static Animation getAlphaAnimation(float from, float to, int duration) {

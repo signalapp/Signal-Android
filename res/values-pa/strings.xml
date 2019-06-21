@@ -72,8 +72,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ਆਉਣ ਵਾਲੀ ਕਾਲ </string>
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">ਫੋਟ ਨੂੰ ਦਰਜ ਕਰਨ ਵਿਚ ਅਸਫਲ </string>
-  <!--ClearProfileActivity-->
+    <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ਹਟਾਓ </string>
   <string name="ClearProfileActivity_remove_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਨੂੰ ਹਟਾਓ  ?</string>
   <!--CommunicationActions-->
@@ -146,8 +145,7 @@
   <string name="ConversationActivity_unblock_this_group_description">ਮੌਜੂਦਾ ਮੈਂਬਰ ਤੁਹਾਨੂੰ ਦੁਬਾਰਾ ਗਰੁੱਪ ਵਿੱਚ ਜੋੜਨ ਦੇ ਯੋਗ ਹੋਣਗੇ.</string>
   <string name="ConversationActivity_unblock">ਅਨਬਲੌਕ ਕਰੋ</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">ਅਟੈਚਮੈਂਟ ਦਾ ਅਕਾਰ ਸੀਮਾ ਤੋਂ ਵੱਧ ਹੈ</string>
-  <string name="ConversationActivity_quick_camera_unavailable">ਕੈਮਰਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ </string>
-  <string name="ConversationActivity_unable_to_record_audio">ਆਡੀਓ ਰਿਕਾਰਡ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ!</string>
+    <string name="ConversationActivity_unable_to_record_audio">ਆਡੀਓ ਰਿਕਾਰਡ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ਇਸ ਲਿੰਕ ਨੂੰ ਚਲੌਨ ਲਈ ਕੋਈ ਐੱਪ ਨਹੀਂ ਹੈ ਤੁਹਾਡੇ ਫੋਨ ਤੇ </string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ਆਡੀਓ ਸੁਨੇਹਾ ਭੇਜਣ ਲਈ, Signal ਨੂੰ ਮਾਈਕ੍ਰੋਫੋਨ ਦੀ ਆਗਿਆ ਦਿਓ </string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ਆਡੀਓ ਸੁਨੇਹਾ ਭੇਜਣ ਲਈ ਲਈ Signal ਨੂੰ ਮਾਈਕ੍ਰੋਫੋਨ ਅਨੁਮਤੀ ਦੀ ਲੋੜ ਹੈ,ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਚ ਜਾਓ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਮਾਈਕ੍ਰੋਫੋਨ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ.</string>
@@ -234,8 +232,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ਪ੍ਰਮਾਣਿਤ</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਜਾਣਕਾਰੀ</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਨੂੰ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ</string>
+    <string name="CreateProfileActivity_error_setting_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਨੂੰ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ</string>
   <string name="CreateProfileActivity_problem_setting_profile">ਪ੍ਰੋਫਾਈਲ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਸਮੱਸਿਆ</string>
   <string name="CreateProfileActivity_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ</string>
   <string name="CreateProfileActivity_too_long">ਬਹੁਤ ਲੰਮਾ</string>
@@ -252,11 +249,7 @@
   <string name="DateUtils_today">ਅੱਜ </string>
   <string name="DateUtils_yesterday">ਕੱਲ </string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">ਭੇਜ ਰਿਹਾ ਹੈ</string>
-  <string name="DeliveryStatus_sent">ਭੇਜਿਆ ਗਿਆ </string>
-  <string name="DeliveryStatus_delivered">ਪਹੁੰਚ ਗਿਆ </string>
-  <string name="DeliveryStatus_read">ਪੜੋ</string>
-  <!--DeviceListActivity-->
+    <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">%s ਨੂੰ ਅਨਲਿੰਕ ਕਰੋ ?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ਇਸ ਡਿਵਾਈਸ ਨੂੰ ਅਨਲਿੰਕ ਕਰਨ ਨਾਲ, ਇਹ ਹੁਣ ਸੁਨੇਹੇ ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਵੇਗਾ</string>
   <string name="DeviceListActivity_network_connection_failed">ਨੈਟਵਰਕ ਕਨੈਕਸ਼ਨ ਅਸਫਲ</string>
@@ -292,17 +285,14 @@
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕਾਂ ਨੂੰ ਪੇਸ਼ ਕਰ ਰਹੇ ਹਨ </string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">ਹੁਣ ਤੁਸੀਂ ਚੋਣਵੇਂ ਰੂਪ ਵਿੱਚ ਦੇਖ ਸਕਦੇ ਹੋ ਅਤੇ ਸ਼ੇਅਰ ਕਰ ਸਕਦੇ ਹੋ ਜਦੋਂ ਸੁਨੇਹੇ ਟਾਈਪ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">ਕੀ ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ ਹੁਣੇ ਸਮਰੱਥ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">ਟਾਈਪਿੰਗ ਸੂਚਕ ਇੱਥੇ ਹਨ</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕ ਚਾਲੂ ਕਰੋ</string>
+    <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕ ਚਾਲੂ ਕਰੋ</string>
   <string name="ExperienceUpgradeActivity_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">ਲਿੰਕ ਪੂਰਵਦਰਸ਼ਨ ਪੇਸ਼ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ </string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ਅਖ਼ਤਿਆਰੀ ਲਿੰਕ ਪ੍ਰੀਵਿਊ ਹੁਣ ਇੰਟਰਨੈਟ ਤੇ ਬਹੁਤ ਸਾਰੀਆਂ ਪ੍ਰਸਿੱਧ ਸਾਈਟਾਂ ਲਈ ਸਮਰਥਿਤ ਹੈ.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">ਤੁਸੀਂ ਆਪਣੀ Signal ਸੈਟਿੰਗਜ਼ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਇਸ ਵਿਸ਼ੇਸ਼ਤਾ ਨੂੰ ਅਸਮਰੱਥ ਜਾਂ ਸਮਰੱਥ ਬਣਾ ਸਕਦੇ ਹੋ | (Privacy &gt; Send link previews).</string>
   <string name="ExperienceUpgradeActivity_got_it">ਮਿਲ ਗਿਆ</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ ਹੈ ..</string>
-  <!--GcmRefreshJob-->
+    <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ਸਥਾਈ Signal ਸੰਚਾਰ ਅਸਫਲ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play ਸੇਵਾਵਾਂ ਨਾਲ ਰਜਿਸਟਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਸੀ. Signal ਸੁਨੇਹਿਆਂ ਅਤੇ ਕਾਲਾਂ ਅਸਮਰੱਥ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ, ਕਿਰਪਾ ਕਰਕੇ ਸੈਟਿੰਗਾਂ ਵਿਚ ਦੋਬਾਰਾ ਰਜਿਸਟਰ ਕਰੋ </string>
   <!--GiphyActivity-->
@@ -357,8 +347,7 @@
   <string name="InviteActivity_no_app_to_share_to">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਸ਼ੇਅਰ ਕਰਨ ਲਈ ਕੋਈ ਐਪਸ ਨਹੀਂ ਹਨ |</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ਦੋਸਤ ਦੋਸਤਾਂ ਨੂੰ ਬਿਨਾਂ ਏਨਕ੍ਰਿਪਟਡ ਚੈਟ ਕਰਨ ਨਹੀਂ  ਦਿੰਦੇ ਹਨ.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">ਪਿਛੋਕੜ ਵਿੱਚ ਕੰਮ ਕਰ ਰਿਹਾ ਹੈ ...</string>
-  <!--MessageDetailsRecipient-->
+    <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ਭੇਜ ਨਾ ਸਕਿਆ</string>
   <string name="MessageDetailsRecipient_new_safety_number">ਨਵਾਂ ਸੁਰੱਖਿਆ ਨੰਬਰ</string>
   <!--LongMessageActivity-->
@@ -400,8 +389,7 @@
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%s ਨੂੰ ਭੇਜੋ </string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">ਚੁਣਨ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <!--MediaSendActivity-->
+    <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">ਕੈਪਸ਼ਨ ਜੋੜੋ ... </string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ਆਈਟਮ ਹਟਾਈ ਗਈ ਸੀ ਕਿਉਂਕਿ ਇਹ ਆਕਾਰ ਦੀ ਸੀਮਾ ਤੋਂ ਵੱਧ ਗਈ ਸੀ</string>
   <string name="MediaSendActivity_camera_unavailable">ਕੈਮਰਾ ਅਣਉਪਲਬਧ.</string>
@@ -417,13 +405,10 @@
   <string name="MessageRecord_left_group">ਤੁਸੀਂ ਗਰੁੱਪ ਨੂੰ ਛੱਡ ਦਿੱਤਾ ਹੈ</string>
   <string name="MessageRecord_you_updated_group">ਤੁਸੀਂ ਗਰੁੱਪ ਨੂੰ ਅਪਡੇਟ ਕੀਤਾ.</string>
   <string name="MessageRecord_you_called">ਤੁਸੀਂ ਕਾਲ ਕੀਤੀ </string>
-  <string name="MessageRecord_called_you">ਸੰਪਰਕ ਨੂੰ ਕਾਲ ਕੀਤੀ </string>
-  <string name="MessageRecord_missed_call">ਮਿਸਡ ਕਾਲ</string>
+    <string name="MessageRecord_missed_call">ਮਿਸਡ ਕਾਲ</string>
   <string name="MessageRecord_s_updated_group">%s ਨੇ ਗਰੁੱਪ ਅਪਡੇਟ ਕੀਤਾ.</string>
   <string name="MessageRecord_s_called_you">%s ਨੇ ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤੀ ਸੀ  </string>
-  <string name="MessageRecord_called_s">%s ਨੂੰ ਕਾਲ ਕੀਤੀ  </string>
-  <string name="MessageRecord_missed_call_from">%s ਵਲੋਂ  ਮਿਸਡ ਕਾਲ </string>
-  <string name="MessageRecord_s_joined_signal">%s Signal ਤੇ ਹੈ! </string>
+    <string name="MessageRecord_s_joined_signal">%s Signal ਤੇ ਹੈ! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">ਤੁਸੀਂ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sਨੇ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">ਤੁਸੀਂ ਅਲੋਪਿੰਗ ਸੁਨੇਹਾ ਟਾਈਮਰ ਨੂੰ %1$s ਤੇ ਸੈਟ ਕਰ ਦਿੱਤਾ ਹੈ </string>
@@ -520,13 +505,9 @@
   <string name="RegistrationActivity_play_services_error">Play ਸੇਵਾਵਾਂ ਚ ਗਲਤੀ</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play ਸੇਵਾਵਾਂ ਅਪਡੇਟ ਕਰ ਰਹੀਆਂ ਹਨ ਜਾਂ ਅਸਥਾਈ ਤੌਰ ਤੇ ਅਣਉਪਲਬਧ ਹਨ ਮੁੜ ਕੋਸ਼ਿਸ ਕਰੋ ਜੀ</string>
   <string name="RegistrationActivity_terms_and_privacy">ਸ਼ਰਤਾਂ  &amp; ਪਰਾਈਵੇਟ ਨੀਤੀ</string>
-  <string name="RegistrationActivity_no_browser">ਇਹ ਲਿੰਕ ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਮਰੱਥ | ਕੋਈ ਵੈੱਬ ਬਰਾਊਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ </string>
-  <string name="RegistrationActivity_more_information">ਹੋਰ ਜਾਣਕਾਰੀ</string>
-  <string name="RegistrationActivity_less_information">ਘੱਟ ਜਾਣਕਾਰੀ</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ਨੂੰ ਦੋਸਤਾਂ ਨਾਲ ਜੁੜਨ, ਸੁਨੇਹਿਆਂ ਦਾ ਮੁਲਾਂਕਣ ਕਰਨ ਅਤੇ ਸੁਰੱਖਿਅਤ ਕਾਲ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਅਤੇ ਮੀਡੀਆ ਦੀ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ਨੂੰ ਦੋਸਤਾਂ ਨਾਲ ਜੁੜਨ, ਸੁਨੇਹਿਆਂ ਦਾ ਮੁਲਾਂਕਣ ਕਰਨ ਅਤੇ ਸੁਰੱਖਿਅਤ ਕਾਲ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਅਤੇ ਮੀਡੀਆ ਦੀ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ਸੇਵਾ ਨਾਲ ਜੁੜਨ ਵਿੱਚ ਅਸਮਰੱਥ ਕਿਰਪਾ ਕਰਕੇ ਨੈਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">ਆਪਣੇ ਫੋਨ ਨੰਬਰ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਤਸਦੀਕ ਕਰਨ ਲਈ, ਜੇਕਰ ਤੁਸੀਂ Signal ਨੂੰ ਐਸਐਮਐਸ ਸੁਨੇਹੇ ਵੇਖਣ ਦੀ ਇਜਾਜ਼ਤ ਦਿੰਦੇ ਹੋ ਤਾਂ Signal ਆਟੋਮੈਟਿਕਲੀ ਤੁਹਾਡੇ ਤਸਦੀਕੀ ਕੋਡ ਨੂੰ ਪਛਾਣ ਸਕਦਾ  ਹੈ </string>
-  <plurals name="RegistrationActivity_debug_log_hint">
+    <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">ਹੁਣ ਤੁਸੀਂ ਡੀਬੱਗ ਲਾਗ ਨੂੰ ਸਬਮਿਟ ਕਰਨ ਤੋਂ %d ਕਦਮ ਦੂਰ ਹੋ.</item>
     <item quantity="other">ਹੁਣ ਤੁਸੀਂ ਡੀਬੱਗ ਲਾਗ ਨੂੰ ਸਬਮਿਟ ਕਰਨ ਤੋਂ %d ਕਦਮ ਦੂਰ ਹੋ.</item>
   </plurals>
@@ -540,8 +521,7 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s ਨੂੰ ਭੇਜਿਆ ਗਿਆ  ਕੋਡ ਦਰਜ ਕਰੋ </string>
   <string name="RegistrationActivity_call">ਕਾਲ</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">ਚਿੱਤਰ ਬਦਲਾਅ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
-  <!--Search-->
+    <!--Search-->
   <string name="SearchFragment_no_results">%sਲਈ ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ  </string>
   <string name="SearchFragment_header_conversations">ਗੱਲਾਂਬਾਤਾਂ </string>
   <string name="SearchFragment_header_contacts">ਸੰਪਰਕ</string>
@@ -647,8 +627,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">ਸਿਸਟਮ ਡਾਟਾਬੇਸ ਇੰਪੋਰਟ ਮੁਕੰਮਲ ਹੈ.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">ਖੋਲ੍ਹਣ ਲਈ ਛੋਹਵੋ</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">ਖੋਲ੍ਹਣ ਲਈ, ਜਾਂ ਬੰਦ ਕਰਨ ਲਈ ਲਾਕ ਨੂੰ ਛੋਹਵੋ.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal ਅਨਲੌਕ ਹੈ</string>
+    <string name="KeyCachingService_passphrase_cached">Signal ਅਨਲੌਕ ਹੈ</string>
   <string name="KeyCachingService_lock">ਲੌਕ  Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">ਤੁਸੀਂ</string>
@@ -791,8 +770,7 @@
   <string name="QuoteView_video">ਵੀਡੀਓ</string>
   <string name="QuoteView_photo">ਫੋਟੋ</string>
   <string name="QuoteView_sticker">ਸਟਿੱਕਰ</string>
-  <string name="QuoteView_document">ਦਸਤਾਵੇਜ਼</string>
-  <string name="QuoteView_you">ਤੁਸੀਂ</string>
+    <string name="QuoteView_you">ਤੁਸੀਂ</string>
   <string name="QuoteView_original_missing">ਅਸਲੀ ਸੁਨੇਹਾ ਨਹੀਂ ਲੱਭਿਆ </string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ਥੱਲੇ ਤਕ ਸਕ੍ਰੌਲ ਕਰੋ</string>
@@ -883,11 +861,7 @@
   <string name="database_migration_activity__importing">ਆਯਾਤ ਕਰ ਰਿਹਾ ਹੈ</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">ਡਾਟਾਬੇਸ ਅਪਡੇਟ ਕਰ ਰਿਹਾ ਹੈ ...</string>
-  <string name="import_fragment__import_system_sms_database">ਇੰਪੋਰਟ ਸਿਸਟਮ ਐਸਐਮਐਸ ਡੇਟਾਬੇਸ</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">ਡਿਫੌਲਟ ਸਿਸਟਮ Messenger ਐਪ ਤੋਂ ਡਾਟਾਬੇਸ ਆਯਾਤ ਕਰੋ</string>
-  <string name="import_fragment__import_plaintext_backup">ਸਧਾਰਨ-ਟੈਕਸਟ ਬੈਕਅੱਪ ਆਯਾਤ ਕਰੋ</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">ਸਧਾਰਨ-ਟੈਕਸਟ ਬੈਕਅੱਪ ਫਾਇਲ ਆਯਾਤ ਕਰੋ | \'ਐਸਐਮਐਸ ਬੈਕਅਪ &amp; ਰੀਸਟੋਰ\' ਦੇ ਅਨੁਕੂਲ.</string>
-  <!--load_more_header-->
+    <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">ਪੂਰੀ ਗੱਲਬਾਤ ਵੇਖੋ</string>
   <string name="load_more_header__loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ...</string>
   <!--media_overview_activity-->
@@ -895,8 +869,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ਝਲਕ</string>
   <string name="message_recipients_list_item__resend">ਦੋਬਾਰਾ ਭੇਜੋ</string>
-  <string name="message_recipients_list_item__resending">ਦੋਬਾਰਾ ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ....</string>
-  <!--GroupUtil-->
+    <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ਗਰੁੱਪ ਵਿਚ ਸ਼ਾਮਲ ਹੋ ਗਏ.</item>
     <item quantity="other">%1$s ਗਰੁੱਪ ਵਿਚ ਸ਼ਾਮਲ ਹੋ ਗਏ.</item>
@@ -912,15 +885,13 @@
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">ਬਾਅਦ ਵਿੱਚ ਸੈਟ ਕਰੋ</string>
   <string name="profile_create_activity__finish">ਮੁਕੰਮਲ</string>
-  <string name="profile_create_activity__who_can_see_this_information">ਇਹ ਜਾਣਕਾਰੀ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ?</string>
-  <string name="profile_create_activity__your_name">ਤੁਹਾਡਾ ਨਾਮ</string>
+    <string name="profile_create_activity__your_name">ਤੁਹਾਡਾ ਨਾਮ</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ਸ਼ੇਅਰਡ ਮੀਡੀਆ</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">ਗੱਲਬਾਤ ਨੂੰ ਗੂੰਗਾ ਕਰੋ </string>
   <string name="recipient_preferences__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
-  <string name="recipient_preferences__custom_notifications_settings">ਸਿਸਟਮ ਸੂਚਨਾਵਾਂ ਸੈਟਿੰਗਜ਼</string>
-  <string name="recipient_preferences__notification_sound">ਸੂਚਨਾ ਆਵਾਜ਼</string>
+    <string name="recipient_preferences__notification_sound">ਸੂਚਨਾ ਆਵਾਜ਼</string>
   <string name="recipient_preferences__vibrate">ਵਾਈਬਰੇਟ</string>
   <string name="recipient_preferences__block">ਬਲਾਕ</string>
   <string name="recipient_preferences__color">ਰੰਗ</string>
@@ -934,9 +905,7 @@
   <string name="redphone_call_controls__mute">ਚੁੱਪ</string>
   <string name="redphone_call_controls__flip_camera_rear">ਸਵਿੱਚ ਕੈਮਰੇ</string>
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">ਫੋਨ ਨੰਬਰ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਫੋਨ ਨੰਬਰ ਅਤੇ ਐਡਰੈੱਸ ਬੁੱਕ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਸੰਚਾਰ ਕਰਨਾ ਸੌਖਾ ਬਣਾਉਂਦਾ ਹੈ. ਦੋਸਤ ਅਤੇ ਸੰਪਰਕ ਜੋ ਪਹਿਲਾਂ ਹੀ ਜਾਣਦੇ ਹਨ ਕਿ ਤੁਸੀਂ ਫੋਨ ਦੁਆਰਾ ਕਿਸ ਤਰ੍ਹਾਂ ਸੰਪਰਕ ਕਰਨਾ ਹੈ, Signal ਦੁਆਰਾ ਆਸਾਨੀ ਨਾਲ ਸੰਪਰਕ ਵਿੱਚ ਆਉਣ ਦੇ ਯੋਗ ਹੋਵੇਗਾ. \n\n ਰਜਿਸਟਰਡ ਕੁਝ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਨੂੰ ਸਰਵਰ ਤੇ ਸੰਚਾਰਿਤ ਕਰਦਾ ਹੈ. ਇਹ ਸਟੋਰ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ.</string>
-  <string name="registration_activity__verify_your_number">ਆਪਣਾ ਨੰਬਰ ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
+    <string name="registration_activity__verify_your_number">ਆਪਣਾ ਨੰਬਰ ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਆਪਣਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ. ਕੈਰੀਅਰ ਦਰ ਲਾਗੂ ਹੋ ਸਕਦੀ ਹੈ</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ਨਾਮ ਜਾਂ ਨੰਬਰ ਦਰਜ ਕਰੋ</small></string>
@@ -978,8 +947,7 @@
   <string name="AndroidManifest_archived_conversations">ਆਰਕਾਈਵ ਕੀਤੀਆਂ ਗੱਲਾਂਬਾਤਾਂ</string>
   <string name="AndroidManifest_remove_photo">ਫੋਟੋ ਨੂੰ ਹਟਾਓ</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">ਆਯਾਤ ਕਰੋ</string>
-  <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
+    <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
   <string name="arrays__use_custom">ਕਸਟਮ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
   <string name="arrays__mute_for_one_hour">1 ਘੰਟੇ ਲਈ ਮੂਕ ਕਰੋ</string>
   <string name="arrays__mute_for_two_hours">2 ਘੰਟੇ ਲਈ ਮੂਕ ਕਰੋ</string>
@@ -1030,8 +998,7 @@
   <string name="preferences__inactivity_timeout_passphrase">ਇਨ-ਐਕਟੀਵਿਟੀ ਟਾਈਮਆਉਟ ਪਾਸਫਰੇਜ</string>
   <string name="preferences__inactivity_timeout_interval">ਅਕਿਰਿਆਸ਼ੀਲਤਾ ਸਮਾਂ ਅੰਤਰਾਲ</string>
   <string name="preferences__notifications">ਸੂਚਨਾਵਾਂ </string>
-  <string name="preferences__system_notification_settings">ਸਿਸਟਮ ਨੋਟੀਫਿਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼</string>
-  <string name="preferences__led_color">LED ਰੰਗ</string>
+    <string name="preferences__led_color">LED ਰੰਗ</string>
   <string name="preferences__led_color_unknown">ਅਣਜਾਣ</string>
   <string name="preferences__pref_led_blink_title">LED ਝਪਕੋ ਪੈਟਰਨ</string>
   <string name="preferences__sound">ਆਵਾਜ਼</string>
@@ -1165,8 +1132,7 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">ਅਟੈਚਮੈਂਟ ਜੋੜੋ</string>
-  <string name="conversation__menu_edit_group">ਸਮੂਹ ਸੰਪਾਦਿਤ ਕਰੋ</string>
+    <string name="conversation__menu_edit_group">ਸਮੂਹ ਸੰਪਾਦਿਤ ਕਰੋ</string>
   <string name="conversation__menu_leave_group">ਗਰੁੱਪ ਛੱਡੋ</string>
   <string name="conversation__menu_view_all_media">ਸਾਰੇ ਮੀਡੀਆ</string>
   <string name="conversation__menu_conversation_settings">ਗੱਲਬਾਤ ਸੈਟਿੰਗਜ਼</string>
@@ -1210,8 +1176,7 @@
   <string name="reminder_header_share_title">ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
   <string name="reminder_header_share_text">ਜਿਹਨੇ ਜ਼ਿਆਦਾ ਦੋਸਤ Signal ਵਰਤਣਗੇ ਓਹਨਾ ਬੇਹਤਰ ਬਣੇਗੀ </string>
   <string name="reminder_header_service_outage_text">Signal ਤਕਨੀਕੀ ਮੁਸ਼ਕਲਾਂ ਦਾ ਸਾਹਮਣਾ ਕਰ ਰਿਹਾ ਹੈ ਅਸੀਂ ਜਿੰਨੀ ਛੇਤੀ ਸੰਭਵ ਹੋ ਸਕੇ ਸੇਵਾ ਨੂੰ ਬਹਾਲ ਕਰਨ ਲਈ ਸਖ਼ਤ ਮਿਹਨਤ ਕਰ ਰਹੇ ਹਾਂ</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">ਨਵੀਨਤਮ Signal ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਐਂਡਰੌਇਡ ਦੇ ਇਸ ਸੰਸਕਰਣ ਤੇ ਕੰਮ ਨਹੀਂ ਕਰਨਗੀਆਂ. ਕਿਰਪਾ ਕਰਕੇ ਭਵਿੱਖੀ Signal ਅਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਇਸ ਡਿਵਾਈਸ ਨੂੰ ਅਪਗ੍ਰੇਡ ਕਰੋ.</string>
-  <!--media_preview-->
+    <!--media_preview-->
   <string name="media_preview__save_title">ਰੱਖੋ </string>
   <string name="media_preview__forward_title">ਅੱਗੇ ਭੇਜੋ </string>
   <string name="media_preview__all_media_title">ਸਾਰੇ ਮੀਡੀਆ</string>
@@ -1246,8 +1211,7 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ਮੈਂ ਇਹ ਪਾਸਫਰੇਜ ਲਿੱਖ ਲਿਆ ਹੈ. ਇਸ ਤੋਂ ਬਿਨਾਂ, ਮੈਂ ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਹੋਵਾਂਗਾ.</string>
   <string name="registration_activity__restore_backup">ਬੈਕਅਪ ਰੀਸਟੋਰ ਕਰੋ</string>
   <string name="registration_activity__skip">ਛੱਡੋ</string>
-  <string name="registration_activity__register">ਰਜਿਸਟਰ</string>
-  <string name="preferences_chats__chat_backups">ਚੈਟ ਬੈਕਅਪ</string>
+    <string name="preferences_chats__chat_backups">ਚੈਟ ਬੈਕਅਪ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ਬਾਹਰੀ ਸਟੋਰੇਜ ਤੇ ਚੈਟ ਨੂੰ ਬੈਕਅਪ ਕਰੋ </string>
   <string name="preferences_chats__create_backup">ਬੈਕਅਪ ਬਣਾਓ</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ਬੈਕਅਪ ਪਾਸਫਰੇਜ ਦਰਜ ਕਰੋ</string>
@@ -1272,8 +1236,7 @@
   <string name="ChatsPreferenceFragment_in_progress">ਤਰੱਕੀ ਹੋ ਰਹੀ ਹੈ</string>
   <string name="LocalBackupJob_creating_backup">ਬੈਕਅਪ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
   <string name="ProgressPreference_d_messages_so_far">ਅਜੇ ਤੱਕ %d ਸੁਨੇਹੇ</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">ਕਿਰਪਾ ਕਰਕੇ %s ਨੂੰ ਭੇਜਿਆ ਗਿਆ ਕੋਡ ਦਾਖਲ ਕਰੋ </string>
-  <string name="RegistrationActivity_wrong_number">ਗਲਤ ਨੰਬਰ</string>
+    <string name="RegistrationActivity_wrong_number">ਗਲਤ ਨੰਬਰ</string>
   <string name="RegistrationActivity_call_me_instead_available_in">ਇਸ ਦੀ ਬਜਾਏ ਮੈਨੂੰ ਕਾਲ ਕਰੋ \n ( ਵਿੱਚ ਉਪਲੱਬਧ %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">ਕਦੇ ਨਹੀਂ</string>
   <string name="BackupUtil_unknown">ਅਣਜਾਣ</string>

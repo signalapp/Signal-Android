@@ -17,7 +17,7 @@ public class JobLogger {
     String maxAttempts         = job.getParameters().getMaxAttempts() == Job.Parameters.UNLIMITED ? "Unlimited"
                                                                                                   : String.valueOf(job.getParameters().getMaxAttempts());
     String lifespan            = job.getParameters().getLifespan() == Job.Parameters.IMMORTAL ? "Immortal"
-                                                                                              : String.valueOf(job.getParameters().getLifespan()) + " ms";
+                                                                                              : job.getParameters().getLifespan() + " ms";
     return String.format("[%s][%s]%s %s (Time Since Submission: %d ms, Lifespan: %s, Run Attempt: %d/%s)",
                          id, job.getClass().getSimpleName(), tag, event, timeSinceSubmission, lifespan, runAttempt, maxAttempts);
   }

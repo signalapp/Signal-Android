@@ -5,8 +5,8 @@ import android.graphics.drawable.Drawable;
 
 public interface FallbackContactPhoto {
 
-  public Drawable asDrawable(Context context, int color);
-  public Drawable asDrawable(Context context, int color, boolean inverted);
-  public Drawable asCallCard(Context context);
+  Drawable asDrawable(Context context, int color);
+  Drawable asDrawable(Context context, int color, boolean inverted);
+  Drawable asCallCard(Context context);
 
 }

@@ -53,8 +53,8 @@ public class ShareIntentListAdapter extends ArrayAdapter<ResolveInfo> {
   public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
     LayoutInflater  inflater    = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View            rowView     = inflater.inflate(R.layout.share_intent_row, parent, false);
-    ImageView       intentImage = (ImageView) rowView.findViewById(R.id.share_intent_image);
-    TextView        intentLabel = (TextView)  rowView.findViewById(R.id.share_intent_label);
+    ImageView       intentImage = rowView.findViewById(R.id.share_intent_image);
+    TextView        intentLabel = rowView.findViewById(R.id.share_intent_label);
 
     ApplicationInfo intentInfo = getItem(position).activityInfo.applicationInfo;
 

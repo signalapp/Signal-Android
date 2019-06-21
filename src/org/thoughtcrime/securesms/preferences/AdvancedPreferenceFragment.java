@@ -187,7 +187,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
           SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context);
 
           try {
-            accountManager.setGcmId(Optional.<String>absent());
+            accountManager.setGcmId(Optional.absent());
           } catch (AuthorizationFailedException e) {
             Log.w(TAG, e);
           }

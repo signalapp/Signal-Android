@@ -89,7 +89,7 @@ public class MmsPreferencesFragment extends CorrectedPreferenceFragment {
           .setValidator(new CustomDefaultPreference.CustomDefaultPreferenceDialogFragmentCompat.PortValidator())
           .setDefaultValue(apnDefaults.getPort());
 
-      ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_USERNAME_PREF))
+      findPreference(TextSecurePreferences.MMSC_USERNAME_PREF)
           .setDefaultValue(apnDefaults.getPort());
 
       ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_PASSWORD_PREF))

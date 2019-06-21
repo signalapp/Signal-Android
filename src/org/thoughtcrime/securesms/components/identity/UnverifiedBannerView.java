@@ -87,11 +87,11 @@ public class UnverifiedBannerView extends LinearLayout {
   }
 
   public interface DismissListener {
-    public void onDismissed(List<IdentityRecord> unverifiedIdentities);
+    void onDismissed(List<IdentityRecord> unverifiedIdentities);
   }
 
   public interface ClickListener {
-    public void onClicked(List<IdentityRecord> unverifiedIdentities);
+    void onClicked(List<IdentityRecord> unverifiedIdentities);
   }
 
 }

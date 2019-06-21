@@ -318,7 +318,7 @@ public class BitmapUtil {
     final byte[]  output    = new byte[yuv.length];
     final int     frameSize = width * height;
     final boolean swap      = rotation % 180 != 0;
-    final boolean xflip     = flipHorizontal ? rotation % 270 == 0 : rotation % 270 != 0;
+    final boolean xflip     = flipHorizontal == (rotation % 270 == 0);
     final boolean yflip     = rotation >= 180;
 
     for (int j = 0; j < height; j++) {

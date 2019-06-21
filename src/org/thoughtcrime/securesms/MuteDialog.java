@@ -48,7 +48,7 @@ public class MuteDialog extends AlertDialog {
   }
 
   public interface MuteSelectionListener {
-    public void onMuted(long until);
+    void onMuted(long until);
   }
 
 }

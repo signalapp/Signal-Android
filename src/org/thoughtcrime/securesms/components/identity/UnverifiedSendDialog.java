@@ -62,6 +62,6 @@ public class UnverifiedSendDialog extends AlertDialog.Builder implements DialogI
   }
 
   public interface ResendListener {
-    public void onResendMessage();
+    void onResendMessage();
   }
 }

@@ -297,13 +297,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       {
         handlePassphrase();
         return true;
-      } else if (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_UP &&
-                 actionId == EditorInfo.IME_NULL)
-      {
-        return true;
-      }
+      } else return keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_UP &&
+              actionId == EditorInfo.IME_NULL;
 
-      return false;
     }
   }
 

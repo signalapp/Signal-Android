@@ -16,11 +16,11 @@ class WitnessPluginExtension {
 class WitnessPlugin implements Plugin<Project> {
 
     static String calculateSha256(file) {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        MessageDigest md = MessageDigest.getInstance("SHA-256")
         file.eachByte 4096, {bytes, size ->
-            md.update(bytes, 0, size);
+            md.update(bytes, 0, size)
         }
-        return md.digest().collect {String.format "%02x", it}.join();
+        return md.digest().collect {String.format "%02x", it}.join()
     }
 
     void apply(Project project) {

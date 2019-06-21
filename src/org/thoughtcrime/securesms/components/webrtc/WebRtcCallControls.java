@@ -203,20 +203,20 @@ public class WebRtcCallControls extends LinearLayout {
     }
   }
 
-  public static interface MuteButtonListener {
-    public void onToggle(boolean isMuted);
+  public interface MuteButtonListener {
+    void onToggle(boolean isMuted);
   }
 
-  public static interface CameraFlipButtonListener {
-    public void onToggle();
+  public interface CameraFlipButtonListener {
+    void onToggle();
   }
 
-  public static interface SpeakerButtonListener {
-    public void onSpeakerChange(boolean isSpeaker);
+  public interface SpeakerButtonListener {
+    void onSpeakerChange(boolean isSpeaker);
   }
 
-  public static interface BluetoothButtonListener {
-    public void onBluetoothChange(boolean isBluetooth);
+  public interface BluetoothButtonListener {
+    void onBluetoothChange(boolean isBluetooth);
   }
 
 

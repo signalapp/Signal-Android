@@ -84,9 +84,9 @@ public class ContactPreference extends Preference {
   }
 
   public interface Listener {
-    public void onMessageClicked();
-    public void onSecureCallClicked();
-    public void onInSecureCallClicked();
+    void onMessageClicked();
+    void onSecureCallClicked();
+    void onInSecureCallClicked();
   }
 
 }

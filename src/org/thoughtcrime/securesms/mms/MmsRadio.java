@@ -121,10 +121,7 @@ public class MmsRadio {
 
     Log.i(TAG, "Connected: " + info);
 
-    if ((info == null) || (info.getType() != TYPE_MOBILE_MMS) || !info.isConnected())
-      return false;
-
-    return true;
+      return (info != null) && (info.getType() == TYPE_MOBILE_MMS) && info.isConnected();
   }
 
   private boolean isConnectivityPossible() {

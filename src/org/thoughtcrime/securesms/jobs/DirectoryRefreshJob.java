@@ -76,8 +76,7 @@ public class DirectoryRefreshJob extends BaseJob {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof PushNetworkException) return true;
-    return false;
+      return exception instanceof PushNetworkException;
   }
 
   @Override

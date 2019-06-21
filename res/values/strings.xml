@@ -86,7 +86,6 @@
     <string name="CallScreen_Incoming_call">Incoming call</string>
 
     <!-- CameraActivity -->
-    <string name="CameraActivity_image_save_failure">Failed to save image.</string>
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
@@ -170,7 +169,6 @@
     <string name="ConversationActivity_unblock_this_group_description">Existing members will be able to add you to the group again.</string>
     <string name="ConversationActivity_unblock">Unblock</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
-    <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
 
@@ -270,7 +268,6 @@
     <string name="ConversationTitleView_verified">Verified</string>
 
     <!-- CreateProfileActivity -->
-    <string name="CreateProfileActivity_your_profile_info">Your profile info</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
@@ -291,10 +288,6 @@
     <string name="DateUtils_yesterday">Yesterday</string>
 
     <!-- DeliveryStatus -->
-    <string name="DeliveryStatus_sending">Sending</string>
-    <string name="DeliveryStatus_sent">Sent</string>
-    <string name="DeliveryStatus_delivered">Delivered</string>
-    <string name="DeliveryStatus_read">Read</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>
@@ -340,8 +333,6 @@
     <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducing typing indicators.</string>
     <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Now you can optionally see and share when messages are being typed.</string>
     <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Would you like to enable them now?</string>
-    <string name="ExperienceUpgradeActivity_typing_ui_title">Typing indicators are here</string>
-    <string name="ExperienceUpgradeActivity_enable_typing_indicators">Enable typing indicators</string>
     <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Turn on typing indicators</string>
     <string name="ExperienceUpgradeActivity_no_thanks">No thanks</string>
 
@@ -351,7 +342,6 @@
     <string name="ExperienceUpgradeActivity_got_it">Got it</string>
 
     <!-- GcmBroadcastReceiver -->
-    <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message...</string>
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
@@ -418,7 +408,6 @@
     <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
 
     <!-- Job -->
-    <string name="Job_working_in_the_background">Working in the background...</string>
 
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
@@ -470,7 +459,6 @@
     <string name="MediaPickerActivity_send_to">Send to %s</string>
 
     <!-- MediaPickerItemFragment -->
-    <string name="MediaPickerItemFragment_tap_to_select">Tap to select</string>
 
     <!-- MediaSendActivity -->
     <string name="MediaSendActivity_add_a_caption">Add a caption...</string>
@@ -490,12 +478,9 @@
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_you_updated_group">You updated the group.</string>
     <string name="MessageRecord_you_called">You called</string>
-    <string name="MessageRecord_called_you">Contact called</string>
     <string name="MessageRecord_missed_call">Missed call</string>
     <string name="MessageRecord_s_updated_group">%s updated the group.</string>
     <string name="MessageRecord_s_called_you">%s called you</string>
-    <string name="MessageRecord_called_s">Called %s</string>
-    <string name="MessageRecord_missed_call_from">Missed call from %s</string>
     <string name="MessageRecord_s_joined_signal">%s is on Signal!</string>
     <string name="MessageRecord_you_disabled_disappearing_messages">You disabled disappearing messages.</string>
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s disabled disappearing messages.</string>
@@ -609,12 +594,8 @@
     <string name="RegistrationActivity_play_services_error">Play Services Error</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services is updating or temporarily unavailable. Please try again.</string>
     <string name="RegistrationActivity_terms_and_privacy">Terms &amp; Privacy Policy</string>
-    <string name="RegistrationActivity_no_browser">Unable to open this link. No web browser found.</string>
-    <string name="RegistrationActivity_more_information">More information</string>
-    <string name="RegistrationActivity_less_information">Less information</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal needs access to your contacts and media in order to connect with friends, exchange messages, and make secure calls</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
-    <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">To easily verify your phone number, Signal can automatically detect your verification code if you allow Signal to view SMS messages.</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">You are now %d step away from submitting a debug log.</item>
         <item quantity="other">You are now %d steps away from submitting a debug log.</item>
@@ -630,7 +611,6 @@
     <string name="RegistrationActivity_call">Call</string>
 
     <!-- ScribbleActivity -->
-    <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
 
     <!-- Search -->
     <string name="SearchFragment_no_results">No results found for \'%s\'</string>
@@ -759,7 +739,6 @@
 
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Touch to open.</string>
-    <string name="KeyCachingService_signal_passphrase_cached_with_lock">Touch to open, or touch the lock to close.</string>
     <string name="KeyCachingService_passphrase_cached">Signal is unlocked</string>
     <string name="KeyCachingService_lock">Lock Signal</string>
 
@@ -935,7 +914,6 @@
     <string name="QuoteView_video">Video</string>
     <string name="QuoteView_photo">Photo</string>
     <string name="QuoteView_sticker">Sticker</string>
-    <string name="QuoteView_document">Document</string>
     <string name="QuoteView_you">You</string>
     <string name="QuoteView_original_missing">Original message not found</string>
 
@@ -1055,11 +1033,6 @@
     <!-- database_upgrade_activity -->
     <string name="database_upgrade_activity__updating_database">Updating database...</string>
 
-    <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
-    <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the default system messenger app</string>
-    <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
-    <string name="import_fragment__import_a_plaintext_backup_file">Import a plaintext backup file. Compatible with \'SMS Backup &amp; Restore.\'</string>
-
     <!-- load_more_header -->
     <string name="load_more_header__see_full_conversation">See full conversation</string>
     <string name="load_more_header__loading">Loading</string>
@@ -1070,7 +1043,6 @@
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__view">VIEW</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
-    <string name="message_recipients_list_item__resending">Resending...</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -1092,7 +1064,6 @@
     <!-- profile_create_activity -->
     <string name="profile_create_activity__set_later">Set later</string>
     <string name="profile_create_activity__finish">FINISH</string>
-    <string name="profile_create_activity__who_can_see_this_information">Who can see this information?</string>
     <string name="profile_create_activity__your_name">Your name</string>
 
     <!-- recipient_preferences_activity -->
@@ -1101,7 +1072,6 @@
     <!-- recipient_preferences -->
     <string name="recipient_preferences__mute_conversation">Mute conversation</string>
     <string name="recipient_preferences__custom_notifications">Custom notifications</string>
-    <string name="recipient_preferences__custom_notifications_settings">System notification settings</string>
     <string name="recipient_preferences__notification_sound">Notification sound</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
@@ -1118,8 +1088,6 @@
     <string name="redphone_call_controls__flip_camera_rear">Switch Cameras</string>
 
     <!-- registration_activity -->
-    <string name="registration_activity__phone_number">PHONE NUMBER</string>
-    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal makes it easy to communicate by using your existing phone number and address book. Friends and contacts who already know how to contact you by phone will be able to easily get in touch by Signal.\n\nRegistration transmits some contact information to the server. It is not stored.</string>
     <string name="registration_activity__verify_your_number">Verify Your Number</string>
     <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Please enter your mobile number to receive a verification code. Carrier rates may apply.</string>
 
@@ -1170,7 +1138,6 @@
     <string name="AndroidManifest_remove_photo">Remove photo</string>
 
     <!-- arrays.xml -->
-    <string name="arrays__import_export">Import</string>
     <string name="arrays__use_default">Use default</string>
     <string name="arrays__use_custom">Use custom</string>
 
@@ -1230,7 +1197,6 @@
     <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
     <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
     <string name="preferences__notifications">Notifications</string>
-    <string name="preferences__system_notification_settings">System notification settings</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__led_color_unknown">Unknown</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
@@ -1385,7 +1351,6 @@
     <string name="conversation_unmuted__mute_notifications">Mute notifications</string>
 
     <!-- conversation -->
-    <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_edit_group">Edit group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_view_all_media">All media</string>
@@ -1436,7 +1401,6 @@
     <string name="reminder_header_share_title">Invite your friends!</string>
     <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
     <string name="reminder_header_service_outage_text">Signal is experiencing technical difficulties. We are working hard to restore service as quickly as possible.</string>
-    <string name="reminder_header_the_latest_signal_features_wont_work">The latest Signal features won\'t work on this version of Android. Please upgrade this device to receive future Signal updates.</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
@@ -1478,7 +1442,6 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
     <string name="registration_activity__restore_backup">Restore backup</string>
     <string name="registration_activity__skip">Skip</string>
-    <string name="registration_activity__register">Register</string>
     <string name="preferences_chats__chat_backups">Chat backups</string>
     <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to external storage</string>
     <string name="preferences_chats__create_backup">Create backup</string>
@@ -1504,7 +1467,6 @@
     <string name="ChatsPreferenceFragment_in_progress">In progress</string>
     <string name="LocalBackupJob_creating_backup">Creating backup...</string>
     <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
-    <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
     <string name="RegistrationActivity_wrong_number">Wrong number</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %1$02d:%2$02d)</string>
     <string name="BackupUtil_never">Never</string>

@@ -45,7 +45,7 @@ public class AudioRecorder {
           throw new AssertionError("We can only record once at a time.");
         }
 
-        ParcelFileDescriptor fds[] = ParcelFileDescriptor.createPipe();
+          ParcelFileDescriptor[] fds = ParcelFileDescriptor.createPipe();
 
         captureUri = BlobProvider.getInstance()
                                  .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)

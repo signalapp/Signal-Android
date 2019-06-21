@@ -224,7 +224,7 @@ public class BluetoothStateManager {
   }
 
   public interface BluetoothStateListener {
-    public void onBluetoothStateChanged(boolean isAvailable);
+    void onBluetoothStateChanged(boolean isAvailable);
   }
 
 }

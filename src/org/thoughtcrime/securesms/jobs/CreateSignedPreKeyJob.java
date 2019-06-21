@@ -75,8 +75,7 @@ public class CreateSignedPreKeyJob extends BaseJob implements InjectableType {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof PushNetworkException) return true;
-    return false;
+      return exception instanceof PushNetworkException;
   }
 
   public static final class Factory implements Job.Factory<CreateSignedPreKeyJob> {

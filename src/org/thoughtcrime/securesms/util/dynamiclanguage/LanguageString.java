@@ -30,7 +30,7 @@ public final class LanguageString {
   }
 
   private static Locale createLocale(@NonNull String languageString) {
-    final String language[] = languageString.split("_");
+      final String[] language = languageString.split("_");
     if (language.length == 2) {
       return new Locale(language[0], language[1]);
     } else {

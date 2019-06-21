@@ -65,14 +65,14 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.audio_view, this);
 
-    this.container        = (ViewGroup) findViewById(R.id.audio_widget_container);
-    this.controlToggle    = (AnimatingToggle) findViewById(R.id.control_toggle);
-    this.playButton       = (ImageView) findViewById(R.id.play);
-    this.pauseButton      = (ImageView) findViewById(R.id.pause);
-    this.downloadButton   = (ImageView) findViewById(R.id.download);
-    this.downloadProgress = (ProgressWheel) findViewById(R.id.download_progress);
-    this.seekBar          = (SeekBar) findViewById(R.id.seek);
-    this.timestamp        = (TextView) findViewById(R.id.timestamp);
+    this.container        = findViewById(R.id.audio_widget_container);
+    this.controlToggle    = findViewById(R.id.control_toggle);
+    this.playButton       = findViewById(R.id.play);
+    this.pauseButton      = findViewById(R.id.pause);
+    this.downloadButton   = findViewById(R.id.download);
+    this.downloadProgress = findViewById(R.id.download_progress);
+    this.seekBar          = findViewById(R.id.seek);
+    this.timestamp        = findViewById(R.id.timestamp);
 
     this.playButton.setOnClickListener(new PlayClickedListener());
     this.pauseButton.setOnClickListener(new PauseClickedListener());

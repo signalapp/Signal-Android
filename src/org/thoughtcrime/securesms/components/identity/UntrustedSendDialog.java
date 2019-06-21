@@ -61,6 +61,6 @@ public class UntrustedSendDialog extends AlertDialog.Builder implements DialogIn
   }
 
   public interface ResendListener {
-    public void onResendMessage();
+    void onResendMessage();
   }
 }

@@ -105,14 +105,14 @@ public class RecipientsAdapter extends ResourceCursorAdapter {
 
     @Override
     public final void bindView(View view, Context context, Cursor cursor) {
-        TextView name = (TextView) view.findViewById(R.id.name);
+        TextView name = view.findViewById(R.id.name);
         name.setText(cursor.getString(NAME_INDEX));
 
-        TextView label = (TextView) view.findViewById(R.id.label);
+        TextView label = view.findViewById(R.id.label);
         int type = cursor.getInt(TYPE_INDEX);
         label.setText(mContactAccessor.phoneTypeToString(mContext, type, cursor.getString(LABEL_INDEX)));
 
-        TextView number = (TextView) view.findViewById(R.id.number);
+        TextView number = view.findViewById(R.id.number);
         number.setText("(" + cursor.getString(NUMBER_INDEX) + ")");
     }
 

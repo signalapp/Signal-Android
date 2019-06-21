@@ -57,7 +57,7 @@ public class ServiceUtil {
 
   @RequiresApi(26)
   public static JobScheduler getJobScheduler(Context context) {
-    return (JobScheduler) context.getSystemService(JobScheduler.class);
+    return context.getSystemService(JobScheduler.class);
   }
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)

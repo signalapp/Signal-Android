@@ -384,7 +384,7 @@ public class MmsDatabase extends MessagingDatabase {
 //  }
 
   public void markAsInsecure(long messageId) {
-    updateMailboxBitmask(messageId, Types.SECURE_MESSAGE_BIT, 0, Optional.<Long>absent());
+    updateMailboxBitmask(messageId, Types.SECURE_MESSAGE_BIT, 0, Optional.absent());
   }
 
 //  public void markAsPush(long messageId) {

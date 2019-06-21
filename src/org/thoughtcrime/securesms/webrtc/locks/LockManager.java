@@ -71,11 +71,7 @@ public class LockManager {
     int wifi_pwr_active_mode = Settings.Secure.getInt(context.getContentResolver(), "wifi_pwr_active_mode", -1);
     Log.d(TAG, "Wifi Activity Policy: " + wifi_pwr_active_mode);
 
-    if (wifi_pwr_active_mode == 0) {
-      return false;
-    }
-
-    return true;
+      return wifi_pwr_active_mode != 0;
   }
 
   private void updateInCallLockState() {

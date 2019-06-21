@@ -112,8 +112,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof IOException) return true;
-    return false;
+      return exception instanceof IOException;
   }
 
   public static final class Factory implements Job.Factory<AvatarDownloadJob> {

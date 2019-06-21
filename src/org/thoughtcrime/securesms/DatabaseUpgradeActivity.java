@@ -140,7 +140,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     } else {
       VersionTracker.updateLastSeenVersion(this);
       updateNotifications(this);
-      startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
+      startActivity(getIntent().getParcelableExtra("next_intent"));
       finish();
     }
   }
@@ -182,7 +182,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   public interface DatabaseUpgradeListener {
-    public void setProgress(int progress, int total);
+    void setProgress(int progress, int total);
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -245,7 +245,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
 //        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
 
         IdentityKeyUtil.migrateIdentityKeys(context, masterSecret);
-        scheduleMessagesInPushDatabase(context);;
+        scheduleMessagesInPushDatabase(context);
       }
 
       if (params[0] < CONTACTS_ACCOUNT_VERSION) {
@@ -432,7 +432,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       VersionTracker.updateLastSeenVersion(DatabaseUpgradeActivity.this);
       updateNotifications(DatabaseUpgradeActivity.this);
 
-      startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
+      startActivity(getIntent().getParcelableExtra("next_intent"));
       finish();
     }
 

@@ -410,7 +410,7 @@ public class ThumbnailView extends FrameLayout {
       if (downloadClickListener != null && slide != null) {
         downloadClickListener.onClick(view, Collections.singletonList(slide));
       } else {
-        Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + String.valueOf(slide) + "  downloadClickListener: " + String.valueOf(downloadClickListener));
+        Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + slide + "  downloadClickListener: " + downloadClickListener);
       }
     }
   }

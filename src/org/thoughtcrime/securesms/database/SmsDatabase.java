@@ -904,7 +904,7 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public interface InsertListener {
-    public void onComplete();
+    void onComplete();
   }
 
 }

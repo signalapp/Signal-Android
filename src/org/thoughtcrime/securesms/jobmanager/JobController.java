@@ -222,11 +222,8 @@ class JobController {
     if (chain.size() == 1 && chain.get(0).size() == 1) {
       Job solo = chain.get(0).get(0);
 
-      if (solo.getParameters().getMaxInstances() != Job.Parameters.UNLIMITED &&
-          jobStorage.getJobInstanceCount(solo.getFactoryKey()) >= solo.getParameters().getMaxInstances())
-      {
-        return true;
-      }
+        return solo.getParameters().getMaxInstances() != Job.Parameters.UNLIMITED &&
+                jobStorage.getJobInstanceCount(solo.getFactoryKey()) >= solo.getParameters().getMaxInstances();
     }
     return false;
   }

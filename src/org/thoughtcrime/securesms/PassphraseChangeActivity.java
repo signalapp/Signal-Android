@@ -69,12 +69,12 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    this.originalPassphrase      = (EditText) findViewById(R.id.old_passphrase      );
-    this.newPassphrase           = (EditText) findViewById(R.id.new_passphrase      );
-    this.repeatPassphrase        = (EditText) findViewById(R.id.repeat_passphrase   );
+    this.originalPassphrase      = findViewById(R.id.old_passphrase      );
+    this.newPassphrase           = findViewById(R.id.new_passphrase      );
+    this.repeatPassphrase        = findViewById(R.id.repeat_passphrase   );
 
-    this.okButton                = (Button  ) findViewById(R.id.ok_button           );
-    this.cancelButton            = (Button  ) findViewById(R.id.cancel_button       );
+    this.okButton                = findViewById(R.id.ok_button           );
+    this.cancelButton            = findViewById(R.id.cancel_button       );
 
     this.okButton.setOnClickListener(new OkButtonClickListener());
     this.cancelButton.setOnClickListener(new CancelButtonClickListener());

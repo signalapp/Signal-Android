@@ -179,6 +179,7 @@
         <item name="conversation_sticker_footer_text_color">@color/core_grey_60</item>
         <item name="conversation_sticker_footer_icon_color">@color/core_grey_60</item>
         <item name="conversation_sticker_author_color">@color/core_grey_95</item>
+        <item name="conversation_reply_tint">@color/black</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_light</item>
 
@@ -395,6 +396,9 @@
         <item name="conversation_sticker_footer_text_color">@color/core_grey_25</item>
         <item name="conversation_sticker_footer_icon_color">@color/core_grey_25</item>
         <item name="conversation_sticker_author_color">@color/core_grey_05</item>
+        <item name="conversation_reply_tint">@color/white</item>
+
+        
 
         <item name="emoji_tab_strip_background">@color/core_grey_85</item>
         <item name="emoji_tab_indicator">@color/gray65</item>

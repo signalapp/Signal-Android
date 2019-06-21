@@ -10,7 +10,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.1'
     }
 }
 
@@ -312,7 +312,7 @@ android {
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
-        project.ext.set("archivesBaseName", "Signal");
+        project.ext.set("archivesBaseName", "Signal")
 
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
@@ -455,12 +455,12 @@ android {
 
 def assembleWebsiteDescriptor = { variant, file ->
     if (file.exists()) {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        MessageDigest md = MessageDigest.getInstance("SHA-256")
         file.eachByte 4096, {bytes, size ->
-            md.update(bytes, 0, size);
+            md.update(bytes, 0, size)
         }
 
-        String digest  = md.digest().collect {String.format "%02x", it}.join();
+        String digest  = md.digest().collect {String.format "%02x", it}.join()
         String url     = variant.productFlavors.get(0).ext.websiteUpdateUrl
         String apkName = file.getName()
 
@@ -493,6 +493,7 @@ def signProductionRelease = { variant ->
         outputFile
     }
 }
+
 
 task signProductionPlayRelease {
     doLast {

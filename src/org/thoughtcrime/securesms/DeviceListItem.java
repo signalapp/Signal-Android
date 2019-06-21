@@ -29,9 +29,9 @@ public class DeviceListItem extends LinearLayout {
   @Override
   public void onFinishInflate() {
     super.onFinishInflate();
-    this.name       = (TextView) findViewById(R.id.name);
-    this.created    = (TextView) findViewById(R.id.created);
-    this.lastActive = (TextView) findViewById(R.id.active);
+    this.name       = findViewById(R.id.name);
+    this.created    = findViewById(R.id.created);
+    this.lastActive = findViewById(R.id.active);
   }
 
   public void set(Device deviceInfo, Locale locale) {

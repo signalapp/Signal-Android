@@ -22,6 +22,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -39,6 +45,7 @@ import androidx.appcompat.view.ActionMode;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -96,6 +103,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -175,6 +183,7 @@ public class ConversationFragment extends Fragment
     initializeLoadMoreView(bottomLoadMoreView);
 
     typingView = (ConversationTypingView) inflater.inflate(R.layout.conversation_typing_view, container, false);
+    new ReplySwipeHelper(new ConversationFragment.ArchiveListenerCallback()).attachToRecyclerView(list);
 
     return view;
   }
@@ -555,7 +564,7 @@ public class ConversationFragment extends Fragment
                                       Optional.absent(),
                                       Optional.fromNullable(attachment.getCaption())));
             }
-          };
+          }
 
           if (!mediaList.isEmpty()) {
             composeIntent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaList);
@@ -1098,7 +1107,7 @@ public class ConversationFragment extends Fragment
 
     private ConversationDateHeader(Context context, TextView textView) {
       super(textView);
-      this.animateIn  = AnimationUtils.loadAnimation(context, R.anim.slide_from_top);
+      this.animateIn = AnimationUtils.loadAnimation(context, R.anim.slide_from_top);
       this.animateOut = AnimationUtils.loadAnimation(context, R.anim.slide_to_top);
 
       this.animateIn.setDuration(100);
@@ -1125,6 +1134,70 @@ public class ConversationFragment extends Fragment
           }
         }
       }, 400);
+    }
+  }
+  private class ArchiveListenerCallback extends ReplySwipeHelper.SimpleCallback {
+
+     ArchiveListenerCallback() {
+      super(ItemTouchHelper.RIGHT);
+    }
+
+     @Override
+    public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+      return super.getSwipeDirs(recyclerView, viewHolder);
+    }
+
+     @Override
+    public float getSwipeThreshold(@NonNull RecyclerView.ViewHolder viewHolder) {
+      return 0.2F;
+    }
+
+     @SuppressLint("StaticFieldLeak")
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+       MessageRecord messageRecord = ((ConversationItem) viewHolder.itemView).getMessageRecord();
+
+       handleReplyMessage(messageRecord);
+    }
+
+     @Override
+    public void onChildDraw(Canvas c, RecyclerView recyclerView,
+                            RecyclerView.ViewHolder viewHolder,
+                            float dX, float dY, int actionState,
+                            boolean isCurrentlyActive) {
+      if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+        View itemView = viewHolder.itemView;
+        float width = itemView.getWidth();
+        Paint p = new Paint();
+        p.setColorFilter(new PorterDuffColorFilter(ThemeUtil.getThemedColor(getActivity(), R.attr.conversation_reply_tint), PorterDuff.Mode.SRC_IN));
+
+         float alpha = Math.min(1.0F, dX / (getSwipeThreshold(viewHolder) * width));
+        float factor = (float) (0.0
+                + 1.141149 * dX / width
+                - 1.868806 * Math.pow(dX / width, 2.0F)
+                + 1.661371 * Math.pow(dX / width, 3.0F)
+                - 0.6061141 * Math.pow(dX / width, 4.0F));
+
+         viewHolder.itemView.setTranslationX(factor * width);
+
+         if (dX > 0) {
+
+           Bitmap icon;
+
+           icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_reply_white_24dp);
+
+           p.setAlpha((int) (alpha * 255));
+
+           c.drawBitmap(icon,
+                  (float) itemView.getLeft() + getResources().getDimension(R.dimen.conversation_list_fragment_archive_padding),
+                  (float) itemView.getTop() + ((float) itemView.getBottom() - (float) itemView.getTop() - icon.getHeight()) / 2,
+                  p);
+        }
+
+       } else {
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+      }
     }
   }
 }

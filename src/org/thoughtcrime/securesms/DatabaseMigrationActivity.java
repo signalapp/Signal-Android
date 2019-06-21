@@ -76,12 +76,12 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
   }
 
   private void initializeResources() {
-    this.promptLayout   = (LinearLayout)findViewById(R.id.prompt_layout);
-    this.progressLayout = (LinearLayout)findViewById(R.id.progress_layout);
-    this.skipButton     = (Button)      findViewById(R.id.skip_button);
-    this.importButton   = (Button)      findViewById(R.id.import_button);
-    this.progress       = (ProgressBar) findViewById(R.id.import_progress);
-    this.progressLabel  = (TextView)    findViewById(R.id.import_status);
+    this.promptLayout   = findViewById(R.id.prompt_layout);
+    this.progressLayout = findViewById(R.id.progress_layout);
+    this.skipButton     = findViewById(R.id.skip_button);
+    this.importButton   = findViewById(R.id.import_button);
+    this.progress       = findViewById(R.id.import_progress);
+    this.progressLabel  = findViewById(R.id.import_status);
 
     this.progressLayout.setVisibility(View.GONE);
     this.promptLayout.setVisibility(View.GONE);
@@ -147,7 +147,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
   private void handleImportComplete() {
     if (isVisible) {
       if (getIntent().hasExtra("next_intent")) {
-        startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
+        startActivity(getIntent().getParcelableExtra("next_intent"));
       } else {
         startActivity(new Intent(this, ConversationListActivity.class));
       }
