@@ -253,15 +253,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (content.lokiMessage.isPresent()) {
         LokiServiceMessage lokiMessage = content.lokiMessage.get();
         if (lokiMessage.getPreKeyBundleMessage() != null) {
-          Log.i(TAG, "[Loki] Received a prekey bundle from: " + envelope.getSource());
-          int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
-          if (registrationId > 0) {
+          Log.d("Loki", "Received a pre key bundle from: " + envelope.getSource() + ".");
+          int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
+          if (registrationID > 0) {
             LokiPreKeyBundleDatabase preKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
-            PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationId);
+            PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
             preKeyBundleDatabase.setPreKeyBundle(envelope.getSource(), preKeyBundle);
           }
         }
-
         if (lokiMessage.getAddressMessage() != null) {
           // TODO: Loki - Handle address message
         }
@@ -825,12 +824,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-
     Recipient recipient = getMessageDestination(content, message);
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
-
+    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
     LokiThreadFriendRequestDatabase database = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
-    LokiFriendRequestStatus friendRequestStatus = database.getFriendRequestStatus(threadId);
+    LokiFriendRequestStatus friendRequestStatus = database.getFriendRequestStatus(threadID);
     if (envelope.isFriendRequest()) {
       if (friendRequestStatus == LokiFriendRequestStatus.REQUEST_SENT) {
         // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
@@ -843,34 +840,33 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // before updating Alice's thread's friend request status to `FRIENDS`,
         // we can end up in a deadlock where both users' threads' friend request statuses are
         // `REQUEST_SENT`.
-        database.setFriendRequestStatus(threadId, LokiFriendRequestStatus.FRIENDS);
+        database.setFriendRequestStatus(threadID, LokiFriendRequestStatus.FRIENDS);
         // Accept the friend request
-        sendEmptyMessageTo(envelope.getSource());
+        sendEmptyMessage(envelope.getSource());
       } else if (friendRequestStatus != LokiFriendRequestStatus.FRIENDS) {
         // Checking that the sender of the message isn't already a friend is necessary because otherwise
         // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
         // friend request status is reset to `NONE`. Bob now sends Alice a friend
         // request. Alice's thread's friend request status is reset to
         // `REQUEST_RECEIVED`.
-        database.setFriendRequestStatus(threadId, LokiFriendRequestStatus.REQUEST_RECEIVED);
+        database.setFriendRequestStatus(threadID, LokiFriendRequestStatus.REQUEST_RECEIVED);
       }
     } else if (friendRequestStatus != LokiFriendRequestStatus.FRIENDS) {
       // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
       // it must be a friend request accepted message. Declining a friend request doesn't send a message.
-      database.setFriendRequestStatus(threadId, LokiFriendRequestStatus.FRIENDS);
+      database.setFriendRequestStatus(threadID, LokiFriendRequestStatus.FRIENDS);
       // TODO: Send p2p details here
     }
   }
 
-  private void sendEmptyMessageTo(String pubKey) {
+  private void sendEmptyMessage(String contactHexEncodedPublicKey) {
     try {
-      SignalServiceAddress address = new SignalServiceAddress(pubKey);
+      SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
       SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
       Optional<UnidentifiedAccessPair> access = Optional.absent();
-
       messageSender.sendMessage(address, access, message);
     } catch (Exception e) {
-      Log.w(TAG, "Failed to send empty message to " + pubKey);
+      Log.d("Loki", "Failed to send empty message to: " + contactHexEncodedPublicKey + ".");
     }
   }
 

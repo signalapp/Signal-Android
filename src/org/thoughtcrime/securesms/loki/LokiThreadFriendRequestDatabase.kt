@@ -9,16 +9,14 @@ class LokiThreadFriendRequestDatabase(context: Context, helper: SQLCipherOpenHel
 
     companion object {
         private val tableName = "loki_thread_friend_request_database"
-        private val threadId = "_id"
+        private val threadID = "thread_id"
         private val friendRequestStatus = "friend_request_status"
-
-        @JvmStatic
-        val createTableCommand = "CREATE TABLE $tableName ($threadId INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
+        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($threadID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
     }
 
-    fun getFriendRequestStatus(threadId: Long): LokiFriendRequestStatus {
+    fun getFriendRequestStatus(threadID: Long): LokiFriendRequestStatus {
         val db = databaseHelper.readableDatabase
-        val result = db.get(tableName, ID_WHERE, arrayOf( threadId.toString() )) { cursor ->
+        val result = db.get(tableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             cursor.getInt(friendRequestStatus)
         }
         return if (result != null) {
@@ -28,12 +26,12 @@ class LokiThreadFriendRequestDatabase(context: Context, helper: SQLCipherOpenHel
         }
     }
 
-    fun setFriendRequestStatus(threadId: Long, status: LokiFriendRequestStatus) {
+    fun setFriendRequestStatus(threadID: Long, status: LokiFriendRequestStatus) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(1)
-        contentValues.put(Companion.threadId, threadId)
+        contentValues.put(Companion.threadID, threadID)
         contentValues.put(friendRequestStatus, status.rawValue)
-        database.insertOrUpdate(tableName, contentValues, ID_WHERE, arrayOf( threadId.toString() ))
+        database.insertOrUpdate(tableName, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
         notifyConversationListListeners()
     }
 }

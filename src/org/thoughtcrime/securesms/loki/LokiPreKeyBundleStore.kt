@@ -11,15 +11,15 @@ class LokiPreKeyBundleStore(val context: Context) : LokiPreKeyBundleStoreProtoco
         private val lock = Object()
     }
 
-    override fun getPreKeyBundle(pubKey: String): PreKeyBundle? {
+    override fun getPreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
         synchronized(lock) {
-            return DatabaseFactory.getLokiPreKeyBundleDatabase(context).getPreKeyBundle(pubKey)
+            return DatabaseFactory.getLokiPreKeyBundleDatabase(context).getPreKeyBundle(hexEncodedPublicKey)
         }
     }
 
-    override fun removePreKeyBundle(pubKey: String) {
+    override fun removePreKeyBundle(hexEncodedPublicKey: String) {
         synchronized(lock) {
-            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(pubKey)
+            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(hexEncodedPublicKey)
         }
     }
 }

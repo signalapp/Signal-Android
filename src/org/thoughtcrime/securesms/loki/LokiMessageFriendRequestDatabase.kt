@@ -9,30 +9,25 @@ class LokiMessageFriendRequestDatabase(context: Context, helper: SQLCipherOpenHe
 
     companion object {
         private val tableName = "loki_sms_friend_request_database"
-        private val smsId = "_id"
+        private val messageID = "message_id"
         private val isFriendRequest = "is_friend_request"
-
-        @JvmStatic
-        val createTableCommand = "CREATE TABLE $tableName ($smsId INTEGER PRIMARY KEY, $isFriendRequest INTEGER DEFAULT 0);"
+        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $isFriendRequest INTEGER DEFAULT 0);"
     }
 
-    fun getIsFriendRequest(messageId: Long): Boolean {
+    fun getIsFriendRequest(messageID: Long): Boolean {
         val database = databaseHelper.readableDatabase
-        return database.get(tableName, ID_WHERE, arrayOf( messageId.toString() )) { cursor ->
+        return database.get(tableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
             val rawIsFriendRequest = cursor.getInt(isFriendRequest)
             rawIsFriendRequest == 1
         } ?: false
     }
 
-    fun setIsFriendRequest(messageId: Long, isFriendRequest: Boolean) {
+    fun setIsFriendRequest(messageID: Long, isFriendRequest: Boolean) {
         val database = databaseHelper.writableDatabase
-
         val rawIsFriendRequest = if (isFriendRequest) 1 else 0
-
         val contentValues = ContentValues()
-        contentValues.put(smsId, messageId)
+        contentValues.put(Companion.messageID, messageID)
         contentValues.put(Companion.isFriendRequest, rawIsFriendRequest)
-
-        database.insertOrUpdate(tableName, contentValues, ID_WHERE, arrayOf( messageId.toString() ))
+        database.insertOrUpdate(tableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
     }
 }

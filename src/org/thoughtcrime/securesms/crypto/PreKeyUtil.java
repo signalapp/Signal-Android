@@ -97,27 +97,22 @@ public class PreKeyUtil {
     try {
       return signedPreKeyStore.loadSignedPreKey(getActiveSignedPreKeyId(context));
     } catch (InvalidKeyIdException e) {
-      // Fall through
+      return null;
     }
-    return null;
   }
 
   public synchronized static List<PreKeyRecord> generatePreKeys(Context context, int amount) {
-    PreKeyStore        preKeyStore    = new TextSecurePreKeyStore(context);
-    List<PreKeyRecord> records        = new LinkedList<>();
-    int                preKeyIdOffset = TextSecurePreferences.getNextPreKeyId(context);
-
+    PreKeyStore preKeyStore = new TextSecurePreKeyStore(context);
+    List<PreKeyRecord> records = new LinkedList<>();
+    int preKeyIDOffset = TextSecurePreferences.getNextPreKeyId(context);
     for (int i = 0; i < amount; i++) {
-      int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
-      ECKeyPair    keyPair  = Curve.generateKeyPair();
-      PreKeyRecord record   = new PreKeyRecord(preKeyId, keyPair);
-
-      preKeyStore.storePreKey(preKeyId, record);
+      int preKeyID = (preKeyIDOffset + i) % Medium.MAX_VALUE;
+      ECKeyPair keyPair = Curve.generateKeyPair();
+      PreKeyRecord record = new PreKeyRecord(preKeyID, keyPair);
+      preKeyStore.storePreKey(preKeyID, record);
       records.add(record);
     }
-
-    TextSecurePreferences.setNextPreKeyId(context, (preKeyIdOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
-
+    TextSecurePreferences.setNextPreKeyId(context, (preKeyIDOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);
     return records;
   }
 
@@ -128,9 +123,9 @@ public class PreKeyUtil {
     }
   }
 
-  public synchronized static PreKeyRecord loadPreKey(Context context, int preKeyId) throws InvalidKeyIdException {
+  public synchronized static PreKeyRecord loadPreKey(Context context, int preKeyID) throws InvalidKeyIdException {
     PreKeyStore preKeyStore = new TextSecurePreKeyStore(context);
-    return preKeyStore.loadPreKey(preKeyId);
+    return preKeyStore.loadPreKey(preKeyID);
   }
   // endregion
 }
