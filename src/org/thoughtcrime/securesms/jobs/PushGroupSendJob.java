@@ -253,7 +253,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                            .asGroupMessage(group)
                                                                            .build();
 
-      return messageSender.sendMessage(addresses, unidentifiedAccess, groupDataMessage);
+      // TODO: Message ID
+      return messageSender.sendMessage(0, addresses, unidentifiedAccess, groupDataMessage);
     } else {
       SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedId(groupId));
       SignalServiceDataMessage groupMessage = SignalServiceDataMessage.newBuilder()
@@ -269,7 +270,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                       .withPreviews(previews)
                                                                       .build();
 
-      return messageSender.sendMessage(addresses, unidentifiedAccess, groupMessage);
+      // TODO: Message ID
+      return messageSender.sendMessage(0, addresses, unidentifiedAccess, groupMessage);
     }
   }
 

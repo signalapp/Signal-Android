@@ -864,7 +864,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
       SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
       Optional<UnidentifiedAccessPair> access = Optional.absent();
-      messageSender.sendMessage(address, access, message);
+      messageSender.sendMessage(0, address, access, message); // The message ID doesn't matter
     } catch (Exception e) {
       Log.d("Loki", "Failed to send empty message to: " + contactHexEncodedPublicKey + ".");
     }

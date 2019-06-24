@@ -222,10 +222,10 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
 
-        messageSender.sendMessage(syncMessage, syncAccess);
+        messageSender.sendMessage(messageId, syncMessage, syncAccess);
         return syncAccess.isPresent();
       } else {
-        return messageSender.sendMessage(address, UnidentifiedAccessUtil.getAccessFor(context, message.getRecipient()), mediaMessage).getSuccess().isUnidentified();
+        return messageSender.sendMessage(messageId, address, UnidentifiedAccessUtil.getAccessFor(context, message.getRecipient()), mediaMessage).getSuccess().isUnidentified();
       }
     } catch (UnregisteredUserException e) {
       warn(TAG, e);

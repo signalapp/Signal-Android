@@ -139,7 +139,8 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
                                                                               .withLength(contactsFile.length())
                                                                               .build();
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream),
+    // TODO: Message ID
+    messageSender.sendMessage(0, SignalServiceSyncMessage.forGroups(attachmentStream),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

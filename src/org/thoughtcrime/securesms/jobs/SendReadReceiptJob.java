@@ -89,7 +89,7 @@ public class SendReadReceiptJob extends BaseJob implements InjectableType {
     SignalServiceAddress        remoteAddress  = new SignalServiceAddress(address);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.READ, messageIds, timestamp);
 
-    messageSender.sendReceipt(remoteAddress,
+    messageSender.sendReceipt(0, remoteAddress, // The message ID doesn't matter
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(address), false)),
                               receiptMessage);
   }

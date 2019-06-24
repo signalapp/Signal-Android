@@ -239,7 +239,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
                                                                                 .build();
 
       try {
-        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)),
+        // TODO: Message ID
+        messageSender.sendMessage(0, SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)),
                                   UnidentifiedAccessUtil.getAccessForSync(context));
       } catch (IOException ioe) {
         throw new NetworkException(ioe);

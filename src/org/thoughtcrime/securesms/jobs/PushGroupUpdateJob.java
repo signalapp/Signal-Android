@@ -118,7 +118,8 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
                                                                .withExpiration(groupRecipient.getExpireMessages())
                                                                .build();
 
-    messageSender.sendMessage(new SignalServiceAddress(source),
+    // TODO: Message ID
+    messageSender.sendMessage(0, new SignalServiceAddress(source),
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(source), false)),
                               message);
   }

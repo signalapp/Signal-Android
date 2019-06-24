@@ -79,7 +79,8 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
                                                                .withTimestamp(System.currentTimeMillis())
                                                                .build();
 
-    messageSender.sendMessage(new SignalServiceAddress(source),
+    // TODO: Message ID
+    messageSender.sendMessage(0, new SignalServiceAddress(source),
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromExternal(context, source), false)),
                               message);
   }

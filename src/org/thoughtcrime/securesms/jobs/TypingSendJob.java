@@ -96,7 +96,8 @@ public class TypingSendJob extends BaseJob implements InjectableType {
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
     SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 
-    messageSender.sendTyping(addresses, unidentifiedAccess, typingMessage);
+    // TODO: Message ID
+    messageSender.sendTyping(0, addresses, unidentifiedAccess, typingMessage);
   }
 
   @Override

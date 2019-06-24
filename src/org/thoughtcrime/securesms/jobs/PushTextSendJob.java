@@ -181,10 +181,10 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
 
-        messageSender.sendMessage(syncMessage, syncAccess);
+        messageSender.sendMessage(messageId, syncMessage, syncAccess);
         return syncAccess.isPresent();
       } else {
-        return messageSender.sendMessage(address, unidentifiedAccess, textSecureMessage).getSuccess().isUnidentified();
+        return messageSender.sendMessage(messageId, address, unidentifiedAccess, textSecureMessage).getSuccess().isUnidentified();
       }
     } catch (UnregisteredUserException e) {
       warn(TAG, "Failure", e);

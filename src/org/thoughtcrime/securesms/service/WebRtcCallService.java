@@ -19,7 +19,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.telephony.TelephonyManager;
-import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -34,6 +33,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -90,12 +90,10 @@ import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -1000,7 +998,8 @@ public class WebRtcCallService extends Service implements InjectableType,
     Callable<Boolean> callable = new Callable<Boolean>() {
       @Override
       public Boolean call() throws Exception {
-        messageSender.sendCallMessage(new SignalServiceAddress(recipient.getAddress().toPhoneString()),
+        // TODO: Message ID
+        messageSender.sendCallMessage(0, new SignalServiceAddress(recipient.getAddress().toPhoneString()),
                                       UnidentifiedAccessUtil.getAccessFor(WebRtcCallService.this, recipient),
                                       callMessage);
         return true;

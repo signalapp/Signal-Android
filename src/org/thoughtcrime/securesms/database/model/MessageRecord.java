@@ -46,7 +46,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   private final Recipient                 individualRecipient;
   private final int                       recipientDeviceId;
-  private final long                      id;
+  public final long                       id;
   private final List<IdentityKeyMismatch> mismatches;
   private final List<NetworkFailure>      networkFailures;
   private final int                       subscriptionId;
