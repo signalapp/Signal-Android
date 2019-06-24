@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 
-
 class AccountDetailsActivity : BaseActionBarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

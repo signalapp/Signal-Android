@@ -14,8 +14,9 @@ import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.state.PreKeyBundle
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.loki.messaging.LokiPreKeyDatabaseProtocol
 
-class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
+class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiPreKeyDatabaseProtocol {
 
     companion object {
         private val tableName = "loki_pre_key_bundle_database"
@@ -33,30 +34,17 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
             "$signedPreKeySignature TEXT," + "$identityKey TEXT NOT NULL," + "$deviceID INTEGER," + "$registrationID INTEGER" + ");"
     }
 
-    /**
-     * Generate a `PreKeyBundle` for the given contact.
-     * This generated bundle shouldn't be stored locally since this is used to generate bundles to send to other users.
-     *
-     * @param hexEncodedPublicKey String The hex encoded public key of the contact.
-     * @return PreKeyBundle? A pre key bundle or `null` if something went wrong.
-     */
     fun generatePreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
         val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
         val signedPreKey = PreKeyUtil.getActiveSignedPreKey(context) ?: return null
-        val preKeyRecord = DatabaseFactory.getLokiContactPreKeyDatabase(context).getOrCreatePreKey(hexEncodedPublicKey)
+        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getOrCreatePreKey(hexEncodedPublicKey)
         val registrationID = TextSecurePreferences.getLocalRegistrationId(context)
         if (registrationID == 0) return null
         val deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID
         return PreKeyBundle(registrationID, deviceID,preKeyRecord.id, preKeyRecord.keyPair.publicKey, signedPreKey.id, signedPreKey.keyPair.publicKey, signedPreKey.signature, identityKeyPair.publicKey)
     }
 
-    /**
-     * Get the `PreKeyBundle` associated with the given contact.
-     *
-     * @param hexEncodedPublicKey String The hex encoded public key of the contact.
-     * @return PreKeyBundle? The pre key bundle or `null` if it doesn't exist.
-     */
-    fun getPreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
+    override fun getPreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
         val database = databaseHelper.readableDatabase
         return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { cursor ->
             val registrationID = cursor.getInt(registrationID)
@@ -71,15 +59,9 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         }
     }
 
-    /**
-     * Set the `PreKeyBundle` for the given contact.
-     *
-     * @param hexEncodedPublicKey String The hex encoded public key of the contact.
-     * @param preKeyBundle PreKeyBundle The pre key bundle.
-     */
     fun setPreKeyBundle(hexEncodedPublicKey: String, preKeyBundle: PreKeyBundle) {
         val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues()
+        val contentValues = ContentValues(9)
         contentValues.put(registrationID, preKeyBundle.registrationId)
         contentValues.put(deviceID, preKeyBundle.deviceId)
         contentValues.put(preKeyID, preKeyBundle.preKeyId)
@@ -92,12 +74,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         database.insertWithOnConflict(tableName, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE)
     }
 
-    /**
-     * Remove the `PreKeyBundle` for the given contact.
-     *
-     * @param hexEncodedPublicKey String The hex encoded public key of the contact.
-     */
-    fun removePreKeyBundle(hexEncodedPublicKey: String) {
+    override fun removePreKeyBundle(hexEncodedPublicKey: String) {
         val database = databaseHelper.writableDatabase
         database.delete(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
     }

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.loki
 import android.content.ContentValues
 import net.sqlcipher.Cursor
 import net.sqlcipher.database.SQLiteDatabase
-import org.thoughtcrime.securesms.util.Base64
+import org.whispersystems.signalservice.internal.util.Base64
 
 fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String>, get: (Cursor) -> T): T? {
     var cursor: Cursor? = null
@@ -18,10 +18,10 @@ fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String
     return null
 }
 
-fun SQLiteDatabase.insertOrUpdate(table: String, values: ContentValues, whereClause: String, whereArgs: Array<String>) {
+fun SQLiteDatabase.insertOrUpdate(table: String, values: ContentValues, query: String, arguments: Array<String>) {
     val id = insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE).toInt()
     if (id == -1) {
-        update(table, values, whereClause, whereArgs)
+        update(table, values, query, arguments)
     }
 }
 

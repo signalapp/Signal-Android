@@ -62,7 +62,6 @@ import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestStatus;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -113,6 +112,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -827,7 +827,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Recipient recipient = getMessageDestination(content, message);
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
     LokiThreadFriendRequestDatabase database = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
-    LokiThreadFriendRequestStatus friendRequestStatus = database.friendRequestStatus(threadID);
+    LokiThreadFriendRequestStatus friendRequestStatus = database.getFriendRequestStatus(threadID);
     if (envelope.isFriendRequest()) {
       if (friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
         // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his

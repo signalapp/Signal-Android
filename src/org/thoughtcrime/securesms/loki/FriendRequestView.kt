@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
+import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
 
 class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     private var isUISetUp = false
@@ -89,7 +90,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
         if (message is IncomingTextMessage) {
             val message = this.message as IncomingTextMessage
-            val friendRequestStatus = database.friendRequestStatus(0) // TODO: Message ID
+            val friendRequestStatus = database.getFriendRequestStatus(0) // TODO: Message ID
             buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE
             val formatID = when (friendRequestStatus) {
                 LokiMessageFriendRequestStatus.NONE, LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> throw IllegalStateException()
@@ -102,7 +103,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
             label.text = resources.getString(formatID, contactID)
         } else {
             val message = this.message as OutgoingTextMessage
-            val friendRequestStatus = database.friendRequestStatus(0) // TODO: Message ID
+            val friendRequestStatus = database.getFriendRequestStatus(0) // TODO: Message ID
             buttonLinearLayout.visibility = View.GONE
             val formatID = when (friendRequestStatus) {
                 LokiMessageFriendRequestStatus.NONE -> throw IllegalStateException()
