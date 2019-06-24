@@ -21,7 +21,7 @@ class LokiThreadFriendRequestDatabase(context: Context, helper: SQLCipherOpenHel
         return DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageID)
     }
 
-    override fun getFriendRequestStatus(threadID: Long): LokiThreadFriendRequestStatus {
+    fun getFriendRequestStatus(threadID: Long): LokiThreadFriendRequestStatus {
         val database = databaseHelper.readableDatabase
         val result = database.get(tableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             cursor.getInt(friendRequestStatus)

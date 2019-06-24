@@ -14,9 +14,9 @@ import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.state.PreKeyBundle
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.messaging.LokiPreKeyDatabaseProtocol
+import org.whispersystems.signalservice.loki.messaging.LokiPreKeyBundleDatabaseProtocol
 
-class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiPreKeyDatabaseProtocol {
+class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiPreKeyBundleDatabaseProtocol {
 
     companion object {
         private val tableName = "loki_pre_key_bundle_database"
