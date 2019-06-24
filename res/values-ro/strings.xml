@@ -694,6 +694,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_reply">Răspunde</string>
   <string name="MessageNotifier_signal_message">Mesaj Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS nesecurizat</string>
+  <string name="MessageNotifier_you_may_have_new_messages">S-ar putea să aveți mesaje noi</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Deschideți Signal pentru a verifica notificările recente.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--Notification Channels-->

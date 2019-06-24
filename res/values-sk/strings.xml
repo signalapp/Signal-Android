@@ -84,6 +84,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Odstrániť profilovú fotku?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenašiel sa žiadny webový prehliadač.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Už prebieha telefónový hovor.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mali by ste overiť vaše bezpečnostné číslo s týmto kontaktom.</string>
@@ -167,6 +168,8 @@
   <string name="ConversationActivity_no">Nie</string>
   <string name="ConversationActivity_search_position">%1$d z %2$d</string>
   <string name="ConversationActivity_no_results">Žiadne výsledky.</string>
+  <string name="ConversationActivity_sticker_pack_installed">Balík s nálepkami bol nainštalovaný</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Novinka! Povedzte to nálepkou</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
@@ -597,6 +600,7 @@ telefónne číslo
   <string name="SharedContactView_message">Signal správa</string>
   <!--Slide-->
   <string name="Slide_image">Obrázok</string>
+  <string name="Slide_sticker">Nálepka</string>
   <string name="Slide_audio">Zvuk</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -610,14 +614,24 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SmsMessageRecord_secure_session_reset">Obnovili ste bezpečnú reláciu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval/a zabezpečenú reláciu.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikácia správy.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Táto správa nemohla byť spracovaná, pretože bola poslaná z novšej verzie Signalu. Po aktualizácii môžete požiadať kontakt o znovuposlanie.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Nálepky</string>
   <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Nainštalované nálepky</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Prijaté nálepky</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Zbierka od výtvarníkov Signalu</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Žiadne nainštalované nálepky</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Tu uvidíte nálepky z prichádzajúcich správ</string>
+  <string name="StickerManagementAdapter_untitled">Nepomenovaná</string>
   <string name="StickerManagementAdapter_unknown">Neznáme</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Nepomenovaná</string>
   <string name="StickerPackPreviewActivity_unknown">Neznáme</string>
+  <string name="StickerPackPreviewActivity_install">Inštalovať</string>
   <string name="StickerPackPreviewActivity_remove">Odstrániť</string>
   <string name="StickerPackPreviewActivity_stickers">Nálepky</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nepodarilo sa načítať balík s nálepkami</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Skupina bola aktualizovaná</string>
   <string name="ThreadRecord_left_the_group">Opustil/a skupinu</string>
@@ -634,6 +648,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %s sa zmenilo.</string>
   <string name="ThreadRecord_you_marked_verified">Označili ste ako overené</string>
   <string name="ThreadRecord_you_marked_unverified">Označili ste ako neoverené</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Správu sa nepodarilo spracovať</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signalu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signalu, ťuknutím aktualizujte</string>
@@ -699,9 +714,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_mark_all_as_read">Označiť všetko ako prečítané</string>
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
+  <string name="MessageNotifier_sticker">Nálepka</string>
   <string name="MessageNotifier_reply">Odpovedať</string>
   <string name="MessageNotifier_signal_message">Signal správa</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Otvorte Signal pre kontrolu nedávnych upozornení.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -821,6 +838,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuoteView_audio">Zvuk</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotka</string>
+  <string name="QuoteView_sticker">Nálepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vy</string>
   <string name="QuoteView_original_missing">Pôvodná správa sa nenašla</string>

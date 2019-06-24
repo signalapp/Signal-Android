@@ -107,7 +107,7 @@
   <string name="ContactShareEditActivity_type_mobile">Symudol</string>
   <string name="ContactShareEditActivity_type_work">Gwaith</string>
   <string name="ContactShareEditActivity_type_missing">Arall</string>
-  <string name="ContactShareEditActivity_invalid_contact">Roedd cyswllt hwn yn annilys</string>
+  <string name="ContactShareEditActivity_invalid_contact">Roedd y cyswllt hwn yn annilys</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Methodd yr anfon, tapiwch am fanylion</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Wedi derbyn neges cyfnewid allwedd, tapiwch i brosesu.</string>
@@ -715,6 +715,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_reply">Ymateb</string>
   <string name="MessageNotifier_signal_message">Neges Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS anniogel</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Efallai fod gennych negeseuon newydd</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Agorwch Signal i weld hysbysiadau diweddar.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Cysylltiad</string>
   <!--Notification Channels-->

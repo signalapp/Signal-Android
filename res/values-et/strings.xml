@@ -679,6 +679,8 @@
   <string name="MessageNotifier_reply">Vasta</string>
   <string name="MessageNotifier_signal_message">Signali sõnum</string>
   <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Sul võib olla uusi sõnumeid</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ava Signal et kontrollida viimaseid teateid.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->

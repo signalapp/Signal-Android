@@ -674,6 +674,8 @@
   <string name="MessageNotifier_reply">Απάντηση</string>
   <string name="MessageNotifier_signal_message">Μήνυμα Signal</string>
   <string name="MessageNotifier_unsecured_sms">Μη ασφαλές SMS</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Ίσως έχετε νέα μηνύματα</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ανοίξτε το Signal για δείτε αν υπάρχουν πρόσφατες ειδοποιήσεις.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Επαφή</string>
   <!--Notification Channels-->

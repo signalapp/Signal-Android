@@ -159,8 +159,8 @@
   <string name="ConversationActivity_no">否</string>
   <string name="ConversationActivity_search_position">%2$d中之%1$d</string>
   <string name="ConversationActivity_no_results">无结果</string>
-  <string name="ConversationActivity_sticker_pack_installed">表情包已安装</string>
-  <string name="ConversationActivity_new_say_it_with_stickers">新！可以发表情了！</string>
+  <string name="ConversationActivity_sticker_pack_installed">已安装表情包</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">新功能！可以发表情了！</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读信息</item>
@@ -538,7 +538,7 @@
   <string name="SharedContactView_message">Signal 消息</string>
   <!--Slide-->
   <string name="Slide_image">图片</string>
-  <string name="Slide_sticker">表情包</string>
+  <string name="Slide_sticker">表情</string>
   <string name="Slide_audio">音频</string>
   <string name="Slide_video">视频</string>
   <!--SmsMessageRecord-->
@@ -549,13 +549,15 @@
   <string name="SmsMessageRecord_secure_session_reset">您重置了安全会话。</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">无法处理此信息，因为它是从新版本 Signal 发送的。更新后，您可以请联系人重新发送此信息。</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">表情</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">可用表情</string>
-  <string name="StickerManagementAdapter_stickers_you_received">你收到的贴纸</string>
-  <string name="StickerManagementAdapter_no_stickers_installed">没有安装任何贴纸包</string>
-  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">消息中的表情包会显示在这里</string>
+  <string name="StickerManagementAdapter_stickers_you_received">你收到的表情</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal 艺术家系列</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">没有安装任何表情包</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">消息中的表情会显示在这里</string>
   <string name="StickerManagementAdapter_untitled">未命名</string>
   <string name="StickerManagementAdapter_unknown">未知</string>
   <!--StickerPackPreviewActivity-->
@@ -564,7 +566,7 @@
   <string name="StickerPackPreviewActivity_install">安装</string>
   <string name="StickerPackPreviewActivity_remove">删除</string>
   <string name="StickerPackPreviewActivity_stickers">表情</string>
-  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">无法加载贴纸包</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">无法加载表情包</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">群组已更新</string>
   <string name="ThreadRecord_left_the_group">离开此群组</string>
@@ -581,6 +583,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
   <string name="ThreadRecord_you_marked_verified">你被标识为已验证</string>
   <string name="ThreadRecord_you_marked_unverified">你被标记为未验证</string>
+  <string name="ThreadRecord_message_could_not_be_processed">无法处理信息</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 有新版本了，点击升级！</string>
@@ -650,6 +653,8 @@
   <string name="MessageNotifier_reply">回复</string>
   <string name="MessageNotifier_signal_message">Signal 消息</string>
   <string name="MessageNotifier_unsecured_sms">未加密的短信</string>
+  <string name="MessageNotifier_you_may_have_new_messages">您可能有新信息</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">打开 Signal 查看最近的通知</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">联系人</string>
   <!--Notification Channels-->
