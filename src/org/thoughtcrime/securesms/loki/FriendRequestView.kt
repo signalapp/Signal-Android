@@ -15,8 +15,8 @@ import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestS
 
 class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     private var isUISetUp = false
-    var message: Any? = null
-        set(newValue) { field = newValue; handleMessageChanged() }
+    private var message: Any? = null
+    private var messageID: Long? = null
     var delegate: FriendRequestViewDelegate? = null
 
     // region Components
@@ -46,7 +46,9 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     // endregion
 
     // region Updating
-    private fun handleMessageChanged() {
+    fun update(message: Any, messageID: Long) {
+        this.message = message
+        this.messageID = messageID
         setUpUIIfNeeded()
         updateUI()
     }
@@ -90,7 +92,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
         if (message is IncomingTextMessage) {
             val message = this.message as IncomingTextMessage
-            val friendRequestStatus = database.getFriendRequestStatus(0) // TODO: Message ID
+            val friendRequestStatus = database.getFriendRequestStatus(messageID!!)
             buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE
             val formatID = when (friendRequestStatus) {
                 LokiMessageFriendRequestStatus.NONE, LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> throw IllegalStateException()
@@ -103,7 +105,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
             label.text = resources.getString(formatID, contactID)
         } else {
             val message = this.message as OutgoingTextMessage
-            val friendRequestStatus = database.getFriendRequestStatus(0) // TODO: Message ID
+            val friendRequestStatus = database.getFriendRequestStatus(messageID!!)
             buttonLinearLayout.visibility = View.GONE
             val formatID = when (friendRequestStatus) {
                 LokiMessageFriendRequestStatus.NONE -> throw IllegalStateException()
@@ -114,7 +116,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
                 LokiMessageFriendRequestStatus.REQUEST_EXPIRED -> R.string.view_friend_request_outgoing_expired_message
             }
             if (formatID != null) {
-                val threadID = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(0)
+                val threadID = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageID!!)
                 val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!.address.toString()
                 label.text = resources.getString(formatID, contactID)
             }
@@ -128,14 +130,14 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     private fun accept() {
         val message = this.message as IncomingTextMessage
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
-        database.setFriendRequestStatus(0, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
+        database.setFriendRequestStatus(messageID!!, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
         delegate?.acceptFriendRequest(message)
     }
 
     private fun reject() {
         val message = this.message as IncomingTextMessage
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
-        database.setFriendRequestStatus(0, LokiMessageFriendRequestStatus.REQUEST_REJECTED)
+        database.setFriendRequestStatus(messageID!!, LokiMessageFriendRequestStatus.REQUEST_REJECTED)
         delegate?.rejectFriendRequest(message)
     }
     // endregion

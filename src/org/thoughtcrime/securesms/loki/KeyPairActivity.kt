@@ -91,7 +91,7 @@ class KeyPairActivity : BaseActionBarActivity() {
         val publicKey = keyPair!!.publicKey
         val hexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
-                IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
+            IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
         TextSecurePreferences.setPromptedPushRegistration(this, true)
         val application = ApplicationContext.getInstance(this)

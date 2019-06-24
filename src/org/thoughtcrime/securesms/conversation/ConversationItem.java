@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
@@ -87,6 +88,7 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.FriendRequestView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -96,6 +98,7 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
@@ -146,6 +149,7 @@ public class ConversationItem extends LinearLayout
   private   ViewGroup              contactPhotoHolder;
   private   AlertView              alertView;
   private   ViewGroup              container;
+  private   FriendRequestView      friendRequestView;
 
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
   private @NonNull  Recipient                       conversationRecipient;
@@ -204,6 +208,7 @@ public class ConversationItem extends LinearLayout
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
     this.quoteView               =            findViewById(R.id.quote_view);
     this.container               =            findViewById(R.id.container);
+    this.friendRequestView       =            findViewById(R.id.friend_request_view);
 
     setOnClickListener(new ClickListener(null));
 
@@ -248,6 +253,7 @@ public class ConversationItem extends LinearLayout
     setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread);
+    setFriendRequestView(messageRecord);
   }
 
   @Override
@@ -781,6 +787,11 @@ public class ConversationItem extends LinearLayout
       activeFooter.setVisibility(VISIBLE);
       activeFooter.setMessageRecord(current, locale);
     }
+  }
+
+  private void setFriendRequestView(@NonNull MessageRecord record) {
+    OutgoingTextMessage message = OutgoingTextMessage.from((SmsMessageRecord)record);
+    friendRequestView.update(message, record.id);
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
