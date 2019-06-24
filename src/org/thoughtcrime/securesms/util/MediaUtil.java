@@ -242,8 +242,6 @@ public class MediaUtil {
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {
-    Log.i(TAG, "Checking: " + uri);
-
     if (uri == null || !ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
       return false;
     }

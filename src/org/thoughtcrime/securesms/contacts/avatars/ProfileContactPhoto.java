@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -30,7 +31,8 @@ public class ProfileContactPhoto implements ContactPhoto {
 
   @Override
   public @Nullable Uri getUri(@NonNull Context context) {
-    return Uri.fromFile(AvatarHelper.getAvatarFile(context, address));
+    File avatarFile = AvatarHelper.getAvatarFile(context, address);
+    return avatarFile.exists() ? Uri.fromFile(avatarFile) : null;
   }
 
   @Override
