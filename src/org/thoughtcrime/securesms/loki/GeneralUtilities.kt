@@ -13,7 +13,7 @@ fun Resources.getColorWithID(@ColorRes id: Int, theme: Resources.Theme?): Int {
     }
 }
 
-fun convertToPixels(points: Int, resources: Resources): Int {
+fun toPx(dp: Int, resources: Resources): Int {
     val scale = resources.displayMetrics.density
-    return (points * scale).roundToInt()
+    return (dp * scale).roundToInt()
 }

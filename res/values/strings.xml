@@ -1540,5 +1540,15 @@
     <string name="activity_contact_selection_search_bar_placeholder">Search by name or public key</string>
     <!-- New conversation activity -->
     <string name="activity_new_conversation_invalid_public_key_message">Invalid Public Key</string>
+    <!-- Friend request view -->
+    <string name="view_friend_request_accept_button_title">Accept</string>
+    <string name="view_friend_request_reject_button_title">Reject</string>
+    <string name="view_friend_request_incoming_pending_message">%1$s sent you a friend request</string>
+    <string name="view_friend_request_incoming_accepted_message">You\'ve accepted %1$s\'s friend request</string>
+    <string name="view_friend_request_incoming_declined_message">You\'ve declined %1$s\'s friend request</string>
+    <string name="view_friend_request_incoming_expired_message">%1$s\'s friend request has expired</string>
+    <string name="view_friend_request_outgoing_pending_message">You\'ve sent %1$s a friend request</string>
+    <string name="view_friend_request_outgoing_accepted_message">%1$s accepted your friend request</string>
+    <string name="view_friend_request_outgoing_expired_message">Your friend request to %1$s has expired</string>
 
 </resources>

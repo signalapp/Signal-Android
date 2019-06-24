@@ -169,7 +169,7 @@ public class DatabaseFactory {
     return getInstance(context).lokiPreKeyBundleDatabase;
   }
 
-  public static LokiMessageFriendRequestDatabase getLokiSmsFriendRequestDatabase(Context context) {
+  public static LokiMessageFriendRequestDatabase getLokiMessageFriendRequestDatabase(Context context) {
     return getInstance(context).lokiMessageFriendRequestDatabase;
   }
 

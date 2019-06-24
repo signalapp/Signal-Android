@@ -8,26 +8,37 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 class LokiMessageFriendRequestDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
     companion object {
-        private val tableName = "loki_sms_friend_request_database"
+        private val tableName = "loki_message_friend_request_database"
         private val messageID = "message_id"
-        private val isFriendRequest = "is_friend_request"
-        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $isFriendRequest INTEGER DEFAULT 0);"
+        private val friendRequestStatus = "friend_request_status"
+        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
     }
 
-    fun getIsFriendRequest(messageID: Long): Boolean {
+    fun friendRequestStatus(messageID: Long): LokiMessageFriendRequestStatus {
         val database = databaseHelper.readableDatabase
-        return database.get(tableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
-            val rawIsFriendRequest = cursor.getInt(isFriendRequest)
-            rawIsFriendRequest == 1
-        } ?: false
+        val result = database.get(tableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+            cursor.getInt(friendRequestStatus)
+        }
+        return if (result != null) {
+            LokiMessageFriendRequestStatus.values().first { it.rawValue == result }
+        } else {
+            LokiMessageFriendRequestStatus.NONE
+        }
     }
 
-    fun setIsFriendRequest(messageID: Long, isFriendRequest: Boolean) {
+    fun setFriendRequestStatus(messageID: Long, friendRequestStatus: LokiMessageFriendRequestStatus) {
         val database = databaseHelper.writableDatabase
-        val rawIsFriendRequest = if (isFriendRequest) 1 else 0
-        val contentValues = ContentValues()
+        val contentValues = ContentValues(2)
         contentValues.put(Companion.messageID, messageID)
-        contentValues.put(Companion.isFriendRequest, rawIsFriendRequest)
+        contentValues.put(Companion.friendRequestStatus, friendRequestStatus.rawValue)
         database.insertOrUpdate(tableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
+    }
+
+    fun isFriendRequest(messageID: Long): Boolean {
+        return friendRequestStatus(messageID) != LokiMessageFriendRequestStatus.NONE
+    }
+
+    fun hasFriendRequestStatusMessage(messageID: Long): Boolean {
+        return isFriendRequest(messageID) && friendRequestStatus(messageID) != LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED
     }
 }

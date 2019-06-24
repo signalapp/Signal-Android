@@ -146,7 +146,7 @@ import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
-import org.thoughtcrime.securesms.loki.LokiFriendRequestStatus;
+import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestStatus;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
@@ -2155,8 +2155,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     // Loki - Always send friend requests if we're not friends with the user
-    LokiFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadFriendRequestDatabase(context).getFriendRequestStatus(threadId);
-    message.isFriendRequest = (friendRequestStatus != LokiFriendRequestStatus.FRIENDS);
+    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadFriendRequestDatabase(context).friendRequestStatus(threadId);
+    message.isFriendRequest = (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS);
 
     Permissions.with(this)
                .request(Manifest.permission.SEND_SMS)

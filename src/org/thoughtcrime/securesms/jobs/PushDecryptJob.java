@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.LokiFriendRequestStatus;
+import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestStatus;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -827,9 +827,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Recipient recipient = getMessageDestination(content, message);
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
     LokiThreadFriendRequestDatabase database = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
-    LokiFriendRequestStatus friendRequestStatus = database.getFriendRequestStatus(threadID);
+    LokiThreadFriendRequestStatus friendRequestStatus = database.friendRequestStatus(threadID);
     if (envelope.isFriendRequest()) {
-      if (friendRequestStatus == LokiFriendRequestStatus.REQUEST_SENT) {
+      if (friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
         // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
         // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
         // and send a friend request accepted message back to Bob. We don't check that sending the
@@ -840,21 +840,21 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // before updating Alice's thread's friend request status to `FRIENDS`,
         // we can end up in a deadlock where both users' threads' friend request statuses are
         // `REQUEST_SENT`.
-        database.setFriendRequestStatus(threadID, LokiFriendRequestStatus.FRIENDS);
+        database.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
         // Accept the friend request
         sendEmptyMessage(envelope.getSource());
-      } else if (friendRequestStatus != LokiFriendRequestStatus.FRIENDS) {
+      } else if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
         // Checking that the sender of the message isn't already a friend is necessary because otherwise
         // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
         // friend request status is reset to `NONE`. Bob now sends Alice a friend
         // request. Alice's thread's friend request status is reset to
         // `REQUEST_RECEIVED`.
-        database.setFriendRequestStatus(threadID, LokiFriendRequestStatus.REQUEST_RECEIVED);
+        database.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
       }
-    } else if (friendRequestStatus != LokiFriendRequestStatus.FRIENDS) {
+    } else if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
       // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
       // it must be a friend request accepted message. Declining a friend request doesn't send a message.
-      database.setFriendRequestStatus(threadID, LokiFriendRequestStatus.FRIENDS);
+      database.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
       // TODO: Send p2p details here
     }
   }

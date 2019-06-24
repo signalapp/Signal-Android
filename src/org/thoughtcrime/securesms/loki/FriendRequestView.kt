@@ -8,32 +8,26 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 
 class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
+    private var isUISetUp = false
     var message: Any? = null
-        set(newValue) {
-            field = newValue
-            kind = if (message is IncomingTextMessage) Kind.Incoming else Kind.Outgoing
-        }
-    var kind: Kind? = null
+        set(newValue) { field = newValue; handleMessageChanged() }
     var delegate: FriendRequestViewDelegate? = null
-
-    // region Types
-    enum class Kind { Incoming, Outgoing }
-    // endregion
 
     // region Components
     private val topSpacer by lazy {
         val result = View(context)
-        result.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 12)
+        result.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, toPx(12, resources))
         result
     }
 
     private val label by lazy {
         val result = TextView(context)
         result.setTextColor(resources.getColorWithID(R.color.core_grey_90, context.theme))
-        // TODO: Typeface
         result.textAlignment = TextView.TEXT_ALIGNMENT_CENTER
         result
     }
@@ -48,86 +42,100 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     // region Initialization
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context) : this(context, null)
-
-    init {
-        orientation = VERTICAL
-        addView(topSpacer)
-        addView(label)
-//        if (kind == Kind.Incoming) {
-            // Accept button
-            val acceptButton = Button(context)
-            acceptButton.text = "Accept"
-            acceptButton.setTextColor(resources.getColorWithID(R.color.signal_primary, context.theme))
-            acceptButton.setBackgroundColor(resources.getColorWithID(R.color.transparent, context.theme))
-            // TODO: Typeface
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                acceptButton.elevation = 0f
-                acceptButton.stateListAnimator = null
-            }
-            acceptButton.setOnClickListener { accept() }
-            val acceptButtonLayoutParams = LayoutParams(0, convertToPixels(50, resources))
-            acceptButtonLayoutParams.weight = 1f
-            acceptButton.layoutParams = acceptButtonLayoutParams
-            buttonLinearLayout.addView(acceptButton)
-            // Reject button
-            val rejectButton = Button(context)
-            rejectButton.text = "Reject"
-            rejectButton.setTextColor(resources.getColorWithID(R.color.red, context.theme))
-            rejectButton.setBackgroundColor(resources.getColorWithID(R.color.transparent, context.theme))
-            // TODO: Typeface
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                rejectButton.elevation = 0f
-                rejectButton.stateListAnimator = null
-            }
-            rejectButton.setOnClickListener { reject() }
-            val rejectButtonLayoutParams = LayoutParams(0, convertToPixels(50, resources))
-            rejectButtonLayoutParams.weight = 1f
-            rejectButton.layoutParams = rejectButtonLayoutParams
-            buttonLinearLayout.addView(rejectButton)
-            //
-            buttonLinearLayout.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, convertToPixels(50, resources))
-            addView(buttonLinearLayout)
-//        }
-        kind = Kind.Incoming // TODO: For debugging purposes
-        updateUI()
-        // TODO: Observe friend request status changes
-    }
     // endregion
 
     // region Updating
+    private fun handleMessageChanged() {
+        setUpUIIfNeeded()
+        updateUI()
+    }
+
+    private fun setUpUIIfNeeded() {
+        if (isUISetUp) { return }
+        isUISetUp = true
+        orientation = VERTICAL
+        addView(topSpacer)
+        addView(label)
+        if (message is IncomingTextMessage) {
+            fun button(): Button {
+                val result = Button(context)
+                result.setBackgroundColor(resources.getColorWithID(R.color.transparent, context.theme))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    result.elevation = 0f
+                    result.stateListAnimator = null
+                }
+                val layoutParams = LayoutParams(0, toPx(50, resources))
+                layoutParams.weight = 1f
+                result.layoutParams = layoutParams
+                return result
+            }
+            val acceptButton = button()
+            acceptButton.text = resources.getString(R.string.view_friend_request_accept_button_title)
+            acceptButton.setTextColor(resources.getColorWithID(R.color.signal_primary, context.theme))
+            acceptButton.setOnClickListener { accept() }
+            buttonLinearLayout.addView(acceptButton)
+            val rejectButton = button()
+            rejectButton.text = resources.getString(R.string.view_friend_request_reject_button_title)
+            rejectButton.setTextColor(resources.getColorWithID(R.color.red, context.theme))
+            rejectButton.setOnClickListener { reject() }
+            buttonLinearLayout.addView(rejectButton)
+            buttonLinearLayout.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, toPx(50, resources))
+            addView(buttonLinearLayout)
+        }
+        // TODO: Observe friend request status changes
+    }
+
     private fun updateUI() {
-        when (kind) {
-            Kind.Incoming -> {
-//                val message = this.message as IncomingTextMessage
-//                buttonLinearLayout.visibility = View.GONE // TODO: Base on friend request status
-                val text = { // TODO: Base on friend request status
-                    "You've received a friend request"
-                }()
-                label.text = text
+        val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
+        if (message is IncomingTextMessage) {
+            val message = this.message as IncomingTextMessage
+            val friendRequestStatus = database.friendRequestStatus(0) // TODO: Message ID
+            buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE
+            val formatID = when (friendRequestStatus) {
+                LokiMessageFriendRequestStatus.NONE, LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> throw IllegalStateException()
+                LokiMessageFriendRequestStatus.REQUEST_PENDING -> R.string.view_friend_request_incoming_pending_message
+                LokiMessageFriendRequestStatus.REQUEST_ACCEPTED -> R.string.view_friend_request_incoming_accepted_message
+                LokiMessageFriendRequestStatus.REQUEST_REJECTED -> R.string.view_friend_request_incoming_declined_message
+                LokiMessageFriendRequestStatus.REQUEST_EXPIRED -> R.string.view_friend_request_incoming_expired_message
             }
-            Kind.Outgoing -> {
-//                val message = this.message as OutgoingTextMessage
-//                buttonLinearLayout.visibility = View.GONE
-                val text = {
-                    "You've sent a friend request"
-                }()
-                label.text = text
+            val contactID = message.sender.toString()
+            label.text = resources.getString(formatID, contactID)
+        } else {
+            val message = this.message as OutgoingTextMessage
+            val friendRequestStatus = database.friendRequestStatus(0) // TODO: Message ID
+            buttonLinearLayout.visibility = View.GONE
+            val formatID = when (friendRequestStatus) {
+                LokiMessageFriendRequestStatus.NONE -> throw IllegalStateException()
+                LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> null
+                LokiMessageFriendRequestStatus.REQUEST_PENDING -> R.string.view_friend_request_outgoing_pending_message
+                LokiMessageFriendRequestStatus.REQUEST_ACCEPTED -> R.string.view_friend_request_outgoing_accepted_message
+                LokiMessageFriendRequestStatus.REQUEST_REJECTED -> throw IllegalStateException()
+                LokiMessageFriendRequestStatus.REQUEST_EXPIRED -> R.string.view_friend_request_outgoing_expired_message
             }
+            if (formatID != null) {
+                val threadID = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(0)
+                val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!.address.toString()
+                label.text = resources.getString(formatID, contactID)
+            }
+            label.visibility = if (formatID != null) View.VISIBLE else View.GONE
+            topSpacer.visibility = label.visibility
         }
     }
     // endregion
 
     // region Interaction
     private fun accept() {
-//        val message = this.message as IncomingTextMessage
-        // TODO: Update message friend request status
-//        delegate?.acceptFriendRequest(message)
+        val message = this.message as IncomingTextMessage
+        val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
+        database.setFriendRequestStatus(0, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
+        delegate?.acceptFriendRequest(message)
     }
 
     private fun reject() {
-//        val message = this.message as IncomingTextMessage
-        // TODO: Update message friend request status
-//        delegate?.rejectFriendRequest(message)
+        val message = this.message as IncomingTextMessage
+        val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
+        database.setFriendRequestStatus(0, LokiMessageFriendRequestStatus.REQUEST_REJECTED)
+        delegate?.rejectFriendRequest(message)
     }
     // endregion
 }

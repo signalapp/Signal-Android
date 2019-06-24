@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestStatus;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -661,9 +662,9 @@ public class SmsDatabase extends MessagingDatabase {
       ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
     }
 
-    // Loki - Save friend request state on sms
+    // Loki - Set message friend request status
     if (message.isFriendRequest) {
-      DatabaseFactory.getLokiSmsFriendRequestDatabase(context).setIsFriendRequest(messageId, message.isFriendRequest);
+      DatabaseFactory.getLokiMessageFriendRequestDatabase(context).setFriendRequestStatus(messageId, LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED);
     }
 
     return messageId;
@@ -880,7 +881,7 @@ public class SmsDatabase extends MessagingDatabase {
       Recipient                 recipient  = Recipient.from(context, address, true);
 
       // Loki - Check to see if this message was a friend request
-      boolean isFriendRequest = DatabaseFactory.getLokiSmsFriendRequestDatabase(context).getIsFriendRequest(messageId);
+      boolean isFriendRequest = DatabaseFactory.getLokiMessageFriendRequestDatabase(context).isFriendRequest(messageId);
 
       return new SmsMessageRecord(messageId, body, recipient,
                                   recipient,
