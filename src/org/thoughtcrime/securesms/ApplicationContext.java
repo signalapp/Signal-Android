@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
@@ -71,16 +72,21 @@ import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
+import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 
 import java.security.Security;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -394,7 +400,25 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (hexEncodedPublicKey == null) return;
     LokiAPIDatabase database = DatabaseFactory.getLokiAPIDatabase(this);
-    lokiLongPoller = new LokiLongPoller(hexEncodedPublicKey, database);
+    Context context = this;
+    lokiLongPoller = new LokiLongPoller(hexEncodedPublicKey, database, new Function1<List<SignalServiceProtos.Envelope>, Unit>() {
+
+      @Override
+      public Unit invoke(List<SignalServiceProtos.Envelope> envelopes) {
+        for (SignalServiceProtos.Envelope proto : envelopes) {
+          SignalServiceEnvelope envelope;
+          if (proto.getSource() != null && proto.getSourceDevice() > 0) {
+            envelope = new SignalServiceEnvelope(proto.getType().getNumber(), proto.getSource(), proto.getSourceDevice(), proto.getTimestamp(),
+              proto.getLegacyMessage().toByteArray(), proto.getContent().toByteArray(), proto.getServerTimestamp(), proto.getServerGuid());
+          } else {
+            envelope = new SignalServiceEnvelope(proto.getType().getNumber(), proto.getTimestamp(), proto.getLegacyMessage().toByteArray(),
+              proto.getContent().toByteArray(), proto.getServerTimestamp(), proto.getServerGuid());
+          }
+          new PushDecryptJob(context).processMessage(envelope);
+        }
+        return Unit.INSTANCE;
+      }
+    });
   }
   // endregion
 }
