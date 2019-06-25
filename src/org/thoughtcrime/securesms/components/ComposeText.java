@@ -11,7 +11,6 @@ import android.support.v13.view.inputmethod.EditorInfoCompat;
 import android.support.v13.view.inputmethod.InputConnectionCompat;
 import android.support.v13.view.inputmethod.InputContentInfoCompat;
 import android.support.v4.os.BuildCompat;
-import android.text.Editable;
 import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -20,13 +19,12 @@ import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
@@ -139,10 +137,12 @@ public class ComposeText extends EmojiEditText {
 
     setInputType(inputType);
     setImeOptions(imeOptions);
+    /*
     setHint(transport.getComposeHint(),
             transport.getSimName().isPresent()
                 ? getContext().getString(R.string.conversation_activity__from_sim_name, transport.getSimName().get())
                 : null);
+     */
   }
 
   @Override

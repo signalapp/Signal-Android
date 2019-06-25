@@ -255,6 +255,10 @@ public class InputPanel extends LinearLayout
     quickCameraToggle.setEnabled(enabled);
   }
 
+  public void setHint(@NonNull String hint) {
+    composeText.setHint(hint, null);
+  }
+
   private long onRecordHideEvent() {
     recordLockCancel.setVisibility(View.GONE);
 

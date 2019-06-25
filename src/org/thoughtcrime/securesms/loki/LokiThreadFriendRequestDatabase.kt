@@ -41,4 +41,10 @@ class LokiThreadFriendRequestDatabase(context: Context, helper: SQLCipherOpenHel
         database.insertOrUpdate(tableName, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
         notifyConversationListListeners()
     }
+
+    fun hasPendingFriendRequest(threadID: Long): Boolean {
+        val friendRequestStatus = getFriendRequestStatus(threadID)
+        return friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENDING || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT
+            || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED
+    }
 }

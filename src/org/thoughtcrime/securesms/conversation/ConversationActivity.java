@@ -426,6 +426,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MessageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
 
+    updateInputPanel();
+
     Log.i(TAG, "onResume() Finished: " + (System.currentTimeMillis() - getIntent().getLongExtra(TIMING_EXTRA, 0)));
   }
 
@@ -2002,6 +2004,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachmentManager.cleanup();
 
     updateLinkPreviewState();
+
+    updateInputPanel();
+  }
+
+  private void updateInputPanel() {
+    boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadFriendRequestDatabase(this).hasPendingFriendRequest(threadId);
+    inputPanel.setEnabled(!hasPendingFriendRequest);
+    int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
+    inputPanel.setHint(getResources().getString(hintID));
   }
 
   private void sendMessage() {
@@ -2154,7 +2165,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       message = new OutgoingTextMessage(recipient, messageBody, expiresIn, subscriptionId);
     }
 
-    // Loki - Always send friend requests if we're not friends with the user
+    // Loki - Always send a friend request if we're not yet friends with the user
     LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadFriendRequestDatabase(context).getFriendRequestStatus(threadId);
     message.isFriendRequest = (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS);
 
