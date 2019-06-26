@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.job.JobScheduler;
 import android.content.Context;
+import android.hardware.display.DisplayManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -53,6 +54,10 @@ public class ServiceUtil {
 
   public static Vibrator getVibrator(Context context) {
     return  (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+  }
+
+  public static DisplayManager getDisplayManager(@NonNull Context context) {
+    return (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
   }
 
   @RequiresApi(26)

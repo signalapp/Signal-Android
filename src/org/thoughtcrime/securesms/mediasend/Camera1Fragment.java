@@ -43,7 +43,11 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.ByteArrayOutputStream;
 
-public class Camera1Fragment extends Fragment implements TextureView.SurfaceTextureListener,
+/**
+ * Camera capture implemented with the legacy camera API's. Should only be used if sdk < 21.
+ */
+public class Camera1Fragment extends Fragment implements CameraFragment,
+                                                         TextureView.SurfaceTextureListener,
                                                          Camera1Controller.EventListener
 {
 
@@ -316,12 +320,6 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
       return true;
     }
   };
-
-  public interface Controller {
-    void onCameraError();
-    void onImageCaptured(@NonNull byte[] data, int width, int height);
-    int getDisplayRotation();
-  }
 
   private enum Stage {
     SURFACE_AVAILABLE, CAMERA_PROPERTIES_AVAILABLE
