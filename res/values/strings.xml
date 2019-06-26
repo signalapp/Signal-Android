@@ -277,7 +277,7 @@
     <string name="CreateProfileActivity_too_long">Too long</string>
     <string name="CreateProfileActivity_profile_name">Profile Name</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, so even the Signal service never has access to your profile information.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiles are end-to-end encrypted, so even the Signal service never has access to your profile information. Your profile is shown only to people who are also in your contact list, or to people for whom you explicitly gave permission by clicking on the banner \'make my profile visible\'</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom setting: %s</string>
