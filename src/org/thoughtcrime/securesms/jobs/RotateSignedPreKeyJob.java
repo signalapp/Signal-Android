@@ -55,7 +55,7 @@ public class RotateSignedPreKeyJob extends BaseJob implements InjectableType {
     IdentityKeyPair    identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
-    accountManager.setSignedPreKey(signedPreKeyRecord);
+    // accountManager.setSignedPreKey(signedPreKeyRecord);
 
     PreKeyUtil.setActiveSignedPreKeyId(context, signedPreKeyRecord.getId());
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);

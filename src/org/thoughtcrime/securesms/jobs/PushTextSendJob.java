@@ -156,7 +156,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException
   {
     try {
-      // rotateSenderCertificateIfNecessary(); // LOKITODO: Uncomment this?
+      // rotateSenderCertificateIfNecessary();
 
       SignalServiceAddress             address            = getPushAddress(message.getIndividualRecipient().getAddress());
       Optional<byte[]>                 profileKey         = getProfileKey(message.getIndividualRecipient());

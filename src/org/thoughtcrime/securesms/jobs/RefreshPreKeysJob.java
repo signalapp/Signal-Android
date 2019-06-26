@@ -55,9 +55,9 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
   @Override
   public void onRun() throws IOException {
     if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-      Log.i(TAG, "Already have a signed pre key registered.");
+      Log.d("Loki", "A signed pre key has already been registered.");
     } else {
-      Log.i(TAG, "Registering new signed pre key...");
+      Log.d("Loki", "Registering a new signed pre key.");
       IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context);
       PreKeyUtil.generateSignedPreKey(context, identityKey, true);
       TextSecurePreferences.setSignedPreKeyRegistered(context, true);

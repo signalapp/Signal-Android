@@ -8,11 +8,13 @@ import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.state.PreKeyBundle
+import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.messaging.LokiPreKeyBundleDatabaseProtocol
 
@@ -35,13 +37,23 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
     }
 
     fun generatePreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
-        val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
-        val signedPreKey = PreKeyUtil.getActiveSignedPreKey(context) ?: return null
-        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getOrCreatePreKey(hexEncodedPublicKey)
-        val registrationID = TextSecurePreferences.getLocalRegistrationId(context)
-        if (registrationID == 0) return null
+        var registrationID = TextSecurePreferences.getLocalRegistrationId(context)
+        if (registrationID == 0) {
+            registrationID = KeyHelper.generateRegistrationId(false)
+            TextSecurePreferences.setLocalRegistrationId(context, registrationID)
+        }
         val deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID
-        return PreKeyBundle(registrationID, deviceID,preKeyRecord.id, preKeyRecord.keyPair.publicKey, signedPreKey.id, signedPreKey.keyPair.publicKey, signedPreKey.signature, identityKeyPair.publicKey)
+        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getOrCreatePreKey(hexEncodedPublicKey)
+        val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
+        if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
+            Log.d("Loki", "A signed pre key has already been registered.")
+        } else {
+            Log.d("Loki", "Registering a new signed pre key.")
+            PreKeyUtil.generateSignedPreKey(context, identityKeyPair, true)
+            TextSecurePreferences.setSignedPreKeyRegistered(context, true)
+        }
+        val activeSignedPreKey = PreKeyUtil.getActiveSignedPreKey(context) ?: return null
+        return PreKeyBundle(registrationID, deviceID, preKeyRecord.id, preKeyRecord.keyPair.publicKey, activeSignedPreKey.id, activeSignedPreKey.keyPair.publicKey, activeSignedPreKey.signature, identityKeyPair.publicKey)
     }
 
     override fun getPreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
