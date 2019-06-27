@@ -1054,6 +1054,8 @@ public class ConversationFragment extends Fragment
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+      if (actionMode == null) return false;
+
       switch(item.getItemId()) {
         case R.id.menu_context_copy:
           handleCopyMessage(getListAdapter().getSelectedItems());
