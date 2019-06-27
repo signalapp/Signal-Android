@@ -58,6 +58,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -717,6 +718,8 @@
             <action android:name="android.intent.action.BOOT_COMPLETED" />
         </intent-filter>
     </receiver>
+
+    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
     <uses-library android:name="com.sec.android.app.multiwindow" android:required="false"/>
     <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
