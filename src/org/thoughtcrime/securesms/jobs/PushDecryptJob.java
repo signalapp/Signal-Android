@@ -802,7 +802,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
 
-      IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromExternal(context, content.getSender()),
+      IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo(),
@@ -1015,7 +1015,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                 @NonNull SignalServiceDataMessage message)
   {
     RecipientDatabase database      = DatabaseFactory.getRecipientDatabase(context);
-    Address           sourceAddress = Address.fromExternal(context, content.getSender());
+    Address           sourceAddress = Address.fromSerialized(content.getSender());
     Recipient         recipient     = Recipient.from(context, sourceAddress, false);
 
     if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
@@ -1030,7 +1030,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new SendDeliveryReceiptJob(Address.fromExternal(context, content.getSender()), message.getTimestamp()));
+                      .add(new SendDeliveryReceiptJob(Address.fromSerialized(content.getSender()), message.getTimestamp()));
   }
 
   @SuppressLint("DefaultLocale")
@@ -1191,14 +1191,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
     } else {
-      return Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+      return Recipient.from(context, Address.fromSerialized(content.getSender()), false);
     }
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient conversationRecipient, @NonNull String sender, int device) {
-    Recipient author   = Recipient.from(context, Address.fromExternal(context, sender), false);
+    Recipient author   = Recipient.from(context, Address.fromSerialized(sender), false);
     long      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(conversationRecipient);
 
     if (threadId > 0) {
@@ -1213,7 +1213,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return true;
     }
 
-    Recipient sender = Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+    Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
 
     if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();
