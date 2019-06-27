@@ -146,7 +146,7 @@ public class MessageNotifier {
         StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
 
         for (StatusBarNotification activeNotification : activeNotifications) {
-          if (activeNotification.getId() != CallNotificationBuilder.WEBRTC_NOTIFICATION) {
+          if (!CallNotificationBuilder.isWebRtcNotification(activeNotification.getId())) {
             notifications.cancel(activeNotification.getId());
           }
         }
@@ -167,11 +167,11 @@ public class MessageNotifier {
         for (StatusBarNotification notification : activeNotifications) {
           boolean validNotification = false;
 
-          if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
-              notification.getId() != CallNotificationBuilder.WEBRTC_NOTIFICATION   &&
-              notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
-              notification.getId() != IncomingMessageObserver.FOREGROUND_ID         &&
-              notification.getId() != PENDING_MESSAGES_ID)
+          if (notification.getId() != SUMMARY_NOTIFICATION_ID               &&
+              notification.getId() != KeyCachingService.SERVICE_RUNNING_ID  &&
+              notification.getId() != IncomingMessageObserver.FOREGROUND_ID &&
+              notification.getId() != PENDING_MESSAGES_ID                   &&
+              !CallNotificationBuilder.isWebRtcNotification(notification.getId()))
           {
             for (NotificationItem item : notificationState.getNotifications()) {
               if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {

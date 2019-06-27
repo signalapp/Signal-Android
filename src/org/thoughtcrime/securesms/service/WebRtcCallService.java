@@ -578,7 +578,7 @@ public class WebRtcCallService extends Service implements InjectableType,
       this.lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
 
       sendMessage(WebRtcViewModel.State.CALL_INCOMING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-      startCallCardActivity();
+      startCallCardActivityIfPossible();
       audioManager.initializeAudioForCall();
 
       if (TextSecurePreferences.isCallNotificationsEnabled(this)) {
@@ -943,7 +943,7 @@ public class WebRtcCallService extends Service implements InjectableType,
   }
 
   private void setCallInProgressNotification(int type, Recipient recipient) {
-    startForeground(CallNotificationBuilder.WEBRTC_NOTIFICATION,
+    startForeground(CallNotificationBuilder.getNotificationId(getApplicationContext(), type),
                     CallNotificationBuilder.getCallInProgressNotification(this, type, recipient));
   }
 
@@ -1021,7 +1021,11 @@ public class WebRtcCallService extends Service implements InjectableType,
     return listenableFutureTask;
   }
 
-  private void startCallCardActivity() {
+  private void startCallCardActivityIfPossible() {
+    if (Build.VERSION.SDK_INT >= 29 && !ApplicationContext.getInstance(getApplicationContext()).isAppVisible()) {
+      return;
+    }
+
     Intent activityIntent = new Intent();
     activityIntent.setClass(this, WebRtcCallActivity.class);
     activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
