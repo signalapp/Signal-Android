@@ -76,8 +76,8 @@ dependencies {
         exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
     }
 
-    implementation 'com.google.android.gms:play-services-maps:16.0.0'
-    implementation 'com.google.android.gms:play-services-places:16.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     implementation 'com.google.android.exoplayer:exoplayer-core:2.9.1'
@@ -189,8 +189,8 @@ dependencyVerification {
         'androidx.lifecycle:lifecycle-extensions:8d4072201b6231d67e4192d608d46b1f5c920845106c9831632c2e3ffe706117',
         'androidx.lifecycle:lifecycle-common-java8:9edc2d4f589656d470ef03b9c6ece62d335971294b033ec7d9ceb6e361e9aafa',
         'com.google.firebase:firebase-messaging:e42288e7950d7d3b033d3395a5ac9365d230da3e439a2794ec13e2ef0fbaf078',
-        'com.google.android.gms:play-services-places:2d5c4e4ac3ee5be21b4ec544411bc51d11457b5ae2fa2a5d4539019f87c233c6',
-        'com.google.android.gms:play-services-maps:07f59c5955b759ce7b80ceaeb8261643c5b79acc9f180df2b7c3987658eed2e8',
+        'com.google.android.gms:play-services-maps:ff50cae9e4059416202375597d99cdc8ddefd9cea3f1dc2ff53779a3a12eb480',
+        'com.google.android.gms:play-services-location:240a0fcb9e8e58586e38ea43b69c09ed6e89ea9a0c69770b7634d81dabf5f3a0',
         'com.google.android.gms:play-services-auth:aec9e1c584d442cb9f59481a50b2c66dc191872607c04d97ecb82dd0eb5149ec',
         'com.google.android.exoplayer:exoplayer-ui:7a942afcc402ff01e9bf48e8d3942850986710f06562d50a1408aaf04a683151',
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
