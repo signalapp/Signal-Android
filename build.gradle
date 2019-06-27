@@ -318,7 +318,7 @@ android {
         versionName canonicalVersionName
 
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 28
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
