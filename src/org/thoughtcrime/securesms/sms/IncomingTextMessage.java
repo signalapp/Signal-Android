@@ -46,7 +46,7 @@ public class IncomingTextMessage implements Parcelable {
 
   public IncomingTextMessage(@NonNull Context context, @NonNull SmsMessage message, int subscriptionId) {
     this.message              = message.getDisplayMessageBody();
-    this.sender               = Address.fromExternal(context, message.getDisplayOriginatingAddress());
+    this.sender               = Address.fromSerialized(message.getDisplayOriginatingAddress());
     this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
     this.protocol             = message.getProtocolIdentifier();
     this.serviceCenterAddress = message.getServiceCenterAddress();

@@ -178,6 +178,22 @@ public class SmsDatabase extends MessagingDatabase {
     return 0;
   }
 
+  public long getLastMessageIDForThread(long threadID) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor cursor = null;
+    try {
+      cursor = database.query(TABLE_NAME, null, THREAD_ID + " = ?", new String[] { threadID + "" }, null, null, null);
+      if (cursor != null && cursor.moveToLast()) {
+        return cursor.getLong(0);
+      }
+    } finally {
+      if (cursor != null) {
+        cursor.close();
+      }
+    }
+    return -1;
+  }
+
   public void markAsEndSession(long id) {
     updateTypeBitmask(id, Types.KEY_EXCHANGE_MASK, Types.END_SESSION_BIT);
   }

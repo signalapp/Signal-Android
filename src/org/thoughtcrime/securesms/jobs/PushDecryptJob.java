@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -111,6 +112,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
+import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
@@ -135,6 +137,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private long smsMessageId;
 
   @Inject SignalServiceMessageSender messageSender;
+  private Address author;
 
   public PushDecryptJob(Context context) {
     this(context, -1);
@@ -276,8 +279,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (isMediaMessage)                handleMediaMessage(content, message, smsMessageId);
         else if (message.getBody().isPresent()) {
           // Loki - Handle friend request logic
-          handleFriendRequestIfNeeded(envelope, content, message);
           handleTextMessage(content, message, smsMessageId);
+          handleFriendRequestIfNeeded(envelope, content, message);
         }
 
         if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
@@ -321,7 +324,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Log.w(TAG, "Got unrecognized message...");
       }
 
-      resetRecipientToPush(Recipient.from(context, Address.fromExternal(context, content.getSender()), false));
+      resetRecipientToPush(Recipient.from(context, Address.fromSerialized(content.getSender()), false));
 
       if (envelope.isPreKeySignalMessage()) {
         ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
@@ -368,7 +371,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Intent intent = new Intent(context, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_INCOMING_CALL);
       intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, content.getSender()));
+      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
       intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
       intent.putExtra(WebRtcCallService.EXTRA_TIMESTAMP, content.getTimestamp());
 
@@ -384,7 +387,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_RESPONSE_MESSAGE);
     intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, content.getSender()));
+    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
     intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
 
     context.startService(intent);
@@ -398,7 +401,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Intent intent = new Intent(context, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_ICE_MESSAGE);
       intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, content.getSender()));
+      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP, message.getSdp());
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_MID, message.getSdpMid());
       intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_LINE_INDEX, message.getSdpMLineIndex());
@@ -418,7 +421,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Intent intent = new Intent(context, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_REMOTE_HANGUP);
       intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, content.getSender()));
+      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
 
       context.startService(intent);
     }
@@ -430,7 +433,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_REMOTE_BUSY);
     intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromExternal(context, content.getSender()));
+    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
 
     context.startService(intent);
   }
@@ -439,7 +442,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                        @NonNull Optional<Long>       smsMessageId)
   {
     SmsDatabase         smsDatabase         = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.fromExternal(context, content.getSender()),
+    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
                                                                       content.getSenderDevice(),
                                                                       content.getTimestamp(),
                                                                       "", Optional.absent(), 0,
@@ -523,7 +526,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
       Recipient            recipient    = getMessageDestination(content, message);
-      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromSerialized(content.getSender()),
                                                                    message.getTimestamp(), -1,
                                                                    message.getExpiresInSeconds() * 1000L, true,
                                                                    content.isNeedsReceipt(),
@@ -579,7 +582,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (message.getMessage().getProfileKey().isPresent()) {
         Recipient recipient = null;
 
-        if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.fromExternal(context, message.getDestination().get()), false);
+        if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
         else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
 
 
@@ -636,8 +639,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleSynchronizeReadMessage(@NonNull List<ReadMessage> readMessages, long envelopeTimestamp)
   {
     for (ReadMessage readMessage : readMessages) {
-      List<Pair<Long, Long>> expiringText = DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromExternal(context, readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
-      List<Pair<Long, Long>> expiringMedia = DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromExternal(context, readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
+      List<Pair<Long, Long>> expiringText = DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromSerialized(readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
+      List<Pair<Long, Long>> expiringMedia = DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromSerialized(readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
 
       for (Pair<Long, Long> expiringMessage : expiringText) {
         ApplicationContext.getInstance(context)
@@ -669,7 +672,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
       Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
       Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
-      IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
+      IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromSerialized(content.getSender()),
                                                                             message.getTimestamp(), -1,
                                                                             message.getExpiresInSeconds() * 1000L, false,
                                                                             content.isNeedsReceipt(),
@@ -826,10 +829,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     Recipient recipient = getMessageDestination(content, message);
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
-    LokiThreadFriendRequestDatabase database = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
-    LokiThreadFriendRequestStatus friendRequestStatus = database.getFriendRequestStatus(threadID);
+    LokiThreadFriendRequestDatabase threadFriendRequestDatabase = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
+    LokiThreadFriendRequestStatus threadFriendRequestStatus = threadFriendRequestDatabase.getFriendRequestStatus(threadID);
+    LokiMessageFriendRequestDatabase messageFriendRequestDatabase = DatabaseFactory.getLokiMessageFriendRequestDatabase(context);
+    long messageID = DatabaseFactory.getSmsDatabase(context).getLastMessageIDForThread(threadID);
     if (envelope.isFriendRequest()) {
-      if (friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
+      if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
         // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
         // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
         // and send a friend request accepted message back to Bob. We don't check that sending the
@@ -840,21 +845,24 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // before updating Alice's thread's friend request status to `FRIENDS`,
         // we can end up in a deadlock where both users' threads' friend request statuses are
         // `REQUEST_SENT`.
-        database.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+        threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+        // TODO: Update message friend request status
         // Accept the friend request
         sendEmptyMessage(envelope.getSource());
-      } else if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+      } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
         // Checking that the sender of the message isn't already a friend is necessary because otherwise
         // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
         // friend request status is reset to `NONE`. Bob now sends Alice a friend
         // request. Alice's thread's friend request status is reset to
         // `REQUEST_RECEIVED`.
-        database.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+        threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+        messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
       }
-    } else if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+    } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
       // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
       // it must be a friend request accepted message. Declining a friend request doesn't send a message.
-      database.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+      threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+      // TODO: Update message friend request status
       // TODO: Send p2p details here
     }
   }
@@ -1040,7 +1048,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     for (long timestamp : message.getTimestamps()) {
       Log.i(TAG, String.format("Received encrypted delivery receipt: (XXXXX, %d)", timestamp));
       DatabaseFactory.getMmsSmsDatabase(context)
-                     .incrementDeliveryReceiptCount(new SyncMessageId(Address.fromExternal(context, content.getSender()), timestamp), System.currentTimeMillis());
+                     .incrementDeliveryReceiptCount(new SyncMessageId(Address.fromSerialized(content.getSender()), timestamp), System.currentTimeMillis());
     }
   }
 
@@ -1053,7 +1061,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Log.i(TAG, String.format("Received encrypted read receipt: (XXXXX, %d)", timestamp));
 
         DatabaseFactory.getMmsSmsDatabase(context)
-                       .incrementReadReceiptCount(new SyncMessageId(Address.fromExternal(context, content.getSender()), timestamp), content.getTimestamp());
+                       .incrementReadReceiptCount(new SyncMessageId(Address.fromSerialized(content.getSender()), timestamp), content.getTimestamp());
       }
     }
   }
@@ -1065,12 +1073,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
-    Recipient author = Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+    Recipient author = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
 
     long threadId;
 
     if (typingMessage.getGroupId().isPresent()) {
-      Address   groupAddress   = Address.fromExternal(context, GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
+      Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
       Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
@@ -1105,7 +1113,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Optional.absent();
     }
 
-    Address       author  = Address.fromExternal(context, quote.get().getAuthor().getNumber());
+    Address       author  = Address.fromSerialized(quote.get().getAuthor().getNumber());
     MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quote.get().getId(), author);
 
     if (message != null) {
@@ -1173,7 +1181,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp) {
     SmsDatabase         database    = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromExternal(context, sender),
+    IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromSerialized(sender),
                                                               senderDevice, timestamp, "",
                                                               Optional.absent(), 0, false);
 
@@ -1183,9 +1191,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
     if (message.getMessage().getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
+      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
     } else {
-      return Recipient.from(context, Address.fromExternal(context, message.getDestination().get()), false);
+      return Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
     }
   }
 
