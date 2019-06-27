@@ -40,8 +40,8 @@ public class SQLCipherMigrationHelper {
                                @NonNull net.sqlcipher.database.SQLiteDatabase modernDb)
   {
     modernDb.beginTransaction();
+    int foregroundId = GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database)).getId();
     try {
-      GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database));
       copyTable("identities", legacyDb, modernDb, null);
       copyTable("push", legacyDb, modernDb, null);
       copyTable("groups", legacyDb, modernDb, null);
@@ -50,7 +50,7 @@ public class SQLCipherMigrationHelper {
       modernDb.setTransactionSuccessful();
     } finally {
       modernDb.endTransaction();
-      GenericForegroundService.stopForegroundTask(context);
+      GenericForegroundService.stopForegroundTask(context, foregroundId);
     }
   }
 
@@ -65,8 +65,8 @@ public class SQLCipherMigrationHelper {
 
     modernDb.beginTransaction();
 
+    int foregroundId = GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database)).getId();
     try {
-      GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database));
       int total = 5000;
 
       copyTable("sms", legacyDb, modernDb, (row, progress) -> {
@@ -175,7 +175,7 @@ public class SQLCipherMigrationHelper {
       modernDb.setTransactionSuccessful();
     } finally {
       modernDb.endTransaction();
-      GenericForegroundService.stopForegroundTask(context);
+      GenericForegroundService.stopForegroundTask(context, foregroundId);
     }
   }
 
