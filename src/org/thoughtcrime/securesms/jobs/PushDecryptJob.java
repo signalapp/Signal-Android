@@ -827,11 +827,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-    Recipient recipient = getMessageDestination(content, message);
-    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
     LokiThreadFriendRequestDatabase threadFriendRequestDatabase = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
-    LokiThreadFriendRequestStatus threadFriendRequestStatus = threadFriendRequestDatabase.getFriendRequestStatus(threadID);
     LokiMessageFriendRequestDatabase messageFriendRequestDatabase = DatabaseFactory.getLokiMessageFriendRequestDatabase(context);
+    Recipient contactID = getMessageDestination(content, message);
+    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(contactID);
+    LokiThreadFriendRequestStatus threadFriendRequestStatus = threadFriendRequestDatabase.getFriendRequestStatus(threadID);
     long messageID = DatabaseFactory.getSmsDatabase(context).getLastMessageIDForThread(threadID);
     if (envelope.isFriendRequest()) {
       if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {

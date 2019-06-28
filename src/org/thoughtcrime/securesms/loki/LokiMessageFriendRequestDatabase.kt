@@ -42,8 +42,4 @@ class LokiMessageFriendRequestDatabase(context: Context, helper: SQLCipherOpenHe
     fun isFriendRequest(messageID: Long): Boolean {
         return getFriendRequestStatus(messageID) != LokiMessageFriendRequestStatus.NONE
     }
-
-    fun hasFriendRequestStatusMessage(messageID: Long): Boolean {
-        return isFriendRequest(messageID) && getFriendRequestStatus(messageID) != LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED
-    }
 }

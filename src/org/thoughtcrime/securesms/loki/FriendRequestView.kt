@@ -82,7 +82,6 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
             buttonLinearLayout.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, toPx(50, resources))
             addView(buttonLinearLayout)
         }
-        // TODO: Observe friend request status changes
     }
 
     private fun updateUI() {
