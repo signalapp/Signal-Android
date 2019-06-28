@@ -21,6 +21,7 @@ import androidx.camera.core.CameraX;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageProxy;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
@@ -41,9 +42,10 @@ public class CameraXFragment extends Fragment implements CameraFragment {
 
   private static final String TAG = Log.tag(CameraXFragment.class);
 
-  private CameraXView camera;
-  private ViewGroup   controlsContainer;
-  private Controller  controller;
+  private CameraXView        camera;
+  private ViewGroup          controlsContainer;
+  private Controller         controller;
+  private MediaSendViewModel viewModel;
 
   public static CameraXFragment newInstance() {
     return new CameraXFragment();
@@ -60,6 +62,12 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     this.controller = (Controller) getActivity();
   }
 
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    viewModel = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository()))
+                                  .get(MediaSendViewModel.class);
+  }
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,6 +90,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   public void onResume() {
     super.onResume();
 
+    viewModel.onCameraStarted();
     requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
   }
