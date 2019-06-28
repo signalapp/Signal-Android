@@ -197,7 +197,7 @@
     <item quantity="other">%1$d bijlagen aan het opslaan naar SD-kaart…</item>
   </plurals>
   <string name="ConversationFragment_pending">In afwachting…</string>
-  <string name="ConversationFragment_push">Internet (Signal Protocol)</string>
+  <string name="ConversationFragment_push">Internet (beveiligd Signal Protocol)</string>
   <string name="ConversationFragment_mms">Mms (onbeveiligd)</string>
   <string name="ConversationFragment_sms">Sms (onbeveiligd)</string>
   <string name="ConversationFragment_deleting">Aan het wissen</string>
@@ -241,7 +241,7 @@
   <string name="CreateProfileActivity_too_long">Te lang</string>
   <string name="CreateProfileActivity_profile_name">Profielnaam</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen zijn eind-tot-eind-versleuteld dus zelfs de Signal-dienst heeft nooit toegang tot profielinformatie.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen zijn eind-tot-eind-versleuteld, dus zelfs de Signal-dienst heeft nooit toegang tot profielinformatie. Je profiel word alleen getoond aan mensen wie ook in jouw contactenlijst staan en aan mensen aan wie je expliciet toestemming hebt gegeven door op de banier \"Je profielfoto en naam zichtbaar maken\" te tikken.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aanpassing in gebruik: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -1216,7 +1216,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="reminder_header_push_title">Signal-berichten en -oproepen inschakelen</string>
   <string name="reminder_header_push_text">Verbeter je communicatie-ervaring.</string>
   <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
-  <string name="reminder_header_invite_text">Stel aan %1$s voor om dit gesprek als beveiligd Signal gesprek voort te zetten.</string>
+  <string name="reminder_header_invite_text">Stel aan %1$s voor om dit gesprek als beveiligd Signal-gesprek voort te zetten.</string>
   <string name="reminder_header_share_title">Nodig je vrienden uit!</string>
   <string name="reminder_header_share_text">Hoe meer mensen Signal gebruiken, des te vaker je beveiligd kunt communiceren.</string>
   <string name="reminder_header_service_outage_text">Signal heeft technische problemen. We werken er hard aan om zo snel mogelijk de dienst weer beschikbaar te maken.</string>

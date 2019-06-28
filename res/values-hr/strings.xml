@@ -410,6 +410,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Dodirni za odabir slike profila</string>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Dodaj opis...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Stavka je uklonjena jer je prešla limit veličine</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera nije dostupna</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
@@ -1102,6 +1103,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="conversation__menu_leave_group">Napusti grupu</string>
   <string name="conversation__menu_view_all_media">Svi mediji</string>
   <string name="conversation__menu_conversation_settings">Postavke razgovora</string>
+  <string name="conversation__menu_add_shortcut">Dodaj na početni zaslon</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Proširi skočni prozor</string>
   <!--conversation_callable_insecure-->

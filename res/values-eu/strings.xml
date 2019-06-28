@@ -78,6 +78,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Profileko argazkia ezabatu?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ezin izan da nabigatzailerik aurkitu.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Dei zelular bat abian da dagoeneko</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s-en segurtasun zenbakia aldatu egin da. Honek norbait zure komunikazioa eragozten saiatzen ari dela edo %2$s-k Signal aplikazioa berrinstalatu duela adierazi dezake.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Agian zure segurasun zenbakia kontatu honekin baieztatu nahi duzu.</string>
@@ -161,6 +162,8 @@
   <string name="ConversationActivity_no">Ez</string>
   <string name="ConversationActivity_search_position">%1$d / %2$d</string>
   <string name="ConversationActivity_no_results">Ez da emaitzarik aurkitu.</string>
+  <string name="ConversationActivity_sticker_pack_installed">Eranskailuen multzoa instalatu da</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Berria! Esan eranskailuen bidez</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mezu irakurri gabe</item>
@@ -559,6 +562,7 @@ zenbakia (%s) baliogabea da.
   <string name="SharedContactView_message">Signal mezua</string>
   <!--Slide-->
   <string name="Slide_image">Irudia</string>
+  <string name="Slide_sticker">Eranskailua</string>
   <string name="Slide_audio">Audioa</string>
   <string name="Slide_video">Bideoa</string>
   <!--SmsMessageRecord-->
@@ -572,14 +576,24 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SmsMessageRecord_secure_session_reset">Saio segurua berrezarri duzu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s berrezarri saio segurua.</string>
   <string name="SmsMessageRecord_duplicate_message">Mezu bikoiztua.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ezin izan da mezu hau prozesatu Signal aplikazioaren bertsio berriago batekin bidali delako. Signal eguneratu eta gero zure kontaktuari mezua berriro bidaltzea eskatu diezaiokezu.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Eranskailuak</string>
   <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Instalatutako eranskailuak</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Jaso dituzun eranskailuak</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal artisten serieak</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Ez dago eranskailurik instalatuta</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Jasotako mezuetako eranskailuak hemen agertuko dira</string>
+  <string name="StickerManagementAdapter_untitled">Izenbururi gabe</string>
   <string name="StickerManagementAdapter_unknown">Ezezaguna</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Izenbururi gabe</string>
   <string name="StickerPackPreviewActivity_unknown">Ezezaguna</string>
+  <string name="StickerPackPreviewActivity_install">Instalatu</string>
   <string name="StickerPackPreviewActivity_remove">Ezabatu</string>
   <string name="StickerPackPreviewActivity_stickers">Eranskailuak</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Huts egin du eranskailuen multzoa kargatzean</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Taldea eguneratu da</string>
   <string name="ThreadRecord_left_the_group">Taldea utzi duzu</string>
@@ -596,6 +610,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Zure segurtasun zenbakia %s aldatu da.</string>
   <string name="ThreadRecord_you_marked_verified">Egiaztatutzat markatu duzu</string>
   <string name="ThreadRecord_you_marked_unverified">Ez egiaztatutzat markatu duzu</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Ezin izan da mezua prozesatu</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal eguneratu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalaren bertsio berria dago, sakatu eguneratzeko</string>
@@ -661,9 +676,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_mark_all_as_read">Denak irrakurritako gisa markatu</string>
   <string name="MessageNotifier_mark_read">Markatu irakurritako gisa</string>
   <string name="MessageNotifier_media_message">Multimedia mezua</string>
+  <string name="MessageNotifier_sticker">Eranskailua</string>
   <string name="MessageNotifier_reply">Erantzun</string>
   <string name="MessageNotifier_signal_message">Signal mezua</string>
   <string name="MessageNotifier_unsecured_sms">SMS ez segurua</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Agian mezu berriak dituzu</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ireki Signal azken jakinarazpenak egiaztatzeko.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontaktua</string>
   <!--Notification Channels-->
@@ -781,6 +799,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="QuoteView_audio">Audioa</string>
   <string name="QuoteView_video">Bideoa</string>
   <string name="QuoteView_photo">Argazkia</string>
+  <string name="QuoteView_sticker">Eranskailua</string>
   <string name="QuoteView_document">Dokumentua</string>
   <string name="QuoteView_you">Zu</string>
   <string name="QuoteView_original_missing">Jatorrizko mezua ez da aurkitu</string>

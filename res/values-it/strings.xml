@@ -340,7 +340,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tieni premuto per registrare un messaggio vocale, rilascia per inviare</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Condividi</string>
-  <string name="InviteActivity_choose_contacts">Scegli contatti.</string>
+  <string name="InviteActivity_choose_contacts">Scegli contatti</string>
   <string name="InviteActivity_cancel">Annulla</string>
   <string name="InviteActivity_sending">Invio...</string>
   <string name="InviteActivity_heart_content_description">Cuore</string>
@@ -1319,7 +1319,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="RegistrationLockDialog_disable">Disabilita</string>
   <string name="preferences_chats__backups">Backup</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal è bloccato</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">TAPPA PER SBLOCCARE</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TOCCA PER SBLOCCARE</string>
   <string name="RegistrationLockDialog_reminder">Promemoria:</string>
   <string name="recipient_preferences__about">A riguardo</string>
   <!--EOF-->
