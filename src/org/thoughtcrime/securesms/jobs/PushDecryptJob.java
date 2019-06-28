@@ -846,7 +846,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // we can end up in a deadlock where both users' threads' friend request statuses are
         // `REQUEST_SENT`.
         threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
-        // TODO: Update message friend request status
+        messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         // Accept the friend request
         sendEmptyMessage(envelope.getSource());
       } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
@@ -862,7 +862,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
       // it must be a friend request accepted message. Declining a friend request doesn't send a message.
       threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
-      // TODO: Update message friend request status
+      messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
       // TODO: Send p2p details here
     }
   }

@@ -90,9 +90,10 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message!!.threadId)!!.address.toString()
         if (!message!!.isOutgoing) {
             val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
+            visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
             buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE
             val formatID = when (friendRequestStatus) {
-                LokiMessageFriendRequestStatus.NONE, LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> throw IllegalStateException()
+                LokiMessageFriendRequestStatus.NONE, LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> return
                 LokiMessageFriendRequestStatus.REQUEST_PENDING -> R.string.view_friend_request_incoming_pending_message
                 LokiMessageFriendRequestStatus.REQUEST_ACCEPTED -> R.string.view_friend_request_incoming_accepted_message
                 LokiMessageFriendRequestStatus.REQUEST_REJECTED -> R.string.view_friend_request_incoming_declined_message
@@ -101,13 +102,13 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
             label.text = resources.getString(formatID, contactID)
         } else {
             val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
+            visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
             buttonLinearLayout.visibility = View.GONE
             val formatID = when (friendRequestStatus) {
-                LokiMessageFriendRequestStatus.NONE -> throw IllegalStateException()
+                LokiMessageFriendRequestStatus.NONE -> return
                 LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> null
-                LokiMessageFriendRequestStatus.REQUEST_PENDING -> R.string.view_friend_request_outgoing_pending_message
+                LokiMessageFriendRequestStatus.REQUEST_PENDING, LokiMessageFriendRequestStatus.REQUEST_REJECTED -> R.string.view_friend_request_outgoing_pending_message
                 LokiMessageFriendRequestStatus.REQUEST_ACCEPTED -> R.string.view_friend_request_outgoing_accepted_message
-                LokiMessageFriendRequestStatus.REQUEST_REJECTED -> throw IllegalStateException()
                 LokiMessageFriendRequestStatus.REQUEST_EXPIRED -> R.string.view_friend_request_outgoing_expired_message
             }
             if (formatID != null) {

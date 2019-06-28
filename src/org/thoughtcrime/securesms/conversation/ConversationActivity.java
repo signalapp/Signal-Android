@@ -77,6 +77,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.ConversationListArchiveActivity;
@@ -150,6 +151,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -242,7 +244,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                InputPanel.Listener,
                InputPanel.MediaListener,
                ComposeText.CursorPositionChangedListener,
-               ConversationSearchBottomBar.EventListener
+               ConversationSearchBottomBar.EventListener,
+               FriendRequestViewDelegate
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -334,6 +337,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     getWindow().getDecorView().setBackgroundColor(color);
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(), dynamicLanguage.getCurrentLocale());
+    fragment.friendRequestViewDelegate = this;
 
     initializeReceivers();
     initializeActionBar();
@@ -2678,4 +2682,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     }
   }
+
+  // region Loki
+
+  @Override
+  public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
+    DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
+    // TODO: Send empty message
+  }
+
+  @Override
+  public void rejectFriendRequest(@NotNull MessageRecord friendRequest) {
+    DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.NONE);
+    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
+    DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
+  }
+  // endregion
 }

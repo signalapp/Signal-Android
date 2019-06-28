@@ -88,6 +88,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestView;
+import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -169,6 +170,8 @@ public class ConversationItem extends LinearLayout
   private final LinkPreviewClickListener        linkPreviewClickListener    = new LinkPreviewClickListener();
 
   private final Context context;
+
+  public FriendRequestViewDelegate friendRequestViewDelegate; // Loki
 
   public ConversationItem(Context context) {
     this(context, null);
@@ -788,6 +791,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setFriendRequestView(@NonNull MessageRecord record) {
+    friendRequestView.setDelegate(friendRequestViewDelegate);
     friendRequestView.update(record);
   }
 
