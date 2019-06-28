@@ -145,7 +145,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
-import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -211,6 +210,10 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.io.IOException;
@@ -2689,7 +2692,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
     DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
-    new PushDecryptJob(this).sendEmptyMessage(contactID); // TODO: Use a better approach for this
+    SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
+    SignalServiceAddress address = new SignalServiceAddress(contactID);
+    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+    Optional<UnidentifiedAccessPair> access = Optional.absent();
+    try {
+      messageSender.sendMessage(0, address, access, message); // The message ID doesn't matter
+    } catch (Exception e) {
+      Log.d("Loki", "Failed to send empty message to: " + contactID + ".");
+    }
   }
 
   @Override

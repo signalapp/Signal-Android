@@ -66,7 +66,7 @@ public class Address implements Parcelable, Comparable<Address> {
   }
 
   public static Address fromExternal(@NonNull Context context, @Nullable String external) {
-    return new Address(getExternalAddressFormatter(context).format(external));
+    return Address.fromSerialized(external);
   }
 
   public static @NonNull List<Address> fromSerializedList(@NonNull String serialized, char delimiter) {

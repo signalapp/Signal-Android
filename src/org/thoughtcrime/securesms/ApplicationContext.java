@@ -107,7 +107,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
   private PersistentLogger        persistentLogger;
-  private LokiLongPoller          lokiLongPoller = null; // Loki
+
+  // Loki
+  private LokiLongPoller lokiLongPoller = null;
+  public SignalCommunicationModule communicationModule;
 
   private volatile boolean isAppVisible;
 
@@ -244,8 +247,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeDependencyInjection() {
-    this.objectGraph = ObjectGraph.create(new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this)),
-                                          new AxolotlStorageModule(this));
+    communicationModule = new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this));
+    this.objectGraph = ObjectGraph.create(communicationModule, new AxolotlStorageModule(this));
   }
 
   private void initializeGcmCheck() {

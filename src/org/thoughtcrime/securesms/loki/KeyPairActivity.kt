@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.IdentityKeyPair
+import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
@@ -90,6 +91,8 @@ class KeyPairActivity : BaseActionBarActivity() {
     private fun register() {
         val publicKey = keyPair!!.publicKey
         val hexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
+        val registrationID = KeyHelper.generateRegistrationId(false)
+        TextSecurePreferences.setLocalRegistrationId(this, registrationID)
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
             IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)

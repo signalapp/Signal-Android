@@ -47,7 +47,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     synchronized (LOCK) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      Address                  signalAddress    = Address.fromExternal(context, address.getName());
+      Address                  signalAddress    = Address.fromSerialized(address.getName());
       Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(signalAddress);
 
       if (!identityRecord.isPresent()) {
@@ -94,7 +94,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     synchronized (LOCK) {
       IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
       String           ourNumber        = TextSecurePreferences.getLocalNumber(context);
-      Address          theirAddress     = Address.fromExternal(context, address.getName());
+      Address          theirAddress     = Address.fromSerialized(address.getName());
 
       if (ourNumber.equals(address.getName()) || Address.fromSerialized(ourNumber).equals(theirAddress)) {
         return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));

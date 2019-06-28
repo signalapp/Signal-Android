@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -127,7 +126,7 @@ public class SignalCommunicationModule {
   }
 
   @Provides
-  synchronized SignalServiceMessageSender provideSignalMessageSender() {
+  public synchronized SignalServiceMessageSender provideSignalMessageSender() {
     if (this.messageSender == null) {
       this.messageSender = new SignalServiceMessageSender(networkAccess.getConfiguration(context),
                                                           new DynamicCredentialsProvider(context),
