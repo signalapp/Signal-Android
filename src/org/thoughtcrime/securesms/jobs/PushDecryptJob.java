@@ -867,7 +867,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void sendEmptyMessage(String contactHexEncodedPublicKey) {
+  public void sendEmptyMessage(String contactHexEncodedPublicKey) {
     try {
       SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
       SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");

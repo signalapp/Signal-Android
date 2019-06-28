@@ -145,6 +145,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
+import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -2684,11 +2685,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   // region Loki
-
   @Override
   public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
     DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
-    // TODO: Send empty message
+    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
+    new PushDecryptJob(this).sendEmptyMessage(contactID); // TODO: Use a better approach for this
   }
 
   @Override

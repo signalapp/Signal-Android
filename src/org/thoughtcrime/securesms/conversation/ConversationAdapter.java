@@ -202,6 +202,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     MessageRecord nextRecord      = adapterPosition > 0 && !isHeaderPosition(adapterPosition - 1) ? getRecordForPositionOrThrow(adapterPosition - 1) : null;
 
     BindableConversationItem conversationItem = viewHolder.getView();
+    if (conversationItem instanceof ConversationItem) {
+      ((ConversationItem)conversationItem).friendRequestViewDelegate = this.friendRequestViewDelegate;
+    }
     conversationItem.bind(messageRecord,
                           Optional.fromNullable(previousRecord),
                           Optional.fromNullable(nextRecord),
@@ -211,9 +214,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
                           recipient,
                           searchQuery,
                           messageRecord == recordToPulseHighlight);
-    if (conversationItem instanceof ConversationItem) {
-      ((ConversationItem)conversationItem).friendRequestViewDelegate = this.friendRequestViewDelegate;
-    }
 
     if (messageRecord == recordToPulseHighlight) {
       recordToPulseHighlight = null;
