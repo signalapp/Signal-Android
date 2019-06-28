@@ -305,7 +305,7 @@ def abiPostFix = ['armeabi-v7a' : 1,
 
 android {
     flavorDimensions "none"
-    compileSdkVersion 29
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
     useLibrary 'org.apache.http.legacy'
 
