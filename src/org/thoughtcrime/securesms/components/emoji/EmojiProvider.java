@@ -75,6 +75,12 @@ class EmojiProvider {
     for (Pair<String,String> obsolete : EmojiPages.OBSOLETE) {
       emojiTree.add(obsolete.first(), emojiTree.getEmoji(obsolete.second(), 0, obsolete.second().length()));
     }
+
+    for (String[] page : EmojiPages.MISSING_FONT_PAGES) {
+      for (String emoji: page) {
+        emojiTree.add(emoji, new EmojiDrawInfo());
+      }
+    }
   }
 
   @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
@@ -110,7 +116,7 @@ class EmojiProvider {
   }
 
   private @Nullable Drawable getEmojiDrawable(@Nullable EmojiDrawInfo drawInfo) {
-    if (drawInfo == null)  {
+    if (drawInfo == null || drawInfo.getPage() == null)  {
       return null;
     }
 

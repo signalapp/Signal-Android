@@ -8,12 +8,20 @@ public class EmojiDrawInfo {
   private final EmojiPageBitmap page;
   private final int             index;
 
+  /**
+   * Creates a blank EmojiDrawInfo, indicating that this character is an emoji but no font bitmap exists for this character.
+   */
+  public EmojiDrawInfo() {
+    this.page = null;
+    this.index = 0;
+  }
+
   public EmojiDrawInfo(final @NonNull EmojiPageBitmap page, final int index) {
     this.page  = page;
     this.index = index;
   }
 
-  public @NonNull EmojiPageBitmap getPage() {
+  public EmojiPageBitmap getPage() {
     return page;
   }
 
