@@ -156,8 +156,10 @@ public final class PlacePickerActivity extends AppCompatActivity {
   }
 
   private void finishWithAddress() {
-    Intent returnIntent = new Intent();
-    AddressData addressData = new AddressData(currentLocation.latitude, currentLocation.longitude, currentAddress);
+    Intent      returnIntent = new Intent();
+    String      address      = currentAddress != null && currentAddress.getAddressLine(0) != null ? currentAddress.getAddressLine(0) : "";
+    AddressData addressData  = new AddressData(currentLocation.latitude, currentLocation.longitude, address);
+
     returnIntent.putExtra(ADDRESS_INTENT, addressData);
     setResult(RESULT_OK, returnIntent);
     finish();

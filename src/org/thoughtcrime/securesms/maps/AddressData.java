@@ -1,23 +1,23 @@
 package org.thoughtcrime.securesms.maps;
 
-import android.location.Address;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.Nullable;
+
+import androidx.annotation.NonNull;
 
 public final class AddressData implements Parcelable {
 
-  private final           double latitude;
-  private final           double longitude;
-  private final @Nullable Address address;
+  private final double latitude;
+  private final double longitude;
+  private final String address;
 
-  AddressData(double latitude, double longitude, @Nullable Address address) {
+  AddressData(double latitude, double longitude, @NonNull String address) {
     this.latitude  = latitude;
     this.longitude = longitude;
     this.address   = address;
   }
 
-  public @Nullable Address getAddress() {
+  public @NonNull String getAddress() {
     return address;
   }
 
@@ -32,9 +32,10 @@ public final class AddressData implements Parcelable {
   public static final Creator<AddressData> CREATOR = new Creator<AddressData>() {
     @Override
     public AddressData createFromParcel(Parcel in) {
+      //noinspection ConstantConditions
       return new AddressData(in.readDouble(),
                              in.readDouble(),
-                             Address.CREATOR.createFromParcel(in));
+                             in.readString());
     }
 
     @Override
@@ -47,7 +48,7 @@ public final class AddressData implements Parcelable {
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeDouble(latitude);
     dest.writeDouble(longitude);
-    dest.writeParcelable(address, flags);
+    dest.writeString(address);
   }
 
   @Override
