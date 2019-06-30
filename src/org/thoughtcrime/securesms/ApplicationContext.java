@@ -17,6 +17,9 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
+
+import androidx.camera.camera2.Camera2AppConfig;
+import androidx.camera.core.CameraX;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
@@ -126,6 +129,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializePendingMessages();
     initializeUnidentifiedDeliveryAbilityRefresh();
     initializeBlobProvider();
+    initializeCameraX();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
   }
@@ -355,6 +359,17 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
       BlobProvider.getInstance().onSessionStart(this);
     });
+  }
+
+  @SuppressLint("RestrictedApi")
+  private void initializeCameraX() {
+    if (Build.VERSION.SDK_INT >= 21) {
+      try {
+        CameraX.init(this, Camera2AppConfig.create(this));
+      } catch (Throwable t) {
+        Log.w(TAG, "Failed to initialize CameraX.");
+      }
+    }
   }
 
   @Override

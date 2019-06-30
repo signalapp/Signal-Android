@@ -616,6 +616,11 @@
               android:authorities="org.thoughtcrime.securesms.database.stickerpack"
               android:exported="false" />
 
+    <provider android:name="androidx.camera.camera2.impl.Camera2Initializer"
+              android:authorities="${applicationId}.camerax-init"
+              android:exported="false"
+              android:enabled="false" />
+
     <receiver android:name=".service.BootReceiver">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
