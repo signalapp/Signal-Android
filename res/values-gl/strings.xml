@@ -54,12 +54,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(localización)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Non se atopa unha app para seleccionar contido multimedia.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal require permiso de almacenamento para poder anexar fotografías, vídeos ou ficheiros de audio, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal require permiso para poder anexar información dos contactos, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Contactos\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal require permiso para poder anexar a localización, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Localización\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal require permiso para poder tirar fotografías, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao reproducir o audio!</string>
   <!--BlockedContactsActivity-->
@@ -467,6 +468,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Icona de Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase de acceso</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de acceso non válida!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versión de Servizos de Google Play que tes instalada non funciona correctamente. Volve instalala e proba de novo.</string>
   <!--RatingManager-->

@@ -63,12 +63,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(físeán)</string>
   <string name="DraftDatabase_Draft_location_snippet">(suíomh)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(freagair)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ní féidir teacht ar fheidhmchláirín chun meán a roghnú.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Tá gá ag Signal le cead stóras chun griangraif a thógáil, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Stóras\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Tá gá ag Signal le cead teagmhálaí chun eolas teagmhálaí a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Tá gá ag Signal le cead áite i gcomhair do áit a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Áit\". </string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Tá gá ag Signal le cead cheamara chun griangraif a thógáil, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Tharla botún ag seinm na fuaime!</string>
   <!--BlockedContactsActivity-->
@@ -410,6 +411,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Deilbhín Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Seol isteach an nath faire</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nath faire neamhbhailí!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Tabhair do mheas faoin bhfeidhmchláirín seo</string>

@@ -54,12 +54,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(ویدئو)</string>
   <string name="DraftDatabase_Draft_location_snippet">(موقعیت)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(پاسخ)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal برای ارسال فایل‌های تصویری و صوتی نیاز به دسترسی به حافظه دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه در تنظیمات تلفن همراه خود رفته و پس از یافتن Signal وارد بخش دسترسی ها شده و گزینه حافظه را فعال کنید.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal برای جستجو مخاطبان نیاز به دسترسی به مجوز مخاطبان دارد اما این دسترسی به Signal داده نشده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه پس از یافتن Signal وارد بخش دسترسی ها شده و گزینه مخاطبان را فعال کنید.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal برای استفاده از سرویس مکانیاب،  نیازمند دسترسی به سرویس مکان دارد ولی این دسترسی قطع شده است. لطفا برای ادامه دادن، به بخش منوی تنظیمات برنامه رفته، \"اجازه ها\" را انتخاب کرده و گزینه ی \"مکان\" را فعال نمایید.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal جهت گرفتن عکس نیاز به دسترسی دوربین دارد، اما به طور دائم رد شده است. لطفاً به منوی تنظیمات برنامه ها رفته، \"Permissions\" را انتخاب کرده، و \"Camera\" را فعال کنید.</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش صوتی!</string>
   <!--BlockedContactsActivity-->
@@ -467,6 +468,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">آیکون Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ثبت کردن عبارت عبور</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">رمز معتبر نیست!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخه Google Play Services نصب شده روی دستگاه شما به درستی کار نمی‌کند. لطفا از ابتدا Google Play Services را نصب کرده و دوباره تلاش کنید.</string>
   <!--RatingManager-->

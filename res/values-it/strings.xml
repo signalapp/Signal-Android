@@ -54,12 +54,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(posizione)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(risposta)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Caricamento media...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Errore nel riprodurre l\'audio!</string>
   <!--BlockedContactsActivity-->
@@ -467,6 +469,10 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="PassphrasePromptActivity_watermark_content_description">Icona Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Inserisci password</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Mappa</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Indirizzo non corretto</string>
+  <string name="PlacePickerActivity_accept_address">Accetta indirizzo</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versione di Google Play Services installata non funziona correttamente. Reinstallalo e riprova.</string>
   <!--RatingManager-->

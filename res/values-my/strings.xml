@@ -49,12 +49,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(ဗွီဒီယို) </string>
   <string name="DraftDatabase_Draft_location_snippet">(တည်နေရာ) </string>
   <string name="DraftDatabase_Draft_quote_snippet">(ပြန်လည်ပေးပို့လာသောစာတို)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ရုပ်သံကိုဖွင့်ရန်သင့်တော်သည့် app မတွေ့ပါ </string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန် Signalမှ အဆက်အသွယ်များအား အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ဖိုင်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန် Signalမှ အဆက်အသွယ်များအား အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ အဆက်အသွယ်များကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">မိမိ၏ တည်နေရာကို ပို့နိုင်ရန် တည်နေရာအား Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာတည်နေရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ဓါတ်ပုံရိုက်နိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">အသံဖွင့် မရပါ!</string>
   <!--BlockedContactsActivity-->
@@ -394,6 +395,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ပုံသင်္ကေတ</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">စကားဝှက် တင်သွင်းပါ</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">စကားဝှက် မှားနေသည်</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">သင်သွင်းထားသော Google Play ဗားရှင်းသည် ကောင်းကောင်းအလုပ်မလုပ်ပါသဖြင့် အသစ်ပြန်သွင်းပြီး ထပ်မံစမ်းသပ်ကြည့်ပါ။</string>
   <!--RatingManager-->

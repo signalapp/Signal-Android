@@ -54,12 +54,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(asukoht)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(vastus)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ei leia rakendust meediafaili valimiseks.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal vajab fotode, videote või audiofailide manustamiseks ligipääsu salvestusmeediale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Salvestusmeedia\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal vajab kontaktide manustamiseks ligipääsu kontaktidele, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kontaktid\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal vajab asukoha manustamiseks ligipääsu seadme asukohale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Asukoht\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal vajab fotode tegemiseks ligipääsu seadme kaamerale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kaamera\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Meedia üleslaadimine...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Heli esitamisel tekkis viga!</string>
   <!--BlockedContactsActivity-->
@@ -467,6 +469,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signali ikoon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Saada salaväljend</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Sobimatu salaväljend!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Kaart</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Pole sobiv aadress</string>
+  <string name="PlacePickerActivity_drop_pin">Kukuta nööpnõel</string>
+  <string name="PlacePickerActivity_accept_address">Kinnita aadress</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services versioon, mis sul on installitud, ei toimi korrektselt. Palun taasinstalli Google Play Services ja proovi uuesti.</string>
   <!--RatingManager-->

@@ -51,12 +51,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(동영상)</string>
   <string name="DraftDatabase_Draft_location_snippet">(위치)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(답장)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">미디어를 선택할 수 있는 앱이 없음</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에 사진이나 비디오 또는 오디오를 첨부하려면 저장공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \"권한\"을 선택한 후 \"저장공간\" 항목을 허용하세요.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에 연락처 정보를 첨부하려면 주소록 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \"권한\"을 선택한 후 \"주소록\" 항목을 허용하세요.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에 위치 정보를 첨부하려면 위치 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \"권한\"을 선택한 후 \"위치\" 항목을 허용하세요.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal에 찍은 사진을 첨부하려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \"권한\"을 선택한 후 \"카메라\" 항목을 허용하세요.</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">오디오 재생 오류 발생</string>
   <!--BlockedContactsActivity-->
@@ -445,6 +446,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">암호 확인</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">암호가 잘못됨</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">설치된 Google Play 서비스 버전은 제대로 작동하지 않습니다. Google Play 서비스를 재설치 하고 다시 시도해 주세요.</string>
   <!--RatingManager-->
@@ -646,6 +648,8 @@
   <string name="MessageNotifier_reply">답장</string>
   <string name="MessageNotifier_signal_message">Signal 메시지</string>
   <string name="MessageNotifier_unsecured_sms">비보안 SMS</string>
+  <string name="MessageNotifier_you_may_have_new_messages">새 메시지가 있을 수 있음</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Signal을 열어 최근 알림을 확인해보세요.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">연락처</string>
   <!--Notification Channels-->

@@ -51,12 +51,13 @@
   <string name="DraftDatabase_Draft_video_snippet">（视频）</string>
   <string name="DraftDatabase_Draft_location_snippet">(位置)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(回复)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">无法找到用于选择媒体的应用。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要\"存储空间\"权限才能发送图片、视频以及音频，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"存储空间\"权限。</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要\"通讯录\"权限才能发送联系人名片信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要\"位置信息\"权限才能发送位置信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"位置信息\"权限。</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要\"相机\"权限才能拍照并发送相片，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"相机\"权限。</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音频时出现错误！</string>
   <!--BlockedContactsActivity-->
@@ -447,6 +448,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description"> Signal 图标</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">提交密钥</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不真实的密钥！</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您当前所安装的 Google Play 服务没有正常的工作。请尝试重新安装 Google Play 服务然后重试。</string>
   <!--RatingManager-->

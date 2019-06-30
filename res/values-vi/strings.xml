@@ -15,11 +15,11 @@
   <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập mật khẩu!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">%d tin nhắn mỗi cuộc hội thoại</item>
+    <item quantity="other">%d tin nhắn mỗi cuộc trò chuyện</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="other">Thao tác này sẽ thu ngắn tất cả các cuộc hội thoại đến %d tin nhắn gần nhất.</item>
+    <item quantity="other">Thao tác này sẽ thu ngắn tất cả các cuộc trò chuyện đến %d tin nhắn gần nhất.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Xóa</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Tắt mật khẩu?</string>
@@ -51,12 +51,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(vị trí)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(trả lời)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Không tìm thấy ứng dụng để chọn tệp đa phương tiện.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal cần quyền truy cập Bộ nhớ để đính kèm ảnh, video hoặc âm thanh, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Bộ nhớ\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal cần quyền truy cập Danh bạ để đính kèm thông tin liên lạc nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Danh bạ\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal cần quyền truy cập Vị trí để đính kèm vị trí, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Vị trí\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal cần quyền truy cập Máy ảnh để chụp ảnh, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Máy ảnh\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Đang tải tệp lên...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Lỗi chạy tập tin âm thanh!</string>
   <!--BlockedContactsActivity-->
@@ -116,7 +118,7 @@
   <string name="ConversationItem_pending">Đang chờ</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Đặt lại phiên bảo mật?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Thao tác này có thể giúp bạn khi đang có vấn đề về mã hoá cuộc hội thoại. Các tin nhắn sẽ được giữ lại.</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Thao tác này có thể giúp bạn khi đang có vấn đề về mã hoá cuộc trò chuyện. Các tin nhắn sẽ được giữ lại.</string>
   <string name="ConversationActivity_reset">Đặt lại</string>
   <string name="ConversationActivity_add_attachment">Thêm tập tin đính kèm</string>
   <string name="ConversationActivity_select_contact_info">Chọn thông tin liên lạc</string>
@@ -199,24 +201,24 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Không có kết quả cho \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
-    <item quantity="other">Xoá các cuộc hội thoại đã chọn?</item>
+    <item quantity="other">Xoá các cuộc trò chuyện đã chọn?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d cuộc hội thoại đã chọn.</item>
+    <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d cuộc trò chuyện đã chọn.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Đang xóa</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Đang xoá các cuộc hội thoại đã chọn...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Đang xoá các cuộc trò chuyện đã chọn...</string>
   <plurals name="ConversationListFragment_conversations_archived">
-    <item quantity="other">Đã lưu trữ %d cuộc hội thoại</item>
+    <item quantity="other">Đã lưu trữ %d cuộc trò chuyện</item>
   </plurals>
   <string name="ConversationListFragment_undo">HOÀN TÁC</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-    <item quantity="other">Đã chuyển %d cuộc hội thoại vào hộp thư đến</item>
+    <item quantity="other">Đã chuyển %d cuộc trò chuyện vào hộp thư đến</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Tin nhắn trao đổi chìa khóa</string>
   <!--ConversationListItemAction-->
-  <string name="ConversationListItemAction_archived_conversations_d">Các cuộc hội thoại đã lưu trữ (%d)</string>
+  <string name="ConversationListItemAction_archived_conversations_d">Các cuộc trò chuyện đã lưu trữ (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Đã xác minh</string>
   <!--CreateProfileActivity-->
@@ -442,12 +444,15 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Tin nhắn tự hủy</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Tin nhắn sẽ không tự hủy.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Tin nhắn gửi và nhận trong cuộc hội thoại này sẽ tự hủy sau %s sau khi đã được xem.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Tin nhắn gửi và nhận trong cuộc trò chuyện này sẽ tự hủy sau %s sau khi đã được xem.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Điền mật khẩu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Gửi mật khẩu</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Mật khẩu không đúng!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Bản đồ</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Không phải địa chỉ hợp lệ</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Phiên bản của Dịch vụ Google Play bạn sử dụng không hoạt động đúng. Vui lòng cài lại Dịch vụ Google Play và thử lại.</string>
   <!--RatingManager-->
@@ -674,7 +679,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="SaveAttachmentTask_saved">Đã lưu</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Tìm kiếm</string>
-  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Tìm kiếm cuộc hội thoại, liên hệ và tin nhắn</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Tìm kiếm cuộc trò chuyện, liên hệ và tin nhắn</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Shortcut không hợp lệ</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -788,9 +793,9 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="device_list_fragment__link_new_device">Liên kết thiết bị mới</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">tiếp tục</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Thông báo đã đọc đã sẵn sàng</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Xem và cho biết khi nào tin nhắn đã được đọc, không bắt buộc</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Bật thông báo đã đọc</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Thông báo đã xem đã sẵn sàng</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Xem và cho biết khi nào tin nhắn đã được xem, không bắt buộc</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Bật thông báo đã xem</string>
   <!--expiration-->
   <string name="expiration_off">Tắt</string>
   <plurals name="expiration_seconds">
@@ -943,7 +948,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="AndroidManifest__select_contacts">Chọn liên lạc</string>
   <string name="AndroidManifest__change_passphrase">Đổi mật khẩu</string>
   <string name="AndroidManifest__verify_safety_number">Xác minh mã số an toàn</string>
-  <string name="AndroidManifest__log_submit">Nộp nhật kí dò lỗi</string>
+  <string name="AndroidManifest__log_submit">Gửi nhật kí dò lỗi</string>
   <string name="AndroidManifest__media_preview">Xem trước tệp đa phương tiện</string>
   <string name="AndroidManifest__message_details">Chi tiết tin nhắn</string>
   <string name="AndroidManifest__linked_devices">Các thiết bị đã liên kết</string>
@@ -1042,8 +1047,8 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string>
   <string name="preferences__chats">Trò chuyện và đa phương tiện</string>
   <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc trò chuyện</string>
-  <string name="preferences__trim_all_conversations_now">Lập tức rút ngắn tất cả các cuộc hội thoại</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Quét tất cả các cuộc hội thoại và áp dụng giới hạn độ dài hội thoại</string>
+  <string name="preferences__trim_all_conversations_now">Lập tức rút ngắn tất cả các cuộc trò chuyện</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Quét tất cả các cuộc trò chuyện và áp dụng giới hạn độ dài trò chuyện</string>
   <string name="preferences__linked_devices">Các thiết bị đã liên kết</string>
   <string name="preferences__light_theme">Sáng</string>
   <string name="preferences__dark_theme">Tối</string>
@@ -1055,11 +1060,11 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="preferences__free_private_messages_and_calls">
 Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Signal
 </string>
-  <string name="preferences__submit_debug_log">Nộp nhật kí dò lỗi</string>
+  <string name="preferences__submit_debug_log">Gửi nhật kí dò lỗi</string>
   <string name="preferences__support_wifi_calling">Chế độ tương thích với \"Gọi qua WiFi\"</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Bật nếu thiết bị bạn gửi SMS/MMS qua WiFi (chỉ bật khi \'Gọi qua WiFi\' được bật trong thiết bị) </string>
   <string name="preferences__incognito_keyboard">Bàn phím ẩn danh</string>
-  <string name="preferences__read_receipts">Thông báo đã đọc</string>
+  <string name="preferences__read_receipts">Thông báo đã xem</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nếu thông báo đã xem bị tắt, bạn sẽ không thể biết người kia đã xem tin nhắn hay chưa.</string>
   <string name="preferences__typing_indicators">Thông báo đang nhập</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nếu thông báo đang nhập bị tắt, bạn sẽ không thể biết người kia có đang nhập tin nhắn hay không.</string>
@@ -1119,10 +1124,10 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Mời</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Xóa cái chọn</string>
+  <string name="conversation_list_batch__menu_delete_selected">Xóa mục đã chọn</string>
   <string name="conversation_list_batch__menu_select_all">Chọn tất cả</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">Đã chọn bản lưu</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Đã chọn bản chưa lưu</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Lưu trữ mục đã chọn</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Bỏ lưu trữ mục đã chọn</string>
   <!--conversation_list-->
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Ảnh Chân Dung Liên Hệ</string>
@@ -1176,7 +1181,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="reminder_header_push_title">Bật tin nhắn và cuộc gọi Signal?</string>
   <string name="reminder_header_push_text">Nâng cấp trải nghiệm giao tiếp.</string>
   <string name="reminder_header_invite_title">Mời dùng Signal</string>
-  <string name="reminder_header_invite_text"> Hãy nâng cuộc hội thoại của bạn với %1$s lên tầm cao mới.</string>
+  <string name="reminder_header_invite_text"> Hãy nâng cuộc trò chuyện của bạn với %1$s lên tầm cao mới.</string>
   <string name="reminder_header_share_title">Hãy mời bạn bè!</string>
   <string name="reminder_header_share_text">Càng đông bạn dùng Signal càng vui.</string>
   <string name="reminder_header_service_outage_text">Signal đang gặp trục trặc kĩ thuật. Chúng thôi đang cố hết sức để khôi phục dịch vụ càng sớm càng tốt.</string>
@@ -1203,7 +1208,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="Permissions_permission_required">Cần quyền</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal cần quyền SMS để gửi SMS, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Qiuyền\" và bật \"SMS\".</string>
   <string name="Permissions_continue">Tiếp tục</string>
-  <string name="Permissions_not_now">Không phải bây giờ</string>
+  <string name="Permissions_not_now">Để sau</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal cần quyền truy cập Danh bạ để tìm kiếm liên hệ nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Danh bạ\".</string>
   <string name="conversation_activity__enable_signal_messages">Bật tin nhắn Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Đang di dời cơ sở dữ liệu Signal</string>

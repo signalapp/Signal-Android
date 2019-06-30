@@ -52,12 +52,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(వీడియో)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ప్రదేశం)</string>
   <string name="DraftDatabase_Draft_quote_snippet">స్పంధించు</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">మీడియా ఎంచుకోవడానికి అనువర్తనం దొరకదు.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ఫోటోలు, వీడియోలు లేదా ఆడియోను అటాచ్ చేయడానికి Signalకు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకు కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"నిల్వ\" ను ప్రారంభించండి.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">సంప్రదింపు సమాచారాన్ని అటాచ్ చేయడానికి Signal కాంటాక్ట్స్ అనుమతి అవసరం, కానీ అది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ఒక స్థానాన్ని అటాచ్ చేయడానికి Signalకి నగర అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"స్థానం\" ని ప్రారంభించండి.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ఫోటోలను తీయడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ఆడియో ప్రదర్శనా లోపం!</string>
   <!--BlockedContactsActivity-->
@@ -436,6 +437,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal చిహ్నం</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">సంకేతపదమును సమర్పించండి</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">చెల్లని సంకేతపదము!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">గూగుల్ ఫ్లే సేవలు ఒక్క వివరణం సరిగ్గ పని చెయ్యటంలేదు. దయచేసి  గూగుల్ ఫ్లే సేవలను మరల నెలకొల్పండి.</string>
   <!--RatingManager-->

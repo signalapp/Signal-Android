@@ -54,12 +54,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(local)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar um aplicativo para selecionar arquivos.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal precisa da permissão de Armazenamento para anexar fotos, vídeos ou áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Signal precisa da permissão Contatos para anexar informações de contato, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Contatos\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Signal precisa da permissão Localização para anexar uma localização, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Localização\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">O Signal precisa da permissão Câmera para tirar fotos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
   <!--BlockedContactsActivity-->
@@ -467,6 +468,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versão instalada do Serviços Google Play não está funcionando corretamente. Favor reinstalar o Serviços Google Play e tentar novamente.</string>
   <!--RatingManager-->

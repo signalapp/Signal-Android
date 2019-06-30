@@ -64,12 +64,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(فيديو)</string>
   <string name="DraftDatabase_Draft_location_snippet">(الموقع)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(رَدّ)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن سعة التخزين من أجل إضافة الصور والمرفقات ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن جهات الاتصال من أجل إرفاق بيانات جهة اتصال ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الموقع\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن الكاميرا من أجل التقاط صور ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطأ في تشغيل الصوت!</string>
   <!--BlockedContactsActivity-->
@@ -486,6 +487,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">تطبيق Google Play Service الذي قمت بتثبيته لا يعمل بشكل صحيح. رجاء إعادة تثبيته والمحاولة مرة أخرى.</string>
   <!--RatingManager-->

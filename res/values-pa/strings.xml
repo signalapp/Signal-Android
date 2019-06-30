@@ -54,12 +54,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(ਵੀਡੀਓ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ਥਾਉਂ)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ਜਵਾਬ )</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ਇਸ ਮੀਡੀਆ ਨੂੰ ਚੁਣਨ ਲਈ ਕੋਈ ਐਪ ਨਹੀਂ ਹੈ</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal ਨੂੰ ਫੋਟੋਜ਼, ਵਿਡੀਓ ਜਾਂ ਆਡੀਓ ਜੋੜਨ ਲਈ ਸਟੋਰੇਜ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗ ਮੇਨੂ  ਤੇ ਜਾਓ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਸਟੋਰੇਜ\" ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal ਨੂੰ ਸੰਪਰਕ ਜਾਣਕਾਰੀ  ਜੋੜਨ ਲਈ ਸੰਪਰਕਾਂ  ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗ ਮੇਨੂ  ਤੇ ਜਾਓ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਸੰਪਰਕ\" ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal ਨੂੰ ਸਥਾਨ ਜੋੜਨ ਲਈ ਸਥਾਨ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗ ਮੇਨੂ  ਤੇ ਜਾਓ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਸਥਾਨ\" ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ਫੋਟੋਆਂ ਖਿੱਚਣ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਦੀ ਅਨੁਮਤੀ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਚ ਜਾਓ , \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਕੈਮਰਾ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ.</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ਔਡੀਓ ਚਲੌਣ ਵਿੱਚ ਗਲਤੀ</string>
   <!--BlockedContactsActivity-->
@@ -466,6 +467,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ਆਈਕਨ</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ਪਾਸਫਰੇਜ ਦਰਜ ਕਰੋ</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ਗਲਤ ਪਾਸਫਰੇਜ!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">ਤੁਹਾਡੇ ਵੱਲੋਂ ਸਥਾਪਿਤ ਕੀਤੇ Google Play ਸੇਵਾਵਾਂ ਦਾ ਵਰਜਨ ਸਹੀ ਢੰਗ ਨਾਲ ਕੰਮ ਨਹੀਂ ਕਰ ਰਿਹਾ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ Google Play ਸੇਵਾਵਾਂ ਮੁੜ ਸਥਾਪਿਤ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
   <!--RatingManager-->

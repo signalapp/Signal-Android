@@ -54,12 +54,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(Video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(Standort)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(Antwort)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Keine App zur Auswahl der Medieninhalte auffindbar.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal benötigt die Berechtigung »Speicher« für das Anhängen von Fotos, Videos oder Audiodateien, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal benötigt die Berechtigung »Kontakte« für das Anhängen von Kontaktinformationen, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal benötigt die Berechtigung »Standort« für das Anhängen von Standorten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Standort«.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Medieninhalte werden hochgeladen …</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fehler bei der Audiowiedergabe</string>
   <!--BlockedContactsActivity-->
@@ -465,6 +467,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-Symbol</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Passphrase übermitteln</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passphrase ungültig!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Karte</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Keine gültige Adresse</string>
+  <string name="PlacePickerActivity_drop_pin">Markierung platzieren</string>
+  <string name="PlacePickerActivity_accept_address">Adresse übernehmen</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google-Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google-Play-Dienste neu und versuche es noch einmal.</string>
   <!--RatingManager-->

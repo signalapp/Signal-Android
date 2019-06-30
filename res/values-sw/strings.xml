@@ -40,12 +40,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(mahali)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(jibu)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nashindwa kupata app ya kuchagua habari</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal inahitaji idhini ya Hifadhi ili kuunganisha picha, video, au sauti, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Hifadhi\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal inahitaji idhini ya Mawasiliano ili kuunganisha maelezo ya mawasiliano, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Mawasiliano\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal inahitaji ruhusa ya Eneo ili kuunganisha mahali, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwezesha \"Eneo\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kuchukua picha, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Hitilafu ya kucheza sauti!</string>
   <!--BlockedContactsActivity-->
@@ -352,6 +353,7 @@ Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa ka
   <string name="PassphrasePromptActivity_watermark_content_description">Signal icon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Tuma nenosiri</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">passhrase sio sahihi</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_now">Kiwango cha sasa</string>

@@ -60,12 +60,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(vaizdas)</string>
   <string name="DraftDatabase_Draft_location_snippet">(vieta)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(atsakymas)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nerasta programėlė medijos pasirinkimui.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Norint pridėti nuotraukas, vaizdo įrašus ar garsą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Norint pridėti kontaktinę informaciją, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Norint pridėti vietą, Signal reikia vietos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Vietą\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Įkeliama medija...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
   <!--BlockedContactsActivity-->
@@ -84,6 +86,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Šalinti profilio nuotrauką?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nerasta jokios saityno naršyklės.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobilusis skambutis jau vyksta.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %1$s pasikeitė. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, kad %2$s, tiesiog, iš naujo įdiegė Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo adresatu.</string>
@@ -504,6 +507,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal piktograma</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pateikti slaptafrazę</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neteisinga slaptafrazė!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Žemėlapis</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Neteisingas adresas</string>
+  <string name="PlacePickerActivity_drop_pin">Įsmeigti smeigtuką</string>
+  <string name="PlacePickerActivity_accept_address">Priimti adresą</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsų turima įdiegta „Google Play“ paslaugų versija nefunkcionuoja tinkamai. Prašome iš naujo įdiegti „Google Play“ paslaugas ir bandyti dar kartą.</string>
   <!--RatingManager-->

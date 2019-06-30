@@ -60,12 +60,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(видео)</string>
   <string name="DraftDatabase_Draft_location_snippet">(место)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ответ)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не найдено приложение для выбора медиа-файлов.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal требуется разрешение на доступ к хранилищу для возможности прирепления фото, видео и аудио, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите в Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Хранилище.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Для прикрепления контактной информации Signal требуется разрешение на доступ к контактам, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите в Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Контакты.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Для прикрепления вашего местоположения Signal требуется разрешение на доступ к местоположению, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите в Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Местоположение.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Чтобы сделать фото требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите в Настройки, выберите Приложения, найдите Signal, затем выберите Разрешения и включите Камеру.</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ошибка при воспроизведении аудио!</string>
   <!--BlockedContactsActivity-->
@@ -504,6 +505,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Иконка Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Подтвердить парольную фразу</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неверная парольная фраза!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Установленная версия Сервисов Google Play работает некорректно. Пожалуйста, переустановите Сервисы Google Play и попробуйте снова.</string>
   <!--RatingManager-->

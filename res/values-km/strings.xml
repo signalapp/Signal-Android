@@ -51,12 +51,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(វីដេអូ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ទីតាំង)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ឆ្លើយតប)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">មិនអាចស្វែងរកកម្មវិធីដើម្បីជ្រើសរើសព័ត៌មាន</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal ទាមទារសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកដើម្បីភ្ជាប់រូបថត វីដេអូ ឬសំឡេង ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់របស់ប្រព័ន្ធ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\" ។</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal ទាមទារសិទ្ធិប្រើប្រាស់បញ្ជីទំនាក់ទំនងដើម្បីភ្ជាប់ព័ត៌មានបញ្ជីទំនាក់ទំនង ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់របស់ប្រព័ន្ធ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"បញ្ជីទំនាក់ទំនង\" ។</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signalត្រូវការសិទ្ធិប្រើប្រាស់ទីតាំងដើម្បីភ្ជាប់ទីតាំង ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"ទីតាំង\" ។</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីថតរូប ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"កាមេរ៉ា\"។</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">បញ្ហាការចាក់សំឡេង!</string>
   <!--BlockedContactsActivity-->
@@ -447,6 +448,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">រូប Signal </string>
   <string name="PassphrasePromptActivity_ok_button_content_description">បញ្ជូនឃ្លាសម្ងាត់</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ឃ្លាសម្ងាត់មិនត្រឹមត្រូវ!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">កំណែ Google Play Services ដែលបានដំឡើងមិនត្រឹមត្រូវទេ។ សូមដំឡើង Google Play Services សារជាថ្មី និងព្យាយាមម្តងទៀត។</string>
   <!--RatingManager-->

@@ -51,12 +51,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(動画)</string>
   <string name="DraftDatabase_Draft_location_snippet">(位置情報)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(返信)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ファイルを開くアプリが見つかりません。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signalに写真や動画、音声データを添付するには、ストレージへのアクセスを許可する必要がありますが、無効になっています。アプリ設定から、アプリの権限を選び、ストレージへのアクセス許可を有効にしてください。</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signalで連絡先を添付するには、連絡先へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、アプリの権限を選び、連絡先へのアクセス許可を有効にしてください。</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signalで位置情報を添付するには、位置情報へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『位置情報』へのアクセス許可を有効にしてください。</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signalで写真を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">アップロード中...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">音声再生中にエラーがありました！</string>
   <!--BlockedContactsActivity-->
@@ -447,6 +449,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signalアイコン</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">パスフレーズを設定</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスフレーズです！</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">地図</string>
+  <string name="PlacePickerActivity_not_a_valid_address">無効なアドレスです</string>
+  <string name="PlacePickerActivity_drop_pin">ピンを落とす</string>
+  <string name="PlacePickerActivity_accept_address">アドレスを受け入れる</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再挑戦してみてください。</string>
   <!--RatingManager-->

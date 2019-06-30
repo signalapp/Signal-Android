@@ -49,12 +49,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(วิดีโอ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ตำแหน่งที่ตั้ง)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ตอบกลับ)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับสื่อที่เลือก</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียงได้ Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อได้ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งที่ตั้งได้ Signal ต้องได้รับอนุญาตให้เข้าถึงตำแหน่งที่ตั้ง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ตำแหน่งที่ตั้ง\"</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูปได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">เกิดข้อผิดพลาดในการเล่นเสียง</string>
   <!--BlockedContactsActivity-->
@@ -408,6 +409,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">ไอคอน Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ส่งวลีรหัสผ่าน</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">วลีรหัสผ่านไม่ถูกต้อง</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">เวอร์ชันของ Google Play Services ที่คุณมีอยู่ทำงานไม่ถูกต้อง โปรดติดตั้ง Google Play Services ใหม่และลองอีกครั้ง</string>
   <!--RatingManager-->

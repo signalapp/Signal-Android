@@ -54,12 +54,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(locatie)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(reactie)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de externe opslagruimte om foto\'s, video\'s of audio te kunnen verzenden, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toegang nodig tot de contacten om contactinformatie in Signal weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toegang nodig tot de locatie om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de camera om foto\'s te kunnen maken, maar deze toegang is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Camera’ in.</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Media aan het uploaden…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fout bij afspelen van audio!</string>
   <!--BlockedContactsActivity-->
@@ -468,6 +470,11 @@ weergaven.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-pictogram</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Kaart</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Geen geldig adres</string>
+  <string name="PlacePickerActivity_drop_pin">Aanwijzer</string>
+  <string name="PlacePickerActivity_accept_address">Adres aanvaarden</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruik hebt werkt niet zoals het hoort. Installeer Google Play Services opnieuw en probeer het nog eens.</string>
   <!--RatingManager-->

@@ -60,12 +60,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(poloha)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(odpověď)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signál potřebuje oprávnění pro přístup k úložišti aby mohl připojovat fotky, videa nebo zvuky, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\",</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signál potřebuje oprávnění pro přístup ke kontaktům aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\",</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signál potřebuje oprávnění pro přístup k poloze aby mohl připojit informace o poloze, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Poloha\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k fotoaparátu aby mohl pořizovat fotografie, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Chyba při přehrávání audia!</string>
   <!--BlockedContactsActivity-->
@@ -504,6 +505,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Zadejte heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Chybné heslo!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verze služby Google Play, kterou máte nainstalovánu, nepracuje správně. Prosím, přeinstalujte službu Google Play a zkuste to znovu.</string>
   <!--RatingManager-->
