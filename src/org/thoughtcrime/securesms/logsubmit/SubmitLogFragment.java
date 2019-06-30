@@ -389,7 +389,7 @@ public class SubmitLogFragment extends Fragment {
                    .append(scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()))
                    .append("\n\n\n");
 
-      if (VERSION.SDK_INT >= 22) {
+      if (VERSION.SDK_INT >= 28) {
         stringBuilder.append(HEADER_POWER)
                      .append("\n\n")
                      .append(buildPower(context))
@@ -542,7 +542,7 @@ public class SubmitLogFragment extends Fragment {
     return builder;
   }
 
-  @RequiresApi(api = 22)
+  @RequiresApi(28)
   private static CharSequence buildPower(@NonNull Context context) {
     final UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
 

@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi;
 
 import java.util.Date;
 
-@RequiresApi(api = 22)
+@RequiresApi(28)
 public final class BucketInfo {
 
   /**
