@@ -125,12 +125,12 @@ public class PartAuthority {
   }
 
   public static Uri getAttachmentDataUri(AttachmentId attachmentId) {
-    Uri uri = Uri.withAppendedPath(PART_CONTENT_URI, Integer.toString(attachmentId.getUniqueId()));
+    Uri uri = Uri.withAppendedPath(PART_CONTENT_URI, Long.toString(attachmentId.getUniqueId()));
     return ContentUris.withAppendedId(uri, attachmentId.getRowId());
   }
 
   public static Uri getAttachmentThumbnailUri(AttachmentId attachmentId) {
-    Uri uri = Uri.withAppendedPath(THUMB_CONTENT_URI, Integer.toString(attachmentId.getUniqueId()));
+    Uri uri = Uri.withAppendedPath(THUMB_CONTENT_URI, Long.toString(attachmentId.getUniqueId()));
     return ContentUris.withAppendedId(uri, attachmentId.getRowId());
   }
 
