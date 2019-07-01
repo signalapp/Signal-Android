@@ -243,7 +243,7 @@ final class CameraXModule {
     mImageCaptureConfigBuilder.setTargetRotation(getDisplaySurfaceRotation());
     mImageCaptureConfigBuilder.setLensFacing(mCameraLensFacing);
     mImageCaptureConfigBuilder.setCaptureMode(CameraXUtil.getOptimalCaptureMode());
-    mImageCaptureConfigBuilder.setTargetResolution(new Size(1920, 1080));
+    mImageCaptureConfigBuilder.setTargetResolution(new Size(1920, 1920));
     mImageCapture = new ImageCapture(mImageCaptureConfigBuilder.build());
 
     mVideoCaptureConfigBuilder.setTargetRotation(getDisplaySurfaceRotation());
