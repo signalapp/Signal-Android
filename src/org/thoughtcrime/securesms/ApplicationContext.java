@@ -45,7 +45,7 @@ import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
-import org.thoughtcrime.securesms.jobs.PushDecryptJob;
+import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
@@ -417,7 +417,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             envelope = new SignalServiceEnvelope(proto.getType().getNumber(), proto.getTimestamp(), proto.getLegacyMessage().toByteArray(),
               proto.getContent().toByteArray(), proto.getServerTimestamp(), proto.getServerGuid());
           }
-          new PushDecryptJob(context).processMessage(envelope);
+          new PushContentReceiveJob(context).processEnvelope(envelope);
         }
         return Unit.INSTANCE;
       }

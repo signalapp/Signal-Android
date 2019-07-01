@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -178,12 +177,12 @@ public class SmsDatabase extends MessagingDatabase {
     return 0;
   }
 
-  public long getLastMessageIDForThread(long threadID) {
+  public long getIDForMessageAtIndex(long threadID, int index) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor cursor = null;
     try {
       cursor = database.query(TABLE_NAME, null, THREAD_ID + " = ?", new String[] { threadID + "" }, null, null, null);
-      if (cursor != null && cursor.moveToLast()) {
+      if (cursor != null && cursor.moveToPosition(index)) {
         return cursor.getLong(0);
       }
     } finally {
@@ -676,11 +675,6 @@ public class SmsDatabase extends MessagingDatabase {
 
     if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
       ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
-    }
-
-    // Loki - Set message friend request status
-    if (message.isFriendRequest) {
-      DatabaseFactory.getLokiMessageFriendRequestDatabase(context).setFriendRequestStatus(messageId, LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED);
     }
 
     return messageId;

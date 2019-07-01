@@ -321,6 +321,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private final DynamicTheme       dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage    dynamicLanguage = new DynamicLanguage();
 
+
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -2057,9 +2058,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         handleManualMmsRequired();
       } else if (!forceSms && identityRecords.isUnverified()) {
         handleUnverifiedRecipients();
-      } else if (!forceSms && identityRecords.isUntrusted()) {
+      }/* else if (!forceSms && identityRecords.isUntrusted()) {
         handleUntrustedRecipients();
-      } else if (isMediaMessage) {
+      }*/ else if (isMediaMessage) {
         sendMediaMessage(forceSms, expiresIn, subscriptionId, initiating);
       } else {
         sendTextMessage(forceSms, expiresIn, subscriptionId, initiating);
@@ -2173,9 +2174,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       message = new OutgoingTextMessage(recipient, messageBody, expiresIn, subscriptionId);
     }
 
-    // Loki - Always send a friend request if we're not yet friends with the user
+    // Loki - Send a friend request if we're not yet friends with the user in question
     LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadFriendRequestDatabase(context).getFriendRequestStatus(threadId);
-    message.isFriendRequest = (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS);
+    message.isFriendRequest = (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS); // Needed for stageOutgoingMessage(...)
 
     Permissions.with(this)
                .request(Manifest.permission.SEND_SMS)

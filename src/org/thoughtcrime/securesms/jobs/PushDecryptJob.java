@@ -827,12 +827,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-    LokiThreadFriendRequestDatabase threadFriendRequestDatabase = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
-    LokiMessageFriendRequestDatabase messageFriendRequestDatabase = DatabaseFactory.getLokiMessageFriendRequestDatabase(context);
     Recipient contactID = getMessageDestination(content, message);
+    LokiThreadFriendRequestDatabase threadFriendRequestDatabase = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(contactID);
     LokiThreadFriendRequestStatus threadFriendRequestStatus = threadFriendRequestDatabase.getFriendRequestStatus(threadID);
-    long messageID = DatabaseFactory.getSmsDatabase(context).getLastMessageIDForThread(threadID);
+    SmsDatabase messageDatabase = DatabaseFactory.getSmsDatabase(context);
+    LokiMessageFriendRequestDatabase messageFriendRequestDatabase = DatabaseFactory.getLokiMessageFriendRequestDatabase(context);
+    int messageCount = messageDatabase.getMessageCountForThread(threadID);
     if (envelope.isFriendRequest()) {
       if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
         // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
@@ -846,6 +847,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // we can end up in a deadlock where both users' threads' friend request statuses are
         // `REQUEST_SENT`.
         threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+        long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
         messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         // Accept the friend request
         sendEmptyMessage(envelope.getSource());
@@ -856,12 +858,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // request. Alice's thread's friend request status is reset to
         // `REQUEST_RECEIVED`.
         threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+        long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1); // The message that was just received
         messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
       }
     } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
       // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
       // it must be a friend request accepted message. Declining a friend request doesn't send a message.
       threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+      long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
       messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
       // TODO: Send p2p details here
     }
