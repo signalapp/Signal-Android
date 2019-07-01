@@ -23,7 +23,7 @@ class JobRunner extends Thread {
   private final JobController jobController;
 
   JobRunner(@NonNull Application application, int id, @NonNull JobController jobController) {
-    super("JobRunner-" + id);
+    super("signal-JobRunner-" + id);
 
     this.application   = application;
     this.id            = id;

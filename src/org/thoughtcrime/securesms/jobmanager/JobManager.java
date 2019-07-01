@@ -38,7 +38,7 @@ public class JobManager implements ConstraintObserver.Notifier {
   private final Set<EmptyQueueListener> emptyQueueListeners = new CopyOnWriteArraySet<>();
 
   public JobManager(@NonNull Application application, @NonNull Configuration configuration) {
-    this.executor      = configuration.getExecutorFactory().newSingleThreadExecutor("JobManager");
+    this.executor      = configuration.getExecutorFactory().newSingleThreadExecutor("signal-JobManager");
     this.jobRunners    = new JobRunner[configuration.getJobThreadCount()];
     this.jobController = new JobController(application,
                                            configuration.getJobStorage(),

@@ -85,7 +85,7 @@ public class AudioCodec {
           setFinished();
         }
       }
-    }, AudioCodec.class.getSimpleName()).start();
+    }, "signal-AudioCodec").start();
   }
 
   private synchronized boolean isRunning() {

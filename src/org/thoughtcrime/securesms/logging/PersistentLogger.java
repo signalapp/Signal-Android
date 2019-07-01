@@ -48,7 +48,7 @@ public class PersistentLogger extends Log.Logger {
     this.context  = context.getApplicationContext();
     this.secret   = LogSecretProvider.getOrCreateAttachmentSecret(context);
     this.executor = Executors.newSingleThreadExecutor(r -> {
-      Thread thread = new Thread(r, "PersistentLogger");
+      Thread thread = new Thread(r, "signal-PersistentLogger");
       thread.setPriority(Thread.MIN_PRIORITY);
       return thread;
     });
