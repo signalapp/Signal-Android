@@ -82,7 +82,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
     ) {
       fusedLocationClient.getLastLocation()
                          .addOnFailureListener(e -> {
-                           Log.e(TAG, "Failed to get location", e);
+                           Log.w(TAG, "Failed to get location", e);
                            setInitialLocation(PRIME_MERIDIAN);
                          })
                          .addOnSuccessListener(location -> {
@@ -209,14 +209,13 @@ public final class PlacePickerActivity extends AppCompatActivity {
         List<Address> result = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
         return !result.isEmpty() ? result.get(0) : null;
       } catch (IOException e) {
-        Log.e(TAG, "Failed to get address from location", e);
+        Log.w(TAG, "Failed to get address from location", e);
         return null;
       }
     }
 
     @Override
     protected void onPostExecute(@Nullable Address address) {
-      Log.d(TAG, String.format("%s", addressToString(address)));
       currentAddress = address;
       if (address != null) {
         bottomSheet.showResult(address.getLatitude(), address.getLongitude(), addressToShortString(address), addressToString(address));

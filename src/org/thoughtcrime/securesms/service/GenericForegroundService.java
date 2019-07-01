@@ -74,7 +74,7 @@ public final class GenericForegroundService extends Service {
     if (iterator.hasNext()) {
       postObligatoryForegroundNotification(iterator.next());
     } else {
-      Log.d(TAG, "Last request. Ending foreground service.");
+      Log.i(TAG, "Last request. Ending foreground service.");
       postObligatoryForegroundNotification(lastPosted != null ? lastPosted : DEFAULTS);
       stopForeground(true);
       stopSelf();
