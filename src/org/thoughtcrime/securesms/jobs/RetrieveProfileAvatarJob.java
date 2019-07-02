@@ -102,7 +102,12 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
       InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
       File        decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
-      Util.copy(avatarStream, new FileOutputStream(decryptDestination));
+      try {
+        Util.copy(avatarStream, new FileOutputStream(decryptDestination));
+      } catch (AssertionError e) {
+        throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);
+      }
+
       decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.getAddress()));
     } catch (PushNetworkException e) {
       if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
