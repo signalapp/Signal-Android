@@ -102,7 +102,7 @@ dependencies {
     implementation 'com.pnikosis:materialish-progress:1.5'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'pl.tajchert:waitingdots:0.1.0'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation 'com.melnykov:floatingactionbutton:1.3.0'
     implementation 'com.google.zxing:android-integration:3.1.0'
     implementation 'com.squareup.dagger:dagger:1.2.2'
@@ -169,7 +169,7 @@ dependencyVerification {
         'androidx.preference:preference:ea9fde25606eb456210ffe9f7e51048abd776b55a34c0cc6608282b5699122d1',
         'com.pnikosis:materialish-progress:d71d80e00717a096784482aee21001a9d299fec3833e4ebd87739ed36cf77c54',
         'pl.tajchert:waitingdots:2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c',
-        'com.theartofdev.edmodo:android-image-cropper:72a1b03c5642fe8489061c732e43b10558c850129b576970e4f77a5d4c25317a',
+        'com.theartofdev.edmodo:android-image-cropper:5516ea87672e478b3d0ed5c274a7df27d22c02e66f899388f9b8bee93669e176',
         'mobi.upod:time-duration-picker:db469ce0f48dd96b892eac424ed76870e54bf00fe0a28cdcddfbe5f2a226a0e1',
         'cn.carbswang.android:NumberPickerView:18b3c316d62c7c277978a8d4ed57a5b8f4e943762264960f579a8a549c756729',
         'com.tomergoldst.android:tooltips:4c56697dd1ad64b8066535c61f961a6d901e7ae5d97ae27084ba40ad620349b6',
