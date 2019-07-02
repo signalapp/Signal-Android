@@ -40,8 +40,8 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.animation.BaseInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -1014,7 +1014,7 @@ public final class CameraXView extends ViewGroup {
   private class PinchToZoomGestureDetector extends ScaleGestureDetector
       implements ScaleGestureDetector.OnScaleGestureListener {
     private static final float SCALE_MULTIPIER = 0.75f;
-    private final BaseInterpolator mInterpolator = new DecelerateInterpolator(2f);
+    private final Interpolator mInterpolator = new DecelerateInterpolator(2f);
     private float mNormalizedScaleFactor = 0;
 
     PinchToZoomGestureDetector(Context context) {
