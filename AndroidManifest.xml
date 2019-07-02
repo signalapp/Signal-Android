@@ -96,8 +96,7 @@
                  tools:replace="android:allowBackup"
                  android:allowBackup="false"
                  android:theme="@style/TextSecure.LightTheme"
-                 android:largeHeap="true"
-                 android:networkSecurityConfig="@xml/local_audio_server_config">
+                 android:largeHeap="true">
 
     <meta-data
             android:name="com.google.android.geo.API_KEY"
