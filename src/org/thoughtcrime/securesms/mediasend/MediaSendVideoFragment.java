@@ -45,12 +45,9 @@ public class MediaSendVideoFragment extends Fragment implements MediaSendPageFra
 
     uri = getArguments().getParcelable(KEY_URI);
     VideoSlide slide = new VideoSlide(requireContext(), uri, 0);
-    try {
-      ((VideoPlayer) view).setWindow(requireActivity().getWindow());
-      ((VideoPlayer) view).setVideoSource(slide, false);
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to play video.", e);
-    }
+
+    ((VideoPlayer) view).setWindow(requireActivity().getWindow());
+    ((VideoPlayer) view).setVideoSource(slide, false);
   }
 
   @Override
