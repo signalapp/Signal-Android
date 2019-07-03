@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.gcm.MessageRetriever;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -38,6 +39,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   private SignalServiceMessageSender   messageSender;
   private SignalServiceMessageReceiver messageReceiver;
   private IncomingMessageProcessor     incomingMessageProcessor;
+  private MessageRetriever             messageRetriever;
 
   public ApplicationDependencyProvider(@NonNull Context context, @NonNull SignalServiceNetworkAccess networkAccess) {
     this.context       = context.getApplicationContext();
@@ -102,6 +104,15 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     }
 
     return incomingMessageProcessor;
+  }
+
+  @Override
+  public @NonNull MessageRetriever getMessageRetriever() {
+    if (messageRetriever == null) {
+      messageRetriever = new MessageRetriever();
+    }
+
+    return messageRetriever;
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

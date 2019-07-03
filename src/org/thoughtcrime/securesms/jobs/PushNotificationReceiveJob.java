@@ -3,15 +3,13 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.IncomingMessageProcessor.Processor;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.gcm.MessageRetriever;
+import org.thoughtcrime.securesms.gcm.RestStrategy;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -48,20 +46,16 @@ public class PushNotificationReceiveJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    pullAndProcessMessages(ApplicationDependencies.getSignalServiceMessageReceiver(), TAG, System.currentTimeMillis());
-  }
+    MessageRetriever retriever = ApplicationDependencies.getMessageRetriever();
+    boolean          result    = retriever.retrieveMessages(context, new RestStrategy(context));
 
-  public void pullAndProcessMessages(SignalServiceMessageReceiver receiver, String tag, long startTime) throws IOException {
-    try (Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
-      receiver.retrieveMessages(envelope -> {
-        Log.i(tag, "Retrieved an envelope." + timeSuffix(startTime));
-        processor.processEnvelope(envelope);
-        Log.i(tag, "Successfully processed an envelope." + timeSuffix(startTime));
-      });
-      TextSecurePreferences.setNeedsMessagePull(context, false);
-      MessageNotifier.cancelMessagesPending(context);
+    if (result) {
+      Log.i(TAG, "Successfully pulled messages.");
+    } else {
+      throw new PushNetworkException("Failed to pull messages.");
     }
   }
+
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
     Log.w(TAG, e);

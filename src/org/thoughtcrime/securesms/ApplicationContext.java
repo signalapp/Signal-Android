@@ -141,7 +141,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     Log.i(TAG, "App is now visible.");
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
-    MessageNotifier.cancelMessagesPending(this);
   }
 
   @Override
