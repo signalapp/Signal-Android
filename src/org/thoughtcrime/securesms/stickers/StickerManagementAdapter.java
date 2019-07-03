@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.stickers;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.annimon.stream.Stream;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.thoughtcrime.securesms.R;
@@ -75,8 +73,8 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
   }
 
   @Override
-  public void bindViewHolder(@NonNull StickerSection section, @NonNull RecyclerView.ViewHolder viewHolder, int position) {
-    section.bindViewHolder(viewHolder, position, glideRequests, eventListener);
+  public void bindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, @NonNull StickerSection section, int localPosition) {
+    section.bindViewHolder(viewHolder, localPosition, glideRequests, eventListener);
   }
 
   @Override
@@ -166,12 +164,10 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
     }
 
     void bindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder,
-                        int globalPosition,
+                        int localPosition,
                         @NonNull GlideRequests glideRequests,
                         @NonNull EventListener eventListener)
     {
-      int localPosition = getLocalPosition(globalPosition);
-
       if (localPosition == 0) {
         ((HeaderViewHolder) viewHolder).bind(titleResId);
       } else if (records.isEmpty()) {

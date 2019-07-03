@@ -133,6 +133,19 @@
 
                 </FrameLayout>
 
+                <ImageView
+                    android:id="@+id/mediasend_continue_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_gravity="bottom|end"
+                    android:padding="6dp"
+                    android:background="@drawable/media_continue_button_background"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_continue_24"
+                    tools:visibility="visible"/>
+
+
             </LinearLayout>
 
             <include

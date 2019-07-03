@@ -66,6 +66,17 @@
 
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/camera_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="82dp"
+        android:src="@drawable/ic_camera_alt_white_24dp"
+        android:tint="@color/core_grey_60"
+        android:focusable="true"
+        app:backgroundTint="@color/core_white"/>
 
     <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
             android:id="@+id/fab"

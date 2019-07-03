@@ -34,7 +34,7 @@ public abstract class SectionedRecyclerViewAdapter<IdType, SectionImpl extends S
   protected @NonNull abstract RecyclerView.ViewHolder createHeaderViewHolder(@NonNull ViewGroup parent);
   protected @NonNull abstract RecyclerView.ViewHolder createContentViewHolder(@NonNull ViewGroup parent);
   protected @Nullable abstract RecyclerView.ViewHolder createEmptyViewHolder(@NonNull ViewGroup viewGroup);
-  protected abstract void bindViewHolder(@NonNull SectionImpl section, @NonNull RecyclerView.ViewHolder holder, int position);
+  protected abstract void bindViewHolder(@NonNull RecyclerView.ViewHolder holder, @NonNull SectionImpl section, int localPosition);
 
   @Override
   public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -55,30 +55,30 @@ public abstract class SectionedRecyclerViewAdapter<IdType, SectionImpl extends S
   }
 
   @Override
-  public long getItemId(int position) {
+  public long getItemId(int globalPosition) {
     for (SectionImpl section: getSections()) {
-      if (section.handles(position)) {
-        return section.getItemId(stableIdGenerator, position);
+      if (section.handles(globalPosition)) {
+        return section.getItemId(stableIdGenerator, globalPosition);
       }
     }
     throw new NoSectionException();
   }
 
   @Override
-  public int getItemViewType(int position) {
+  public int getItemViewType(int globalPosition) {
     for (SectionImpl section : getSections()) {
-      if (section.handles(position)) {
-        return section.getViewType(position);
+      if (section.handles(globalPosition)) {
+        return section.getViewType(globalPosition);
       }
     }
     throw new NoSectionException();
   }
 
   @Override
-  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int globalPosition) {
     for (SectionImpl section : getSections()) {
-      if (section.handles(position)) {
-        bindViewHolder(section, holder, position);
+      if (section.handles(globalPosition)) {
+        bindViewHolder(holder, section, section.getLocalPosition(globalPosition));
         return;
       }
     }
@@ -106,12 +106,12 @@ public abstract class SectionedRecyclerViewAdapter<IdType, SectionImpl extends S
     public abstract int getContentSize();
     public abstract long getItemId(@NonNull StableIdGenerator<E> idGenerator, int globalPosition);
 
-    protected int getLocalPosition(int globalPosition) {
+    protected final int getLocalPosition(int globalPosition) {
       return globalPosition - offset;
     }
 
-    public int getViewType(int globalPosition) {
-      int localPosition = globalPosition - offset;
+    final int getViewType(int globalPosition) {
+      int localPosition = getLocalPosition(globalPosition);
 
       if (localPosition == 0) {
         return TYPE_HEADER;
@@ -122,12 +122,12 @@ public abstract class SectionedRecyclerViewAdapter<IdType, SectionImpl extends S
       }
     }
 
-    public boolean handles(int globalPosition) {
-      int localPosition = globalPosition - offset;
+    final boolean handles(int globalPosition) {
+      int localPosition = getLocalPosition(globalPosition);
       return localPosition >= 0 && localPosition < size();
     }
 
-    public int size() {
+    public final int size() {
       if (getContentSize() == 0 && hasEmptyState()) {
         return 2;
       } else if (getContentSize() == 0) {

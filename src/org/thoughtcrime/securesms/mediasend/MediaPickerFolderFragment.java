@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -29,20 +28,27 @@ import org.whispersystems.libsignal.util.guava.Optional;
  */
 public class MediaPickerFolderFragment extends Fragment implements MediaPickerFolderAdapter.EventListener {
 
-  private static final String KEY_RECIPIENT_NAME = "recipient_name";
+  private static final String KEY_TOOLBAR_TITLE = "toolbar_title";
 
-  private String             recipientName;
+  private String             toolbarTitle;
   private MediaSendViewModel viewModel;
   private Controller         controller;
   private GridLayoutManager  layoutManager;
 
-  public static @NonNull MediaPickerFolderFragment newInstance(@NonNull Recipient recipient) {
-    String name = Optional.fromNullable(recipient.getName())
-                          .or(Optional.fromNullable(recipient.getProfileName()))
-                          .or(recipient.toShortString());
+  public static @NonNull MediaPickerFolderFragment newInstance(@NonNull Context context, @Nullable Recipient recipient) {
+    String toolbarTitle;
+
+    if (recipient != null) {
+      String name = Optional.fromNullable(recipient.getName())
+                     .or(Optional.fromNullable(recipient.getProfileName()))
+                     .or(recipient.toShortString());
+      toolbarTitle = context.getString(R.string.MediaPickerActivity_send_to, name);
+    } else {
+      toolbarTitle = "";
+    }
 
     Bundle args = new Bundle();
-    args.putString(KEY_RECIPIENT_NAME, name);
+    args.putString(KEY_TOOLBAR_TITLE, toolbarTitle);
 
     MediaPickerFolderFragment fragment = new MediaPickerFolderFragment();
     fragment.setArguments(args);
@@ -55,8 +61,8 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
 
-    recipientName = getArguments().getString(KEY_RECIPIENT_NAME);
-    viewModel     = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
+    toolbarTitle = getArguments().getString(KEY_TOOLBAR_TITLE);
+    viewModel    = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
 
   @Override
@@ -123,7 +129,7 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
   private void initToolbar(Toolbar toolbar) {
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
     ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getString(R.string.MediaPickerActivity_send_to, recipientName));
+    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(toolbarTitle);
 
     toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
   }

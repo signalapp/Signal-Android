@@ -12,10 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.ControllableViewPager;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
@@ -29,8 +26,6 @@ public class MediaSendFragment extends Fragment {
 
   private static final String TAG = MediaSendFragment.class.getSimpleName();
 
-  private static final String KEY_ADDRESS   = "address";
-  private static final String KEY_TRANSPORT = "transport";
   private static final String KEY_LOCALE    = "locale";
 
   private ViewGroup                     playbackControlsContainer;
@@ -40,10 +35,8 @@ public class MediaSendFragment extends Fragment {
   private MediaSendViewModel viewModel;
 
 
-  public static MediaSendFragment newInstance(@NonNull Recipient recipient, @NonNull TransportOption transport, @NonNull Locale locale) {
+  public static MediaSendFragment newInstance(@NonNull Locale locale) {
     Bundle args = new Bundle();
-    args.putParcelable(KEY_ADDRESS, recipient.getAddress());
-    args.putParcelable(KEY_TRANSPORT, transport);
     args.putSerializable(KEY_LOCALE, locale);
 
     MediaSendFragment fragment = new MediaSendFragment();
@@ -53,19 +46,17 @@ public class MediaSendFragment extends Fragment {
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    return ThemeUtil.getThemedInflater(requireActivity(), inflater, R.style.TextSecure_DarkTheme)
-                    .inflate(R.layout.mediasend_fragment, container, false);
+    return inflater.inflate(R.layout.mediasend_fragment, container, false);
   }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    initViewModel();
   }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    initViewModel();
     fragmentPager             = view.findViewById(R.id.mediasend_pager);
     playbackControlsContainer = view.findViewById(R.id.mediasend_playback_controls_container);
 
@@ -89,6 +80,9 @@ public class MediaSendFragment extends Fragment {
   @Override
   public void onHiddenChanged(boolean hidden) {
     super.onHiddenChanged(hidden);
+    if (!hidden) {
+      viewModel.onImageEditorStarted();
+    }
   }
 
   @Override

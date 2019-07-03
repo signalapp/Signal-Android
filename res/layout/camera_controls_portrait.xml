@@ -35,6 +35,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="32dp"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="@id/camera_capture_button"
         app:layout_constraintBottom_toBottomOf="@id/camera_capture_button"
         app:layout_constraintStart_toStartOf="parent"

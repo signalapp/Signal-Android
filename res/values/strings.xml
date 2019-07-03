@@ -91,6 +91,17 @@
     <!-- CameraActivity -->
     <string name="CameraActivity_image_save_failure">Failed to save image.</string>
 
+    <!-- CameraContacts -->
+    <string name="CameraContacts_recent_contacts">Recent contacts</string>
+    <string name="CameraContacts_signal_contacts">Signal contacts</string>
+    <string name="CameraContacts_signal_groups">Signal groups</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %d conversations.</string>
+    <string name="CameraContacts_select_signal_recipients">Select Signal recipients</string>
+    <string name="CameraContacts_no_signal_contacts">No Signal contacts</string>
+    <string name="CameraContacts_you_can_only_use_the_camera_button">You can only use the camera button to send photos to Signal contacts. </string>
+    <string name="CameraContacts_cant_find_who_youre_looking_for">Can\'t find who you\'re looking for?</string>
+    <string name="CameraContacts_invite_a_contact_to_join_signal">Invite a contact to join Signal</string>
+
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
     <string name="ClearProfileActivity_remove_profile_photo">Remove profile photo?</string>
@@ -480,6 +491,8 @@
     <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">An item was removed because it exceeded the size limit</string>
     <string name="MediaSendActivity_camera_unavailable">Camera unavailable.</string>
     <string name="MediaSendActivity_message_to_s">Message to %s</string>
+    <string name="MediaSendActivity_message">Message</string>
+    <string name="MediaSendActivity_select_recipients">Select recipients</string>
     <plurals name="MediaSendActivity_cant_share_more_than_n_items">
         <item quantity="one">You can\'t share more than %d item.</item>
         <item quantity="other">You can\'t share more than %d items.</item>

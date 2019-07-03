@@ -16,14 +16,20 @@
  */
 package org.thoughtcrime.securesms.sms;
 
+import android.app.Application;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
+import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -43,6 +49,7 @@ import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -52,6 +59,9 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MessageSender {
 
@@ -109,6 +119,100 @@ public class MessageSender {
     } catch (MmsException e) {
       Log.w(TAG, e);
       return threadId;
+    }
+  }
+
+  public static void sendMediaBroadcast(@NonNull Context context, @NonNull List<OutgoingSecureMediaMessage> messages) {
+    if (messages.isEmpty()) {
+      Log.w(TAG, "sendMediaBroadcast() - No messages!");
+      return;
+    }
+
+    if (!isValidBroadcastList(messages)) {
+      Log.w(TAG, "sendMediaBroadcast() - Invalid message list!");
+      return;
+    }
+
+    ThreadDatabase           threadDatabase     = DatabaseFactory.getThreadDatabase(context);
+    MmsDatabase              mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
+    AttachmentDatabase       attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    List<List<AttachmentId>> attachmentIds      = new ArrayList<>(messages.get(0).getAttachments().size());
+    List<Long>               messageIds         = new ArrayList<>(messages.size());
+
+    for (int i = 0; i < messages.get(0).getAttachments().size(); i++) {
+      attachmentIds.add(new ArrayList<>(messages.size()));
+    }
+
+    try {
+      try {
+        mmsDatabase.beginTransaction();
+
+        for (OutgoingSecureMediaMessage message : messages) {
+          long                     allocatedThreadId = threadDatabase.getThreadIdFor(message.getRecipient(), message.getDistributionType());
+          long                     messageId         = mmsDatabase.insertMessageOutbox(message, allocatedThreadId, false, null);
+          List<DatabaseAttachment> attachments       = attachmentDatabase.getAttachmentsForMessage(messageId);
+
+          if (attachments.size() != attachmentIds.size()) {
+            Log.w(TAG, "Got back an attachment list that was a different size than expected. Expected: " + attachmentIds.size() + "  Actual: "+ attachments.size());
+            return;
+          }
+
+          for (int i = 0; i < attachments.size(); i++) {
+            attachmentIds.get(i).add(attachments.get(i).getAttachmentId());
+          }
+
+          messageIds.add(messageId);
+        }
+
+        mmsDatabase.setTransactionSuccessful();
+      } finally {
+        mmsDatabase.endTransaction();
+      }
+
+      List<AttachmentUploadJob> uploadJobs  = new ArrayList<>(attachmentIds.size());
+      List<AttachmentCopyJob>   copyJobs    = new ArrayList<>(attachmentIds.size());
+      List<Job>                 messageJobs = new ArrayList<>(attachmentIds.get(0).size());
+
+      for (List<AttachmentId> idList : attachmentIds) {
+        uploadJobs.add(new AttachmentUploadJob(idList.get(0)));
+
+        if (idList.size() > 1) {
+          AttachmentId       sourceId       = idList.get(0);
+          List<AttachmentId> destinationIds = idList.subList(1, idList.size());
+
+          copyJobs.add(new AttachmentCopyJob(sourceId, destinationIds));
+        }
+      }
+
+      for (int i = 0; i < messageIds.size(); i++) {
+        long                       messageId = messageIds.get(i);
+        OutgoingSecureMediaMessage message   = messages.get(i);
+        Recipient                  recipient = message.getRecipient();
+
+        if (isLocalSelfSend(context, recipient, false)) {
+          sendLocalMediaSelf(context, messageId);
+        } else if (isGroupPushSend(recipient)) {
+          messageJobs.add(new PushGroupSendJob(messageId, recipient.getAddress(), null));
+        } else {
+          messageJobs.add(new PushMediaSendJob(messageId, recipient.getAddress()));
+        }
+      }
+
+      Log.i(TAG, String.format(Locale.ENGLISH, "sendMediaBroadcast() - Uploading %d attachment(s), copying %d of them, then sending %d messages.",
+                               uploadJobs.size(),
+                               copyJobs.size(),
+                               messageJobs.size()));
+
+      JobManager.Chain chain = ApplicationContext.getInstance(context).getJobManager().startChain(uploadJobs);
+
+      if (copyJobs.size() > 0) {
+        chain = chain.then(copyJobs);
+      }
+
+      chain = chain.then(messageJobs);
+      chain.enqueue();
+    } catch (MmsException e) {
+      Log.w(TAG, "sendMediaBroadcast() - Failed to send messages!", e);
     }
   }
 
@@ -291,5 +395,21 @@ public class MessageSender {
     } catch (NoSuchMessageException e) {
       Log.w("Failed to update self-sent message.", e);
     }
+  }
+
+  private static boolean isValidBroadcastList(@NonNull List<OutgoingSecureMediaMessage> messages) {
+    if (messages.isEmpty()) {
+      return false;
+    }
+
+    int attachmentSize = messages.get(0).getAttachments().size();
+
+    for (OutgoingSecureMediaMessage message : messages) {
+      if (message.getAttachments().size() != attachmentSize) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }

@@ -26,6 +26,8 @@
     <dimen name="album_5_cell_size_big">104dp</dimen>
     <dimen name="album_5_cell_size_small">69dp</dimen>
 
+    <dimen name="camera_contacts_horizontal_margin">16dp</dimen>
+
     <dimen name="message_corner_radius">16dp</dimen>
     <dimen name="message_corner_collapse_radius">4dp</dimen>
     <dimen name="message_bubble_corner_radius">2dp</dimen>

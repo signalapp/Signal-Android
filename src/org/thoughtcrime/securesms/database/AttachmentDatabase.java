@@ -232,7 +232,7 @@ public class AttachmentDatabase extends Database {
 
     try {
       cursor = database.query(TABLE_NAME, PROJECTION, MMS_ID + " = ?", new String[] {mmsId+""},
-                              null, null, null);
+                              null, null, UNIQUE_ID + " ASC, " + ROW_ID + " ASC");
 
       while (cursor != null && cursor.moveToNext()) {
         results.addAll(getAttachment(cursor));
@@ -418,6 +418,44 @@ public class AttachmentDatabase extends Database {
     }
 
     thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
+  }
+
+  public void copyAttachmentData(@NonNull AttachmentId sourceId, @NonNull AttachmentId destinationId)
+      throws MmsException, IOException
+  {
+    DatabaseAttachment sourceAttachment = getAttachment(sourceId);
+
+    if (sourceAttachment == null) {
+      throw new MmsException("Cannot find attachment for source!");
+    }
+
+    SQLiteDatabase database       = databaseHelper.getWritableDatabase();
+    DataInfo       copyToDataInfo = getAttachmentDataFileInfo(destinationId, DATA);
+
+    if (copyToDataInfo == null) {
+      throw new MmsException("No attachment data found for destination!");
+    }
+
+    copyToDataInfo = setAttachmentData(copyToDataInfo.file, getAttachmentStream(sourceId, 0));
+
+    ContentValues contentValues = new ContentValues();
+
+    contentValues.put(SIZE, copyToDataInfo.length);
+    contentValues.put(DATA_RANDOM, copyToDataInfo.random);
+
+    contentValues.put(TRANSFER_STATE, sourceAttachment.getTransferState());
+    contentValues.put(CONTENT_LOCATION, sourceAttachment.getLocation());
+    contentValues.put(DIGEST, sourceAttachment.getDigest());
+    contentValues.put(CONTENT_DISPOSITION, sourceAttachment.getKey());
+    contentValues.put(NAME, sourceAttachment.getRelay());
+    contentValues.put(SIZE, sourceAttachment.getSize());
+    contentValues.put(FAST_PREFLIGHT_ID, sourceAttachment.getFastPreflightId());
+    contentValues.put(WIDTH, sourceAttachment.getWidth());
+    contentValues.put(HEIGHT, sourceAttachment.getHeight());
+    contentValues.put(CONTENT_TYPE, sourceAttachment.getContentType());
+
+
+    database.update(TABLE_NAME, contentValues, PART_ID_WHERE, destinationId.toStrings());
   }
 
   public void updateAttachmentAfterUpload(@NonNull AttachmentId id, @NonNull Attachment attachment) {

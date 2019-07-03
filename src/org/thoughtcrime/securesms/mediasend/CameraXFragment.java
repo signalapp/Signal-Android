@@ -216,7 +216,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     }
 
     galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
-    countButton.setOnClickListener(v -> controller.onContinueClicked());
+    countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
 
     viewModel.onCameraControlsInitialized();
   }

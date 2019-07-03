@@ -182,7 +182,7 @@ public class JobManager implements ConstraintObserver.Notifier {
       return then(Collections.singletonList(job));
     }
 
-    public Chain then(@NonNull List<Job> jobs) {
+    public Chain then(@NonNull List<? extends Job> jobs) {
       if (!jobs.isEmpty()) {
         this.jobs.add(new ArrayList<>(jobs));
       }

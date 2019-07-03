@@ -23,6 +23,6 @@ public interface CameraFragment {
     void onImageCaptured(@NonNull byte[] data, int width, int height);
     void onGalleryClicked();
     int getDisplayRotation();
-    void onContinueClicked();
+    void onCameraCountButtonClicked();
   }
 }

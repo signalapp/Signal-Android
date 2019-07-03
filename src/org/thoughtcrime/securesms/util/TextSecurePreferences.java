@@ -185,6 +185,8 @@ public class TextSecurePreferences {
 
   private static final String REVEALABLE_MESSAGE_DEFAULT = "pref_revealable_message_default";
 
+  private static final String SEEN_CAMERA_FIRST_TOOLTIP = "pref_seen_camera_first_tooltip";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -1106,6 +1108,14 @@ public class TextSecurePreferences {
 
   public static boolean isRevealableMessageEnabled(Context context) {
     return getBooleanPreference(context, REVEALABLE_MESSAGE_DEFAULT, false);
+  }
+
+  public static void setHasSeenCameraFirstTooltip(Context context, boolean value) {
+    setBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, value);
+  }
+
+  public static boolean hasSeendCameraFirstTooltip(Context context) {
+    return getBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, false);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

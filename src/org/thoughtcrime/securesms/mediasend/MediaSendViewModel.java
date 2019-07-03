@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.app.Application;
+
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -17,7 +19,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.revealable.RevealableUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -58,7 +59,7 @@ class MediaSendViewModel extends ViewModel {
   private int              maxSelection;
   private Page             page;
   private boolean          isSms;
-  private boolean          isNoteToSelf;
+  private Recipient        recipient;
   private Optional<Media>  lastCameraCapture;
 
   private boolean     hudVisible;
@@ -103,8 +104,8 @@ class MediaSendViewModel extends ViewModel {
     }
   }
 
-  void setRecipient(@NonNull Recipient recipient) {
-    isNoteToSelf = recipient.isLocalNumber();
+  void setRecipient(@Nullable Recipient recipient) {
+    this.recipient = recipient;
   }
 
   void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
@@ -183,7 +184,7 @@ class MediaSendViewModel extends ViewModel {
     hudVisible     = true;
     composeVisible = revealState != RevealState.ENABLED;
     captionVisible = getSelectedMediaOrDefault().size() > 1 || (getSelectedMediaOrDefault().size() > 0 && getSelectedMediaOrDefault().get(0).getCaption().isPresent());
-    buttonState    = ButtonState.SEND;
+    buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
     if (revealState == RevealState.GONE && revealSupported()) {
       revealState = TextSecurePreferences.isRevealableMessageEnabled(application) ? RevealState.ENABLED : RevealState.DISABLED;
@@ -244,6 +245,12 @@ class MediaSendViewModel extends ViewModel {
     hudState.setValue(buildHudState());
   }
 
+  void onContactSelectStarted() {
+    hudVisible = false;
+
+    hudState.setValue(buildHudState());
+  }
+
   void onRevealButtonToggled() {
     hudVisible     = true;
     revealState    = revealState == RevealState.ENABLED ? RevealState.DISABLED : RevealState.ENABLED;
@@ -266,7 +273,7 @@ class MediaSendViewModel extends ViewModel {
     if (page != Page.EDITOR) return;
 
     composeVisible = (revealState != RevealState.ENABLED);
-    buttonState    = ButtonState.SEND;
+    buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
     if (isSms) {
       railState      = RailState.GONE;
@@ -289,7 +296,7 @@ class MediaSendViewModel extends ViewModel {
       railState      = RailState.GONE;
       composeVisible = (revealState == RevealState.GONE);
       captionVisible = false;
-      buttonState    = ButtonState.SEND;
+      buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
     } else {
       if (isCaptionFocused) {
         railState      = revealState != RevealState.ENABLED ? RailState.INTERACTIVE : RailState.GONE;
@@ -300,7 +307,7 @@ class MediaSendViewModel extends ViewModel {
         railState      = revealState != RevealState.ENABLED ? RailState.INTERACTIVE : RailState.GONE;
         composeVisible = (revealState != RevealState.ENABLED);
         captionVisible = false;
-        buttonState    = ButtonState.SEND;
+        buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
       }
     }
 
@@ -500,11 +507,11 @@ class MediaSendViewModel extends ViewModel {
   }
 
   enum Page {
-    CAMERA, ITEM_PICKER, FOLDER_PICKER, EDITOR, UNKNOWN
+    CAMERA, ITEM_PICKER, FOLDER_PICKER, EDITOR, CONTACT_SELECT, UNKNOWN
   }
 
   enum ButtonState {
-    COUNT, SEND, GONE
+    COUNT, SEND, CONTINUE, GONE
   }
 
   enum RailState {

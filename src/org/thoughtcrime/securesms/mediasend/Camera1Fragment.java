@@ -39,7 +39,6 @@ import com.bumptech.glide.request.transition.Transition;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -267,7 +266,7 @@ public class Camera1Fragment extends Fragment implements CameraFragment,
     });
 
     galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
-    countButton.setOnClickListener(v -> controller.onContinueClicked());
+    countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
 
     viewModel.onCameraControlsInitialized();
   }

@@ -35,26 +35,35 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.SendButton;
+import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mediasend.MediaSendViewModel.RevealState;
+import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
+import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -67,6 +76,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -83,6 +93,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                                                                       MediaPickerItemFragment.Controller,
                                                                                       ImageEditorFragment.Controller,
                                                                                       CameraFragment.Controller,
+                                                                                      CameraContactSelectionFragment.Controller,
                                                                                       ViewTreeObserver.OnGlobalLayoutListener,
                                                                                       MediaRailAdapter.RailItemListener,
                                                                                       InputAwareLayout.OnKeyboardShownListener,
@@ -106,10 +117,10 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private static final String TAG_ITEM_PICKER   = "item_picker";
   private static final String TAG_SEND          = "send";
   private static final String TAG_CAMERA        = "camera";
+  private static final String TAG_CONTACTS      = "contacts";
 
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private @Nullable Recipient recipient;
 
-  private Recipient          recipient;
   private TransportOption    transport;
   private MediaSendViewModel viewModel;
 
@@ -122,6 +133,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private ViewGroup           composeContainer;
   private ViewGroup           countButton;
   private TextView            countButtonText;
+  private View                continueButton;
   private ImageView           revealButton;
   private EmojiEditText       captionText;
   private EmojiToggle         emojiToggle;
@@ -139,9 +151,17 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
    */
   public static Intent buildGalleryIntent(@NonNull Context context, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
     Intent intent = new Intent(context, MediaSendActivity.class);
-    intent.putExtra(KEY_ADDRESS, recipient.getAddress().serialize());
+    intent.putExtra(KEY_ADDRESS, recipient.getAddress());
     intent.putExtra(KEY_TRANSPORT, transport);
     intent.putExtra(KEY_BODY, body);
+    return intent;
+  }
+
+  public static Intent buildCameraFirstIntent(@NonNull Context context) {
+    Intent intent = new Intent(context, MediaSendActivity.class);
+    intent.putExtra(KEY_TRANSPORT, TransportOptions.getPushTransportOption(context));
+    intent.putExtra(KEY_BODY, "");
+    intent.putExtra(KEY_IS_CAMERA, true);
     return intent;
   }
 
@@ -170,11 +190,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
-  protected void onPreCreate() {
-    dynamicLanguage.onCreate(this);
-  }
-
-  @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     setContentView(R.layout.mediasend_activity);
     setResult(RESULT_CANCELED);
@@ -192,6 +207,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     composeContainer    = findViewById(R.id.mediasend_compose_container);
     countButton         = findViewById(R.id.mediasend_count_button);
     countButtonText     = findViewById(R.id.mediasend_count_button_text);
+    continueButton      = findViewById(R.id.mediasend_continue_button);
     revealButton        = findViewById(R.id.mediasend_reveal_toggle);
     captionText         = findViewById(R.id.mediasend_caption);
     emojiToggle         = findViewById(R.id.mediasend_emoji_toggle);
@@ -199,8 +215,12 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     mediaRail           = findViewById(R.id.mediasend_media_rail);
     emojiDrawer         = new Stub<>(findViewById(R.id.mediasend_emoji_drawer_stub));
 
+    Address address = getIntent().getParcelableExtra(KEY_ADDRESS);
+    if (address != null) {
+      recipient = Recipient.from(this, address, true);
+    }
+
     viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
-    recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 
     viewModel.setTransport(transport);
@@ -219,12 +239,12 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     } else if (!Util.isEmpty(media)) {
       viewModel.onSelectedMediaChanged(this, media);
 
-      Fragment fragment = MediaSendFragment.newInstance(recipient, transport, dynamicLanguage.getCurrentLocale());
+      Fragment fragment = MediaSendFragment.newInstance(Locale.getDefault());
       getSupportFragmentManager().beginTransaction()
                                  .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
                                  .commit();
     } else {
-      MediaPickerFolderFragment fragment = MediaPickerFolderFragment.newInstance(recipient);
+      MediaPickerFolderFragment fragment = MediaPickerFolderFragment.newInstance(this, recipient);
       getSupportFragmentManager().beginTransaction()
                                  .replace(R.id.mediasend_fragment_container, fragment, TAG_FOLDER_PICKER)
                                  .commit();
@@ -238,9 +258,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       MediaSendFragment fragment = getMediaSendFragment();
 
       if (fragment != null) {
-        processMedia(fragment.getAllMedia(), fragment.getSavedState());
+        processMedia(fragment.getAllMedia(), fragment.getSavedState(), processedMedia -> {
+          setActivityResultAndFinish(processedMedia, composeText.getTextTrimmed(), transport);
+        });
       } else {
-        throw new AssertionError("No send fragment available!");
+        throw new AssertionError("No editor fragment available!");
       }
     });
 
@@ -279,11 +301,13 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     sendButton.setTransport(transport);
     sendButton.disableTransport(transport.getType() == TransportOption.Type.SMS ? TransportOption.Type.TEXTSECURE : TransportOption.Type.SMS);
 
-    countButton.setOnClickListener(v -> navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale()));
+    countButton.setOnClickListener(v -> navigateToMediaSend(Locale.getDefault()));
 
     composeText.append(viewModel.getBody());
 
-    if (recipient.isLocalNumber()) {
+    if (recipient == null) {
+      composeText.setHint(R.string.MediaSendActivity_message);
+    } else if (recipient.isLocalNumber()) {
       composeText.setHint(getString(R.string.note_to_self), null);
     } else {
       String displayName = Optional.fromNullable(recipient.getName())
@@ -307,12 +331,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     initViewModel();
 
     revealButton.setOnClickListener(v -> viewModel.onRevealButtonToggled());
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicLanguage.onResume(this);
+    continueButton.setOnClickListener(v -> navigateToContactSelect());
   }
 
   @Override
@@ -345,7 +364,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   @Override
   public void onMediaSelected(@NonNull Media media) {
     viewModel.onSingleMediaSelected(this, media);
-    navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
+    navigateToMediaSend(Locale.getDefault());
   }
 
   @Override
@@ -393,7 +412,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       Log.i(TAG, "Camera capture stored: " + media.getUri().toString());
 
       viewModel.onImageCaptured(media);
-      navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
+      navigateToMediaSend(Locale.getDefault());
     });
   }
 
@@ -403,13 +422,13 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
-  public void onContinueClicked() {
-    navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
+  public void onCameraCountButtonClicked() {
+    navigateToMediaSend(Locale.getDefault());
   }
 
   @Override
   public void onGalleryClicked() {
-    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(recipient);
+    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient);
 
     getSupportFragmentManager().beginTransaction()
                                .replace(R.id.mediasend_fragment_container, folderFragment, TAG_FOLDER_PICKER)
@@ -467,9 +486,22 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     navigateToCamera();
   }
 
+  @Override
+  public void onCameraContactsSendClicked(@NonNull List<Recipient> recipients) {
+    MediaSendFragment fragment = getMediaSendFragment();
+
+    if (fragment != null) {
+      processMedia(fragment.getAllMedia(), fragment.getSavedState(), processedMedia -> {
+        sendMessages(recipients, processedMedia, composeText.getTextTrimmed(), transport);
+      });
+    } else {
+      throw new AssertionError("No editor fragment available!");
+    }
+  }
+
   public void onAddMediaClicked(@NonNull String bucketId) {
     // TODO: Get actual folder title somehow
-    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(recipient);
+    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient);
     MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
 
     getSupportFragmentManager().beginTransaction()
@@ -483,34 +515,10 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                .commit();
   }
 
-  public void onSendClicked(@NonNull List<Media> media, @NonNull String message, @NonNull TransportOption transport) {
-    viewModel.onSendClicked();
-
-    ArrayList<Media> mediaList = new ArrayList<>(media);
-
-    if (mediaList.size() > 0) {
-      Intent intent = new Intent();
-
-      intent.putParcelableArrayListExtra(EXTRA_MEDIA, mediaList);
-      intent.putExtra(EXTRA_MESSAGE, viewModel.getRevealDuration() == 0 ? message : "");
-      intent.putExtra(EXTRA_TRANSPORT, transport);
-      intent.putExtra(EXTRA_REVEAL_DURATION, viewModel.getRevealDuration());
-
-      setResult(RESULT_OK, intent);
-    } else {
-      setResult(RESULT_CANCELED);
-    }
-
-    finish();
-
-    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom);
-  }
-
   public void onNoMediaAvailable() {
     setResult(RESULT_CANCELED);
     finish();
   }
-
 
   private void initViewModel() {
     viewModel.getHudState().observe(this, state -> {
@@ -535,12 +543,26 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       switch (state.getButtonState()) {
         case SEND:
           sendButtonContainer.setVisibility(View.VISIBLE);
+          continueButton.setVisibility(View.GONE);
           countButton.setVisibility(View.GONE);
           break;
         case COUNT:
           sendButtonContainer.setVisibility(View.GONE);
+          continueButton.setVisibility(View.GONE);
           countButton.setVisibility(View.VISIBLE);
           countButtonText.setText(String.valueOf(state.getSelectionCount()));
+          break;
+        case CONTINUE:
+          sendButtonContainer.setVisibility(View.GONE);
+          countButton.setVisibility(View.GONE);
+          continueButton.setVisibility(View.VISIBLE);
+
+          if (!TextSecurePreferences.hasSeendCameraFirstTooltip(this)) {
+            TooltipPopup.forTarget(continueButton)
+                        .setText(R.string.MediaSendActivity_select_recipients)
+                        .show(TooltipPopup.POSITION_ABOVE);
+            TextSecurePreferences.setHasSeenCameraFirstTooltip(this, true);
+          }
           break;
         case GONE:
           sendButtonContainer.setVisibility(View.GONE);
@@ -624,8 +646,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     });
   }
 
-  private void navigateToMediaSend(@NonNull Recipient recipient, @NonNull TransportOption transport, @NonNull Locale locale) {
-    MediaSendFragment fragment     = MediaSendFragment.newInstance(recipient, transport, locale);
+  private void navigateToMediaSend(@NonNull Locale locale) {
+    MediaSendFragment fragment     = MediaSendFragment.newInstance(locale);
     String            backstackTag = null;
 
     if (getSupportFragmentManager().findFragmentByTag(TAG_SEND) != null) {
@@ -658,6 +680,27 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                .execute();
   }
 
+  private void navigateToContactSelect() {
+    if (hud.isInputOpen()) {
+      hud.hideCurrentInput(composeText);
+    }
+
+    Fragment contactFragment = CameraContactSelectionFragment.newInstance();
+    Fragment editorFragment  = getSupportFragmentManager().findFragmentByTag(TAG_SEND);
+
+    if (editorFragment == null) {
+      throw new AssertionError("No editor fragment available!");
+    }
+
+
+    getSupportFragmentManager().beginTransaction()
+                               .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
+                               .add(R.id.mediasend_fragment_container, contactFragment, TAG_CONTACTS)
+                               .hide(editorFragment)
+                               .addToBackStack(null)
+                               .commit();
+  }
+
   private Fragment getOrCreateCameraFragment() {
     Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_CAMERA);
     return fragment != null ? fragment : CameraFragment.newInstance();
@@ -675,7 +718,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     CharacterState characterState  = transportOption.calculateCharacters(messageBody);
 
     if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
-      charactersLeft.setText(String.format(dynamicLanguage.getCurrentLocale(),
+      charactersLeft.setText(String.format(Locale.getDefault(),
                                            "%d/%d (%d)",
                                            characterState.charactersRemaining,
                                            characterState.maxTotalMessageSize,
@@ -711,7 +754,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void processMedia(@NonNull List<Media> mediaList, @NonNull Map<Uri, Object> savedState) {
+  private void processMedia(@NonNull List<Media> mediaList, @NonNull Map<Uri, Object> savedState, @NonNull OnProcessComplete callback) {
     Map<Media, EditorModel> modelsToRender = new HashMap<>();
 
     for (Media media : mediaList) {
@@ -784,7 +827,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
       @Override
       protected void onPostExecute(List<Media> media) {
-        onSendClicked(media, composeText.getTextTrimmed(), sendButton.getSelectedTransport());
+        callback.onComplete(media);
         Util.cancelRunnableOnMain(progressTimer);
         if (dialog != null) {
           dialog.dismiss();
@@ -796,6 +839,81 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   private @Nullable MediaSendFragment getMediaSendFragment() {
     return (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
+  }
+
+  private void setActivityResultAndFinish(@NonNull List<Media> media, @NonNull String message, @NonNull TransportOption transport) {
+    viewModel.onSendClicked();
+
+    ArrayList<Media> mediaList = new ArrayList<>(media);
+
+    if (mediaList.size() > 0) {
+      Intent intent = new Intent();
+
+      intent.putParcelableArrayListExtra(EXTRA_MEDIA, mediaList);
+      intent.putExtra(EXTRA_MESSAGE, viewModel.getRevealDuration() == 0 ? message : "");
+      intent.putExtra(EXTRA_TRANSPORT, transport);
+      intent.putExtra(EXTRA_REVEAL_DURATION, viewModel.getRevealDuration());
+
+      setResult(RESULT_OK, intent);
+    } else {
+      setResult(RESULT_CANCELED);
+    }
+
+    finish();
+
+    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom);
+  }
+
+  private void sendMessages(@NonNull List<Recipient> recipients, @NonNull List<Media> media, @NonNull String body, @NonNull TransportOption transport) {
+    SimpleTask.run(() -> {
+      List<OutgoingSecureMediaMessage> messages = new ArrayList<>(recipients.size());
+
+      for (Recipient recipient : recipients) {
+        SlideDeck            slideDeck = buildSlideDeck(media);
+        OutgoingMediaMessage message   = new OutgoingMediaMessage(recipient,
+                                                                  body,
+                                                                  slideDeck.asAttachments(),
+                                                                  System.currentTimeMillis(),
+                                                                  -1,
+                                                                  recipient.getExpireMessages() * 1000,
+                                                                  viewModel.getRevealDuration(),
+                                                                  ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                  null,
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList());
+
+        messages.add(new OutgoingSecureMediaMessage(message));
+
+        // XXX We must do this to avoid sending out messages to the same recipient with the same
+        //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
+        Util.sleep(5);
+      }
+
+      MessageSender.sendMediaBroadcast(this, messages);
+      return null;
+    }, (nothing) -> {
+      finish();
+    });
+  }
+
+  private @NonNull SlideDeck buildSlideDeck(@NonNull List<Media> mediaList) {
+    SlideDeck slideDeck = new SlideDeck();
+
+    for (Media mediaItem : mediaList) {
+      if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
+        slideDeck.addSlide(new VideoSlide(this, mediaItem.getUri(), 0, mediaItem.getCaption().orNull()));
+      } else if (MediaUtil.isGif(mediaItem.getMimeType())) {
+        slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
+      } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
+        slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
+      } else {
+        Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.getMimeType() + "'. Skipping.");
+      }
+    }
+
+    return slideDeck;
   }
 
   private class ComposeKeyPressedListener implements View.OnKeyListener, View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
@@ -837,5 +955,9 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {}
+  }
+
+  private interface OnProcessComplete {
+    void onComplete(@NonNull List<Media> media);
   }
 }
