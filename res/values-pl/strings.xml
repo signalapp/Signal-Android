@@ -278,7 +278,7 @@
   <string name="CustomDefaultPreference_none">Brak</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teraz</string>
-  <string name="DateUtils_minutes_ago">%d minuta</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Dzisiaj</string>
   <string name="DateUtils_yesterday">Wczoraj</string>
   <!--DeliveryStatus-->
