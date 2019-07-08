@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
@@ -68,6 +69,10 @@ public class PushMediaSendJob extends PushSendJob {
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Address destination) {
     try {
+      if (!destination.isPhone()) {
+        throw new AssertionError();
+      }
+
       MmsDatabase          database    = DatabaseFactory.getMmsDatabase(context);
       OutgoingMediaMessage message     = database.getOutgoingMessage(messageId);
       List<Attachment>     attachments = new LinkedList<>();
@@ -200,11 +205,19 @@ public class PushMediaSendJob extends PushSendJob {
       throw new UndeliverableMessageException("No destination address.");
     }
 
+    final Address destination = message.getRecipient().getAddress();
+
+    if (!destination.isPhone()) {
+      if (destination.isEmail()) throw new UndeliverableMessageException("Not e164, is email");
+      if (destination.isGroup()) throw new UndeliverableMessageException("Not e164, is group");
+      throw new UndeliverableMessageException("Not e164, unknown");
+    }
+
     try {
       rotateSenderCertificateIfNecessary();
 
       SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-      SignalServiceAddress                       address            = getPushAddress(message.getRecipient().getAddress());
+      SignalServiceAddress                       address            = getPushAddress(destination);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
