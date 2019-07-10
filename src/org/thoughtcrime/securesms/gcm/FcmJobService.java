@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -58,10 +57,10 @@ public class FcmJobService extends JobService implements InjectableType {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         new PushNotificationReceiveJob(getApplicationContext()).pullAndProcessMessages(messageReceiver, TAG, System.currentTimeMillis());
+        Log.i(TAG, "Successfully retrieved messages.");
         jobFinished(params, false);
       } catch (IOException e) {
-        Log.w(TAG, "Failed to pull. Notifying and scheduling a retry.", e);
-        MessageNotifier.notifyMessagesPending(getApplicationContext());
+        Log.w(TAG, "Failed to pull. Scheduling a retry.", e);
         jobFinished(params, true);
       }
     });
