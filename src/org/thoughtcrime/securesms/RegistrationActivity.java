@@ -9,9 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -27,6 +24,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.dd.CircularProgressButton;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
@@ -71,6 +72,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.registration.CaptchaActivity;
+import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.VerificationCodeParser;
@@ -115,7 +117,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private static final int    SCENE_TRANSITION_DURATION = 250;
   private static final int    DEBUG_TAP_TARGET          = 8;
   private static final int    DEBUG_TAP_ANNOUNCE        = 4;
-  public static final  String RE_REGISTRATION_EXTRA     = "re_registration";
+  private static final long   PUSH_REQUEST_TIMEOUT_MS   = 5000L;
+
+  public static final String RE_REGISTRATION_EXTRA = "re_registration";
 
   private static final String TAG = RegistrationActivity.class.getSimpleName();
 
@@ -492,7 +496,10 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           }
 
           accountManager = AccountManagerFactory.createManager(RegistrationActivity.this, e164number, password);
-          accountManager.requestSmsVerificationCode(smsRetrieverSupported, registrationState.captchaToken, Optional.absent());
+
+          Optional<String> pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, fcmToken, e164number, PUSH_REQUEST_TIMEOUT_MS);
+
+          accountManager.requestSmsVerificationCode(smsRetrieverSupported, registrationState.captchaToken, pushChallenge);
 
           return new VerificationRequestResult(password, fcmToken, Optional.absent());
         } catch (IOException e) {
@@ -668,6 +675,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   @SuppressLint("StaticFieldLeak")
   private void handlePhoneCallRequest() {
+    final String e164number = getConfiguredE164Number();
+
     if (registrationState.state == RegistrationState.State.VERIFYING) {
       callMeCountDownView.startCountDown(300);
 
@@ -675,7 +684,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         @Override
         protected Void doInBackground(Void... voids) {
           try {
-            accountManager.requestVoiceVerificationCode(Locale.getDefault(), registrationState.captchaToken, Optional.absent());
+            Optional<String> pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, getFcmToken(), e164number, PUSH_REQUEST_TIMEOUT_MS);
+
+            accountManager.requestVoiceVerificationCode(Locale.getDefault(), registrationState.captchaToken, pushChallenge);
           } catch (CaptchaRequiredException e) {
             requestCaptcha(false);
           } catch (IOException e) {
@@ -685,6 +696,15 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           return null;
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+  }
+
+  private Optional<String> getFcmToken() {
+    final boolean gcmSupported = PlayServicesUtil.getPlayServicesStatus(this) == PlayServicesStatus.SUCCESS;
+    if (gcmSupported) {
+      return FcmUtil.getToken();
+    } else {
+      return Optional.absent();
     }
   }
 

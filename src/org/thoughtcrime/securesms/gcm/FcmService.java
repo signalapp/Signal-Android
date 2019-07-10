@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.PowerManager;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -13,6 +15,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -38,11 +41,17 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
   @Override
   public void onMessageReceived(RemoteMessage remoteMessage) {
     Log.i(TAG, "FCM message... Original Priority: " + remoteMessage.getOriginalPriority() + ", Actual Priority: " + remoteMessage.getPriority());
-    ApplicationContext.getInstance(getApplicationContext()).injectDependencies(this);
 
-    WakeLockUtil.runWithLock(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK, 60000, WAKE_LOCK_TAG, () -> {
-      handleReceivedNotification(getApplicationContext());
-    });
+    String challenge = remoteMessage.getData().get("challenge");
+    if (challenge != null) {
+      handlePushChallenge(challenge);
+    } else {
+      ApplicationContext.getInstance(getApplicationContext()).injectDependencies(this);
+
+      WakeLockUtil.runWithLock(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK, 60000, WAKE_LOCK_TAG, () ->
+        handleReceivedNotification(getApplicationContext())
+      );
+    }
   }
 
   @Override
@@ -93,6 +102,12 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
 
     decrementActiveGcmCount();
     Log.i(TAG, "Processing complete.");
+  }
+
+  private static void handlePushChallenge(@NonNull String challenge) {
+    Log.d(TAG, String.format("Got a push challenge \"%s\"", challenge));
+
+    PushChallengeRequest.postChallengeResponse(challenge);
   }
 
   private static synchronized boolean incrementActiveGcmCount() {
