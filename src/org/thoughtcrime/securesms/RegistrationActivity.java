@@ -492,7 +492,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
           }
 
           accountManager = AccountManagerFactory.createManager(RegistrationActivity.this, e164number, password);
-          accountManager.requestSmsVerificationCode(smsRetrieverSupported, registrationState.captchaToken);
+          accountManager.requestSmsVerificationCode(smsRetrieverSupported, registrationState.captchaToken, Optional.absent());
 
           return new VerificationRequestResult(password, fcmToken, Optional.absent());
         } catch (IOException e) {
@@ -675,7 +675,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
         @Override
         protected Void doInBackground(Void... voids) {
           try {
-            accountManager.requestVoiceVerificationCode(Locale.getDefault(), registrationState.captchaToken);
+            accountManager.requestVoiceVerificationCode(Locale.getDefault(), registrationState.captchaToken, Optional.absent());
           } catch (CaptchaRequiredException e) {
             requestCaptcha(false);
           } catch (IOException e) {
