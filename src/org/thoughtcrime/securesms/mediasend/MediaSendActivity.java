@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
+import org.thoughtcrime.securesms.scribbles.ImageEditorHud;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -456,10 +457,10 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
-  public void onRequestFullScreen(boolean fullScreen) {
+  public void onRequestFullScreen(boolean fullScreen, ImageEditorHud.Mode mode) {
     MediaSendFragment sendFragment = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
     if (sendFragment != null && sendFragment.isVisible()) {
-      sendFragment.onRequestFullScreen(fullScreen);
+      sendFragment.onRequestFullScreen(fullScreen, mode);
     }
   }
 }

@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
+import org.thoughtcrime.securesms.scribbles.ImageEditorHud;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -511,7 +512,11 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     return future;
   }
 
-  public void onRequestFullScreen(boolean fullScreen) {
+  public void onRequestFullScreen(boolean fullScreen, ImageEditorHud.Mode mode) {
+    if (mode != ImageEditorHud.Mode.TEXT && hud.isKeyboardOpen()) {
+      hud.hideSoftkey(composeText, null);
+    }
+
     captionAndRail.setVisibility(fullScreen ? View.GONE : View.VISIBLE);
   }
 

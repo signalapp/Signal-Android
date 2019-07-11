@@ -312,15 +312,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   @Override
   public void onRequestFullScreen(boolean fullScreen, ImageEditorHud.Mode mode) {
-
-    View view = getActivity().getCurrentFocus();
-
-    if (view != null && mode != ImageEditorHud.Mode.TEXT) {
-      InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-      imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-    controller.onRequestFullScreen(fullScreen);
+    controller.onRequestFullScreen(fullScreen, mode);
   }
 
   private void refreshUniqueColors() {
@@ -381,6 +373,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   public interface Controller {
     void onTouchEventsNeeded(boolean needed);
 
-    void onRequestFullScreen(boolean fullScreen);
+    void onRequestFullScreen(boolean fullScreen, ImageEditorHud.Mode mode);
   }
 }
