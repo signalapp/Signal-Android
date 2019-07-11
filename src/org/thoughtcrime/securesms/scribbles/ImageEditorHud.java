@@ -190,7 +190,7 @@ public final class ImageEditorHud extends LinearLayout {
     if (notify) {
       eventListener.onModeStarted(mode);
     }
-    eventListener.onRequestFullScreen(mode != Mode.NONE);
+    eventListener.onRequestFullScreen(mode != Mode.NONE, mode);
   }
 
   private boolean buttonIsVisible(@Nullable Set<View> visibleButtons, @NonNull View button) {
@@ -245,7 +245,7 @@ public final class ImageEditorHud extends LinearLayout {
     void onRotate90AntiClockwise();
     void onCropAspectLock(boolean locked);
     boolean isCropAspectLocked();
-    void onRequestFullScreen(boolean fullScreen);
+    void onRequestFullScreen(boolean fullScreen, Mode mode);
   }
 
   private static final EventListener NULL_EVENT_LISTENER = new EventListener() {
@@ -284,7 +284,7 @@ public final class ImageEditorHud extends LinearLayout {
     }
 
     @Override
-    public void onRequestFullScreen(boolean fullScreen) {
+    public void onRequestFullScreen(boolean fullScreen, Mode mode) {
     }
   };
 }

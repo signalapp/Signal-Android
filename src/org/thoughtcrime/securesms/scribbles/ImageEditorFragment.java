@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.scribbles;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
 
 import org.thoughtcrime.securesms.R;
@@ -242,11 +243,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     controller.onTouchEventsNeeded(mode != ImageEditorHud.Mode.NONE);
 
-    InputMethodManager keyboard = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-
-    if (keyboard.isActive())
-      keyboard.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-
     switch (mode) {
       case CROP:
         imageEditorView.getModel().startCrop();
@@ -315,7 +311,15 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   @Override
-  public void onRequestFullScreen(boolean fullScreen) {
+  public void onRequestFullScreen(boolean fullScreen, ImageEditorHud.Mode mode) {
+
+    View view = getActivity().getCurrentFocus();
+
+    if (view != null && mode != ImageEditorHud.Mode.TEXT) {
+      InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     controller.onRequestFullScreen(fullScreen);
   }
 
