@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
@@ -436,7 +437,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
     bluetoothStateManager.setWantsConnection(true);
 
     setCallInProgressNotification(TYPE_OUTGOING_RINGING, recipient);
-    DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(recipient.getId());
+    insertOutgoingCall(recipient);
 
     timeoutExecutor.schedule(new TimeoutRunnable(this.callId), 2, TimeUnit.MINUTES);
 
@@ -715,8 +716,34 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
   }
 
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
-    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId());
+    long expiresIn = recipient.getExpireMessagesInMillis();
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId(), expiresIn);
     MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
+  }
+
+  private void insertDeniedCall(@NonNull Recipient recipient) {
+    long expiresIn = recipient.getExpireMessagesInMillis();
+    DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId(), expiresIn);
+  }
+
+  private void insertOutgoingCall(@NonNull Recipient recipient) {
+    long expiresIn = recipient.getExpireMessagesInMillis();
+    SmsDatabase database = DatabaseFactory.getSmsDatabase(this);
+    Pair<Long, Long> messageAndThreadId = database.insertOutgoingCall(recipient.getId(), expiresIn);
+    if (expiresIn > 0) {
+      database.markExpireStarted(messageAndThreadId.first);
+      ApplicationContext.getInstance(this).getExpiringMessageManager().scheduleDeletion(messageAndThreadId.first, false, expiresIn);
+    }
+  }
+
+  private void insertReceivedCall(@NonNull Recipient recipient) {
+    long expiresIn = recipient.getExpireMessagesInMillis();
+    SmsDatabase database = DatabaseFactory.getSmsDatabase(this);
+    Pair<Long, Long> messageAndThreadId = database.insertReceivedCall(recipient.getId(), expiresIn);
+    if (expiresIn > 0) {
+      database.markExpireStarted(messageAndThreadId.first);
+      ApplicationContext.getInstance(this).getExpiringMessageManager().scheduleDeletion(messageAndThreadId.first, false, expiresIn);
+    }
   }
 
   private void handleAnswerCall(Intent intent) {
@@ -729,7 +756,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
       throw new AssertionError("assert");
     }
 
-    DatabaseFactory.getSmsDatabase(this).insertReceivedCall(recipient.getId());
+    insertReceivedCall(recipient);
 
     this.peerConnection.setAudioEnabled(true);
     this.peerConnection.setVideoEnabled(false);
@@ -753,7 +780,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
     this.dataChannel.send(new DataChannel.Buffer(ByteBuffer.wrap(Data.newBuilder().setHangup(Hangup.newBuilder().setId(this.callId)).build().toByteArray()), false));
     sendMessage(this.recipient, SignalServiceCallMessage.forHangup(new HangupMessage(this.callId)));
 
-    DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId());
+    insertDeniedCall(recipient);
 
     this.terminate();
   }

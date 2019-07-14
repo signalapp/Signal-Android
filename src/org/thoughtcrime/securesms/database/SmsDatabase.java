@@ -409,7 +409,8 @@ public class SmsDatabase extends MessagingDatabase {
       cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED}, where, arguments, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(cursor.getLong(3))) {
+        long type = cursor.getLong(3);
+        if (Types.isSecureType(type) || Types.isCallLog(type)) {
           SyncMessageId  syncMessageId  = new SyncMessageId(RecipientId.from(cursor.getLong(1)), cursor.getLong(2));
           ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), false);
 
@@ -486,19 +487,19 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address) {
-    return insertCallLog(address, Types.INCOMING_CALL_TYPE, false);
+  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address, long expiresIn) {
+    return insertCallLog(address, Types.INCOMING_CALL_TYPE, expiresIn, false);
   }
 
-  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address) {
-    return insertCallLog(address, Types.OUTGOING_CALL_TYPE, false);
+  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address, long expiresIn) {
+    return insertCallLog(address, Types.OUTGOING_CALL_TYPE, expiresIn, false);
   }
 
-  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address) {
-    return insertCallLog(address, Types.MISSED_CALL_TYPE, true);
+  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long expiresIn) {
+    return insertCallLog(address, Types.MISSED_CALL_TYPE, expiresIn, true);
   }
 
-  private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread) {
+  private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, long expiresIn, boolean unread) {
     Recipient recipient = Recipient.resolved(recipientId);
     long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
@@ -510,6 +511,7 @@ public class SmsDatabase extends MessagingDatabase {
     values.put(READ, unread ? 0 : 1);
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
+    values.put(EXPIRES_IN, expiresIn);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long messageId    = db.insert(TABLE_NAME, null, values);
