@@ -339,6 +339,10 @@ public class Recipient {
     return expireMessages;
   }
 
+  public long getExpireMessagesInMillis() {
+    return getExpireMessages() * 1000L;
+  }
+
   public boolean hasSeenInviteReminder() {
     return seenInviteReminder;
   }
