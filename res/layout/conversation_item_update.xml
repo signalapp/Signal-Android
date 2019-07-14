@@ -44,7 +44,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="6dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -59,13 +59,21 @@
             android:textColor="?attr/conversation_item_update_text_color"
             tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/conversation_update_date"
             style="@style/Signal.Text.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="6dp"
             android:autoLink="none"
             android:gravity="center"
             android:linksClickable="false"
@@ -73,6 +81,15 @@
             android:textAllCaps="true"
             android:textColor="?conversation_item_update_text_color"
             tools:text="30 min ago" />
+
+        <org.thoughtcrime.securesms.components.ExpirationTimerView
+            android:id="@+id/conversation_update_expiration_timer"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginStart="6dp"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:visibility="gone"
+            tools:visibility="visible"/>
 
     </LinearLayout>
 
