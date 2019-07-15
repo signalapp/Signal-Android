@@ -30,7 +30,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         @JvmStatic val createReceivedMessageHashValuesTableCommand = "CREATE TABLE $receivedMessageHashValuesCache ($userID TEXT PRIMARY KEY, $receivedMessageHashValues TEXT);"
     }
 
-    override fun getSwarmCache(hexEncodedPublicKey: String): List<LokiAPITarget>? {
+    override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
         val database = databaseHelper.readableDatabase
         return database.get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
             val swarmAsString = cursor.getString(cursor.getColumnIndexOrThrow(swarm))
@@ -38,10 +38,10 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
                 val components = targetAsString.split("?port=")
                 LokiAPITarget(components[0], components[1].toInt())
             }
-        }
+        }?.toSet()
     }
 
-    override fun setSwarmCache(hexEncodedPublicKey: String, newValue: List<LokiAPITarget>) {
+    override fun setSwarmCache(hexEncodedPublicKey: String, newValue: Set<LokiAPITarget>) {
         val database = databaseHelper.writableDatabase
         val swarmAsString = newValue.joinToString(", ") { target ->
             "${target.address}?port=${target.port}"
