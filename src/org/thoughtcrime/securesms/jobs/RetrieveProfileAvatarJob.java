@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -26,9 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType {
+public class RetrieveProfileAvatarJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileAvatarJob";
 
@@ -38,8 +36,6 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
 
   private static final String KEY_PROFILE_AVATAR = "profile_avatar";
   private static final String KEY_ADDRESS        = "address";
-
-  @Inject SignalServiceMessageReceiver receiver;
 
   private String    profileAvatar;
   private Recipient recipient;
@@ -99,8 +95,9 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
     File downloadDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
     try {
-      InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
-      File        decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
+      SignalServiceMessageReceiver receiver           = ApplicationDependencies.getSignalServiceMessageReceiver();
+      InputStream                  avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
+      File                         decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
       try {
         Util.copy(avatarStream, new FileOutputStream(decryptDestination));

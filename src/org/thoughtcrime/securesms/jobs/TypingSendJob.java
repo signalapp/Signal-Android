@@ -6,7 +6,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
@@ -24,9 +24,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class TypingSendJob extends BaseJob implements InjectableType {
+public class TypingSendJob extends BaseJob {
 
   public static final String KEY = "TypingSendJob";
 
@@ -37,8 +35,6 @@ public class TypingSendJob extends BaseJob implements InjectableType {
 
   private long    threadId;
   private boolean typing;
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public TypingSendJob(long threadId, boolean typing) {
     this(new Job.Parameters.Builder()
@@ -92,6 +88,7 @@ public class TypingSendJob extends BaseJob implements InjectableType {
       groupId    = Optional.of(GroupUtil.getDecodedId(recipient.getAddress().toGroupString()));
     }
 
+    SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
     List<SignalServiceAddress>             addresses          = Stream.of(recipients).map(r -> new SignalServiceAddress(r.getAddress().serialize())).toList();
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
     SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);

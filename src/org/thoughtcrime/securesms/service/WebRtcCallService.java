@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -102,15 +102,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_ESTABLISHED;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_INCOMING_CONNECTING;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_INCOMING_RINGING;
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_OUTGOING_RINGING;
 
-public class WebRtcCallService extends Service implements InjectableType,
-                                                          PeerConnection.Observer,
+public class WebRtcCallService extends Service implements PeerConnection.Observer,
                                                           DataChannel.Observer,
                                                           BluetoothStateManager.BluetoothStateListener,
                                                           PeerConnectionWrapper.CameraEventListener
@@ -164,8 +161,8 @@ public class WebRtcCallService extends Service implements InjectableType,
   private boolean     remoteVideoEnabled = false;
   private boolean     bluetoothAvailable = false;
 
-  @Inject public SignalServiceMessageSender  messageSender;
-  @Inject public SignalServiceAccountManager accountManager;
+  private SignalServiceMessageSender  messageSender;
+  private SignalServiceAccountManager accountManager;
 
   private PeerConnectionFactory      peerConnectionFactory;
   private SignalAudioManager         audioManager;
@@ -296,8 +293,8 @@ public class WebRtcCallService extends Service implements InjectableType,
   // Initializers
 
   private void initializeResources() {
-    ApplicationContext.getInstance(this).injectDependencies(this);
-
+    this.messageSender         = ApplicationDependencies.getSignalServiceMessageSender();
+    this.accountManager        = ApplicationDependencies.getSignalServiceAccountManager();
     this.callState             = CallState.STATE_IDLE;
     this.lockManager           = new LockManager(this);
     this.audioManager          = new SignalAudioManager(this);

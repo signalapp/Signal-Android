@@ -6,6 +6,7 @@ import com.annimon.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -13,7 +14,6 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -28,9 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class MultiDeviceReadUpdateJob extends BaseJob implements InjectableType {
+public class MultiDeviceReadUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceReadUpdateJob";
 
@@ -39,8 +37,6 @@ public class MultiDeviceReadUpdateJob extends BaseJob implements InjectableType 
   private static final String KEY_MESSAGE_IDS = "message_ids";
 
   private List<SerializableSyncMessageId> messageIds;
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public MultiDeviceReadUpdateJob(List<SyncMessageId> messageIds) {
     this(new Job.Parameters.Builder()
@@ -94,6 +90,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob implements InjectableType 
       readMessages.add(new ReadMessage(messageId.sender, messageId.timestamp));
     }
 
+    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages), UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

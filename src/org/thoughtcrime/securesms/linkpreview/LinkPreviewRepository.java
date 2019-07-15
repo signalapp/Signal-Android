@@ -10,11 +10,10 @@ import android.text.TextUtils;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.FutureTarget;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -43,15 +42,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.inject.Inject;
-
 import okhttp3.CacheControl;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LinkPreviewRepository implements InjectableType {
+public class LinkPreviewRepository {
 
   private static final String TAG = LinkPreviewRepository.class.getSimpleName();
 
@@ -59,16 +56,12 @@ public class LinkPreviewRepository implements InjectableType {
 
   private final OkHttpClient client;
 
-  @Inject SignalServiceMessageReceiver messageReceiver;
-
-  public LinkPreviewRepository(@NonNull Context context) {
+  public LinkPreviewRepository() {
     this.client = new OkHttpClient.Builder()
                                   .proxySelector(new ContentProxySelector())
                                   .addNetworkInterceptor(new ContentProxySafetyInterceptor())
                                   .cache(null)
                                   .build();
-
-    ApplicationContext.getInstance(context).injectDependencies(this);
   }
 
   RequestController getLinkPreview(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<LinkPreview>> callback) {
@@ -219,7 +212,8 @@ public class LinkPreviewRepository implements InjectableType {
         byte[]               packIdBytes   = Hex.fromStringCondensed(packIdString);
         byte[]               packKeyBytes  = Hex.fromStringCondensed(packKeyString);
 
-        SignalServiceStickerManifest manifest = messageReceiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
+        SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+        SignalServiceStickerManifest manifest = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
 
         String                title        = manifest.getTitle().or(manifest.getAuthor()).or("");
         Optional<StickerInfo> firstSticker = Optional.fromNullable(manifest.getStickers().size() > 0 ? manifest.getStickers().get(0) : null);

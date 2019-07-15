@@ -1590,7 +1590,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
 
   private void initializeLinkPreviewObserver() {
-    linkPreviewViewModel = ViewModelProviders.of(this, new LinkPreviewViewModel.Factory(new LinkPreviewRepository(this))).get(LinkPreviewViewModel.class);
+    linkPreviewViewModel = ViewModelProviders.of(this, new LinkPreviewViewModel.Factory(new LinkPreviewRepository())).get(LinkPreviewViewModel.class);
 
     if (!TextSecurePreferences.isLinkPreviewsEnabled(this)) {
       linkPreviewViewModel.onUserCancel();

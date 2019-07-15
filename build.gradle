@@ -105,10 +105,7 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation 'com.melnykov:floatingactionbutton:1.3.0'
     implementation 'com.google.zxing:android-integration:3.1.0'
-    implementation 'com.squareup.dagger:dagger:1.2.2'
-    annotationProcessor 'com.squareup.dagger:dagger-compiler:1.2.2'
     implementation 'mobi.upod:time-duration-picker:1.1.3'
-    compileOnly 'com.squareup.dagger:dagger-compiler:1.2.2'
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'com.google.zxing:core:3.2.1'
     implementation ('com.davemorrissey.labs:subsampling-scale-image-view:3.6.0') {
@@ -207,7 +204,6 @@ dependencyVerification {
         'com.makeramen:roundedimageview:1f5a1865796b308c6cdd114acc6e78408b110f0a62fc63553278fbeacd489cd1',
         'org.greenrobot:eventbus:180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c',
         'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
-        'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
         'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
         'com.google.zxing:core:b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259',
         'com.davemorrissey.labs:subsampling-scale-image-view:550c5baa07e0bb4ff0a18b705e96d34436d22619248bd8c08c08c730b1f55cfe',
@@ -273,7 +269,6 @@ dependencyVerification {
         'com.github.bumptech.glide:disklrucache:4696a81340eb6beee21ab93f703ed6e7ae49fb4ce3bc2fbc546e5bacd21b96b9',
         'com.github.bumptech.glide:annotations:702a7521cb3f6d7e55edd66e90bda1a1975baf971d25f75b75638579f86bc69b',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
-        'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
         'com.klinkerapps:logger:177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541',
         'com.google.android:flexbox:a9989fd13ae2ee42765dfc515fe362edf4f326e74925d02a10369df8092a4935',
         'org.jsoup:jsoup:abeaf34795a4de70f72aed6de5966d2955ec7eb348eeb813324f23c999575473',
@@ -375,7 +370,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                           'proguard-firebase-messaging.pro',
                           'proguard-google-play-services.pro',
-                          'proguard-dagger.pro',
                           'proguard-jackson.pro',
                           'proguard-sqlite.pro',
                           'proguard-appcompat-v7.pro',

@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -46,17 +46,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-public class PushMediaSendJob extends PushSendJob implements InjectableType {
+public class PushMediaSendJob extends PushSendJob {
 
   public static final String KEY = "PushMediaSendJob";
 
   private static final String TAG = PushMediaSendJob.class.getSimpleName();
 
   private static final String KEY_MESSAGE_ID = "message_id";
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private long messageId;
 
@@ -200,6 +196,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     try {
       rotateSenderCertificateIfNecessary();
 
+      SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address            = getPushAddress(message.getRecipient().getAddress());
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);

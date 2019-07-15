@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -16,16 +16,11 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-@SuppressWarnings("WeakerAccess")
-public class RotateCertificateJob extends BaseJob implements InjectableType {
+public class RotateCertificateJob extends BaseJob {
 
   public static final String KEY = "RotateCertificateJob";
 
   private static final String TAG = RotateCertificateJob.class.getSimpleName();
-
-  @Inject SignalServiceAccountManager accountManager;
 
   public RotateCertificateJob(Context context) {
     this(new Job.Parameters.Builder()
@@ -57,7 +52,9 @@ public class RotateCertificateJob extends BaseJob implements InjectableType {
   @Override
   public void onRun() throws IOException {
     synchronized (RotateCertificateJob.class) {
-      byte[] certificate = accountManager.getSenderCertificate();
+      SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+      byte[]                      certificate    = accountManager.getSenderCertificate();
+
       TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
     }
   }

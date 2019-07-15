@@ -3,12 +3,11 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -17,15 +16,11 @@ import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureExcept
 
 import java.io.IOException;
 
-import javax.inject.Inject;
-
-public class RefreshAttributesJob extends BaseJob implements InjectableType {
+public class RefreshAttributesJob extends BaseJob {
 
   public static final String KEY = "RefreshAttributesJob";
 
   private static final String TAG = RefreshAttributesJob.class.getSimpleName();
-
-  @Inject SignalServiceAccountManager signalAccountManager;
 
   public RefreshAttributesJob() {
     this(new Job.Parameters.Builder()
@@ -56,6 +51,7 @@ public class RefreshAttributesJob extends BaseJob implements InjectableType {
     byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
     boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
 
+    SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
     signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages, pin,
                                               unidentifiedAccessKey, universalUnidentifiedAccess);
 

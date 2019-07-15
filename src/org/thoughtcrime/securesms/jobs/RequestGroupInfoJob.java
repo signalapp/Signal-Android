@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -21,9 +21,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class RequestGroupInfoJob extends BaseJob implements InjectableType {
+public class RequestGroupInfoJob extends BaseJob {
 
   public static final String KEY = "RequestGroupInfoJob";
 
@@ -32,8 +30,6 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
 
   private static final String KEY_SOURCE   = "source";
   private static final String KEY_GROUP_ID = "group_id";
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private String source;
   private byte[] groupId;
@@ -79,6 +75,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
                                                                .withTimestamp(System.currentTimeMillis())
                                                                .build();
 
+    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     messageSender.sendMessage(new SignalServiceAddress(source),
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromExternal(context, source), false)),
                               message);

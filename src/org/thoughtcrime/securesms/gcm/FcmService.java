@@ -10,7 +10,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
@@ -25,16 +25,12 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class FcmService extends FirebaseMessagingService implements InjectableType {
+public class FcmService extends FirebaseMessagingService {
 
   private static final String TAG = FcmService.class.getSimpleName();
 
   private static final String   WAKE_LOCK_TAG  = "FcmMessageProcessing";
   private static final long     SOCKET_TIMEOUT = TimeUnit.SECONDS.toMillis(10);
-
-  @Inject SignalServiceMessageReceiver messageReceiver;
 
   private static int activeCount;
 
@@ -46,8 +42,6 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
     if (challenge != null) {
       handlePushChallenge(challenge);
     } else {
-      ApplicationContext.getInstance(getApplicationContext()).injectDependencies(this);
-
       WakeLockUtil.runWithLock(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK, 60000, WAKE_LOCK_TAG, () ->
         handleReceivedNotification(getApplicationContext())
       );
@@ -76,10 +70,11 @@ public class FcmService extends FirebaseMessagingService implements InjectableTy
 
     TextSecurePreferences.setNeedsMessagePull(context, true);
 
-    long         startTime    = System.currentTimeMillis();
-    PowerManager powerManager = ServiceUtil.getPowerManager(getApplicationContext());
-    boolean      doze         = PowerManagerCompat.isDeviceIdleMode(powerManager);
-    boolean      network      = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create().isMet();
+    long                         startTime       = System.currentTimeMillis();
+    SignalServiceMessageReceiver messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+    PowerManager                 powerManager    = ServiceUtil.getPowerManager(getApplicationContext());
+    boolean                      doze            = PowerManagerCompat.isDeviceIdleMode(powerManager);
+    boolean                      network         = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create().isMet();
 
     if (doze || !network) {
       Log.w(TAG, "We may be operating in a constrained environment. Doze: " + doze + " Network: " + network);

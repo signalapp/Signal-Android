@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -24,9 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class StickerPackDownloadJob extends BaseJob implements InjectableType {
+public class StickerPackDownloadJob extends BaseJob {
 
   public static final String KEY = "StickerPackDownloadJob";
 
@@ -39,8 +37,6 @@ public class StickerPackDownloadJob extends BaseJob implements InjectableType {
   private final String  packId;
   private final String  packKey;
   private final boolean isReferencePack;
-
-  @Inject SignalServiceMessageReceiver receiver;
 
   public StickerPackDownloadJob(@NonNull String packId, @NonNull String packKey, boolean isReferencePack)
   {
@@ -77,6 +73,7 @@ public class StickerPackDownloadJob extends BaseJob implements InjectableType {
       return;
     }
 
+    SignalServiceMessageReceiver receiver        = ApplicationDependencies.getSignalServiceMessageReceiver();
     JobManager                   jobManager      = ApplicationContext.getInstance(context).getJobManager();
     StickerDatabase              stickerDatabase = DatabaseFactory.getStickerDatabase(context);
     byte[]                       packIdBytes     = Hex.fromStringCondensed(packId);

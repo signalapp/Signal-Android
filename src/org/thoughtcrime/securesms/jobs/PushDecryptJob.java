@@ -1360,7 +1360,6 @@ public class PushDecryptJob extends BaseJob {
       AttachmentDownloadJob downloadJob = new AttachmentDownloadJob(messageId, stickerAttachment.getAttachmentId(), true);
 
       try {
-        ApplicationContext.getInstance(context).injectDependencies(downloadJob);
         downloadJob.setContext(context);
         downloadJob.doWork();
       } catch (Exception e) {

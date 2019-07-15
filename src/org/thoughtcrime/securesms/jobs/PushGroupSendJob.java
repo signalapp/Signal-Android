@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -53,15 +53,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class PushGroupSendJob extends PushSendJob implements InjectableType {
+public class PushGroupSendJob extends PushSendJob {
 
   public static final String KEY = "PushGroupSendJob";
 
   private static final String TAG = PushGroupSendJob.class.getSimpleName();
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private static final String KEY_MESSAGE_ID     = "message_id";
   private static final String KEY_FILTER_ADDRESS = "filter_address";
@@ -227,6 +223,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException {
     rotateSenderCertificateIfNecessary();
 
+    SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
     String                                     groupId            = message.getRecipient().getAddress().toGroupString();
     Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
     Optional<Quote>                            quote              = getQuoteFor(message);
