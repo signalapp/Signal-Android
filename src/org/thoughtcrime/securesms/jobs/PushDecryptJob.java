@@ -277,11 +277,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (message.isGroupUpdate())       handleGroupMessage(content, message, smsMessageId);
         else if (message.isExpirationUpdate())  handleExpirationUpdate(content, message, smsMessageId);
         else if (isMediaMessage)                handleMediaMessage(content, message, smsMessageId);
-        else if (message.getBody().isPresent()) {
-          // Loki - Handle friend request logic
-          handleTextMessage(content, message, smsMessageId);
-          handleFriendRequestIfNeeded(envelope, content, message);
-        }
+        else if (message.getBody().isPresent()) handleTextMessage(content, message, smsMessageId);
 
         if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
           handleUnknownGroupMessage(content, message.getGroupInfo().get());
@@ -294,6 +290,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if (content.isNeedsReceipt()) {
           handleNeedsDeliveryReceipt(content, message);
         }
+
+        // Loki - Handle friend request logic if needed
+        handleFriendRequestIfNeeded(envelope, content, message);
       } else if (content.getSyncMessage().isPresent()) {
         TextSecurePreferences.setMultiDevice(context, true);
 
