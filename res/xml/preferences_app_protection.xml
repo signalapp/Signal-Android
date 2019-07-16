@@ -51,11 +51,12 @@
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:title="@string/preferences_app_protection__communication">
-        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+
+        <!-- <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"
                 android:key="pref_turn_only"
                 android:title="@string/preferences_advanced__always_relay_calls"
-                android:summary="@string/preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address"/>
+                android:summary="@string/preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address"/> -->
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"
@@ -75,13 +76,15 @@
             android:summary="@string/preferences__previews_are_supported_for"
             android:title="@string/preferences__send_link_previews"/>
 
-        <Preference android:key="preference_category_blocked"
-                    android:title="@string/preferences_app_protection__blocked_contacts" />
+        <!-- <Preference android:key="preference_category_blocked"
+                    android:title="@string/preferences_app_protection__blocked_contacts" /> -->
+
     </PreferenceCategory>
 
-    <PreferenceCategory android:layout="@layout/preference_divider"/>
+    <!-- <PreferenceCategory android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:title="@string/preferences_communication__category_sealed_sender">
+
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_show_unidentifed_delivery_indicators"
@@ -103,12 +106,13 @@
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:title="@string/preferences_app_protection__registration_lock">
+
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"
                 android:key="pref_registration_lock"
                 android:title="@string/preferences_app_protection__registration_lock_pin"
                 android:summary="@string/preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required"/>
-    </PreferenceCategory>
 
+    </PreferenceCategory> -->
 
 </PreferenceScreen>

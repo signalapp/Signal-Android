@@ -30,7 +30,6 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.TooltipCompat;
 import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -124,6 +123,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
+    return false;
+    /*
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
@@ -133,6 +134,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     super.onPrepareOptionsMenu(menu);
     return true;
+     */
   }
 
   private void initializeSearchListener() {

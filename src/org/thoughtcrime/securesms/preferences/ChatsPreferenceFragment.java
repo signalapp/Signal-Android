@@ -42,12 +42,14 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
 
+    /*
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF)
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF)
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_ROAMING_PREF)
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
+     */
     findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF)
         .setOnPreferenceChangeListener(new ListSummaryListener());
 
@@ -111,12 +113,14 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   }
 
   private void setMediaDownloadSummaries() {
+    /*
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF)
         .setSummary(getSummaryForMediaPreference(TextSecurePreferences.getMobileMediaDownloadAllowed(getActivity())));
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF)
         .setSummary(getSummaryForMediaPreference(TextSecurePreferences.getWifiMediaDownloadAllowed(getActivity())));
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_ROAMING_PREF)
         .setSummary(getSummaryForMediaPreference(TextSecurePreferences.getRoamingMediaDownloadAllowed(getActivity())));
+     */
   }
 
   private CharSequence getSummaryForMediaPreference(Set<String> allowedNetworks) {

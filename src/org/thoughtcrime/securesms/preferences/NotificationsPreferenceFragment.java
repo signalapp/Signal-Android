@@ -54,8 +54,10 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         .setOnPreferenceChangeListener(new NotificationPrivacyListener());
     this.findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF)
         .setOnPreferenceChangeListener(new ListSummaryListener());
+    /*
     this.findPreference(TextSecurePreferences.CALL_RINGTONE_PREF)
         .setOnPreferenceChangeListener(new RingtoneSummaryListener());
+     */
     this.findPreference(TextSecurePreferences.VIBRATE_PREF)
         .setOnPreferenceChangeListener((preference, newValue) -> {
           NotificationChannels.updateMessageVibrate(getContext(), (boolean) newValue);
@@ -78,6 +80,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
           return true;
         });
 
+    /*
     this.findPreference(TextSecurePreferences.CALL_RINGTONE_PREF)
         .setOnPreferenceClickListener(preference -> {
           Uri current = TextSecurePreferences.getCallNotificationRingtone(getContext());
@@ -93,6 +96,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
 
           return true;
         });
+     */
 
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF));
@@ -112,9 +116,9 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     }
 
     initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
-    initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
+    // initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
     initializeMessageVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.VIBRATE_PREF));
-    initializeCallVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.CALL_VIBRATE_PREF));
+    // initializeCallVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.CALL_VIBRATE_PREF));
   }
 
   @Override
@@ -152,7 +156,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         TextSecurePreferences.setCallNotificationRingtone(getContext(), uri != null ? uri.toString() : Uri.EMPTY.toString());
       }
 
-      initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
+      // initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
     }
   }
 

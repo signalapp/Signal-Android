@@ -2,12 +2,24 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/preferences_notifications__messages">
+    <!-- <PreferenceCategory android:title="@string/preferences_notifications__messages"> -->
 
-        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                            android:key="pref_key_enable_notifications"
-                            android:title="@string/preferences__notifications"
-                            android:defaultValue="true" />
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:key="pref_key_enable_notifications"
+        android:title="@string/preferences__notifications"
+        android:defaultValue="true" />
+
+    <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
+        android:key="pref_notification_priority"
+        android:title="@string/preferences_notifications__priority"
+        android:dependency="pref_key_enable_notifications"
+        android:defaultValue="1"
+        android:entries="@array/pref_notification_priority_entries"
+        android:entryValues="@array/pref_notification_priority_values"/>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/activity_notification_settings_style_section_title">
 
         <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
                 android:dependency="pref_key_enable_notifications"
@@ -52,6 +64,12 @@
                 android:entries="@array/pref_repeat_alerts_entries"
                 android:entryValues="@array/pref_repeat_alerts_values" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/activity_notification_settings_content_section_title">
+
         <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
                 android:key="pref_notification_privacy"
                 android:title="@string/preferences_notifications__show"
@@ -60,14 +78,9 @@
                 android:entries="@array/pref_notification_privacy_entries"
                 android:entryValues="@array/pref_notification_privacy_values"/>
 
-        <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
-                android:key="pref_notification_priority"
-                android:title="@string/preferences_notifications__priority"
-                android:dependency="pref_key_enable_notifications"
-                android:defaultValue="1"
-                android:entries="@array/pref_notification_priority_entries"
-                android:entryValues="@array/pref_notification_priority_values"/>
     </PreferenceCategory>
+
+    <!-- </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
@@ -100,6 +113,6 @@
             android:key="pref_enable_new_contacts_notifications"
             android:title="@string/preferences_events__contact_joined_signal"
             android:defaultValue="true" />
-    </PreferenceCategory>
+    </PreferenceCategory> -->
 
 </PreferenceScreen>

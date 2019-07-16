@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.registration;
 
 import android.Manifest;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
@@ -28,17 +27,14 @@ public class WelcomeActivity extends BaseActionBarActivity {
   }
 
   private void onTermsClicked() {
-    CommunicationActions.openBrowserLink(this, "https://signal.org/legal");
+    CommunicationActions.openBrowserLink(this, "https://github.com/loki-project/loki-messenger-android/blob/master/privacy-policy.md");
   }
 
   private void onContinueClicked() {
     Permissions.with(this)
-        .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.READ_PHONE_STATE)
+        .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
         .ifNecessary()
-        .withRationaleDialog(getString(R.string.RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends),
-            R.drawable.ic_contacts_white_48dp, R.drawable.ic_folder_white_48dp)
+        .withRationaleDialog(getString(R.string.activity_landing_permission_dialog_message), R.drawable.ic_folder_white_48dp)
         .onAnyResult(() -> {
           TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
 

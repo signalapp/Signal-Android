@@ -2,7 +2,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools">
-    <PreferenceCategory android:key="media_download" android:title="@string/preferences_chats__media_auto_download">
+    <!-- <PreferenceCategory android:key="media_download" android:title="@string/preferences_chats__media_auto_download">
         <MultiSelectListPreference
                 android:title="@string/preferences_chats__when_using_mobile_data"
                 android:key="pref_media_download_mobile"
@@ -28,7 +28,7 @@
                 android:entryValues="@array/pref_media_download_entries" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:layout="@layout/preference_divider"/>
+    <PreferenceCategory android:layout="@layout/preference_divider"/> -->
 
     <PreferenceCategory android:title="@string/preferences_chats__chats">
         <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
@@ -39,11 +39,11 @@
                 android:defaultValue="16">
         </org.thoughtcrime.securesms.preferences.widgets.SignalListPreference>
 
-        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        <!-- <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="true"
                 android:key="pref_show_invite_reminder"
                 android:title="@string/preferences_chats__show_invitation_prompts"
-                android:summary="@string/preferences_chats__display_invitation_prompts_for_contacts_without_signal" />
+                android:summary="@string/preferences_chats__display_invitation_prompts_for_contacts_without_signal" /> -->
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"

@@ -360,7 +360,7 @@ public class ConversationListFragment extends Fragment
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
     if ((cursor == null || cursor.getCount() <= 0) && TextUtils.isEmpty(queryFilter) && !archive) {
       list.setVisibility(View.INVISIBLE);
-      emptyState.setVisibility(View.VISIBLE);
+      emptyState.setVisibility(View.GONE);
       emptySearch.setVisibility(View.INVISIBLE);
       emptyImage.setImageResource(EMPTY_IMAGES[(int) (Math.random() * EMPTY_IMAGES.length)]);
       fab.startPulse(3 * 1000);

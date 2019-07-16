@@ -37,7 +37,6 @@
                       android:textSize="25sp"
                       android:layout_alignParentStart="true"
                       android:layout_centerVertical="true"
-                      android:layout_toStartOf="@+id/search_action"
                       android:layout_marginStart="66dp"/>
 
             <ImageView android:id="@+id/search_action"
@@ -45,6 +44,7 @@
                        android:layout_height="wrap_content"
                        android:src="@drawable/ic_search_white_24dp"
                        android:paddingEnd="16dp"
+                       android:visibility="gone"
                        android:layout_alignParentEnd="true"
                        android:layout_centerVertical="true"/>
 
