@@ -174,7 +174,7 @@ public class MessageSender {
 
   private static void sendSms(Context context, Recipient recipient, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new SmsSendJob(context, messageId, recipient.getName()));
+    jobManager.add(new SmsSendJob(context, messageId, recipient.getAddress()));
   }
 
   private static void sendMms(Context context, long messageId) {

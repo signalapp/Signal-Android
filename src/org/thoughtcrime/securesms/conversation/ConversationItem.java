@@ -1258,7 +1258,7 @@ public class ConversationItem extends LinearLayout
         ApplicationContext.getInstance(context)
                           .getJobManager()
                           .add(new SmsSendJob(context, messageRecord.getId(),
-                                              messageRecord.getIndividualRecipient().getAddress().serialize()));
+                                              messageRecord.getIndividualRecipient().getAddress()));
       }
     });
 
