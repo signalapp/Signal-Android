@@ -8,6 +8,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -77,6 +78,8 @@ public class ProfilePreference extends Preference {
     if (!TextUtils.isEmpty(profileName)) {
       profileNameView.setText(profileName);
     }
+
+    profileNameView.setVisibility(TextUtils.isEmpty(profileName) ? View.GONE : View.VISIBLE);
 
     profileNumberView.setText(localAddress.toPhoneString());
   }
