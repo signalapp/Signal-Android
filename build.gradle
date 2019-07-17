@@ -10,9 +10,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url "https://repo1.maven.org/maven2"
-        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
@@ -27,6 +24,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'witness'
 
 repositories {
+    mavenLocal()
     maven {
         url "https://raw.github.com/signalapp/maven/master/photoview/releases/"
         content {
@@ -59,7 +57,6 @@ repositories {
     }
     google()
     jcenter()
-    mavenLocal()
     maven {
         url "https://jitpack.io"
     }
@@ -101,11 +98,6 @@ dependencies {
 
     implementation 'org.conscrypt:conscrypt-android:2.0.0'
     implementation 'org.signal:aesgcmprovider:0.0.3'
-
-    implementation "com.github.loki-project:loki-messenger-android-core:master-SNAPSHOT"
-
-    // Jitpack doesn't pull in loki-message-android-core dependencies, so we have to manually copy them ;(
-    implementation "org.signal:signal-metadata-java:0.0.3"
 
     implementation 'org.whispersystems:webrtc-android:M74'
 
@@ -155,10 +147,6 @@ dependencies {
         exclude group: 'org.freemarker'
     }
 
-    implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"
-    implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
-    implementation "com.squareup.okhttp3:okhttp:3.12.1"
-
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.11.1'
     testImplementation 'org.mockito:mockito-core:1.9.5'
@@ -181,6 +169,14 @@ dependencies {
     }
     testImplementation 'org.robolectric:robolectric:4.2'
     testImplementation 'org.robolectric:shadows-multidex:4.2'
+
+    // Loki
+    implementation "com.github.loki-project:loki-messenger-android-core:master-SNAPSHOT"
+    implementation "org.signal:signal-metadata-android:0.0.3"
+    implementation "com.google.protobuf:protobuf-java:2.5.0"
+    implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
+    implementation "com.squareup.okhttp3:okhttp:3.12.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "nl.komponents.kovenant:kovenant:$kovenant_version"
 }
