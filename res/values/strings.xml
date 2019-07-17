@@ -519,6 +519,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">You marked your safety number with %s unverified from another device</string>
     <string name="MessageRecord_you_have_deleted_one_message">You have permanently deleted a message which used to be here. Keep in mind that although the message has been deleted for you, it might not be deleted by your conversation partner.</string>
     <string name="MessageRecord_you_have_deleted_multiple_messages">You have permanently deleted %s messages which used to be here. Keep in mind that although these messages have been deleted for you, they might not be deleted by your conversation partner.</string>
+    <string name="MessageRecord_there_is_no_one_in_this_group">There is no one but you in this group, so no one will receive your messages. Try adding members to the group before you send anything. New members can not see messages which were send before they joined.</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
