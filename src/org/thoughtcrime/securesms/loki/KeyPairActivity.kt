@@ -5,6 +5,8 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_key_pair.*
 import org.thoughtcrime.securesms.ApplicationContext
@@ -26,10 +28,16 @@ import java.io.FileOutputStream
 
 class KeyPairActivity : BaseActionBarActivity() {
     private lateinit var languageFileDirectory: File
+    private var mode = Mode.Register
+        set(newValue) { field = newValue; updateUI() }
     private var keyPair: IdentityKeyPair? = null
         set(newValue) { field = newValue; updateMnemonic() }
     private var mnemonic: String? = null
         set(newValue) { field = newValue; updateMnemonicTextView() }
+
+    // region Types
+    enum class Mode { Register, Restore }
+    // endregion
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +46,8 @@ class KeyPairActivity : BaseActionBarActivity() {
         setUpLanguageFileDirectory()
         updateKeyPair()
         copyButton.setOnClickListener { copy() }
-        registerButton.setOnClickListener { register() }
+        toggleModeButton.setOnClickListener { toggleMode() }
+        registerOrRestoreButton.setOnClickListener { registerOrRestore() }
     }
     // endregion
 
@@ -71,6 +80,25 @@ class KeyPairActivity : BaseActionBarActivity() {
         keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
     }
 
+    private fun updateUI() {
+        seedExplanationTextView1.visibility = if (mode == Mode.Register) View.VISIBLE else View.GONE
+        mnemonicTextView.visibility = if (mode == Mode.Register) View.VISIBLE else View.GONE
+        copyButton.visibility = if (mode == Mode.Register) View.VISIBLE else View.GONE
+        seedExplanationTextView2.visibility = if (mode == Mode.Restore) View.VISIBLE else View.GONE
+        mnemonicEditText.visibility = if (mode == Mode.Restore) View.VISIBLE else View.GONE
+        val toggleModeButtonTitleID = if (mode == Mode.Register) R.string.activity_key_pair_toggle_mode_button_title_1 else R.string.activity_key_pair_toggle_mode_button_title_2
+        toggleModeButton.setText(toggleModeButtonTitleID)
+        val registerOrRestoreButtonTitleID = if (mode == Mode.Register) R.string.activity_key_pair_register_or_restore_button_title_1 else R.string.activity_key_pair_register_or_restore_button_title_2
+        registerOrRestoreButton.setText(registerOrRestoreButtonTitleID)
+        if (mode == Mode.Restore) {
+            mnemonicEditText.requestFocus()
+        } else {
+            mnemonicEditText.clearFocus()
+            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(mnemonicEditText.windowToken, 0)
+        }
+    }
+
     private fun updateMnemonic() {
         mnemonic = MnemonicCodec(languageFileDirectory).encode(keyPair!!.hexEncodedPrivateKey)
     }
@@ -88,7 +116,14 @@ class KeyPairActivity : BaseActionBarActivity() {
         Toast.makeText(this, R.string.activity_key_pair_mnemonic_copied_message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun register() {
+    private fun toggleMode() {
+        mode = when (mode) {
+            Mode.Register -> Mode.Restore
+            Mode.Restore -> Mode.Register
+        }
+    }
+
+    private fun registerOrRestore() {
         val publicKey = keyPair!!.publicKey
         val hexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
         val registrationID = KeyHelper.generateRegistrationId(false)

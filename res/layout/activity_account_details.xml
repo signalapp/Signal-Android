@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             app:labeledEditText_background="@color/white"
-            app:labeledEditText_label="Display Name (Optional)"/>
+            app:labeledEditText_label="@string/activity_account_details_name_edit_text_label"/>
 
         <com.dd.CircularProgressButton
             android:id="@+id/nextButton"
