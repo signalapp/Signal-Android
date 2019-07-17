@@ -9,6 +9,7 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -524,7 +525,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
    * Blocking render of the model.
    */
   @WorkerThread
-  public Bitmap render(@NonNull Context context) {
+  public @NonNull Bitmap render(@NonNull Context context) {
     EditorElement image      = editorElementHierarchy.getFlipRotate();
     RectF         cropRect   = editorElementHierarchy.getCropRect();
     Point         outputSize = getOutputSize();
@@ -573,11 +574,15 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
   @Override
   public void onReady(@NonNull Renderer renderer, @Nullable Matrix cropMatrix, @Nullable Point size) {
     if (cropMatrix != null && size != null && isRendererOfMainImage(renderer)) {
+      boolean changedBefore = isChanged();
       Matrix imageCropMatrix = editorElementHierarchy.getImageCrop().getLocalMatrix();
       this.size.set(size.x, size.y);
       if (imageCropMatrix.isIdentity()) {
         imageCropMatrix.set(cropMatrix);
         editorElementHierarchy.doneCrop(visibleViewPort, null);
+        if (!changedBefore) {
+          undoRedoStacks.clear(editorElementHierarchy.getRoot());
+        }
       }
     }
   }

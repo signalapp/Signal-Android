@@ -6,13 +6,15 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Parcel;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import org.thoughtcrime.securesms.imageeditor.Bounds;
@@ -30,6 +32,8 @@ import java.util.concurrent.ExecutionException;
  * The image can be encrypted.
  */
 final class UriGlideRenderer implements Renderer {
+
+  private static final int PREVIEW_DIMENSION_LIMIT = 2048;
 
   private final Uri     imageUri;
   private final Paint   paint                 = new Paint();
@@ -57,7 +61,7 @@ final class UriGlideRenderer implements Renderer {
     if (getBitmap() == null) {
       if (rendererContext.isBlockingLoad()) {
         try {
-          Bitmap bitmap = getBitmapGlideRequest(rendererContext.context).submit().get();
+          Bitmap bitmap = getBitmapGlideRequest(rendererContext.context, false).submit().get();
           setBitmap(rendererContext, bitmap);
         } catch (ExecutionException e) {
           throw new RuntimeException(e);
@@ -65,10 +69,15 @@ final class UriGlideRenderer implements Renderer {
           throw new RuntimeException(e);
         }
       } else {
-        getBitmapGlideRequest(rendererContext.context).into(new SimpleTarget<Bitmap>() {
+        getBitmapGlideRequest(rendererContext.context, true).into(new CustomTarget<Bitmap>() {
           @Override
           public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
             setBitmap(rendererContext, resource);
+          }
+
+          @Override
+          public void onLoadCleared(@Nullable Drawable placeholder) {
+            bitmap = null;
           }
         });
       }
@@ -96,11 +105,19 @@ final class UriGlideRenderer implements Renderer {
     }
   }
 
-  private GlideRequest<Bitmap> getBitmapGlideRequest(@NonNull Context context) {
+  private GlideRequest<Bitmap> getBitmapGlideRequest(@NonNull Context context, boolean preview) {
+    int width  = this.maxWidth;
+    int height = this.maxHeight;
+
+    if (preview) {
+      width  = Math.min(width,  PREVIEW_DIMENSION_LIMIT);
+      height = Math.min(height, PREVIEW_DIMENSION_LIMIT);
+    }
+
     return GlideApp.with(context)
                    .asBitmap()
                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                   .override(maxWidth, maxHeight)
+                   .override(width, height)
                    .centerInside()
                    .load(decryptable ? new DecryptableStreamUriLoader.DecryptableUri(imageUri) : imageUri);
   }
@@ -130,8 +147,11 @@ final class UriGlideRenderer implements Renderer {
     }
   }
 
-  @Nullable
-  private Bitmap getBitmap() {
+  /**
+   * Always use this getter, as Bitmap is kept in Glide's LRUCache, so it could have been recycled
+   * by Glide. If it has, or was never set, this method returns null.
+   */
+  private @Nullable Bitmap getBitmap() {
     if (bitmap != null && bitmap.isRecycled()) {
       bitmap = null;
     }

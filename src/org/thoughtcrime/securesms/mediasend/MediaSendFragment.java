@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.annotation.SuppressLint;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
@@ -9,14 +8,6 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -27,6 +18,16 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
@@ -425,7 +426,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   @SuppressLint("StaticFieldLeak")
   private void processMedia(@NonNull List<Media> mediaList, @NonNull Map<Uri, Object> savedState) {
-    Map<Media, ListenableFuture<Bitmap>> futures = new HashMap<>();
+    Map<Media, EditorModel> modelsToRender = new HashMap<>();
 
     for (Media media : mediaList) {
       Object state = savedState.get(media.getUri());
@@ -433,7 +434,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
       if (state instanceof ImageEditorFragment.Data) {
         EditorModel model = ((ImageEditorFragment.Data) state).readModel();
         if (model != null && model.isChanged()) {
-          futures.put(media, render(requireContext(), model));
+          modelsToRender.put(media, model);
         }
       }
     }
@@ -461,28 +462,32 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
       @Override
       protected List<Media> doInBackground(Void... voids) {
-        Context     context      = requireContext();
-        List<Media> updatedMedia = new ArrayList<>(mediaList.size());
+        Context               context      = requireContext();
+        List<Media>           updatedMedia = new ArrayList<>(mediaList.size());
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         for (Media media : mediaList) {
-          if (futures.containsKey(media)) {
+          EditorModel modelToRender = modelsToRender.get(media);
+          if (modelToRender != null) {
+            Bitmap bitmap = modelToRender.render(context);
             try {
-              Bitmap                 bitmap   = futures.get(media).get();
-              ByteArrayOutputStream  baos     = new ByteArrayOutputStream();
-              bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+              outputStream.reset();
+              bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
 
               Uri uri = BlobProvider.getInstance()
-                                    .forData(baos.toByteArray())
+                                    .forData(outputStream.toByteArray())
                                     .withMimeType(MediaUtil.IMAGE_JPEG)
                                     .createForSingleSessionOnDisk(context, e -> Log.w(TAG, "Failed to write to disk.", e));
 
-              Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), baos.size(), media.getBucketId(), media.getCaption());
+              Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), media.getBucketId(), media.getCaption());
 
               updatedMedia.add(updated);
               renderTimer.split("item");
-            } catch (InterruptedException | ExecutionException | IOException e) {
+            } catch (IOException e) {
               Log.w(TAG, "Failed to render image. Using base image.");
               updatedMedia.add(media);
+            } finally {
+              bitmap.recycle();
             }
           } else {
             updatedMedia.add(media);
@@ -501,14 +506,6 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
         renderTimer.stop(TAG);
       }
     }.execute();
-  }
-
-  private static ListenableFuture<Bitmap> render(@NonNull Context context, @NonNull EditorModel model) {
-    SettableFuture<Bitmap> future = new SettableFuture<>();
-
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> future.set(model.render(context)));
-
-    return future;
   }
 
   public void onRequestFullScreen(boolean fullScreen) {

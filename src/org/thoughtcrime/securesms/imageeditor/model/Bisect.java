@@ -83,7 +83,7 @@ final class Bisect {
          inBoundsValue = nextValueToTry;
 
          // if first success or closer to out of bounds than the current closest
-         if (!haveResult || Math.abs(nextValueToTry) < Math.abs(successValue)) {
+         if (!haveResult || Math.abs(nextValueToTry - outOfBoundsValue) < Math.abs(successValue - outOfBoundsValue)) {
            haveResult = true;
            successValue = nextValueToTry;
            closestSuccessful.set(elementMatrix);
