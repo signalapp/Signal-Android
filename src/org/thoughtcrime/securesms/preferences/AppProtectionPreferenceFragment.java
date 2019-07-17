@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -103,7 +104,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
     findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT)
         .setSummary(timeoutSeconds <= 0 ? getString(R.string.AppProtectionPreferenceFragment_none) :
-                                          String.format("%02d:%02d:%02d", hours, minutes, seconds));
+                                          String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
   }
 
   private void initializeVisibility() {
