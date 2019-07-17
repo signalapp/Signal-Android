@@ -24,12 +24,14 @@ import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECKeyPair;
 import org.whispersystems.libsignal.ecc.ECPrivateKey;
+import org.whispersystems.libsignal.logging.Log;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -81,6 +83,18 @@ public class IdentityKeyUtil {
       return new IdentityKeyPair(publicKey, privateKey);
     } catch (IOException e) {
       throw new AssertionError(e);
+    }
+  }
+
+  public static void generateIdentityKeyPair(Context context, String hexEncodedPrivateKey) {
+    try {
+      byte[] privateKey = Hex.fromStringCondensed(hexEncodedPrivateKey);
+      ECKeyPair keyPair = Curve.generateKeyPair(privateKey);
+      IdentityKey  publicKey = new IdentityKey(keyPair.getPublicKey());
+      save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(publicKey.serialize()));
+      save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(keyPair.getPrivateKey().serialize()));
+    } catch (Exception e) {
+      Log.d("Loki", "Couldn't restore key pair from seed due to error: " + e.getMessage());
     }
   }
 

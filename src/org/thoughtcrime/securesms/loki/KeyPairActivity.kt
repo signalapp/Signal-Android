@@ -124,8 +124,18 @@ class KeyPairActivity : BaseActionBarActivity() {
     }
 
     private fun registerOrRestore() {
-        val publicKey = keyPair!!.publicKey
-        val hexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
+        val keyPair: IdentityKeyPair
+        when (mode) {
+            Mode.Register -> keyPair = this.keyPair!!
+            Mode.Restore -> {
+                val mnemonic = mnemonicEditText.text.toString()
+                val hexEncodedPrivateKey = MnemonicCodec(languageFileDirectory).decode(mnemonic)
+                IdentityKeyUtil.generateIdentityKeyPair(this, hexEncodedPrivateKey)
+                keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
+            }
+        }
+        val publicKey = keyPair.publicKey
+        val hexEncodedPublicKey = keyPair.hexEncodedPublicKey
         val registrationID = KeyHelper.generateRegistrationId(false)
         TextSecurePreferences.setLocalRegistrationId(this, registrationID)
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
