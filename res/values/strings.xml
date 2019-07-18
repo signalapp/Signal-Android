@@ -1335,11 +1335,9 @@
     <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox zeeerrro</string>
     <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada.\nYou\'re all caught up!</string>
 
-
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>
     <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Give your inbox something to write home about. Get started by messaging a friend.</string>
-
 
     <!-- conversation_secure_verified -->
     <string name="conversation_secure_verified__menu_reset_secure_session">Reset secure session</string>
@@ -1539,6 +1537,8 @@
     <string name="activity_key_pair_mnemonic_copied_message">Copied to Clipboard</string>
     <string name="activity_key_pair_register_or_restore_button_title_1">Register</string>
     <string name="activity_key_pair_register_or_restore_button_title_2">Restore</string>
+    <!-- Conversation list activity -->
+    <string name="activity_conversation_list_empty_state_message">Looks like you don\'t have any conversations yet. Get started by messaging a friend.</string>
     <!-- Settings activity -->
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
@@ -1556,6 +1556,10 @@
     <!-- Contact selection activity -->
     <string name="activity_contact_selection_search_bar_placeholder">Search by name or public key</string>
     <!-- New conversation activity -->
+    <string name="activity_new_conversation_title">New Conversation</string>
+    <string name="activity_new_conversation_public_key_edit_text_label">Public Key</string>
+    <string name="activity_new_conversation_public_key_explanation">Enter the public key of the person you\'d like to securely message. They can share their public key with you by going into Loki Messenger\'s in-app settings and clicking "Share Public Key".</string>
+    <string name="activity_new_conversation_button_title">Next</string>
     <string name="activity_new_conversation_invalid_public_key_message">Invalid Public Key</string>
     <!-- Friend request view -->
     <string name="view_friend_request_accept_button_title">Accept</string>
