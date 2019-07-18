@@ -230,8 +230,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         SimpleTask.run(CameraXFragment.this.getLifecycle(), () -> {
           stopwatch.split("captured");
           try {
-            byte[] bytes = CameraXUtil.toJpegBytes(image, rotationDegrees, camera.getCameraLensFacing() == CameraX.LensFacing.FRONT);
-            return new CaptureResult(bytes, image.getWidth(), image.getHeight());
+            return CameraXUtil.toJpeg(image, rotationDegrees, camera.getCameraLensFacing() == CameraX.LensFacing.FRONT);
           } catch (IOException e) {
             return null;
           } finally {
@@ -242,7 +241,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
           stopwatch.stop(TAG);
 
           if (result != null) {
-            controller.onImageCaptured(result.data, result.width, result.height);
+            controller.onImageCaptured(result.getData(), result.getWidth(), result.getHeight());
           } else {
             controller.onCameraError();
           }
@@ -254,17 +253,5 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         controller.onCameraError();
       }
     });
-  }
-
-  private static final class CaptureResult {
-    public final byte[] data;
-    public final int    width;
-    public final int    height;
-
-    private CaptureResult(byte[] data, int width, int height) {
-      this.data = data;
-      this.width = width;
-      this.height = height;
-    }
   }
 }
