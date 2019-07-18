@@ -8,18 +8,18 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.transition.TransitionInflater;
-
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.qr.ScanListener;
@@ -75,6 +75,16 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
     } else {
       initFragment(android.R.id.content, deviceListFragment, dynamicLanguage.getCurrentLocale());
     }
+
+    overridePendingTransition(R.anim.slide_from_end, R.anim.slide_to_start);
+  }
+
+  @Override
+  protected void onPause() {
+    if (isFinishing()) {
+      overridePendingTransition(R.anim.slide_from_start, R.anim.slide_to_end);
+    }
+    super.onPause();
   }
 
   @Override
