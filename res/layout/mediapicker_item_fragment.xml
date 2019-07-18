@@ -19,6 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp" />
+        android:layout_marginTop="2dp"
+        android:paddingBottom="@dimen/media_picker_rail_padding_affordance"
+        android:clipToPadding="false"/>
 
 </LinearLayout>

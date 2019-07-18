@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -51,6 +53,8 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+
     recipientName = getArguments().getString(KEY_RECIPIENT_NAME);
     viewModel     = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
@@ -92,14 +96,26 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
   @Override
   public void onResume() {
     super.onResume();
-
     viewModel.onFolderPickerStarted();
-    requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-    requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
   }
 
   @Override
-  public void onConfigurationChanged(Configuration newConfig) {
+  public void onPrepareOptionsMenu(@NonNull Menu menu) {
+    requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.mediapicker_menu_camera:
+        controller.onCameraSelected();
+        return true;
+    }
+    return false;
+  }
+
+  @Override
+  public void onConfigurationChanged(@NonNull Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     onScreenWidthChanged(getScreenWidth());
   }
@@ -131,5 +147,6 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
 
   public interface Controller {
     void onFolderSelected(@NonNull MediaFolder folder);
+    void onCameraSelected();
   }
 }

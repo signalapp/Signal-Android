@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,13 +26,17 @@ import androidx.camera.core.ImageProxy;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.bumptech.glide.Glide;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXView;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 
@@ -84,6 +91,9 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     camera.setCameraLensFacing(CameraXUtil.toLensFacing(TextSecurePreferences.getDirectCaptureCameraId(requireContext())));
 
     onOrientationChanged(getResources().getConfiguration().orientation);
+
+    viewModel.getMostRecentMediaItem(requireContext()).observe(this, this::presentRecentItemThumbnail);
+    viewModel.getHudState().observe(this, this::presentHud);
   }
 
   @Override
@@ -116,10 +126,45 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     initControls();
   }
 
+  private void presentRecentItemThumbnail(Optional<Media> media) {
+    if (media == null) {
+      return;
+    }
+
+    ImageView thumbnail = controlsContainer.findViewById(R.id.camera_gallery_button);
+
+    if (media.isPresent()) {
+      thumbnail.setVisibility(View.VISIBLE);
+      Glide.with(this)
+           .load(new DecryptableUri(media.get().getUri()))
+           .centerCrop()
+           .into(thumbnail);
+    } else {
+      thumbnail.setVisibility(View.GONE);
+      thumbnail.setImageResource(0);
+    }
+  }
+
+  private void presentHud(@Nullable MediaSendViewModel.HudState state) {
+    if (state == null) return;
+
+    View     countButton     = controlsContainer.findViewById(R.id.camera_count_button);
+    TextView countButtonText = controlsContainer.findViewById(R.id.mediasend_count_button_text);
+
+    if (state.getButtonState() == MediaSendViewModel.ButtonState.COUNT) {
+      countButton.setVisibility(View.VISIBLE);
+      countButtonText.setText(String.valueOf(state.getSelectionCount()));
+    } else {
+      countButton.setVisibility(View.GONE);
+    }
+  }
+
   @SuppressLint({"ClickableViewAccessibility", "MissingPermission"})
   private void initControls() {
     View flipButton    = requireView().findViewById(R.id.camera_flip_button);
     View captureButton = requireView().findViewById(R.id.camera_capture_button);
+    View galleryButton = requireView().findViewById(R.id.camera_gallery_button);
+    View countButton   = requireView().findViewById(R.id.camera_count_button);
 
     captureButton.setOnTouchListener((v, event) -> {
       switch (event.getAction()) {
@@ -154,9 +199,26 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         animation.setInterpolator(new DecelerateInterpolator());
         flipButton.startAnimation(animation);
       });
+
+      GestureDetector gestureDetector = new GestureDetector(requireContext(), new GestureDetector.SimpleOnGestureListener() {
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+          flipButton.performClick();
+          return true;
+        }
+      });
+
+      camera.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+
+
     } else {
       flipButton.setVisibility(View.GONE);
     }
+
+    galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
+    countButton.setOnClickListener(v -> controller.onContinueClicked());
+
+    viewModel.onCameraControlsInitialized();
   }
 
   private void onCaptureClicked() {

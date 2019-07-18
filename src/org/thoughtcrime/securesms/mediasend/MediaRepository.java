@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
@@ -20,6 +19,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.File;
@@ -40,14 +40,14 @@ class MediaRepository {
    * Retrieves a list of folders that contain media.
    */
   void getFolders(@NonNull Context context, @NonNull Callback<List<MediaFolder>> callback) {
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> callback.onComplete(getFolders(context)));
+    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getFolders(context)));
   }
 
   /**
    * Retrieves a list of media items (images and videos) that are present int he specified bucket.
    */
   void getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Callback<List<Media>> callback) {
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> callback.onComplete(getMediaInBucket(context, bucketId)));
+    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getMediaInBucket(context, bucketId)));
   }
 
   /**
@@ -60,7 +60,11 @@ class MediaRepository {
       return;
     }
 
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> callback.onComplete(getPopulatedMedia(context, media)));
+    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getPopulatedMedia(context, media)));
+  }
+
+  void getMostRecentItem(@NonNull Context context, @NonNull Callback<Optional<Media>> callback) {
+    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getMostRecentItem(context)));
   }
 
   @WorkerThread
@@ -158,7 +162,7 @@ class MediaRepository {
   }
 
   @WorkerThread
-  private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Uri contentUri, boolean hasOrienation) {
+  private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Uri contentUri, boolean hasOrientation) {
     List<Media> media         = new LinkedList<>();
     String      selection     = Images.Media.BUCKET_ID + " = ? AND " + Images.Media.DATA + " NOT NULL";
     String[]    selectionArgs = new String[] { bucketId };
@@ -166,7 +170,7 @@ class MediaRepository {
 
     String[] projection;
 
-    if (hasOrienation) {
+    if (hasOrientation) {
       projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
     } else {
       projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
@@ -182,7 +186,7 @@ class MediaRepository {
         Uri    uri         = Uri.withAppendedPath(contentUri, cursor.getString(cursor.getColumnIndexOrThrow(Images.Media._ID)));
         String mimetype    = cursor.getString(cursor.getColumnIndexOrThrow(Images.Media.MIME_TYPE));
         long   dateTaken   = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.DATE_TAKEN));
-        int    orientation = hasOrienation ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
+        int    orientation = hasOrientation ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
         int    width       = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
         int    height      = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
@@ -209,6 +213,12 @@ class MediaRepository {
         return m;
       }
     }).toList();
+  }
+
+  @WorkerThread
+  private Optional<Media> getMostRecentItem(@NonNull Context context) {
+    List<Media> media = getMediaInBucket(context, Media.ALL_MEDIA_BUCKET_ID, Images.Media.EXTERNAL_CONTENT_URI, true);
+    return media.size() > 0 ? Optional.of(media.get(0)) : Optional.absent();
   }
 
   @TargetApi(16)

@@ -1,45 +1,76 @@
 package org.thoughtcrime.securesms.mediasend;
 
-import android.Manifest;
-
-import androidx.fragment.app.FragmentTransaction;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.lifecycle.ViewModelProviders;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.ScaleAnimation;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.components.ComposeText;
+import org.thoughtcrime.securesms.components.InputAwareLayout;
+import org.thoughtcrime.securesms.components.SendButton;
+import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
+import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
+import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
+import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
+import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
+import org.thoughtcrime.securesms.mediasend.MediaSendViewModel.TimerState;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
+import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Encompasses the entire flow of sending media, starting from the selection process to the actual
@@ -50,15 +81,19 @@ import java.util.Locale;
  */
 public class MediaSendActivity extends PassphraseRequiredActionBarActivity implements MediaPickerFolderFragment.Controller,
                                                                                       MediaPickerItemFragment.Controller,
-                                                                                      MediaSendFragment.Controller,
                                                                                       ImageEditorFragment.Controller,
-                                                                                      CameraFragment.Controller
+                                                                                      CameraFragment.Controller,
+                                                                                      ViewTreeObserver.OnGlobalLayoutListener,
+                                                                                      MediaRailAdapter.RailItemListener,
+                                                                                      InputAwareLayout.OnKeyboardShownListener,
+                                                                                      InputAwareLayout.OnKeyboardHiddenListener
 {
   private static final String TAG = MediaSendActivity.class.getSimpleName();
 
-  public static final String EXTRA_MEDIA     = "media";
-  public static final String EXTRA_MESSAGE   = "message";
-  public static final String EXTRA_TRANSPORT = "transport";
+  public static final String EXTRA_MEDIA           = "media";
+  public static final String EXTRA_MESSAGE         = "message";
+  public static final String EXTRA_TRANSPORT       = "transport";
+  public static final String EXTRA_REVEAL_DURATION = "reveal_duration";
 
 
   private static final String KEY_ADDRESS   = "address";
@@ -78,9 +113,25 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private TransportOption    transport;
   private MediaSendViewModel viewModel;
 
-  private View     countButton;
-  private TextView countButtonText;
-  private View     cameraButton;
+  private InputAwareLayout    hud;
+  private View                captionAndRail;
+  private SendButton          sendButton;
+  private ViewGroup           sendButtonContainer;
+  private ComposeText         composeText;
+  private ViewGroup           composeRow;
+  private ViewGroup           composeContainer;
+  private ViewGroup           countButton;
+  private TextView            countButtonText;
+  private EmojiEditText       captionText;
+  private EmojiToggle         emojiToggle;
+  private Stub<MediaKeyboard> emojiDrawer;
+  private TextView            charactersLeft;
+  private RecyclerView        mediaRail;
+  private MediaRailAdapter    mediaRailAdapter;
+
+  private int visibleHeight;
+
+  private final Rect visibleBounds = new Rect();
 
   /**
    * Get an intent to launch the media send flow starting with the picker.
@@ -131,15 +182,27 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       return;
     }
 
-    countButton     = findViewById(R.id.mediasend_count_button);
-    countButtonText = findViewById(R.id.mediasend_count_button_text);
-    cameraButton    = findViewById(R.id.mediasend_camera_button);
+    hud                 = findViewById(R.id.mediasend_hud);
+    captionAndRail      = findViewById(R.id.mediasend_caption_and_rail);
+    sendButton          = findViewById(R.id.mediasend_send_button);
+    sendButtonContainer = findViewById(R.id.mediasend_send_button_bkg);
+    composeText         = findViewById(R.id.mediasend_compose_text);
+    composeRow          = findViewById(R.id.mediasend_compose_row);
+    composeContainer    = findViewById(R.id.mediasend_compose_container);
+    countButton         = findViewById(R.id.mediasend_count_button);
+    countButtonText     = findViewById(R.id.mediasend_count_button_text);
+    captionText         = findViewById(R.id.mediasend_caption);
+    emojiToggle         = findViewById(R.id.mediasend_emoji_toggle);
+    charactersLeft      = findViewById(R.id.mediasend_characters_left);
+    mediaRail           = findViewById(R.id.mediasend_media_rail);
+    emojiDrawer         = new Stub<>(findViewById(R.id.mediasend_emoji_drawer_stub));
 
     viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
     recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 
     viewModel.setTransport(transport);
+    viewModel.setRecipient(recipient);
     viewModel.onBodyChanged(getIntent().getStringExtra(KEY_BODY));
 
     List<Media> media    = getIntent().getParcelableArrayListExtra(KEY_MEDIA);
@@ -165,19 +228,80 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                  .commit();
     }
 
-    initializeCountButtonObserver(transport, dynamicLanguage.getCurrentLocale());
-    initializeCameraButtonObserver();
-    initializeErrorObserver();
+    sendButton.setOnClickListener(v -> {
+      if (hud.isKeyboardOpen()) {
+        hud.hideSoftkey(composeText, null);
+      }
 
-    cameraButton.setOnClickListener(v -> {
-      int maxSelection = viewModel.getMaxSelection();
+      MediaSendFragment fragment = getMediaSendFragment();
 
-      if (viewModel.getSelectedMedia().getValue() != null && viewModel.getSelectedMedia().getValue().size() >= maxSelection) {
-        Toast.makeText(this, getResources().getQuantityString(R.plurals.MediaSendActivity_cant_share_more_than_n_items, maxSelection, maxSelection), Toast.LENGTH_SHORT).show();
+      if (fragment != null) {
+        processMedia(fragment.getAllMedia(), fragment.getSavedState());
       } else {
-        navigateToCamera();
+        throw new AssertionError("No send fragment available!");
       }
     });
+
+    sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
+      presentCharactersRemaining();
+      composeText.setTransport(newTransport);
+      sendButtonContainer.getBackground().setColorFilter(newTransport.getBackgroundColor(), PorterDuff.Mode.MULTIPLY);
+      sendButtonContainer.getBackground().invalidateSelf();
+    });
+
+    ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
+
+    composeText.setOnKeyListener(composeKeyPressedListener);
+    composeText.addTextChangedListener(composeKeyPressedListener);
+    composeText.setOnClickListener(composeKeyPressedListener);
+    composeText.setOnFocusChangeListener(composeKeyPressedListener);
+
+    captionText.clearFocus();
+    composeText.requestFocus();
+
+    mediaRailAdapter = new MediaRailAdapter(GlideApp.with(this), this, true);
+    mediaRail.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    mediaRail.setAdapter(mediaRailAdapter);
+
+    hud.getRootView().getViewTreeObserver().addOnGlobalLayoutListener(this);
+    hud.addOnKeyboardShownListener(this);
+    hud.addOnKeyboardHiddenListener(this);
+
+    captionText.addTextChangedListener(new SimpleTextWatcher() {
+      @Override
+      public void onTextChanged(String text) {
+        viewModel.onCaptionChanged(text);
+      }
+    });
+
+    sendButton.setTransport(transport);
+    sendButton.disableTransport(transport.getType() == TransportOption.Type.SMS ? TransportOption.Type.TEXTSECURE : TransportOption.Type.SMS);
+
+    countButton.setOnClickListener(v -> navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale()));
+
+    composeText.append(viewModel.getBody());
+
+    if (recipient.isLocalNumber()) {
+      composeText.setHint(getString(R.string.note_to_self), null);
+    } else {
+      String displayName = Optional.fromNullable(recipient.getName())
+                                   .or(Optional.fromNullable(recipient.getProfileName())
+                                   .or(recipient.getAddress().serialize()));
+      composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
+    }
+    composeText.setOnEditorActionListener((v, actionId, event) -> {
+      boolean isSend = actionId == EditorInfo.IME_ACTION_SEND;
+      if (isSend) sendButton.performClick();
+      return isSend;
+    });
+
+    if (TextSecurePreferences.isSystemEmojiPreferred(this)) {
+      emojiToggle.setVisibility(View.GONE);
+    } else {
+      emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
+    }
+
+    initViewModel();
   }
 
   @Override
@@ -188,13 +312,12 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   @Override
   public void onBackPressed() {
-    MediaSendFragment sendFragment = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
-    if (sendFragment == null || !sendFragment.isVisible() || !sendFragment.handleBackPress()) {
-      super.onBackPressed();
+    MediaSendFragment sendFragment  = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
 
-      if (getIntent().getBooleanExtra(KEY_IS_CAMERA, false) && getSupportFragmentManager().getBackStackEntryCount() == 0) {
-        viewModel.onImageCaptureUndo(this);
-      }
+    if (sendFragment == null || !sendFragment.isVisible() || !hud.isInputOpen()) {
+      super.onBackPressed();
+    } else {
+      hud.hideCurrentInput(composeText);
     }
   }
 
@@ -209,7 +332,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
     MediaPickerItemFragment fragment = MediaPickerItemFragment.newInstance(folder.getBucketId(), folder.getTitle(), viewModel.getMaxSelection());
     getSupportFragmentManager().beginTransaction()
-                               .setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
                                .replace(R.id.mediasend_fragment_container, fragment, TAG_ITEM_PICKER)
                                .addToBackStack(null)
                                .commit();
@@ -218,48 +340,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   @Override
   public void onMediaSelected(@NonNull Media media) {
     viewModel.onSingleMediaSelected(this, media);
-    navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale(), false);
-  }
-
-  @Override
-  public void onAddMediaClicked(@NonNull String bucketId) {
-    // TODO: Get actual folder title somehow
-    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(recipient);
-    MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
-
-    getSupportFragmentManager().beginTransaction()
-                               .setCustomAnimations(R.anim.stationary, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
-                               .replace(R.id.mediasend_fragment_container, folderFragment, TAG_FOLDER_PICKER)
-                               .addToBackStack(null)
-                               .commit();
-
-    getSupportFragmentManager().beginTransaction()
-                               .setCustomAnimations(R.anim.slide_from_right, R.anim.stationary, R.anim.slide_from_left, R.anim.slide_to_right)
-                               .replace(R.id.mediasend_fragment_container, itemFragment, TAG_ITEM_PICKER)
-                               .addToBackStack(null)
-                               .commit();
-  }
-
-  @Override
-  public void onSendClicked(@NonNull List<Media> media, @NonNull String message, @NonNull TransportOption transport) {
-    viewModel.onSendClicked();
-
-    ArrayList<Media> mediaList = new ArrayList<>(media);
-    Intent           intent    = new Intent();
-
-    intent.putParcelableArrayListExtra(EXTRA_MEDIA, mediaList);
-    intent.putExtra(EXTRA_MESSAGE, message);
-    intent.putExtra(EXTRA_TRANSPORT, transport);
-    setResult(RESULT_OK, intent);
-    finish();
-
-    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom);
-  }
-
-  @Override
-  public void onNoMediaAvailable() {
-    setResult(RESULT_CANCELED);
-    finish();
+    navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
   }
 
   @Override
@@ -307,7 +388,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       Log.i(TAG, "Camera capture stored: " + media.getUri().toString());
 
       viewModel.onImageCaptured(media);
-      navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale(), true);
+      navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
     });
   }
 
@@ -316,37 +397,203 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     return getWindowManager().getDefaultDisplay().getRotation();
   }
 
-  private void initializeCountButtonObserver(@NonNull TransportOption transport, @NonNull Locale locale) {
-    viewModel.getCountButtonState().observe(this, buttonState -> {
-      if (buttonState == null) return;
+  @Override
+  public void onContinueClicked() {
+    navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
+  }
 
-      countButtonText.setText(String.valueOf(buttonState.getCount()));
-      countButton.setEnabled(buttonState.isVisible());
-      animateButtonVisibility(countButton, countButton.getVisibility(), buttonState.isVisible() ? View.VISIBLE : View.GONE);
+  @Override
+  public void onGalleryClicked() {
+    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(recipient);
 
-      if (buttonState.getCount() > 0) {
-        countButton.setOnClickListener(v -> navigateToMediaSend(recipient, transport, locale, false));
-        if (buttonState.isVisible()) {
-          animateButtonTextChange(countButton);
-        }
+    getSupportFragmentManager().beginTransaction()
+                               .replace(R.id.mediasend_fragment_container, folderFragment, TAG_FOLDER_PICKER)
+                               .setCustomAnimations(R.anim.slide_from_bottom, R.anim.stationary, R.anim.slide_to_bottom, R.anim.stationary)
+                               .addToBackStack(null)
+                               .commit();
+  }
+
+  @Override
+  public void onRequestFullScreen(boolean fullScreen) {
+    captionAndRail.setVisibility(fullScreen ? View.GONE : View.VISIBLE);
+  }
+
+  @Override
+  public void onGlobalLayout() {
+    hud.getRootView().getWindowVisibleDisplayFrame(visibleBounds);
+
+    int currentVisibleHeight = visibleBounds.height();
+
+    if (currentVisibleHeight != visibleHeight) {
+      hud.getLayoutParams().height = currentVisibleHeight;
+      hud.layout(visibleBounds.left, visibleBounds.top, visibleBounds.right, visibleBounds.bottom);
+      hud.requestLayout();
+
+      visibleHeight = currentVisibleHeight;
+    }
+  }
+
+  @Override
+  public void onKeyboardHidden() {
+    viewModel.onKeyboardHidden(sendButton.getSelectedTransport().isSms());
+  }
+
+  @Override
+  public void onKeyboardShown() {
+    viewModel.onKeyboardShown(composeText.hasFocus(), captionText.hasFocus(), sendButton.getSelectedTransport().isSms());
+  }
+
+  @Override
+  public void onRailItemClicked(int distanceFromActive) {
+    if (getMediaSendFragment() != null) {
+      viewModel.onPageChanged(getMediaSendFragment().getCurrentImagePosition() + distanceFromActive);
+    }
+  }
+
+  @Override
+  public void onRailItemDeleteClicked(int distanceFromActive) {
+    if (getMediaSendFragment() != null) {
+      viewModel.onMediaItemRemoved(this, getMediaSendFragment().getCurrentImagePosition() + distanceFromActive);
+    }
+  }
+
+  @Override
+  public void onCameraSelected() {
+    navigateToCamera();
+  }
+
+  public void onAddMediaClicked(@NonNull String bucketId) {
+    // TODO: Get actual folder title somehow
+    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(recipient);
+    MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
+
+    getSupportFragmentManager().beginTransaction()
+                               .replace(R.id.mediasend_fragment_container, folderFragment, TAG_FOLDER_PICKER)
+                               .addToBackStack(null)
+                               .commit();
+
+    getSupportFragmentManager().beginTransaction()
+                               .replace(R.id.mediasend_fragment_container, itemFragment, TAG_ITEM_PICKER)
+                               .addToBackStack(null)
+                               .commit();
+  }
+
+  public void onSendClicked(@NonNull List<Media> media, @NonNull String message, @NonNull TransportOption transport) {
+    viewModel.onSendClicked();
+
+    ArrayList<Media> mediaList = new ArrayList<>(media);
+
+    if (mediaList.size() > 0) {
+      Intent intent = new Intent();
+
+      intent.putParcelableArrayListExtra(EXTRA_MEDIA, mediaList);
+      intent.putExtra(EXTRA_MESSAGE, viewModel.getRevealDuration() == 0 ? message : "");
+      intent.putExtra(EXTRA_TRANSPORT, transport);
+      intent.putExtra(EXTRA_REVEAL_DURATION, viewModel.getRevealDuration());
+
+      setResult(RESULT_OK, intent);
+    } else {
+      setResult(RESULT_CANCELED);
+    }
+
+    finish();
+
+    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom);
+  }
+
+  public void onNoMediaAvailable() {
+    setResult(RESULT_CANCELED);
+    finish();
+  }
+
+
+  private void initViewModel() {
+    viewModel.getHudState().observe(this, state -> {
+      if (state == null) return;
+
+      hud.setVisibility(state.isHudVisible() ? View.VISIBLE : View.GONE);
+      composeContainer.setVisibility(state.isComposeVisible() ? View.VISIBLE : (state.getTimerState() == TimerState.GONE ? View.GONE : View.INVISIBLE));
+      captionText.setVisibility(state.isCaptionVisible() ? View.VISIBLE : View.GONE);
+
+      int captionBackground;
+
+      if (state.getRailState() == MediaSendViewModel.RailState.VIEWABLE) {
+        captionBackground = R.color.core_grey_90;
+      } else if (state.getTimerState() == TimerState.ENABLED) {
+        captionBackground = 0;
       } else {
-        countButton.setOnClickListener(null);
+        captionBackground = R.color.transparent_black_70;
+      }
+
+      captionAndRail.setBackgroundResource(captionBackground);
+
+      switch (state.getButtonState()) {
+        case SEND:
+          sendButtonContainer.setVisibility(View.VISIBLE);
+          countButton.setVisibility(View.GONE);
+          break;
+        case COUNT:
+          sendButtonContainer.setVisibility(View.GONE);
+          countButton.setVisibility(View.VISIBLE);
+          countButtonText.setText(String.valueOf(state.getSelectionCount()));
+          break;
+        case GONE:
+          sendButtonContainer.setVisibility(View.GONE);
+          countButton.setVisibility(View.GONE);
+          break;
+      }
+
+      switch (state.getRailState()) {
+        case INTERACTIVE:
+          mediaRail.setVisibility(View.VISIBLE);
+          mediaRailAdapter.setEditable(true);
+          mediaRailAdapter.setInteractive(true);
+          break;
+        case VIEWABLE:
+          mediaRail.setVisibility(View.VISIBLE);
+          mediaRailAdapter.setEditable(false);
+          mediaRailAdapter.setInteractive(false);
+          break;
+        case GONE:
+          mediaRail.setVisibility(View.GONE);
+          break;
+      }
+
+      if (composeContainer.getVisibility() == View.GONE && sendButtonContainer.getVisibility() == View.GONE) {
+        composeRow.setVisibility(View.GONE);
+      } else {
+        composeRow.setVisibility(View.VISIBLE);
       }
     });
-  }
 
-  private void initializeCameraButtonObserver() {
-    viewModel.getCameraButtonVisibility().observe(this, visible -> {
-      if (visible == null) return;
-      animateButtonVisibility(cameraButton, cameraButton.getVisibility(), visible ? View.VISIBLE : View.GONE);
+    viewModel.getSelectedMedia().observe(this, media -> {
+      mediaRailAdapter.setMedia(media);
     });
-  }
 
-  private void initializeErrorObserver() {
+    viewModel.getPosition().observe(this, position -> {
+      if (position == null || position < 0) return;
+
+      MediaSendFragment fragment = getMediaSendFragment();
+      if (fragment != null && fragment.getAllMedia().size() > position) {
+        captionText.setText(fragment.getAllMedia().get(position).getCaption().or(""));
+      }
+
+      mediaRailAdapter.setActivePosition(position);
+      mediaRail.smoothScrollToPosition(position);
+    });
+
+    viewModel.getBucketId().observe(this, bucketId -> {
+      if (bucketId == null) return;
+      mediaRailAdapter.setAddButtonListener(() -> onAddMediaClicked(bucketId));
+    });
+
     viewModel.getError().observe(this, error -> {
       if (error == null) return;
 
       switch (error) {
+        case NO_ITEMS:
+          onNoMediaAvailable();
+          break;
         case ITEM_TOO_LARGE:
           Toast.makeText(this, R.string.MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit, Toast.LENGTH_LONG).show();
           break;
@@ -358,7 +605,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     });
   }
 
-  private void navigateToMediaSend(@NonNull Recipient recipient, @NonNull TransportOption transport, @NonNull Locale locale, boolean fade) {
+  private void navigateToMediaSend(@NonNull Recipient recipient, @NonNull TransportOption transport, @NonNull Locale locale) {
     MediaSendFragment fragment     = MediaSendFragment.newInstance(recipient, transport, locale);
     String            backstackTag = null;
 
@@ -367,17 +614,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       backstackTag = TAG_SEND;
     }
 
-    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-    if (fade) {
-      transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_out, R.anim.fade_in);
-    } else {
-      transaction.setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right);
-    }
-
-    transaction.replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
-               .addToBackStack(backstackTag)
-               .commit();
+    getSupportFragmentManager().beginTransaction()
+                               .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
+                               .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
+                               .addToBackStack(backstackTag)
+                               .commit();
   }
 
   private void navigateToCamera() {
@@ -389,7 +630,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                .onAllGranted(() -> {
                  Fragment fragment = getOrCreateCameraFragment();
                  getSupportFragmentManager().beginTransaction()
-                                            .setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left, R.anim.slide_from_left, R.anim.slide_to_right)
+                                            .setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
                                             .replace(R.id.mediasend_fragment_container, fragment, TAG_CAMERA)
                                             .addToBackStack(null)
                                             .commit();
@@ -400,66 +641,182 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   private Fragment getOrCreateCameraFragment() {
     Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_CAMERA);
-
-    return fragment != null ? fragment
-                            : CameraFragment.newInstance();
+    return fragment != null ? fragment : CameraFragment.newInstance();
   }
 
-  private void animateButtonVisibility(@NonNull View button, int oldVisibility, int newVisibility) {
-    if (oldVisibility == newVisibility) return;
+  private EmojiEditText getActiveInputField() {
+    if (captionText.hasFocus()) return captionText;
+    else                        return composeText;
+  }
 
-    if (button.getAnimation() != null) {
-      button.clearAnimation();
-      button.setVisibility(newVisibility);
-    } else if (newVisibility == View.VISIBLE) {
-      button.setVisibility(View.VISIBLE);
 
-      Animation animation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-      animation.setDuration(250);
-      animation.setInterpolator(new OvershootInterpolator());
-      button.startAnimation(animation);
+  private void presentCharactersRemaining() {
+    String          messageBody     = composeText.getTextTrimmed();
+    TransportOption transportOption = sendButton.getSelectedTransport();
+    CharacterState characterState  = transportOption.calculateCharacters(messageBody);
+
+    if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
+      charactersLeft.setText(String.format(dynamicLanguage.getCurrentLocale(),
+                                           "%d/%d (%d)",
+                                           characterState.charactersRemaining,
+                                           characterState.maxTotalMessageSize,
+                                           characterState.messagesSpent));
+      charactersLeft.setVisibility(View.VISIBLE);
     } else {
-      Animation animation = new ScaleAnimation(1, 0, 1, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-      animation.setDuration(150);
-      animation.setInterpolator(new AccelerateDecelerateInterpolator());
-      animation.setAnimationListener(new SimpleAnimationListener() {
+      charactersLeft.setVisibility(View.GONE);
+    }
+  }
+
+
+  private void onEmojiToggleClicked(View v) {
+    if (!emojiDrawer.resolved()) {
+      emojiDrawer.get().setProviders(0, new EmojiKeyboardProvider(this, new EmojiKeyboardProvider.EmojiEventListener() {
         @Override
-        public void onAnimationEnd(Animation animation) {
-          button.clearAnimation();
-          button.setVisibility(View.GONE);
+        public void onKeyEvent(KeyEvent keyEvent) {
+          getActiveInputField().dispatchKeyEvent(keyEvent);
         }
-      });
 
-      button.startAnimation(animation);
+        @Override
+        public void onEmojiSelected(String emoji) {
+          getActiveInputField().insertEmoji(emoji);
+        }
+      }));
+      emojiToggle.attach(emojiDrawer.get());
+    }
+
+    if (hud.getCurrentInput() == emojiDrawer.get()) {
+      hud.showSoftkey(composeText);
+    } else {
+      hud.hideSoftkey(composeText, () -> hud.post(() -> hud.show(composeText, emojiDrawer.get())));
     }
   }
 
-  private void animateButtonTextChange(@NonNull View button) {
-    if (button.getAnimation() != null) {
-      button.clearAnimation();
-    }
+  @SuppressLint("StaticFieldLeak")
+  private void processMedia(@NonNull List<Media> mediaList, @NonNull Map<Uri, Object> savedState) {
+    Map<Media, EditorModel> modelsToRender = new HashMap<>();
 
-    Animation grow = new ScaleAnimation(1f, 1.3f, 1f, 1.3f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-    grow.setDuration(125);
-    grow.setInterpolator(new AccelerateInterpolator());
-    grow.setAnimationListener(new SimpleAnimationListener() {
-      @Override
-      public void onAnimationEnd(Animation animation) {
-        Animation shrink = new ScaleAnimation(1.3f, 1f, 1.3f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        shrink.setDuration(125);
-        shrink.setInterpolator(new DecelerateInterpolator());
-        button.startAnimation(shrink);
+    for (Media media : mediaList) {
+      Object state = savedState.get(media.getUri());
+
+      if (state instanceof ImageEditorFragment.Data) {
+        EditorModel model = ((ImageEditorFragment.Data) state).readModel();
+        if (model != null && model.isChanged()) {
+          modelsToRender.put(media, model);
+        }
       }
-    });
+    }
 
-    button.startAnimation(grow);
+    new AsyncTask<Void, Void, List<Media>>() {
+
+      private Stopwatch   renderTimer;
+      private Runnable    progressTimer;
+      private AlertDialog dialog;
+
+      @Override
+      protected void onPreExecute() {
+        renderTimer   = new Stopwatch("ProcessMedia");
+        progressTimer = () -> {
+          dialog = new AlertDialog.Builder(new ContextThemeWrapper(MediaSendActivity.this, R.style.TextSecure_MediaSendProgressDialog))
+              .setView(R.layout.progress_dialog)
+              .setCancelable(false)
+              .create();
+          dialog.show();
+          dialog.getWindow().setLayout(getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size),
+              getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size));
+        };
+        Util.runOnMainDelayed(progressTimer, 250);
+      }
+
+      @Override
+      protected List<Media> doInBackground(Void... voids) {
+        Context               context      = MediaSendActivity.this;
+        List<Media>           updatedMedia = new ArrayList<>(mediaList.size());
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        for (Media media : mediaList) {
+          EditorModel modelToRender = modelsToRender.get(media);
+          if (modelToRender != null) {
+            Bitmap bitmap = modelToRender.render(context);
+            try {
+              outputStream.reset();
+              bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+
+              Uri uri = BlobProvider.getInstance()
+                                    .forData(outputStream.toByteArray())
+                                    .withMimeType(MediaUtil.IMAGE_JPEG)
+                                    .createForSingleSessionOnDisk(context, e -> Log.w(TAG, "Failed to write to disk.", e));
+
+              Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), media.getBucketId(), media.getCaption());
+
+              updatedMedia.add(updated);
+              renderTimer.split("item");
+            } catch (IOException e) {
+              Log.w(TAG, "Failed to render image. Using base image.");
+              updatedMedia.add(media);
+            } finally {
+              bitmap.recycle();
+            }
+          } else {
+            updatedMedia.add(media);
+          }
+        }
+        return updatedMedia;
+      }
+
+      @Override
+      protected void onPostExecute(List<Media> media) {
+        onSendClicked(media, composeText.getTextTrimmed(), sendButton.getSelectedTransport());
+        Util.cancelRunnableOnMain(progressTimer);
+        if (dialog != null) {
+          dialog.dismiss();
+        }
+        renderTimer.stop(TAG);
+      }
+    }.executeOnExecutor(SignalExecutors.BOUNDED);
   }
 
-  @Override
-  public void onRequestFullScreen(boolean fullScreen) {
-    MediaSendFragment sendFragment = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
-    if (sendFragment != null && sendFragment.isVisible()) {
-      sendFragment.onRequestFullScreen(fullScreen);
+  private @Nullable MediaSendFragment getMediaSendFragment() {
+    return (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
+  }
+
+  private class ComposeKeyPressedListener implements View.OnKeyListener, View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
+
+    int beforeLength;
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+      if (event.getAction() == KeyEvent.ACTION_DOWN) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+          if (TextSecurePreferences.isEnterSendsEnabled(getApplicationContext())) {
+            sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+            sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
+            return true;
+          }
+        }
+      }
+      return false;
     }
+
+    @Override
+    public void onClick(View v) {
+      hud.showSoftkey(composeText);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+      beforeLength = composeText.getTextTrimmed().length();
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+      presentCharactersRemaining();
+      viewModel.onBodyChanged(s);
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before,int count) {}
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {}
   }
 }

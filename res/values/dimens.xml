@@ -46,6 +46,7 @@
 
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
+    <dimen name="media_picker_rail_padding_affordance">130dp</dimen>
 
     <dimen name="media_keyboard_provider_icon_padding">5dp</dimen>
     <dimen name="media_keyboard_provider_icon_margin">4dp</dimen>
