@@ -77,6 +77,10 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val row = wrap(mapOf( userID to userPublicKey, receivedMessageHashValues to receivedMessageHashValuesAsString ))
         database.insertOrUpdate(receivedMessageHashValuesCache, row, "$userID = ?", wrap(userPublicKey))
     }
+
+    override fun getUserDisplayName(): String? {
+        return TextSecurePreferences.getProfileName(context)
+    }
 }
 
 // region Convenience

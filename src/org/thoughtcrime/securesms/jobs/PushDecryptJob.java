@@ -252,7 +252,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
-      // Loki - Handle Loki specific messages
+      // Loki - Handle Loki specific logic if needed
       if (content.lokiMessage.isPresent()) {
         LokiServiceMessage lokiMessage = content.lokiMessage.get();
         if (lokiMessage.getPreKeyBundleMessage() != null) {
@@ -267,6 +267,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if (lokiMessage.getAddressMessage() != null) {
           // TODO: Loki - Handle address message
         }
+      }
+
+      Optional<String> senderDisplayName = content.senderDisplayName;
+      if (senderDisplayName.isPresent()) {
+        // TODO: Use display name
       }
 
       if (content.getDataMessage().isPresent()) {
