@@ -98,7 +98,7 @@ public class MmsSmsDatabase extends Database {
 
   public Cursor getConversation(long threadId, long offset, long limit) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND LENGTH(" + MmsSmsColumns.BODY + ") > 0";
     String limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
 
     Cursor cursor = queryTables(PROJECTION, selection, order, limitStr);
