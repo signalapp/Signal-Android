@@ -66,9 +66,9 @@ class RecipientProvider {
     Optional<RecipientDetails> prefetchedRecipientDetails = createPrefetchedRecipientDetails(context, address, settings, groupRecord);
 
     if (asynchronous) {
-      cachedRecipient = new Recipient(address, cachedRecipient, prefetchedRecipientDetails, getRecipientDetailsAsync(context, address, settings, groupRecord));
+      cachedRecipient = new Recipient(context, address, cachedRecipient, prefetchedRecipientDetails, getRecipientDetailsAsync(context, address, settings, groupRecord));
     } else {
-      cachedRecipient = new Recipient(address, getRecipientDetailsSync(context, address, settings, groupRecord, false));
+      cachedRecipient = new Recipient(context, address, getRecipientDetailsSync(context, address, settings, groupRecord, false));
     }
 
     recipientCache.set(address, cachedRecipient);

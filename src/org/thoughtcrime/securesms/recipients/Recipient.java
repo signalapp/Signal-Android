@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
@@ -48,7 +49,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -70,6 +70,7 @@ public class Recipient implements RecipientModifiedListener {
   private final @NonNull Address address;
   private final @NonNull List<Recipient> participants = new LinkedList<>();
 
+  private           Context context;
   private @Nullable String  name;
   private @Nullable String  customLabel;
   private           boolean resolving;
@@ -116,11 +117,13 @@ public class Recipient implements RecipientModifiedListener {
     if (recipient.isPresent()) consumer.accept(recipient.get());
   }
 
-  Recipient(@NonNull  Address address,
+  Recipient(@NonNull  Context context,
+            @NonNull  Address address,
             @Nullable Recipient stale,
             @NonNull  Optional<RecipientDetails> details,
             @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
+    this.context   = context;
     this.address   = address;
     this.color     = null;
     this.resolving = true;
@@ -235,7 +238,8 @@ public class Recipient implements RecipientModifiedListener {
     });
   }
 
-  Recipient(@NonNull Address address, @NonNull RecipientDetails details) {
+  Recipient(@NonNull Context context, @NonNull Address address, @NonNull RecipientDetails details) {
+    this.context                = context;
     this.address                = address;
     this.contactUri             = details.contactUri;
     this.name                   = details.name;
@@ -288,6 +292,9 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @Nullable String getName() {
+    String displayName = DatabaseFactory.getLokiUserDisplayNameDatabase(context).getDisplayName(this.address.toString());
+    if (displayName != null) { return displayName; }
+
     if (this.name == null && isMmsGroupRecipient()) {
       List<String> names = new LinkedList<>();
 

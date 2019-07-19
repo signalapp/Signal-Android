@@ -271,7 +271,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       Optional<String> senderDisplayName = content.senderDisplayName;
       if (senderDisplayName.isPresent()) {
-        // TODO: Use display name
+        DatabaseFactory.getLokiUserDisplayNameDatabase(context).setDisplayName(envelope.getSource(), senderDisplayName.get());
       }
 
       if (content.getDataMessage().isPresent()) {
