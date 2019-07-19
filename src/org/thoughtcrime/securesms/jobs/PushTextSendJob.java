@@ -165,7 +165,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       log(TAG, "Have access key to use: " + unidentifiedAccess.isPresent());
 
       // Loki - Include a pre key bundle if the message is a friend request
-      PreKeyBundle preKeyBundle = (message.isFriendRequest()) ? DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber()) : null;
+      PreKeyBundle preKeyBundle = (message.isFriendRequest() || message.isEndSession()) ? DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber()) : null;
 
       SignalServiceDataMessage textSecureMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getDateSent())
