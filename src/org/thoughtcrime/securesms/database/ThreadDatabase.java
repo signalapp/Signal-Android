@@ -136,7 +136,9 @@ public class ThreadDatabase extends Database {
     ContentValues contentValues = new ContentValues(7);
     contentValues.put(DATE, date - date % 1000);
     contentValues.put(MESSAGE_COUNT, count);
-    contentValues.put(SNIPPET, body);
+    if (!body.isEmpty()) {
+      contentValues.put(SNIPPET, body);
+    }
     contentValues.put(SNIPPET_URI, attachment == null ? null : attachment.toString());
     contentValues.put(SNIPPET_TYPE, type);
     contentValues.put(STATUS, status);
@@ -157,7 +159,9 @@ public class ThreadDatabase extends Database {
     ContentValues contentValues = new ContentValues(4);
 
     contentValues.put(DATE, date - date % 1000);
-    contentValues.put(SNIPPET, snippet);
+    if (!snippet.isEmpty()) {
+      contentValues.put(SNIPPET, snippet);
+    }
     contentValues.put(SNIPPET_TYPE, type);
     contentValues.put(SNIPPET_URI, attachment == null ? null : attachment.toString());
 
