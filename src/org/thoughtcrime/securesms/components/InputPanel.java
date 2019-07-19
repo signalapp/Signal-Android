@@ -54,7 +54,7 @@ public class InputPanel extends LinearLayout
   private QuoteView       quoteView;
   private LinkPreviewView linkPreview;
   private EmojiToggle     emojiToggle;
-  public ComposeText     composeText;
+  public  ComposeText     composeText;
   private View            quickCameraToggle;
   private View            quickAudioToggle;
   private View            buttonToggle;

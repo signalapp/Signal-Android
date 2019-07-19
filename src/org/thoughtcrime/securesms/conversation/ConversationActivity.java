@@ -91,7 +91,6 @@ import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RecipientPreferenceActivity;
 import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
@@ -627,8 +626,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (isSingleConversation()) {
+      /*
       if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
       else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
+       */
     } else if (isGroupConversation()) {
       inflater.inflate(R.menu.conversation_group_options, menu);
 
@@ -655,9 +656,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (recipient != null && recipient.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
     else                                          inflater.inflate(R.menu.conversation_unmuted, menu);
 
+    /*
     if (isSingleConversation() && getRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
+     */
 
     if (recipient != null && recipient.isLocalNumber()) {
       if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
@@ -730,7 +733,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     switch (item.getItemId()) {
     case R.id.menu_call_secure:               handleDial(getRecipient(), true);                  return true;
     case R.id.menu_call_insecure:             handleDial(getRecipient(), false);                 return true;
-    case R.id.menu_view_media:                handleViewMedia();                                 return true;
+    // case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
@@ -743,7 +746,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_invite:                    handleInviteLink();                                return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
     case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
-    case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
+    // case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
     case R.id.menu_expiring_messages_off:
     case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
@@ -826,12 +829,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleConversationSettings() {
+    /*
     Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
     intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
     intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA,
                     isSecureText && !isSelfConversation());
 
     startActivitySceneTransition(intent, titleView.findViewById(R.id.contact_photo_image), "avatar");
+     */
   }
 
   private void handleUnmuteNotifications() {
@@ -2238,7 +2243,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
-      buttonToggle.display(attachButton);
+      buttonToggle.display(sendButton);
       quickAttachmentToggle.show();
       inlineAttachmentToggle.hide();
     } else {
