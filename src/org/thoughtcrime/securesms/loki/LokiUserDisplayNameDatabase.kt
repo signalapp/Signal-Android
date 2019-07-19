@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.ContentValues
 import android.content.Context
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.recipients.Recipient
 
 class LokiUserDisplayNameDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
@@ -27,5 +29,6 @@ class LokiUserDisplayNameDatabase(context: Context, helper: SQLCipherOpenHelper)
         row.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
         row.put(Companion.displayName, displayName)
         database.insertOrUpdate(tableName, row, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
+        Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
     }
 }

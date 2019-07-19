@@ -697,7 +697,7 @@ public class Recipient implements RecipientModifiedListener {
     return this.address.hashCode();
   }
 
-  private void notifyListeners() {
+  public void notifyListeners() {
     Set<RecipientModifiedListener> localListeners;
 
     synchronized (this) {

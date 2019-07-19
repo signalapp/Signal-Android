@@ -87,6 +87,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     private fun updateUI() {
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
         val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message!!.threadId)!!.address.toString()
+        val contactDisplayName = DatabaseFactory.getLokiUserDisplayNameDatabase(context).getDisplayName(contactID) ?: contactID
         if (!message!!.isOutgoing) {
             val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
@@ -98,7 +99,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
                 LokiMessageFriendRequestStatus.REQUEST_REJECTED -> R.string.view_friend_request_incoming_declined_message
                 LokiMessageFriendRequestStatus.REQUEST_EXPIRED -> R.string.view_friend_request_incoming_expired_message
             }
-            label.text = resources.getString(formatID, contactID)
+            label.text = resources.getString(formatID, contactDisplayName)
         } else {
             val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
@@ -111,7 +112,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
                 LokiMessageFriendRequestStatus.REQUEST_EXPIRED -> R.string.view_friend_request_outgoing_expired_message
             }
             if (formatID != null) {
-                label.text = resources.getString(formatID, contactID)
+                label.text = resources.getString(formatID, contactDisplayName)
             }
             label.visibility = if (formatID != null) View.VISIBLE else View.GONE
             topSpacer.visibility = label.visibility
