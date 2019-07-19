@@ -57,6 +57,9 @@ public class ZoomingImageView extends FrameLayout {
     this.subsamplingImageView = findViewById(R.id.subsampling_image_view);
 
     this.subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_USE_EXIF);
+
+    this.photoView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
+    this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
   }
 
   @SuppressLint("StaticFieldLeak")
