@@ -9,6 +9,7 @@ import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtoco
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 
 class LokiThreadFriendRequestDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
+    var delegate: LokiThreadFriendRequestDatabaseDelegate? = null
 
     companion object {
         private val tableName = "loki_thread_friend_request_database"
@@ -40,6 +41,8 @@ class LokiThreadFriendRequestDatabase(context: Context, helper: SQLCipherOpenHel
         contentValues.put(Companion.friendRequestStatus, friendRequestStatus.rawValue)
         database.insertOrUpdate(tableName, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
         notifyConversationListListeners()
+        notifyConversationListeners(threadID)
+        delegate?.handleThreadFriendRequestStatusChanged(threadID)
     }
 
     fun hasPendingFriendRequest(threadID: Long): Boolean {

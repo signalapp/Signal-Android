@@ -173,7 +173,7 @@ public class DatabaseFactory {
     return getInstance(context).lokiMessageFriendRequestDatabase;
   }
 
-  public static  LokiThreadFriendRequestDatabase getLokiThreadFriendRequestDatabase(Context context) {
+  public static LokiThreadFriendRequestDatabase getLokiThreadFriendRequestDatabase(Context context) {
     return getInstance(context).lokiThreadFriendRequestDatabase;
   }
   // endregion

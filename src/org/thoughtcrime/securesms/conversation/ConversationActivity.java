@@ -38,6 +38,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
@@ -66,6 +67,7 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -152,6 +154,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabaseDelegate;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -249,6 +252,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                InputPanel.MediaListener,
                ComposeText.CursorPositionChangedListener,
                ConversationSearchBottomBar.EventListener,
+               LokiThreadFriendRequestDatabaseDelegate,
                FriendRequestViewDelegate
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
@@ -435,6 +439,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MessageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
 
+    DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setDelegate(this);
     updateInputPanel();
 
     Log.i(TAG, "onResume() Finished: " + (System.currentTimeMillis() - getIntent().getLongExtra(TIMING_EXTRA, 0)));
@@ -451,6 +456,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     markLastSeen();
     AudioSlidePlayer.stopAll();
     EventBus.getDefault().unregister(this);
+
+    DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setDelegate(null);
   }
 
   @Override
@@ -1588,7 +1595,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     recipient.addListener(this);
   }
 
-
   private void initializeLinkPreviewObserver() {
     linkPreviewViewModel = ViewModelProviders.of(this, new LinkPreviewViewModel.Factory(new LinkPreviewRepository())).get(LinkPreviewViewModel.class);
 
@@ -2013,15 +2019,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachmentManager.cleanup();
 
     updateLinkPreviewState();
-
-    updateInputPanel();
   }
 
-  private void updateInputPanel() {
+    @Override
+    public void handleThreadFriendRequestStatusChanged(long threadID) {
+      if (threadID != this.threadId) { return; }
+      new Handler(getMainLooper()).post(this::updateInputPanel);
+    }
+
+    private void updateInputPanel() {
     boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadFriendRequestDatabase(this).hasPendingFriendRequest(threadId);
     inputPanel.setEnabled(!hasPendingFriendRequest);
     int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
     inputPanel.setHint(getResources().getString(hintID));
+    if (!hasPendingFriendRequest) {
+      inputPanel.composeText.requestFocus();
+      InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+      inputMethodManager.showSoftInput(inputPanel.composeText, 0);
+    }
   }
 
   private void sendMessage() {
