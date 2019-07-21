@@ -92,6 +92,11 @@ public class TextSecureSessionStore implements SessionStore {
     }
   }
 
+  public void archiveAllSessions(@NonNull String name) {
+    SignalProtocolAddress address = new SignalProtocolAddress(name, -1);
+    archiveSiblingSessions(address);
+  }
+
   public void archiveAllSessions() {
     synchronized (FILE_LOCK) {
       List<SessionDatabase.SessionRow> sessions = DatabaseFactory.getSessionDatabase(context).getAll();

@@ -64,7 +64,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabase;
+import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -115,6 +115,7 @@ import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetState;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -466,8 +467,15 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (threadId != null) {
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(content.getSender());
+      TextSecureSessionStore sessionStore = new TextSecureSessionStore(context);
+      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+//      sessionStore.deleteAllSessions(content.getSender());
+
+      sessionStore.archiveAllSessions(content.getSender());
+      lokiThreadDatabase.setSessionResetState(threadId, LokiThreadSessionResetState.REQUEST_RECEIVED);
+
+      // TODO: Send a background message here
+      Log.d("LOKI", "Session reset received from " + content.getSender());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       MessageNotifier.updateNotification(context, threadId);
@@ -832,9 +840,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     Recipient contactID = getMessageDestination(content, message);
-    LokiThreadFriendRequestDatabase threadFriendRequestDatabase = DatabaseFactory.getLokiThreadFriendRequestDatabase(context);
+    LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(contactID);
-    LokiThreadFriendRequestStatus threadFriendRequestStatus = threadFriendRequestDatabase.getFriendRequestStatus(threadID);
+    LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
     SmsDatabase messageDatabase = DatabaseFactory.getSmsDatabase(context);
     LokiMessageFriendRequestDatabase messageFriendRequestDatabase = DatabaseFactory.getLokiMessageFriendRequestDatabase(context);
     int messageCount = messageDatabase.getMessageCountForThread(threadID);
@@ -850,7 +858,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // before updating Alice's thread's friend request status to `FRIENDS`,
         // we can end up in a deadlock where both users' threads' friend request statuses are
         // `REQUEST_SENT`.
-        threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+        lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
         long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
         messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         // Accept the friend request
@@ -861,14 +869,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // friend request status is reset to `NONE`. Bob now sends Alice a friend
         // request. Alice's thread's friend request status is reset to
         // `REQUEST_RECEIVED`.
-        threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+        lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
         long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1); // The message that was just received
         messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
       }
     } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
       // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
       // it must be a friend request accepted message. Declining a friend request doesn't send a message.
-      threadFriendRequestDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+      lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
       long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
       messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
       // TODO: Send p2p details here

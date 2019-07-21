@@ -153,7 +153,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
-import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabaseDelegate;
+import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -251,7 +251,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                InputPanel.MediaListener,
                ComposeText.CursorPositionChangedListener,
                ConversationSearchBottomBar.EventListener,
-               LokiThreadFriendRequestDatabaseDelegate,
+        LokiThreadDatabaseDelegate,
                FriendRequestViewDelegate
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
@@ -438,7 +438,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MessageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
 
-    DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setDelegate(this);
+    DatabaseFactory.getLokiThreadDatabase(this).setDelegate(this);
     updateInputPanel();
 
     Log.i(TAG, "onResume() Finished: " + (System.currentTimeMillis() - getIntent().getLongExtra(TIMING_EXTRA, 0)));
@@ -456,7 +456,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     AudioSlidePlayer.stopAll();
     EventBus.getDefault().unregister(this);
 
-    DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setDelegate(null);
+    DatabaseFactory.getLokiThreadDatabase(this).setDelegate(null);
   }
 
   @Override
@@ -2033,7 +2033,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     private void updateInputPanel() {
-    boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadFriendRequestDatabase(this).hasPendingFriendRequest(threadId);
+    boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
     inputPanel.setEnabled(!hasPendingFriendRequest);
     int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
     inputPanel.setHint(getResources().getString(hintID));
@@ -2195,7 +2195,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     // Loki - Send a friend request if we're not yet friends with the user in question
-    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadFriendRequestDatabase(context).getFriendRequestStatus(threadId);
+    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
     message.isFriendRequest = (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS); // Needed for stageOutgoingMessage(...)
 
     Permissions.with(this)
@@ -2711,7 +2711,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   // region Loki
   @Override
   public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
-    DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
+    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
     SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
     SignalServiceAddress address = new SignalServiceAddress(contactID);
@@ -2726,7 +2726,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void rejectFriendRequest(@NotNull MessageRecord friendRequest) {
-    DatabaseFactory.getLokiThreadFriendRequestDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.NONE);
+    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.NONE);
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
     DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
   }

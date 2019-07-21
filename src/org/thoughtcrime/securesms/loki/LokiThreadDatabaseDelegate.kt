@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.loki
 
-interface LokiThreadFriendRequestDatabaseDelegate {
+interface LokiThreadDatabaseDelegate {
 
     fun handleThreadFriendRequestStatusChanged(threadID: Long)
 }

@@ -138,7 +138,7 @@ public class SignalCommunicationModule {
                                                           Optional.of(new SecurityEventListener(context)),
                                                           TextSecurePreferences.getLocalNumber(context),
                                                           DatabaseFactory.getLokiAPIDatabase(context),
-                                                          DatabaseFactory.getLokiThreadFriendRequestDatabase(context),
+                                                          DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageFriendRequestDatabase(context),
                                                           DatabaseFactory.getLokiPreKeyBundleDatabase(context));
     } else {

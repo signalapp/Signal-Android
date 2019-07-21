@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
-import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabase;
+import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.LokiUserDisplayNameDatabase;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -70,7 +70,7 @@ public class DatabaseFactory {
   private final LokiPreKeyRecordDatabase lokiContactPreKeyDatabase;
   private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
   private final LokiMessageFriendRequestDatabase lokiMessageFriendRequestDatabase;
-  private final LokiThreadFriendRequestDatabase lokiThreadFriendRequestDatabase;
+  private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDisplayNameDatabase lokiUserDisplayNameDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
@@ -175,8 +175,8 @@ public class DatabaseFactory {
     return getInstance(context).lokiMessageFriendRequestDatabase;
   }
 
-  public static LokiThreadFriendRequestDatabase getLokiThreadFriendRequestDatabase(Context context) {
-    return getInstance(context).lokiThreadFriendRequestDatabase;
+  public static LokiThreadDatabase getLokiThreadDatabase(Context context) {
+    return getInstance(context).lokiThreadDatabase;
   }
 
   public static LokiUserDisplayNameDatabase getLokiUserDisplayNameDatabase(Context context) {
@@ -219,7 +219,7 @@ public class DatabaseFactory {
     this.lokiContactPreKeyDatabase = new LokiPreKeyRecordDatabase(context, databaseHelper);
     this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
     this.lokiMessageFriendRequestDatabase = new LokiMessageFriendRequestDatabase(context, databaseHelper);
-    this.lokiThreadFriendRequestDatabase = new LokiThreadFriendRequestDatabase(context, databaseHelper);
+    this.lokiThreadDatabase = new LokiThreadDatabase(context, databaseHelper);
     this.lokiUserDisplayNameDatabase = new LokiUserDisplayNameDatabase(context, databaseHelper);
   }
 

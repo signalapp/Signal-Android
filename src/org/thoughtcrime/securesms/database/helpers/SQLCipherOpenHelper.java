@@ -38,7 +38,7 @@ import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.LokiThreadFriendRequestDatabase;
+import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.LokiUserDisplayNameDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -123,7 +123,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageFriendRequestDatabase.getCreateTableCommand());
-    db.execSQL(LokiThreadFriendRequestDatabase.getCreateTableCommand());
+    db.execSQL(LokiThreadDatabase.getCreateFriendRequestTableCommand());
+    db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
     db.execSQL(LokiUserDisplayNameDatabase.getCreateTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
