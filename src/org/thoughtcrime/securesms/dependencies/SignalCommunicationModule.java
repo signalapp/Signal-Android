@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.gcm.FcmService;
@@ -140,7 +141,8 @@ public class SignalCommunicationModule {
                                                           DatabaseFactory.getLokiAPIDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageFriendRequestDatabase(context),
-                                                          DatabaseFactory.getLokiPreKeyBundleDatabase(context));
+                                                          DatabaseFactory.getLokiPreKeyBundleDatabase(context),
+                                                          new TextSecureSessionStore(context));
     } else {
       this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
       this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));
