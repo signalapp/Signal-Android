@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
+import org.thoughtcrime.securesms.loki.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -152,7 +153,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     // Loki - Start long polling if needed
-    startLongPolling();
+    startLongPollingIfNeeded();
+    // Loki - Stop background poll worker if needed
+    stopBackgroundPollingIfNeeded();
   }
 
   @Override
@@ -162,6 +165,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     KeyCachingService.onAppBackgrounded(this);
     // Loki - Stop long polling if needed
     if (lokiLongPoller != null) { lokiLongPoller.stopIfNeeded(); }
+    // Loki - Start background poll worker if needed
+    startBackgroundPollingIfNeeded();
   }
 
   @Override
@@ -284,6 +289,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     DirectoryRefreshListener.schedule(this);
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
+    BackgroundPollWorker.schedule(this); // Loki
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);
@@ -393,31 +399,23 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // TODO: Implement
   }
 
-  public void startLongPolling() {
+  public void startLongPollingIfNeeded() {
     setUpLongPollingIfNeeded();
     if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
   }
 
   private void setUpLongPollingIfNeeded() {
     if (lokiLongPoller != null) return;
-    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-    if (hexEncodedPublicKey == null) return;
+    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (userHexEncodedPublicKey == null) return;
     LokiAPIDatabase database = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    lokiLongPoller = new LokiLongPoller(hexEncodedPublicKey, database, new Function1<List<SignalServiceProtos.Envelope>, Unit>() {
+    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, database, new Function1<List<SignalServiceProtos.Envelope>, Unit>() {
 
       @Override
-      public Unit invoke(List<SignalServiceProtos.Envelope> envelopes) {
-        for (SignalServiceProtos.Envelope proto : envelopes) {
-          SignalServiceEnvelope envelope;
-          if (proto.getSource() != null && proto.getSourceDevice() > 0) {
-            envelope = new SignalServiceEnvelope(proto.getType().getNumber(), proto.getSource(), proto.getSourceDevice(), proto.getTimestamp(),
-              proto.getLegacyMessage().toByteArray(), proto.getContent().toByteArray(), proto.getServerTimestamp(), proto.getServerGuid());
-          } else {
-            envelope = new SignalServiceEnvelope(proto.getType().getNumber(), proto.getTimestamp(), proto.getLegacyMessage().toByteArray(),
-              proto.getContent().toByteArray(), proto.getServerTimestamp(), proto.getServerGuid());
-          }
-          new PushContentReceiveJob(context).processEnvelope(envelope);
+      public Unit invoke(List<SignalServiceProtos.Envelope> protos) {
+        for (SignalServiceProtos.Envelope proto : protos) {
+          new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto));
         }
         return Unit.INSTANCE;
       }

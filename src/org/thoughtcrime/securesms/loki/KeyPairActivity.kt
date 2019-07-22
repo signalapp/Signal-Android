@@ -144,7 +144,7 @@ class KeyPairActivity : BaseActionBarActivity() {
         TextSecurePreferences.setPromptedPushRegistration(this, true)
         val application = ApplicationContext.getInstance(this)
         application.setUpP2PAPI()
-        application.startLongPolling()
+        application.startLongPollingIfNeeded()
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
     }

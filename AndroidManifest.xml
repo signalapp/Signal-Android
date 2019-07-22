@@ -435,6 +435,7 @@
               android:exported="true"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <!-- Loki -->
     <activity android:name=".loki.AccountDetailsActivity"
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.LightRegistrationTheme"
@@ -450,6 +451,7 @@
     <activity android:name=".loki.NewConversationActivity"
               android:windowSoftInputMode="stateAlwaysVisible"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+    <!-- Loki -->
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
@@ -668,6 +670,14 @@
             <action android:name="info.guardianproject.panic.action.TRIGGER" />
         </intent-filter>
     </receiver>
+
+    <!-- Loki -->
+    <receiver android:name=".loki.BackgroundPollWorker">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+    <!-- Loki -->
 
     <service
         android:name=".jobmanager.JobSchedulerScheduler$SystemService"

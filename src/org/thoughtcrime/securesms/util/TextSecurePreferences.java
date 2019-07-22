@@ -1126,4 +1126,12 @@ public class TextSecurePreferences {
       return defaultValues;
     }
   }
+
+  public static long getBackgroundPollTime(Context context) {
+    return getLongPreference(context, "background_poll_time", 0L);
+  }
+
+  public static void setBackgroundPollTime(Context context, long backgroundPollTime) {
+    setLongPreference(context, "background_poll_time", backgroundPollTime);
+  }
 }
