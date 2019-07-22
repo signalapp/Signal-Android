@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
-import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetState
+import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
     var delegate: LokiThreadDatabaseDelegate? = null
@@ -63,19 +63,19 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
             || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED
     }
 
-    override fun getSessionResetState(threadID: Long): LokiThreadSessionResetState {
+    override fun getSessionResetStatus(threadID: Long): LokiThreadSessionResetStatus {
         val database = databaseHelper.readableDatabase
         val result = database.get(sessionResetTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             cursor.getInt(sessionResetStatus)
         }
         return if (result != null) {
-            LokiThreadSessionResetState.values().first { it.rawValue == result }
+            LokiThreadSessionResetStatus.values().first { it.rawValue == result }
         } else {
-            LokiThreadSessionResetState.NONE
+            LokiThreadSessionResetStatus.NONE
         }
     }
 
-    override fun setSessionResetState(threadID: Long, sessionResetStatus: LokiThreadSessionResetState) {
+    override fun setSessionResetStatus(threadID: Long, sessionResetStatus: LokiThreadSessionResetStatus) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)

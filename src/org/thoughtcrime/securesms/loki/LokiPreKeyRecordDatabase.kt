@@ -23,7 +23,7 @@ class LokiPreKeyRecordDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { it.count > 0 } ?: false
     }
 
-    override fun getPreKey(hexEncodedPublicKey: String): PreKeyRecord? {
+    override fun getPreKeyRecord(hexEncodedPublicKey: String): PreKeyRecord? {
         val database = databaseHelper.readableDatabase
         return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { cursor ->
             val preKeyID = cursor.getInt(preKeyID)
@@ -31,11 +31,11 @@ class LokiPreKeyRecordDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         }
     }
 
-    fun getOrCreatePreKey(hexEncodedPublicKey: String): PreKeyRecord {
-        return getPreKey(hexEncodedPublicKey) ?: generateAndStorePreKey(hexEncodedPublicKey)
+    fun getOrCreatePreKeyRecord(hexEncodedPublicKey: String): PreKeyRecord {
+        return getPreKeyRecord(hexEncodedPublicKey) ?: generateAndStorePreKeyRecord(hexEncodedPublicKey)
     }
 
-    private fun generateAndStorePreKey(hexEncodedPublicKey: String): PreKeyRecord {
+    private fun generateAndStorePreKeyRecord(hexEncodedPublicKey: String): PreKeyRecord {
         val preKeyRecords = PreKeyUtil.generatePreKeys(context, 1)
         PreKeyUtil.storePreKeyRecords(context, preKeyRecords)
         val record = preKeyRecords.first()

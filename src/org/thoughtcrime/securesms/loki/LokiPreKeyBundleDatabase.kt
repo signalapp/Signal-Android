@@ -43,7 +43,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
             TextSecurePreferences.setLocalRegistrationId(context, registrationID)
         }
         val deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID
-        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getOrCreatePreKey(hexEncodedPublicKey)
+        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getOrCreatePreKeyRecord(hexEncodedPublicKey)
         val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
         if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
             Log.d("Loki", "A signed pre key has already been registered.")

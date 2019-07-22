@@ -10,11 +10,11 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.signalservice.loki.messaging.LokiSessionProtocol;
+import org.whispersystems.signalservice.loki.messaging.LokiSessionDatabaseProtocol;
 
 import java.util.List;
 
-public class TextSecureSessionStore implements LokiSessionProtocol {
+public class TextSecureSessionStore implements LokiSessionDatabaseProtocol {
 
   private static final String TAG = TextSecureSessionStore.class.getSimpleName();
 

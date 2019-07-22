@@ -87,7 +87,6 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.state.PreKeyBundle;
-import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -115,10 +114,8 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
-import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol;
-import org.whispersystems.signalservice.loki.messaging.LokiPreKeyRecordDatabaseProtocol;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
-import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetState;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -477,7 +474,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 //      sessionStore.deleteAllSessions(content.getSender());
 
       sessionStore.archiveAllSessions(content.getSender());
-      lokiThreadDatabase.setSessionResetState(threadId, LokiThreadSessionResetState.REQUEST_RECEIVED);
+      lokiThreadDatabase.setSessionResetStatus(threadId, LokiThreadSessionResetStatus.REQUEST_RECEIVED);
 
       // TODO: Send a background message here
       Log.d("Loki", "Received a session reset request from: " + content.getSender() + ".");
