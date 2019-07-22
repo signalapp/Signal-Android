@@ -154,8 +154,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     KeyCachingService.onAppForegrounded(this);
     // Loki - Start long polling if needed
     startLongPollingIfNeeded();
-    // Loki - Stop background poll worker if needed
-    stopBackgroundPollingIfNeeded();
   }
 
   @Override
@@ -165,8 +163,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     KeyCachingService.onAppBackgrounded(this);
     // Loki - Stop long polling if needed
     if (lokiLongPoller != null) { lokiLongPoller.stopIfNeeded(); }
-    // Loki - Start background poll worker if needed
-    startBackgroundPollingIfNeeded();
   }
 
   @Override
