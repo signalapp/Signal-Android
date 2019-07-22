@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_new_conversation.*
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -31,6 +32,14 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity() {
     public override fun onResume() {
         super.onResume()
         dynamicTheme.onResume(this)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun startNewConversationIfPossible() {

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:layout_marginStart="32dp"
     android:layout_marginEnd="32dp"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <org.thoughtcrime.securesms.components.LabeledEditText
@@ -14,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:labeledEditText_background="@color/white"
         app:labeledEditText_label="@string/activity_new_conversation_public_key_edit_text_label"/>
 
     <TextView

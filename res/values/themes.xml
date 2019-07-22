@@ -281,7 +281,7 @@
         <item name="colorAccent">@color/textsecure_primary_dark</item>
         <item name="colorControlActivated">@color/signal_primary_dark</item>
         <item name="colorControlHighlight">@color/signal_primary_dark</item>
-        <item name="android:windowBackground">@color/core_grey_95</item>
+        <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
 
@@ -339,7 +339,7 @@
         <item name="fab_color">@color/textsecure_primary_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
 
-        <item name="conversation_background">@color/core_grey_95</item>
+        <item name="conversation_background">@color/loki_darkest_gray</item>
         <item name="conversation_editor_background">#22ffffff</item>
         <item name="conversation_editor_text_color">#ffeeeeee</item>
         <item name="conversation_input_background">@drawable/compose_background_dark</item>

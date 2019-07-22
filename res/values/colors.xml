@@ -1,7 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <color name="signal_primary">#ff5bca5b</color>
-    <color name="signal_primary_dark">#ff5bca5b</color>
+    <!-- Loki -->
+    <color name="loki_green">#78be20</color>
+    <color name="loki_darkest_gray">#0a0a0a</color>
+    <!-- Loki -->
+
+    <color name="signal_primary">@color/loki_green</color>
+    <color name="signal_primary_dark">@color/loki_green</color>
     <color name="signal_primary_alpha33">#555bca5b</color>
     <color name="signal_primary_alpha_focus">#882090ea</color>
 
