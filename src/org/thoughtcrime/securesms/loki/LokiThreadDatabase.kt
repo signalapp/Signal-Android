@@ -15,13 +15,13 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     var delegate: LokiThreadDatabaseDelegate? = null
 
     companion object {
-        private val sessionResetTableName = "loki_thread_session_reset_database"
         private val friendRequestTableName = "loki_thread_friend_request_database"
+        private val sessionResetTableName = "loki_thread_session_reset_database"
         private val threadID = "thread_id"
         private val friendRequestStatus = "friend_request_status"
-        private val sessionResetState = "session_reset_state"
+        private val sessionResetStatus = "session_reset_status"
         @JvmStatic val createFriendRequestTableCommand = "CREATE TABLE $friendRequestTableName ($threadID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
-        @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTableName ($threadID INTEGER PRIMARY KEY, $sessionResetState INTEGER DEFAULT 0);"
+        @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTableName ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
     }
 
     override fun getThreadID(hexEncodePubKey: String): Long {
@@ -66,7 +66,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     override fun getSessionResetState(threadID: Long): LokiThreadSessionResetState {
         val database = databaseHelper.readableDatabase
         val result = database.get(sessionResetTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
-            cursor.getInt(sessionResetState)
+            cursor.getInt(sessionResetStatus)
         }
         return if (result != null) {
             LokiThreadSessionResetState.values().first { it.rawValue == result }
@@ -75,11 +75,11 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         }
     }
 
-    override fun setSessionResetState(threadID: Long, sessionResetState: LokiThreadSessionResetState) {
+    override fun setSessionResetState(threadID: Long, sessionResetStatus: LokiThreadSessionResetState) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)
-        contentValues.put(Companion.sessionResetState, sessionResetState.rawValue)
+        contentValues.put(Companion.sessionResetStatus, sessionResetStatus.rawValue)
         database.insertOrUpdate(sessionResetTableName, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
         notifyConversationListListeners()
         notifyConversationListeners(threadID)

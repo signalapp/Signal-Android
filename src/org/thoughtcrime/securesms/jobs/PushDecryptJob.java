@@ -243,10 +243,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     try {
       GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore  axolotlStore  = new SignalProtocolStoreImpl(context);
-      LokiThreadDatabaseProtocol lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-      LokiPreKeyRecordDatabase preKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
+      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+      LokiPreKeyRecordDatabase lokiPreKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
       SignalServiceAddress localAddress  = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher    cipher        = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, preKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
+      LokiServiceCipher    cipher        = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, lokiPreKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
       /* Loki - Original code
       SignalServiceCipher  cipher        = new SignalServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
        */
@@ -480,7 +480,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       lokiThreadDatabase.setSessionResetState(threadId, LokiThreadSessionResetState.REQUEST_RECEIVED);
 
       // TODO: Send a background message here
-      Log.d("LOKI", "Session reset received from " + content.getSender());
+      Log.d("Loki", "Received a session reset request from: " + content.getSender() + ".");
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       MessageNotifier.updateNotification(context, threadId);
@@ -498,8 +498,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     if (!recipient.isGroupRecipient()) {
       // TODO: Handle session reset on sync messages
-//      SessionStore sessionStore = new TextSecureSessionStore(context);
-//      sessionStore.deleteAllSessions(recipient.getAddress().toPhoneString());
+      /*
+      SessionStore sessionStore = new TextSecureSessionStore(context);
+      sessionStore.deleteAllSessions(recipient.getAddress().toPhoneString());
+       */
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
