@@ -4,18 +4,19 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Outline;
 import android.graphics.Paint;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
@@ -43,6 +44,7 @@ public class AvatarImageView extends AppCompatImageView {
   private boolean         inverted;
   private Paint           outlinePaint;
   private OnClickListener listener;
+  private Recipient       recipient;
 
   public AvatarImageView(Context context) {
     super(context);
@@ -64,6 +66,14 @@ public class AvatarImageView extends AppCompatImageView {
     }
 
     outlinePaint = ThemeUtil.isDarkTheme(getContext()) ? DARK_THEME_OUTLINE_PAINT : LIGHT_THEME_OUTLINE_PAINT;
+    setOutlineProvider(new ViewOutlineProvider() {
+
+      @Override
+      public void getOutline(View view, Outline outline) {
+          outline.setOval(0, 0, view.getWidth(), view.getHeight());
+      }
+    });
+    setClipToOutline(true);
   }
 
   @Override
@@ -83,7 +93,17 @@ public class AvatarImageView extends AppCompatImageView {
     super.setOnClickListener(listener);
   }
 
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    super.onSizeChanged(w, h, oldw, oldh);
+    if (w == 0 || h == 0 || recipient == null) { return; }
+    ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(w, h, recipient.getAddress().serialize().hashCode());
+    setImageDrawable(identicon);
+  }
+
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
+    this.recipient = recipient;
+    /*
     if (recipient != null) {
       requestManager.load(recipient.getContactPhoto())
                     .fallback(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
@@ -96,6 +116,7 @@ public class AvatarImageView extends AppCompatImageView {
       setImageDrawable(new ResourceContactPhoto(R.drawable.ic_profile_default).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted));
       super.setOnClickListener(listener);
     }
+     */
   }
 
   public void clear(@NonNull GlideRequests glideRequests) {
