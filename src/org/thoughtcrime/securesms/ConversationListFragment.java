@@ -427,8 +427,10 @@ public class ConversationListFragment extends Fragment
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
     MenuInflater inflater = getActivity().getMenuInflater();
 
+    /*
     if (archive) inflater.inflate(R.menu.conversation_list_batch_unarchive, menu);
     else         inflater.inflate(R.menu.conversation_list_batch_archive, menu);
+     */
 
     inflater.inflate(R.menu.conversation_list_batch, menu);
 

@@ -302,7 +302,7 @@
 
     <activity android:name=".registration.WelcomeActivity"
               android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:theme="@style/TextSecure.DarkRegistrationTheme"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -438,13 +438,13 @@
     <!-- Loki -->
     <activity android:name=".loki.AccountDetailsActivity"
               android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:theme="@style/TextSecure.DarkRegistrationTheme"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".loki.KeyPairActivity"
               android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:theme="@style/TextSecure.DarkRegistrationTheme"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

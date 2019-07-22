@@ -1553,8 +1553,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (manuallySelected) recordTransportPreference(newTransport);
     });
 
+    /*
     titleView.setOnClickListener(v -> handleConversationSettings());
     titleView.setOnLongClickListener(v -> handleDisplayQuickContact());
+     */
     titleView.setOnBackClickedListener(view -> super.onBackPressed());
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
@@ -1850,8 +1852,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void setActionBarColor(MaterialColor color) {
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar == null) throw new AssertionError();
-    supportActionBar.setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
-    setStatusBarColor(color.toStatusBarColor(this));
+    supportActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.core_grey_90)));
+    setStatusBarColor(getResources().getColor(R.color.black));
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {

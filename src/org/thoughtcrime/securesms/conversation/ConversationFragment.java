@@ -370,9 +370,9 @@ public class ConversationFragment extends Fragment
     }
 
     if (messageRecords.size() > 1) {
-      menu.findItem(R.id.menu_context_forward).setVisible(false);
+      // menu.findItem(R.id.menu_context_forward).setVisible(false);
       menu.findItem(R.id.menu_context_reply).setVisible(false);
-      menu.findItem(R.id.menu_context_details).setVisible(false);
+      // menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
     } else {
@@ -384,8 +384,10 @@ public class ConversationFragment extends Fragment
                                                                   !messageRecord.isMmsNotification() &&
                                                                   ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
 
+      /*
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
+       */
       menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
                                                         !messageRecord.isPending() &&
                                                         !messageRecord.isFailed()  &&
@@ -1047,6 +1049,7 @@ public class ConversationFragment extends Fragment
           handleDeleteMessages(getListAdapter().getSelectedItems());
           actionMode.finish();
           return true;
+        /*
         case R.id.menu_context_details:
           handleDisplayDetails(getSelectedMessageRecord());
           actionMode.finish();
@@ -1055,6 +1058,7 @@ public class ConversationFragment extends Fragment
           handleForwardMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
+         */
         case R.id.menu_context_resend:
           handleResendMessage(getSelectedMessageRecord());
           actionMode.finish();

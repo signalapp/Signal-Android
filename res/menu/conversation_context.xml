@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="@string/conversation_context__menu_message_details"
+
+    <!-- <item android:title="@string/conversation_context__menu_message_details"
           android:id="@+id/menu_context_details"
           android:icon="?menu_info_icon"
-          app:showAsAction="always" />
+          app:showAsAction="always" /> -->
 
     <item android:title="@string/conversation_context__menu_delete_message"
         android:id="@+id/menu_context_delete_message"
@@ -15,10 +16,10 @@
           android:icon="?menu_copy_icon"
           app:showAsAction="always" />
 
-    <item android:title="@string/conversation_context__menu_forward_message"
+    <!-- <item android:title="@string/conversation_context__menu_forward_message"
           android:id="@+id/menu_context_forward"
           android:icon="?menu_forward_icon"
-          app:showAsAction="always" />
+          app:showAsAction="always" /> -->
 
     <item android:title="@string/conversation_context__menu_resend_message"
           android:id="@+id/menu_context_resend"

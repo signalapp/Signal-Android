@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:fillViewport="true"
     tools:context=".loki.AccountDetailsActivity">
 
@@ -39,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            app:labeledEditText_background="@color/white"
             app:labeledEditText_label="@string/activity_account_details_name_edit_text_label"/>
 
         <com.dd.CircularProgressButton

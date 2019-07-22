@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <color name="signal_primary">#ff2090ea</color>
-    <color name="signal_primary_dark">#ff1c7ac5</color>
-    <color name="signal_primary_alpha33">#552090ea</color>
+    <color name="signal_primary">#ff5bca5b</color>
+    <color name="signal_primary_dark">#ff5bca5b</color>
+    <color name="signal_primary_alpha33">#555bca5b</color>
     <color name="signal_primary_alpha_focus">#882090ea</color>
 
     <color name="textsecure_primary">@color/signal_primary</color>

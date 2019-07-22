@@ -26,7 +26,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
 
     private val label by lazy {
         val result = TextView(context)
-        result.setTextColor(resources.getColorWithID(R.color.core_grey_90, context.theme))
+        result.setTextColor(resources.getColorWithID(R.color.white, context.theme))
         result.textAlignment = TextView.TEXT_ALIGNMENT_CENTER
         result
     }

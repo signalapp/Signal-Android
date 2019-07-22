@@ -55,6 +55,8 @@ public class ConversationTitleView extends RelativeLayout {
     this.subtitleContainer = ViewUtil.findById(this, R.id.subtitle_container);
     this.avatar            = ViewUtil.findById(this, R.id.contact_photo_image);
 
+    this.avatar.setEnabled(false);
+
     ViewUtil.setTextViewGravityStart(this.title, getContext());
     ViewUtil.setTextViewGravityStart(this.subtitle, getContext());
   }
