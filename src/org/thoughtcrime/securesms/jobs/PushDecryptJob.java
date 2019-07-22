@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
+import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -114,6 +115,8 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol;
+import org.whispersystems.signalservice.loki.messaging.LokiPreKeyRecordDatabaseProtocol;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetState;
 
@@ -240,8 +243,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     try {
       GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore  axolotlStore  = new SignalProtocolStoreImpl(context);
+      LokiThreadDatabaseProtocol lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+      LokiPreKeyRecordDatabaseProtocol preKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
       SignalServiceAddress localAddress  = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher    cipher        = new LokiServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
+      LokiServiceCipher    cipher        = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, preKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
       /* Loki - Original code
       SignalServiceCipher  cipher        = new SignalServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
        */
@@ -492,8 +497,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
     if (!recipient.isGroupRecipient()) {
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(recipient.getAddress().toPhoneString());
+      // TODO: Handle session reset on sync messages
+//      SessionStore sessionStore = new TextSecureSessionStore(context);
+//      sessionStore.deleteAllSessions(recipient.getAddress().toPhoneString());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 

@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.ContentValues
 import android.content.Context
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetState
@@ -20,6 +22,12 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         private val sessionResetState = "session_reset_state"
         @JvmStatic val createFriendRequestTableCommand = "CREATE TABLE $friendRequestTableName ($threadID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
         @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTableName ($threadID INTEGER PRIMARY KEY, $sessionResetState INTEGER DEFAULT 0);"
+    }
+
+    override fun getThreadID(hexEncodePubKey: String): Long {
+        val address = Address.fromSerialized(hexEncodePubKey)
+        val recipient = Recipient.from(context, address, false)
+        return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
     }
 
     override fun getThreadID(messageID: Long): Long {
