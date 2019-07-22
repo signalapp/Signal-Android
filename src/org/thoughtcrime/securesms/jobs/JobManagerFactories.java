@@ -85,7 +85,7 @@ public final class JobManagerFactories {
   }
 
   public static List<ConstraintObserver> getConstraintObservers(@NonNull Application application) {
-    return Arrays.asList(new CellServiceConstraintObserver(application),
+    return Arrays.asList(CellServiceConstraintObserver.getInstance(application),
                          new NetworkConstraintObserver(application),
                          new SqlCipherMigrationConstraintObserver());
   }
