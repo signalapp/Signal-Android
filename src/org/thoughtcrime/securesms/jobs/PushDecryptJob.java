@@ -473,11 +473,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
 //      sessionStore.deleteAllSessions(content.getSender());
 
+      Log.d("Loki", "Received a session reset request from: " + content.getSender() + "; archiving the session.");
+
       sessionStore.archiveAllSessions(content.getSender());
       lokiThreadDatabase.setSessionResetStatus(threadId, LokiThreadSessionResetStatus.REQUEST_RECEIVED);
 
-      Log.d("Loki", "Received a session reset request from: " + content.getSender() + ".");
-
+      Log.d("Loki", "Sending a ping back to " + content.getSender() + ".");
       String contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId).getAddress().toString();
       SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
       SignalServiceAddress address = new SignalServiceAddress(contactID);
