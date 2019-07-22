@@ -23,7 +23,7 @@ class LokiPreKeyRecordDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { it.count > 0 } ?: false
     }
 
-    fun getPreKey(hexEncodedPublicKey: String): PreKeyRecord? {
+    override fun getPreKey(hexEncodedPublicKey: String): PreKeyRecord? {
         val database = databaseHelper.readableDatabase
         return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { cursor ->
             val preKeyID = cursor.getInt(preKeyID)

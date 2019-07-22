@@ -244,7 +244,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore  axolotlStore  = new SignalProtocolStoreImpl(context);
       LokiThreadDatabaseProtocol lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-      LokiPreKeyRecordDatabaseProtocol preKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
+      LokiPreKeyRecordDatabase preKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
       SignalServiceAddress localAddress  = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
       LokiServiceCipher    cipher        = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, preKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
       /* Loki - Original code
