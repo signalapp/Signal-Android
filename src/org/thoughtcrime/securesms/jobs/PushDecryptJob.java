@@ -476,8 +476,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       sessionStore.archiveAllSessions(content.getSender());
       lokiThreadDatabase.setSessionResetStatus(threadId, LokiThreadSessionResetStatus.REQUEST_RECEIVED);
 
-      // TODO: Send a background message here
       Log.d("Loki", "Received a session reset request from: " + content.getSender() + ".");
+
+      String contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId).getAddress().toString();
+      SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
+      SignalServiceAddress address = new SignalServiceAddress(contactID);
+      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+      try {
+        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
+      } catch (Exception e) {
+        Log.d("Loki", "Failed to send empty message to: " + contactID + ".");
+      }
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       MessageNotifier.updateNotification(context, threadId);

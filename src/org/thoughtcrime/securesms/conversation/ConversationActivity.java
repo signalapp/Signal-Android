@@ -213,7 +213,6 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
@@ -2718,9 +2717,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
     SignalServiceAddress address = new SignalServiceAddress(contactID);
     SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
-    Optional<UnidentifiedAccessPair> access = Optional.absent();
     try {
-      messageSender.sendMessage(0, address, access, message); // The message ID doesn't matter
+      messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
     } catch (Exception e) {
       Log.d("Loki", "Failed to send empty message to: " + contactID + ".");
     }

@@ -655,7 +655,7 @@ public class ConversationFragment extends Fragment
     }
 
     if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-      adapter.setHeaderView(unknownSenderView);
+      // adapter.setHeaderView(unknownSenderView);
     } else {
       clearHeaderIfNotTyping(adapter);
     }
