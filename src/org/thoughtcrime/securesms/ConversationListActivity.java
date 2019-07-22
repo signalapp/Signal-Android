@@ -21,34 +21,31 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.Outline;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.TooltipCompat;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
 
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -60,7 +57,6 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
 
@@ -182,7 +178,27 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   private void initializeProfileIcon(@NonNull Recipient recipient) {
-    ImageView     icon          = findViewById(R.id.toolbar_icon);
+    ImageView profilePictureImageView = findViewById(R.id.toolbar_icon);
+    profilePictureImageView.setOutlineProvider(new ViewOutlineProvider() {
+
+      @Override
+      public void getOutline(View view, Outline outline) {
+        outline.setOval(0, 0, view.getWidth(), view.getHeight());
+      }
+    });
+    profilePictureImageView.setClipToOutline(true);
+    profilePictureImageView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+
+      @Override
+      public boolean onPreDraw() {
+        profilePictureImageView.getViewTreeObserver().removeOnPreDrawListener(this);
+        ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(profilePictureImageView.getWidth(), profilePictureImageView.getHeight(), recipient.getAddress().serialize().hashCode());
+        profilePictureImageView.setImageDrawable(identicon);
+        return true;
+      }
+    });
+
+    /*
     String        name          = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(this))).or("");
     MaterialColor fallbackColor = recipient.getColor();
 
@@ -198,8 +214,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(icon);
+     */
 
-    icon.setOnClickListener(v -> handleDisplaySettings());
+    profilePictureImageView.setOnClickListener(v -> handleDisplaySettings());
   }
 
   @Override

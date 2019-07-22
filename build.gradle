@@ -6,7 +6,7 @@ buildscript {
     ext.gradle_version = "3.4.1"
     ext.kotlin_version = "1.3.31"
     ext.kovenant_version = "3.3.0"
-    ext.work_manager_version = "2.1.0"
+    ext.identicon_version = "v11"
 
     repositories {
         google()
@@ -180,6 +180,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:3.12.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "nl.komponents.kovenant:kovenant:$kovenant_version"
+    implementation "com.github.lelloman:android-identicons:$identicon_version"
 }
 
 android {
@@ -196,7 +197,7 @@ android {
         versionCode 487
         versionName "4.40.4"
 
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
 
