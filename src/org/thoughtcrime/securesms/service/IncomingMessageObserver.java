@@ -201,7 +201,7 @@ public class IncomingMessageObserver implements InjectableType, ConstraintObserv
       builder.setContentText(getApplicationContext().getString(R.string.MessageRetrievalService_background_connection_enabled));
       builder.setPriority(NotificationCompat.PRIORITY_MIN);
       builder.setWhen(0);
-      builder.setSmallIcon(R.drawable.ic_signal_background_connection);
+      builder.setSmallIcon(R.drawable.ic_notification);
       startForeground(FOREGROUND_ID, builder.build());
 
       return Service.START_STICKY;

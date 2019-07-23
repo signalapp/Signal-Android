@@ -55,7 +55,7 @@ public class GenericForegroundService extends Service {
   private void handleStart(@NonNull Intent intent) {
     String title     = Preconditions.checkNotNull(intent.getStringExtra(EXTRA_TITLE));
     String channelId = Preconditions.checkNotNull(intent.getStringExtra(EXTRA_CHANNEL_ID));
-    int    iconRes   = intent.getIntExtra(EXTRA_ICON_RES, R.drawable.ic_signal_grey_24dp);
+    int    iconRes   = intent.getIntExtra(EXTRA_ICON_RES, R.drawable.ic_notification);
 
     Log.i(TAG, "handleStart() Title: " + title + "  ChannelId: " + channelId);
 
@@ -104,7 +104,7 @@ public class GenericForegroundService extends Service {
   }
 
   public static void startForegroundTask(@NonNull Context context, @NonNull String task, @NonNull String channelId) {
-    startForegroundTask(context, task, channelId, R.drawable.ic_signal_grey_24dp);
+    startForegroundTask(context, task, channelId, R.drawable.ic_notification);
   }
 
   public static void startForegroundTask(@NonNull Context context, @NonNull String task, @NonNull String channelId, @DrawableRes int iconRes) {

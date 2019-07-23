@@ -266,7 +266,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
             !TextSecurePreferences.isPasswordDisabled(context))
         {
           Notification notification = new NotificationCompat.Builder(context, NotificationChannels.OTHER)
-              .setSmallIcon(R.drawable.icon_notification)
+              .setSmallIcon(R.drawable.ic_notification)
               .setColor(context.getResources().getColor(R.color.signal_primary))
               .setContentTitle(context.getString(R.string.ExperienceUpgradeActivity_unlock_to_complete_update))
               .setContentText(context.getString(R.string.ExperienceUpgradeActivity_please_unlock_signal_to_complete_update))
@@ -295,7 +295,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
         dismissIntent.setAction(DISMISS_ACTION);
 
         Notification notification = new NotificationCompat.Builder(context, NotificationChannels.OTHER)
-                                        .setSmallIcon(R.drawable.icon_notification)
+                                        .setSmallIcon(R.drawable.ic_notification)
                                         .setColor(context.getResources().getColor(R.color.signal_primary))
                                         .setContentTitle(context.getString(experienceUpgrade.get().getNotificationTitle()))
                                         .setContentText(context.getString(experienceUpgrade.get().getNotificationText()))

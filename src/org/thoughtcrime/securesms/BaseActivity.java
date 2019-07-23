@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms;
 
+import android.app.ActivityManager;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -37,6 +40,12 @@ public abstract class BaseActivity extends FragmentActivity {
   protected void onResume() {
     super.onResume();
     DynamicLanguageActivityHelper.recreateIfNotInCorrectLanguage(this, TextSecurePreferences.getLanguage(this));
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      String name = getResources().getString(R.string.app_name);
+      Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground);
+      int color = getResources().getColor(R.color.loki_darkest_gray);
+      setTaskDescription(new ActivityManager.TaskDescription(name, icon, color));
+    }
   }
 
   @Override

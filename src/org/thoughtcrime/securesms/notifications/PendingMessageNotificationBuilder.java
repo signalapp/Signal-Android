@@ -19,7 +19,7 @@ public class PendingMessageNotificationBuilder extends AbstractNotificationBuild
 
     Intent intent = new Intent(context, ConversationListActivity.class);
 
-    setSmallIcon(R.drawable.icon_notification);
+    setSmallIcon(R.drawable.ic_notification);
     setColor(context.getResources().getColor(R.color.textsecure_primary));
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
 
