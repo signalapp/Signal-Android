@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.video.VideoPlayer;
 
 import java.io.IOException;
 
-final class VideoMediaPreviewFragment extends MediaPreviewFragment {
+public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
   private static final String TAG = Log.tag(VideoMediaPreviewFragment.class);
 

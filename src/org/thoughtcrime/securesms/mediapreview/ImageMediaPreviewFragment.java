@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
-final class ImageMediaPreviewFragment extends MediaPreviewFragment {
+public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
