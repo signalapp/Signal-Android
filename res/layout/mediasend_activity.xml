@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:orientation="vertical"
+            android:clickable="true"
             android:background="@color/transparent_black_70">
 
             <org.thoughtcrime.securesms.components.emoji.EmojiEditText
