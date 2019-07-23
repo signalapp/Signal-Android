@@ -63,7 +63,7 @@ public final class PushChallengeRequest {
     EventBus.getDefault().post(new PushChallengeEvent(challenge));
   }
 
-  private static class Request {
+  public static class Request {
 
     private final CountDownLatch              latch;
     private final AtomicReference<String>     challenge;
