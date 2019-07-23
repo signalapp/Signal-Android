@@ -1509,7 +1509,7 @@
     <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
     <string name="RegistrationLockDialog_disable">Disable</string>
     <string name="preferences_chats__backups">Backups</string>
-    <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
+    <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger is locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <string name="recipient_preferences__about">About</string>

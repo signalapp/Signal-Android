@@ -262,7 +262,7 @@
 
     <activity android:name=".PassphrasePromptActivity"
               android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightIntroTheme"
+              android:theme="@style/TextSecure.DarkIntroTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".NewConversationActivity"
@@ -314,7 +314,7 @@
 
     <activity android:name=".registration.CaptchaActivity"
               android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightNoActionBar"
+              android:theme="@style/TextSecure.DarkNoActionBar"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

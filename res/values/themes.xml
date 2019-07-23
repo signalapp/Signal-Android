@@ -122,7 +122,7 @@
         <item name="colorAccent">@color/textsecure_primary_dark</item>
         <item name="colorControlActivated">@color/signal_primary</item>
         <item name="colorControlHighlight">@color/signal_primary</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
@@ -267,6 +267,7 @@
         <item name="shared_contact_details_header_background">@color/grey_100</item>
         <item name="shared_contact_details_titlebar">@color/grey_400</item>
         <item name="shared_contact_item_button_color">@color/core_grey_02</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
