@@ -59,7 +59,6 @@ class MediaSendViewModel extends ViewModel {
   private int              maxSelection;
   private Page             page;
   private boolean          isSms;
-  private Recipient        recipient;
   private Optional<Media>  lastCameraCapture;
 
   private boolean     hudVisible;
@@ -69,6 +68,7 @@ class MediaSendViewModel extends ViewModel {
   private RailState   railState;
   private RevealState revealState;
 
+  private @Nullable Recipient recipient;
 
   private MediaSendViewModel(@NonNull Application application, @NonNull MediaRepository repository) {
     this.application       = application;
@@ -488,7 +488,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   private boolean revealSupported() {
-    return !isSms && mediaSupportsRevealableMessage(getSelectedMediaOrDefault());
+    return !isSms && (recipient == null || !recipient.isLocalNumber()) && mediaSupportsRevealableMessage(getSelectedMediaOrDefault());
   }
 
   private boolean mediaSupportsRevealableMessage(@NonNull List<Media> media) {
@@ -546,7 +546,7 @@ class MediaSendViewModel extends ViewModel {
       this.selectionCount  = selectionCount;
       this.buttonState     = buttonState;
       this.railState       = railState;
-      this.revealState = revealState;
+      this.revealState     = revealState;
     }
 
     public boolean isHudVisible() {
