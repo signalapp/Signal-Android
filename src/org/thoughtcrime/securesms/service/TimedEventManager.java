@@ -30,7 +30,9 @@ public abstract class TimedEventManager<E> {
     this.application = application;
     this.handler     = new Handler(handlerThread.getLooper());
 
-    scheduleIfNecessary();
+    // XXX Have to delay it because some devices will run the resulting handler#post synchronously,
+    //     triggering a method call to an uninitialized child class.
+    handler.postDelayed(this::scheduleIfNecessary, 5);
   }
 
   /**
