@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -149,6 +150,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     return false;
   }
 
+  @Override
+  @SuppressLint("MissingSuperCall") // no fragments to dispatch to
   public void onActivityResult(int requestCode, int resultcode, Intent data) {
     if (requestCode != 1) return;
 

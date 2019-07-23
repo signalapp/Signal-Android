@@ -177,6 +177,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   @Override
+  @SuppressLint("MissingSuperCall") // no fragments to dispatch to
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == PICK_COUNTRY && resultCode == RESULT_OK && data != null) {
       this.countryCode.setText(String.valueOf(data.getIntExtra("country_code", 1)));

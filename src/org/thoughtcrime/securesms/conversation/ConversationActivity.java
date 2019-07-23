@@ -384,6 +384,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
     Log.i(TAG, "onNewIntent()");
     
     if (isFinishing()) {
