@@ -93,7 +93,7 @@
                  android:supportsRtl="true"
                  tools:replace="android:allowBackup"
                  android:allowBackup="false"
-                 android:theme="@style/TextSecure.LightTheme"
+                 android:theme="@style/TextSecure.DarkTheme"
                  android:largeHeap="true">
 
     <meta-data
@@ -308,7 +308,7 @@
 
     <activity android:name=".RegistrationActivity"
               android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:theme="@style/TextSecure.DarkRegistrationTheme"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

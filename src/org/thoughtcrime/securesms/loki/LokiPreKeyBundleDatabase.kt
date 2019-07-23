@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.ContentValues
 import android.content.Context
-import net.sqlcipher.database.SQLiteDatabase
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.Database
@@ -73,17 +72,17 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     fun setPreKeyBundle(hexEncodedPublicKey: String, preKeyBundle: PreKeyBundle) {
         val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues(9)
-        contentValues.put(registrationID, preKeyBundle.registrationId)
-        contentValues.put(deviceID, preKeyBundle.deviceId)
-        contentValues.put(preKeyID, preKeyBundle.preKeyId)
-        contentValues.put(preKeyPublic, Base64.encodeBytes(preKeyBundle.preKey.serialize()))
-        contentValues.put(signedPreKeyID, preKeyBundle.signedPreKeyId)
-        contentValues.put(signedPreKeyPublic, Base64.encodeBytes(preKeyBundle.signedPreKey.serialize()))
-        contentValues.put(signedPreKeySignature, Base64.encodeBytes(preKeyBundle.signedPreKeySignature))
-        contentValues.put(identityKey, Base64.encodeBytes(preKeyBundle.identityKey.serialize()))
-        contentValues.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
-        database.insertWithOnConflict(tableName, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE)
+        val values = ContentValues(9)
+        values.put(registrationID, preKeyBundle.registrationId)
+        values.put(deviceID, preKeyBundle.deviceId)
+        values.put(preKeyID, preKeyBundle.preKeyId)
+        values.put(preKeyPublic, Base64.encodeBytes(preKeyBundle.preKey.serialize()))
+        values.put(signedPreKeyID, preKeyBundle.signedPreKeyId)
+        values.put(signedPreKeyPublic, Base64.encodeBytes(preKeyBundle.signedPreKey.serialize()))
+        values.put(signedPreKeySignature, Base64.encodeBytes(preKeyBundle.signedPreKeySignature))
+        values.put(identityKey, Base64.encodeBytes(preKeyBundle.identityKey.serialize()))
+        values.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
+        database.insertOrUpdate(tableName, values, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
     }
 
     override fun removePreKeyBundle(hexEncodedPublicKey: String) {

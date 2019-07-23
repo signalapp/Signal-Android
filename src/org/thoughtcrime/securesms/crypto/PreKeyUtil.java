@@ -102,14 +102,12 @@ public class PreKeyUtil {
   }
 
   public synchronized static List<PreKeyRecord> generatePreKeys(Context context, int amount) {
-    PreKeyStore preKeyStore = new TextSecurePreKeyStore(context);
     List<PreKeyRecord> records = new LinkedList<>();
     int preKeyIDOffset = TextSecurePreferences.getNextPreKeyId(context);
     for (int i = 0; i < amount; i++) {
       int preKeyID = (preKeyIDOffset + i) % Medium.MAX_VALUE;
       ECKeyPair keyPair = Curve.generateKeyPair();
       PreKeyRecord record = new PreKeyRecord(preKeyID, keyPair);
-      preKeyStore.storePreKey(preKeyID, record);
       records.add(record);
     }
     TextSecurePreferences.setNextPreKeyId(context, (preKeyIDOffset + BATCH_SIZE + 1) % Medium.MAX_VALUE);

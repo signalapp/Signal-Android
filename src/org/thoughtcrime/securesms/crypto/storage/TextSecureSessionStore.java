@@ -92,8 +92,8 @@ public class TextSecureSessionStore implements LokiSessionDatabaseProtocol {
     }
   }
 
-  public void archiveAllSessions(@NonNull String name) {
-    SignalProtocolAddress address = new SignalProtocolAddress(name, -1);
+  public void archiveAllSessions(@NonNull String hexEncodedPublicKey) {
+    SignalProtocolAddress address = new SignalProtocolAddress(hexEncodedPublicKey, -1);
     archiveSiblingSessions(address);
   }
 

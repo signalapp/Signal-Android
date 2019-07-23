@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
+    android:background="@color/loki_darkest_gray"
     android:fillViewport="true"
     tools:context=".RegistrationActivity">
 

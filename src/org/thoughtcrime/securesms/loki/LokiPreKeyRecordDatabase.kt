@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.ContentValues
 import android.content.Context
-import net.sqlcipher.database.SQLiteDatabase
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -13,9 +12,9 @@ class LokiPreKeyRecordDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     companion object {
         private val tableName = "loki_pre_key_record_database"
-        private val preKeyID = "pre_key_id"
         private val hexEncodedPublicKey = "public_key"
-        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($preKeyID INTEGER PRIMARY KEY, $hexEncodedPublicKey TEXT);"
+        private val preKeyID = "pre_key_id"
+        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($hexEncodedPublicKey TEXT PRIMARY KEY, $preKeyID INTEGER);"
     }
 
     fun hasPreKey(hexEncodedPublicKey: String): Boolean {
@@ -36,14 +35,14 @@ class LokiPreKeyRecordDatabase(context: Context, helper: SQLCipherOpenHelper) : 
     }
 
     private fun generateAndStorePreKeyRecord(hexEncodedPublicKey: String): PreKeyRecord {
-        val preKeyRecords = PreKeyUtil.generatePreKeys(context, 1)
-        PreKeyUtil.storePreKeyRecords(context, preKeyRecords)
-        val record = preKeyRecords.first()
+        val records = PreKeyUtil.generatePreKeys(context, 1)
+        PreKeyUtil.storePreKeyRecords(context, records)
+        val record = records.first()
         val database = databaseHelper.writableDatabase
         val values = ContentValues(2)
         values.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
         values.put(preKeyID, record.id)
-        database.insertWithOnConflict(tableName, null, values, SQLiteDatabase.CONFLICT_REPLACE)
+        database.insertOrUpdate(tableName, values, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
         return record
     }
 }

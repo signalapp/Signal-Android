@@ -94,7 +94,7 @@ public class IdentityKeyUtil {
       save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(publicKey.serialize()));
       save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(keyPair.getPrivateKey().serialize()));
     } catch (Exception e) {
-      Log.d("Loki", "Couldn't restore key pair from seed due to error: " + e.getMessage());
+      Log.d("Loki", "Couldn't restore key pair from seed due to error: " + e.getMessage() + ".");
     }
   }
 

@@ -244,9 +244,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       LokiPreKeyRecordDatabase lokiPreKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
       SignalServiceAddress localAddress  = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
       LokiServiceCipher    cipher        = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, lokiPreKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
-      /* Loki - Original code
-      SignalServiceCipher  cipher        = new SignalServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
-       */
+
+      // Loki - Handle session reset logic
+      if (!envelope.isFriendRequest() && cipher.getSessionStatus(envelope) == null && envelope.isPreKeySignalMessage()) {
+        cipher.validateBackgroundMessage(envelope, envelope.getContent());
+      }
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -255,7 +257,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
-      // Loki - Handle Loki specific logic if needed
+      // Loki - Store pre key bundle if needed
       if (content.lokiMessage.isPresent()) {
         LokiServiceMessage lokiMessage = content.lokiMessage.get();
         if (lokiMessage.getPreKeyBundleMessage() != null) {
@@ -272,6 +274,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         }
       }
 
+      // Loki - Get the sender display name if needed
       Optional<String> senderDisplayName = content.senderDisplayName;
       if (senderDisplayName.isPresent()) {
         DatabaseFactory.getLokiUserDisplayNameDatabase(context).setDisplayName(envelope.getSource(), senderDisplayName.get());
@@ -299,7 +302,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           handleNeedsDeliveryReceipt(content, message);
         }
 
-        // Loki - Handle friend request logic if needed
+        // Loki - Handle friend request logic
         handleFriendRequestIfNeeded(envelope, content, message);
       } else if (content.getSyncMessage().isPresent()) {
         TextSecurePreferences.setMultiDevice(context, true);
@@ -335,6 +338,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       if (envelope.isPreKeySignalMessage()) {
         ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
+      }
+
+      // Loki - Handle session reset logic
+      if (!envelope.isFriendRequest()) {
+        cipher.handleSessionResetRequestIfNeeded(envelope, cipher.getSessionStatus(envelope));
       }
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
@@ -471,7 +479,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (threadId != null) {
       TextSecureSessionStore sessionStore = new TextSecureSessionStore(context);
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-//      sessionStore.deleteAllSessions(content.getSender());
 
       Log.d("Loki", "Received a session reset request from: " + content.getSender() + "; archiving the session.");
 
