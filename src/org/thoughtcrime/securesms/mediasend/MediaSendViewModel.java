@@ -187,7 +187,9 @@ class MediaSendViewModel extends ViewModel {
     buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
     if (revealState == RevealState.GONE && revealSupported()) {
-      revealState = TextSecurePreferences.isRevealableMessageEnabled(application) ? RevealState.ENABLED : RevealState.DISABLED;
+      // TODO[reveal]
+//      revealState = TextSecurePreferences.isRevealableMessageEnabled(application) ? RevealState.ENABLED : RevealState.DISABLED;
+      revealState = RevealState.GONE;
     } else if (!revealSupported()) {
       revealState = RevealState.GONE;
     }
