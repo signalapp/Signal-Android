@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.scribbles;
 
+import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
@@ -22,9 +25,18 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
+import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ParcelUtil;
+import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -285,6 +297,36 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   public void onDelete() {
     imageEditorView.deleteElement(currentSelection);
     refreshUniqueColors();
+  }
+
+  @Override
+  public void onSave() {
+    SaveAttachmentTask.showWarningDialog(requireContext(), (dialogInterface, i) -> {
+      Permissions.with(this)
+                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                 .ifNecessary()
+                 .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+                 .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
+                 .onAllGranted(() -> {
+                   SimpleTask.run(() -> {
+                     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                     Bitmap                image        = imageEditorView.getModel().render(requireContext());
+
+                     image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+
+                     return BlobProvider.getInstance()
+                                        .forData(outputStream.toByteArray())
+                                        .withMimeType(MediaUtil.IMAGE_JPEG)
+                                        .createForSingleUseInMemory();
+
+                   }, uri -> {
+                     SaveAttachmentTask saveTask = new SaveAttachmentTask(requireContext());
+                     SaveAttachmentTask.Attachment attachment = new SaveAttachmentTask.Attachment(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), null);
+                     saveTask.executeOnExecutor(SignalExecutors.BOUNDED, attachment);
+                   });
+                 })
+                 .execute();
+    });
   }
 
   @Override

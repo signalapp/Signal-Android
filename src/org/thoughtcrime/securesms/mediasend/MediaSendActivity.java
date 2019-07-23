@@ -779,12 +779,12 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         renderTimer   = new Stopwatch("ProcessMedia");
         progressTimer = () -> {
           dialog = new AlertDialog.Builder(new ContextThemeWrapper(MediaSendActivity.this, R.style.TextSecure_MediaSendProgressDialog))
-              .setView(R.layout.progress_dialog)
-              .setCancelable(false)
-              .create();
+                                  .setView(R.layout.progress_dialog)
+                                  .setCancelable(false)
+                                  .create();
           dialog.show();
           dialog.getWindow().setLayout(getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size),
-              getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size));
+                                       getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size));
         };
         Util.runOnMainDelayed(progressTimer, 250);
       }
