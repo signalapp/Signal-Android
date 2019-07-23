@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">A receber chamada</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Não foi possível guardar a imagem.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
   <string name="ClearProfileActivity_remove_profile_photo">Remover a foto do perfil?</string>
@@ -408,6 +409,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Foi removido um item porque excedia o limite de tamanho</string>
   <string name="MediaSendActivity_camera_unavailable">Câmara indisponível.</string>
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
+  <string name="MediaSendActivity_message">Mensagem</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Não pode partilhar mais do que %d item.</item>
     <item quantity="other">Não pode partilhar mais do que %d itens.</item>
@@ -546,6 +548,10 @@ especificou (%s) é inválido.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Irá receber um código de verificação. Poderão existir custos por parte da sua operadora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduza o código que enviamos para %s</string>
   <string name="RegistrationActivity_call">Telefonar</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Ver fotografia</string>
+  <string name="RevealableMessageView_viewed">Vista(s)</string>
+  <string name="RevealableMessageView_photo">Fotografia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao guardar as alterações da imagem</string>
   <!--Search-->
@@ -579,6 +585,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Não foi possível processar esta mensagem porque foi enviada a partir de uma versão mais recente do Signal. Peça ao seu contacto para lhe reenviar novamente esta mensagem após você ter feito a atualização do Signal.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Erro ao lidar com mensagem recebida</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Autocolantes</string>
   <!--StickerManagementAdapter-->
@@ -605,6 +612,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadRecord_called_you">Ligou-lhe</string>
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensagem multimédia</string>
+  <string name="ThreadRecord_sticker">Autocolante</string>
+  <string name="ThreadRecord_disappearing_photo">Destruição de fotografia</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Destruição de mensagens desactivada</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">O tempo a decorrer até que as mensagens sejam destruídas está definido para %s</string>
@@ -679,6 +688,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimédia</string>
   <string name="MessageNotifier_sticker">Autocolante</string>
+  <string name="MessageNotifier_disappearing_photo">Destruição de fotografia</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>

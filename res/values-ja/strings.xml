@@ -72,6 +72,7 @@
   <string name="CallScreen_Incoming_call">着信</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">削除</string>
   <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を消去しますか？</string>
@@ -220,7 +221,7 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">アーカイブ済みの会話 (%d)</string>
   <!--ConversationTitleView-->
-  <string name="ConversationTitleView_verified">確認済み</string>
+  <string name="ConversationTitleView_verified">検証済み</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">プロフィール情報</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール画像の設定に失敗しました。</string>
@@ -390,6 +391,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">サイズの上限を超えたため、項目が削除されました。</string>
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へメッセージ</string>
+  <string name="MediaSendActivity_message">メッセージ</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">%d以上のアイテムを共有できません</item>
   </plurals>
@@ -523,6 +525,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金がかかるかもしれません。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%sに送ったコードを入力してください</string>
   <string name="RegistrationActivity_call">通話</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">写真を見る</string>
+  <string name="RevealableMessageView_viewed">閲覧済み</string>
+  <string name="RevealableMessageView_photo">写真</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">画像の変更を保存できませんでした</string>
   <!--Search-->
@@ -552,6 +558,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%sがセキュアセッションを設定し直しました。</string>
   <string name="SmsMessageRecord_duplicate_message">重複メッセージ</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">このメッセージは、新しいバージョンのSignalから送信されたため、表示できません。アップデートしてから、メッセージの再送を依頼してください。</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">受信中にエラー</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">ステッカー</string>
   <!--StickerManagementAdapter-->
@@ -578,6 +585,7 @@
   <string name="ThreadRecord_called_you">着信</string>
   <string name="ThreadRecord_missed_call">不在着信</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
+  <string name="ThreadRecord_sticker">ステッカー</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalに登録しています！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージの消去時間が%sに設定されました</string>

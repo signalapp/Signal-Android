@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Sissetulev kõne</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Pildi salvestamine ebaõnnestus.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eemalda</string>
   <string name="ClearProfileActivity_remove_profile_photo">Eemaldad profiilipildi?</string>
@@ -408,6 +409,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Üksus eemaldati, sest see ületas suuruspiirangut.</string>
   <string name="MediaSendActivity_camera_unavailable">Kaamera pole saadaval.</string>
   <string name="MediaSendActivity_message_to_s">Sõnum kasutajale %s</string>
+  <string name="MediaSendActivity_message">Sõnum</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Sa ei saa jagada rohkem kui %d üksust.</item>
     <item quantity="other">Sa ei saa jagada rohkem kui %d üksust.</item>
@@ -550,6 +552,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Sa saad kinnituskoodi. Rakenduda võivad operaatoritasud.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sisesta kood, mulle saatsime numbrile %s</string>
   <string name="RegistrationActivity_call">Helista</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
   <!--Search-->
@@ -583,6 +587,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s lähtestas turvalise sessiooni.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikaatsõnum.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Seda sõnumit ei saanud töödelda, kuna see saadeti Signali uuemast versioonist. Sa võid paluda oma kontaktil see sõnum uuesti saata, kui oled ise rakendust uuendanud.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Sissetuleva sõnumi käsitlemisel tekkis tõrge.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Kleepsud</string>
   <!--StickerManagementAdapter-->
@@ -609,6 +614,7 @@
   <string name="ThreadRecord_called_you">Helistas sulle</string>
   <string name="ThreadRecord_missed_call">Vastamata kõne</string>
   <string name="ThreadRecord_media_message">Meediasõnum</string>
+  <string name="ThreadRecord_sticker">Kleeps</string>
   <string name="ThreadRecord_s_is_on_signal">%s on Signalis!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Haihtuvad sõnumid keelatud</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>

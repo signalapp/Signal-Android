@@ -71,6 +71,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Kayachiy yaykumukun</string>
   <!--CameraActivity-->
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Anchuchina</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ñawi shuyuta anchuchinayanchu</string>
@@ -484,6 +485,8 @@ riksichinami kanki
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pankalla kikinpa yupayta riksinkapak Signal paymanta pakalla yupayta chaskita ushan, killkana SMS paskarya kakpi.</string>
   <string name="RegistrationActivity_continue">Katina</string>
   <string name="RegistrationActivity_call">Kayachina</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Shuyu</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kikinpa mushukyachishka shuyu mana allichirirka.</string>
   <!--Search-->

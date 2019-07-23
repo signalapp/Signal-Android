@@ -74,6 +74,7 @@
   <string name="CallScreen_Incoming_call">Gələn zəng</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Şəkli yaddaşa yazmaq mümkün olmadı.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Sil</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profil şəklini silirsən?</string>
@@ -405,6 +406,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ölçüsü limiti aşdığı üçün fayl silindi</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera işə salına bimir</string>
   <string name="MediaSendActivity_message_to_s">%s istifadəçisinə mesaj</string>
+  <string name="MediaSendActivity_message">Mesaj</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">%d fayldan artığını paylaşa bilməzsən.</item>
     <item quantity="other">%d fayldan artığını paylaşa bilməzsən.</item>
@@ -543,6 +545,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Təsdiq şifrəsi alacaqsan. Bu sənə müəyyən məbləğə başa gələ bilər.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s nömrəsinə göndərdiyimiz şifrəni daxil et</string>
   <string name="RegistrationActivity_call">Zəng et</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Şəkil</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Şəkilə olan dəyişiklikləri yadda saxlaya bilmədik</string>
   <!--Search-->
@@ -598,6 +602,7 @@
   <string name="ThreadRecord_called_you">Zənə zəng edib</string>
   <string name="ThreadRecord_missed_call">Cavab verilməmiş zəng</string>
   <string name="ThreadRecord_media_message">Media mesajı</string>
+  <string name="ThreadRecord_sticker">Sticker</string>
   <string name="ThreadRecord_s_is_on_signal">%s artıq Signal-dadır!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Yox olan mesajlar deaktiv edildi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Yox olan mesajlar üçün zaman intervalı %s tıəyin edildi</string>

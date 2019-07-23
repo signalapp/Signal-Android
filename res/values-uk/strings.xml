@@ -80,6 +80,7 @@
   <string name="CallScreen_Incoming_call">Вхідний виклик</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Помилка збереження зображення</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Вилучити</string>
   <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профіля?</string>
@@ -430,6 +431,7 @@
   <string name="MediaSendActivity_add_a_caption">Добавити заголовок...</string>
   <string name="MediaSendActivity_camera_unavailable">Камера не доступна</string>
   <string name="MediaSendActivity_message_to_s">Відправити до %s</string>
+  <string name="MediaSendActivity_message">Повідомлення</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Всі медіа-файли
 Всі зображення</string>
@@ -555,6 +557,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Введіть Ваш номер телефону щоб почати</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ви отримаєте код підтвердження. Можливе списання з оператором</string>
   <string name="RegistrationActivity_call">Виклик</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Світлини</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не вдалось змінити зображення</string>
   <!--Search-->

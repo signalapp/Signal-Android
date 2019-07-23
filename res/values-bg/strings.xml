@@ -74,6 +74,7 @@
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Неуспешно запазване на изображението.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Премахни</string>
   <string name="ClearProfileActivity_remove_profile_photo">Премахване на снимката от профила?</string>
@@ -407,6 +408,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Един елемент бе премахнат, защото надхвърля ограничението за размер</string>
   <string name="MediaSendActivity_camera_unavailable">Не е открита камера.</string>
   <string name="MediaSendActivity_message_to_s">Изпрати на %s</string>
+  <string name="MediaSendActivity_message">Съобщение</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Не можете да споделяте повече от %d елемент.</item>
     <item quantity="other">Не можете да споделяте повече от %d елементи.</item>
@@ -541,6 +543,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ще получите код за потвърждение. Цените на плана ви важат.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Въведете кода, който изпратихме на %s</string>
   <string name="RegistrationActivity_call">Обаждане</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Снимка</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Неуспешнп запазване на промененото изображение</string>
   <!--Search-->
@@ -599,6 +603,7 @@
   <string name="ThreadRecord_called_you">Ви се обади</string>
   <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
+  <string name="ThreadRecord_sticker">Стикер</string>
   <string name="ThreadRecord_s_is_on_signal">%s е в Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Изчезващите съобщения са деактивирани</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %s</string>

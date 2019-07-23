@@ -74,6 +74,7 @@
   <string name="CallScreen_Incoming_call">Appel entrant</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Échec d’enregistrement de l’image.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Supprimer</string>
   <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
@@ -407,6 +408,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un élément a été supprimé, car il dépassait la taille limite</string>
   <string name="MediaSendActivity_camera_unavailable">L’appareil photo n’est pas disponible</string>
   <string name="MediaSendActivity_message_to_s">Message à %s</string>
+  <string name="MediaSendActivity_message">Message</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Vous ne pouvez pas partager plus d’%d élément.</item>
     <item quantity="other">Vous ne pouvez pas partager plus de %d éléments.</item>
@@ -543,6 +545,10 @@ votre numéro de téléphone</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vous recevrez un code de vérification. Les frais de l’opérateur peuvent s’appliquer.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Saisir le code envoyé au %s</string>
   <string name="RegistrationActivity_call">Appeler</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Afficher la photo</string>
+  <string name="RevealableMessageView_viewed">Vu</string>
+  <string name="RevealableMessageView_photo">Photo</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Échec d’enregistrement des modifications apportées aux images</string>
   <!--Search-->
@@ -573,6 +579,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
   <string name="SmsMessageRecord_duplicate_message">Message en double.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ce message n’a pas pu être traité, car il a été envoyé à partir d’une version plus récente de Signal. Vous pourrez demander à votre contact de renvoyer ce message une fois que vous aurez mis Signal à jour.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Erreur de traitement du message entrant</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Autocollants</string>
   <!--StickerManagementAdapter-->
@@ -599,6 +606,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="ThreadRecord_called_you">Vous a appelé</string>
   <string name="ThreadRecord_missed_call">Appel manqué</string>
   <string name="ThreadRecord_media_message">Message multimédia</string>
+  <string name="ThreadRecord_sticker">Autocollant</string>
+  <string name="ThreadRecord_disappearing_photo">Photo éphémère</string>
   <string name="ThreadRecord_s_is_on_signal">%s est sur Signal !</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Les messages éphémères sont désactivés</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">L’expiration des messages éphémères a été définie à %s</string>
@@ -673,6 +682,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="MessageNotifier_mark_read">Marquer comme lu</string>
   <string name="MessageNotifier_media_message">Message multimédia</string>
   <string name="MessageNotifier_sticker">Autocollant</string>
+  <string name="MessageNotifier_disappearing_photo">Photo éphémère</string>
   <string name="MessageNotifier_reply">Répondre</string>
   <string name="MessageNotifier_signal_message">Message Signal</string>
   <string name="MessageNotifier_unsecured_sms">Texto non sécurisé</string>

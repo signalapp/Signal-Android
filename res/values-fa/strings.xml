@@ -74,6 +74,7 @@
   <string name="CallScreen_Incoming_call">تماس های دریافتی</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">تصویر ذخیره نشد</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">حذف</string>
   <string name="ClearProfileActivity_remove_profile_photo">عکس پروفایل حذف شود؟</string>
@@ -408,6 +409,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">یک آیتم حذف شد چون از محدودیت اندازه بیشتر بود</string>
   <string name="MediaSendActivity_camera_unavailable">دوربین در دسترس نیست</string>
   <string name="MediaSendActivity_message_to_s">پیام به %s </string>
+  <string name="MediaSendActivity_message">پیام</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">شما نمی توانید بیش از %d آیتم را به اشتراک بگذارید.</item>
     <item quantity="other">شما نمی توانید بیش از %d آیتم را به اشتراک بگذارید.</item>
@@ -543,6 +545,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">شما یک کد تاییدیه دریافت خواهید کرد. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کدی که به %s ارسال کردیم را وارد کنید</string>
   <string name="RegistrationActivity_call">تماس</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">تصویر</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ناموفقیت در ذخیره تغییرات تصویر</string>
   <!--Search-->
@@ -573,6 +577,7 @@
   <string name="SmsMessageRecord_secure_session_reset">شما نشست امن را ریست نموده اید.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s نشست امن را ریست نمود.</string>
   <string name="SmsMessageRecord_duplicate_message">تکثیر پیام.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">خطا در کنترل پیام دریافتی</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">استیکر ها</string>
   <!--StickerManagementAdapter-->
@@ -599,6 +604,7 @@
   <string name="ThreadRecord_called_you">با شما تماس گرفت</string>
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
   <string name="ThreadRecord_media_message">پیام رسانه</string>
+  <string name="ThreadRecord_sticker">استیکر</string>
   <string name="ThreadRecord_s_is_on_signal">%s در Signal است!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام های نابود شونده غیر فعال شد</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پنهان شدن پیام بر روی %s تنظیم شد</string>

@@ -74,6 +74,7 @@
   <string name="CallScreen_Incoming_call">Banga tê</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Tomarkirina wêne têk çû.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Rake</string>
   <string name="ClearProfileActivity_remove_profile_photo">Bila wêneyê profîlê were rakirin?</string>
@@ -511,6 +512,8 @@
   <string name="RegistrationActivity_continue">Berdewam</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ji bo destpêkirinê jimara xwe ya telefonê binivîse</string>
   <string name="RegistrationActivity_call">Gazî</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Wêne</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Guhertinên weneyê nehate tomarkirin</string>
   <!--Search-->

@@ -81,6 +81,7 @@
   <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Błąd przy zapisie obrazu.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Usuń</string>
   <string name="ClearProfileActivity_remove_profile_photo">Usunąć zdjęcie profilowe?</string>
@@ -444,6 +445,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Pozycja została usunięta, ponieważ przekroczyła limit wielkości</string>
   <string name="MediaSendActivity_camera_unavailable">Aparat niedostępny.</string>
   <string name="MediaSendActivity_message_to_s">Wiadomość do %s</string>
+  <string name="MediaSendActivity_message">Wiadomość</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nie można udostępnić więcej niż %d plik multimediów.</item>
     <item quantity="few">Nie można udostępnić więcej niż %d multimediów.</item>
@@ -585,6 +587,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Wprowadź kod, który wysłaliśmy na %s</string>
   <string name="RegistrationActivity_call">Zadzwoń</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Wyświetl zdjęcie</string>
+  <string name="RevealableMessageView_viewed">Wyświetlono</string>
+  <string name="RevealableMessageView_photo">Zdjęcie</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
   <!--Search-->
@@ -615,6 +621,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s zresetował(a) bezpieczną sesję.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Wiadomość ta nie mogła zostać przetworzona, ponieważ została wysłana z nowszej wersji Signal. Możesz poprosić nadawcę o ponowne wysłanie tej wiadomości po dokonaniu aktualizacji.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Błąd przy obsłudze przychodzącej wiadomości</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Naklejki</string>
   <!--StickerManagementAdapter-->
@@ -640,6 +647,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_called_you">Dzwonił(a)</string>
   <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
+  <string name="ThreadRecord_sticker">Naklejka</string>
+  <string name="ThreadRecord_disappearing_photo">Znikające zdjęcie</string>
   <string name="ThreadRecord_s_is_on_signal">%s jest w Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Znikające wiadomości zostały wyłączone</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
@@ -714,6 +723,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_mark_read">Przeczytane</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <string name="MessageNotifier_sticker">Naklejka</string>
+  <string name="MessageNotifier_disappearing_photo">Znikające zdjęcie</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
   <string name="MessageNotifier_signal_message">Wiadomość Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nieszyfrowany SMS</string>
@@ -1067,10 +1077,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="arrays__max">Maksymalny</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d godzina</item>
-    <item quantity="few">%d godzin</item>
-    <item quantity="many">%d godzin</item>
-    <item quantity="other">%d godzin</item>
+    <item quantity="one">%d godz</item>
+    <item quantity="few">%d godz</item>
+    <item quantity="many">%d godz</item>
+    <item quantity="other">%d godz</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS i MMS</string>

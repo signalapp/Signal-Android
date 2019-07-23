@@ -74,6 +74,7 @@
   <string name="CallScreen_Incoming_call">Recebendo chamada</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Falha ao salvar imagem.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
   <string name="ClearProfileActivity_remove_profile_photo">Remover foto do perfil?</string>
@@ -407,6 +408,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Um item foi removido porque excedeu o limite de tamanho</string>
   <string name="MediaSendActivity_camera_unavailable">Câmera indisponível.</string>
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
+  <string name="MediaSendActivity_message">Mensagem</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Você não pode compartilhar mais de %d item.</item>
     <item quantity="other">Você não pode compartilhar mais de %d itens.</item>
@@ -545,6 +547,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Você vai receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insira o código que enviamos para %s</string>
   <string name="RegistrationActivity_call">Ligar</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao salvar alterações na imagem</string>
   <!--Search-->
@@ -578,6 +582,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Essa mensagem não pôde ser processada porque foi enviada de uma versão mais recente do Signal. Peça ao seu contato para enviar outra mensagem após a atualização.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Erro ao receber mensagem</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Figurinhas</string>
   <!--StickerManagementAdapter-->
@@ -604,6 +609,7 @@
   <string name="ThreadRecord_called_you">Ligou para você</string>
   <string name="ThreadRecord_missed_call">Ligação perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
+  <string name="ThreadRecord_sticker">Figurinha</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem efêmera definida para %s</string>

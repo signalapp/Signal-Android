@@ -71,6 +71,7 @@
   <string name="CallScreen_Incoming_call">Panggilan masuk</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Gagal menyimpan gambar.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Hapus</string>
   <string name="ClearProfileActivity_remove_profile_photo">Buang foto profil?</string>
@@ -381,6 +382,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">sebuah item dihapus karena melebihi batas ukuran</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera tidak tersedia.</string>
   <string name="MediaSendActivity_message_to_s">kirim pesan ke %s</string>
+  <string name="MediaSendActivity_message">Pesan</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">Anda tidak bisa membagikan lebih dari %d item</item>
   </plurals>
@@ -515,6 +517,8 @@ isikan (%s) tidak tepat.
   <string name="RegistrationActivity_you_will_receive_a_verification_code">andak akan mendapakan kode verifikasi, Tarif operator berlaku</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">masukkan kode yang telah dikirimkan pada %s</string>
   <string name="RegistrationActivity_call">Panggil</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Gagal menyimpan perubahan gambar.</string>
   <!--Search-->
@@ -545,6 +549,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SmsMessageRecord_secure_session_reset">Anda mengatur ulang sesi aman.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s mengatur ulang sesi aman.</string>
   <string name="SmsMessageRecord_duplicate_message">Pesan Duplikat</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Gagal dalam menangani pesan masuk</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stiker</string>
   <!--StickerManagementAdapter-->

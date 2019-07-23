@@ -72,6 +72,7 @@
   <string name="CallScreen_Incoming_call">來電</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">儲存照片失敗。</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">移除</string>
   <string name="ClearProfileActivity_remove_profile_photo">移除頭像照片？</string>
@@ -390,6 +391,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一個項目因為超過容量的限制而被移除</string>
   <string name="MediaSendActivity_camera_unavailable">相機無法使用。</string>
   <string name="MediaSendActivity_message_to_s">傳訊息給 %s</string>
+  <string name="MediaSendActivity_message">訊息</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">你無法分享超過 %d 個項目。</item>
   </plurals>
@@ -527,6 +529,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">你將收到驗證碼。各電信公司的收費費率可能有所不同。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">輸入我們傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_call">撥打</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">查看照片</string>
+  <string name="RevealableMessageView_viewed">已查看</string>
+  <string name="RevealableMessageView_photo">照片</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">無法儲存圖片的變更</string>
   <!--Search-->
@@ -559,6 +565,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重設安全對話。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">無法處理此訊息，因為它是從較新版本的Signal 傳送的。 更新後，你可以要求你的聯絡人再次傳送此訊息。</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">在處理來訊時出現錯誤</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">貼圖</string>
   <!--StickerManagementAdapter-->
@@ -585,6 +592,8 @@
   <string name="ThreadRecord_called_you">來電</string>
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
+  <string name="ThreadRecord_sticker">貼圖</string>
+  <string name="ThreadRecord_disappearing_photo">銷毀照片</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 了！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">自動銷毀訊息功能已被關閉。</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設定為 %s</string>
@@ -660,6 +669,7 @@
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_sticker">貼圖</string>
+  <string name="MessageNotifier_disappearing_photo">銷毀照片</string>
   <string name="MessageNotifier_reply">回覆</string>
   <string name="MessageNotifier_signal_message">Signal 訊息</string>
   <string name="MessageNotifier_unsecured_sms">不安全的簡訊</string>

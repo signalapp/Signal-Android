@@ -72,6 +72,7 @@
   <string name="CallScreen_Incoming_call">కొత్తగా వచ్చిన కాల్</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">చిత్రాన్ని సేవ్ చేయడంలో విఫలమైంది.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">తొలగించు</string>
   <string name="ClearProfileActivity_remove_profile_photo">ప్రొఫైల్ ఫోటోని తీసివేయాలా?</string>
@@ -505,6 +506,8 @@
   </plurals>
   <string name="RegistrationActivity_continue">కొనసాగించు</string>
   <string name="RegistrationActivity_call">కాల్</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">ఫోటో</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">చిత్రం మార్పులను సేవ్ చేయడంలో విఫలమైంది</string>
   <!--Search-->

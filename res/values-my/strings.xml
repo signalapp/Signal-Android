@@ -68,6 +68,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">အဝင်ဖုန်း​</string>
   <!--CameraActivity-->
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ဖယ်ရှားသည် </string>
   <string name="ClearProfileActivity_remove_profile_photo">ဓါတ်ပုံ ဖယ်ရှားမှာလား ?</string>
@@ -344,6 +345,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_message">စာ</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
   <!--MessageRecord-->
@@ -455,6 +457,8 @@
   <string name="RegistrationActivity_next">နောက်ထက်</string>
   <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ</string>
   <string name="RegistrationActivity_call">ဖုန်းခေါ်ဆိုမှု </string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">ရုပ်ပုံ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ပြောင်းလဲလိုက်သည့် ရုပ်ပုံကို သိမ်းလို့ မရပါ</string>
   <!--Search-->

@@ -74,6 +74,7 @@
   <string name="CallScreen_Incoming_call">Inngåande samtale</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Klarte ikkje lagra biletet.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbilete?</string>
@@ -535,6 +536,8 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil få ei stadfestingskode. Operatøren din kan ta betalt for meldinga.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Skriv inn koden me sende til %s</string>
   <string name="RegistrationActivity_call">Ring</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Bilde</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikkje lagra biletendringane</string>
   <!--Search-->
@@ -564,6 +567,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Feil ved handtering av innkommande melding</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Klistremerke</string>
   <!--StickerManagementAdapter-->

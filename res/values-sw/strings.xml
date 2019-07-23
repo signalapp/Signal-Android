@@ -60,6 +60,7 @@
   <string name="CallScreen_Incoming_call">Simu inaingia</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">imeshindikana kuhifadhi picha</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ondoa</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ondoa picha ya faili</string>
@@ -406,6 +407,8 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">utapokea msimbo uliothibitishwa. gharama za kazi zitatumika.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ingiza msimbo tuetuma kwa 1%s</string>
   <string name="RegistrationActivity_call">wito</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">picha</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">imefeli kuhifadhi picha zilizobadilika</string>
   <!--Search-->

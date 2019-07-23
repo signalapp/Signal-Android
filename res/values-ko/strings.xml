@@ -71,6 +71,7 @@
   <string name="CallScreen_Incoming_call">수신통화</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">이미지 저장 실패</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">삭제</string>
   <string name="ClearProfileActivity_remove_profile_photo">프로필 사진을 삭제할까요?</string>
@@ -389,6 +390,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">용량 제한이 초과되어 항목이 삭제됨</string>
   <string name="MediaSendActivity_camera_unavailable">카메라를 사용할 수 없습니다.</string>
   <string name="MediaSendActivity_message_to_s">%s에게 메시지</string>
+  <string name="MediaSendActivity_message">메시지</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">항목 %d개를 초과하여 공유할 수 없습니다.</item>
   </plurals>
@@ -517,6 +519,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">인증 코드를 보내드립니다. 통신사 요금이 적용될 수 있습니다.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s 번호로 보낸 코드를 입력하세요</string>
   <string name="RegistrationActivity_call">전화걸기</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">사진</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">이미지 변경점을 저장할 수 없음</string>
   <!--Search-->
@@ -546,6 +550,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 님이 안전 세션을 초기화 했습니다</string>
   <string name="SmsMessageRecord_duplicate_message">중복된 메시지</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">상위 버전의 Signal에서 보낸 메시지이기에 해당 메시지를 처리할 수 없었습니다. 업데이트 후 메시지를 다시 보내달라고 요청해 보세요.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">받은 메시지 처리 중 오류 발생</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">스티커</string>
   <!--StickerManagementAdapter-->
@@ -572,6 +577,7 @@
   <string name="ThreadRecord_called_you">수신통화</string>
   <string name="ThreadRecord_missed_call">부재중 통화</string>
   <string name="ThreadRecord_media_message">미디어 메시지</string>
+  <string name="ThreadRecord_sticker">스티커</string>
   <string name="ThreadRecord_s_is_on_signal">%s 이 Signal 에 연결되어 있습니다.</string>
   <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능 꺼짐</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">사라지는 메시지 시간을 %s(으)로 설정했습니다.</string>

@@ -81,6 +81,7 @@
   <string name="CallScreen_Incoming_call">Galwad i mewn</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Methu cadw delwedd</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Tynnu</string>
   <string name="ClearProfileActivity_remove_profile_photo">Tynnu\'r llun proffil?</string>
@@ -588,6 +589,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Byddwch yn derbyn cod dilysu. Gall cyfraddau darparwr gael eu codi. </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
   <string name="RegistrationActivity_call">Galw</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Llun</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Methu cadw newidiadau i ddelweddau</string>
   <!--Search-->
@@ -645,6 +648,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_called_you">Wedi\'ch galw chi</string>
   <string name="ThreadRecord_missed_call">Galwad coll</string>
   <string name="ThreadRecord_media_message">Neges cyfryngau</string>
+  <string name="ThreadRecord_sticker">Sticer</string>
   <string name="ThreadRecord_s_is_on_signal">Mae %s ar Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>

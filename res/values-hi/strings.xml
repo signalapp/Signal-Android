@@ -71,6 +71,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">आने वाली कॉल</string>
   <!--CameraActivity-->
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">हटा दें </string>
   <string name="ClearProfileActivity_remove_profile_photo">प्रोफ़ाइल फ़ोटो निकालें?</string>
@@ -489,6 +490,8 @@
   <string name="RegistrationActivity_next">अगला</string>
   <string name="RegistrationActivity_continue">आगे </string>
   <string name="RegistrationActivity_call">कोल</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">फ़ोटो</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">छवि परिवर्तनों को सहेजने में विफल</string>
   <!--Search-->

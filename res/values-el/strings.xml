@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Εισερχόμενη κλήση</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Αποτυχία αποθήκευσης της εικόνας.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Αφαίρεση</string>
   <string name="ClearProfileActivity_remove_profile_photo">Αφαίρεση φωτογραφίας προφίλ?</string>
@@ -408,6 +409,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ένα στοιχείο αφαιρέθηκε επειδή υπερέβη το μέγιστο μέγεθος</string>
   <string name="MediaSendActivity_camera_unavailable">Η κάμερα δεν είναι διαθέσιμη.</string>
   <string name="MediaSendActivity_message_to_s">Μήνυμα προς τον/την %s</string>
+  <string name="MediaSendActivity_message">Μήνυμα</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Δεν μπορείτε να μοιραστείτε πάνω από %d αντικείμενο.</item>
     <item quantity="other">Δεν μπορείτε να μοιραστείτε πάνω από %d αντικείμενα.</item>
@@ -546,6 +548,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Θα λάβετε έναν κωδικό επαλήθευσης. Μπορεί να υπάρξουν χρεώσεις παρόχου.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Εισάγετε τον κωδικό που στείλαμε στο %s</string>
   <string name="RegistrationActivity_call">Κλήση</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Φωτογραφία</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Αποτυχία αποθήκευσης των αλλαγών της εικόνας</string>
   <!--Search-->
@@ -578,6 +582,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">Ο/Η %s επανεκκίνησε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Αυτό το μήνυμα δεν μπόρεσε να επεξεργαστεί γιατί στάλθηκε από νεότερη έκδοση του Signal. Μπορείτε να ζητήσετε από την επαφή να σας ξαναστείλει το μήνυμα, αφού την αναβαθμίσετε.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Σφάλμα κατά την διαχείριση εισερχόμενου μηνύματος.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Αυτοκόλλητα</string>
   <!--StickerManagementAdapter-->
@@ -604,6 +609,7 @@
   <string name="ThreadRecord_called_you">Σας κάλεσε</string>
   <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
+  <string name="ThreadRecord_sticker">Αυτοκόλλητο</string>
   <string name="ThreadRecord_s_is_on_signal">Ο/Η %s είναι στο Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Τα μηνύματα που εξαφανίζονται απενεργοποιήθηκαν</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ρυθμίστηκε σε %s</string>

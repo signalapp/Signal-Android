@@ -72,6 +72,7 @@
   <string name="CallScreen_Incoming_call">来电呼叫</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">未能保存图像。</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">删除</string>
   <string name="ClearProfileActivity_remove_profile_photo">删除头像</string>
@@ -390,6 +391,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一个附件已被移除，因为它超过了文件大小限制。</string>
   <string name="MediaSendActivity_camera_unavailable">摄像头不可用。</string>
   <string name="MediaSendActivity_message_to_s">发送给 %s 的消息</string>
+  <string name="MediaSendActivity_message">消息</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">您最多分享 %d 项。</item>
   </plurals>
@@ -527,6 +529,8 @@
 </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">请输入我们发送到%s的验证码</string>
   <string name="RegistrationActivity_call">拨号</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">图片</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">无法保存图像更改</string>
   <!--Search-->
@@ -557,6 +561,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">无法处理此信息，因为它是从新版本 Signal 发送的。更新后，您可以请联系人重新发送此信息。</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">处理传入消息时出错</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">表情</string>
   <!--StickerManagementAdapter-->
@@ -583,6 +588,7 @@
   <string name="ThreadRecord_called_you">呼叫您的</string>
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
+  <string name="ThreadRecord_sticker">表情</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 上！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">阅后即焚功能已关闭</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>

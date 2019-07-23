@@ -81,6 +81,7 @@
   <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Obrázok sa nepodarilo uložiť.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odstrániť</string>
   <string name="ClearProfileActivity_remove_profile_photo">Odstrániť profilovú fotku?</string>
@@ -444,6 +445,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka bola odstránená, lebo prekračovala limit na veľkosť</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera je nedostupná.</string>
   <string name="MediaSendActivity_message_to_s">Správa pre %s</string>
+  <string name="MediaSendActivity_message">Správa</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nemôžete zdieľať viac ako %d položku.</item>
     <item quantity="few">Nemôžete zdieľať viac ako %d položiky.</item>
@@ -587,6 +589,8 @@ telefónne číslo
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Obdržíte overovací kód. Váš mobilný operátor si môže účtovať poplatky.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadajte kód, ktorý sme odoslali na %s</string>
   <string name="RegistrationActivity_call">Zavolať</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Fotka</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodarilo sa uložiť zmeny v obrázku</string>
   <!--Search-->
@@ -620,6 +624,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval/a zabezpečenú reláciu.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikácia správy.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Táto správa nemohla byť spracovaná, pretože bola poslaná z novšej verzie Signalu. Po aktualizácii môžete požiadať kontakt o znovuposlanie.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Chyba pri spracovaní prichádzajúcej správy</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Nálepky</string>
   <!--StickerManagementAdapter-->
@@ -646,6 +651,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_called_you">Volal Vám</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
+  <string name="ThreadRecord_sticker">Nálepka</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signale!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
