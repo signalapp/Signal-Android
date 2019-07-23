@@ -288,8 +288,8 @@ dependencyVerification {
     ]
 }
 
-def canonicalVersionCode = 508
-def canonicalVersionName = "4.44.0"
+def canonicalVersionCode = 509
+def canonicalVersionName = "4.44.1"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
