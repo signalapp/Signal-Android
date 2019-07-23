@@ -439,7 +439,9 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   @Override
   public void onRequestFullScreen(boolean fullScreen) {
-    captionAndRail.setVisibility(fullScreen ? View.GONE : View.VISIBLE);
+    if (captionAndRail != null) {
+      captionAndRail.setVisibility(fullScreen ? View.GONE : View.VISIBLE);
+    }
   }
 
   @Override
