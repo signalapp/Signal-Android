@@ -52,7 +52,7 @@ public class ConversationListLoader extends AbstractCursorLoader {
       if (cursorList.get(0).getCount() <= 0) {
         switchToArchiveCursor.addRow(new Object[] {-1L, System.currentTimeMillis(), archivedCount,
                                                    "-1", null, 1, 0, ThreadDatabase.DistributionTypes.INBOX_ZERO,
-                                                   0, null, 0, -1, 0, 0, 0, -1});
+                                                   0, null, null, null, 0, -1, 0, 0, 0, -1});
       }
 
       switchToArchiveCursor.addRow(new Object[] {-1L, System.currentTimeMillis(), archivedCount,
