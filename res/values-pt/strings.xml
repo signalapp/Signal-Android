@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Não foi possível guardar a imagem.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Contactos recentes</string>
+  <string name="CameraContacts_signal_contacts">Contactos Signal</string>
+  <string name="CameraContacts_signal_groups">Grupos Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Pode partilhar com o máximo de %d conversações.</string>
+  <string name="CameraContacts_select_signal_recipients">Selecione os destinatários Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Sem contactos Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Pode usar o botão da câmara apenas para enviar fotografias para contactos Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Não consegue encontrar ninguém?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Convide um contacto para se juntar ao Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
   <string name="ClearProfileActivity_remove_profile_photo">Remover a foto do perfil?</string>
@@ -410,6 +419,7 @@
   <string name="MediaSendActivity_camera_unavailable">Câmara indisponível.</string>
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
   <string name="MediaSendActivity_message">Mensagem</string>
+  <string name="MediaSendActivity_select_recipients">Selecionar destinatários</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Não pode partilhar mais do que %d item.</item>
     <item quantity="other">Não pode partilhar mais do que %d itens.</item>

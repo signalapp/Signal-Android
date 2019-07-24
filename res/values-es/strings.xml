@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fallo al guardar la imagen.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Contactos recientes</string>
+  <string name="CameraContacts_signal_contacts">Contactos de Signal</string>
+  <string name="CameraContacts_signal_groups">Grupos de Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Puedes compartir con un máximo de %d chats.</string>
+  <string name="CameraContacts_select_signal_recipients">Selecciona contactos de Signal</string>
+  <string name="CameraContacts_no_signal_contacts">No hay contactos de Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Sólo puedes usar el botón de ma cámara para enviar fotos a contactos en Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">¿No encuentras a quien buscas?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Invita a un contacto a usar Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eliminar</string>
   <string name="ClearProfileActivity_remove_profile_photo">¿Eliminar foto de perfil?</string>
@@ -410,6 +419,7 @@
   <string name="MediaSendActivity_camera_unavailable">Cámara no disponible.</string>
   <string name="MediaSendActivity_message_to_s">Mensaje para %s</string>
   <string name="MediaSendActivity_message">Mensaje</string>
+  <string name="MediaSendActivity_select_recipients">Selecciona contactos</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">No se puede compartir más de %d objeto.</item>
     <item quantity="other">No se pueden compartir más de %d objetos.</item>

@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Afbeelding opslaan mislukt.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Recente contactpersonen</string>
+  <string name="CameraContacts_signal_contacts">Signal-gebruikers</string>
+  <string name="CameraContacts_signal_groups">Signal-groepen</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Je kunt dit delen met maximaal %d gesprekken.</string>
+  <string name="CameraContacts_select_signal_recipients">Selecteer ontvangers wie Signal gebruiken.</string>
+  <string name="CameraContacts_no_signal_contacts">Geen Signal-gebuikers.</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Signal-gebruikers.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je niet vinden waar je naar zoekt?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Signal te gebruiken</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Verwijderen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
@@ -411,6 +420,7 @@ weergaven.</string>
   <string name="MediaSendActivity_camera_unavailable">Camera niet beschikbaar.</string>
   <string name="MediaSendActivity_message_to_s">Bericht aan %s</string>
   <string name="MediaSendActivity_message">Bericht</string>
+  <string name="MediaSendActivity_select_recipients">Selecteer Signal-gebruikers</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Je kan niet meer dan %d item delen.</item>
     <item quantity="other">Je kunt niet meer dan %d items delen.</item>

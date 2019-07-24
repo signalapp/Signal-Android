@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Salvataggio immagine fallito.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Contatti recenti</string>
+  <string name="CameraContacts_signal_contacts">Contatti Signal</string>
+  <string name="CameraContacts_signal_groups">Gruppi Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Puoi condividere con un massimo di %d conversazioni.</string>
+  <string name="CameraContacts_select_signal_recipients">Seleziona destinatari Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Nessun contatto Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Puoi solo usare il bottone camera per inviare foto a contatti Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Non riesci a trovare chi stai cercando?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Invita un contatto a unirsi a Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Elimina</string>
   <string name="ClearProfileActivity_remove_profile_photo">Rimuovere foto profilo?</string>
@@ -411,6 +420,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MediaSendActivity_camera_unavailable">Fotocamera non disponibile.</string>
   <string name="MediaSendActivity_message_to_s">Messaggio a %s</string>
   <string name="MediaSendActivity_message">Messaggio</string>
+  <string name="MediaSendActivity_select_recipients">Seleziona destinatari</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Non puoi condividere più di %d elemento.</item>
     <item quantity="other">Non puoi condividere più di %d elementi.</item>

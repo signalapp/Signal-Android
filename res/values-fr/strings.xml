@@ -75,6 +75,10 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Échec d’enregistrement de l’image.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Contacts récents</string>
+  <string name="CameraContacts_signal_contacts">Contacts Signal</string>
+  <string name="CameraContacts_signal_groups">Groupes Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Aucun contact Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Supprimer</string>
   <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
@@ -409,6 +413,7 @@
   <string name="MediaSendActivity_camera_unavailable">L’appareil photo n’est pas disponible</string>
   <string name="MediaSendActivity_message_to_s">Message à %s</string>
   <string name="MediaSendActivity_message">Message</string>
+  <string name="MediaSendActivity_select_recipients">Sélectionner des destinataires</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Vous ne pouvez pas partager plus d’%d élément.</item>
     <item quantity="other">Vous ne pouvez pas partager plus de %d éléments.</item>
@@ -471,6 +476,8 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Envoyer la phrase de passe</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">La phrase de passe est erronée !</string>
   <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_not_a_valid_address">L’adresse n’est pas valide</string>
+  <string name="PlacePickerActivity_accept_address">Accepter l’adresse</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La version des services Google Play que vous avez installée ne fonctionne pas correctement. Veuillez réinstaller les Services Google Play et ressayer.</string>
   <!--RatingManager-->

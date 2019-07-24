@@ -73,6 +73,9 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_signal_contacts">Signalの連絡先</string>
+  <string name="CameraContacts_signal_groups">Signalのグループ</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">連絡先をSignalへ招待する</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">削除</string>
   <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を消去しますか？</string>
@@ -586,6 +589,7 @@
   <string name="ThreadRecord_missed_call">不在着信</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_sticker">ステッカー</string>
+  <string name="ThreadRecord_disappearing_photo">消える写真</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalに登録しています！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージの消去時間が%sに設定されました</string>
@@ -660,6 +664,7 @@
   <string name="MessageNotifier_mark_read">既読にする</string>
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_sticker">ステッカー</string>
+  <string name="MessageNotifier_disappearing_photo">消える写真</string>
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>

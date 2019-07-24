@@ -82,6 +82,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Paskiausi adresatai</string>
+  <string name="CameraContacts_signal_contacts">Signal adresatai</string>
+  <string name="CameraContacts_signal_groups">Signal grupės</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Galite bendrinti daugiausiai su %d pokalbių.</string>
+  <string name="CameraContacts_select_signal_recipients">Pasirinkti Signal gavėjus</string>
+  <string name="CameraContacts_no_signal_contacts">Nėra Signal adresatų</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Galite naudoti kameros mygtuką tik tam, kad siųstumėte nuotraukas Signal adresatams.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nerandate ieškomo žmogaus?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Pakvieskite adresatą prisijungti prie Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Šalinti</string>
   <string name="ClearProfileActivity_remove_profile_photo">Šalinti profilio nuotrauką?</string>
@@ -446,6 +455,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera neprieinama.</string>
   <string name="MediaSendActivity_message_to_s">Žinutė skirta %s</string>
   <string name="MediaSendActivity_message">Žinutė</string>
+  <string name="MediaSendActivity_select_recipients">Pasirinkti gavėjus</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Jūs negalite bendrinti daugiau nei %d elementą.</item>
     <item quantity="few">Jūs negalite bendrinti daugiau nei %d elementų.</item>

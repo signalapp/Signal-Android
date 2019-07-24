@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nem sikerült elmenteni a képet.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Friss kontaktok</string>
+  <string name="CameraContacts_signal_contacts">Signal kontaktok</string>
+  <string name="CameraContacts_signal_groups">Signal csoportok</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Maximum %d db beszélgetést oszthatsz meg.</string>
+  <string name="CameraContacts_select_signal_recipients">Signal címzettek kiválasztása</string>
+  <string name="CameraContacts_no_signal_contacts">Nincs Signal kontakt</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">A kamera gombbal csak Signal kontaktoknak küldhetsz fotókat.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nem találod, akit keresel?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Hívd meg egy ismerősödet Signal-ra!</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eltávolítás</string>
   <string name="ClearProfileActivity_remove_profile_photo">Eltávolítod a profilképed?</string>
@@ -411,6 +420,7 @@
   <string name="MediaSendActivity_camera_unavailable">A kamera nem érhető el.</string>
   <string name="MediaSendActivity_message_to_s">Üzenet neki: %s</string>
   <string name="MediaSendActivity_message">Üzenetek</string>
+  <string name="MediaSendActivity_select_recipients">Címzettek kiválasztása</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nem oszthatsz meg többet, mint %d db elem.</item>
     <item quantity="other">Nem oszthatsz meg többet, mint %d db elem.</item>

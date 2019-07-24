@@ -73,6 +73,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">儲存照片失敗。</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">最近的聯絡人</string>
+  <string name="CameraContacts_signal_contacts">Signal 聯絡人</string>
+  <string name="CameraContacts_signal_groups">Signal 群組</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">你可以分享最多%d的對話。</string>
+  <string name="CameraContacts_select_signal_recipients">選擇 Signal 收件人</string>
+  <string name="CameraContacts_no_signal_contacts">沒有 Signal 聯絡人</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">你只能使用相機按鈕將照片傳送到 Signal 聯絡人。</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">找不到你要找的人？</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">邀請一個聯絡人來使用 Signal </string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">移除</string>
   <string name="ClearProfileActivity_remove_profile_photo">移除頭像照片？</string>
@@ -392,6 +401,7 @@
   <string name="MediaSendActivity_camera_unavailable">相機無法使用。</string>
   <string name="MediaSendActivity_message_to_s">傳訊息給 %s</string>
   <string name="MediaSendActivity_message">訊息</string>
+  <string name="MediaSendActivity_select_recipients">選擇收件人</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">你無法分享超過 %d 個項目。</item>
   </plurals>

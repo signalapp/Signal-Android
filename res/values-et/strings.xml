@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Pildi salvestamine ebaõnnestus.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Hiljutised kontaktid</string>
+  <string name="CameraContacts_signal_contacts">Signali kontaktid</string>
+  <string name="CameraContacts_signal_groups">Signali grupid</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Sa saad jagada maksimaalselt %d vestlusega.</string>
+  <string name="CameraContacts_select_signal_recipients">Vali Signali saajad</string>
+  <string name="CameraContacts_no_signal_contacts">Signali kontaktid puuduvad</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Sa saad kasutada vaid kaameranuppu, et saata fotosid Signali kontaktidele.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Ei leia, keda otsid?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu kontakt Signaliga liituma</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eemalda</string>
   <string name="ClearProfileActivity_remove_profile_photo">Eemaldad profiilipildi?</string>
@@ -410,6 +419,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kaamera pole saadaval.</string>
   <string name="MediaSendActivity_message_to_s">Sõnum kasutajale %s</string>
   <string name="MediaSendActivity_message">Sõnum</string>
+  <string name="MediaSendActivity_select_recipients">Vali saajad</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Sa ei saa jagada rohkem kui %d üksust.</item>
     <item quantity="other">Sa ei saa jagada rohkem kui %d üksust.</item>
@@ -553,6 +563,8 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sisesta kood, mulle saatsime numbrile %s</string>
   <string name="RegistrationActivity_call">Helista</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Vaata pilti</string>
+  <string name="RevealableMessageView_viewed">Vaadatud</string>
   <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
@@ -615,6 +627,7 @@
   <string name="ThreadRecord_missed_call">Vastamata kõne</string>
   <string name="ThreadRecord_media_message">Meediasõnum</string>
   <string name="ThreadRecord_sticker">Kleeps</string>
+  <string name="ThreadRecord_disappearing_photo">Haihtuv foto</string>
   <string name="ThreadRecord_s_is_on_signal">%s on Signalis!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Haihtuvad sõnumid keelatud</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>
@@ -689,6 +702,7 @@
   <string name="MessageNotifier_mark_read">Märgi loetuks</string>
   <string name="MessageNotifier_media_message">Meediasõnum</string>
   <string name="MessageNotifier_sticker">Kleeps</string>
+  <string name="MessageNotifier_disappearing_photo">Haihtuv foto</string>
   <string name="MessageNotifier_reply">Vasta</string>
   <string name="MessageNotifier_signal_message">Signali sõnum</string>
   <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>

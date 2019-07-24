@@ -82,6 +82,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Slike ni bilo možno shraniti.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Nedavni stiki</string>
+  <string name="CameraContacts_signal_contacts">Uporabniki Signal</string>
+  <string name="CameraContacts_signal_groups">Skupine Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Delite lahko z največ %d pogovori.</string>
+  <string name="CameraContacts_select_signal_recipients">Izberite prejemnike Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Ni uporabnikov Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Za pošiljanje fotografij uporabnikom storitve Signal morate uporabiti gumb za kamero.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Ne najdete uporabnika, ki ga iščete?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Povabite prijatelja k uporabi aplikacije Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odstrani</string>
   <string name="ClearProfileActivity_remove_profile_photo">Želite odstraniti predstavitveno fotografijo?</string>
@@ -446,6 +455,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera ni dostopna.</string>
   <string name="MediaSendActivity_message_to_s">Sporočilo za uporabnika %s</string>
   <string name="MediaSendActivity_message">Sporočilo</string>
+  <string name="MediaSendActivity_select_recipients">Izberite prejemnike</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Ne morete deliti več kot %d priponko.</item>
     <item quantity="two">Ne morete deliti več kot %d priponki.</item>

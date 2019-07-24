@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Speichern des Bildes gescheitert.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Letzte Kontakte</string>
+  <string name="CameraContacts_signal_contacts">Signal-Kontakte</string>
+  <string name="CameraContacts_signal_groups">Signal-Gruppen</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Du kannst mit maximal %d Unterhaltungen teilen.</string>
+  <string name="CameraContacts_select_signal_recipients">Signal-Empfänger auswählen</string>
+  <string name="CameraContacts_no_signal_contacts">Keine Signal-Kontakte</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Mit der Kameraschaltfläche kannst du Fotos nur an Signal-Kontakte senden.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nicht gefunden, wen du suchst?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Lade einen Kontakt zu Signal ein</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Entfernen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profilfoto entfernen?</string>
@@ -410,6 +419,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera nicht verfügbar.</string>
   <string name="MediaSendActivity_message_to_s">Nachricht an %s</string>
   <string name="MediaSendActivity_message">Nachricht</string>
+  <string name="MediaSendActivity_select_recipients">Empfänger auswählen</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
     <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>
