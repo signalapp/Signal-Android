@@ -32,6 +32,8 @@ public class RevealableMessageManager extends TimedEventManager<RevealExpiration
 
     this.mmsDatabase        = DatabaseFactory.getMmsDatabase(application);
     this.attachmentDatabase = DatabaseFactory.getAttachmentDatabase(application);
+    
+    scheduleIfNecessary();
   }
 
   @WorkerThread
