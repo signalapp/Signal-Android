@@ -257,6 +257,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
+      // Loki - Handle friend request accepts
+      handleFriendRequestAcceptIfNeeded(envelope, content);
+
       // Loki - Store pre key bundle if needed
       if (content.lokiMessage.isPresent()) {
         LokiServiceMessage lokiMessage = content.lokiMessage.get();
@@ -302,8 +305,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           handleNeedsDeliveryReceipt(content, message);
         }
 
-        // Loki - Handle friend request logic
-        handleFriendRequestIfNeeded(envelope, content, message);
+        // Loki - Handle friend request messages
+        handleFriendRequestMessageIfNeeded(envelope, content, message);
       } else if (content.getSyncMessage().isPresent()) {
         TextSecurePreferences.setMultiDevice(context, true);
 
@@ -347,11 +350,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
       handleInvalidVersionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (ProtocolInvalidMessageException  e) {
+    } catch (ProtocolInvalidMessageException e) {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    }
-    catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
+    } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
     } catch (StorageFailedException e) {
@@ -489,11 +491,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       String contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId).getAddress().toString();
       SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
       SignalServiceAddress address = new SignalServiceAddress(contactID);
-      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), null);
       try {
         messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
       } catch (Exception e) {
-        Log.d("Loki", "Failed to send empty message to: " + contactID + ".");
+        Log.d("Loki", "Failed to send empty background message to: " + contactID + ".");
       }
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
@@ -860,7 +862,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void handleFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
+  private void handleFriendRequestMessageIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
+    // Check if it's a friend request message
+    if (!envelope.isFriendRequest()) { return; }
+
     Recipient contactID = getMessageDestination(content, message);
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(contactID);
@@ -868,51 +873,65 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     SmsDatabase messageDatabase = DatabaseFactory.getSmsDatabase(context);
     LokiMessageFriendRequestDatabase messageFriendRequestDatabase = DatabaseFactory.getLokiMessageFriendRequestDatabase(context);
     int messageCount = messageDatabase.getMessageCountForThread(threadID);
-    if (envelope.isFriendRequest()) {
-      if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
-        // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
-        // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
-        // and send a friend request accepted message back to Bob. We don't check that sending the
-        // friend request accepted message succeeded. Even if it doesn't, the thread's current friend
-        // request status will be set to `FRIENDS` for Alice making it possible
-        // for Alice to send messages to Bob. When Bob receives a message, his thread's friend request status
-        // will then be set to `FRIENDS`. If we do check for a successful send
-        // before updating Alice's thread's friend request status to `FRIENDS`,
-        // we can end up in a deadlock where both users' threads' friend request statuses are
-        // `REQUEST_SENT`.
-        lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
-        long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
-        messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
-        // Accept the friend request
-        sendEmptyMessage(envelope.getSource());
-      } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
-        // Checking that the sender of the message isn't already a friend is necessary because otherwise
-        // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
-        // friend request status is reset to `NONE`. Bob now sends Alice a friend
-        // request. Alice's thread's friend request status is reset to
-        // `REQUEST_RECEIVED`.
-        lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
-        long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1); // The message that was just received
-        messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
-      }
-    } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
-      // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
-      // it must be a friend request accepted message. Declining a friend request doesn't send a message.
+    if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
+      // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
+      // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
+      // and send a friend request accepted message back to Bob. We don't check that sending the
+      // friend request accepted message succeeded. Even if it doesn't, the thread's current friend
+      // request status will be set to `FRIENDS` for Alice making it possible
+      // for Alice to send messages to Bob. When Bob receives a message, his thread's friend request status
+      // will then be set to `FRIENDS`. If we do check for a successful send
+      // before updating Alice's thread's friend request status to `FRIENDS`,
+      // we can end up in a deadlock where both users' threads' friend request statuses are
+      // `REQUEST_SENT`.
       lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
       long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
       messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
-      // TODO: Send p2p details here
+      // Accept the friend request
+      sendEmptyBackgroundMessage(content.getSender());
+    } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+      // Checking that the sender of the message isn't already a friend is necessary because otherwise
+      // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
+      // friend request status is reset to `NONE`. Bob now sends Alice a friend
+      // request. Alice's thread's friend request status is reset to
+      // `REQUEST_RECEIVED`.
+      lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+      long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1); // The message that was just received
+      messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
     }
   }
 
-  public void sendEmptyMessage(String contactHexEncodedPublicKey) {
+  private void handleFriendRequestAcceptIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+    // If we get any other envelope type then we can assume that we had to use signal cipher decryption
+    // and that means we must have a session with the other person.
+    if (envelope.isFriendRequest()) { return; }
+
+    Recipient contactID = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+    LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(contactID);
+    LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
+    if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) { return; }
+
+    SmsDatabase messageDatabase = DatabaseFactory.getSmsDatabase(context);
+    LokiMessageFriendRequestDatabase messageFriendRequestDatabase = DatabaseFactory.getLokiMessageFriendRequestDatabase(context);
+    int messageCount = messageDatabase.getMessageCountForThread(threadID);
+
+
+    // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
+    // it must be a friend request accepted message. Declining a friend request doesn't send a message.
+    lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+    long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1); // The message before the one that was just received
+    messageFriendRequestDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+  }
+
+  public void sendEmptyBackgroundMessage(String contactHexEncodedPublicKey) {
     try {
       SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), null);
       Optional<UnidentifiedAccessPair> access = Optional.absent();
       messageSender.sendMessage(0, address, access, message); // The message ID doesn't matter
     } catch (Exception e) {
-      Log.d("Loki", "Failed to send empty message to: " + contactHexEncodedPublicKey + ".");
+      Log.d("Loki", "Failed to send empty background message to: " + contactHexEncodedPublicKey + ".");
     }
   }
 
