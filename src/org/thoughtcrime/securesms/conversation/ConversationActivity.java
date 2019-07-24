@@ -2716,11 +2716,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
     SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
     SignalServiceAddress address = new SignalServiceAddress(contactID);
-    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), null);
     try {
       messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
     } catch (Exception e) {
-      Log.d("Loki", "Failed to send empty message to: " + contactID + ".");
+      Log.d("Loki", "Failed to send background message to: " + contactID + ".");
     }
   }
 
