@@ -148,7 +148,8 @@
             <org.thoughtcrime.securesms.loki.FriendRequestView
                 android:id="@+id/friend_request_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
         </LinearLayout>
 

@@ -569,15 +569,15 @@
     <provider android:name="org.thoughtcrime.securesms.providers.PartProvider"
               android:grantUriPermissions="true"
               android:exported="false"
-              android:authorities="network.loki.messenger.securesms" />
+              android:authorities="network.loki.provider.securesms" />
 
     <provider android:name="org.thoughtcrime.securesms.providers.MmsBodyProvider"
               android:grantUriPermissions="true"
               android:exported="false"
-              android:authorities="network.loki.messenger.securesms.mms" />
+              android:authorities="network.loki.provider.securesms.mms" />
 
     <provider android:name="android.support.v4.content.FileProvider"
-              android:authorities="network.loki.messenger.securesms.fileprovider"
+              android:authorities="network.loki.securesms.fileprovider"
               android:exported="false"
               android:grantUriPermissions="true">
 
@@ -586,15 +586,15 @@
     </provider>
 
     <provider android:name="org.thoughtcrime.securesms.database.DatabaseContentProviders$Conversation"
-              android:authorities="network.loki.messenger.securesms.database.conversation"
+              android:authorities="network.loki.securesms.database.conversation"
               android:exported="false" />
 
     <provider android:name="org.thoughtcrime.securesms.database.DatabaseContentProviders$ConversationList"
-              android:authorities="network.loki.messenger.securesms.database.conversationlist"
+              android:authorities="network.loki.securesms.database.conversationlist"
               android:exported="false" />
 
     <provider android:name="org.thoughtcrime.securesms.database.DatabaseContentProviders$Attachment"
-              android:authorities="network.loki.messenger.securesms.database.attachment"
+              android:authorities="network.loki.securesms.database.attachment"
               android:exported="false" />
 
     <receiver android:name="org.thoughtcrime.securesms.service.BootReceiver">

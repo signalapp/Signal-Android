@@ -46,7 +46,7 @@ public class PartProvider extends ContentProvider {
 
   private static final String TAG = PartProvider.class.getSimpleName();
 
-  private static final String CONTENT_URI_STRING = "content://network.loki.messenger.securesms/part";
+  private static final String CONTENT_URI_STRING = "content://network.loki.provider.securesms/part";
   private static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
   private static final int    SINGLE_ROW         = 1;
 

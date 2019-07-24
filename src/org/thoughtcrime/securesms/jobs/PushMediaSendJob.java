@@ -198,7 +198,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     }
 
     try {
-      rotateSenderCertificateIfNecessary();
+//      rotateSenderCertificateIfNecessary();
 
       SignalServiceAddress                     address            = getPushAddress(message.getRecipient().getAddress());
       List<SignalServiceAttachment>            serviceAttachments = getAttachmentPointersFor(message.getAttachments());

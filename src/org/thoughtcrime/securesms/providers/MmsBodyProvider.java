@@ -33,7 +33,7 @@ import java.io.OutputStream;
 
 public class MmsBodyProvider extends ContentProvider {
   private static final String TAG                = MmsBodyProvider.class.getSimpleName();
-  private static final String CONTENT_URI_STRING = "content://network.loki.messenger.securesms.mms/mms";
+  private static final String CONTENT_URI_STRING = "content://network.loki.provider.securesms.mms/mms";
   public  static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
   private static final int    SINGLE_ROW         = 1;
 

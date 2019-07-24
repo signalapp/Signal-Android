@@ -6,14 +6,13 @@ import android.content.UriMatcher;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
-
 import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 
 import java.io.File;
@@ -31,7 +30,7 @@ public class DeprecatedPersistentBlobProvider {
 
   private static final String TAG = DeprecatedPersistentBlobProvider.class.getSimpleName();
 
-  private static final String     URI_STRING            = "content://network.loki.messenger.securesms/capture-new";
+  private static final String     URI_STRING            = "content://network.loki.provider.securesms/capture-new";
   public  static final Uri        CONTENT_URI           = Uri.parse(URI_STRING);
   public  static final String     AUTHORITY             = "org.thoughtcrime.securesms";
   public  static final String     EXPECTED_PATH_OLD     = "capture/*/*/#";

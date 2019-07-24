@@ -10,6 +10,7 @@ import android.widget.TextView
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
 
 class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
@@ -88,6 +89,8 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
         val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message!!.threadId)!!.address.toString()
         val contactDisplayName = DatabaseFactory.getLokiUserDisplayNameDatabase(context).getDisplayName(contactID) ?: contactID
+        val isTextMessage = message is SmsMessageRecord
+        if (!isTextMessage) return
         if (!message!!.isOutgoing) {
             val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE

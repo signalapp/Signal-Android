@@ -28,7 +28,6 @@ import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ConversationListActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
@@ -124,6 +123,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import network.loki.messenger.R;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
 

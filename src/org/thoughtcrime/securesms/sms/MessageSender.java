@@ -204,15 +204,19 @@ public class MessageSender {
   }
 
   private static boolean isPushMediaSend(Context context, Recipient recipient) {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
-      return false;
-    }
-
-    if (recipient.isGroupRecipient()) {
-      return false;
-    }
-
-    return isPushDestination(context, recipient);
+    return true;
+    // Loki - Original code
+    // ========
+//    if (!TextSecurePreferences.isPushRegistered(context)) {
+//      return false;
+//    }
+//
+//    if (recipient.isGroupRecipient()) {
+//      return false;
+//    }
+//
+//    return isPushDestination(context, recipient);
+    // ========
   }
 
   private static boolean isGroupPushSend(Recipient recipient) {

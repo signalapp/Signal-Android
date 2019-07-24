@@ -20,7 +20,9 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -84,6 +86,11 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                                          .collect(Collectors.groupingBy(SyncMessageId::getAddress));
 
     for (Address address : addressMap.keySet()) {
+      LokiThreadDatabase threadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+      long threadID = threadDatabase.getThreadID(address.serialize());
+      LokiThreadFriendRequestStatus friendRequestStatus = threadDatabase.getFriendRequestStatus(threadID);
+      if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) { return; }
+
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
 
       ApplicationContext.getInstance(context)

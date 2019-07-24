@@ -19,8 +19,8 @@ import java.io.InputStream;
 
 public class PartAuthority {
 
-  private static final String PART_URI_STRING   = "content://network.loki.messenger.securesms/part";
-  private static final String THUMB_URI_STRING  = "content://network.loki.messenger.securesms/thumb";
+  private static final String PART_URI_STRING   = "content://network.loki.provider.securesms/part";
+  private static final String THUMB_URI_STRING  = "content://network.loki.provider.securesms/thumb";
   private static final Uri    PART_CONTENT_URI  = Uri.parse(PART_URI_STRING);
   private static final Uri    THUMB_CONTENT_URI = Uri.parse(THUMB_URI_STRING);
 
