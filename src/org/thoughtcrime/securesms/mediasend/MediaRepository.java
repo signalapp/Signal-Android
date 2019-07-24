@@ -88,6 +88,7 @@ class MediaRepository {
                                                                                                  folder.getCount(),
                                                                                                  folder.getBucketId(),
                                                                                                  MediaFolder.FolderType.NORMAL))
+                                                                  .filter(folder -> folder.getTitle() != null)
                                                                   .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()))
                                                                   .toList();
 
