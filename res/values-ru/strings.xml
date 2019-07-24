@@ -151,7 +151,7 @@
   <string name="ConversationActivity_calls_not_supported">Звонки не поддерживаются</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Это устройство, по-видимому, не поддерживает действия набора номеров.</string>
   <string name="ConversationActivity_leave_group">Покинуть группу?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы уверены, что хотите покинуть эту группу?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы действительно хотите покинуть эту группу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незащищенное SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незащищенное MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -958,7 +958,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">Пожалуйста, просмотрите этот журнал из моего приложения: %1$s</string>
   <string name="log_submit_activity__network_failure">Ошибка сети. Пожалуйста, попробуйте еще раз.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Хотите ли вы импортировать свои существующие текстовые сообщения в зашифрованную базу данных Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Вы хотите импортировать свои существующие текстовые сообщения в зашифрованную базу данных Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cистемная база данных по умолчанию не будет изменена каким-либо образом.</string>
   <string name="database_migration_activity__skip">Пропустить</string>
   <string name="database_migration_activity__import">Импортировать</string>

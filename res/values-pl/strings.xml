@@ -637,7 +637,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">Zainstalowane naklejki</string>
   <string name="StickerManagementAdapter_stickers_you_received">Naklejki, które odebrano</string>
-  <string name="StickerManagementAdapter_no_stickers_installed">Brak naklejek</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Brak zainstalowanych naklejek</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Tutaj pojawią się naklejki z wiadomości przychodzących</string>
   <string name="StickerManagementAdapter_untitled">Bez tytułu</string>
   <string name="StickerManagementAdapter_unknown">Nieznany</string>
