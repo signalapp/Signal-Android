@@ -22,12 +22,12 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -239,5 +239,17 @@ public class ViewUtil {
 
   public static void setPaddingBottom(@NonNull View view, int padding) {
     view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), padding);
+  }
+
+  public static boolean isPointInsideView(@NonNull View view, float x, float y) {
+    int[] location = new int[2];
+
+    view.getLocationOnScreen(location);
+
+    int viewX = location[0];
+    int viewY = location[1];
+
+    return x > viewX && x < viewX + view.getWidth() &&
+           y > viewY && y < viewY + view.getHeight();
   }
 }

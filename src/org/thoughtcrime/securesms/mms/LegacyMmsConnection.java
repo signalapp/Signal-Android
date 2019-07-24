@@ -16,10 +16,16 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.apache.http.Header;
@@ -209,7 +215,7 @@ public abstract class LegacyMmsConnection {
   }
 
   protected List<Header> getBaseHeaders() {
-    final String                number    = TelephonyUtil.getManager(context).getLine1Number(); ;
+    final String number = getLine1Number(context);
 
     return new LinkedList<Header>() {{
       add(new BasicHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic"));
@@ -221,6 +227,17 @@ public abstract class LegacyMmsConnection {
         add(new BasicHeader("X-MDN", number));
       }
     }};
+  }
+
+  @SuppressLint("HardwareIds")
+  private static String getLine1Number(@NonNull Context context) {
+    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_SMS)           == PackageManager.PERMISSION_GRANTED ||
+        ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_NUMBERS) == PackageManager.PERMISSION_GRANTED ||
+        ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE)   == PackageManager.PERMISSION_GRANTED) {
+      return TelephonyUtil.getManager(context).getLine1Number();
+    } else {
+      return "";
+    }
   }
 
   public static class Apn {
@@ -284,7 +301,7 @@ public abstract class LegacyMmsConnection {
     }
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
       return Apn.class.getSimpleName() +
           "{ mmsc: \"" + mmsc + "\"" +
           ", proxy: " + (proxy == null ? "none" : '"' + proxy + '"') +

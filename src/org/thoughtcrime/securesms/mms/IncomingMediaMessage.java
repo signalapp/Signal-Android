@@ -4,6 +4,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -23,11 +24,13 @@ public class IncomingMediaMessage {
   private final int           subscriptionId;
   private final long          expiresIn;
   private final boolean       expirationUpdate;
+  private final long          revealDuration;
   private final QuoteModel    quote;
   private final boolean       unidentified;
 
-  private final List<Attachment> attachments    = new LinkedList<>();
-  private final List<Contact>    sharedContacts = new LinkedList<>();
+  private final List<Attachment>  attachments    = new LinkedList<>();
+  private final List<Contact>     sharedContacts = new LinkedList<>();
+  private final List<LinkPreview> linkPreviews   = new LinkedList<>();
 
   public IncomingMediaMessage(Address from,
                               Optional<Address> groupId,
@@ -37,6 +40,7 @@ public class IncomingMediaMessage {
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
+                              long revealDuration,
                               boolean unidentified)
   {
     this.from             = from;
@@ -47,6 +51,7 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
+    this.revealDuration   = revealDuration;
     this.quote            = null;
     this.unidentified     = unidentified;
 
@@ -58,12 +63,15 @@ public class IncomingMediaMessage {
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
+                              long revealDuration,
                               boolean unidentified,
                               Optional<String> body,
                               Optional<SignalServiceGroup> group,
                               Optional<List<SignalServiceAttachment>> attachments,
                               Optional<QuoteModel> quote,
-                              Optional<List<Contact>> sharedContacts)
+                              Optional<List<Contact>> sharedContacts,
+                              Optional<List<LinkPreview>> linkPreviews,
+                              Optional<Attachment> sticker)
   {
     this.push             = true;
     this.from             = from;
@@ -72,6 +80,7 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
+    this.revealDuration   = revealDuration;
     this.quote            = quote.orNull();
     this.unidentified     = unidentified;
 
@@ -80,6 +89,11 @@ public class IncomingMediaMessage {
 
     this.attachments.addAll(PointerAttachment.forPointers(attachments));
     this.sharedContacts.addAll(sharedContacts.or(Collections.emptyList()));
+    this.linkPreviews.addAll(linkPreviews.or(Collections.emptyList()));
+
+    if (sticker.isPresent()) {
+      this.attachments.add(sticker.get());
+    }
   }
 
   public int getSubscriptionId() {
@@ -118,6 +132,10 @@ public class IncomingMediaMessage {
     return expiresIn;
   }
 
+  public long getRevealDuration() {
+    return revealDuration;
+  }
+
   public boolean isGroupMessage() {
     return groupId != null;
   }
@@ -128,6 +146,10 @@ public class IncomingMediaMessage {
 
   public List<Contact> getSharedContacts() {
     return sharedContacts;
+  }
+
+  public List<LinkPreview> getLinkPreviews() {
+    return linkPreviews;
   }
 
   public boolean isUnidentified() {

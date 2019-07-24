@@ -17,27 +17,34 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.DefaultLifecycleObserver;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.ProcessLifecycleOwner;
+
+import androidx.camera.camera2.Camera2AppConfig;
+import androidx.camera.core.CameraX;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.multidex.MultiDexApplication;
+import androidx.annotation.NonNull;
+import androidx.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
 
+import org.conscrypt.Conscrypt;
+import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
-import org.thoughtcrime.securesms.crypto.PRNGFixes;
-import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
+import org.thoughtcrime.securesms.gcm.FcmJobService;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobmanager.dependencies.DependencyInjector;
+import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.FastJobStorage;
+import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
@@ -46,30 +53,31 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
+import org.thoughtcrime.securesms.revealable.RevealableMessageManager;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 
+import java.security.Security;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-import androidx.work.Configuration;
-import androidx.work.WorkManager;
-import dagger.ObjectGraph;
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -79,17 +87,17 @@ import dagger.ObjectGraph;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver {
+public class ApplicationContext extends MultiDexApplication implements DefaultLifecycleObserver {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
-  private ExpiringMessageManager  expiringMessageManager;
-  private TypingStatusRepository  typingStatusRepository;
-  private TypingStatusSender      typingStatusSender;
-  private JobManager              jobManager;
-  private IncomingMessageObserver incomingMessageObserver;
-  private ObjectGraph             objectGraph;
-  private PersistentLogger        persistentLogger;
+  private ExpiringMessageManager   expiringMessageManager;
+  private RevealableMessageManager revealableMessageManager;
+  private TypingStatusRepository   typingStatusRepository;
+  private TypingStatusSender       typingStatusSender;
+  private JobManager               jobManager;
+  private IncomingMessageObserver  incomingMessageObserver;
+  private PersistentLogger         persistentLogger;
 
   private volatile boolean isAppVisible;
 
@@ -101,13 +109,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onCreate() {
     super.onCreate();
     Log.i(TAG, "onCreate()");
-    initializeRandomNumberFix();
+    initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
-    initializeDependencyInjection();
+    initializeAppDependencies();
     initializeJobManager();
     initializeMessageRetrieval();
     initializeExpiringMessageManager();
+    initializeRevealableMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
     initializeGcmCheck();
@@ -117,6 +126,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeWebRtc();
     initializePendingMessages();
     initializeUnidentifiedDeliveryAbilityRefresh();
+    initializeBlobProvider();
+    initializeCameraX();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
   }
@@ -127,6 +138,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Log.i(TAG, "App is now visible.");
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
+    MessageNotifier.cancelMessagesPending(this);
   }
 
   @Override
@@ -134,13 +146,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     isAppVisible = false;
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
-  }
-
-  @Override
-  public void injectDependencies(Object object) {
-    if (object instanceof InjectableType) {
-      objectGraph.inject(object);
-    }
+    MessageNotifier.setVisibleThread(-1);
   }
 
   public JobManager getJobManager() {
@@ -149,6 +155,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public ExpiringMessageManager getExpiringMessageManager() {
     return expiringMessageManager;
+  }
+
+  public RevealableMessageManager getRevealableMessageManager() {
+    return revealableMessageManager;
   }
 
   public TypingStatusRepository getTypingStatusRepository() {
@@ -167,8 +177,28 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return persistentLogger;
   }
 
-  private void initializeRandomNumberFix() {
-    PRNGFixes.apply();
+  private void initializeSecurityProvider() {
+    try {
+      Class.forName("org.signal.aesgcmprovider.AesGcmCipher");
+    } catch (ClassNotFoundException e) {
+      Log.e(TAG, "Failed to find AesGcmCipher class");
+      throw new ProviderInitializationException();
+    }
+
+    int aesPosition = Security.insertProviderAt(new AesGcmProvider(), 1);
+    Log.i(TAG, "Installed AesGcmProvider: " + aesPosition);
+
+    if (aesPosition < 0) {
+      Log.e(TAG, "Failed to install AesGcmProvider()");
+      throw new ProviderInitializationException();
+    }
+
+    int conscryptPosition = Security.insertProviderAt(Conscrypt.newProvider(), 2);
+    Log.i(TAG, "Installed Conscrypt provider: " + conscryptPosition);
+
+    if (conscryptPosition < 0) {
+      Log.w(TAG, "Did not install Conscrypt provider. May already be present.");
+    }
   }
 
   private void initializeLogging() {
@@ -180,32 +210,33 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeCrashHandling() {
     final Thread.UncaughtExceptionHandler originalHandler = Thread.getDefaultUncaughtExceptionHandler();
-    Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionLogger(originalHandler, persistentLogger));
+    Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionLogger(originalHandler));
   }
 
   private void initializeJobManager() {
-    WorkManager.initialize(this, new Configuration.Builder()
-                                                  .setMinimumLoggingLevel(android.util.Log.DEBUG)
-                                                  .build());
-
-    this.jobManager = new JobManager(this, WorkManager.getInstance());
+    this.jobManager = new JobManager(this, new JobManager.Configuration.Builder()
+                                                                       .setDataSerializer(new JsonDataSerializer())
+                                                                       .setJobFactories(JobManagerFactories.getJobFactories(this))
+                                                                       .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
+                                                                       .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
+                                                                       .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
+                                                                       .build());
   }
 
   public void initializeMessageRetrieval() {
     this.incomingMessageObserver = new IncomingMessageObserver(this);
   }
 
-  private void initializeDependencyInjection() {
-    this.objectGraph = ObjectGraph.create(new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this)),
-                                          new AxolotlStorageModule(this));
+  private void initializeAppDependencies() {
+    ApplicationDependencies.init(new ApplicationDependencyProvider(this, new SignalServiceNetworkAccess(this)));
   }
 
   private void initializeGcmCheck() {
     if (TextSecurePreferences.isPushRegistered(this)) {
-      long nextSetTime = TextSecurePreferences.getGcmRegistrationIdLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
+      long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
 
-      if (TextSecurePreferences.getGcmRegistrationId(this) == null || nextSetTime <= System.currentTimeMillis()) {
-        this.jobManager.add(new GcmRefreshJob(this));
+      if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
+        this.jobManager.add(new FcmRefreshJob());
       }
     }
   }
@@ -218,6 +249,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeExpiringMessageManager() {
     this.expiringMessageManager = new ExpiringMessageManager(this);
+  }
+
+  private void initializeRevealableMessageManager() {
+    this.revealableMessageManager = new RevealableMessageManager(this);
   }
 
   private void initializeTypingStatusRepository() {
@@ -250,6 +285,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         add("TA-1053");
         add("Mi A1");
         add("E5823"); // Sony z5 compact
+        add("Redmi Note 5");
+        add("FP2"); // Fairphone FP2
+        add("MI 5");
       }};
 
       Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
@@ -265,9 +303,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
       }
 
-      PeerConnectionFactory.initialize(InitializationOptions.builder(this)
-                                                            .setEnableVideoHwAcceleration(true)
-                                                            .createInitializationOptions());
+      PeerConnectionFactory.initialize(InitializationOptions.builder(this).createInitializationOptions());
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }
@@ -301,14 +337,43 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void initializePendingMessages() {
     if (TextSecurePreferences.getNeedsMessagePull(this)) {
       Log.i(TAG, "Scheduling a message fetch.");
-      ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+      if (Build.VERSION.SDK_INT >= 26) {
+        FcmJobService.schedule(this);
+      } else {
+        ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+      }
       TextSecurePreferences.setNeedsMessagePull(this, false);
     }
   }
 
   private void initializeUnidentifiedDeliveryAbilityRefresh() {
     if (TextSecurePreferences.isMultiDevice(this) && !TextSecurePreferences.isUnidentifiedDeliveryEnabled(this)) {
-      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob(this));
+      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob());
     }
+  }
+
+  private void initializeBlobProvider() {
+    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+      BlobProvider.getInstance().onSessionStart(this);
+    });
+  }
+
+  @SuppressLint("RestrictedApi")
+  private void initializeCameraX() {
+    if (Build.VERSION.SDK_INT >= 21) {
+      try {
+        CameraX.init(this, Camera2AppConfig.create(this));
+      } catch (Throwable t) {
+        Log.w(TAG, "Failed to initialize CameraX.");
+      }
+    }
+  }
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(base, TextSecurePreferences.getLanguage(base)));
+  }
+
+  private static class ProviderInitializationException extends RuntimeException {
   }
 }

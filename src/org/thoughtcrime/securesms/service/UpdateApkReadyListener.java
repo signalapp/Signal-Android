@@ -9,8 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.R;
@@ -56,9 +57,9 @@ public class UpdateApkReadyListener extends BroadcastReceiver {
   }
 
   private void displayInstallNotification(Context context, Uri uri) {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-    intent.setDataAndType(uri, "application/vnd.android.package-archive");
+    Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+    intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    intent.setData(uri);
 
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 

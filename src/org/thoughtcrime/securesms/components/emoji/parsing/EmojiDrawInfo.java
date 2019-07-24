@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.components.emoji.parsing;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class EmojiDrawInfo {
 
@@ -22,7 +22,7 @@ public class EmojiDrawInfo {
   }
 
   @Override
-  public String toString() {
+  public @NonNull String toString() {
     return "DrawInfo{" +
         "page=" + page +
         ", index=" + index +

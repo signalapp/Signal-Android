@@ -3,14 +3,13 @@ package org.thoughtcrime.securesms.components.emoji;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ResUtil;
-
-import androidx.annotation.Nullable;
 
 public class AsciiEmojiView extends View {
 
@@ -22,7 +21,7 @@ public class AsciiEmojiView extends View {
     super(context);
   }
 
-  public AsciiEmojiView(Context context, @Nullable @android.support.annotation.Nullable AttributeSet attrs) {
+  public AsciiEmojiView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
   }
 
@@ -48,13 +47,14 @@ public class AsciiEmojiView extends View {
     float overflow = paint.measureText(emoji) / (getWidth() - getPaddingLeft() - getPaddingRight());
     if (overflow > 1f) {
       paint.setTextSize(targetFontSize / overflow);
-      yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
+      yPos = (int) ((getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
     }
     canvas.drawText(emoji, xPos, yPos, paint);
   }
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    //noinspection SuspiciousNameCombination
     super.onMeasure(widthMeasureSpec, widthMeasureSpec);
   }
 }

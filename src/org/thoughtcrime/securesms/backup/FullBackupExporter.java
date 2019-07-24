@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.backup;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.annimon.stream.function.Consumer;
@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
@@ -74,17 +75,20 @@ public class FullBackupExporter extends FullBackupBase {
     int          count  = 0;
 
     for (String table : tables) {
-      if (table.equals(SmsDatabase.TABLE_NAME) || table.equals(MmsDatabase.TABLE_NAME)) {
-        count = exportTable(table, input, outputStream, cursor -> cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0, null, count);
+      if (table.equals(MmsDatabase.TABLE_NAME)) {
+        count = exportTable(table, input, outputStream, FullBackupExporter::isNonExpiringMessage, null, count);
       } else if (table.equals(GroupReceiptDatabase.TABLE_NAME)) {
         count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count);
       } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
         count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), cursor -> exportAttachment(attachmentSecret, cursor, outputStream), count);
+      } else if (table.equals(StickerDatabase.TABLE_NAME)) {
+        count = exportTable(table, input, outputStream, cursor -> true, cursor -> exportSticker(attachmentSecret, cursor, outputStream), count);
       } else if (!table.equals(SignedPreKeyDatabase.TABLE_NAME)       &&
                  !table.equals(OneTimePreKeyDatabase.TABLE_NAME)      &&
                  !table.equals(SessionDatabase.TABLE_NAME)            &&
                  !table.startsWith(SearchDatabase.SMS_FTS_TABLE_NAME) &&
-                 !table.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME))
+                 !table.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME) &&
+                 !table.startsWith("sqlite_"))
       {
         count = exportTable(table, input, outputStream, null, null, count);
       }
@@ -215,6 +219,23 @@ public class FullBackupExporter extends FullBackupBase {
     }
   }
 
+  private static void exportSticker(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream) {
+    try {
+      long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID));
+      long size     = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH));
+
+      String data   = cursor.getString(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_PATH));
+      byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM));
+
+      if (!TextUtils.isEmpty(data) && size > 0) {
+        InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
+        outputStream.writeSticker(rowId, inputStream, size);
+      }
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
   private static long calculateVeryOldStreamLength(@NonNull AttachmentSecret attachmentSecret, @Nullable byte[] random, @NonNull String data) throws IOException {
     long result = 0;
     InputStream inputStream;
@@ -232,14 +253,20 @@ public class FullBackupExporter extends FullBackupBase {
     return result;
   }
 
+  private static boolean isNonExpiringMessage(@NonNull Cursor cursor) {
+    return cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN))    <= 0 &&
+           cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.REVEAL_DURATION)) <= 0;
+  }
+
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, long mmsId) {
-    String[] columns = new String[] { MmsDatabase.EXPIRES_IN };
+    String[] columns = new String[] { MmsDatabase.EXPIRES_IN, MmsDatabase.REVEAL_DURATION };
     String   where   = MmsDatabase.ID + " = ?";
     String[] args    = new String[] { String.valueOf(mmsId) };
 
     try (Cursor mmsCursor = db.query(MmsDatabase.TABLE_NAME, columns, where, args, null, null, null)) {
       if (mmsCursor != null && mmsCursor.moveToFirst()) {
-        return mmsCursor.getLong(0) == 0;
+        return mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN))      == 0 &&
+               mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow(MmsDatabase.REVEAL_DURATION)) == 0;
       }
     }
 
@@ -315,6 +342,17 @@ public class FullBackupExporter extends FullBackupBase {
                                                                                         .setAttachmentId(attachmentId.getUniqueId())
                                                                                         .setLength(Util.toIntExact(size))
                                                                                         .build())
+                                                  .build());
+
+      writeStream(in);
+    }
+
+    public void writeSticker(long rowId, @NonNull InputStream in, long size) throws IOException {
+      write(outputStream, BackupProtos.BackupFrame.newBuilder()
+                                                  .setSticker(BackupProtos.Sticker.newBuilder()
+                                                                                  .setRowId(rowId)
+                                                                                  .setLength(Util.toIntExact(size))
+                                                                                  .build())
                                                   .build());
 
       writeStream(in);

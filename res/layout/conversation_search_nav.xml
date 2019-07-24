@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.ConversationSearchBottomBar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conversation_search_nav"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?conversation_background"
+    android:visibility="gone"
+    tools:visibility="visible"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <TextView
+        android:id="@+id/conversation_search_position"
+        style="@style/Signal.Text.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/conversation_search_up"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="37 of 73" />
+
+    <ImageView
+        android:id="@+id/conversation_search_up"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
+        android:tint="@color/signal_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/conversation_search_down"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/conversation_search_down"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
+        android:tint="@color/signal_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/conversation_search_progress_wheel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:indeterminate="true"
+        android:padding="8dp"
+        android:background="?conversation_background"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:matProg_barColor="@color/core_grey_25"
+        app:matProg_progressIndeterminate="true" />
+
+</org.thoughtcrime.securesms.components.ConversationSearchBottomBar>

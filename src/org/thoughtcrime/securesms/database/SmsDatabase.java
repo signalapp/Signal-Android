@@ -20,7 +20,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -47,7 +46,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
@@ -105,11 +103,8 @@ public class SmsDatabase extends MessagingDatabase {
   private static final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache();
   private static final EarlyReceiptCache earlyReadReceiptCache     = new EarlyReceiptCache();
 
-  private final JobManager jobManager;
-
   public SmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
-    this.jobManager = ApplicationContext.getInstance(context).getJobManager();
   }
 
   protected String getTableName() {
@@ -220,6 +215,14 @@ public class SmsDatabase extends MessagingDatabase {
 
   public void markAsNoSession(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
+  }
+
+  public void markAsUnsupportedProtocolVersion(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.UNSUPPORTED_MESSAGE_TYPE);
+  }
+
+  public void markAsInvalidMessage(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.INVALID_MESSAGE_TYPE);
   }
 
   public void markAsLegacyVersion(long id) {
@@ -474,7 +477,7 @@ public class SmsDatabase extends MessagingDatabase {
       DatabaseFactory.getThreadDatabase(context).update(record.getThreadId(), true);
       notifyConversationListeners(record.getThreadId());
 
-      jobManager.add(new TrimThreadJob(context, record.getThreadId()));
+      ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(record.getThreadId()));
 
       return new Pair<>(newMessageId, record.getThreadId());
     } catch (NoSuchMessageException e) {
@@ -512,7 +515,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
     notifyConversationListeners(threadId);
-    jobManager.add(new TrimThreadJob(context, threadId));
+    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
     if (unread) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
@@ -605,7 +608,7 @@ public class SmsDatabase extends MessagingDatabase {
       notifyConversationListeners(threadId);
 
       if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
-        jobManager.add(new TrimThreadJob(context, threadId));
+        ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
       }
 
       return Optional.of(new InsertResult(messageId, threadId));
@@ -663,7 +666,7 @@ public class SmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
 
     if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
-      jobManager.add(new TrimThreadJob(context, threadId));
+      ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
     }
 
     return messageId;
@@ -818,17 +821,13 @@ public class SmsDatabase extends MessagingDatabase {
     private final long                threadId;
 
     public OutgoingMessageReader(OutgoingTextMessage message, long threadId) {
-      try {
-        this.message  = message;
-        this.threadId = threadId;
-        this.id       = SecureRandom.getInstance("SHA1PRNG").nextLong();
-      } catch (NoSuchAlgorithmException e) {
-        throw new AssertionError(e);
-      }
+      this.message  = message;
+      this.threadId = threadId;
+      this.id       = new SecureRandom().nextLong();
     }
 
     public MessageRecord getCurrent() {
-      return new SmsMessageRecord(context, id, message.getMessageBody(),
+      return new SmsMessageRecord(id, message.getMessageBody(),
                                   message.getRecipient(), message.getRecipient(),
                                   1, System.currentTimeMillis(), System.currentTimeMillis(),
                                   0, message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
@@ -883,12 +882,13 @@ public class SmsDatabase extends MessagingDatabase {
       List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
       Recipient                 recipient  = Recipient.from(context, address, true);
 
-      return new SmsMessageRecord(context, messageId, body, recipient,
+      return new SmsMessageRecord(messageId, body, recipient,
                                   recipient,
                                   addressDeviceId,
                                   dateSent, dateReceived, deliveryReceiptCount, type,
                                   threadId, status, mismatches, subscriptionId,
-                                  expiresIn, expireStarted, readReceiptCount, unidentified);
+                                  expiresIn, expireStarted,
+                                  readReceiptCount, unidentified);
     }
 
     private List<IdentityKeyMismatch> getMismatches(String document) {

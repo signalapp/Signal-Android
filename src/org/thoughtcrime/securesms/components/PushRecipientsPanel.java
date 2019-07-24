@@ -17,8 +17,8 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -86,9 +86,7 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientModi
     inflater.inflate(R.layout.push_recipients_panel, this, true);
 
     View imageButton = findViewById(R.id.contacts_button);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-      ((MarginLayoutParams) imageButton.getLayoutParams()).topMargin = 0;
+    ((MarginLayoutParams) imageButton.getLayoutParams()).topMargin = 0;
 
     panel = findViewById(R.id.recipients_panel);
     initRecipientsEditor();

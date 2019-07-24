@@ -2,24 +2,24 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.Manifest;
-import android.content.Context;
-import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
+import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,30 +27,32 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import androidx.work.Data;
+public class LocalBackupJob extends BaseJob {
 
-public class LocalBackupJob extends ContextJob {
+  public static final String KEY = "LocalBackupJob";
 
   private static final String TAG = LocalBackupJob.class.getSimpleName();
 
   public LocalBackupJob() {
-    super(null, null);
+    this(new Job.Parameters.Builder()
+                           .setQueue("__LOCAL_BACKUP__")
+                           .setMaxInstances(1)
+                           .setMaxAttempts(3)
+                           .build());
   }
 
-  public LocalBackupJob(@NonNull Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId("__LOCAL_BACKUP__")
-                                .withDuplicatesIgnored(true)
-                                .create());
-  }
-
-  @Override
-  protected void initialize(@NonNull SafeData data) {
+  private LocalBackupJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -61,13 +63,14 @@ public class LocalBackupJob extends ContextJob {
       throw new IOException("No external storage permission!");
     }
 
-    GenericForegroundService.startForegroundTask(context,
-                                                 context.getString(R.string.LocalBackupJob_creating_backup),
-                                                 NotificationChannels.BACKUPS,
-                                                 R.drawable.ic_signal_backup);
+    try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
+                                                                     context.getString(R.string.LocalBackupJob_creating_backup),
+                                                                     NotificationChannels.BACKUPS,
+                                                                     R.drawable.ic_signal_backup))
+    {
+      notification.setIndeterminateProgress();
 
-    try {
-      String backupPassword  = TextSecurePreferences.getBackupPassphrase(context);
+      String backupPassword  = BackupPassphrase.get(context);
       File   backupDirectory = StorageUtil.getBackupDirectory();
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
       String fileName        = String.format("signal-%s.backup", timestamp);
@@ -95,18 +98,22 @@ public class LocalBackupJob extends ContextJob {
       }
 
       BackupUtil.deleteOldBackups();
-    } finally {
-      GenericForegroundService.stopForegroundTask(context);
     }
   }
 
   @Override
-  public boolean onShouldRetry(Exception e) {
+  public boolean onShouldRetry(@NonNull Exception e) {
     return false;
   }
 
   @Override
   public void onCanceled() {
+  }
 
+  public static class Factory implements Job.Factory<LocalBackupJob> {
+    @Override
+    public @NonNull LocalBackupJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new LocalBackupJob(parameters);
+    }
   }
 }

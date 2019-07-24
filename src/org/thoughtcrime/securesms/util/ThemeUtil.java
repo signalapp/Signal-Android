@@ -3,9 +3,12 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.support.annotation.AttrRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.view.ContextThemeWrapper;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 
 import org.thoughtcrime.securesms.R;
 
@@ -25,13 +28,21 @@ public class ThemeUtil {
     return Color.RED;
   }
 
+  public static LayoutInflater getThemedInflater(@NonNull Context context, @NonNull LayoutInflater inflater, @StyleRes int theme) {
+    Context contextThemeWrapper = new ContextThemeWrapper(context, theme);
+    return inflater.cloneInContext(contextThemeWrapper);
+  }
+
   private static String getAttribute(Context context, int attribute, String defaultValue) {
     TypedValue outValue = new TypedValue();
 
     if (context.getTheme().resolveAttribute(attribute, outValue, true)) {
-      return outValue.coerceToString().toString();
-    } else {
-      return defaultValue;
+      CharSequence charSequence = outValue.coerceToString();
+      if (charSequence != null) {
+        return charSequence.toString();
+      }
     }
+
+    return defaultValue;
   }
 }

@@ -43,7 +43,7 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="10dip"
+            android:layout_marginStart="10dp"
             android:textColor="?android:attr/textColorSecondary"
             android:singleLine="true"
         />

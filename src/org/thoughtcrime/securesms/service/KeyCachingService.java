@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.service;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -26,16 +25,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
-import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.logging.Log;
-import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
@@ -250,8 +247,12 @@ public class KeyCachingService extends Service {
     }
   }
 
-  @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-  private void foregroundServiceModern() {
+  private void foregroundService() {
+    if (TextSecurePreferences.isPasswordDisabled(this) && !TextSecurePreferences.isScreenLockEnabled(this)) {
+      stopForeground(true);
+      return;
+    }
+
     Log.i(TAG, "foregrounding KCS");
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
 
@@ -266,48 +267,6 @@ public class KeyCachingService extends Service {
 
     stopForeground(true);
     startForeground(SERVICE_RUNNING_ID, builder.build());
-  }
-
-  private void foregroundServiceICS() {
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
-    RemoteViews remoteViews            = new RemoteViews(getPackageName(), R.layout.key_caching_notification);
-
-    remoteViews.setOnClickPendingIntent(R.id.lock_cache_icon, buildLockIntent());
-
-    builder.setSmallIcon(R.drawable.icon_cached);
-    builder.setContent(remoteViews);
-    builder.setContentIntent(buildLaunchIntent());
-
-    stopForeground(true);
-    startForeground(SERVICE_RUNNING_ID, builder.build());
-  }
-
-  private void foregroundServiceLegacy() {
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.LOCKED_STATUS);
-    builder.setSmallIcon(R.drawable.icon_cached);
-    builder.setWhen(System.currentTimeMillis());
-
-    builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
-    builder.setContentText(getString(R.string.KeyCachingService_signal_passphrase_cached));
-    builder.setContentIntent(buildLaunchIntent());
-
-    stopForeground(true);
-    startForeground(SERVICE_RUNNING_ID, builder.build());
-  }
-
-  private void foregroundService() {
-    if (TextSecurePreferences.isPasswordDisabled(this) && !TextSecurePreferences.isScreenLockEnabled(this)) {
-      stopForeground(true);
-      return;
-    }
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      foregroundServiceModern();
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      foregroundServiceICS();
-    } else {
-      foregroundServiceLegacy();
-    }
   }
 
   private void broadcastNewSecret() {

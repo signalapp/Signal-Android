@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.attachments;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -18,10 +19,10 @@ public class PointerAttachment extends Attachment {
   private PointerAttachment(@NonNull String contentType, int transferState, long size,
                             @Nullable String fileName,  @NonNull String location,
                             @Nullable String key, @Nullable String relay,
-                            @Nullable byte[] digest, boolean voiceNote,
-                            int width, int height, @Nullable String caption)
+                            @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
+                            int width, int height, @Nullable String caption, @Nullable StickerLocator stickerLocator)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, null, voiceNote, width, height, false, caption);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, caption, stickerLocator);
   }
 
   @Nullable
@@ -70,6 +71,14 @@ public class PointerAttachment extends Attachment {
   }
 
   public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer) {
+    return forPointer(pointer, null, null);
+  }
+
+  public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer, @Nullable StickerLocator stickerLocator) {
+    return forPointer(pointer, stickerLocator, null);
+  }
+
+  public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer, @Nullable StickerLocator stickerLocator, @Nullable String fastPreflightId) {
     if (!pointer.isPresent() || !pointer.get().isPointer()) return Optional.absent();
 
     String encodedKey = null;
@@ -85,10 +94,12 @@ public class PointerAttachment extends Attachment {
                                       String.valueOf(pointer.get().asPointer().getId()),
                                       encodedKey, null,
                                       pointer.get().asPointer().getDigest().orNull(),
+                                      fastPreflightId,
                                       pointer.get().asPointer().getVoiceNote(),
                                       pointer.get().asPointer().getWidth(),
                                       pointer.get().asPointer().getHeight(),
-                                      pointer.get().asPointer().getCaption().orNull()));
+                                      pointer.get().asPointer().getCaption().orNull(),
+        stickerLocator));
 
   }
 
@@ -103,9 +114,11 @@ public class PointerAttachment extends Attachment {
                                              thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,
                                              null,
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orNull() : null,
+                                             null,
                                              false,
                                              thumbnail != null ? thumbnail.asPointer().getWidth() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getHeight() : 0,
-                                             thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null));
+                                             thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null,
+                                             null));
   }
 }

@@ -29,9 +29,11 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,7 +46,7 @@ import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
  * This class was originally a layer of indirection between
- * ContactAccessorNewApi and ContactAccesorOldApi, which corresponded
+ * ContactAccessorNewApi and ContactAccessorOldApi, which corresponded
  * to the API changes between 1.x and 2.x.
  *
  * Now that we no longer support 1.x, this class mostly serves as a place
@@ -202,6 +204,12 @@ public class ContactAccessor {
     } finally {
       if (reader != null)
         reader.close();
+    }
+
+    if (context.getString(R.string.note_to_self).toLowerCase().contains(constraint.toLowerCase()) &&
+        !numberList.contains(TextSecurePreferences.getLocalNumber(context)))
+    {
+      numberList.add(TextSecurePreferences.getLocalNumber(context));
     }
 
     return numberList;

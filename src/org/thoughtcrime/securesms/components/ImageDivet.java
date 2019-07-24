@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
 
-public class ImageDivet extends ImageView {
+public class ImageDivet extends AppCompatImageView {
   private static final float CORNER_OFFSET = 12F;
   private static final String[] POSITIONS  = new String[] {"bottom_right"};
 
@@ -82,10 +82,6 @@ public class ImageDivet extends ImageView {
 
   public float getCloseOffset() {
     return CORNER_OFFSET * density;
-  }
-
-  public ImageView asImageView() {
-    return this;
   }
 
   public float getFarOffset() {

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="2dp"
+    android:animateLayoutChanges="true">
+
+    <org.thoughtcrime.securesms.components.SquareImageView
+        android:id="@+id/mediapicker_image_item_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/empty_inbox_1"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?mediapicker_image_outline" />
+
+    <FrameLayout
+        android:id="@+id/mediapicker_play_overlay"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@drawable/circle_white"
+        android:layout_gravity="center"
+        android:longClickable="false"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:tint="@color/core_blue"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/triangle_right" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/mediapicker_select_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_black_90" />
+
+    <FrameLayout
+        android:id="@+id/mediapicker_select_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right|end"
+        android:padding="6dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_select_on" />
+
+        <TextView
+            android:id="@+id/mediapicker_select_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/core_white"
+            android:textSize="14dp"
+            android:gravity="center"
+            tools:text="3"/>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/mediapicker_select_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right|end"
+        android:padding="6dp"
+        android:src="@drawable/ic_select_off"
+        android:visibility="gone" />
+
+</FrameLayout>

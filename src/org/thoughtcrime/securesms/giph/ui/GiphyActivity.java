@@ -7,25 +7,27 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public class GiphyActivity extends PassphraseRequiredActionBarActivity
@@ -67,6 +69,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
     GiphyActivityToolbar toolbar = ViewUtil.findById(this, R.id.giphy_toolbar);
     toolbar.setOnFilterChangedListener(this);
     toolbar.setOnLayoutChangedListener(this);
+    toolbar.setPersistence(GiphyActivityToolbarTextSecurePreferencesPersistence.fromContext(this));
 
     setSupportActionBar(toolbar);
 
@@ -97,9 +100,9 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onLayoutChanged(int type) {
-    this.gifFragment.setLayoutManager(type);
-    this.stickerFragment.setLayoutManager(type);
+  public void onLayoutChanged(boolean gridLayout) {
+    gifFragment.setLayoutManager(gridLayout);
+    stickerFragment.setLayoutManager(gridLayout);
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -115,8 +118,11 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
         try {
           byte[] data = viewHolder.getData(forMms);
 
-          return PersistentBlobProvider.getInstance(GiphyActivity.this).create(GiphyActivity.this, data, "image/gif", null);
-        } catch (InterruptedException | ExecutionException e) {
+          return BlobProvider.getInstance()
+                             .forData(data)
+                             .withMimeType(MediaUtil.IMAGE_GIF)
+                             .createForSingleSessionOnDisk(GiphyActivity.this, e -> Log.w(TAG, "Failed to write to disk.", e));
+        } catch (InterruptedException | ExecutionException | IOException e) {
           Log.w(TAG, e);
           return null;
         }

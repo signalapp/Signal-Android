@@ -1,18 +1,19 @@
 package org.thoughtcrime.securesms.components;
 
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,24 +63,24 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new RecentPhotosLoader(getContext());
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+  public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
     this.recyclerView.setAdapter(new RecentPhotoAdapter(getContext(), data, RecentPhotosLoader.BASE_URL, listener));
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> loader) {
+  public void onLoaderReset(@NonNull Loader<Cursor> loader) {
     ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(null);
   }
 
   private static class RecentPhotoAdapter extends CursorRecyclerViewAdapter<RecentPhotoAdapter.RecentPhotoViewHolder> {
 
     @SuppressWarnings("unused")
-    private static final String TAG = RecentPhotoAdapter.class.getName();
+    private static final String TAG = RecentPhotoAdapter.class.getSimpleName();
 
     @NonNull  private final Uri baseUri;
     @Nullable private OnItemClickedListener clickedListener;
@@ -106,7 +107,11 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
       long   dateTaken    = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATE_TAKEN));
       long   dateModified = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATE_MODIFIED));
       String mimeType     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.MIME_TYPE));
+      String bucketId     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.BUCKET_ID));
       int    orientation  = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.ORIENTATION));
+      long   size         = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.SIZE));
+      int    width        = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
+      int    height       = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
 
       final Uri uri = Uri.withAppendedPath(baseUri, Long.toString(id));
 
@@ -119,9 +124,23 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
               .into(viewHolder.imageView);
 
       viewHolder.imageView.setOnClickListener(v -> {
-        if (clickedListener != null) clickedListener.onItemClicked(uri);
+        if (clickedListener != null) clickedListener.onItemClicked(uri, mimeType, bucketId, dateTaken, width, height, size);
       });
 
+    }
+
+    @TargetApi(16)
+    @SuppressWarnings("SuspiciousNameCombination")
+    private String getWidthColumn(int orientation) {
+      if (orientation == 0 || orientation == 180) return MediaStore.Images.ImageColumns.WIDTH;
+      else                                        return MediaStore.Images.ImageColumns.HEIGHT;
+    }
+
+    @TargetApi(16)
+    @SuppressWarnings("SuspiciousNameCombination")
+    private String getHeightColumn(int orientation) {
+      if (orientation == 0 || orientation == 180) return MediaStore.Images.ImageColumns.HEIGHT;
+      else                                        return MediaStore.Images.ImageColumns.WIDTH;
     }
 
     public void setListener(@Nullable OnItemClickedListener listener) {
@@ -141,6 +160,6 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   }
 
   public interface OnItemClickedListener {
-    void onItemClicked(Uri uri);
+    void onItemClicked(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height, long size);
   }
 }

@@ -5,10 +5,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.annotation.AttrRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,15 +146,10 @@ public class DocumentView extends FrameLayout {
     return "";
   }
 
-  @Subscribe(sticky = true, threadMode = ThreadMode.ASYNC)
+  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventAsync(final PartProgressEvent event) {
-    if (documentSlide != null && event.attachment.equals(this.documentSlide.asAttachment())) {
-      Util.runOnMain(new Runnable() {
-        @Override
-        public void run() {
-          downloadProgress.setInstantProgress(((float) event.progress) / event.total);
-        }
-      });
+    if (documentSlide != null && event.attachment.equals(documentSlide.asAttachment())) {
+      downloadProgress.setInstantProgress(((float) event.progress) / event.total);
     }
   }
 

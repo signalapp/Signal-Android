@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.Base64;
@@ -21,32 +21,31 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 
-import javax.inject.Inject;
+public class RefreshUnidentifiedDeliveryAbilityJob extends BaseJob {
 
-import androidx.work.Data;
-
-public class RefreshUnidentifiedDeliveryAbilityJob extends ContextJob implements InjectableType {
+  public static final String KEY = "RefreshUnidentifiedDeliveryAbilityJob";
 
   private static final String TAG = RefreshUnidentifiedDeliveryAbilityJob.class.getSimpleName();
 
-  @Inject transient SignalServiceMessageReceiver receiver;
-
   public RefreshUnidentifiedDeliveryAbilityJob() {
-    super(null, null);
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(10)
+                           .build());
   }
 
-  public RefreshUnidentifiedDeliveryAbilityJob(Context context) {
-    super(context, new JobParameters.Builder()
-                                    .withNetworkRequirement()
-                                    .create());
+  private RefreshUnidentifiedDeliveryAbilityJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) { }
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -61,17 +60,17 @@ public class RefreshUnidentifiedDeliveryAbilityJob extends ContextJob implements
   }
 
   @Override
-  protected void onCanceled() {
-
+  public void onCanceled() {
   }
 
   @Override
-  protected boolean onShouldRetry(Exception exception) {
+  protected boolean onShouldRetry(@NonNull Exception exception) {
     return exception instanceof PushNetworkException;
   }
 
   private SignalServiceProfile retrieveProfile(@NonNull String number) throws IOException {
-    SignalServiceMessagePipe pipe = IncomingMessageObserver.getPipe();
+    SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+    SignalServiceMessagePipe     pipe     = IncomingMessageObserver.getPipe();
 
     if (pipe != null) {
       try {
@@ -91,6 +90,13 @@ public class RefreshUnidentifiedDeliveryAbilityJob extends ContextJob implements
     } catch (IOException e) {
       Log.w(TAG, e);
       return false;
+    }
+  }
+
+  public static class Factory implements Job.Factory<RefreshUnidentifiedDeliveryAbilityJob> {
+    @Override
+    public @NonNull RefreshUnidentifiedDeliveryAbilityJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new RefreshUnidentifiedDeliveryAbilityJob(parameters);
     }
   }
 }

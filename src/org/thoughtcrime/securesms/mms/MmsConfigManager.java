@@ -3,9 +3,8 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import com.android.mms.service_alt.MmsConfig;
 
@@ -16,35 +15,35 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MmsConfigManager {
+final class MmsConfigManager {
 
-  private static Map<Integer, MmsConfig> mmsConfigMap = new HashMap<>();
+  private static final Map<Integer, MmsConfig> mmsConfigMap = new HashMap<>();
 
   @WorkerThread
-  public synchronized static @Nullable MmsConfig getMmsConfig(Context context, int subscriptionId) {
-    if (mmsConfigMap.containsKey(subscriptionId)) {
-      return mmsConfigMap.get(subscriptionId);
+  synchronized static @NonNull MmsConfig getMmsConfig(Context context, int subscriptionId) {
+    MmsConfig mmsConfig = mmsConfigMap.get(subscriptionId);
+    if (mmsConfig != null) {
+      return mmsConfig;
     }
 
     MmsConfig loadedConfig = loadMmsConfig(context, subscriptionId);
 
-    if (loadedConfig != null) mmsConfigMap.put(subscriptionId, loadedConfig);
+    mmsConfigMap.put(subscriptionId, loadedConfig);
 
     return loadedConfig;
   }
 
-  private static MmsConfig loadMmsConfig(Context context, int subscriptionId) {
-    if (subscriptionId != -1 && Build.VERSION.SDK_INT >= 24) {
-      Optional<SubscriptionInfoCompat> subscriptionInfo = new SubscriptionManagerCompat(context).getActiveSubscriptionInfo(subscriptionId);
+  private static @NonNull MmsConfig loadMmsConfig(Context context, int subscriptionId) {
+    Optional<SubscriptionInfoCompat> subscriptionInfo = new SubscriptionManagerCompat(context).getActiveSubscriptionInfo(subscriptionId);
 
-      if (subscriptionInfo.isPresent()) {
-        Configuration configuration = context.getResources().getConfiguration();
-        configuration.mcc = subscriptionInfo.get().getMcc();
-        configuration.mnc = subscriptionInfo.get().getMnc();
+    if (subscriptionInfo.isPresent()) {
+      SubscriptionInfoCompat subscriptionInfoCompat = subscriptionInfo.get();
+      Configuration configuration = context.getResources().getConfiguration();
+      configuration.mcc = subscriptionInfoCompat.getMcc();
+      configuration.mnc = subscriptionInfoCompat.getMnc();
 
-        Context subcontext = context.createConfigurationContext(configuration);
-        return new MmsConfig(subcontext, subscriptionId);
-      }
+      Context subContext = context.createConfigurationContext(configuration);
+      return new MmsConfig(subContext, subscriptionId);
     }
 
     return new MmsConfig(context, subscriptionId);

@@ -4,8 +4,8 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Starting in API 26, a {@link ContentProvider} needs to be defined for each authority you wish to
@@ -27,6 +27,14 @@ public class DatabaseContentProviders {
 
   public static class Attachment extends NoopContentProvider {
     public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.attachment");
+  }
+
+  public static class Sticker extends NoopContentProvider {
+    public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.sticker");
+  }
+
+  public static class StickerPack extends NoopContentProvider {
+    public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.stickerpack");
   }
 
   private static abstract class NoopContentProvider extends ContentProvider {

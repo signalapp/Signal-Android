@@ -6,8 +6,8 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -72,7 +72,7 @@ public class RegistrationLockDialog {
 
     ClickableSpan clickableSpan = new ClickableSpan() {
       @Override
-      public void onClick(View widget) {
+      public void onClick(@NonNull View widget) {
         dialog.dismiss();
         new AlertDialog.Builder(context).setTitle(R.string.RegistrationLockDialog_forgotten_pin)
                                         .setMessage(R.string.RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts)

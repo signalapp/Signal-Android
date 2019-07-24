@@ -6,9 +6,11 @@
   <string name="delete">删除</string>
   <string name="please_wait">请稍候…</string>
   <string name="save">保存</string>
+  <string name="note_to_self">备忘录</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新信息</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
@@ -49,12 +51,14 @@
   <string name="DraftDatabase_Draft_video_snippet">（视频）</string>
   <string name="DraftDatabase_Draft_location_snippet">(位置)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(回复)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">无法找到用于选择媒体的应用。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要\"存储空间\"权限才能发送图片、视频以及音频，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"存储空间\"权限。</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要\"通讯录\"权限才能发送联系人名片信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要\"位置信息\"权限才能发送位置信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"位置信息\"权限。</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要\"相机\"权限才能拍照并发送相片，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"相机\"权限。</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">上传媒体中...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音频时出现错误！</string>
   <!--BlockedContactsActivity-->
@@ -67,13 +71,14 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">来电呼叫</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">摄像头不可用。</string>
   <string name="CameraActivity_image_save_failure">未能保存图像。</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">删除</string>
   <string name="ClearProfileActivity_remove_profile_photo">删除头像</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">未能找到网页浏览器。</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">一个基站通话已在处理中。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全代码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了 Signal 。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望验证这个联系人的安全码。</string>
@@ -109,6 +114,9 @@
   <string name="ConversationItem_copied_text">已复制 %s</string>
   <string name="ConversationItem_from_s">来自 %s</string>
   <string name="ConversationItem_to_s">至 %s</string>
+  <string name="ConversationItem_read_more"> 查看更多</string>
+  <string name="ConversationItem_download_more"> 下载更多</string>
+  <string name="ConversationItem_pending"> 等待中</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">该选项将会有助于解决您在会话中遇到的加密问题，但是您的消息可能会受人控制。</string>
@@ -130,7 +138,6 @@
   <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
   <string name="ConversationActivity_transport_signal"> Signal </string>
   <string name="ConversationActivity_lets_switch_to_signal">让我们切换到 Signal  %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">让我们使用它来聊天：%1$s</string>
   <string name="ConversationActivity_error_leaving_group">离开群组时出错</string>
   <string name="ConversationActivity_specify_recipient">请选择一个联系人</string>
   <string name="ConversationActivity_unblock_this_contact_question">取消屏蔽此联系人吗？</string>
@@ -150,6 +157,13 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相机权限来拍摄照片或录制视频。但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要相机权限以拍摄照片或视频</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal不能发送短信/彩信，因为它不是您默认的短信应用。您是否想在安卓设置里修改？</string>
+  <string name="ConversationActivity_yes">是</string>
+  <string name="ConversationActivity_no">否</string>
+  <string name="ConversationActivity_search_position">%2$d中之%1$d</string>
+  <string name="ConversationActivity_no_results">无结果</string>
+  <string name="ConversationActivity_sticker_pack_installed">已安装表情包</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">新功能！可以发表情了！</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读信息</item>
@@ -206,12 +220,17 @@
   <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">存档的会话 (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">确认</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">个人信息</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">无法设置头像</string>
   <string name="CreateProfileActivity_problem_setting_profile">无法设置个人信息</string>
   <string name="CreateProfileActivity_profile_photo">头像</string>
   <string name="CreateProfileActivity_too_long">过长</string>
+  <string name="CreateProfileActivity_profile_name">资料名称</string>
+  <string name="CreateProfileActivity_set_up_your_profile">设置您的资料</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal上的个人资料都是端到端加密的。Signal服务永远不会有权访问此数据。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定制：%s</string>
   <string name="CustomDefaultPreference_using_default">使用默认：%s</string>
@@ -259,6 +278,17 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">要拍近照了，准备好了吗？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">在Signal上和朋友们分享你的头像和昵称</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 个人档案来了</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">隆重推出“正在输入”提示功能。</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">现在，你可以选择分享你在撰写消息时的打字状态提示了。</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">你想现在启用这个功能吗？</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">“正在输入”提示功能现已推出</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">启用“正在输入”提示</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">打开“正在输入”提示</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">不，谢谢。</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">隆重推出“链接预览”功能。</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">可选的链接预览功能现支持互联网上一些最热门的站点。</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">您可以随时在Signal设置中启用或禁用此功能（隐私 &gt; 发送链接预览）。</string>
+  <string name="ExperienceUpgradeActivity_got_it">知道了</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->
@@ -291,6 +321,9 @@
   <string name="GroupShareProfileView_make_visible">设置可见</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">我</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">群组头像</string>
+  <string name="CropImageActivity_profile_avatar">头像</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">按住并保持以录制语音信息，松开即发送</string>
   <!--InviteActivity-->
@@ -315,6 +348,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">发送失败</string>
   <string name="MessageDetailsRecipient_new_safety_number">新的安全代码</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">找不到消息</string>
+  <string name="LongMessageActivity_message_from_s">%1$s发来的消息</string>
+  <string name="LongMessageActivity_your_message">您的消息</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">后台数据已启用</string>
@@ -345,6 +382,21 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">多媒体信息</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">正在下载彩信</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">下载彩信时错误，点击重试</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">发送给%s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">点击以选择</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">添加注释...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一个附件已被移除，因为它超过了文件大小限制。</string>
+  <string name="MediaSendActivity_camera_unavailable">摄像头不可用。</string>
+  <string name="MediaSendActivity_message_to_s">发送给 %s 的消息</string>
+  <string name="MediaSendActivity_message">消息</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="other">您最多分享 %d 项。</item>
+  </plurals>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">所有媒体</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">已收到的信息使用了旧版本的 Signal 进行加密，并且已经不再被支持。请联系发送者升级 Signal 到最新版本然后再次发送该信息。</string>
   <string name="MessageRecord_left_group">您已经离开了此群组。</string>
@@ -399,10 +451,13 @@
   <string name="PassphrasePromptActivity_watermark_content_description"> Signal 图标</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">提交密钥</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不真实的密钥！</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">地图</string>
+  <string name="PlacePickerActivity_not_a_valid_address">非有效地址</string>
+  <string name="PlacePickerActivity_drop_pin">标注</string>
+  <string name="PlacePickerActivity_accept_address">接受地址</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您当前所安装的 Google Play 服务没有正常的工作。请尝试重新安装 Google Play 服务然后重试。</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">检索消息中…</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
@@ -464,6 +519,18 @@
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">您距离发送调试日志还有 %d 步之遥。</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我们需要验证您不是机器人。</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">验证码验证失败</string>
+  <string name="RegistrationActivity_next">下一步</string>
+  <string name="RegistrationActivity_continue">继续</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">让隐私与您形影不离。\n在每一条消息中展现真正的自己。</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">输入您的手机号以开始使用</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">您会收到一条验证码。运营商可能会收取费用。
+</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">请输入我们发送到%s的验证码</string>
+  <string name="RegistrationActivity_call">拨号</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">图片</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">无法保存图像更改</string>
   <!--Search-->
@@ -471,8 +538,6 @@
   <string name="SearchFragment_header_conversations">对话</string>
   <string name="SearchFragment_header_contacts">联系人</string>
   <string name="SearchFragment_header_messages">信息</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">正在发送消息…</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">添加到通讯录</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀请至Signal</string>
@@ -484,6 +549,7 @@
   <string name="SharedContactView_message">Signal 消息</string>
   <!--Slide-->
   <string name="Slide_image">图片</string>
+  <string name="Slide_sticker">表情</string>
   <string name="Slide_audio">音频</string>
   <string name="Slide_video">视频</string>
   <!--SmsMessageRecord-->
@@ -494,6 +560,25 @@
   <string name="SmsMessageRecord_secure_session_reset">您重置了安全会话。</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重置了安全会话</string>
   <string name="SmsMessageRecord_duplicate_message">重复的信息。</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">无法处理此信息，因为它是从新版本 Signal 发送的。更新后，您可以请联系人重新发送此信息。</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">处理传入消息时出错</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">表情</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">可用表情</string>
+  <string name="StickerManagementAdapter_stickers_you_received">你收到的表情</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal 艺术家系列</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">没有安装任何表情包</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">消息中的表情会显示在这里</string>
+  <string name="StickerManagementAdapter_untitled">未命名</string>
+  <string name="StickerManagementAdapter_unknown">未知</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">未命名</string>
+  <string name="StickerPackPreviewActivity_unknown">未知</string>
+  <string name="StickerPackPreviewActivity_install">安装</string>
+  <string name="StickerPackPreviewActivity_remove">删除</string>
+  <string name="StickerPackPreviewActivity_stickers">表情</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">无法加载表情包</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">群组已更新</string>
   <string name="ThreadRecord_left_the_group">离开此群组</string>
@@ -503,6 +588,7 @@
   <string name="ThreadRecord_called_you">呼叫您的</string>
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
+  <string name="ThreadRecord_sticker">表情</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 上！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">阅后即焚功能已关闭</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
@@ -510,6 +596,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">您与 %s 的安全码已经改变</string>
   <string name="ThreadRecord_you_marked_verified">你被标识为已验证</string>
   <string name="ThreadRecord_you_marked_unverified">你被标记为未验证</string>
+  <string name="ThreadRecord_message_could_not_be_processed">无法处理信息</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 有新版本了，点击升级！</string>
@@ -575,9 +662,12 @@
   <string name="MessageNotifier_mark_all_as_read">全部标记为已读</string>
   <string name="MessageNotifier_mark_read">标记为已读</string>
   <string name="MessageNotifier_media_message">媒体信息</string>
+  <string name="MessageNotifier_sticker">表情包</string>
   <string name="MessageNotifier_reply">回复</string>
-  <string name="MessageNotifier_pending_signal_messages"> Signal 信息待处理</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">您有待处理的信号消息，轻触来打开和收取</string>
+  <string name="MessageNotifier_signal_message">Signal 消息</string>
+  <string name="MessageNotifier_unsecured_sms">未加密的短信</string>
+  <string name="MessageNotifier_you_may_have_new_messages">您可能有新信息</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">打开 Signal 查看最近的通知</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">联系人</string>
   <!--Notification Channels-->
@@ -605,6 +695,9 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="other">%d项目</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">设备已注销</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">这可能是因为您的号码在另一台设备上注册了 Signal。点击以重试。</string>
@@ -661,15 +754,18 @@
   <string name="conversation_activity__type_message_sms_insecure">未加密的短信</string>
   <string name="conversation_activity__type_message_mms_insecure">未加密的彩信</string>
   <string name="conversation_activity__from_sim_name">来自 %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">发送</string>
   <string name="conversation_activity__compose_description">编写信息</string>
   <string name="conversation_activity__emoji_toggle_description">切换表情键盘</string>
   <string name="conversation_activity__attachment_thumbnail">附件缩略图</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切换快速相机附件抽屉</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">录音并分享文件</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">保持录音状态</string>
   <string name="conversation_activity__enable_signal_for_sms"> 将 Signal 设置为默认短信应用</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">滑动以取消</string>
+  <string name="conversation_input_panel__slide_to_cancel"> 滑动以取消发送</string>
+  <string name="conversation_input_panel__cancel">取消</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">媒体信息</string>
   <string name="conversation_item__secure_message_description">安全信息</string>
@@ -688,6 +784,7 @@
   <string name="QuoteView_audio">音频</string>
   <string name="QuoteView_video">视频</string>
   <string name="QuoteView_photo">图片</string>
+  <string name="QuoteView_sticker">表情包</string>
   <string name="QuoteView_document">文档</string>
   <string name="QuoteView_you">您</string>
   <string name="QuoteView_original_missing">没有找到原信息</string>
@@ -907,6 +1004,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 来接收所有的彩信。</string>
   <string name="preferences__pref_enter_sends_title">按下回车键发送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下回车键将会发送短信息</string>
+  <string name="preferences__send_link_previews">发送链接预览</string>
+  <string name="preferences__previews_are_supported_for">预览现支持Imgur, Instagram, Pinterest, Reddit, 以及YouTube链接</string>
   <string name="preferences__choose_identity">选择身份</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择您的联系人条目。</string>
   <string name="preferences__change_passphrase"> 修改密码</string>
@@ -976,6 +1075,8 @@
   <string name="preferences__incognito_keyboard">隐身键盘</string>
   <string name="preferences__read_receipts">已读回执</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">如果您的已读回执被禁用，您也将无法看到他人的已读回执。</string>
+  <string name="preferences__typing_indicators">“正在输入”提示</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果“正在输入”提示功能被禁用，您将无法看到别人正在输入的提示。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">关闭键盘自动学习功能</string>
   <string name="preferences_app_protection__blocked_contacts">已屏蔽的联系人</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
@@ -1097,6 +1198,7 @@
   <string name="reminder_header_share_title">邀请您的好友！</string>
   <string name="reminder_header_share_text">当更多的朋友使用 Signal ，它将变得更好。</string>
   <string name="reminder_header_service_outage_text">Signal遇到了一些技术问题。我们会尽快恢复服务。</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">最新的Signal功能不支持此Android版本。请升级此设备以接收将来的Signal的更新。</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">转发</string>
@@ -1158,11 +1260,9 @@
   <string name="ChatsPreferenceFragment_in_progress">进行中</string>
   <string name="LocalBackupJob_creating_backup">正在创建备份…</string>
   <string name="ProgressPreference_d_messages_so_far">已处理 %d 条消息</string>
-  <string name="RegistrationActivity_verify_s">验证%s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">请输入发送到 %s 的验证码。</string>
-  <string name="RegistrationActivity_wrong_number">错误的号码？</string>
-  <string name="RegistrationActivity_call_me_instead">改成给我打电话</string>
-  <string name="RegistrationActivity_available_in">可用:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">号码错误</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">打电话给我 \n （%1$02d:%2$02d后可用）</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">锁屏</string>
@@ -1200,7 +1300,6 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">无法连接到服务</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">禁用注册锁定 PIN？</string>
   <string name="RegistrationLockDialog_disable">禁用</string>
-  <string name="RegistrationActivity_continue">继续</string>
   <string name="preferences_chats__backups">备份</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已锁定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">轻触解锁</string>

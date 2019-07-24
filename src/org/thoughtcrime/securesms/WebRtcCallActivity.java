@@ -24,10 +24,10 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.view.Window;
@@ -42,13 +42,12 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcCallScreen;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 
@@ -80,6 +79,8 @@ public class WebRtcCallActivity extends Activity {
     setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
 
     initializeResources();
+
+    processIntent(getIntent());
   }
 
 
@@ -94,13 +95,7 @@ public class WebRtcCallActivity extends Activity {
   @Override
   public void onNewIntent(Intent intent){
     Log.i(TAG, "onNewIntent");
-    if (ANSWER_ACTION.equals(intent.getAction())) {
-      handleAnswerCall();
-    } else if (DENY_ACTION.equals(intent.getAction())) {
-      handleDenyCall();
-    } else if (END_CALL_ACTION.equals(intent.getAction())) {
-      handleEndCall();
-    }
+    processIntent(intent);
   }
 
   @Override
@@ -120,10 +115,18 @@ public class WebRtcCallActivity extends Activity {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
+  private void processIntent(@NonNull Intent intent) {
+    if (ANSWER_ACTION.equals(intent.getAction())) {
+      handleAnswerCall();
+    } else if (DENY_ACTION.equals(intent.getAction())) {
+      handleDenyCall();
+    } else if (END_CALL_ACTION.equals(intent.getAction())) {
+      handleEndCall();
+    }
+  }
+
   private void initializeScreenshotSecurity() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
-        TextSecurePreferences.isScreenSecurityEnabled(this))
-    {
+    if (TextSecurePreferences.isScreenSecurityEnabled(this)) {
       getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     } else {
       getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
@@ -232,7 +235,7 @@ public class WebRtcCallActivity extends Activity {
 
   private void handleCallConnected(@NonNull WebRtcViewModel event) {
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES);
-    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_connected), "");
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_connected), "", event.getLocalRenderer(), event.getRemoteRenderer());
   }
 
   private void handleRecipientUnavailable(@NonNull WebRtcViewModel event) {

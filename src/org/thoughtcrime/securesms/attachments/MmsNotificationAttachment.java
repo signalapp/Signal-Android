@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.attachments;
 
 
 import android.net.Uri;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 public class MmsNotificationAttachment extends Attachment {
 
   public MmsNotificationAttachment(int status, long size) {
-    super("application/mms", getTransferStateFromStatus(status), size, null, null, null, null, null, null, false, 0, 0, false, null);
+    super("application/mms", getTransferStateFromStatus(status), size, null, null, null, null, null, null, false, 0, 0, false, null, null);
   }
 
   @Nullable

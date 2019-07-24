@@ -1,6 +1,6 @@
 [main]
 host = https://www.transifex.com
-lang_map = da_DK:da-rDK,he:iw,hi_IN:hi-rIN,id:in,km_KH:km-rKH,kn_IN:kn-rIN,pt_BR:pt-rBR,pt_PT:pt,qu_EC:qu-rEC,sv_SE:sv-rSE,zh_CN:zh-rCN,zh_HK:zh-rHK,zh_TW:zh-rTW
+lang_map = da_DK:da-rDK,he:iw,id:in,kn_IN:kn-rIN,pt_BR:pt-rBR,pt_PT:pt,qu_EC:qu-rEC,sv_SE:sv-rSE,zh_CN:zh-rCN,zh_HK:zh-rHK,zh_TW:zh-rTW
 
 [signal-android.master]
 file_filter = res/values-<lang>/strings.xml

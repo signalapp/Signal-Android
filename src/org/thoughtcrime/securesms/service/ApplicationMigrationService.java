@@ -14,7 +14,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
@@ -149,7 +149,7 @@ public class ApplicationMigrationService extends Service
     public void run() {
       notification              = initializeBackgroundNotification();
       PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
-      WakeLock     wakeLock     = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Migration");
+      WakeLock     wakeLock     = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "signal:migration");
 
       try {
         wakeLock.acquire();

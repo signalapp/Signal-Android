@@ -2,18 +2,21 @@ package org.thoughtcrime.securesms;
 
 import android.Manifest;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.MmsCharacterCalculator;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,10 +34,12 @@ public class TransportOptions {
   private Optional<Integer>         defaultSubscriptionId = Optional.absent();
   private Optional<TransportOption> selectedOption        = Optional.absent();
 
+  private final Optional<Integer> systemSubscriptionId;
+
   public TransportOptions(Context context, boolean media) {
-    this.context               = context;
-    this.enabledTransports     = initializeAvailableTransports(media);
-    this.defaultSubscriptionId = new SubscriptionManagerCompat(context).getPreferredSubscriptionId();
+    this.context              = context;
+    this.enabledTransports    = initializeAvailableTransports(media);
+    this.systemSubscriptionId = new SubscriptionManagerCompat(context).getPreferredSubscriptionId();
   }
 
   public void reset(boolean media) {
@@ -62,6 +67,10 @@ public class TransportOptions {
   }
 
   public void setDefaultSubscriptionId(Optional<Integer> subscriptionId) {
+    if  (defaultSubscriptionId.equals(subscriptionId)) {
+      return;
+    }
+
     this.defaultSubscriptionId = subscriptionId;
 
     if (!selectedOption.isPresent()) {
@@ -81,13 +90,10 @@ public class TransportOptions {
   public @NonNull TransportOption getSelectedTransport() {
     if (selectedOption.isPresent()) return selectedOption.get();
 
-    if (defaultSubscriptionId.isPresent()) {
-      for (TransportOption transportOption : enabledTransports) {
-        if (transportOption.getType() == defaultTransportType &&
-            (int)defaultSubscriptionId.get() == transportOption.getSimSubscriptionId().or(-1))
-        {
-          return transportOption;
-        }
+    if (defaultTransportType == Type.SMS) {
+      TransportOption transportOption = findEnabledSmsTransportOption(defaultSubscriptionId.or(systemSubscriptionId));
+      if (transportOption != null) {
+        return transportOption;
       }
     }
 
@@ -100,14 +106,42 @@ public class TransportOptions {
     throw new AssertionError("No options of default type!");
   }
 
+  public static @NonNull TransportOption getPushTransportOption(@NonNull Context context) {
+    return new TransportOption(Type.TEXTSECURE,
+                               R.drawable.ic_send_push_white_24dp,
+                               context.getResources().getColor(R.color.textsecure_primary),
+                               context.getString(R.string.ConversationActivity_transport_signal),
+                               context.getString(R.string.conversation_activity__type_message_push),
+                               new PushCharacterCalculator());
+
+  }
+
+  private @Nullable TransportOption findEnabledSmsTransportOption(Optional<Integer> subscriptionId) {
+    if (subscriptionId.isPresent()) {
+      final int subId = subscriptionId.get();
+
+      for (TransportOption transportOption : enabledTransports) {
+        if (transportOption.getType() == Type.SMS &&
+            subId == transportOption.getSimSubscriptionId().or(-1)) {
+          return transportOption;
+        }
+      }
+    }
+    return null;
+  }
+
   public void disableTransport(Type type) {
-    Optional<TransportOption> option = find(type);
+    TransportOption selected = selectedOption.orNull();
 
-    if (option.isPresent()) {
-      enabledTransports.remove(option.get());
+    Iterator<TransportOption> iterator = enabledTransports.iterator();
+    while (iterator.hasNext()) {
+      TransportOption option = iterator.next();
 
-      if (selectedOption.isPresent() && selectedOption.get().getType() == type) {
-        setSelectedTransport(null);
+      if (option.isType(type)) {
+        if (selected == option) {
+          setSelectedTransport(null);
+        }
+        iterator.remove();
       }
     }
   }
@@ -133,11 +167,7 @@ public class TransportOptions {
                                                     new SmsCharacterCalculator()));
     }
 
-    results.add(new TransportOption(Type.TEXTSECURE, R.drawable.ic_send_push_white_24dp,
-                                    context.getResources().getColor(R.color.textsecure_primary),
-                                    context.getString(R.string.ConversationActivity_transport_signal),
-                                    context.getString(R.string.conversation_activity__type_message_push),
-                                    new PushCharacterCalculator()));
+    results.add(getPushTransportOption(context));
 
     return results;
   }
@@ -146,14 +176,14 @@ public class TransportOptions {
                                                                         @NonNull String composeHint,
                                                                         @NonNull CharacterCalculator characterCalculator)
   {
-    List<TransportOption>        results             = new LinkedList<>();
-    SubscriptionManagerCompat    subscriptionManager = new SubscriptionManagerCompat(context);
-    List<SubscriptionInfoCompat> subscriptions;
+    List<TransportOption>              results             = new LinkedList<>();
+    SubscriptionManagerCompat          subscriptionManager = new SubscriptionManagerCompat(context);
+    Collection<SubscriptionInfoCompat> subscriptions;
 
     if (Permissions.hasAll(context, Manifest.permission.READ_PHONE_STATE)) {
-      subscriptions = subscriptionManager.getActiveSubscriptionInfoList();
+      subscriptions = subscriptionManager.getActiveAndReadySubscriptionInfos();
     } else {
-      subscriptions = new LinkedList<>();
+      subscriptions = Collections.emptyList();
     }
 
     if (subscriptions.size() < 2) {
@@ -177,16 +207,6 @@ public class TransportOptions {
     for (OnTransportChangedListener listener : listeners) {
       listener.onChange(getSelectedTransport(), selectedOption.isPresent());
     }
-  }
-
-  private Optional<TransportOption> find(Type type) {
-    for (TransportOption option : enabledTransports) {
-      if (option.isType(type)) {
-        return Optional.of(option);
-      }
-    }
-
-    return Optional.absent();
   }
 
   private boolean isEnabled(TransportOption transportOption) {

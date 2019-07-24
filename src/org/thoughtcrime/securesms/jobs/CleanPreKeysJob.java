@@ -1,19 +1,16 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
 import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -24,39 +21,33 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
+public class CleanPreKeysJob extends BaseJob {
 
-import androidx.work.Data;
-
-import static org.thoughtcrime.securesms.dependencies.AxolotlStorageModule.SignedPreKeyStoreFactory;
-
-public class CleanPreKeysJob extends ContextJob implements InjectableType {
+  public static final String KEY = "CleanPreKeysJob";
 
   private static final String TAG = CleanPreKeysJob.class.getSimpleName();
 
   private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(7);
 
-  @Inject transient SignalServiceAccountManager accountManager;
-  @Inject transient SignedPreKeyStoreFactory signedPreKeyStoreFactory;
-
   public CleanPreKeysJob() {
-    super(null, null);
+    this(new Job.Parameters.Builder()
+                           .setQueue("CleanPreKeysJob")
+                           .setMaxAttempts(5)
+                           .build());
   }
 
-  public CleanPreKeysJob(Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId(CleanPreKeysJob.class.getSimpleName())
-                                .withRetryCount(5)
-                                .create());
-  }
-
-  @Override
-  protected void initialize(@NonNull SafeData data) {
+  private CleanPreKeysJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -65,7 +56,7 @@ public class CleanPreKeysJob extends ContextJob implements InjectableType {
       Log.i(TAG, "Cleaning prekeys...");
 
       int                activeSignedPreKeyId = PreKeyUtil.getActiveSignedPreKeyId(context);
-      SignedPreKeyStore  signedPreKeyStore    = signedPreKeyStoreFactory.create();
+      SignedPreKeyStore  signedPreKeyStore    = new SignalProtocolStoreImpl(context);
 
       if (activeSignedPreKeyId < 0) return;
 
@@ -98,7 +89,7 @@ public class CleanPreKeysJob extends ContextJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(Exception throwable) {
+  public boolean onShouldRetry(@NonNull Exception throwable) {
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
     if (throwable instanceof PushNetworkException)               return true;
     return false;
@@ -133,4 +124,10 @@ public class CleanPreKeysJob extends ContextJob implements InjectableType {
     }
   }
 
+  public static final class Factory implements Job.Factory<CleanPreKeysJob> {
+    @Override
+    public @NonNull CleanPreKeysJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new CleanPreKeysJob(parameters);
+    }
+  }
 }

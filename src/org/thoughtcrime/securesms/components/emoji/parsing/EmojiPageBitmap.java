@@ -6,10 +6,8 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
-
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -21,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 
 public class EmojiPageBitmap {
 
@@ -104,7 +101,7 @@ public class EmojiPageBitmap {
   }
 
   @Override
-  public String toString() {
+  public @NonNull String toString() {
     return model.getSprite();
   }
 }

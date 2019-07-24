@@ -1,23 +1,16 @@
 package org.thoughtcrime.securesms.components;
 
+import android.animation.LayoutTransition;
 import android.content.Context;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.annimon.stream.Stream;
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.ValueAnimator;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,9 +20,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collections;
@@ -38,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 
 public class TransferControlView extends FrameLayout {
-  private static final int TRANSITION_MS = 300;
 
   @Nullable private List<Slide> slides;
   @Nullable private View        current;
@@ -46,8 +36,6 @@ public class TransferControlView extends FrameLayout {
   private final ProgressWheel progressWheel;
   private final View          downloadDetails;
   private final TextView      downloadDetailsText;
-  private final int           contractedWidth;
-  private final int           expandedWidth;
 
   private final Map<Attachment, Float> downloadProgress;
 
@@ -63,20 +51,15 @@ public class TransferControlView extends FrameLayout {
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.transfer_controls_view, this);
 
-    final Drawable background = ContextCompat.getDrawable(context, R.drawable.transfer_controls_background);
-    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-      background.setColorFilter(0x66ffffff, Mode.MULTIPLY);
-    }
     setLongClickable(false);
-    ViewUtil.setBackground(this, background);
+    ViewUtil.setBackground(this, ContextCompat.getDrawable(context, R.drawable.transfer_controls_background));
     setVisibility(GONE);
+    setLayoutTransition(new LayoutTransition());
 
     this.downloadProgress    = new HashMap<>();
     this.progressWheel       = ViewUtil.findById(this, R.id.progress_wheel);
     this.downloadDetails     = ViewUtil.findById(this, R.id.download_details);
     this.downloadDetailsText = ViewUtil.findById(this, R.id.download_details_text);
-    this.contractedWidth     = getResources().getDimensionPixelSize(R.dimen.transfer_controls_contracted_width);
-    this.expandedWidth       = getResources().getDimensionPixelSize(R.dimen.transfer_controls_expanded_width);
   }
 
   @Override
@@ -117,11 +100,11 @@ public class TransferControlView extends FrameLayout {
     if (!isUpdateToExistingSet(slides)) {
       downloadProgress.clear();
       Stream.of(slides).forEach(s -> downloadProgress.put(s.asAttachment(), 0f));
-    } else {
-      for (Slide slide : slides) {
-        if (slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
-          downloadProgress.put(slide.asAttachment(), 1f);
-        }
+    }
+    
+    for (Slide slide : slides) {
+      if (slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+        downloadProgress.put(slide.asAttachment(), 1f);
       }
     }
 
@@ -171,6 +154,7 @@ public class TransferControlView extends FrameLayout {
 
   public void setShowDownloadText(boolean showDownloadText) {
     downloadDetailsText.setVisibility(showDownloadText ? VISIBLE : GONE);
+    forceLayout();
   }
 
   private boolean isUpdateToExistingSet(@NonNull List<Slide> slides) {
@@ -209,40 +193,18 @@ public class TransferControlView extends FrameLayout {
   }
 
   private void display(@Nullable final View view) {
-    final int sourceWidth = (current == downloadDetails && downloadDetailsText.getVisibility() == VISIBLE) ? expandedWidth : contractedWidth;
-    final int targetWidth = (view    == downloadDetails && downloadDetailsText.getVisibility() == VISIBLE) ? expandedWidth : contractedWidth;
-
-    if (current == view || current == null) {
-      ViewGroup.LayoutParams layoutParams = getLayoutParams();
-      layoutParams.width = targetWidth;
-      setLayoutParams(layoutParams);
-    } else {
-      ViewUtil.fadeOut(current, TRANSITION_MS);
-      Animator anim = getWidthAnimator(sourceWidth, targetWidth);
-      anim.start();
+    if (current != null) {
+      current.setVisibility(GONE);
     }
 
-    if (view == null) {
-      ViewUtil.fadeOut(this, TRANSITION_MS);
+    if (view != null) {
+      view.setVisibility(VISIBLE);
+      setVisibility(VISIBLE);
     } else {
-      ViewUtil.fadeIn(this, TRANSITION_MS);
-      ViewUtil.fadeIn(view, TRANSITION_MS);
+      setVisibility(GONE);
     }
 
     current = view;
-  }
-
-  private Animator getWidthAnimator(final int from, final int to) {
-    final ValueAnimator anim = ValueAnimator.ofInt(from, to);
-    anim.addUpdateListener(animation -> {
-      final int val = (Integer)animation.getAnimatedValue();
-      final ViewGroup.LayoutParams layoutParams = getLayoutParams();
-      layoutParams.width = val;
-      setLayoutParams(layoutParams);
-    });
-    anim.setInterpolator(new FastOutSlowInInterpolator());
-    anim.setDuration(TRANSITION_MS);
-    return anim;
   }
 
   private float calculateProgress(@NonNull Map<Attachment, Float> downloadProgress) {
@@ -253,13 +215,11 @@ public class TransferControlView extends FrameLayout {
     return totalProgress;
   }
 
-  @Subscribe(sticky = true, threadMode = ThreadMode.ASYNC)
+  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventAsync(final PartProgressEvent event) {
     if (downloadProgress.containsKey(event.attachment)) {
-      Util.runOnMain(() -> {
-        downloadProgress.put(event.attachment, ((float)event.progress) / event.total);
-        progressWheel.setInstantProgress(calculateProgress(downloadProgress));
-      });
+      downloadProgress.put(event.attachment, ((float) event.progress) / event.total);
+      progressWheel.setInstantProgress(calculateProgress(downloadProgress));
     }
   }
 }

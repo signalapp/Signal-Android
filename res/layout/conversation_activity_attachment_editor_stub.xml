@@ -50,8 +50,8 @@
             android:visibility="gone"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:paddingLeft="@dimen/message_bubble_horizontal_padding"
-            android:paddingRight="@dimen/message_bubble_horizontal_padding"
+            android:paddingStart="@dimen/message_bubble_horizontal_padding"
+            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:background="@drawable/message_bubble_background_sent_alone"
             app:doc_titleColor="?attr/conversation_item_sent_text_primary_color"
             app:doc_captionColor="?attr/conversation_item_sent_text_secondary_color"/>

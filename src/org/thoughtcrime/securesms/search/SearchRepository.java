@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.MergeCursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
@@ -19,10 +19,12 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.search.model.SearchResult;
+import org.thoughtcrime.securesms.util.Stopwatch;
 
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +34,9 @@ import java.util.concurrent.Executor;
 /**
  * Manages data retrieval for search.
  */
-class SearchRepository {
+public class SearchRepository {
+
+  private static final String TAG = SearchRepository.class.getSimpleName();
 
   private static final Set<Character> BANNED_CHARACTERS = new HashSet<>();
   static {
@@ -58,12 +62,12 @@ class SearchRepository {
   private final ContactAccessor  contactAccessor;
   private final Executor         executor;
 
-  SearchRepository(@NonNull Context          context,
-                   @NonNull SearchDatabase   searchDatabase,
-                   @NonNull ContactsDatabase contactsDatabase,
-                   @NonNull ThreadDatabase   threadDatabase,
-                   @NonNull ContactAccessor  contactAccessor,
-                   @NonNull Executor         executor)
+  public SearchRepository(@NonNull Context context,
+                          @NonNull SearchDatabase searchDatabase,
+                          @NonNull ContactsDatabase contactsDatabase,
+                          @NonNull ThreadDatabase threadDatabase,
+                          @NonNull ContactAccessor contactAccessor,
+                          @NonNull Executor executor)
   {
     this.context          = context.getApplicationContext();
     this.searchDatabase   = searchDatabase;
@@ -73,19 +77,45 @@ class SearchRepository {
     this.executor         = executor;
   }
 
-  void query(@NonNull String query, @NonNull Callback callback) {
+  public void query(@NonNull String query, @NonNull Callback<SearchResult> callback) {
     if (TextUtils.isEmpty(query)) {
       callback.onResult(SearchResult.EMPTY);
       return;
     }
 
     executor.execute(() -> {
-      String                    cleanQuery    = sanitizeQuery(query);
-      CursorList<Recipient>     contacts      = queryContacts(cleanQuery);
-      CursorList<ThreadRecord>  conversations = queryConversations(cleanQuery);
-      CursorList<MessageResult> messages      = queryMessages(cleanQuery);
+      Stopwatch timer = new Stopwatch("FtsQuery");
+
+      String cleanQuery = sanitizeQuery(query);
+      timer.split("clean");
+
+      CursorList<Recipient> contacts = queryContacts(cleanQuery);
+      timer.split("contacts");
+
+      CursorList<ThreadRecord> conversations = queryConversations(cleanQuery);
+      timer.split("conversations");
+
+      CursorList<MessageResult> messages = queryMessages(cleanQuery);
+      timer.split("messages");
+
+      timer.stop(TAG);
 
       callback.onResult(new SearchResult(cleanQuery, contacts, conversations, messages));
+    });
+  }
+
+  public void query(@NonNull String query, long threadId, @NonNull Callback<CursorList<MessageResult>> callback) {
+    if (TextUtils.isEmpty(query)) {
+      callback.onResult(CursorList.emptyList());
+      return;
+    }
+
+    executor.execute(() -> {
+      long startTime = System.currentTimeMillis();
+      CursorList<MessageResult> messages = queryMessages(sanitizeQuery(query), threadId);
+      Log.d(TAG, "[ConversationQuery] " + (System.currentTimeMillis() - startTime) + " ms");
+
+      callback.onResult(messages);
     });
   }
 
@@ -112,6 +142,12 @@ class SearchRepository {
 
   private CursorList<MessageResult> queryMessages(@NonNull String query) {
     Cursor messages = searchDatabase.queryMessages(query);
+    return messages != null ? new CursorList<>(messages, new MessageModelBuilder(context))
+                            : CursorList.emptyList();
+  }
+
+  private CursorList<MessageResult> queryMessages(@NonNull String query, long threadId) {
+    Cursor messages = searchDatabase.queryMessages(query, threadId);
     return messages != null ? new CursorList<>(messages, new MessageModelBuilder(context))
                             : CursorList.emptyList();
   }
@@ -177,17 +213,19 @@ class SearchRepository {
 
     @Override
     public MessageResult build(@NonNull Cursor cursor) {
-      Address   address    = Address.fromSerialized(cursor.getString(0));
-      Recipient recipient  = Recipient.from(context, address, false);
-      String    body       = cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.SNIPPET));
-      long      receivedMs = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
-      long      threadId   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.THREAD_ID));
+      Address   conversationAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndex(SearchDatabase.CONVERSATION_ADDRESS)));
+      Address   messageAddress        = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.MESSAGE_ADDRESS)));
+      Recipient conversationRecipient = Recipient.from(context, conversationAddress, false);
+      Recipient messageRecipient      = Recipient.from(context, messageAddress, false);
+      String    body                  = cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.SNIPPET));
+      long      receivedMs            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
+      long      threadId              = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.THREAD_ID));
 
-      return new MessageResult(recipient, body, threadId, receivedMs);
+      return new MessageResult(conversationRecipient, messageRecipient, body, threadId, receivedMs);
     }
   }
 
-  public interface Callback {
-    void onResult(@NonNull SearchResult result);
+  public interface Callback<E> {
+    void onResult(@NonNull E result);
   }
 }

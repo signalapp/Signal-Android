@@ -31,9 +31,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -64,9 +62,7 @@
                     <ImageView
                         android:layout_width="27dp"
                         android:layout_height="35dp"
-                        android:layout_marginRight="4dp"
                         android:layout_marginEnd="4dp"
-                        android:paddingLeft="-4dp"
                         android:paddingStart="-4dp"
                         android:src="?attr/attachment_document_icon_small" />
 
@@ -86,7 +82,7 @@
                     android:id="@+id/media_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     style="@style/Signal.Text.Caption"
                     android:textColor="@color/core_grey_90"
                     android:paddingTop="4dp"
@@ -132,7 +128,6 @@
                     <ImageView
                         android:layout_width="13dp"
                         android:layout_height="16dp"
-                        android:layout_marginLeft="11dp"
                         android:layout_marginStart="11dp"
                         android:layout_marginTop="8dp"
                         android:tint="@color/core_blue"
@@ -157,7 +152,6 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_broken_link"
                 android:tint="?attr/quote_missing_icon_color"/>
@@ -179,9 +173,8 @@
         android:id="@+id/quote_dismiss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="6dp"
         android:layout_gravity="top|end"
         android:background="@drawable/dismiss_background"
         android:src="@drawable/ic_close_white_18dp"

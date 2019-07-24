@@ -6,6 +6,6 @@ public class MmsCharacterCalculator extends CharacterCalculator {
 
   @Override
   public CharacterState calculateCharacters(String messageBody) {
-    return new CharacterState(1, MAX_SIZE - messageBody.length(), MAX_SIZE);
+    return new CharacterState(1, MAX_SIZE - messageBody.length(), MAX_SIZE, MAX_SIZE);
   }
 }

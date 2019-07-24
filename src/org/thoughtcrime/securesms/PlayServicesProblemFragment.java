@@ -21,21 +21,22 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.AlertDialog;
 
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 public class PlayServicesProblemFragment extends DialogFragment {
 
   @Override
-  public @NonNull Dialog onCreateDialog(@NonNull Bundle bundle) {
-    int    code   = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
-    Dialog dialog = GooglePlayServicesUtil.getErrorDialog(code, getActivity(), 9111);
+  public @NonNull Dialog onCreateDialog(@Nullable Bundle bundle) {
+    int    code   = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(getActivity());
+    Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), code, 9111);
 
     if (dialog == null) {
-      return new AlertDialog.Builder(getActivity())
+      return new AlertDialog.Builder(requireActivity())
               .setNegativeButton(android.R.string.ok, null)
               .setMessage(R.string.PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning)
               .create();

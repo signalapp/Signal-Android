@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v4.view.ViewCompat;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -36,6 +39,10 @@ public class FromTextView extends EmojiTextView {
   }
 
   public void setText(Recipient recipient, boolean read) {
+    setText(recipient, read, null);
+  }
+
+  public void setText(Recipient recipient, boolean read, @Nullable String suffix) {
     String fromString = recipient.toShortString();
 
     int typeface;
@@ -52,7 +59,10 @@ public class FromTextView extends EmojiTextView {
     fromSpan.setSpan(new StyleSpan(typeface), 0, builder.length(),
                      Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 
-    if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
+
+    if (recipient.isLocalNumber()) {
+      builder.append(getContext().getString(R.string.note_to_self));
+    } else if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
       SpannableString profileName = new SpannableString(" (~" + recipient.getProfileName() + ") ");
       profileName.setSpan(new CenterAlignedRelativeSizeSpan(0.75f), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       profileName.setSpan(new TypefaceSpan("sans-serif-light"), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -67,6 +77,10 @@ public class FromTextView extends EmojiTextView {
       }
     } else {
       builder.append(fromSpan);
+    }
+
+    if (suffix != null) {
+      builder.append(suffix);
     }
 
     setText(builder);

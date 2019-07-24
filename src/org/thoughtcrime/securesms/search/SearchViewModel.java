@@ -1,16 +1,19 @@
 package org.thoughtcrime.securesms.search;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import android.database.ContentObserver;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.search.model.SearchResult;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.Util;
 
 /**
  * A {@link ViewModel} for handling all the business logic and interactions that take place inside
@@ -18,7 +21,7 @@ import org.thoughtcrime.securesms.util.Debouncer;
  *
  * This class should be view- and Android-agnostic, and therefore should contain no references to
  * things like {@link android.content.Context}, {@link android.view.View},
- * {@link android.support.v4.app.Fragment}, etc.
+ * {@link Fragment}, etc.
  */
 class SearchViewModel extends ViewModel {
 
@@ -28,7 +31,7 @@ class SearchViewModel extends ViewModel {
 
   private String lastQuery;
 
-  SearchViewModel(@NonNull SearchRepository searchRepository) {
+  private SearchViewModel(@NonNull SearchRepository searchRepository) {
     this.searchResult     = new ObservingLiveData();
     this.searchRepository = searchRepository;
     this.debouncer        = new Debouncer(500);
@@ -49,7 +52,15 @@ class SearchViewModel extends ViewModel {
 
   void updateQuery(String query) {
     lastQuery = query;
-    debouncer.publish(() -> searchRepository.query(query, searchResult::postValue));
+    debouncer.publish(() -> searchRepository.query(query, result -> {
+      Util.runOnMain(() -> {
+        if (query.equals(lastQuery)) {
+          searchResult.setValue(result);
+        } else {
+          result.close();
+        }
+      });
+    }));
   }
 
   @NonNull

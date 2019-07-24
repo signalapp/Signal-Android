@@ -18,26 +18,18 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.annimon.stream.Stream;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -51,16 +43,14 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-
-import static org.thoughtcrime.securesms.util.SpanUtil.color;
 
 public class ConversationListItem extends RelativeLayout
                                   implements RecipientModifiedListener,
@@ -71,6 +61,8 @@ public class ConversationListItem extends RelativeLayout
 
   private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif-medium", Typeface.NORMAL);
   private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif", Typeface.NORMAL);
+
+  private static final int MAX_SNIPPET_LENGTH = 500;
 
   private Set<Long>           selectedThreads;
   private Recipient           recipient;
@@ -150,7 +142,9 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipient.addListener(this);
     if (highlightSubstring != null) {
-      this.fromView.setText(getHighlightedSpan(locale, recipient.getName(), highlightSubstring));
+      String name = recipient.isLocalNumber() ? getContext().getString(R.string.note_to_self) : recipient.getName();
+
+      this.fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), name, highlightSubstring));
     } else {
       this.fromView.setText(recipient, unreadCount == 0);
     }
@@ -165,7 +159,7 @@ public class ConversationListItem extends RelativeLayout
       this.typingView.stopAnimation();
 
       this.subjectView.setVisibility(VISIBLE);
-      this.subjectView.setText(thread.getDisplayBody());
+      this.subjectView.setText(getTrimmedSnippet(thread.getDisplayBody(getContext())));
       this.subjectView.setTypeface(unreadCount == 0 ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
       this.subjectView.setTextColor(unreadCount == 0 ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_subject_color)
                                                      : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
@@ -204,8 +198,10 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipient.addListener(this);
 
-    fromView.setText(getHighlightedSpan(locale, recipient.getName(), highlightSubstring));
-    subjectView.setText(getHighlightedSpan(locale, contact.getAddress().toPhoneString(), highlightSubstring));
+    String name = recipient.isLocalNumber() ? getContext().getString(R.string.note_to_self) : recipient.getName();
+
+    fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), name, highlightSubstring));
+    subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), contact.getAddress().toString(), highlightSubstring));
     dateView.setText("");
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
@@ -224,13 +220,13 @@ public class ConversationListItem extends RelativeLayout
                    @Nullable String        highlightSubstring)
   {
     this.selectedThreads = Collections.emptySet();
-    this.recipient       = messageResult.recipient;
+    this.recipient       = messageResult.conversationRecipient;
     this.glideRequests   = glideRequests;
 
     this.recipient.addListener(this);
 
     fromView.setText(recipient, true);
-    subjectView.setText(getHighlightedSpan(locale, messageResult.bodySnippet, highlightSubstring));
+    subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), messageResult.bodySnippet, highlightSubstring));
     dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.receivedTimestampMs));
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
@@ -245,7 +241,11 @@ public class ConversationListItem extends RelativeLayout
 
   @Override
   public void unbind() {
-    if (this.recipient != null) this.recipient.removeListener(this);
+    if (this.recipient != null) {
+      this.recipient.removeListener(this);
+      this.recipient = null;
+      contactPhotoImage.setAvatar(glideRequests, null, true);
+    }
   }
 
   private void setBatchState(boolean batch) {
@@ -270,6 +270,11 @@ public class ConversationListItem extends RelativeLayout
 
   public long getLastSeen() {
     return lastSeen;
+  }
+
+  private @NonNull CharSequence getTrimmedSnippet(@NonNull CharSequence snippet) {
+    return snippet.length() <= MAX_SNIPPET_LENGTH ? snippet
+                                                  : snippet.subSequence(0, MAX_SNIPPET_LENGTH);
   }
 
   private void setThumbnailSnippet(ThreadRecord thread) {
@@ -333,50 +338,14 @@ public class ConversationListItem extends RelativeLayout
     unreadIndicator.setVisibility(View.VISIBLE);
   }
 
-  private Spanned getHighlightedSpan(@NonNull  Locale locale,
-                                     @Nullable String value,
-                                     @Nullable String highlight)
-  {
-    if (TextUtils.isEmpty(value)) {
-      return new SpannableString("");
-    }
-
-    value = value.replaceAll("\n", " ");
-
-    if (TextUtils.isEmpty(highlight)) {
-      return new SpannableString(value);
-    }
-
-    String       normalizedValue  = value.toLowerCase(locale);
-    String       normalizedTest   = highlight.toLowerCase(locale);
-    List<String> testTokens       = Stream.of(normalizedTest.split(" ")).filter(s -> s.trim().length() > 0).toList();
-
-    Spannable spanned          = new SpannableString(value);
-    int       searchStartIndex = 0;
-
-    for (String token : testTokens) {
-      if (searchStartIndex >= spanned.length()) {
-        break;
-      }
-
-      int start = normalizedValue.indexOf(token, searchStartIndex);
-
-      if (start >= 0) {
-        int end = Math.min(start + token.length(), spanned.length());
-        spanned.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-        searchStartIndex = end;
-      }
-    }
-
-    return spanned;
-  }
-
   @Override
   public void onModified(final Recipient recipient) {
     Util.runOnMain(() -> {
-      fromView.setText(recipient, unreadCount == 0);
-      contactPhotoImage.setAvatar(glideRequests, recipient, true);
-      setRippleColor(recipient);
+      if (this.recipient == recipient) {
+        fromView.setText(recipient, unreadCount == 0);
+        contactPhotoImage.setAvatar(glideRequests, recipient, true);
+        setRippleColor(recipient);
+      }
     });
   }
 

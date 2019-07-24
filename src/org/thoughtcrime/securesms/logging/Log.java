@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.logging;
 
-import android.support.annotation.MainThread;
+import androidx.annotation.MainThread;
 
 public class Log {
 
@@ -119,6 +119,21 @@ public class Log {
     }
   }
 
+  public static String tag(Class<?> clazz) {
+    String simpleName = clazz.getSimpleName();
+    if (simpleName.length() > 23) {
+      return simpleName.substring(0, 23);
+    }
+    return simpleName;
+  }
+
+  public static void blockUntilAllWritesFinished() {
+    if (loggers != null) {
+      for (Logger logger : loggers) {
+        logger.blockUntilAllWritesFinished();
+      }
+    }
+  }
 
   public static abstract class Logger {
     public abstract void v(String tag, String message, Throwable t);
@@ -127,5 +142,6 @@ public class Log {
     public abstract void w(String tag, String message, Throwable t);
     public abstract void e(String tag, String message, Throwable t);
     public abstract void wtf(String tag, String message, Throwable t);
+    public abstract void blockUntilAllWritesFinished();
   }
 }

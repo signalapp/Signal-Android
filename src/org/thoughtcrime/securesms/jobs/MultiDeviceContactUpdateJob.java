@@ -5,10 +5,9 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -18,9 +17,10 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -47,13 +47,9 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
+public class MultiDeviceContactUpdateJob extends BaseJob {
 
-import androidx.work.Data;
-
-public class MultiDeviceContactUpdateJob extends ContextJob implements InjectableType {
-
-  private static final long serialVersionUID = 2L;
+  public static final String KEY = "MultiDeviceContactUpdateJob";
 
   private static final String TAG = MultiDeviceContactUpdateJob.class.getSimpleName();
 
@@ -62,15 +58,9 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
   private static final String KEY_ADDRESS    = "address";
   private static final String KEY_FORCE_SYNC = "force_sync";
 
-  @Inject transient SignalServiceMessageSender messageSender;
-
   private @Nullable String address;
 
   private boolean forceSync;
-
-  public MultiDeviceContactUpdateJob() {
-    super(null, null);
-  }
 
   public MultiDeviceContactUpdateJob(@NonNull Context context) {
     this(context, false);
@@ -85,10 +75,18 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
   }
 
   public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .withGroupId(MultiDeviceContactUpdateJob.class.getSimpleName())
-                                .create());
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setQueue("MultiDeviceContactUpdateJob")
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .build(),
+         address,
+         forceSync);
+  }
+
+  private MultiDeviceContactUpdateJob(@NonNull Job.Parameters parameters, @Nullable Address address, boolean forceSync) {
+    super(parameters);
 
     this.forceSync = forceSync;
 
@@ -97,16 +95,15 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    address   = data.getString(KEY_ADDRESS);
-    forceSync = data.getBoolean(KEY_FORCE_SYNC);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putString(KEY_ADDRESS, address)
+                             .putBoolean(KEY_FORCE_SYNC, forceSync)
+                             .build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putString(KEY_ADDRESS, address)
-                      .putBoolean(KEY_FORCE_SYNC, forceSync)
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -145,7 +142,7 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
                                       Optional.absent()));
 
       out.close();
-      sendUpdate(messageSender, contactDataFile, false);
+      sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(), contactDataFile, false);
 
     } catch(InvalidNumberException e) {
       Log.w(TAG, e);
@@ -198,15 +195,16 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
       }
 
       if (ProfileKeyUtil.hasProfileKey(context)) {
+        Recipient self = Recipient.from(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), false);
         out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(context),
                                     Optional.absent(), Optional.absent(),
-                                    Optional.absent(), Optional.absent(),
+                                    Optional.of(self.getColor().serialize()), Optional.absent(),
                                     Optional.of(ProfileKeyUtil.getProfileKey(context)),
-                                    false, Optional.absent()));
+                                    false, self.getExpireMessages() > 0 ? Optional.of(self.getExpireMessages()) : Optional.absent()));
       }
 
       out.close();
-      sendUpdate(messageSender, contactDataFile, true);
+      sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(), contactDataFile, true);
     } catch(InvalidNumberException e) {
       Log.w(TAG, e);
     } finally {
@@ -215,7 +213,7 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     if (exception instanceof PushNetworkException) return true;
     return false;
   }
@@ -250,24 +248,22 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
       return Optional.absent();
     }
     
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      Uri displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
+    Uri displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
 
-      try {
-        AssetFileDescriptor fd = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
+    try {
+      AssetFileDescriptor fd = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
 
-        if (fd == null) {
-          return Optional.absent();
-        }
-
-        return Optional.of(SignalServiceAttachment.newStreamBuilder()
-                                                  .withStream(fd.createInputStream())
-                                                  .withContentType("image/*")
-                                                  .withLength(fd.getLength())
-                                                  .build());
-      } catch (IOException e) {
-        Log.i(TAG, "Could not find avatar for URI: " + displayPhotoUri);
+      if (fd == null) {
+        return Optional.absent();
       }
+
+      return Optional.of(SignalServiceAttachment.newStreamBuilder()
+                                                .withStream(fd.createInputStream())
+                                                .withContentType("image/*")
+                                                .withLength(fd.getLength())
+                                                .build());
+    } catch (IOException e) {
+      Log.i(TAG, "Could not find avatar for URI: " + displayPhotoUri);
     }
 
     Uri photoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
@@ -335,4 +331,13 @@ public class MultiDeviceContactUpdateJob extends ContextJob implements Injectabl
     }
   }
 
+  public static final class Factory implements Job.Factory<MultiDeviceContactUpdateJob> {
+    @Override
+    public @NonNull MultiDeviceContactUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      String  serialized = data.getString(KEY_ADDRESS);
+      Address address    = serialized != null ? Address.fromSerialized(serialized) : null;
+
+      return new MultiDeviceContactUpdateJob(parameters, address, data.getBoolean(KEY_FORCE_SYNC));
+    }
+  }
 }

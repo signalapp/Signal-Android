@@ -1,72 +1,49 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.SafeData;
-import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidVersionException;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
-
-import java.io.IOException;
-
-import androidx.work.Data;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
 
 public class PushContentReceiveJob extends PushReceivedJob {
 
-  private static final long   serialVersionUID = 5685475456901715638L;
-  private static final String TAG              = PushContentReceiveJob.class.getSimpleName();
-
-  private static final String KEY_DATA = "data";
-
-  private String data;
-
-  public PushContentReceiveJob() {
-    super(null, null);
-  }
+  public static final String KEY = "PushContentReceiveJob";
 
   public PushContentReceiveJob(Context context) {
-    super(context, JobParameters.newBuilder().create());
-    this.data = null;
+    this(new Job.Parameters.Builder().build());
+    setContext(context);
   }
 
-  public PushContentReceiveJob(Context context, String data) {
-    super(context, JobParameters.newBuilder().create());
-    this.data = data;
-  }
-
-  @Override
-  protected void initialize(@NonNull SafeData data) {
-    this.data = data.getString(KEY_DATA);
+  private PushContentReceiveJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putString(KEY_DATA, data).build();
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
   }
 
   @Override
-  public void onRun() {
-    try {
-      String                sessionKey = TextSecurePreferences.getSignalingKey(context);
-      SignalServiceEnvelope envelope   = new SignalServiceEnvelope(data, sessionKey);
-
-      processEnvelope(envelope);
-    } catch (IOException | InvalidVersionException e) {
-      Log.w(TAG, e);
-    }
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
-  public void onCanceled() {
-
-  }
+  public void onRun() { }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public void onCanceled() { }
+
+  @Override
+  public boolean onShouldRetry(@NonNull Exception exception) {
     return false;
+  }
+
+  public static final class Factory implements Job.Factory<PushContentReceiveJob> {
+    @Override
+    public @NonNull PushContentReceiveJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new PushContentReceiveJob(parameters);
+    }
   }
 }

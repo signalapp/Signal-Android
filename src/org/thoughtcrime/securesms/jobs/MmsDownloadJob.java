@@ -1,12 +1,8 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
-import org.thoughtcrime.securesms.jobmanager.SafeData;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
@@ -16,13 +12,14 @@ import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -30,7 +27,7 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.providers.MemoryBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -47,11 +44,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import androidx.work.Data;
+public class MmsDownloadJob extends BaseJob {
 
-public class MmsDownloadJob extends ContextJob {
-
-  private static final long serialVersionUID = 1L;
+  public static final String KEY = "MmsDownloadJob";
 
   private static final String TAG = MmsDownloadJob.class.getSimpleName();
 
@@ -63,14 +58,19 @@ public class MmsDownloadJob extends ContextJob {
   private long    threadId;
   private boolean automatic;
 
-  public MmsDownloadJob() {
-    super(null, null);
+  public MmsDownloadJob(long messageId, long threadId, boolean automatic) {
+    this(new Job.Parameters.Builder()
+                           .setQueue("mms-operation")
+                           .setMaxAttempts(25)
+                           .build(),
+         messageId,
+         threadId,
+         automatic);
+
   }
 
-  public MmsDownloadJob(Context context, long messageId, long threadId, boolean automatic) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId("mms-operation")
-                                .create());
+  private MmsDownloadJob(@NonNull Job.Parameters parameters, long messageId, long threadId, boolean automatic) {
+    super(parameters);
 
     this.messageId = messageId;
     this.threadId  = threadId;
@@ -78,18 +78,16 @@ public class MmsDownloadJob extends ContextJob {
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    messageId = data.getLong(KEY_MESSAGE_ID);
-    threadId  = data.getLong(KEY_THREAD_ID);
-    automatic = data.getBoolean(KEY_AUTOMATIC);
+  public @NonNull Data serialize() {
+    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
+                             .putLong(KEY_THREAD_ID, threadId)
+                             .putBoolean(KEY_AUTOMATIC, automatic)
+                             .build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putLong(KEY_MESSAGE_ID, messageId)
-                      .putLong(KEY_THREAD_ID, threadId)
-                      .putBoolean(KEY_AUTOMATIC, automatic)
-                      .build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -184,7 +182,7 @@ public class MmsDownloadJob extends ContextJob {
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     return false;
   }
 
@@ -195,7 +193,6 @@ public class MmsDownloadJob extends ContextJob {
              LegacyMessageException
   {
     MmsDatabase           database    = DatabaseFactory.getMmsDatabase(context);
-    MemoryBlobProvider    provider    = MemoryBlobProvider.getInstance();
     Optional<Address>     group       = Optional.absent();
     Set<Address>          members     = new HashSet<>();
     String                body        = null;
@@ -234,14 +231,14 @@ public class MmsDownloadJob extends ContextJob {
         PduPart part = media.getPart(i);
 
         if (part.getData() != null) {
-          Uri    uri  = provider.createSingleUseUri(part.getData());
+          Uri    uri  = BlobProvider.getInstance().forData(part.getData()).createForSingleUseInMemory();
           String name = null;
 
           if (part.getName() != null) name = Util.toIsoString(part.getName());
 
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length, name, false, false, null));
+                                            part.getData().length, name, false, false, null, null));
         }
       }
     }
@@ -250,7 +247,7 @@ public class MmsDownloadJob extends ContextJob {
       group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true)));
     }
 
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false);
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, 0, false);
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {
@@ -268,6 +265,16 @@ public class MmsDownloadJob extends ContextJob {
     if (automatic) {
       db.markIncomingNotificationReceived(threadId);
       MessageNotifier.updateNotification(context, threadId);
+    }
+  }
+
+  public static final class Factory implements Job.Factory<MmsDownloadJob> {
+    @Override
+    public @NonNull MmsDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new MmsDownloadJob(parameters,
+                                data.getLong(KEY_MESSAGE_ID),
+                                data.getLong(KEY_THREAD_ID),
+                                data.getBoolean(KEY_AUTOMATIC));
     }
   }
 }

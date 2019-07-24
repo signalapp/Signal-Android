@@ -1,335 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:app="http://schemas.android.com/apk/res-auto"
-                  android:layout_width="fill_parent"
-                  android:layout_height="fill_parent"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:fillViewport="true"
-                  android:background="@color/white"
-                  tools:context=".RegistrationActivity">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    tools:context=".RegistrationActivity">
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout android:id="@+id/header"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_alignParentTop="true"
-                      android:orientation="vertical"
-                      android:background="@color/signal_primary"
-                      android:padding="16dp">
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
 
-            <TextView android:id="@+id/verify_header"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:paddingBottom="16dp"
-                      android:text="@string/registration_activity__verify_your_number"
-                      android:textSize="20sp"
-                      android:textStyle="bold"
-                      android:textColor="@color/white"
-                      android:layout_gravity="center"
-                      android:gravity="center"/>
+            <TextView
+                android:id="@+id/verify_header"
+                style="@style/Signal.Text.Headline.Registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:text="@string/RegistrationActivity_enter_your_phone_number_to_get_started" />
 
-            <TextView android:id="@+id/verify_subheader"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:paddingBottom="25dp"
-                      android:textColor="@color/white"
-                      android:text="@string/registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply"
-                      android:gravity="center"/>
+            <TextView
+                android:id="@+id/verify_subheader"
+                style="@style/Signal.Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="25dp"
+                android:text="@string/RegistrationActivity_you_will_receive_a_verification_code" />
 
         </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
-                app:fabSize="normal"
-                app:backgroundTint="@color/white"
-                app:elevation="1dp"
-                android:id="@+id/fab"
-                android:transitionName="icon"
-                android:src="@drawable/ic_action_name"
-                android:tint="@color/grey_700"
-                android:rotation="15"
+        <LinearLayout
+            android:id="@+id/restore_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="vertical"
+            android:paddingBottom="0dp"
+            android:visibility="invisible"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/backup_created_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/header"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="-32dp"/>
+                tools:text="Backup created: 1 min ago" />
 
-        <LinearLayout android:id="@+id/restore_container"
-                      android:padding="16dp"
-                      android:paddingBottom="0dp"
-                      android:layout_marginTop="30dp"
-                      android:layout_below="@id/header"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical"
-                      android:visibility="invisible"
-                      tools:visibility="invisible">
+            <TextView
+                android:id="@+id/backup_size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:text="Backup size: 899 KB" />
 
-            <TextView android:id="@+id/backup_created_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Backup created: 1 min ago"/>
-
-            <TextView android:id="@+id/backup_size_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:text="Backup size: 899 KB"/>
-
-            <TextView android:id="@+id/backup_progress_text"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="16dp"
-                      android:layout_gravity="center_horizontal"
-                      tools:text="100 messages so far..."/>
+            <TextView
+                android:id="@+id/backup_progress_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                tools:text="100 messages so far..." />
 
             <com.dd.CircularProgressButton
-                    android:id="@+id/restore_button"
-                    app:cpb_textIdle="@string/registration_activity__restore_backup"
-                    app:cpb_selectorIdle="@drawable/progress_button_state"
-                    app:cpb_colorIndicator="@color/white"
-                    app:cpb_colorProgress="@color/textsecure_primary"
-                    app:cpb_cornerRadius="50dp"
-                    android:background="@color/signal_primary"
-                    android:textColor="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center_horizontal"/>
+                android:id="@+id/restore_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/signal_primary"
+                android:textColor="@color/white"
+                app:cpb_colorIndicator="@color/white"
+                app:cpb_colorProgress="@color/textsecure_primary"
+                app:cpb_cornerRadius="4dp"
+                app:cpb_selectorIdle="@drawable/progress_button_state"
+                app:cpb_textIdle="@string/registration_activity__restore_backup" />
 
-            <TextView android:id="@+id/skip_restore_button"
-                      android:layout_gravity="center_horizontal"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="13dp"
-                      android:textColor="@color/gray50"
-                      android:paddingLeft="30dp"
-                      android:paddingRight="30dp"
-                      android:paddingTop="10dp"
-                      android:paddingBottom="10dp"
-                      android:text="@string/registration_activity__skip"/>
+            <Button
+                android:id="@+id/skip_restore_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="13dp"
+                android:paddingStart="30dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="30dp"
+                android:paddingBottom="10dp"
+                style="@style/Button.Borderless.Registration"
+                android:text="@string/registration_activity__skip" />
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/registration_container"
-                      android:padding="16dp"
-                      android:paddingBottom="0dp"
-                      android:layout_marginTop="30dp"
-                      android:layout_below="@id/header"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:animateLayoutChanges="true"
-                      android:orientation="vertical"
-                      tools:visibility="invisible">
+        <LinearLayout
+            android:id="@+id/registration_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="32dp"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:paddingBottom="0dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            tools:visibility="gone">
 
-            <Spinner android:id="@+id/country_spinner"
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_marginBottom="16dip" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/labeled_edit_text_background_inactive">
 
-            <LinearLayout android:orientation="horizontal"
-                          android:layoutDirection="ltr"
-                          android:layout_width="fill_parent"
-                          android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/country_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp" />
 
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textSize="20sp"
-                          style="@style/Registration.Constant"
-                          android:text="+" />
+            </FrameLayout>
 
-                <EditText android:id="@+id/country_code"
-                          android:layout_width="55dip"
-                          android:layout_height="wrap_content"
-                          android:singleLine="true"
-                          android:gravity="center"
-                          android:inputType="phone"
-                          android:digits="0123456789"
-                          android:maxLength="3" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal">
 
-                <EditText android:id="@+id/number"
-                          android:layout_width="0dip"
-                          android:layout_height="wrap_content"
-                          android:layout_weight="1"
-                          android:inputType="phone"
-                          android:hint="@string/registration_activity__phone_number"
-                          android:gravity="center"
-                          android:singleLine="true"/>
+                <org.thoughtcrime.securesms.components.LabeledEditText
+                    android:id="@+id/country_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="12dp"
+                    app:labeledEditText_background="@color/white"
+                    app:labeledEditText_textLayout="@layout/country_code_text" />
+
+                <org.thoughtcrime.securesms.components.LabeledEditText
+                    android:id="@+id/number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    app:labeledEditText_background="@color/white"
+                    app:labeledEditText_label="Phone Number"
+                    app:labeledEditText_textLayout="@layout/phone_text"/>
 
             </LinearLayout>
 
             <com.dd.CircularProgressButton
-                    android:id="@+id/registerButton"
-                    app:cpb_textIdle="@string/registration_activity__register"
-                    app:cpb_selectorIdle="@drawable/progress_button_state"
-                    app:cpb_colorIndicator="@color/white"
-                    app:cpb_colorProgress="@color/textsecure_primary"
-                    app:cpb_cornerRadius="50dp"
-                    android:background="@color/signal_primary"
-                    android:textColor="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center_horizontal"/>
+                android:id="@+id/registerButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/signal_primary"
+                android:textColor="@color/white"
+                app:cpb_colorIndicator="@color/white"
+                app:cpb_colorProgress="@color/textsecure_primary"
+                app:cpb_cornerRadius="4dp"
+                app:cpb_selectorIdle="@drawable/progress_button_state"
+                app:cpb_textIdle="@string/RegistrationActivity_next" />
 
-            <TextView android:id="@+id/skip_button"
-                      android:layout_gravity="center_horizontal"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="20dp"
-                      android:textColor="@color/gray50"
-                      android:text="@android:string/cancel"/>
-
-            <TextView style="@style/Registration.Description"
-                      android:id="@+id/terms_label"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="16dp"
-                      android:layout_gravity="center_horizontal"
-                      android:textColor="#73B7F0"
-                      android:text="@string/RegistrationActivity_terms_and_privacy"/>
-
-            <TextView style="@style/Registration.Description"
-                      android:id="@+id/registration_information"
-                      android:layout_width="fill_parent"
-                      android:gravity="start"
-                      android:visibility="gone"
-                      android:layout_marginBottom="16dp"
-                      android:layout_marginTop="16dp"
-                      android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
-
-            <TextView style="@style/Registration.Description"
-                android:id="@+id/information_label"
-                android:clickable="false"
+            <TextView
+                android:id="@+id/skip_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#73B7F0"
-                android:text="@string/RegistrationActivity_more_information"/>
+                android:layout_marginTop="20dp"
+                android:text="@android:string/cancel"
+                android:textColor="@color/core_grey_60" />
 
         </LinearLayout>
 
-        <RelativeLayout android:id="@+id/verification_container"
-                        android:visibility="invisible"
-                        android:layout_below="@id/header"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:visibility="visible">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/verification_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/header"
+            android:visibility="invisible"
+            tools:visibility="visible">
 
             <org.thoughtcrime.securesms.components.registration.VerificationCodeView
-                    android:id="@+id/code"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="50dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:vcv_inputWidth="30dp"
-                    app:vcv_spacing="10dp"
-                    app:vcv_textColor="@color/signal_primary"
-                    app:vcv_inputColor="@color/grey_600"/>
+                android:id="@+id/code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:vcv_inputColor="@color/core_black"
+                app:vcv_inputWidth="30dp"
+                app:vcv_spacing="10dp"
+                app:vcv_textColor="@color/core_black" />
 
             <org.thoughtcrime.securesms.components.registration.CallMeCountDownView
-                    android:id="@+id/call_me_count_down"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/code"
-                    android:layout_marginTop="30dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"/>
+                android:id="@+id/call_me_count_down"
+                style="@style/Button.Borderless.Registration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/code"
+                app:layout_constraintTop_toTopOf="@+id/wrong_number"
+                app:layout_constraintStart_toStartOf="@+id/code" />
+
+            <Button
+                android:id="@+id/wrong_number"
+                style="@style/Button.Borderless.Registration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_toEndOf="@id/call_me_count_down"
+                android:text="@string/RegistrationActivity_wrong_number"
+                app:layout_constraintEnd_toEndOf="@+id/code"
+                app:layout_constraintTop_toBottomOf="@+id/code" />
 
             <org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard
-                    android:id="@+id/keyboard"
-                    android:layout_width="match_parent"
+                android:id="@+id/keyboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:id="@+id/pin_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/header"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="30dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="0dp"
+            android:visibility="invisible"
+            tools:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/pin_clarification_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/clarification_label"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"/>
-
-        </RelativeLayout>
-
-
-        <LinearLayout android:id="@+id/pin_container"
-                      android:paddingTop="30dp"
-                      android:paddingLeft="16dp"
-                      android:paddingRight="16dp"
-                      android:paddingBottom="0dp"
-                      android:layout_below="@id/header"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:animateLayoutChanges="true"
-                      android:orientation="vertical"
-                      android:visibility="invisible"
-                      tools:visibility="invisible">
-
-            <LinearLayout android:id="@+id/pin_clarification_container"
-                          android:visibility="gone"
-                          android:orientation="horizontal"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginTop="16dp"
-                          android:layout_marginBottom="16dp"
-                          android:layout_marginLeft="20dp"
-                          android:layout_marginRight="20dp"
-                          tools:visibility="visible">
-
-                <TextView android:id="@+id/clarification_label"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_marginLeft="5dp"
-                          android:layout_marginRight="5dp"
-                          android:layout_marginTop="-2dp"
-                          android:layout_gravity="center_vertical"
-                          android:textColor="#73B7F0"
-                          android:text="@string/registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application"/>
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="-2dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application"
+                    android:textColor="#73B7F0" />
             </LinearLayout>
 
 
-            <android.support.design.widget.TextInputLayout
-                    android:layout_marginTop="15dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingStart="100dp"
+                android:paddingEnd="100dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="100dp"
-                    android:paddingRight="100dp">
+                    android:hint="@string/registration_activity__registration_lock_pin"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberPassword" />
 
-                <android.support.design.widget.TextInputEditText
-                        android:id="@+id/pin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberPassword"
-                        android:imeOptions="actionDone"
-                        android:hint="@string/registration_activity__registration_lock_pin"/>
-
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.dd.CircularProgressButton
-                    android:id="@+id/pinButton"
-                    app:cpb_textIdle="@string/RegistrationActivity_continue"
-                    app:cpb_selectorIdle="@drawable/progress_button_state"
-                    app:cpb_colorIndicator="@color/white"
-                    app:cpb_colorProgress="@color/textsecure_primary"
-                    app:cpb_cornerRadius="50dp"
-                    android:background="@color/signal_primary"
-                    android:textColor="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_gravity="center_horizontal"/>
+                android:id="@+id/pinButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/signal_primary"
+                android:textColor="@color/white"
+                app:cpb_colorIndicator="@color/white"
+                app:cpb_colorProgress="@color/textsecure_primary"
+                app:cpb_cornerRadius="4dp"
+                app:cpb_selectorIdle="@drawable/progress_button_state"
+                app:cpb_textIdle="@string/RegistrationActivity_continue" />
 
 
-            <TextView android:id="@+id/forgot_button"
-                      android:layout_gravity="center_horizontal"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="20dp"
-                      android:padding="15dp"
-                      android:textColor="@color/blue_400"
-                      android:text="@string/registration_activity__forgot_pin"/>
+            <TextView
+                android:id="@+id/forgot_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:padding="15dp"
+                android:text="@string/registration_activity__forgot_pin"
+                android:textColor="@color/blue_400" />
 
 
         </LinearLayout>

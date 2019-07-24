@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.LinkedList;
@@ -70,14 +70,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
         context.startActivity(intent);
       } else {
-        final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-        if (recipient.getAddress().isEmail()) {
-          intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
-        } else {
-          intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
-        }
-        intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-        context.startActivity(intent);
+        context.startActivity(RecipientExporter.export(recipient).asAddContactIntent());
       }
     }
   }

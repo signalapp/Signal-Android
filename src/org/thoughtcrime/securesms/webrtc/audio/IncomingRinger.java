@@ -8,8 +8,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -79,11 +79,7 @@ public class IncomingRinger {
       return true;
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      return shouldVibrateNew(context, ringerMode, vibrate);
-    } else {
-      return shouldVibrateOld(context, vibrate);
-    }
+    return shouldVibrateNew(context, ringerMode, vibrate);
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)

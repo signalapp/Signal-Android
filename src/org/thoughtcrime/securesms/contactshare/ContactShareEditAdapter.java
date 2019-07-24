@@ -1,19 +1,16 @@
 package org.thoughtcrime.securesms.contactshare;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import java.util.ArrayList;
@@ -37,14 +34,14 @@ public class ContactShareEditAdapter extends RecyclerView.Adapter<ContactShareEd
   }
 
   @Override
-  public ContactEditViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public @NonNull ContactEditViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new ContactEditViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_editable_contact, parent, false),
                                      locale,
                                      glideRequests);
   }
 
   @Override
-  public void onBindViewHolder(ContactEditViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ContactEditViewHolder holder, int position) {
     holder.bind(position, contacts.get(position), eventListener);
   }
 

@@ -19,30 +19,19 @@ package org.thoughtcrime.securesms.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Telephony;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
 import android.telephony.SmsMessage;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SmsListener extends BroadcastReceiver {
 
   private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
   private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
-
-  private static final Pattern CHALLENGE_PATTERN = Pattern.compile(".*Your (Signal|TextSecure) verification code:? ([0-9]{3,4})-([0-9]{3,4}).*", Pattern.DOTALL);
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -98,68 +87,25 @@ public class SmsListener extends BroadcastReceiver {
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
 
-    if (isChallenge(context, messageBody))
+    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && Util.isDefaultSmsProvider(context)) {
       return false;
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
-        SMS_RECEIVED_ACTION.equals(intent.getAction()) &&
-        Util.isDefaultSmsProvider(context))
-    {
-      return false;
-    }
-
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
-        TextSecurePreferences.isInterceptAllSmsEnabled(context))
-    {
-      return true;
     }
 
     return false;
-  }
-
-  @VisibleForTesting boolean isChallenge(@NonNull Context context, @Nullable String messageBody) {
-    if (messageBody == null)
-      return false;
-
-    if (CHALLENGE_PATTERN.matcher(messageBody).matches() &&
-        TextSecurePreferences.isVerifying(context))
-    {
-      return true;
-    }
-
-    return false;
-  }
-
-  @VisibleForTesting String parseChallenge(String messageBody) {
-    Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
-
-    if (!challengeMatcher.matches()) {
-      throw new AssertionError("Expression should match.");
-    }
-
-    return challengeMatcher.group(2) + challengeMatcher.group(3);
   }
 
   @Override
   public void onReceive(Context context, Intent intent) {
     Log.i("SMSListener", "Got SMS broadcast...");
 
-    String messageBody = getSmsMessageBodyFromIntent(intent);
-    if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, messageBody)) {
-      Log.w("SmsListener", "Got challenge!");
-      Intent challengeIntent = new Intent(RegistrationActivity.CHALLENGE_EVENT);
-      challengeIntent.putExtra(RegistrationActivity.CHALLENGE_EXTRA, parseChallenge(messageBody));
-      context.sendBroadcast(challengeIntent);
-
-      abortBroadcast();
-    } else if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
-               (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
+    if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
+        (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
     {
       Log.i("SmsListener", "Constructing SmsReceiveJob...");
       Object[] pdus           = (Object[]) intent.getExtras().get("pdus");
       int      subscriptionId = intent.getExtras().getInt("subscription", -1);
 
-      ApplicationContext.getInstance(context).getJobManager().add(new SmsReceiveJob(context, pdus, subscriptionId));
+      ApplicationContext.getInstance(context).getJobManager().add(new SmsReceiveJob(pdus, subscriptionId));
 
       abortBroadcast();
     }

@@ -1,23 +1,22 @@
 package org.thoughtcrime.securesms.search;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -29,9 +28,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.search.model.SearchResult;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.Locale;
-import java.util.concurrent.Executors;
 
 /**
  * A fragment that is displayed to do full-text search of messages, groups, and contacts.
@@ -71,7 +70,7 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
                                                              DatabaseFactory.getContactsDatabase(getContext()),
                                                              DatabaseFactory.getThreadDatabase(getContext()),
                                                              ContactAccessor.getInstance(),
-                                                             Executors.newSingleThreadExecutor());
+                                                             SignalExecutors.SERIAL);
     viewModel = ViewModelProviders.of(this, new SearchViewModel.Factory(searchRepository)).get(SearchViewModel.class);
 
     if (pendingQuery != null) {
@@ -122,16 +121,6 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
   }
 
   @Override
-  public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-
-    if (listDecoration != null) {
-      listDecoration.invalidateLayouts();
-    }
-  }
-
-
-  @Override
   public void onConversationClicked(@NonNull ThreadRecord threadRecord) {
     ConversationListActivity conversationList = (ConversationListActivity) getActivity();
 
@@ -172,7 +161,7 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
         ConversationListActivity conversationList = (ConversationListActivity) getActivity();
         if (conversationList != null) {
           conversationList.openConversation(message.threadId,
-                                            message.recipient,
+                                            message.conversationRecipient,
                                             ThreadDatabase.DistributionTypes.DEFAULT,
                                             -1,
                                             startingPosition);

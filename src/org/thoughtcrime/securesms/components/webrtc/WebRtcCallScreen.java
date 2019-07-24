@@ -18,10 +18,10 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ViewCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.core.view.ViewCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VerifySpan;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -101,9 +100,9 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     initialize();
   }
 
-  public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message, @Nullable String sas) {
+  public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message, @Nullable String sas, SurfaceViewRenderer localRenderer, SurfaceViewRenderer remoteRenderer) {
     setCard(personInfo, message);
-    setConnected(WebRtcCallService.localRenderer, WebRtcCallService.remoteRenderer);
+    setConnected(localRenderer, remoteRenderer);
     incomingCallButton.stopRingingAnimation();
     incomingCallButton.setVisibility(View.GONE);
     endCallButton.show();
@@ -118,7 +117,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
 
   public void setIncomingCall(Recipient personInfo) {
     setCard(personInfo, getContext().getString(R.string.CallScreen_Incoming_call));
-    endCallButton.setVisibility(View.INVISIBLE);
+    endCallButton.hide();
     incomingCallButton.setVisibility(View.VISIBLE);
     incomingCallButton.startRingingAnimation();
   }
@@ -141,7 +140,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     this.untrustedIdentityExplanation.setText(spannableString);
     this.untrustedIdentityExplanation.setMovementMethod(LinkMovementMethod.getInstance());
 
-    this.endCallButton.setVisibility(View.INVISIBLE);
+    this.endCallButton.hide();
   }
 
   public void setIncomingCallActionListener(WebRtcAnswerDeclineButton.AnswerDeclineListener listener) {
@@ -203,6 +202,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     if (this.localRenderLayout.isHidden() == cameraState.isEnabled()) {
       this.localRenderLayout.setHidden(!cameraState.isEnabled());
       this.localRenderLayout.requestLayout();
+      this.localRenderer.setVisibility(cameraState.isEnabled() ? VISIBLE : INVISIBLE);
     }
   }
 

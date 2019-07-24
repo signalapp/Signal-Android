@@ -25,21 +25,21 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -140,7 +141,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     setSupportActionBar(this.toolbar);
     getSupportActionBar().setTitle(recipient.toShortString());
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    this.recipient.addListener(recipient -> getSupportActionBar().setTitle(recipient.toShortString()));
+    this.recipient.addListener(recipient -> {
+      Util.runOnMain(() -> getSupportActionBar().setTitle(recipient.toShortString()));
+    });
   }
 
   public void onEnterMultiSelect() {
@@ -254,12 +257,12 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @Override
-    public Loader<BucketedThreadMedia> onCreateLoader(int i, Bundle bundle) {
+    public @NonNull Loader<BucketedThreadMedia> onCreateLoader(int i, Bundle bundle) {
       return new BucketedThreadMediaLoader(getContext(), recipient.getAddress());
     }
 
     @Override
-    public void onLoadFinished(Loader<BucketedThreadMedia> loader, BucketedThreadMedia bucketedThreadMedia) {
+    public void onLoadFinished(@NonNull Loader<BucketedThreadMedia> loader, BucketedThreadMedia bucketedThreadMedia) {
       ((MediaGalleryAdapter) recyclerView.getAdapter()).setMedia(bucketedThreadMedia);
       ((MediaGalleryAdapter) recyclerView.getAdapter()).notifyAllSectionsDataSetChanged();
 
@@ -268,7 +271,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @Override
-    public void onLoaderReset(Loader<BucketedThreadMedia> cursorLoader) {
+    public void onLoaderReset(@NonNull Loader<BucketedThreadMedia> cursorLoader) {
       ((MediaGalleryAdapter) recyclerView.getAdapter()).setMedia(new BucketedThreadMedia(getContext()));
     }
 
@@ -485,7 +488,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       this.noMedia       = ViewUtil.findById(view, R.id.no_documents);
 
       this.recyclerView.setAdapter(adapter);
-      this.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+      this.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
       this.recyclerView.addItemDecoration(new StickyHeaderDecoration(adapter, false, true));
       this.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
@@ -493,12 +496,12 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
       return new ThreadMediaLoader(getContext(), recipient.getAddress(), false);
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
       ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(data);
       getActivity().invalidateOptionsMenu();
 
@@ -506,7 +509,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
       ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(null);
       getActivity().invalidateOptionsMenu();
     }

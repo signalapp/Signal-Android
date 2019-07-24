@@ -5,7 +5,8 @@ import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -29,7 +30,7 @@ public class DeviceAddFragment extends Fragment {
   private ScanListener   scanListener;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     this.container    = ViewUtil.inflate(inflater, viewGroup, R.layout.device_add_fragment);
     this.overlay      = ViewUtil.findById(this.container, R.id.overlay);
     this.scannerView  = ViewUtil.findById(this.container, R.id.scanner);

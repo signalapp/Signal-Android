@@ -20,23 +20,16 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.preference.PreferenceManager;
-
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobmanager.persistence.JavaJobSerializer;
-import org.thoughtcrime.securesms.jobmanager.persistence.PersistentStorage;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -50,6 +43,7 @@ import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -95,6 +89,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int WORKMANAGER_MIGRATION                = 408;
   public static final int COLOR_MIGRATION                      = 412;
   public static final int UNIDENTIFIED_DELIVERY                = 422;
+  public static final int SIGNALING_KEY_DEPRECATION            = 447;
+  public static final int CONVERSATION_SEARCH                  = 455;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -121,6 +117,8 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(WORKMANAGER_MIGRATION);
     add(COLOR_MIGRATION);
     add(UNIDENTIFIED_DELIVERY);
+    add(SIGNALING_KEY_DEPRECATION);
+    add(CONVERSATION_SEARCH);
   }};
 
   private MasterSecret masterSecret;
@@ -148,7 +146,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   private boolean needsUpgradeTask() {
-    int currentVersionCode = Util.getCurrentApkReleaseVersion(this);
+    int currentVersionCode = Util.getCanonicalVersionCode();
     int lastSeenVersion    = VersionTracker.getLastSeenVersion(this);
 
     Log.i("DatabaseUpgradeActivity", "LastSeenVersion: " + lastSeenVersion);
@@ -166,14 +164,10 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   public static boolean isUpdate(Context context) {
-    try {
-      int currentVersionCode  = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-      int previousVersionCode = VersionTracker.getLastSeenVersion(context);
+    int currentVersionCode  = Util.getCanonicalVersionCode();
+    int previousVersionCode = VersionTracker.getLastSeenVersion(context);
 
-      return previousVersionCode < currentVersionCode;
-    } catch (PackageManager.NameNotFoundException e) {
-      throw new AssertionError(e);
-    }
+    return previousVersionCode < currentVersionCode;
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -257,7 +251,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < CONTACTS_ACCOUNT_VERSION) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
+                          .add(new DirectoryRefreshJob(false));
       }
 
       if (params[0] < MEDIA_DOWNLOAD_CONTROLS_VERSION) {
@@ -267,16 +261,16 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < REDPHONE_SUPPORT_VERSION) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new RefreshAttributesJob(getApplicationContext()));
+                          .add(new RefreshAttributesJob());
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
+                          .add(new DirectoryRefreshJob(false));
       }
 
       if (params[0] < PROFILES) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new DirectoryRefreshJob(getApplicationContext(), false));
+                          .add(new DirectoryRefreshJob(false));
       }
 
       if (params[0] < SCREENSHOTS) {
@@ -331,17 +325,18 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         }
       }
 
-      if (params[0] < WORKMANAGER_MIGRATION) {
-        Log.i(TAG, "Beginning migration of existing jobs to WorkManager");
-
-        JobManager        jobManager = ApplicationContext.getInstance(getApplicationContext()).getJobManager();
-        PersistentStorage storage    = new PersistentStorage(getApplicationContext(), "TextSecureJobs", new JavaJobSerializer());
-
-        for (Job job : storage.getAllUnencrypted()) {
-          jobManager.add(job);
-          Log.i(TAG, "Migrated job with class '" + job.getClass().getSimpleName() + "' to run on new JobManager.");
-        }
-      }
+      // This migration became unnecessary after switching away from WorkManager
+//      if (params[0] < WORKMANAGER_MIGRATION) {
+//        Log.i(TAG, "Beginning migration of existing jobs to WorkManager");
+//
+//        JobManager        jobManager = ApplicationContext.getInstance(getApplicationContext()).getJobManager();
+//        PersistentStorage storage    = new PersistentStorage(getApplicationContext(), "TextSecureJobs", new JavaJobSerializer());
+//
+//        for (Job job : storage.getAllUnencrypted()) {
+//          jobManager.add(job);
+//          Log.i(TAG, "Migrated job with class '" + job.getClass().getSimpleName() + "' to run on new JobManager.");
+//        }
+//      }
 
       if (params[0] < COLOR_MIGRATION) {
         long startTime = System.currentTimeMillis();
@@ -368,7 +363,14 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         Log.i(TAG, "Scheduling UD attributes refresh.");
         ApplicationContext.getInstance(context)
                           .getJobManager()
-                          .add(new RefreshAttributesJob(context));
+                          .add(new RefreshAttributesJob());
+      }
+
+      if (params[0] < SIGNALING_KEY_DEPRECATION) {
+        Log.i(TAG, "Scheduling a RefreshAttributesJob to remove the signaling key remotely.");
+        ApplicationContext.getInstance(context)
+                          .getJobManager()
+                          .add(new RefreshAttributesJob());
       }
 
       return null;
@@ -391,7 +393,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
           Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
           ApplicationContext.getInstance(context)
                             .getJobManager()
-                            .add(new AttachmentDownloadJob(context, attachment.getMmsId(), attachment.getAttachmentId(), false));
+                            .add(new AttachmentDownloadJob(attachment.getMmsId(), attachment.getAttachmentId(), false));
         }
         reader.close();
       }

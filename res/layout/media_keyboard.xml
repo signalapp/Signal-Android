@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="org.thoughtcrime.securesms.components.emoji.MediaKeyboard">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?emoji_drawer_background">
+
+        <ImageView
+            android:id="@+id/media_keyboard_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_search_white_24dp"
+            android:tint="?media_keyboard_button_color"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/media_keyboard_provider_tabs"
+            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_provider_tabs"
+            tools:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/media_keyboard_provider_tabs"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@id/media_keyboard_backspace"
+            app:layout_constraintStart_toEndOf="@id/media_keyboard_search"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <org.thoughtcrime.securesms.components.RepeatableImageKey
+            android:id="@+id/media_keyboard_backspace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_backspace_grey600_24dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/media_keyboard_provider_tabs"
+            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_provider_tabs"
+            tools:visibility="visible"/>
+
+        <org.thoughtcrime.securesms.components.ControllableViewPager
+            android:id="@+id/media_keyboard_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/media_keyboard_provider_tabs"
+            app:layout_constraintBottom_toTopOf="@id/media_keyboard_tabs"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?emoji_tab_strip_background"
+            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_tabs"
+            app:layout_constraintTop_toTopOf="@+id/media_keyboard_tabs" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/media_keyboard_tabs"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/media_keyboard_add"
+            tools:layout_height="40dp"/>
+
+        <org.thoughtcrime.securesms.components.RepeatableImageKey
+            android:id="@+id/media_keyboard_backspace_backup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_backspace_grey600_24dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/media_keyboard_tabs"
+            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_tabs"
+            tools:visibility="visible"/>
+
+        <ImageView
+            android:id="@+id/media_keyboard_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:scaleType="fitCenter"
+            android:tint="?media_keyboard_button_color"
+            android:visibility="gone"
+            android:background="?selectableItemBackground"
+            app:srcCompat="@drawable/ic_plus_24"
+            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_tabs"
+            app:layout_constraintTop_toTopOf="@id/media_keyboard_tabs"
+            app:layout_constraintEnd_toStartOf="@id/media_keyboard_backspace_backup"
+            tools:visibility="visible"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

@@ -3,7 +3,9 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
+import androidx.annotation.NonNull;
 import android.telephony.TelephonyManager;
+
 import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.Locale;
@@ -38,5 +40,9 @@ public class TelephonyUtil {
   public static String getApn(final Context context) {
     final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     return cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE_MMS).getExtraInfo();
+  }
+
+  public static boolean isAnyPstnLineBusy(@NonNull Context context) {
+    return getManager(context).getCallState() != TelephonyManager.CALL_STATE_IDLE;
   }
 }

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -13,8 +13,13 @@ public class GifSlide extends ImageSlide {
     super(context, attachment);
   }
 
+
   public GifSlide(Context context, Uri uri, long size, int width, int height) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, width, height, true, null, false, false));
+    this(context, uri, size, width, height, null);
+  }
+
+  public GifSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption) {
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, width, height, true, null, caption, null, false, false));
   }
 
   @Override

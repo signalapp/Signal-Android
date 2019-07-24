@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.glide;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.model.GlideUrl;
@@ -8,7 +9,7 @@ import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
-import org.thoughtcrime.securesms.giph.net.GiphyProxySelector;
+import org.thoughtcrime.securesms.net.ContentProxySelector;
 
 import java.io.InputStream;
 
@@ -25,14 +26,13 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
     this.client = client;
   }
 
-  @Nullable
   @Override
-  public LoadData<InputStream> buildLoadData(GlideUrl glideUrl, int width, int height, Options options) {
+  public @Nullable LoadData<InputStream> buildLoadData(@NonNull GlideUrl glideUrl, int width, int height, @NonNull Options options) {
     return new LoadData<>(glideUrl, new OkHttpStreamFetcher(client, glideUrl));
   }
 
   @Override
-  public boolean handles(GlideUrl glideUrl) {
+  public boolean handles(@NonNull GlideUrl glideUrl) {
     return true;
   }
 
@@ -45,7 +45,7 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
         synchronized (Factory.class) {
           if (internalClient == null) {
             internalClient = new OkHttpClient.Builder()
-                                             .proxySelector(new GiphyProxySelector())
+                                             .proxySelector(new ContentProxySelector())
                                              .build();
           }
         }
@@ -62,7 +62,7 @@ public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
     }
 
     @Override
-    public ModelLoader<GlideUrl, InputStream> build(MultiModelLoaderFactory multiFactory) {
+    public @NonNull ModelLoader<GlideUrl, InputStream> build(@NonNull MultiModelLoaderFactory multiFactory) {
       return new OkHttpUrlLoader(client);
     }
 

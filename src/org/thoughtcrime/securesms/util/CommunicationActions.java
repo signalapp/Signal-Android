@@ -7,16 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.TaskStackBuilder;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.TaskStackBuilder;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
-import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -26,6 +25,14 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 public class CommunicationActions {
 
   public static void startVoiceCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+    if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
+      Toast.makeText(activity,
+                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
+                     Toast.LENGTH_SHORT
+                    ).show();
+      return;
+    }
+
     Permissions.with(activity)
         .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
         .ifNecessary()

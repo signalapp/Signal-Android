@@ -9,15 +9,15 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.preference.CheckBoxPreference;
-import android.support.v7.preference.Preference;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.Preference;
 import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.LogSubmitActivity;
@@ -192,8 +192,8 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
             Log.w(TAG, e);
           }
 
-          if (!TextSecurePreferences.isGcmDisabled(context)) {
-            GoogleCloudMessaging.getInstance(context).unregister();
+          if (!TextSecurePreferences.isFcmDisabled(context)) {
+            FirebaseInstanceId.getInstance().deleteInstanceId();
           }
 
           return SUCCESS;

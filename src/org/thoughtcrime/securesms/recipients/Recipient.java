@@ -20,8 +20,8 @@ package org.thoughtcrime.securesms.recipients;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.annimon.stream.function.Consumer;
@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -73,6 +72,7 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable String  name;
   private @Nullable String  customLabel;
   private           boolean resolving;
+  private           boolean isLocalNumber;
 
   private @Nullable Uri                  systemContactPhoto;
   private @Nullable Long                 groupAvatarId;
@@ -94,6 +94,7 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable String         profileAvatar;
   private           boolean        profileSharing;
   private           String         notificationChannel;
+  private           boolean        forceSmsSelection;
 
   private @NonNull  UnidentifiedAccessMode unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
 
@@ -119,15 +120,16 @@ public class Recipient implements RecipientModifiedListener {
             @NonNull  Optional<RecipientDetails> details,
             @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
-    this.address              = address;
-    this.color                = null;
-    this.resolving            = true;
+    this.address   = address;
+    this.color     = null;
+    this.resolving = true;
 
     if (stale != null) {
       this.name                   = stale.name;
       this.contactUri             = stale.contactUri;
       this.systemContactPhoto     = stale.systemContactPhoto;
       this.groupAvatarId          = stale.groupAvatarId;
+      this.isLocalNumber          = stale.isLocalNumber;
       this.color                  = stale.color;
       this.customLabel            = stale.customLabel;
       this.messageRingtone        = stale.messageRingtone;
@@ -146,6 +148,7 @@ public class Recipient implements RecipientModifiedListener {
       this.profileAvatar          = stale.profileAvatar;
       this.profileSharing         = stale.profileSharing;
       this.unidentifiedAccessMode = stale.unidentifiedAccessMode;
+      this.forceSmsSelection      = stale.forceSmsSelection;
 
       this.participants.clear();
       this.participants.addAll(stale.participants);
@@ -155,6 +158,7 @@ public class Recipient implements RecipientModifiedListener {
       this.name                   = details.get().name;
       this.systemContactPhoto     = details.get().systemContactPhoto;
       this.groupAvatarId          = details.get().groupAvatarId;
+      this.isLocalNumber          = details.get().isLocalNumber;
       this.color                  = details.get().color;
       this.messageRingtone        = details.get().messageRingtone;
       this.callRingtone           = details.get().callRingtone;
@@ -172,6 +176,7 @@ public class Recipient implements RecipientModifiedListener {
       this.profileAvatar          = details.get().profileAvatar;
       this.profileSharing         = details.get().profileSharing;
       this.unidentifiedAccessMode = details.get().unidentifiedAccessMode;
+      this.forceSmsSelection      = details.get().forceSmsSelection;
 
       this.participants.clear();
       this.participants.addAll(details.get().participants);
@@ -186,6 +191,7 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.contactUri             = result.contactUri;
             Recipient.this.systemContactPhoto     = result.systemContactPhoto;
             Recipient.this.groupAvatarId          = result.groupAvatarId;
+            Recipient.this.isLocalNumber          = result.isLocalNumber;
             Recipient.this.color                  = result.color;
             Recipient.this.customLabel            = result.customLabel;
             Recipient.this.messageRingtone        = result.messageRingtone;
@@ -203,8 +209,8 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.profileName            = result.profileName;
             Recipient.this.profileAvatar          = result.profileAvatar;
             Recipient.this.profileSharing         = result.profileSharing;
-            Recipient.this.profileName            = result.profileName;
             Recipient.this.unidentifiedAccessMode = result.unidentifiedAccessMode;
+            Recipient.this.forceSmsSelection      = result.forceSmsSelection;
 
             Recipient.this.participants.clear();
             Recipient.this.participants.addAll(result.participants);
@@ -234,6 +240,7 @@ public class Recipient implements RecipientModifiedListener {
     this.name                   = details.name;
     this.systemContactPhoto     = details.systemContactPhoto;
     this.groupAvatarId          = details.groupAvatarId;
+    this.isLocalNumber          = details.isLocalNumber;
     this.color                  = details.color;
     this.customLabel            = details.customLabel;
     this.messageRingtone        = details.messageRingtone;
@@ -252,9 +259,14 @@ public class Recipient implements RecipientModifiedListener {
     this.profileAvatar          = details.profileAvatar;
     this.profileSharing         = details.profileSharing;
     this.unidentifiedAccessMode = details.unidentifiedAccessMode;
+    this.forceSmsSelection      = details.forceSmsSelection;
 
     this.participants.addAll(details.participants);
     this.resolving    = false;
+  }
+
+  public boolean isLocalNumber() {
+    return isLocalNumber;
   }
 
   public synchronized @Nullable Uri getContactUri() {
@@ -434,6 +446,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
+    if      (isLocalNumber)            return new ResourceContactPhoto(R.drawable.ic_note_to_self);
     if      (isResolving())            return new TransparentContactPhoto();
     else if (isGroupRecipient())       return new ResourceContactPhoto(R.drawable.ic_group_white_24dp, R.drawable.ic_group_large);
     else if (!TextUtils.isEmpty(name)) return new GeneratedContactPhoto(name, R.drawable.ic_profile_default);
@@ -441,7 +454,8 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @Nullable ContactPhoto getContactPhoto() {
-    if      (isGroupRecipient() && groupAvatarId != null) return new GroupRecordContactPhoto(address, groupAvatarId);
+    if      (isLocalNumber)                               return null;
+    else if (isGroupRecipient() && groupAvatarId != null) return new GroupRecordContactPhoto(address, groupAvatarId);
     else if (systemContactPhoto != null)                  return new SystemContactPhoto(address, systemContactPhoto, 0);
     else if (profileAvatar != null)                       return new ProfileContactPhoto(address, profileAvatar);
     else                                                  return null;
@@ -614,6 +628,18 @@ public class Recipient implements RecipientModifiedListener {
     if (notify) notifyListeners();
   }
 
+  public boolean isForceSmsSelection() {
+    return forceSmsSelection;
+  }
+
+  public void setForceSmsSelection(boolean value) {
+    synchronized (this) {
+      this.forceSmsSelection = value;
+    }
+
+    notifyListeners();
+  }
+
   public synchronized @Nullable byte[] getProfileKey() {
     return profileKey;
   }
@@ -626,7 +652,7 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
-  public synchronized UnidentifiedAccessMode getUnidentifiedAccessMode() {
+  public @NonNull synchronized UnidentifiedAccessMode getUnidentifiedAccessMode() {
     return unidentifiedAccessMode;
   }
 

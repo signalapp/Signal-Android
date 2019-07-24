@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="@string/conversation__menu_view_all_media"
           android:id="@+id/menu_view_media" />
 
     <item android:title="@string/conversation__menu_conversation_settings"
           android:id="@+id/menu_conversation_settings"/>
+
+
+    <item android:title="@string/SearchToolbar_search"
+          android:id="@+id/menu_search"
+          app:actionViewClass="androidx.appcompat.widget.SearchView"
+          app:showAsAction="collapseActionView"/>
 
     <item android:title="@string/conversation__menu_add_shortcut"
           android:id="@+id/menu_add_shortcut"/>

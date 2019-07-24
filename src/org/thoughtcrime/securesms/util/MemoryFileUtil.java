@@ -23,11 +23,7 @@ public class MemoryFileUtil {
 
       int fd = field.getInt(fileDescriptor);
 
-      if (Build.VERSION.SDK_INT >= 13) {
-        return ParcelFileDescriptor.adoptFd(fd);
-      } else {
-        return ParcelFileDescriptor.dup(fileDescriptor);
-      }
+      return ParcelFileDescriptor.adoptFd(fd);
     } catch (IllegalAccessException e) {
       throw new IOException(e);
     } catch (InvocationTargetException e) {

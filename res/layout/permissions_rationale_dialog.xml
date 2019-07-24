@@ -20,8 +20,8 @@
               android:layout_height="wrap_content"
               android:paddingTop="40dp"
               android:paddingBottom="40dp"
-              android:paddingLeft="20dp"
-              android:paddingRight="20dp"
+              android:paddingStart="20dp"
+              android:paddingEnd="20dp"
               android:textSize="15sp"
               android:lineSpacingMultiplier="1.3"
               tools:text="Signal needs access to your contacts and media in order to connect with friends, exchange messages, and make secure calls."/>

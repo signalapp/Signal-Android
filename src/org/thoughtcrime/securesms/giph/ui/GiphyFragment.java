@@ -2,15 +2,15 @@ package org.thoughtcrime.securesms.giph.ui;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.net.GiphyLoader;
 import org.thoughtcrime.securesms.giph.util.InfiniteScrollListener;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.LinkedList;
@@ -40,7 +41,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   protected String searchString;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     ViewGroup container = ViewUtil.inflate(inflater, viewGroup, R.layout.giphy_fragment);
     this.recyclerView    = ViewUtil.findById(container, R.id.giphy_list);
     this.loadingProgress = ViewUtil.findById(container, R.id.loading_progress);
@@ -56,7 +57,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
     this.giphyAdapter = new GiphyAdapter(getActivity(), GlideApp.with(this), new LinkedList<>());
     this.giphyAdapter.setListener(this);
 
-    this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    setLayoutManager(TextSecurePreferences.isGifSearchInGridLayout(getContext()));
     this.recyclerView.setItemAnimator(new DefaultItemAnimator());
     this.recyclerView.setAdapter(giphyAdapter);
     this.recyclerView.addOnScrollListener(new GiphyScrollListener());
@@ -65,7 +66,7 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   }
 
   @Override
-  public void onLoadFinished(Loader<List<GiphyImage>> loader, @NonNull List<GiphyImage> data) {
+  public void onLoadFinished(@NonNull Loader<List<GiphyImage>> loader, @NonNull List<GiphyImage> data) {
     this.loadingProgress.setVisibility(View.GONE);
 
     if (data.isEmpty()) noResultsView.setVisibility(View.VISIBLE);
@@ -75,17 +76,18 @@ public abstract class GiphyFragment extends Fragment implements LoaderManager.Lo
   }
 
   @Override
-  public void onLoaderReset(Loader<List<GiphyImage>> loader) {
+  public void onLoaderReset(@NonNull Loader<List<GiphyImage>> loader) {
     noResultsView.setVisibility(View.GONE);
     this.giphyAdapter.setImages(new LinkedList<GiphyImage>());
   }
 
-  public void setLayoutManager(int type) {
-    if (type == GiphyActivityToolbar.OnLayoutChangedListener.LAYOUT_GRID) {
-      this.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-    } else {
-      this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
+  public void setLayoutManager(boolean gridLayout) {
+    recyclerView.setLayoutManager(getLayoutManager(gridLayout));
+  }
+
+  private RecyclerView.LayoutManager getLayoutManager(boolean gridLayout) {
+    return gridLayout ? new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                      : new LinearLayoutManager(getActivity());
   }
 
   public void setClickListener(GiphyAdapter.OnItemClickListener listener) {

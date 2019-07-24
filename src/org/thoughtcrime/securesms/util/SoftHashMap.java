@@ -19,6 +19,8 @@
 
 package org.thoughtcrime.securesms.util;
 
+import androidx.annotation.NonNull;
+
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.util.*;
@@ -210,7 +212,7 @@ public class SoftHashMap<K, V> implements Map<K, V> {
     return values != null && values.contains(value);
   }
 
-  public void putAll(Map<? extends K, ? extends V> m) {
+  public void putAll(@NonNull Map<? extends K, ? extends V> m) {
     if (m == null || m.isEmpty()) {
       processQueue();
       return;
@@ -220,12 +222,12 @@ public class SoftHashMap<K, V> implements Map<K, V> {
     }
   }
 
-  public Set<K> keySet() {
+  public @NonNull Set<K> keySet() {
     processQueue();
     return map.keySet();
   }
 
-  public Collection<V> values() {
+  public @NonNull Collection<V> values() {
     processQueue();
     Collection<K> keys = map.keySet();
     if (keys.isEmpty()) {
@@ -245,7 +247,7 @@ public class SoftHashMap<K, V> implements Map<K, V> {
   /**
    * Creates a new entry, but wraps the value in a SoftValue instance to enable auto garbage collection.
    */
-  public V put(K key, V value) {
+  public V put(@NonNull K key, @NonNull V value) {
     processQueue(); // throw out garbage collected values first
     SoftValue<V, K> sv = new SoftValue<V, K>(value, key, queue);
     SoftValue<V, K> previous = map.put(key, sv);
@@ -275,7 +277,7 @@ public class SoftHashMap<K, V> implements Map<K, V> {
     return map.size();
   }
 
-  public Set<Map.Entry<K, V>> entrySet() {
+  public @NonNull Set<Map.Entry<K, V>> entrySet() {
     processQueue(); // throw out garbage collected values first
     Collection<K> keys = map.keySet();
     if (keys.isEmpty()) {

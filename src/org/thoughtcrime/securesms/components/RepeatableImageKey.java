@@ -1,19 +1,14 @@
 package org.thoughtcrime.securesms.components;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
+import androidx.appcompat.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
-public class RepeatableImageKey extends ImageButton {
+public class RepeatableImageKey extends AppCompatImageButton {
 
   private KeyEventListener listener;
 
@@ -29,14 +24,6 @@ public class RepeatableImageKey extends ImageButton {
 
   public RepeatableImageKey(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init();
-  }
-
-  @TargetApi(VERSION_CODES.LOLLIPOP)
-  public RepeatableImageKey(Context context, AttributeSet attrs, int defStyleAttr,
-                            int defStyleRes)
-  {
-    super(context, attrs, defStyleAttr, defStyleRes);
     init();
   }
 
@@ -60,31 +47,25 @@ public class RepeatableImageKey extends ImageButton {
   }
 
   private class Repeater implements Runnable {
-    @TargetApi(VERSION_CODES.HONEYCOMB_MR1)
     @Override
     public void run() {
       notifyListener();
-      postDelayed(this, VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB_MR1
-                        ? ViewConfiguration.getKeyRepeatDelay()
-                        : 50);
+      postDelayed(this, ViewConfiguration.getKeyRepeatDelay());
     }
   }
 
   private class RepeaterTouchListener implements OnTouchListener {
-    private Repeater repeater;
+    private final Repeater repeater;
 
-    public RepeaterTouchListener() {
+    RepeaterTouchListener() {
       this.repeater = new Repeater();
     }
 
-    @TargetApi(VERSION_CODES.HONEYCOMB_MR1)
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
       switch (motionEvent.getAction()) {
       case MotionEvent.ACTION_DOWN:
-        view.postDelayed(repeater, VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB_MR1
-                                   ? ViewConfiguration.getKeyRepeatTimeout()
-                                   : ViewConfiguration.getLongPressTimeout());
+        view.postDelayed(repeater, ViewConfiguration.getKeyRepeatTimeout());
         performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
         return false;
       case MotionEvent.ACTION_CANCEL:

@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +61,7 @@ public class ThreadPhotoRailView extends FrameLayout {
   private static class ThreadPhotoRailAdapter extends CursorRecyclerViewAdapter<ThreadPhotoRailAdapter.ThreadPhotoViewHolder> {
 
     @SuppressWarnings("unused")
-    private static final String TAG = ThreadPhotoRailAdapter.class.getName();
+    private static final String TAG = ThreadPhotoRailAdapter.class.getSimpleName();
 
     @NonNull  private final GlideRequests glideRequests;
 

@@ -1,11 +1,10 @@
 package org.thoughtcrime.securesms.contactshare;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.*;
@@ -110,29 +109,24 @@ public class ContactNameEditViewModel extends ViewModel {
     
     Character.UnicodeBlock block = Character.UnicodeBlock.of(codepoint);
 
-    boolean isCJKV = Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block)                  ||
-                     Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block)      ||
-                     Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B.equals(block)      ||
-                     Character.UnicodeBlock.CJK_COMPATIBILITY.equals(block)                       ||
-                     Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS.equals(block)                 ||
-                     Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block)            ||
-                     Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT.equals(block) ||
-                     Character.UnicodeBlock.CJK_RADICALS_SUPPLEMENT.equals(block)                 ||
-                     Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION.equals(block)             ||
-                     Character.UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS.equals(block)         ||
-                     Character.UnicodeBlock.KANGXI_RADICALS.equals(block)                         ||
-                     Character.UnicodeBlock.IDEOGRAPHIC_DESCRIPTION_CHARACTERS.equals(block)      ||
-                     Character.UnicodeBlock.HIRAGANA.equals(block)                                ||
-                     Character.UnicodeBlock.KATAKANA.equals(block)                                ||
-                     Character.UnicodeBlock.KATAKANA_PHONETIC_EXTENSIONS.equals(block)            ||
-                     Character.UnicodeBlock.HANGUL_JAMO.equals(block)                             ||
-                     Character.UnicodeBlock.HANGUL_COMPATIBILITY_JAMO.equals(block)               ||
-                     Character.UnicodeBlock.HANGUL_SYLLABLES.equals(block);
-
-    if (Build.VERSION.SDK_INT >= 19) {
-      isCJKV |= Character.isIdeographic(codepoint);
-    }
-
-    return isCJKV;
+    return Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block)                  ||
+           Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block)      ||
+           Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B.equals(block)      ||
+           Character.UnicodeBlock.CJK_COMPATIBILITY.equals(block)                       ||
+           Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS.equals(block)                 ||
+           Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block)            ||
+           Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT.equals(block) ||
+           Character.UnicodeBlock.CJK_RADICALS_SUPPLEMENT.equals(block)                 ||
+           Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION.equals(block)             ||
+           Character.UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS.equals(block)         ||
+           Character.UnicodeBlock.KANGXI_RADICALS.equals(block)                         ||
+           Character.UnicodeBlock.IDEOGRAPHIC_DESCRIPTION_CHARACTERS.equals(block)      ||
+           Character.UnicodeBlock.HIRAGANA.equals(block)                                ||
+           Character.UnicodeBlock.KATAKANA.equals(block)                                ||
+           Character.UnicodeBlock.KATAKANA_PHONETIC_EXTENSIONS.equals(block)            ||
+           Character.UnicodeBlock.HANGUL_JAMO.equals(block)                             ||
+           Character.UnicodeBlock.HANGUL_COMPATIBILITY_JAMO.equals(block)               ||
+           Character.UnicodeBlock.HANGUL_SYLLABLES.equals(block)                        ||
+           Character.isIdeographic(codepoint);
   }
 }

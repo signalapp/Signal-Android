@@ -18,7 +18,7 @@ package org.thoughtcrime.securesms.scribbles;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.util.AsyncLoader;
@@ -27,7 +27,7 @@ import java.io.IOException;
 
 class StickerLoader extends AsyncLoader<String[]> {
 
-  private static final String TAG = StickerLoader.class.getName();
+  private static final String TAG = StickerLoader.class.getSimpleName();
 
   private final String assetDirectory;
 

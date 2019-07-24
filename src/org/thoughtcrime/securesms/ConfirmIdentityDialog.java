@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -48,7 +48,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
       Recipient       recipient       = Recipient.from(context, mismatch.getAddress(), false);
       String          name            = recipient.toShortString();
-      String          introduction    = String.format(context.getString(R.string.ConfirmIdentityDialog_your_safety_number_with_s_has_changed), name, name);
+      String          introduction    = context.getString(R.string.ConfirmIdentityDialog_your_safety_number_with_s_has_changed, name, name);
       SpannableString spannableString = new SpannableString(introduction + " " +
                                                             context.getString(R.string.ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact));
 

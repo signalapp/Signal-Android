@@ -6,9 +6,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -101,26 +101,12 @@ public class SharedContactView extends LinearLayout implements RecipientModified
       footer.setIconColor(iconColor);
       footer.setAlpha(footerAlpha);
     }
-
-    if (cornerMask.isLegacy()) {
-      setWillNotDraw(false);
-    }
-  }
-
-  @Override
-  protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
-    if (cornerMask.isLegacy()) {
-      cornerMask.mask(canvas);
-    }
   }
 
   @Override
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
-    if (!cornerMask.isLegacy()) {
-      cornerMask.mask(canvas);
-    }
+    cornerMask.mask(canvas);
   }
 
   public void setContact(@NonNull Contact contact, @NonNull GlideRequests glideRequests, @NonNull Locale locale) {

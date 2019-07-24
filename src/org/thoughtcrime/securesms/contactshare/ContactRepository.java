@@ -4,9 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.io.IOException;
@@ -153,8 +153,8 @@ public class ContactRepository {
       Log.w(TAG, "Failed to parse the vcard.", e);
     }
 
-    if (PersistentBlobProvider.AUTHORITY.equals(uri.getAuthority())) {
-      PersistentBlobProvider.getInstance(context).delete(context, uri);
+    if (BlobProvider.AUTHORITY.equals(uri.getAuthority())) {
+      BlobProvider.getInstance().delete(context, uri);
     }
 
     return contact;

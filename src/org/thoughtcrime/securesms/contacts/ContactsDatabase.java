@@ -19,24 +19,28 @@ package org.thoughtcrime.securesms.contacts;
 import android.accounts.Account;
 import android.annotation.SuppressLint;
 import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.CursorWrapper;
+import android.database.MatrixCursor;
+import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -101,21 +105,26 @@ public class ContactsDatabase {
                                               boolean remove)
       throws RemoteException, OperationApplicationException
   {
-    Set<Address>                        registeredAddressSet = new HashSet<>();
+    Set<Address>                        registeredAddressSet = new HashSet<>(registeredAddressList);
     ArrayList<ContentProviderOperation> operations           = new ArrayList<>();
     Map<Address, SignalContact>         currentContacts      = getSignalRawContacts(account);
+    List<List<Address>>                 registeredChunks     = Util.chunk(registeredAddressList, 50);
 
-    for (Address registeredAddress : registeredAddressList) {
-      registeredAddressSet.add(registeredAddress);
+    for (List<Address> registeredChunk : registeredChunks) {
+      for (Address registeredAddress : registeredChunk) {
+        if (!currentContacts.containsKey(registeredAddress)) {
+          Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(registeredAddress);
 
-      if (!currentContacts.containsKey(registeredAddress)) {
-        Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(registeredAddress);
-
-        if (systemContactInfo.isPresent()) {
-          Log.i(TAG, "Adding number: " + registeredAddress);
-          addTextSecureRawContact(operations, account, systemContactInfo.get().number,
-                                  systemContactInfo.get().name, systemContactInfo.get().id);
+          if (systemContactInfo.isPresent()) {
+            Log.i(TAG, "Adding number: " + registeredAddress);
+            addTextSecureRawContact(operations, account, systemContactInfo.get().number,
+                                    systemContactInfo.get().name, systemContactInfo.get().id);
+          }
         }
+      }
+      if (!operations.isEmpty()) {
+        context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
+        operations.clear();
       }
     }
 
@@ -137,7 +146,7 @@ public class ContactsDatabase {
     }
 
     if (!operations.isEmpty()) {
-      context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
+      applyOperationsInBatches(context.getContentResolver(), ContactsContract.AUTHORITY, operations, 50);
     }
   }
 
@@ -216,6 +225,25 @@ public class ContactsDatabase {
                                                   new String[] {CONTACT_MIMETYPE,
                                                                 "%" + filter + "%", "%" + filter + "%"},
                                                   sort);
+
+      if (context.getString(R.string.note_to_self).toLowerCase().contains(filter.toLowerCase())) {
+        Optional<SystemContactInfo> self      = getSystemContactInfo(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+        boolean                     shouldAdd = true;
+
+        if (self.isPresent()) {
+          boolean nameMatch   = self.get().name != null && self.get().name.toLowerCase().contains(filter.toLowerCase());
+          boolean numberMatch = self.get().number != null && self.get().number.contains(filter);
+
+          shouldAdd = !nameMatch && !numberMatch;
+        }
+
+        if (shouldAdd) {
+          MatrixCursor selfCursor = new MatrixCursor(projection);
+          selfCursor.addRow(new Object[]{ context.getString(R.string.note_to_self), TextSecurePreferences.getLocalNumber(context)});
+
+          cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
+        }
+      }
     }
 
     return new ProjectionMappingCursor(cursor, projectionMap,
@@ -529,6 +557,18 @@ public class ContactsDatabase {
       }
     } finally {
       if (cursor != null) cursor.close();
+    }
+  }
+
+  private void applyOperationsInBatches(@NonNull ContentResolver contentResolver,
+                                        @NonNull String authority,
+                                        @NonNull List<ContentProviderOperation> operations,
+                                        int batchSize)
+      throws OperationApplicationException, RemoteException
+  {
+    List<List<ContentProviderOperation>> batches = Util.chunk(operations, batchSize);
+    for (List<ContentProviderOperation> batch : batches) {
+      contentResolver.applyBatch(authority, new ArrayList<>(batch));
     }
   }
 

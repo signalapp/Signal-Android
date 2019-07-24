@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
+        <item name="android:navigationBarColor">#ff010101</item>
+    </style>
+
+    <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
+        <item name="android:navigationBarColor">#ff010101</item>
+        <item name="android:colorControlActivated">@color/signal_primary_dark</item>
+    </style>
+
+</resources>

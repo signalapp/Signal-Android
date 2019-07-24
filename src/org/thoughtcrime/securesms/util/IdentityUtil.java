@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.util;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.annotation.UiThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
@@ -47,8 +45,6 @@ public class IdentityUtil {
 
   private static final String TAG = IdentityUtil.class.getSimpleName();
 
-  @SuppressLint("StaticFieldLeak")
-  @UiThread
   public static ListenableFuture<Optional<IdentityRecord>> getRemoteIdentityKey(final Context context, final Recipient recipient) {
     final SettableFuture<Optional<IdentityRecord>> future = new SettableFuture<>();
 
@@ -82,7 +78,7 @@ public class IdentityUtil {
         SignalServiceGroup group = new SignalServiceGroup(groupRecord.getId());
 
         if (remote) {
-          IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, false);
+          IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, 0, false);
 
           if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
           else          incoming = new IncomingIdentityDefaultMessage(incoming);
@@ -102,7 +98,7 @@ public class IdentityUtil {
     }
 
     if (remote) {
-      IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.absent(), 0, false);
+      IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.absent(), 0, 0, false);
 
       if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
       else          incoming = new IncomingIdentityDefaultMessage(incoming);
@@ -132,14 +128,14 @@ public class IdentityUtil {
     while ((groupRecord = reader.getNext()) != null) {
       if (groupRecord.getMembers().contains(recipient.getAddress()) && groupRecord.isActive()) {
         SignalServiceGroup            group       = new SignalServiceGroup(groupRecord.getId());
-        IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, false);
+        IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, 0, false);
         IncomingIdentityUpdateMessage groupUpdate = new IncomingIdentityUpdateMessage(incoming);
 
         smsDatabase.insertMessageInbox(groupUpdate);
       }
     }
 
-    IncomingTextMessage           incoming         = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.absent(), 0, false);
+    IncomingTextMessage           incoming         = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.absent(), 0, 0, false);
     IncomingIdentityUpdateMessage individualUpdate = new IncomingIdentityUpdateMessage(incoming);
     Optional<InsertResult>        insertResult     = smsDatabase.insertMessageInbox(individualUpdate);
 
@@ -243,13 +239,8 @@ public class IdentityUtil {
       if (recipients.size() == 2) {
         return context.getString(resourceTwo, firstName, secondName);
       } else {
-        String nMore;
-
-        if (recipients.size() == 3) {
-          nMore = context.getResources().getQuantityString(R.plurals.identity_others, 1);
-        } else {
-          nMore = context.getResources().getQuantityString(R.plurals.identity_others, recipients.size() - 2);
-        }
+        int    othersCount = recipients.size() - 2;
+        String nMore       = context.getResources().getQuantityString(R.plurals.identity_others, othersCount, othersCount);
 
         return context.getString(resourceMany, firstName, secondName, nMore);
       }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/message_bubble_background_sent_alone"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/longmessage_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/message_bubble_top_padding"
+        android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+        android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+        android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
+        style="@style/Signal.Text.Body"
+        android:textColor="?conversation_item_sent_text_primary_color"
+        android:textColorLink="?conversation_item_sent_text_primary_color"
+        android:textIsSelectable="true"
+        app:scaleEmojis="true"
+        tools:text="With great power comes great responsibility."/>
+
+    <org.thoughtcrime.securesms.components.ConversationItemFooter
+        android:id="@+id/longmessage_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+        android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+        android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:footer_text_color="?attr/conversation_item_sent_text_secondary_color"
+        app:footer_icon_color="?attr/conversation_item_sent_icon_color"/>
+
+</LinearLayout>

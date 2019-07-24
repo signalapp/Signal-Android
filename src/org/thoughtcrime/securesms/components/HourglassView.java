@@ -61,10 +61,7 @@ public class HourglassView extends View {
     this.progressPaint.setColor(getResources().getColor(R.color.black));
     this.progressPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 
-    if (android.os.Build.VERSION.SDK_INT >= 11)
-    {
-      setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-    }
+    setLayerType(View.LAYER_TYPE_SOFTWARE, null);
   }
 
   @Override

@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.contactshare;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
@@ -39,17 +40,17 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
   }
 
   @Override
-  public ContactFieldViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public @NonNull ContactFieldViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new ContactFieldViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_selectable_contact_field, parent, false));
   }
 
   @Override
-  public void onBindViewHolder(ContactFieldViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ContactFieldViewHolder holder, int position) {
     holder.bind(fields.get(position), glideRequests, selectable);
   }
 
   @Override
-  public void onViewRecycled(ContactFieldViewHolder holder) {
+  public void onViewRecycled(@NonNull ContactFieldViewHolder holder) {
     holder.recycle();
   }
 
@@ -103,7 +104,11 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
       if (field.iconUri != null) {
         avatar.setVisibility(View.VISIBLE);
-        glideRequests.load(field.iconUri).circleCrop().into(avatar);
+        glideRequests.load(field.iconUri)
+                     .diskCacheStrategy(DiskCacheStrategy.NONE)
+                     .skipMemoryCache(true)
+                     .circleCrop()
+                     .into(avatar);
       } else {
         avatar.setVisibility(View.GONE);
       }

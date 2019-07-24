@@ -7,8 +7,8 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.os.Build;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 import android.view.View;
 
 public class CornerMask {
@@ -20,11 +20,7 @@ public class CornerMask {
   private final RectF   bounds     = new RectF();
 
   public CornerMask(@NonNull View view) {
-    if (isLegacy()) {
-      view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-    } else {
-      view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-    }
+    view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
     clearPaint.setColor(Color.BLACK);
     clearPaint.setStyle(Paint.Style.FILL);
@@ -42,21 +38,12 @@ public class CornerMask {
     corners.addRoundRect(bounds, radii, Path.Direction.CW);
 
     // Note: There's a bug in the P beta where most PorterDuff modes aren't working. But CLEAR does.
-    //       So we find and inverse path and use Mode.CLEAR for versions that support Path.op().
+    //       So we find and inverse path and use Mode.CLEAR.
     //       See issue https://issuetracker.google.com/issues/111394085.
-    if (!isLegacy()) {
-      outline.reset();
-      outline.addRect(bounds, Path.Direction.CW);
-      outline.op(corners, Path.Op.DIFFERENCE);
-      canvas.drawPath(outline, clearPaint);
-    } else {
-      corners.addRoundRect(bounds, radii, Path.Direction.CW);
-      canvas.clipPath(corners);
-    }
-  }
-
-  public boolean isLegacy() {
-    return Build.VERSION.SDK_INT < 19;
+    outline.reset();
+    outline.addRect(bounds, Path.Direction.CW);
+    outline.op(corners, Path.Op.DIFFERENCE);
+    canvas.drawPath(outline, clearPaint);
   }
 
   public void setRadius(int radius) {

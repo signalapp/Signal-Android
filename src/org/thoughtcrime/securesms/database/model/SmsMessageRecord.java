@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
@@ -38,7 +39,7 @@ import java.util.List;
 
 public class SmsMessageRecord extends MessageRecord {
 
-  public SmsMessageRecord(Context context, long id,
+  public SmsMessageRecord(long id,
                           String body, Recipient recipient,
                           Recipient individualRecipient,
                           int recipientDeviceId,
@@ -49,7 +50,7 @@ public class SmsMessageRecord extends MessageRecord {
                           int subscriptionId, long expiresIn, long expireStarted,
                           int readReceiptCount, boolean unidentified)
   {
-    super(context, id, body, recipient, individualRecipient, recipientDeviceId,
+    super(id, body, recipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
           mismatches, new LinkedList<>(), subscriptionId,
           expiresIn, expireStarted, readReceiptCount, unidentified);
@@ -60,7 +61,7 @@ public class SmsMessageRecord extends MessageRecord {
   }
 
   @Override
-  public SpannableString getDisplayBody() {
+  public SpannableString getDisplayBody(@NonNull Context context) {
     if (SmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
     } else if (isCorruptedKeyExchange()) {
@@ -83,8 +84,12 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
     } else if (isEndSession()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset_s, getIndividualRecipient().toShortString()));
+    } else if (SmsDatabase.Types.isUnsupportedMessageType(type)) {
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version));
+    } else if (SmsDatabase.Types.isInvalidMessageType(type)) {
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_error_handling_incoming_message));
     } else {
-      return super.getDisplayBody();
+      return super.getDisplayBody(context);
     }
   }
 

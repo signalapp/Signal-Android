@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -27,47 +26,39 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.inject.Inject;
+public class AvatarDownloadJob extends BaseJob {
 
-import androidx.work.Data;
-
-public class AvatarDownloadJob extends ContextJob implements InjectableType {
-
-  private static final int MAX_AVATAR_SIZE = 20 * 1024 * 1024;
-  private static final long serialVersionUID = 1L;
+  public static final String KEY = "AvatarDownloadJob";
 
   private static final String TAG = AvatarDownloadJob.class.getSimpleName();
 
-  private static final String KEY_GROUP_ID = "group_id";
+  private static final int MAX_AVATAR_SIZE = 20 * 1024 * 1024;
 
-  @Inject transient SignalServiceMessageReceiver receiver;
+  private static final String KEY_GROUP_ID = "group_id";
 
   private byte[] groupId;
 
-  public AvatarDownloadJob() {
-    super(null, null);
+  public AvatarDownloadJob(@NonNull byte[] groupId) {
+    this(new Job.Parameters.Builder()
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(10)
+                           .build(),
+         groupId);
   }
 
-  public AvatarDownloadJob(Context context, @NonNull byte[] groupId) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .create());
-
+  private AvatarDownloadJob(@NonNull Job.Parameters parameters, @NonNull byte[] groupId) {
+    super(parameters);
     this.groupId = groupId;
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
-    try {
-      groupId = GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID));
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
+  public @NonNull Data serialize() {
+    return new Data.Builder().putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false)).build();
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false)).build();
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -97,6 +88,7 @@ public class AvatarDownloadJob extends ContextJob implements InjectableType {
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());
         attachment.deleteOnExit();
 
+        SignalServiceMessageReceiver   receiver    = ApplicationDependencies.getSignalServiceMessageReceiver();
         SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent());
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
         Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
@@ -116,9 +108,19 @@ public class AvatarDownloadJob extends ContextJob implements InjectableType {
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     if (exception instanceof IOException) return true;
     return false;
   }
 
+  public static final class Factory implements Job.Factory<AvatarDownloadJob> {
+    @Override
+    public @NonNull AvatarDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      try {
+        return new AvatarDownloadJob(parameters, GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID)));
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+    }
+  }
 }

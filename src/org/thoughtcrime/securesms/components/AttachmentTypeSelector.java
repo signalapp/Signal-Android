@@ -8,9 +8,9 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.LoaderManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.app.LoaderManager;
 import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -86,10 +86,6 @@ public class AttachmentTypeSelector extends PopupWindow {
     this.gifButton.setOnClickListener(new PropagatingClickListener(ADD_GIF));
     this.closeButton.setOnClickListener(new CloseClickListener());
     this.recentRail.setListener(new RecentPhotoSelectedListener());
-
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-      ViewUtil.findById(layout, R.id.location_linear_layout).setVisibility(View.INVISIBLE);
-    }
 
     setContentView(layout);
     setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
@@ -257,10 +253,10 @@ public class AttachmentTypeSelector extends PopupWindow {
 
   private class RecentPhotoSelectedListener implements RecentPhotoViewRail.OnItemClickedListener {
     @Override
-    public void onItemClicked(Uri uri) {
+    public void onItemClicked(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height, long size) {
       animateWindowOutTranslate(getContentView());
 
-      if (listener != null) listener.onQuickAttachment(uri);
+      if (listener != null) listener.onQuickAttachment(uri, mimeType, bucketId, dateTaken, width, height, size);
     }
   }
 
@@ -289,8 +285,8 @@ public class AttachmentTypeSelector extends PopupWindow {
   }
 
   public interface AttachmentClickedListener {
-    public void onClick(int type);
-    public void onQuickAttachment(Uri uri);
+    void onClick(int type);
+    void onQuickAttachment(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height, long size);
   }
 
 }

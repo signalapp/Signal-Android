@@ -1,11 +1,16 @@
 package org.thoughtcrime.securesms;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import android.view.KeyEvent;
+
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageActivityHelper;
+import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
 public abstract class BaseActivity extends FragmentActivity {
   @Override
@@ -26,5 +31,16 @@ public abstract class BaseActivity extends FragmentActivity {
     return VERSION.SDK_INT < VERSION_CODES.KITKAT          &&
            VERSION.SDK_INT > VERSION_CODES.GINGERBREAD_MR1 &&
            ("LGE".equalsIgnoreCase(Build.MANUFACTURER) || "E6710".equalsIgnoreCase(Build.DEVICE));
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    DynamicLanguageActivityHelper.recreateIfNotInCorrectLanguage(this, TextSecurePreferences.getLanguage(this));
+  }
+
+  @Override
+  protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(newBase, TextSecurePreferences.getLanguage(newBase)));
   }
 }

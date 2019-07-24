@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
@@ -23,12 +24,14 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @NonNull List<Attachment> avatar,
                                    long sentTimeMillis,
                                    long expiresIn,
+                                   long revealDuration,
                                    @Nullable QuoteModel quote,
-                                   @NonNull List<Contact> contacts)
+                                   @NonNull List<Contact> contacts,
+                                   @NonNull List<LinkPreview> previews)
       throws IOException
   {
     super(recipient, encodedGroupContext, avatar, sentTimeMillis,
-          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, quote, contacts);
+          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, revealDuration, quote, contacts, previews);
 
     this.group = GroupContext.parseFrom(Base64.decode(encodedGroupContext));
   }
@@ -38,13 +41,15 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @Nullable final Attachment avatar,
                                    long sentTimeMillis,
                                    long expireIn,
+                                   long revealDuration,
                                    @Nullable QuoteModel quote,
-                                   @NonNull List<Contact> contacts)
+                                   @NonNull List<Contact> contacts,
+                                   @NonNull List<LinkPreview> previews)
   {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
           System.currentTimeMillis(),
-          ThreadDatabase.DistributionTypes.CONVERSATION, expireIn, quote, contacts);
+          ThreadDatabase.DistributionTypes.CONVERSATION, expireIn, revealDuration, quote, contacts, previews);
 
     this.group = group;
   }

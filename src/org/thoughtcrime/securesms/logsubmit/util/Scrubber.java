@@ -17,8 +17,6 @@
 
 package org.thoughtcrime.securesms.logsubmit.util;
 
-import org.thoughtcrime.securesms.logging.Log;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,10 +25,15 @@ import java.util.regex.Pattern;
  */
 public class Scrubber {
   private static final String TAG = Scrubber.class.getSimpleName();
-  private static final Pattern E164_PATTERN = Pattern.compile("\\+\\d{10,15}");
+
+  private static final Pattern E164_PATTERN    = Pattern.compile("\\+\\d{10,15}");
+  private static final Pattern GROUPID_PATTERN = Pattern.compile("__textsecure_group__![^\\s]+");
+  private static final Pattern EMAIL_PATTERN   = Pattern.compile("[^\\s]+@[^\\s]+");
 
   private static final Pattern[] DEFAULTS = new Pattern[] {
-      E164_PATTERN
+      E164_PATTERN,
+      GROUPID_PATTERN,
+      EMAIL_PATTERN
   };
 
   private final Pattern[] patterns;
@@ -43,7 +46,6 @@ public class Scrubber {
   }
 
   public String scrub(final String in) {
-    android.util.Log.d(TAG, "scrubbing input");
     String out = in;
     for (Pattern pattern : patterns) {
       Matcher       matcher       = pattern.matcher(out);
@@ -59,7 +61,6 @@ public class Scrubber {
         builder.append(censored);
 
         lastEndingPos = matcher.end();
-        android.util.Log.i(TAG, "replacing a match on /" + pattern.toString() + "/ => " + censored);
       }
       builder.append(out.substring(lastEndingPos));
       out = builder.toString();

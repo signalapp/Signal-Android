@@ -38,6 +38,7 @@
     <attr name="conversation_transport_push_indicator" format="reference"/>
     <attr name="conversation_transport_popup_background" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
+    <attr name="conversation_sticker_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
     <attr name="conversation_attach_camera" format="reference"/>
     <attr name="conversation_attach_image" format="reference"/>
@@ -47,12 +48,15 @@
     <attr name="conversation_attach" format="reference"/>
     <attr name="conversation_number_picker_text_color_normal" format="reference|color"/>
     <attr name="conversation_number_picker_text_color_selected" format="reference|color"/>
+    <attr name="conversation_sticker_footer_text_color" format="reference|color"/>
+    <attr name="conversation_sticker_footer_icon_color" format="reference|color"/>
+    <attr name="conversation_sticker_author_color" format="reference|color"/>
 
     <attr name="emoji_tab_strip_background" format="color" />
     <attr name="emoji_tab_indicator" format="color" />
     <attr name="emoji_tab_underline" format="color" />
     <attr name="emoji_tab_seperator" format="color" />
-    <attr name="emoji_background" format="color" />
+    <attr name="emoji_drawer_background" format="color" />
     <attr name="emoji_text_color" format="color" />
 
     <attr name="emoji_category_recent" format="reference"/>
@@ -66,8 +70,11 @@
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
+
     <attr name="quick_camera_icon" format="reference"/>
     <attr name="quick_mic_icon" format="reference"/>
+
+    <attr name="compose_icon_tint" />
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_bubble_background" format="reference|color"/>
@@ -87,6 +94,7 @@
     <attr name="conversation_item_sticky_date_background" format="reference" />
     <attr name="conversation_item_sticky_date_text_color" format="color" />
     <attr name="conversation_item_image_outline_color" format="color" />
+    <attr name="conversation_item_reveal_viewed_background_color" format="color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -102,13 +110,22 @@
 
     <attr name="device_link_item_card_background" format="reference|color" />
 
+    <attr name="mediapicker_image_outline" format="reference" />
+
     <attr name="import_export_item_background_color" format="reference|color" />
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
 
     <attr name="invite_background" format="color"/>
 
+    <attr name="linkpreview_background_color" format="color" />
+    <attr name="linkpreview_primary_text_color" format="color" />
+    <attr name="linkpreview_secondary_text_color" format="color" />
+    <attr name="linkpreview_divider_color" format="color" />
+
     <attr name="reminder_header_background" format="color"/>
+
+    <attr name="media_keyboard_button_color" format="color" />
 
     <attr name="menu_new_conversation_icon" format="reference" />
     <attr name="menu_search_icon" format="reference" />
@@ -158,6 +175,19 @@
 
     <attr name="search_toolbar_background" format="color"/>
     <attr name="search_background" format="color"/>
+
+    <attr name="sticker_management_icon" format="reference" />
+    <attr name="sticker_management_divider_color" format="color" />
+    <attr name="sticker_management_empty_background_color" format="color" />
+    <attr name="sticker_management_action_button_color" format="color" />
+    <attr name="sticker_popup_background" format="color" />
+    <attr name="sticker_preview_toolbar_background" format="color" />
+    <attr name="sticker_preview_status_bar_color" format="color" />
+    <attr name="sticker_view_missing_background" format="reference|color" />
+
+    <attr name="tooltip_default_color" format="reference|color" />
+
+    <attr name="registration_lock_reminder_view_pin_text_color" format="color"/>
 
     <attr name="contact_list_divider" format="reference"/>
 
@@ -229,6 +259,7 @@
 
     <declare-styleable name="EmojiTextView">
         <attr name="scaleEmojis" format="boolean" />
+        <attr name="emoji_maxLength" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="RingtonePreference">
@@ -279,6 +310,13 @@
         <attr name="contact_footerAlpha" format="float" />
     </declare-styleable>
 
+    <declare-styleable name="LinkPreviewView">
+        <attr name="linkpreview_type" format="enum">
+            <enum name="conversation" value="0" />
+            <enum name="compose" value="1" />
+        </attr>
+    </declare-styleable>
+
     <declare-styleable name="DocumentView">
         <attr name="doc_titleColor" format="color" />
         <attr name="doc_captionColor" format="color" />
@@ -305,4 +343,14 @@
         <attr name="scrollView_maxHeight" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="LabeledEditText">
+        <attr name="labeledEditText_label" format="string" />
+        <attr name="labeledEditText_background" format="color" />
+        <attr name="labeledEditText_textLayout" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RevealableMessageView">
+        <attr name="revealable_unopenedForegroundColor" format="color" />
+        <attr name="revealable_openedForegroundColor" format="color" />
+    </declare-styleable>
 </resources>

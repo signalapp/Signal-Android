@@ -6,9 +6,11 @@
   <string name="delete">Zmazať</string>
   <string name="please_wait">Čakajte prosím...</string>
   <string name="save">Uložiť</string>
+  <string name="note_to_self">Poznámka pre seba</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nová správa</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálne: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
@@ -39,9 +41,9 @@
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS vypnuté</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Signal ako predvolenú aplikáciu</string>
   <string name="ApplicationPreferencesActivity_on">zap.</string>
-  <string name="ApplicationPreferencesActivity_On">Zap.</string>
+  <string name="ApplicationPreferencesActivity_On">Zapnuté</string>
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
-  <string name="ApplicationPreferencesActivity_Off">Vyp.</string>
+  <string name="ApplicationPreferencesActivity_Off">Vypnuté</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Zámok obrazovky %1$s, Registračný zámok %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s motív,  jazyk: %2$s</string>
@@ -58,12 +60,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(poloha)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(odpoveď)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nenašla sa aplikácia pre výber médií.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal potrebuje prístup k úložisku aby k správam mohol pridať obrázkové, video a zvukové prílohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal potrebuje prístup ku kontaktom aby k správam mohol pripojiť informácie o kontakte, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal potrebuje prístup k polohe aby k správam mohol pripojiť informácie o polohe, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Poloha\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Nahrávanie prílohy…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Chyba pri prehrávaní zvuku!</string>
   <!--BlockedContactsActivity-->
@@ -76,11 +80,14 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Kamera je nedostupná.</string>
+  <string name="CameraActivity_image_save_failure">Obrázok sa nepodarilo uložiť.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odstrániť</string>
   <string name="ClearProfileActivity_remove_profile_photo">Odstrániť profilovú fotku?</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Nenašiel sa žiadny webový prehliadač.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Už prebieha telefónový hovor.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mali by ste overiť vaše bezpečnostné číslo s týmto kontaktom.</string>
@@ -116,6 +123,9 @@
   <string name="ConversationItem_copied_text">Skopírovaných %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">pre %s</string>
+  <string name="ConversationItem_read_more">  Čítať ďalej</string>
+  <string name="ConversationItem_download_more">  Stiahnuť viac</string>
+  <string name="ConversationItem_pending">  Čaká sa</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetovať zabezpečenú reláciu?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Toto vám môže pomôcť pri problémoch so šifrovaním v tejto konverzácii. Vaše správy budú zachované.</string>
@@ -137,11 +147,12 @@
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Prejdime na Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Chatujme cez toto: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba pri opustení skupiny</string>
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Odblokovať tento kontakt?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Odblokovať túto skupinu?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Znovu budete môcť dostávať správy a hovory od tohto kontaktu.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Členovia Vás budú môcť znova pridať do skupiny.</string>
   <string name="ConversationActivity_unblock">Odblokovať</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Príloha presahuje limit veľkosti pre tento typ správy.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera je nedostupná</string>
@@ -155,6 +166,13 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie a video, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal potrebuje prístup k Fotoaparátu, aby mohol vytvárať fotografie a videá</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nemôže odosielať SMS/MMS, pretože nie je prednastavenou SMS aplikáciou. Chcete to zmeniť v nastaveniach Androidu?</string>
+  <string name="ConversationActivity_yes">Áno</string>
+  <string name="ConversationActivity_no">Nie</string>
+  <string name="ConversationActivity_search_position">%1$d z %2$d</string>
+  <string name="ConversationActivity_no_results">Žiadne výsledky.</string>
+  <string name="ConversationActivity_sticker_pack_installed">Balík s nálepkami bol nainštalovaný</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Novinka! Povedzte to nálepkou</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
@@ -244,12 +262,17 @@
   <string name="ConversationListItem_key_exchange_message">Správa výmeny kľúčov</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivované konverzácie (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Overený</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Váš profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba pri nastavení profilovej fotky</string>
   <string name="CreateProfileActivity_problem_setting_profile">Chyba pri nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotka</string>
   <string name="CreateProfileActivity_too_long">Príliš dlhé</string>
+  <string name="CreateProfileActivity_profile_name">Profilové meno</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Nastavte si svoj profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profily Signal sú end-to-end šifrované a služba Signal nikdy nemá prístup k týmto informáciám.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používa sa vlastné: %s</string>
   <string name="CustomDefaultPreference_using_default">Používa sa predvolené: %s</string>
@@ -286,7 +309,7 @@
   <string name="ShareActivity_share_with">Zdieľať s</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Vitajte v Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure a RedPhone sú teraz jedným messengerom pre každú situáciu: Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure a RedPhone sú teraz jedným súkromným messengerom pre každú situáciu: Signal.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Vitajte v Signal!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je odteraz Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure a RedPhone sú odteraz jednou aplikáciou: Signal. Ťuknutím preskúmajte.</string>
@@ -297,7 +320,19 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ste pripravený na portrét?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teraz môžete s vašimi priateľmi na Signalu zdieľať vašu profilovú fotku a meno</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profily sú tu</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavujeme indikátory písania.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Teraz môžete voliteľne vidieť a zdieľať, keď sú správy písané.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Želáte si ich zapnúť?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Indikátory písania sú tu</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Povoliť indikátory písania</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Zapnúť indikátory písania</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Nie, ďakujem</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Uvádzame náhľady stránok.</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Náhľady sú teraz voliteľne podporované pre niektoré z najpopulárnejších webových stránok na internete.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Túto funkciu môžete kedykoľvek vypnúť alebo zapnúť v nastaveniach Signal-u (Súkromie &gt; Posielať náhľady stránok).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Chápem</string>
   <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Preberanie správy…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikácie Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal sa nebol schopný registrovať k službám Google Play. Signal správy a hovory boli vypnuté, prosím zaregistrujte sa opätovne cez Nastavenia &gt; Rozšírené.</string>
@@ -328,13 +363,16 @@
   <string name="GroupShareProfileView_make_visible">Zapnúť viditeľnosť</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Obrázok skupiny</string>
+  <string name="CropImageActivity_profile_avatar">Fotka</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Podržte pre záznam hlasovej správy, a pustite pre odoslanie</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Zdieľať</string>
   <string name="InviteActivity_choose_contacts">Vybrať kontakty</string>
   <string name="InviteActivity_cancel">Zrušiť</string>
-  <string name="InviteActivity_sending">Odosielam...</string>
+  <string name="InviteActivity_sending">Odosiela sa...</string>
   <string name="InviteActivity_heart_content_description">Srdce</string>
   <string name="InviteActivity_invitations_sent">Pozvánky odoslané!</string>
   <string name="InviteActivity_invite_to_signal">Pozvať do Signalu</string>
@@ -354,9 +392,14 @@
   <string name="InviteActivity_no_app_to_share_to">Vyzerá to, že nemáte žiadne aplikácie kam by ste mohli zdieľať.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Priatelia nenechávajú priateľov chatovať nešifrovane.</string>
   <!--Job-->
+  <string name="Job_working_in_the_background">Práca na pozadí...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nepodarilo sa odoslať</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nové bezpečnostné číslo</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Nie je možné nájsť správu</string>
+  <string name="LongMessageActivity_message_from_s">Správa od %1$s</string>
+  <string name="LongMessageActivity_your_message">Vaša správa</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Pripojenie na pozadí zapnuté</string>
@@ -393,6 +436,24 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediálna správa</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Preberanie MMS správy</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Chyba pri preberaní MMS správy, ťuknite pre opakovanie</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Poslať používateľovi %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Označte ťuknutím</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Pridaj popis...</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka bola odstránená, lebo prekračovala limit na veľkosť</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera je nedostupná.</string>
+  <string name="MediaSendActivity_message_to_s">Správa pre %s</string>
+  <string name="MediaSendActivity_message">Správa</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Nemôžete zdieľať viac ako %d položku.</item>
+    <item quantity="few">Nemôžete zdieľať viac ako %d položiky.</item>
+    <item quantity="many">Nemôžete zdieľať viac ako %d položiek.</item>
+    <item quantity="other">Nemôžete zdieľať viac ako %d položiek.</item>
+  </plurals>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Všetky médiá</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prijatá správa je šifrovaná starou verziou Signalu, ktorá už nie je podporovaná. Prosím požiadajte odosielateľa o aktualizáciu na najnovšiu verziu a opätovné odoslanie správy.</string>
   <string name="MessageRecord_left_group">Opustili ste skupinu.</string>
@@ -447,9 +508,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Odoslať heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Mapa</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Neplatná adresa</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verzia aplikácie Google Play Services ktorú máte nainštalovanú nefunguje správne. Prosím preinštalujte Google Play Services a skúste znova.</string>
-  <!--PushNotificationReceiveJob-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotiť túto aplikáciu</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ak sa vám táto aplikácia páči, nájdite si chvíľu a pomôžte nám tým, že ju ohodnotíte.</string>
@@ -460,9 +523,14 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokovať tento kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Už nebudete od tohto kontaktu dostávať správy a hovory.</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Blokovať a opustiť túto skupinu?</string>
+  <string name="RecipientPreferenceActivity_block_group">Blokovať túto skupinu?</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Už nebudete dostávať správy a aktualizácie od tejto skupiny.</string>
   <string name="RecipientPreferenceActivity_block">Blokovať</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokovať tento kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Znovu budete dostávať správy a hovory od tohoto kontaktu.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">Odblokovať túto skupinu?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">Členovia Vás budú môcť znova pridať do skupiny.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Chyba pri opustení skupiny</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovať</string>
   <string name="RecipientPreferenceActivity_enabled">Povolené</string>
@@ -506,6 +574,23 @@ telefónne číslo
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrebuje prístup k vašim kontaktom a médiám aby sa mohol spojiť s vašimi priateľmi, posielať správy a uskutočniť zabezpečené hovory</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepodarilo sa pripojiť k službe. Prosím, overte Vaše sieťové pripojenie a skúste to znovu.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pre jednoduchšie overenie Vášho telefónneho čísla môže Signal automaticky zistiť Váš verifikačný kód, ak mu povolíte prístup k SMS správam.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Ste %d krok od odoslania ladiaceho záznamu.</item>
+    <item quantity="few">Ste %d kroky od odoslania ladiaceho záznamu.</item>
+    <item quantity="many">Ste %d krokov od odoslania ladiaceho záznamu.</item>
+    <item quantity="other">Ste %d krokov od odoslania ladiaceho záznamu.</item>
+  </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Potrebujeme si overiť, že ste človek.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Nepodarilo sa overiť CAPTCHA</string>
+  <string name="RegistrationActivity_next">Ďalší</string>
+  <string name="RegistrationActivity_continue">Pokračovať</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vezmite si súkromie so sebou.\nBuďte sami sebou v každej správe.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby ste mohli začať, zadajte svoje telefónne číslo</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Obdržíte overovací kód. Váš mobilný operátor si môže účtovať poplatky.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadajte kód, ktorý sme odoslali na %s</string>
+  <string name="RegistrationActivity_call">Zavolať</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Fotka</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodarilo sa uložiť zmeny v obrázku</string>
   <!--Search-->
@@ -513,7 +598,6 @@ telefónne číslo
   <string name="SearchFragment_header_conversations">Konverzácie</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Správy</string>
-  <!--SendJob-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Pridať medzi kontakty</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pozvať do Signalu</string>
@@ -525,6 +609,7 @@ telefónne číslo
   <string name="SharedContactView_message">Signal správa</string>
   <!--Slide-->
   <string name="Slide_image">Obrázok</string>
+  <string name="Slide_sticker">Nálepka</string>
   <string name="Slide_audio">Zvuk</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -538,6 +623,25 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SmsMessageRecord_secure_session_reset">Obnovili ste bezpečnú reláciu.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval/a zabezpečenú reláciu.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikácia správy.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Táto správa nemohla byť spracovaná, pretože bola poslaná z novšej verzie Signalu. Po aktualizácii môžete požiadať kontakt o znovuposlanie.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Chyba pri spracovaní prichádzajúcej správy</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Nálepky</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Nainštalované nálepky</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Prijaté nálepky</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Zbierka od výtvarníkov Signalu</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Žiadne nainštalované nálepky</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Tu uvidíte nálepky z prichádzajúcich správ</string>
+  <string name="StickerManagementAdapter_untitled">Nepomenovaná</string>
+  <string name="StickerManagementAdapter_unknown">Neznáme</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Nepomenovaná</string>
+  <string name="StickerPackPreviewActivity_unknown">Neznáme</string>
+  <string name="StickerPackPreviewActivity_install">Inštalovať</string>
+  <string name="StickerPackPreviewActivity_remove">Odstrániť</string>
+  <string name="StickerPackPreviewActivity_stickers">Nálepky</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nepodarilo sa načítať balík s nálepkami</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Skupina bola aktualizovaná</string>
   <string name="ThreadRecord_left_the_group">Opustil/a skupinu</string>
@@ -547,6 +651,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_called_you">Volal Vám</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
+  <string name="ThreadRecord_sticker">Nálepka</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signale!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
@@ -554,6 +659,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %s sa zmenilo.</string>
   <string name="ThreadRecord_you_marked_verified">Označili ste ako overené</string>
   <string name="ThreadRecord_you_marked_unverified">Označili ste ako neoverené</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Správu sa nepodarilo spracovať</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signalu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signalu, ťuknutím aktualizujte</string>
@@ -619,9 +725,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_mark_all_as_read">Označiť všetko ako prečítané</string>
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
+  <string name="MessageNotifier_sticker">Nálepka</string>
   <string name="MessageNotifier_reply">Odpovedať</string>
-  <string name="MessageNotifier_pending_signal_messages">Nevybavené Signal správy </string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Máte nevybavené Signal správy, stlačením otvorte a prevezmite</string>
+  <string name="MessageNotifier_signal_message">Signal správa</string>
+  <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Pravdepodobne máte nové správy</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Otvorte Signal pre kontrolu nedávnych upozornení.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -639,6 +748,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuickResponseService_problem_sending_message">Problém pri odosielaní správy!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Uložené do %s</string>
+  <string name="SaveAttachmentTask_saved">Uložené</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Hľadať</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Vyhľadávajte medzi konverzáciami, kontaktmi alebo správami</string>
@@ -648,6 +758,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová správa</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d položka</item>
+    <item quantity="few">%d položky</item>
+    <item quantity="many">%d položiek</item>
+    <item quantity="other">%d položiek</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Zariadenie už nie je registrované</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dôvodom je pravdepodobne to, že ste Vaše telefónne číslo zaregistrovali v Signalu na inom zariadení.</string>
@@ -704,15 +820,18 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_activity__type_message_sms_insecure">Nezabezpečená SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Nezabezpečená MMS</string>
   <string name="conversation_activity__from_sim_name">Z %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Odoslať</string>
   <string name="conversation_activity__compose_description">Písanie správy</string>
   <string name="conversation_activity__emoji_toggle_description">Prepnúť na emoji klávesnicu</string>
   <string name="conversation_activity__attachment_thumbnail">Ikona prílohy</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Prepnúť na rýchlu prílohu fotoaparátom</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nahrať a odoslať zvukovú prílohu</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zamknúť nahrávanie zvukovej prílohy</string>
   <string name="conversation_activity__enable_signal_for_sms">Zapnúť Signal pre SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">POTIAHNITE PRE ZRUŠENIE</string>
+  <string name="conversation_input_panel__slide_to_cancel">Potiahnite pre zrušenie</string>
+  <string name="conversation_input_panel__cancel">Zrušiť</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimediálna správa</string>
   <string name="conversation_item__secure_message_description">Šifrovaná správa</string>
@@ -731,6 +850,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuoteView_audio">Zvuk</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotka</string>
+  <string name="QuoteView_sticker">Nálepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vy</string>
   <string name="QuoteView_original_missing">Pôvodná správa sa nenašla</string>
@@ -857,7 +977,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   </plurals>
   <string name="GroupUtil_group_name_is_now">Názov skupiny je teraz \"%1$s\".</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Nastaviť vaše meno a profilovú fotku ako viditeľné pre túto skupinou?</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Nastaviť vaše meno a profilovú fotku ako viditeľné pre túto skupinu?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomknúť</string>
   <!--prompt_mms_activity-->
@@ -972,6 +1092,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použiť Signal pre všetky prichádzajúce multimediálne správy</string>
   <string name="preferences__pref_enter_sends_title">Odoslať stlačením klávesy Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stlačením klávesy Enter sa správa odošle</string>
+  <string name="preferences__send_link_previews">Posielať náhľady stránok</string>
+  <string name="preferences__previews_are_supported_for">Ukážky sú podporované pre odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string>
   <string name="preferences__choose_identity">Vyberať identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__change_passphrase">Zmeniť heslo</string>
@@ -1016,7 +1138,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS proxy server</string>
   <string name="preferences__mms_proxy_port">MMS proxy port</string>
-  <string name="preferences__mmsc_username">MMSC používateľ</string>
+  <string name="preferences__mmsc_username">Meno používateľa MMSC</string>
   <string name="preferences__mmsc_password">MMSC heslo</string>
   <string name="preferences__sms_delivery_reports">Správy o doručení SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadať správu o doručení</string>
@@ -1041,6 +1163,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__incognito_keyboard">Inkognito klávesnica</string>
   <string name="preferences__read_receipts">Potvrdenia o prečítaní</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Keď máte vypnuté potvrdenia o prečítaní, nebudete dostávať potvrdenia ani od ostatných.</string>
+  <string name="preferences__typing_indicators">Indikátory písania</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Keď sú indikátory písania vypnuté, nezobrazia sa Vám ani indikátory iných.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Požiadať klávesnicu aby sa neučila</string>
   <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
   <string name="preferences_chats__when_using_mobile_data">Pri použití mobilných dát</string>
@@ -1049,7 +1173,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__media_auto_download">Automatické preberanie médií</string>
   <string name="preferences_chats__message_trimming">Premazávanie správ</string>
   <string name="preferences_advanced__use_system_emoji">Použiť systémové emoji</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Vypnúť emoji zabudované v Signalu</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Vypnúť emoji zabudované v Signale</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Smerovať všetky hovory cez server Signal pre zabránenie odhaleniu vašej IP adresy kontaktu. Zapnutie zníži kvalitu hovoru.</string>
   <string name="preferences_advanced__always_relay_calls">Vždy presmerovať hovory</string>
   <string name="preferences_app_protection__app_access">Prístup k aplikácii</string>
@@ -1057,7 +1181,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__chats">Chat</string>
   <string name="preferences_notifications__messages">Správy</string>
   <string name="preferences_notifications__events">Udalosti</string>
-  <string name="preferences_notifications__in_chat_sounds">Zvuky v chatu</string>
+  <string name="preferences_notifications__in_chat_sounds">Zvuky v chate</string>
   <string name="preferences_notifications__show">Zobraziť</string>
   <string name="preferences_notifications__calls">Volania</string>
   <string name="preferences_notifications__ringtone">Zvonenie</string>
@@ -1066,6 +1190,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__message_text_size">Veľkosť písma správy</string>
   <string name="preferences_events__contact_joined_signal">Váš kontakt začal používať Signal</string>
   <string name="preferences_notifications__priority">Priorita</string>
+  <string name="preferences_communication__category_sealed_sender">Zapečatený odosielateľ</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Zobraziť indikátory</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Zobraziť stavovú ikonu v detailoch správ, ktoré boli doručené s použitím zapečateného odosielateľa.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Povoliť od každého</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Zapnúť zapečateného odosielateľa pre prichádzajúce správy od ľudí, ktorých nemáte v kontaktoch a s ktorými ste nezdieľali svoj profil.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Dozvedieť sa viac</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1158,6 +1288,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="reminder_header_share_title">Pozvite vašich priateľov!</string>
   <string name="reminder_header_share_text">Čím viac priateľov používa Signal, tým lepším sa stane.</string>
   <string name="reminder_header_service_outage_text">Signal má technické ťažkosti. Pracujeme na tom, aby sme čo najskôr obnovili našu službu.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Najnovšie funkcie Signalu nefungujú v tejto verzii Androidu. Ak chcete v budúcnosti prijímať aktualizácie Signalu, upgradujte si, prosím, toto zariadenie.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložiť</string>
   <string name="media_preview__forward_title">Preposlať</string>
@@ -1199,6 +1330,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__create_backup">Vytvoriť zálohu</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Zadajte heslo pre zálohy</string>
   <string name="RegistrationActivity_restore">Obnovenie</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Zálohy z novšej verzie Signal sa nedajú importovať.</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Nesprávne heslo pre zálohy</string>
   <string name="RegistrationActivity_checking">Kontrola...</string>
   <string name="RegistrationActivity_d_messages_so_far">Zatiaľ %d správ...</string>
@@ -1218,11 +1350,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ChatsPreferenceFragment_in_progress">Prebieha</string>
   <string name="LocalBackupJob_creating_backup">Vytváranie zálohy...</string>
   <string name="ProgressPreference_d_messages_so_far">Zatiaľ %d správ</string>
-  <string name="RegistrationActivity_verify_s">Overiť %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím zadajte overovací kód odoslaný na %s.</string>
-  <string name="RegistrationActivity_wrong_number">Zlé číslo?</string>
-  <string name="RegistrationActivity_call_me_instead">Radšej mi zavolaj</string>
-  <string name="RegistrationActivity_available_in">K dispozícii za:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">Nesprávne číslo</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Radšej mi zavolať \n (Dostupný/á o %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznáma</string>
   <string name="preferences_app_protection__screen_lock">Zámok obrazovky</string>
@@ -1237,7 +1367,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="registration_lock_dialog_view__confirm_pin">Potvrďte PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Zadajte Váš PIN registračného zámku</string>
   <string name="registration_lock_reminder_view__enter_pin">Zadajte PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Povoľte PIN registračného zámku, ktorý bude potrebné zadať pri opätovnej regisrácii tohto telefónneho čísla do Signalu.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Povoľte PIN registračného zámku, ktorý bude potrebné zadať pri opätovnej registrácii tohto telefónneho čísla do Signalu.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN registračného zámku</string>
   <string name="preferences_app_protection__registration_lock">Registračný zámok</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musíte zadať svoj PIN registračného zámku</string>
@@ -1260,7 +1390,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Chyba pri pripájaní k službe</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Vypnúť PIN registračného zámku?</string>
   <string name="RegistrationLockDialog_disable">Vypnúť</string>
-  <string name="RegistrationActivity_continue">Pokračovať</string>
   <string name="preferences_chats__backups">Zálohy</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zamknutý</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ŤUKNUTÍM ODOMKNITE</string>

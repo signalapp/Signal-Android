@@ -18,8 +18,8 @@ package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.R;
@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessM
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.SoftHashMap;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -52,7 +53,7 @@ class RecipientProvider {
   private static final ExecutorService asyncRecipientResolver = Util.newSingleThreadedLifoExecutor();
 
   private static final Map<String, RecipientDetails> STATIC_DETAILS = new HashMap<String, RecipientDetails>() {{
-    put("262966", new RecipientDetails("Amazon", null, false, null, null));
+    put("262966", new RecipientDetails("Amazon", null, false, false, null, null));
   }};
 
   @NonNull Recipient getRecipient(@NonNull Context context, @NonNull Address address, @NonNull Optional<RecipientSettings> settings, @NonNull Optional<GroupRecord> groupRecord, boolean asynchronous) {
@@ -85,7 +86,8 @@ class RecipientProvider {
     if (address.isGroup() && settings.isPresent() && groupRecord.isPresent()) {
       return Optional.of(getGroupRecipientDetails(context, address, groupRecord, settings, true));
     } else if (!address.isGroup() && settings.isPresent()) {
-      return Optional.of(new RecipientDetails(null, null, !TextUtils.isEmpty(settings.get().getSystemDisplayName()), settings.get(), null));
+      boolean isLocalNumber = address.serialize().equals(TextSecurePreferences.getLocalNumber(context));
+      return Optional.of(new RecipientDetails(null, null, !TextUtils.isEmpty(settings.get().getSystemDisplayName()), isLocalNumber, settings.get(), null));
     }
 
     return Optional.absent();
@@ -114,7 +116,8 @@ class RecipientProvider {
       return STATIC_DETAILS.get(address.serialize());
     } else {
       boolean systemContact = settings.isPresent() && !TextUtils.isEmpty(settings.get().getSystemDisplayName());
-      return new RecipientDetails(null, null, systemContact, settings.orNull(), null);
+      boolean isLocalNumber = address.serialize().equals(TextSecurePreferences.getLocalNumber(context));
+      return new RecipientDetails(null, null, systemContact, isLocalNumber, settings.orNull(), null);
     }
   }
 
@@ -146,10 +149,10 @@ class RecipientProvider {
         avatarId = groupRecord.get().getAvatarId();
       }
 
-      return new RecipientDetails(title, avatarId, false, settings.orNull(), members);
+      return new RecipientDetails(title, avatarId, false, false, settings.orNull(), members);
     }
 
-    return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), null, false, settings.orNull(), null);
+    return new RecipientDetails(context.getString(R.string.RecipientProvider_unnamed_group), null, false, false, settings.orNull(), null);
   }
 
   static class RecipientDetails {
@@ -175,11 +178,13 @@ class RecipientProvider {
     @Nullable final String                 profileAvatar;
               final boolean                profileSharing;
               final boolean                systemContact;
+              final boolean                isLocalNumber;
     @Nullable final String                 notificationChannel;
     @NonNull  final UnidentifiedAccessMode unidentifiedAccessMode;
+              final boolean                forceSmsSelection;
 
     RecipientDetails(@Nullable String name, @Nullable Long groupAvatarId,
-                     boolean systemContact, @Nullable RecipientSettings settings,
+                     boolean systemContact, boolean isLocalNumber, @Nullable RecipientSettings settings,
                      @Nullable List<Recipient> participants)
     {
       this.groupAvatarId                   = groupAvatarId;
@@ -203,8 +208,10 @@ class RecipientProvider {
       this.profileAvatar                   = settings     != null ? settings.getProfileAvatar() : null;
       this.profileSharing                  = settings     != null && settings.isProfileSharing();
       this.systemContact                   = systemContact;
+      this.isLocalNumber                   = isLocalNumber;
       this.notificationChannel             = settings     != null ? settings.getNotificationChannel() : null;
       this.unidentifiedAccessMode          = settings     != null ? settings.getUnidentifiedAccessMode() : UnidentifiedAccessMode.DISABLED;
+      this.forceSmsSelection               = settings     != null && settings.isForceSmsSelection();
 
       if (name == null && settings != null) this.name = settings.getSystemDisplayName();
       else                                  this.name = name;

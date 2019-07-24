@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.support.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
@@ -34,10 +34,10 @@ class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
   }
 
   @Override
-  public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
+  public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
     try {
       if (!digest.isPresent()) throw new InvalidMessageException("No attachment digest!");
-      is = AttachmentCipherInputStream.createFor(attachment, plaintextLength, key, digest.get());
+      is = AttachmentCipherInputStream.createForAttachment(attachment, plaintextLength, key, digest.get());
       callback.onDataReady(is);
     } catch (IOException | InvalidMessageException e) {
       callback.onLoadFailed(e);
@@ -57,15 +57,13 @@ class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
   @Override
   public void cancel() {}
 
-  @NonNull
   @Override
-  public Class<InputStream> getDataClass() {
+  public @NonNull Class<InputStream> getDataClass() {
     return InputStream.class;
   }
 
-  @NonNull
   @Override
-  public DataSource getDataSource() {
+  public @NonNull DataSource getDataSource() {
     return DataSource.LOCAL;
   }
 

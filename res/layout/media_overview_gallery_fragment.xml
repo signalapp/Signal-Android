@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 android:background="?attr/media_overview_toolbar_background">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/media_grid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

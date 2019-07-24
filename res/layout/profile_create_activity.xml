@@ -1,127 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-<org.thoughtcrime.securesms.components.InputAwareLayout
+    <org.thoughtcrime.securesms.components.InputAwareLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginLeft="16dp"
-                      android:layout_marginRight="16dp"
-                      android:orientation="horizontal">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <ImageView android:id="@+id/avatar"
-                       android:layout_width="64dp"
-                       android:layout_height="64dp"
-                       android:transitionName="avatar"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/Signal.Text.Headline.Registration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/CreateProfileActivity_set_up_your_profile"
+                    app:layout_constraintBottom_toTopOf="@+id/name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintVertical_chainStyle="spread_inside" />
+
+                <ImageView
+                    android:id="@+id/avatar_background"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/circle_tintable"
+                    android:tint="@color/core_grey_05"
+                    app:layout_constraintBottom_toBottomOf="@+id/name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name" />
+
+                <ImageView
+                    android:id="@+id/avatar_placeholder"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_profile_default"
+                    android:tint="@color/core_grey_60"
+                    android:transitionName="avatar"
+                    app:layout_constraintBottom_toBottomOf="@+id/avatar_background"
+                    app:layout_constraintEnd_toEndOf="@+id/avatar_background"
+                    app:layout_constraintStart_toStartOf="@+id/avatar_background"
+                    app:layout_constraintTop_toTopOf="@+id/avatar_background" />
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/avatar_background"
+                    app:layout_constraintEnd_toEndOf="@+id/avatar_background"
+                    app:layout_constraintStart_toStartOf="@+id/avatar_background"
+                    app:layout_constraintTop_toTopOf="@+id/avatar_background" />
+
+                <ImageView
+                    android:id="@+id/camera_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="35dp"
+                    android:cropToPadding="false"
+                    android:src="@drawable/ic_profile_camera"
+                    app:layout_constraintStart_toStartOf="@+id/avatar_background"
+                    app:layout_constraintTop_toTopOf="@+id/avatar_background" />
+
+                <org.thoughtcrime.securesms.components.LabeledEditText
                     android:id="@+id/name"
-                    android:hint="@string/profile_create_activity__your_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="4dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:inputType="textCapWords"/>
+                    android:hint="@string/profile_create_activity__your_name"
+                    app:labeledEditText_background="?attr/conversation_background"
+                    app:labeledEditText_label="@string/CreateProfileActivity_profile_name"
+                    app:labeledEditText_textLayout="@layout/profile_name_text"
+                    app:layout_constraintBottom_toTopOf="@+id/description_text"
+                    app:layout_constraintEnd_toStartOf="@+id/emoji_toggle"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/avatar_background"
+                    app:layout_constraintTop_toBottomOf="@+id/title" />
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiToggle
+                <org.thoughtcrime.securesms.components.emoji.EmojiToggle
                     android:id="@+id/emoji_toggle"
                     android:layout_width="37dp"
                     android:layout_height="37dp"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="32dp"
                     android:background="@drawable/touch_highlight_background"
-                    android:contentDescription="@string/conversation_activity__emoji_toggle_description" />
+                    android:contentDescription="@string/conversation_activity__emoji_toggle_description"
+                    app:layout_constraintBottom_toBottomOf="@+id/name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/name" />
 
-        </LinearLayout>
-
-        <LinearLayout android:id="@+id/information_link_container"
-                      android:clickable="true"
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginLeft="16dp"
-                      android:layout_marginRight="16dp"
-                      android:layout_marginTop="16dip"
-                      android:gravity="center_horizontal|center_vertical">
-
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:clickable="false"
-                       android:layout_gravity="center_vertical"
-                       android:gravity="center_vertical"
-                       android:src="@drawable/ic_info_white_18dp"
-                       android:tint="#73B7F0"/>
-
-            <TextView style="@style/Registration.Description"
-                      android:id="@+id/information_label"
-                      android:clickable="true"
-                      android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
-                      android:layout_marginLeft="3dp"
-                      android:layout_gravity="center_vertical"
-                      android:gravity="center_vertical"
-                      android:textColor="#73B7F0"
-                      android:text="@string/profile_create_activity__who_can_see_this_information"/>
-        </LinearLayout>
-
-
-        <LinearLayout android:orientation="vertical"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:gravity="bottom"
-                      android:clipChildren="false"
-                      android:clipToPadding="false">
-
-            <com.dd.CircularProgressButton
-                    android:id="@+id/finish_button"
-                    app:cpb_textIdle="@string/profile_create_activity__finish"
-                    app:cpb_selectorIdle="@drawable/progress_button_state"
-                    app:cpb_colorIndicator="@color/white"
-                    app:cpb_colorProgress="@color/textsecure_primary"
-                    app:cpb_cornerRadius="50dp"
-                    android:textAllCaps="true"
-                    android:background="@color/signal_primary"
-                    android:textColor="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_gravity="center_horizontal"/>
-
-            <TextView android:id="@+id/skip_button"
-                      android:layout_gravity="center_horizontal"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_marginTop="0dp"
-                      android:layout_marginBottom="20dp"
-                      android:textColor="@color/gray50"
-                      android:text="@string/profile_create_activity__set_later"/>
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiDrawer
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/emoji_drawer"
+                <TextView
+                    android:id="@+id/description_text"
+                    style="@style/Signal.Text.Preview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:text="@string/CreateProfileActivity_signal_profiles_are_end_to_end_encrypted"
+                    android:textColor="@color/core_grey_60"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/name"
+                    app:layout_constraintVertical_bias="1.0" />
 
-        </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-</org.thoughtcrime.securesms.components.InputAwareLayout>
+        </ScrollView>
 
-    <View android:id="@+id/reveal"
-          android:background="@color/textsecure_primary"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:visibility="invisible"/>
+        <com.dd.CircularProgressButton
+            android:id="@+id/finish_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/signal_primary"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            app:cpb_colorIndicator="@color/white"
+            app:cpb_colorProgress="@color/textsecure_primary"
+            app:cpb_cornerRadius="4dp"
+            app:cpb_selectorIdle="@drawable/progress_button_state"
+            app:cpb_textIdle="@string/profile_create_activity__finish" />
+
+        <Button
+            android:id="@+id/skip_button"
+            style="@style/Button.Borderless.Registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/profile_create_activity__set_later"
+            android:textColor="@color/gray50" />
+
+        <org.thoughtcrime.securesms.components.emoji.MediaKeyboard
+            android:id="@+id/emoji_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+    </org.thoughtcrime.securesms.components.InputAwareLayout>
+
+    <View
+        android:id="@+id/reveal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/textsecure_primary"
+        android:visibility="invisible"
+        tools:visibility="gone"/>
 
 </FrameLayout>

@@ -1,27 +1,32 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+
+import java.util.Objects;
 
 public class AvatarImageView extends AppCompatImageView {
 
@@ -46,6 +51,9 @@ public class AvatarImageView extends AppCompatImageView {
   private Paint           outlinePaint;
   private OnClickListener listener;
 
+  private @Nullable RecipientContactPhoto recipientContactPhoto;
+  private @NonNull  Drawable              unknownRecipientDrawable;
+
   public AvatarImageView(Context context) {
     super(context);
     initialize(context, null);
@@ -66,16 +74,18 @@ public class AvatarImageView extends AppCompatImageView {
     }
 
     outlinePaint = ThemeUtil.isDarkTheme(getContext()) ? DARK_THEME_OUTLINE_PAINT : LIGHT_THEME_OUTLINE_PAINT;
+
+    unknownRecipientDrawable = new ResourceContactPhoto(R.drawable.ic_profile_default).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted);
   }
 
   @Override
-  protected void dispatchDraw(Canvas canvas) {
-    super.dispatchDraw(canvas);
+  protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
 
-    float cx     = canvas.getWidth()  / 2;
-    float cy     = canvas.getHeight() / 2;
-    float radius = (canvas.getWidth() / 2) - (outlinePaint.getStrokeWidth() / 2);
-    
+    float cx     = getWidth()  / 2f;
+    float cy     = getHeight() / 2f;
+    float radius = cx - (outlinePaint.getStrokeWidth() / 2f);
+
     canvas.drawCircle(cx, cy, radius, outlinePaint);
   }
 
@@ -87,21 +97,31 @@ public class AvatarImageView extends AppCompatImageView {
 
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
     if (recipient != null) {
-      requestManager.load(recipient.getContactPhoto())
-                    .fallback(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
-                    .error(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .circleCrop()
-                    .into(this);
+      RecipientContactPhoto photo = new RecipientContactPhoto(recipient);
+
+      if (!photo.equals(recipientContactPhoto)) {
+        recipientContactPhoto = photo;
+
+        Drawable fallbackContactPhotoDrawable = photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
+
+        if (photo.contactPhoto != null) {
+          requestManager.load(photo.contactPhoto)
+                        .fallback(fallbackContactPhotoDrawable)
+                        .error(fallbackContactPhotoDrawable)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .circleCrop()
+                        .into(this);
+        } else {
+          setImageDrawable(fallbackContactPhotoDrawable);
+        }
+      }
+
       setAvatarClickHandler(recipient, quickContactEnabled);
     } else {
-      setImageDrawable(new ResourceContactPhoto(R.drawable.ic_profile_default).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted));
+      recipientContactPhoto = null;
+      setImageDrawable(unknownRecipientDrawable);
       super.setOnClickListener(listener);
     }
-  }
-
-  public void clear(@NonNull GlideRequests glideRequests) {
-    glideRequests.clear(this);
   }
 
   private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
@@ -110,14 +130,7 @@ public class AvatarImageView extends AppCompatImageView {
         if (recipient.getContactUri() != null) {
           ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
         } else {
-          final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-          if (recipient.getAddress().isEmail()) {
-            intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
-          } else {
-            intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
-          }
-          intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-          getContext().startActivity(intent);
+          getContext().startActivity(RecipientExporter.export(recipient).asAddContactIntent());
         }
       });
     } else {
@@ -125,4 +138,24 @@ public class AvatarImageView extends AppCompatImageView {
     }
   }
 
+  private static class RecipientContactPhoto {
+
+    private final @NonNull  Recipient    recipient;
+    private final @Nullable ContactPhoto contactPhoto;
+    private final           boolean      ready;
+
+    RecipientContactPhoto(@NonNull Recipient recipient) {
+      this.recipient    = recipient;
+      this.ready        = !recipient.isResolving();
+      this.contactPhoto = recipient.getContactPhoto();
+    }
+
+    public boolean equals(@Nullable RecipientContactPhoto other) {
+      if (other == null) return false;
+
+      return other.recipient.equals(recipient) &&
+             other.ready == ready &&
+             Objects.equals(other.contactPhoto, contactPhoto);
+    }
+  }
 }

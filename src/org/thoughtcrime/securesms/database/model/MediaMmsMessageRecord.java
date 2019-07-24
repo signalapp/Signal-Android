@@ -17,8 +17,8 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -43,10 +44,9 @@ import java.util.List;
 public class MediaMmsMessageRecord extends MmsMessageRecord {
   private final static String TAG = MediaMmsMessageRecord.class.getSimpleName();
 
-  private final Context context;
   private final int     partCount;
 
-  public MediaMmsMessageRecord(Context context, long id, Recipient conversationRecipient,
+  public MediaMmsMessageRecord(long id, Recipient conversationRecipient,
                                Recipient individualRecipient, int recipientDeviceId,
                                long dateSent, long dateReceived, int deliveryReceiptCount,
                                long threadId, String body,
@@ -54,15 +54,15 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                int partCount, long mailbox,
                                List<IdentityKeyMismatch> mismatches,
                                List<NetworkFailure> failures, int subscriptionId,
-                               long expiresIn, long expireStarted, int readReceiptCount,
-                               @Nullable Quote quote, @Nullable List<Contact> contacts,
-                               boolean unidentified)
+                               long expiresIn, long expireStarted,
+                               long revealDuration, long revealStartTime, int readReceiptCount,
+                               @Nullable Quote quote, @NonNull List<Contact> contacts,
+                               @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
   {
-    super(context, id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
+    super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
-          subscriptionId, expiresIn, expireStarted, slideDeck, readReceiptCount, quote, contacts, unidentified);
-
-    this.context   = context.getApplicationContext();
+          subscriptionId, expiresIn, expireStarted, revealDuration, revealStartTime, slideDeck,
+          readReceiptCount, quote, contacts, linkPreviews, unidentified);
     this.partCount = partCount;
   }
 
@@ -76,7 +76,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   }
 
   @Override
-  public SpannableString getDisplayBody() {
+  public SpannableString getDisplayBody(@NonNull Context context) {
     if (MmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
     } else if (MmsDatabase.Types.isDuplicateMessageType(type)) {
@@ -87,6 +87,6 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     }
 
-    return super.getDisplayBody();
+    return super.getDisplayBody(context);
   }
 }

@@ -21,7 +21,6 @@
                       android:layout_gravity="center_vertical"
                       android:gravity="center_vertical"
                       android:textCursorDrawable="@null"
-                      android:textSize="18sp"
                       android:fontFamily="sans-serif"/>
 
             <org.thoughtcrime.securesms.components.AnimatingToggle
@@ -29,8 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:gravity="center">
 
                 <ImageView android:id="@+id/search_dialpad"

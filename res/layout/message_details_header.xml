@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +33,6 @@
                       android:padding="5dp"
                       tools:visibility="visible"
                       android:text="@string/message_details_header__issues_need_your_attention"
-                      android:drawableLeft="@drawable/ic_info_outline_light"
                       android:drawableStart="@drawable/ic_info_outline_light"
                       android:gravity="center_vertical" />
 
@@ -42,12 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38sp"
                 style="@style/InfoButton"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:layout_gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_refresh_white_18dp"
+                android:drawableStart="@drawable/ic_refresh_white_18dp"
                 android:text="@string/message_recipients_list_item__resend"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -67,13 +66,13 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="@string/message_details_header__sent"
-                          android:gravity="right"
+                          android:gravity="end"
                           android:textStyle="bold" />
 
                 <TextView android:id="@+id/sent_time"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="@dimen/message_details_table_row_pad"
+                          android:layout_marginStart="@dimen/message_details_table_row_pad"
                           tools:text="Jan 18, 2015, 12:29:37 AM GMT-08:00" />
 
             </TableRow>
@@ -86,13 +85,13 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="@string/message_details_header__received"
-                          android:gravity="right"
+                          android:gravity="end"
                           android:textStyle="bold" />
 
                 <TextView android:id="@+id/received_time"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="@dimen/message_details_table_row_pad"
+                          android:layout_marginStart="@dimen/message_details_table_row_pad"
                           tools:text="Jan 18, 2015, 12:31:15 AM GMT-08:00" />
 
             </TableRow>
@@ -107,13 +106,13 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="@string/message_details_header__disappears"
-                          android:gravity="right"
+                          android:gravity="end"
                           android:textStyle="bold"/>
 
                 <TextView android:id="@+id/expires_in"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="@dimen/message_details_table_row_pad"
+                          android:layout_marginStart="@dimen/message_details_table_row_pad"
                           tools:text="1 week"/>
 
             </TableRow>
@@ -125,13 +124,13 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="@string/message_details_header__via"
-                          android:gravity="right"
+                          android:gravity="end"
                           android:textStyle="bold" />
 
                 <TextView android:id="@+id/transport"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:layout_marginLeft="@dimen/message_details_table_row_pad"
+                          android:layout_marginStart="@dimen/message_details_table_row_pad"
                           tools:text="Push (TextSecure)" />
 
             </TableRow>

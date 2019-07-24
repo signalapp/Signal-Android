@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
@@ -77,7 +77,7 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
     });
   }
 
-  protected void hideSoftkey(final EditText inputTarget, @Nullable Runnable runAfterClose) {
+  public void hideSoftkey(final EditText inputTarget, @Nullable Runnable runAfterClose) {
     if (runAfterClose != null) postOnKeyboardClose(runAfterClose);
 
     ServiceUtil.getInputMethodManager(inputTarget.getContext())

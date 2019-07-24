@@ -1,20 +1,16 @@
 package org.thoughtcrime.securesms.profiles;
 
-
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class UnknownSenderView extends FrameLayout {
@@ -61,22 +57,7 @@ public class UnknownSenderView extends FrameLayout {
   }
 
   private void handleAdd() {
-    Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-    intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-
-    if (!TextUtils.isEmpty(recipient.getProfileName())) {
-      intent.putExtra(ContactsContract.Intents.Insert.NAME, recipient.getProfileName());
-    }
-
-    if (recipient.getAddress().isEmail()) {
-      intent.putExtra(ContactsContract.Intents.Insert.EMAIL, recipient.getAddress().toEmailString());
-    }
-
-    if (recipient.getAddress().isPhone()) {
-      intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getAddress().toPhoneString());
-    }
-
-    getContext().startActivity(intent);
+    getContext().startActivity(RecipientExporter.export(recipient).asAddContactIntent());
     if (threadId != -1) DatabaseFactory.getThreadDatabase(getContext()).setHasSent(threadId, true);
   }
 

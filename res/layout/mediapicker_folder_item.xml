@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="2dp">
+
+    <org.thoughtcrime.securesms.components.SquareImageView
+        android:id="@+id/mediapicker_folder_item_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:src="@drawable/image_shade"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="6dp">
+
+        <ImageView
+            android:id="@+id/mediapicker_folder_item_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/ic_folder_white_48dp"/>
+
+        <TextView
+            android:id="@+id/mediapicker_folder_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            style="@style/Signal.Text.Preview"
+            android:textColor="@color/core_white"
+            tools:text="Daily Bugle"/>
+
+        <TextView
+            android:id="@+id/mediapicker_folder_item_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Signal.Text.Preview"
+            android:textColor="@color/core_white"
+            tools:text="122"/>
+
+    </LinearLayout>
+
+</FrameLayout>

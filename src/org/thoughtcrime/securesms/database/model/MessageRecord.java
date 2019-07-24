@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import androidx.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
@@ -43,8 +44,6 @@ import java.util.List;
  */
 public abstract class MessageRecord extends DisplayRecord {
 
-  private static final int MAX_DISPLAY_LENGTH = 2000;
-
   private final Recipient                 individualRecipient;
   private final int                       recipientDeviceId;
   private final long                      id;
@@ -55,7 +54,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      expireStarted;
   private final boolean                   unidentified;
 
-  MessageRecord(Context context, long id, String body, Recipient conversationRecipient,
+  MessageRecord(long id, String body, Recipient conversationRecipient,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
                 int deliveryStatus, int deliveryReceiptCount, long type,
@@ -64,7 +63,7 @@ public abstract class MessageRecord extends DisplayRecord {
                 int subscriptionId, long expiresIn, long expireStarted,
                 int readReceiptCount, boolean unidentified)
   {
-    super(context, body, conversationRecipient, dateSent, dateReceived,
+    super(body, conversationRecipient, dateSent, dateReceived,
           threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
@@ -89,7 +88,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   @Override
-  public SpannableString getDisplayBody() {
+  public SpannableString getDisplayBody(@NonNull Context context) {
     if (isGroupUpdate() && isOutgoing()) {
       return new SpannableString(context.getString(R.string.MessageRecord_you_updated_group));
     } else if (isGroupUpdate()) {
@@ -123,8 +122,6 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isIdentityDefault()) {
       if (isOutgoing()) return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, getIndividualRecipient().toShortString()));
       else              return new SpannableString(context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, getIndividualRecipient().toShortString()));
-    } else if (getBody().length() > MAX_DISPLAY_LENGTH) {
-      return new SpannableString(getBody().substring(0, MAX_DISPLAY_LENGTH));
     }
 
     return new SpannableString(getBody());

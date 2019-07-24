@@ -3,15 +3,14 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
 
-public class CircleColorImageView extends ImageView {
+public class CircleColorImageView extends AppCompatImageView {
 
  public CircleColorImageView(Context context) {
     this(context, null);

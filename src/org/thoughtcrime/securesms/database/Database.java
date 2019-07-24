@@ -19,8 +19,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
@@ -51,12 +50,28 @@ public abstract class Database {
     context.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null);
   }
 
+  protected void notifyStickerListeners() {
+    context.getContentResolver().notifyChange(DatabaseContentProviders.Sticker.CONTENT_URI, null);
+  }
+
+  protected void notifyStickerPackListeners() {
+    context.getContentResolver().notifyChange(DatabaseContentProviders.StickerPack.CONTENT_URI, null);
+  }
+
   protected void setNotifyConverationListeners(Cursor cursor, long threadId) {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getUriForThread(threadId));
   }
 
   protected void setNotifyConverationListListeners(Cursor cursor) {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.ConversationList.CONTENT_URI);
+  }
+
+  protected void setNotifyStickerListeners(Cursor cursor) {
+    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Sticker.CONTENT_URI);
+  }
+
+  protected void setNotifyStickerPackListeners(Cursor cursor) {
+    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.StickerPack.CONTENT_URI);
   }
 
   protected void registerAttachmentListeners(@NonNull ContentObserver observer) {

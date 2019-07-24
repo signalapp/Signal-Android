@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.glide;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
@@ -22,7 +22,7 @@ import okhttp3.ResponseBody;
  */
 class OkHttpStreamFetcher implements DataFetcher<InputStream> {
 
-  private static final String TAG = OkHttpStreamFetcher.class.getName();
+  private static final String TAG = OkHttpStreamFetcher.class.getSimpleName();
 
   private final OkHttpClient client;
   private final GlideUrl     url;
@@ -35,7 +35,7 @@ class OkHttpStreamFetcher implements DataFetcher<InputStream> {
   }
 
   @Override
-  public void loadData(Priority priority, DataCallback<? super InputStream> callback) {
+  public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
     try {
       Request.Builder requestBuilder = new Request.Builder()
           .url(url.toStringUrl());
@@ -82,15 +82,13 @@ class OkHttpStreamFetcher implements DataFetcher<InputStream> {
     // TODO: call cancel on the client when this method is called on a background thread. See #257
   }
 
-  @NonNull
   @Override
-  public Class<InputStream> getDataClass() {
+  public @NonNull Class<InputStream> getDataClass() {
     return InputStream.class;
   }
 
-  @NonNull
   @Override
-  public DataSource getDataSource() {
+  public @NonNull DataSource getDataSource() {
     return DataSource.REMOTE;
   }
 }

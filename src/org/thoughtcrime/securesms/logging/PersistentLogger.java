@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.logging;
 
 import android.content.Context;
-import android.support.annotation.AnyThread;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.AnyThread;
+import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -47,7 +48,7 @@ public class PersistentLogger extends Log.Logger {
     this.context  = context.getApplicationContext();
     this.secret   = LogSecretProvider.getOrCreateAttachmentSecret(context);
     this.executor = Executors.newSingleThreadExecutor(r -> {
-      Thread thread = new Thread(r, "logger");
+      Thread thread = new Thread(r, "signal-PersistentLogger");
       thread.setPriority(Thread.MIN_PRIORITY);
       return thread;
     });
@@ -83,6 +84,19 @@ public class PersistentLogger extends Log.Logger {
   @Override
   public void wtf(String tag, String message, Throwable t) {
     write(LOG_WTF, tag, message, t);
+  }
+
+  @Override
+  public void blockUntilAllWritesFinished() {
+    CountDownLatch latch = new CountDownLatch(1);
+
+    executor.execute(latch::countDown);
+
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      android.util.Log.w(TAG, "Failed to wait for all writes.");
+    }
   }
 
   @WorkerThread

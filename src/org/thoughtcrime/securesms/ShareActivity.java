@@ -27,24 +27,27 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Process;
 import android.provider.OpenableColumns;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.providers.PersistentBlobProvider;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -56,6 +59,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * An activity to quickly share content with contacts
@@ -128,11 +132,22 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public void onPause() {
     super.onPause();
     if (!isPassingAlongMedia && resolvedExtra != null) {
-      PersistentBlobProvider.getInstance(this).delete(this, resolvedExtra);
+      BlobProvider.getInstance().delete(this, resolvedExtra);
+
+      if (!isFinishing()) {
+        finish();
+      }
     }
-    if (!isFinishing()) {
-      finish();
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        onBackPressed();
+        return true;
     }
+    return super.onOptionsItemSelected(item);
   }
 
   @Override
@@ -200,22 +215,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    super.onOptionsItemSelected(item);
-    switch (item.getItemId()) {
-    case R.id.menu_new_message: handleNewConversation(); return true;
-    case android.R.id.home:     finish();                return true;
-    }
-    return false;
-  }
-
-  private void handleNewConversation() {
-    Intent intent = getBaseShareIntent(NewConversationActivity.class);
-    isPassingAlongMedia = true;
-    startActivity(intent);
-  }
-
   private void handleResolvedMedia(Intent intent, boolean animate) {
     long      threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
     int       distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
@@ -254,9 +253,15 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
-    final Intent intent      = new Intent(this, target);
-    final String textExtra   = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    final Intent           intent       = new Intent(this, target);
+    final String           textExtra    = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    final ArrayList<Media> mediaExtra   = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
+    final StickerLocator   stickerExtra = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
+
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
+    intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
+    intent.putExtra(ConversationActivity.STICKER_EXTRA, stickerExtra);
+
     if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 
     return intent;
@@ -331,7 +336,11 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
           if (cursor != null) cursor.close();
         }
 
-        return PersistentBlobProvider.getInstance(context).create(context, inputStream, mimeType, fileName, fileSize);
+        return BlobProvider.getInstance()
+                           .forData(inputStream, fileSize == null ? 0 : fileSize)
+                           .withMimeType(mimeType)
+                           .withFileName(fileName)
+                           .createForMultipleSessionsOnDisk(context, e -> Log.w(TAG, "Failed to write to disk.", e));
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         return null;

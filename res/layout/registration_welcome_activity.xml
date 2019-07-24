@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/welcome"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/Signal.Text.Headline.Registration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:text="@string/RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_terms_button"
+        app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
+        app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
+
+    <TextView
+        android:id="@+id/welcome_terms_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        style="@style/Signal.Text.Body"
+        android:text="@string/RegistrationActivity_terms_and_privacy"
+        android:textColor="@color/signal_primary"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_continue_button"
+        app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
+        app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/welcome_continue_button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="54dp"
+        android:background="@color/signal_primary"
+        android:textColor="@color/white"
+        android:elevation="4dp"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="@color/textsecure_primary"
+        app:cpb_cornerRadius="4dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/RegistrationActivity_continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

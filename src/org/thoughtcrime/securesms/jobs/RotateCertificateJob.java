@@ -2,72 +2,77 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
+public class RotateCertificateJob extends BaseJob {
 
-import androidx.work.Data;
+  public static final String KEY = "RotateCertificateJob";
 
-@SuppressWarnings("WeakerAccess")
-public class RotateCertificateJob extends ContextJob implements InjectableType {
-
-  private static final long serialVersionUID = 1L;
-
-  private static final String TAG = RotateCertificateJob.class.getName();
-
-  @Inject transient SignalServiceAccountManager accountManager;
-
-  public RotateCertificateJob() {
-    super(null, null);
-  }
+  private static final String TAG = RotateCertificateJob.class.getSimpleName();
 
   public RotateCertificateJob(Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withGroupId("__ROTATE_SENDER_CERTIFICATE__")
-                                .withNetworkRequirement()
-                                .create());
+    this(new Job.Parameters.Builder()
+                           .setQueue("__ROTATE_SENDER_CERTIFICATE__")
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .build());
+    setContext(context);
   }
 
-  @NonNull
-  @Override
-  protected Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  private RotateCertificateJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected void initialize(@NonNull SafeData data) {
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
 
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
   public void onAdded() {}
 
-
   @Override
   public void onRun() throws IOException {
     synchronized (RotateCertificateJob.class) {
-      byte[] certificate = accountManager.getSenderCertificate();
+      SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+      byte[]                      certificate    = accountManager.getSenderCertificate();
+
       TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
     }
   }
 
   @Override
-  public boolean onShouldRetry(Exception e) {
+  public boolean onShouldRetry(@NonNull Exception e) {
     return e instanceof PushNetworkException;
   }
 
   @Override
   public void onCanceled() {
     Log.w(TAG, "Failed to rotate sender certificate!");
+  }
+
+  public static final class Factory implements Job.Factory<RotateCertificateJob> {
+    @Override
+    public @NonNull RotateCertificateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new RotateCertificateJob(parameters);
+    }
   }
 }

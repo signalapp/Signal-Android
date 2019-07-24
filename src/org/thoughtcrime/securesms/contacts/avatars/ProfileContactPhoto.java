@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.util.Conversions;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -31,7 +31,8 @@ public class ProfileContactPhoto implements ContactPhoto {
 
   @Override
   public @Nullable Uri getUri(@NonNull Context context) {
-    return Uri.fromFile(AvatarHelper.getAvatarFile(context, address));
+    File avatarFile = AvatarHelper.getAvatarFile(context, address);
+    return avatarFile.exists() ? Uri.fromFile(avatarFile) : null;
   }
 
   @Override
@@ -40,7 +41,7 @@ public class ProfileContactPhoto implements ContactPhoto {
   }
 
   @Override
-  public void updateDiskCacheKey(MessageDigest messageDigest) {
+  public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
     messageDigest.update(address.serialize().getBytes());
     messageDigest.update(avatarObject.getBytes());
   }

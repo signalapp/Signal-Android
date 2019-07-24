@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.search;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,9 +43,8 @@ class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.Search
     this.locale        = locale;
   }
 
-  @NonNull
   @Override
-  public SearchResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public @NonNull SearchResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new SearchResultViewHolder(LayoutInflater.from(parent.getContext())
                                                     .inflate(R.layout.conversation_list_item_view, parent, false));
   }
@@ -74,7 +73,7 @@ class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.Search
   }
 
   @Override
-  public void onViewRecycled(SearchResultViewHolder holder) {
+  public void onViewRecycled(@NonNull SearchResultViewHolder holder) {
     holder.recycle();
   }
 

@@ -3,8 +3,9 @@ package org.thoughtcrime.securesms.giph.ui;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -21,7 +22,6 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class GiphyActivityToolbar extends Toolbar {
 
@@ -31,10 +31,11 @@ public class GiphyActivityToolbar extends Toolbar {
   private EditText        searchText;
   private AnimatingToggle toggle;
   private ImageView       action;
-  private ImageView       listToggle;
-  private ImageView       gridToggle;
   private ImageView       clearToggle;
   private LinearLayout    toggleContainer;
+  private View            listLayoutToggle;
+  private View            gridLayoutToggle;
+  private Persistence     persistence;
 
   public GiphyActivityToolbar(Context context) {
     this(context, null);
@@ -48,29 +49,15 @@ public class GiphyActivityToolbar extends Toolbar {
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.giphy_activity_toolbar, this);
 
-    this.action          = ViewUtil.findById(this, R.id.action_icon);
-    this.searchText      = ViewUtil.findById(this, R.id.search_view);
-    this.toggle          = ViewUtil.findById(this, R.id.button_toggle);
-    this.listToggle      = ViewUtil.findById(this, R.id.view_stream);
-    this.gridToggle      = ViewUtil.findById(this, R.id.view_grid);
-    this.clearToggle     = ViewUtil.findById(this, R.id.search_clear);
-    this.toggleContainer = ViewUtil.findById(this, R.id.toggle_container);
+    this.action           = findViewById(R.id.action_icon);
+    this.searchText       = findViewById(R.id.search_view);
+    this.toggle           = findViewById(R.id.button_toggle);
+    this.clearToggle      = findViewById(R.id.search_clear);
+    this.toggleContainer  = findViewById(R.id.toggle_container);
+    this.listLayoutToggle = findViewById(R.id.view_stream);
+    this.gridLayoutToggle = findViewById(R.id.view_grid);
 
-    this.listToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        displayTogglingView(gridToggle);
-        if (layoutListener != null) layoutListener.onLayoutChanged(OnLayoutChangedListener.LAYOUT_LIST);
-      }
-    });
-
-    this.gridToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        displayTogglingView(listToggle);
-        if (layoutListener != null) layoutListener.onLayoutChanged(OnLayoutChangedListener.LAYOUT_GRID);
-      }
-    });
+    setupGridLayoutToggles();
 
     this.clearToggle.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -116,7 +103,29 @@ public class GiphyActivityToolbar extends Toolbar {
     setNavigationIcon(null);
     setContentInsetStartWithNavigation(0);
     expandTapArea(this, action);
-    expandTapArea(toggleContainer, gridToggle);
+  }
+
+  public void setPersistence(@NonNull Persistence persistence) {
+    this.persistence = persistence;
+    displayTogglingView(persistence.getGridSelected() ? listLayoutToggle : gridLayoutToggle);
+  }
+
+  private void setupGridLayoutToggles() {
+    setUpGridToggle(listLayoutToggle, gridLayoutToggle, false);
+    setUpGridToggle(gridLayoutToggle, listLayoutToggle, true);
+    displayTogglingView(gridLayoutToggle);
+  }
+
+  private void setUpGridToggle(View gridToggle, View otherToggle, boolean gridLayout) {
+    gridToggle.setOnClickListener(v -> {
+      displayTogglingView(otherToggle);
+      if (layoutListener != null) {
+        layoutListener.onLayoutChanged(gridLayout);
+      }
+      if (persistence != null) {
+        persistence.setGridSelected(gridLayout);
+      }
+    });
   }
 
   @Override
@@ -184,10 +193,11 @@ public class GiphyActivityToolbar extends Toolbar {
   }
 
   public interface OnLayoutChangedListener {
-    public static final int LAYOUT_GRID = 1;
-    public static final int LAYOUT_LIST = 2;
-    void onLayoutChanged(int type);
+    void onLayoutChanged(boolean gridLayout);
   }
 
-
+  public interface Persistence {
+    boolean getGridSelected();
+    void setGridSelected(boolean isGridSelected);
+  }
 }

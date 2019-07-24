@@ -20,7 +20,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
@@ -150,6 +150,7 @@ public class SmsMigrator {
   {
     SmsDatabase ourSmsDatabase = DatabaseFactory.getSmsDatabase(context);
     Cursor cursor              = null;
+    SQLiteStatement statement  = null;
 
     try {
       Uri uri = Uri.parse("content://sms/conversations/" + theirThreadId);
@@ -163,7 +164,7 @@ public class SmsMigrator {
       }
 
       SQLiteDatabase transaction = ourSmsDatabase.beginTransaction();
-      SQLiteStatement statement  = ourSmsDatabase.createInsertStatement(transaction);
+      statement = ourSmsDatabase.createInsertStatement(transaction);
 
       while (cursor != null && cursor.moveToNext()) {
         int typeColumn = cursor.getColumnIndex(SmsDatabase.TYPE);
@@ -181,6 +182,8 @@ public class SmsMigrator {
       DatabaseFactory.getThreadDatabase(context).notifyConversationListeners(ourThreadId);
 
     } finally {
+      if (statement != null)
+        statement.close();
       if (cursor != null)
         cursor.close();
     }

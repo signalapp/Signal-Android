@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.contactshare;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -540,7 +540,7 @@ public class Contact implements Parcelable {
     };
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
       StringBuilder builder = new StringBuilder();
 
       if (!TextUtils.isEmpty(street)) {
@@ -642,7 +642,7 @@ public class Contact implements Parcelable {
 
     private static Attachment attachmentFromUri(@Nullable Uri uri) {
       if (uri == null) return null;
-      return new UriAttachment(uri, MediaUtil.IMAGE_JPEG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, 0, null, false, false, null);
+      return new UriAttachment(uri, MediaUtil.IMAGE_JPEG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, 0, null, false, false, null, null);
     }
 
     @Override

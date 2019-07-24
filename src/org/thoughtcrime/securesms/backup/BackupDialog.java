@@ -4,8 +4,8 @@ package org.thoughtcrime.securesms.backup;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -34,7 +34,7 @@ public class BackupDialog {
       button.setOnClickListener(v -> {
         CheckBox confirmationCheckBox = dialog.findViewById(R.id.confirmation_check);
         if (confirmationCheckBox.isChecked()) {
-          TextSecurePreferences.setBackupPassphrase(context, Util.join(password, " "));
+          BackupPassphrase.set(context, Util.join(password, " "));
           TextSecurePreferences.setBackupEnabled(context, true);
           LocalBackupListener.schedule(context);
 
@@ -75,7 +75,7 @@ public class BackupDialog {
                    .setMessage(R.string.BackupDialog_disable_and_delete_all_local_backups)
                    .setNegativeButton(android.R.string.cancel, null)
                    .setPositiveButton(R.string.BackupDialog_delete_backups_statement, (dialog, which) -> {
-                     TextSecurePreferences.setBackupPassphrase(context, null);
+                     BackupPassphrase.set(context, null);
                      TextSecurePreferences.setBackupEnabled(context, false);
                      BackupUtil.deleteAllBackups();
                      preference.setChecked(false);

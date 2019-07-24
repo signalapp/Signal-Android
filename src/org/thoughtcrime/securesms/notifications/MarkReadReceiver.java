@@ -5,8 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -77,7 +77,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new MultiDeviceReadUpdateJob(context, syncMessageIds));
+                      .add(new MultiDeviceReadUpdateJob(syncMessageIds));
 
     Map<Address, List<SyncMessageId>> addressMap = Stream.of(markedReadMessages)
                                                          .map(MarkedMessageInfo::getSyncMessageId)
@@ -88,7 +88,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new SendReadReceiptJob(context, address, timestamps));
+                        .add(new SendReadReceiptJob(address, timestamps));
     }
   }
 

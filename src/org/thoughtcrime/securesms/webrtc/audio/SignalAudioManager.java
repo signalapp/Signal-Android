@@ -5,9 +5,9 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -37,12 +37,7 @@ public class SignalAudioManager {
 
   public void initializeAudioForCall() {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
-    } else {
-      audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-    }
+    audioManager.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE);
   }
 
   public void startIncomingRinger(@Nullable Uri ringtoneUri, boolean vibrate) {
@@ -59,10 +54,6 @@ public class SignalAudioManager {
   public void startOutgoingRinger(OutgoingRinger.Type type) {
     AudioManager audioManager = ServiceUtil.getAudioManager(context);
     audioManager.setMicrophoneMute(false);
-
-    if (type == OutgoingRinger.Type.SONAR) {
-      audioManager.setSpeakerphoneOn(false);
-    }
 
     audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
 

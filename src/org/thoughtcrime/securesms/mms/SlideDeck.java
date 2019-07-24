@@ -17,8 +17,8 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
@@ -88,7 +88,7 @@ public class SlideDeck {
 
   public boolean containsMediaSlide() {
     for (Slide slide : slides) {
-      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument()) {
+      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio() || slide.hasDocument() || slide.hasSticker()) {
         return true;
       }
     }
@@ -123,6 +123,26 @@ public class SlideDeck {
     for (Slide slide: slides) {
       if (slide.hasDocument()) {
         return (DocumentSlide)slide;
+      }
+    }
+
+    return null;
+  }
+
+  public @Nullable TextSlide getTextSlide() {
+    for (Slide slide: slides) {
+      if (MediaUtil.isLongTextType(slide.getContentType())) {
+        return (TextSlide)slide;
+      }
+    }
+
+    return null;
+  }
+
+  public @Nullable StickerSlide getStickerSlide() {
+    for (Slide slide: slides) {
+      if (slide.hasSticker()) {
+        return (StickerSlide)slide;
       }
     }
 

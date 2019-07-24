@@ -18,15 +18,14 @@
 package org.thoughtcrime.securesms.giph.ui;
 
 import android.content.Context;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
-
 
 /**
  * AspectRatioImageView maintains an aspect ratio by adjusting the width or height dimension. The
  * aspect ratio (width to height ratio) and adjustment dimension can be configured.
  */
-public class AspectRatioImageView extends ImageView {
+public class AspectRatioImageView extends AppCompatImageView {
 
   private static final float DEFAULT_ASPECT_RATIO = 1.0f;
   private static final int DEFAULT_ADJUST_DIMENSION = 0;

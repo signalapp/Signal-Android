@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
@@ -23,18 +22,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class SendJob extends ContextJob {
+public abstract class SendJob extends BaseJob {
 
   @SuppressWarnings("unused")
   private final static String TAG = SendJob.class.getSimpleName();
 
-  public SendJob(Context context, JobParameters parameters) {
-    super(context, parameters);
-  }
-
-  @Override
-  protected String getDescription() {
-    return context.getString(R.string.SendJob_sending_a_message);
+  public SendJob(Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
@@ -88,5 +82,21 @@ public abstract class SendJob extends ContextJob {
     }
 
     return results;
+  }
+
+  protected void log(@NonNull String tag, @NonNull String message) {
+    Log.i(tag, JobLogger.format(this, message));
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String message) {
+    warn(tag, message, null);
+  }
+
+  protected void warn(@NonNull String tag, @Nullable Throwable t) {
+    warn(tag, "", t);
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String message, @Nullable Throwable t) {
+    Log.w(tag, JobLogger.format(this, message), t);
   }
 }

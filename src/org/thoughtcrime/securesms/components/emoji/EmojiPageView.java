@@ -1,15 +1,16 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
 
 public class EmojiPageView extends FrameLayout implements VariationSelectorListener {
@@ -24,7 +25,7 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
   private EmojiVariationSelectorPopup      popup;
 
   public EmojiPageView(@NonNull Context context,
-                       @NonNull EmojiSelectionListener emojiSelectionListener,
+                       @NonNull EmojiEventListener emojiSelectionListener,
                        @NonNull VariationSelectorListener variationSelectorListener)
   {
     super(context);
@@ -37,9 +38,9 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
     scrollDisabler = new ScrollDisabler();
     popup          = new EmojiVariationSelectorPopup(context, emojiSelectionListener);
     adapter        = new EmojiPageViewGridAdapter(EmojiProvider.getInstance(context),
-                                              popup,
-                                              emojiSelectionListener,
-                                              this);
+                                                  popup,
+                                                  emojiSelectionListener,
+                                                  this);
 
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(adapter);
@@ -80,10 +81,6 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
     if (variationSelectorListener != null) {
       variationSelectorListener.onVariationSelectorStateChanged(open);
     }
-  }
-
-  public interface EmojiSelectionListener {
-    void onEmojiSelected(String emoji);
   }
 
   private static class ScrollDisabler implements RecyclerView.OnItemTouchListener {

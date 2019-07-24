@@ -66,10 +66,11 @@ public class PassphraseCreateActivity extends PassphraseActivity {
       IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this);
       VersionTracker.updateLastSeenVersion(PassphraseCreateActivity.this);
 
-      TextSecurePreferences.setLastExperienceVersionCode(PassphraseCreateActivity.this, Util.getCurrentApkReleaseVersion(PassphraseCreateActivity.this));
+      TextSecurePreferences.setLastExperienceVersionCode(PassphraseCreateActivity.this, Util.getCanonicalVersionCode());
       TextSecurePreferences.setPasswordDisabled(PassphraseCreateActivity.this, true);
       TextSecurePreferences.setReadReceiptsEnabled(PassphraseCreateActivity.this, true);
       TextSecurePreferences.setTypingIndicatorsEnabled(PassphraseCreateActivity.this, true);
+      TextSecurePreferences.setHasSeenWelcomeScreen(PassphraseCreateActivity.this, false);
 
       return null;
     }

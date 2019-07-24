@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.crypto;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import org.signal.libsignal.metadata.certificate.CertificateValidator;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
@@ -54,9 +54,9 @@ public class UnidentifiedAccessUtil {
         ourUnidentifiedAccessKey = Util.getSecretBytes(16);
       }
 
-      Log.i(TAG, "Their access key present? " + (theirUnidentifiedAccessKey != null));
-      Log.i(TAG, "Our access key present? " + (ourUnidentifiedAccessKey != null));
-      Log.i(TAG, "Our certificate present? " + (ourUnidentifiedAccessCertificate != null));
+      Log.i(TAG, "Their access key present? " + (theirUnidentifiedAccessKey != null) +
+                 " | Our access key present? " + (ourUnidentifiedAccessKey != null) +
+                 " | Our certificate present? " + (ourUnidentifiedAccessCertificate != null));
 
       if (theirUnidentifiedAccessKey != null &&
           ourUnidentifiedAccessKey != null   &&

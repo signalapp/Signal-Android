@@ -8,8 +8,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import android.view.View;
 
 import org.thoughtcrime.securesms.R;
@@ -39,7 +39,7 @@ public class DozeReminder extends Reminder {
   }
 
   public static boolean isEligible(Context context) {
-    return TextSecurePreferences.isGcmDisabled(context)            &&
+    return TextSecurePreferences.isFcmDisabled(context)            &&
            !TextSecurePreferences.hasPromptedOptimizeDoze(context) &&
            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M          &&
            !((PowerManager)context.getSystemService(Context.POWER_SERVICE)).isIgnoringBatteryOptimizations(context.getPackageName());

@@ -1,25 +1,25 @@
 package org.thoughtcrime.securesms.service;
 
 import android.app.Service;
-import android.arch.lifecycle.DefaultLifecycleObserver;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.ProcessLifecycleOwner;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirement;
-import org.thoughtcrime.securesms.jobmanager.requirements.NetworkRequirementProvider;
-import org.thoughtcrime.securesms.jobmanager.requirements.RequirementListener;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -31,9 +31,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import javax.inject.Inject;
-
-public class IncomingMessageObserver implements InjectableType, RequirementListener {
+public class IncomingMessageObserver implements ConstraintObserver.Notifier {
 
   private static final String TAG = IncomingMessageObserver.class.getSimpleName();
 
@@ -43,24 +41,24 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
   private static SignalServiceMessagePipe pipe             = null;
   private static SignalServiceMessagePipe unidentifiedPipe = null;
 
-  private final Context            context;
-  private final NetworkRequirement networkRequirement;
+  private final Context                      context;
+  private final NetworkConstraint            networkConstraint;
+  private final SignalServiceMessageReceiver receiver;
+  private final SignalServiceNetworkAccess   networkAccess;
 
   private boolean appVisible;
 
-  @Inject SignalServiceMessageReceiver receiver;
-  @Inject SignalServiceNetworkAccess   networkAccess;
 
   public IncomingMessageObserver(@NonNull Context context) {
-    ApplicationContext.getInstance(context).injectDependencies(this);
+    this.context           = context;
+    this.networkConstraint = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create();
+    this.receiver          = ApplicationDependencies.getSignalServiceMessageReceiver();
+    this.networkAccess     = ApplicationDependencies.getSignalServiceNetworkAccess();
 
-    this.context            = context;
-    this.networkRequirement = new NetworkRequirement(context);
-
-    new NetworkRequirementProvider(context).setListener(this);
+    new NetworkConstraintObserver(ApplicationContext.getInstance(context)).register(this);
     new MessageRetrievalThread().start();
 
-    if (TextSecurePreferences.isGcmDisabled(context)) {
+    if (TextSecurePreferences.isFcmDisabled(context)) {
       ContextCompat.startForegroundService(context, new Intent(context, ForegroundService.class));
     }
 
@@ -78,7 +76,7 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
   }
 
   @Override
-  public void onRequirementStatusChanged() {
+  public void onConstraintMet(@NonNull String reason) {
     synchronized (this) {
       notifyAll();
     }
@@ -95,15 +93,15 @@ public class IncomingMessageObserver implements InjectableType, RequirementListe
   }
 
   private synchronized boolean isConnectionNecessary() {
-    boolean isGcmDisabled = TextSecurePreferences.isGcmDisabled(context);
+    boolean isGcmDisabled = TextSecurePreferences.isFcmDisabled(context);
 
     Log.d(TAG, String.format("Network requirement: %s, app visible: %s, gcm disabled: %b",
-                             networkRequirement.isPresent(), appVisible, isGcmDisabled));
+                             networkConstraint.isMet(), appVisible, isGcmDisabled));
 
     return TextSecurePreferences.isPushRegistered(context)      &&
            TextSecurePreferences.isWebsocketRegistered(context) &&
            (appVisible || isGcmDisabled)                        &&
-           networkRequirement.isPresent()                       &&
+           networkConstraint.isMet()                       &&
            !networkAccess.isCensored(context);
   }
 

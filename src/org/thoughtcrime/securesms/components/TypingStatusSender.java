@@ -2,12 +2,10 @@ package org.thoughtcrime.securesms.components;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashMap;
@@ -76,7 +74,7 @@ public class TypingStatusSender {
   }
 
   private void sendTyping(long threadId, boolean typingStarted) {
-    ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(context, threadId, typingStarted));
+    ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
   }
 
   private class StartRunnable implements Runnable {

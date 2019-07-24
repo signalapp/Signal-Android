@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linkpreview_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:background="?linkpreview_background_color">
+
+        <org.thoughtcrime.securesms.components.OutlinedThumbnailView
+            android:id="@+id/linkpreview_thumbnail"
+            android:layout_width="72dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
+            app:layout_constraintHeight_min="72dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linkpreview_title"
+            tools:src="@drawable/ic_contact_picture"
+            tools:visibility="visible" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/linkpreview_title"
+            style="@style/Signal.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="2"
+            android:textColor="?linkpreview_primary_text_color"
+            app:layout_constraintEnd_toStartOf="@+id/linkpreview_close"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Wall Crawler Strikes Again!" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/linkpreview_site"
+            style="@style/Signal.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:textAllCaps="true"
+            android:textColor="?linkpreview_secondary_text_color"
+            app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/linkpreview_title"
+            tools:text="dailybugle.com" />
+
+        <View
+            android:id="@+id/linkpreview_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            android:background="?linkpreview_divider_color"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/linkpreview_thumbnail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/linkpreview_site"
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/linkpreview_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_close_white_18dp"
+            android:tint="@color/gray70"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/linkpreview_progress_wheel"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:indeterminate="true"
+            android:padding="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:matProg_barColor="@color/core_blue"
+            app:matProg_progressIndeterminate="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

@@ -11,8 +11,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="3dp"
         android:background="?attr/conversation_item_last_seen_line_color" />
 

@@ -3,7 +3,8 @@ package org.thoughtcrime.securesms;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ public class DeviceLinkFragment extends Fragment implements View.OnClickListener
   private Uri                 uri;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     this.container = (LinearLayout) inflater.inflate(R.layout.device_link_fragment, container, false);
     this.container.findViewById(R.id.link_device).setOnClickListener(this);
 
@@ -31,6 +32,7 @@ public class DeviceLinkFragment extends Fragment implements View.OnClickListener
 
   @Override
   public void onConfigurationChanged(Configuration newConfiguration) {
+    super.onConfigurationChanged(newConfiguration);
     if (newConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
       container.setOrientation(LinearLayout.HORIZONTAL);
     } else {
@@ -51,6 +53,6 @@ public class DeviceLinkFragment extends Fragment implements View.OnClickListener
   }
 
   public interface LinkClickedListener {
-    public void onLink(Uri uri);
+    void onLink(Uri uri);
   }
 }

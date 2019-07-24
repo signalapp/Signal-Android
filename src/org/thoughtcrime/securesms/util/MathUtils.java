@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.graphics.PointF;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class MathUtils {
 
@@ -30,7 +30,7 @@ public class MathUtils {
      *
      * @param a beginning of 2 vectors
      * @param b end of vector 1
-     * @param c enf of vector 2
+     * @param c end of vector 2
      * @return cross product AB * AC
      */
     private static float crossProduct(@NonNull PointF a, @NonNull PointF b, @NonNull PointF c) {

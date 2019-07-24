@@ -7,13 +7,13 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Action;
-import android.support.v4.app.RemoteInput;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat.Action;
+import androidx.core.app.RemoteInput;
 import android.text.SpannableStringBuilder;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -143,30 +144,34 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
   public void addActions(@NonNull PendingIntent markReadIntent,
                          @NonNull PendingIntent quickReplyIntent,
-                         @NonNull PendingIntent wearableReplyIntent)
+                         @NonNull PendingIntent wearableReplyIntent,
+                         @NonNull ReplyMethod replyMethod)
   {
     Action markAsReadAction = new Action(R.drawable.check,
                                          context.getString(R.string.MessageNotifier_mark_read),
                                          markReadIntent);
 
+    String actionName = context.getString(R.string.MessageNotifier_reply);
+    String label      = context.getString(replyMethodLongDescription(replyMethod));
+
     Action replyAction = new Action(R.drawable.ic_reply_white_36dp,
-                                    context.getString(R.string.MessageNotifier_reply),
+                                    actionName,
                                     quickReplyIntent);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
       replyAction = new Action.Builder(R.drawable.ic_reply_white_36dp,
-                                       context.getString(R.string.MessageNotifier_reply),
+                                       actionName,
                                        wearableReplyIntent)
           .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
-                              .setLabel(context.getString(R.string.MessageNotifier_reply)).build())
+                              .setLabel(label).build())
           .build();
     }
 
     Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
-                                                    context.getString(R.string.MessageNotifier_reply),
+                                                    actionName,
                                                     wearableReplyIntent)
         .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
-                            .setLabel(context.getString(R.string.MessageNotifier_reply)).build())
+                            .setLabel(label).build())
         .build();
 
     addAction(markAsReadAction);
@@ -174,6 +179,20 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction)
                                                     .addAction(wearableReplyAction));
+  }
+
+  @StringRes
+  private static int replyMethodLongDescription(@NonNull ReplyMethod replyMethod) {
+    switch (replyMethod) {
+      case GroupMessage:
+        return R.string.MessageNotifier_reply;
+      case SecureMessage:
+        return R.string.MessageNotifier_signal_message;
+      case UnsecuredSmsMessage:
+        return R.string.MessageNotifier_unsecured_sms;
+      default:
+        return R.string.MessageNotifier_reply;
+    }
   }
 
   public void addMessageBody(@NonNull Recipient threadRecipient,
@@ -220,7 +239,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   private boolean hasBigPictureSlide(@Nullable SlideDeck slideDeck) {
-    if (slideDeck == null || Build.VERSION.SDK_INT < 16) {
+    if (slideDeck == null) {
       return false;
     }
 
@@ -257,15 +276,15 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   public NotificationCompat.Builder setContentText(CharSequence contentText) {
-    this.contentText = contentText;
-    return super.setContentText(contentText);
+    this.contentText = trimToDisplayLength(contentText);
+    return super.setContentText(this.contentText);
   }
 
   private CharSequence getBigText(List<CharSequence> messageBodies) {
     SpannableStringBuilder content = new SpannableStringBuilder();
 
     for (int i = 0; i < messageBodies.size(); i++) {
-      content.append(messageBodies.get(i));
+      content.append(trimToDisplayLength(messageBodies.get(i)));
       if (i < messageBodies.size() - 1) {
         content.append('\n');
       }

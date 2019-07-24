@@ -7,16 +7,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.jobs.requirements.SqlCipherMigrationRequirementProvider;
+import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.whispersystems.libsignal.util.Medium;
 
@@ -74,6 +74,7 @@ public class TextSecurePreferences {
   private static final String VERIFYING_STATE_PREF             = "pref_verifying";
   public  static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
+  private static final String SEEN_WELCOME_SCREEN_PREF         = "pref_seen_welcome_screen";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_DEFAULT_SMS_PREF        = "pref_prompted_default_sms";
   private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
@@ -138,10 +139,11 @@ public class TextSecurePreferences {
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
   private static final String NEXT_SIGNED_PRE_KEY_ID   = "pref_next_signed_pre_key_id";
 
-  public  static final String BACKUP_ENABLED    = "pref_backup_enabled";
-  private static final String BACKUP_PASSPHRASE = "pref_backup_passphrase";
-  private static final String BACKUP_TIME       = "pref_backup_next_time";
-  public  static final String BACKUP_NOW        = "pref_backup_create";
+  public  static final String BACKUP_ENABLED              = "pref_backup_enabled";
+  private static final String BACKUP_PASSPHRASE           = "pref_backup_passphrase";
+  private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
+  private static final String BACKUP_TIME                 = "pref_backup_next_time";
+  public  static final String BACKUP_NOW                  = "pref_backup_create";
 
   public static final String SCREEN_LOCK         = "pref_android_screen_lock";
   public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
@@ -172,6 +174,18 @@ public class TextSecurePreferences {
   private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
 
   public static final String TYPING_INDICATORS = "pref_typing_indicators";
+
+  public static final String LINK_PREVIEWS = "pref_link_previews";
+
+  private static final String GIF_GRID_LAYOUT = "pref_gif_grid_layout";
+
+  private static final String SEEN_STICKER_INTRO_TOOLTIP = "pref_seen_sticker_intro_tooltip";
+
+  private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
+
+  private static final String REVEALABLE_MESSAGE_DEFAULT = "pref_revealable_message_default";
+
+  private static final String SEEN_CAMERA_FIRST_TOOLTIP = "pref_seen_camera_first_tooltip";
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
@@ -229,6 +243,14 @@ public class TextSecurePreferences {
     return getStringPreference(context, BACKUP_PASSPHRASE, null);
   }
 
+  public static void setEncryptedBackupPassphrase(@NonNull Context context, @Nullable String encryptedPassphrase) {
+    setStringPreference(context, ENCRYPTED_BACKUP_PASSPHRASE, encryptedPassphrase);
+  }
+
+  public static @Nullable String getEncryptedBackupPassphrase(@NonNull Context context) {
+    return getStringPreference(context, ENCRYPTED_BACKUP_PASSPHRASE, null);
+  }
+
   public static void setBackupEnabled(@NonNull Context context, boolean value) {
     setBooleanPreference(context, BACKUP_ENABLED, value);
   }
@@ -271,7 +293,7 @@ public class TextSecurePreferences {
 
   public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
     setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value);
-    EventBus.getDefault().post(new SqlCipherMigrationRequirementProvider.SqlCipherNeedsMigrationEvent());
+    EventBus.getDefault().post(new SqlCipherMigrationConstraintObserver.SqlCipherNeedsMigrationEvent());
   }
 
   public static boolean getNeedsSqlCipherMigration(@NonNull Context context) {
@@ -346,6 +368,18 @@ public class TextSecurePreferences {
     setBooleanPreference(context, TYPING_INDICATORS, enabled);
   }
 
+  public static boolean isLinkPreviewsEnabled(Context context) {
+    return getBooleanPreference(context, LINK_PREVIEWS, true);
+  }
+
+  public static boolean isGifSearchInGridLayout(Context context) {
+    return getBooleanPreference(context, GIF_GRID_LAYOUT, false);
+  }
+
+  public static void setIsGifSearchInGridLayout(Context context, boolean isGrid) {
+    setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
+  }
+
   public static @Nullable String getProfileKey(Context context) {
     return getStringPreference(context, PROFILE_KEY_PREF, null);
   }
@@ -382,11 +416,11 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
   }
 
-  public static boolean isGcmDisabled(Context context) {
+  public static boolean isFcmDisabled(Context context) {
     return getBooleanPreference(context, GCM_DISABLED_PREF, false);
   }
 
-  public static void setGcmDisabled(Context context, boolean disabled) {
+  public static void setFcmDisabled(Context context, boolean disabled) {
     setBooleanPreference(context, GCM_DISABLED_PREF, disabled);
   }
 
@@ -480,35 +514,31 @@ public class TextSecurePreferences {
     setBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, value);
   }
 
-  public static void setGcmRegistrationId(Context context, String registrationId) {
+  public static void setFcmToken(Context context, String registrationId) {
     setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);
-    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCurrentApkReleaseVersion(context));
+    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCanonicalVersionCode());
   }
 
-  public static String getGcmRegistrationId(Context context) {
+  public static String getFcmToken(Context context) {
     int storedRegistrationIdVersion = getIntegerPreference(context, GCM_REGISTRATION_ID_VERSION_PREF, 0);
 
-    if (storedRegistrationIdVersion != Util.getCurrentApkReleaseVersion(context)) {
+    if (storedRegistrationIdVersion != Util.getCanonicalVersionCode()) {
       return null;
     } else {
       return getStringPreference(context, GCM_REGISTRATION_ID_PREF, null);
     }
   }
 
-  public static long getGcmRegistrationIdLastSetTime(Context context) {
+  public static long getFcmTokenLastSetTime(Context context) {
     return getLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, 0);
   }
 
-  public static void setGcmRegistrationIdLastSetTime(Context context, long timestamp) {
+  public static void setFcmTokenLastSetTime(Context context, long timestamp) {
     setLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, timestamp);
   }
 
   public static boolean isSmsEnabled(Context context) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      return Util.isDefaultSmsProvider(context);
-    } else {
-      return isInterceptAllSmsEnabled(context);
-    }
+    return Util.isDefaultSmsProvider(context);
   }
 
   public static int getLocalRegistrationId(Context context) {
@@ -618,10 +648,6 @@ public class TextSecurePreferences {
 
   public static void setPushServerPassword(Context context, String password) {
     setStringPreference(context, GCM_PASSWORD_PREF, password);
-  }
-
-  public static void setSignalingKey(Context context, String signalingKey) {
-    setStringPreference(context, SIGNALING_KEY_PREF, signalingKey);
   }
 
   public static String getSignalingKey(Context context) {
@@ -829,6 +855,14 @@ public class TextSecurePreferences {
 
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
     return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
+  }
+
+  public static boolean hasSeenWelcomeScreen(Context context) {
+    return getBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, true);
+  }
+
+  public static void setHasSeenWelcomeScreen(Context context, boolean value) {
+    setBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, value);
   }
 
   public static boolean hasPromptedPushRegistration(Context context) {
@@ -1051,6 +1085,39 @@ public class TextSecurePreferences {
     setBooleanPreference(context, NEEDS_MESSAGE_PULL, needsMessagePull);
   }
 
+  public static boolean hasSeenStickerIntroTooltip(Context context) {
+    return getBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, false);
+  }
+
+  public static void setHasSeenStickerIntroTooltip(Context context, boolean seenStickerTooltip) {
+    setBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, seenStickerTooltip);
+  }
+
+  public static void setMediaKeyboardMode(Context context, MediaKeyboardMode mode) {
+    setStringPreference(context, MEDIA_KEYBOARD_MODE, mode.name());
+  }
+
+  public static MediaKeyboardMode getMediaKeyboardMode(Context context) {
+    String name = getStringPreference(context, MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name());
+    return MediaKeyboardMode.valueOf(name);
+  }
+
+  public static void setIsRevealableMessageEnabled(Context context, boolean value) {
+    setBooleanPreference(context, REVEALABLE_MESSAGE_DEFAULT, value);
+  }
+
+  public static boolean isRevealableMessageEnabled(Context context) {
+    return getBooleanPreference(context, REVEALABLE_MESSAGE_DEFAULT, false);
+  }
+
+  public static void setHasSeenCameraFirstTooltip(Context context, boolean value) {
+    setBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, value);
+  }
+
+  public static boolean hasSeendCameraFirstTooltip(Context context) {
+    return getBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, false);
+  }
+
   public static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
@@ -1098,5 +1165,10 @@ public class TextSecurePreferences {
     } else {
       return defaultValues;
     }
+  }
+
+  // NEVER rename these -- they're persisted by name
+  public enum MediaKeyboardMode {
+    EMOJI, STICKER
   }
 }

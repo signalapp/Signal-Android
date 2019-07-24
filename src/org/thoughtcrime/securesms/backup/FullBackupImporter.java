@@ -6,33 +6,26 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.NonNull;
 import android.util.Pair;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.backup.BackupProtos.Attachment;
 import org.thoughtcrime.securesms.backup.BackupProtos.BackupFrame;
 import org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion;
 import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference;
 import org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement;
+import org.thoughtcrime.securesms.backup.BackupProtos.Sticker;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.database.StickerDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
@@ -85,10 +78,9 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasStatement())  processStatement(db, frame.getStatement());
         else if (frame.hasPreference()) processPreference(context, frame.getPreference());
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
+        else if (frame.hasSticker())    processSticker(context, attachmentSecret, db, frame.getSticker(), inputStream);
         else if (frame.hasAvatar())     processAvatar(context, frame.getAvatar(), inputStream);
       }
-
-      trimEntriesForExpiredMessages(context, db);
 
       db.setTransactionSuccessful();
     } finally {
@@ -109,8 +101,9 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
     boolean isForSmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.SMS_FTS_TABLE_NAME + "_");
     boolean isForMmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.MMS_FTS_TABLE_NAME + "_");
+    boolean isForSqliteSecretTable = statement.getStatement().toLowerCase().startsWith("create table sqlite_");
 
-    if (isForSmsFtsSecretTable || isForMmsFtsSecretTable) {
+    if (isForSmsFtsSecretTable || isForMmsFtsSecretTable || isForSqliteSecretTable) {
       Log.i(TAG, "Ignoring import for statement: " + statement.getStatement());
       return;
     }
@@ -149,6 +142,25 @@ public class FullBackupImporter extends FullBackupBase {
               new String[] {String.valueOf(attachment.getRowId()), String.valueOf(attachment.getAttachmentId())});
   }
 
+  private static void processSticker(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Sticker sticker, BackupRecordInputStream inputStream)
+      throws IOException
+  {
+    File stickerDirectory = context.getDir(AttachmentDatabase.DIRECTORY, Context.MODE_PRIVATE);
+    File dataFile         = File.createTempFile("sticker", ".mms", stickerDirectory);
+
+    Pair<byte[], OutputStream> output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
+
+    inputStream.readAttachmentTo(output.second, sticker.getLength());
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(StickerDatabase.FILE_PATH, dataFile.getAbsolutePath());
+    contentValues.put(StickerDatabase.FILE_RANDOM, output.first);
+
+    db.update(StickerDatabase.TABLE_NAME, contentValues,
+              StickerDatabase._ID + " = ?",
+              new String[] {String.valueOf(sticker.getRowId())});
+  }
+
   private static void processAvatar(@NonNull Context context, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {
     inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, Address.fromExternal(context, avatar.getName()))), avatar.getLength());
   }
@@ -165,34 +177,12 @@ public class FullBackupImporter extends FullBackupBase {
         String name = cursor.getString(0);
         String type = cursor.getString(1);
 
-        if ("table".equals(type)) {
+        if ("table".equals(type) && !name.startsWith("sqlite_")) {
           db.execSQL("DROP TABLE IF EXISTS " + name);
         }
       }
     }
   }
-
-  private static void trimEntriesForExpiredMessages(@NonNull Context context, @NonNull SQLiteDatabase db) {
-    String trimmedCondition = " NOT IN (SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME + ")";
-
-    db.delete(GroupReceiptDatabase.TABLE_NAME, GroupReceiptDatabase.MMS_ID + trimmedCondition, null);
-
-    String[] columns = new String[] { AttachmentDatabase.ROW_ID, AttachmentDatabase.UNIQUE_ID };
-    String   where   = AttachmentDatabase.MMS_ID + trimmedCondition;
-
-    try (Cursor cursor = db.query(AttachmentDatabase.TABLE_NAME, columns, where, null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(new AttachmentId(cursor.getLong(0), cursor.getLong(1)));
-      }
-    }
-
-    try (Cursor cursor = db.query(ThreadDatabase.TABLE_NAME, new String[] { ThreadDatabase.ID }, ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false);
-      }
-    }
-  }
-
 
   private static class BackupRecordInputStream extends BackupStream {
 

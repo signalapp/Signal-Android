@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 
 public class ClearProfileAvatarActivity extends Activity {
 

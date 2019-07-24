@@ -5,7 +5,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.webrtc.CameraState;
 
 public class WebRtcCallControls extends LinearLayout {
 
@@ -91,8 +90,7 @@ public class WebRtcCallControls extends LinearLayout {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         listener.onToggle();
-        cameraFlipButton.setBackgroundResource(isChecked ? R.drawable.webrtc_camera_front_button
-                                                         : R.drawable.webrtc_camera_rear_button);
+        updateCameraFlipIcon(isChecked);
         cameraFlipButton.setEnabled(false);
       }
     });
@@ -153,10 +151,17 @@ public class WebRtcCallControls extends LinearLayout {
 
   public void setCameraFlipButtonEnabled(boolean enabled) {
     cameraFlipButton.setChecked(enabled, false);
+    updateCameraFlipIcon(cameraFlipButton.isChecked());
+  }
+
+  private void updateCameraFlipIcon(boolean isChecked) {
+    cameraFlipButton.setBackgroundResource(isChecked ? R.drawable.webrtc_camera_front_button
+                                                     : R.drawable.webrtc_camera_rear_button);
   }
 
   public void setCameraFlipAvailable(boolean available) {
     cameraFlipAvailable = available;
+    cameraFlipButton.setVisibility(cameraFlipAvailable && isVideoEnabled() ? View.VISIBLE : View.GONE);
   }
 
   public void setCameraFlipClickable(boolean clickable) {
@@ -186,7 +191,7 @@ public class WebRtcCallControls extends LinearLayout {
   }
 
   public void displayVideoTooltip(ViewGroup viewGroup) {
-    if (Build.VERSION.SDK_INT > 15 && videoMuteButton.getVisibility() == VISIBLE) {
+    if (videoMuteButton.getVisibility() == VISIBLE) {
       final ToolTipsManager toolTipsManager = new ToolTipsManager();
 
       ToolTip toolTip = new ToolTip.Builder(getContext(), videoMuteButton, viewGroup,

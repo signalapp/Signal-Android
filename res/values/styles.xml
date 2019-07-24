@@ -42,7 +42,7 @@
     <style name="TextSecure.DarkActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/core_grey_90</item>
-        <item name="android:popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="android:popupTheme" tools:ignore="NewApi">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="elevation">4dp</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
@@ -91,19 +91,12 @@
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">#BFffffff</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
         <item name="android:textColor">#BFffffff</item>
-    </style>
-
-    <style name="NotificationText">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-
-    <style name="NotificationTitle">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
-      <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="Registration.Description" parent="@android:style/TextAppearance">
@@ -155,8 +148,8 @@
     </style>
 
     <style name="MaterialButton">
-        <item name="android:elevation">1dp</item>
-        <item name="android:translationZ">1dp</item>
+        <item name="android:elevation" tools:ignore="NewApi">1dp</item>
+        <item name="android:translationZ" tools:ignore="NewApi">1dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12sp</item>
     </style>
@@ -173,7 +166,7 @@
         <item name="android:padding">2dp</item>
         <item name="android:background">@null</item>
         <item name="android:maxLines">4</item>
-        <item name="android:maxLength">2000</item>
+        <item name="android:maxLength">65536</item>
         <item name="android:textColor">?conversation_item_sent_text_primary_color</item>
         <item name="android:capitalize">sentences</item>
         <item name="android:autoText">true</item>
@@ -195,6 +188,10 @@
 
     <style name="Button.Borderless" parent="Base.Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/signal_primary</item>
+    </style>
+
+    <style name="Button.Borderless.Registration" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/core_grey_60</item>
     </style>
 
     <!-- RedPhone -->

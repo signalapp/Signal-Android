@@ -19,11 +19,11 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DataSetObserver;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -124,9 +124,13 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
            + (hasFooterView() ? 1 : 0);
   }
 
+  public int getCursorCount() {
+    return cursor.getCount();
+  }
+
   @SuppressWarnings("unchecked")
   @Override
-  public final void onViewRecycled(ViewHolder holder) {
+  public final void onViewRecycled(@NonNull ViewHolder holder) {
     if (!(holder instanceof HeaderFooterViewHolder)) {
       onItemViewRecycled((VH)holder);
     }
@@ -135,7 +139,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   public void onItemViewRecycled(VH holder) {}
 
   @Override
-  public final ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public @NonNull final ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     switch (viewType) {
     case HEADER_TYPE: return new HeaderFooterViewHolder(header);
     case FOOTER_TYPE: return new HeaderFooterViewHolder(footer);
@@ -147,7 +151,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   @SuppressWarnings("unchecked")
   @Override
-  public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+  public final void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
     if (!isHeaderPosition(position) && !isFooterPosition(position)) {
       if (isFastAccessPosition(position)) onBindFastAccessItemViewHolder((VH)viewHolder, position);
       else                                onBindItemViewHolder((VH)viewHolder, getCursorAtPositionOrThrow(position));
@@ -174,9 +178,10 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   @Override
   public final long getItemId(int position) {
-    if (isHeaderPosition(position))     return HEADER_ID;
-    if (isFooterPosition(position))     return FOOTER_ID;
-    if (isFastAccessPosition(position)) return getFastAccessItemId(position);
+    if (isHeaderPosition(position))          return HEADER_ID;
+    else if (isFooterPosition(position))     return FOOTER_ID;
+    else if (isFastAccessPosition(position)) return getFastAccessItemId(position);
+
     long itemId = getItemId(getCursorAtPositionOrThrow(position));
     return itemId <= Long.MIN_VALUE + 1 ? itemId + 2 : itemId;
   }
@@ -190,7 +195,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
       throw new IllegalStateException("this should only be called when the cursor is valid");
     }
     if (!cursor.moveToPosition(getCursorPosition(position))) {
-      throw new IllegalStateException("couldn't move cursor to position " + position);
+      throw new IllegalStateException("couldn't move cursor to position " + position + " (actual cursor position " + getCursorPosition(position) + ")");
     }
     return cursor;
   }

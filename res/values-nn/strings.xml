@@ -6,9 +6,11 @@
   <string name="delete">Slett</string>
   <string name="please_wait">Vent litt </string>
   <string name="save">Lagra</string>
+  <string name="note_to_self">Notat til meg sjølv</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldande: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikkje valt ein passordfrase endå.</string>
@@ -52,12 +54,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(stad)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Fann ingen program for valt medium.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal treng tilgang til lagring for å legga ved bilete, film eller lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal treng tilgang til kontaktar for å legga til kontaktinformasjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal treng tilgang til posisjon for å legga til posisjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Posisjon».</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal treng tilgang til kameraet for å ta bilete, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Det oppstod ein feil under lydavspeling.</string>
   <!--BlockedContactsActivity-->
@@ -70,8 +73,8 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inngåande samtale</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_camera_unavailable">Kamera utilgjengeleg</string>
   <string name="CameraActivity_image_save_failure">Klarte ikkje lagra biletet.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbilete?</string>
@@ -112,6 +115,9 @@
   <string name="ConversationItem_copied_text">Kopierte %s</string>
   <string name="ConversationItem_from_s">frå %s</string>
   <string name="ConversationItem_to_s">til %s</string>
+  <string name="ConversationItem_read_more">  Les meir</string>
+  <string name="ConversationItem_download_more">  Last ned meir</string>
+  <string name="ConversationItem_pending">  Ventar</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestilla sikker økt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpa viss du har krypteringsproblem med samtalen. Meldingane dine vert ikkje fjerna.</string>
@@ -133,7 +139,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss byte til Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">La oss bruka dette til å prata: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Klarte ikkje forlata gruppa</string>
   <string name="ConversationActivity_specify_recipient">Vel ein kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Vil du fjerne blokkering av denne kontakten?</string>
@@ -153,6 +158,11 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal treng tilgang til kameraet for å ta bilete eller videoar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal treng tilgang til kameraet for å ta bilete eller videoopptak</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikkje senda SMS/MMS-meldingar utan å vera standard SMS-app. Vil du endra dette no i Android-innstillingane dine?</string>
+  <string name="ConversationActivity_yes">Ja</string>
+  <string name="ConversationActivity_no">Nei</string>
+  <string name="ConversationActivity_search_position">%1$d av %2$d</string>
+  <string name="ConversationActivity_no_results">Ingen resultat</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulesen melding</item>
@@ -220,12 +230,17 @@
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtalar (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Godkjent</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Din profilinfo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klarte ikkje endra profilbilete</string>
   <string name="CreateProfileActivity_problem_setting_profile">Klarte ikkje endra profilen</string>
   <string name="CreateProfileActivity_profile_photo">Profilbilete</string>
   <string name="CreateProfileActivity_too_long">For langt</string>
+  <string name="CreateProfileActivity_profile_name">Profilnamn</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Lag profilen din</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profilar er krypterte ende-til-ende, og Signal-tenesta har aldri tilgang til denne informasjonen.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Brukar sjølvvald: %s</string>
   <string name="CustomDefaultPreference_using_default">Brukar forvald: %s</string>
@@ -273,6 +288,17 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klar til å ta nærbilete?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">No kan du dela profilbilete og namnet ditt med vennar på Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signalprofilar er her</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Her kjem tastevisning.</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">No kan du sjå og visa inntasting av meldingar, viss du vil.</string>
+  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du skru på denne funksjonen no?</string>
+  <string name="ExperienceUpgradeActivity_typing_ui_title">Tastevisning er her</string>
+  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Skru på tastevisning</string>
+  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Skru på tastevisning</string>
+  <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">No kjem lenkjesniktitt</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">No kan me laga førehandsvisningar av lenkjer til nokre av dei mest populære nettstadene, viss du vil.</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan skru på eller av denne funksjonen når som helst i Signal-innstillingane dine (Privay → Send lenkjesniktitt).</string>
+  <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Hentar ei melding …</string>
   <!--GcmRefreshJob-->
@@ -305,6 +331,8 @@
   <string name="GroupShareProfileView_make_visible">Gjer synleg</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Meg</string>
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hald for å spela inn talemelding , slepp for å senda</string>
   <!--InviteActivity-->
@@ -331,6 +359,10 @@
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Sending mislukkast</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt tryggleiksnummer</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Klarte ikkje finna meldinga</string>
+  <string name="LongMessageActivity_message_from_s">Melding frå %1$s</string>
+  <string name="LongMessageActivity_your_message">Di melding</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstilkopling på</string>
@@ -363,6 +395,16 @@
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediemelding</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Lastar ned MMS-melding</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Klarte ikkje lasta ned MMS-melding, trykk for å prøva igjen</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Send til %s</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Trykk for å velja</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Legg til bildetekst …</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Eit element vart fjerna fordi det gjekk over storleiksgrensa</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera utilgjengeleg.</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">All media</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok ei melding som er kryptert med ein gammal versjon av Signal som ikkje lenger vert støtta. Be avsendaren om å oppdatera til nyaste versjon og senda meldinga på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlate gruppa.</string>
@@ -417,10 +459,9 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Send inn passordfrase</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passordfrase.</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play-tenester som er installert på denne eininga fungerer ikkje skikkeleg. Installer Google Play-tenester på nytt og prøv igjen.</string>
-  <!--PushNotificationReceiveJob-->
-  <string name="PushNotificationReceiveJob_retrieving_a_message">Hentar ei melding …</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Viss du liker dette programmet, vil vi gjerne at du hjelper oss ved å gje vurderinga di.</string>
@@ -485,6 +526,18 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
     <item quantity="one">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
     <item quantity="other">Du har no %d steg igjen før du har sendt inn ein feilsøkingslogg.</item>
   </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Me må sjekka om du er eit menneske.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Klarte ikkje stadfesta CAPTCHA-en</string>
+  <string name="RegistrationActivity_next">Neste</string>
+  <string name="RegistrationActivity_continue">Hald fram</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta personvernet ditt med deg.
+Ver deg sjølv i kvar einaste melding.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Skriv inn telefonnummeret ditt for å komma i gang</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil få ei stadfestingskode. Operatøren din kan ta betalt for meldinga.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Skriv inn koden me sende til %s</string>
+  <string name="RegistrationActivity_call">Ring</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Bilde</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikkje lagra biletendringane</string>
   <!--Search-->
@@ -492,8 +545,6 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="SearchFragment_header_conversations">Samtalar</string>
   <string name="SearchFragment_header_contacts">Kontaktar</string>
   <string name="SearchFragment_header_messages">Meldingar</string>
-  <!--SendJob-->
-  <string name="SendJob_sending_a_message">Sender ei melding …</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Legg til som kontakt</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Inviter til Signal</string>
@@ -516,6 +567,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Feil ved handtering av innkommande melding</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Klistremerke</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">Ukjend</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Ukjend</string>
+  <string name="StickerPackPreviewActivity_remove">Fjern</string>
+  <string name="StickerPackPreviewActivity_stickers">Klistremerke</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupper oppdatert</string>
   <string name="ThreadRecord_left_the_group">Forlét gruppa</string>
@@ -598,8 +658,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_mark_read">Merk lesen</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_reply">Svar</string>
-  <string name="MessageNotifier_pending_signal_messages">Uhenta Signal-meldingar</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du har uhenta Signal-meldingar, klikk for å opna og henta</string>
+  <string name="MessageNotifier_signal_message">Signal-melding</string>
+  <string name="MessageNotifier_unsecured_sms">Usikra SMS</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -627,6 +687,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%delement</item>
+    <item quantity="other">%d element</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Eininga er ikkje lenger registrert</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette er sannsynlegvis fordi du registrerte telefonnummeret ditt med Signal på ei anna eining. Trykk for å omregistrera.</string>
@@ -691,7 +755,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og senda lydvedlegg</string>
   <string name="conversation_activity__enable_signal_for_sms">Aktiver Signal for SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">SKYV FOR Å AVBRYTA</string>
+  <string name="conversation_input_panel__cancel">Avbryt</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mediemelding</string>
   <string name="conversation_item__secure_message_description">Sikker melding</string>
@@ -937,6 +1001,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle inngåande multimediemeldingar </string>
   <string name="preferences__pref_enter_sends_title">Send med linjeskift</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk linjeskift for å senda tekstmeldingar</string>
+  <string name="preferences__send_link_previews">Send lenkjesniktitt</string>
   <string name="preferences__choose_identity">Vel identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vel kontakt frå kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passordfrase</string>
@@ -1006,6 +1071,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__incognito_keyboard">Inkognitotastatur</string>
   <string name="preferences__read_receipts">Lesekvitteringar</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Viss du har skrudd av lesekvitteringar, får du heller ikkje sjå andre sine lesekvitteringar.</string>
+  <string name="preferences__typing_indicators">Tastevisning</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Viss tastevisning er av, kan du heller ikkje sjå når andre tastar.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Spør om tastatur for å skru av persontilpassa læring</string>
   <string name="preferences_app_protection__blocked_contacts">Blokkerte kontaktar</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
@@ -1033,7 +1100,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Forsegla sendar</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Visingsindikatorar</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis eit statusikon når du vel «Meldingsdetaljar» på meldingar som blei sende med forsegla sendar.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis eit statusikon når du vel «Meldingsdetaljar» på meldingar som vart sende med forsegla sendar.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillat frå alle</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tillat forsegla sendar på meldingar du får frå folk som ikkje er i kontaktlista di, og folk du ikkje har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær meir</string>
@@ -1189,11 +1256,8 @@ Du er à jour!</string>
   <string name="ChatsPreferenceFragment_in_progress">I gang</string>
   <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string>
   <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
-  <string name="RegistrationActivity_verify_s">Stadfest %s</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn stadfestingskoden sendt til %s</string>
-  <string name="RegistrationActivity_wrong_number">Feil nummer?</string>
-  <string name="RegistrationActivity_call_me_instead">Ring meg i staden</string>
-  <string name="RegistrationActivity_available_in">Tilgjengeleg om:\u0020</string>
+  <string name="RegistrationActivity_wrong_number">Feil nummer</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjend</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
@@ -1231,7 +1295,6 @@ Du er à jour!</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Klarte ikkje kopla til tenesta</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Skru av PIN-kode for registreringslås?</string>
   <string name="RegistrationLockDialog_disable">Slå av</string>
-  <string name="RegistrationActivity_continue">Hald fram</string>
   <string name="preferences_chats__backups">Reservekopiar</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSA OPP</string>

@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.JobParameters;
-import org.thoughtcrime.securesms.jobmanager.SafeData;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -18,42 +17,41 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
-import javax.inject.Inject;
+public class RotateSignedPreKeyJob extends BaseJob {
 
-import androidx.work.Data;
+  public static final String KEY = "RotateSignedPreKeyJob";
 
-public class RotateSignedPreKeyJob extends ContextJob implements InjectableType {
-
-  private static final String TAG = RotateSignedPreKeyJob.class.getName();
-
-  @Inject transient SignalServiceAccountManager accountManager;
+  private static final String TAG = RotateSignedPreKeyJob.class.getSimpleName();
 
   public RotateSignedPreKeyJob() {
-    super(null, null);
+    this(new Job.Parameters.Builder()
+                           .setQueue("RotateSignedPreKeyJob")
+                           .addConstraint(NetworkConstraint.KEY)
+                           .setMaxAttempts(5)
+                           .build());
   }
 
-  public RotateSignedPreKeyJob(Context context) {
-    super(context, JobParameters.newBuilder()
-                                .withNetworkRequirement()
-                                .withRetryCount(5)
-                                .create());
-  }
-
-  @Override
-  protected void initialize(@NonNull SafeData data) {
+  private RotateSignedPreKeyJob(@NonNull Job.Parameters parameters) {
+    super(parameters);
   }
 
   @Override
-  protected @NonNull Data serialize(@NonNull Data.Builder dataBuilder) {
-    return dataBuilder.build();
+  public @NonNull Data serialize() {
+    return Data.EMPTY;
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
   public void onRun() throws Exception {
     Log.i(TAG, "Rotating signed prekey...");
 
-    IdentityKeyPair    identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
-    SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
+    SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
+    IdentityKeyPair             identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
+    SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
     accountManager.setSignedPreKey(signedPreKeyRecord);
 
@@ -63,16 +61,23 @@ public class RotateSignedPreKeyJob extends ContextJob implements InjectableType 
 
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new CleanPreKeysJob(context));
+                      .add(new CleanPreKeysJob());
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     return exception instanceof PushNetworkException;
   }
 
   @Override
   public void onCanceled() {
     TextSecurePreferences.setSignedPreKeyFailureCount(context, TextSecurePreferences.getSignedPreKeyFailureCount(context) + 1);
+  }
+
+  public static final class Factory implements Job.Factory<RotateSignedPreKeyJob> {
+    @Override
+    public @NonNull RotateSignedPreKeyJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new RotateSignedPreKeyJob(parameters);
+    }
   }
 }

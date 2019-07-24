@@ -5,16 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import android.text.TextUtils;
-import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.Collections;
 import java.util.Set;
@@ -37,7 +37,11 @@ public class AttachmentUtil {
     Set<String> allowedTypes = getAllowedAutoDownloadTypes(context);
     String      contentType  = attachment.getContentType();
 
-    if (attachment.isVoiceNote() || (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.getFileName()))) {
+    if (attachment.isVoiceNote()                                                       ||
+        (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.getFileName())) ||
+        MediaUtil.isLongTextType(attachment.getContentType())                          ||
+        attachment.isSticker())
+    {
       return true;
     } else if (isNonDocumentType(contentType)) {
       return allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
