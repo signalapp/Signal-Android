@@ -91,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/signal_primary"
             android:textColor="@color/white"
