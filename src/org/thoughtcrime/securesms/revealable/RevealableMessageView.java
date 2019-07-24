@@ -33,8 +33,6 @@ public class RevealableMessageView extends LinearLayout {
   private ImageView     icon;
   private ProgressWheel progress;
   private TextView      text;
-  private Handler       handler;
-  private Runnable      updateRunnable;
   private Attachment    attachment;
   private int           unopenedForegroundColor;
   private int           openedForegroundColor;
@@ -66,7 +64,6 @@ public class RevealableMessageView extends LinearLayout {
     this.icon     = findViewById(R.id.revealable_icon);
     this.progress = findViewById(R.id.revealable_progress);
     this.text     = findViewById(R.id.revealable_text);
-    this.handler  = new Handler();
   }
 
   @Override
@@ -96,7 +93,6 @@ public class RevealableMessageView extends LinearLayout {
   public void setMessage(@NonNull MmsMessageRecord message) {
     this.attachment = message.getSlideDeck().getThumbnailSlide() != null ? message.getSlideDeck().getThumbnailSlide().asAttachment() : null;
 
-    clearUpdateRunnable();
     presentMessage(message);
   }
 
@@ -135,7 +131,6 @@ public class RevealableMessageView extends LinearLayout {
       text.setText(R.string.RevealableMessageView_viewed);
       icon.setImageResource(R.drawable.ic_play_outline_24);
       progress.setVisibility(GONE);
-      clearUpdateRunnable();
     }
 
     text.setTextColor(foregroundColor);
@@ -149,13 +144,6 @@ public class RevealableMessageView extends LinearLayout {
 
     Attachment attachment = messageRecord.getSlideDeck().getThumbnailSlide().asAttachment();
     return attachment.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED;
-  }
-
-  private void clearUpdateRunnable() {
-    if (updateRunnable != null) {
-      handler.removeCallbacks(updateRunnable);
-      updateRunnable = null;
-    }
   }
 
   private @NonNull String formatFileSize(@NonNull MmsMessageRecord messageRecord) {

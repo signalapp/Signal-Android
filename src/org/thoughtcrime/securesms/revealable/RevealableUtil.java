@@ -47,15 +47,4 @@ public class RevealableUtil {
       return false;
     }
   }
-
-  public static boolean hasStarted(@Nullable MmsMessageRecord record) {
-    return record != null && record.getRevealStartTime() != 0;
-  }
-
-  public static boolean hasMedia(@Nullable MmsMessageRecord record) {
-    return record != null                                             &&
-           record.getSlideDeck().getThumbnailSlide() != null          &&
-           record.getSlideDeck().getThumbnailSlide().getUri() != null &&
-           record.getSlideDeck().getThumbnailSlide().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE;
-  }
 }
