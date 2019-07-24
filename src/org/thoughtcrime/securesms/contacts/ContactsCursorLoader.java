@@ -132,21 +132,25 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private Cursor getRecentsHeaderCursor() {
     MatrixCursor recentsHeader = new MatrixCursor(CONTACT_PROJECTION);
+    /*
     recentsHeader.addRow(new Object[]{ getContext().getString(R.string.ContactsCursorLoader_recent_chats),
                                        "",
                                        ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                        "",
                                        ContactsDatabase.DIVIDER_TYPE });
+     */
     return recentsHeader;
   }
 
   private Cursor getContactsHeaderCursor() {
     MatrixCursor contactsHeader = new MatrixCursor(CONTACT_PROJECTION, 1);
+    /*
     contactsHeader.addRow(new Object[] { getContext().getString(R.string.ContactsCursorLoader_contacts),
                                          "",
                                          ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                          "",
                                          ContactsDatabase.DIVIDER_TYPE });
+     */
     return contactsHeader;
   }
 

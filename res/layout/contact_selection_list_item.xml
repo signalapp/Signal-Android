@@ -9,8 +9,8 @@
         android:gravity="center_vertical"
         android:focusable="true"
         android:background="@drawable/conversation_item_background"
-        android:paddingStart="48dp"
-        android:paddingEnd="24dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
