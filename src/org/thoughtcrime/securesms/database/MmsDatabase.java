@@ -1331,7 +1331,7 @@ public class MmsDatabase extends MessagingDatabase {
         long revealStartTime = cursor.getLong(cursor.getColumnIndexOrThrow(REVEAL_START_TIME));
         long dateReceived    = cursor.getLong(cursor.getColumnIndexOrThrow(DATE_RECEIVED));
         long expiresAt       = revealStartTime > 0 ? revealStartTime + revealDuration
-                                                    : dateReceived + RevealableUtil.MAX_LIFESPAN;
+                                                   : dateReceived + RevealableUtil.MAX_LIFESPAN;
 
         if (info == null || expiresAt < nearestExpiration) {
           info              = new RevealExpirationInfo(id, dateReceived, revealStartTime, revealDuration);

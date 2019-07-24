@@ -61,7 +61,10 @@ public class RevealableMessageManager extends TimedEventManager<RevealExpiration
   @Override
   protected long getDelayForEvent(@NonNull RevealExpirationInfo event) {
     if (event.getRevealStartTime() == 0) {
-      return event.getReceiveTime() + RevealableUtil.MAX_LIFESPAN;
+      long expiresAt = event.getReceiveTime() + RevealableUtil.MAX_LIFESPAN;
+      long timeLeft  = expiresAt - System.currentTimeMillis();
+
+      return Math.max(0, timeLeft);
     } else {
       long timeSinceStart = System.currentTimeMillis() - event.getRevealStartTime();
       long timeLeft       = event.getRevealDuration() - timeSinceStart;
