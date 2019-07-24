@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import network.loki.messenger.R;
+
 public class BasicIntroFragment extends Fragment {
 
   private static final String ARG_DRAWABLE = "drawable";

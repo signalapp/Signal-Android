@@ -10,6 +10,8 @@ import android.widget.ListView;
 import java.util.LinkedList;
 import java.util.List;
 
+import network.loki.messenger.R;
+
 public class TransportOptionsPopup extends ListPopupWindow implements ListView.OnItemClickListener {
 
   private final TransportOptionsAdapter adapter;

@@ -76,6 +76,8 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.IOException;
 import java.util.WeakHashMap;
 
+import network.loki.messenger.R;
+
 /**
  * Activity for displaying media attachments in-app
  */

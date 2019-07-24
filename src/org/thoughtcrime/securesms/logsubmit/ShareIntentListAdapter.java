@@ -30,7 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 import java.util.List;
 

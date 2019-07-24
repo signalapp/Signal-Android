@@ -14,7 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class HourglassView extends View {
 

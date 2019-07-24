@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**

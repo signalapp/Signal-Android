@@ -51,6 +51,8 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.Set;
 
+import network.loki.messenger.R;
+
 public class ConversationListItem extends RelativeLayout
                                   implements RecipientModifiedListener,
                                              BindableConversationListItem, Unbindable

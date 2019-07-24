@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import network.loki.messenger.R;
+
 public class DeviceAddFragment extends Fragment {
 
   private ViewGroup      container;

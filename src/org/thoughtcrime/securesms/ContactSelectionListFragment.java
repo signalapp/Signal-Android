@@ -56,6 +56,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import network.loki.messenger.R;
+
 /**
  * Fragment for selecting a one or more contacts from a list.
  *

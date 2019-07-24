@@ -6,6 +6,8 @@ import android.widget.Button;
 
 import org.thoughtcrime.securesms.preferences.MmsPreferencesActivity;
 
+import network.loki.messenger.R;
+
 public class PromptMmsActivity extends PassphraseRequiredActionBarActivity {
 
   @Override

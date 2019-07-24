@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import java.util.Locale;
 import java.util.Set;
 
+import network.loki.messenger.R;
+
 public class ConversationListItemAction extends LinearLayout implements BindableConversationListItem {
 
   private TextView description;

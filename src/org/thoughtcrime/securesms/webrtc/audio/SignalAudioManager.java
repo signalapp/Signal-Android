@@ -9,7 +9,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public class SignalAudioManager {

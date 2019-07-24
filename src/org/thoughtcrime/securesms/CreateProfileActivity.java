@@ -65,6 +65,8 @@ import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
 
+import network.loki.messenger.R;
+
 @SuppressLint("StaticFieldLeak")
 public class CreateProfileActivity extends BaseActionBarActivity implements InjectableType {
 

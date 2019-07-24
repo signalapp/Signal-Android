@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class DynamicRegistrationTheme extends DynamicTheme {
   @Override

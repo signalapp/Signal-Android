@@ -26,7 +26,8 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+
+import network.loki.messenger.R;
 
 public class PlayServicesProblemFragment extends DialogFragment {
 

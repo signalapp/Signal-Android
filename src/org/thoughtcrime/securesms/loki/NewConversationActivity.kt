@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_new_conversation.*
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory

@@ -10,7 +10,7 @@ import android.support.v7.app.AlertDialog;
 import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;

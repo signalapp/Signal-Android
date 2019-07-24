@@ -21,7 +21,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.format.DateFormat;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

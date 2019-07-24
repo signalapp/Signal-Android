@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.reminder;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ServiceOutageReminder extends Reminder {

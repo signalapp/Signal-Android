@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 

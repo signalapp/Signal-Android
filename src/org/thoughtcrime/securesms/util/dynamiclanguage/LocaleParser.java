@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.support.v4.os.ConfigurationCompat;
 
-import org.thoughtcrime.securesms.BuildConfig;
+import network.loki.messenger.BuildConfig;
 
 import java.util.Arrays;
 import java.util.Locale;

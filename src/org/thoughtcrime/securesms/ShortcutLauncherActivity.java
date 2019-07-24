@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 
+import network.loki.messenger.R;
+
 public class ShortcutLauncherActivity extends AppCompatActivity {
 
   private static final String KEY_SERIALIZED_ADDRESS = "serialized_address";

@@ -88,6 +88,7 @@ import java.util.concurrent.TimeUnit;
 import dagger.ObjectGraph;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import network.loki.messenger.BuildConfig;
 
 /**
  * Will be called once when the TextSecure process is created.

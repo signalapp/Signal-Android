@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 

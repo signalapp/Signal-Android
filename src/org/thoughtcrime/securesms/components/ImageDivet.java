@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class ImageDivet extends ImageView {
   private static final float CORNER_OFFSET = 12F;

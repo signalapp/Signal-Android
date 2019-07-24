@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class CircleColorImageView extends ImageView {
 

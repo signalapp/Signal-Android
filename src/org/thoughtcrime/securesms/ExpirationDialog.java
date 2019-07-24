@@ -10,6 +10,7 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 
 import cn.carbswang.android.numberpickerview.library.NumberPickerView;
+import network.loki.messenger.R;
 
 public class ExpirationDialog extends AlertDialog {
 

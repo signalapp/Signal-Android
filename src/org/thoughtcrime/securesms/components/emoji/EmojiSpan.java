@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class EmojiSpan extends AnimatingImageSpan {
 

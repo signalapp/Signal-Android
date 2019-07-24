@@ -90,6 +90,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import network.loki.messenger.R;
+
 
 public class ConversationListFragment extends Fragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback, ItemClickListener

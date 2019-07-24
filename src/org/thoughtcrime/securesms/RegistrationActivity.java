@@ -101,6 +101,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import network.loki.messenger.R;
+
 /**
  * The register account activity.  Prompts ths user for their registration information
  * and begins the account registration process.

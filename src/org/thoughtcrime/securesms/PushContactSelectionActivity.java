@@ -22,6 +22,8 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
+import network.loki.messenger.R;
+
 /**
  * Activity container for selecting a list of contacts.
  *

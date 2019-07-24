@@ -33,7 +33,7 @@ import android.text.style.ImageSpan;
 import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.BaseActionBarActivity;
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class StickerSelectActivity extends FragmentActivity implements StickerSelectFragment.StickerSelectionListener {
 

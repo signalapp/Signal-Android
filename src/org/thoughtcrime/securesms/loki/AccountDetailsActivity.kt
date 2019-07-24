@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_account_details.*
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 

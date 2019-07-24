@@ -12,6 +12,8 @@ import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import network.loki.messenger.R;
+
 public class TypingIndicatorIntroFragment extends Fragment {
 
   private Controller controller;

@@ -14,7 +14,7 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class HidingLinearLayout extends LinearLayout {
 

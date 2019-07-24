@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
@@ -15,6 +14,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl;
 import java.util.HashMap;
 import java.util.Map;
 
+import network.loki.messenger.BuildConfig;
 import okhttp3.CipherSuite;
 import okhttp3.ConnectionSpec;
 import okhttp3.TlsVersion;

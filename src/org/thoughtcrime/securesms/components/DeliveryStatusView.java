@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 import pl.tajchert.sample.DotsTextView;
 

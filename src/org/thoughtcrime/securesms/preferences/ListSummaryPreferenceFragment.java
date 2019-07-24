@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.preferences;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 import java.util.Arrays;
 

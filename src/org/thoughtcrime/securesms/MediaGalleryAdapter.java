@@ -37,6 +37,8 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import network.loki.messenger.R;
+
 class MediaGalleryAdapter extends StickyHeaderGridAdapter {
 
   @SuppressWarnings("unused")

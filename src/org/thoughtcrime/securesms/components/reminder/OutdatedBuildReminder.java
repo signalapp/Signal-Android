@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.Util;
 
 public class OutdatedBuildReminder extends Reminder {

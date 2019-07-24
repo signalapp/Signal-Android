@@ -24,7 +24,7 @@ import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 /**
  * List preference that disables dependents when set to "none", similar to a CheckBoxPreference.

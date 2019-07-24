@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class LabeledEditText extends FrameLayout implements View.OnFocusChangeListener {
 

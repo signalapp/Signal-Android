@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.whispersystems.libsignal.util.ByteUtil;
 

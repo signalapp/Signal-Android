@@ -6,7 +6,7 @@ import android.support.v4.content.ContextCompat;
 
 import com.makeramen.roundedimageview.RoundedDrawable;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class TransparentContactPhoto implements FallbackContactPhoto {
 

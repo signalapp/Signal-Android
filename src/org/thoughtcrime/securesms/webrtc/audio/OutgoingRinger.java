@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 import java.io.IOException;
 

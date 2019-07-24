@@ -17,7 +17,7 @@ import android.view.ViewAnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 
 public class SearchToolbar extends LinearLayout {

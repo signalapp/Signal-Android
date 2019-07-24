@@ -38,6 +38,8 @@ import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
 import java.util.concurrent.ExecutionException;
 
+import network.loki.messenger.R;
+
 public class InviteActivity extends PassphraseRequiredActionBarActivity implements ContactSelectionListFragment.OnContactSelectedListener {
 
   private ContactSelectionListFragment contactsFragment;

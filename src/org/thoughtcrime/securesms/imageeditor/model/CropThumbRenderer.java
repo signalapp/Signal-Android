@@ -4,7 +4,7 @@ import android.graphics.Matrix;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;

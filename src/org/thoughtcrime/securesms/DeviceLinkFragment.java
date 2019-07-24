@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import network.loki.messenger.R;
+
 public class DeviceLinkFragment extends Fragment implements View.OnClickListener {
 
   private LinearLayout        container;

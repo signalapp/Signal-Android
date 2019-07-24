@@ -9,9 +9,8 @@ import android.support.annotation.StyleRes;
 import android.support.v7.view.ContextThemeWrapper;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.View;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class ThemeUtil {
 

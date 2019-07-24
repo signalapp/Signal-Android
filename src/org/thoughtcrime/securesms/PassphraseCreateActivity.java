@@ -26,6 +26,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
+import network.loki.messenger.R;
+
 /**
  * Activity for creating a user's local encryption passphrase.
  *

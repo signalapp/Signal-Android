@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewDomains;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.BuildConfig;
+import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;

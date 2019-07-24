@@ -38,6 +38,8 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
+import network.loki.messenger.R;
+
 /**
  * A simple view to show the recipients of a message
  *

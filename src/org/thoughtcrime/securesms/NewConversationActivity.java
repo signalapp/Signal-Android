@@ -28,6 +28,8 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
+import network.loki.messenger.R;
+
 /**
  * Activity container for starting a new conversation.
  *

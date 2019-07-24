@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiDrawerListener;
 
 public class EmojiToggle extends ImageButton implements EmojiDrawerListener {

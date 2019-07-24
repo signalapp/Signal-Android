@@ -13,7 +13,7 @@ import android.text.TextUtils;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 

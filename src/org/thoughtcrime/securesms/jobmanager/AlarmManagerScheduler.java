@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.BuildConfig;
+import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.List;

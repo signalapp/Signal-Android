@@ -22,7 +22,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import org.thoughtcrime.securesms.BaseActionBarActivity;
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class CaptchaActivity extends BaseActionBarActivity {
 

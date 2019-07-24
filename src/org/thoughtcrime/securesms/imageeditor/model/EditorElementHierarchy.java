@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.renderers.CropAreaRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.InverseFillRenderer;

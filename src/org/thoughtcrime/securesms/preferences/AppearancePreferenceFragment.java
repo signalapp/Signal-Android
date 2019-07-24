@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Arrays;

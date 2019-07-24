@@ -12,7 +12,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class ShapeScrim extends View {
 

@@ -75,6 +75,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import network.loki.messenger.R;
+
 /**
  * Activity for displaying media attachments in-app
  */

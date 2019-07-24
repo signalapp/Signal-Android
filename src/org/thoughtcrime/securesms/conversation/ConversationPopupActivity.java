@@ -6,7 +6,7 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.Display;
 import android.view.Gravity;

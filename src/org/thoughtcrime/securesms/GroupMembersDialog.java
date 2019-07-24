@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.util.Util;
 import java.util.LinkedList;
 import java.util.List;
 
+import network.loki.messenger.R;
+
 public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
   private static final String TAG = GroupMembersDialog.class.getSimpleName();

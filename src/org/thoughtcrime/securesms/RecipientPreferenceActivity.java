@@ -84,6 +84,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
 
+import network.loki.messenger.R;
+
 @SuppressLint("StaticFieldLeak")
 public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener, LoaderManager.LoaderCallbacks<Cursor>
 {

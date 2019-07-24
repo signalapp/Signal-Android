@@ -6,7 +6,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 import java.util.HashMap;
 import java.util.Map;

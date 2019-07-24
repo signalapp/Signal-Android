@@ -23,7 +23,7 @@ import android.widget.TextView;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 import java.util.ArrayList;
 import java.util.List;

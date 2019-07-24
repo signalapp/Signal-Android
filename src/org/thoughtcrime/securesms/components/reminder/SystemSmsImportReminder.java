@@ -7,7 +7,7 @@ import android.view.View.OnClickListener;
 
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.DatabaseMigrationActivity;
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 
 public class SystemSmsImportReminder extends Reminder {

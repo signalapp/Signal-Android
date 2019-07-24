@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import android.view.Surface;
 import android.view.View;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 

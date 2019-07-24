@@ -12,6 +12,8 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import network.loki.messenger.R;
+
 public class ReadReceiptsIntroFragment extends Fragment {
 
   public static ReadReceiptsIntroFragment newInstance() {

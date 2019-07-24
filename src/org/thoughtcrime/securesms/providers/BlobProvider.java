@@ -37,7 +37,7 @@ public class BlobProvider {
   private static final String MULTI_SESSION_DIRECTORY  = "multi_session_blobs";
   private static final String SINGLE_SESSION_DIRECTORY = "single_session_blobs";
 
-  public static final Uri        CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms/blob");
+  public static final Uri        CONTENT_URI = Uri.parse("content://network.loki.messenger.securesms/blob");
   public static final String     AUTHORITY   = "org.thoughtcrime.securesms";
   public static final String     PATH        = "blob/*/*/*/*/*";
 

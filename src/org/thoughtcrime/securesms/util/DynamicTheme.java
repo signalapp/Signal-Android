@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.app.Activity;
 import android.content.Intent;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class DynamicTheme {
 

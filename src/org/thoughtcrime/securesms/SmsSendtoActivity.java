@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.util.Rfc5724Uri;
 
 import java.net.URISyntaxException;
 
+import network.loki.messenger.R;
+
 public class SmsSendtoActivity extends Activity {
 
   private static final String TAG = SmsSendtoActivity.class.getSimpleName();

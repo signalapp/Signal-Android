@@ -11,6 +11,8 @@ import org.thoughtcrime.securesms.util.DateUtils;
 
 import java.util.Locale;
 
+import network.loki.messenger.R;
+
 public class DeviceListItem extends LinearLayout {
 
   private long     deviceId;

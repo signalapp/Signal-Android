@@ -54,6 +54,8 @@ import org.whispersystems.signalservice.loki.utilities.SerializationKt;
 
 import java.io.File;
 
+import network.loki.messenger.R;
+
 /**
  * The Activity for application preference display and management.
  *

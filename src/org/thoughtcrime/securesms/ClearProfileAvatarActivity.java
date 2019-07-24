@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 
+import network.loki.messenger.R;
+
 public class ClearProfileAvatarActivity extends Activity {
 
   @Override

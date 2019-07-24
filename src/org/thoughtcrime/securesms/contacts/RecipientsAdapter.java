@@ -17,7 +17,7 @@
 
 package org.thoughtcrime.securesms.contacts;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
 
 import android.content.ContentResolver;

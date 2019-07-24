@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.securesms.BuildConfig;
+import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;

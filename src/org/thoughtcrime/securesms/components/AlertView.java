@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class AlertView extends LinearLayout {
 

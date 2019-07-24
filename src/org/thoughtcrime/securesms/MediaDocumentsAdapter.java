@@ -31,6 +31,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import network.loki.messenger.R;
+
 import static com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager.TAG;
 
 public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder> implements StickyHeaderDecoration.StickyHeaderAdapter<HeaderViewHolder> {

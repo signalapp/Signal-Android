@@ -14,11 +14,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-
 import org.thoughtcrime.securesms.database.loaders.CountryListLoader;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+import network.loki.messenger.R;
 
 public class CountrySelectionFragment extends ListFragment implements LoaderManager.LoaderCallbacks<ArrayList<Map<String, String>>> {
 

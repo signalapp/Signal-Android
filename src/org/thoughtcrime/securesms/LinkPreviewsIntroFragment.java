@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import network.loki.messenger.R;
+
 public class LinkPreviewsIntroFragment extends Fragment {
 
   private Controller controller;

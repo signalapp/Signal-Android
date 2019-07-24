@@ -31,6 +31,8 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 
+import network.loki.messenger.R;
+
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 public class ConfirmIdentityDialog extends AlertDialog {

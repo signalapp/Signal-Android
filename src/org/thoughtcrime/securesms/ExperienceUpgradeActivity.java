@@ -29,6 +29,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.Collections;
 import java.util.List;
 
+import network.loki.messenger.R;
+
 public class ExperienceUpgradeActivity extends BaseActionBarActivity implements TypingIndicatorIntroFragment.Controller, LinkPreviewsIntroFragment.Controller {
   private static final String TAG             = ExperienceUpgradeActivity.class.getSimpleName();
   private static final String DISMISS_ACTION  = "org.thoughtcrime.securesms.ExperienceUpgradeActivity.DISMISS_ACTION";

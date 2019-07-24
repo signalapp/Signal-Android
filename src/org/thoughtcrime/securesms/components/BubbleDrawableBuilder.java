@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class BubbleDrawableBuilder {
   private int color;

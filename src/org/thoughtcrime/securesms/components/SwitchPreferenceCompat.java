@@ -8,7 +8,7 @@ import android.support.v7.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class SwitchPreferenceCompat extends CheckBoxPreference {
 

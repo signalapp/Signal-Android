@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.List;
 
+import network.loki.messenger.R;
+
 public class TransportOptionsAdapter extends BaseAdapter {
 
   private final LayoutInflater inflater;

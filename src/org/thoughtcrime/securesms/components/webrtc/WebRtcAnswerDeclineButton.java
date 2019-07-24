@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTouchListener {

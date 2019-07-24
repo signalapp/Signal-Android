@@ -39,6 +39,8 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import network.loki.messenger.R;
+
 /**
  * A CursorAdapter for building a list of conversation threads.
  *

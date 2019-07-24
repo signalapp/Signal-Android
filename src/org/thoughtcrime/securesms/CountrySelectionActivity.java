@@ -3,7 +3,8 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
+import network.loki.messenger.R;
 
 public class CountrySelectionActivity extends BaseActivity
     implements CountrySelectionFragment.CountrySelectedListener

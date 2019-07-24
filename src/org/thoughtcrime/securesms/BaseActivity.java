@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageActivityHelper;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
+import network.loki.messenger.R;
+
 public abstract class BaseActivity extends FragmentActivity {
   @Override
   public boolean onKeyDown(int keyCode, KeyEvent event) {

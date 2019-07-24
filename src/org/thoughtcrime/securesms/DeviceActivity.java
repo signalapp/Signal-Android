@@ -11,8 +11,6 @@ import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.transition.TransitionInflater;
-
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +18,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.qr.ScanListener;
@@ -39,6 +38,8 @@ import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.internal.push.DeviceLimitExceededException;
 
 import java.io.IOException;
+
+import network.loki.messenger.R;
 
 public class DeviceActivity extends PassphraseRequiredActionBarActivity
     implements Button.OnClickListener, ScanListener, DeviceLinkFragment.LinkClickedListener

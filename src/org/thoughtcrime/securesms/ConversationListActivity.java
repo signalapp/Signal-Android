@@ -60,6 +60,8 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.util.List;
 
+import network.loki.messenger.R;
+
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity
     implements ConversationListFragment.ConversationSelectedListener
 {

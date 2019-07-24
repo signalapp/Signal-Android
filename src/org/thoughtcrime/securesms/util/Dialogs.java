@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 
-import org.thoughtcrime.securesms.R;
+import network.loki.messenger.R;
 
 public class Dialogs {
   public static void showAlertDialog(Context context, String title, String message) {
