@@ -456,6 +456,7 @@
   <string name="MediaSendActivity_message_to_s">Wiadomość do %s</string>
   <string name="MediaSendActivity_message">Wiadomość</string>
   <string name="MediaSendActivity_select_recipients">Wybierz odbiorców</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal wymaga dostępu do Twoich kontaktów w celu wyświetlenia ich.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nie można udostępnić więcej niż %d plik multimediów.</item>
     <item quantity="few">Nie można udostępnić więcej niż %d multimediów.</item>

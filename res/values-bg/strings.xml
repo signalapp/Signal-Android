@@ -409,6 +409,7 @@
   <string name="MediaSendActivity_camera_unavailable">Не е открита камера.</string>
   <string name="MediaSendActivity_message_to_s">Изпрати на %s</string>
   <string name="MediaSendActivity_message">Съобщение</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal се нуждае от достъп до контактите Ви, за да може да ги покаже.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Не можете да споделяте повече от %d елемент.</item>
     <item quantity="other">Не можете да споделяте повече от %d елементи.</item>

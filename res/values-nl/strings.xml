@@ -421,6 +421,8 @@ weergaven.</string>
   <string name="MediaSendActivity_message_to_s">Bericht aan %s</string>
   <string name="MediaSendActivity_message">Bericht</string>
   <string name="MediaSendActivity_select_recipients">Selecteer Signal-gebruikers</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal heeft toegang nodig tot je contacten om contactpersonen te kunnen weergeven.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Je kan niet meer dan %d item delen.</item>
     <item quantity="other">Je kunt niet meer dan %d items delen.</item>

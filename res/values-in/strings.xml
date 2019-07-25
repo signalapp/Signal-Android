@@ -383,6 +383,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera tidak tersedia.</string>
   <string name="MediaSendActivity_message_to_s">kirim pesan ke %s</string>
   <string name="MediaSendActivity_message">Pesan</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal memerlukan akses kontak Anda supaya dapat menampilkannya.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">Anda tidak bisa membagikan lebih dari %d item</item>
   </plurals>

@@ -346,6 +346,7 @@
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_message">စာ</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">မိမိ၏ အဆက်အသွယ်များကို ပြသရန် Signal က အဆက်အသွယ်များကို ရယူရန်လိုသည်။</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
   <!--MessageRecord-->

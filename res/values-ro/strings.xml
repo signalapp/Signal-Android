@@ -428,6 +428,7 @@
   <string name="MediaSendActivity_camera_unavailable">Cameră indisponibilă.</string>
   <string name="MediaSendActivity_message_to_s">Mesaj către %s</string>
   <string name="MediaSendActivity_message">Mesaj</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal are nevoie de acces la contactele tale pentru a le afișa.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nu puteți partaja mai mult de %d element.</item>
     <item quantity="few">Nu puteți partaja mai mult de %d element.</item>

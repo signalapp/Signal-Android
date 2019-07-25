@@ -456,6 +456,7 @@
   <string name="MediaSendActivity_message_to_s">Žinutė skirta %s</string>
   <string name="MediaSendActivity_message">Žinutė</string>
   <string name="MediaSendActivity_select_recipients">Pasirinkti gavėjus</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Norint rodyti jūsų adresatus, Signal reikia prieigos prie jų.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Jūs negalite bendrinti daugiau nei %d elementą.</item>
     <item quantity="few">Jūs negalite bendrinti daugiau nei %d elementų.</item>

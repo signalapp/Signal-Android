@@ -391,6 +391,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Một mục đã bị loại bỏ vì quá kích cỡ giới hạn</string>
   <string name="MediaSendActivity_camera_unavailable">Máy ảnh không khả dụng</string>
   <string name="MediaSendActivity_message_to_s">Tin nhắn đến %s</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal cần quyền truy cập danh bạ để hiển thị chúng.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">Bạn không thể chia sẻ quá %d mục.</item>
   </plurals>

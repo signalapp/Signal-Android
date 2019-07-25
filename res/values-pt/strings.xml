@@ -420,6 +420,7 @@
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
   <string name="MediaSendActivity_message">Mensagem</string>
   <string name="MediaSendActivity_select_recipients">Selecionar destinatários</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">O Signal precisa de ter acesso aos contactos para os poder mostrar.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Não pode partilhar mais do que %d item.</item>
     <item quantity="other">Não pode partilhar mais do que %d itens.</item>

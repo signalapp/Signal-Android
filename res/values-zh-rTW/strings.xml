@@ -402,6 +402,7 @@
   <string name="MediaSendActivity_message_to_s">傳訊息給 %s</string>
   <string name="MediaSendActivity_message">訊息</string>
   <string name="MediaSendActivity_select_recipients">選擇收件人</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal 需要存取你的\"聯絡人\"以顯示聯絡人資訊。</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">你無法分享超過 %d 個項目。</item>
   </plurals>

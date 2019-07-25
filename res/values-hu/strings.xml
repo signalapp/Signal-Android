@@ -421,6 +421,7 @@
   <string name="MediaSendActivity_message_to_s">Üzenet neki: %s</string>
   <string name="MediaSendActivity_message">Üzenetek</string>
   <string name="MediaSendActivity_select_recipients">Címzettek kiválasztása</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">A Signal-nak szüksége van a névjegyeidhez való hozzáférésre annak érdekében, hogy megjelenítse őket.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nem oszthatsz meg többet, mint %d db elem.</item>
     <item quantity="other">Nem oszthatsz meg többet, mint %d db elem.</item>

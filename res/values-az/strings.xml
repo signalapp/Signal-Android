@@ -407,6 +407,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera işə salına bimir</string>
   <string name="MediaSendActivity_message_to_s">%s istifadəçisinə mesaj</string>
   <string name="MediaSendActivity_message">Mesaj</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Nümayiş edə bilməsi üçün Signal-ın sənin əlaqələrinə giriş icazəsi olmalıdır.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">%d fayldan artığını paylaşa bilməzsən.</item>
     <item quantity="other">%d fayldan artığını paylaşa bilməzsən.</item>

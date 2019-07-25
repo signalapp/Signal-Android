@@ -414,6 +414,7 @@
   <string name="MediaSendActivity_message_to_s">Message à %s</string>
   <string name="MediaSendActivity_message">Message</string>
   <string name="MediaSendActivity_select_recipients">Sélectionner des destinataires</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal a besoin d’accéder à vos contacts pour les afficher.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Vous ne pouvez pas partager plus d’%d élément.</item>
     <item quantity="other">Vous ne pouvez pas partager plus de %d éléments.</item>

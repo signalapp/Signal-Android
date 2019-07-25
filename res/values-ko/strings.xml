@@ -391,6 +391,7 @@
   <string name="MediaSendActivity_camera_unavailable">카메라를 사용할 수 없습니다.</string>
   <string name="MediaSendActivity_message_to_s">%s에게 메시지</string>
   <string name="MediaSendActivity_message">메시지</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal에서 연락처 정보를 띄우려면 주소록 권한이 필요합니다.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">항목 %d개를 초과하여 공유할 수 없습니다.</item>
   </plurals>

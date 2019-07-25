@@ -410,6 +410,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera jo gati</string>
   <string name="MediaSendActivity_message_to_s">Mesazh për %s</string>
   <string name="MediaSendActivity_message">Mesazh</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Që të mund t\’i shfaqë, Signal-i lyp leje përdorimi të kontakteve.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">S\’mund të ndani me të tjerët më shumë se %d objekte.</item>
     <item quantity="other">S\’mund të ndani me të tjerët më shumë se %d objekte.</item>

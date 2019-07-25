@@ -456,6 +456,7 @@
   <string name="MediaSendActivity_message_to_s">Сообщение %s</string>
   <string name="MediaSendActivity_message">Сообщение</string>
   <string name="MediaSendActivity_select_recipients">Выберите получателей</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal необходимо разрешение на доступ к вашим контактам, чтобы отобразить их.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Вы не можете поделиться больше, чем %d элементом.</item>
     <item quantity="few">Вы не можете поделиться больше, чем %d элементами.</item>

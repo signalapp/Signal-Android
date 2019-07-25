@@ -395,6 +395,7 @@
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へメッセージ</string>
   <string name="MediaSendActivity_message">メッセージ</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">連絡先を表示するには、Signalの連絡先へのアクセスを許可してください。</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">%d以上のアイテムを共有できません</item>
   </plurals>

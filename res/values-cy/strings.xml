@@ -447,6 +447,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Cafodd eitem ei thynnu gan ei bod yn fwy na\'r maint mwyaf</string>
   <string name="MediaSendActivity_camera_unavailable">Camera ddim ar gael</string>
   <string name="MediaSendActivity_message_to_s">Neges i %s</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Mae ar Signal angen mynediad i\'ch cysylltiadau er mwyn eu harddangos.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nid oes modd rhannu mwy na %d eitem.</item>
     <item quantity="two">Nid oes modd rhannu mwy na %d eitem.</item>

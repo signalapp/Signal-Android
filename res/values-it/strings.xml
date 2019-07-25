@@ -421,6 +421,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MediaSendActivity_message_to_s">Messaggio a %s</string>
   <string name="MediaSendActivity_message">Messaggio</string>
   <string name="MediaSendActivity_select_recipients">Seleziona destinatari</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal richiede l\'accesso ai tuoi contatti per poterli mostrare.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Non puoi condividere più di %d elemento.</item>
     <item quantity="other">Non puoi condividere più di %d elementi.</item>

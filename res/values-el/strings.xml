@@ -410,6 +410,7 @@
   <string name="MediaSendActivity_camera_unavailable">Η κάμερα δεν είναι διαθέσιμη.</string>
   <string name="MediaSendActivity_message_to_s">Μήνυμα προς τον/την %s</string>
   <string name="MediaSendActivity_message">Μήνυμα</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Το Signal χρειάζεται πρόσβαση στις επαφές σας για να μπορέσει να τις εμφανίσει. </string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Δεν μπορείτε να μοιραστείτε πάνω από %d αντικείμενο.</item>
     <item quantity="other">Δεν μπορείτε να μοιραστείτε πάνω από %d αντικείμενα.</item>

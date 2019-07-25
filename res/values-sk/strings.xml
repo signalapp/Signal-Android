@@ -446,6 +446,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera je nedostupná.</string>
   <string name="MediaSendActivity_message_to_s">Správa pre %s</string>
   <string name="MediaSendActivity_message">Správa</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal potrebuje prístup k Vašim kontaktom, aby ich mohol zobraziť.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nemôžete zdieľať viac ako %d položku.</item>
     <item quantity="few">Nemôžete zdieľať viac ako %d položiky.</item>

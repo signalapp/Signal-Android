@@ -456,6 +456,7 @@
   <string name="MediaSendActivity_message_to_s">Sporočilo za uporabnika %s</string>
   <string name="MediaSendActivity_message">Sporočilo</string>
   <string name="MediaSendActivity_select_recipients">Izberite prejemnike</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Za prikaz imen iz vašega imenika potrebuje aplikacija Signal dostop do stikov.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Ne morete deliti več kot %d priponko.</item>
     <item quantity="two">Ne morete deliti več kot %d priponki.</item>

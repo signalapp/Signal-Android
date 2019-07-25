@@ -392,6 +392,7 @@
   <string name="MediaSendActivity_camera_unavailable">摄像头不可用。</string>
   <string name="MediaSendActivity_message_to_s">发送给 %s 的消息</string>
   <string name="MediaSendActivity_message">消息</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal 需要访问您的联系人才能显示他们。</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">您最多分享 %d 项。</item>
   </plurals>

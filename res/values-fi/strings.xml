@@ -410,6 +410,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera ei käytettävissä</string>
   <string name="MediaSendActivity_message_to_s">Vastaanottaja: %s</string>
   <string name="MediaSendActivity_message">Viesti</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal tarvitsee luvan yhteystietoihisi, jotta se voisi näyttää ne.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Et voi jakaa useampaa kuin %d kappaletta.</item>
     <item quantity="other">Et voi jakaa useampaa kuin %d kappaletta.</item>
