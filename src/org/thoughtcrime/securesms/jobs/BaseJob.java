@@ -19,14 +19,17 @@ public abstract class BaseJob extends Job {
   public @NonNull Result run() {
     try {
       onRun();
-      return Result.SUCCESS;
+      return Result.success();
+    } catch (RuntimeException e) {
+      Log.e(TAG, "Encountered a fatal exception. Crash imminent.", e);
+      return Result.fatalFailure(e);
     } catch (Exception e) {
       if (onShouldRetry(e)) {
         Log.i(TAG, JobLogger.format(this, "Encountered a retryable exception."), e);
-        return Result.RETRY;
+        return Result.retry();
       } else {
         Log.w(TAG, JobLogger.format(this, "Encountered a failing exception."), e);
-        return Result.FAILURE;
+        return Result.failure();
       }
     }
   }

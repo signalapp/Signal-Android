@@ -125,8 +125,59 @@ public abstract class Job {
     @NonNull T create(@NonNull Parameters parameters, @NonNull Data data);
   }
 
-  public enum Result {
-    SUCCESS, FAILURE, RETRY
+  public static final class Result {
+
+    private static final Result SUCCESS = new Result(ResultType.SUCCESS, null);
+    private static final Result RETRY   = new Result(ResultType.RETRY, null);
+    private static final Result FAILURE = new Result(ResultType.FAILURE, null);
+
+    private final ResultType       resultType;
+    private final RuntimeException runtimeException;
+
+    private Result(@NonNull ResultType resultType, @Nullable RuntimeException runtimeException) {
+      this.resultType       = resultType;
+      this.runtimeException = runtimeException;
+    }
+
+    /** Job completed successfully. */
+    public static Result success() {
+      return SUCCESS;
+    }
+
+    /** Job did not complete successfully, but it can be retried later. */
+    public static Result retry() {
+      return RETRY;
+    }
+
+    /** Job did not complete successfully and should not be tried again. Dependent jobs will also be failed.*/
+    public static Result failure() {
+      return FAILURE;
+    }
+
+    /** Same as {@link #failure()}, except the app should also crash with the provided exception. */
+    public static Result fatalFailure(@NonNull RuntimeException runtimeException) {
+      return new Result(ResultType.FAILURE, runtimeException);
+    }
+
+    boolean isSuccess() {
+      return resultType == ResultType.SUCCESS;
+    }
+
+    boolean isRetry() {
+      return resultType == ResultType.RETRY;
+    }
+
+    boolean isFailure() {
+      return resultType == ResultType.FAILURE;
+    }
+
+    @Nullable RuntimeException getException() {
+      return runtimeException;
+    }
+
+    private enum ResultType {
+      SUCCESS, FAILURE, RETRY
+    }
   }
 
   public static final class Parameters {
