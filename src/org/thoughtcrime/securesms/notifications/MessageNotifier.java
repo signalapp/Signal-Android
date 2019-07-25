@@ -37,12 +37,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.text.TextUtils;
-import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.contactshare.ContactUtil;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -50,6 +48,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -70,6 +69,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
+import network.loki.messenger.R;
 
 
 /**
@@ -318,7 +318,7 @@ public class MessageNotifier {
     ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
 
     builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
-                       notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),
+                       /*notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),*/
                        notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod),
                        replyMethod);
 

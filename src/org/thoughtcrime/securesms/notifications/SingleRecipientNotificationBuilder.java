@@ -17,7 +17,6 @@ import android.text.SpannableStringBuilder;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
@@ -36,6 +35,8 @@ import org.thoughtcrime.securesms.util.Util;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import network.loki.messenger.R;
 
 public class SingleRecipientNotificationBuilder extends AbstractNotificationBuilder {
 
@@ -143,7 +144,6 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   public void addActions(@NonNull PendingIntent markReadIntent,
-                         @NonNull PendingIntent quickReplyIntent,
                          @NonNull PendingIntent wearableReplyIntent,
                          @NonNull ReplyMethod replyMethod)
   {
@@ -154,17 +154,21 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     String actionName = context.getString(R.string.MessageNotifier_reply);
     String label      = context.getString(replyMethodLongDescription(replyMethod));
 
+    /*
     Action replyAction = new Action(R.drawable.ic_reply_white_36dp,
                                     actionName,
                                     quickReplyIntent);
+     */
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      /*
       replyAction = new Action.Builder(R.drawable.ic_reply_white_36dp,
                                        actionName,
                                        wearableReplyIntent)
           .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
                               .setLabel(label).build())
           .build();
+       */
     }
 
     Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
@@ -175,7 +179,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
         .build();
 
     addAction(markAsReadAction);
-    addAction(replyAction);
+    // addAction(replyAction);
 
     extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction)
                                                     .addAction(wearableReplyAction));
